@@ -1,4 +1,4 @@
-
+import document
 
 
 class Parser:
@@ -11,6 +11,6 @@ class Parser:
 		try:
 			with open(filename, 'r') as f:
 				for line in f:
-
+					print(line)
 		except Exception as e:
 			print("Error occured while opening file: "+str(e))

@@ -94,16 +94,17 @@ def fill_commands():
 def save(prev_h_len, histfile):
 	new_h_len = readline.get_current_history_length()
 	readline.set_history_length(1000)
-	readline.append_history_file(new_h_len - prev_h_len, histfile)
+	readline.write_history_file(histfile)
 
 def main():
 
+	readline.parse_and_bind("tab: complete")
 	histfile = os.path.join(os.path.expanduser("~"), ".syn_sugar_hist")
 	h_len = 0
 	try:
 		readline.read_history_file(histfile)
 		h_len = readline.get_current_history_length()
-	except FileNotFoundError:
+	except Exception:
 		open(histfile, 'wb').close()
 
 	atexit.register(save, h_len, histfile)

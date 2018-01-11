@@ -1,10 +1,10 @@
 
 
 
-class conjunctions:
+class compress:
 
 	def __init__(self):
-		self.recipe="conjunctions"
+		self.recipe="compress"
 
 	def say_recipe(self):
 		print(self.recipe)

@@ -1,11 +1,15 @@
 import os
 import sys
+import atexit
+import readline
 import inspect
-from time import localtime, strftime
-from bcolors import bcolors
-import parser
 import glob
 import importlib
+
+from time import localtime, strftime
+from bcolors import bcolors
+from parser import parser
+
 
 startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n| * Syn Sugar: "+strftime("%Y-%m-%d %H:%M:%S", localtime())+"\n| *--- Author: Nicholas V. Giamblanco, 2018\n+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
 
@@ -59,22 +63,19 @@ def import_recipes():
 def disp_help():
 	print(help_msg)
 
-def sprinkle_sugar():
+def bake():
 	print("Getting Recipes: ")
-
 	classes=import_recipes();
 
+	print("\nChecking what we can cook: ")
 	for file in glob.glob("data/*"):
 		print(bcolors.OKBLUE + "[-] " + file.replace("data/", "",1) +bcolors.ENDC)
 
-	print(bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
+	print("\n"+bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
+	what_to_cook=raw_input(bcolors.FAIL+"$ "+bcolors.ENDC)
 	print("~ Baking. Please wait.")
-
-
-
-
-def stats():
-	print("--collect stats.")
+	parse_things=parser()
+	parse_things.collect_ingredients("data/"+what_to_cook)
 
 
 def fill_commands():
@@ -84,13 +85,28 @@ def fill_commands():
 		"e" : exit,
 		"quit" : exit,
 		"q" : exit,
-		"sprinkle" : sprinkle_sugar,
-		"stats" : stats,
+		"bake" : bake,
+		"b": bake,
 	}
 
 	return commands
 
+def save(prev_h_len, histfile):
+	new_h_len = readline.get_current_history_length()
+	readline.set_history_length(1000)
+	readline.append_history_file(new_h_len - prev_h_len, histfile)
+
 def main():
+
+	histfile = os.path.join(os.path.expanduser("~"), ".syn_sugar_hist")
+	h_len = 0
+	try:
+		readline.read_history_file(histfile)
+		h_len = readline.get_current_history_length()
+	except FileNotFoundError:
+		open(histfile, 'wb').close()
+
+	atexit.register(save, h_len, histfile)
 	running 	=	True
 
 	print(bcolors.OKGREEN + startup_message + bcolors.ENDC)
@@ -102,6 +118,7 @@ def main():
 			commands[command]()
 		
 
-
 if __name__ == "__main__":
 	main()
+
+

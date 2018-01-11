@@ -6,6 +6,9 @@ class Parser:
 	def __init__(self):
 		print("herro")
 
+	def apply_rule(rule):
+		print("Applying rule"+rule.name())
+
 	def parse_file(self,filename):
 
 		try:

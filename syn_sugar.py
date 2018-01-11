@@ -13,7 +13,7 @@ from parser import parser
 
 startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n| * Syn Sugar: "+strftime("%Y-%m-%d %H:%M:%S", localtime())+"\n| *--- Author: Nicholas V. Giamblanco, 2018\n+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
 
-help_msg="[+] help\n"
+help_msg="[+] help\n[-] 'bake' | 'b' --> extract information from text.\n[-] 'help' | 'h' --> displays this. \n[-] 'exit' | 'e' | 'quit' | 'q' --> quits this."
 
 def load_modules_from_path(path):
 	#Import all modules from the given directory
@@ -73,14 +73,16 @@ def bake():
 
 	print("\n"+bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
 	what_to_cook=raw_input(bcolors.FAIL+"$ "+bcolors.ENDC)
-	print("~ Baking. Please wait.")
-	parse_things=parser()
-	parse_things.collect_ingredients("data/"+what_to_cook)
+	print(bcolors.REDBACK+"~ Baking. Please wait."+bcolors.ENDBACK)
+	_ingredients=parser().collect_ingredients("data/"+what_to_cook)
 
+	for _class in classes:
+		_class().bake(_ingredients)
 
 def fill_commands():
 	commands={
 		"help" : disp_help,
+		"h" : disp_help,
 		"exit" : exit,
 		"e" : exit,
 		"quit" : exit,
@@ -111,6 +113,8 @@ def main():
 	running 	=	True
 
 	print(bcolors.OKGREEN + startup_message + bcolors.ENDC)
+	disp_help()
+
 	sys.path.append('~/recipes')	
 	commands=fill_commands();
 	while running:

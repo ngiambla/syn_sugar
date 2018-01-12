@@ -5,6 +5,7 @@ import readline
 import inspect
 import glob
 import importlib
+import time
 
 from time import localtime, strftime
 from bcolors import bcolors
@@ -91,14 +92,20 @@ def bake():
 	what_to_cook=raw_input("$ ")
 	os.chdir("../")
 	print(bcolors.BLUEBACK+"~ Baking. Please wait."+bcolors.ENDBACK)
+	start = time.time()
+
 	_ingredients=parser().collect_ingredients("data/"+what_to_cook)
 
 	for rank in sorted(_classes.iterkeys()):
 		_class=_classes[rank]
 		print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
 		_class().bake(_ingredients)		
-
 	print(bcolors.ENDC)
+
+	garnish().final_touches(_ingredients)
+	end = time.time()
+
+	print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 
 def info():
 	print("--")

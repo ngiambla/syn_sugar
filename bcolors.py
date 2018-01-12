@@ -9,5 +9,6 @@ class bcolors:
 	BOLD 		= 	'\033[1m'
 	UNDERLINE 	= 	'\033[4m'
 	REDBACK 	= 	'\033[41m'
+	GREENBACK 	= 	'\033[42m'
 	BLUEBACK 	= 	'\033[44m'
 	ENDBACK 	= 	'\033[0m'

@@ -63,6 +63,7 @@ def import_recipes():
 def disp_help():
 	print(help_msg)
 
+### Main Functionality...
 def bake():
 	print("Getting Recipes: ")
 	classes=import_recipes();
@@ -72,12 +73,14 @@ def bake():
 		print(bcolors.OKBLUE + "[-] " + file.replace("data/", "",1) +bcolors.ENDC)
 
 	print("\n"+bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
-	what_to_cook=raw_input(bcolors.FAIL+"$ "+bcolors.ENDC)
-	print(bcolors.REDBACK+"~ Baking. Please wait."+bcolors.ENDBACK)
+	what_to_cook=raw_input("$ ")
+	print(bcolors.BLUEBACK+"~ Baking. Please wait."+bcolors.ENDBACK)
 	_ingredients=parser().collect_ingredients("data/"+what_to_cook)
 
+	bake_step=0
 	for _class in classes:
 		_class().bake(_ingredients)
+		bake_step=bake_step+1
 
 def fill_commands():
 	commands={

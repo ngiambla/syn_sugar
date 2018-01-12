@@ -9,11 +9,22 @@ import importlib
 from time import localtime, strftime
 from bcolors import bcolors
 from parser import parser
+from garnish import garnish
 
 
-startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n| * Syn Sugar: "+strftime("%Y-%m-%d %H:%M:%S", localtime())+"\n| *--- Author: Nicholas V. Giamblanco, 2018\n+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
+startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n"\
+				"| * Syn Sugar: "+strftime("%Y-%m-%d %H:%M:%S", localtime())+"\n"\
+				"| *--- Author: Nicholas V. Giamblanco, 2018"\
+				"\n+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
 
-help_msg="[+] help\n[-] 'bake' | 'b' --> extract information from text.\n[-] 'help' | 'h' --> displays this. \n[-] 'exit' | 'e' | 'quit' | 'q' --> quits this."
+help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
+		 "| 'bake' | 'b' --> extract information from text.\n"\
+		 "| 'help' | 'h' --> displays this. \n"\
+		 "| 'info' | 'i' --> does nothing. \n"\
+		 "| 'quit' | 'q' --> quits this.\n\n"\
+		 "+ ~[utilities]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
+		 "| 'clean' = cleans post baked items.\n"\
+		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 def load_modules_from_path(path):
 	#Import all modules from the given directory
@@ -50,7 +61,6 @@ def load_class_from_name(fqcn):
     return cls
 
 def import_recipes():
-
 	classes=[]
 	load_modules_from_path("recipes")
 	for file in glob.glob("recipes/*.py"):
@@ -68,32 +78,43 @@ def bake():
 	print("Getting Recipes: ")
 	classes=import_recipes();
 
+	print("~ Prepping Recipes.")
+	_classes=garnish().prep_work(classes)
+	
+
 	print("\nChecking what we can cook: ")
 	for file in glob.glob("data/*"):
 		print(bcolors.OKBLUE + "[-] " + file.replace("data/", "",1) +bcolors.ENDC)
 
 	print("\n"+bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
+	os.chdir("data/")
 	what_to_cook=raw_input("$ ")
+	os.chdir("../")
 	print(bcolors.BLUEBACK+"~ Baking. Please wait."+bcolors.ENDBACK)
 	_ingredients=parser().collect_ingredients("data/"+what_to_cook)
 
-	bake_step=0
-	for _class in classes:
-		_class().bake(_ingredients)
-		bake_step=bake_step+1
+	for rank in sorted(_classes.iterkeys()):
+		_class=_classes[rank]
+		print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
+		_class().bake(_ingredients)		
+
+	print(bcolors.ENDC)
+
+def info():
+	print("--")
 
 def fill_commands():
 	commands={
 		"help" : disp_help,
 		"h" : disp_help,
-		"exit" : exit,
-		"e" : exit,
 		"quit" : exit,
 		"q" : exit,
 		"bake" : bake,
 		"b": bake,
+		"i" : info,
+		"info" : info,
+		"clean" : garnish().clean,
 	}
-
 	return commands
 
 def save(prev_h_len, histfile):

@@ -1,37 +1,31 @@
 import sys
-import time
+from ingredients import ingredients
 
-class compress():
+class delimiters:
 
-	def __init__(self,):
-		self.recipe="compress"
+	def __init__(self):
+		self.recipe 	=	"delimiters"
 
 	def say_recipe(self):
-		print(self.recipe)	
-
-	def load_red_words(self):
-		red_dict={}
-
-		with open("bad_ingredients/bad_ingredients.pb", "r") as f:
-			for line in f:
-				bad_things = line.split()
-				for bad_thing in bad_things:
-					red_dict[bad_thing] = "%%#%%"
-		return red_dict
+		print(self.recipe)
 
 	def bake(self, _ingredients):
 
-		ingredient_bin = {}
 		_ingredients_all = _ingredients.get_ingredients()
 		_ingredient_mapping = _ingredients.get_ingredient_mapping()
 
-		red_dict = self.load_red_words()
+
+		# begin each doc with our syntactical check.
+		_ingredients_all[0]="~$["+_ingredients_all[0]
+
 		for _label in _ingredients_all:
 			sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
 			sys.stdout.flush()
-			_ingredients_all[_label] = _ingredients_all[_label].lower()
-			if _ingredients_all[_label] in red_dict:
-				_ingredients_all[_label] = red_dict[_ingredients_all[_label]]
+			if _ingredients_all[_label][len(_ingredients_all[_label])-1] == '.':
+				if _label+1 in _ingredients_all:
+					if ord(_ingredients_all[_label+1][0]) >=65 and ord(_ingredients_all[_label+1][0]) <=90:
+						_ingredients_all[_label]=_ingredients_all[_label]+"]$~"
+						_ingredients_all[_label+1]="~$["+_ingredients_all[_label+1]
 
 		with open("post_bakes/"+self.recipe+".pb", "w+") as f:
 			line 	= 	0
@@ -45,5 +39,4 @@ class compress():
 					line=line+1
 			f.write(out+"\n")
 		_ingredients.update(_ingredients_all, _ingredient_mapping)
-		print("")
 		print("")

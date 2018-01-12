@@ -6,11 +6,13 @@ class parser:
 
 	def prepare_stuffing(self):
 		stuffing = {
-			"~~~" : "%%ESC%%",
-			"]^[" : "%%AND%%",
-			"]V[" : "%%OR%%",
-			"]B[" : "%%BUT%%",
-			">>I" : "%%IF%%"
+			"~~~" 	: "%%ESC%%",
+			"]^[" 	: "%%AND%%",
+			"]V[" 	: "%%OR%%",
+			"]B[" 	: "%%BUT%%",
+			"~$[" 	: "%%GO%%",
+			"]$~" 	: "%%END%%",
+			"%%#%%"	: "%%BAD%%"
 		}
 		return stuffing
 
@@ -38,4 +40,5 @@ class parser:
 			return ingredients(_ingredients, _ingredient_mapping, filename)
 		except Exception as e:
 			print("Error occured while opening file: "+str(e))
+			exit()
 

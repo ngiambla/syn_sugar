@@ -17,11 +17,20 @@ class compare:
 		for _label in _ingredients_all:
 			sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
 			sys.stdout.flush()
-			if "if" == _ingredients_all[_label]:
-				_ingredients_all[_label]=_ingredients_all[_label].replace("if", "%%CMP%%")
 
-			if "therefore" == _ingredients_all[_label]:
-				_ingredients_all[_label]=_ingredients_all[_label].replace("therefore", "%%CMP%%")
+			if len(_ingredients_all[_label]) >= 2:
+				if 'i' == _ingredients_all[_label][0].lower() and 'f' == _ingredients_all[_label][1].lower():
+					_ingredients_all[_label]=_ingredients_all[_label].replace("if", "%%cmp%%")
+
+			if "therefore" in _ingredients_all[_label].lower():
+				_ingredients_all[_label]=_ingredients_all[_label].replace("therefore", "%%cmp%%")
+
+			if "because" in _ingredients_all[_label].lower():
+				_ingredients_all[_label]=_ingredients_all[_label].replace("because", "%%cmp%%")
+
+			if "hence" in _ingredients_all[_label].lower():
+				_ingredients_all[_label]=_ingredients_all[_label].replace("hence", "%%cmp%%")
+
 
 		with open("post_bakes/"+self.recipe+".pb", "w+") as f:
 			line 	= 	0

@@ -43,11 +43,20 @@ class garnish:
 		return _classes_out
 
 	def check_quality(self, _ingredients):
+
+		sentence_vec_map 		= 	{}
+
 		sentence_stack 			= 	[]
 
 		sentence_bad_map 		= 	{}
 		sentence_length_map 	= 	{}
+		sentence_and_map		= 	{}
+		sentence_but_map 		=	{}
+		sentence_or_map 		= 	{}
+		sentence_compare_map 	= 	{}
 
+		ingredient_freq_map 	= 	{}
+		ingredient_free_map 	= 	{}
 
 		_ingredients_all		=	_ingredients.get_ingredients()
 		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
@@ -55,28 +64,62 @@ class garnish:
 		for _label in _ingredients_all:
 
 			item = _ingredients_all[_label]
+
+			only_char_item = ''.join(e for e in item if e.isalnum())
+			ingredient_free_map[_label]=only_char_item
+
+			if only_char_item not in ingredient_freq_map:
+				ingredient_freq_map[only_char_item] = 1
+			else:
+				ingredient_freq_map[only_char_item] = ingredient_freq_map[only_char_item] +1
+
 			if "~$[" in item:
 				sentence_stack.append(_label)
 			if "]$~" in item:
 				try:
 					start=sentence_stack.pop()
-					sentence_length_map[start] = _label+1
-					bad_things_per_sentence = 	0
+					sentence_length_map[start] 	= 	_label+1
+					bad_things_per_sentence 	= 	0
+					
+					sentence_and_map[start]		= 	0
+					sentence_or_map[start] 		= 	0
+					sentence_but_map[start] 	= 	0
+
+					sentence_compare_map[start] = 	0
+
 
 					for labels in range(start, _label+1):
 						if "%%#%%" in _ingredients_all[labels]:
 							bad_things_per_sentence = bad_things_per_sentence + 1
+						if "]^[" in _ingredients_all[labels]:
+							sentence_and_map[start] = sentence_and_map[start] +1
+						if "]b[" in _ingredients_all[labels]:
+							sentence_but_map[start] = sentence_but_map[start] +1
+						if "]v[" in _ingredients_all[labels]:
+							sentence_or_map[start] = sentence_or_map[start] +1
+						if "%%cmp%%" in _ingredients_all[labels]:
+							sentence_compare_map[start] = sentence_compare_map[start] +1
+
 					sentence_bad_map[start]=bad_things_per_sentence/(_label+1-start)
 				except Exception as e:
+					print(str(e))
 					pass
 
-		sorted_sentence_bad_map = sorted(sentence_bad_map.items(), key=operator.itemgetter(1))
-		for thing in sorted_sentence_bad_map:
-			print(bcolors.OKGREEN+"Sentence: "+str(thing[0])+" Rating: "+str(thing[1])+" Length: "+str(sentence_length_map[thing[0]]-thing[0])+ bcolors.ENDC)
+		for s_label in sentence_bad_map:
+			sentence_vec_map[s_label]=[sentence_bad_map[s_label], sentence_and_map[s_label], sentence_but_map[s_label], sentence_or_map[s_label], sentence_compare_map[s_label]]
+			print(bcolors.OKGREEN+"[+]"+str(sentence_vec_map[s_label])+bcolors.ENDC)
 			sentence = ""
-			for s_label in range(thing[0], sentence_length_map[thing[0]]):
-				sentence = sentence + _ingredients_all[s_label] + " "
-			print(bcolors.OKCYAN+"--> "+sentence+bcolors.ENDC)
+			for s_label in range(s_label, sentence_length_map[s_label]):
+				sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
+			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC+"\n")
+
+		#sorted_sentence_bad_map = sorted(sentence_bad_map.items(), key=operator.itemgetter(1))
+		# for thing in sorted_sentence_bad_map:
+		# 	print(bcolors.OKGREEN+"Sentence: "+str(thing[0])+" Rating: "+str(thing[1])+" Length: "+str(sentence_length_map[thing[0]]-thing[0])+ bcolors.ENDC)
+		# 	sentence = ""
+		# 	for s_label in range(thing[0], sentence_length_map[thing[0]]):
+		# 		sentence = sentence + _ingredients_all[s_label] + " "
+		# 	print(bcolors.OKCYAN+"--> "+sentence+bcolors.ENDC)
 
 
 	def final_touches(self, _ingredients):

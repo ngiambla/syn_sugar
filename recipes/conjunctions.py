@@ -20,9 +20,9 @@ class conjunctions:
 			if "and" == _ingredients_all[_label]:
 				_ingredients_all[_label]="]^["
 			if "or" == _ingredients_all[_label]:
-				_ingredients_all[_label]="]V["
+				_ingredients_all[_label]="]v["
 			if "but" == _ingredients_all[_label]:
-				_ingredients_all[_label]="]B["
+				_ingredients_all[_label]="]b["
 
 		with open("post_bakes/"+self.recipe+".pb", "w+") as f:
 			line 	= 	0

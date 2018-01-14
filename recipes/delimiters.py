@@ -21,7 +21,8 @@ class delimiters:
 		for _label in _ingredients_all:
 			sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
 			sys.stdout.flush()
-			if _ingredients_all[_label][len(_ingredients_all[_label])-1] == '.':
+			char = _ingredients_all[_label][len(_ingredients_all[_label])-1]
+			if char == '.' or char == '?' or char == '!':
 				if _label+1 in _ingredients_all:
 					if ord(_ingredients_all[_label+1][0]) >=65 and ord(_ingredients_all[_label+1][0]) <=90:
 						_ingredients_all[_label]=_ingredients_all[_label]+"]$~"

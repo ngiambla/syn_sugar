@@ -1,5 +1,10 @@
+from __future__ import division
+
 import glob
 import os
+import sys
+import operator 
+
 from ingredients import ingredients
 from bcolors import bcolors
 
@@ -37,9 +42,48 @@ class garnish:
 			exit()
 		return _classes_out
 
+	def check_quality(self, _ingredients):
+		sentence_stack 			= 	[]
+
+		sentence_bad_map 		= 	{}
+		sentence_length_map 	= 	{}
+
+
+		_ingredients_all		=	_ingredients.get_ingredients()
+		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
+
+		for _label in _ingredients_all:
+
+			item = _ingredients_all[_label]
+			if "~$[" in item:
+				sentence_stack.append(_label)
+			if "]$~" in item:
+				try:
+					start=sentence_stack.pop()
+					sentence_length_map[start] = _label+1
+					bad_things_per_sentence = 	0
+
+					for labels in range(start, _label+1):
+						if "%%#%%" in _ingredients_all[labels]:
+							bad_things_per_sentence = bad_things_per_sentence + 1
+					sentence_bad_map[start]=bad_things_per_sentence/(_label+1-start)
+				except Exception as e:
+					pass
+
+		sorted_sentence_bad_map = sorted(sentence_bad_map.items(), key=operator.itemgetter(1))
+		for thing in sorted_sentence_bad_map:
+			print(bcolors.OKGREEN+"Sentence: "+str(thing[0])+" Rating: "+str(thing[1])+" Length: "+str(sentence_length_map[thing[0]]-thing[0])+ bcolors.ENDC)
+			sentence = ""
+			for s_label in range(thing[0], sentence_length_map[thing[0]]):
+				sentence = sentence + _ingredients_all[s_label] + " "
+			print(bcolors.OKCYAN+"--> "+sentence+bcolors.ENDC)
+
+
 	def final_touches(self, _ingredients):
-		print(bcolors.OKGREEN+"~ Applying final touches")
-		
+		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)
+		self.check_quality(_ingredients)
+
+
 		_ingredients_all		=	_ingredients.get_ingredients()
 		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
 
@@ -57,4 +101,4 @@ class garnish:
 					out=_ingredients_all[_label]+" "
 					line=line+1
 			f.write(out+"\n")
-		print("~ Voila."+bcolors.ENDC)
+		print(bcolors.OKGREEN+"~ Voila."+bcolors.ENDC)

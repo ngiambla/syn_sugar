@@ -22,7 +22,8 @@ help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "| 'bake' | 'b' --> extract information from text.\n"\
 		 "| 'help' | 'h' --> displays this. \n"\
 		 "| 'info' | 'i' --> does nothing. \n"\
-		 "| 'quit' | 'q' --> quits this.\n\n"\
+		 "| 'quit' | 'q' --> quits this.\n"\
+		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"\
 		 "+ ~[utilities]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "| 'clean' = cleans post baked items.\n"\
 		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"

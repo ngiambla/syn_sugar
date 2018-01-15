@@ -31,6 +31,18 @@ class compare:
 			if "hence" in _ingredients_all[_label].lower():
 				_ingredients_all[_label]=_ingredients_all[_label].replace("hence", "%%cmp%%")
 
+			if "else" in _ingredients_all[_label].lower():
+				_ingredients_all[_label]=_ingredients_all[_label].replace("else", "%%cmp%%")
+
+			if "then" in _ingredients_all[_label].lower():
+				_ingredients_all[_label]=_ingredients_all[_label].replace("then", "%%cmp%%")
+
+			if "than" in _ingredients_all[_label].lower():
+				_ingredients_all[_label]=_ingredients_all[_label].replace("than", "%%cmp%%")
+
+			if "compare" in _ingredients_all[_label].lower():
+				_ingredients_all[_label]=_ingredients_all[_label].replace("compare", "%%cmp%%")
+
 
 		with open("post_bakes/"+self.recipe+".pb", "w+") as f:
 			line 	= 	0

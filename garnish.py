@@ -4,6 +4,9 @@ import glob
 import os
 import sys
 import operator 
+import matplotlib.pyplot as plt
+import numpy as np
+import math_utils as mutils 
 
 from ingredients import ingredients
 from bcolors import bcolors
@@ -53,6 +56,21 @@ class garnish:
 		sentence_and_map		= 	{}
 		sentence_but_map 		=	{}
 		sentence_or_map 		= 	{}
+
+		sentence_and_loc 		= 	{}
+		sentence_but_loc 		= 	{}
+		sentence_or_loc 		= 	{}
+
+		sentence_xcm_map 		= 	{}
+		sentence_per_map 		= 	{}
+		sentence_qsn_map 		= 	{}
+		sentence_lst_map 		= 	{}
+		sentence_cln_map 		= 	{}
+		sentence_scn_map 		= 	{}
+		sentence_dqt_map 		= 	{}
+		sentence_sqt_map 		= 	{}
+		sentence_dsh_map 		= 	{}
+
 		sentence_compare_map 	= 	{}
 
 		ingredient_freq_map 	= 	{}
@@ -84,6 +102,19 @@ class garnish:
 					sentence_and_map[start]		= 	0
 					sentence_or_map[start] 		= 	0
 					sentence_but_map[start] 	= 	0
+					sentence_and_loc[start]		= 	[]
+					sentence_but_loc[start] 	= 	[]
+					sentence_or_loc[start]	 	= 	[]
+
+					sentence_xcm_map[start]		= 	0
+					sentence_per_map[start] 	= 	0
+					sentence_qsn_map[start] 	= 	0
+					sentence_lst_map[start] 	= 	0
+					sentence_cln_map[start] 	= 	0
+					sentence_scn_map[start] 	= 	0
+					sentence_dqt_map[start] 	= 	0
+					sentence_sqt_map[start] 	= 	0
+					sentence_dsh_map[start] 	= 	0
 
 					sentence_compare_map[start] = 	0
 
@@ -92,35 +123,98 @@ class garnish:
 						if "%%#%%" in _ingredients_all[labels]:
 							bad_things_per_sentence = bad_things_per_sentence + 1
 						if "]^[" in _ingredients_all[labels]:
+							sentence_and_loc[start].append(labels)
 							sentence_and_map[start] = sentence_and_map[start] +1
 						if "]b[" in _ingredients_all[labels]:
+							sentence_but_loc[start].append(labels)
 							sentence_but_map[start] = sentence_but_map[start] +1
 						if "]v[" in _ingredients_all[labels]:
+							sentence_or_loc[start].append(labels)
 							sentence_or_map[start] = sentence_or_map[start] +1
 						if "%%cmp%%" in _ingredients_all[labels]:
 							sentence_compare_map[start] = sentence_compare_map[start] +1
+						if "%%xcm%%" in _ingredients_all[labels]:
+							sentence_xcm_map[start] = sentence_xcm_map[start] +1
+						if "%%per%%" in _ingredients_all[labels]:
+							sentence_per_map[start] = sentence_per_map[start] +1
+						if "%%qsn%%" in _ingredients_all[labels]:
+							sentence_qsn_map[start] = sentence_qsn_map[start] +1
+						if "%%lst%%" in _ingredients_all[labels]:
+							sentence_lst_map[start] = sentence_lst_map[start] +1
+						if "%%cln%%" in _ingredients_all[labels]:
+							sentence_cln_map[start] = sentence_cln_map[start] +1
+						if "%%scn%%" in _ingredients_all[labels]:
+							sentence_scn_map[start] = sentence_scn_map[start] +1
+						if "%%dqt%%" in _ingredients_all[labels]:
+							sentence_dqt_map[start] = sentence_dqt_map[start] +1
+						if "%%sqt%%" in _ingredients_all[labels]:
+							sentence_sqt_map[start] = sentence_sqt_map[start] +1
+						if "%%dsh%%" in _ingredients_all[labels]:
+							sentence_dsh_map[start] = sentence_dsh_map[start] +1
 
-					sentence_bad_map[start]=bad_things_per_sentence/(_label+1-start)
+					#sentence_bad_map[start]=bad_things_per_sentence/(_label+1-start)
+					sentence_bad_map[start]=bad_things_per_sentence
+
 				except Exception as e:
 					print(str(e))
 					pass
 
+		
 		for s_label in sentence_bad_map:
-			sentence_vec_map[s_label]=[sentence_bad_map[s_label], sentence_and_map[s_label], sentence_but_map[s_label], sentence_or_map[s_label], sentence_compare_map[s_label]]
-			print(bcolors.OKGREEN+"[+]"+str(sentence_vec_map[s_label])+bcolors.ENDC)
-			sentence = ""
+			sentence_vec_map[s_label]=[sentence_bad_map[s_label], sentence_length_map[s_label]-s_label, _ingredient_mapping[s_label], sentence_and_map[s_label], sentence_but_map[s_label], sentence_or_map[s_label], sentence_compare_map[s_label]]
+			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_xcm_map[s_label], sentence_per_map[s_label], sentence_qsn_map[s_label], sentence_lst_map[s_label], sentence_cln_map[s_label], sentence_scn_map[s_label]]
+			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_dqt_map[s_label], sentence_sqt_map[s_label], sentence_dsh_map[s_label]]
+			# print(bcolors.OKGREEN+"[+]"+str(sentence_vec_map[s_label])+bcolors.ENDC)
+			# sentence = ""
+			# for s_label in range(s_label, sentence_length_map[s_label]):
+			# 	sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
+			# print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC+"\n")
+
+		i_to_j_map 		= 	{}
+		i_label_map		=	{}
+		ham_sim			=	[]
+		i 				= 	0
+
+		for i_label in sentence_vec_map:
+			i_label_map[i] = i_label
+			i_item = sentence_vec_map[i_label]
+			ham_sim.append([])
+
+			j 			=	0
+			j_label_map = 	{}
+			
+			for j_label in sentence_vec_map:
+				j_label_map[j]=j_label
+				if i_label != j_label: 
+					j_item = sentence_vec_map[j_label]
+					val=mutils.hamming_distance(i_item,j_item)
+					ham_sim[i].append(val)
+				else:
+					ham_sim[i].append(1000)
+				j=j+1
+			i_to_j_map[i_label]=j_label_map
+			i=i+1
+
+
+		for i in i_label_map:
+			min_index, min_value 	=  	min(enumerate(ham_sim[i]), key=operator.itemgetter(1))
+			print("Similarity: "+str(min_value))
+			s_label 			=	i_label_map[i]
+			sentence=""
 			for s_label in range(s_label, sentence_length_map[s_label]):
-				sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
-			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC+"\n")
+				if _ingredients_all[s_label] != "%%#%%":
+					sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
+			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC)	
+				
+			s_label 	 		= 	j_label_map[min_index]
+			sentence=""
+			for s_label in range(s_label, sentence_length_map[s_label]):
+				if _ingredients_all[s_label] != "%%#%%":
+					sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
+			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC+"\n\n")
 
-		#sorted_sentence_bad_map = sorted(sentence_bad_map.items(), key=operator.itemgetter(1))
-		# for thing in sorted_sentence_bad_map:
-		# 	print(bcolors.OKGREEN+"Sentence: "+str(thing[0])+" Rating: "+str(thing[1])+" Length: "+str(sentence_length_map[thing[0]]-thing[0])+ bcolors.ENDC)
-		# 	sentence = ""
-		# 	for s_label in range(thing[0], sentence_length_map[thing[0]]):
-		# 		sentence = sentence + _ingredients_all[s_label] + " "
-		# 	print(bcolors.OKCYAN+"--> "+sentence+bcolors.ENDC)
-
+		# plt.imshow(ham_sim, cmap='cool', interpolation='nearest')
+		# plt.show()
 
 	def final_touches(self, _ingredients):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

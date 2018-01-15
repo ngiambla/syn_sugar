@@ -25,8 +25,35 @@ class delimiters:
 			if char == '.' or char == '?' or char == '!':
 				if _label+1 in _ingredients_all:
 					if ord(_ingredients_all[_label+1][0]) >=65 and ord(_ingredients_all[_label+1][0]) <=90:
+						if char == '.':
+							_ingredients_all[_label]=_ingredients_all[_label][:len(_ingredients_all[_label])-1]+"%%per%%"
+						elif char == '?':
+							_ingredients_all[_label]=_ingredients_all[_label][:len(_ingredients_all[_label])-1]+"%%qsn%%"
+						elif char == '!':
+							_ingredients_all[_label]=_ingredients_all[_label][:len(_ingredients_all[_label])-1]+"%%xcm%%"
+
 						_ingredients_all[_label]=_ingredients_all[_label]+"]$~"
 						_ingredients_all[_label+1]="~$["+_ingredients_all[_label+1]
+
+			if char == ',' or char == ':' or char == ";":
+				if char == ',':
+					_ingredients_all[_label]=_ingredients_all[_label][:len(_ingredients_all[_label])-1]+"%%lst%%"
+				elif char == ':':
+					_ingredients_all[_label]=_ingredients_all[_label][:len(_ingredients_all[_label])-1]+"%%cln%%"
+				elif char == ';':
+					_ingredients_all[_label]=_ingredients_all[_label][:len(_ingredients_all[_label])-1]+"%%scn%%"
+
+			if "." in _ingredients_all[_label]:
+				_ingredients_all[_label]=_ingredients_all[_label].replace(".","%%per%%")
+			if "\"" in _ingredients_all[_label]:
+				_ingredients_all[_label]=_ingredients_all[_label].replace("\"","%%dqt%%")
+			if "'" in _ingredients_all[_label]:
+				_ingredients_all[_label]=_ingredients_all[_label].replace("'","%%sqt%%")
+			if "-" in _ingredients_all[_label]:
+				_ingredients_all[_label]=_ingredients_all[_label].replace("-","%%dsh%%")
+
+
+
 
 		with open("post_bakes/"+self.recipe+".pb", "w+") as f:
 			line 	= 	0

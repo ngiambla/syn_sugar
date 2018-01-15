@@ -1,0 +1,195 @@
+~$[giamblanco 1 
+nicholas v%%per%%]$~ ~$[giamblanco 
+eng503 %%dsh%% science fiction 
+professor david copeland 
+monday%%lst%% november 21st%%lst%% 2016 
+%%#%% crobuzon %%dsh%% %%#%% mirror %%#%% %%#%% world 
+question no%%per%% 1 
+science fiction %%#%% %%#%% substance %%cmp%% space ships%%lst%% alien interactions ]^[ %%#%% intergalactic 
+experiences%%per%%]$~ ~$[this genre provides %%#%% connection %%#%% science%%lst%% society ]^[ morality%%lst%% %%#%% fiction%%per%%]$~ 
+~$[science fiction %%#%% %%#%% bridging ]^[ extrapolation %%#%% reality ]^[ %%#%% alternate world %%#%% 
+science %%#%% %%#%% catalyst %%#%% open%%dsh%%ended ethical ]^[ moral questions%%per%%]$~ ~$[these questions %%#%% significant 
+%%#%% %%#%% society%%lst%% %%#%% %%#%% citizens %%#%% neglect %%#%% reflective duties%%per%%]$~ ~$[our world contains %%#%% ethical 
+]^[ moral issues%%lst%% ]b[ %%#%% %%#%% %%#%% issues %%#%% suppressed %%#%% %%#%% ignorance ]^[ %%#%% lack %%#%% 
+responsibility%%per%%]$~ ~$[walking %%#%% %%#%% homeless%%lst%% purchasing clothing %%#%% feel good%%lst%% polluting %%#%% environment%%lst%% 
+consuming %%#%% abnormal amount %%#%% food %%#%% people starve%%scn%% %%#%% %%#%% examples %%#%% %%#%% ignorance 
+]^[ irresponsibility%%per%%]$~ ~$[these problems %%#%% %%#%% addressed ]^[ investigated %%#%% order %%#%% create %%#%% solution%%per%%]$~ 
+~$[by using science fiction%%lst%% %%#%% grasp %%#%% attention %%#%% society ]^[ %%#%% %%#%% significant questions %%#%% 
+highlight problems %%#%% society ignores%%per%%]$~ ~$[perdido street station written %%#%% china mieville ´ %%lst%% provides 
+%%#%% connection %%#%% %%#%% world %%#%% %%#%% fictional city %%#%% %%#%% crobuzon%%per%%]$~ ~$[this connection %%#%% %%#%% 
+introduces science fiction’s dependency %%#%% %%#%% city%%lst%% ]b[ %%#%% exploration provides %%#%% obscure lens %%#%% 
+%%#%% world’s issues%%per%%]$~ ~$[the city’s noir description%%lst%% %%#%% underlying corruption ]^[ lies%%lst%% ]^[ %%#%% cultural 
+differences %%#%% issac ]^[ lin provide %%#%% relationship %%#%% %%#%% world’s issues%%per%%]$~ 
+~$[visual descriptions %%#%% %%#%% physical environment provide information %%#%% %%#%% environment’s 
+appearance%%lst%% inhabitants%%lst%% ]^[ %%#%% emotional atmosphere%%per%%]$~ ~$[in literature%%lst%% %%#%% elements combine %%#%% 
+form %%#%% relationship %%#%% %%#%% theme%%per%%]$~ ~$[in perdido street station %%#%% noir element %%#%% %%#%% world %%#%% explored 
+]^[ mirrored %%#%% %%#%% crobuzon%%per%%]$~ ~$[the description %%#%% %%#%% city’s entrance%%lst%% %%#%% exploration %%#%% %%#%% 
+innards %%#%% %%#%% city%%lst%% ]^[ %%#%% description %%#%% %%#%% city’s architecture reflect %%#%% noir nature %%#%% society%%per%%]$~ 
+~$[this steam%%dsh%%punk novel begins %%#%% story %%#%% %%#%% passenger %%#%% %%#%% boat%%lst%% entering %%#%% ominous area%%per%%]$~ ~$[the 
+giamblanco 2 
+passenger begins %%#%% tale %%#%% describing %%#%% location %%#%% %%#%% boat%%lst%% ]^[ %%#%% body %%#%% water it’s traveling 
+on%%per%%]$~ ~$[the boat %%#%% traveling %%#%% %%#%% river %%#%% ”%%per%%%%per%%%%per%%twists ]^[ %%#%% %%#%% %%#%% %%#%% city%%per%%]$~ ~$[it looms suddenly%%lst%% 
+massive%%lst%% stamped %%#%% %%#%% landscape,”(mieville%%lst%% 2001%%lst%% p%%per%% 4)%%per%%]$~ ~$[the author’s %%#%% %%#%% %%#%% indicate ´ 
+%%#%% prominence %%#%% %%#%% city%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% avoidable%%per%%]$~ ~$[just %%#%% %%#%% traveler approaches %%#%% city 
+%%#%% means %%#%% air travel%%lst%% boating journeys%%lst%% ]v[ driving%%lst%% %%#%% %%#%% city %%#%% %%#%% missed%%per%%]$~ ~$[as %%#%% 
+journey progresses%%lst%% %%#%% passenger begins %%#%% describe details %%#%% %%#%% city%%lst%% ”its lights %%#%% %%#%% %%#%% 
+%%#%% surrounds%%lst%% %%#%% rock hills%%lst%% %%#%% bruise%%dsh%%blood,”(mieville%%lst%% 2001%%lst%% p%%per%% 4) ]^[ ”its ´ dirty towers glow%%per%%]$~ ~$[i 
+am debased,”(mieville%%lst%% 2001%%lst%% p%%per%% 4)%%per%%]$~ ~$[the description %%#%% %%#%% entrance %%#%% %%#%% crobuzon provides %%#%% ´ 
+emotional atmosphere %%#%% sensations involved %%#%% debasement%%lst%% disgust%%lst%% ]^[ dirtiness%%per%%]$~ ~$[the author %%#%% 
+explicit%%lst%% direct ]^[ grim %%#%% %%#%% introduction %%#%% %%#%% city%%lst%% ”new crobuzon %%#%% %%#%% huge plague pit%%lst%% 
+%%#%% morbific city,”(mieville%%lst%% 2001%%lst%% p%%per%% 9)%%per%% ´ mieville ´ %%#%% %%#%% %%#%% %%#%% eyes %%#%% %%#%% truth %%#%% %%#%% world%%lst%% 
+%%#%% dirty%%lst%% ]^[ disgusting %%#%% %%#%% is%%per%%]$~ ~$[as %%#%% novel progresses%%lst%% lin %%#%% introduced%%per%%]$~ ~$[she %%#%% %%#%% %%#%% 
+%%#%% main characters %%#%% perdido street station%%per%%]$~ ~$[she %%#%% %%#%% khepri (a humanoid insect%%lst%% similar %%#%% %%#%% 
+beetle)%%per%%]$~ ~$[one %%#%% lin’s distinct emotional characteristics %%#%% %%#%% dislike %%#%% %%#%% culture%%per%%]$~ ~$[this dislike 
+drives %%#%% %%#%% leave %%#%% sanction%%lst%% ]^[ change %%#%% lifestyle%%per%%]$~ ~$[lin %%#%% %%#%% artist%%lst%% ]b[ maintains practices 
+%%#%% %%#%% unconventional %%#%% %%#%% cultural standards %%#%% art%%per%%]$~ ~$[lin’s %%#%% personality allows %%#%% 
+%%#%% in%%dsh%%depth exploration %%#%% %%#%% innards %%#%% %%#%% crobuzon%%per%%]$~ ~$[in chapter 2%%lst%% lin makes %%#%% %%#%% %%#%% 
+%%#%% heart %%#%% %%#%% grim city%%per%%]$~ ~$[she begins %%#%% passage %%#%% %%#%% core %%#%% %%#%% city %%#%% clogs wet %%#%% 
+”%%per%%%%per%%%%per%% organic muck %%#%% %%#%% street%%lst%% rich pickings %%#%% %%#%% furtive creatures peering %%#%% %%#%% drain%%per%%” 
+(mieville%%lst%% 2001%%lst%% p%%per%% 13)%%per%%]$~ ~$[once again%%lst%% mi ´ eville reinforces %%#%% %%#%% city’s dirtiness ]^[ griminess%%lst%% %%#%% ´ 
+hopes %%#%% grabbing %%#%% reader’s attention %%#%% comparison %%#%% %%#%% world%%per%%]$~ ~$[lin continues %%#%% journey 
+%%#%% %%#%% cab%%per%%]$~ ~$[dark imagery %%#%% %%#%% %%#%% %%#%% ride%%lst%% %%#%% %%#%% flyside militia tower%%lst%% %%#%% %%#%% ”%%per%%%%per%%%%per%% 
+vast filthy pudgy pillar%%lst%% squat ]^[ mean%%lst%% somehow%%lst%% %%#%% %%#%% %%#%% thirty%%dsh%%five storeys,”(mieville%%lst%% 2001%%lst%% p%%per%% ´ 
+14) ]^[ %%#%% %%#%% half inflated dirigible%%lst%% ”%%per%%%%per%%%%per%%it flapped ]^[ lolled ]^[ swelled %%#%% %%#%% dying fish%%per%%]$~ ~$[she 
+%%#%% feel %%#%% engine humming%%lst%% %%#%% %%#%% %%#%% layers %%#%% air%%lst%% %%#%% %%#%% stained %%#%% disappear %%#%% %%#%% 
+gun%%dsh%%grey clouds%%per%%”(mieville%%lst%% 2001%%lst%% p%%per%% 14)%%per%%]$~ ~$[the intensity %%#%% %%#%% descriptive elements increase %%#%% %%#%% ´ 
+journey continues%%lst%% %%#%% %%#%% reaches the%%lst%% ”architectural tissue %%#%% %%#%% fibres %%#%% %%#%% city congealed%%lst%% 
+giamblanco 3 
+%%#%% %%#%% skyrails %%#%% %%#%% militia radiated %%#%% %%#%% %%#%% spike %%#%% %%#%% web %%per%%%%per%%%%per%%]$~ ~$[perdido street station,” 
+(mieville%%lst%% 2001%%lst%% p%%per%% 16)%%per%%]$~ ~$[the emphasis %%#%% darkness%%lst%% dirtiness%%lst%% ]^[ debasement %%#%% %%#%% crobuzon ´ 
+provoke %%#%% reader %%#%% reflect %%#%% %%#%% world %%#%% currently live in%%per%%]$~ ~$[the city’s architecture supports 
+%%#%% negative intensity %%#%% author %%#%% conveying %%#%% %%#%% reader%%lst%% ”the rotting buildings lean %%#%% 
+%%#%% other%%lst%% exhausted,”(mieville%%lst%% 2001%%lst%% p%%per%% 4)%%per%%]$~ ~$[furthermore%%lst%% %%#%% architecture represents %%#%% cold ´ 
+]^[ unfulfilled emotions surrounding %%#%% city%%lst%% ”extra storeys %%#%% rendered %%#%% %%#%% cold white muck 
+%%#%% fills gaps %%#%% houses ]^[ dead%%dsh%%end alleys,”(mieville%%lst%% 2001%%lst%% p%%per%% 5)%%per%%]$~ ~$[the beginning %%#%% ´ 
+chapter six continues %%#%% noir journey%%lst%% ”even %%#%% trains %%#%% moved innumerable women ]^[ %%#%% 
+]^[ commodities %%#%% %%#%% crobuzon’s %%#%% carcuss fought %%#%% stay %%#%% %%#%% houses%%lst%% %%#%% %%cmp%% %%#%% 
+%%#%% afraid %%#%% %%#%% putrefaction %%#%% architecture,”(mieville%%lst%% 2001%%lst%% p%%per%% 39)%%per%%]$~ ~$[the imagery surrounding ´ 
+%%#%% rotting%%lst%% decaying%%lst%% dirty city %%#%% intended %%#%% %%#%% author %%#%% convey %%#%% reflection %%#%% %%#%% world%%per%%]$~ ~$[this 
+reflection %%#%% emphasized %%#%% %%#%% grim introduction %%#%% %%#%% crobuzon%%lst%% %%#%% exploration %%#%% %%#%% 
+city’s innards%%lst%% ]^[ %%#%% architectural pieces %%#%% %%#%% city%%per%%]$~ 
+~$[the act %%#%% lying%%lst%% %%#%% %%#%% declare ”an intentionally false statement,”(oxford university press%%lst%% n%%per%%d%%per%%)%%per%%]$~ 
+~$[as %%#%% society%%lst%% humans frown %%#%% individuals %%#%% lie%%per%%]$~ ~$[however%%lst%% %%#%% act %%#%% lying %%#%% ubiquitous %%#%% %%#%% 
+society%%per%%]$~ ~$[intentionally false statements %%#%% %%#%% %%#%% %%#%% deceive %%#%% target%%lst%% %%#%% %%#%% target %%#%% %%#%% %%#%% 
+computing system ]v[ %%#%% society%%per%%]$~ ~$[a computer hacker %%#%% deceive ]^[ gain access %%#%% %%#%% computing 
+system%%per%%]$~ ~$[a society %%#%% %%#%% deceived %%#%% %%#%% presidential candidate %%#%% lies %%#%% %%#%% public ]^[ manages %%#%% 
+win %%#%% presidential election%%per%%]$~ ~$[once %%#%% target system %%#%% deceived%%lst%% corruption %%#%% ensue%%per%%]$~ ~$[the hacked 
+computing system %%#%% subject %%#%% file corruption%%lst%% data corruption%%lst%% etc%%per%%]$~ ~$[the deceived society %%#%% subject 
+%%#%% war%%lst%% segregation%%lst%% poverty%%lst%% abuse%%lst%% ]^[ corruption%%per%%]$~ ~$[perdido street station’s city %%#%% %%#%% crobuzon 
+mirrors %%#%% elements %%#%% lies%%lst%% deceit%%lst%% ]^[ corruption %%#%% %%#%% characters %%#%% yagharek%%lst%% bentham 
+rudgutter%%lst%% ]^[ mr%%per%%]$~ ~$[motley%%per%%]$~ ~$[the character yagharek%%lst%% %%#%% %%#%% %%#%% investigate %%#%% characteristics %%#%% 
+deceit%%per%%]$~ ~$[his introduction %%#%% abrupt%%lst%% ”%%per%%%%per%%%%per%% %%#%% door swung %%#%% ]^[ shut %%#%% below,”(mieville%%lst%% 2001%%lst%% p%%per%% ´ 
+20)%%per%%]$~ ~$[this %%#%% %%#%% issac %%dsh%% %%#%% %%#%% %%#%% main characters %%#%% %%#%% story %%dsh%% %%#%% introduced %%#%% yagharek%%per%%]$~ ~$[issac 
+%%#%% %%#%% scientist known %%#%% %%#%% crobuzon %%#%% %%#%% controversial research%%per%%]$~ ~$[yagharek %%#%% %%#%% %%#%% %%#%% %%#%% 
+garuda species%%lst%% (a species %%#%% closely resembles birds)%%per%%]$~ ~$[this garuda contacted issac %%#%% hopes %%#%% 
+giamblanco 4 
+reviving yagharek’s wings%%lst%% which%%lst%% ”%%per%%%%per%%%%per%%issac realized %%#%% %%#%% wings %%#%% %%#%% sawed %%#%% yagharek’s 
+back%%per%%]$~ ~$[no single sudden cut%%lst%% ]b[ %%#%% long%%lst%% drawn %%#%% torturous cut%%per%%” (mieville%%lst%% 2001%%lst%% p%%per%% 31)%%per%%]$~ ~$[curiously%%lst%% ´ 
+issac probed yagharek%%lst%% %%#%% order %%#%% %%#%% %%#%% %%#%% %%#%% happened %%#%% yagharek%%per%%]$~ ~$[issac discovers %%#%% %%#%% 
+occurred due %%#%% %%#%% ”%%per%%%%per%%choice theft %%#%% %%#%% %%#%% degree%%per%%%%per%%%%per%% %%#%% utter disrespect,” ]^[ %%#%% kept %%#%% %%#%% dark 
+%%#%% %%#%% meaning%%per%%(mieville%%lst%% 2001%%lst%% p%%per%% 32)%%per%%]$~ ~$[the authors intention %%#%% %%#%% vague response %%#%% ´ 
+%%#%% near %%#%% %%#%% %%#%% %%#%% novel%%per%%]$~ ~$[issac agrees %%#%% help yagharek %%#%% revitalize %%#%% wings%%per%%]$~ ~$[however%%lst%% 
+issac %%#%% deceived %%#%% yagharek%%per%%]$~ ~$[yagharek %%#%% raped %%#%% %%#%% %%#%% %%#%% species%%per%%]$~ ~$[this %%#%% choice 
+theft %%#%% %%#%% %%#%% degree%%per%%]$~ ~$[yagharek’s choice %%#%% %%#%% elusive %%#%% details regarding %%#%% punishment 
+%%#%% %%#%% %%#%% example %%#%% deceit%%per%%]$~ ~$[mieville’s involvement %%#%% yagharek’s deceit provides %%#%% plot %%#%% %%#%% ´ 
+novel%%lst%% ]b[ %%#%% %%#%% reveals %%#%% underlying corruption %%#%% %%#%% crobuzon%%per%%]$~ ~$[the mayor%%lst%% bentham 
+rudgutter%%lst%% proves %%#%% %%#%% %%#%% source %%#%% corruption %%#%% perdido street station%%per%%]$~ ~$[rudgutter %%#%% ”got fingers 
+%%#%% %%#%% fucking pie %%#%% %%#%% %%#%% of,”(mieville%%lst%% 2001%%lst%% p%%per%% 81)%%per%%]$~ ~$[the mayor %%#%% %%#%% crobuzon %%#%% ´ 
+%%#%% involved %%#%% %%#%% illicit acts%%lst%% including %%#%% government personnel%%per%%]$~ ~$[they all%%lst%% ”churn %%#%% %%#%% 
+commodity%%lst%% grab %%#%% profit%%lst%% %%#%% %%#%% militia %%#%% tidy %%#%% %%#%% customers afterwards%%lst%% %%#%% %%#%% %%#%% crop 
+%%#%% remade ]v[ slave%%dsh%%miners,”(mieville%%lst%% 2001%%lst%% p%%per%% 81)%%per%%]$~ ~$[by adding corruption %%#%% %%#%% governmental ´ 
+figure%%lst%% mieville provides %%#%% comparison %%#%% %%#%% corporate sector%%lst%% ]^[ %%#%% elements %%#%% drives %%#%% ´ 
+corporate giants %%dsh%% lies%%lst%% deceit ]^[ corruption%%per%%]$~ ~$[the mayor’s illicit activities include bargaining %%#%% 
+demons%%lst%% ”we haven’t %%#%% discussed yet%%lst%% ambassador%%per%%]$~ ~$[i assure %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% generous 
+offer,” (mieville%%lst%% 2001%%lst%% p%%per%% 161)%%per%%]$~ ~$[by bargaining %%#%% %%#%% demon ambassador%%lst%% rudgutter proves %%#%% ´ 
+corrupt nature%%scn%% demons %%#%% %%#%% symbol %%#%% evil%%per%%]$~ ~$[the mayor %%#%% %%#%% involved %%#%% crime related gangs%%lst%% 
+”what %%#%% damn%%lst%% %%#%% %%#%% jabber’s name%%lst%% %%#%% %%#%% godshit %%#%% motley playing at%%qsn%%]$~ ~$[i %%#%% %%#%% %%#%% 
+%%#%% supposed %%#%% %%#%% professional%%per%%%%per%%%%per%%,”(mieville%%lst%% 2001%%lst%% p%%per%% 156)%%per%%]$~ ~$[finally%%lst%% rudgutter %%#%% affliations %%#%% ´ 
+mr%%per%%]$~ ~$[motley%%lst%% %%#%% %%#%% feared ganglord %%#%% %%#%% city ]^[ %%#%% equally deceitful ]^[ corrupt%%per%%]$~ ~$[mr%%per%%]$~ ~$[motley’s 
+appearance provides %%#%% allusion %%#%% %%#%% theme %%#%% corruption%%lst%% deceit ]^[ lies%%lst%% ”scraps %%#%% skin ]^[ fur 
+]^[ feathers swung %%#%% %%#%% moved%%scn%% tiny limbs clutched%%scn%% eyes rolled %%#%% obscure niches%%scn%% antlers ]^[ 
+protrusions %%#%% bone jutted precariously,”(mieville%%lst%% 2001%%lst%% p%%per%% 28)%%per%%]$~ ~$[the description %%#%% mr%%per%%]$~ ~$[motley %%#%% ´ 
+%%#%% imagery %%#%% corruption%%per%%]$~ ~$[his body %%#%% %%#%% random ]^[ awkward synthesis%%lst%% providing %%#%% comparison 
+giamblanco 5 
+%%#%% %%#%% obsession %%#%% material goods%%per%%]$~ ~$[the author %%#%% chosen %%#%% represent %%#%% desire %%#%% material 
+%%#%% %%#%% %%#%% character %%#%% explain %%#%% materialists %%#%% corrupt%%per%%]$~ ~$[mr%%per%%]$~ ~$[motley’s character provides 
+%%#%% %%#%% %%#%% theme %%#%% corruption%%lst%% %%#%% %%#%% %%#%% %%#%% role %%#%% %%#%% city %%#%% %%#%% crobuzon%%lst%% ”he talked idly 
+%%#%% turf wars %%#%% griss twist ]^[ badside%%lst%% dropped hints %%#%% gangland massacres %%#%% %%#%% heart %%#%% %%#%% 
+crow,”(mieville%%lst%% 2001%%lst%% p%%per%% 120)%%per%%]$~ ~$[the author %%#%% establishing mr%%per%%]$~ ~$[motley’s power %%#%% %%#%% crobuzon%%per%% ´ 
+%%#%% power mr%%per%%]$~ ~$[motley %%#%% affects lin %%#%% %%#%% sessions together%%per%%]$~ ~$[through repetition %%#%% %%#%% 
+corrupt plans%%lst%% ”mr%%per%%]$~ ~$[motley’s blithe chat crept in,”(mieville%%lst%% 2001%%lst%% p%%per%% 120) %%#%% lin’s mind%%per%%]$~ ~$[this ´ 
+distorts %%#%% thoughts%%lst%% %%#%% %%#%% found herself%%lst%% ”idly wondering,”(mieville%%lst%% 2001%%lst%% p%%per%% 120) ]^[ concerned ´ 
+%%#%% %%#%% plans%%per%%]$~ ~$[mieville %%#%% ensuring mr%%per%%]$~ ~$[motley %%#%% treated %%#%% %%#%% corrupt computer program%%lst%% %%#%% ´ 
+creates corruption %%#%% %%#%% memory space %%#%% %%#%% connected to%%per%%]$~ ~$[in %%#%% case%%lst%% mr%%per%%]$~ ~$[motley %%#%% corrupting %%#%% 
+city %%#%% %%#%% crobuzon%%lst%% %%#%% mayor %%#%% %%#%% dystopian city%%lst%% ]^[ lin%%per%%]$~ 
+~$[culture %%#%% essential %%#%% %%#%% society%%per%%]$~ ~$[culture%%lst%% %%#%% ”the beliefs%%lst%% customs%%lst%% arts%%lst%% etc%%per%%%%lst%% %%#%% %%#%% particular 
+society%%lst%% group%%lst%% place%%lst%% ]v[ time” (merriam%%dsh%%webster%%lst%% 2016)%%per%%]$~ ~$[some cities %%#%% %%#%% modern world consist %%#%% 
+%%#%% infusion %%#%% %%#%% cultures%%per%%]$~ ~$[new crobuzon hosts %%#%% wide variety %%#%% cultures%%cln%% cactace%%lst%% remades%%lst%% 
+vodyanoi%%lst%% khepri%%lst%% ]^[ %%#%% others%%per%%]$~ ~$[with %%#%% cultural salads%%lst%% %%#%% %%#%% %%#%% %%#%% investigate 
+%%#%% relationships%%per%%]$~ ~$[cultural mixing %%#%% pose issues %%#%% romance%%lst%% lifestyle%%lst%% ]^[ society%%per%%]$~ ~$[this 
+city %%#%% perdido street station%%lst%% poses questions %%#%% multicultural relationships%%per%%]$~ ~$[issac ]^[ lin’s 
+multicultural relationship %%#%% explored %%#%% %%#%% differences ]^[ similarities %%#%% %%#%% multicultural view%%lst%% 
+]^[ %%#%% reflection %%#%% %%#%% world%%per%%]$~ ~$[initially%%lst%% perdido street station introduces %%#%% crobuzon %%#%% 
+%%#%% human%%lst%% issac%%per%%]$~ ~$[by viewing %%#%% crobuzon %%#%% issac’s eyes %%#%% chapter one%%lst%% cultural traits %%#%% 
+humans %%#%% presented%%per%%]$~ ~$[dreaming %%#%% %%#%% innate trait %%#%% humans%%per%%]$~ ~$[the introduction %%#%% issac %%#%% brought 
+%%#%% %%#%% living %%#%% %%#%% %%#%% %%#%% dreams%%per%%]$~ ~$[this dream %%#%% particular %%#%% %%#%% nightmare%%lst%% %%#%% issac was%%lst%% 
+”staring anxiously %%#%% %%#%% class %%#%% %%#%% unctuous bastard vermishank %%#%% looked in,”(mieville%%lst%% ´ 
+2001%%lst%% p%%per%% 8)%%per%%]$~ ~$[the dreaming mechanism %%#%% %%#%% %%#%% provide %%#%% recognizable feeling%%lst%% ensuring %%#%% 
+reader feels connected%%per%%]$~ ~$[the specific %%#%% %%#%% %%#%% nightmare %%#%% %%#%% %%#%% %%#%% unveils human qualities %%#%% 
+fear%%lst%% misery%%lst%% ]^[ loathing%%per%%]$~ ~$[issac feels misery%%lst%% %%#%% %%#%% failed %%#%% %%#%% teacher%%lst%% %%#%% %%#%% %%#%% %%#%% university%%per%%]$~ 
+~$[issac %%#%% %%#%% sensitive %%#%% external judgment%%per%%]$~ ~$[his sensitivity %%#%% brought %%#%% %%#%% lin signs%%lst%% ”you 
+giamblanco 6 
+hide %%#%% %%#%% %%#%% %%#%% publish articles %%#%% people %%#%% despise,”(mieville%%lst%% 2001%%lst%% p%%per%% 12) %%#%% regards %%#%% ´ 
+%%#%% failure %%#%% %%#%% academic world%%per%%]$~ ~$[issac responds %%#%% %%#%% defensive comment%%lst%% wondering %%#%% lin 
+%%#%% feel ”if %%#%% art%%dsh%%world threatened %%#%% ostracize her,”(mieville%%lst%% 2001%%lst%% p%%per%% 12)%%per%%]$~ ~$[this %%#%% %%#%% typical ´ 
+human characteristic%%per%%]$~ ~$[mieville demonstrates %%#%% human characteristics %%#%% issac %%#%% order %%#%% ´ 
+provide %%#%% familiarity %%#%% %%#%% world%%per%%]$~ ~$[issac %%#%% %%#%% common ground %%#%% %%#%% crobuzon%%per%%]$~ ~$[the khepri 
+culture %%#%% introduced %%#%% %%#%% %%#%% chapter %%#%% %%#%% novel%%lst%% %%#%% %%#%% %%#%% %%#%% lin%%per%%]$~ ~$[lin %%#%% %%#%% key 
+%%#%% understanding %%#%% culture%%per%%]$~ ~$[she %%#%% able %%#%% provide %%#%% view %%#%% %%#%% %%#%% %%#%% outsider %%#%% %%#%% culture%%lst%% 
+”she breathed easier %%#%% %%#%% streets %%#%% %%#%% %%#%% clean %%#%% beetle cement%%lst%% ]^[ %%#%% %%#%% khepri 
+%%#%% %%#%% crowds were%%lst%% %%#%% here%%lst%% outcasts,”(mieville%%lst%% 2001%%lst%% p%%per%% 16)%%per%%]$~ ~$[by %%#%% %%#%% outsider %%#%% %%#%% culture%%lst%% ´ 
+lin %%#%% identify %%#%% qualities %%#%% %%#%% khepri%%cln%% ”you %%#%% nothing%%lst%% surrounded %%#%% people %%#%% mock 
+%%#%% %%#%% bugs%%lst%% buy %%#%% art cheap%%lst%% ]^[ sell %%#%% food dear%%lst%% ]b[ %%cmp%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+less %%#%% style yourselves %%#%% protectors %%#%% %%#%% khepri way%%per%%]$~ ~$[i’m out%%per%%]$~ ~$[i dress %%#%% %%#%% like%%per%%]$~ ~$[my art %%#%% 
+mine,”(mieville%%lst%% 2001%%lst%% p%%per%% 16)%%per%%]$~ ~$[the khepri culture %%#%% comparable %%#%% %%#%% boxed%%dsh%%in religious community%%lst%% ´ 
+%%#%% %%#%% external thinking %%#%% required %%dsh%% %%#%% follow blindly %%#%% %%#%% questions%%per%%]$~ ~$[the author ensures 
+%%#%% reader %%#%% aware %%#%% this%%lst%% ”lin’s broodma (who scorned %%#%% name %%#%% decadent affection) taught lin 
+]^[ %%#%% broodsister %%#%% insect aspect %%#%% %%#%% lord %%#%% %%#%% creation%%per%%%%per%%%%per%%]$~ ~$[he %%#%% shat %%#%% %%#%% universe 
+%%#%% eating %%#%% void%%lst%% %%#%% %%#%% mindless act %%#%% cosmic creation%%per%%%%per%%%%per%% %%#%% %%#%% %%#%% taught %%#%% worship 
+]^[ serve %%#%% mindless brothers”(mieville%%lst%% 2001%%lst%% p%%per%% 123)%%per%%]$~ ~$[by creating %%#%% religious dimension %%#%% ´ 
+%%#%% %%#%% culture %%#%% closed %%#%% %%#%% %%#%% ideas%%lst%% %%#%% author %%#%% created %%#%% link %%#%% %%#%% world’s cultures ]^[ 
+%%#%% beliefs%%per%%]$~ ~$[lin’s dislike %%#%% %%#%% culture reinforces %%#%% idea%%lst%% %%#%% %%#%% individuals %%#%% %%#%% world %%#%% 
+%%#%% support %%#%% %%#%% one%%dsh%%sided view %%#%% life%%per%%]$~ ~$[lin’s dislike %%#%% %%#%% ”khepri way” creates %%#%% %%#%% %%#%% 
+reintegration %%#%% %%#%% culture%%per%%]$~ ~$[lin has%%lst%% ”steeped %%#%% %%#%% %%#%% human culture,”(mieville%%lst%% ´ 
+2001%%lst%% p%%per%% 83) %%#%% %%#%% %%#%% %%#%% human%%per%%]$~ ~$[this %%#%% allows %%#%% reader %%#%% connect %%#%% lin%%lst%% %%#%% %%#%% %%#%% 
+common %%#%% individuals %%#%% %%#%% cultures %%#%% change %%#%% beliefs%%lst%% customs%%lst%% ]^[ rituals %%#%% fit %%#%% 
+%%#%% culture%%per%%]$~ ~$[although %%#%% species %%#%% alien %%#%% us%%lst%% mieville %%#%% added human characteristics %%#%% %%#%% ´ 
+khepri %%#%% %%#%% %%#%% %%cmp%% %%#%% foreign cultures %%#%% %%#%% world%%per%%]$~ ~$[these differences ]^[ similarities %%#%% 
+khepri ]^[ humans %%#%% explored%%lst%% %%#%% issac ]^[ lin’s relationship%%per%%]$~ ~$[this cultural relationship %%#%% 
+giamblanco 7 
+introduced %%#%% %%#%% initial chapters %%#%% %%#%% novel%%per%%]$~ ~$[in %%#%% areas %%#%% %%#%% city%%lst%% %%#%% couple %%#%% hide %%#%% 
+status%%lst%% ”issac ]^[ lin %%#%% %%#%% lovers nearly %%#%% years%%per%%]$~ ~$[they %%#%% %%#%% tried %%#%% %%#%% %%#%% %%#%% hard 
+%%#%% %%#%% rules %%#%% %%#%% relationship%%per%%%%per%%%%per%%]$~ ~$[innocent remarks ]^[ askance looks %%#%% others%%lst%% %%#%% moment 
+%%#%% contact %%#%% %%#%% %%#%% %%#%% public%%dsh%%a note %%#%% %%#%% grocer%%dsh%%was %%#%% reminder %%#%% %%#%% were,in %%#%% contexts%%lst%% 
+living %%#%% secret”(mieville%%lst%% 2001%%lst%% p%%per%% 10)%%per%%]$~ ~$[the author %%#%% allowing %%#%% reader %%#%% relate %%#%% instances %%#%% %%#%% ´ 
+world %%#%% forbidden love%%per%%]$~ ~$[even differences %%#%% physical characteristics demonstrate awkwardness%%lst%% ”i 
+%%#%% %%#%% %%#%% you%%lst%% clearer%%per%%]$~ ~$[for %%#%% %%#%% %%#%% undifferentiated%%per%%]$~ ~$[in %%#%% corner %%#%% slum collapsing%%lst%% %%#%% %%#%% 
+%%#%% %%#%% train %%#%% pistons shining%%per%%%%per%%%%per%%]$~ ~$[for %%#%% %%#%% tiny %%#%% %%#%% integrity%%lst%% %%#%% fractionally %%#%% 
+%%#%% %%#%% next%%lst%% %%#%% %%#%% variation %%#%% accounted for%%lst%% incrementally%%lst%% rationally”(mieville%%lst%% 2001%%lst%% p%%per%% 13)%%per%% ´ 
+%%#%% awkwardness %%#%% %%#%% %%#%% %%#%% reader %%#%% highlight differences %%#%% culture%%per%%]$~ ~$[these slight cultural 
+differences reflect %%#%% %%#%% world%%lst%% %%#%% couples %%#%% %%#%% cultures experience %%#%% awkward ]^[ 
+unusual adjustments%%per%%]$~ ~$[the author %%#%% %%#%% reader %%#%% %%#%% relationship %%#%% %%#%% reflects %%#%% %%#%% 
+cultural differences %%#%% %%#%% world%%lst%% ]^[ %%#%% %%#%% affects relationships %%#%% %%#%% personal ]^[ romantic way%%per%%]$~ 
+~$[couples %%#%% %%#%% cultures %%#%% abide %%#%% foreign rules ]^[ traditions %%#%% %%#%% complicate %%#%% 
+relationship%%per%%]$~ ~$[by exploring %%#%% %%#%% cultures%%lst%% ]^[ %%#%% intermingling%%lst%% %%#%% connection %%#%% %%#%% 
+world %%#%% established%%lst%% ]^[ %%#%% reader %%#%% able %%#%% understand issues regarding multiculturalism%%per%%]$~ 
+~$[it %%#%% absolutely imperative %%#%% society %%#%% reflect %%#%% %%#%% current state%%lst%% status%%lst%% ]^[ condition%%per%%]$~ ~$[by 
+reflecting %%#%% %%#%% society%%lst%% %%#%% %%#%% %%#%% %%#%% positive ]^[ healthy growth %%#%% %%#%% subjects ]^[ interests%%per%%]$~ 
+~$[unfortunately%%lst%% %%#%% frequency %%#%% %%#%% self%%dsh%%reflection %%#%% %%#%% meet %%#%% requirements %%#%% %%#%% growth%%per%%]$~ 
+~$[perdido street station explores %%#%% deficiency%%lst%% ]^[ %%#%% science fiction %%#%% %%#%% mirror %%#%% %%#%% world%%per%%]$~ 
+~$[new crobuzon temporarily replaces %%#%% world %%#%% %%#%% abstract ]^[ obscure lens%%per%%]$~ ~$[issues %%#%% 
+reflect politics%%lst%% society%%lst%% ]^[ morality %%#%% targeted %%#%% %%#%% city%%per%%]$~ ~$[new crobuzon explores %%#%% darkness 
+%%#%% reality%%lst%% lies%%lst%% deceit%%lst%% ]^[ corruption%%lst%% %%#%% cultural infusion %%#%% lin ]^[ issac’s relationship ]^[ %%#%% 
+relationship %%#%% %%#%% world%%per%%]$~ ~$[ultimately%%lst%% %%#%% science fiction %%#%% perdido street station %%#%% %%#%% obscure%%lst%% 
+bizarre magnifying glass%%lst%% %%#%% enlarges issues %%#%% %%#%% world %%#%% %%#%% dystopic city %%#%% %%#%% 
+crobuzon%%per%% 

@@ -164,14 +164,15 @@ class garnish:
 			sentence_vec_map[s_label]=[sentence_bad_map[s_label], sentence_length_map[s_label]-s_label, _ingredient_mapping[s_label], sentence_and_map[s_label], sentence_but_map[s_label], sentence_or_map[s_label], sentence_compare_map[s_label]]
 			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_xcm_map[s_label], sentence_per_map[s_label], sentence_qsn_map[s_label], sentence_lst_map[s_label], sentence_cln_map[s_label], sentence_scn_map[s_label]]
 			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_dqt_map[s_label], sentence_sqt_map[s_label], sentence_dsh_map[s_label]]
-			# print(bcolors.OKGREEN+"[+]"+str(sentence_vec_map[s_label])+bcolors.ENDC)
-			# sentence = ""
-			# for s_label in range(s_label, sentence_length_map[s_label]):
-			# 	sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
-			# print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC+"\n")
+			hw=0
+			for item in sentence_vec_map[s_label]:
+				if item != 0:
+					hw=hw+1
+			sentence_vec_map[s_label]=sentence_vec_map[s_label]+[hw]
 
-		i_to_j_map 		= 	{}
+
 		i_label_map		=	{}
+		seen_labels 	=   {}
 		ham_sim			=	[]
 		i 				= 	0
 
@@ -184,15 +185,18 @@ class garnish:
 			j_label_map = 	{}
 			
 			for j_label in sentence_vec_map:
+
 				j_label_map[j]=j_label
-				if i_label != j_label: 
+				if i_label != j_label and j_label not in seen_labels: 
+					if len(seen_labels) <= i +1:
+						seen_labels[j_label]=0
 					j_item = sentence_vec_map[j_label]
 					val=mutils.hamming_distance(i_item,j_item)
 					ham_sim[i].append(val)
 				else:
-					ham_sim[i].append(1000)
+					ham_sim[i].append(100000)
 				j=j+1
-			i_to_j_map[i_label]=j_label_map
+			seen_labels[i_label]=1
 			i=i+1
 
 
@@ -213,8 +217,6 @@ class garnish:
 					sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
 			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC+"\n\n")
 
-		# plt.imshow(ham_sim, cmap='cool', interpolation='nearest')
-		# plt.show()
 
 	def final_touches(self, _ingredients):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

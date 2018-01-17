@@ -118,6 +118,9 @@ class garnish:
 
 					sentence_compare_map[start] = 	0
 
+					# ------------------------------------------
+					# todo: compute entropy, and hamming weight.
+					# ------------------------------------------
 
 					for labels in range(start, _label+1):
 						if "%%#%%" in _ingredients_all[labels]:
@@ -152,7 +155,6 @@ class garnish:
 						if "%%dsh%%" in _ingredients_all[labels]:
 							sentence_dsh_map[start] = sentence_dsh_map[start] +1
 
-					#sentence_bad_map[start]=bad_things_per_sentence/(_label+1-start)
 					sentence_bad_map[start]=bad_things_per_sentence
 
 				except Exception as e:

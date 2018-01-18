@@ -4,6 +4,8 @@ import glob
 import os
 import sys
 import operator 
+import re
+
 import matplotlib.pyplot as plt
 import numpy as np
 import math_utils as mutils 
@@ -45,6 +47,8 @@ class garnish:
 			exit()
 		return _classes_out
 
+
+
 	def check_quality(self, _ingredients):
 
 		sentence_vec_map 		= 	{}
@@ -77,13 +81,14 @@ class garnish:
 		ingredient_free_map 	= 	{}
 
 		_ingredients_all		=	_ingredients.get_ingredients()
+		_number_of_ingredients 	= 	len(_ingredients_all)
 		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
 
 		for _label in _ingredients_all:
 
 			item = _ingredients_all[_label]
 
-			only_char_item = ''.join(e for e in item if e.isalnum())
+			only_char_item = ''.join(e for e in _ingredients.get_unprepped_ingredients()[_label] if e.isalnum())
 			ingredient_free_map[_label]=only_char_item
 
 			if only_char_item not in ingredient_freq_map:
@@ -166,12 +171,13 @@ class garnish:
 			sentence_vec_map[s_label]=[sentence_bad_map[s_label], sentence_length_map[s_label]-s_label, _ingredient_mapping[s_label], sentence_and_map[s_label], sentence_but_map[s_label], sentence_or_map[s_label], sentence_compare_map[s_label]]
 			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_xcm_map[s_label], sentence_per_map[s_label], sentence_qsn_map[s_label], sentence_lst_map[s_label], sentence_cln_map[s_label], sentence_scn_map[s_label]]
 			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_dqt_map[s_label], sentence_sqt_map[s_label], sentence_dsh_map[s_label]]
-			hw=0
-			for item in sentence_vec_map[s_label]:
-				if item != 0:
-					hw=hw+1
-			sentence_vec_map[s_label]=sentence_vec_map[s_label]+[hw]
 
+			# compute entropy per sentence
+			vec=[]
+			for thing in range (s_label, sentence_length_map[s_label]+1):
+				vec.append(ingredient_freq_map[ingredient_free_map[s_label]]/_number_of_ingredients)
+
+			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [mutils.entropy(vec)]
 
 		i_label_map		=	{}
 		seen_labels 	=   {}
@@ -189,11 +195,12 @@ class garnish:
 			for j_label in sentence_vec_map:
 
 				j_label_map[j]=j_label
-				if i_label != j_label and j_label not in seen_labels: 
-					if len(seen_labels) <= i +1:
-						seen_labels[j_label]=0
+				if i_label != j_label:# and j_label not in seen_labels: 
+					#if len(seen_labels) <= i +1:
+					#	seen_labels[j_label]=0
 					j_item = sentence_vec_map[j_label]
-					val=mutils.hamming_distance(i_item,j_item)
+					#val=mutils.hamming_distance(i_item,j_item)
+					val=mutils.get_cosine_sim(i_item,j_item)
 					ham_sim[i].append(val)
 				else:
 					ham_sim[i].append(100000)
@@ -206,6 +213,7 @@ class garnish:
 			min_index, min_value 	=  	min(enumerate(ham_sim[i]), key=operator.itemgetter(1))
 			print("Similarity: "+str(min_value))
 			s_label 			=	i_label_map[i]
+			print("Entropy: "+str( sentence_vec_map[s_label][-1] ))
 			sentence=""
 			for s_label in range(s_label, sentence_length_map[s_label]):
 				if _ingredients_all[s_label] != "%%#%%":
@@ -213,6 +221,7 @@ class garnish:
 			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC)	
 				
 			s_label 	 		= 	j_label_map[min_index]
+			print("Entropy: "+str( sentence_vec_map[s_label][-1] ))
 			sentence=""
 			for s_label in range(s_label, sentence_length_map[s_label]):
 				if _ingredients_all[s_label] != "%%#%%":

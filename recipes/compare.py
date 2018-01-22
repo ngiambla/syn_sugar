@@ -57,3 +57,5 @@ class compare:
 			f.write(out+"\n")
 		_ingredients.update(_ingredients_all, _ingredient_mapping)
 		print("")
+
+		return ["%%cmp%%"]

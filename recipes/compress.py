@@ -47,3 +47,5 @@ class compress():
 		_ingredients.update(_ingredients_all, _ingredient_mapping)
 		print("")
 		print("")
+
+		return ["%%#%%"]

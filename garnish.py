@@ -49,33 +49,15 @@ class garnish:
 
 
 
-	def check_quality(self, _ingredients):
+	def check_quality(self, _ingredients, special_items):
 
 		sentence_vec_map 		= 	{}
+		sentence_map 			= 	{}
 
 		sentence_stack 			= 	[]
 
 		sentence_bad_map 		= 	{}
 		sentence_length_map 	= 	{}
-		sentence_and_map		= 	{}
-		sentence_but_map 		=	{}
-		sentence_or_map 		= 	{}
-
-		sentence_and_loc 		= 	{}
-		sentence_but_loc 		= 	{}
-		sentence_or_loc 		= 	{}
-
-		sentence_xcm_map 		= 	{}
-		sentence_per_map 		= 	{}
-		sentence_qsn_map 		= 	{}
-		sentence_lst_map 		= 	{}
-		sentence_cln_map 		= 	{}
-		sentence_scn_map 		= 	{}
-		sentence_dqt_map 		= 	{}
-		sentence_sqt_map 		= 	{}
-		sentence_dsh_map 		= 	{}
-
-		sentence_compare_map 	= 	{}
 
 		ingredient_freq_map 	= 	{}
 		ingredient_free_map 	= 	{}
@@ -83,6 +65,11 @@ class garnish:
 		_ingredients_all		=	_ingredients.get_ingredients()
 		_number_of_ingredients 	= 	len(_ingredients_all)
 		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
+
+		_special_item_dict 		= 	{}
+
+		for special_item in special_items:
+			_special_item_dict[special_item]=0
 
 		for _label in _ingredients_all:
 
@@ -97,141 +84,40 @@ class garnish:
 				ingredient_freq_map[only_char_item] = ingredient_freq_map[only_char_item] +1
 
 			if "~$[" in item:
+
 				sentence_stack.append(_label)
+
 			if "]$~" in item:
 				try:
 					start=sentence_stack.pop()
-					sentence_length_map[start] 	= 	_label+1
-					bad_things_per_sentence 	= 	0
-					
-					sentence_and_map[start]		= 	0
-					sentence_or_map[start] 		= 	0
-					sentence_but_map[start] 	= 	0
-					sentence_and_loc[start]		= 	[]
-					sentence_but_loc[start] 	= 	[]
-					sentence_or_loc[start]	 	= 	[]
-
-					sentence_xcm_map[start]		= 	0
-					sentence_per_map[start] 	= 	0
-					sentence_qsn_map[start] 	= 	0
-					sentence_lst_map[start] 	= 	0
-					sentence_cln_map[start] 	= 	0
-					sentence_scn_map[start] 	= 	0
-					sentence_dqt_map[start] 	= 	0
-					sentence_sqt_map[start] 	= 	0
-					sentence_dsh_map[start] 	= 	0
-
-					sentence_compare_map[start] = 	0
-
-					# ------------------------------------------
-					# todo: compute entropy, and hamming weight.
-					# ------------------------------------------
-
-					for labels in range(start, _label+1):
-						if "%%#%%" in _ingredients_all[labels]:
-							bad_things_per_sentence = bad_things_per_sentence + 1
-						if "]^[" in _ingredients_all[labels]:
-							sentence_and_loc[start].append(labels)
-							sentence_and_map[start] = sentence_and_map[start] +1
-						if "]b[" in _ingredients_all[labels]:
-							sentence_but_loc[start].append(labels)
-							sentence_but_map[start] = sentence_but_map[start] +1
-						if "]v[" in _ingredients_all[labels]:
-							sentence_or_loc[start].append(labels)
-							sentence_or_map[start] = sentence_or_map[start] +1
-						if "%%cmp%%" in _ingredients_all[labels]:
-							sentence_compare_map[start] = sentence_compare_map[start] +1
-						if "%%xcm%%" in _ingredients_all[labels]:
-							sentence_xcm_map[start] = sentence_xcm_map[start] +1
-						if "%%per%%" in _ingredients_all[labels]:
-							sentence_per_map[start] = sentence_per_map[start] +1
-						if "%%qsn%%" in _ingredients_all[labels]:
-							sentence_qsn_map[start] = sentence_qsn_map[start] +1
-						if "%%lst%%" in _ingredients_all[labels]:
-							sentence_lst_map[start] = sentence_lst_map[start] +1
-						if "%%cln%%" in _ingredients_all[labels]:
-							sentence_cln_map[start] = sentence_cln_map[start] +1
-						if "%%scn%%" in _ingredients_all[labels]:
-							sentence_scn_map[start] = sentence_scn_map[start] +1
-						if "%%dqt%%" in _ingredients_all[labels]:
-							sentence_dqt_map[start] = sentence_dqt_map[start] +1
-						if "%%sqt%%" in _ingredients_all[labels]:
-							sentence_sqt_map[start] = sentence_sqt_map[start] +1
-						if "%%dsh%%" in _ingredients_all[labels]:
-							sentence_dsh_map[start] = sentence_dsh_map[start] +1
-
-					sentence_bad_map[start]=bad_things_per_sentence
+					sentence_length_map[start] 	= 	_label+1-start
+					sentence_map[start] 			= 	_special_item_dict.copy()
+					for special_item in _special_item_dict:
+						_special_item_dict[special_item] = 0
 
 				except Exception as e:
 					print(str(e))
 					pass
 
-		
-		for s_label in sentence_bad_map:
-			sentence_vec_map[s_label]=[sentence_bad_map[s_label], sentence_length_map[s_label]-s_label, _ingredient_mapping[s_label], sentence_and_map[s_label], sentence_but_map[s_label], sentence_or_map[s_label], sentence_compare_map[s_label]]
-			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_xcm_map[s_label], sentence_per_map[s_label], sentence_qsn_map[s_label], sentence_lst_map[s_label], sentence_cln_map[s_label], sentence_scn_map[s_label]]
-			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_dqt_map[s_label], sentence_sqt_map[s_label], sentence_dsh_map[s_label]]
+			if len(sentence_stack) > 0:
+				for special_item in _special_item_dict:
+					if special_item in item:
+						_special_item_dict[special_item]=_special_item_dict[special_item]+1
 
-			# compute entropy per sentence
+		for _label in sentence_map:
 			vec=[]
-			for thing in range (s_label, sentence_length_map[s_label]+1):
-				vec.append(ingredient_freq_map[ingredient_free_map[s_label]]/_number_of_ingredients)
-
-			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [mutils.entropy(vec)]
-
-		i_label_map		=	{}
-		seen_labels 	=   {}
-		ham_sim			=	[]
-		i 				= 	0
-
-		for i_label in sentence_vec_map:
-			i_label_map[i] = i_label
-			i_item = sentence_vec_map[i_label]
-			ham_sim.append([])
-
-			j 			=	0
-			j_label_map = 	{}
+			for special_item in sentence_map[_label]:
+				vec = vec + [sentence_map[_label][special_item]]
+			vec=vec + [sentence_length_map[_label]]
+			sentence_vec_map[_label]=vec
+	
+		for item in sentence_vec_map:
+			raw_input(sentence_vec_map[item])
 			
-			for j_label in sentence_vec_map:
 
-				j_label_map[j]=j_label
-				if i_label != j_label:# and j_label not in seen_labels: 
-					#if len(seen_labels) <= i +1:
-					#	seen_labels[j_label]=0
-					j_item = sentence_vec_map[j_label]
-					#val=mutils.hamming_distance(i_item,j_item)
-					val=mutils.get_cosine_sim(i_item,j_item)
-					ham_sim[i].append(val)
-				else:
-					ham_sim[i].append(100000)
-				j=j+1
-			seen_labels[i_label]=1
-			i=i+1
-
-
-		for i in i_label_map:
-			min_index, min_value 	=  	min(enumerate(ham_sim[i]), key=operator.itemgetter(1))
-			print("Similarity: "+str(min_value))
-			s_label 			=	i_label_map[i]
-			print("Entropy: "+str( sentence_vec_map[s_label][-1] ))
-			sentence=""
-			for s_label in range(s_label, sentence_length_map[s_label]):
-				if _ingredients_all[s_label] != "%%#%%":
-					sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
-			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC)	
-				
-			s_label 	 		= 	j_label_map[min_index]
-			print("Entropy: "+str( sentence_vec_map[s_label][-1] ))
-			sentence=""
-			for s_label in range(s_label, sentence_length_map[s_label]):
-				if _ingredients_all[s_label] != "%%#%%":
-					sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
-			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC+"\n\n")
-
-
-	def final_touches(self, _ingredients):
+	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)
-		self.check_quality(_ingredients)
+		self.check_quality(_ingredients, special_items)
 
 
 		_ingredients_all		=	_ingredients.get_ingredients()

@@ -1,4 +1,5 @@
 from ingredients import ingredients
+from bcolors import bcolors
 
 
 class parser:
@@ -8,8 +9,8 @@ class parser:
 		stuffing = {
 			"~~~" 	: "%%ESC%%",
 			"]^[" 	: "%%AND%%",
-			"]V[" 	: "%%OR%%",
-			"]B[" 	: "%%BUT%%",
+			"]v[" 	: "%%OR%%",
+			"]b[" 	: "%%BUT%%",
 			"~$[" 	: "%%BEG%%",
 			"]$~" 	: "%%END%%",
 			"%%#%%"	: "%%BAD%%"
@@ -39,6 +40,6 @@ class parser:
 						_line_label = _line_label +1
 			return ingredients(_ingredients, _ingredient_mapping, filename)
 		except Exception as e:
-			print("Error occured while opening file: "+str(e))
-			exit()
+			print(bcolors.REDBACK+"Error occured while opening file: "+str(e)+bcolors.ENDC)
+			return -1
 

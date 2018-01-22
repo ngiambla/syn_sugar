@@ -1,1368 +1,382 @@
-Efficient Software—Based Fault Isolation 
-Robert VVahbe 
-Steven Lucco 
-Thomas E. Anderson 
-Susan L. Graham 
-Computer Science Division 
-University of California 
-Berkeley, CA 94720 
-Abstract 
-One way to provide fault isolation among cooperating 
-software modules is to place each in its own address 
-space. However, for tightly—coupled modules, this so— 
-lution incurs prohibitive context switch overhead. In 
-this paper, we present a software approach to imple— 
-menting fault isolation within a single address space. 
-Our approach has two parts. First, we load the code 
-]^[ data for a distrusted module into its own fault do- 
-main, a logically separate portion of the application’s 
-address space. Second, we modify the object code of a 
-distrusted module to prevent it from writing ]v[ jump- 
-ing to an address outside its fault domain. Both these 
-software operations are portable ]^[ programming lan— 
-guage independent. 
-Our approach poses a tradeoff relative to hardware 
-fault isolation: substantially faster communication be— 
-tween fault domains, at a cost of slightly increased 
-execution time for distrusted modules We demon— 
-strate that for frequently communicating modules, im~ 
-plementing fault isolation in software rather than hard- 
-ware can substantially improve end-to—end application 
-performance. 
-This work was supported in part by the National Sci— 
-ence Foundation (CDA-8722788), Defense Advanced Research 
-Projects Agency (DARPA) under grant MDA972—92-J-1028 ]^[ 
-contracts DABT63-92'C-0026 ]^[ N00600-93—C—2481, the Digi- 
-tal Equipment Corporation (the Systems Research Center ]^[ 
-the External Research Program), ]^[ the AT&T Foundation. 
-Anderson was also supported by a National Science Foundation 
-Young Investigator Award. The content of the paper does not 
-necessarily reﬂect the position ]v[ the policy of the Government 
-]^[ no ofﬁcial endorsement should be inferred. 
-Email: {rwahbe , lucco, tea, graham}@cs .berkeley.edu 
-Permission to copy Without fee all ]v[ part of (his material IS 
-granted provided that Hie cvpies are "0‘ made 0! distributed for 
-direct commercial advantage. the ACM copyright notice ]^[ the 
-mile of the publicaiion ]^[ MS data appear, ]^[ notice IS given 
-that copying is by permissmn of (he Assomalion for Computing 
-Machinery. To copy otherWise. ]v[ to republish, requires a fee 
-and/or specnfic permissron. 
-SIGOPS '93/12/93/N.C., USA 
-31993 ACM 0-83791-632-8/93/0012...$L50 
-1 Introduction 
-Application programs often achieve extensibility by 
-incorporating independently developed software mod— 
-ules. However, faults in extension code can render a 
-software system unreliable, ]v[ even dangerous, since 
-such faults could corrupt permanent data. To in— 
-crease the reliability of these applications, an operat— 
-ing system can provide services that prevent faults in 
-distrusted modules from corrupting application data. 
-Such fault isolation services also facilitate software de- 
-velopment by helping to identify sources of system fail— 
-ure. 
-For example, the POSTGRES database manager in— 
-cludes an extensible type system [St087]. Using this 
-facility, POSTGRES queries can refer to general—purpose 
-code that deﬁnes constructors, destructors, ]^[ pred— 
-icates for user—deﬁned data types such as geometric 
-objects. Without fault isolation, any query that uses 
-extension code could interfere with an unrelated query 
-]v[ corrupt the database. 
-Similarly, recent operating system research has fo— 
-cused on making it easier for third party vendors 
-to enhance parts of the operating system. An ex 
-ample is micro-kernel design; parts of the operat— 
-ing system are implemented as user—level servers that 
-can be easily modiﬁed ]v[ replaced. More gener— 
-ally, several systems have added extension code into 
-the operating system, for example, the BSD network 
-packet ﬁlter [MRA87, MJQ3]7 application—speciﬁc vir- 
-tual memory management [HC92]. ]^[ Active Mes— 
-sages [VCGSQQ]. Among industry systems, Microsoft’s 
-Object Linking ]^[ Embedding system [Cla92] can 
-link together independently developed software mod— 
-tiles. Also, the Quark Xprese desktop publishing sys- 
-tem [Dy592] is structured to support incorporation of 
-general—purpose third party code. As with POSTGRES, 
-faults in extension modules can render any of these 
-systems unreliable. . 
-One way to provide fault isolation among cooperat— 
-ing software modules is to place each in its own address 
-space. Using Remote Procedure Call (RFC) [BN84], 
-modules in separate address spaces can call into each 
-other through a normal procedure call interface. Hard- 
-ware page tables prevent the code in one address space 
-from corrupting the contents of another. 
-Unfortunately, there is a high performance cost 
-to providing fault isolation through separate address 
-spaces. Transferring control across protection bound— 
-aries is expensive, ]^[ does not necessarily scale 
-with improvements in a processor’s integer perforv 
-mance [ALBL91]. A cross—address-space RPC requires 
-at least: a trap into the operating system kernel, copy— 
-ing each argument from the caller to the callee, sav~ 
-ing ]^[ restoring registers, switching hardware ad— 
-dress spaces (on many machines, ﬂushing the transla— 
-tion lookaside buffer), ]^[ a trap back to user level. 
-These operations must be repeated upon RPC re— 
-turn. The execution time overhead of an RPC, even 
-with a highly optimized implementation, will often 
-be two to three orders of magnitude greater than 
-the execution time overhead of a normal procedure 
-call [BALL90, ALBL91]. 
-The goal of our work is to make fault isolation cheap 
-enough that system developers can ignore its perfor— 
-mance effect in choosing which modules to place in 
-separate fault domains. In many cases where fault iso 
-lation would be useful, cross-domain procedure calls 
-are frequent yet involve only a moderate amount of 
-computation per call. In this situation it is imprac- 
-tical to isolate each logically separate module within 
-its own address space, because of the cost of crossing 
-hardware protection boundaries. 
-We propose a. software approach to implementing 
-fault isolation within a single address space. Our ap— 
-proach has two parts. First, we load the code ]^[ data 
-for a. distrusted module into its own fault domain, a 
-logically separate portion of the application’s address 
-space. A fault domain, in addition to comprising a cori— 
-tiguous region of memory within an address space, has 
-a unique identiﬁer which is used to control its access to 
-process resources such as ﬁle descriptors. Second, we 
-modify the object code of a distrusted module to pre— 
-vent it from writing ]v[ jumping to an address outside 
-its fault domain. Program modules isolated in sepa— 
-rate software—enforced fault domains can not modify 
-each other’s data ]v[ execute each other’s code except 
-through an explicit cross-fault-domain RPC interface. 
-We have identiﬁed several programming-language- 
-independent transformation strategies that can render 
-object code unable to escape its own code ]^[ data 
-segments. In this paper, we concentrate on a sim— 
-204 
-ple transformation technique, called sandboxing, that 
-only slightly increases the execution time of the mod- 
-iﬁed object code. We also investigate techniques that 
-provide more debugging information ]b[ which incur 
-greater execution time overhead. 
-Our approach poses a tradeoff relative to hardware— 
-based fault isolation. Because we eliminate the need to 
-cross hardware boundaries, we can offer substantially 
-lower-cost RPC between fault domains. A safe RPC in 
-our prototype implementation takes roughly 1.1 us on a 
-DECstation 5000/240 ]^[ roughly 0.8,us on a DEC Al- 
-pha 400, more than an order of magnitude faster than 
-any existing RFC system. This reduction in RFC time 
-comes at a cost of slightly increased distrusted module 
-execution time. On a test suite including the the C 
-SPE092 benchmarks, sandboxing incurs an average of 
-4% execution time overhead on both the DECstation 
-]^[ the Alpha. 
-Software—enforced fault isolation may seem to be 
-counter-intuitive: we are slowing down the common 
-case (normal execution) to speed up the uncommon 
-case (crossrdomain communication). But for fre- 
-quently communicating fault domains, our approach 
-can offer substantially better end—to—end performance. 
-To demonstrate this, we applied software—enforced 
-fault isolation to the POSTGRES database system run- 
-ning the Sequoia 2000 benchmark. The benchmark 
-makes use of the POSTGRES extensible data. type sys— 
-tem to deﬁne geometric operators. For this bench— 
-mark, the software approach reduced fault isolation 
-overhead by more than a factor of three on a DECsta— 
-tion 5000/240. 
-A software approach also provides a tradeoif be 
-tween performance ]^[ level of distrust. If some mod— 
-ules in a. program are trusted while others are dis- 
-trusted (as may be the ease with extension code), only 
-the distrusted modules incur any execution time over- 
-head. Code in trusted domains can run at full speed. 
-Similarly, it is possible to use our techniques to im- 
-plement full security, preventing distrusted code from 
-even reading data outside of its domain, at a cost of 
-higher execution time overhead. We quantify this ef» 
-fect in Section 5. 
-The remainder of the paper is organized as follows. 
-Section 2 provides some examples of systems that re- 
-quire frequent communication between fault domains. 
-Section 3 outlines how we modify object code to pre— 
-vent it from generating illegal addresses. Section 4 
-describes how we implement low latency cross—faultv 
-domain RPC. Section 5 presents performance results 
-for our prototype, ]^[ ﬁnally Section 6 discusses some 
-related work. 
-2 Background 
-In this section, we characterize in more detail the 
-type of application that can beneﬁt from software— 
-enforced fault isolation. We defer further description 
-of the POSTGRES extensible type system until Section 
-5, which gives performance measurements for this ap— 
-plication. 
-The operating systems community has focused con- 
-siderable attention on supporting kernel extensibil- 
-ity. For example, the UNIX vnode interface is de- 
-signed to make it easy to add a new ﬁle system into 
-UNIX [Kle86]. Unfortunately, it is too expensive to 
-forward every ﬁle system operation to user level, so 
-typically new ﬁle system implementations are added 
-directly into the kernel. (The Andrew ﬁle system is 
-largely implemented at user level, ]b[ it maintains a 
-kernel cache for performance [HKM'l'BSH Epoch’s ter— 
-tiary storage ﬁle system [Web93] is one example of op— 
-erating system kernel code developed by a third party 
-vendor. 
-Another example is user—programmable high perfor— 
-mance I/O systems. If data is arriving on an I/O 
-channel at a high enough rate, performance will be 
-degraded substantially if control has to be transferred 
-to user level to manipulate the incoming data [FP93]. 
-Similarly, Active Messages provide high performance 
-message handling in distributed—memory multiproces- 
-sors [VCG8921. Typically, the message handlers are 
-application-speciﬁc, ]b[ unless the network controller 
-can be accessed from user level [Thi92], the message 
-handlers must be compiled into the kernel for reason— 
-able performance. 
-A user-level example is the Quark Xpress desktop 
-publishing system. One can purchase third party soft- 
-ware that will extend this system to perform func~ 
-tions unforeseen by its original designers [DysQQ]. At 
-the same time, this extensibility has caused Quark a 
-number of problems. Because of the lack of efﬁcient 
-fault domains on the personal computers where Quark 
-Xpress runs, extension modules can corrupt Quark’s 
-internal data structures Hence, bugs in third party 
-code can make the Quark system appear unreliable, 
-because end—users do not distinguish among sources of 
-system failure. 
-All these examples share two characteristics. First, 
-using hardware fault isolation would result in a signif- 
-icant portion of the overall execution time being spent 
-in operating system context switch code. Second, only 
-a small amount of code is distrusted; most of the exe- 
-cution time is spent in trusted code. In this situation, 
-software fault isolation is likely to be more efﬁcient 
-than hardware fault isolation because it sharply re— 
-duces the time spent crossing fault domain boundaries, 
-while only slightly increasing the time spent executing 
-205 
-the distrusted part of the application. Section 5 quan- 
-tiﬁes this trade-off between domain—crossing overhead 
-]^[ application execution time overhead, ]^[ demon 
-strates that even if domain—crossing overhead repre— 
-sents a modest proportion of the total application ex— 
-ecution time, software—enforced fault isolation is cost 
-effective. 
-3 Software-Enforced Fault Iso- 
-lation 
-In this section, we outline several software encapsula— 
-tion techniques for transforming a distrusted module 
-so that it can not escape its fault domain. We ﬁrst 
-describe a technique that allows users to pinpoint the 
-location of faults within a software module. Next, we 
-introduce a technique, called sandboxing, that can iso- 
-late a distrusted module while only slightly increasing 
-its execution time. Section 5 provides a performance 
-analysis of this techinique. Finally, we present a soft- 
-ware encapsulation technique that allows cooperating 
-fault domains to share memory. The remainder of 
-this discussion assumes we are operating on a RISC 
-load /storc architecture, although our techniques could 
-be extended to handle CISCs. Section 4 describes 
-how we implement safe ]^[ efficient cross—fault—domain 
-RPC. 
-We divide an application’s virtual address space into 
-segments, aligned so that all virtual addresses within 
-a segment share a unique pattern of upper bits, called 
-the segment identiﬁer. A fault domain consists of two 
-segments, one for a distrusted module’s code, the other 
-for its static data, heap ]^[ stack. The speciﬁc seg- 
-ment addresses are determined at load time. 
-Software encapsulation transforms a distrusted 
-module‘s object code so that it can jump only to tar- 
-gets in its code segment, ]^[ write only to addresses 
-within its data segment. Hence, all legal jump tar— 
-gets in the distrusted module have the same upper bit 
-pattern (segment identiﬁer); similarly, all legal data 
-addresses generated by the distrusted module share 
-the same segment identiﬁer. Separate code ]^[ data 
-segments are necessary to prevent a module from mod— 
-ifying its code segmentl. It is possible for an address 
-with the correct segment identiﬁer to be illegal, for in- 
-stance if it refers to an unmapped page. This is caught 
-by the normal operating system page fault mechanism. 
-3.1 
-An unsafe mstmctzan is any instruction that jumps to 
-]v[ stores to an address that can not be statically ver— 
-Segment Matching 
-10111" system supports dynamic linking through a special 
-interface. 
-iﬁed to be within the correct segment. Most control 
-transfer instructions, such as program‘counter‘relative 
-branches, can be statically veriﬁed. Stores to static 
-variables often use an immediate addressing mode ]^[ 
-can be statically veriﬁed. However, jumps through reg— 
-isters, most commonly used to implement procedure 
-returns, ]^[ stores that use a register to hold their 
-target address, can not be statically veriﬁed. 
-A straightforward approach to preventing the use of 
-illegal addresses is to insert checking code before eve 
-ery unsafe instruction. The checking code determines 
-whether the unsafe instruction’s target address has the 
-correct segment identiﬁer. If the check fails, the in- 
-serted code will trap to a system error routine outside 
-the distrusted module’s fault domain. We call this 
-software encapsulation technique segment matching. 
-On typical RISC architectures, segment matching 
-requires four instructions. Figure 1 lists a pseudo—code 
-fragment for segment matching. The ﬁrst instruction 
-in this fragment moves the store target address into 
-a dedzcated register. Dedicated registers are used only 
-by inserted code ]^[ are never modiﬁed by code in 
-the distrusted module. They are necessary because 
-code elsewhere in the distrusted module may arrange 
-to jump directly to the unsafe store instruction, by- 
-passing the inserted check. Hence, we transform all 
-unsafe store ]^[ jump instructions to use a dedicated 
-register. 
-All the software encapsulation techniques presented 
-in this paper require dedicated registersz. Segment 
-matching requires four dedicated registers: one to hold 
-addresses in the code segment, one to hold addresses 
-in the data segment, one to hold the segment shift 
-amount, ]^[ one to hold the segment identiﬁer. 
-Using dedicated registers may have an impact on 
-the execution time of the distrusted module. However, 
-since most modern RISC architectures, including the 
-MIPS ]^[ Alpha, have at least 32 registers, we can 
-retarget the compiler to use a smaller register set with 
-minimal performance impact. For example7 Section 5 
-shows that, on the DECstation 5000/240, reducing by 
-ﬁve registers the register set available to a C compiler 
-(gee) did not have a signiﬁcant effect on the average 
-execution time of the SPEC92 benchmarks. 
-3.2 Address Sandboxing 
-The segment matching technique has the advantage 
-that it can pinpoint the offending instruction. This 
-capability is useful during software development. We 
-can reduce runtime overhead still further, at the cost 
-of providing no information about the source of faults. 
-2 For architectures with lenitccl register sets, such as the 
-80386 [Int86], it is possible to encapsulate a module using no re- 
-served registers by restricting control ﬂow within a fault domain. 
-206 
-dedicated—reg <2 target address 
-lilove target address into dedicated register. 
-scratch-reg <= (dedicated—reg>>shift~reg) 
-Right—shift address to get segment identiﬁer. 
-scratch—reg is not a dedicated register. 
-shift-reg is a dedicated register. 
-compare scratch—reg ]^[ segment—reg 
-segment-reg is a dedicated register. 
-trap if not equal 
-Trap if store address is outside of segment. 
-store instruction uses dedicated-reg 
-Figure 1: Assembly pseudo code for segment matching. 
-dedicated—reg c target-reghand—mask—reg 
-Use dedicated register and—mask-reg 
-to clear segment identiﬁer bits. 
-dedicated—reg <2 dedicated-regl segment—reg 
-Use dedicated register segment-reg 
-to set segment identiﬁer bits. 
-store instruction uses dedicated-reg 
-Figure 2: Assembly pseudo code to sandbox address 
-in target—reg. 
-Before each unsafe instruction we simply insert code 
-that sets the upper bits of the target address to the 
-correct segment identifier. We call this sandborzn g the 
-address. Sandboxing does not catch illegal addresses; 
-it merely prevents them from affecting any fault do— 
-main other than the one generating the address. 
-Address sandboxing requires insertion of two arith- 
-metic instructions before each unsafe store ]v[ jump 
-instruction. The ﬁrst inserted instruction clears the 
-segment identifier bits ]^[ stores the result in a ded— 
-icated register. The second instruction sets the seg— 
-ment identiﬁer to the correct value. Figure 2 lists the 
-pseudo‘code to perform this operation. As with seg- 
-ment matching, we modify the unsafe store ]v[ jump 
-instruction to use the dedicated register. Since we are 
-using a dedicated register, the distrusted module code 
-can not produce an illegal address even by jumping 
-to the second instruction in the sandboxing sequence; 
-since the upper bits of the dedicated register will al— 
-ready contain the correct segment identiﬁer, this sec- 
-ond instruction will have no effect. Section 3.6 presents 
-a simple algorithm that can verify that an object code 
-module has been correctly sandboxed. 
-Address sandboxing requires ﬁve dedicated registers. 
-One register is used to hold the segment mask, two 
-registers are used to hold the code ]^[ data segment 
-<——reg+oﬂ'sel j 
-«— reg 
-Guard Zones S eg ment 
-Figure 3: A segment with guard zones. The size of 
-the guard zones covers the range of possible immediate 
-offsets in register—plus-offset addressing modes. 
-identiﬁers, ]^[ two are used to hold the sandboxed 
-code ]^[ data addresses. 
-3.3 Optimizations 
-The overhead of software encapsulation can be re- 
-duced by using conventional compiler optimizations. 
-Our current prototype applies loop invariant code mo— 
-tion ]^[ instruction scheduling optimizations [ASU86, 
-ACD74]. In addition to these conventional techniques, 
-we employ a number of optimizations specialized to 
-software encapsulation. 
-We can reduce the overhead of software encapsulae 
-tion mechanisms by avoiding arithmetic that computes 
-target addresses. For example, many RISC architec— 
-tures include a register-plus—oﬁset instruction mode, 
-where the offset is an immediate constant in some lim— 
-ited range. On the MIPS architecture such offsets are 
-limited to the range -64K to +64K. Consider the 
-store instruction store value,oﬁset(reg), whose 
-address offset (reg) uses the register—plus—olfsct ad~ 
-dressing mode. Sandboxing this instruction requires 
-three inserted instructions: one to sum reg+oﬁset 
-into the dedicated register, ]^[ two sandboxing in— 
-structions to set the segment identiﬁer of the dedicated 
-register. 
-Our prototype optimizes this case by sandboxing 
-only the register reg, rather than the actual target ad— 
-dress reg+oﬁset, thereby saving an instruction. To 
-support this optimization, the prototype establishes 
-guard zones at the top ]^[ bottom of each segment. 
-To create the guard zones, virtual memory pages ad— 
-jacent to the segment are unmapped (see Figure 3), 
-We also reduce runtime overhead by treating the 
-MIPS stack pointer as a dedicated register. We avoid 
-sandboxing the uses of the stack pointer by sandboxing 
-207 
-this register whenever it is set. Since uses of the stack 
-pointer to form addresses are much more plentiful than 
-changes to it, this optimization signiﬁcantly improves 
-performance. 
-Further, we can avoid sandboxing the stack pointer 
-after it is modiﬁed by a small constant offset as long as 
-the modiﬁed stack pointer is used as part of a load ]v[ 
-store address before the next control transfer instruc» 
-tion. If the modiﬁed stack pointer has moved into a 
-guard zone, the load ]v[ store instruction using it will 
-cause a hardware address fault. On the DEC Alpha 
-processor, we apply these optimizations to both the 
-frame pointer ]^[ the stack pointer. 
-There are a number of further optimizations that 
-could reduce sandboxing overhead. For example, 
-the transformation tool could remove sandboxing se— 
-quences from loops, in cases where a store target ad- 
-dress changes by only a small constant oifset during 
-each loop iteration. Our prototype does not yet imple— 
-ment these optimizations. 
-3.4 Process Resources 
-Because multiple fault domains share the same virtual 
-address space, the fault domain implementation must 
-prevent distrusted modules from corrupting resources 
-that are allocated on a per—addressspace basis. For 
-example, if a fault domain is allowed to make system 
-calls, it can close ]v[ delete ﬁles needed by other code 
-executing in the address space, potentially causing the 
-application as a whole to crash. 
-One solution is to modify the operating system to 
-know about fault domains. On a system call ]v[ page 
-fault, the kernel can use the program counter to deter- 
-mine the currently executing fault domain, ]^[ restrict 
-resources accordingly. 
-To keep our prototype portable, we implemented 
-an alternative approach. In addition to placing each 
-distrusted module in a separate fault domain, we re— 
-quire distrusted modules to access system resources 
-only through cross-fault-domain RPC. We reserve a 
-fault domain to hold trusted arbitration code that de— 
-termines whether a particular system call performed 
-by some other fault domain is safe. If a distrusted 
-module’s object code performs a direct system call, we 
-transform this call into the appropriate RPC call. In 
-the case of an extensible application, the trusted por- 
-tion of the. application can make system calls directly 
-]^[ shares a fault domain with the arbitration code. 
-3.5 Data Sharing 
-Hardware fault isolation mechanisms can support data 
-sharing among virtual address spaces by manipulate 
-ing page table entries. Fault domains share an ad— 
-dress space, ]^[ hence a set of page table entries, 
-so they can not use a standard shared memory im— 
-plementation. Read-only sharing is straightforward; 
-since our software encapsulation techniques do not al- 
-ter load instructions, fault domains can read any mem— 
-ory mapped in the application’s address space 3. 
-If the object code in a particular distrusted mod— 
-ule has been sandboxed, then it can share read-write 
-memory with other fault domains through a technique 
-we call lazy pointer swizzling. Lazy pointer swizzling 
-provides a mechanism for fault domains to share ar— 
-bitrarily many read‘write memory regions with no ad- 
-ditional runtirne overhead. To support this technique, 
-we modify the hardware page tables to map the shared 
-memory region into every address space segment that 
-needs access; the region is mapped at the same offset 
-in each segment. In other words, we alias the shared 
-region into multiple locations in the virtual address 
-space, ]b[ each aliased location has exactly the same 
-low order address bits. As with hardware shared mem- 
-ory schemes, each shared region must have a different 
-segment offset. 
-To avoid incorrect shared pointer comparisons in 
-sandboxed code, the shared memory creation inter— 
-face must ensure that each shared object is given a 
-unique address. As the distrusted object code ac- 
-cesses shared memory, the sandboxing code automati- 
-cally translates shared addresses into the correspond 
-ing addresses within the fault domain’s data segment. 
-This translation works exactly like hardware transla~ 
-tion; the low bits of the address remain the same, ]^[ 
-the high bits are set to the data segment identiﬁer. 
-Under operating systems that do not allow virtual 
-address aliasing, we can implement shared regions by 
-introducing a new software encapsulation technique: 
-shared segment matching. To implement sharing, we 
-use a dedicated register to hold a bitmap. The bitmap 
-indicates which segments the fault domain can access. 
-For each unsafe instruction checked, shared segment 
-matching requires one more. instruction than segment 
-matching. 
-3.6 Implementation ]^[ Veriﬁcation 
-We have identiﬁed two strategies for implementing 
-software encapsulation. One approach uses a compiler 
-to emit encapsulated object code for a distrusted mod- 
-ule; the integrity of this code is then veriﬁed when the 
-module is loaded into a fault domain. Alternatively, 
-the system can encapsulate the distrusted module by 
-directly modifying its object code at load time. 
-a\«Ve have implemented versions of these techniques that per 
-form general protection by encapsulating load instructions as 
-well as store ]^[ jump instructions. We discuss the performance 
-of these variants in Section 5. 
-Our current prototype uses the first approach. We 
-modiﬁed a version of the gcc compiler to perform soft— 
-ware encapsulation. Note that While our current imple- 
-mentation is language dependent, our techniques are 
-language independent. 
-We built a veriﬁer for the MIPS instruction set 
-that works for both sandboxing ]^[ segment match- 
-ing. The main challenge in veriﬁcation is that, in the 
-presence of indirect jumps, execution may begin on 
-any instruction in the code segment. To address this 
-situation, the veriﬁer uses a property of our software 
-encapsulation techniques: all unsafe stores ]^[ jumps 
-use a dedicated register to form their target address. 
-The veriﬁer divides the program into sequences of in— 
-structions called unsafe regions. An unsafe store re- 
-gion begins with any modiﬁcation to a dedicated store 
-register. An unsafe jump region begins with any mod- 
-iﬁcation to a dedicated jump register. If the ﬁrst in— 
-struction in a unsafe store ]v[ jump region is executed, 
-all subsequent instructions are guaranteed to be exe- 
-cuted. An unsafe store region ends when one of the 
-following hold: the next instruction is a store which 
-uses a dedicated register to form its target address, 
-the next instruction is a control transfer instruction, 
-the next instruction is not guaranteed to be executed, 
-]v[ there are no more instructions in the code segment. 
-A similar deﬁnition is used for unsafe jump regions. 
-The veriﬁer analyzes each unsafe store ]v[ jump re: 
-gion to insure that any dedicated register modiﬁed in 
-the region is valid upon exit of the region. For ex— 
-ample, a load to a dedicated register begins an unsafe 
-region. If the region appropriately sandboxes the ded— 
-icated register, the unsafe region is deemed safe. if an 
-unsafe region can not be veriﬁed, the code is rejected. 
-By incorporating software encapsulation into an ex— 
-isting compiler, we are able to take advantage of com— 
-piler infrastructure for code optimization. However, 
-this approach has two disadvantages. First, most mod- 
-iﬁed compilers will support only one programming lan— 
-guage (gcc supports C, C++, ]^[ Pascal). Second, the 
-compiler ]^[ veriﬁer must be synchronized with re— 
-spect to the particular encapsulation technique being 
-employed. 
-An alternative, called bmary patchzng, alleviates 
-these problems. When the fault domain is loaded, the 
-system can encapsulate the module by directly modi- 
-fying the object code. Unfortunately, practical ]^[ r07 
-bust binary patching, resulting in efﬁcient code, is not 
-currently possible [LB92]. Tools which translate one 
-binary format to another have been built, ]b[ these 
-tools rely on compiler—speciﬁc idioms to distinguish 
-code from data ]^[ use processor emulation to han- 
-dle unknown indirect jumps[SCK”93]. For software 
-encapsulation, the main challenge is to transform the 
-code so that it uses a subset of the registers, leav— 
-208 
-Trusted 
-Caller Domain 
-Unlru sted 
-Calico Domain 
-call Add 
-Jump Table 
-Figure 4: Major components of a crossefault—domain 
-RFC. 
-ing registers available for dedicated use. To solve this 
-problem, we are working on a binary patching proto- 
-type that uses simple extensions to current object ﬁle 
-formats. The extensions store control ﬂow ]^[ register 
-usage information that is sufﬁcient to support software 
-encapsulation. 
-4 Low Latency Cross Fault Do— 
-main Communication 
-The purpose of this work is to reduce the cost of fault 
-isolation for cooperating ]b[ distrustful software mod— 
-ules. In the last section, we presented one half of our 
-solution: efficient software encapsulation. In this sec- 
-tion, we describe the other half: fast communication 
-across fault domains. 
-Figure 4 illustrates the major components ofa cross— 
-fault~domain RFC between a trusted ]^[ distrusted 
-fault domain. This section concentrates on three as— 
-pects of fault domain crossing. First, we describe 
-a simple mechanism which allows a fault domain to 
-safely call a trusted stub routine outside its domain; 
-that stub routine then safely calls into the destination 
-domain. Second, we discuss how arguments are effi— 
-ciently passed among fault domains. Third, we detail 
-how registers ]^[ other machine state are managed on 
-cross—fault—domain RPCs to insure fault isolation. The 
-protocol for exporting ]^[ naming procedures among 
-fault domains is independent of our techniques. 
-The only way for control to escape a. fault domain 
-is via a jump table. Each jump table entry is a con— 
-trol transfer instruction whose target address is a legal 
-entry point outside the domain. By using instructions 
-whose target address is an immediate encoded in the 
-instruction, the jump table does not rely on the use of 
-a dedicated register. Because the table is kept in the 
-(readvonly) code segment, it can only be modified by 
-a trusted module. 
-For each pair of fault domains a customized call ]^[ 
-return stub is created for each exported procedure. 
-Currently, the stubs are generated by hand rather than 
-using a stub generator [JRTSS]. The stubs run unpro— 
-tected outside of both the caller ]^[ callee domain. 
-The stubs are responsible for copying cross-domain 
-arguments between domains ]^[ managing machine 
-state. 
-Because the stubs are trusted, we are able to copy 
-call arguments directly to the target domain. Tra— 
-ditional RPC implementations across address spaces 
-typically perform three copies to transfer data. The 
-arguments are marshalled into a message, the kernel 
-copies the message to the target address space, ]^[ 
-ﬁnally the callee must de-marshall the arguments. By 
-having the caller ]^[ callee communicate via a shared 
-buffer, LRPC also uses only a single copy to pass data 
-between domains [BALLQI]. 
-The stubs are also responsible for managing machine 
-state. On each cross—domain call any registers that are 
-both used in the future by the caller ]^[ potentially 
-modiﬁed by the callee must be protected. Only regis— 
-ters that are designated by architectural convention to 
-bc preserved across procedure calls are saved. As an 
-optimization, if the callee domain contains no instruc— 
-tions that modify a preserved register we can avoid 
-saving it. Karger uses a trusted linker to perform this 
-kind of optimization between address spaces [KarSQ]. 
-In addition to saving ]^[ restoring registers, the stubs 
-must switch the execution stack, establish the correct 
-register context for the software encapsulation tech- 
-nique being used, ]^[ validate all dedicated registers. 
-Our system must also be robust in the presence of 
-fatal errors, for example, an addressing violation7 while 
-executing in a fault domain. Our current implementa— 
-tion uses the UNIX signal facility to catch these errors; 
-it then terminates the outstanding call ]^[ notiﬁes the 
-caller’s fault domain. If the application uses the same 
-operating system thread for all fault domains, there 
-must be a way to terminate a call that is taking too 
-long, for example, because of an inﬁnite loop. Trusted 
-modules may use a timer facility to interrupt execu— 
-tion periodically ]^[ determine if a call needs to be 
-terminated. 
-5 Performance Results 
-To evaluate the performance of software-enforced fault. 
-domains, we implemented ]^[ measured a prototype 
-of our system on a 40MHz DECstation 5000/240 (DEC— 
-MIPS) ]^[ a lﬁONIliz Alpha 400 (DEC—ALPHA). 
-We consider three questions. First, how much over 
-209 
-head does software encapsulation incur? Second, how 
-fast is a crossrfault—domain RFC? Third, what is the 
-performance impact of using software enforced fault 
-isolation on an end-user application? We discuss each 
-of these questions in turn. 
-5.1 Encapsulation Overhead 
-We measured the execution time overhead of sand- 
-boxing a wide range of C programs, including the C 
-SPE092 benchmarks ]^[ several of the Splash bench- 
-marks [AssQl, SWGQl]. We treated each benchmark 
-as if it were a distrusted module, sandboxing all of 
-its code. Column 1 of Table 1 reports overhead on 
-the DEC—MIPS, column 6 reports overhead on the DEC— 
-ALPHA. Columns 2 ]^[ 7 report the overhead of using 
-our technique to provide general protection by sand« 
-boxing load instructions as well as store ]^[ jump 
-instructions“. As detailed in Section 3, sandboxing 
-requires 5 dedicated registers. Column 3 reports the 
-overhead of removing these registers from possible use 
-by the compiler. All overheads are computed as the 
-additional execution time divided by the original pro~ 
-gram‘s execution time. 
-On the DECeMiPS, we used the program measure— 
-ment tools pixie ]^[ qpt to calculate the number 
-of additional instructions executed due to sandbox~ 
-ing [Dig, BL92]. Column 4 of Table 1 reports this 
-data as a percentage of original program instruction 
-counts. 
-The data in Table 1 appears to contain a num— 
-ber of anomalies For some. of the benchmark pro- 
-grams, for example, 056.ear 011 the DECAMIPS ]^[ 
-026 . compress on the DEC—ALPHA, sandboxing reduced 
-execution time. in a number of cases the overhead is 
-surprisingly low. 
-To identify the source of these variations we de~ 
-veloped an analytical model for execution overhead. 
-The model predicts overhead based on the number 
-of additional instructions executed due to sandbox 
-ing (s—znstructzons), ]^[ the number of saved ﬂoat~ 
-ing point interlock cycles (interlocks). Sandboxing in» 
-creases the available instructionlevel parallelism, aL 
-lowing the number of ﬂoating—point interlocks to be 
-substantially reduced The integer pipeline does not 
-provide interlocking; instead, delay slots are explicitly 
-ﬁlled with nop instructions by the compiler ]v[ assem~ 
-bler. Hence, scheduling ell'ects among integer instruc~ 
-tions will be accurately reﬂected by the count of in~ 
-structions added (s—mstructzons). The expected overs 
-head is computed as: 
-(s—msz‘mchons — interlacksﬂcycles—per—sccond 
-original-erecutwn- lune-seconds 
-4Loads in the libraries, such as the standard C library, were 
-not sandboxed. 
-The model provides an effective way to separate known 
-sources of overhead from second order effects. Col- 
-umn 5 of Table 1 are the predicted overheads. 
-As can be seen from Table 1, the model is, on aver 
-age, eﬁective at predicting sandboxing overhead. The 
-differences between measured ]^[ expected overheads 
-are normally distributed with mean 0.7% ]^[ standard 
-deviation of 2.6%. The difference between the means 
-Ofthe measured ]^[ expected overheads is not statisti- 
-cally signiﬁcant. This experiment demonstrates that, 
-by combining instruction count overhead ]^[ ﬂoating 
-point interlock measurements, we can accurately pres 
-dict average execution time overhead. If we assume 
-that the model is also accurate at predicting the over— 
-head of individual benchmarks, we can conclude that 
-there is a second order effect creating the observed 
-anomalies in measured overhead, 
-We can discount eﬁective instruction cache size ]^[ 
-virtual memory paging as sources for the observed ex~ 
-ecution time variance. Because sandboxing adds in- 
-structions, the effective size of the instruction cache is 
-reduced. While this might account for measured over- 
-heads higher than predicted, it does not account for 
-the opposite effect. Because all of our benchmarks are 
-compute bound, it is unlikely that the variations are 
-due to virtual memory paging. 
-The DEC<MIPS has a physically indexed, physically 
-tagged, direct mapped data cache. In our experiments 
-sandboxing did not affect the size, contents, ]v[ starting 
-Virtual address of the data segment. For both original 
-]^[ sandboxed versions of the benchmark programs, 
-successive runs showed insigniﬁcant variation. Though 
-difﬁcult to quantify, we do not believe that data cache 
-alignment was an important source of variation in our 
-experiments. 
-\Ve conjecture that the observed variations are 
-caused by instruction cache mappzng conﬂicts. Soft— 
-ware encapsulation changes the mapping of instruc~ 
-tions to cache lines, hence changing the number of in— 
-struction cache conﬂicts. A number of researchers have 
-investigated minimizing instruction cache conﬂicts to 
-reduce execution time [McF89, PHQO, Sam88]. One 
-researcher reported a 20% performance gain by sim— 
-ply ehanging the order in which the object ﬁles were. 
-linked [PHQO]. Samples ]^[ Hilﬁnger report signif— 
-icantly improved instruction cache miss rates by re— 
-arranging only 3% to 8% of an application’s basic 
-blocks [SarnSS]. 
-Beyond this effect, there were statistically signiﬁcant 
-differences among programs. On average, programs 
-which contained a signiﬁcant percentage of ﬂoating 
-point operations incurred less overhead. On the DEC— 
-MIPS the mean overhead for ﬂoating point intensive 
-benchmarks is 2.5%, compared to a mean of 5.6% for 
-the remaining benchmarks. All of our benchmarks are 
-210 
-DEC-MIPS DEC-ALPHA 
-Fault Protection Reserved Instruction Fault Fault Protection 
-Benchmark Isolation Overhead Register Count Isolation Isolation Overhead 
-Overhead Overhead Overhead Overhead Overhead 
-(predicted) 
-052. alvinn FP 1.4% 33.4% —0.3% 19.4% 0.2% 8.1% 35.5% 
-bps FP 5.6% 15.5% -0.1% 8.9% 5.7% 4.7% 20.3% 
-cholesky FP 0.0% 22.7% 0.5% 6.5% 4.5% 0.0% 9.3% 
-026 . compress INT 3.3% 13.3% 0.0% 10.9% 4.4% 4.3% 0.0% 
-056.ear FP —1.2% 19.1% 0.2% 12.4% 2.2% 3.7% 18.3% 
-023 . eqntott INT 2.9% 34.4% 1.0% 2.7% 2.2% 2.3% 17.4% 
-008 . espresso INT 12.4% 27.0% —1.6% 11.8% 10.5% 13.3% 33.6% 
-001 .gcc1.35 INT 3.1% 18.7% -9.4% 17.0% 8.9% NA NA 
-022.11 INT 5.1% 23.4% 0.3% 14.9% 11.4% 5.4% 16.2% 
-locus INT 8.7% 30.4% 4.3% 10.3% 8.6% 4.3% 8.7% 
-mp3d FP 10.7% 10.7% 0.0% 13.3% 8.7% 0.0% 6.7% 
-psgrind INT 10.4% 19.5% 1.3% 12.1% 9.9% 8.0% 36.0% 
-ch PF 05% 27.0% 2.0% 8.8% 1.2% -0.8% 12.1% 
-072 . sc INT 5.6% 11.2% 7.0% 8.0% 3.8% NA NA 
-tracker INT -0.8% 10.5% 0.4% 3.9% 2.1% 10.9% 19.9% 
-water FP 0.7% 7.4% 0.3% 6.7% 1.5% 4.3% 12.3% 
-| Average I 4.3% | 21.8% | 0.4% | 10.5% | 5.0% I 4.3% | 17.6% ‘I 
-Table 1: Sandboxing overheads for DEC—MIPS ]^[ DEC—ALPHA platforms. The benchmarks 001.gcc1.35 ]^[ 
-072.sc are dependent on a pointer size of 32 bits ]^[ do not compile on the DEC-ALPHA. The predicted fault 
-isolation overhead for cholesky is negative due to conservative interlocking on the MIPS ﬂoatingvpoint unit. 
-compute intensive. Programs that perform signiﬁcant 
-amounts of I/O will incur less overhead. 
-5.2 Fault Domain Crossing 
-We now turn to the cost of cross—fault—domain RPC. 
-Our RPC mechanism spends most of its time saving 
-]^[ restoring registers. As detailed in Section 4, only 
-registers that are designated by the architecture to be 
-preserved across procedure calls need to be saved. In 
-addition, if no instructions in the callee fault domain 
-modify a preserved register then it does not need to be 
-saved. Table 2 reports the times for three versions of 
-a NULL cross—fault—domain RPC. Column 1 lists the 
-crossing times when all data registers are caller saved. 
-Column 2 lists the crossing times when the preserved 
-integer registers are saved. Finally, the times listed in 
-Column 3 include saving all preserved ﬂoating point 
-registers. In many cases crossing times could be further 
-reduced by statically partitioning the registers between 
-domains. 
-For comparison, we measured two other calling 
-mechanisms. First, we measured the time to perform a 
-C procedure call that takes no arguments ]^[ returns 
-no value. Second, we sent a single byte between two 
-address spaces using the pipe abstraction provided by 
-211 
-the native operating system ]^[ measured the round- 
-trip time. These times are reported in the last two 
-columns of Table 2. On these platforms, the cost 
-of cross—address—space calls is roughly three orders of 
-magnitude more expensive than local procedure calls. 
-Operating systems with highly optimized RPC im— 
-plementations have reduced the cost of cross-address- 
-space RPC to within roughly two orders of magni— 
-tude of local procedure calls. On Mach 3.0, cross— 
-address-space RPC on a 25Mhz DECstation 5000/200 
-is 314 times more expensive than a local procedure 
-call [BerQBl. The Spring operating system, running on 
-a 40Mhz SPARCstationQ, delivers cross—address—space 
-RPC that is 73 times more expensive than a local leaf 
-procedure call [HK93]. Software enforced fault isola« 
-tion is able to reduce the relative cost of cross-fault- 
-domain RPC by an order of magnitude over these sys- 
-tems. 
-5.3 Using Fault Domains in POSTGRES 
-To capture the effect of our system on application 
-performance, we added software enforced fault do 
-mains to the POSTGRES database management system, 
-]^[ measured POSTGRES running the Sequoia 2000 
-benchmark [SFGMQ3]. The Sequoia '2000 benchmark 
-Cross FaultADomain RFC 
-Platform Caller Save Save C Pipes 
-Save Integer Integer+Float Procedure 
-Registers Registers Registers Call 
-DEC~MIPS 1.11ps 1.81ps 2.83m 0.10/4s 204.72ns 
-DEC—ALPHA 0175/15 1.35/5 lSOns 0.06ps 227.88ps 
-Table ‘2: Cross-faultrdomain crossing times. 
-Sequoia 2000 Untrusted Software—Enforced Number DEC—MIPS—PIPE 
-Query Function Manager Fault Isolation Cross—Domain Overhead 
-Overhead Overhead Calls (predicted) 
-Query 6 1.4% 1.7% 60989 18.6% 
-Query 7 5.0% 1.8% 121986 386% 
-Query 8 9.0% 2.7% 121978 312% 
-Query 10 9.6% 5.7% 1427024 31.9% 
-Table 3: Fault isolation overhead for POSTGRES running Sequoia 2000 benchmark. 
-contains queries typical of those used by earth scien— 
-tists in studying the climate. To support these kinds 
-of non~traditional queries, POSTGRES provides a. user 
-extensible type system. Currently, userrdeﬁned types 
-are written in conventional programming languages, 
-such as C, ]^[ dynamically loaded into the database 
-manager. This has long been recognized to be a serious 
-safety problem[St088]. 
-Four of the eleven queries in the Sequoia 2000 bench- 
-mark make use of user—deﬁned polygon data types. We 
-measured these four queries using both unprotected 
-dynamic linking ]^[ software—enforced fault isolation. 
-Since the POSTGRES code is trusted, we only sand— 
-boxed the dynamically loaded user code. For this 
-experiment, our cross-fault—domain RFC mechanism 
-saved the preserved integer registers (the variant cor- 
-responding to Column 2 in Table 2). In addition, we 
-instrumented the code to count the number of cross- 
-fault-domain RFCs so that we could estimate the per 
-formance of fault isolation based on separate address 
-spaces. 
-Table 3 presents the results, Untrusted user—deﬁned 
-functions in POSTGRES use a separate calling mecha- 
-nism from built—in functions. Column 1 lists the over— 
-head of the untrustcd function manager Without soft- 
-ware enforced fault domains. All reported overheads in 
-Table 3 are relative to original POSTGRES using the un— 
-trusted function manager. Column 2 reports the mea~ 
-sured overhead of software enforced fault domains. Us— 
-ing the number of cross—domain calls listed in Column 3 
-]^[ tho DEC*MIPS—I‘IPE time reported in Table 2, Col— 
-umn 4 lists the estimated overhead using conventional 
-hardware address spaces. 
-212 
-5.4 Analysis 
-For the POSTGRES experiment software encapsulation 
-provided substantial savings over using native operat- 
-ing system services ]^[ hardware address spaces. In 
-general, the savings provided by our techniques over 
-hardware—based mechanisms is a function of the per— 
-centage of time spent in distrusted code (Q), the per- 
-centage of time spent crossing among fault domains 
-(2‘6), the overhead of encapsulation (h), ]^[ the ratio, 
-r, of our fault domain crossing time to the crossing 
-time of the competing hardware-based RPC mecha— 
-nism. 
-savings = (1 — 7°)t‘C -— htd 
-Figure 5 graphically depicts these trade—offs. The X 
-axis gives the percentage of time an application spends 
-crossing among fault domains. The Y axis reports the 
-relative cost of software enforced fault-domain cross— 
-ing over hardware address spaces. Assuming that the 
-execution time overhead of encapsulated code is 4.3%, 
-the shaded region illustrates when software enforced 
-fault isolation is the better performance alternative. 
-Softwarevenforccd fault isolation becomes increas— 
-ingly attractive as applications achieve higher degrees 
-of fault isolation (see Figure 5). For example, if an ap- 
-plication spends 30% of its time crossing fault domains, 
-our RPC mechanism need only perform 10% better 
-than its competitor, Applications that currently spend 
-as little as 10% of their time crossing require only a 
-39% improvement in fault domain crossing time As 
-reported in Section 52, our crossing time for the DEC- 
-MIPS is Hons ]^[ for the DEC—ALPHA UTE/is. Hence, 
-Crossing Time Relative to 
-Existing RFC 
-:9 HP :9 e9 
-ementage of Execution Time Spent Crossing 
-Figure 5: The shaded region represents when soft~ 
-ware enforced fault isolation provides the better per— 
-formance alternative. The X axis represents per 
-centage of time spent crossing among fault domains 
-(16). The Y axis represents the relative RPC crossing 
-speed (7‘). The curve represents the break even point: 
-(1—7')t,; = htd. In this graph, h = 0.043 (encapsulation 
-overhead on the DEC~MIPS ]^[ DEC-ALPHA). 
-for this latter example, a hardware address space cross— 
-ing time of 1.80m on the DEC—MIPS ]^[ 1.23/15 on the 
-DEC~ALPHA would provide better performance than 
-software fault domains. As far as we know, no pro— 
-duction ]v[ experimental system currently provides this 
-level of performance. 
-Further, Figure 5 assumes that the entire applica- 
-tion was encapsulated. For many applications, such as 
-POSTGRES, this assumption is conservative. Figure 6 
-transforms the previous ﬁgure, assuming that 50% of 
-total execution is spent in distrusted extension code. 
-Figures 5 ]^[ 6 illustrate that software enforced 
-fault isolation is the best choice whenever crossing 
-overhead is a significant proportion of an applica- 
-tion’s execution time. Figure 7 demonstrates that 
-overhead due to software enforced fault isolation re— 
-mains small regardless of application behavior. Fig— 
-ure 7 plots overhead as a function of crossing behavior 
-]^[ crossing cost. Crossing times typical of vendor- 
-supplied ]^[ highly optimized hardware—based RPC 
-mechanisms are shown. The graph illustrates the rel— 
-ative performance stability of the software solution. 
-This stability" allows system developers to ignore the 
-performance effect of fault isolation in choosing which 
-modules to place in separate fault domains. 
-6 Related Work 
-Many systems have considered ways of optimizing 
-RPC performance [vaT88, TASS, Bla90. SB90, HK93, 
-BALL90, BALL91]. Traditional RFC systems based 
-100% 
-90% 
-80% 
-70% 
-60% 
-40% 
-Crossing Time Relative 10 
-Existing RPC 
-u. 
-§ 
-Percentage of Execution Time Spent Crossing 
-Figure 6: The shaded region represents when soft~ 
-ware enforced fault isolation provides the better per- 
-formance alternative. The X axis represents per- 
-centage of time spent crossing among fault domains 
-(136). The Y axis represents the relative RPC crossing 
-speed ('r'). The curve represents the break even point: 
-(l—r)tc = htd. In this graph, h = 0.043 (encapsulation 
-overhead on the DEC—MIPS ]^[ DEC—ALPHA). 
-100% . 
-a" Ultrix 4.2 Context Switch 
-8 
-d3 80% — _ 
-E 
-a. 
-U} 
-0 
-g 60% e _ 
-'E—< 
-E 
-g 40% e — 
-é DECstation 5000 
-3 Hardware Minimum 
-00 
-20% — _ 
-t 
-*- Software 
-a? 
-0% l 
-0 1O 20 
-# Crossings/Millcsecond 
-Figure 7: Percentage of time spent in crossing code 
-versus number of fault domain crossings per millisec- 
-ond on the DECeMIPS. The hardware minimum cross— 
-ing number is taken from a crossvarchitectural study 
-of context switch times [ALBL91]. The Ultrix 4.2 con- 
-text switch time is as reported in the last column of 
-Table 2. 
-213 
-on hardware fault isolation are ultimately limited by 
-the minimal hardware cost of taking two kernel traps 
-]^[ two hardware context switches. LRPC was one 
-of the ﬁrst RPC systems to approach this limit, ]^[ 
-our prototype uses a number of the techniques found 
-in LRPC ]^[ later systems: the same thread runs in 
-both the caller ]^[ the callee domain, the stubs are 
-kept as simple as possible, ]^[ the crossing code jumps 
-directly to the called procedure, avoiding a dispatch 
-in the callee domain. Unlike these systems, software— 
-based fault isolation avoids hardware context switches, 
-substantially reducing crossing costs. 
-Address space identiﬁer tags can be used to reduce 
-hardware context switch times. Tags allow more than 
-one address space to share the TLB; otherwise the 
-TLB must be ﬂushed on each context switch. It was 
-estimated that 25% of the cost of an LRPC on the 
-Fireﬂy (which does not have tags) was due to TLB 
-misses[BALL90]. Address space tags do not, however, 
-reduce the cost of register management ]v[ system calls, 
-operations which are not scaling with integer perfor- 
-mance[ALBL91]. An important advantage of software— 
-based Jfault isolation is that it does not rely on specialv 
-ized architectural features such as address space tags. 
-Restrictive programming languages can also be used 
-to provide fault isolation. Pilot requires all kernel, 
-user, ]^[ library code to be written in Mesa, 3 strongly 
-typed language; all code then shares a single address 
-space [RDII+80]. The main disadvantage of relying on 
-strong typing is that it severely restricts the choice 
-of programming languages, ruling out conventional 
-languages like C, C++, ]^[ assembly. Even with 
-strongly—typed languages such as Ada ]^[ Modula—3, 
-programmers often find they need to use loopholes in 
-the type system, undercutting fault isolation. In con— 
-trast, our techniques are language independent. 
-Deutsch ]^[ Grant built a system that allowed 
-user—deﬁned measurement modules to be dynamically 
-loaded into the operating system ]^[ executed directly 
-on the processor [DG71]. The module format was a 
-stylized native object code designed to make it easier 
-to statically verify that the code did not violate pro— 
-tection boundaries. 
-An interpreter can also provide failure isolation. For 
-example. the BSD UNIX network packet ﬁlter utility 
-deﬁnes a language which is interpreted by the operat- 
-ing system network driver. The interpreter insulates 
-the operating system from possible faults in the cus— 
-tomization code. Our approach allows code written in 
-any programming language to be safely encapsulated 
-(or rejected if it is not safe), ]^[ then executed at near 
-full speed by the operating system. 
-Anonymous RFC exploits 64-bit address spaces to 
-provide low latency RFC ]^[ probabilistic fault iso— 
-lation [YBA93]. Logically independent domains are 
-214 
-placed at random locations in the same hardware ad» 
-dress spacer Calls between domains are anonymous, 
-that is, they do not reveal the location of the caller 
-]v[ the callee to either side. This provides probabilis— 
-tic protection , it is unlikely that any domain will 
-be able to discover the location of any other domain 
-by malicious ]v[ accidental memory probes. To pre» 
-serve anonymity, a cross domain call must trap to pro- 
-tected code in the kernel; however, no hardware con~ 
-text switch is needed. 
-7 Summary 
-We have described a software-based mechanism for 
-portable, programming language independent fault 
-isolation among cooperating software modules. By 
-providing fault isolation within a single address space, 
-this approach delivers crossefaultrdomain communica 
-tion that is more than an order of magnitude faster 
-than any RPC mechanism to date. 
-To prevent distrusted modules from escaping their 
-own fault domain, we use a software encapsulation 
-technique, called sandboxing, that incurs about 4% 
-Despite this overhead in 
-executing distrusted code, software—based fault isola- 
-tion Will often yield the best overall application per- 
-formance. Extensive kernel optimizations can reduce 
-the overhead of hardware-based RPC to within a fac- 
-tor of ten over our software—based alternative. Even 
-in this situation, software—based fault isolation will be 
-the better performance choice whenever the overhead 
-of using hardware—based RPC is greater than 5%. 
-execution time overhead. 
-8 Acknowledgements 
-We thank Brian Bershad, Mike Burrows, John Hen- 
-nessy, Peter Kessler, Butler Lampson, Ed Lazowska, 
-Dave Patterson, John Ousterhout, Oliver Sharp, 
-Richard Sites, Alan Smith ]^[ Mike Stonebraker for 
-their helpful comments on the paper. Jim Larus pro- 
-vided us with the proﬁling tool qpt. We also thank 
-Mike Olson ]^[ Paul Aoki for helping us with POST— 
-GRES. 
-References 
-[ACD74] TL. Adam, KM. Chandy, ]^[ JR. Dickson. 
-A comparison of list schedules for parallel pro- 
-cessing systems. Communications of the ACM, 
-17(12):685—690, December 197/1. 
-[ALBUM] Thomas Anderson, Henry Levy, Brian Ber— 
-shad, ]^[ Edward Lazowska. The Interaction 
-of Architecture ]^[ Operating System Design. 
-[A5591] 
-[ASUSG] 
-[BALLQO] 
-[BALL91] 
-[Ber93] 
-[BL92] 
-[BlaQO] 
-[1m 84] 
-[Cla92] 
-[DG71] 
-[Dis] 
-[Dys92] 
-[FP93] 
-[H092] 
-111 Proceedings of the 4th International Confer- 
-ence on Architectural Supportfor Programming 
-Languages ]^[ Operating Systems, pages 108— 
-120, April 1991. 
-Administrator: National Computer Graphics 
-Association. SPEC Newsletter, 3(4), December 
-1991. 
-Alfred V. Aho, Ravi Sethi, ]^[ Jeffrey D. Ull- 
-man. Compilers, Principles, Techniques, ]^[ 
-Tools. Addison—Wesley Publishing Company, 
-1986. 
-Brian Bershad, Thomas Anderson, Edward La- 
-zowska, ]^[ Henry Levy. Lightweight Remote 
-Procedure Call. ACM Transactions on Com- 
-puter Systems, 8(1), February 1990. 
-Brian Bershad, Thomas Anderson, Edward La~ 
-zowska, ]^[ Henry Levy. User-Level Interpre- 
-cess Communication for Shared~Memory Mul- 
-tiprocessors. ACM Transactions on Computer 
-Systems, 9(2), May 1991. 
-Brian Bershad, August 1993. Private Commu— 
-nication. 
-Thomas Ball ]^[ James R. Larus. Optimally 
-proﬁling ]^[ tracing. In Proceedings of the 
-Conference on Principles of Programming Lan- 
-guages, pages 59‘70, 1992. 
-David Black. Scheduling Support for ConcuI~ 
-rency ]^[ Parallelism in the Mach Operating 
-System. IEEE Computer, 23(5):35 43, May 
-1990. 
-Andrew Birrell ]^[ Bruce Nelson. Implement- 
-ing Remote Procedure Calls. ACM Transac- 
-tions on Computer Systems, 2(1):?19‘59, Febru‘ 
-ary 1984. 
-.1.D. Clark. lVindow Programmer’ Guide To 
-OLE/DUE, Prentice—Hall, 1992. 
-L. P. Deutsch ]^[ C. A. Grant. A ﬂexible mea~ 
-surement tool for software systems. In IFIP 
-Congress, 1971. 
-Digital Equipment Corporation. Ultriz 114.2 
-Pixie Manual Page. 
-Peter Dyson. Xtensions for Xpress: Modular 
-Software for Custom Systems. Seybold Report 
-on Desktop Publishing, 6(10):1—‘.’.1, June 1992. 
-Kevin Fall ]^[ Joseph Pasquale. Exploiting in— 
-kernel data paths to improve I/O throughput 
-]^[ CPU 3. vailability. In Proceedings of the 
-1993 Winter USENIX Conference, pages 327— 
-333, January 1993. 
-Keiran Harty ]^[ 
-David Cheriton. Application—controlled physi- 
-cal memory using external page—cache manage— 
-ment. In Proceedings of the 5th International 
-Conference on Architectural Support for Pro- 
-gramming Languages ]^[ Operating Systems, 
-October 1992. 
-215 
-[11K93] 
-[HKM+88] 
-[Int86] 
-[JRTSS] 
-[K ar89] 
-[K1886] 
-[LB92] 
-[McF89] 
-[MJ93] 
-[M RA87] 
-[P1190] 
-[RDH+ 80] 
-Graham Hamilton ]^[ Panos Kougiouris. The 
-Spring nucleus: A microkernel for objects. In 
-Proceedings of the Summer USENIX Confer- 
-cncc, pages 1477159, June 1993. 
-J. Howard, M. Kazar, S. Menees, D. Nichols, 
-M. Satyanarayanan, R. Sidebotham, ]^[ 
-M. West. Scale ]^[ Performance in 3. Dis- 
-tributed File System. ACM Transactions on 
-Computer Systems, 6(1):51—82, February 1988. 
-Intel Corporation, California. 
-Intel 80386 Programmer’s Reference Manual, 
-1986. 
-Michael B. Jones, Richard F. Rashid, ]^[ 
-Mary R. Thompson. Matchmaker: An in- 
-terface speciﬁcation language for distributed 
-processing. In Proceedings of the 12th ACM 
-SIGACT-SIGPLAN Symposium on Principles 
-of Programming Languages, pages 225435, 
-January 1985. 
-Santa Clara, 
-Paul A. Karger. Using Registers to Optimize 
-Cross—Domain Call Performance. In Proceed- 
-ings of the 3rd International Conference on 
-Architectural Support for Programming Lan- 
-guages ]^[ Operating Systems, pages 1947204. 
-April 3~6 1989. 
-Steven R. Kleiman. Vnodes: An Architecture 
-for Multiple File System Types in SUN UNIX. 
-In Proceedings of the 1986 Summer USENIX 
-Conference, pages 238—247, 1986. 
-James R. Larus ]^[ Thomas Ball. Rewrit- 
-ing executable ﬁles to measure program be— 
-havior. Technical Report 1083, University of 
-Wisconsin-Madison, March 1992. 
-Scott McFarling. Program optimization for 
-instruction caches. In Proceedings of the In: 
-ternational Conference on Architectural Sup— 
-port for Programming Languages ]^[ Operat- 
-ing Systems, pages 183—191, April 1989. 
-Steven McCanne ]^[ Van lacobsen. The 
-BSD Packet Filter: A New Architecture for 
-User—Level Packet Capture. In Proceedings of 
-the 1993 Winter USENIX Conference, January 
-1993. 
-l. C. Mogul, R. F. Rashid, ]^[ M. J. Ac- 
-cetta. The packet ﬁlter: An cﬂicient mecha— 
-nism for user—level network code. In Proceed- 
-ings of the Symposium on Operating System 
-Principles, pages 39—51, November 1987. 
-Karl Pettis ]^[ Robert C. Hansen. Proﬁle 
-guided code positioning. In Proceedings of 
-the Conference on Programming Language De- 
-sign ]^[ Implementation, pages 16—27, White 
-Plains, New York, June 1990. Appeared as 
-SIGPLAN NOTICES 25(6). 
-David D. Redell, Yogen K. Dalal, Thomas R. 
-Horsley, Hugh C. Lauer, William C. Lynch, 
-[Sam88] 
-[5390] 
-[501693] 
-[SFGMQS] 
-[St087] 
-[St088] 
-[SWG91] 
-[TAss] 
-[Thiﬁz] 
-[VCGSQZ] 
-[VVSTSB] 
-[Web93] 
-[YBA93] 
-Paul R. McJones, Hal G. Murray, ]^[ 
-Stephen C. Purcell. Pilot: An Operating Sys- 
-tem for a Personal Computer. Communications 
-of the A01”, 23(2):81~92, February 1980. 
-A. Dain Samples. Code reorganization for in 
-struction caches. Technical Report UCB/CSD 
-88/447. University of California, Berkeley, 0C, 
-tober 1988. 
-Michael Schroeder ]^[ Michael Burrows. Per- 
-formance of Fireﬂy RPC. ACM I‘mnsac» 
-tions on Computer Systems, 8(1):1—17, Febru- 
-ary 1990. 
-Richard L. Sites, Anton Chernoff, Matthew B. 
-Kirk, Maurice P. Marks, ]^[ Scott G. Robin- 
-son. Binary translation. Communications of 
-the ACM, 36(2):69—81, February 1993. 
-M. Stonebral-zer, J. Frew, K. Gardels, ]^[ 
-.I. Meridith. The Sequoia 2000 Benchmark. 
-In Proceedings of the ACM SIGMOD Inter- 
-national Conference on Management of Data, 
-May 1993. 
-Michael Stonebraker. Extensibility in POST~ 
-GRES. IEEE Database Engineering, Septem- 
-ber 1987. 
-Michael Stonebraker. Inclusion of new types in 
-relational data base systems. In Michael Stone- 
-braker, editor, Readings in Database Systems, 
-pages 480—487. Morgan Kaufmann Publishers, 
-Inc., 1988. 
-J. P. Singh, W. Weber, ]^[ A. Gupta. 
-Splash: Stanford parallel applications for 
-shared—memory. Technical Report CSL—TR—Sl— 
-469, Stanford, 1991. 
-Shin—Yuan Tzou ]^[ David P. Anderson. A 
-Performance Evaluation of the DASH Message- 
-Passing System. Technical Report UCB/CSD 
-88/452, Computer Science Division, University 
-of California, Berkeley, October 1988. 
-Thinking Machines Corporation. CM—5 Net- 
-work Interface Programmer’s Guide, 1992. 
-T. von Eicken, I). Culler, S. Goldstein, ]^[ 
-K. Schauser. Active Messages: A Mechanism 
-for Integrated Communication ]^[ Computa— 
-tion. In Proceedings of the 19th Annual Sym- 
-posium on Computer Architecture, 1992. 
-Robbert van Renesse, Hans van Staveren, ]^[ 
-Andrew S. Tanenbaum. Performance of the 
-World’s Fastest Distributed Operating System. 
-Operating Systemic Review, 22(1):25734, Octo— 
-ber 1988. 
-Neil Webber. Operating System Support for 
-Portable Filesystem Extensions. In Proceed- 
-ings of the 1993 Winter USENIX Conference, 
-January 1993. 
-Curtis Yarvin. Richard Bnkowski, ]^[ Thomas 
-Anderson. Anonymous RFC: LOW Latency 
-216 
-Protection in a 64—Bit Address Space. In Pro- 
-ceedings of the Summer USENIX Conference, 
-June 1993. 
+The "Influence of Drugs ]^[ Insanity" Paper 
+The Influence of Drugs ]^[ Insanity on Pink Floyd 
+Perry Friedman 
+Schlapbach 
+Writing for the Sciences 
+March 3, 1987 
+Pink Floyd was the first true psychedelic rock band to emerge from 
+England. Formed in the late sixties, the band underwent several stages. 
+Under the leadership of Syd Barrett, the band reflected the psychedelic ]^[ 
+fairy-tale motifs characteristic of "acid" rock. Indeed, Syd Barrett was a 
+heavy user of LSD, which contributed to his demise as leader of the band. 
+After many years of drug use, Barrett left the band ]^[ was 
+institutionalized for a short time. After Barrett's departure, Roger Waters 
+took charge of the band. With Waters in command the band began to change 
+its style. The band's later career was marked with theme albums 
+confronting various societal problems, always with pessimistic 
+undertones. However, even as the band changed style, its music still 
+reflected the influence that Barrett's drug use ]^[ resultant insanity had 
+on Waters. 
+Keith (Syd) Barrett (born January 1946), George Roger Waters (born 
+September 6, 1947), Rick Wright (born July 28, 1945), ]^[ Nicky Mason 
+(born January 27,1945) comprised the original Pink Floyd. David Gilmour 
+(born March 6, 1947) later replaced Barrett. Barrett, Waters, ]^[ Gilmour 
+attended Cambridge High School for Boys together where they began their 
+long-lived friendship. All of them were interested in music from the start 
+]^[ Waters, Mason, ]^[ Wright first came together as a band under the 
+name Sigma 6. They later changed their name to The T-Set, The Abdabs, 
+]^[ even The Screaming Abdabs. However real success did not come until 
+Waters brought in Barrett. Barrett named the group after Georgia 
+bluesmen Pink Anderson ]^[ Floyd Coucil. He called the group group The 
+Pink Floyd Sound (The Illustratrated Encyclopedia 181). 
+From the beginning the group earned a reputation for impressive 
+shows ]^[ great concert effects. Their use of a light show in a 1967 
+concert was the first ever by a British rock band (The Rolling Stone 
+Encyclopedia 373). In a concert in 1966 they projected moving liquid 
+slides over themselves ]^[ their audience. Later they invented a process 
+for creating 360 degree sound ]^[ a device known as the Azimuth, "a sort 
+of joy-stick device for projecting sound around a hall" (The Illustrated 
+Encyclopedia 182). On May 15, 1970 they "did a two-and-a-half-hour 
+star-billing set at a Crystal Palace Garden Party complete with fireworks 
+]^[ a 50-foot inflatable octopus which rose from the lake ... Unfortunately, 
+the volume of the speakers killed the fish in the lake" (The Illustrated 
+Encyclopedia 183). Indeed they continued to present more impressive 
+special effects each tour, culminating with the mammoth productions on 
+The Wall tour. 
+Syd Barrett was the leading force behind the band for its first few 
+years. Barrett possessed a unique style which influenced Floyd for years 
+to come. Richard Cromelin wrote in biographical notes for 
+Capitol/Harvest Records, 
+the rather wiggy Barrett had developed into the creator of a style as 
+strong ]^[ distinctive as anything that was being turned out by his 
+fellow British rockers... he combined equal portions of English 
+psychedelic fairy-tale rock, electric free-form amorphous rock ]^[ 
+his own mad-gleam-in-the-eye humor to come up with a product 
+whose point of origin could as easily be the bowels of an insane 
+asylum as a recording studio. Barrett vintage Pink Floyd is 
+unavoidably insane, swimming in that glorious ecstatic madness that 
+is undeniably, disturbingly real. (qtd. in Encyclopedia of Pop 400) 
+Indeed, while Syd Barrett was still in the band he had almost exclusive 
+creative control. 
+In 1967 Pink Floyd released their first single, a Syd Barrett 
+composition "Arnold Lane" which "concerned a pervert-transvestite who 
+stole ladies underwear from washing lines" (The Illustrated Encyclopedia 
+182). The Illustrated Encyclopedia of Rock claims that "Barrett was very 
+much the leader of the group at this point. His lead guitar sound was 
+distinctive; ]^[ he wrote almost all their material" (182). In fact, 10 of 
+the 11 songs on their first album, The Piper At The Gates Of Dawn (1967), 
+were by Barrett, as was the drawing on the back sleeve (The Illustrated 
+Encyclopedia 182). As much as Barrett influenced Pink Floyd, Barrett 
+himself was influenced by drugs. 
+Most of these early songs reflected Barrett's altered states. The 
+Illustrated Encyclopedia of Rock says that, "while [the] rest of the band 
+had always been more into booze than drugs, Barrett was deeply involved 
+in the psychedelic side of the Underground, taking large amounts of LSD 
+]^[ drawing the inspiration for much of his playing ]^[ writing from it" 
+(182). Jeff Wards, in a review of A Nice Pair in Melody Maker, wrote, 
+Syd was absolutely unique, arising... like some psychedelic Virgina 
+Woolf, words flying in one ]^[ several directions at once, stream of 
+conciousness style. The words on "Bike" are such beautiful gibberish 
+that it's almost as though Syd's talking in tounges... And the lines are 
+muttered deadpan in a ludicrous short space of time... "Chapter 
+24," "Gnome" ]^[ "Scarecrow" reflect the old Flower-Power 
+preoccupations with mysticism, fairy stories ]^[ things pastoral, all 
+filtered through the Barrett conciousness. (34) 
+Barrett's mental state gradually diminshed ]^[ his behavior became eratic. 
+On some gigs he would "only stand ]^[ stare at the audience while 
+strumming the same chord all evening" (The Illustrated Encyclopedia 182). 
+On April 6, 1968 Barrett left the band ]^[ David Gilmour replaced him in 
+the band. All the stories of his breakdown "added up to the same thing: Syd 
+was becoming an acid casualty" (The Illustrated Encyclopedia 182). 
+Barrett was briefly hospitalized ]^[ later released several albums, one 
+appropriately entitled The Madcap Laughs. 
+Pink Floyd's first album after the departure of Syd Barrett still 
+focused on the same type of psychedelic, fairy-tale music; Ummagumma, 
+released in1969, contains such songs as "Careful With That Ax, Eugene," 
+"Set the Controls for the Heart of the Sun," ]^[ "Several Species of Small 
+Furry Animals Gathered Together in a Cave ]^[ Grooving With a Pict." In 
+the latter, "a weird, angry unintelligible Scottish brogue ends the cut" 
+(Heineman 20). By this time, however, Roger Waters had already begun to 
+exert his influence on the band. Ummagumma is a double album, with two 
+live sides ]^[ two studio sides. On the studio album "each member had 
+half a side to experiment with as they wished, Wright, Gilmour ]^[ Mason 
+all writing single varying self-indulgent pieces, divided into numbered 
+parts, ]^[ only Waters providing several individual tracks" (The Illustrated 
+Encyclopedia 182). 
+In 1970 Floyd released their next album, Atom Heart Mother , which 
+represented a slight transition for the band. While the band still 
+possessed the eccentricity ]^[ lunacy characteristic of Barrett-era Floyd, 
+the band had "made the big switch from outer to inner space" (DiMartino, 
+"Pink Floyd Before the Wall" 22) The album featured a cow on the cover 
+]^[ songs with such humorous titles as "Breast Milky" ]^[ "Funky Dung." 
+"Allan's Psychedelic Breakfast" represented a link to the past fascination 
+with drugs ]^[ lysergia. However, this album represented a beginning in 
+the band's investigation of the inner psyche ]^[ anticipated many of the 
+theme albums (Di Martino, "Pink Floyd Before the Wall" 22). 
+In 1973 Floyd released the first of their theme albums, Dark Side of 
+the Moon. The album came into such great popularity that it still remains 
+in Billboard magazine's "Top 200", a weekly listing based on number of 
+albums sold (Contemporary Litererary Criticism 35: 305). The album 
+explores such themes as death, stress ]^[ insanity. Dave DiMartino, 
+recounting several of Floyd's earlier albums in his article "Pink Floyd Up 
+Against the Wall: Come in Roger Waters", summed up the theme as "life 
+sucks ]^[ will make you crazy" (22-23). This album, more than any other 
+post-Barrett album except Wish You Were Here, displays the influence of 
+Syd Barrett ]^[ his battle with insanity. The album also represents Roger 
+Waters' clear emergence as leader of the band, with his composition of six 
+of the ten songs. 
+The album also completed the change in the band that had begun with 
+Atom Heart Mother. John Piccarella, summing up the career of Floyd after 
+the release of The Final Cut, wrote that Pink Floyd's early "funeral tone 
+poems were meant to be heard stoned, ]^[ they were meant to scare the 
+shit out of you... On the Dark Side of the Moon, Pink Floyd made the '70s 
+move from drugs to high tech" (59). Indeed, on this album we see a 
+departure from the fairy-tale imagery anmd psychedelia, long a part of 
+Pink Floyd. 
+Dark Side of the Moon is a cynical commentary on contemporary 
+society. The album relates the pressures ]^[ the fleetingness of human 
+life, as well as the result of these, insanity. Here is where we can see the 
+plight of Syd Barrett emerge. Roy Hollingworth, in a review of Dark Side 
+of the Moon in Melody Maker, wrote, "one song in particular ["Brain 
+Damage"] was extremely Syd-barrettsian to the point of being a straight 
+lift from any of the Lost Hero's songs. Yes Sydbarretsian... Barrett still 
+exists, you know, ]^[ it was pleasing that the best track on this album is 
+80 per cent plus influenced by him" (54). And as much as the style of the 
+music came from Barrett, the lyrics were about Barrett. "Brain Damage" 
+is merely a romp around the inside of the head of a lunatic. The lines "if 
+the band your in starts playing different tunes / I'll see you on the dark 
+side of the moon" reflect the feelings of the isolated ]^[ lost Barrett. As 
+did Barrett-vintage Floyd, "Eclipse" brings home a twisted irony with 
+"Everything under the sun is in tune / But the sun is eclipsed by the moon" 
+(Malamut 81). 
+In addition to the Barrett-like themes, "Time" ]^[ "Breathe in the Air" 
+present a cynical view of the shortness of life. "Breathe" urges everyone 
+to live life to its fullest until "You race toward an early grave." "Time" 
+tells us "The sun is the same in relative way, ]b[ you're older / Shorter of 
+breath ]^[ one day closer to death." (Malamut 80) 
+On the other hand "Money" ]^[ "Us ]^[ Them" present the problem of 
+greed. "Money" contains simple overstatements to make a point. The 
+album urges us to "Grab that cash with both hands ]^[ make a stash" ]^[ 
+"Share it fairly ]b[ don't take a slice of my pie". The problems associated 
+with this greed are presented in "Us ]^[ Them." The lines, "Forward he 
+cried from the rear / ]^[ the front rank died," "Down ]^[ Out / It can't be 
+helped ]b[ there's a lot of it about / With, without / And who'll deny it's 
+what the fighting's all about," ]^[ "For want of the price of tea ]^[ a slice 
+/ The old man died" tell of the depravity that greed (for money ]^[ power) 
+leads to. 
+In 1975 Floyd released their next album Wish You Were Here, a tribute 
+to Syd Barrett. This album deals with "the machinery of a music industry 
+that made ]^[ helped break Syd Barrett" (Edmonds 64). It is rumored that 
+Barrett himself showed up at the recording studio uninvited ]^[ 
+unexpected during the mixing of "Shine On You Crazy Diamond" ]^[ 
+announced they he was "ready to do his bit" (The Illustrated Encyclopedia 
+21). 
+The first (and last) song on the album is "Shine On You Crazy Diamond" 
+which was dedicated to Syd Barrett, the "Crazy Diamond." Michael Davis, 
+in review of the album wrote " the two-part 'Shine On You Crazy Diamond,' 
+which opens ]^[ closes the album, is a plea from the band left alone, 
+plagued by a frightening retention of sanity, for the man 'caught in the 
+cross-fire of childhood ]^[ stardom'" (64). 
+"Have a Cigar" is a direct blow at the music industry ]^[ its greed. An 
+industry representative tells the band "Well I've always had a deep respect 
+]^[ I mean that most sincerely / The band is just fantastic, that is really 
+what I think. Oh ]^[ by the way which one's Pink?", revealing the hypocrisy 
+of the music industry. The primary concern of the industry is money, ]^[ 
+"the band" is just a tool for getting more. This is made most clearly when 
+the representatives exclaim, "we're so happy we can hardly count" (Davis 
+64). 
+"Welcome To The Machine" is an even deeper criticism of the music 
+industry "machinery." According to Michael Davis, the song is 
+a nightmare come true for the Floyd who have just realized that 
+success merely redefines flunky status on a higher plane. For most, 
+the mansions ]^[ all are sufficient rewards ]b[ for a band who... have 
+never really considered themselves pop stars, ]^[ who have never 
+lived for cars ]^[ girls, the situation must be incredibly galling. (64) 
+The album as a whole leaves one with a feeling that the band, while 
+inherently a part of this machinery is none too happy over their situation 
+]^[ are still deeply marked with remorse over the loss of Syd Barrett. 
+This album was followed by the release of Animals 1977. This album 
+picked up were Wish You Were Here left off, offering more of Roger 
+Waters' cynical musings ]^[ social criticism. In this album, "the human 
+race is broken down into castes of pigs, dogs, ]^[ sheep to underscore 
+negative human qualities" (Contemporary Literary Criticism 35: 305) 
+"Dogs" are the agressive people. This song tells them that "You have 
+to be trusted by the people that you lie to. / So that when they turn their 
+backs on you, / You'll get the chance to put the knife in." It also cautions 
+that "You gotta keep one eye looking over your shoulder." It sums up their 
+life by saying, "Deaf, dumb ]^[ blind, you just keep on pretending / That 
+everyone's expendable ]^[ no one has a real friend." 
+Less interesting are the "Pigs," the fat, greedy slobs who represent 
+the music industry. The "Sheep" are the innocent ones who are fooled into 
+being slaughtered ]^[ hung "on hooks in high places" ]^[ made into "lamb 
+cutlets." This is only until "through quiet reflection, ]^[ great dedication" 
+they "master the art of karate" ]^[ confidently rejoice "the dogs are dead!" 
+However, the dogs ]^[ sheep still need to seek "a shelter from pigs on the 
+wing." Again we see a harsh criticism of the greed (of the rock industry) 
+]^[ the pressures of society which caused Barrett ot resort to drugs ]^[ 
+at least indirectly caused his insanity. 
+While Wish You Were Here ]^[ Animals "offered Waters's pessimistic 
+versions of rockbiz inhumanity ]^[ Orwellian paranoia" (Piccarella 59), 
+they were merely an a small taste of what was to come. The final two 
+albums by Pink Floyd, The Wall ]^[ The Final Cut are two of the most 
+cynical ]^[ pessimistic albums ever composed. These two albums were 
+almost entirely written by Roger Waters ]^[ were greatly influenced by 
+his feelings over the loss of his father in World War II. 
+The Wall represented a final departure from the Floyd of the past. In 
+a review of the album in High Fidelity, the band is described as having 
+"gone from being the premier art-rock psychedelic band to literally 
+cornering the mass market on full-blown paranoia" (30: 103). 
+The main theme of the album is the breakdown ]^[ insanity of a rock 
+star a la Syd Barrett. The wall represents a barrier which the individual 
+creates around himself to protect himself from an insane world. The 
+album warns of the dangers of "skating on the thin ice of modern life" ]^[ 
+warns "teachers leave the kids alone." ("The Wall," High Fidelity 103) 
+Society, represented by sadistic schoolmasters, smothering mothers, 
+insistent fans, ]^[ faithless spouses, forces the individual into isolation 
+]^[ insanity, with each of the afforementioned groups forming "just 
+another brick in the wall" (Cocks 49) 
+The main character gradually gives in to his feelings ]^[ his insanity 
+becomes complete. On "One of My Turns", "the deranged rock-star 
+narrator, his shattered synapses misfiring like wet firecrackers, screams 
+at his groupie companion: 'Would you like to learn to fly? / Would you like 
+to see me try?'" (Loder, "Pink Floyd: Up Against 'The Wall'" 76) In the next 
+song, the shattered rock star "begs his girlfriend not to go, "When you 
+know how I need you, To beat to a pulp on a Saturday night.'" ("The Wall," 
+High Fidelity 103). Even the format of the album conveys a message. The 
+album is "fashioned as a kind of circular maze (the last words on side four 
+begin a sentence on side one), The Wall offers no exit except madness from 
+a world malevolently bent on crippling its citizens at every level of 
+endeavor" (Loder, "Pink Floyd: Up Against 'The Wall'" 76). The album also 
+contains a deranged reference to Syd Barrett ]^[ his insanity in backward 
+masking on "Empty Spaces", saying "Congratulations. You have found the 
+secret. Send answers to Old Pink care of The Funny Farm." 
+While the album represents a departure from the drug-centered music 
+of the past, many fans still tend to focus on what remnants of the past 
+remain. Tom Mardin, a New York City disc-jocking at WNEW-FM said,"The 
+Floyd are not as spacy as they used to be. They're doing art for art's sake, 
+]^[ you don't have to be high to get it. They'll take you on a trip anyway" 
+(qtd. in Cocks 49). However, for those who look hard enough, drugs still 
+are present in the theme. David DiMartino, in his review of a concert 
+performance of The Wall in Creem magazine mentioned that what the 
+album was supposed to convey ]^[ what the crowd thought it meant were 
+to different things. He said, 
+The Wall ]^[ what Roger Waters meant by it isn't the same Wall the 
+audience has come to see, hear, ]^[ take drugs while watching... "I've 
+got a silver spoon on a chain," ]^[ "There's one smoking a joint " bring 
+the biggest cheers of all, ]^[ Roger Waters' message, as the crowd at 
+the Nassua Colliseum interprets it, is TAKE LOTS OF DRUGS, KIDS, 
+BECAUSE EVERYTHING SUCKS OUT THERE ANYWAY. (12: 29,60) 
+Thus, at least from the perspective of the audience, Floyd condones the use 
+of drugs as an escape from the horrors of society, just as they condemned 
+society in Wish You Were Here for forcing Syd Barrett into drug use ]^[ 
+insanity. 
+While musically ]^[ thematically The Wall represents a departure 
+from the Floyd of old, the concert tour, with its monumental special 
+effects, represents a return to the past. Variety magazine described the 
+show scale of the show as "monumental" ]^[ said that the animation 
+brought the "cover 'creatures'" to life in "stunning fashion" ("The Wall," 
+Variety 72) Jay Cocks, in his review of another concert performance of 
+The Wall in Time magazine, describes the show as 
+an extravagantly literal representation of the album, including a 
+smoking bomber with an 18-ft. wingspan that buzzes the audience on 
+a guy wire ]^[ huge floats representing the song's malor characters, 
+among them a 30-ft. mom who inflates to appropriately daunting 
+proportions... [and] a wall, soaring 30 ft. above the stage, spanning 
+210 ft. at the top. (49) 
+These effects are reminiscent of the 50 foot inflatabe octupus of almost 
+two decades earlier. 
+Pink Floyd culminated their career with the release of The Final Cut 
+in 1983. By this time Pink Floyd had merely become a pseudonym for Roger 
+Waters (Loder, "Pink Floyd's Artistic Epiphany" 65). Waters took total 
+creative of control of the album, dedicating to his father, Eric Fletcher 
+Waters, who died in World War II. While the loss of his father is central to 
+the theme of the album, he has much harsh criticism of contemporary 
+English socitey, "What have we done, Maggy what have we done / What 
+have we done to England." Indeed, he questions whether his father's death 
+was in vain ]^[ wonders "What happened to the post war dream" (Loder, 
+"Pink Floyd's Artistric Epiphany" 66). 
+The album represents some of Waters' most depressing lyrics ever. In 
+the title track, "Waters, ]v[ his rock star persona, reveals his deepest fears 
+]^[ doubts, including a failed suicide attempt" (Piccarella 59). The song 
+begins with the depressing, almost tear-jerking lines, "Through the fish 
+eyed lens of tear stained eyes / I can barely define the shape of this 
+moment in time / And far from flying high in clear blue skies / I'm 
+spiraling down to the whole in the ground where I hide." The rest of the 
+song offers no escape for the main character, fearing that if he reveals his 
+feelings to his wife he will be rejected ]^[ abandoned. Even his 
+attempted escape by suicide fails because he "never had the nerve to make 
+the final cut." 
+In "The Fletcher Memorial Home", Waters launches his attack at 
+various world leaders from Margaret Thatcher to Reagan to Brezhnev, 
+criticizing their imperialism, calling them "colonial wasters of life ]^[ 
+limb" (Loder, "Pink Floyd's Artistic Epiphany 66). 
+Several songs on the album criticize competition with the "wily 
+Japanese," ]^[ the Falkland Islands conflict serves as an example to 
+express his concerns over imperialism ]^[ warfare. The unifying theme, 
+however, is "the post war dream" which he feels has been lost. Kurt Loder 
+sums up this feeling: 
+In "The Gunner's Dream," a dying airman hopes to the end that his 
+death will be in the service of "the post war dream," for which the 
+album stands a requiem- the hope for a society that offers "a place to 
+stay / enough to eat," where "no one ever disappears... ]^[ maniacs 
+don't blow holes in bandsmen by remote control." But Waters, looking 
+around him more than thirty-five years after the war's end, can only 
+ask: "Is it for this that daddy died?" (66) 
+Waters' tells us that the "[gunner's] dream is driving me insane." This 
+shows his utter loss of hope for the dream. This feeling of loss ]^[ 
+hopelessness pervades the entire album, culminating in "the holocaust" of 
+a nuclear war in "Setting Suns." 
+The second to last song on the album is "Not Now John." It is the only 
+rousing, upbeat song on the album ]^[ John Picarella, in his review of the 
+album in The Village Voice claims that "it is ironic that between the 
+failed suicide ]^[ the certain nuclear holocaust, Pink Floyd's farewell 
+album finds its most rousing moment in a fake labor song. Maybe we'd all 
+have been made happier if they'd been men at work, proudly turning out pop 
+product once a year" (59). This song represents a return to the past as 
+well, completing a rather bizarre circuit in their career. Kurt Loder 
+compares the song to the "I'm all right, Jack" feeling of "Money" ]^[ 
+describes the chorus as "a Sixties style soul-chick chorus." The song, as 
+upbeat as it may seem, revolves around the pessimistic chorus of "Fuck 
+all that!", drawing us further into isolation ]^[ the "comfortably numb" 
+condition of The Wall. Again, this album focuses on society's pressures 
+]^[ problems ]^[ the utter hopelessness of the human plight which they 
+had previously blamed for the drug abuse ]^[ resultant insanity of Syd 
+Barrett. However, as is also true of The Wall, they have broadened their 
+criticism to include further elements of society than just the music 
+industry. In this album, more than any other, the band seems less worried 
+about their own plight ]^[ more concerned with that of society as a whole. 
+Looking back at the career of Pink Floyd, one sees a cyclical return to 
+the past. The band progressed from their early psychedelia to the social 
+]^[ political criticisms of their theme albums. However, throughout their 
+career, the band could not seem to shake the influence of Syd Barrett. The 
+loss of Barrett greatly influenced the band's work, both overtly in albums 
+such as Wish You Were Here ]^[ subtly in the themes of albums such as The 
+Wall. 
+Works Cited 
+Cocks, Jay. "Pinkies on the Wing." Time 115 (1980): 49. 
+Davis, Michael. "Elegy for the Living." Creem 8 (1975): 64. 
+DiMartino, Dave. "Pink Floyd Before the Wall: Come in Roger Waters." 
+Creem 11 (1980): 22-23. 
+---. "Pink Floyd's Wall: Live ]^[ All Pink on the Inside." Creem 12 (1980): 
+26+. 
+Edmonds, Ben. "The Trippers Trapped: Pink Floyd in a Hum Bag." Rolling 
+Stone 6 Nov. 1975: 63-64. 
+Heineman, Alna. "Ummagumma." down beat 28 May 1970: 20. 
+Hollingworth, Roy. "The Dark Side of Floyd." Melody Maker 10 Mar. 1973: 
+19+. 
+Loder, Kurt. "Pink Floyd's Artistic Epiphany." Rolling Stone Magazine 14 
+Apr. 1983: 65-66. 
+Logan, Nick ]^[ Bob Woffinden, comp. "Pink Floyd." The Illustrated 
+Encyclopedia of Rock . New York: Harmony Books, 1979. 
+Malamut, Bruce. "Dark Side of the Moon." Crawdaddy June 1973: 80-81. 
+Markowski, Daniel G., ed. "Pink Floyd." Contemporary Literary Criticism 
+35 (1985): 304-305. 
+Piccarella, John. "The Last Labor of Pink Floyd." The Village Voice 28 
+(1983): 59. 
+"Pink Floyd." The Rolling Stone Encyclopedia of Rock ]^[ Roll. New York: 
+Rolling Stone Press/Summit Books, 1983. 
+Stambler, Irwin. "Pink Floyd." Encyclopedia of Pop, Rock ]^[ Soul. New 
+York: St. Martins Press, 1974. 
+"The Wall." High Fidelity 30 (1980): 103-104. 
+"The Wall." Variety 20 Jan. 1980: 72. 
+Wards, Jeff. "Allman Joy! 'A Nice Pair'." Melody Maker 29 Dec. 1973: 34. 

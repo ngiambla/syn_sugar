@@ -111,8 +111,6 @@ class garnish:
 			vec=vec + [sentence_length_map[_label]]
 			sentence_vec_map[_label]=vec
 	
-		for item in sentence_vec_map:
-			raw_input(sentence_vec_map[item])
 			
 
 	def final_touches(self, _ingredients, special_items):

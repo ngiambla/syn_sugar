@@ -90,7 +90,8 @@ def bake():
 
 	print("\n"+bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
 	os.chdir("data/")
-	what_to_cook=raw_input("$ ")
+	what_to_cook = raw_input("$ ")
+	what_to_cook = what_to_cook.replace("../", "")
 	os.chdir("../")
 	start = time.time()
 

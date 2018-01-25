@@ -10,23 +10,24 @@ def get_cosine_sim(a, b):
 def correlate(a, b):
 	return np.corrcoef(a, b)[0][1]
 
-def lev_distance(s_metric_1, s_len_1, s_metric_2, s_len_2):
 
-	cost=0
+def levenshtein(s, t):
+		if s == t: return 0
+		elif len(s) == 0: return len(t)
+		elif len(t) == 0: return len(s)
+		v0 = [None] * (len(t) + 1)
+		v1 = [None] * (len(t) + 1)
+		for i in range(len(v0)):
+			v0[i] = i
+		for i in range(len(s)):
+			v1[0] = i + 1
+			for j in range(len(t)):
+				cost = 0 if s[i] == t[j] else 1
+				v1[j + 1] = min(v1[j] + 1, v0[j + 1] + 1, v0[j] + cost)
+			for j in range(len(v0)):
+				v0[j] = v1[j]
 
-	if s_len_1 == 0:
-		return s_len_1
-
-	if s_len_2 == 0:
-		return s_len_2
-
-
-	if s_metric_1[s_len_1-1] == s_metric_2[s_len_2-1]:
-		cost = 0
-	else:
-		cost = 1
-
-	return min( (lev_distance(s_metric_1, s_len_1-1, s_metric_2, s_len_2) + 1), (lev_distance(s_metric_1, s_len_1, s_metric_2, s_len_2-1) + 1), (lev_distance(s_metric_1, s_len_1-1, s_metric_2, s_len_2-1) + cost) )
+		return v1[len(t)]
 
 def hamming_distance(s1, s2):
 	if len(s1) != len(s2):

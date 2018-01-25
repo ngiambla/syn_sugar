@@ -22,6 +22,7 @@ help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "| 'bake' | 'b' --> extract information from text.\n"\
 		 "| 'help' | 'h' --> displays this. \n"\
 		 "| 'info' | 'i' --> does nothing. \n"\
+		 "| 'ls'   | 'l' --> lists all text files.\n"\
 		 "| 'quit' | 'q' --> quits this.\n"\
 		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"\
 		 "+ ~[utilities]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
@@ -85,8 +86,7 @@ def bake():
 	
 
 	print("\nChecking what we can cook: ")
-	for file in glob.glob("data/*"):
-		print(bcolors.OKBLUE + "[-] " + file.replace("data/", "",1) +bcolors.ENDC)
+	ls()
 
 	print("\n"+bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
 	os.chdir("data/")
@@ -119,6 +119,11 @@ def bake():
 def info():
 	print("--")
 
+def ls():
+
+	for file in glob.glob("data/*"):
+		print(bcolors.OKCYAN + "[-] " + file.replace("data/", "",1) +bcolors.ENDC)
+
 def fill_commands():
 	commands={
 		"help" : disp_help,
@@ -127,6 +132,8 @@ def fill_commands():
 		"q" : exit,
 		"bake" : bake,
 		"b": bake,
+		"ls": ls,
+		"l": ls,
 		"i" : info,
 		"info" : info,
 		"clean" : garnish().clean,

@@ -1,195 +1,1066 @@
-~$[giamblanco 1 
-nicholas v%%per%%]$~ ~$[giamblanco 
-eng503 %%dsh%% science fiction 
-professor david copeland 
-monday%%lst%% november 21st%%lst%% 2016 
-%%#%% crobuzon %%dsh%% %%#%% mirror %%#%% %%#%% world 
-question no%%per%% 1 
-science fiction %%#%% %%#%% substance %%cmp%% space ships%%lst%% alien interactions ]^[ %%#%% intergalactic 
-experiences%%per%%]$~ ~$[this genre provides %%#%% connection %%#%% science%%lst%% society ]^[ morality%%lst%% %%#%% fiction%%per%%]$~ 
-~$[science fiction %%#%% %%#%% bridging ]^[ extrapolation %%#%% reality ]^[ %%#%% alternate world %%#%% 
-science %%#%% %%#%% catalyst ]f[ open%%dsh%%ended ethical ]^[ moral questions%%per%%]$~ ~$[these questions %%#%% significant 
-%%#%% %%#%% society%%lst%% %%#%% %%#%% citizens %%#%% neglect %%#%% reflective duties%%per%%]$~ ~$[our world contains %%#%% ethical 
-]^[ moral issues%%lst%% ]b[ %%#%% %%#%% %%#%% issues %%#%% suppressed %%#%% %%#%% ignorance ]^[ %%#%% lack %%#%% 
-responsibility%%per%%]$~ ~$[walking %%#%% %%#%% homeless%%lst%% purchasing clothing %%#%% feel good%%lst%% polluting %%#%% environment%%lst%% 
-consuming %%#%% abnormal amount %%#%% food %%#%% people starve%%scn%% %%#%% %%#%% examples %%#%% %%#%% ignorance 
-]^[ irresponsibility%%per%%]$~ ~$[these problems %%#%% %%#%% addressed ]^[ investigated %%#%% order %%#%% create %%#%% solution%%per%%]$~ 
-~$[by using science fiction%%lst%% %%#%% grasp %%#%% attention %%#%% society ]^[ %%#%% %%#%% significant questions %%#%% 
-highlight problems %%#%% society ignores%%per%%]$~ ~$[perdido street station written %%#%% china mieville ´ %%lst%% provides 
-%%#%% connection %%#%% %%#%% world %%#%% %%#%% fictional city %%#%% %%#%% crobuzon%%per%%]$~ ~$[this connection ]n[ %%#%% 
-introduces science fiction’s dependency %%#%% %%#%% city%%lst%% ]b[ %%#%% exploration provides %%#%% obscure lens %%#%% 
-%%#%% world’s issues%%per%%]$~ ~$[the city’s noir description%%lst%% %%#%% underlying corruption ]^[ lies%%lst%% ]^[ %%#%% cultural 
-differences %%#%% issac ]^[ lin provide %%#%% relationship %%#%% %%#%% world’s issues%%per%%]$~ 
-~$[visual descriptions %%#%% %%#%% physical environment provide information %%#%% %%#%% environment’s 
-appearance%%lst%% inhabitants%%lst%% ]^[ %%#%% emotional atmosphere%%per%%]$~ ~$[in literature%%lst%% %%#%% elements combine %%#%% 
-form %%#%% relationship %%#%% %%#%% theme%%per%%]$~ ~$[in perdido street station %%#%% noir element %%#%% %%#%% world %%#%% explored 
-]^[ mirrored %%#%% %%#%% crobuzon%%per%%]$~ ~$[the description %%#%% %%#%% city’s entrance%%lst%% %%#%% exploration %%#%% %%#%% 
-innards %%#%% %%#%% city%%lst%% ]^[ %%#%% description %%#%% %%#%% city’s architecture reflect %%#%% noir nature %%#%% society%%per%%]$~ 
-~$[this steam%%dsh%%punk novel begins %%#%% story %%#%% %%#%% passenger %%#%% %%#%% boat%%lst%% entering %%#%% ominous area%%per%%]$~ ~$[the 
-giamblanco 2 
-passenger begins %%#%% tale %%#%% describing %%#%% location %%#%% %%#%% boat%%lst%% ]^[ %%#%% body %%#%% water it’s traveling 
-on%%per%%]$~ ~$[the boat %%#%% traveling %%#%% %%#%% river %%#%% ”%%per%%%%per%%%%per%%twists ]^[ %%#%% %%#%% %%#%% %%#%% city%%per%%]$~ ~$[it looms suddenly%%lst%% 
-massive%%lst%% stamped %%#%% %%#%% landscape,”(mieville%%lst%% 2001%%lst%% p%%per%% 4)%%per%%]$~ ~$[the author’s %%#%% %%#%% %%#%% indicate ´ 
-%%#%% prominence %%#%% %%#%% city%%lst%% ]^[ %%#%% %%#%% %%#%% ]n[ avoidable%%per%%]$~ ~$[just %%#%% %%#%% traveler approaches %%#%% city 
-%%#%% means %%#%% air travel%%lst%% boating journeys%%lst%% ]v[ driving%%lst%% %%#%% %%#%% city %%#%% %%#%% missed%%per%%]$~ ~$[as %%#%% 
-journey progresses%%lst%% %%#%% passenger begins %%#%% describe details %%#%% %%#%% city%%lst%% ”its lights %%#%% %%#%% %%#%% 
-%%#%% surrounds%%lst%% %%#%% rock hills%%lst%% %%#%% bruise%%dsh%%blood,”(mieville%%lst%% 2001%%lst%% p%%per%% 4) ]^[ ”its ´ dirty towers glow%%per%%]$~ ~$[i 
-am debased,”(mieville%%lst%% 2001%%lst%% p%%per%% 4)%%per%%]$~ ~$[the description %%#%% %%#%% entrance %%#%% %%#%% crobuzon provides %%#%% ´ 
-emotional atmosphere %%#%% sensations involved %%#%% debasement%%lst%% disgust%%lst%% ]^[ dirtiness%%per%%]$~ ~$[the author %%#%% 
-explicit%%lst%% direct ]^[ grim %%#%% %%#%% introduction %%#%% %%#%% city%%lst%% ”new crobuzon %%#%% %%#%% huge plague pit%%lst%% 
-%%#%% morbific city,”(mieville%%lst%% 2001%%lst%% p%%per%% 9)%%per%% ´ mieville ´ %%#%% %%#%% %%#%% %%#%% eyes %%#%% %%#%% truth %%#%% %%#%% world%%lst%% 
-%%#%% dirty%%lst%% ]^[ disgusting %%#%% %%#%% is%%per%%]$~ ~$[as %%#%% novel progresses%%lst%% lin %%#%% introduced%%per%%]$~ ~$[she %%#%% %%#%% %%#%% 
-%%#%% main characters %%#%% perdido street station%%per%%]$~ ~$[she %%#%% %%#%% khepri (a humanoid insect%%lst%% similar %%#%% %%#%% 
-beetle)%%per%%]$~ ~$[one %%#%% lin’s distinct emotional characteristics %%#%% %%#%% dislike ]f[ %%#%% culture%%per%%]$~ ~$[this dislike 
-drives %%#%% %%#%% leave %%#%% sanction%%lst%% ]^[ change %%#%% lifestyle%%per%%]$~ ~$[lin %%#%% %%#%% artist%%lst%% ]b[ maintains practices 
-%%#%% %%#%% unconventional ]f[ %%#%% cultural standards %%#%% art%%per%%]$~ ~$[lin’s %%#%% personality allows ]f[ 
-%%#%% in%%dsh%%depth exploration %%#%% %%#%% innards %%#%% %%#%% crobuzon%%per%%]$~ ~$[in chapter 2%%lst%% lin makes %%#%% %%#%% %%#%% 
-%%#%% heart %%#%% %%#%% grim city%%per%%]$~ ~$[she begins %%#%% passage %%#%% %%#%% core %%#%% %%#%% city %%#%% clogs wet %%#%% 
-”%%per%%%%per%%%%per%% organic muck %%#%% %%#%% street%%lst%% rich pickings ]f[ %%#%% furtive creatures peering %%#%% %%#%% drain%%per%%” 
-(mieville%%lst%% 2001%%lst%% p%%per%% 13)%%per%%]$~ ~$[once again%%lst%% mi ´ eville reinforces %%#%% %%#%% city’s dirtiness ]^[ griminess%%lst%% %%#%% ´ 
-hopes %%#%% grabbing %%#%% reader’s attention ]f[ comparison %%#%% %%#%% world%%per%%]$~ ~$[lin continues %%#%% journey 
-%%#%% %%#%% cab%%per%%]$~ ~$[dark imagery %%#%% %%#%% %%#%% %%#%% ride%%lst%% %%#%% %%#%% flyside militia tower%%lst%% %%#%% %%#%% ”%%per%%%%per%%%%per%% 
-vast filthy pudgy pillar%%lst%% squat ]^[ mean%%lst%% somehow%%lst%% ]f[ %%#%% %%#%% thirty%%dsh%%five storeys,”(mieville%%lst%% 2001%%lst%% p%%per%% ´ 
-14) ]^[ %%#%% %%#%% half inflated dirigible%%lst%% ”%%per%%%%per%%%%per%%it flapped ]^[ lolled ]^[ swelled %%#%% %%#%% dying fish%%per%%]$~ ~$[she 
-%%#%% feel %%#%% engine humming%%lst%% %%#%% %%#%% %%#%% layers %%#%% air%%lst%% %%#%% %%#%% stained %%#%% disappear %%#%% %%#%% 
-gun%%dsh%%grey clouds%%per%%”(mieville%%lst%% 2001%%lst%% p%%per%% 14)%%per%%]$~ ~$[the intensity %%#%% %%#%% descriptive elements increase %%#%% %%#%% ´ 
-journey continues%%lst%% %%#%% %%#%% reaches the%%lst%% ”architectural tissue %%#%% %%#%% fibres %%#%% %%#%% city congealed%%lst%% 
-giamblanco 3 
-%%#%% %%#%% skyrails %%#%% %%#%% militia radiated %%#%% %%#%% %%#%% spike %%#%% %%#%% web %%per%%%%per%%%%per%%]$~ ~$[perdido street station,” 
-(mieville%%lst%% 2001%%lst%% p%%per%% 16)%%per%%]$~ ~$[the emphasis %%#%% darkness%%lst%% dirtiness%%lst%% ]^[ debasement %%#%% %%#%% crobuzon ´ 
-provoke %%#%% reader %%#%% reflect %%#%% %%#%% world %%#%% currently live in%%per%%]$~ ~$[the city’s architecture supports 
-%%#%% negative intensity %%#%% author %%#%% conveying %%#%% %%#%% reader%%lst%% ”the rotting buildings lean %%#%% 
-%%#%% other%%lst%% exhausted,”(mieville%%lst%% 2001%%lst%% p%%per%% 4)%%per%%]$~ ~$[furthermore%%lst%% %%#%% architecture represents %%#%% cold ´ 
-]^[ unfulfilled emotions surrounding %%#%% city%%lst%% ”extra storeys %%#%% rendered %%#%% %%#%% cold white muck 
-%%#%% fills gaps %%#%% houses ]^[ dead%%dsh%%end alleys,”(mieville%%lst%% 2001%%lst%% p%%per%% 5)%%per%%]$~ ~$[the beginning %%#%% ´ 
-chapter six continues %%#%% noir journey%%lst%% ”even %%#%% trains %%#%% moved innumerable women ]^[ %%#%% 
-]^[ commodities %%#%% %%#%% crobuzon’s %%#%% carcuss fought %%#%% stay %%#%% %%#%% houses%%lst%% %%#%% %%cmp%% %%#%% 
-%%#%% afraid %%#%% %%#%% putrefaction %%#%% architecture,”(mieville%%lst%% 2001%%lst%% p%%per%% 39)%%per%%]$~ ~$[the imagery surrounding ´ 
-%%#%% rotting%%lst%% decaying%%lst%% dirty city %%#%% intended %%#%% %%#%% author %%#%% convey %%#%% reflection %%#%% %%#%% world%%per%%]$~ ~$[this 
-reflection %%#%% emphasized %%#%% %%#%% grim introduction %%#%% %%#%% crobuzon%%lst%% %%#%% exploration %%#%% %%#%% 
-city’s innards%%lst%% ]^[ %%#%% architectural pieces %%#%% %%#%% city%%per%%]$~ 
-~$[the act %%#%% lying%%lst%% %%#%% %%#%% declare ”an intentionally false statement,”(oxford university press%%lst%% n%%per%%d%%per%%)%%per%%]$~ 
-~$[as %%#%% society%%lst%% humans frown %%#%% individuals %%#%% lie%%per%%]$~ ~$[however%%lst%% %%#%% act %%#%% lying %%#%% ubiquitous %%#%% %%#%% 
-society%%per%%]$~ ~$[intentionally false statements %%#%% %%#%% %%#%% %%#%% deceive %%#%% target%%lst%% %%#%% %%#%% target %%#%% %%#%% %%#%% 
-computing system ]v[ %%#%% society%%per%%]$~ ~$[a computer hacker %%#%% deceive ]^[ gain access %%#%% %%#%% computing 
-system%%per%%]$~ ~$[a society %%#%% %%#%% deceived %%#%% %%#%% presidential candidate %%#%% lies %%#%% %%#%% public ]^[ manages %%#%% 
-win %%#%% presidential election%%per%%]$~ ~$[once %%#%% target system %%#%% deceived%%lst%% corruption %%#%% ensue%%per%%]$~ ~$[the hacked 
-computing system %%#%% subject %%#%% file corruption%%lst%% data corruption%%lst%% etc%%per%%]$~ ~$[the deceived society %%#%% subject 
-%%#%% war%%lst%% segregation%%lst%% poverty%%lst%% abuse%%lst%% ]^[ corruption%%per%%]$~ ~$[perdido street station’s city %%#%% %%#%% crobuzon 
-mirrors %%#%% elements %%#%% lies%%lst%% deceit%%lst%% ]^[ corruption %%#%% %%#%% characters %%#%% yagharek%%lst%% bentham 
-rudgutter%%lst%% ]^[ mr%%per%%]$~ ~$[motley%%per%%]$~ ~$[the character yagharek%%lst%% %%#%% %%#%% %%#%% investigate ]f[ characteristics %%#%% 
-deceit%%per%%]$~ ~$[his introduction %%#%% abrupt%%lst%% ”%%per%%%%per%%%%per%% %%#%% door swung %%#%% ]^[ shut %%#%% below,”(mieville%%lst%% 2001%%lst%% p%%per%% ´ 
-20)%%per%%]$~ ~$[this %%#%% %%#%% issac %%dsh%% %%#%% %%#%% %%#%% main characters %%#%% %%#%% story %%dsh%% %%#%% introduced %%#%% yagharek%%per%%]$~ ~$[issac 
-%%#%% %%#%% scientist known %%#%% %%#%% crobuzon ]f[ %%#%% controversial research%%per%%]$~ ~$[yagharek %%#%% %%#%% %%#%% %%#%% %%#%% 
-garuda species%%lst%% (a species %%#%% closely resembles birds)%%per%%]$~ ~$[this garuda contacted issac %%#%% hopes %%#%% 
-giamblanco 4 
-reviving yagharek’s wings%%lst%% which%%lst%% ”%%per%%%%per%%%%per%%issac realized %%#%% %%#%% wings %%#%% %%#%% sawed %%#%% yagharek’s 
-back%%per%%]$~ ~$[no single sudden cut%%lst%% ]b[ %%#%% long%%lst%% drawn %%#%% torturous cut%%per%%” (mieville%%lst%% 2001%%lst%% p%%per%% 31)%%per%%]$~ ~$[curiously%%lst%% ´ 
-issac probed yagharek%%lst%% %%#%% order %%#%% %%#%% %%#%% %%#%% %%#%% happened %%#%% yagharek%%per%%]$~ ~$[issac discovers %%#%% %%#%% 
-occurred due %%#%% %%#%% ”%%per%%%%per%%choice theft %%#%% %%#%% %%#%% degree%%per%%%%per%%%%per%% %%#%% utter disrespect,” ]^[ %%#%% kept %%#%% %%#%% dark 
-%%#%% %%#%% meaning%%per%%(mieville%%lst%% 2001%%lst%% p%%per%% 32)%%per%%]$~ ~$[the authors intention ]f[ %%#%% vague response %%#%% ´ 
-%%#%% near %%#%% %%#%% %%#%% %%#%% novel%%per%%]$~ ~$[issac agrees %%#%% help yagharek %%#%% revitalize %%#%% wings%%per%%]$~ ~$[however%%lst%% 
-issac %%#%% deceived %%#%% yagharek%%per%%]$~ ~$[yagharek %%#%% raped %%#%% %%#%% %%#%% %%#%% species%%per%%]$~ ~$[this %%#%% choice 
-theft %%#%% %%#%% %%#%% degree%%per%%]$~ ~$[yagharek’s choice %%#%% %%#%% elusive %%#%% details regarding %%#%% punishment 
-%%#%% %%#%% %%#%% example %%#%% deceit%%per%%]$~ ~$[mieville’s involvement %%#%% yagharek’s deceit provides %%#%% plot %%#%% %%#%% ´ 
-novel%%lst%% ]b[ %%#%% %%#%% reveals %%#%% underlying corruption %%#%% %%#%% crobuzon%%per%%]$~ ~$[the mayor%%lst%% bentham 
-rudgutter%%lst%% proves %%#%% %%#%% %%#%% source %%#%% corruption %%#%% perdido street station%%per%%]$~ ~$[rudgutter %%#%% ”got fingers 
-%%#%% %%#%% fucking pie %%#%% %%#%% %%#%% of,”(mieville%%lst%% 2001%%lst%% p%%per%% 81)%%per%%]$~ ~$[the mayor %%#%% %%#%% crobuzon %%#%% ´ 
-%%#%% involved %%#%% %%#%% illicit acts%%lst%% including %%#%% government personnel%%per%%]$~ ~$[they all%%lst%% ”churn %%#%% %%#%% 
-commodity%%lst%% grab %%#%% profit%%lst%% %%#%% %%#%% militia %%#%% tidy %%#%% %%#%% customers afterwards%%lst%% %%#%% %%#%% %%#%% crop 
-%%#%% remade ]v[ slave%%dsh%%miners,”(mieville%%lst%% 2001%%lst%% p%%per%% 81)%%per%%]$~ ~$[by adding corruption %%#%% %%#%% governmental ´ 
-figure%%lst%% mieville provides %%#%% comparison %%#%% %%#%% corporate sector%%lst%% ]^[ %%#%% elements %%#%% drives %%#%% ´ 
-corporate giants %%dsh%% lies%%lst%% deceit ]^[ corruption%%per%%]$~ ~$[the mayor’s illicit activities include bargaining %%#%% 
-demons%%lst%% ”we haven’t %%#%% discussed yet%%lst%% ambassador%%per%%]$~ ~$[i assure %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% generous 
-offer,” (mieville%%lst%% 2001%%lst%% p%%per%% 161)%%per%%]$~ ~$[by bargaining %%#%% %%#%% demon ambassador%%lst%% rudgutter proves %%#%% ´ 
-corrupt nature%%scn%% demons %%#%% %%#%% symbol %%#%% evil%%per%%]$~ ~$[the mayor %%#%% %%#%% involved %%#%% crime related gangs%%lst%% 
-”what %%#%% damn%%lst%% %%#%% %%#%% jabber’s name%%lst%% %%#%% %%#%% godshit %%#%% motley playing at%%qsn%%]$~ ~$[i %%#%% %%#%% %%#%% 
-%%#%% supposed %%#%% %%#%% professional%%per%%%%per%%%%per%%,”(mieville%%lst%% 2001%%lst%% p%%per%% 156)%%per%%]$~ ~$[finally%%lst%% rudgutter %%#%% affliations %%#%% ´ 
-mr%%per%%]$~ ~$[motley%%lst%% %%#%% %%#%% feared ganglord %%#%% %%#%% city ]^[ %%#%% equally deceitful ]^[ corrupt%%per%%]$~ ~$[mr%%per%%]$~ ~$[motley’s 
-appearance provides %%#%% allusion %%#%% %%#%% theme %%#%% corruption%%lst%% deceit ]^[ lies%%lst%% ”scraps %%#%% skin ]^[ fur 
-]^[ feathers swung %%#%% %%#%% moved%%scn%% tiny limbs clutched%%scn%% eyes rolled %%#%% obscure niches%%scn%% antlers ]^[ 
-protrusions %%#%% bone jutted precariously,”(mieville%%lst%% 2001%%lst%% p%%per%% 28)%%per%%]$~ ~$[the description %%#%% mr%%per%%]$~ ~$[motley %%#%% ´ 
-%%#%% imagery %%#%% corruption%%per%%]$~ ~$[his body %%#%% %%#%% random ]^[ awkward synthesis%%lst%% providing %%#%% comparison 
-giamblanco 5 
-%%#%% %%#%% obsession %%#%% material goods%%per%%]$~ ~$[the author %%#%% chosen %%#%% represent %%#%% desire ]f[ material 
-%%#%% %%#%% %%#%% character %%#%% explain %%#%% materialists %%#%% corrupt%%per%%]$~ ~$[mr%%per%%]$~ ~$[motley’s character provides 
-%%#%% %%#%% %%#%% theme %%#%% corruption%%lst%% %%#%% %%#%% %%#%% %%#%% role %%#%% %%#%% city %%#%% %%#%% crobuzon%%lst%% ”he talked idly 
-%%#%% turf wars %%#%% griss twist ]^[ badside%%lst%% dropped hints %%#%% gangland massacres %%#%% %%#%% heart %%#%% %%#%% 
-crow,”(mieville%%lst%% 2001%%lst%% p%%per%% 120)%%per%%]$~ ~$[the author %%#%% establishing mr%%per%%]$~ ~$[motley’s power %%#%% %%#%% crobuzon%%per%% ´ 
-%%#%% power mr%%per%%]$~ ~$[motley %%#%% affects lin %%#%% %%#%% sessions together%%per%%]$~ ~$[through repetition %%#%% %%#%% 
-corrupt plans%%lst%% ”mr%%per%%]$~ ~$[motley’s blithe chat crept in,”(mieville%%lst%% 2001%%lst%% p%%per%% 120) %%#%% lin’s mind%%per%%]$~ ~$[this ´ 
-distorts %%#%% thoughts%%lst%% %%#%% %%#%% found herself%%lst%% ”idly wondering,”(mieville%%lst%% 2001%%lst%% p%%per%% 120) ]^[ concerned ´ 
-%%#%% %%#%% plans%%per%%]$~ ~$[mieville %%#%% ensuring mr%%per%%]$~ ~$[motley %%#%% treated %%#%% %%#%% corrupt computer program%%lst%% %%#%% ´ 
-creates corruption %%#%% %%#%% memory space %%#%% %%#%% connected to%%per%%]$~ ~$[in %%#%% case%%lst%% mr%%per%%]$~ ~$[motley %%#%% corrupting %%#%% 
-city %%#%% %%#%% crobuzon%%lst%% %%#%% mayor %%#%% %%#%% dystopian city%%lst%% ]^[ lin%%per%%]$~ 
-~$[culture %%#%% essential %%#%% %%#%% society%%per%%]$~ ~$[culture%%lst%% %%#%% ”the beliefs%%lst%% customs%%lst%% arts%%lst%% etc%%per%%%%lst%% %%#%% %%#%% particular 
-society%%lst%% group%%lst%% place%%lst%% ]v[ time” (merriam%%dsh%%webster%%lst%% 2016)%%per%%]$~ ~$[some cities %%#%% %%#%% modern world consist %%#%% 
-%%#%% infusion %%#%% %%#%% cultures%%per%%]$~ ~$[new crobuzon hosts %%#%% wide variety %%#%% cultures%%cln%% cactace%%lst%% remades%%lst%% 
-vodyanoi%%lst%% khepri%%lst%% ]^[ %%#%% others%%per%%]$~ ~$[with %%#%% cultural salads%%lst%% %%#%% %%#%% %%#%% %%#%% investigate 
-%%#%% relationships%%per%%]$~ ~$[cultural mixing %%#%% pose issues %%#%% romance%%lst%% lifestyle%%lst%% ]^[ society%%per%%]$~ ~$[this 
-city %%#%% perdido street station%%lst%% poses questions %%#%% multicultural relationships%%per%%]$~ ~$[issac ]^[ lin’s 
-multicultural relationship %%#%% explored ]f[ %%#%% differences ]^[ similarities %%#%% %%#%% multicultural view%%lst%% 
-]^[ %%#%% reflection %%#%% %%#%% world%%per%%]$~ ~$[initially%%lst%% perdido street station introduces %%#%% crobuzon %%#%% 
-%%#%% human%%lst%% issac%%per%%]$~ ~$[by viewing %%#%% crobuzon %%#%% issac’s eyes %%#%% chapter one%%lst%% cultural traits %%#%% 
-humans %%#%% presented%%per%%]$~ ~$[dreaming %%#%% %%#%% innate trait %%#%% humans%%per%%]$~ ~$[the introduction %%#%% issac %%#%% brought 
-%%#%% %%#%% living %%#%% %%#%% %%#%% %%#%% dreams%%per%%]$~ ~$[this dream %%#%% particular %%#%% %%#%% nightmare%%lst%% %%#%% issac was%%lst%% 
-”staring anxiously %%#%% %%#%% class %%#%% %%#%% unctuous bastard vermishank %%#%% looked in,”(mieville%%lst%% ´ 
-2001%%lst%% p%%per%% 8)%%per%%]$~ ~$[the dreaming mechanism %%#%% %%#%% %%#%% provide %%#%% recognizable feeling%%lst%% ensuring %%#%% 
-reader feels connected%%per%%]$~ ~$[the specific %%#%% %%#%% %%#%% nightmare %%#%% %%#%% %%#%% %%#%% unveils human qualities %%#%% 
-fear%%lst%% misery%%lst%% ]^[ loathing%%per%%]$~ ~$[issac feels misery%%lst%% %%#%% %%#%% failed %%#%% %%#%% teacher%%lst%% %%#%% %%#%% %%#%% %%#%% university%%per%%]$~ 
-~$[issac %%#%% %%#%% sensitive %%#%% external judgment%%per%%]$~ ~$[his sensitivity %%#%% brought %%#%% %%#%% lin signs%%lst%% ”you 
-giamblanco 6 
-hide %%#%% ]s[ %%#%% %%#%% publish articles ]f[ people %%#%% despise,”(mieville%%lst%% 2001%%lst%% p%%per%% 12) %%#%% regards %%#%% ´ 
-%%#%% failure %%#%% %%#%% academic world%%per%%]$~ ~$[issac responds %%#%% %%#%% defensive comment%%lst%% wondering %%#%% lin 
-%%#%% feel ”if %%#%% art%%dsh%%world threatened %%#%% ostracize her,”(mieville%%lst%% 2001%%lst%% p%%per%% 12)%%per%%]$~ ~$[this %%#%% %%#%% typical ´ 
-human characteristic%%per%%]$~ ~$[mieville demonstrates %%#%% human characteristics %%#%% issac %%#%% order %%#%% ´ 
-provide %%#%% familiarity %%#%% %%#%% world%%per%%]$~ ~$[issac %%#%% %%#%% common ground %%#%% %%#%% crobuzon%%per%%]$~ ~$[the khepri 
-culture %%#%% introduced %%#%% %%#%% %%#%% chapter %%#%% %%#%% novel%%lst%% %%#%% %%#%% %%#%% %%#%% lin%%per%%]$~ ~$[lin %%#%% %%#%% key 
-%%#%% understanding %%#%% culture%%per%%]$~ ~$[she %%#%% able %%#%% provide %%#%% view %%#%% %%#%% %%#%% %%#%% outsider %%#%% %%#%% culture%%lst%% 
-”she breathed easier %%#%% %%#%% streets %%#%% %%#%% %%#%% clean %%#%% beetle cement%%lst%% ]^[ %%#%% %%#%% khepri 
-%%#%% %%#%% crowds were%%lst%% %%#%% here%%lst%% outcasts,”(mieville%%lst%% 2001%%lst%% p%%per%% 16)%%per%%]$~ ~$[by %%#%% %%#%% outsider %%#%% %%#%% culture%%lst%% ´ 
-lin %%#%% identify %%#%% qualities %%#%% %%#%% khepri%%cln%% ”you %%#%% nothing%%lst%% surrounded %%#%% people %%#%% mock 
-%%#%% %%#%% bugs%%lst%% buy %%#%% art cheap%%lst%% ]^[ sell %%#%% food dear%%lst%% ]b[ %%cmp%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-less %%#%% style yourselves %%#%% protectors %%#%% %%#%% khepri way%%per%%]$~ ~$[i’m out%%per%%]$~ ~$[i dress %%#%% %%#%% like%%per%%]$~ ~$[my art %%#%% 
-mine,”(mieville%%lst%% 2001%%lst%% p%%per%% 16)%%per%%]$~ ~$[the khepri culture %%#%% comparable %%#%% %%#%% boxed%%dsh%%in religious community%%lst%% ´ 
-%%#%% %%#%% external thinking %%#%% required %%dsh%% %%#%% follow blindly %%#%% %%#%% questions%%per%%]$~ ~$[the author ensures 
-%%#%% reader %%#%% aware %%#%% this%%lst%% ”lin’s broodma (who scorned %%#%% name %%#%% decadent affection) taught lin 
-]^[ %%#%% broodsister %%#%% insect aspect %%#%% %%#%% lord %%#%% %%#%% creation%%per%%%%per%%%%per%%]$~ ~$[he %%#%% shat %%#%% %%#%% universe 
-%%#%% eating %%#%% void%%lst%% %%#%% %%#%% mindless act %%#%% cosmic creation%%per%%%%per%%%%per%% %%#%% %%#%% %%#%% taught %%#%% worship 
-]^[ serve %%#%% mindless brothers”(mieville%%lst%% 2001%%lst%% p%%per%% 123)%%per%%]$~ ~$[by creating %%#%% religious dimension %%#%% ´ 
-%%#%% %%#%% culture %%#%% closed %%#%% %%#%% %%#%% ideas%%lst%% %%#%% author %%#%% created %%#%% link %%#%% %%#%% world’s cultures ]^[ 
-%%#%% beliefs%%per%%]$~ ~$[lin’s dislike ]f[ %%#%% culture reinforces %%#%% idea%%lst%% %%#%% %%#%% individuals %%#%% %%#%% world %%#%% 
-]n[ support %%#%% %%#%% one%%dsh%%sided view %%#%% life%%per%%]$~ ~$[lin’s dislike ]f[ %%#%% ”khepri way” creates %%#%% %%#%% ]f[ 
-reintegration %%#%% %%#%% culture%%per%%]$~ ~$[lin has%%lst%% ”steeped %%#%% %%#%% %%#%% human culture,”(mieville%%lst%% ´ 
-2001%%lst%% p%%per%% 83) %%#%% %%#%% %%#%% %%#%% human%%per%%]$~ ~$[this %%#%% allows %%#%% reader %%#%% connect %%#%% lin%%lst%% %%#%% %%#%% %%#%% 
-common ]f[ individuals %%#%% %%#%% cultures %%#%% change %%#%% beliefs%%lst%% customs%%lst%% ]^[ rituals %%#%% fit %%#%% 
-%%#%% culture%%per%%]$~ ~$[although %%#%% species %%#%% alien %%#%% us%%lst%% mieville %%#%% added human characteristics %%#%% %%#%% ´ 
-khepri ]f[ %%#%% %%#%% %%cmp%% %%#%% foreign cultures %%#%% %%#%% world%%per%%]$~ ~$[these differences ]^[ similarities %%#%% 
-khepri ]^[ humans %%#%% explored%%lst%% %%#%% issac ]^[ lin’s relationship%%per%%]$~ ~$[this cultural relationship %%#%% 
-giamblanco 7 
-introduced %%#%% %%#%% initial chapters %%#%% %%#%% novel%%per%%]$~ ~$[in %%#%% areas %%#%% %%#%% city%%lst%% %%#%% couple %%#%% hide %%#%% 
-status%%lst%% ”issac ]^[ lin %%#%% %%#%% lovers nearly %%#%% years%%per%%]$~ ~$[they %%#%% %%#%% tried ]n[ %%#%% %%#%% %%#%% hard 
-%%#%% %%#%% rules %%#%% %%#%% relationship%%per%%%%per%%%%per%%]$~ ~$[innocent remarks ]^[ askance looks %%#%% others%%lst%% %%#%% moment 
-%%#%% contact %%#%% %%#%% %%#%% %%#%% public%%dsh%%a note %%#%% %%#%% grocer%%dsh%%was %%#%% reminder %%#%% %%#%% were,in %%#%% contexts%%lst%% 
-living %%#%% secret”(mieville%%lst%% 2001%%lst%% p%%per%% 10)%%per%%]$~ ~$[the author %%#%% allowing %%#%% reader %%#%% relate %%#%% instances %%#%% %%#%% ´ 
-world %%#%% forbidden love%%per%%]$~ ~$[even differences %%#%% physical characteristics demonstrate awkwardness%%lst%% ”i 
-%%#%% %%#%% %%#%% you%%lst%% clearer%%per%%]$~ ~$[for %%#%% %%#%% %%#%% undifferentiated%%per%%]$~ ~$[in %%#%% corner %%#%% slum collapsing%%lst%% %%#%% %%#%% 
-%%#%% %%#%% train %%#%% pistons shining%%per%%%%per%%%%per%%]$~ ~$[for %%#%% %%#%% tiny %%#%% %%#%% integrity%%lst%% %%#%% fractionally %%#%% 
-%%#%% %%#%% next%%lst%% %%#%% %%#%% variation %%#%% accounted for%%lst%% incrementally%%lst%% rationally”(mieville%%lst%% 2001%%lst%% p%%per%% 13)%%per%% ´ 
-%%#%% awkwardness %%#%% %%#%% %%#%% %%#%% reader %%#%% highlight differences %%#%% culture%%per%%]$~ ~$[these slight cultural 
-differences reflect %%#%% %%#%% world%%lst%% %%#%% couples %%#%% %%#%% cultures experience %%#%% awkward ]^[ 
-unusual adjustments%%per%%]$~ ~$[the author %%#%% %%#%% reader %%#%% %%#%% relationship %%#%% %%#%% reflects %%#%% %%#%% 
-cultural differences %%#%% %%#%% world%%lst%% ]^[ %%#%% %%#%% affects relationships %%#%% %%#%% personal ]^[ romantic way%%per%%]$~ 
-~$[couples %%#%% %%#%% cultures %%#%% abide %%#%% foreign rules ]^[ traditions %%#%% %%#%% complicate %%#%% 
-relationship%%per%%]$~ ~$[by exploring %%#%% %%#%% cultures%%lst%% ]^[ %%#%% intermingling%%lst%% %%#%% connection %%#%% %%#%% 
-world %%#%% established%%lst%% ]^[ %%#%% reader %%#%% able %%#%% understand issues regarding multiculturalism%%per%%]$~ 
-~$[it %%#%% absolutely imperative ]f[ society %%#%% reflect %%#%% %%#%% current state%%lst%% status%%lst%% ]^[ condition%%per%%]$~ ~$[by 
-reflecting %%#%% %%#%% society%%lst%% %%#%% %%#%% %%#%% ]f[ positive ]^[ healthy growth %%#%% %%#%% subjects ]^[ interests%%per%%]$~ 
-~$[unfortunately%%lst%% %%#%% frequency %%#%% %%#%% self%%dsh%%reflection %%#%% ]n[ meet %%#%% requirements ]f[ %%#%% growth%%per%%]$~ 
-~$[perdido street station explores %%#%% deficiency%%lst%% ]^[ %%#%% science fiction %%#%% %%#%% mirror %%#%% %%#%% world%%per%%]$~ 
-~$[new crobuzon temporarily replaces %%#%% world %%#%% %%#%% abstract ]^[ obscure lens%%per%%]$~ ~$[issues %%#%% 
-reflect politics%%lst%% society%%lst%% ]^[ morality %%#%% targeted %%#%% %%#%% city%%per%%]$~ ~$[new crobuzon explores %%#%% darkness 
-%%#%% reality%%lst%% lies%%lst%% deceit%%lst%% ]^[ corruption%%lst%% %%#%% cultural infusion %%#%% lin ]^[ issac’s relationship ]^[ %%#%% 
-relationship %%#%% %%#%% world%%per%%]$~ ~$[ultimately%%lst%% %%#%% science fiction %%#%% perdido street station %%#%% %%#%% obscure%%lst%% 
-bizarre magnifying glass%%lst%% %%#%% enlarges issues %%#%% %%#%% world %%#%% %%#%% dystopic city %%#%% %%#%% 
-crobuzon%%per%% 
+~$[available online %%#%% www%%per%%sciencedirect%%per%%com 
+cognitive ]^[ behavioral practice 16 (2009) 29–39 
+www%%per%%%%cmp%%vier%%per%%com/locate/cabp 
+response paper 
+%%#%% %%#%% %%#%% %%#%% it%%lst%% %%#%% easier %%#%% gets%%cln%% 
+exposure ]^[ response prevention ]f[ ocd 
+michael b%%per%%]$~ ~$[himle%%lst%% university %%#%% north dakota 
+martin e%%per%%]$~ ~$[franklin%%lst%% university %%#%% pennsylvania school %%#%% medicine 
+%%#%% manuscript %%#%% %%#%% %%#%% %%#%% series %%#%% invited papers %%#%% %%#%% journal%%per%%]$~ ~$[the purpose %%#%% %%#%% series %%#%% %%#%% highlight ]^[ discuss %%#%% similarities 
+]^[ differences %%#%% various behavioral ]^[ cognitive%%dsh%%behavioral approaches %%#%% %%#%% treatment %%#%% obsessive%%dsh%%compulsive disorder 
+(ocd)%%per%%]$~ ~$[the %%#%% article %%#%% %%#%% series (twohig & whittal) describes %%#%% %%#%% %%#%% “caroline” %%#%% %%#%% %%#%% current manuscript %%#%% based%%per%%]$~ 
+~$[we approach %%#%% %%#%% %%#%% %%#%% cognitive%%dsh%%behavioral orientation %%#%% exposure ]^[ ritual prevention (ex/rp) %%#%% %%#%% primary therapeutic 
+approach%%per%%]$~ ~$[we highlight %%#%% %%#%% %%#%% ex/rp %%cmp%% %%#%% %%#%% considerable body %%#%% empirical evidence %%#%% %%#%% ex/rp %%#%% %%#%% efficacious 
+treatment ]f[ %%#%% adult ]^[ pediatric ocd%%per%%]$~ ~$[using %%#%% provided %%#%% vignette%%lst%% %%#%% outline %%#%% rationale ]f[ ex/rp ]^[ describe %%#%% ex/ 
+rp %%#%% %%#%% %%#%% %%#%% treat caroline’s ocd%%per%%]$~ ~$[we begin %%#%% discussing %%#%% theoretical underpinnings ]f[ ex/rp ]^[ providing %%#%% rationale 
+]f[ treatment%%per%%]$~ ~$[we %%cmp%% briefly discuss %%#%% rich extant literature supporting ex/rp %%#%% %%#%% effective treatment ]f[ ocd%%per%%]$~ ~$[we %%cmp%% provide %%#%% 
+detailed %%#%% conceptualization ]^[ description %%#%% %%#%% treatment%%per%%]$~ ~$[we conclude %%#%% barriers commonly encountered %%#%% ex/rp%%per%%]$~ 
+~$[t 
+%%#%% seen exciting advancements %%#%% 
+psychosocial therapies ]f[ treating ocd%%per%%]$~ ~$[arguably%%lst%% 
+though%%lst%% %%#%% %%#%% thoroughly researched ]^[ %%#%% 
+effective psychosocial treatment modality %%#%% cognitivebehavioral therapy (cbt) involving exposure ]^[ 
+response prevention (ex/rp)%%per%%]$~ ~$[ex/rp %%#%% consistently 
+%%#%% shown %%#%% %%#%% effective ]f[ reducing symptoms %%#%% %%#%% 
+adult ]^[ pediatric ocd%%per%%]$~ ~$[in fact%%lst%% %%#%% %%#%% american 
+academy %%#%% child ]^[ adolescent psychiatry (aacap%%lst%% 
+1998) ]^[ %%#%% american psychological association (task 
+force %%#%% promotion ]^[ dissemination %%#%% psychological 
+procedures%%lst%% 1995) %%#%% concluded %%#%% cbt %%#%% garnered 
+%%#%% research support %%#%% %%#%% considered %%#%% treatment 
+%%#%% choice ]f[ %%#%% children ]^[ adults %%#%% ocd%%per%%]$~ 
+~$[although %%#%% %%#%% %%#%% host %%#%% specific techniques ]^[ 
+delivery strategies subsumed %%#%% %%#%% cbt umbrella%%lst%% 
+%%#%% %%#%% %%#%% primary goals %%#%% cbt %%#%% %%#%% teach %%#%% patient %%#%% 
+skills %%#%% %%#%% directly confront fear%%dsh%%evoking stimuli 
+%%#%% engaging %%#%% fear%%dsh%%neutralizing rituals%%per%%]$~ ~$[if %%#%% %%#%% %%#%% 
+accomplished %%#%% persistently (for %%#%% sufficient duration 
+%%#%% time %%#%% trial) ]^[ consistently (across trials)%%lst%% %%#%% 
+patient %%#%% %%#%% %%#%% experience %%#%% natural reduction %%#%% 
+anxiety and%%lst%% %%#%% importantly%%lst%% %%#%% eventually %%#%% able %%#%% 
+%%#%% %%#%% his/her day%%dsh%%to%%dsh%%day activities %%#%% %%#%% %%#%% ]f[ 
+elaborate rituals ]v[ avoidance repertoires%%per%%]$~ 
+~$[introduction %%#%% ex/rp ]f[ ocd 
+%%#%% past decade 
+%%#%% %%#%% %%#%% %%#%% begin %%#%% stating %%#%% ex/rp%%lst%% %%#%% %%#%% %%#%% 
+%%#%% here%%lst%% %%#%% ]n[ refer %%#%% %%#%% theoretical stance%%lst%% ]b[ %%#%% 
+refers %%#%% %%#%% collection %%#%% treatment techniques %%#%% %%#%% 
+borne %%#%% behavioral theory%%per%%]$~ ~$[as %%#%% name implies%%lst%% ex/ 
+rp %%#%% %%#%% collection %%#%% therapeutic techniques aimed %%#%% 
+teaching %%#%% individual %%#%% approach%%lst%% %%#%% %%cmp%% avoid%%lst%% 
+fear%%dsh%%producing stimuli (exposure) coupled %%#%% %%#%% prevention %%#%% fear%%dsh%%neutralizing rituals (response prevention)%%per%%]$~ 
+~$[that %%#%% said%%lst%% %%#%% %%#%% %%#%% misleading %%#%% suggest %%#%% %%#%% 
+%%#%% ]n[ frequently employ %%#%% treatment techniques%%lst%% 
+%%#%% %%#%% %%#%% commonly %%#%% %%#%% treatment packages %%#%% 
+emphasize %%#%% cognitively%%dsh%%based techniques (see chosak%%lst%% marques%%lst%% fama%%lst%% renaud%%lst%% wilhelm%%lst%% 2009)%%per%%]$~ ~$[together%%lst%% 
+%%#%% collection %%#%% techniques %%#%% frequently referred %%#%% %%#%% 
+cbt%%per%%]$~ ~$[we %%#%% ]n[ consider %%#%% %%#%% cognitive techniques 
+included %%#%% %%#%% packages %%#%% %%#%% inconsistent %%#%% 
+behavioral theory nor %%#%% ex/rp%%per%%1 %%#%% view %%#%% %%#%% 
+ancillary techniques %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% treatment 
+package %%#%% accomplish %%#%% treatment goal %%#%% providing 
+opportunities ]f[ %%#%% ocd patient %%#%% experience fear%%lst%% 
+observe fear reduction %%#%% %%#%% %%#%% absence %%#%% ritualistic 
+efforts %%#%% avoid ]v[ prevent feared consequences%%lst%% ]^[ %%#%% 
+1 
+1077%%dsh%%7229/08/29–39$1%%per%%00/0 
+© 2008 association ]f[ behavioral ]^[ cognitive therapies%%per%%]$~ 
+~$[published %%#%% elsevier ltd%%per%%]$~ ~$[all rights reserved%%per%%]$~ 
+~$[we conceptualize cognition %%#%% %%#%% active%%lst%% albeit private%%lst%% behavioral 
+process%%lst%% %%#%% %%#%% termed “thinking,” %%#%% %%#%% consistent %%#%% %%#%% 
+behavioral analysis%%per%%]$~ ~$[however%%lst%% ]f[ simplicity %%#%% %%#%% refer %%#%% “thinking” 
+%%#%% “cognitive” ]^[ %%#%% referring %%#%% intervention techniques %%#%% %%#%% 
+%%#%% %%#%% traditional term “cognitive therapy%%per%%” 
+himle & franklin 
+30 
+learn %%#%% repeated experience %%#%% %%#%% feared consequences %%#%% ]n[ materialize ]^[ %%#%% obsessional distress 
+reduces %%#%% %%#%% course %%#%% time %%cmp%% allowed %%#%% %%#%% so%%per%%]$~ 
+~$[it %%#%% %%#%% %%#%% %%#%% note %%#%% %%#%% outset %%#%% %%#%% 
+cause %%#%% ocd remains unknown ]^[ %%#%% single model 
+]v[ theory ]y[ proposed%%lst%% including behavioral theory%%lst%% %%#%% 
+able %%#%% %%#%% explain %%#%% ]v[ %%#%% ocd develops (taylor%%lst%% 
+abramowitz%%lst%% & mckay%%lst%% 2007)%%per%%]$~ ~$[further%%lst%% %%#%% %%#%% %%#%% 
+data %%#%% support %%#%% single theory %%#%% accounting ]f[ %%#%% 
+wide symptom variability observed %%#%% ocd patients%%per%%]$~ ~$[in 
+fact%%lst%% %%#%% %%#%% %%#%% reasonably %%#%% %%#%% %%#%% underlying 
+cause %%#%% ocd %%#%% multifactorial%%scn%% involving complex 
+interactions %%#%% genetic%%lst%% physiological%%lst%% ]^[ behavioral (including cognitive%%lst%% emotional%%lst%% ]^[ social) 
+factors%%per%%]$~ ~$[just %%#%% psychopharmacological interventions 
+%%#%% spawned %%#%% %%#%% understanding %%#%% %%#%% underlying biological processes involved %%#%% ocd%%lst%% cbt %%#%% 
+risen %%#%% %%#%% understanding %%#%% underlying behavioral 
+processes involved %%#%% ocd%%per%%]$~ 
+~$[theoretical rationale ]f[ ex/rp 
+%%#%% learning models %%#%% ocd %%#%% based largely %%#%% %%#%% 
+two%%dsh%%factor theory %%#%% fear (dollard & miller%%lst%% 1950%%scn%% mowrer%%lst%% 
+1951%%lst%% 1960)%%per%%]$~ ~$[the two%%dsh%%factor model proposes %%#%% %%#%% %%#%% 
+individual %%#%% faced %%#%% %%#%% situation %%#%% elicits %%#%% physiological fear ]v[ anxiety state%%lst%% %%#%% unconditioned (i%%per%%e%%per%%%%lst%% 
+unlearned) behavioral reaction %%#%% escape %%#%% state %%#%% 
+initiated%%per%%]$~ ~$[if %%#%% action %%#%% successful %%#%% reducing %%#%% anxiety%%lst%% 
+%%#%% %%#%% streng%%cmp%%ed%%lst%% %%#%% negative reinforcement%%lst%% ]^[ 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% reproduced %%#%% %%#%% presence %%#%% 
+similar anxiety%%dsh%%producing stimuli %%#%% %%#%% future%%per%%]$~ ~$[through 
+learning experiences%%lst%% various internal (e%%per%%g%%per%%%%lst%% %%#%% ]^[ 
+images) ]^[ external (i%%per%%e%%per%%%%lst%% contextual) stimuli acquire %%#%% 
+ability %%#%% elicit anxiety ]^[ %%#%% ensuing escape response%%per%%]$~ 
+~$[when %%#%% escape response %%#%% performed “compulsively” %%#%% 
+response %%#%% benign (albeit distress%%dsh%%evoking) stimuli%%lst%% %%#%% %%#%% 
+%%#%% %%#%% suffer %%#%% ocd%%per%%]$~ 
+~$[ex/rp %%#%% based %%#%% %%#%% assumption %%#%% %%cmp%% %%#%% individual 
+%%#%% systematically exposed %%#%% stimuli %%#%% elicit obsessional 
+%%#%% ]^[ associated anxiety%%lst%% ]^[ %%#%% prevented %%#%% 
+escaping ]v[ otherwise neutralizing %%#%% anxiety (ritual 
+prevention)%%lst%% %%#%% anxiety %%#%% diminish %%#%% time %%#%% 
+%%#%% process %%#%% extinction ]^[ %%#%% person %%#%% %%#%% %%#%% 
+able %%#%% function %%#%% his/her daily life%%per%%]$~ ~$[theorists %%#%% %%#%% foa 
+]^[ kozak (1986) %%#%% posited %%#%% habituation %%#%% aided 
+%%#%% exposure %%#%% corrective information %%#%% %%#%% %%#%% 
+individual learns%%lst%% %%#%% direct experience%%lst%% %%#%% %%#%% 
+feared consequences %%#%% ]n[ materialize %%#%% %%#%% situations 
+%%#%% typically evoke obsessional distress%%per%%]$~ ~$[with repetition%%lst%% 
+%%#%% reduction %%#%% anxiety %%#%% %%#%% previously feared situation 
+makes %%#%% easier %%#%% %%#%% %%#%% run %%#%% resist %%#%% weaker urges %%#%% 
+escape and/or ritualize%%per%%]$~ 
+~$[from %%#%% practical standpoint%%lst%% %%#%% behavioral conceptualization focuses %%#%% %%#%% here%%dsh%%and%%dsh%%now functional relation%%dsh%% 
+ship %%#%% %%#%% individual’s obsessions ]^[ compulsions%%lst%% 
+%%#%% %%#%% assumption %%#%% %%#%% relationship %%#%% %%#%% modified 
+%%#%% treatment %%#%% necessarily understanding %%#%% 
+“cause” %%#%% %%#%% obsessions%%per%%]$~ ~$[furthermore%%lst%% %%#%% specific 
+content ]v[ form %%#%% %%#%% obsessions ]^[ compulsions %%#%% 
+relatively unimportant except %%#%% %%#%% extent %%#%% %%#%% set 
+%%#%% context ]f[ preparing specific treatment exercises%%per%%]$~ ~$[for 
+example%%lst%% %%#%% person %%#%% reports distress related %%#%% 
+repetitive%%lst%% intrusive %%#%% %%#%% harming %%#%% spouse 
+%%#%% engage %%#%% %%#%% ]v[ %%#%% forms %%#%% compulsive 
+behavior %%#%% reduce %%#%% distress%%per%%]$~ ~$[examples %%#%% include 
+frequent “checking in,” taking measures %%#%% avoid situations perceived %%#%% “high risk,” ]v[ elaborate mental rituals%%per%%]$~ 
+~$[in %%#%% %%#%% %%#%% examples%%lst%% %%#%% common underlying theme 
+%%#%% %%#%% repetitive performance %%#%% %%#%% ]v[ %%#%% rituals %%#%% 
+functions %%#%% remove ]v[ avoid %%#%% distress associated %%#%% 
+obsessional thoughts%%per%%]$~ ~$[in %%#%% case%%lst%% %%#%% individual %%#%% 
+learn %%#%% manage his/her ocd using ex/rp %%#%% 
+necessarily knowing %%#%% %%#%% obsession developed%%per%%]$~ ~$[in fact%%lst%% 
+throughout %%#%% course %%#%% ex/rp%%lst%% analyzing %%#%% nature 
+]^[ cause %%#%% one’s obsessions %%#%% actively discouraged %%#%% %%#%% 
+%%#%% leads %%#%% person %%#%% “fight” %%#%% %%#%% obsessions%%lst%% %%#%% 
+%%#%% %%#%% %%#%% ultimately %%#%% %%#%% worse%%per%%]$~ 
+~$[empirical support ]f[ ex/rp ]f[ ocd 
+%%#%% review %%#%% %%#%% research literature %%#%% strong 
+support ]f[ ex/rp %%#%% %%#%% treatment ]f[ ocd%%per%%]$~ ~$[several 
+recent qualitative ]^[ quantitative (i%%per%%e%%per%%%%lst%% meta%%dsh%%analytic) 
+literature reviews %%#%% evaluated ]^[ critiqued %%#%% cbt 
+]f[ ocd literature ]^[ %%#%% %%#%% concluded %%#%% cbt %%#%% 
+%%#%% effective treatment ]f[ reducing ocd %%#%% adults ]^[ 
+children (abramowitz%%lst%% 1996%%lst%% 1997%%scn%% abramowitz%%lst%% franklin%%lst%% 
+& foa%%lst%% 2002%%scn%% abramowitz%%lst%% whiteside%%lst%% & deacon%%lst%% 2005%%scn%% 
+foa & kozak%%lst%% 1996)%%per%%]$~ ~$[overall%%lst%% based %%#%% %%#%% reviews %%#%% 
+%%#%% literature%%lst%% reasonable estimates %%#%% ex/rp %%#%% %%#%% %%#%% 
+effective treatment ]f[ 60% %%#%% 90% %%#%% individuals %%#%% 
+50% %%#%% 80% symptom reduction common (abramowitz%%lst%% 
+1996%%lst%% 1997%%scn%% abramowitz et al%%per%%%%lst%% 2002%%scn%% abramowitz et al%%per%%%%lst%% 
+2005%%scn%% foa & kozak%%lst%% 1996%%scn%% greist%%lst%% 2000)%%per%%]$~ ~$[furthermore%%lst%% 
+recent evidence suggests %%#%% treatment gains %%#%% 
+maintained %%#%% 2%%dsh%%year follow%%dsh%%up (whittal%%lst%% robichaud%%lst%% 
+thordarson%%lst%% & mclean%%lst%% %%#%% press)%%per%%]$~ ~$[the treatment improvement rates observed %%#%% ex/rp rival %%#%% %%#%% 
+pharmacological studies%%lst%% ]^[ head%%dsh%%to%%dsh%%head behavior 
+therapy versus pharmacological treatment studies suggest 
+%%#%% behavior therapy ]n[ %%#%% provides longer%%dsh%%lasting 
+gains ]b[ %%#%% results %%#%% %%#%% short%%dsh%%term improvement 
+%%#%% symptoms (e%%per%%g%%per%%%%lst%% foa et al%%per%%%%lst%% 2005%%scn%% greist%%lst%% 1996%%scn%% simpson 
+et al%%per%%%%lst%% 2004)%%per%%]$~ 
+~$[case conceptualization 
+%%#%% %%#%% %%#%% caroline (twohig & whittal%%lst%% 2009%%dsh%%this 
+issue) provides %%#%% nice constellation %%#%% oc symptoms %%#%% 
+response%%cln%% ex/rp ]f[ ocd 
+%%#%% allow %%#%% %%#%% outline %%#%% ocd %%#%% %%#%% conceptualized 
+%%#%% %%#%% cognitive%%dsh%%behavioral framework ]^[ treated 
+using ex/rp%%per%%]$~ ~$[before %%#%% describe %%#%% ex/rp %%#%% 
+proceed%%lst%% %%#%% %%#%% %%#%% helpful ]f[ %%#%% reader %%#%% %%#%% review 
+caroline’s primary oc symptoms%%lst%% %%#%% %%#%% described 
+below ]^[ %%#%% summarized %%#%% table 1%%per%%]$~ 
+~$[caroline’s primary obsessional theme centers %%#%% 
+fears %%#%% %%#%% %%#%% cause harm %%#%% %%#%% %%#%% %%#%% %%#%% 
+spreading “bad energy” ]v[ illness %%#%% %%#%% result %%#%% injury%%lst%% 
+illness%%lst%% harm ]v[ death befalling friends%%lst%% family members%%lst%% 
+children%%lst%% ]v[ %%#%% individuals %%#%% %%#%% immediate proximity%%per%%]$~ 
+~$[caroline’s description %%#%% %%#%% obsessions %%#%% elaborate%%per%%]$~ ~$[she 
+describes accompanying feelings %%#%% “dust” %%#%% %%#%% hands 
+]^[ mouth%%lst%% %%#%% %%#%% believes serves %%#%% %%#%% medium %%#%% 
+%%#%% “bad energy” %%#%% spread %%#%% %%#%% %%#%% others%%per%%]$~ 
+~$[when %%#%% obsessional %%#%% %%#%% evoked%%lst%% caroline 
+performs %%#%% compulsive rituals%%lst%% %%#%% %%#%% believes 
+%%#%% prevent harm %%#%% coming %%#%% others%%per%%]$~ ~$[early %%#%% %%#%% 
+course %%#%% %%#%% disorder%%lst%% %%#%% %%#%% flick %%#%% fingers %%#%% order 
+%%#%% remove %%#%% harmful dust%%lst%% ]b[ %%#%% %%#%% fears %%#%% %%#%% 
+%%#%% spread %%#%% dust %%#%% %%#%% %%#%% her%%per%%]$~ ~$[as %%#%% result%%lst%% %%#%% 
+compulsive rituals %%#%% evolved %%#%% include%%cln%% (a) closing %%#%% 
+hands %%#%% fists whenever %%#%% %%#%% %%#%% dusty feeling%%lst%% (b) 
+biting %%#%% %%#%% %%#%% %%#%% tongue %%#%% “dissolve” %%#%% dust ]s[ %%#%% 
+%%#%% ]n[ spread%%lst%% (c) praying ]f[ god %%#%% protect %%#%% 
+%%#%% her%%lst%% (d) repeating %%#%% phrase “just goodness,” 
+%%#%% %%#%% believes %%#%% protect %%#%% %%#%% her%%lst%% (e) 
+avoiding saying “goodbye” %%#%% %%#%% fear %%#%% doing ]s[ %%#%% 
+cause harm %%#%% %%#%% recipient %%#%% %%#%% gesture%%lst%% (f) wiping %%#%% 
+hands %%#%% visiting %%#%% %%#%% %%#%% ill%%lst%% ]^[ (g) 
+31 
+performing elaborate rituals %%#%% remove contaminants 
+%%#%% visiting %%#%% %%#%% %%#%% ill (wiping/washing %%#%% 
+hands%%lst%% washing %%#%% clothing%%lst%% ]^[ showering)%%per%%]$~ ~$[she %%#%% 
+engages %%#%% husband %%#%% %%#%% rituals %%#%% %%#%% %%#%% %%#%% wash 
+%%#%% hands ]^[ clothing %%#%% visiting %%#%% %%#%% %%#%% ill %%#%% 
+order %%#%% prevent %%#%% %%#%% becoming ill%%per%%]$~ ~$[these by%%dsh%%proxy 
+rituals%%lst%% %%#%% referred %%#%% %%#%% accommodation%%lst%% %%#%% ]n[ 
+uncommon%%lst%% especially %%#%% close interpersonal (e%%per%%g%%per%%%%lst%% 
+spousal%%lst%% partner ]^[ parent%%dsh%%child) relationships%%per%%]$~ 
+~$[in addition %%#%% %%#%% fears %%#%% directly causing harm %%#%% 
+others%%lst%% caroline reports %%#%% pathological sense %%#%% responsibility %%#%% prevent harm %%#%% coming %%#%% %%#%% ]^[ fears 
+%%#%% %%cmp%% %%#%% %%#%% ]n[ perform specific rituals%%lst%% %%#%% %%#%% 
+%%#%% %%#%% contract cancer ]v[ %%#%% %%#%% otherwise harmed%%per%%]$~ ~$[to 
+alleviate %%#%% anxiety associated %%#%% %%#%% obsessions%%lst%% %%#%% 
+engages %%#%% %%#%% variety %%#%% covert ]^[ overt “protective” 
+rituals%%lst%% %%#%% temporarily alleviate %%#%% discomfort%%per%%]$~ ~$[her 
+covert ritual involves creating %%#%% imagined circle %%#%% 
+%%#%% person whom %%#%% believes %%#%% %%#%% %%#%% protect ]^[ 
+mentally “pulling” %%#%% imagined circle %%#%% %%#%% %%#%% 
+person%%per%%]$~ ~$[in addition%%lst%% %%#%% engages %%#%% %%#%% variety %%#%% overt 
+rituals%%lst%% including touching %%#%% person%%lst%% praying%%lst%% ]^[ eyeblinking%%per%%]$~ ~$[according %%#%% caroline%%lst%% %%#%% rituals protect %%#%% 
+person %%#%% harm%%per%%]$~ ~$[it %%#%% %%#%% noteworthy %%#%% caroline %%#%% 
+engages %%#%% mental checking rituals%%per%%]$~ ~$[she states %%#%% %%#%% 
+%%#%% hears %%#%% %%#%% accident (perhaps %%#%% %%#%% news)%%lst%% %%#%% 
+“mentally reviews” %%#%% %%#%% %%#%% %%#%% contact %%#%% %%#%% 
+person involved %%#%% %%#%% accident%%per%%]$~ ~$[this type %%#%% questioning/ 
+checking %%#%% %%#%% considered %%#%% mental ritual designed %%#%% 
+alleviate distress associated %%#%% %%#%% pathological sense %%#%% 
+table 1 
+caroline’s primary obsessive%%dsh%%compulsive presentation 
+%%#%% obsessional theme 
+specific thoughts/fears 
+associated rituals 
+fear %%#%% causing harm %%#%% %%#%% 
+fear %%#%% spreading “bad energy,” %%#%% %%#%% form 
+%%#%% dust %%#%% %%#%% hands ]v[ mouth%%lst%% %%#%% %%#%% 
+result %%#%% injury%%lst%% illness%%lst%% ]v[ death %%#%% others%%lst%% 
+especially friends ]^[ family %%#%% ]^[ 
+individuals %%#%% %%#%% ill 
+pathological sense %%#%% 
+responsibility ]f[ harm 
+befalling %%#%% ]v[ %%#%% 
+prevent harm %%#%% 
+befalling %%#%% 
+believing %%#%% %%#%% responsible ]f[ preventing 
+harm %%#%% coming %%#%% %%#%% ]^[ protecting 
+%%#%% %%#%% %%#%% %%#%% harm/danger/disease%%lst%% 
+especially cancer 
+flicking fingers %%#%% remove %%#%% harmful dust 
+wiping ]v[ washing %%#%% hands %%#%% remove %%#%% dust 
+closing %%#%% hands %%#%% fists %%#%% prevent dust %%#%% 
+escaping 
+biting %%#%% %%#%% %%#%% %%#%% tongue %%#%% “dissolve” 
+%%#%% dust 
+praying (for god %%#%% protect %%#%% %%#%% her) 
+repeating %%#%% phrase “just goodness” 
+avoiding saying “goodbye” 
+elaborate washing/cleaning rituals (washing %%#%% 
+clothing%%lst%% showering%%lst%% etc%%per%% %%#%% visiting %%#%% ill) 
+by%%dsh%%proxy rituals (accommodation)%%cln%% %%#%% %%#%% 
+husband %%#%% wash %%#%% hands ]^[ clothing %%#%% 
+%%#%% fears %%#%% %%#%% %%#%% “contaminated” 
+creating %%#%% imagined circle %%#%% %%#%% person 
+whom %%#%% believes %%#%% %%#%% %%#%% protect ]^[ 
+mentally “pulling” %%#%% imagined circle %%#%% %%#%% 
+%%#%% person 
+touching %%#%% person %%#%% prevent harm 
+praying 
+eye%%dsh%%blinking %%#%% prevent harm 
+mentally reviewing 
+32 
+himle & franklin 
+responsibility%%per%%]$~ ~$[the function %%#%% mental rituals %%#%% %%#%% %%#%% 
+%%#%% %%#%% overt rituals%%lst%% ]^[ %%cmp%% %%#%% %%#%% play %%#%% key role %%#%% 
+%%#%% maintenance %%#%% ocd ]^[ %%#%% %%#%% directly targeted 
+via response prevention%%per%%]$~ 
+~$[given %%#%% pattern %%#%% symptoms%%lst%% ]^[ %%#%% %%#%% 
+robust response %%#%% ocd symptoms %%#%% ex/rp%%lst%% caroline 
+%%#%% %%#%% %%#%% %%#%% candidate ]f[ %%#%% treatment%%per%%]$~ ~$[the goal %%#%% 
+ex/rp %%#%% %%#%% %%#%% teach caroline %%#%% confront feared 
+situations%%lst%% %%#%% %%#%% graduated manner%%lst%% %%#%% simultaneously 
+]^[ voluntarily refraining %%#%% performing %%#%% rituals%%per%%]$~ 
+~$[although %%#%% “meat” %%#%% treatment %%#%% focus %%#%% 
+exposure ]^[ ritual prevention%%lst%% maladaptive ocd%%dsh%%specific cognitions %%#%% %%#%% identified ]^[ cognitive therapy 
+(ct) techniques %%#%% %%#%% %%#%% included %%#%% target %%#%% 
+symptoms%%lst%% %%#%% %%#%% %%#%% %%#%% research %%#%% %%#%% %%#%% cognitive 
+techniques %%#%% %%#%% helpful%%per%%]$~ ~$[it %%#%% %%#%% suggested %%#%% 
+cognitive techniques %%#%% increase compliance %%#%% 
+exposure tasks ]f[ %%#%% patients (freeston%%lst%% ladouceur%%lst%% 
+gagnon%%lst%% et al%%per%%%%lst%% 1997%%lst%% leahy%%lst%% 2007) ]^[ compliance %%#%% 
+treatment %%#%% %%#%% associated %%#%% improved treatment 
+outcome (abramowitz%%lst%% franklin%%lst%% zoellner%%lst%% & dibernardo%%lst%% 
+2002)%%per%%]$~ ~$[it %%#%% %%#%% %%#%% suggested %%#%% cognitive techniques %%#%% improve treatment retention (vogel%%lst%% stiles%%lst%% & 
+gotestam%%lst%% 2004)%%scn%% however%%scn%% empirical findings %%#%% %%#%% 
+matter %%#%% mixed%%lst%% %%#%% %%#%% clinical trials failing %%#%% 
+demonstrate differential dropout rates %%#%% ex/rp 
+%%#%% ]^[ %%#%% ct (whittal%%lst%% thordarson%%lst%% & mclean%%lst%% 
+2005) ]^[ %%#%% recent research %%#%% ex/rp %%#%% %%#%% 
+associated %%#%% %%#%% dropout rates %%cmp%% ct (whittal et 
+al%%per%%%%lst%% %%#%% press)%%per%%]$~ ~$[it %%#%% %%#%% %%#%% note %%#%% %%#%% cognitive 
+techniques %%#%% adopted ]^[ utilized %%#%% conjunction %%#%% 
+ex/rp%%lst%% %%#%% inclusion %%#%% cognitive therapy techniques %%#%% 
+]n[ meant %%#%% change%%lst%% suppress%%lst%% ]v[ stop %%#%% patient’s 
+irrational obsessions %%#%% %%#%% moment%%per%%]$~ ~$[to %%#%% contrary%%lst%% %%#%% 
+focus %%#%% treatment %%#%% %%#%% teach caroline %%#%% directly confront 
+%%#%% feared stimulus ]^[ deliberately elaborate ]v[ focus 
+%%#%% %%#%% fears %%#%% %%#%% moment%%lst%% %%#%% %%cmp%% %%#%% engage %%#%% 
+attempts %%#%% stop obsessions ]^[ discomfort %%#%% occurring%%per%%]$~ ~$[most often%%lst%% patients %%#%% ocd %%#%% %%#%% %%#%% 
+hard %%#%% inherently futile attempts %%#%% stop %%#%% obsessions%%per%%]$~ 
+~$[unfortunately%%lst%% %%#%% %%cmp%% decreasing distress%%lst%% %%#%% 
+attempts contribute %%#%% %%#%% problem ]^[ %%#%% ocd 
+worse%%per%%]$~ ~$[for example%%lst%% %%#%% %%#%% %%#%% caroline%%lst%% %%#%% 
+%%#%% %%#%% cognitive techniques %%#%% teach %%#%% %%#%% evaluate 
+]^[ %%#%% accurately estimate %%#%% actual level %%#%% threat 
+]^[ probability %%#%% %%#%% negative outcomes %%#%% %%#%% fears%%per%%]$~ 
+~$[we %%#%% %%#%% teach %%#%% %%#%% %%#%% %%#%% %%#%% inaccurate 
+]^[ %%#%% %%#%% %%#%% ]n[ necessarily %%#%% %%#%% listen %%#%% %%#%% 
+%%#%% ]v[ %%#%% %%#%% literally%%per%%]$~ ~$[rather%%lst%% %%#%% %%#%% suggest 
+%%#%% %%#%% %%#%% ]^[ fears %%#%% hypotheses %%#%% %%#%% %%#%% 
+directly tested %%#%% ex/rp%%per%%]$~ ~$[in addition %%#%% increasing 
+compliance %%#%% ex/rp%%lst%% %%#%% technique %%#%% designed %%#%% 
+“externalize” ocd ]^[ %%#%% encourage caroline %%#%% stop 
+“fighting” %%#%% %%#%% ocd ]^[ start “being %%#%% own boss%%per%%” 
+%%#%% %%#%% emphasis %%#%% trying %%#%% change %%#%% behavior 
+%%#%% %%cmp%% trying %%#%% change %%#%% thoughts%%per%%]$~ 
+~$[in order %%#%% help caroline %%#%% conceptualize %%#%% 
+obsessions ]^[ rituals %%#%% %%#%% ex/rp standpoint%%lst%% %%#%% 
+%%#%% %%#%% help %%#%% %%#%% understand %%#%% %%#%% rituals %%#%% 
+performed %%#%% alleviate %%#%% discomfort %%#%% %%#%% associated 
+%%#%% %%#%% obsessional %%#%% ]v[ images%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% 
+%%#%% individuals %%#%% ocd fail %%#%% understand %%#%% %%#%% 
+%%#%% rituals %%#%% effective ]f[ reducing discomfort %%#%% %%#%% 
+short term%%lst%% %%#%% %%#%% maintaining (or %%#%% worsening) 
+ocd %%#%% %%#%% long%%dsh%%term%%per%%]$~ ~$[to help caroline understand %%#%% 
+%%#%% relates %%#%% ex/rp%%lst%% %%#%% %%#%% help %%#%% %%#%% understand 
+%%#%% %%#%% %%#%% %%#%% ]f[ %%#%% %%#%% overcome %%#%% fears %%#%% %%#%% refrain 
+%%#%% ritualizing ]^[ directly experience %%#%% outcome%%per%%]$~ 
+~$[although rarely stated explicitly %%#%% %%#%% rational%%lst%% %%#%% 
+direct experiences %%#%% help %%#%% %%#%% experience %%#%% harm 
+%%#%% ]n[ actually occur ]^[ %%#%% %%#%% refraining %%#%% 
+ritualizing %%#%% uncomfortable (at least %%#%% %%#%% short term) %%#%% %%#%% 
+]n[ dangerous %%#%% %%#%% ]v[ others%%per%%]$~ 
+~$[during ex/rp%%lst%% emphasis %%#%% %%#%% placed %%#%% %%#%% %%#%% 
+%%#%% patients %%#%% ocd %%#%% exercise voluntary control 
+%%#%% %%#%% rituals ]b[ cannot%%lst%% nor %%#%% not%%lst%% attempt %%#%% 
+control %%#%% obsessions ]v[ %%#%% associated distress %%#%% %%#%% 
+moment%%per%%]$~ ~$[in fact%%lst%% abramowitz (2006) suggested %%#%% %%#%% 
+“commandments” %%#%% successful ex/rp %%#%% %%#%% patients 
+%%#%% (a) expect %%#%% feel uncomfortable ]^[ (b) %%#%% 
+]n[ try %%#%% fight %%#%% discomfort%%per%%]$~ 
+~$[implementation %%#%% ex/rp 
+%%#%% number ]^[ length %%#%% ex/rp sessions %%#%% %%#%% 
+individual %%#%% %%#%% %%#%% vary considerably%%lst%% depending 
+%%#%% %%#%% severity %%#%% %%#%% individual’s ocd symptoms%%lst%% %%#%% 
+person’s availability ]f[ treatment%%lst%% ]^[ %%#%% host %%#%% %%#%% 
+factors%%per%%]$~ ~$[our experience (which %%#%% consistent %%#%% data 
+reported %%#%% randomized controlled trials) %%#%% %%#%% %%#%% 
+individuals seeking treatment %%#%% %%#%% outpatient basis %%#%% 
+respond %%#%% %%#%% 12 %%#%% 15 treatment sessions%%lst%% conducted %%#%% 
+least weekly%%lst%% ]^[ %%#%% lasting 60 %%#%% 90 minutes%%per%%]$~ ~$[there %%#%% 
+%%#%% %%#%% manuals %%#%% provide step%%dsh%%by%%dsh%%step ]^[ sessionby%%dsh%%session guides %%#%% implementing ex/rp (e%%per%%g%%per%%%%lst%% abramowitz%%lst%% 2006%%scn%% franklin & foa%%lst%% 1998%%scn%% kozak & foa%%lst%% 1997%%scn%% riggs 
+& foa%%lst%% 1993%%scn%% steketee%%lst%% 1993)%%per%%]$~ ~$[although %%#%% manual 
+suggests slight variations %%#%% treatment%%lst%% %%#%% %%#%% session 
+structure %%#%% fairly consistent%%per%%]$~ ~$[the primary components %%#%% 
+ex/rp include assessment %%#%% ocd symptoms%%lst%% psychoeducation ]^[ treatment rationale%%lst%% symptom monitoring%%lst%% 
+developing fear hierarchies%%lst%% in%%dsh%%session ]^[ out%%dsh%%of%%dsh%%session 
+exposure work%%lst%% relapse prevention%%lst%% ]^[ generalization 
+training%%per%%]$~ ~$[a sample session structure %%#%% provided %%#%% table 2%%per%%]$~ 
+~$[assessment ]^[ review %%#%% ocd symptoms 
+caroline’s primary ocd symptoms %%#%% outlined %%#%% detail 
+%%#%% %%#%% conceptualization provided above%%per%%]$~ ~$[caroline %%#%% 
+response%%cln%% ex/rp ]f[ ocd 
+table 2 
+sample session structure ]f[ ex/rp 
+session number 
+session goals 
+session 1 
+● assessment/review %%#%% ocd symptoms 
+● psychoeducation 
+● provide %%#%% overview %%#%% recent research %%#%% %%#%% biology ]^[ behavioral 
+characteristics %%#%% ocd 
+● explain %%#%% %%#%% patient %%#%% ocd %%#%% %%#%% neurobehavioral disorder %%#%% %%#%% 
+unknown cause%%scn%% focus %%#%% removing blame %%#%% patient %%#%% %%#%% placed %%#%% 
+him/herself 
+● avoid analysis aimed %%#%% uncovering %%#%% “cause” %%#%% ocd 
+● conduct %%#%% “inconvenience review” %%#%% outline %%#%% specific %%#%% %%#%% %%#%% 
+ocd %%#%% disrupting %%#%% patient’s life 
+● %%#%% %%#%% functional model %%#%% ocd ]^[ rationale ]f[ ex/rp 
+● %%#%% %%#%% %%#%% patient %%#%% “externalize” ocd 
+● teach symptom monitoring ]^[ rating (suds) 
+● begin development %%#%% fear hierarchy 
+● continue hierarchy development ]^[ refine hierarchies %%#%% %%#%% 
+● create separate hierarchies ]f[ %%#%% obsession/ritual 
+● prepare/plan ]f[ exposure exercises 
+● develop strategies ]f[ ritual prevention 
+● continue %%#%% %%#%% %%#%% patient %%#%% “externalize” ocd 
+● review ]^[ continue symptom monitoring 
+● discuss %%#%% barriers %%#%% treatment 
+● begin in%%dsh%%session%%lst%% therapist%%dsh%%guided exposure tasks %%#%% response prevention 
+● assign out%%dsh%%of%%dsh%%session%%lst%% patient%%dsh%%guided exposure “homework” 
+● review ]^[ continue symptom monitoring 
+● %%#%% progressively %%#%% hierarchy 
+● periodically assess ocd symptoms 
+● discuss ]^[ problem solve treatment barriers/noncompliance 
+● conduct final exposures 
+● %%#%% steps %%#%% promote generalization ]^[ maintenance 
+● %%#%% %%#%% patient create his/her own hierarchies%%lst%% develop his/her own 
+ritual prevention strategies%%lst%% etc%%per%% 
+● prepare ]f[ future challenges ]^[ create plan ]f[ relapse prevention 
+session 2 
+sessions 3–12 
+sessions 13–15 
+assessed using %%#%% yale%%dsh%%brown obsessive compulsive scale 
+(y%%dsh%%bocs)%%lst%% %%#%% %%#%% %%#%% gold%%dsh%%standard instrument ]f[ 
+assessing ocd symptoms %%#%% adults%%per%%]$~ ~$[the y%%dsh%%bocs %%#%% %%#%% 
+shown %%#%% %%#%% sensitive ]f[ detecting treatment%%dsh%%related 
+change ]s[ %%#%% %%#%% %%#%% administered repeatedly %%#%% %%#%% 
+course %%#%% treatment %%#%% assess treatment gains%%per%%]$~ ~$[it %%#%% noteworthy%%lst%% however%%lst%% %%#%% %%#%% addition %%#%% %%#%% y%%dsh%%bocs%%lst%% %%#%% 
+%%#%% structured interviews ]^[ self%%dsh%%report instruments 
+possess favorable psychometric properties ]^[ %%#%% %%#%% 
+included %%#%% aid %%#%% %%#%% assessment %%#%% ocd symptoms%%per%%]$~ 
+~$[commonly %%#%% structured interviews include %%#%% structured clinical interview ]f[ %%#%% dsm (scid%%scn%% %%#%% et al%%per%%%%lst%% 
+1995) ]^[ %%#%% anxiety disorders interview schedule (adis%%scn%% 
+dinardo%%lst%% brown%%lst%% & barlow%%lst%% 1994)%%per%%]$~ ~$[commonly %%#%% selfreport measures include %%#%% national institute %%#%% mental 
+health global obsessive%%dsh%%compulsive scale (nimh%%dsh%%gocs%%scn%% 
+insel et al%%per%%%%lst%% 1983)%%lst%% %%#%% padua inventory (sanavio%%lst%% 1988)%%lst%% %%#%% 
+leyton obsessional inventory (loi%%scn%% cooper%%lst%% 1970)%%lst%% ]^[ %%#%% 
+obsessive compulsive inventory (oci%%scn%% foa%%lst%% kozak%%lst%% salkovskis%%lst%% coles%%lst%% & amir%%lst%% 1998)%%per%%]$~ ~$[each %%#%% %%#%% self%%dsh%%report measures 
+%%#%% adequate psychometric properties ]^[ %%#%% relatively 
+brief %%#%% complete (see st%%per%%]$~ ~$[clare%%lst%% 2003%%lst%% ]f[ %%#%% review)%%per%%]$~ 
+~$[on %%#%% y%%dsh%%bocs%%lst%% caroline received %%#%% total sore %%#%% 22%%lst%% 
+suggesting %%#%% %%#%% symptoms %%#%% %%#%% moderate severity%%per%%]$~ 
+~$[as noted %%#%% ]^[ convergent %%#%% %%#%% %%#%% majority %%#%% 
+individuals %%#%% clinical ocd (e%%per%%g%%per%%%%lst%% foa & kozak%%lst%% 1995)%%lst%% 
+caroline reports %%#%% obsessions ]^[ compulsions %%#%% 
+affect %%#%% life %%#%% %%#%% ways%%cln%% %%#%% spends considerable 
+time engaged %%#%% rituals%%lst%% avoids children ]^[ individuals 
+%%#%% %%#%% ill%%lst%% avoids %%#%% (albeit few) situations ]^[ 
+touching %%#%% items%%lst%% ]^[ reports %%#%% daily activities require 
+considerable effort%%per%%]$~ ~$[in addition%%lst%% %%#%% directly involves %%#%% 
+husband %%#%% %%#%% rituals%%lst%% %%#%% %%#%% strain %%#%% relationship%%per%%]$~ 
+~$[psychoeducation 
+psychoeducation %%#%% %%#%% provided %%#%% %%#%% %%#%% %%#%% 
+sessions %%#%% treatment ]^[ periodically throughout treatment %%#%% necessary%%per%%]$~ ~$[psychoeducation %%#%% %%#%% goals%%lst%% 
+%%#%% %%#%% summarized %%#%% table 2%%per%%]$~ ~$[in addition %%#%% providing 
+basic information %%#%% %%#%% disorder%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+provide %%#%% %%#%% model %%#%% ocd %%#%% focuses %%#%% %%#%% hereand%%dsh%%now functional relationship %%#%% obsessions ]^[ 
+rituals%%per%%]$~ ~$[by focusing %%#%% %%#%% %%#%% ]^[ future (rather %%cmp%% 
+%%#%% past)%%lst%% %%#%% therapist %%#%% help %%#%% patient understand 
+33 
+34 
+himle & franklin 
+%%#%% %%#%% for%%lst%% ]^[ function of%%lst%% ex/rp ]^[ %%#%% %%#%% help 
+%%#%% patient understand %%#%% treatment %%#%% progress %%#%% necessarily knowing ]v[ understanding %%#%% “caused” 
+%%#%% disorder %%#%% %%#%% %%#%% place%%per%%]$~ ~$[for example%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% patients %%#%% ask%%lst%% “why %%#%% %%#%% %%#%% ocd?” %%#%% %%#%% ]n[ 
+uncommon ]f[ patients %%#%% %%#%% caroline %%#%% %%#%% reviewed 
+]^[ searched events throughout %%#%% history ]f[ %%#%% 
+clue ]v[ answer %%#%% %%#%% question%%lst%% %%#%% %%#%% %%#%% hope %%#%% %%#%% 
+discovering %%#%% caused %%#%% ocd %%#%% %%#%% %%#%% able %%#%% 
+somehow fix %%#%% problem%%per%%]$~ ~$[for example%%lst%% caroline reports %%#%% 
+series %%#%% unfortunate events %%#%% %%#%% %%#%% believe caused 
+%%#%% ocd (e%%per%%g%%per%%%%lst%% strained relationship %%#%% %%#%% mother ]f[ 
+%%#%% %%#%% %%#%% %%#%% sense %%#%% responsibility%%lst%% physical illness%%lst%% 
+%%#%% unexplained miscarriages%%lst%% %%#%% friend %%#%% died %%#%% 
+%%#%% illness ]f[ %%#%% caroline blamed herself)%%per%%]$~ ~$[these %%#%% 
+%%#%% unfortunate life events%%lst%% ]b[ %%#%% events %%#%% ]n[ 
+cause caroline’s ocd%%lst%% nor %%#%% caroline cause %%#%% events 
+%%#%% occur%%per%%]$~ ~$[when patients %%#%% focused %%#%% %%#%% cause %%#%% %%#%% 
+ocd%%lst%% %%#%% %%#%% %%#%% helpful %%#%% explain %%#%% ocd %%#%% %%#%% 
+neurobehavioral disorder %%#%% causes %%#%% ]n[ ]y[ %%#%% 
+understood%%per%%]$~ ~$[focusing %%#%% biological factors helps %%#%% 
+patient understand %%#%% ocd %%#%% %%#%% medical illness %%#%% 
+%%cmp%% %%#%% “learned habit” %%#%% %%#%% patient %%#%% control %%#%% 
+sufficient effort%%per%%]$~ ~$[for %%#%% patients%%lst%% %%#%% %%#%% helpful %%#%% actually 
+describe %%#%% neurobiological ]^[ neurochemical underpinnings believed %%#%% %%#%% involved %%#%% ocd%%per%%]$~ ~$[we %%cmp%% explain 
+%%#%% %%#%% patient %%#%% %%#%% %%#%% evidence %%#%% %%cmp%% %%#%% patient 
+learns ex/rp ]^[ changes %%#%% behavior%%lst%% %%#%% %%#%% %%#%% %%#%% 
+directly affect %%#%% underlying neurobiological disruption%%per%%]$~ 
+~$[in addition %%#%% providing essential information %%#%% 
+ocd%%lst%% psychoeducation %%#%% helps reduce %%#%% self%%dsh%%blame 
+%%#%% patient %%#%% %%#%% ]^[ promotes %%#%% externalizing %%#%% 
+ocd ]s[ %%#%% %%#%% patient %%#%% align %%#%% %%#%% therapist %%#%% 
+learn %%#%% %%#%% %%#%% manage his/her ocd (i%%per%%e%%per%%%%lst%% engage %%#%% 
+ex/rp)%%per%%]$~ ~$[often%%lst%% patients %%#%% %%#%% caroline %%#%% %%#%% 
+statements %%#%% as%%lst%% “i am%%lst%% deep down%%lst%% %%#%% horrible person%%per%%” 
+%%#%% statements %%#%% indicative %%#%% %%#%% level %%#%% self%%dsh%%blame 
+]^[ self%%dsh%%criticism %%#%% clients exhibit ]^[ highlight %%#%% 
+importance %%#%% %%#%% psychoeducation%%per%%]$~ ~$[in %%#%% %%#%% %%#%% 
+%%#%% begin %%#%% stating%%lst%% “as %%#%% mentioned earlier%%lst%% ocd %%#%% %%#%% 
+medical disorder %%#%% %%#%% makes people feel pretty 
+horrible%%per%%]$~ ~$[as %%#%% mentioned earlier%%lst%% ocd %%#%% %%#%% %%#%% 
+%%#%% life %%#%% %%#%% %%#%% ]^[ %%#%% %%#%% spent considerable 
+time ]^[ effort fighting %%#%% %%#%% ocd %%#%% %%#%% expense %%#%% 
+doing %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% do%%per%%]$~ ~$[unfortunately%%lst%% 
+%%#%% fighting hasn’t %%#%% %%#%% work%%per%%]$~ ~$[perhaps %%#%% %%#%% time %%#%% try 
+%%#%% new%%per%%” %%#%% addition%%lst%% %%#%% %%#%% %%#%% %%#%% opportunity %%#%% 
+introduce %%#%% concept %%#%% “externalizing” ocd%%per%%]$~ ~$[we %%#%% 
+%%#%% %%#%% caroline%%lst%% “it sounds %%#%% ocd %%#%% telling %%#%% %%#%% %%#%% 
+%%#%% %%#%% bad person%%lst%% ]b[ %%#%% %%#%% %%#%% ocd %%#%% %%#%% %%#%% 
+doesn’t %%#%% tell %%#%% truth%%per%%]$~ ~$[perhaps ocd %%#%% telling %%#%% 
+%%#%% %%#%% %%#%% ]n[ true%%per%%]$~ ~$[does %%#%% %%#%% possible?” %%#%% %%#%% 
+%%#%% %%#%% caroline%%lst%% “what makes %%#%% person %%#%% ]v[ bad?” 
+depending %%#%% %%#%% response%%lst%% %%#%% %%#%% %%cmp%% help %%#%% 
+realize %%#%% ocd %%#%% prevented %%#%% %%#%% living %%#%% life %%#%% 
+%%#%% %%#%% %%#%% %%#%% to%%lst%% %%#%% %%#%% %%#%% %%#%% feel horrible%%lst%% ]b[ 
+%%#%% feeling horrible %%#%% ]n[ necessarily %%#%% %%#%% %%#%% 
+horrible person%%per%%]$~ ~$[we %%#%% %%cmp%% propose %%#%% %%#%% ex/ 
+rp%%lst%% caroline %%#%% learn skills %%#%% %%#%% help %%#%% %%#%% function 
+%%#%% %%#%% day%%dsh%%to%%dsh%%day basis%%per%%]$~ ~$[for example%%lst%% %%cmp%% %%#%% learns %%#%% change 
+%%#%% behavior ]s[ %%#%% %%#%% %%#%% pursue %%#%% enjoyable 
+activities%%lst%% %%#%% %%#%% feel %%#%% ]^[ less %%#%% %%#%% horrible 
+person%%per%%]$~ ~$[externalizing ocd %%#%% %%#%% therapeutic technique %%#%% 
+%%#%% %%#%% %%#%% throughout treatment%%per%%]$~ ~$[it %%#%% designed %%#%% 
+distance %%#%% patient’s %%#%% %%#%% his/her behavior ]^[ 
+%%#%% align %%#%% patient ]^[ therapist %%#%% %%#%% “team” %%#%% %%#%% 
+%%#%% %%#%% changing %%#%% patient’s behavior%%per%%]$~ 
+~$[providing %%#%% cogent rationale ]f[ ex/rp 
+%%#%% %%#%% perspective %%#%% ex/rp%%lst%% %%#%% attempts %%#%% 
+discover %%#%% cause %%#%% ocd beyond %%#%% %%#%% %%#%% 
+psychoeducation %%#%% ]n[ %%#%% %%#%% enhance treatment%%per%%]$~ ~$[the 
+primary goal %%#%% ex/rp %%#%% %%#%% help %%#%% person understand 
+%%#%% %%#%% rituals %%#%% currently maintained%%lst%% ]n[ %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% place%%per%%]$~ ~$[specifically%%lst%% emphasis %%#%% 
+placed %%#%% helping %%#%% person %%#%% understand %%#%% obsessions %%#%% rise %%#%% distress%%lst%% compulsions reduce distress%%lst%% ]^[ 
+%%#%% behavior designed %%#%% reduce %%#%% distress %%#%% %%#%% 
+streng%%cmp%%ed ]^[ repeated%%per%%]$~ ~$[this focus %%#%% %%#%% %%#%% 
+helps set %%#%% stage ]f[ ex/rp %%#%% providing %%#%% rationale ]f[ 
+response prevention%%per%%]$~ ~$[simply put%%lst%% %%#%% rationale %%#%% %%#%% 
+rituals (i%%per%%e%%per%%%%lst%% avoidance) %%#%% %%#%% problem %%cmp%% %%#%% 
+“feed” %%#%% obsessions%%lst%% %%#%% %%#%% %%#%% elicit anxiety ]^[ 
+discomfort%%per%%]$~ ~$[it %%#%% critically important%%lst%% however%%lst%% %%#%% convey %%#%% 
+%%#%% patient %%#%% %%#%% reduction %%#%% %%#%% frequency ]^[ 
+intensity %%#%% obsessional distress %%#%% %%#%% process %%#%% %%#%% occur 
+%%#%% time %%#%% repeated exposure%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% 
+short%%dsh%%term goal %%#%% %%#%% treatment %%#%% %%#%% increase %%#%% distress 
+%%#%% intentionally confronting %%#%% %%#%% situations ]^[ 
+%%#%% %%#%% %%#%% provoke it%%per%%]$~ ~$[put %%#%% way%%lst%% %%#%% emphasize %%#%% importance %%#%% increasing distress ]^[ discomfort 
+(focus %%#%% %%#%% present)%%lst%% %%#%% %%#%% knowledge %%#%% empirical 
+studies %%#%% indicated that%%lst%% %%#%% time%%lst%% %%#%% patient’s 
+anxiety ]^[ distress %%#%% decrease%%per%%]$~ 
+~$[focusing %%#%% %%#%% functional relationship %%#%% obsessions ]^[ compulsions %%#%% underscores %%#%% importance %%#%% 
+%%#%% efforts %%#%% limit rituals ]^[ %%#%% avoidance 
+behaviors %%#%% %%cmp%% trying %%#%% derail ]v[ change obsessions%%per%%]$~ 
+~$[this emphasis %%#%% essential %%#%% convey %%cmp%% %%#%% 
+individuals %%#%% ocd %%#%% highly motivated %%#%% “fight” %%#%% 
+control %%#%% obsessions%%per%%]$~ ~$[ironically%%lst%% however%%lst%% fighting %%#%% 
+obsessions %%#%% %%#%% %%#%% %%#%% %%#%% harm %%cmp%% good%%lst%% %%#%% %%#%% %%#%% 
+considerable evidence %%#%% %%#%% %%#%% attempting %%#%% control 
+obsessions %%#%% %%#%% %%#%% increase %%#%% frequency ]^[ intensity 
+(clark%%lst%% ball%%lst%% & pape%%lst%% 1991)%%per%%]$~ ~$[this concept %%#%% introduced 
+%%#%% %%#%% treatment %%#%% order %%#%% help %%#%% patient understand 
+%%#%% trying %%#%% fight obsessions %%#%% %%#%% %%#%% “shoveling sand%%per%%” 
+%%#%% strong emphasis %%#%% ritual prevention helps highlight 
+response%%cln%% ex/rp ]f[ ocd 
+%%#%% message %%#%% %%#%% %%#%% patient %%#%% exert %%#%% control 
+%%#%% %%#%% performance %%#%% rituals%%lst%% he/she %%#%% control 
+(i%%per%%e%%per%%%%lst%% “stop”) %%#%% %%#%% ]v[ associated distress%%per%%]$~ 
+~$[the rationale ]f[ ritual prevention %%#%% %%#%% broached 
+carefully%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% refraining %%#%% 
+performing rituals %%#%% elicit considerable anxiety%%lst%% especially %%#%% %%#%% treatment%%per%%]$~ ~$[we %%#%% %%#%% %%#%% helpful %%#%% begin 
+%%#%% examples unrelated %%#%% ocd%%per%%]$~ ~$[for example%%lst%% %%#%% %%#%% 
+%%#%% caroline%%lst%% “were %%#%% nervous %%#%% %%#%% time %%#%% %%#%% 
+%%#%% %%#%% date %%#%% %%#%% husband?” %%#%% %%#%% answers “yes,” %%cmp%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% nonthreatening %%#%% %%#%% introduce %%#%% 
+principles %%#%% ex/rp%%per%%]$~ ~$[for example%%lst%% %%#%% %%#%% %%#%% %%#%% 
+following%%cln%% “it %%#%% normal %%#%% feel anxious %%#%% %%#%% %%#%% date%%lst%% 
+but%%lst%% %%#%% %%#%% avoided dating %%cmp%% %%#%% %%#%% %%#%% date 
+anxiety%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% outcome?” %%#%% goal %%#%% %%#%% help caroline understand %%#%% %%cmp%% %%#%% 
+%%#%% avoided %%#%% %%#%% date %%#%% %%#%% husband%%lst%% %%#%% %%#%% ]n[ 
+%%#%% developed %%#%% relationship %%#%% him%%lst%% regardless %%#%% %%#%% 
+%%#%% %%#%% desired one%%per%%]$~ ~$[in addition%%lst%% %%#%% %%#%% %%#%% caroline 
+“how nervous %%#%% %%#%% %%#%% %%#%% %%#%% date%%lst%% third date%%lst%% 
+etc%%per%%?” ]v[ “how nervous %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% date %%#%% %%#%% 
+husband now?” ]^[ “are %%#%% glad %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% date?” %%#%% goal %%#%% %%#%% %%#%% %%#%% %%#%% non%%dsh%%threatening 
+example %%#%% help caroline understand %%#%% %%#%% %%#%% dates 
+%%#%% attended %%#%% %%#%% husband%%lst%% %%#%% easier %%#%% became%%per%%]$~ ~$[the 
+possibility %%#%% %%#%% similar process %%#%% %%#%% applicable %%#%% 
+ocd %%#%% introduced %%#%% %%#%% hypothesis %%#%% %%#%% tested %%#%% 
+ex/rp%%per%%]$~ ~$[in %%#%% words%%lst%% %%#%% goal %%#%% %%#%% help caroline 
+understand ]^[ accept %%#%% %%cmp%% %%#%% %%#%% %%#%% %%#%% therapist 
+%%#%% learn %%#%% specific set %%#%% ocd management skills %%#%% %%#%% 
+%%#%% %%#%% able %%#%% gradually reduce %%#%% ritualistic behavior%%lst%% %%#%% 
+%%#%% %%#%% %%#%% able %%#%% function %%#%% %%#%% day%%dsh%%to%%dsh%%day basis despite 
+%%#%% ocd%%per%%]$~ ~$[by doing ]s[ %%#%% %%#%% board%%lst%% interestingly 
+%%#%% ]^[ %%#%% %%#%% treatment outcome data %%#%% ocd 
+repeatedly support%%lst%% %%#%% frequency ]^[ intensity %%#%% %%#%% 
+obsessions %%#%% %%#%% %%#%% diminish %%#%% time%%per%%]$~ ~$[thus%%lst%% %%#%% 
+paying less attention %%#%% obsessions %%#%% %%#%% short run%%lst%% %%#%% 
+therapist %%#%% %%#%% %%#%% empirically supported statement 
+%%#%% %%#%% pernicious influence %%#%% %%#%% %%#%% %%#%% frequency 
+%%#%% %%#%% %%#%% reduced%%per%%]$~ 
+~$[it %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% individual gains %%#%% 
+understanding %%#%% %%#%% principles %%#%% ex/rp%%lst%% %%#%% 
+remain understandably hesitant %%#%% %%#%% engage %%#%% %%#%% 
+treatment %%cmp%% %%#%% quickly understand %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% tolerate discomfort (we %%#%% refer %%#%% %%#%% %%#%% %%#%% 
+“you %%#%% %%#%% %%#%% %%#%% what?” phenomenon)%%per%%]$~ ~$[the therapist 
+%%#%% address %%#%% %%#%% helping caroline understand %%#%% %%#%% 
+%%#%% %%#%% tolerating %%#%% levels %%#%% discomfort%%lst%% ]b[ %%#%% 
+%%#%% useful end%%per%%]$~ ~$[this %%#%% %%#%% %%#%% %%#%% therapist introduces 
+%%#%% concept %%#%% extinction%%lst%% which%%lst%% simply put%%lst%% %%#%% %%#%% 
+summarized %%#%% “maybe %%#%% %%#%% %%#%% %%#%% yourself feel bad %%#%% 
+feel good” ]^[ posed %%#%% %%#%% hypothesis %%#%% %%#%% “the 
+%%#%% %%#%% %%#%% it%%lst%% %%#%% easier %%#%% gets%%per%%” %%#%% %%#%% immediate 
+focus %%#%% therapy %%#%% reducing rituals%%lst%% patients %%#%% %%#%% sufficient 
+understanding %%#%% %%#%% ex/rp model quickly %%#%% %%#%% 
+realize %%#%% %%#%% refraining %%#%% rituals%%lst%% %%#%% %%#%% %%#%% %%#%% 
+experience %%#%% significant reduction %%#%% anxiety %%#%% %%#%% %%#%% 
+run %%cmp%% %%#%% %%#%% %%#%% %%#%% performing %%#%% escape/ 
+avoidance rituals ]^[ %%#%% thereby allowing extinction %%#%% 
+occur%%per%%]$~ ~$[they %%#%% %%#%% %%#%% “feeding %%#%% beast,” %%#%% %%#%% were%%per%%]$~ 
+~$[the nuts ]^[ bolts %%#%% ex/rp 
+%%#%% %%#%% client %%#%% %%#%% board %%#%% ex/rp%%lst%% %%#%% %%#%% %%#%% 
+%%#%% gather information %%#%% anxiety “triggers” ]^[ %%#%% help 
+%%#%% client recognize %%#%% rituals%%lst%% %%#%% %%#%% %%#%% difficult 
+%%cmp%% %%#%% patients’ rituals %%#%% %%#%% ]s[ habitual 
+%%#%% %%#%% %%#%% %%#%% unaware %%#%% %%#%% performance%%per%%]$~ ~$[helping %%#%% 
+patient %%#%% recognize triggers ]^[ rituals %%#%% accomplished 
+%%#%% %%#%% combination %%#%% clinician interview ]^[ selfmonitoring%%per%%]$~ ~$[self%%dsh%%monitoring forms %%#%% %%#%% easily developed %%#%% help patients record ]^[ recognize%%lst%% %%#%% real%%dsh%%time%%lst%% 
+instances %%#%% ritualizing%%per%%]$~ ~$[when completing %%#%% self%%dsh%%monitoring form%%lst%% %%#%% %%#%% %%#%% %%#%% ]n[ %%#%% record %%#%% time%%lst%% 
+frequency%%lst%% ]^[ duration %%#%% rituals%%lst%% ]b[ %%#%% %%#%% record 
+contextual factors ]^[ information %%#%% obsessions (i%%per%%e%%per%%%%lst%% 
+feared consequences) ]s[ %%#%% oc triggers %%#%% %%#%% 
+identified%%per%%]$~ ~$[for example%%lst%% triggers ]f[ caroline %%#%% %%#%% 
+leaving %%#%% %%#%% morning (having %%#%% %%#%% “goodbye” %%#%% %%#%% 
+husband)%%lst%% crowded %%#%% %%#%% %%#%% %%#%% spread %%#%% 
+“dust” %%#%% others%%lst%% %%#%% sight %%#%% children%%lst%% ]^[ social 
+encounters %%#%% %%#%% require %%#%% hand%%dsh%%shake greeting%%per%%]$~ 
+~$[early %%#%% treatment%%lst%% %%#%% %%#%% %%#%% helpful %%#%% teach patients %%#%% 
+method ]f[ quantifying anxiety%%per%%]$~ ~$[this %%#%% typically accomplished using %%#%% subjective units %%#%% distress scale (suds)%%per%%]$~ 
+~$[suds refers %%#%% %%#%% metric %%#%% %%#%% %%#%% client rates %%#%% 
+anxiety %%#%% %%#%% 0%%dsh%%to%%dsh%%100 scale%%lst%% %%#%% 0 indicating %%#%% distress 
+]^[ 100 indicating %%#%% maximum distress%%per%%]$~ ~$[the suds scale 
+%%#%% %%#%% %%#%% %%#%% determine %%#%% level %%#%% anxiety triggered %%#%% 
+various obsessions/triggers ]^[ %%#%% %%#%% essential ]f[ 
+building %%#%% fear hierarchy%%per%%]$~ ~$[it %%#%% allows %%#%% %%#%% succinct 
+%%#%% %%#%% convey %%#%% level %%#%% distress %%#%% experienced %%#%% %%#%% 
+%%#%% exposure%%per%%]$~ ~$[the therapist %%#%% %%#%% %%#%% technique %%#%% 
+begin constructing %%#%% hierarchy %%#%% feared situations %%#%% 
+%%#%% %%#%% %%#%% %%#%% ex/rp%%per%%]$~ ~$[sample hierarchies2 ]f[ %%#%% %%#%% 
+caroline’s primary fears ]^[ associated suds ratings %%#%% 
+%%#%% %%#%% tables 3 ]^[ 4%%per%% 
+2 
+note %%#%% %%#%% hierarchies %%#%% %%#%% %%#%% %%#%% somewhat 
+simplified manner%%per%%]$~ ~$[hierarchies %%#%% highly individualized %%#%% %%#%% 
+patient ]^[ %%#%% individual’s unique presentation %%#%% oc symptoms%%per%%]$~ 
+~$[in addition%%lst%% hierarchies %%#%% include %%#%% %%#%% %%#%% %%#%% %%#%% dozen items 
+]^[ %%#%% single client %%#%% %%#%% multiple hierarchies ]f[ various 
+obsessional fears%%per%%]$~ ~$[for caroline%%lst%% multiple hierarchies %%#%% %%#%% 
+constructed %%#%% address %%#%% %%#%% %%#%% obsessions ]^[ associated rituals%%per%%]$~ 
+~$[we %%#%% tell clients %%#%% hierarchies %%#%% %%#%% bit %%#%% %%#%% hawaiian 
+islands%%scn%% %%#%% %%#%% %%#%% %%#%% island ]^[ %%#%% %%#%% islands%%lst%% ]b[ %%#%% deal 
+%%#%% %%#%% %%#%% %%#%% %%#%% way%%cln%% low%%lst%% medium%%lst%% high%%lst%% move %%#%% %%per%% %%per%% %%per%% low%%lst%% 
+medium%%lst%% high%%lst%% move on%%per%%]$~ ~$[in addition%%lst%% hierarchies %%#%% %%#%% %%#%% 
+modified ]^[ expanded %%#%% %%#%% course %%#%% treatment%%per%% 
+35 
+himle & franklin 
+36 
+%%#%% %%#%% sufficient hierarchy %%#%% developed (typically %%#%% 
+session 3)%%lst%% patients %%#%% ready %%#%% begin exposure exercises%%per%%]$~ 
+~$[exposures begin %%#%% moderately easy items (typically 
+suds ratings %%#%% 30 ]v[ less) ]^[ gradually %%#%% %%#%% %%#%% 
+%%#%% %%#%% hierarchy %%#%% %%#%% difficult items%%per%%]$~ ~$[exposure tasks 
+%%#%% conducted %%#%% session (with %%#%% therapist) ]b[ %%#%% bulk 
+%%#%% %%#%% exposure %%#%% %%#%% assigned %%#%% between%%dsh%%session 
+homework%%lst%% %%#%% %%#%% patient completes %%#%% assistance %%#%% %%#%% therapist%%per%%]$~ ~$[the combination %%#%% therapist 
+]^[ self%%dsh%%performed exposures %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% evidence %%#%% suggest %%#%% patients %%#%% receive 
+therapist%%dsh%%assisted exposures demonstrate %%#%% symptom reduction %%cmp%% patients %%#%% perform %%#%% self%%dsh%%guided 
+exposure exercises (abramowitz%%lst%% 1996)%%per%%]$~ ~$[on %%#%% flip side%%lst%% 
+%%#%% %%#%% ]n[ practical ]f[ %%#%% patient %%#%% conduct %%#%% %%#%% %%#%% 
+exposure %%#%% %%#%% session ]^[ learning %%#%% conduct selfexposures promotes treatment generalization%%per%%]$~ 
+~$[each exposure %%#%% %%#%% repeated %%#%% times %%#%% 
+%%#%% patient %%#%% able %%#%% complete %%#%% exposure task %%#%% 
+minimal effort ]^[ %%#%% complete ritual prevention%%per%%]$~ ~$[for 
+example%%lst%% %%#%% order %%#%% monitor %%#%% effectiveness %%#%% 
+exposure exercises%%lst%% caroline %%#%% %%#%% %%#%% %%#%% complete 
+%%#%% exposure record %%#%% %%#%% %%#%% records %%#%% anxiety 
+before%%lst%% during%%lst%% ]^[ %%#%% %%#%% exposure ]^[ %%#%% %%#%% 
+]n[ move %%#%% %%#%% %%#%% hierarchy item (e%%per%%g%%per%%%%lst%% shaking %%#%% 
+husband’s hand) %%#%% %%#%% %%#%% item (e%%per%%g%%per%%%%lst%% shaking %%#%% 
+family member’s hand) %%#%% %%#%% %%#%% able %%#%% complete %%#%% 
+%%#%% item %%#%% minimal effort ]^[ %%#%% praying ]v[ 
+“vacuuming” %%#%% “bad dust%%per%%” %%#%% %%#%% %%#%% rule%%lst%% %%#%% %%#%% 
+%%#%% aspects %%#%% successful exposure %%#%% %%#%% (a) 
+conduct exposure exercises %%#%% %%#%% manageable%%lst%% (b) 
+table 3 
+sample hierarchy ]f[ caroline’s fear %%#%% shaking hands ]^[ saying 
+“goodbye” %%#%% befall harm %%#%% %%#%% %%#%% %%#%% 
+hierarchy item (without praying ]v[ “vacuuming”) 
+shake husband’s hand 
+shake family member’s hand 
+(and ]n[ %%#%% %%#%% person %%#%% ]f[ 24 hours) 
+%%#%% “goodbye” %%#%% husband %%#%% %%#%% telephone 
+shake %%#%% hand %%#%% %%#%% familiar child 
+shake %%#%% hand %%#%% %%#%% unfamiliar child 
+shake %%#%% hand %%#%% %%#%% sick child 
+%%#%% “goodbye” %%#%% husband %%#%% telephone + 
+imagine %%#%% dies 
+visit sick friend ]^[ shake his/her hand 
+visit sick friend ]^[ %%#%% “goodbye” 
+visit sick friend + shake his/her hand + %%#%% 
+“goodbye” 
+shake %%#%% husband’s hand%%lst%% %%#%% “goodbye,” 
+]^[ state %%#%% %%#%% “i hope %%#%% die” 
+visit %%#%% sick friend%%lst%% shake his/her hand%%lst%% %%#%% 
+“goodbye,” ]^[ state %%#%% %%#%% “i hope %%#%% die” 
+touch ill friend + purposely blow “dust” %%#%% %%#%% 
+person + %%#%% “goodbye” + state %%#%% %%#%% 
+“i hope %%#%% die” 
+suds 
+20 
+30 
+40 
+45 
+50 
+55 
+65 
+70 
+75 
+80 
+90 
+95 
+100 
+table 4 
+sample hierarchy ]f[ caroline’s fear %%#%% spreading cancer 
+hierarchy item (without washing) 
+visit %%#%% ill%%lst%% delay hand wiping ]f[ 30 minutes 
+visit %%#%% ill%%lst%% %%#%% hand wiping 
+visit %%#%% ill%%lst%% %%#%% hand wiping ]v[ hand washing 
+visit %%#%% ill%%lst%% %%#%% hand wiping%%lst%% washing%%lst%% ]v[ 
+changing/washing clothes 
+wear clothes (unwashed) day %%#%% visiting %%#%% ill 
+visit %%#%% ill%%lst%% husband shakes %%#%% hand%%lst%% caroline 
+shakes husband’s hand%%lst%% %%#%% wiping ]v[ washing 
+(ritual prevention %%#%% %%#%% husband ]^[ caroline) 
+visit %%#%% ill%%lst%% husband shakes %%#%% hand%%lst%% caroline 
+shakes husband’s hand + complete ritual prevention 
+(no wiping%%lst%% washing%%lst%% cleaning%%lst%% showering) 
+visit %%#%% ill%%lst%% caroline shakes %%#%% hand%%lst%% 
++ complete ritual prevention (no wiping%%lst%% washing%%lst%% 
+cleaning%%lst%% 
+showering) 
+visit %%#%% ill%%lst%% caroline shakes %%#%% hand%%lst%% 
+%%#%% wiping ]v[ washing ]v[ changing clothes 
+visit %%#%% ill%%lst%% caroline shakes %%#%% hand%%lst%% 
++ complete ritual prevention (no wiping%%lst%% washing%%lst%% 
+cleaning%%lst%% showering) 
+visit %%#%% ill%%lst%% caroline shakes %%#%% hand%%lst%% 
++ imagine %%#%% %%#%% cancer ]^[ die + complete 
+ritual prevention (no wiping%%lst%% washing%%lst%% cleaning%%lst%% 
+showering) 
+visit %%#%% ill%%lst%% caroline shakes %%#%% hand%%lst%% + shake 
+%%#%% person’s hand (i%%per%%e%%per%%%%lst%% purposely “spread 
+cancer”) + complete ritual prevention (no wiping%%lst%% 
+washing%%lst%% cleaning%%lst%% showering) 
+suds 
+30 
+40 
+45 
+50 
+55 
+65 
+70 
+75 
+80 
+90 
+95 
+100 
+refrain %%#%% %%#%% ritualistic behavior %%#%% %%#%% exposure%%lst%% 
+(c) continue %%#%% exposure %%#%% %%#%% %%#%% %%#%% performed %%#%% 
+relative ease %%#%% inside ]^[ outside %%#%% therapy sessions%%lst%% 
+(d) conduct %%#%% exposure repeatedly%%per%%]$~ 
+~$[as treatment progresses%%lst%% %%#%% %%#%% %%#%% %%#%% repeatedly 
+monitor ]^[ assess %%#%% patient’s oc symptoms ]^[ add 
+items %%#%% %%#%% hierarchy %%#%% necessary%%per%%]$~ ~$[however%%lst%% %%#%% goal ]f[ 
+treatment %%#%% ]n[ %%#%% %%#%% help %%#%% patient %%#%% %%#%% 
+%%#%% hierarchy%%lst%% ]b[ %%#%% %%#%% teach %%#%% patient %%#%% monitor 
+oc symptoms%%lst%% create %%#%% hierarchy exercises%%lst%% ]^[ %%#%% 
+conduct exposure exercises ]f[ %%#%% hierarchy items%%per%%]$~ ~$[in 
+%%#%% words%%lst%% %%#%% goal %%#%% %%#%% teach %%#%% patient %%#%% set %%#%% skills %%#%% 
+help %%#%% manage %%#%% anxiety ]v[ “be %%#%% own 
+therapist%%per%%” %%#%% example%%lst%% %%#%% mastering %%#%% items %%#%% 
+%%#%% hierarchy%%lst%% caroline %%#%% disclose %%#%% “i am finding 
+%%#%% %%#%% am vacuuming %%#%% %%cmp%% %%#%% %%#%% %%#%% %%#%% %%#%% am 
+%%#%% children%%per%%” %%#%% %%#%% realization %%#%% %%#%% %%#%% %%#%% 
+opportunity ]f[ %%#%% therapist %%#%% assess caroline’s mastery 
+%%#%% ex/rp %%#%% %%#%% %%#%% develop %%#%% own exposure 
+hierarchy %%#%% address %%#%% ritual (e%%per%%g%%per%%%%lst%% visit %%#%% familiar child%%lst%% 
+shake %%#%% child’s hand%%lst%% babysit %%#%% friend’s child%%lst%% visit %%#%% child 
+care center%%lst%% etc%%per%%)%%per%%]$~ ~$[we %%#%% tell %%#%% clients %%#%% %%#%% 
+ultimate goal %%#%% treatment %%#%% %%#%% %%#%% %%#%% patient %%#%% ocd 
+]^[ ex/rp expert%%lst%% thereby %%#%% %%#%% therapist %%#%% 
+%%#%% necessary%%per%%]$~ 
+~$[response%%cln%% ex/rp ]f[ ocd 
+%%#%% last %%#%% sessions %%#%% treatment %%#%% focus %%#%% %%#%% 
+%%#%% %%#%% %%#%% difficult items %%#%% %%#%% hierarchy ]^[ 
+relapse prevention%%per%%]$~ ~$[if feasible%%lst%% %%#%% prefer %%#%% %%#%% %%#%% patient 
+%%#%% %%#%% %%#%% %%#%% difficult items %%#%% %%#%% hierarchy 
+%%#%% treatment %%#%% terminated%%lst%% ]b[ unfortunately %%#%% %%#%% 
+]n[ %%#%% feasible%%per%%]$~ ~$[however%%lst%% %%cmp%% treatment %%#%% %%#%% 
+successful%%lst%% caroline %%#%% learned %%#%% identify ]^[ monitor 
+%%#%% oc symptoms ]^[ %%#%% %%#%% plan ]^[ build exposure 
+exercises %%#%% address them%%per%%]$~ ~$[during %%#%% last %%#%% sessions%%lst%% %%#%% 
+therapist %%#%% %%#%% %%#%% caroline %%#%% identify%%lst%% ]^[ 
+prepare for%%lst%% future challenges ]^[ problem solve %%#%% %%#%% 
+address them%%per%%]$~ ~$[this %%#%% include follow%%dsh%%up sessions and/or 
+telephone calls %%#%% %%#%% therapist%%lst%% recruiting family 
+%%#%% %%#%% provide support%%lst%% and/or reviewing treatment 
+information%%per%%]$~ 
+~$[possible difficulties ]^[ barriers %%#%% 
+caroline’s treatment 
+%%#%% %%#%% %%#%% common barriers %%#%% treatment %%#%% 
+noncompliance %%#%% exposure exercises ]^[ difficulties 
+achieving successful response prevention%%per%%]$~ ~$[in %%#%% former 
+case%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% client %%#%% attempt %%#%% 
+determine factors affecting treatment compliance%%per%%]$~ ~$[common reasons include lack %%#%% motivation%%lst%% misunderstanding/ 
+disagreement %%#%% %%#%% behavioral model%%lst%% interpersonal 
+factors ]v[ poor therapist%%dsh%%client match%%lst%% moving %%#%% rapidly 
+%%#%% %%#%% stimulus hierarchy%%lst%% ]^[ comorbid ]v[ co%%dsh%%occurring 
+psychological issues %%#%% %%#%% depression ]v[ social anxiety 
+%%#%% %%#%% %%#%% %%#%% pressing ]^[ %%#%% %%#%% %%#%% addressed first%%per%%]$~ 
+~$[when %%#%% client understands %%#%% model ]^[ %%#%% motivated 
+]f[ treatment ]y[ %%#%% %%#%% difficulty %%#%% exposures ]v[ 
+response prevention%%lst%% %%#%% %%#%% %%#%% ]f[ %%#%% therapist %%#%% 
+consider %%#%% treatment %%#%% appropriately tailored ]f[ 
+%%#%% particular client%%per%%]$~ ~$[for example%%lst%% %%#%% %%#%% hierarchy 
+appropriately constructed%%qsn%%]$~ ~$[are %%#%% exposures relevant%%qsn%%]$~ 
+~$[are %%#%% exposures %%#%% difficult%%qsn%%]$~ ~$[treatment noncompliance 
+%%#%% %%#%% addressed %%#%% %%#%% treatment ]^[ %%#%% %%#%% %%#%% 
+iterative problem%%dsh%%solving process %%#%% %%#%% therapist 
+]^[ client%%per%%]$~ 
+~$[another common barrier %%#%% treatment %%#%% unintentional 
+subtle avoidance%%lst%% %%#%% %%#%% takes %%#%% form %%#%% substituting %%#%% obvious ritual ]f[ %%#%% less noticeable ritual %%#%% 
+serves %%#%% %%#%% anxiety%%dsh%%reducing function%%per%%]$~ ~$[in %%#%% cases%%lst%% 
+patients %%#%% unaware %%#%% %%#%% %%#%% engaging %%#%% subtle 
+avoidance%%per%%]$~ ~$[for example%%lst%% %%#%% person %%#%% hand%%dsh%%washing 
+rituals associated %%#%% contamination fears %%#%% learn %%#%% 
+refrain %%#%% washing his/her hands%%lst%% ]b[ %%#%% (either 
+unwittingly ]v[ purposefully) wipe his/her hands %%#%% 
+%%#%% surface %%#%% remove contamination%%per%%]$~ ~$[another 
+example %%#%% subtle avoidance %%#%% reassurance seeking%%per%%]$~ 
+~$[caroline %%#%% %%#%% mastered %%#%% items %%#%% %%#%% 
+hierarchy—for example%%lst%% %%#%% %%#%% %%#%% able %%#%% attend %%#%% 
+public event %%#%% praying%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% 
+therapist%%lst%% “i feel %%#%% %%#%% cause misery ]^[ death wherever 
+%%#%% go%%scn%% %%#%% %%#%% %%#%% %%#%% am causing harm %%#%% people %%#%% 
+me?” %%#%% %%#%% case%%lst%% caroline %%#%% %%#%% seeking reassurance 
+%%#%% %%#%% therapist %%#%% confirm %%#%% %%#%% %%#%% %%#%% %%#%% ]n[ causing 
+harm%%per%%]$~ ~$[the therapist %%#%% %%#%% careful %%#%% %%#%% he/she 
+answers reassurance%%dsh%%seeking questions%%per%%]$~ ~$[if %%#%% therapist 
+answers%%lst%% “no%%lst%% %%#%% don’t %%#%% %%#%% %%#%% causing harm %%#%% 
+people %%#%% you,” %%#%% therapist %%#%% %%#%% easily 
+reinforce ocd %%#%% reducing caroline’s anxiety (albeit 
+incidentally)%%per%%]$~ ~$[in fact%%lst%% reassurance seeking %%#%% %%#%% common 
+ritual %%#%% ocd %%cmp%% %%#%% %%#%% easily overlooked %%#%% %%#%% %%#%% 
+therapist ]^[ %%#%% client%%per%%]$~ ~$[we %%#%% respond %%#%% %%#%% 
+reassurance%%dsh%%seeking questions %%#%% stating%%lst%% “who %%#%% asking%%lst%% 
+%%#%% ]v[ ocd%%qsn%%]$~ ~$[it sounds %%#%% %%#%% %%#%% %%#%% ocd %%#%% trying 
+%%#%% %%#%% door technique%%per%%]$~ ~$[do %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+ocd %%#%% telling %%#%% %%#%% %%#%% %%#%% causing harm %%cmp%% %%#%% 
+%%#%% %%#%% %%#%% ritualizing%%qsn%%]$~ ~$[based %%#%% %%#%% experiences %%#%% 
+therapy %%#%% far%%lst%% %%#%% %%#%% %%#%% answer ocd?” %%#%% %%#%% 
+%%#%% question %%#%% %%#%% %%#%% patient%%lst%% %%#%% therapist %%#%% help 
+%%#%% patient recognize subtle avoidance%%per%%]$~ ~$[in doing so%%lst%% 
+however%%lst%% %%#%% patient %%#%% %%#%% %%#%% %%#%% %%#%% suffered %%#%% 
+treatment setback %%cmp%% %%#%% %%#%% ]n[ recognize %%#%% 
+subtle form %%#%% ritualizing%%per%%]$~ ~$[when %%#%% occurs%%lst%% %%#%% therapist 
+%%#%% state%%lst%% “these forms %%#%% subtle avoidance %%#%% %%#%% %%#%% 
+carefully attended %%#%% ]b[ %%#%% %%#%% viewed %%#%% treatment 
+progress%%per%%]$~ ~$[it sounds %%#%% ocd’s %%#%% tricks (i%%per%%e%%per%%%%lst%% %%#%% rituals) 
+%%#%% %%#%% %%#%% %%#%% ]s[ ocd %%#%% trying %%#%% trick %%#%% %%#%% 
+%%#%% %%#%% %%#%% ritualizing%%per%%” %%#%% %%#%% %%cmp%% send %%#%% patient 
+home %%#%% carefully monitor ]f[ %%#%% %%#%% subtle “tricks” 
+%%#%% ocd %%#%% %%#%% attempting %%#%% pull%%per%%]$~ 
+~$[yet %%#%% factor %%#%% %%#%% complicate treatment arises 
+%%#%% %%#%% patient’s family %%#%% %%#%% %%#%% involved %%#%% 
+rituals%%per%%]$~ ~$[this %%#%% especially common ]f[ children (who 
+involve %%#%% parents) ]^[ individuals %%#%% intimate 
+relationships (e%%per%%g%%per%%%%lst%% spouse)%%per%%]$~ ~$[there %%#%% %%#%% evidence %%#%% 
+caroline %%#%% involved %%#%% husband %%#%% %%#%% rituals%%per%%]$~ 
+~$[specifically%%lst%% %%#%% %%#%% %%#%% %%#%% wash %%#%% hands ]^[ clothing 
+%%#%% order %%#%% prevent %%#%% %%#%% becoming ill%%per%%]$~ ~$[it %%#%% %%#%% 
+beneficial %%#%% include caroline’s husband %%#%% treatment ]f[ 
+%%#%% reasons%%per%%]$~ ~$[first%%lst%% exposure exercises %%#%% include %%#%% 
+directly%%per%%]$~ ~$[for example%%lst%% %%#%% exposure exercise %%#%% involve 
+%%#%% %%#%% visit %%#%% ill ]v[ %%#%% %%#%% %%#%% hospital ]^[ 
+%%#%% home ]b[ ]n[ wash %%#%% clothes%%per%%]$~ ~$[second%%lst%% %%#%% %%#%% serve 
+%%#%% %%#%% model ]^[ support person ]f[ caroline %%#%% helping 
+%%#%% identify subtle rituals%%lst%% provide encouragement%%lst%% help 
+%%#%% problem solve difficult situations%%lst%% ]^[ model “normal” behavior %%#%% situations %%#%% %%#%% caroline %%#%% %%#%% history 
+%%#%% ritualizing%%per%%]$~ ~$[ideally%%lst%% caroline’s husband %%#%% %%#%% 
+involved %%#%% %%#%% aspects %%#%% treatment%%scn%% however%%lst%% %%#%% %%#%% 
+minimum %%#%% %%#%% %%#%% helpful %%cmp%% %%#%% understood %%#%% 
+treatment model%%lst%% %%#%% rationale ]f[ treatment%%lst%% ]^[ %%#%% 
+willing %%#%% participate %%#%% specific exposure exercises%%per%%]$~ 
+~$[a final factor %%#%% %%#%% complicate treatment %%#%% %%#%% 
+presence %%#%% %%#%% comorbid psychological disorder%%per%%]$~ ~$[in addition %%#%% ocd%%lst%% caroline suffers %%#%% %%#%% sources %%#%% 
+37 
+himle & franklin 
+38 
+anxiety%%lst%% %%#%% %%#%% %%#%% %%#%% related %%#%% social situations%%per%%]$~ 
+~$[specifically%%lst%% %%#%% reports %%#%% difficulty attending parties%%lst%% 
+public speaking%%lst%% writing %%#%% public%%lst%% eating %%#%% public%%lst%% using 
+public restrooms%%lst%% %%#%% assertive%%lst%% ]^[ initiating/maintaining %%#%% conversation%%lst%% ]^[ fear %%#%% embarrassment%%per%%]$~ ~$[she 
+%%#%% reports feeling “inferior%%per%%” %%#%% consistent %%#%% 
+anxiety%%lst%% %%#%% engages %%#%% %%#%% variety %%#%% avoidance behaviors 
+%%#%% lessen %%#%% distress%%lst%% including dressing conservatively 
+]^[ avoiding social situations%%per%%]$~ ~$[although %%#%% factors 
+%%#%% complicate treatment (e%%per%%g%%per%%%%lst%% caroline %%#%% try %%#%% 
+please %%#%% therapist%%lst%% refuse treatment exercises %%#%% %%#%% 
+writing%%lst%% etc%%per%%)%%lst%% %%#%% therapist %%#%% easily %%#%% %%#%% caroline 
+%%#%% help %%#%% realize that%%lst%% %%#%% %%#%% %%#%% ocd%%lst%% %%#%% sources %%#%% 
+anxiety %%#%% %%#%% subsumed %%#%% %%#%% %%#%% model%%scn%% %%#%% is%%lst%% 
+avoidance %%#%% streng%%cmp%%ed %%#%% %%#%% removal %%#%% anxiety ]^[ 
+%%#%% %%#%% %%#%% %%#%% it%%lst%% %%#%% easier %%#%% gets%%per%%]$~ ~$[caroline’s social 
+anxiety %%#%% %%#%% %%#%% incorporated directly %%#%% treatment%%per%%]$~ ~$[in fact%%lst%% discussing %%#%% source %%#%% anxiety %%#%% %%#%% %%#%% 
+opportunity %%#%% test %%#%% %%#%% understands %%#%% basic 
+premise %%#%% %%#%% behavioral model %%#%% anxiety ]^[ %%#%% 
+%%#%% %%#%% develop ]^[ implement exposure exercises%%per%%]$~ 
+~$[what %%#%% %%#%% future hold ]f[ treatment%%qsn%%]$~ 
+~$[as noted above%%lst%% %%#%% %%#%% %%#%% large body %%#%% research 
+supporting %%#%% %%#%% %%#%% ex/rp ]f[ ocd%%per%%]$~ ~$[caroline’s 
+prognosis %%#%% depend largely %%#%% %%#%% progress %%#%% 
+treatment%%per%%]$~ ~$[most studies assessing long%%dsh%%term follow%%dsh%%up 
+suggest %%#%% %%#%% majority %%#%% patients %%#%% respond %%#%% cbt 
+maintain %%#%% treatment gains ]^[ %%#%% %%#%% %%#%% %%#%% 
+person %%#%% %%#%% ex/rp %%#%% %%#%% short run %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% run (simpson et al%%per%%%%lst%% 2005%%scn%% whittal 
+et al%%per%%%%lst%% %%#%% press)%%per%%]$~ ~$[caroline %%#%% %%#%% indicators %%#%% %%#%% positive 
+prognosis%%lst%% including %%#%% %%#%% %%#%% %%#%% %%#%% seeking treatment 
+(suggesting %%#%% level %%#%% motivation)%%lst%% %%#%% %%#%% social support 
+system (husband ]^[ family)%%lst%% ]^[ %%#%% symptom profile %%#%% 
+%%#%% amenable %%#%% ex/rp%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% %%#%% rule%%lst%% %%#%% tell 
+patients %%#%% expect %%#%% %%#%% %%#%% %%#%% periodic instances %%#%% 
+%%#%% future %%#%% %%#%% prompt ocd exacerbations %%#%% 
+simultaneously encouraging %%#%% %%#%% %%cmp%% %%#%% anticipate 
+]^[ recognize %%#%% flare%%dsh%%ups%%lst%% %%#%% %%#%% %%#%% %%#%% tools 
+necessary %%#%% help %%#%% effectively manage %%#%% symptoms%%per%%]$~ 
+~$[references 
+abramowitz%%lst%% j%%per%%]$~ ~$[s%%per%% (1996)%%per%%]$~ ~$[variants %%#%% exposure ]^[ response prevention 
+%%#%% %%#%% treatment %%#%% obsessive%%dsh%%compulsive disorder%%cln%% %%#%% meta%%dsh%%analysis%%per%%]$~ 
+~$[behavior therapy%%lst%% 27%%lst%% 583–600%%per%%]$~ 
+~$[abramowitz%%lst%% j%%per%%]$~ ~$[s%%per%% (1997)%%per%%]$~ ~$[effectiveness %%#%% psychological ]^[ pharmacological treatments ]f[ obsessive%%dsh%%compulsive disorder%%cln%% %%#%% quantitative review%%per%%]$~ ~$[journal %%#%% consulting ]^[ clinical psychology%%lst%% 65%%lst%% 44–52%%per%%]$~ 
+~$[abramowitz%%lst%% j%%per%%]$~ ~$[s%%per%% (2006)%%per%%]$~ ~$[obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[advances %%#%% 
+psychotherapy%%cln%% evidence based practice%%per%%]$~ ~$[cambridge%%lst%% ma%%cln%% hogrefe & 
+huber%%per%%]$~ 
+~$[abramowitz%%lst%% j%%per%%]$~ ~$[s%%per%%%%lst%% franklin%%lst%% m%%per%%]$~ ~$[e%%per%%%%lst%% & foa%%lst%% e%%per%%]$~ ~$[b%%per%% (2002)%%per%%]$~ ~$[empirical status 
+%%#%% cognitive%%dsh%%behavioral therapy ]f[ obsessive%%dsh%%compulsive disorder%%cln%% 
+%%#%% meta%%dsh%%analytic review%%per%%]$~ ~$[romanian journal %%#%% cognitive ]^[ behavioral 
+psychotherapies%%lst%% 2%%lst%% 89–104%%per%%]$~ 
+~$[abramowitz%%lst%% j%%per%%]$~ ~$[s%%per%%%%lst%% franklin%%lst%% m%%per%%]$~ ~$[e%%per%%%%lst%% zoellner%%lst%% l%%per%%]$~ ~$[a%%per%%%%lst%% & dibernardo%%lst%% c%%per%%]$~ ~$[l%%per%% 
+(2002)%%per%%]$~ ~$[treatment compliance ]^[ outcome %%#%% obsessive%%dsh%%compulsive 
+disorder%%per%%]$~ ~$[behavior modification%%lst%% 26%%lst%% 447–463%%per%%]$~ 
+~$[abramowitz%%lst%% j%%per%%]$~ ~$[s%%per%%%%lst%% whiteside%%lst%% s%%per%%]$~ ~$[p%%per%%%%lst%% & deacon%%lst%% b%%per%%]$~ ~$[j%%per%% (2005)%%per%%]$~ ~$[the 
+effectiveness %%#%% treatment ]f[ pediatric obsessive%%dsh%%compulsive 
+disorder%%cln%% %%#%% meta%%dsh%%analysis%%per%%]$~ ~$[behavior therapy%%lst%% 36%%lst%% 55–63%%per%%]$~ 
+~$[american academy %%#%% child ]^[ adolescent psychiatry%%per%% (1998)%%per%%]$~ 
+~$[practice parameters ]f[ %%#%% assessment ]^[ treatment %%#%% children ]^[ adolescents %%#%% obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[journal 
+%%#%% %%#%% american academy %%#%% child ]^[ adolescent psychiatry%%lst%% 37%%lst%% 
+s27–s45%%per%%]$~ 
+~$[clark%%lst%% d%%per%%]$~ ~$[m%%per%%%%lst%% ball%%lst%% s%%per%%%%lst%% & pape%%lst%% d%%per%% (1991)%%per%%]$~ ~$[an experimental investigation 
+%%#%% %%#%% suppression%%per%%]$~ ~$[behaviour research ]^[ therapy%%lst%% 29%%lst%% 
+253–257%%per%%]$~ 
+~$[chosak%%lst%% a%%per%%%%lst%% marques%%lst%% l%%per%%%%lst%% fama%%lst%% j%%per%%%%lst%% renaud%%lst%% s%%per%%%%lst%% & wilhelm%%lst%% s%%per%% (2009)%%per%%]$~ 
+~$[cognitive therapy ]f[ obsessive%%dsh%%compulsive disorder%%cln%% %%#%% %%#%% 
+example%%per%%]$~ ~$[cognitive ]^[ behavioral practice%%lst%% 16%%lst%% 7–17%%per%%]$~ 
+~$[cooper%%lst%% j%%per%% (1970)%%per%%]$~ ~$[the leyton obsessional inventory%%per%%]$~ ~$[psychological 
+medicine%%lst%% 1%%lst%% 48–64%%per%%]$~ 
+~$[dinardo%%lst%% p%%per%%%%lst%% brown%%lst%% t%%per%%]$~ ~$[a%%per%%%%lst%% & barlow%%lst%% d%%per%%]$~ ~$[h%%per%% (1994)%%per%%]$~ ~$[anxiety disorders 
+interview schedule ]f[ dsm%%dsh%%iv (adis%%dsh%%iv)%%per%%]$~ ~$[albany%%lst%% ny%%cln%% graywind%%per%%]$~ 
+~$[dollard%%lst%% j%%per%%%%lst%% & miller%%lst%% n%%per%%]$~ ~$[e%%per%% (1950)%%per%%]$~ ~$[personality ]^[ psychotherapy%%cln%% %%#%% analysis 
+%%#%% terms %%#%% learning%%lst%% thinking ]^[ culture%%per%%]$~ ~$[new york%%cln%% mcgraw%%dsh%%hill%%per%%]$~ 
+~$[first%%lst%% m%%per%%]$~ ~$[b%%per%%%%lst%% spitzer%%lst%% r%%per%%]$~ ~$[l%%per%%%%lst%% gibbon%%lst%% m%%per%%%%lst%% & williams%%lst%% j%%per%%]$~ ~$[b%%per%%]$~ ~$[w%%per%% (1995)%%per%%]$~ 
+~$[structured clinical interview ]f[ dsm%%dsh%%iv axis %%#%% disorders (scid%%dsh%%i)%%per%%]$~ ~$[new 
+york%%lst%% biometrics research department%%lst%% %%#%% york psychiatric 
+institute%%per%%]$~ 
+~$[foa%%lst%% e%%per%%]$~ ~$[b%%per%%%%lst%% & kozak%%lst%% m%%per%%]$~ ~$[j%%per%% (1986)%%per%%]$~ ~$[emotional processing %%#%% fear%%cln%% exposure 
+%%#%% corrective information%%per%%]$~ ~$[psychological bulletin%%lst%% 99%%lst%% 20–35%%per%%]$~ 
+~$[foa%%lst%% e%%per%%]$~ ~$[b%%per%%%%lst%% & kozak%%lst%% m%%per%%]$~ ~$[j%%per%% (1995)%%per%%]$~ ~$[dsm%%dsh%%iv field trial%%cln%% obsessivecompulsive disorder%%per%%]$~ ~$[the american journal %%#%% psychiatry%%lst%% 152%%lst%% 90–96%%per%%]$~ 
+~$[foa%%lst%% e%%per%%]$~ ~$[b%%per%%%%lst%% & kozak%%lst%% m%%per%%]$~ ~$[j%%per%% (1996)%%per%%]$~ ~$[psychological treatment ]f[ obsessivecompulsive disorder%%per%%]$~ ~$[in m%%per%%]$~ ~$[r%%per%%]$~ ~$[mavissakalian%%lst%% & r%%per%%]$~ ~$[f%%per%%]$~ ~$[prien (eds%%per%%)%%lst%% 
+long%%dsh%%term treatment %%#%% anxiety disorders (pp%%per%% 285–309)%%per%%]$~ ~$[washington%%lst%% 
+dc%%cln%% american psychiatric assocation press%%per%%]$~ 
+~$[foa%%lst%% e%%per%%]$~ ~$[b%%per%%%%lst%% kozak%%lst%% m%%per%%]$~ ~$[j%%per%%%%lst%% salkovskis%%lst%% p%%per%%]$~ ~$[m%%per%%%%lst%% coles%%lst%% m%%per%%]$~ ~$[e%%per%%%%lst%% & amir%%lst%% n%%per%% (1998)%%per%%]$~ 
+~$[the validation %%#%% %%#%% %%#%% obsessive%%dsh%%compulsive scale%%cln%% %%#%% obsessivecompulsive inventory%%per%%]$~ ~$[psychological assessment%%lst%% 10%%lst%% 206–214%%per%%]$~ 
+~$[foa%%lst%% e%%per%%]$~ ~$[b%%per%%%%lst%% liebowitz%%lst%% m%%per%%]$~ ~$[r%%per%%%%lst%% kozak%%lst%% m%%per%%]$~ ~$[j%%per%%%%lst%% davies%%lst%% s%%per%%%%lst%% campeas%%lst%% r%%per%%%%lst%% 
+franklin%%lst%% m%%per%%]$~ ~$[e%%per%%%%lst%% et al%%per%% (2005)%%per%%]$~ ~$[randomized%%lst%% placebo%%dsh%%controlled 
+trial %%#%% exposure ]^[ response prevention%%lst%% clomipramine%%lst%% ]^[ 
+%%#%% combination %%#%% %%#%% treatment %%#%% obsessive%%dsh%%compulsive 
+disorder%%per%%]$~ ~$[american journal %%#%% psychiatry%%lst%% 162%%lst%% 151–161%%per%%]$~ 
+~$[franklin%%lst%% m%%per%%]$~ ~$[e%%per%%%%lst%% & foa%%lst%% e%%per%%]$~ ~$[b%%per%% (1998)%%per%%]$~ ~$[cognitive%%dsh%%behavioral treatment %%#%% 
+obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[in p%%per%%]$~ ~$[na%%cmp%%%%lst%% & j%%per%%]$~ ~$[gorman (eds%%per%%)%%lst%% 
+%%#%% guide %%#%% treatments %%#%% %%#%% (pp%%per%% 339–357)%%per%%]$~ ~$[oxford%%lst%% england%%cln%% 
+oxford university press%%per%%]$~ 
+~$[freeston%%lst%% m%%per%%]$~ ~$[h%%per%%%%lst%% ladouceur%%lst%% r%%per%%%%lst%% gangnon%%lst%% f%%per%%%%lst%% et al%%per%% (1997)%%per%%]$~ ~$[cognitivebehavioral treatment %%#%% obsessive thoughts%%cln%% %%#%% controlled study%%per%%]$~ 
+~$[journal %%#%% consulting ]^[ clinical psychology%%lst%% 65%%lst%% 405–413%%per%%]$~ 
+~$[greist%%lst%% j%%per%%]$~ ~$[h%%per%% (1996)%%per%%]$~ ~$[the comparative effectiveness %%#%% treatments ]f[ 
+obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[bulletin %%#%% %%#%% menninger clinic%%lst%% 62%%lst%% 
+a65–a81%%per%%]$~ 
+~$[greist%%lst%% j%%per%%]$~ ~$[h%%per%% (2000)%%per%%]$~ ~$[obsessive compulsive disorder%%cln%% %%#%% guide%%per%%]$~ ~$[madison%%lst%% wi%%cln%% 
+obsessive compulsive information center%%lst%% madison institute %%#%% 
+medicine%%per%%]$~ 
+~$[insel%%lst%% t%%per%%]$~ ~$[r%%per%%%%lst%% murphy%%lst%% d%%per%%]$~ ~$[l%%per%%%%lst%% cohen%%lst%% r%%per%%]$~ ~$[m%%per%%%%lst%% alterman%%lst%% i%%per%%%%lst%% kilton%%lst%% c%%per%%%%lst%% & 
+linnoila%%lst%% m%%per%% (1983)%%per%%]$~ ~$[obsessive%%dsh%%compulsive disorder%%cln%% %%#%% double 
+blind trial %%#%% clomipramine ]^[ clorgyline%%per%%]$~ ~$[archives %%#%% %%#%% 
+psychiatry%%lst%% 40%%lst%% 605–612%%per%%]$~ 
+~$[kozak%%lst%% m%%per%%]$~ ~$[j%%per%%%%lst%% & foa%%lst%% e%%per%%]$~ ~$[b%%per%% (1997)%%per%%]$~ ~$[mastery %%#%% obsessive compulsive disorder%%cln%% %%#%% 
+cognitive behavioral approach%%per%%]$~ ~$[therapist guide%%per%%]$~ ~$[san antonio%%cln%% %%#%% 
+psychological corporation%%per%%]$~ 
+~$[leahy%%lst%% r%%per%%]$~ ~$[l%%per%% (2007)%%per%%]$~ ~$[emotional schemas ]^[ self%%dsh%%help%%cln%% homework 
+compliance ]^[ obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[cognitive ]^[ 
+behavioral practice%%lst%% 14%%lst%% 297–302%%per%%]$~ 
+~$[mowrer%%lst%% o%%per%%]$~ ~$[h%%per%% (1951)%%per%%]$~ ~$[learning theory ]^[ personality dynamics%%per%%]$~ ~$[new 
+york%%cln%% ronald press%%per%%]$~ 
+~$[mowrer%%lst%% o%%per%%]$~ ~$[h%%per%% (1960)%%per%%]$~ ~$[learning theory ]^[ behavior%%per%%]$~ ~$[new york%%cln%% wiley%%per%%]$~ 
+~$[riggs%%lst%% d%%per%%]$~ ~$[s%%per%%%%lst%% & foa%%lst%% e%%per%%]$~ ~$[b%%per%% (1993)%%per%%]$~ ~$[obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[in 
+d%%per%%]$~ ~$[h%%per%%]$~ ~$[barlow (ed%%per%%)%%lst%% clinical handbook %%#%% psychological disorders%%per%%]$~ 
+~$[new york%%cln%% guilford press%%per%%]$~ 
+~$[response%%cln%% ex/rp ]f[ ocd 
+sanavio%%lst%% e%%per%% (1988)%%per%%]$~ ~$[obsessions ]^[ compulsions%%cln%% %%#%% pauda inventory%%per%%]$~ 
+~$[behaviour research ]^[ therapy%%lst%% 26%%lst%% 169–177%%per%%]$~ 
+~$[simpson%%lst%% h%%per%%]$~ ~$[b%%per%%%%lst%% franklin%%lst%% m%%per%%]$~ ~$[e%%per%%%%lst%% cheng%%lst%% j%%per%%%%lst%% foa%%lst%% e%%per%%]$~ ~$[b%%per%%%%lst%% & liebowitz%%lst%% m%%per%%]$~ ~$[r%%per%% 
+(2005)%%per%%]$~ ~$[standard criteria ]f[ relapse %%#%% %%#%% %%#%% obsessivecompulsive disorder%%per%%]$~ ~$[depression ]^[ anxiety%%lst%% 21%%lst%% 1–8%%per%%]$~ 
+~$[simpson%%lst%% h%%per%%]$~ ~$[b%%per%%%%lst%% liebowitz%%lst%% m%%per%%]$~ ~$[r%%per%%%%lst%% foa%%lst%% e%%per%%]$~ ~$[b%%per%%%%lst%% kozak%%lst%% m%%per%%]$~ ~$[j%%per%%%%lst%% schmidt%%lst%% a%%per%%]$~ ~$[b%%per%%%%lst%% 
+rowan%%lst%% v%%per%%%%lst%% et al%%per%% (2004)%%per%%]$~ ~$[post%%dsh%%treatment effects %%#%% exposure therapy 
+]^[ clomipramine %%#%% obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[depression ]^[ 
+anxiety%%lst%% 19%%lst%% 225–233%%per%%]$~ 
+~$[st%%per%%]$~ ~$[clare%%lst%% t%%per%% (2003)%%per%%]$~ ~$[assessment procedures%%per%%]$~ ~$[in r%%per%%]$~ ~$[g%%per%%]$~ ~$[menzies%%lst%% & p%%per%% de 
+silva (eds%%per%%)%%lst%% obsessive%%dsh%%compulsive disorder%%cln%% theory%%lst%% research ]^[ 
+treatment (pp%%per%% 239–257)%%per%%]$~ ~$[west sussex%%cln%% john wiley & sons%%per%%]$~ 
+~$[steketee%%lst%% g%%per%% (1993)%%per%%]$~ ~$[treatment %%#%% obsessive compulsive disorder%%per%%]$~ ~$[new york%%cln%% 
+guilford press%%per%%]$~ 
+~$[task force %%#%% promotion ]^[ dissemination %%#%% psychological 
+procedures%%per%% (1995)%%per%%]$~ ~$[training ]^[ dissemination %%#%% empiricallyvalidated psychosocial treatments%%cln%% report ]^[ recommendations%%per%%]$~ 
+~$[the clinical psychologist%%lst%% 48%%lst%% 3–23%%per%%]$~ 
+~$[taylor%%lst%% s%%per%%%%lst%% abramowitz%%lst%% j%%per%%]$~ ~$[s%%per%%%%lst%% & mckay%%lst%% d%%per%% (2007)%%per%%]$~ ~$[cognitivebehavioral models %%#%% obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[in m%%per%%]$~ 
+~$[anthony%%lst%% c%%per%%]$~ ~$[purdon%%lst%% & l%%per%%]$~ ~$[j%%per%%]$~ ~$[summerfeldt (eds%%per%%)%%lst%% psychological 
+treatment %%#%% obsessive%%dsh%%compulsive disorder%%cln%% fundamentals ]^[ beyond 
+(pp%%per%% 9–29)%%per%%]$~ ~$[washington%%lst%% dc%%cln%% american psychological 
+association%%per%%]$~ 
+~$[twohig%%lst%% m%%per%%]$~ ~$[p%%per%%%%lst%% & whittal%%lst%% m%%per%%]$~ ~$[l%%per%% (2009)%%per%%]$~ ~$[a %%#%% %%#%% obsessive compulsive 
+disorder%%per%%]$~ ~$[cognitive ]^[ behavioral practice%%lst%% 16%%lst%% 3–6%%per%%]$~ 
+~$[vogel%%lst%% p%%per%%]$~ ~$[a%%per%%%%lst%% stiles%%lst%% t%%per%%]$~ ~$[c%%per%%%%lst%% & gotestam%%lst%% k%%per%%]$~ ~$[g%%per%% (2004)%%per%%]$~ ~$[adding cognitive 
+therapy elements %%#%% exposure therapy ]f[ obsessive compulsive 
+disorder%%cln%% %%#%% controlled study%%per%%]$~ ~$[behavioural ]^[ cognitive therapy%%lst%% 32%%lst%% 
+275–290%%per%%]$~ 
+~$[whittal%%lst%% m%%per%%]$~ ~$[l%%per%%%%lst%% robichaud%%lst%% m%%per%%%%lst%% thordarson%%lst%% d%%per%%]$~ ~$[s%%per%%%%lst%% & mclean%%lst%% p%%per%%]$~ ~$[d%%per%% 
+(in press)%%per%%]$~ ~$[group ]^[ individual treatment %%#%% ocd using cognitive therapy ]^[ exposure plus response prevention%%cln%% %%#%% twoyear follow%%dsh%%up %%#%% 2 randomized trials%%per%%]$~ ~$[journal %%#%% consulting ]^[ 
+clinical psychology%%per%%]$~ 
+~$[whittal%%lst%% m%%per%%]$~ ~$[l%%per%%%%lst%% thordarson%%lst%% d%%per%%]$~ ~$[s%%per%%%%lst%% & mclean%%lst%% p%%per%%]$~ ~$[d%%per%% (2005)%%per%%]$~ ~$[treatment 
+%%#%% obsessive%%dsh%%compusive disorder%%cln%% cognitive behavior therapy vs%%per%% 
+exposure ]^[ response prevention%%per%%]$~ ~$[behaviour research ]^[ therapy%%lst%% 
+43%%lst%% 1559–1576%%per%%]$~ 
+~$[address correspondence %%#%% michael b%%per%%]$~ ~$[himle%%lst%% ph%%per%%d%%per%%%%lst%% department %%#%% 
+psychology%%lst%% 319 harvard st%%per%%%%lst%% university %%#%% north dakota%%lst%% grand forks%%lst%% 
+nd 58202%%dsh%%8380%%scn%% e%%dsh%%mail%%cln%% michael%%per%%himle@und%%per%%nodak%%per%%edu%%per%%]$~ 
+~$[received%%cln%% february 2%%lst%% 2008 
+accepted%%cln%% march 19%%lst%% 2008 
+available online 26 october 2008 
+39 

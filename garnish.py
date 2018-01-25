@@ -58,6 +58,7 @@ class garnish:
 
 		sentence_bad_map 		= 	{}
 		sentence_length_map 	= 	{}
+		sentence_entropy_map 	= 	{}
 
 		ingredient_freq_map 	= 	{}
 		ingredient_free_map 	= 	{}
@@ -105,10 +106,17 @@ class garnish:
 						_special_item_dict[special_item]=_special_item_dict[special_item]+1
 
 		for _label in sentence_map:
+
+			sfs=[]
+			for i in range(_label, sentence_length_map[_label]+_label):
+				sfs.append(ingredient_freq_map[ingredient_free_map[_label]])
+			sentence_entropy_map[_label]=mutils.entropy(sfs)/(sentence_length_map[_label]+_label)
+
+
 			vec=[]
 			for special_item in sentence_map[_label]:
 				vec = vec + [sentence_map[_label][special_item]]
-			vec=vec + [sentence_length_map[_label]]
+			vec=vec + [sentence_length_map[_label], sentence_entropy_map[_label]]
 			sentence_vec_map[_label]=vec
 
 		seen_labels		=	{}
@@ -125,54 +133,51 @@ class garnish:
 					if hamming_dis not in sen_pairs: 
 						sen_pairs[hamming_dis] = {}
 
-						if _i_label not in sen_pairs[hamming_dis]:
-							sfs=[]
-							for i in range(_i_label, sentence_length_map[_i_label]+_i_label):
-								sfs.append(ingredient_freq_map[ingredient_free_map[_i_label]])
-							sen_pairs[hamming_dis][_i_label]=mutils.entropy(sfs)
-						if _j_label not in sen_pairs[hamming_dis]:
-							sfs=[]
-							for i in range(_j_label, sentence_length_map[_j_label]+_j_label):
-								sfs.append(ingredient_freq_map[ingredient_free_map[_j_label]])
-							sen_pairs[hamming_dis][_j_label]=mutils.entropy(sfs)
-					else:
-						if _i_label not in sen_pairs[hamming_dis]:
-							sfs=[]
-							for i in range(_i_label, sentence_length_map[_i_label]+_i_label):
-								sfs.append(ingredient_freq_map[ingredient_free_map[_i_label]])
-							sen_pairs[hamming_dis][_i_label]=mutils.entropy(sfs)
-						if _j_label not in sen_pairs[hamming_dis]:
-							sfs=[]
-							for i in range(_j_label, sentence_length_map[_j_label]+_j_label):
-								sfs.append(ingredient_freq_map[ingredient_free_map[_j_label]])
-							sen_pairs[hamming_dis][_j_label]=mutils.entropy(sfs)
+					if _i_label not in sen_pairs[hamming_dis]:
+						sen_pairs[hamming_dis][_i_label]=sentence_entropy_map[_i_label]
+
+					if _j_label not in sen_pairs[hamming_dis]:
+						sen_pairs[hamming_dis][_j_label]=sentence_entropy_map[_j_label]
+					
+
+		sorted_bins={}
+		for _bin in sen_pairs:
+			seen_again={}
+
+			for il in sen_pairs[_bin]:
+				if _bin not in sorted_bins:
+					sorted_bins[_bin]={}
+				a=[]
+				for i in range(il, sentence_length_map[il]+il):
+					a.append(ingredient_freq_map[ingredient_free_map[il]])
+				seen_again[il]=0
+				for jl in sen_pairs[_bin]:
+					if jl not in seen_again:
+						b=[]
+						for i in range(jl, sentence_length_map[jl]+jl):
+							b.append(ingredient_freq_map[ingredient_free_map[jl]])
+						if sen_pairs[_bin][jl] < -1 and sen_pairs[_bin][il] < -1:
+							lev_dis = mutils.levenshtein(a,b)
+							if lev_dis < 20:
+								if lev_dis not in sorted_bins[_bin]:
+									sorted_bins[_bin][lev_dis]={}
+
+								sorted_bins[_bin][lev_dis][il]=1
+								sorted_bins[_bin][lev_dis][jl]=1
 
 		for _bin in sen_pairs:
-			print(bcolors.OKGREEN+"Similarity: "+str(_bin)+bcolors.ENDC)
-			s1=""
 
-			for label in sen_pairs[_bin]:
-				if sen_pairs[_bin][label] < -500:
-					s1=s1+"[Entropy: "+str(sen_pairs[_bin][label])+"]\n  "	
+			print(bcolors.OKGREEN+"[Similarity] : "+str(_bin)+bcolors.ENDC)
+			for lev_dis in sorted_bins[_bin]:
+
+				print(bcolors.FAIL + " +[Distance] : "+str(lev_dis)+bcolors.ENDC)
+				s1=""
+				for label in sorted_bins[_bin][lev_dis]:
+					s1=s1+"  +[Entropy: "+str(sen_pairs[_bin][label])+"]\n   "	
 					for i in range(label, sentence_length_map[label]+label):
 						s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
-					s1=s1+"\n"
-			print(s1)
-					#if cosine_sim < 0.8 or correlation < 0.8:
-						#print("Correlation      : "+str(correlation))
-						#print("Cosine Sim       : "+str(cosine_sim))
-
-					# print("Hamming Distance : "+str(hamming_dis))
-
-					# s1=""
-					# for i in range(_i_label, sentence_length_map[_i_label]+_i_label):
-					# 	s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]
-
-					# s2=""
-					# for j in range(_j_label, sentence_length_map[_j_label]+_j_label):
-					# 	s2=s2+" "+_ingredients.get_unprepped_ingredients()[j]
-					# print(bcolors.FAIL+"Entropy: [" +str(mutils.entropy(a)) +"]"+s1)
-					# print("\n"+"Entropy: [" +str(mutils.entropy(b)) +"]"+s2+bcolors.ENDC)
+					s1=s1+"\n\n"
+				print(s1)
 
 
 	def final_touches(self, _ingredients, special_items):

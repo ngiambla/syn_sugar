@@ -1,1066 +1,745 @@
-~$[Available online at www%%per%%sciencedirect%%per%%com 
-Cognitive ]^[ Behavioral Practice 16 (2009) 29–39 
-www%%per%%elsevier%%per%%com/locate/cabp 
-RESPONSE PAPER 
-The More You Do It%%lst%% the Easier It Gets%%cln%% 
-Exposure ]^[ Response Prevention ]f[ OCD 
-Michael B%%per%%]$~ ~$[Himle%%lst%% University of North Dakota 
-Martin E%%per%%]$~ ~$[Franklin%%lst%% University of Pennsylvania School of Medicine 
-This manuscript is one in a series of invited papers to this journal%%per%%]$~ ~$[The purpose of the series is to highlight ]^[ discuss the similarities 
-]^[ differences between various behavioral ]^[ cognitive%%dsh%%behavioral approaches to the treatment of obsessive%%dsh%%compulsive disorder 
-(OCD)%%per%%]$~ ~$[The first article in this series (Twohig & Whittal) describes the case of “Caroline” upon which the current manuscript is based%%per%%]$~ 
-~$[We approach the case from a cognitive%%dsh%%behavioral orientation with exposure ]^[ ritual prevention (EX/RP) as the primary therapeutic 
-approach%%per%%]$~ ~$[We highlight the use of EX/RP because of the considerable body of empirical evidence showing that EX/RP is an efficacious 
-treatment ]f[ both adult ]^[ pediatric OCD%%per%%]$~ ~$[Using the provided case vignette%%lst%% we outline a rationale ]f[ EX/RP ]^[ describe how EX/ 
-RP might be used to treat Caroline’s OCD%%per%%]$~ ~$[We begin by discussing the theoretical underpinnings ]f[ EX/RP ]^[ providing a rationale 
-]f[ treatment%%per%%]$~ ~$[We then briefly discuss the rich extant literature supporting EX/RP as an effective treatment ]f[ OCD%%per%%]$~ ~$[We then provide a 
-detailed case conceptualization ]^[ description of the treatment%%per%%]$~ ~$[We conclude with barriers commonly encountered during EX/RP%%per%%]$~ 
-~$[T 
-has seen exciting advancements in 
-psychosocial therapies ]f[ treating OCD%%per%%]$~ ~$[Arguably%%lst%% 
-though%%lst%% the most thoroughly researched ]^[ most 
-effective psychosocial treatment modality is cognitivebehavioral therapy (CBT) involving exposure ]^[ 
-response prevention (EX/RP)%%per%%]$~ ~$[EX/RP has consistently 
-been shown to be effective ]f[ reducing symptoms of both 
-adult ]^[ pediatric OCD%%per%%]$~ ~$[In fact%%lst%% both the American 
-Academy of Child ]^[ Adolescent Psychiatry (AACAP%%lst%% 
-1998) ]^[ the American Psychological Association (Task 
-Force on Promotion ]^[ Dissemination of Psychological 
-Procedures%%lst%% 1995) have concluded that CBT has garnered 
-enough research support to be considered the treatment 
-of choice ]f[ both children ]^[ adults with OCD%%per%%]$~ 
-~$[Although there are a host of specific techniques ]^[ 
-delivery strategies subsumed under the CBT umbrella%%lst%% 
-one of the primary goals of CBT is to teach the patient the 
-skills needed to directly confront fear%%dsh%%evoking stimuli 
-without engaging in fear%%dsh%%neutralizing rituals%%per%%]$~ ~$[If this can be 
-accomplished both persistently (for a sufficient duration 
-of time per trial) ]^[ consistently (across trials)%%lst%% the 
-patient is likely to experience a natural reduction in 
-anxiety and%%lst%% more importantly%%lst%% will eventually be able to 
-go about his/her day%%dsh%%to%%dsh%%day activities without the need ]f[ 
-elaborate rituals ]v[ avoidance repertoires%%per%%]$~ 
-~$[Introduction to EX/RP ]f[ OCD 
-HE PAST DECADE 
-We would like to begin by stating that EX/RP%%lst%% as we use 
-it here%%lst%% does ]n[ refer to a theoretical stance%%lst%% ]b[ rather 
-refers to a collection of treatment techniques that were 
-borne from behavioral theory%%per%%]$~ ~$[As the name implies%%lst%% EX/ 
-RP is a collection of therapeutic techniques aimed at 
-teaching an individual to approach%%lst%% rather than avoid%%lst%% 
-fear%%dsh%%producing stimuli (exposure) coupled with the prevention of fear%%dsh%%neutralizing rituals (response prevention)%%per%%]$~ 
-~$[That being said%%lst%% it would be misleading to suggest that we 
-do ]n[ frequently employ other treatment techniques%%lst%% 
-such as those commonly used in treatment packages that 
-emphasize more cognitively%%dsh%%based techniques (see Chosak%%lst%% Marques%%lst%% Fama%%lst%% Renaud%%lst%% Wilhelm%%lst%% 2009)%%per%%]$~ ~$[Together%%lst%% 
-this collection of techniques is frequently referred to as 
-CBT%%per%%]$~ ~$[We do ]n[ consider the more cognitive techniques 
-included in these packages to be inconsistent with 
-behavioral theory nor with EX/RP%%per%%1 We view them as 
-ancillary techniques that can be used within a treatment 
-package to accomplish the treatment goal of providing 
-opportunities ]f[ an OCD patient to experience fear%%lst%% 
-observe fear reduction even in the absence of ritualistic 
-efforts to avoid ]v[ prevent feared consequences%%lst%% ]^[ to 
-1 
-1077%%dsh%%7229/08/29–39$1%%per%%00/0 
-© 2008 Association ]f[ Behavioral ]^[ Cognitive Therapies%%per%%]$~ 
-~$[Published by Elsevier Ltd%%per%%]$~ ~$[All rights reserved%%per%%]$~ 
-~$[We conceptualize cognition as an active%%lst%% albeit private%%lst%% behavioral 
-process%%lst%% perhaps better termed “thinking,” which is consistent with a 
-behavioral analysis%%per%%]$~ ~$[However%%lst%% ]f[ simplicity we will refer to “thinking” 
-as “cognitive” ]^[ when referring to intervention techniques we will 
-use the traditional term “cognitive therapy%%per%%” 
-Himle & Franklin 
-30 
-learn from repeated experience that the feared consequences do ]n[ materialize ]^[ that obsessional distress 
-reduces over the course of time if allowed to do so%%per%%]$~ 
-~$[It is also important to note from the outset that the 
-cause of OCD remains unknown ]^[ no single model 
-]v[ theory ]y[ proposed%%lst%% including behavioral theory%%lst%% is 
-able to fully explain how ]v[ why OCD develops (Taylor%%lst%% 
-Abramowitz%%lst%% & McKay%%lst%% 2007)%%per%%]$~ ~$[Further%%lst%% there are no 
-data to support any single theory in accounting ]f[ the 
-wide symptom variability observed in OCD patients%%per%%]$~ ~$[In 
-fact%%lst%% one can be reasonably certain that the underlying 
-cause of OCD is multifactorial%%scn%% involving complex 
-interactions between genetic%%lst%% physiological%%lst%% ]^[ behavioral (including cognitive%%lst%% emotional%%lst%% ]^[ social) 
-factors%%per%%]$~ ~$[Just as psychopharmacological interventions 
-have spawned from our understanding of the underlying biological processes involved in OCD%%lst%% CBT has 
-risen from our understanding of underlying behavioral 
-processes involved in OCD%%per%%]$~ 
-~$[Theoretical Rationale ]f[ EX/RP 
-Early learning models of OCD were based largely on a 
-two%%dsh%%factor theory of fear (Dollard & Miller%%lst%% 1950%%scn%% Mowrer%%lst%% 
-1951%%lst%% 1960)%%per%%]$~ ~$[The two%%dsh%%factor model proposes that when an 
-individual is faced with a situation that elicits a physiological fear ]v[ anxiety state%%lst%% an unconditioned (i%%per%%e%%per%%%%lst%% 
-unlearned) behavioral reaction to escape that state is 
-initiated%%per%%]$~ ~$[If the action is successful in reducing the anxiety%%lst%% 
-it is strengthened%%lst%% through negative reinforcement%%lst%% ]^[ 
-thus is more likely to be reproduced in the presence of 
-similar anxiety%%dsh%%producing stimuli in the future%%per%%]$~ ~$[Through 
-learning experiences%%lst%% various internal (e%%per%%g%%per%%%%lst%% thoughts ]^[ 
-images) ]^[ external (i%%per%%e%%per%%%%lst%% contextual) stimuli acquire the 
-ability to elicit anxiety ]^[ the ensuing escape response%%per%%]$~ 
-~$[When the escape response is performed “compulsively” in 
-response to benign (albeit distress%%dsh%%evoking) stimuli%%lst%% one is 
-said to suffer from OCD%%per%%]$~ 
-~$[EX/RP is based on the assumption that if an individual 
-is systematically exposed to stimuli that elicit obsessional 
-thoughts ]^[ associated anxiety%%lst%% ]^[ is prevented from 
-escaping ]v[ otherwise neutralizing the anxiety (ritual 
-prevention)%%lst%% the anxiety will diminish over time through 
-the process of extinction ]^[ the person will be better 
-able to function in his/her daily life%%per%%]$~ ~$[Theorists such as Foa 
-]^[ Kozak (1986) have posited that habituation is aided 
-by exposure to corrective information in that the 
-individual learns%%lst%% through direct experience%%lst%% that the 
-feared consequences do ]n[ materialize in the situations 
-that typically evoke obsessional distress%%per%%]$~ ~$[With repetition%%lst%% 
-the reduction of anxiety in the previously feared situation 
-makes it easier in the long run to resist the weaker urges to 
-escape and/or ritualize%%per%%]$~ 
-~$[From a practical standpoint%%lst%% a behavioral conceptualization focuses on the here%%dsh%%and%%dsh%%now functional relation%%dsh%% 
-ship between an individual’s obsessions ]^[ compulsions%%lst%% 
-with the assumption that this relationship can be modified 
-in treatment without necessarily understanding the 
-“cause” of the obsessions%%per%%]$~ ~$[Furthermore%%lst%% the specific 
-content ]v[ form of the obsessions ]^[ compulsions is 
-relatively unimportant except to the extent that they set 
-the context ]f[ preparing specific treatment exercises%%per%%]$~ ~$[For 
-example%%lst%% a person who reports distress related to 
-repetitive%%lst%% intrusive thoughts of harming their spouse 
-might engage in one ]v[ more forms of compulsive 
-behavior to reduce this distress%%per%%]$~ ~$[Examples might include 
-frequent “checking in,” taking measures to avoid situations perceived as “high risk,” ]v[ elaborate mental rituals%%per%%]$~ 
-~$[In each of these examples%%lst%% the common underlying theme 
-is the repetitive performance of one ]v[ more rituals that 
-functions to remove ]v[ avoid the distress associated with 
-obsessional thoughts%%per%%]$~ ~$[In each case%%lst%% the individual can 
-learn to manage his/her OCD using EX/RP without 
-necessarily knowing how the obsession developed%%per%%]$~ ~$[In fact%%lst%% 
-throughout the course of EX/RP%%lst%% analyzing the nature 
-]^[ cause of one’s obsessions is actively discouraged as this 
-often leads the person to “fight” with the obsessions%%lst%% which 
-is likely to ultimately make them worse%%per%%]$~ 
-~$[Empirical Support ]f[ EX/RP ]f[ OCD 
-A review of the research literature shows strong 
-support ]f[ EX/RP as a treatment ]f[ OCD%%per%%]$~ ~$[Several 
-recent qualitative ]^[ quantitative (i%%per%%e%%per%%%%lst%% meta%%dsh%%analytic) 
-literature reviews have evaluated ]^[ critiqued the CBT 
-]f[ OCD literature ]^[ each has concluded that CBT is 
-an effective treatment ]f[ reducing OCD in adults ]^[ 
-children (Abramowitz%%lst%% 1996%%lst%% 1997%%scn%% Abramowitz%%lst%% Franklin%%lst%% 
-& Foa%%lst%% 2002%%scn%% Abramowitz%%lst%% Whiteside%%lst%% & Deacon%%lst%% 2005%%scn%% 
-Foa & Kozak%%lst%% 1996)%%per%%]$~ ~$[Overall%%lst%% based on these reviews of 
-the literature%%lst%% reasonable estimates show EX/RP to be an 
-effective treatment ]f[ 60% to 90% of individuals with 
-50% to 80% symptom reduction common (Abramowitz%%lst%% 
-1996%%lst%% 1997%%scn%% Abramowitz et al%%per%%%%lst%% 2002%%scn%% Abramowitz et al%%per%%%%lst%% 
-2005%%scn%% Foa & Kozak%%lst%% 1996%%scn%% Greist%%lst%% 2000)%%per%%]$~ ~$[Furthermore%%lst%% 
-recent evidence suggests that treatment gains are 
-maintained at 2%%dsh%%year follow%%dsh%%up (Whittal%%lst%% Robichaud%%lst%% 
-Thordarson%%lst%% & McLean%%lst%% in press)%%per%%]$~ ~$[The treatment improvement rates observed in EX/RP rival those of 
-pharmacological studies%%lst%% ]^[ head%%dsh%%to%%dsh%%head behavior 
-therapy versus pharmacological treatment studies suggest 
-that behavior therapy ]n[ only provides longer%%dsh%%lasting 
-gains ]b[ also results in greater short%%dsh%%term improvement 
-in symptoms (e%%per%%g%%per%%%%lst%% Foa et al%%per%%%%lst%% 2005%%scn%% Greist%%lst%% 1996%%scn%% Simpson 
-et al%%per%%%%lst%% 2004)%%per%%]$~ 
-~$[Case Conceptualization 
-The case of Caroline (Twohig & Whittal%%lst%% 2009%%dsh%%this 
-issue) provides a nice constellation of OC symptoms that 
-Response%%cln%% EX/RP ]f[ OCD 
-will allow us to outline how OCD would be conceptualized 
-within a cognitive%%dsh%%behavioral framework ]^[ treated 
-using EX/RP%%per%%]$~ ~$[Before we describe how EX/RP might 
-proceed%%lst%% it will be helpful ]f[ the reader to first review 
-Caroline’s primary OC symptoms%%lst%% which are described 
-below ]^[ are summarized in Table 1%%per%%]$~ 
-~$[Caroline’s primary obsessional theme centers around 
-fears that she will cause harm to those around her by 
-spreading “bad energy” ]v[ illness which will result in injury%%lst%% 
-illness%%lst%% harm ]v[ death befalling friends%%lst%% family members%%lst%% 
-children%%lst%% ]v[ other individuals in her immediate proximity%%per%%]$~ 
-~$[Caroline’s description of her obsessions is elaborate%%per%%]$~ ~$[She 
-describes accompanying feelings of “dust” on her hands 
-]^[ mouth%%lst%% which she believes serves as a medium by 
-which “bad energy” is spread from herself to others%%per%%]$~ 
-~$[When her obsessional thoughts are evoked%%lst%% Caroline 
-performs several compulsive rituals%%lst%% which she believes 
-will prevent harm from coming to others%%per%%]$~ ~$[Early in the 
-course of her disorder%%lst%% she would flick her fingers in order 
-to remove the harmful dust%%lst%% ]b[ she now fears that this 
-might spread the dust to those around her%%per%%]$~ ~$[As a result%%lst%% her 
-compulsive rituals have evolved to include%%cln%% (a) closing her 
-hands into fists whenever she gets the dusty feeling%%lst%% (b) 
-biting the sides of her tongue to “dissolve” the dust ]s[ it 
-does ]n[ spread%%lst%% (c) praying ]f[ God to protect those 
-around her%%lst%% (d) repeating the phrase “just goodness,” 
-which she believes will protect those around her%%lst%% (e) 
-avoiding saying “goodbye” out of fear that doing ]s[ will 
-cause harm to the recipient of the gesture%%lst%% (f) wiping her 
-hands before visiting someone who is ill%%lst%% ]^[ (g) 
-31 
-performing elaborate rituals to remove contaminants 
-after visiting someone who is ill (wiping/washing her 
-hands%%lst%% washing her clothing%%lst%% ]^[ showering)%%per%%]$~ ~$[She also 
-engages her husband in her rituals by asking him to wash 
-his hands ]^[ clothing after visiting someone who is ill in 
-order to prevent him from becoming ill%%per%%]$~ ~$[These by%%dsh%%proxy 
-rituals%%lst%% often referred to as accommodation%%lst%% are ]n[ 
-uncommon%%lst%% especially within close interpersonal (e%%per%%g%%per%%%%lst%% 
-spousal%%lst%% partner ]^[ parent%%dsh%%child) relationships%%per%%]$~ 
-~$[In addition to her fears of directly causing harm to 
-others%%lst%% Caroline reports a pathological sense of responsibility to prevent harm from coming to others ]^[ fears 
-that if she does ]n[ perform specific rituals%%lst%% those around 
-her will contract cancer ]v[ will be otherwise harmed%%per%%]$~ ~$[To 
-alleviate the anxiety associated with these obsessions%%lst%% she 
-engages in a variety of covert ]^[ overt “protective” 
-rituals%%lst%% which temporarily alleviate her discomfort%%per%%]$~ ~$[Her 
-covert ritual involves creating an imagined circle around 
-the person whom she believes she needs to protect ]^[ 
-mentally “pulling” the imagined circle away from the 
-person%%per%%]$~ ~$[In addition%%lst%% she engages in a variety of overt 
-rituals%%lst%% including touching the person%%lst%% praying%%lst%% ]^[ eyeblinking%%per%%]$~ ~$[According to Caroline%%lst%% these rituals protect the 
-person from harm%%per%%]$~ ~$[It is also noteworthy that Caroline also 
-engages in mental checking rituals%%per%%]$~ ~$[She states that when 
-she hears of an accident (perhaps on the news)%%lst%% she 
-“mentally reviews” whether she came into contact with the 
-person involved in the accident%%per%%]$~ ~$[This type of questioning/ 
-checking would be considered a mental ritual designed to 
-alleviate distress associated with her pathological sense of 
-Table 1 
-Caroline’s primary obsessive%%dsh%%compulsive presentation 
-General Obsessional Theme 
-Specific Thoughts/Fears 
-Associated Rituals 
-Fear of causing harm to others 
-Fear of spreading “bad energy,” in the form 
-of dust from her hands ]v[ mouth%%lst%% which will 
-result in injury%%lst%% illness%%lst%% ]v[ death to others%%lst%% 
-especially friends ]^[ family members ]^[ 
-individuals who are ill 
-Pathological Sense of 
-Responsibility ]f[ harm 
-befalling others ]v[ to 
-prevent harm from 
-befalling others 
-Believing she is responsible ]f[ preventing 
-harm from coming to others ]^[ protecting 
-those around her from harm/danger/disease%%lst%% 
-especially cancer 
-Flicking fingers to remove the harmful dust 
-Wiping ]v[ washing her hands to remove the dust 
-Closing her hands into fists to prevent dust from 
-escaping 
-Biting the sides of her tongue to “dissolve” 
-the dust 
-Praying (for God to protect those around her) 
-Repeating the phrase “just goodness” 
-Avoiding saying “goodbye” 
-Elaborate washing/cleaning rituals (washing her 
-clothing%%lst%% showering%%lst%% etc%%per%% after visiting someone ill) 
-By%%dsh%%proxy rituals (accommodation)%%cln%% asking her 
-husband to wash his hands ]^[ clothing when 
-she fears he has been “contaminated” 
-Creating an imagined circle around the person 
-whom she believes she needs to protect ]^[ 
-mentally “pulling” the imagined circle away from 
-the person 
-Touching the person to prevent harm 
-Praying 
-Eye%%dsh%%blinking to prevent harm 
-Mentally reviewing 
-32 
-Himle & Franklin 
-responsibility%%per%%]$~ ~$[The function of mental rituals is the same 
-as more overt rituals%%lst%% ]^[ hence they too play a key role in 
-the maintenance of OCD ]^[ must be directly targeted 
-via response prevention%%per%%]$~ 
-~$[Given her pattern of symptoms%%lst%% ]^[ the generally 
-robust response of OCD symptoms to EX/RP%%lst%% Caroline 
-would be a good candidate ]f[ this treatment%%per%%]$~ ~$[The goal of 
-EX/RP would be to teach Caroline to confront feared 
-situations%%lst%% in a graduated manner%%lst%% while simultaneously 
-]^[ voluntarily refraining from performing her rituals%%per%%]$~ 
-~$[Although the “meat” of treatment would focus on 
-exposure ]^[ ritual prevention%%lst%% maladaptive OCD%%dsh%%specific cognitions would be identified ]^[ cognitive therapy 
-(CT) techniques could be also included to target these 
-symptoms%%lst%% as there is some research to show that cognitive 
-techniques can be helpful%%per%%]$~ ~$[It has been suggested that 
-cognitive techniques might increase compliance with 
-exposure tasks ]f[ some patients (Freeston%%lst%% Ladouceur%%lst%% 
-Gagnon%%lst%% et al%%per%%%%lst%% 1997%%lst%% Leahy%%lst%% 2007) ]^[ compliance with 
-treatment has been associated with improved treatment 
-outcome (Abramowitz%%lst%% Franklin%%lst%% Zoellner%%lst%% & DiBernardo%%lst%% 
-2002)%%per%%]$~ ~$[It has also been suggested that cognitive techniques might improve treatment retention (Vogel%%lst%% Stiles%%lst%% & 
-Gotestam%%lst%% 2004)%%scn%% however%%scn%% empirical findings on this 
-matter are mixed%%lst%% with some clinical trials failing to 
-demonstrate differential dropout rates between EX/RP 
-with ]^[ without CT (Whittal%%lst%% Thordarson%%lst%% & McLean%%lst%% 
-2005) ]^[ some recent research showing EX/RP to be 
-associated with higher dropout rates than CT (Whittal et 
-al%%per%%%%lst%% in press)%%per%%]$~ ~$[It is important to note that when cognitive 
-techniques are adopted ]^[ utilized in conjunction with 
-EX/RP%%lst%% the inclusion of cognitive therapy techniques is 
-]n[ meant to change%%lst%% suppress%%lst%% ]v[ stop the patient’s 
-irrational obsessions in the moment%%per%%]$~ ~$[To the contrary%%lst%% the 
-focus of treatment is to teach Caroline to directly confront 
-the feared stimulus ]^[ deliberately elaborate ]v[ focus 
-upon the fears in the moment%%lst%% rather than to engage in 
-attempts to stop obsessions ]^[ discomfort from occurring%%per%%]$~ ~$[Most often%%lst%% patients with OCD have worked very 
-hard at inherently futile attempts to stop their obsessions%%per%%]$~ 
-~$[Unfortunately%%lst%% rather than decreasing distress%%lst%% such 
-attempts contribute to the problem ]^[ make OCD 
-worse%%per%%]$~ ~$[For example%%lst%% when working with Caroline%%lst%% we 
-might use cognitive techniques to teach her to evaluate 
-]^[ more accurately estimate the actual level of threat 
-]^[ probability of the negative outcomes that she fears%%per%%]$~ 
-~$[We may also teach her that thoughts are often inaccurate 
-]^[ that she does ]n[ necessarily have to listen to her 
-thoughts ]v[ take them literally%%per%%]$~ ~$[Rather%%lst%% we would suggest 
-that her thoughts ]^[ fears are hypotheses that can be 
-directly tested during EX/RP%%per%%]$~ ~$[In addition to increasing 
-compliance with EX/RP%%lst%% this technique is designed to 
-“externalize” OCD ]^[ to encourage Caroline to stop 
-“fighting” with her OCD ]^[ start “being her own boss%%per%%” 
-This places emphasis on trying to change her behavior 
-rather than trying to change her thoughts%%per%%]$~ 
-~$[In order to help Caroline to conceptualize her 
-obsessions ]^[ rituals from an EX/RP standpoint%%lst%% we 
-would first help her to understand that her rituals are 
-performed to alleviate the discomfort that is associated 
-with the obsessional thoughts ]v[ images%%per%%]$~ ~$[It is often the case 
-that individuals with OCD fail to understand that although 
-their rituals are effective ]f[ reducing discomfort in the 
-short term%%lst%% they are maintaining (or even worsening) 
-OCD in the long%%dsh%%term%%per%%]$~ ~$[To help Caroline understand how 
-this relates to EX/RP%%lst%% we would help her to understand 
-that the only way ]f[ her to overcome her fears is to refrain 
-from ritualizing ]^[ directly experience the outcome%%per%%]$~ 
-~$[Although rarely stated explicitly in our rational%%lst%% these 
-direct experiences will help her to experience that harm 
-does ]n[ actually occur ]^[ that although refraining from 
-ritualizing is uncomfortable (at least in the short term) it is 
-]n[ dangerous to herself ]v[ others%%per%%]$~ 
-~$[During EX/RP%%lst%% emphasis is always placed on the fact 
-that patients with OCD can exercise voluntary control 
-over their rituals ]b[ cannot%%lst%% nor should not%%lst%% attempt to 
-control their obsessions ]v[ the associated distress in the 
-moment%%per%%]$~ ~$[In fact%%lst%% Abramowitz (2006) suggested that two 
-“commandments” of successful EX/RP are that patients 
-should (a) expect to feel uncomfortable ]^[ (b) should 
-]n[ try to fight the discomfort%%per%%]$~ 
-~$[Implementation of EX/RP 
-The number ]^[ length of EX/RP sessions that an 
-individual will need will vary considerably%%lst%% depending 
-upon the severity of the individual’s OCD symptoms%%lst%% the 
-person’s availability ]f[ treatment%%lst%% ]^[ a host of other 
-factors%%per%%]$~ ~$[Our experience (which is consistent with data 
-reported from randomized controlled trials) is that most 
-individuals seeking treatment on an outpatient basis will 
-respond well to 12 to 15 treatment sessions%%lst%% conducted at 
-least weekly%%lst%% ]^[ each lasting 60 to 90 minutes%%per%%]$~ ~$[There are 
-now several manuals that provide step%%dsh%%by%%dsh%%step ]^[ sessionby%%dsh%%session guides to implementing EX/RP (e%%per%%g%%per%%%%lst%% Abramowitz%%lst%% 2006%%scn%% Franklin & Foa%%lst%% 1998%%scn%% Kozak & Foa%%lst%% 1997%%scn%% Riggs 
-& Foa%%lst%% 1993%%scn%% Steketee%%lst%% 1993)%%per%%]$~ ~$[Although each manual 
-suggests slight variations in treatment%%lst%% the general session 
-structure is fairly consistent%%per%%]$~ ~$[The primary components of 
-EX/RP include assessment of OCD symptoms%%lst%% psychoeducation ]^[ treatment rationale%%lst%% symptom monitoring%%lst%% 
-developing fear hierarchies%%lst%% in%%dsh%%session ]^[ out%%dsh%%of%%dsh%%session 
-exposure work%%lst%% relapse prevention%%lst%% ]^[ generalization 
-training%%per%%]$~ ~$[A sample session structure is provided in Table 2%%per%%]$~ 
-~$[Assessment ]^[ Review of OCD Symptoms 
-Caroline’s primary OCD symptoms are outlined in detail 
-in the conceptualization provided above%%per%%]$~ ~$[Caroline was 
-Response%%cln%% EX/RP ]f[ OCD 
-Table 2 
-Sample session structure ]f[ EX/RP 
-Session Number 
-Session Goals 
-Session 1 
-● Assessment/review of OCD symptoms 
-● Psychoeducation 
-● Provide an overview of recent research on the biology ]^[ behavioral 
-characteristics of OCD 
-● Explain to the patient that OCD is a neurobehavioral disorder with an 
-unknown cause%%scn%% focus on removing blame the patient may have placed on 
-him/herself 
-● Avoid analysis aimed at uncovering the “cause” of OCD 
-● Conduct an “inconvenience review” to outline the specific ways in which 
-OCD is disrupting the patient’s life 
-● Present the functional model of OCD ]^[ rationale ]f[ EX/RP 
-● Work with the patient to “externalize” OCD 
-● Teach symptom monitoring ]^[ rating (SUDS) 
-● Begin development of fear hierarchy 
-● Continue hierarchy development ]^[ refine hierarchies as needed 
-● Create separate hierarchies ]f[ each obsession/ritual 
-● Prepare/plan ]f[ exposure exercises 
-● Develop strategies ]f[ ritual prevention 
-● Continue to work with patient to “externalize” OCD 
-● Review ]^[ continue symptom monitoring 
-● Discuss possible barriers to treatment 
-● Begin in%%dsh%%session%%lst%% therapist%%dsh%%guided exposure tasks with response prevention 
-● Assign out%%dsh%%of%%dsh%%session%%lst%% patient%%dsh%%guided exposure “homework” 
-● Review ]^[ continue symptom monitoring 
-● Work progressively through hierarchy 
-● Periodically assess OCD symptoms 
-● Discuss ]^[ problem solve treatment barriers/noncompliance 
-● Conduct final exposures 
-● Take steps to promote generalization ]^[ maintenance 
-● Have the patient create his/her own hierarchies%%lst%% develop his/her own 
-ritual prevention strategies%%lst%% etc%%per%% 
-● Prepare ]f[ future challenges ]^[ create plan ]f[ relapse prevention 
-Session 2 
-Sessions 3–12 
-Sessions 13–15 
-assessed using the Yale%%dsh%%Brown Obsessive Compulsive Scale 
-(Y%%dsh%%BOCS)%%lst%% which is the gold%%dsh%%standard instrument ]f[ 
-assessing OCD symptoms in adults%%per%%]$~ ~$[The Y%%dsh%%BOCS has been 
-shown to be sensitive ]f[ detecting treatment%%dsh%%related 
-change ]s[ it can be administered repeatedly over the 
-course of treatment to assess treatment gains%%per%%]$~ ~$[It is noteworthy%%lst%% however%%lst%% that in addition to the Y%%dsh%%BOCS%%lst%% several 
-other structured interviews ]^[ self%%dsh%%report instruments 
-possess favorable psychometric properties ]^[ can be 
-included to aid in the assessment of OCD symptoms%%per%%]$~ 
-~$[Commonly used structured interviews include the Structured Clinical Interview ]f[ the DSM (SCID%%scn%% First et al%%per%%%%lst%% 
-1995) ]^[ the Anxiety Disorders Interview Schedule (ADIS%%scn%% 
-DiNardo%%lst%% Brown%%lst%% & Barlow%%lst%% 1994)%%per%%]$~ ~$[Commonly used selfreport measures include the National Institute of Mental 
-Health Global Obsessive%%dsh%%Compulsive Scale (NIMH%%dsh%%GOCS%%scn%% 
-Insel et al%%per%%%%lst%% 1983)%%lst%% the Padua Inventory (Sanavio%%lst%% 1988)%%lst%% the 
-Leyton Obsessional Inventory (LOI%%scn%% Cooper%%lst%% 1970)%%lst%% ]^[ the 
-Obsessive Compulsive Inventory (OCI%%scn%% Foa%%lst%% Kozak%%lst%% Salkovskis%%lst%% Coles%%lst%% & Amir%%lst%% 1998)%%per%%]$~ ~$[Each of these self%%dsh%%report measures 
-show adequate psychometric properties ]^[ are relatively 
-brief to complete (see St%%per%%]$~ ~$[Clare%%lst%% 2003%%lst%% ]f[ a review)%%per%%]$~ 
-~$[On the Y%%dsh%%BOCS%%lst%% Caroline received a total sore of 22%%lst%% 
-suggesting that her symptoms were of moderate severity%%per%%]$~ 
-~$[As noted above ]^[ convergent with the great majority of 
-individuals with clinical OCD (e%%per%%g%%per%%%%lst%% Foa & Kozak%%lst%% 1995)%%lst%% 
-Caroline reports both obsessions ]^[ compulsions that 
-affect her life in several ways%%cln%% She spends considerable 
-time engaged in rituals%%lst%% avoids children ]^[ individuals 
-who are ill%%lst%% avoids some (albeit few) situations ]^[ 
-touching of items%%lst%% ]^[ reports that daily activities require 
-considerable effort%%per%%]$~ ~$[In addition%%lst%% she directly involves her 
-husband in her rituals%%lst%% which may strain their relationship%%per%%]$~ 
-~$[Psychoeducation 
-Psychoeducation will be provided during the first few 
-sessions of treatment ]^[ periodically throughout treatment as necessary%%per%%]$~ ~$[Psychoeducation has several goals%%lst%% 
-which are summarized in Table 2%%per%%]$~ ~$[In addition to providing 
-basic information about the disorder%%lst%% it is also important to 
-provide a working model of OCD that focuses on the hereand%%dsh%%now functional relationship between obsessions ]^[ 
-rituals%%per%%]$~ ~$[By focusing on the present ]^[ future (rather than 
-the past)%%lst%% the therapist can help the patient understand 
-33 
-34 
-Himle & Franklin 
-the need for%%lst%% ]^[ function of%%lst%% EX/RP ]^[ can also help 
-the patient understand that treatment can progress without necessarily knowing ]v[ understanding what “caused” 
-the disorder in the first place%%per%%]$~ ~$[For example%%lst%% it is often the 
-case that patients will ask%%lst%% “Why do I have OCD?” It is ]n[ 
-uncommon ]f[ patients such as Caroline to have reviewed 
-]^[ searched events throughout their history ]f[ some 
-clue ]v[ answer to this question%%lst%% often with the hope that by 
-discovering what caused the OCD they will be able to 
-somehow fix the problem%%per%%]$~ ~$[For example%%lst%% Caroline reports a 
-series of unfortunate events that she might believe caused 
-her OCD (e%%per%%g%%per%%%%lst%% strained relationship with her mother ]f[ 
-which she felt a sense of responsibility%%lst%% physical illness%%lst%% 
-several unexplained miscarriages%%lst%% a friend who died from 
-an illness ]f[ which Caroline blamed herself)%%per%%]$~ ~$[These are 
-certainly unfortunate life events%%lst%% ]b[ these events did ]n[ 
-cause Caroline’s OCD%%lst%% nor did Caroline cause these events 
-to occur%%per%%]$~ ~$[When patients are focused on the cause of their 
-OCD%%lst%% we find it helpful to explain that OCD is a 
-neurobehavioral disorder whose causes are ]n[ ]y[ fully 
-understood%%per%%]$~ ~$[Focusing on biological factors helps the 
-patient understand that OCD is a medical illness rather 
-than a “learned habit” that the patient can control with 
-sufficient effort%%per%%]$~ ~$[For some patients%%lst%% it is helpful to actually 
-describe the neurobiological ]^[ neurochemical underpinnings believed to be involved in OCD%%per%%]$~ ~$[We then explain 
-to the patient that there is evidence that if the patient 
-learns EX/RP ]^[ changes their behavior%%lst%% it is possible to 
-directly affect the underlying neurobiological disruption%%per%%]$~ 
-~$[In addition to providing essential information about 
-OCD%%lst%% psychoeducation often helps reduce any self%%dsh%%blame 
-the patient may have ]^[ promotes the externalizing of 
-OCD ]s[ that the patient can align with the therapist to 
-learn new ways to manage his/her OCD (i%%per%%e%%per%%%%lst%% engage in 
-EX/RP)%%per%%]$~ ~$[Often%%lst%% patients such as Caroline will make 
-statements such as%%lst%% “I am%%lst%% deep down%%lst%% a horrible person%%per%%” 
-Such statements are indicative of the level of self%%dsh%%blame 
-]^[ self%%dsh%%criticism some clients exhibit ]^[ highlight the 
-importance of good psychoeducation%%per%%]$~ ~$[In this case we 
-might begin by stating%%lst%% “As I mentioned earlier%%lst%% OCD is a 
-medical disorder that often makes people feel pretty 
-horrible%%per%%]$~ ~$[As you mentioned earlier%%lst%% OCD has taken over 
-your life in many ways ]^[ you have spent considerable 
-time ]^[ effort fighting with your OCD at the expense of 
-doing other things you would like to do%%per%%]$~ ~$[Unfortunately%%lst%% 
-this fighting hasn’t seemed to work%%per%%]$~ ~$[Perhaps it is time to try 
-something new%%per%%” In addition%%lst%% this is a good opportunity to 
-introduce the concept of “externalizing” OCD%%per%%]$~ ~$[We might 
-say to Caroline%%lst%% “It sounds like OCD is telling you that you 
-are a bad person%%lst%% ]b[ one thing about OCD is that it 
-doesn’t always tell the truth%%per%%]$~ ~$[Perhaps OCD is telling you 
-things that are ]n[ true%%per%%]$~ ~$[Does that seem possible?” We may 
-also ask Caroline%%lst%% “What makes a person good ]v[ bad?” 
-Depending upon her response%%lst%% we might then help her 
-realize that OCD has prevented her from living her life the 
-way she would like to%%lst%% which has made her feel horrible%%lst%% ]b[ 
-that feeling horrible does ]n[ necessarily make her a 
-horrible person%%per%%]$~ ~$[We can then propose that through EX/ 
-RP%%lst%% Caroline can learn skills that will help her to function 
-on a day%%dsh%%to%%dsh%%day basis%%per%%]$~ ~$[For example%%lst%% if she learns to change 
-her behavior ]s[ that she can pursue more enjoyable 
-activities%%lst%% she may feel better ]^[ less like a horrible 
-person%%per%%]$~ ~$[Externalizing OCD is a therapeutic technique that 
-should be used throughout treatment%%per%%]$~ ~$[It is designed to 
-distance the patient’s thoughts from his/her behavior ]^[ 
-to align the patient ]^[ therapist as a “team” that is 
-working toward changing the patient’s behavior%%per%%]$~ 
-~$[Providing a Cogent Rationale ]f[ EX/RP 
-From the perspective of EX/RP%%lst%% further attempts to 
-discover the cause of OCD beyond those presented in 
-psychoeducation are ]n[ likely to enhance treatment%%per%%]$~ ~$[The 
-primary goal of EX/RP is to help the person understand 
-how their rituals are currently maintained%%lst%% ]n[ how they 
-came to be in the first place%%per%%]$~ ~$[Specifically%%lst%% emphasis is 
-placed on helping the person to understand that obsessions give rise to distress%%lst%% compulsions reduce distress%%lst%% ]^[ 
-any behavior designed to reduce this distress will be 
-strengthened ]^[ repeated%%per%%]$~ ~$[This focus on the present 
-helps set the stage ]f[ EX/RP by providing a rationale ]f[ 
-response prevention%%per%%]$~ ~$[Simply put%%lst%% the rationale is that 
-rituals (i%%per%%e%%per%%%%lst%% avoidance) are the problem because they 
-“feed” the obsessions%%lst%% which in turn elicit anxiety ]^[ 
-discomfort%%per%%]$~ ~$[It is critically important%%lst%% however%%lst%% to convey to 
-the patient that the reduction in the frequency ]^[ 
-intensity of obsessional distress is a process that will occur 
-over time with repeated exposure%%lst%% ]^[ that in fact the 
-short%%dsh%%term goal of the treatment is to increase this distress 
-by intentionally confronting the very situations ]^[ 
-thoughts that will provoke it%%per%%]$~ ~$[Put another way%%lst%% we emphasize the importance of increasing distress ]^[ discomfort 
-(focus on the present)%%lst%% with the knowledge that empirical 
-studies have indicated that%%lst%% over time%%lst%% the patient’s 
-anxiety ]^[ distress will decrease%%per%%]$~ 
-~$[Focusing on the functional relationship between obsessions ]^[ compulsions also underscores the importance of 
-making efforts to limit rituals ]^[ other avoidance 
-behaviors rather than trying to derail ]v[ change obsessions%%per%%]$~ 
-~$[This emphasis is essential to convey because many 
-individuals with OCD are highly motivated to “fight” to 
-control their obsessions%%per%%]$~ ~$[Ironically%%lst%% however%%lst%% fighting with 
-obsessions is likely to do more harm than good%%lst%% as there is 
-considerable evidence to show that attempting to control 
-obsessions is likely to increase their frequency ]^[ intensity 
-(Clark%%lst%% Ball%%lst%% & Pape%%lst%% 1991)%%per%%]$~ ~$[This concept is introduced 
-early in treatment in order to help the patient understand 
-that trying to fight obsessions is much like “shoveling sand%%per%%” 
-The strong emphasis on ritual prevention helps highlight 
-Response%%cln%% EX/RP ]f[ OCD 
-the message that while the patient can exert some control 
-over the performance of rituals%%lst%% he/she cannot control 
-(i%%per%%e%%per%%%%lst%% “stop”) the thoughts ]v[ associated distress%%per%%]$~ 
-~$[The rationale ]f[ ritual prevention should be broached 
-carefully%%lst%% as even the thought of refraining from 
-performing rituals can elicit considerable anxiety%%lst%% especially early in treatment%%per%%]$~ ~$[We often find it helpful to begin 
-with examples unrelated to OCD%%per%%]$~ ~$[For example%%lst%% we might 
-ask Caroline%%lst%% “Were you nervous the first time you went 
-on a date with your husband?” If she answers “yes,” then 
-we can use this as a nonthreatening way to introduce the 
-principles of EX/RP%%per%%]$~ ~$[For example%%lst%% we might present the 
-following%%cln%% “It is normal to feel anxious during a first date%%lst%% 
-but%%lst%% had you avoided dating because of your first date 
-anxiety%%lst%% what do you think would have been the outcome?” The goal is to help Caroline understand that if she 
-had avoided her first date with her husband%%lst%% she may ]n[ 
-have developed a relationship with him%%lst%% regardless of how 
-much she desired one%%per%%]$~ ~$[In addition%%lst%% we might ask Caroline 
-“How nervous were you on the second date%%lst%% third date%%lst%% 
-etc%%per%%?” ]v[ “How nervous are you to go on a date with your 
-husband now?” ]^[ “Are you glad that you went on that 
-first date?” The goal here is to use a non%%dsh%%threatening 
-example to help Caroline understand that the more dates 
-she attended with her husband%%lst%% the easier it became%%per%%]$~ ~$[The 
-possibility that a similar process might be applicable to 
-OCD is introduced as a hypothesis to be tested through 
-EX/RP%%per%%]$~ ~$[In other words%%lst%% the goal is to help Caroline 
-understand ]^[ accept that if she works with the therapist 
-to learn a specific set of OCD management skills in which 
-she is able to gradually reduce her ritualistic behavior%%lst%% she 
-will be better able to function on a day%%dsh%%to%%dsh%%day basis despite 
-having OCD%%per%%]$~ ~$[By doing ]s[ across the board%%lst%% interestingly 
-enough ]^[ as the treatment outcome data in OCD 
-repeatedly support%%lst%% the frequency ]^[ intensity of the 
-obsessions are likely to diminish with time%%per%%]$~ ~$[Thus%%lst%% by 
-paying less attention to obsessions in the short run%%lst%% the 
-therapist can make the empirically supported statement 
-that their pernicious influence as well as their frequency 
-will likely be reduced%%per%%]$~ 
-~$[It is often the case that even after an individual gains an 
-understanding of the principles behind EX/RP%%lst%% they 
-remain understandably hesitant to fully engage in the 
-treatment because they quickly understand that they will be 
-asked to tolerate discomfort (we often refer to this as the 
-“You want me to do what?” phenomenon)%%per%%]$~ ~$[The therapist 
-might address this by helping Caroline understand that she 
-is already tolerating great levels of discomfort%%lst%% ]b[ toward 
-no useful end%%per%%]$~ ~$[This is also when the therapist introduces 
-the concept of extinction%%lst%% which%%lst%% simply put%%lst%% can be 
-summarized as “maybe you have to let yourself feel bad to 
-feel good” ]^[ posed as a hypothesis that perhaps “the 
-more you do it%%lst%% the easier it gets%%per%%” Although the immediate 
-focus of therapy is reducing rituals%%lst%% patients with a sufficient 
-understanding of the EX/RP model quickly come to 
-realize that by refraining from rituals%%lst%% they are likely to 
-experience a significant reduction in anxiety in the long 
-run because they are no longer performing the escape/ 
-avoidance rituals ]^[ are thereby allowing extinction to 
-occur%%per%%]$~ ~$[They are no longer “feeding the beast,” as it were%%per%%]$~ 
-~$[The Nuts ]^[ Bolts of EX/RP 
-After the client is on board with EX/RP%%lst%% it is important 
-to gather information about anxiety “triggers” ]^[ to help 
-the client recognize their rituals%%lst%% which is often difficult 
-because some patients’ rituals have become ]s[ habitual 
-that they may be unaware of their performance%%per%%]$~ ~$[Helping a 
-patient to recognize triggers ]^[ rituals is accomplished 
-through a combination of clinician interview ]^[ selfmonitoring%%per%%]$~ ~$[Self%%dsh%%monitoring forms can be easily developed to help patients record ]^[ recognize%%lst%% in real%%dsh%%time%%lst%% 
-instances of ritualizing%%per%%]$~ ~$[When completing a self%%dsh%%monitoring form%%lst%% it is important to ]n[ just record the time%%lst%% 
-frequency%%lst%% ]^[ duration of rituals%%lst%% ]b[ also to record 
-contextual factors ]^[ information about obsessions (i%%per%%e%%per%%%%lst%% 
-feared consequences) ]s[ that OC triggers can be 
-identified%%per%%]$~ ~$[For example%%lst%% triggers ]f[ Caroline might be 
-leaving in the morning (having to say “goodbye” to her 
-husband)%%lst%% crowded places where she might spread her 
-“dust” to others%%lst%% the sight of children%%lst%% ]^[ social 
-encounters that might require a hand%%dsh%%shake greeting%%per%%]$~ 
-~$[Early in treatment%%lst%% it is also helpful to teach patients a 
-method ]f[ quantifying anxiety%%per%%]$~ ~$[This is typically accomplished using a Subjective Units of Distress Scale (SUDS)%%per%%]$~ 
-~$[SUDS refers to a metric in which the client rates her 
-anxiety on a 0%%dsh%%to%%dsh%%100 scale%%lst%% with 0 indicating no distress 
-]^[ 100 indicating to maximum distress%%per%%]$~ ~$[The SUDS scale 
-can be used to determine the level of anxiety triggered by 
-various obsessions/triggers ]^[ will be essential ]f[ 
-building a fear hierarchy%%per%%]$~ ~$[It also allows a very succinct 
-way to convey the level of distress being experienced in a 
-given exposure%%per%%]$~ ~$[The therapist can use this technique to 
-begin constructing a hierarchy of feared situations that 
-will be used during EX/RP%%per%%]$~ ~$[Sample hierarchies2 ]f[ two of 
-Caroline’s primary fears ]^[ associated SUDS ratings are 
-presented in Tables 3 ]^[ 4%%per%% 
+~$[1 
+Cognitive Processing Therapy 
+Veteran/Military Version 
+Patricia A%%per%%]$~ ~$[Resick%%lst%% Ph%%per%%D%%per%% ]^[ Candice M%%per%%]$~ ~$[Monson%%lst%% Ph%%per%%D%%per%%]$~ 
+~$[National Center ]f[ PTSD 
+Women’s Health Science Division 
+VA Boston Healthcare System ]^[ 
+Boston University 
+And 
+Kathleen M%%per%%]$~ ~$[Chard%%lst%% Ph%%per%%D%%per%%]$~ 
+~$[Cincinnati VA Medical Center ]^[ 
+University of Cincinnati 
+October%%lst%% 2006 
+Correspondence should be addressed to Patricia Resick ]v[ Candice Monson%%lst%% WHSD (116B%%dsh%%3)%%lst%% 
+VA Boston Healthcare System%%lst%% 150 South Huntington Ave%%per%%]$~ ~$[Boston%%lst%% MA 02130%%scn%% 
+Patricia%%per%%Resick@va%%per%%gov ]v[ Candice%%per%%Monson@va%%per%%gov%%per%%]$~ 
+~$[Copyright%%lst%% © Patricia A%%per%%]$~ ~$[Resick%%lst%% Ph%%per%%D%%per%% ]^[ Candice M%%per%%]$~ ~$[Monson%%lst%% Ph%%per%%D%%per%% 10/01/06 
 2 
-Note that these hierarchies are presented in a somewhat 
-simplified manner%%per%%]$~ ~$[Hierarchies are highly individualized to the 
-patient ]^[ the individual’s unique presentation of OC symptoms%%per%%]$~ 
-~$[In addition%%lst%% hierarchies can include from a few to several dozen items 
-]^[ a single client may have multiple hierarchies ]f[ various 
-obsessional fears%%per%%]$~ ~$[For Caroline%%lst%% multiple hierarchies might be 
-constructed to address each of her obsessions ]^[ associated rituals%%per%%]$~ 
-~$[We often tell clients that hierarchies are a bit like the Hawaiian 
-Islands%%scn%% there is a big island ]^[ several smaller islands%%lst%% ]b[ we deal 
-with them all the same way%%cln%% low%%lst%% medium%%lst%% high%%lst%% move on %%per%% %%per%% %%per%% low%%lst%% 
-medium%%lst%% high%%lst%% move on%%per%%]$~ ~$[In addition%%lst%% hierarchies will likely be 
-modified ]^[ expanded over the course of treatment%%per%% 
-35 
-Himle & Franklin 
-36 
-After a sufficient hierarchy is developed (typically by 
-Session 3)%%lst%% patients are ready to begin exposure exercises%%per%%]$~ 
-~$[Exposures begin with moderately easy items (typically 
-SUDS ratings of 30 ]v[ less) ]^[ gradually work their way 
-up the hierarchy to more difficult items%%per%%]$~ ~$[Exposure tasks 
-are conducted in session (with the therapist) ]b[ the bulk 
-of the exposure work is assigned as between%%dsh%%session 
-homework%%lst%% which the patient completes without assistance from the therapist%%per%%]$~ ~$[The combination of therapist 
-]^[ self%%dsh%%performed exposures is important as there is 
-some evidence to suggest that patients who receive 
-therapist%%dsh%%assisted exposures demonstrate greater symptom reduction than patients who perform only self%%dsh%%guided 
-exposure exercises (Abramowitz%%lst%% 1996)%%per%%]$~ ~$[On the flip side%%lst%% 
-it is ]n[ practical ]f[ the patient to conduct all of their 
-exposure work in session ]^[ learning to conduct selfexposures promotes treatment generalization%%per%%]$~ 
-~$[Each exposure should be repeated several times until 
-the patient is able to complete the exposure task with 
-minimal effort ]^[ with complete ritual prevention%%per%%]$~ ~$[For 
-example%%lst%% in order to monitor the effectiveness of 
-exposure exercises%%lst%% Caroline will be asked to complete 
-an exposure record in which she records her anxiety 
-before%%lst%% during%%lst%% ]^[ after each exposure ]^[ she should 
-]n[ move from the first hierarchy item (e%%per%%g%%per%%%%lst%% shaking her 
-husband’s hand) to the second item (e%%per%%g%%per%%%%lst%% shaking a 
-family member’s hand) until she is able to complete the 
-first item with minimal effort ]^[ without praying ]v[ 
-“vacuuming” her “bad dust%%per%%” As a general rule%%lst%% the most 
-important aspects of successful exposure are to (a) 
-conduct exposure exercises that are manageable%%lst%% (b) 
-Table 3 
-Sample hierarchy ]f[ Caroline’s fear that shaking hands ]^[ saying 
-“goodbye” might befall harm on those around her 
-Hierarchy Item (without praying ]v[ “vacuuming”) 
-Shake husband’s hand 
-Shake family member’s hand 
-(and ]n[ see that person again ]f[ 24 hours) 
-Say “goodbye” to husband over the telephone 
-Shake the hand of a familiar child 
-Shake the hand of an unfamiliar child 
-Shake the hand of a sick child 
-Say “goodbye” to husband over telephone + 
-imagine he dies 
-Visit sick friend ]^[ shake his/her hand 
-Visit sick friend ]^[ say “goodbye” 
-Visit sick friend + shake his/her hand + say 
-“goodbye” 
-Shake her husband’s hand%%lst%% say “goodbye,” 
-]^[ state to herself “I hope you die” 
-Visit a sick friend%%lst%% shake his/her hand%%lst%% say 
-“goodbye,” ]^[ state to herself “I hope you die” 
-Touch ill friend + purposely blow “dust” on that 
-person + say “goodbye” + state to herself 
-“I hope you die” 
-SUDS 
+Cognitive Processing Therapy%%cln%% Veteran/Military Version 
+Part 1 
+Introduction to Cognitive Processing Therapy 
+Cognitive Processing Therapy (CPT) is a 12%%dsh%%session therapy that has been found effective 
+]f[ both PTSD ]^[ other corollary symptoms following traumatic events (Monson et al%%lst%% 2006%%scn%% 
+Resick et al%%lst%% 2002%%scn%% Resick & Schnicke%%lst%% 1992%%lst%% 19931)%%per%%]$~ ~$[Although the research on CPT focused on 
+rape victims originally%%lst%% we have used the therapy successfully with a range of other traumatic 
+events%%lst%% including military%%dsh%%related traumas%%per%%]$~ ~$[This revision of the manual is in response to requests 
+]f[ a treatment manual that focuses exclusively on military trauma%%per%%]$~ ~$[The manual has been 
+updated to reflect changes in the therapy over time%%lst%% particularly with an increase in the amount of 
+practice that is assigned ]^[ with some of the handouts%%per%%]$~ ~$[It also includes suggestions from almost 
+two decades of clinical experience with the therapy%%per%%]$~ 
+~$[Also included in this manual is a module ]f[ traumatic bereavement%%per%%]$~ ~$[This module is ]n[ 
+included as one of the 12 sessions ]b[ could be added to the therapy%%per%%]$~ ~$[We recommend that the 
+session be added early in therapy%%lst%% perhaps as the second session along with the educational 
+component on posttraumatic stress disorder%%per%%]$~ ~$[Although we expect PTSD to remit as a result of 
+treatment%%lst%% we do ]n[ necessarily expect bereavement to remit%%per%%]$~ ~$[Grief is a normal reaction to loss 
+]^[ is ]n[ a disorder%%per%%]$~ ~$[Bereavement may have a long ]^[ varied course%%per%%]$~ ~$[The goal of dealing with 
+grief issues within CPT is ]n[ to shorten the natural course of adjustment%%lst%% ]b[ to remove blocks 
+]^[ barriers (distorted cognitions%%lst%% assumptions%%lst%% expectations) that are interfering with normal 
+bereavement%%per%%]$~ ~$[Therefore%%lst%% the focus is on normal grief%%lst%% myths about bereavement%%lst%% ]^[ stuck 
+points that therapists may need to focus on in this domain%%per%%]$~ ~$[If the bereavement session is added to 
+CPT%%lst%% then the assignment to write an impact statement would be delayed one session (see 
+Session 1) ]f[ those who have PTSD due to a traumatic death%%per%%]$~ ~$[Another possibility is to have the 
+patients write two impact statements ]f[ those who both lost a loved one ]^[ have PTSD related 
+to something that happened to them directly%%per%%]$~ ~$[One statement would be about what it means that 
+the traumatic event happened to them%%per%%]$~ ~$[The other statement would be about what it means that the 
+loved one has died%%per%%]$~ 
+~$[Many therapists were never trained to conduct manualized psychotherapies ]^[ may feel 
+uncomfortable with both the concept ]^[ the execution%%per%%]$~ ~$[It is important that the patient ]^[ 
+therapist agree on the goal ]f[ the therapy (trauma work ]f[ PTSD ]^[ related symptoms) ]s[ that 
+the goals do ]n[ drift ]v[ switch from session to session%%per%%]$~ ~$[Without a firm commitment to the 
+1 
+Monson%%lst%% C%%per%%M%%per%%%%lst%% Schnurr%%lst%% P%%per%%P%%per%%%%lst%% Resick%%lst%% P%%per%%A%%per%%%%lst%% Friedman%%lst%% M%%per%%J%%per%%%%lst%% Young%%dsh%%Xu%%lst%% Y%%per%%%%lst%% & Stevens%%lst%% S%%per%%P%%per%% (2006)%%per%%]$~ ~$[Cognitive 
+processing therapy ]f[ veterans with military%%dsh%%related posttraumatic stress disorder%%per%%]$~ ~$[Journal of Consulting & 
+Clinical Psychology%%lst%% 74%%lst%% 898%%dsh%%907%%per%%]$~ 
+~$[Resick%%lst%% P%%per%%A%%per%%%%lst%% Nishith%%lst%% P%%per%%%%lst%% Weaver%%lst%% T%%per%%L%%per%%%%lst%% Astin%%lst%% M%%per%%C%%per%%%%lst%% & Feuer%%lst%% C%%per%%A%%per%% (2002)%%per%%]$~ ~$[A comparison of cognitive processing 
+therapy%%lst%% prolonged exposure ]^[ a waiting condition ]f[ the treatment of posttraumatic stress disorder in 
+female rape victims%%per%%]$~ ~$[Journal of Consulting ]^[ Clinical Psychology%%lst%% 70%%lst%% 867%%dsh%%879%%per%%]$~ 
+~$[Resick%%lst%% P%%per%%]$~ ~$[A%%per%%%%lst%% & Schnicke%%lst%% M%%per%%]$~ ~$[K%%per%% (1992)%%per%%]$~ ~$[Cognitive processing therapy ]f[ sexual assault victims%%per%%]$~ ~$[Journal of 
+Consulting ]^[ Clinical Psychology%%lst%% 60%%lst%% 748%%dsh%%756%%per%%]$~ 
+~$[Resick%%lst%% P%%per%%]$~ ~$[A%%per%%%%lst%% & Schnicke%%lst%% M%%per%%]$~ ~$[K%%per%% (1993)%%per%%]$~ ~$[Cognitive processing therapy ]f[ rape victims%%cln%% A treatment manual%%per%%]$~ 
+~$[Newbury Park%%lst%% CA%%cln%% Sage Publications%%per%% 
+3 
+treatment goals%%lst%% when the therapy is “off track”%%lst%% the therapist may ]n[ know whether to get back 
+on the protocol ]v[ to let it slide%%per%%]$~ ~$[As other topics arise%%lst%% the therapist sometimes isn’t sure whether 
+]v[ how to incorporate them into the sessions%%per%%]$~ ~$[A few words on these topics are appropriate here%%per%%]$~ 
+~$[Once therapists have conducted protocol therapy a few times%%lst%% they usually find that they become 
+more efficient ]^[ effective therapists%%per%%]$~ ~$[They learn to guide the therapy without tangents ]v[ 
+delays%%per%%]$~ ~$[They find they can develop rapport with patients through the use of Socratic questions 
+because the patients are explaining to the therapist exactly how they feel ]^[ think ]^[ the 
+therapist expresses interest ]^[ understanding with these questions%%per%%]$~ ~$[There is usually enough time 
+in the session to cover the material ]f[ the session ]^[ still have time ]f[ some other topics%%lst%% such 
+as things that came up that week ]v[ considering other current issues related to their PTSD 
+(childrearing%%lst%% job concerns marital issues%%lst%% etc%%per%%)%%per%%]$~ ~$[However if those are major issues%%lst%% then the 
+therapist will need to prioritize the order%%per%%]$~ ~$[It would be inadvisable to try to deal with several 
+types of therapy ]f[ different problems simultaneously%%per%%]$~ 
+~$[Normally%%lst%% comorbid depression%%lst%% anxiety%%lst%% ]^[ dissociation remit along with PTSD%%lst%% ]s[ we 
+rarely believe there is a need to deal with other symptoms independently of the PTSD protocol%%per%%]$~ 
+~$[Substance dependence should be treated prior to addressing PTSD%%lst%% ]b[ substance abusing 
+patients may be treated with CPT if there is a specific contract ]f[ ]n[ drinking abusively during 
+the therapy ]^[ if there is a specific focus on the suspected role of abusive drinking as avoidance 
+coping (for more information on comorbidity see Section 3)%%per%%]$~ ~$[Typically we have the patients 
+focus on specific child%%lst%% family%%lst%% ]^[ marital issues after completing the course of PTSD 
+treatment%%per%%]$~ ~$[Sometimes those problems remit when the patient no longer has PTSD interfering 
+with functioning%%per%%]$~ ~$[Other considerations regarding comorbidity are found later in the manual%%per%%]$~ 
+~$[Most veterans present ]f[ PTSD treatment many years after the traumatic event%%per%%]$~ ~$[They 
+are usually ]n[ in crisis ]^[ are able to handle their day%%dsh%%to%%dsh%%day lives (at whatever level they are 
+functioning) without constant intervention%%per%%]$~ ~$[Much of the disruption in the flow of therapy ]f[ 
+PTSD comes from avoidance attempts on the part of the patient%%per%%]$~ ~$[We point out avoidance 
+whenever we see it (e%%per%%g%%per%%%%lst%% changing the subject%%lst%% showing up late ]f[ sessions)%%lst%% ]^[ remind the 
+patient that avoidance maintains PTSD symptoms%%per%%]$~ ~$[If the patient wants to discuss other issues%%lst%% we 
+save time at the end of the session ]v[ attempt to incorporate their issues into the skills that are 
+being taught (i%%per%%e%%per%%%%lst%% A%%dsh%%B%%dsh%%C sheets%%lst%% Challenging Questions%%lst%% Patterns of Problematic Thinking%%lst%% 
+Challenging Beliefs worksheets)%%per%%]$~ ~$[If the patient does ]n[ bring in practice assignments%%lst%% we do ]n[ 
+delay the session%%lst%% ]b[ conduct the work in session ]^[ then reassign the practice assignment 
+along with the next assignment%%per%%]$~ 
+~$[Returning OEF/OIF veterans may have different needs than older veterans%%per%%]$~ ~$[They may 
+prefer two sessions a week ]s[ that they can get therapy finished quickly%%per%%]$~ ~$[They may request early 
+morning ]v[ evening appointments to accommodate their jobs%%per%%]$~ ~$[They may want their PTSD 
+treatment augmented with couples counseling%%per%%]$~ ~$[They may appear a bit more “raw” than the very 
+chronic Vietnam veterans that most VA clinicians are accustomed to working with%%per%%]$~ ~$[The more 
+accessible emotions are actually an advantage in processing the traumatic events ]^[ in 
+motivating change%%lst%% ]b[ therapists who have worked with only very chronic (and numbed) 
+veterans may become alarmed when they first work with these patients%%per%%]$~ ~$[They may think that 
+strong emotions ]v[ dissociation should be stabilized ]v[ medicated first%%per%%]$~ ~$[However%%lst%% CPT was 
+developed ]^[ tested first with rape victims who may also be very acute ]^[ very emotional%%per%%]$~ ~$[As 
+4 
+long as patients are willing to engage in therapy ]^[ can contract against self%%dsh%%harm ]^[ acting 
+out%%lst%% there is no reason to assume that they need to wait ]f[ treatment%%per%%]$~ 
+~$[It is recommended that the patient be assessed%%lst%% ]n[ just before ]^[ after treatment%%lst%% ]b[ 
+during treatment as well%%per%%]$~ ~$[We typically give patients a brief PTSD scale ]^[ a depression scale 
+(if comorbid depression is a problem) once a week%%per%%]$~ ~$[Most often there is a large drop in symptoms 
+when the assimilation about the trauma is resolving%%per%%]$~ ~$[Typically this occurs around the 5th ]v[ 6th 
+session with the written exposure ]^[ cognitive therapy focusing on the traumatic event itself%%per%%]$~ 
+~$[Occasionally this takes longer%%lst%% ]b[ with frequent assessment%%lst%% the therapist can monitor the 
+progress ]^[ see when the shift occurs%%per%%]$~ 
+~$[Theory 
+CPT is based on a social cognitive theory of PTSD that focuses on how the traumatic event 
+is construed ]^[ coped with by a person who is trying to regain a sense of mastery ]^[ control in 
+his/her life%%per%%]$~ ~$[The other major theory explaining PTSD is Lang’s2 (1977) information processing 
+theory%%lst%% which was extended to PTSD by Foa%%lst%% Steketee%%lst%% ]^[ Rothbaum3 (1989) in their emotional 
+processing theory of PTSD%%per%%]$~ ~$[In this theory%%lst%% PTSD is believed to emerge due to the development of 
+a fear network in memory that elicits escape ]^[ avoidance behavior%%per%%]$~ ~$[Mental fear structures 
+include stimuli%%lst%% responses%%lst%% ]^[ meaning elements%%per%%]$~ ~$[Anything associated with the trauma may elicit 
+the fear structure ]v[ schema ]^[ subsequent avoidance behavior%%per%%]$~ ~$[The fear network in people with 
+PTSD is thought to be stable ]^[ broadly generalized ]s[ that it is easily accessed%%per%%]$~ ~$[When the fear 
+network is activated by reminders of the trauma%%lst%% the information in the network enters 
+consciousness (intrusive symptoms)%%per%%]$~ ~$[Attempts to avoid this activation result in the avoidance 
+symptoms of PTSD%%per%%]$~ ~$[According to emotional processing theory%%lst%% repetitive exposure to the 
+traumatic memory in a safe environment will result in habituation of the fear ]^[ subsequent 
+change in the fear structure%%per%%]$~ ~$[As emotion decreases%%lst%% patients with PTSD will begin to modify their 
+meaning elements spontaneously ]^[ will change their self%%dsh%%statements ]^[ reduce their 
+generalization%%per%%]$~ ~$[Repeated exposures to the traumatic memory are thought to result in habituation ]v[ 
+a change in the information about the event%%lst%% ]^[ subsequently%%lst%% the fear structure%%per%%]$~ 
+~$[Although social cognitive theories are ]n[ incompatible with information/emotional 
+processing theories%%lst%% these theories focus beyond the development of a fear network to other 
+pertinent affective responses such as horror%%lst%% anger%%lst%% sadness%%lst%% humiliation%%lst%% ]v[ guilt%%per%%]$~ ~$[Some emotions 
+such as fear%%lst%% anger%%lst%% ]v[ sadness may emanate directly from the trauma (primary emotions)%%lst%% 
+because the event is interpreted as dangerous%%lst%% abusive%%lst%% and/or resulting in losses%%per%%]$~ ~$[It is possible 
+that secondary%%lst%% ]v[ manufactured%%lst%% emotions can also result from faulty interpretations made by the 
+patient%%per%%]$~ ~$[For example%%lst%% if someone is intentionally attacked by another person%%lst%% the danger of the 
+situation would lead to a fight%%dsh%%flight response ]^[ the attending emotions might be anger ]v[ fear 
+(primary)%%per%%]$~ ~$[However%%lst%% if in the aftermath%%lst%% the person blamed himself ]v[ herself ]f[ the attack%%lst%% the 
+person might experience shame ]v[ embarrassment%%per%%]$~ ~$[These manufactured emotions would have 
+2 
+Lang%%lst%% P%%per%%]$~ ~$[J%%per%% (1977)%%per%%]$~ ~$[Imagery in therapy%%cln%% An information processing analysis of fear%%per%%]$~ ~$[Behavior Therapy%%lst%% 8%%lst%% 862%%dsh%%886%%per%% 
+3 
+Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% Steketee%%lst%% G%%per%%]$~ ~$[S%%per%%%%lst%% & Rothbaum%%lst%% B%%per%% 0%%per%% (1989)%%per%%]$~ ~$[Behavioral/cognitive conceptualizations of posttraumatic 
+stress disorder%%per%%]$~ ~$[Behavior Therapy%%lst%% 20%%lst%% 155%%dsh%%176%%per%% 
+5 
+resulted from thoughts ]^[ interpretations about the event%%lst%% rather than the event itself%%per%%]$~ ~$[As long as 
+the individual keeps saying that the event was their fault%%lst%% they keep producing shame (hence%%lst%% 
+manufactured)%%per%%]$~ 
+~$[Social%%dsh%%cognitive theories focus more on the content of cognitions ]^[ the effect that 
+distorted cognitions have upon emotional responses ]^[ behavior%%per%%]$~ ~$[In order to reconcile the 
+information about the traumatic event with prior schemas%%lst%% people tend to do one ]v[ more of three 
+things%%cln%% assimilate%%lst%% accommodate%%lst%% ]v[ over%%dsh%%accommodate%%per%%]$~ ~$[Assimilation is altering the incoming 
+information to match prior beliefs (“Because a bad thing happened to me%%lst%% I must have been 
+punished ]f[ something I did”)%%per%%]$~ ~$[Accommodation is altering beliefs enough to incorporate the 
+new information (“Although I didn’t use good judgment in that situation%%lst%% most of the time I make 
+good decisions”)%%per%%]$~ ~$[Over%%dsh%%accommodation is altering ones beliefs about oneself ]^[ the world to 
+the extreme in order to feel safer ]^[ more in control (“I can’t ever trust my judgment again”)%%per%%]$~ 
+~$[Obviously%%lst%% therapists are working toward accommodation%%lst%% a balance in beliefs that takes into 
+account the reality of the traumatic event without going overboard%%per%%]$~ 
+~$[In a social%%dsh%%cognitive model%%lst%% affective expression is needed%%lst%% ]n[ ]f[ habituation%%lst%% ]b[ in 
+order ]f[ the affective elements of the stored trauma memory to be changed%%per%%]$~ ~$[It is assumed that 
+the natural affect%%lst%% once accessed%%lst%% will dissipate rather quickly%%lst%% ]^[ will no longer be stored with 
+the trauma memory%%per%%]$~ ~$[Also%%lst%% the work of accommodating the memory ]^[ beliefs can begin%%per%%]$~ ~$[Once 
+faulty beliefs regarding the event (self%%dsh%%blame%%lst%% guilt) ]^[ over%%dsh%%generalized beliefs about oneself 
+]^[ the world (e%%per%%g%%per%% safety%%lst%% trust%%lst%% control esteem%%lst%% intimacy) are challenged%%lst%% then the secondary 
+emotions will also decrease along with the intrusive reminders%%per%%]$~ ~$[The explanation that CPT 
+therapists give to patients about this process is described in Session 1 along with a handout in the 
+patient materials section%%per%%]$~ 
+~$[Because we know that PTSD symptoms are nearly universal immediately following a 
+serious traumatic stressor ]^[ that recovery takes a few months under normal circumstances%%lst%% it 
+may be best to think about diagnosable PTSD as a disruption ]v[ stalling out of a normal recovery 
+process%%lst%% rather than the development of a unique psychopathology%%per%%]$~ ~$[The therapist needs to 
+determine what has interfered with normal recovery%%per%%]$~ ~$[In one case%%lst%% it may be that the patient 
+believes that he will be overwhelmed by the amount of affect that will emerge if he stops 
+avoiding ]^[ numbing himself%%per%%]$~ ~$[Perhaps he was taught as a child that emotions are bad%%lst%% that “real 
+men” don’t have feelings ]^[ that he should “just get over it”%%per%%]$~ ~$[In another case%%lst%% a patient may 
+have refused to talk about what happened with anyone because she blames herself ]f[ “letting” 
+the event happen ]^[ she is ]s[ shamed ]^[ humiliated that she is convinced that others will 
+blame her too%%per%%]$~ ~$[In a third case%%lst%% a patient saw something ]s[ horrifying that every time he falls 
+asleep ]^[ dreams about it%%lst%% he wakes up in a cold sweat%%per%%]$~ ~$[In order to sleep%%lst%% he has started drinking 
+heavily%%per%%]$~ ~$[Another patient is ]s[ convinced that she will be victimized again that she refuses to go 
+out any more ]^[ has greatly restricted her activities ]^[ relationships%%per%%]$~ ~$[In still another case%%lst%% in 
+which other people were killed%%lst%% a patient experiences survivor guilt ]^[ obsesses over why he 
+was spared when others were killed%%per%%]$~ ~$[He feels unworthy ]^[ experiences guilt whenever he 
+laughs ]v[ finds himself enjoying something%%per%%]$~ ~$[In all of these cases%%lst%% thoughts ]v[ avoidance 
+behaviors are interfering with emotional processing ]^[ cognitive restructuring%%per%%]$~ ~$[There are as 
+many individual examples of things that can block a smooth recovery as there are individuals 
+with PTSD%%per%% 
+6 
+Overview 
+The contents of each session are described along with issues that therapists are likely to 
+encounter%%per%%]$~ ~$[The therapy begins with an education component about PTSD ]^[ the patient is asked 
+to write an Impact Statement in order ]f[ the patient ]^[ therapist to begin to identify problem 
+areas in thinking about the event (i%%per%%e%%per%%%%lst%% “stuck points”)%%per%%]$~ ~$[The patient is then taught to identify ]^[ 
+label thoughts ]^[ feelings ]^[ to recognize the relationship between them%%per%%]$~ ~$[Then the next two 
+sessions focus on generating a written account of the worst traumatic incident%%lst%% which is read to 
+the therapist in session%%per%%]$~ ~$[During the first five sessions%%lst%% the therapist uses Socratic questioning to 
+begin to challenge distorted cognitions%%lst%% particularly those associated with assimilation like selfblame%%lst%% hindsight bias ]^[ other guilt cognitions%%per%%]$~ ~$[Thereafter%%lst%% the sessions focus on teaching the 
+patient cognitive therapy skills ]^[ finally focus on specific topics that are likely to have been 
+disrupted by the traumatic event%%cln%% safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% ]^[ intimacy%%per%%]$~ 
+~$[After the individual CPT protocol is described in detail%%lst%% there are subsequent sections on 
+using the protocol without the written trauma exposure component%%lst%% a section on delivering CPT 
+in a group format ]^[ a section on treatment issues with comorbid disorders%%lst%% 
+It is strongly recommended that the protocol be implemented in the order presented here%%per%%]$~ 
+~$[The skills ]^[ exercises are designed to build upon one another%%lst%% ]^[ even the modules in the last 
+five sessions follow in the hierarchical order in which they are likely to emerge with patients%%per%%]$~ 
+~$[However%%lst%% when used individually%%lst%% the last five sessions may be modified depending upon the 
+particular issues that a patient reports%%per%%]$~ ~$[For example%%lst%% if a patient has severe safety issues%%lst%% ]b[ no 
+issues with esteem ]v[ intimacy%%lst%% then the therapist may want to skip the later two modules ]^[ 
+focus more time on safety%%per%%]$~ ~$[Conversely%%lst%% if someone had no safety ]v[ control issues ]b[ was 
+primarily troubled with self%%dsh%%trust ]^[ self%%dsh%%esteem issues%%lst%% then the therapist may want to spend 
+more time on those modules%%per%%]$~ ~$[However%%lst%% even if a patient has ]n[ mentioned an issue within a 
+particular domain of functioning (safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% intimacy)%%lst%% it may be 
+helpful ]f[ him to read the module ]^[ complete worksheets on any stuck points that become 
+apparent%%per%%]$~ ~$[It is ]n[ unusual ]f[ the modules to reveal issues that had ]n[ been identified earlier in 
+therapy%%per%%]$~ 
+~$[The usual format ]f[ sessions is to begin with review of the practice assignments%%lst%% 
+followed by the content of each specific session%%per%%]$~ ~$[During the last 15 minutes of the session%%lst%% the 
+assignment ]f[ the next week is introduced ]^[ is accompanied by the necessary explanation%%lst%% 
+definition(s)%%lst%% ]^[ handout%%per%%]$~ ~$[It is ]n[ recommended that the therapist start a general discussion at 
+the beginning of the session%%lst%% ]b[ should begin immediately with the practice assignment that was 
+assigned%%per%%]$~ ~$[If the patient wishes to speak about other topics%%lst%% we either use the topic to teach the 
+new skills we are introducing (e%%per%%g%%per%%%%lst%% put the content on an A%%dsh%%B%%dsh%%C sheet) ]v[ we save time at the end 
+]f[ these other topics%%lst%% reinforcing the trauma work with discussion of the topic%%per%%]$~ ~$[If the therapist 
+allows the patient to direct the therapy away from the protocol%%lst%% the avoidance will be reinforced%%lst%% 
+along with disruption in the flow of the therapy%%per%%]$~ ~$[In addition%%lst%% placing the practice assignments last 
+in the session will send a message to the patient that the practice assignments are ]n[ very 
+important ]^[ may lead to less treatment adherence on the part of the patient%%per%%]$~ ~$[Among the most 
+difficult skills ]f[ the therapist to master%%lst%% especially if s/he has been trained in more non%%dsh%%directive 
+7 
+therapies%%lst%% is how to be empathic ]b[ firm in maintaining the protocol%%per%%]$~ ~$[If a patient does ]n[ bring 
+in his/her practice assignment one session%%lst%% it does ]n[ mean that the therapy is delayed ]f[ a 
+week%%per%%]$~ ~$[The therapist has the patient do the assignment orally (or they complete a worksheet 
+together) in the session ]^[ reassigns the uncompleted assignment along with the next 
+assignment%%per%%]$~ 
+~$[Part 2 
+Cognitive Processing Therapy%%cln%% Session by Session 
+It is presumed that the therapist will have conducted some form of assessment of the patient’s 
+traumatic event ]^[ persistent symptoms%%lst%% ]^[ specifically contracted to do a course of CPT prior 
+to undertaking the first session%%per%%]$~ ~$[At least a brief assessment of PTSD ]^[ depressive symptoms 
+should be conducted%%per%%]$~ ~$[There are several brief PTSD checklists ]^[ depression scales that can be 
+used to assess pretreatment symptoms%%lst%% as well as to conduct repeated assessments during therapy 
+to monitor the course of treatment%%per%%]$~ 
+~$[Session 1%%cln%% Introduction ]^[ Education Phase 
+Therapist Overview 
+Overall%%lst%% there are several goals ]f[ the first session%%cln%% 1) build rapport with the patient%%lst%% 2) 
+to educate the patient regarding symptoms of posttraumatic stress disorder ]^[ depression%%lst%% 3) to 
+provide a rationale ]f[ treatment based on a cognitive conceptualization of PTSD%%lst%% 4) to lay out 
+the course of treatment%%lst%% ]^[ 5) to elicit treatment compliance%%per%%]$~ 
+~$[It is necessary to address compliance early in the course of therapy because avoidance 
+behavior (half of the symptoms of PTSD) can interfere with successful treatment%%per%%]$~ ~$[We are 
+concerned with two forms of compliance%%cln%% attendance ]^[ completion of out%%dsh%%of%%dsh%%session practice 
+assignments%%per%%]$~ ~$[It is strongly recommended that patients attend all sessions ]^[ complete all 
+assignments in order to benefit fully from therapy%%per%%]$~ ~$[We attempt to set the expectation that 
+therapy benefit is dependent on the amount of effort they invest through practice assignment 
+compliance ]^[ practice with new skills%%per%%]$~ ~$[It may be helpful to remind the patient that what he4 has 
+been doing has ]n[ been working%%lst%% ]^[ that it will be important to tackle issues head%%dsh%%on rather 
+than continue to avoid%%per%%]$~ ~$[Avoidance of affective experience ]^[ expression should also be 
+addressed%%per%%]$~ 
+~$[In this session%%lst%% patients are also given the opportunity to ask any questions they may have 
+about the therapy%%per%%]$~ ~$[Sometimes patients’ stuck points become evident in the questions ]^[ 
+concerns they express during this first session%%per%%]$~ ~$[And finally%%lst%% as with all therapies%%lst%% rapport 
+building is crucial ]f[ effective therapy%%per%%]$~ ~$[The patient needs to feel understood ]^[ listened to%%lst%% 
+otherwise she may ]n[ return%%per%% 
+4 
+Because of the awkwardness of the English language ]^[ the desire to refer to a single patient%%lst%% the pronouns “he” 
+]^[ “she” will be used alternately%%lst%% rather than saying “she/he”%%lst%% “him/her” throughout the manual%%per%%]$~ ~$[The term soldier 
+will also be used as a generic term rather than soldier%%lst%% marine%%lst%% sailor%%lst%% airman etc%%per%%%%lst%% ]^[ will be used interchangeably 
+with veteran%%per%% 
+8 
+Patients sometimes arrive with a press to speak about their story%%per%%]$~ ~$[However%%lst%% the therapist 
+should prevent the patient from engaging in an extended exposure session at the first session%%per%%]$~ 
+~$[Intense affect ]^[ graphic details of an event%%lst%% disclosed before any type of rapport ]v[ trust has 
+been established%%lst%% may well lead to premature termination from therapy%%per%%]$~ ~$[The patient is likely to 
+assume that the therapist holds the same opinions regarding his guilt%%lst%% shame%%lst%% ]v[ worthlessness 
+that he%%lst%% the patient%%lst%% holds%%lst%% ]^[ may be afraid to return to therapy after such a disclosure%%per%%]$~ 
+~$[Other patients will be very reluctant to discuss the traumatic event ]^[ will be quite 
+relieved that they do ]n[ have to describe it in detail during the first session%%per%%]$~ ~$[In these cases%%lst%% the 
+therapist may have to draw out even a brief description of the event%%per%%]$~ ~$[Dissociation when 
+attempting to think about ]v[ talk about the event is common%%per%%]$~ ~$[An initial assessment session grants 
+the patient ]^[ therapist the opportunity to get acquainted before the therapy begins%%lst%% ]^[ allows 
+the therapist to provide the patient with a description of what the therapy will entail%%per%%]$~ ~$[In this first 
+session%%lst%% it is important that the therapist remind the patient that CPT is a very structured form of 
+therapy%%lst%% ]^[ that the first session is a bit different from the others because the therapist will do 
+more talking%%per%%]$~ ~$[The therapist begins with a description of the symptoms of PTSD ]^[ a cognitive 
+formulation of them%%per%%]$~ 
+~$[Therapist explanations to patient 
+1%%per%%]$~ ~$[PTSD symptoms 
+%%dqt%%In going over the results of your testing%%lst%% we found that you are suffering from posttraumatic stress disorder%%per%%]$~ ~$[The symptoms of PTSD fall into three clusters%%per%%]$~ ~$[The first cluster is the 
+re%%dsh%%experiencing of the event in some way%%per%%]$~ ~$[This includes nightmares about the event ]v[ other 
+scary dreams%%scn%% flashbacks%%lst%% when you act ]v[ feel as if the incident is recurring%%scn%% intrusive thoughts%%lst%% 
+which are memories that suddenly pop into your mind%%per%%]$~ ~$[You might have the intrusive thoughts 
+when there is something in the environment to remind you of the event (including anniversaries 
+of the event) ]v[ even when there is nothing there to remind you of it%%per%%]$~ ~$[Common times to have 
+these memories are when you are falling asleep%%lst%% when you relax%%lst%% ]v[ when you are bored%%per%%]$~ ~$[These 
+symptoms are all normal following such a traumatic event%%per%%]$~ ~$[You are ]n[ going crazy%%per%%]$~ ~$[Can you 
+give me examples of these experiences in your own life since the event?%%per%%%%per%%%%per%% 
+%%dqt%%A second set of symptoms concern arousal5%%per%%]$~ ~$[As might be expected%%lst%% when reminded of the 
+event%%lst%% you are likely to experience very strong emotions%%per%%]$~ ~$[Along with these feelings are physical 
+reactions%%per%%]$~ ~$[Indicators of arousal symptoms include problems falling ]v[ staying asleep%%lst%% irritability 
+]v[ outbursts of anger%%lst%% difficulty concentrating%%lst%% startle reactions like jumping at noises ]v[ if 
+someone walks up behind you%%lst%% always feeling on guard ]v[ looking over your shoulder even when 
+there is no reason to%%per%%]$~ ~$[Which of these do you experience?%%per%%%%per%%%%per%% 
+%%dqt%%The third cluster of symptoms is avoidance of reminders of the event%%per%%]$~ ~$[A natural reaction to 
+intrusive reminders ]^[ strong emotional reactions is the urge to push these thoughts ]^[ 
+feelings away%%per%%]$~ ~$[You might avoid places ]v[ people who remind you of the event%%per%%]$~ ~$[Some people 
+avoid watching certain television programs ]v[ turn off the TV%%per%%]$~ ~$[Some people avoid reading the 
+newspaper ]v[ watching the news%%per%%]$~ ~$[You might avoid thinking about the event ]^[ letting yourself 
+5 
+Although avoidance is listed second in the DSM%%lst%% it makes more sense to present the symptoms to patients in their 
+most likely order%%lst%% intrusion%%lst%% arousal%%lst%% ]^[ avoidance%%per%%]$~ ~$[This way the explanation ]f[ the symptoms follows logically 
+from their description%%per%% 
+9 
+feel your feelings about the event%%per%%]$~ ~$[There might be certain sights%%lst%% sounds%%lst%% ]v[ smells that you find 
+yourself avoiding ]v[ escaping from because they remind you of the event%%per%%]$~ ~$[Sometimes people 
+have trouble remembering all ]v[ part of the event%%per%%]$~ ~$[Sometimes people feel numb ]^[ cut%%dsh%%off from 
+the world around them%%per%%]$~ ~$[This feeling of detachment ]v[ numbness is another form of avoidance%%per%%]$~ 
+~$[Sometimes it is described as feeling as though you are watching life from behind glass%%per%%]$~ ~$[Which 
+things ]v[ thoughts do you avoid ]v[ run away from?%%per%%%%per%%%%per%%]$~ ~$[Have you felt numb ]v[ shut off from your 
+emotions?%%per%%%%per%%%%per%%]$~ ~$[Have you found yourself feeling disconnected from other people? 
+2%%per%%]$~ ~$[Trauma Recovery ]^[ Fight%%dsh%%Flight Response 
+“Many people are exposed to traumatic events%%per%%]$~ ~$[In the time immediately following a trauma%%lst%% 
+most people will have the symptoms of PTSD that we just talked about%%per%%]$~ ~$[However%%lst%% over time%%lst%% ]f[ 
+many people%%lst%% those symptoms naturally decrease%%lst%% ]^[ they are ]n[ diagnosed with PTSD%%per%%]$~ ~$[In 
+other words%%lst%% they naturally recover from the traumatic event%%per%%]$~ ~$[There are some people who do ]n[ 
+recover ]^[ are later diagnosed with PTSD%%per%%]$~ ~$[Based on that%%lst%% it is helpful to think of PTSD as a 
+problem in recovery%%per%%]$~ ~$[Something got in the way of you having that natural process of recovery%%lst%% 
+]^[ our work together is to determine what got in the way ]^[ to change it ]s[ that you can 
+recover from what happened%%per%%]$~ ~$[We will be working to get you ‘unstuck’”%%per%%]$~ 
+~$[There are some different reasons why you may be having trouble recovering%%per%%]$~ ~$[First%%lst%% there 
+may be an automatic component during the event that you should consider as you evaluate how 
+you responded during the event%%per%%]$~ ~$[When people face serious%%lst%% possibly life%%dsh%%threatening events%%lst%% they 
+are likely to experience a very strong physical reaction called the fight%%dsh%%flight reaction%%per%%]$~ ~$[More 
+recently we have learned that there is a third possibility%%lst%% the freeze response%%per%%]$~ ~$[In the fight%%dsh%%flight 
+reaction%%lst%% your body is trying to get you ready to fight ]v[ flee danger%%per%%]$~ ~$[The goal here is to get all 
+the blood ]^[ oxygen out to your hands%%lst%% feet%%lst%% ]^[ big muscle groups like your thighs ]^[ 
+forearms ]s[ that you can run ]v[ fight%%per%%]$~ ~$[In order to do that quickly%%lst%% the blood leaves your stomach 
+]v[ your head%%per%%]$~ ~$[You might feel like you have been kicked in the gut ]v[ are going to faint%%per%%]$~ ~$[Your 
+body stops fighting off diseases ]^[ digesting food%%per%%]$~ ~$[You are ]n[ thinking about your philosophy 
+of life ]^[ may have trouble thinking at all%%per%%]$~ ~$[The same thing happens with the freeze response%%lst%% ]b[ 
+in this case your body is trying to reduce both physical ]^[ emotional pain%%per%%]$~ ~$[You may have 
+stopped feeling pain ]v[ had the sense that the event was happening to someone else as if it were 
+a movie%%per%%]$~ ~$[You might have been completely shut down emotionally ]v[ even had shifts in 
+perception like you are out of your body ]v[ that time has slowed down%%per%%]$~ 
+~$[If you have been thinking now of other things that you could have done then%%lst%% you might 
+need to consider what your state of mind was during the event%%per%%]$~ ~$[Did you have all possible options 
+available to you%%qsn%%]$~ ~$[Did you know then what you know now%%qsn%%]$~ ~$[Do you have different skills now than 
+you did then%%qsn%%]$~ 
+~$[Second%%lst%% the fight%%dsh%%flight response that you were experiencing during the traumatic event can 
+get quickly paired with cues%%lst%% ]v[ things in the environment%%lst%% that didn’t have any particular 
+meaning before%%per%%]$~ ~$[Then later%%lst%% when you encounter those cues%%lst%% you are likely to have another fightflight reaction%%per%%]$~ ~$[Your nervous system senses the cue%%lst%% which could be a sight%%lst%% a sound%%lst%% smell%%lst%% ]v[ 
+even a time%%lst%% ]^[ then your body reacts as though you are in danger again%%per%%]$~ ~$[These reactions will 
+fade over time if you don’t avoid those cues%%per%%]$~ ~$[However%%lst%% if you avoid reminder cues%%lst%% your body 
+won’t learn that these are not%%lst%% in fact%%lst%% good danger cues%%per%%]$~ ~$[They don’t tell you very accurately 
+10 
+whether you are actually in danger ]s[ you may have false alarms going off frequently%%per%%]$~ ~$[After a 
+while you won’t trust your own senses ]v[ judgment about what is ]^[ isn’t dangerous%%lst%% ]^[ too 
+many situations seem dangerous that are not%%per%%]$~ 
+~$[You may start to have thoughts about the dangerousness of the world%%lst%% particular places%%lst%% 
+]v[ situations that are based on your reactions rather than the actual realistic danger of those 
+situations%%per%%]$~ ~$[This leads us to examine how your thoughts may affect your reactions%%per%%]$~ ~$[Besides 
+thoughts about dangerousness%%lst%% many different types of beliefs about ourselves ]^[ the world can 
+be affected by traumatic events%%per%% 
+3%%per%%]$~ 
+~$[Cognitive Theory 
+“As you were growing up you learned about the world ]^[ organized it into categories 
+]v[ beliefs%%per%%]$~ ~$[For example%%lst%% when you were small%%lst%% you learned that a thing with a back%%lst%% seat ]^[ 
+four legs is a chair%%per%%]$~ ~$[In the beginning you just called all of them %%sqt%%chair%%sqt%%%%per%%]$~ ~$[You may have even 
+called a couch a chair ]v[ a stool a chair because they had a back%%lst%% seat%%lst%% ]^[ four legs%%per%%]$~ ~$[Later%%lst%% as 
+you got older%%lst%% through experience%%lst%% you learned more complex categories%%lst%% ]s[ you may have 
+learned dining room chair%%lst%% rocking chair%%lst%% recliner ]v[ folding chair%%per%%]$~ ~$[We develop many categories 
+of ideas ]^[ beliefs about others%%lst%% the world%%lst%% ]^[ ourselves%%lst%% as well as ]f[ objects%%per%%]$~ 
+~$[One common belief that many people get while growing up is that %%sqt%%good things happen to 
+good people ]^[ bad things happen to bad people%%per%%%%sqt%% This is called the %%sqt%%just world belief%%per%%%%sqt%% You 
+may have learned this through your religion%%lst%% your parents%%lst%% your teachers%%lst%% ]v[ you may have 
+picked it up as a way to make the world seem safer ]^[ more predictable%%per%%]$~ ~$[It makes more sense 
+when you are young%%per%%]$~ ~$[For example%%lst%% parents wouldn’t want to say%%lst%% ‘If you do something you’re 
+]n[ supposed to%%lst%% you may ]v[ may ]n[ get in trouble%%per%%’ However%%lst%% as we grow up%%lst%% we realize that 
+the world is more complex than that%%lst%% just like how we learn that there are all different types of 
+chairs%%per%%]$~ ~$[If you have ever had things go bad ]^[ you said %%sqt%%Why me?,%%sqt%% then you have a just world 
+belief%%per%% 
+%%dqt%%When an unexpected event occurs that doesn%%sqt%%t fit your beliefs%%lst%% there are different ways that 
+you may try to make it fit%%per%%]$~ ~$[One way that you may have tried to make the event ]^[ your beliefs fit 
+is by changing your memories ]v[ interpretation of the event to fit with your pre%%dsh%%existing beliefs 
+(assimilation)%%per%%]$~ ~$[Examples of changing your interpretations/memories of the event are to blame 
+yourself ]f[ ]n[ preventing the event (or protecting loved ones)%%lst%% to have trouble accepting that 
+the event happened%%lst%% to %%sqt%%forget%%sqt%% that it happened%%lst%% ]v[ to forget the most horrifying parts%%per%%]$~ ~$[Changing 
+the event may seem easier than changing your entire set of beliefs about the world%%lst%% how people 
+behave%%lst%% ]v[ your beliefs about your safety%%per%% 
+%%dqt%%It is possible that instead of changing the event%%lst%% you may change your beliefs to accept 
+what happened (accommodation)%%per%%]$~ ~$[This is one of our goals ]f[ therapy%%per%%]$~ ~$[Unfortunately%%lst%% some 
+people go overboard ]^[ change their beliefs too much%%lst%% which may result in a reluctance to 
+become intimate ]v[ develop trust%%lst%% ]^[ increased fear (over%%dsh%%accommodation)%%per%%]$~ ~$[Examples that 
+reflect an extreme change in beliefs include%%cln%% thinking that no one can be trusted ]v[ that the world 
+is completely dangerous%%per%% 
+11 
+“For some people who have had previous negative experiences in their life%%lst%% traumatic 
+events can seem to reinforce ]v[ confirm these previously held beliefs%%per%%]$~ ~$[For example%%lst%% prior to 
+having experienced a trauma you might have believed that others can’t be trusted ]v[ that the 
+world is generally unsafe%%per%%]$~ ~$[The traumatic event comes along ]^[ seems to confirm those beliefs%%per%%]$~ 
+~$[Or%%lst%% maybe you were told that everything was your fault growing up%%lst%% ]s[ when a bad thing 
+happens%%lst%% it seems to confirm that once again%%lst%% you are at fault%%per%%]$~ 
+~$[Our goals ]f[ therapy are%%cln%% 1) to help you accept the reality of the event%%lst%% 2) to feel your emotions 
+about it ]^[ 3) to help you develop balanced ]^[ realistic beliefs about the event%%lst%% yourself%%lst%% ]^[ 
+others%%per%% 
+4%%per%%]$~ 
+~$[Types of Emotions 
+“There are two kinds of emotions that follow traumatic events%%per%%]$~ ~$[The first type is the feelings 
+that follow naturally from the event ]^[ that would be universal%%cln%% fear when in real danger%%lst%% anger 
+when being intentionally harmed%%lst%% joy ]v[ happiness with positive events%%lst%% ]v[ sadness with losses%%per%%]$~ 
+~$[These natural emotions have a natural course%%per%%]$~ ~$[They will ]n[ continue on forever unless there is 
+something that you do to feed them%%per%%]$~ ~$[It is important to feel these emotions that you may ]n[ have 
+allowed yourself to experience about the event%%lst%% ]^[ let them run their natural course%%per%%]$~ 
+~$[The second type of emotions%%lst%% manufactured feelings%%lst%% result ]n[ directly in response to the 
+event%%lst%% ]b[ based on how you interpret the event%%per%%]$~ ~$[If you have thoughts such as ‘I should have 
+rescued other people’ ]v[ ‘I must be a failure that I can’t get over it”%%lst%% then you will be feeling 
+angry at yourself ]v[ shame%%per%%]$~ ~$[These emotions are ]n[ based on the facts of the event%%lst%% ]b[ on your 
+interpretations%%per%%]$~ ~$[The more that you continue to think about the event in these ways%%lst%% the more ]^[ 
+more of the manufactured feelings you are going to have%%per%%]$~ ~$[The upside of the fact that you are 
+producing these feelings is that%%lst%% if you change your thoughts ]^[ interpretations%%lst%% you will 
+change your feelings%%per%%]$~ ~$[Think of your emotions as a fire in a fireplace%%per%%]$~ ~$[The fire has energy to it%%per%%]$~ 
+~$[However%%lst%% it will burn out if it is ]n[ continually fed%%per%%]$~ ~$[The self%%dsh%%blame ]v[ guilty thoughts can 
+continue to feed the emotional fire indefinitely%%per%%]$~ ~$[Take away the fuel of your thoughts%%lst%% ]^[ the fire 
+burns out quickly%%per%%]$~ 
+~$[In order ]f[ you to recover from your traumatic event(s)%%lst%% we will be working together ]f[ 
+you to express ]^[ accept your natural emotions ]^[ to adjust the manufactured feelings%%per%%]$~ 
+~$[Brief Review of Most Traumatic Event 
+In this first session%%lst%% the therapist ]^[ patient work together to define the most traumatic 
+event that they will work on first%%per%%]$~ ~$[The patient then provides a brief account of the traumatic 
+event%%per%%]$~ ~$[It is important the therapist keep the patient contained ]^[ ]n[ conduct an exposure to the 
+traumatic material%%per%%]$~ ~$[Most veterans have a ‘public version’ of the incident that they can use that 
+does ]n[ elicit much affect%%per%%]$~ ~$[However%%lst%% if the patient starts to become distressed ]v[ dissociates%%lst%% the 
+therapist should ask questions ]^[ keep the patient grounded in the present%%per%%]$~ ~$[If needed%%lst%% they can 
+stop the patient’s description%%per%%]$~ ~$[The therapist only needs enough of the details to begin to 
+hypothesize what problematic interpretations ]^[ cognitions might need to be explored%%per%% 
+12 
+We begin with the worst incident because there is more likely to be generalization of new%%lst%% 
+more balanced cognitions from the worst event to less severe events than the other way around%%per%%]$~ 
+~$[Also%%lst%% if the patient begins with a less severe event because she believes she cannot handle the 
+worst event%%lst%% she will still believe that after working on this event%%per%%]$~ ~$[If the patient is resistant to 
+writing an account about the worst event%%lst%% the therapist needs to do some cognitive therapy during 
+session two ]^[ have the patient complete some A%%dsh%%B%%dsh%%C sheets on her thoughts ]^[ feelings about 
+working on the worst event (see sessions 2 ]^[ 3)%%per%%]$~ 
+~$[It is helpful to provide an expectation that the patient provide a brief%%lst%% less affect%%dsh%%charged 
+event by providing a timeframe in the request%%per%% 
+“In order ]f[ me to have a clearer picture of what we will be working on first%%lst%% could you 
+please give me a brief description%%lst%% about five minutes%%lst%% of the most traumatic event…” 
+If the patient responds that he has multiple traumatic events that disturb him%%lst%% making it 
+difficult ]v[ impossible to choose the ‘most’ traumatic event%%lst%% first validate the fact that he may 
+have multiple distressing events%%per%%]$~ ~$[Then%%lst%% focus on ascertaining which one seems to be causing the 
+most PTSD symptoms by inquiring about the content of his reexperiencing symptoms%%per%%]$~ ~$[The 
+therapist can ask%%lst%% ‘What do you think about ]v[ have flashbacks about the most?’ It may also be 
+helpful to probe about his behavioral avoidance symptoms to determine the event that should 
+addressed first%%per%%]$~ ~$[Remind the patient that work on the chosen event will very likely impact the 
+other events%%lst%% ]^[ if not%%lst%% there will be opportunities to work on the other events%%per%%]$~ 
+~$[Therapy Rationale %%dsh%% Stuck Points 
+%%dqt%%So%%lst%% one goal of therapy will be to help you recognize ]^[ modify what you are saying to 
+yourself%%dsh%%in other words%%lst%% your thoughts ]^[ interpretations about the event%%lst%% which may have 
+become automatic%%per%%]$~ ~$[These distorted beliefs may become ]s[ automatic that you aren%%sqt%%t even aware 
+that you have them%%per%%]$~ ~$[Even though you may ]n[ be aware of what you are saying to yourself%%lst%% your 
+beliefs ]^[ self%%dsh%%statements affect your mood ]^[ your behavior%%per%%]$~ ~$[Often%%lst%% people aren%%sqt%%t aware that 
+they are having thoughts about whatever they are experiencing%%per%%]$~ ~$[For example%%lst%% on the way here 
+today%%lst%% you were probably wondering what this therapy would be like ]v[ what I would be asking 
+you to talk about%%per%%]$~ ~$[Do you remember what you were thinking about before the session?%%per%%%%per%%%%per%% 
+%%dqt%%I will be helping you to identify what your automatic thoughts are ]^[ how they influence 
+what you feel%%per%%]$~ ~$[I will also teach you ways to challenge ]^[ change what you are saying to 
+yourself ]^[ what you believe about yourself ]^[ the event%%per%%]$~ ~$[Some of your beliefs about the event 
+will be more balanced than others%%per%%]$~ ~$[You remember that we discussed at the beginning of this 
+session about how some people get stuck in their recovery process%%per%%]$~ ~$[We will be focusing on 
+changing the beliefs that are interfering with your recovery ]v[ keeping you stuck%%per%%]$~ ~$[We call these 
+problematic beliefs ‘stuck points%%per%%’ (The patient is given the handout on stuck points ]^[ the 
+Stuck Point Log)%%per%%]$~ ~$[We will keep a Stuck Point Log in your folder ]s[ as we identify problematic 
+ideas we can write them down%%per%%]$~ ~$[Then when we move to different worksheets you will have this list 
+to draw on%%per%% 
+13 
+Anticipating Avoidance ]^[ Increasing Compliance 
+The patient has been avoiding thinking about the event thereby escaping ]^[ avoiding strong 
+]^[ unpleasant emotions%%per%%]$~ ~$[The therapist must develop a strong ]^[ compelling rationale ]f[ 
+therapy in order ]f[ the patient to be motivated to do something completely antithetical to what 
+they have been doing%%per%%]$~ ~$[It is very important that the patient understand what the therapy consists of 
+]^[ why it will work%%per%%]$~ ~$[They should have ample opportunity to ask questions ]^[ express 
+concerns%%per%%]$~ ~$[The therapist needs to express confidence%%lst%% warmth%%lst%% ]^[ support%%per%%]$~ 
+~$[I cannot emphasize enough how important it is that you ]n[ avoid%%lst%% which is what you 
+usually have done to try to cope since the event%%per%%]$~ ~$[This will be your biggest (and probably 
+scariest) hurdle%%per%%]$~ ~$[I cannot help you feel your feelings%%lst%% ]v[ challenge your thoughts if you don%%sqt%%t 
+come to therapy ]v[ if you avoid completing your practice assignments%%per%%]$~ ~$[If you find yourself 
+wanting to avoid%%lst%% remind yourself that you are still struggling with the event because you have 
+avoided dealing with it head%%dsh%%on%%per%%]$~ 
+~$[The therapist should describe the course of therapy (and the nature of the trauma account in 
+sessions four ]^[ five) ]^[ the importance of doing practice assignments%%per%% 
+“There are 168 hours in a week%%per%%]$~ ~$[We cannot expect you to change your symptoms ]^[ the 
+way you have been coping in one ]v[ two hours a week if you are continuing to practice your old 
+ways of thinking the other 166 hours a week%%per%%]$~ ~$[It will be important ]f[ you to take what you are 
+learning ]^[ apply it to your everyday life%%per%%]$~ ~$[Your therapy needs to be where your life is%%lst%% ]n[ just 
+in this little room”%%per%%]$~ 
+~$[First Impact Statement 
+%%dqt%%For the next session%%lst%% I want you to start working on how you think about ]^[ explain the 
+traumatic event%%per%%]$~ ~$[I also want you to pay attention to how the traumatic event impacted on your 
+views of yourself%%lst%% other people%%lst%% ]^[ the world%%per%%]$~ ~$[I want you to write at least one page on 1) why 
+this event happened to you%%lst%% ]^[ 2) how has it changed ]v[ strengthened your views about 
+yourself%%lst%% other people ]^[ the world in general%%qsn%%]$~ 
+~$[In order ]f[ this assignment to be most helpful to you%%lst%% I strongly suggest you try to start this 
+assignment soon%%lst%% ]s[ that you have enough time to write thoughtfully%%per%%]$~ ~$[Pick a time ]^[ place 
+where you have as much privacy as possible%%lst%% ]s[ you can feel any feelings that arise as you 
+complete the assignment%%per%%” 
+The patient is given a practice assignment sheet%%per%%]$~ ~$[If at all possible%%lst%% the patient should handwrite 
+the Impact Statement%%per%%]$~ ~$[Some patients will want to type on the computer%%per%%]$~ ~$[Research suggests that 
+word processing can impede engagement with the assignment (e%%per%%g%%per%%%%lst%% too focused on grammar ]v[ 
+spelling)%%per%%]$~ ~$[Therefore%%lst%% encourage that this ]^[ other assignments be handwritten%%per%%]$~ ~$[It is often 
+helpful to remind them that you are ]n[ grading their work ]v[ interested in their grammar%%lst%% etc%%per%%]$~ 
+~$[Rather%%lst%% you’re interested in the content ]^[ feelings%%per%%]$~ ~$[If the patient has problems with literacy ]v[ 
+physical disabilities that make it difficult ]v[ impossible to write%%lst%% the therapist might suggest that 
+he record his thoughts into a tape recorder%%per%% 
+14 
+Practice assignment%%cln%% 
+Please write at least one page on why this traumatic event occurred%%per%%]$~ ~$[You are ]n[ being asked to 
+write specifics about the traumatic event%%per%%]$~ ~$[Write about what you have been thinking about the 
+cause of the worst event%%per%%]$~ ~$[Also%%lst%% consider the effects this traumatic event has had on your beliefs 
+about yourself%%lst%% others%%lst%% ]^[ the world in the following areas%%cln%% safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% 
+]^[ intimacy%%per%%]$~ ~$[Bring this with you to the next session%%per%%]$~ 
+~$[Also%%lst%% please read over the handout I have given you on stuck points ]s[ that you understand the 
+concept we are talking about%%per%% 
+15 
+Traumatic Bereavement Session (Session 2 if applicable) 
+The goals ]f[ this session are to 1) determine the impact of the traumatic event on beliefs 
+about self ]^[ others%%lst%% 2) begin to normalize the grief process ]^[ differentiate it from PTSD 
+symptoms%%lst%% 3) identify stuck points that may interfere with the normal course of bereavement%%lst%% 
+]^[ 4) begin to assist the patient in viewing her relationship with the person who died as altered%%lst%% 
+]b[ ]n[ finished%%per%%]$~ 
+~$[If this session is added%%lst%% then the therapist will have the patient read the Impact Statement 
+first before turning to the topic of grief%%per%%]$~ ~$[Please see the regular session two%%lst%% next%%lst%% ]f[ comments 
+regarding avoidance ]^[ what to do if the patient did ]n[ complete the assignment%%per%%]$~ ~$[After 
+discussing the Impact Statement ]^[ identifying stuck points that are evident%%lst%% the therapist will 
+begin an education portion on the topic of normal bereavement ]^[ will look ]f[ stuck points that 
+may interfere with normal grief reactions%%per%%]$~ ~$[To facilitate this process%%lst%% some information is 
+provided below to assist the therapist to think about traumatic versus normal bereavement issues%%lst%% 
+]^[ to provide some education to the patient regarding the course of bereavement as varying ]^[ 
+multidimensional%%per%%]$~ ~$[It is important ]f[ the therapist to refrain from pathologizing the grief process 
+]^[ to begin to differentiate grief from PTSD ]v[ depression%%per%%]$~ 
+~$[Therapist overview%%cln%% Traumatic bereavement 
+PTSD can interfere with the normal course of bereavement%%per%%]$~ ~$[It is also possible that 
+unresolved grief can further complicate recovery from PTSD%%per%%]$~ ~$[Although witnessing ]v[ being 
+injured during an event in which a loved one/friend was killed is more obviously associated with 
+PTSD%%lst%% therapists need to consider a PTSD diagnosis among those who were ]n[ present at the 
+traumatic death of a loved one%%per%%]$~ ~$[In civilian life%%lst%% the sudden%%lst%% unexpected ]^[ perhaps violent death 
+of a significant other is ]s[ shocking%%lst%% horrifying%%lst%% ]^[ schema%%dsh%%discrepant that family ]^[ friends of 
+the victim may have trouble taking in the fact that the person has been killed%%per%%]$~ ~$[During war%%lst%% 
+soldiers may accept the possibility that they ]v[ others may be killed%%lst%% on an abstract level%%lst%% ]b[ 
+losing friends%%lst%% seeing children die%%lst%% ]v[ having deaths occur in unexpected places (when one 
+thought he was safe)%%lst%% can also be shocking ]^[ hard to accept%%per%%]$~ ~$[Acceptance may be particularly 
+difficult ]f[ parents who lose children because of the expectation that their children will survive 
+them%%per%%]$~ ~$[And like other trauma survivors who actively avoid accepting the reality of the situation%%lst%% 
+traumatic%%dsh%%death surviving family ]^[ friends may engage in self%%dsh%%blame as an attempt to undo the 
+event (e%%per%%g%%per%%%%lst%% “If only I hadn’t done X%%lst%% he wouldn’t have been there at the time”)%%per%%]$~ ~$[Unlike other 
+trauma victims%%lst%% traumatic death survivors may believe that to accept the trauma ]^[ begin to 
+move on with their lives means they have betrayed the other person%%lst%% that the other person isn’t 
+being properly honored%%per%%]$~ 
+~$[Flashbacks%%lst%% intrusive thoughts%%lst%% ]^[ other intrusive reminders can recur even if someone 
+was ]n[ present at the death of their significant other%%per%%]$~ ~$[People may flash on ]v[ have strong 
+emotional ]v[ physiological reactions when reminded of being informed of the death%%per%%]$~ ~$[For 
+example%%lst%% some people have strong reactions when the telephone ]v[ doorbell rings%%per%%]$~ ~$[They 
+immediately flash back to being told%%per%%]$~ ~$[Some people have strong reactions to temporal cues such 
+as a specific time of day%%lst%% dusk%%lst%% a certain month%%lst%% ]v[ other anniversaries of the death%%per%%]$~ ~$[They may 
+react to climactic cues such as temperature%%lst%% humidity%%lst%% smells ]v[ other seasonal reminders%%per%% 
+16 
+Holidays ]v[ other personal days of celebration (birthdays%%lst%% anniversaries) can be particularly 
+difficult ]^[ can trigger trauma cues (as well as positive memories)%%per%%]$~ 
+~$[It is ]n[ unusual ]f[ people to have images of ]v[ ruminate about (with accompanying 
+affect ]^[ physiological responses) what they imagine happened to their loved one/friend%%per%%]$~ ~$[Some 
+people feel compelled to put themselves into the shoes of the person who died in an attempt to be 
+closer with them%%per%%]$~ ~$[They try to imagine what the other person experienced%%lst%% what they must have 
+been feeling ]v[ thinking%%lst%% ]^[ wonder if they suffered ]v[ were in pain ]f[ a long time before they 
+died%%per%%]$~ ~$[These images can serve as intrusive reminders of PTSD (Criterion B)%%per%%]$~ 
+~$[Often with PTSD induced by traumatic bereavement%%lst%% we do ]n[ see effortful avoidance 
+with regard to the person who died%%per%%]$~ ~$[To the contrary%%lst%% some people intentionally ruminate ]^[ are 
+afraid to let go of the images%%lst%% even very distressing images%%lst%% because to let go is%%lst%% in their minds%%lst%% to 
+lose their loved one%%per%%]$~ ~$[Effortful avoidance is more likely to be of the trauma cues listed above%%per%%]$~ 
+~$[Numbing is common%%per%%]$~ 
+~$[When some people are killed during a traumatic event%%lst%% those who survive%%lst%% whether they 
+are friends%%lst%% family%%lst%% ]v[ strangers%%lst%% may well have survivor guilt%%per%%]$~ ~$[When people experience 
+traumatic events%%lst%% they often ask the question%%lst%% “Why me?” because of their just world belief%%per%%]$~ ~$[A 
+corollary of this belief is asking “Why ]n[ me?” when surrounding others are killed%%per%%]$~ ~$[People with 
+survivor guilt feel that they do ]n[ have the right to go on when others are not%%lst%% ]v[ believe that 
+they are less deserving of happiness (or even of living) than the person ]v[ people who died%%per%%]$~ ~$[They 
+try to determine why they survived ]^[ cannot find an acceptable explanation%%per%%]$~ 
+~$[An issue that may need to be addressed with military ]^[ veteran populations is ]n[ just 
+witnessing ]v[ hearing about the death of someone the patient cared about%%lst%% ]b[ also issues that 
+arise from having killed themselves%%per%%]$~ ~$[Soldiers may find themselves forced to engage in behavior 
+that is against their personal moral code%%lst%% ]v[ in conflict with the circumstances under which they 
+believed that they would be killing others%%per%%]$~ ~$[In our experience%%lst%% situations in which civilians%%lst%% ]^[ 
+especially children%%lst%% are killed are especially traumatic ]f[ veterans ]^[ servicemen (e%%per%%g%%per%%%%lst%% children 
+with backpack bombs%%lst%% children put in front of transportation convoys)%%per%%]$~ ~$[Grieving ]^[ 
+assumptions about one’s actions during war can be very complicated because of the nature of 
+war itself%%per%%]$~ ~$[Veterans ]^[ military personnel may blame themselves%%lst%% the combatants%%lst%% the 
+government that put them in the position they found themselves%%lst%% ]v[ the behavior ]^[ perceived 
+failures of command ]v[ fellow soldiers%%per%%]$~ ~$[The combination of anger ]^[ guilt can complicate ]^[ 
+prolong the grief response%%per%%]$~ 
+~$[The goal of CPT ]f[ bereavement is to help patients determine ]^[ eliminate any stuck 
+points%%lst%% problematic cognitions that are blocking their recovery%%lst%% ]^[ to help them eventually focus 
+on the person’s life%%lst%% ]n[ just the way in which he ]v[ she died%%per%%]$~ 
+~$[First the therapist can start with bereavement issues… 
+“Prior to this death%%lst%% what has been your experience with the death of loved ones?” 
+17 
+If the patient has never experienced the death of a loved one%%lst%% then ask “What were your 
+expectations about death of loved ones%%qsn%%]$~ ~$[Had you ever thought about it%%qsn%%]$~ ~$[Or was it a topic that 
+you avoided thinking about?” 
+Once the therapist understands what the patient understood about death ]^[ the grief 
+process prior to the traumatic death%%lst%% s/he can then ask%%per%%%%per%% 
+“How is this situation different than what you had experienced before (or imagined)?” 
+“What have other people been telling you about grief ]^[ mourning? 
+“What suggestions have people been making?” 
+Give the patient(s) the Myths of Mourning handout%%per%%]$~ ~$[Discuss each of the statements with 
+the patient to determine which%%lst%% if any%%lst%% statements the patient has been subscribing%%per%%]$~ ~$[Along with 
+debunking some common myths%%lst%% the therapist uses this session to help the patient understand the 
+normal process of bereavement%%lst%% to see how the traumatic bereavement relates to symptoms of 
+PTSD%%lst%% ]^[ to begin to identify distorted cognitions%%lst%% conflicts between prior beliefs ]^[ the 
+traumatic event%%per%%]$~ 
+~$[Education on Normal Bereavement 
+Bereavement affects different aspects of one’s life%%per%%]$~ ~$[People have emotional%%lst%% spiritual%%lst%% ]^[ 
+physical reactions%%per%%]$~ ~$[They also have to adjust their roles with regard to other people%%lst%% the 
+community more generally%%lst%% ]^[ with regard to tasks ]^[ behaviors%%per%%]$~ ~$[While some grief reactions 
+may feel like ]^[ share some characteristics with other psychological reactions such as 
+depression%%lst%% it is important ]f[ the therapist ]n[ to pathologize grief%%per%%]$~ ~$[Bereavement is ]n[ the result 
+of personality traits%%lst%% ]b[ is the normal ]^[ time%%dsh%%limited reaction to loss%%per%%]$~ ~$[Mourning is ]n[ the same 
+as depression ]^[ does ]n[ respond to anti%%dsh%%depressants%%per%%]$~ 
+~$[In the past it was possible to tell that someone was grieving ]f[ a period of time because 
+of clothing indicative of mourning ]^[ institutionalized rules about mourning such as wearing 
+black ]f[ a year%%lst%% wearing certain jewelry ]v[ armbands%%lst%% limiting social engagements ]^[ ]s[ forth%%per%%]$~ 
+~$[These practices provided more community support because the person who was grieving was 
+clearly identifiable ]^[ there was an expectation that bereavement should take an extended 
+period of time%%per%%]$~ ~$[On the other hand%%lst%% the rigid rules about length of mourning were ]n[ flexible 
+enough to accommodate different patterns of grief%%per%%]$~ ~$[Some people may ]n[ have needed a year in 
+order to begin to reestablish their lives (some may have needed longer)%%per%%]$~ ~$[In modern times%%lst%% there is 
+no way to identify whether someone is in mourning%%lst%% ]s[ the community quickly returns to usual 
+routines ]^[ expects the bereaved person to do ]s[ as well%%per%%]$~ ~$[While community support is often 
+very active initially%%lst%% people often return to their own lives after a few months%%lst%% leaving the 
+bereaved adrift to adjust to their changes in roles ]^[ tasks%%per%%]$~ ~$[After a few months grieving people 
+may start receiving comments by others that they should move on with their lives ]^[ to put the 
+traumatic event ]^[ the loved one behind them (people with PTSD hear this all the time even 
+without a traumatic death)%%per%%]$~ ~$[People may need assistance in tolerating the predominant community 
+standards that do ]n[ reflect the reality of the mourning timeline ]f[ them%%per%%]$~ 
+~$[In the early stages of bereavement%%lst%% people need information ]^[ support in coping 
+emotionally%%per%%]$~ ~$[Later%%lst%% if the person who died is a family member%%lst%% they need to focus more on 
+18 
+instrumental tasks%%per%%]$~ ~$[Some tasks%%lst%% like dealing with insurance companies ]^[ changing names on 
+titles are directly due to the death of the family member%%per%%]$~ ~$[Other tasks represent a realignment of 
+typical chores (e%%per%%g%%per%%%%lst%% now the patient needs to pay bills ]v[ cook%%lst%% when before the other partner 
+took responsibility ]f[ those tasks)%%per%%]$~ ~$[Each of these instrumental adjustments%%lst%% if successfully 
+negotiated%%lst%% will help the bereaved person accept the reality of the situation ]^[ assist in a greater 
+sense of control%%per%%]$~ ~$[As the tasks ]^[ roles are realigned%%lst%% then the person also moves to reconnect 
+with his community%%lst%% reestablish ]^[ adjust relationships with their friends ]^[ relatives ]^[ 
+finally to rebuild his assumptive world%%per%%]$~ ~$[This latter task includes adjusting his beliefs about 
+himself ]^[ the world%%lst%% with regard to the loved one’s death%%per%%]$~ ~$[As elsewhere in CPT%%lst%% the therapist 
+is looking ]f[ accommodation rather than assimilation ]v[ over%%dsh%%accommodation%%lst%% balance in beliefs 
+rather than extreme statements%%per%%]$~ 
+~$[Sometimes the bereavement process ]f[ military personnel becomes more acute once 
+they leave the military%%per%%]$~ ~$[While in the military%%lst%% other people in that environment may have been 
+able to provide support ]^[ understanding of the losses that a soldier experienced%%per%%]$~ ~$[Upon 
+returning to the civilian world%%lst%% however%%lst%% people in the environment may ]n[ be able to 
+understand ]v[ appreciate the loss of comrades%%lst%% ]v[ may even be unsympathetic because of 
+different viewpoints on the war%%per%%]$~ ~$[Although our society appears to be doing a better job separating 
+the war from the warrior in the recent OEF/OIF conflict%%lst%% this is ]n[ universally true ]^[ there are 
+many Vietnam veterans who carry the scars of verbal abuse upon returning to the US after their 
+tours of duty in Vietnam%%per%%]$~ ~$[They may ]n[ have been given the opportunity to grieve the loss of 
+their friends ]^[ fellow soldiers ]v[ may be stuck in a cycle of grieving that has ]n[ remitted%%per%%]$~ 
+~$[The following are excerpts from a bereavement Impact Statement%%per%%]$~ ~$[The statement was 
+four hand%%dsh%%written pages%%per%%]$~ ~$[It illustrates the effects the murder of a granddaughter had on a patient%%per%%]$~ 
+~$[I think at first I needed to be strong from my son%%per%%]$~ ~$[As long as I could do that%%lst%% I did ]n[ 
+have to face the finality of death%%per%%]$~ ~$[This is still ]s[ hard ]f[ me to say%%per%%]$~ ~$[To think of ______ in the past 
+tense still causes me to have a panicky feeling%%per%%]$~ ~$[I cannot describe how much I love her ]v[ how 
+much I miss her%%per%%]$~ 
+~$[I thought I would always be the same me%%per%%]$~ ~$[But now I realize I will never be the same%%per%%]$~ ~$[At 
+first I kept trying to be the same self%%dsh%% Tried ]s[ hard that I would get these panic attacks%%lst%% ]s[ I just 
+tried ]n[ to think about it%%per%%]$~ 
+~$[I feel like this big cloud has settled over me ]^[ sometimes it suffocates me%%per%%]$~ ~$[I would like 
+to just pull the covers over my head ]^[ ]n[ take them off ]f[ a long time%%per%%]$~ ~$[But I know I can’t%%lst%% 
+especially ]f[ my son%%per%%]$~ ~$[He says he would like to go into a closet ]^[ ]n[ come out%%per%%]$~ 
+~$[I talked today with my Pastor about my feelings%%lst%% how I feel ]s[ frozen inside%%lst%% that I cannot 
+pray ]^[ do ]n[ feel spiritual at all%%per%%]$~ ~$[It makes me feel ]s[ empty%%per%%]$~ ~$[I miss the fellowship I had with 
+my God%%per%%]$~ ~$[I do want to have that again%%per%%]$~ 
+~$[Some people say I need to try to forgive – I can’t ]^[ I don’t want to – at least ]n[ now… 
+I really don’t want to be angry – this is ]n[ me%%per%%]$~ ~$[But right now I’m ]s[ angry%%per%%]$~ 
+~$[While the example above illustrates assimilation through non%%dsh%%acceptance ]^[ avoidance%%lst%% 
+the next excerpts from a different patient whose friend was killed ]^[ illustrates both 
+assimilation ]^[ over%%dsh%%accommodation%%per%% 
+19 
+I always believed that I could protect ______ from anything ]v[ anyone%%per%%]$~ ~$[I feel like a 
+failure%%per%%]$~ ~$[I failed him%%per%%]$~ ~$[I should have been watching his back then no one would have been able to 
+shoot him in his back%%per%%]$~ ~$[I could have administered CPR ]^[ helped to breathe in him the breath of 
+life%%per%%]$~ ~$[He would have calmed down ]^[ fought harder if I had been there… Who knew%%qsn%%]$~ ~$[But I failed 
+him ]^[ I don’t have any other chance to make it up to him%%per%%]$~ 
+~$[This world is a cruel world where no one seems to care about anyone outside of their 
+own family… I trust no one outside of the family ]^[ I really am no longer close to my family%%per%%]$~ ~$[I 
+no longer use the word “friend” because it no longer serves a purpose in my life%%per%%]$~ ~$[I feel 
+abandoned by certain people in my family%%per%%]$~ ~$[They are already ready ]f[ me to move on%%per%%]$~ ~$[Isn’t that 
+crazy?%%xcm%%]$~ 
+~$[It may be helpful ]f[ a patient to realize that his relationship with the deceased has 
+changed rather than ended%%per%%]$~ ~$[The patient can still have a relationship with the deceased even 
+though the relationship is ]n[ reciprocal%%per%%]$~ ~$[As part of the Impact Statement on the death of the 
+significant other%%lst%% the patient is asked%%lst%% “How has the event affected your relationship with the 
+deceased?” 
+One of the problems that can occur early in the grieving process (and stall out in some 
+cases) is the tendency to over%%dsh%%idealize the person who has died%%per%%]$~ ~$[It is difficult ]f[ the bereaved 
+person to move on%%lst%% reestablish connections with others%%lst%% ]^[ alter her relationship with the 
+deceased if the person who died is ]n[ the person who lived before%%per%%]$~ ~$[The loved ones may 
+experience more survivor guilt ]v[ hindsight bias if they believe that the person who died was 
+perfect ]v[ that it is bad/wrong to remember any flaws ]v[ foibles%%per%%]$~ ~$[The therapist needs to tread 
+lightly on this topic%%lst%% perhaps pursuing it later in therapy%%lst%% although it can be broached gently at 
+this time%%per%%]$~ ~$[The therapist%%lst%% in hearing an over%%dsh%%idealized description of the deceased can say%%cln%% 
+“He sounds like an angel%%per%%]$~ ~$[I’d like to have a better picture of the whole man that you 
+knew%%per%%]$~ ~$[Tell me a little about his eccentricities ]v[ habits”%%per%%]$~ 
+~$[The goal here is to help the patient to grieve ]f[ the person who really lived with an 
+integrated ]^[ balanced view%%per%%]$~ 
+~$[In some cases%%lst%% over%%dsh%%idealization may be a particular problem because the idealized image 
+of the deceased is embraced by a whole community%%per%%]$~ ~$[In the aftermath of the World Trade Center 
+attack%%lst%% firefighters%%lst%% police%%lst%% ]^[ other rescue workers who died have been rightly hailed as heroes%%per%%]$~ 
+~$[Heroes are people who risk themselves to help others in spite of their fear ]v[ flaws%%lst%% ]n[ because 
+they were fearless ]^[ flawless%%per%%]$~ ~$[It may be particularly difficult ]f[ family members if their 
+memories of the person clash with the public image%%per%%]$~ ~$[If a couple was having marital problems%%lst%% ]v[ 
+the partner was having an extra%%dsh%%marital affair%%lst%% was abusive%%lst%% ]v[ alcoholic%%lst%% the surviving partner 
+would ]n[ know how to reconcile this information with the accolades ]^[ images of the partner 
+as a saint%%per%%]$~ ~$[Even to remember small flaws would seem like a betrayal of the person who died%%per%%]$~ 
+~$[And yet%%lst%% the surviving partner ]^[ family members have these memories as well ]^[ struggle to 
+deal with them%%per%%]$~ ~$[Some people attempt to suppress ]v[ ignore inconsistent information%%per%%]$~ ~$[If they are 
+successful in avoiding%%lst%% there is a greater likelihood of more prolonged bereavement than ]f[ 
+those who can put the person’s life into an accurate perspective%%per%% 
 20 
-30 
-40 
-45 
-50 
-55 
-65 
-70 
-75 
-80 
-90 
-95 
-100 
-Table 4 
-Sample hierarchy ]f[ Caroline’s fear of spreading cancer 
-Hierarchy Item (without washing) 
-Visit someone ill%%lst%% delay hand wiping ]f[ 30 minutes 
-Visit someone ill%%lst%% no hand wiping 
-Visit someone ill%%lst%% no hand wiping ]v[ hand washing 
-Visit someone ill%%lst%% no hand wiping%%lst%% washing%%lst%% ]v[ 
-changing/washing clothes 
-Wear clothes (unwashed) day after visiting someone ill 
-Visit someone ill%%lst%% husband shakes their hand%%lst%% Caroline 
-shakes husband’s hand%%lst%% no wiping ]v[ washing 
-(ritual prevention by both husband ]^[ Caroline) 
-Visit someone ill%%lst%% husband shakes their hand%%lst%% Caroline 
-shakes husband’s hand + complete ritual prevention 
-(no wiping%%lst%% washing%%lst%% cleaning%%lst%% showering) 
-Visit someone ill%%lst%% Caroline shakes their hand%%lst%% 
-+ complete ritual prevention (no wiping%%lst%% washing%%lst%% 
-cleaning%%lst%% 
-showering) 
-Visit someone ill%%lst%% Caroline shakes their hand%%lst%% 
-no wiping ]v[ washing ]v[ changing clothes 
-Visit someone ill%%lst%% Caroline shakes their hand%%lst%% 
-+ complete ritual prevention (no wiping%%lst%% washing%%lst%% 
-cleaning%%lst%% showering) 
-Visit someone ill%%lst%% Caroline shakes their hand%%lst%% 
-+ imagine they get cancer ]^[ die + complete 
-ritual prevention (no wiping%%lst%% washing%%lst%% cleaning%%lst%% 
-showering) 
-Visit someone ill%%lst%% Caroline shakes their hand%%lst%% + shake 
-another person’s hand (i%%per%%e%%per%%%%lst%% purposely “spread 
-cancer”) + complete ritual prevention (no wiping%%lst%% 
-washing%%lst%% cleaning%%lst%% showering) 
-SUDS 
-30 
-40 
-45 
-50 
-55 
-65 
-70 
-75 
-80 
-90 
-95 
-100 
-refrain from all ritualistic behavior during the exposure%%lst%% 
-(c) continue the exposure until it can be performed with 
-relative ease both inside ]^[ outside of therapy sessions%%lst%% 
-(d) conduct the exposure repeatedly%%per%%]$~ 
-~$[As treatment progresses%%lst%% it is important to repeatedly 
-monitor ]^[ assess a patient’s OC symptoms ]^[ add 
-items to the hierarchy as necessary%%per%%]$~ ~$[However%%lst%% the goal ]f[ 
-treatment is ]n[ only to help the patient work through 
-their hierarchy%%lst%% ]b[ also to teach the patient to monitor 
-OC symptoms%%lst%% create new hierarchy exercises%%lst%% ]^[ to 
-conduct exposure exercises ]f[ new hierarchy items%%per%%]$~ ~$[In 
-other words%%lst%% the goal is to teach the patient a set of skills to 
-help them manage their anxiety ]v[ “be their own 
-therapist%%per%%” For example%%lst%% after mastering several items on 
-her hierarchy%%lst%% Caroline may disclose that “I am finding 
-that I am vacuuming more than I used to when I am 
-around children%%per%%” Such a realization would be a good 
-opportunity ]f[ the therapist to assess Caroline’s mastery 
-of EX/RP by having her develop her own exposure 
-hierarchy to address this ritual (e%%per%%g%%per%%%%lst%% visit a familiar child%%lst%% 
-shake a child’s hand%%lst%% babysit a friend’s child%%lst%% visit a child 
-care center%%lst%% etc%%per%%)%%per%%]$~ ~$[We often tell our clients that the 
-ultimate goal of treatment is to make the patient an OCD 
-]^[ EX/RP expert%%lst%% thereby making the therapist no 
-longer necessary%%per%%]$~ 
-~$[Response%%cln%% EX/RP ]f[ OCD 
-The last few sessions of treatment will focus on working 
-through the most difficult items on the hierarchy ]^[ 
-relapse prevention%%per%%]$~ ~$[If feasible%%lst%% we prefer to have a patient 
-work through the most difficult items on their hierarchy 
-before treatment is terminated%%lst%% ]b[ unfortunately this is 
-]n[ always feasible%%per%%]$~ ~$[However%%lst%% if treatment has been 
-successful%%lst%% Caroline has learned to identify ]^[ monitor 
-her OC symptoms ]^[ how to plan ]^[ build exposure 
-exercises to address them%%per%%]$~ ~$[During the last few sessions%%lst%% the 
-therapist should work with Caroline to identify%%lst%% ]^[ 
-prepare for%%lst%% future challenges ]^[ problem solve how to 
-address them%%per%%]$~ ~$[This may include follow%%dsh%%up sessions and/or 
-telephone calls with the therapist%%lst%% recruiting family 
-members to provide support%%lst%% and/or reviewing treatment 
-information%%per%%]$~ 
-~$[Possible Difficulties ]^[ Barriers to 
-Caroline’s Treatment 
-Perhaps the most common barriers to treatment are 
-noncompliance with exposure exercises ]^[ difficulties 
-achieving successful response prevention%%per%%]$~ ~$[In the former 
-case%%lst%% it is important to work with the client to attempt to 
-determine factors affecting treatment compliance%%per%%]$~ ~$[Common reasons include lack of motivation%%lst%% misunderstanding/ 
-disagreement with the behavioral model%%lst%% interpersonal 
-factors ]v[ poor therapist%%dsh%%client match%%lst%% moving too rapidly 
-up the stimulus hierarchy%%lst%% ]^[ comorbid ]v[ co%%dsh%%occurring 
-psychological issues such as depression ]v[ social anxiety 
-that may be more pressing ]^[ need to be addressed first%%per%%]$~ 
-~$[When a client understands the model ]^[ seems motivated 
-]f[ treatment ]y[ is having difficulty with exposures ]v[ 
-response prevention%%lst%% it is important ]f[ the therapist to 
-consider whether treatment is appropriately tailored ]f[ 
-the particular client%%per%%]$~ ~$[For example%%lst%% is the hierarchy 
-appropriately constructed%%qsn%%]$~ ~$[Are the exposures relevant%%qsn%%]$~ 
-~$[Are the exposures too difficult%%qsn%%]$~ ~$[Treatment noncompliance 
-should be addressed early in treatment ]^[ should be an 
-iterative problem%%dsh%%solving process between the therapist 
-]^[ client%%per%%]$~ 
-~$[Another common barrier to treatment is unintentional 
-subtle avoidance%%lst%% which often takes the form of substituting one obvious ritual ]f[ a less noticeable ritual that 
-serves the same anxiety%%dsh%%reducing function%%per%%]$~ ~$[In most cases%%lst%% 
-patients are unaware that they are engaging in subtle 
-avoidance%%per%%]$~ ~$[For example%%lst%% a person with hand%%dsh%%washing 
-rituals associated with contamination fears might learn to 
-refrain from washing his/her hands%%lst%% ]b[ might (either 
-unwittingly ]v[ purposefully) wipe his/her hands on 
-another surface to remove contamination%%per%%]$~ ~$[Another 
-example of subtle avoidance is reassurance seeking%%per%%]$~ 
-~$[Caroline might have mastered several items on her 
-hierarchy—for example%%lst%% she may be able to attend a 
-public event without praying%%lst%% ]b[ she may ask the 
-therapist%%lst%% “I feel like I cause misery ]^[ death wherever 
-I go%%scn%% do you think I am causing harm to people around 
-me?” In this case%%lst%% Caroline may be seeking reassurance 
-from the therapist to confirm that she is in fact ]n[ causing 
-harm%%per%%]$~ ~$[The therapist must be careful in how he/she 
-answers reassurance%%dsh%%seeking questions%%per%%]$~ ~$[If the therapist 
-answers%%lst%% “No%%lst%% I don’t think you are causing harm to 
-people around you,” the therapist can very easily 
-reinforce OCD by reducing Caroline’s anxiety (albeit 
-incidentally)%%per%%]$~ ~$[In fact%%lst%% reassurance seeking is a common 
-ritual in OCD than can be easily overlooked by both the 
-therapist ]^[ the client%%per%%]$~ ~$[We might respond to such 
-reassurance%%dsh%%seeking questions by stating%%lst%% “Who is asking%%lst%% 
-you ]v[ OCD%%qsn%%]$~ ~$[It sounds to me that perhaps OCD is trying 
-the back door technique%%per%%]$~ ~$[Do you think it is possible that 
-OCD is telling you that you are causing harm because you 
-are no longer ritualizing%%qsn%%]$~ ~$[Based on your experiences in 
-therapy thus far%%lst%% how would you answer OCD?” By turning 
-the question back on the patient%%lst%% the therapist can help 
-the patient recognize subtle avoidance%%per%%]$~ ~$[In doing so%%lst%% 
-however%%lst%% a patient might think that they have suffered a 
-treatment setback because they did ]n[ recognize this 
-subtle form of ritualizing%%per%%]$~ ~$[When this occurs%%lst%% the therapist 
-might state%%lst%% “These forms of subtle avoidance need to be 
-carefully attended to ]b[ can be viewed as treatment 
-progress%%per%%]$~ ~$[It sounds like OCD’s old tricks (i%%per%%e%%per%%%%lst%% old rituals) 
-are no longer working ]s[ OCD is trying to trick you into 
-other ways of ritualizing%%per%%” We would then send the patient 
-home to carefully monitor ]f[ any other subtle “tricks” 
-that OCD may be attempting to pull%%per%%]$~ 
-~$[Yet another factor that may complicate treatment arises 
-when a patient’s family members have become involved in 
-rituals%%per%%]$~ ~$[This is especially common ]f[ children (who 
-involve their parents) ]^[ individuals within intimate 
-relationships (e%%per%%g%%per%%%%lst%% spouse)%%per%%]$~ ~$[There is some evidence that 
-Caroline has involved her husband in her rituals%%per%%]$~ 
-~$[Specifically%%lst%% she asks him to wash his hands ]^[ clothing 
-in order to prevent him from becoming ill%%per%%]$~ ~$[It would be 
-beneficial to include Caroline’s husband in treatment ]f[ 
-two reasons%%per%%]$~ ~$[First%%lst%% exposure exercises might include him 
-directly%%per%%]$~ ~$[For example%%lst%% an exposure exercise might involve 
-having him visit someone ill ]v[ go to the hospital ]^[ 
-come home ]b[ ]n[ wash his clothes%%per%%]$~ ~$[Second%%lst%% he can serve 
-as a model ]^[ support person ]f[ Caroline by helping 
-her identify subtle rituals%%lst%% provide encouragement%%lst%% help 
-her problem solve difficult situations%%lst%% ]^[ model “normal” behavior in situations in which Caroline has a history 
-of ritualizing%%per%%]$~ ~$[Ideally%%lst%% Caroline’s husband would be 
-involved in all aspects of treatment%%scn%% however%%lst%% at a 
-minimum it would be helpful if he understood the 
-treatment model%%lst%% the rationale ]f[ treatment%%lst%% ]^[ was 
-willing to participate in specific exposure exercises%%per%%]$~ 
-~$[A final factor that might complicate treatment is the 
-presence of a comorbid psychological disorder%%per%%]$~ ~$[In addition to OCD%%lst%% Caroline suffers from other sources of 
-37 
-Himle & Franklin 
-38 
-anxiety%%lst%% many of which are related to social situations%%per%%]$~ 
-~$[Specifically%%lst%% she reports having difficulty attending parties%%lst%% 
-public speaking%%lst%% writing in public%%lst%% eating in public%%lst%% using 
-public restrooms%%lst%% being assertive%%lst%% ]^[ initiating/maintaining a conversation%%lst%% ]^[ fear of embarrassment%%per%%]$~ ~$[She 
-also reports feeling “inferior%%per%%” Also consistent with 
-anxiety%%lst%% she engages in a variety of avoidance behaviors 
-to lessen her distress%%lst%% including dressing conservatively 
-]^[ avoiding social situations%%per%%]$~ ~$[Although these factors 
-might complicate treatment (e%%per%%g%%per%%%%lst%% Caroline may try to 
-please the therapist%%lst%% refuse treatment exercises such as 
-writing%%lst%% etc%%per%%)%%lst%% the therapist can easily work with Caroline 
-to help her realize that%%lst%% just as in OCD%%lst%% other sources of 
-anxiety can be subsumed under the same model%%scn%% that is%%lst%% 
-avoidance is strengthened by the removal of anxiety ]^[ 
-the more you do it%%lst%% the easier it gets%%per%%]$~ ~$[Caroline’s social 
-anxiety might well be incorporated directly into treatment%%per%%]$~ ~$[In fact%%lst%% discussing this source of anxiety is a good 
-opportunity to test whether she understands the basic 
-premise behind the behavioral model of anxiety ]^[ to 
-have her develop ]^[ implement exposure exercises%%per%%]$~ 
-~$[What Does the Future Hold ]f[ Treatment%%qsn%%]$~ 
-~$[As noted above%%lst%% there is a large body of research 
-supporting the use of EX/RP ]f[ OCD%%per%%]$~ ~$[Caroline’s 
-prognosis will depend largely upon her progress during 
-treatment%%per%%]$~ ~$[Most studies assessing long%%dsh%%term follow%%dsh%%up 
-suggest that the majority of patients that respond to CBT 
-maintain their treatment gains ]^[ that the better a 
-person does in EX/RP in the short run the better off they 
-will likely be in the long run (Simpson et al%%per%%%%lst%% 2005%%scn%% Whittal 
-et al%%per%%%%lst%% in press)%%per%%]$~ ~$[Caroline has several indicators of a positive 
-prognosis%%lst%% including the fact that she is seeking treatment 
-(suggesting some level of motivation)%%lst%% has a social support 
-system (husband ]^[ family)%%lst%% ]^[ a symptom profile that 
-is amenable to EX/RP%%per%%]$~ ~$[However%%lst%% as a general rule%%lst%% we tell 
-patients to expect that there will be periodic instances in 
-the future that will prompt OCD exacerbations while 
-simultaneously encouraging them that if they anticipate 
-]^[ recognize these flare%%dsh%%ups%%lst%% they now have the tools 
-necessary to help them effectively manage the symptoms%%per%%]$~ 
-~$[References 
-Abramowitz%%lst%% J%%per%%]$~ ~$[S%%per%% (1996)%%per%%]$~ ~$[Variants of exposure ]^[ response prevention 
-in the treatment of obsessive%%dsh%%compulsive disorder%%cln%% A meta%%dsh%%analysis%%per%%]$~ 
-~$[Behavior Therapy%%lst%% 27%%lst%% 583–600%%per%%]$~ 
-~$[Abramowitz%%lst%% J%%per%%]$~ ~$[S%%per%% (1997)%%per%%]$~ ~$[Effectiveness of psychological ]^[ pharmacological treatments ]f[ obsessive%%dsh%%compulsive disorder%%cln%% A quantitative review%%per%%]$~ ~$[Journal of Consulting ]^[ Clinical Psychology%%lst%% 65%%lst%% 44–52%%per%%]$~ 
-~$[Abramowitz%%lst%% J%%per%%]$~ ~$[S%%per%% (2006)%%per%%]$~ ~$[Obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[Advances in 
-Psychotherapy%%cln%% Evidence Based Practice%%per%%]$~ ~$[Cambridge%%lst%% MA%%cln%% Hogrefe & 
-Huber%%per%%]$~ 
-~$[Abramowitz%%lst%% J%%per%%]$~ ~$[S%%per%%%%lst%% Franklin%%lst%% M%%per%%]$~ ~$[E%%per%%%%lst%% & Foa%%lst%% E%%per%%]$~ ~$[B%%per%% (2002)%%per%%]$~ ~$[Empirical status 
-of cognitive%%dsh%%behavioral therapy ]f[ obsessive%%dsh%%compulsive disorder%%cln%% 
-A meta%%dsh%%analytic review%%per%%]$~ ~$[Romanian Journal of Cognitive ]^[ Behavioral 
-Psychotherapies%%lst%% 2%%lst%% 89–104%%per%%]$~ 
-~$[Abramowitz%%lst%% J%%per%%]$~ ~$[S%%per%%%%lst%% Franklin%%lst%% M%%per%%]$~ ~$[E%%per%%%%lst%% Zoellner%%lst%% L%%per%%]$~ ~$[A%%per%%%%lst%% & DiBernardo%%lst%% C%%per%%]$~ ~$[L%%per%% 
-(2002)%%per%%]$~ ~$[Treatment compliance ]^[ outcome in obsessive%%dsh%%compulsive 
-disorder%%per%%]$~ ~$[Behavior Modification%%lst%% 26%%lst%% 447–463%%per%%]$~ 
-~$[Abramowitz%%lst%% J%%per%%]$~ ~$[S%%per%%%%lst%% Whiteside%%lst%% S%%per%%]$~ ~$[P%%per%%%%lst%% & Deacon%%lst%% B%%per%%]$~ ~$[J%%per%% (2005)%%per%%]$~ ~$[The 
-effectiveness of treatment ]f[ pediatric obsessive%%dsh%%compulsive 
-disorder%%cln%% A meta%%dsh%%analysis%%per%%]$~ ~$[Behavior Therapy%%lst%% 36%%lst%% 55–63%%per%%]$~ 
-~$[American Academy of Child ]^[ Adolescent Psychiatry%%per%% (1998)%%per%%]$~ 
-~$[Practice parameters ]f[ the assessment ]^[ treatment of children ]^[ adolescents with obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[Journal 
-of the American Academy of Child ]^[ Adolescent Psychiatry%%lst%% 37%%lst%% 
-S27–S45%%per%%]$~ 
-~$[Clark%%lst%% D%%per%%]$~ ~$[M%%per%%%%lst%% Ball%%lst%% S%%per%%%%lst%% & Pape%%lst%% D%%per%% (1991)%%per%%]$~ ~$[An experimental investigation 
-of thought suppression%%per%%]$~ ~$[Behaviour Research ]^[ Therapy%%lst%% 29%%lst%% 
-253–257%%per%%]$~ 
-~$[Chosak%%lst%% A%%per%%%%lst%% Marques%%lst%% L%%per%%%%lst%% Fama%%lst%% J%%per%%%%lst%% Renaud%%lst%% S%%per%%%%lst%% & Wilhelm%%lst%% S%%per%% (2009)%%per%%]$~ 
-~$[Cognitive therapy ]f[ obsessive%%dsh%%compulsive disorder%%cln%% A case 
-example%%per%%]$~ ~$[Cognitive ]^[ Behavioral Practice%%lst%% 16%%lst%% 7–17%%per%%]$~ 
-~$[Cooper%%lst%% J%%per%% (1970)%%per%%]$~ ~$[The Leyton Obsessional Inventory%%per%%]$~ ~$[Psychological 
-Medicine%%lst%% 1%%lst%% 48–64%%per%%]$~ 
-~$[DiNardo%%lst%% P%%per%%%%lst%% Brown%%lst%% T%%per%%]$~ ~$[A%%per%%%%lst%% & Barlow%%lst%% D%%per%%]$~ ~$[H%%per%% (1994)%%per%%]$~ ~$[Anxiety Disorders 
-Interview Schedule ]f[ DSM%%dsh%%IV (ADIS%%dsh%%IV)%%per%%]$~ ~$[Albany%%lst%% NY%%cln%% Graywind%%per%%]$~ 
-~$[Dollard%%lst%% J%%per%%%%lst%% & Miller%%lst%% N%%per%%]$~ ~$[E%%per%% (1950)%%per%%]$~ ~$[Personality ]^[ psychotherapy%%cln%% An analysis 
-in terms of learning%%lst%% thinking ]^[ culture%%per%%]$~ ~$[New York%%cln%% McGraw%%dsh%%Hill%%per%%]$~ 
-~$[First%%lst%% M%%per%%]$~ ~$[B%%per%%%%lst%% Spitzer%%lst%% R%%per%%]$~ ~$[L%%per%%%%lst%% Gibbon%%lst%% M%%per%%%%lst%% & Williams%%lst%% J%%per%%]$~ ~$[B%%per%%]$~ ~$[W%%per%% (1995)%%per%%]$~ 
-~$[Structured Clinical Interview ]f[ DSM%%dsh%%IV Axis I Disorders (SCID%%dsh%%I)%%per%%]$~ ~$[New 
-York%%lst%% Biometrics Research Department%%lst%% New York Psychiatric 
-Institute%%per%%]$~ 
-~$[Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% & Kozak%%lst%% M%%per%%]$~ ~$[J%%per%% (1986)%%per%%]$~ ~$[Emotional processing of fear%%cln%% Exposure 
-to corrective information%%per%%]$~ ~$[Psychological Bulletin%%lst%% 99%%lst%% 20–35%%per%%]$~ 
-~$[Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% & Kozak%%lst%% M%%per%%]$~ ~$[J%%per%% (1995)%%per%%]$~ ~$[DSM%%dsh%%IV field trial%%cln%% Obsessivecompulsive disorder%%per%%]$~ ~$[The American Journal of Psychiatry%%lst%% 152%%lst%% 90–96%%per%%]$~ 
-~$[Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% & Kozak%%lst%% M%%per%%]$~ ~$[J%%per%% (1996)%%per%%]$~ ~$[Psychological treatment ]f[ obsessivecompulsive disorder%%per%%]$~ ~$[In M%%per%%]$~ ~$[R%%per%%]$~ ~$[Mavissakalian%%lst%% & R%%per%%]$~ ~$[F%%per%%]$~ ~$[Prien (Eds%%per%%)%%lst%% 
-Long%%dsh%%term treatment of anxiety disorders (pp%%per%% 285–309)%%per%%]$~ ~$[Washington%%lst%% 
-DC%%cln%% American Psychiatric Assocation Press%%per%%]$~ 
-~$[Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% Kozak%%lst%% M%%per%%]$~ ~$[J%%per%%%%lst%% Salkovskis%%lst%% P%%per%%]$~ ~$[M%%per%%%%lst%% Coles%%lst%% M%%per%%]$~ ~$[E%%per%%%%lst%% & Amir%%lst%% N%%per%% (1998)%%per%%]$~ 
-~$[The validation of a new obsessive%%dsh%%compulsive scale%%cln%% the ObsessiveCompulsive Inventory%%per%%]$~ ~$[Psychological Assessment%%lst%% 10%%lst%% 206–214%%per%%]$~ 
-~$[Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% Liebowitz%%lst%% M%%per%%]$~ ~$[R%%per%%%%lst%% Kozak%%lst%% M%%per%%]$~ ~$[J%%per%%%%lst%% Davies%%lst%% S%%per%%%%lst%% Campeas%%lst%% R%%per%%%%lst%% 
-Franklin%%lst%% M%%per%%]$~ ~$[E%%per%%%%lst%% et al%%per%% (2005)%%per%%]$~ ~$[Randomized%%lst%% placebo%%dsh%%controlled 
-trial of exposure ]^[ response prevention%%lst%% clomipramine%%lst%% ]^[ 
-their combination in the treatment of obsessive%%dsh%%compulsive 
-disorder%%per%%]$~ ~$[American Journal of Psychiatry%%lst%% 162%%lst%% 151–161%%per%%]$~ 
-~$[Franklin%%lst%% M%%per%%]$~ ~$[E%%per%%%%lst%% & Foa%%lst%% E%%per%%]$~ ~$[B%%per%% (1998)%%per%%]$~ ~$[Cognitive%%dsh%%behavioral treatment of 
-Obsessive%%dsh%%Compulsive Disorder%%per%%]$~ ~$[In P%%per%%]$~ ~$[Nathan%%lst%% & J%%per%%]$~ ~$[Gorman (Eds%%per%%)%%lst%% 
-A guide to treatments that work (pp%%per%% 339–357)%%per%%]$~ ~$[Oxford%%lst%% England%%cln%% 
-Oxford University Press%%per%%]$~ 
-~$[Freeston%%lst%% M%%per%%]$~ ~$[H%%per%%%%lst%% Ladouceur%%lst%% R%%per%%%%lst%% Gangnon%%lst%% F%%per%%%%lst%% et al%%per%% (1997)%%per%%]$~ ~$[Cognitivebehavioral treatment of obsessive thoughts%%cln%% A controlled study%%per%%]$~ 
-~$[Journal of Consulting ]^[ Clinical Psychology%%lst%% 65%%lst%% 405–413%%per%%]$~ 
-~$[Greist%%lst%% J%%per%%]$~ ~$[H%%per%% (1996)%%per%%]$~ ~$[The comparative effectiveness of treatments ]f[ 
-obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[Bulletin of the Menninger Clinic%%lst%% 62%%lst%% 
-A65–A81%%per%%]$~ 
-~$[Greist%%lst%% J%%per%%]$~ ~$[H%%per%% (2000)%%per%%]$~ ~$[Obsessive compulsive disorder%%cln%% A guide%%per%%]$~ ~$[Madison%%lst%% WI%%cln%% 
-Obsessive Compulsive Information Center%%lst%% Madison Institute of 
-Medicine%%per%%]$~ 
-~$[Insel%%lst%% T%%per%%]$~ ~$[R%%per%%%%lst%% Murphy%%lst%% D%%per%%]$~ ~$[L%%per%%%%lst%% Cohen%%lst%% R%%per%%]$~ ~$[M%%per%%%%lst%% Alterman%%lst%% I%%per%%%%lst%% Kilton%%lst%% C%%per%%%%lst%% & 
-Linnoila%%lst%% M%%per%% (1983)%%per%%]$~ ~$[Obsessive%%dsh%%compulsive disorder%%cln%% A double 
-blind trial of clomipramine ]^[ clorgyline%%per%%]$~ ~$[Archives of General 
-Psychiatry%%lst%% 40%%lst%% 605–612%%per%%]$~ 
-~$[Kozak%%lst%% M%%per%%]$~ ~$[J%%per%%%%lst%% & Foa%%lst%% E%%per%%]$~ ~$[B%%per%% (1997)%%per%%]$~ ~$[Mastery of obsessive compulsive disorder%%cln%% A 
-cognitive behavioral approach%%per%%]$~ ~$[Therapist guide%%per%%]$~ ~$[San Antonio%%cln%% The 
-Psychological Corporation%%per%%]$~ 
-~$[Leahy%%lst%% R%%per%%]$~ ~$[L%%per%% (2007)%%per%%]$~ ~$[Emotional schemas ]^[ self%%dsh%%help%%cln%% Homework 
-compliance ]^[ obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[Cognitive ]^[ 
-Behavioral Practice%%lst%% 14%%lst%% 297–302%%per%%]$~ 
-~$[Mowrer%%lst%% O%%per%%]$~ ~$[H%%per%% (1951)%%per%%]$~ ~$[Learning theory ]^[ personality dynamics%%per%%]$~ ~$[New 
-York%%cln%% Ronald Press%%per%%]$~ 
-~$[Mowrer%%lst%% O%%per%%]$~ ~$[H%%per%% (1960)%%per%%]$~ ~$[Learning theory ]^[ behavior%%per%%]$~ ~$[New York%%cln%% Wiley%%per%%]$~ 
-~$[Riggs%%lst%% D%%per%%]$~ ~$[S%%per%%%%lst%% & Foa%%lst%% E%%per%%]$~ ~$[B%%per%% (1993)%%per%%]$~ ~$[Obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[In 
-D%%per%%]$~ ~$[H%%per%%]$~ ~$[Barlow (Ed%%per%%)%%lst%% Clinical handbook of psychological disorders%%per%%]$~ 
-~$[New York%%cln%% Guilford Press%%per%%]$~ 
-~$[Response%%cln%% EX/RP ]f[ OCD 
-Sanavio%%lst%% E%%per%% (1988)%%per%%]$~ ~$[Obsessions ]^[ compulsions%%cln%% The Pauda Inventory%%per%%]$~ 
-~$[Behaviour Research ]^[ Therapy%%lst%% 26%%lst%% 169–177%%per%%]$~ 
-~$[Simpson%%lst%% H%%per%%]$~ ~$[B%%per%%%%lst%% Franklin%%lst%% M%%per%%]$~ ~$[E%%per%%%%lst%% Cheng%%lst%% J%%per%%%%lst%% Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% & Liebowitz%%lst%% M%%per%%]$~ ~$[R%%per%% 
-(2005)%%per%%]$~ ~$[Standard criteria ]f[ relapse are needed in obsessivecompulsive disorder%%per%%]$~ ~$[Depression ]^[ Anxiety%%lst%% 21%%lst%% 1–8%%per%%]$~ 
-~$[Simpson%%lst%% H%%per%%]$~ ~$[B%%per%%%%lst%% Liebowitz%%lst%% M%%per%%]$~ ~$[R%%per%%%%lst%% Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% Kozak%%lst%% M%%per%%]$~ ~$[J%%per%%%%lst%% Schmidt%%lst%% A%%per%%]$~ ~$[B%%per%%%%lst%% 
-Rowan%%lst%% V%%per%%%%lst%% et al%%per%% (2004)%%per%%]$~ ~$[Post%%dsh%%treatment effects of exposure therapy 
-]^[ clomipramine in obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[Depression ]^[ 
-Anxiety%%lst%% 19%%lst%% 225–233%%per%%]$~ 
-~$[St%%per%%]$~ ~$[Clare%%lst%% T%%per%% (2003)%%per%%]$~ ~$[Assessment procedures%%per%%]$~ ~$[In R%%per%%]$~ ~$[G%%per%%]$~ ~$[Menzies%%lst%% & P%%per%% de 
-Silva (Eds%%per%%)%%lst%% Obsessive%%dsh%%compulsive disorder%%cln%% Theory%%lst%% research ]^[ 
-treatment (pp%%per%% 239–257)%%per%%]$~ ~$[West Sussex%%cln%% John Wiley & Sons%%per%%]$~ 
-~$[Steketee%%lst%% G%%per%% (1993)%%per%%]$~ ~$[Treatment of obsessive compulsive disorder%%per%%]$~ ~$[New York%%cln%% 
-Guilford Press%%per%%]$~ 
-~$[Task Force on Promotion ]^[ Dissemination of Psychological 
-Procedures%%per%% (1995)%%per%%]$~ ~$[Training ]^[ dissemination of empiricallyvalidated psychosocial treatments%%cln%% Report ]^[ recommendations%%per%%]$~ 
-~$[The Clinical Psychologist%%lst%% 48%%lst%% 3–23%%per%%]$~ 
-~$[Taylor%%lst%% S%%per%%%%lst%% Abramowitz%%lst%% J%%per%%]$~ ~$[S%%per%%%%lst%% & McKay%%lst%% D%%per%% (2007)%%per%%]$~ ~$[Cognitivebehavioral models of obsessive%%dsh%%compulsive disorder%%per%%]$~ ~$[In M%%per%%]$~ 
-~$[Anthony%%lst%% C%%per%%]$~ ~$[Purdon%%lst%% & L%%per%%]$~ ~$[J%%per%%]$~ ~$[Summerfeldt (Eds%%per%%)%%lst%% Psychological 
-treatment of obsessive%%dsh%%compulsive disorder%%cln%% Fundamentals ]^[ beyond 
-(pp%%per%% 9–29)%%per%%]$~ ~$[Washington%%lst%% DC%%cln%% American Psychological 
-Association%%per%%]$~ 
-~$[Twohig%%lst%% M%%per%%]$~ ~$[P%%per%%%%lst%% & Whittal%%lst%% M%%per%%]$~ ~$[L%%per%% (2009)%%per%%]$~ ~$[A case of obsessive compulsive 
-disorder%%per%%]$~ ~$[Cognitive ]^[ Behavioral Practice%%lst%% 16%%lst%% 3–6%%per%%]$~ 
-~$[Vogel%%lst%% P%%per%%]$~ ~$[A%%per%%%%lst%% Stiles%%lst%% T%%per%%]$~ ~$[C%%per%%%%lst%% & Gotestam%%lst%% K%%per%%]$~ ~$[G%%per%% (2004)%%per%%]$~ ~$[Adding cognitive 
-therapy elements to exposure therapy ]f[ obsessive compulsive 
-disorder%%cln%% A controlled study%%per%%]$~ ~$[Behavioural ]^[ Cognitive Therapy%%lst%% 32%%lst%% 
-275–290%%per%%]$~ 
-~$[Whittal%%lst%% M%%per%%]$~ ~$[L%%per%%%%lst%% Robichaud%%lst%% M%%per%%%%lst%% Thordarson%%lst%% D%%per%%]$~ ~$[S%%per%%%%lst%% & McLean%%lst%% P%%per%%]$~ ~$[D%%per%% 
-(in press)%%per%%]$~ ~$[Group ]^[ individual treatment of OCD using cognitive therapy ]^[ exposure plus response prevention%%cln%% A twoyear follow%%dsh%%up of 2 randomized trials%%per%%]$~ ~$[Journal of Consulting ]^[ 
-Clinical Psychology%%per%%]$~ 
-~$[Whittal%%lst%% M%%per%%]$~ ~$[L%%per%%%%lst%% Thordarson%%lst%% D%%per%%]$~ ~$[S%%per%%%%lst%% & McLean%%lst%% P%%per%%]$~ ~$[D%%per%% (2005)%%per%%]$~ ~$[Treatment 
-of obsessive%%dsh%%compusive disorder%%cln%% Cognitive behavior therapy vs%%per%% 
-exposure ]^[ response prevention%%per%%]$~ ~$[Behaviour Research ]^[ Therapy%%lst%% 
-43%%lst%% 1559–1576%%per%%]$~ 
-~$[Address correspondence to Michael B%%per%%]$~ ~$[Himle%%lst%% Ph%%per%%D%%per%%%%lst%% Department of 
-Psychology%%lst%% 319 Harvard St%%per%%%%lst%% University of North Dakota%%lst%% Grand Forks%%lst%% 
-ND 58202%%dsh%%8380%%scn%% e%%dsh%%mail%%cln%% michael%%per%%himle@und%%per%%nodak%%per%%edu%%per%%]$~ 
-~$[Received%%cln%% February 2%%lst%% 2008 
-Accepted%%cln%% March 19%%lst%% 2008 
-Available online 26 October 2008 
-39 
+Pertinent to situations like the attack on September 11%%lst%% 2001%%lst%% ]^[ war%%lst%% is the issue in 
+which the body of the deceased is never found%%per%%]$~ ~$[It may be more difficult in these cases ]f[ the 
+surviving family ]^[ friends to accept that the person is actually dead%%per%%]$~ ~$[When there is no concrete 
+proof that the person died%%lst%% assimilation ]^[ denial are more likely%%per%%]$~ ~$[The survivors may have 
+continuing fantasies that there has been some mistake%%lst%% that the loved one has been wandering 
+around with amnesia ]v[ injured ]^[ unable to contact them%%per%%]$~ ~$[They may have extended periods 
+during which acceptance of the reality of the situation is postponed%%per%%]$~ 
+~$[Finally%%lst%% when a group of people experience the same event ]^[ then support each other in 
+the aftermath%%lst%% they can help each other progress through the various stages of grief%%per%%]$~ ~$[However%%lst%% 
+there are two risks%%per%%]$~ ~$[One is that the members of the group will be recovering at different rates%%lst%% 
+leading to misunderstandings ]v[ some people being held back from their natural rate%%per%%]$~ ~$[A worse 
+outcome is that the group becomes stuck together ]^[ stop recovering altogether%%per%%]$~ ~$[They develop 
+an us%%dsh%%against%%dsh%%them mentality in which they come to believe that no one can understand what 
+they have experienced ]^[ that they can never recover%%per%%]$~ ~$[If someone who seeks therapy 

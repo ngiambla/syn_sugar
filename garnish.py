@@ -5,6 +5,7 @@ import os
 import sys
 import operator 
 import re
+import math
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -156,9 +157,11 @@ class garnish:
 						b=[]
 						for i in range(jl, sentence_length_map[jl]+jl):
 							b.append(ingredient_freq_map[ingredient_free_map[jl]])
-						if sen_pairs[_bin][jl] < -1 and sen_pairs[_bin][il] < -1:
-							lev_dis = mutils.levenshtein(a,b)
-							if lev_dis < 20:
+						if sen_pairs[_bin][jl] <= -2 and sen_pairs[_bin][il] <= -2:
+							#lev_dis = mutils.levenshtein(a,b)
+							lev_dis = math.floor(10*mutils.get_cosine_sim(a,b))/10
+
+							if lev_dis < 10:
 								if lev_dis not in sorted_bins[_bin]:
 									sorted_bins[_bin][lev_dis]={}
 
@@ -203,3 +206,4 @@ class garnish:
 					line=line+1
 			f.write(out+"\n")
 		print(bcolors.OKGREEN+"~ Voila."+bcolors.ENDC)
+

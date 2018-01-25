@@ -5,6 +5,12 @@ import math
 
 
 def get_cosine_sim(a, b):
+
+	while len(a) < len(b):
+		a.append(0)
+	while len(b) < len(a):
+		b.append(0)
+
 	return 1 - spatial.distance.cosine(a,b)
 
 def correlate(a, b):

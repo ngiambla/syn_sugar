@@ -110,8 +110,8 @@ class garnish:
 
 			sfs=[]
 			for i in range(_label, sentence_length_map[_label]+_label):
-				sfs.append(ingredient_freq_map[ingredient_free_map[_label]])
-			sentence_entropy_map[_label]=mutils.entropy(sfs)/(sentence_length_map[_label]+_label)
+				sfs.append(ingredient_freq_map[ingredient_free_map[_label]]/len(ingredient_free_map))
+			sentence_entropy_map[_label]=100*mutils.entropy(sfs)/(sentence_length_map[_label]+_label)
 
 
 			vec=[]
@@ -157,8 +157,8 @@ class garnish:
 						b=[]
 						for i in range(jl, sentence_length_map[jl]+jl):
 							b.append(ingredient_freq_map[ingredient_free_map[jl]])
-						if sen_pairs[_bin][jl] <= -2 and sen_pairs[_bin][il] <= -2:
-							#lev_dis = mutils.levenshtein(a,b)
+						if sen_pairs[_bin][jl] >= 0.05 and sen_pairs[_bin][il] >= 0.05:
+
 							lev_dis = math.floor(10*mutils.get_cosine_sim(a,b))/10
 
 							if lev_dis < 10:
@@ -181,7 +181,7 @@ class garnish:
 						s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
 					s1=s1+"\n\n"
 				print(s1)
-
+			raw_input("~ ")
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

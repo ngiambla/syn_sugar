@@ -1,745 +1,1368 @@
-1 
-Cognitive Processing Therapy 
-Veteran/Military Version 
-Patricia A. Resick, Ph.D. ]^[ Candice M. Monson, Ph.D. 
-National Center ]f[ PTSD 
-Women’s Health Science Division 
-VA Boston Healthcare System ]^[ 
-Boston University 
-And 
-Kathleen M. Chard, Ph.D. 
-Cincinnati VA Medical Center ]^[ 
-University of Cincinnati 
-October, 2006 
-Correspondence should be addressed to Patricia Resick ]v[ Candice Monson, WHSD (116B-3), 
-VA Boston Healthcare System, 150 South Huntington Ave. Boston, MA 02130; 
-Patricia.Resick@va.gov ]v[ Candice.Monson@va.gov. 
-Copyright, © Patricia A. Resick, Ph.D. ]^[ Candice M. Monson, Ph.D. 10/01/06 
-2 
-Cognitive Processing Therapy: Veteran/Military Version 
-Part 1 
-Introduction to Cognitive Processing Therapy 
-Cognitive Processing Therapy (CPT) is a 12-session therapy that has been found effective 
-]f[ both PTSD ]^[ other corollary symptoms following traumatic events (Monson et al, 2006; 
-Resick et al, 2002; Resick & Schnicke, 1992, 19931). Although the research on CPT focused on 
-rape victims originally, we have used the therapy successfully with a range of other traumatic 
-events, including military-related traumas. This revision of the manual is in response to requests 
-]f[ a treatment manual that focuses exclusively on military trauma. The manual has been 
-updated to reflect changes in the therapy over time, particularly with an increase in the amount of 
-practice that is assigned ]^[ with some of the handouts. It also includes suggestions from almost 
-two decades of clinical experience with the therapy. 
-Also included in this manual is a module ]f[ traumatic bereavement. This module is ]n[ 
-included as one of the 12 sessions ]b[ could be added to the therapy. We recommend that the 
-session be added early in therapy, perhaps as the second session along with the educational 
-component on posttraumatic stress disorder. Although we expect PTSD to remit as a result of 
-treatment, we do ]n[ necessarily expect bereavement to remit. Grief is a normal reaction to loss 
-]^[ is ]n[ a disorder. Bereavement may have a long ]^[ varied course. The goal of dealing with 
-grief issues within CPT is ]n[ to shorten the natural course of adjustment, ]b[ to remove blocks 
-]^[ barriers (distorted cognitions, assumptions, expectations) that are interfering with normal 
-bereavement. Therefore, the focus is on normal grief, myths about bereavement, ]^[ stuck 
-points that therapists may need to focus on in this domain. If the bereavement session is added to 
-CPT, then the assignment to write an impact statement would be delayed one session (see 
-Session 1) ]f[ those who have PTSD due to a traumatic death. Another possibility is to have the 
-patients write two impact statements ]f[ those who both lost a loved one ]^[ have PTSD related 
-to something that happened to them directly. One statement would be about what it means that 
-the traumatic event happened to them. The other statement would be about what it means that the 
-loved one has died. 
-Many therapists were never trained to conduct manualized psychotherapies ]^[ may feel 
-uncomfortable with both the concept ]^[ the execution. It is important that the patient ]^[ 
-therapist agree on the goal ]f[ the therapy (trauma work ]f[ PTSD ]^[ related symptoms) ]s[ that 
-the goals do ]n[ drift ]v[ switch from session to session. Without a firm commitment to the 
-1 
-Monson, C.M., Schnurr, P.P., Resick, P.A., Friedman, M.J., Young-Xu, Y., & Stevens, S.P. (2006). Cognitive 
-processing therapy ]f[ veterans with military-related posttraumatic stress disorder. Journal of Consulting & 
-Clinical Psychology, 74, 898-907. 
-Resick, P.A., Nishith, P., Weaver, T.L., Astin, M.C., & Feuer, C.A. (2002). A comparison of cognitive processing 
-therapy, prolonged exposure ]^[ a waiting condition ]f[ the treatment of posttraumatic stress disorder in 
-female rape victims. Journal of Consulting ]^[ Clinical Psychology, 70, 867-879. 
-Resick, P. A., & Schnicke, M. K. (1992). Cognitive processing therapy ]f[ sexual assault victims. Journal of 
-Consulting ]^[ Clinical Psychology, 60, 748-756. 
-Resick, P. A., & Schnicke, M. K. (1993). Cognitive processing therapy ]f[ rape victims: A treatment manual. 
-Newbury Park, CA: Sage Publications. 
-3 
-treatment goals, when the therapy is “off track”, the therapist may ]n[ know whether to get back 
-on the protocol ]v[ to let it slide. As other topics arise, the therapist sometimes isn’t sure whether 
-]v[ how to incorporate them into the sessions. A few words on these topics are appropriate here. 
-Once therapists have conducted protocol therapy a few times, they usually find that they become 
-more efficient ]^[ effective therapists. They learn to guide the therapy without tangents ]v[ 
-delays. They find they can develop rapport with patients through the use of Socratic questions 
-because the patients are explaining to the therapist exactly how they feel ]^[ think ]^[ the 
-therapist expresses interest ]^[ understanding with these questions. There is usually enough time 
-in the session to cover the material ]f[ the session ]^[ still have time ]f[ some other topics, such 
-as things that came up that week ]v[ considering other current issues related to their PTSD 
-(childrearing, job concerns marital issues, etc.). However if those are major issues, then the 
-therapist will need to prioritize the order. It would be inadvisable to try to deal with several 
-types of therapy ]f[ different problems simultaneously. 
-Normally, comorbid depression, anxiety, ]^[ dissociation remit along with PTSD, ]s[ we 
-rarely believe there is a need to deal with other symptoms independently of the PTSD protocol. 
-Substance dependence should be treated prior to addressing PTSD, ]b[ substance abusing 
-patients may be treated with CPT if there is a specific contract ]f[ ]n[ drinking abusively during 
-the therapy ]^[ if there is a specific focus on the suspected role of abusive drinking as avoidance 
-coping (for more information on comorbidity see Section 3). Typically we have the patients 
-focus on specific child, family, ]^[ marital issues after completing the course of PTSD 
-treatment. Sometimes those problems remit when the patient no longer has PTSD interfering 
-with functioning. Other considerations regarding comorbidity are found later in the manual. 
-Most veterans present ]f[ PTSD treatment many years after the traumatic event. They 
-are usually ]n[ in crisis ]^[ are able to handle their day-to-day lives (at whatever level they are 
-functioning) without constant intervention. Much of the disruption in the flow of therapy ]f[ 
-PTSD comes from avoidance attempts on the part of the patient. We point out avoidance 
-whenever we see it (e.g., changing the subject, showing up late ]f[ sessions), ]^[ remind the 
-patient that avoidance maintains PTSD symptoms. If the patient wants to discuss other issues, we 
-save time at the end of the session ]v[ attempt to incorporate their issues into the skills that are 
-being taught (i.e., A-B-C sheets, Challenging Questions, Patterns of Problematic Thinking, 
-Challenging Beliefs worksheets). If the patient does ]n[ bring in practice assignments, we do ]n[ 
-delay the session, ]b[ conduct the work in session ]^[ then reassign the practice assignment 
-along with the next assignment. 
-Returning OEF/OIF veterans may have different needs than older veterans. They may 
-prefer two sessions a week ]s[ that they can get therapy finished quickly. They may request early 
-morning ]v[ evening appointments to accommodate their jobs. They may want their PTSD 
-treatment augmented with couples counseling. They may appear a bit more “raw” than the very 
-chronic Vietnam veterans that most VA clinicians are accustomed to working with. The more 
-accessible emotions are actually an advantage in processing the traumatic events ]^[ in 
-motivating change, ]b[ therapists who have worked with only very chronic (and numbed) 
-veterans may become alarmed when they first work with these patients. They may think that 
-strong emotions ]v[ dissociation should be stabilized ]v[ medicated first. However, CPT was 
-developed ]^[ tested first with rape victims who may also be very acute ]^[ very emotional. As 
-4 
-long as patients are willing to engage in therapy ]^[ can contract against self-harm ]^[ acting 
-out, there is no reason to assume that they need to wait ]f[ treatment. 
-It is recommended that the patient be assessed, ]n[ just before ]^[ after treatment, ]b[ 
-during treatment as well. We typically give patients a brief PTSD scale ]^[ a depression scale 
-(if comorbid depression is a problem) once a week. Most often there is a large drop in symptoms 
-when the assimilation about the trauma is resolving. Typically this occurs around the 5th ]v[ 6th 
-session with the written exposure ]^[ cognitive therapy focusing on the traumatic event itself. 
-Occasionally this takes longer, ]b[ with frequent assessment, the therapist can monitor the 
-progress ]^[ see when the shift occurs. 
-Theory 
-CPT is based on a social cognitive theory of PTSD that focuses on how the traumatic event 
-is construed ]^[ coped with by a person who is trying to regain a sense of mastery ]^[ control in 
-his/her life. The other major theory explaining PTSD is Lang’s2 (1977) information processing 
-theory, which was extended to PTSD by Foa, Steketee, ]^[ Rothbaum3 (1989) in their emotional 
-processing theory of PTSD. In this theory, PTSD is believed to emerge due to the development of 
-a fear network in memory that elicits escape ]^[ avoidance behavior. Mental fear structures 
-include stimuli, responses, ]^[ meaning elements. Anything associated with the trauma may elicit 
-the fear structure ]v[ schema ]^[ subsequent avoidance behavior. The fear network in people with 
-PTSD is thought to be stable ]^[ broadly generalized ]s[ that it is easily accessed. When the fear 
-network is activated by reminders of the trauma, the information in the network enters 
-consciousness (intrusive symptoms). Attempts to avoid this activation result in the avoidance 
-symptoms of PTSD. According to emotional processing theory, repetitive exposure to the 
-traumatic memory in a safe environment will result in habituation of the fear ]^[ subsequent 
-change in the fear structure. As emotion decreases, patients with PTSD will begin to modify their 
-meaning elements spontaneously ]^[ will change their self-statements ]^[ reduce their 
-generalization. Repeated exposures to the traumatic memory are thought to result in habituation ]v[ 
-a change in the information about the event, ]^[ subsequently, the fear structure. 
-Although social cognitive theories are ]n[ incompatible with information/emotional 
-processing theories, these theories focus beyond the development of a fear network to other 
-pertinent affective responses such as horror, anger, sadness, humiliation, ]v[ guilt. Some emotions 
-such as fear, anger, ]v[ sadness may emanate directly from the trauma (primary emotions), 
-because the event is interpreted as dangerous, abusive, and/or resulting in losses. It is possible 
-that secondary, ]v[ manufactured, emotions can also result from faulty interpretations made by the 
-patient. For example, if someone is intentionally attacked by another person, the danger of the 
-situation would lead to a fight-flight response ]^[ the attending emotions might be anger ]v[ fear 
-(primary). However, if in the aftermath, the person blamed himself ]v[ herself ]f[ the attack, the 
-person might experience shame ]v[ embarrassment. These manufactured emotions would have 
-2 
-Lang, P. J. (1977). Imagery in therapy: An information processing analysis of fear. Behavior Therapy, 8, 862-886. 
-3 
-Foa, E. B., Steketee, G. S., & Rothbaum, B. 0. (1989). Behavioral/cognitive conceptualizations of posttraumatic 
-stress disorder. Behavior Therapy, 20, 155-176. 
-5 
-resulted from thoughts ]^[ interpretations about the event, rather than the event itself. As long as 
-the individual keeps saying that the event was their fault, they keep producing shame (hence, 
-manufactured). 
-Social-cognitive theories focus more on the content of cognitions ]^[ the effect that 
-distorted cognitions have upon emotional responses ]^[ behavior. In order to reconcile the 
-information about the traumatic event with prior schemas, people tend to do one ]v[ more of three 
-things: assimilate, accommodate, ]v[ over-accommodate. Assimilation is altering the incoming 
-information to match prior beliefs (“Because a bad thing happened to me, I must have been 
-punished ]f[ something I did”). Accommodation is altering beliefs enough to incorporate the 
-new information (“Although I didn’t use good judgment in that situation, most of the time I make 
-good decisions”). Over-accommodation is altering ones beliefs about oneself ]^[ the world to 
-the extreme in order to feel safer ]^[ more in control (“I can’t ever trust my judgment again”). 
-Obviously, therapists are working toward accommodation, a balance in beliefs that takes into 
-account the reality of the traumatic event without going overboard. 
-In a social-cognitive model, affective expression is needed, ]n[ ]f[ habituation, ]b[ in 
-order ]f[ the affective elements of the stored trauma memory to be changed. It is assumed that 
-the natural affect, once accessed, will dissipate rather quickly, ]^[ will no longer be stored with 
-the trauma memory. Also, the work of accommodating the memory ]^[ beliefs can begin. Once 
-faulty beliefs regarding the event (self-blame, guilt) ]^[ over-generalized beliefs about oneself 
-]^[ the world (e.g. safety, trust, control esteem, intimacy) are challenged, then the secondary 
-emotions will also decrease along with the intrusive reminders. The explanation that CPT 
-therapists give to patients about this process is described in Session 1 along with a handout in the 
-patient materials section. 
-Because we know that PTSD symptoms are nearly universal immediately following a 
-serious traumatic stressor ]^[ that recovery takes a few months under normal circumstances, it 
-may be best to think about diagnosable PTSD as a disruption ]v[ stalling out of a normal recovery 
-process, rather than the development of a unique psychopathology. The therapist needs to 
-determine what has interfered with normal recovery. In one case, it may be that the patient 
-believes that he will be overwhelmed by the amount of affect that will emerge if he stops 
-avoiding ]^[ numbing himself. Perhaps he was taught as a child that emotions are bad, that “real 
-men” don’t have feelings ]^[ that he should “just get over it”. In another case, a patient may 
-have refused to talk about what happened with anyone because she blames herself ]f[ “letting” 
-the event happen ]^[ she is ]s[ shamed ]^[ humiliated that she is convinced that others will 
-blame her too. In a third case, a patient saw something ]s[ horrifying that every time he falls 
-asleep ]^[ dreams about it, he wakes up in a cold sweat. In order to sleep, he has started drinking 
-heavily. Another patient is ]s[ convinced that she will be victimized again that she refuses to go 
-out any more ]^[ has greatly restricted her activities ]^[ relationships. In still another case, in 
-which other people were killed, a patient experiences survivor guilt ]^[ obsesses over why he 
-was spared when others were killed. He feels unworthy ]^[ experiences guilt whenever he 
-laughs ]v[ finds himself enjoying something. In all of these cases, thoughts ]v[ avoidance 
-behaviors are interfering with emotional processing ]^[ cognitive restructuring. There are as 
-many individual examples of things that can block a smooth recovery as there are individuals 
-with PTSD. 
-6 
-Overview 
-The contents of each session are described along with issues that therapists are likely to 
-encounter. The therapy begins with an education component about PTSD ]^[ the patient is asked 
-to write an Impact Statement in order ]f[ the patient ]^[ therapist to begin to identify problem 
-areas in thinking about the event (i.e., “stuck points”). The patient is then taught to identify ]^[ 
-label thoughts ]^[ feelings ]^[ to recognize the relationship between them. Then the next two 
-sessions focus on generating a written account of the worst traumatic incident, which is read to 
-the therapist in session. During the first five sessions, the therapist uses Socratic questioning to 
-begin to challenge distorted cognitions, particularly those associated with assimilation like selfblame, hindsight bias ]^[ other guilt cognitions. Thereafter, the sessions focus on teaching the 
-patient cognitive therapy skills ]^[ finally focus on specific topics that are likely to have been 
-disrupted by the traumatic event: safety, trust, power/control, esteem, ]^[ intimacy. 
-After the individual CPT protocol is described in detail, there are subsequent sections on 
-using the protocol without the written trauma exposure component, a section on delivering CPT 
-in a group format ]^[ a section on treatment issues with comorbid disorders, 
-It is strongly recommended that the protocol be implemented in the order presented here. 
-The skills ]^[ exercises are designed to build upon one another, ]^[ even the modules in the last 
-five sessions follow in the hierarchical order in which they are likely to emerge with patients. 
-However, when used individually, the last five sessions may be modified depending upon the 
-particular issues that a patient reports. For example, if a patient has severe safety issues, ]b[ no 
-issues with esteem ]v[ intimacy, then the therapist may want to skip the later two modules ]^[ 
-focus more time on safety. Conversely, if someone had no safety ]v[ control issues ]b[ was 
-primarily troubled with self-trust ]^[ self-esteem issues, then the therapist may want to spend 
-more time on those modules. However, even if a patient has ]n[ mentioned an issue within a 
-particular domain of functioning (safety, trust, power/control, esteem, intimacy), it may be 
-helpful ]f[ him to read the module ]^[ complete worksheets on any stuck points that become 
-apparent. It is ]n[ unusual ]f[ the modules to reveal issues that had ]n[ been identified earlier in 
-therapy. 
-The usual format ]f[ sessions is to begin with review of the practice assignments, 
-followed by the content of each specific session. During the last 15 minutes of the session, the 
-assignment ]f[ the next week is introduced ]^[ is accompanied by the necessary explanation, 
-definition(s), ]^[ handout. It is ]n[ recommended that the therapist start a general discussion at 
-the beginning of the session, ]b[ should begin immediately with the practice assignment that was 
-assigned. If the patient wishes to speak about other topics, we either use the topic to teach the 
-new skills we are introducing (e.g., put the content on an A-B-C sheet) ]v[ we save time at the end 
-]f[ these other topics, reinforcing the trauma work with discussion of the topic. If the therapist 
-allows the patient to direct the therapy away from the protocol, the avoidance will be reinforced, 
-along with disruption in the flow of the therapy. In addition, placing the practice assignments last 
-in the session will send a message to the patient that the practice assignments are ]n[ very 
-important ]^[ may lead to less treatment adherence on the part of the patient. Among the most 
-difficult skills ]f[ the therapist to master, especially if s/he has been trained in more non-directive 
-7 
-therapies, is how to be empathic ]b[ firm in maintaining the protocol. If a patient does ]n[ bring 
-in his/her practice assignment one session, it does ]n[ mean that the therapy is delayed ]f[ a 
-week. The therapist has the patient do the assignment orally (or they complete a worksheet 
-together) in the session ]^[ reassigns the uncompleted assignment along with the next 
-assignment. 
-Part 2 
-Cognitive Processing Therapy: Session by Session 
-It is presumed that the therapist will have conducted some form of assessment of the patient’s 
-traumatic event ]^[ persistent symptoms, ]^[ specifically contracted to do a course of CPT prior 
-to undertaking the first session. At least a brief assessment of PTSD ]^[ depressive symptoms 
-should be conducted. There are several brief PTSD checklists ]^[ depression scales that can be 
-used to assess pretreatment symptoms, as well as to conduct repeated assessments during therapy 
-to monitor the course of treatment. 
-Session 1: Introduction ]^[ Education Phase 
-Therapist Overview 
-Overall, there are several goals ]f[ the first session: 1) build rapport with the patient, 2) 
-to educate the patient regarding symptoms of posttraumatic stress disorder ]^[ depression, 3) to 
-provide a rationale ]f[ treatment based on a cognitive conceptualization of PTSD, 4) to lay out 
-the course of treatment, ]^[ 5) to elicit treatment compliance. 
-It is necessary to address compliance early in the course of therapy because avoidance 
-behavior (half of the symptoms of PTSD) can interfere with successful treatment. We are 
-concerned with two forms of compliance: attendance ]^[ completion of out-of-session practice 
-assignments. It is strongly recommended that patients attend all sessions ]^[ complete all 
-assignments in order to benefit fully from therapy. We attempt to set the expectation that 
-therapy benefit is dependent on the amount of effort they invest through practice assignment 
-compliance ]^[ practice with new skills. It may be helpful to remind the patient that what he4 has 
-been doing has ]n[ been working, ]^[ that it will be important to tackle issues head-on rather 
-than continue to avoid. Avoidance of affective experience ]^[ expression should also be 
-addressed. 
-In this session, patients are also given the opportunity to ask any questions they may have 
-about the therapy. Sometimes patients’ stuck points become evident in the questions ]^[ 
-concerns they express during this first session. And finally, as with all therapies, rapport 
-building is crucial ]f[ effective therapy. The patient needs to feel understood ]^[ listened to, 
-otherwise she may ]n[ return. 
-4 
-Because of the awkwardness of the English language ]^[ the desire to refer to a single patient, the pronouns “he” 
-]^[ “she” will be used alternately, rather than saying “she/he”, “him/her” throughout the manual. The term soldier 
-will also be used as a generic term rather than soldier, marine, sailor, airman etc., ]^[ will be used interchangeably 
-with veteran. 
+Efficient Software—Based Fault Isolation 
+Robert VVahbe 
+Steven Lucco 
+Thomas E. Anderson 
+Susan L. Graham 
+Computer Science Division 
+University of California 
+Berkeley, CA 94720 
+Abstract 
+One way to provide fault isolation among cooperating 
+software modules is to place each in its own address 
+space. However, ]f[ tightly—coupled modules, this so— 
+lution incurs prohibitive context switch overhead. In 
+this paper, we present a software approach to imple— 
+menting fault isolation within a single address space. 
+Our approach has two parts. First, we load the code 
+]^[ data ]f[ a distrusted module into its own fault do- 
+main, a logically separate portion of the application’s 
+address space. Second, we modify the object code of a 
+distrusted module to prevent it from writing ]v[ jump- 
+ing to an address outside its fault domain. Both these 
+software operations are portable ]^[ programming lan— 
+guage independent. 
+Our approach poses a tradeoff relative to hardware 
+fault isolation: substantially faster communication be— 
+tween fault domains, at a cost of slightly increased 
+execution time ]f[ distrusted modules We demon— 
+strate that ]f[ frequently communicating modules, im~ 
+plementing fault isolation in software rather than hard- 
+ware can substantially improve end-to—end application 
+performance. 
+This work was supported in part by the National Sci— 
+ence Foundation (CDA-8722788), Defense Advanced Research 
+Projects Agency (DARPA) under grant MDA972—92-J-1028 ]^[ 
+contracts DABT63-92'C-0026 ]^[ N00600-93—C—2481, the Digi- 
+tal Equipment Corporation (the Systems Research Center ]^[ 
+the External Research Program), ]^[ the AT&T Foundation. 
+Anderson was also supported by a National Science Foundation 
+Young Investigator Award. The content of the paper does ]n[ 
+necessarily reﬂect the position ]v[ the policy of the Government 
+]^[ no ofﬁcial endorsement should be inferred. 
+Email: {rwahbe , lucco, tea, graham}@cs .berkeley.edu 
+Permission to copy Without fee all ]v[ part of (his material IS 
+granted provided that Hie cvpies are "0‘ made 0! distributed ]f[ 
+direct commercial advantage. the ACM copyright notice ]^[ the 
+mile of the publicaiion ]^[ MS data appear, ]^[ notice IS given 
+that copying is by permissmn of (he Assomalion ]f[ Computing 
+Machinery. To copy otherWise. ]v[ to republish, requires a fee 
+and/or specnfic permissron. 
+SIGOPS '93/12/93/N.C., USA 
+31993 ACM 0-83791-632-8/93/0012...$L50 
+1 Introduction 
+Application programs often achieve extensibility by 
+incorporating independently developed software mod— 
+ules. However, faults in extension code can render a 
+software system unreliable, ]v[ even dangerous, since 
+such faults could corrupt permanent data. To in— 
+crease the reliability of these applications, an operat— 
+ing system can provide services that prevent faults in 
+distrusted modules from corrupting application data. 
+Such fault isolation services also facilitate software de- 
+velopment by helping to identify sources of system fail— 
+ure. 
+For example, the POSTGRES database manager in— 
+cludes an extensible type system [St087]. Using this 
+facility, POSTGRES queries can refer to general—purpose 
+code that deﬁnes constructors, destructors, ]^[ pred— 
+icates ]f[ user—deﬁned data types such as geometric 
+objects. Without fault isolation, any query that uses 
+extension code could interfere with an unrelated query 
+]v[ corrupt the database. 
+Similarly, recent operating system research has fo— 
+cused on making it easier ]f[ third party vendors 
+to enhance parts of the operating system. An ex 
+ample is micro-kernel design; parts of the operat— 
+ing system are implemented as user—level servers that 
+can be easily modiﬁed ]v[ replaced. More gener— 
+ally, several systems have added extension code into 
+the operating system, ]f[ example, the BSD network 
+packet ﬁlter [MRA87, MJQ3]7 application—speciﬁc vir- 
+tual memory management [HC92]. ]^[ Active Mes— 
+sages [VCGSQQ]. Among industry systems, Microsoft’s 
+Object Linking ]^[ Embedding system [Cla92] can 
+link together independently developed software mod— 
+tiles. Also, the Quark Xprese desktop publishing sys- 
+tem [Dy592] is structured to support incorporation of 
+general—purpose third party code. As with POSTGRES, 
+faults in extension modules can render any of these 
+systems unreliable. . 
+One way to provide fault isolation among cooperat— 
+ing software modules is to place each in its own address 
+space. Using Remote Procedure Call (RFC) [BN84], 
+modules in separate address spaces can call into each 
+other through a normal procedure call interface. Hard- 
+ware page tables prevent the code in one address space 
+from corrupting the contents of another. 
+Unfortunately, there is a high performance cost 
+to providing fault isolation through separate address 
+spaces. Transferring control across protection bound— 
+aries is expensive, ]^[ does ]n[ necessarily scale 
+with improvements in a processor’s integer perforv 
+mance [ALBL91]. A cross—address-space RPC requires 
+at least: a trap into the operating system kernel, copy— 
+ing each argument from the caller to the callee, sav~ 
+ing ]^[ restoring registers, switching hardware ad— 
+dress spaces (on many machines, ﬂushing the transla— 
+tion lookaside buffer), ]^[ a trap back to user level. 
+These operations must be repeated upon RPC re— 
+turn. The execution time overhead of an RPC, even 
+with a highly optimized implementation, will often 
+be two to three orders of magnitude greater than 
+the execution time overhead of a normal procedure 
+call [BALL90, ALBL91]. 
+The goal of our work is to make fault isolation cheap 
+enough that system developers can ignore its perfor— 
+mance effect in choosing which modules to place in 
+separate fault domains. In many cases where fault iso 
+lation would be useful, cross-domain procedure calls 
+are frequent ]y[ involve only a moderate amount of 
+computation per call. In this situation it is imprac- 
+tical to isolate each logically separate module within 
+its own address space, because of the cost of crossing 
+hardware protection boundaries. 
+We propose a. software approach to implementing 
+fault isolation within a single address space. Our ap— 
+proach has two parts. First, we load the code ]^[ data 
+]f[ a. distrusted module into its own fault domain, a 
+logically separate portion of the application’s address 
+space. A fault domain, in addition to comprising a cori— 
+tiguous region of memory within an address space, has 
+a unique identiﬁer which is used to control its access to 
+process resources such as ﬁle descriptors. Second, we 
+modify the object code of a distrusted module to pre— 
+vent it from writing ]v[ jumping to an address outside 
+its fault domain. Program modules isolated in sepa— 
+rate software—enforced fault domains can ]n[ modify 
+each other’s data ]v[ execute each other’s code except 
+through an explicit cross-fault-domain RPC interface. 
+We have identiﬁed several programming-language- 
+independent transformation strategies that can render 
+object code unable to escape its own code ]^[ data 
+segments. In this paper, we concentrate on a sim— 
+204 
+ple transformation technique, called sandboxing, that 
+only slightly increases the execution time of the mod- 
+iﬁed object code. We also investigate techniques that 
+provide more debugging information ]b[ which incur 
+greater execution time overhead. 
+Our approach poses a tradeoff relative to hardware— 
+based fault isolation. Because we eliminate the need to 
+cross hardware boundaries, we can offer substantially 
+lower-cost RPC between fault domains. A safe RPC in 
+our prototype implementation takes roughly 1.1 us on a 
+DECstation 5000/240 ]^[ roughly 0.8,us on a DEC Al- 
+pha 400, more than an order of magnitude faster than 
+any existing RFC system. This reduction in RFC time 
+comes at a cost of slightly increased distrusted module 
+execution time. On a test suite including the the C 
+SPE092 benchmarks, sandboxing incurs an average of 
+4% execution time overhead on both the DECstation 
+]^[ the Alpha. 
+Software—enforced fault isolation may seem to be 
+counter-intuitive: we are slowing down the common 
+case (normal execution) to speed up the uncommon 
+case (crossrdomain communication). But ]f[ fre- 
+quently communicating fault domains, our approach 
+can offer substantially better end—to—end performance. 
+To demonstrate this, we applied software—enforced 
+fault isolation to the POSTGRES database system run- 
+ning the Sequoia 2000 benchmark. The benchmark 
+makes use of the POSTGRES extensible data. type sys— 
+tem to deﬁne geometric operators. For this bench— 
+mark, the software approach reduced fault isolation 
+overhead by more than a factor of three on a DECsta— 
+tion 5000/240. 
+A software approach also provides a tradeoif be 
+tween performance ]^[ level of distrust. If some mod— 
+ules in a. program are trusted while others are dis- 
+trusted (as may be the ease with extension code), only 
+the distrusted modules incur any execution time over- 
+head. Code in trusted domains can run at full speed. 
+Similarly, it is possible to use our techniques to im- 
+plement full security, preventing distrusted code from 
+even reading data outside of its domain, at a cost of 
+higher execution time overhead. We quantify this ef» 
+fect in Section 5. 
+The remainder of the paper is organized as follows. 
+Section 2 provides some examples of systems that re- 
+quire frequent communication between fault domains. 
+Section 3 outlines how we modify object code to pre— 
+vent it from generating illegal addresses. Section 4 
+describes how we implement low latency cross—faultv 
+domain RPC. Section 5 presents performance results 
+]f[ our prototype, ]^[ ﬁnally Section 6 discusses some 
+related work. 
+2 Background 
+In this section, we characterize in more detail the 
+type of application that can beneﬁt from software— 
+enforced fault isolation. We defer further description 
+of the POSTGRES extensible type system until Section 
+5, which gives performance measurements ]f[ this ap— 
+plication. 
+The operating systems community has focused con- 
+siderable attention on supporting kernel extensibil- 
+ity. For example, the UNIX vnode interface is de- 
+signed to make it easy to add a new ﬁle system into 
+UNIX [Kle86]. Unfortunately, it is too expensive to 
+forward every ﬁle system operation to user level, ]s[ 
+typically new ﬁle system implementations are added 
+directly into the kernel. (The Andrew ﬁle system is 
+largely implemented at user level, ]b[ it maintains a 
+kernel cache ]f[ performance [HKM'l'BSH Epoch’s ter— 
+tiary storage ﬁle system [Web93] is one example of op— 
+erating system kernel code developed by a third party 
+vendor. 
+Another example is user—programmable high perfor— 
+mance I/O systems. If data is arriving on an I/O 
+channel at a high enough rate, performance will be 
+degraded substantially if control has to be transferred 
+to user level to manipulate the incoming data [FP93]. 
+Similarly, Active Messages provide high performance 
+message handling in distributed—memory multiproces- 
+sors [VCG8921. Typically, the message handlers are 
+application-speciﬁc, ]b[ unless the network controller 
+can be accessed from user level [Thi92], the message 
+handlers must be compiled into the kernel ]f[ reason— 
+able performance. 
+A user-level example is the Quark Xpress desktop 
+publishing system. One can purchase third party soft- 
+ware that will extend this system to perform func~ 
+tions unforeseen by its original designers [DysQQ]. At 
+the same time, this extensibility has caused Quark a 
+number of problems. Because of the lack of efﬁcient 
+fault domains on the personal computers where Quark 
+Xpress runs, extension modules can corrupt Quark’s 
+internal data structures Hence, bugs in third party 
+code can make the Quark system appear unreliable, 
+because end—users do ]n[ distinguish among sources of 
+system failure. 
+All these examples share two characteristics. First, 
+using hardware fault isolation would result in a signif- 
+icant portion of the overall execution time being spent 
+in operating system context switch code. Second, only 
+a small amount of code is distrusted; most of the exe- 
+cution time is spent in trusted code. In this situation, 
+software fault isolation is likely to be more efﬁcient 
+than hardware fault isolation because it sharply re— 
+duces the time spent crossing fault domain boundaries, 
+while only slightly increasing the time spent executing 
+205 
+the distrusted part of the application. Section 5 quan- 
+tiﬁes this trade-off between domain—crossing overhead 
+]^[ application execution time overhead, ]^[ demon 
+strates that even if domain—crossing overhead repre— 
+sents a modest proportion of the total application ex— 
+ecution time, software—enforced fault isolation is cost 
+effective. 
+3 Software-Enforced Fault Iso- 
+lation 
+In this section, we outline several software encapsula— 
+tion techniques ]f[ transforming a distrusted module 
+]s[ that it can ]n[ escape its fault domain. We ﬁrst 
+describe a technique that allows users to pinpoint the 
+location of faults within a software module. Next, we 
+introduce a technique, called sandboxing, that can iso- 
+late a distrusted module while only slightly increasing 
+its execution time. Section 5 provides a performance 
+analysis of this techinique. Finally, we present a soft- 
+ware encapsulation technique that allows cooperating 
+fault domains to share memory. The remainder of 
+this discussion assumes we are operating on a RISC 
+load /storc architecture, although our techniques could 
+be extended to handle CISCs. Section 4 describes 
+how we implement safe ]^[ efficient cross—fault—domain 
+RPC. 
+We divide an application’s virtual address space into 
+segments, aligned ]s[ that all virtual addresses within 
+a segment share a unique pattern of upper bits, called 
+the segment identiﬁer. A fault domain consists of two 
+segments, one ]f[ a distrusted module’s code, the other 
+]f[ its static data, heap ]^[ stack. The speciﬁc seg- 
+ment addresses are determined at load time. 
+Software encapsulation transforms a distrusted 
+module‘s object code ]s[ that it can jump only to tar- 
+gets in its code segment, ]^[ write only to addresses 
+within its data segment. Hence, all legal jump tar— 
+gets in the distrusted module have the same upper bit 
+pattern (segment identiﬁer); similarly, all legal data 
+addresses generated by the distrusted module share 
+the same segment identiﬁer. Separate code ]^[ data 
+segments are necessary to prevent a module from mod— 
+ifying its code segmentl. It is possible ]f[ an address 
+with the correct segment identiﬁer to be illegal, ]f[ in- 
+stance if it refers to an unmapped page. This is caught 
+by the normal operating system page fault mechanism. 
+3.1 
+An unsafe mstmctzan is any instruction that jumps to 
+]v[ stores to an address that can ]n[ be statically ver— 
+Segment Matching 
+10111" system supports dynamic linking through a special 
+interface. 
+iﬁed to be within the correct segment. Most control 
+transfer instructions, such as program‘counter‘relative 
+branches, can be statically veriﬁed. Stores to static 
+variables often use an immediate addressing mode ]^[ 
+can be statically veriﬁed. However, jumps through reg— 
+isters, most commonly used to implement procedure 
+returns, ]^[ stores that use a register to hold their 
+target address, can ]n[ be statically veriﬁed. 
+A straightforward approach to preventing the use of 
+illegal addresses is to insert checking code before eve 
+ery unsafe instruction. The checking code determines 
+whether the unsafe instruction’s target address has the 
+correct segment identiﬁer. If the check fails, the in- 
+serted code will trap to a system error routine outside 
+the distrusted module’s fault domain. We call this 
+software encapsulation technique segment matching. 
+On typical RISC architectures, segment matching 
+requires four instructions. Figure 1 lists a pseudo—code 
+fragment ]f[ segment matching. The ﬁrst instruction 
+in this fragment moves the store target address into 
+a dedzcated register. Dedicated registers are used only 
+by inserted code ]^[ are never modiﬁed by code in 
+the distrusted module. They are necessary because 
+code elsewhere in the distrusted module may arrange 
+to jump directly to the unsafe store instruction, by- 
+passing the inserted check. Hence, we transform all 
+unsafe store ]^[ jump instructions to use a dedicated 
+register. 
+All the software encapsulation techniques presented 
+in this paper require dedicated registersz. Segment 
+matching requires four dedicated registers: one to hold 
+addresses in the code segment, one to hold addresses 
+in the data segment, one to hold the segment shift 
+amount, ]^[ one to hold the segment identiﬁer. 
+Using dedicated registers may have an impact on 
+the execution time of the distrusted module. However, 
+since most modern RISC architectures, including the 
+MIPS ]^[ Alpha, have at least 32 registers, we can 
+retarget the compiler to use a smaller register set with 
+minimal performance impact. For example7 Section 5 
+shows that, on the DECstation 5000/240, reducing by 
+ﬁve registers the register set available to a C compiler 
+(gee) did ]n[ have a signiﬁcant effect on the average 
+execution time of the SPEC92 benchmarks. 
+3.2 Address Sandboxing 
+The segment matching technique has the advantage 
+that it can pinpoint the offending instruction. This 
+capability is useful during software development. We 
+can reduce runtime overhead still further, at the cost 
+of providing no information about the source of faults. 
+2 For architectures with lenitccl register sets, such as the 
+80386 [Int86], it is possible to encapsulate a module using no re- 
+served registers by restricting control ﬂow within a fault domain. 
+206 
+dedicated—reg <2 target address 
+lilove target address into dedicated register. 
+scratch-reg <= (dedicated—reg>>shift~reg) 
+Right—shift address to get segment identiﬁer. 
+scratch—reg is ]n[ a dedicated register. 
+shift-reg is a dedicated register. 
+compare scratch—reg ]^[ segment—reg 
+segment-reg is a dedicated register. 
+trap if ]n[ equal 
+Trap if store address is outside of segment. 
+store instruction uses dedicated-reg 
+Figure 1: Assembly pseudo code ]f[ segment matching. 
+dedicated—reg c target-reghand—mask—reg 
+Use dedicated register and—mask-reg 
+to clear segment identiﬁer bits. 
+dedicated—reg <2 dedicated-regl segment—reg 
+Use dedicated register segment-reg 
+to set segment identiﬁer bits. 
+store instruction uses dedicated-reg 
+Figure 2: Assembly pseudo code to sandbox address 
+in target—reg. 
+Before each unsafe instruction we simply insert code 
+that sets the upper bits of the target address to the 
+correct segment identifier. We call this sandborzn g the 
+address. Sandboxing does ]n[ catch illegal addresses; 
+it merely prevents them from affecting any fault do— 
+main other than the one generating the address. 
+Address sandboxing requires insertion of two arith- 
+metic instructions before each unsafe store ]v[ jump 
+instruction. The ﬁrst inserted instruction clears the 
+segment identifier bits ]^[ stores the result in a ded— 
+icated register. The second instruction sets the seg— 
+ment identiﬁer to the correct value. Figure 2 lists the 
+pseudo‘code to perform this operation. As with seg- 
+ment matching, we modify the unsafe store ]v[ jump 
+instruction to use the dedicated register. Since we are 
+using a dedicated register, the distrusted module code 
+can ]n[ produce an illegal address even by jumping 
+to the second instruction in the sandboxing sequence; 
+since the upper bits of the dedicated register will al— 
+ready contain the correct segment identiﬁer, this sec- 
+ond instruction will have no effect. Section 3.6 presents 
+a simple algorithm that can verify that an object code 
+module has been correctly sandboxed. 
+Address sandboxing requires ﬁve dedicated registers. 
+One register is used to hold the segment mask, two 
+registers are used to hold the code ]^[ data segment 
+<——reg+oﬂ'sel j 
+«— reg 
+Guard Zones S eg ment 
+Figure 3: A segment with guard zones. The size of 
+the guard zones covers the range of possible immediate 
+offsets in register—plus-offset addressing modes. 
+identiﬁers, ]^[ two are used to hold the sandboxed 
+code ]^[ data addresses. 
+3.3 Optimizations 
+The overhead of software encapsulation can be re- 
+duced by using conventional compiler optimizations. 
+Our current prototype applies loop invariant code mo— 
+tion ]^[ instruction scheduling optimizations [ASU86, 
+ACD74]. In addition to these conventional techniques, 
+we employ a number of optimizations specialized to 
+software encapsulation. 
+We can reduce the overhead of software encapsulae 
+tion mechanisms by avoiding arithmetic that computes 
+target addresses. For example, many RISC architec— 
+tures include a register-plus—oﬁset instruction mode, 
+where the offset is an immediate constant in some lim— 
+ited range. On the MIPS architecture such offsets are 
+limited to the range -64K to +64K. Consider the 
+store instruction store value,oﬁset(reg), whose 
+address offset (reg) uses the register—plus—olfsct ad~ 
+dressing mode. Sandboxing this instruction requires 
+three inserted instructions: one to sum reg+oﬁset 
+into the dedicated register, ]^[ two sandboxing in— 
+structions to set the segment identiﬁer of the dedicated 
+register. 
+Our prototype optimizes this case by sandboxing 
+only the register reg, rather than the actual target ad— 
+dress reg+oﬁset, thereby saving an instruction. To 
+support this optimization, the prototype establishes 
+guard zones at the top ]^[ bottom of each segment. 
+To create the guard zones, virtual memory pages ad— 
+jacent to the segment are unmapped (see Figure 3), 
+We also reduce runtime overhead by treating the 
+MIPS stack pointer as a dedicated register. We avoid 
+sandboxing the uses of the stack pointer by sandboxing 
+207 
+this register whenever it is set. Since uses of the stack 
+pointer to form addresses are much more plentiful than 
+changes to it, this optimization signiﬁcantly improves 
+performance. 
+Further, we can avoid sandboxing the stack pointer 
+after it is modiﬁed by a small constant offset as long as 
+the modiﬁed stack pointer is used as part of a load ]v[ 
+store address before the next control transfer instruc» 
+tion. If the modiﬁed stack pointer has moved into a 
+guard zone, the load ]v[ store instruction using it will 
+cause a hardware address fault. On the DEC Alpha 
+processor, we apply these optimizations to both the 
+frame pointer ]^[ the stack pointer. 
+There are a number of further optimizations that 
+could reduce sandboxing overhead. For example, 
+the transformation tool could remove sandboxing se— 
+quences from loops, in cases where a store target ad- 
+dress changes by only a small constant oifset during 
+each loop iteration. Our prototype does ]n[ ]y[ imple— 
+ment these optimizations. 
+3.4 Process Resources 
+Because multiple fault domains share the same virtual 
+address space, the fault domain implementation must 
+prevent distrusted modules from corrupting resources 
+that are allocated on a per—addressspace basis. For 
+example, if a fault domain is allowed to make system 
+calls, it can close ]v[ delete ﬁles needed by other code 
+executing in the address space, potentially causing the 
+application as a whole to crash. 
+One solution is to modify the operating system to 
+know about fault domains. On a system call ]v[ page 
+fault, the kernel can use the program counter to deter- 
+mine the currently executing fault domain, ]^[ restrict 
+resources accordingly. 
+To keep our prototype portable, we implemented 
+an alternative approach. In addition to placing each 
+distrusted module in a separate fault domain, we re— 
+quire distrusted modules to access system resources 
+only through cross-fault-domain RPC. We reserve a 
+fault domain to hold trusted arbitration code that de— 
+termines whether a particular system call performed 
+by some other fault domain is safe. If a distrusted 
+module’s object code performs a direct system call, we 
+transform this call into the appropriate RPC call. In 
+the case of an extensible application, the trusted por- 
+tion of the. application can make system calls directly 
+]^[ shares a fault domain with the arbitration code. 
+3.5 Data Sharing 
+Hardware fault isolation mechanisms can support data 
+sharing among virtual address spaces by manipulate 
+ing page table entries. Fault domains share an ad— 
+dress space, ]^[ hence a set of page table entries, 
+]s[ they can ]n[ use a standard shared memory im— 
+plementation. Read-only sharing is straightforward; 
+since our software encapsulation techniques do ]n[ al- 
+ter load instructions, fault domains can read any mem— 
+ory mapped in the application’s address space 3. 
+If the object code in a particular distrusted mod— 
+ule has been sandboxed, then it can share read-write 
+memory with other fault domains through a technique 
+we call lazy pointer swizzling. Lazy pointer swizzling 
+provides a mechanism ]f[ fault domains to share ar— 
+bitrarily many read‘write memory regions with no ad- 
+ditional runtirne overhead. To support this technique, 
+we modify the hardware page tables to map the shared 
+memory region into every address space segment that 
+needs access; the region is mapped at the same offset 
+in each segment. In other words, we alias the shared 
+region into multiple locations in the virtual address 
+space, ]b[ each aliased location has exactly the same 
+low order address bits. As with hardware shared mem- 
+ory schemes, each shared region must have a different 
+segment offset. 
+To avoid incorrect shared pointer comparisons in 
+sandboxed code, the shared memory creation inter— 
+face must ensure that each shared object is given a 
+unique address. As the distrusted object code ac- 
+cesses shared memory, the sandboxing code automati- 
+cally translates shared addresses into the correspond 
+ing addresses within the fault domain’s data segment. 
+This translation works exactly like hardware transla~ 
+tion; the low bits of the address remain the same, ]^[ 
+the high bits are set to the data segment identiﬁer. 
+Under operating systems that do ]n[ allow virtual 
+address aliasing, we can implement shared regions by 
+introducing a new software encapsulation technique: 
+shared segment matching. To implement sharing, we 
+use a dedicated register to hold a bitmap. The bitmap 
+indicates which segments the fault domain can access. 
+For each unsafe instruction checked, shared segment 
+matching requires one more. instruction than segment 
+matching. 
+3.6 Implementation ]^[ Veriﬁcation 
+We have identiﬁed two strategies ]f[ implementing 
+software encapsulation. One approach uses a compiler 
+to emit encapsulated object code ]f[ a distrusted mod- 
+ule; the integrity of this code is then veriﬁed when the 
+module is loaded into a fault domain. Alternatively, 
+the system can encapsulate the distrusted module by 
+directly modifying its object code at load time. 
+a\«Ve have implemented versions of these techniques that per 
+form general protection by encapsulating load instructions as 
+well as store ]^[ jump instructions. We discuss the performance 
+of these variants in Section 5. 
+Our current prototype uses the first approach. We 
+modiﬁed a version of the gcc compiler to perform soft— 
+ware encapsulation. Note that While our current imple- 
+mentation is language dependent, our techniques are 
+language independent. 
+We built a veriﬁer ]f[ the MIPS instruction set 
+that works ]f[ both sandboxing ]^[ segment match- 
+ing. The main challenge in veriﬁcation is that, in the 
+presence of indirect jumps, execution may begin on 
+any instruction in the code segment. To address this 
+situation, the veriﬁer uses a property of our software 
+encapsulation techniques: all unsafe stores ]^[ jumps 
+use a dedicated register to form their target address. 
+The veriﬁer divides the program into sequences of in— 
+structions called unsafe regions. An unsafe store re- 
+gion begins with any modiﬁcation to a dedicated store 
+register. An unsafe jump region begins with any mod- 
+iﬁcation to a dedicated jump register. If the ﬁrst in— 
+struction in a unsafe store ]v[ jump region is executed, 
+all subsequent instructions are guaranteed to be exe- 
+cuted. An unsafe store region ends when one of the 
+following hold: the next instruction is a store which 
+uses a dedicated register to form its target address, 
+the next instruction is a control transfer instruction, 
+the next instruction is ]n[ guaranteed to be executed, 
+]v[ there are no more instructions in the code segment. 
+A similar deﬁnition is used ]f[ unsafe jump regions. 
+The veriﬁer analyzes each unsafe store ]v[ jump re: 
+gion to insure that any dedicated register modiﬁed in 
+the region is valid upon exit of the region. For ex— 
+ample, a load to a dedicated register begins an unsafe 
+region. If the region appropriately sandboxes the ded— 
+icated register, the unsafe region is deemed safe. if an 
+unsafe region can ]n[ be veriﬁed, the code is rejected. 
+By incorporating software encapsulation into an ex— 
+isting compiler, we are able to take advantage of com— 
+piler infrastructure ]f[ code optimization. However, 
+this approach has two disadvantages. First, most mod- 
+iﬁed compilers will support only one programming lan— 
+guage (gcc supports C, C++, ]^[ Pascal). Second, the 
+compiler ]^[ veriﬁer must be synchronized with re— 
+spect to the particular encapsulation technique being 
+employed. 
+An alternative, called bmary patchzng, alleviates 
+these problems. When the fault domain is loaded, the 
+system can encapsulate the module by directly modi- 
+fying the object code. Unfortunately, practical ]^[ r07 
+bust binary patching, resulting in efﬁcient code, is ]n[ 
+currently possible [LB92]. Tools which translate one 
+binary format to another have been built, ]b[ these 
+tools rely on compiler—speciﬁc idioms to distinguish 
+code from data ]^[ use processor emulation to han- 
+dle unknown indirect jumps[SCK”93]. For software 
+encapsulation, the main challenge is to transform the 
+code ]s[ that it uses a subset of the registers, leav— 
+208 
+Trusted 
+Caller Domain 
+Unlru sted 
+Calico Domain 
+call Add 
+Jump Table 
+Figure 4: Major components of a crossefault—domain 
+RFC. 
+ing registers available ]f[ dedicated use. To solve this 
+problem, we are working on a binary patching proto- 
+type that uses simple extensions to current object ﬁle 
+formats. The extensions store control ﬂow ]^[ register 
+usage information that is sufﬁcient to support software 
+encapsulation. 
+4 Low Latency Cross Fault Do— 
+main Communication 
+The purpose of this work is to reduce the cost of fault 
+isolation ]f[ cooperating ]b[ distrustful software mod— 
+ules. In the last section, we presented one half of our 
+solution: efficient software encapsulation. In this sec- 
+tion, we describe the other half: fast communication 
+across fault domains. 
+Figure 4 illustrates the major components ofa cross— 
+fault~domain RFC between a trusted ]^[ distrusted 
+fault domain. This section concentrates on three as— 
+pects of fault domain crossing. First, we describe 
+a simple mechanism which allows a fault domain to 
+safely call a trusted stub routine outside its domain; 
+that stub routine then safely calls into the destination 
+domain. Second, we discuss how arguments are effi— 
+ciently passed among fault domains. Third, we detail 
+how registers ]^[ other machine state are managed on 
+cross—fault—domain RPCs to insure fault isolation. The 
+protocol ]f[ exporting ]^[ naming procedures among 
+fault domains is independent of our techniques. 
+The only way ]f[ control to escape a. fault domain 
+is via a jump table. Each jump table entry is a con— 
+trol transfer instruction whose target address is a legal 
+entry point outside the domain. By using instructions 
+whose target address is an immediate encoded in the 
+instruction, the jump table does ]n[ rely on the use of 
+a dedicated register. Because the table is kept in the 
+(readvonly) code segment, it can only be modified by 
+a trusted module. 
+For each pair of fault domains a customized call ]^[ 
+return stub is created ]f[ each exported procedure. 
+Currently, the stubs are generated by hand rather than 
+using a stub generator [JRTSS]. The stubs run unpro— 
+tected outside of both the caller ]^[ callee domain. 
+The stubs are responsible ]f[ copying cross-domain 
+arguments between domains ]^[ managing machine 
+state. 
+Because the stubs are trusted, we are able to copy 
+call arguments directly to the target domain. Tra— 
+ditional RPC implementations across address spaces 
+typically perform three copies to transfer data. The 
+arguments are marshalled into a message, the kernel 
+copies the message to the target address space, ]^[ 
+ﬁnally the callee must de-marshall the arguments. By 
+having the caller ]^[ callee communicate via a shared 
+buffer, LRPC also uses only a single copy to pass data 
+between domains [BALLQI]. 
+The stubs are also responsible ]f[ managing machine 
+state. On each cross—domain call any registers that are 
+both used in the future by the caller ]^[ potentially 
+modiﬁed by the callee must be protected. Only regis— 
+ters that are designated by architectural convention to 
+bc preserved across procedure calls are saved. As an 
+optimization, if the callee domain contains no instruc— 
+tions that modify a preserved register we can avoid 
+saving it. Karger uses a trusted linker to perform this 
+kind of optimization between address spaces [KarSQ]. 
+In addition to saving ]^[ restoring registers, the stubs 
+must switch the execution stack, establish the correct 
+register context ]f[ the software encapsulation tech- 
+nique being used, ]^[ validate all dedicated registers. 
+Our system must also be robust in the presence of 
+fatal errors, ]f[ example, an addressing violation7 while 
+executing in a fault domain. Our current implementa— 
+tion uses the UNIX signal facility to catch these errors; 
+it then terminates the outstanding call ]^[ notiﬁes the 
+caller’s fault domain. If the application uses the same 
+operating system thread ]f[ all fault domains, there 
+must be a way to terminate a call that is taking too 
+long, ]f[ example, because of an inﬁnite loop. Trusted 
+modules may use a timer facility to interrupt execu— 
+tion periodically ]^[ determine if a call needs to be 
+terminated. 
+5 Performance Results 
+To evaluate the performance of software-enforced fault. 
+domains, we implemented ]^[ measured a prototype 
+of our system on a 40MHz DECstation 5000/240 (DEC— 
+MIPS) ]^[ a lﬁONIliz Alpha 400 (DEC—ALPHA). 
+We consider three questions. First, how much over 
+209 
+head does software encapsulation incur? Second, how 
+fast is a crossrfault—domain RFC? Third, what is the 
+performance impact of using software enforced fault 
+isolation on an end-user application? We discuss each 
+of these questions in turn. 
+5.1 Encapsulation Overhead 
+We measured the execution time overhead of sand- 
+boxing a wide range of C programs, including the C 
+SPE092 benchmarks ]^[ several of the Splash bench- 
+marks [AssQl, SWGQl]. We treated each benchmark 
+as if it were a distrusted module, sandboxing all of 
+its code. Column 1 of Table 1 reports overhead on 
+the DEC—MIPS, column 6 reports overhead on the DEC— 
+ALPHA. Columns 2 ]^[ 7 report the overhead of using 
+our technique to provide general protection by sand« 
+boxing load instructions as well as store ]^[ jump 
+instructions“. As detailed in Section 3, sandboxing 
+requires 5 dedicated registers. Column 3 reports the 
+overhead of removing these registers from possible use 
+by the compiler. All overheads are computed as the 
+additional execution time divided by the original pro~ 
+gram‘s execution time. 
+On the DECeMiPS, we used the program measure— 
+ment tools pixie ]^[ qpt to calculate the number 
+of additional instructions executed due to sandbox~ 
+ing [Dig, BL92]. Column 4 of Table 1 reports this 
+data as a percentage of original program instruction 
+counts. 
+The data in Table 1 appears to contain a num— 
+ber of anomalies For some. of the benchmark pro- 
+grams, ]f[ example, 056.ear 011 the DECAMIPS ]^[ 
+026 . compress on the DEC—ALPHA, sandboxing reduced 
+execution time. in a number of cases the overhead is 
+surprisingly low. 
+To identify the source of these variations we de~ 
+veloped an analytical model ]f[ execution overhead. 
+The model predicts overhead based on the number 
+of additional instructions executed due to sandbox 
+ing (s—znstructzons), ]^[ the number of saved ﬂoat~ 
+ing point interlock cycles (interlocks). Sandboxing in» 
+creases the available instructionlevel parallelism, aL 
+lowing the number of ﬂoating—point interlocks to be 
+substantially reduced The integer pipeline does ]n[ 
+provide interlocking; instead, delay slots are explicitly 
+ﬁlled with nop instructions by the compiler ]v[ assem~ 
+bler. Hence, scheduling ell'ects among integer instruc~ 
+tions will be accurately reﬂected by the count of in~ 
+structions added (s—mstructzons). The expected overs 
+head is computed as: 
+(s—msz‘mchons — interlacksﬂcycles—per—sccond 
+original-erecutwn- lune-seconds 
+4Loads in the libraries, such as the standard C library, were 
+]n[ sandboxed. 
+The model provides an effective way to separate known 
+sources of overhead from second order effects. Col- 
+umn 5 of Table 1 are the predicted overheads. 
+As can be seen from Table 1, the model is, on aver 
+age, eﬁective at predicting sandboxing overhead. The 
+differences between measured ]^[ expected overheads 
+are normally distributed with mean 0.7% ]^[ standard 
+deviation of 2.6%. The difference between the means 
+Ofthe measured ]^[ expected overheads is ]n[ statisti- 
+cally signiﬁcant. This experiment demonstrates that, 
+by combining instruction count overhead ]^[ ﬂoating 
+point interlock measurements, we can accurately pres 
+dict average execution time overhead. If we assume 
+that the model is also accurate at predicting the over— 
+head of individual benchmarks, we can conclude that 
+there is a second order effect creating the observed 
+anomalies in measured overhead, 
+We can discount eﬁective instruction cache size ]^[ 
+virtual memory paging as sources ]f[ the observed ex~ 
+ecution time variance. Because sandboxing adds in- 
+structions, the effective size of the instruction cache is 
+reduced. While this might account ]f[ measured over- 
+heads higher than predicted, it does ]n[ account ]f[ 
+the opposite effect. Because all of our benchmarks are 
+compute bound, it is unlikely that the variations are 
+due to virtual memory paging. 
+The DEC<MIPS has a physically indexed, physically 
+tagged, direct mapped data cache. In our experiments 
+sandboxing did ]n[ affect the size, contents, ]v[ starting 
+Virtual address of the data segment. For both original 
+]^[ sandboxed versions of the benchmark programs, 
+successive runs showed insigniﬁcant variation. Though 
+difﬁcult to quantify, we do ]n[ believe that data cache 
+alignment was an important source of variation in our 
+experiments. 
+\Ve conjecture that the observed variations are 
+caused by instruction cache mappzng conﬂicts. Soft— 
+ware encapsulation changes the mapping of instruc~ 
+tions to cache lines, hence changing the number of in— 
+struction cache conﬂicts. A number of researchers have 
+investigated minimizing instruction cache conﬂicts to 
+reduce execution time [McF89, PHQO, Sam88]. One 
+researcher reported a 20% performance gain by sim— 
+ply ehanging the order in which the object ﬁles were. 
+linked [PHQO]. Samples ]^[ Hilﬁnger report signif— 
+icantly improved instruction cache miss rates by re— 
+arranging only 3% to 8% of an application’s basic 
+blocks [SarnSS]. 
+Beyond this effect, there were statistically signiﬁcant 
+differences among programs. On average, programs 
+which contained a signiﬁcant percentage of ﬂoating 
+point operations incurred less overhead. On the DEC— 
+MIPS the mean overhead ]f[ ﬂoating point intensive 
+benchmarks is 2.5%, compared to a mean of 5.6% ]f[ 
+the remaining benchmarks. All of our benchmarks are 
+210 
+DEC-MIPS DEC-ALPHA 
+Fault Protection Reserved Instruction Fault Fault Protection 
+Benchmark Isolation Overhead Register Count Isolation Isolation Overhead 
+Overhead Overhead Overhead Overhead Overhead 
+(predicted) 
+052. alvinn FP 1.4% 33.4% —0.3% 19.4% 0.2% 8.1% 35.5% 
+bps FP 5.6% 15.5% -0.1% 8.9% 5.7% 4.7% 20.3% 
+cholesky FP 0.0% 22.7% 0.5% 6.5% 4.5% 0.0% 9.3% 
+026 . compress INT 3.3% 13.3% 0.0% 10.9% 4.4% 4.3% 0.0% 
+056.ear FP —1.2% 19.1% 0.2% 12.4% 2.2% 3.7% 18.3% 
+023 . eqntott INT 2.9% 34.4% 1.0% 2.7% 2.2% 2.3% 17.4% 
+008 . espresso INT 12.4% 27.0% —1.6% 11.8% 10.5% 13.3% 33.6% 
+001 .gcc1.35 INT 3.1% 18.7% -9.4% 17.0% 8.9% NA NA 
+022.11 INT 5.1% 23.4% 0.3% 14.9% 11.4% 5.4% 16.2% 
+locus INT 8.7% 30.4% 4.3% 10.3% 8.6% 4.3% 8.7% 
+mp3d FP 10.7% 10.7% 0.0% 13.3% 8.7% 0.0% 6.7% 
+psgrind INT 10.4% 19.5% 1.3% 12.1% 9.9% 8.0% 36.0% 
+ch PF 05% 27.0% 2.0% 8.8% 1.2% -0.8% 12.1% 
+072 . sc INT 5.6% 11.2% 7.0% 8.0% 3.8% NA NA 
+tracker INT -0.8% 10.5% 0.4% 3.9% 2.1% 10.9% 19.9% 
+water FP 0.7% 7.4% 0.3% 6.7% 1.5% 4.3% 12.3% 
+| Average I 4.3% | 21.8% | 0.4% | 10.5% | 5.0% I 4.3% | 17.6% ‘I 
+Table 1: Sandboxing overheads ]f[ DEC—MIPS ]^[ DEC—ALPHA platforms. The benchmarks 001.gcc1.35 ]^[ 
+072.sc are dependent on a pointer size of 32 bits ]^[ do ]n[ compile on the DEC-ALPHA. The predicted fault 
+isolation overhead ]f[ cholesky is negative due to conservative interlocking on the MIPS ﬂoatingvpoint unit. 
+compute intensive. Programs that perform signiﬁcant 
+amounts of I/O will incur less overhead. 
+5.2 Fault Domain Crossing 
+We now turn to the cost of cross—fault—domain RPC. 
+Our RPC mechanism spends most of its time saving 
+]^[ restoring registers. As detailed in Section 4, only 
+registers that are designated by the architecture to be 
+preserved across procedure calls need to be saved. In 
+addition, if no instructions in the callee fault domain 
+modify a preserved register then it does ]n[ need to be 
+saved. Table 2 reports the times ]f[ three versions of 
+a NULL cross—fault—domain RPC. Column 1 lists the 
+crossing times when all data registers are caller saved. 
+Column 2 lists the crossing times when the preserved 
+integer registers are saved. Finally, the times listed in 
+Column 3 include saving all preserved ﬂoating point 
+registers. In many cases crossing times could be further 
+reduced by statically partitioning the registers between 
+domains. 
+For comparison, we measured two other calling 
+mechanisms. First, we measured the time to perform a 
+C procedure call that takes no arguments ]^[ returns 
+no value. Second, we sent a single byte between two 
+address spaces using the pipe abstraction provided by 
+211 
+the native operating system ]^[ measured the round- 
+trip time. These times are reported in the last two 
+columns of Table 2. On these platforms, the cost 
+of cross—address—space calls is roughly three orders of 
+magnitude more expensive than local procedure calls. 
+Operating systems with highly optimized RPC im— 
+plementations have reduced the cost of cross-address- 
+space RPC to within roughly two orders of magni— 
+tude of local procedure calls. On Mach 3.0, cross— 
+address-space RPC on a 25Mhz DECstation 5000/200 
+is 314 times more expensive than a local procedure 
+call [BerQBl. The Spring operating system, running on 
+a 40Mhz SPARCstationQ, delivers cross—address—space 
+RPC that is 73 times more expensive than a local leaf 
+procedure call [HK93]. Software enforced fault isola« 
+tion is able to reduce the relative cost of cross-fault- 
+domain RPC by an order of magnitude over these sys- 
+tems. 
+5.3 Using Fault Domains in POSTGRES 
+To capture the effect of our system on application 
+performance, we added software enforced fault do 
+mains to the POSTGRES database management system, 
+]^[ measured POSTGRES running the Sequoia 2000 
+benchmark [SFGMQ3]. The Sequoia '2000 benchmark 
+Cross FaultADomain RFC 
+Platform Caller Save Save C Pipes 
+Save Integer Integer+Float Procedure 
+Registers Registers Registers Call 
+DEC~MIPS 1.11ps 1.81ps 2.83m 0.10/4s 204.72ns 
+DEC—ALPHA 0175/15 1.35/5 lSOns 0.06ps 227.88ps 
+Table ‘2: Cross-faultrdomain crossing times. 
+Sequoia 2000 Untrusted Software—Enforced Number DEC—MIPS—PIPE 
+Query Function Manager Fault Isolation Cross—Domain Overhead 
+Overhead Overhead Calls (predicted) 
+Query 6 1.4% 1.7% 60989 18.6% 
+Query 7 5.0% 1.8% 121986 386% 
+Query 8 9.0% 2.7% 121978 312% 
+Query 10 9.6% 5.7% 1427024 31.9% 
+Table 3: Fault isolation overhead ]f[ POSTGRES running Sequoia 2000 benchmark. 
+contains queries typical of those used by earth scien— 
+tists in studying the climate. To support these kinds 
+of non~traditional queries, POSTGRES provides a. user 
+extensible type system. Currently, userrdeﬁned types 
+are written in conventional programming languages, 
+such as C, ]^[ dynamically loaded into the database 
+manager. This has long been recognized to be a serious 
+safety problem[St088]. 
+Four of the eleven queries in the Sequoia 2000 bench- 
+mark make use of user—deﬁned polygon data types. We 
+measured these four queries using both unprotected 
+dynamic linking ]^[ software—enforced fault isolation. 
+Since the POSTGRES code is trusted, we only sand— 
+boxed the dynamically loaded user code. For this 
+experiment, our cross-fault—domain RFC mechanism 
+saved the preserved integer registers (the variant cor- 
+responding to Column 2 in Table 2). In addition, we 
+instrumented the code to count the number of cross- 
+fault-domain RFCs ]s[ that we could estimate the per 
+formance of fault isolation based on separate address 
+spaces. 
+Table 3 presents the results, Untrusted user—deﬁned 
+functions in POSTGRES use a separate calling mecha- 
+nism from built—in functions. Column 1 lists the over— 
+head of the untrustcd function manager Without soft- 
+ware enforced fault domains. All reported overheads in 
+Table 3 are relative to original POSTGRES using the un— 
+trusted function manager. Column 2 reports the mea~ 
+sured overhead of software enforced fault domains. Us— 
+ing the number of cross—domain calls listed in Column 3 
+]^[ tho DEC*MIPS—I‘IPE time reported in Table 2, Col— 
+umn 4 lists the estimated overhead using conventional 
+hardware address spaces. 
+212 
+5.4 Analysis 
+For the POSTGRES experiment software encapsulation 
+provided substantial savings over using native operat- 
+ing system services ]^[ hardware address spaces. In 
+general, the savings provided by our techniques over 
+hardware—based mechanisms is a function of the per— 
+centage of time spent in distrusted code (Q), the per- 
+centage of time spent crossing among fault domains 
+(2‘6), the overhead of encapsulation (h), ]^[ the ratio, 
+r, of our fault domain crossing time to the crossing 
+time of the competing hardware-based RPC mecha— 
+nism. 
+savings = (1 — 7°)t‘C -— htd 
+Figure 5 graphically depicts these trade—offs. The X 
+axis gives the percentage of time an application spends 
+crossing among fault domains. The Y axis reports the 
+relative cost of software enforced fault-domain cross— 
+ing over hardware address spaces. Assuming that the 
+execution time overhead of encapsulated code is 4.3%, 
+the shaded region illustrates when software enforced 
+fault isolation is the better performance alternative. 
+Softwarevenforccd fault isolation becomes increas— 
+ingly attractive as applications achieve higher degrees 
+of fault isolation (see Figure 5). For example, if an ap- 
+plication spends 30% of its time crossing fault domains, 
+our RPC mechanism need only perform 10% better 
+than its competitor, Applications that currently spend 
+as little as 10% of their time crossing require only a 
+39% improvement in fault domain crossing time As 
+reported in Section 52, our crossing time ]f[ the DEC- 
+MIPS is Hons ]^[ ]f[ the DEC—ALPHA UTE/is. Hence, 
+Crossing Time Relative to 
+Existing RFC 
+:9 HP :9 e9 
+ementage of Execution Time Spent Crossing 
+Figure 5: The shaded region represents when soft~ 
+ware enforced fault isolation provides the better per— 
+formance alternative. The X axis represents per 
+centage of time spent crossing among fault domains 
+(16). The Y axis represents the relative RPC crossing 
+speed (7‘). The curve represents the break even point: 
+(1—7')t,; = htd. In this graph, h = 0.043 (encapsulation 
+overhead on the DEC~MIPS ]^[ DEC-ALPHA). 
+]f[ this latter example, a hardware address space cross— 
+ing time of 1.80m on the DEC—MIPS ]^[ 1.23/15 on the 
+DEC~ALPHA would provide better performance than 
+software fault domains. As far as we know, no pro— 
+duction ]v[ experimental system currently provides this 
+level of performance. 
+Further, Figure 5 assumes that the entire applica- 
+tion was encapsulated. For many applications, such as 
+POSTGRES, this assumption is conservative. Figure 6 
+transforms the previous ﬁgure, assuming that 50% of 
+total execution is spent in distrusted extension code. 
+Figures 5 ]^[ 6 illustrate that software enforced 
+fault isolation is the best choice whenever crossing 
+overhead is a significant proportion of an applica- 
+tion’s execution time. Figure 7 demonstrates that 
+overhead due to software enforced fault isolation re— 
+mains small regardless of application behavior. Fig— 
+ure 7 plots overhead as a function of crossing behavior 
+]^[ crossing cost. Crossing times typical of vendor- 
+supplied ]^[ highly optimized hardware—based RPC 
+mechanisms are shown. The graph illustrates the rel— 
+ative performance stability of the software solution. 
+This stability" allows system developers to ignore the 
+performance effect of fault isolation in choosing which 
+modules to place in separate fault domains. 
+6 Related Work 
+Many systems have considered ways of optimizing 
+RPC performance [vaT88, TASS, Bla90. SB90, HK93, 
+BALL90, BALL91]. Traditional RFC systems based 
+100% 
+90% 
+80% 
+70% 
+60% 
+40% 
+Crossing Time Relative 10 
+Existing RPC 
+u. 
+§ 
+Percentage of Execution Time Spent Crossing 
+Figure 6: The shaded region represents when soft~ 
+ware enforced fault isolation provides the better per- 
+formance alternative. The X axis represents per- 
+centage of time spent crossing among fault domains 
+(136). The Y axis represents the relative RPC crossing 
+speed ('r'). The curve represents the break even point: 
+(l—r)tc = htd. In this graph, h = 0.043 (encapsulation 
+overhead on the DEC—MIPS ]^[ DEC—ALPHA). 
+100% . 
+a" Ultrix 4.2 Context Switch 
 8 
-Patients sometimes arrive with a press to speak about their story. However, the therapist 
-should prevent the patient from engaging in an extended exposure session at the first session. 
-Intense affect ]^[ graphic details of an event, disclosed before any type of rapport ]v[ trust has 
-been established, may well lead to premature termination from therapy. The patient is likely to 
-assume that the therapist holds the same opinions regarding his guilt, shame, ]v[ worthlessness 
-that he, the patient, holds, ]^[ may be afraid to return to therapy after such a disclosure. 
-Other patients will be very reluctant to discuss the traumatic event ]^[ will be quite 
-relieved that they do ]n[ have to describe it in detail during the first session. In these cases, the 
-therapist may have to draw out even a brief description of the event. Dissociation when 
-attempting to think about ]v[ talk about the event is common. An initial assessment session grants 
-the patient ]^[ therapist the opportunity to get acquainted before the therapy begins, ]^[ allows 
-the therapist to provide the patient with a description of what the therapy will entail. In this first 
-session, it is important that the therapist remind the patient that CPT is a very structured form of 
-therapy, ]^[ that the first session is a bit different from the others because the therapist will do 
-more talking. The therapist begins with a description of the symptoms of PTSD ]^[ a cognitive 
-formulation of them. 
-Therapist explanations to patient 
-1. PTSD symptoms 
-"In going over the results of your testing, we found that you are suffering from posttraumatic stress disorder. The symptoms of PTSD fall into three clusters. The first cluster is the 
-re-experiencing of the event in some way. This includes nightmares about the event ]v[ other 
-scary dreams; flashbacks, when you act ]v[ feel as if the incident is recurring; intrusive thoughts, 
-which are memories that suddenly pop into your mind. You might have the intrusive thoughts 
-when there is something in the environment to remind you of the event (including anniversaries 
-of the event) ]v[ even when there is nothing there to remind you of it. Common times to have 
-these memories are when you are falling asleep, when you relax, ]v[ when you are bored. These 
-symptoms are all normal following such a traumatic event. You are ]n[ going crazy. Can you 
-give me examples of these experiences in your own life since the event?... 
-"A second set of symptoms concern arousal5. As might be expected, when reminded of the 
-event, you are likely to experience very strong emotions. Along with these feelings are physical 
-reactions. Indicators of arousal symptoms include problems falling ]v[ staying asleep, irritability 
-]v[ outbursts of anger, difficulty concentrating, startle reactions like jumping at noises ]v[ if 
-someone walks up behind you, always feeling on guard ]v[ looking over your shoulder even when 
-there is no reason to. Which of these do you experience?... 
-"The third cluster of symptoms is avoidance of reminders of the event. A natural reaction to 
-intrusive reminders ]^[ strong emotional reactions is the urge to push these thoughts ]^[ 
-feelings away. You might avoid places ]v[ people who remind you of the event. Some people 
-avoid watching certain television programs ]v[ turn off the TV. Some people avoid reading the 
-newspaper ]v[ watching the news. You might avoid thinking about the event ]^[ letting yourself 
-5 
-Although avoidance is listed second in the DSM, it makes more sense to present the symptoms to patients in their 
-most likely order, intrusion, arousal, ]^[ avoidance. This way the explanation ]f[ the symptoms follows logically 
-from their description. 
-9 
-feel your feelings about the event. There might be certain sights, sounds, ]v[ smells that you find 
-yourself avoiding ]v[ escaping from because they remind you of the event. Sometimes people 
-have trouble remembering all ]v[ part of the event. Sometimes people feel numb ]^[ cut-off from 
-the world around them. This feeling of detachment ]v[ numbness is another form of avoidance. 
-Sometimes it is described as feeling as though you are watching life from behind glass. Which 
-things ]v[ thoughts do you avoid ]v[ run away from?... Have you felt numb ]v[ shut off from your 
-emotions?... Have you found yourself feeling disconnected from other people? 
-2. Trauma Recovery ]^[ Fight-Flight Response 
-“Many people are exposed to traumatic events. In the time immediately following a trauma, 
-most people will have the symptoms of PTSD that we just talked about. However, over time, ]f[ 
-many people, those symptoms naturally decrease, ]^[ they are ]n[ diagnosed with PTSD. In 
-other words, they naturally recover from the traumatic event. There are some people who do ]n[ 
-recover ]^[ are later diagnosed with PTSD. Based on that, it is helpful to think of PTSD as a 
-problem in recovery. Something got in the way of you having that natural process of recovery, 
-]^[ our work together is to determine what got in the way ]^[ to change it ]s[ that you can 
-recover from what happened. We will be working to get you ‘unstuck’”. 
-There are some different reasons why you may be having trouble recovering. First, there 
-may be an automatic component during the event that you should consider as you evaluate how 
-you responded during the event. When people face serious, possibly life-threatening events, they 
-are likely to experience a very strong physical reaction called the fight-flight reaction. More 
-recently we have learned that there is a third possibility, the freeze response. In the fight-flight 
-reaction, your body is trying to get you ready to fight ]v[ flee danger. The goal here is to get all 
-the blood ]^[ oxygen out to your hands, feet, ]^[ big muscle groups like your thighs ]^[ 
-forearms ]s[ that you can run ]v[ fight. In order to do that quickly, the blood leaves your stomach 
-]v[ your head. You might feel like you have been kicked in the gut ]v[ are going to faint. Your 
-body stops fighting off diseases ]^[ digesting food. You are ]n[ thinking about your philosophy 
-of life ]^[ may have trouble thinking at all. The same thing happens with the freeze response, ]b[ 
-in this case your body is trying to reduce both physical ]^[ emotional pain. You may have 
-stopped feeling pain ]v[ had the sense that the event was happening to someone else as if it were 
-a movie. You might have been completely shut down emotionally ]v[ even had shifts in 
-perception like you are out of your body ]v[ that time has slowed down. 
-If you have been thinking now of other things that you could have done then, you might 
-need to consider what your state of mind was during the event. Did you have all possible options 
-available to you? Did you know then what you know now? Do you have different skills now than 
-you did then? 
-Second, the fight-flight response that you were experiencing during the traumatic event can 
-get quickly paired with cues, ]v[ things in the environment, that didn’t have any particular 
-meaning before. Then later, when you encounter those cues, you are likely to have another fightflight reaction. Your nervous system senses the cue, which could be a sight, a sound, smell, ]v[ 
-even a time, ]^[ then your body reacts as though you are in danger again. These reactions will 
-fade over time if you don’t avoid those cues. However, if you avoid reminder cues, your body 
-won’t learn that these are not, in fact, good danger cues. They don’t tell you very accurately 
-10 
-whether you are actually in danger ]s[ you may have false alarms going off frequently. After a 
-while you won’t trust your own senses ]v[ judgment about what is ]^[ isn’t dangerous, ]^[ too 
-many situations seem dangerous that are not. 
-You may start to have thoughts about the dangerousness of the world, particular places, 
-]v[ situations that are based on your reactions rather than the actual realistic danger of those 
-situations. This leads us to examine how your thoughts may affect your reactions. Besides 
-thoughts about dangerousness, many different types of beliefs about ourselves ]^[ the world can 
-be affected by traumatic events. 
-3. 
-Cognitive Theory 
-“As you were growing up you learned about the world ]^[ organized it into categories 
-]v[ beliefs. For example, when you were small, you learned that a thing with a back, seat ]^[ 
-four legs is a chair. In the beginning you just called all of them 'chair'. You may have even 
-called a couch a chair ]v[ a stool a chair because they had a back, seat, ]^[ four legs. Later, as 
-you got older, through experience, you learned more complex categories, ]s[ you may have 
-learned dining room chair, rocking chair, recliner ]v[ folding chair. We develop many categories 
-of ideas ]^[ beliefs about others, the world, ]^[ ourselves, as well as ]f[ objects. 
-One common belief that many people get while growing up is that 'good things happen to 
-good people ]^[ bad things happen to bad people.' This is called the 'just world belief.' You 
-may have learned this through your religion, your parents, your teachers, ]v[ you may have 
-picked it up as a way to make the world seem safer ]^[ more predictable. It makes more sense 
-when you are young. For example, parents wouldn’t want to say, ‘If you do something you’re 
-]n[ supposed to, you may ]v[ may ]n[ get in trouble.’ However, as we grow up, we realize that 
-the world is more complex than that, just like how we learn that there are all different types of 
-chairs. If you have ever had things go bad ]^[ you said 'Why me?,' then you have a just world 
-belief. 
-"When an unexpected event occurs that doesn't fit your beliefs, there are different ways that 
-you may try to make it fit. One way that you may have tried to make the event ]^[ your beliefs fit 
-is by changing your memories ]v[ interpretation of the event to fit with your pre-existing beliefs 
-(assimilation). Examples of changing your interpretations/memories of the event are to blame 
-yourself ]f[ ]n[ preventing the event (or protecting loved ones), to have trouble accepting that 
-the event happened, to 'forget' that it happened, ]v[ to forget the most horrifying parts. Changing 
-the event may seem easier than changing your entire set of beliefs about the world, how people 
-behave, ]v[ your beliefs about your safety. 
-"It is possible that instead of changing the event, you may change your beliefs to accept 
-what happened (accommodation). This is one of our goals ]f[ therapy. Unfortunately, some 
-people go overboard ]^[ change their beliefs too much, which may result in a reluctance to 
-become intimate ]v[ develop trust, ]^[ increased fear (over-accommodation). Examples that 
-reflect an extreme change in beliefs include: thinking that no one can be trusted ]v[ that the world 
-is completely dangerous. 
-11 
-“For some people who have had previous negative experiences in their life, traumatic 
-events can seem to reinforce ]v[ confirm these previously held beliefs. For example, prior to 
-having experienced a trauma you might have believed that others can’t be trusted ]v[ that the 
-world is generally unsafe. The traumatic event comes along ]^[ seems to confirm those beliefs. 
-Or, maybe you were told that everything was your fault growing up, ]s[ when a bad thing 
-happens, it seems to confirm that once again, you are at fault. 
-Our goals ]f[ therapy are: 1) to help you accept the reality of the event, 2) to feel your emotions 
-about it ]^[ 3) to help you develop balanced ]^[ realistic beliefs about the event, yourself, ]^[ 
-others. 
-4. 
-Types of Emotions 
-“There are two kinds of emotions that follow traumatic events. The first type is the feelings 
-that follow naturally from the event ]^[ that would be universal: fear when in real danger, anger 
-when being intentionally harmed, joy ]v[ happiness with positive events, ]v[ sadness with losses. 
-These natural emotions have a natural course. They will ]n[ continue on forever unless there is 
-something that you do to feed them. It is important to feel these emotions that you may ]n[ have 
-allowed yourself to experience about the event, ]^[ let them run their natural course. 
-The second type of emotions, manufactured feelings, result ]n[ directly in response to the 
-event, ]b[ based on how you interpret the event. If you have thoughts such as ‘I should have 
-rescued other people’ ]v[ ‘I must be a failure that I can’t get over it”, then you will be feeling 
-angry at yourself ]v[ shame. These emotions are ]n[ based on the facts of the event, ]b[ on your 
-interpretations. The more that you continue to think about the event in these ways, the more ]^[ 
-more of the manufactured feelings you are going to have. The upside of the fact that you are 
-producing these feelings is that, if you change your thoughts ]^[ interpretations, you will 
-change your feelings. Think of your emotions as a fire in a fireplace. The fire has energy to it. 
-However, it will burn out if it is ]n[ continually fed. The self-blame ]v[ guilty thoughts can 
-continue to feed the emotional fire indefinitely. Take away the fuel of your thoughts, ]^[ the fire 
-burns out quickly. 
-In order ]f[ you to recover from your traumatic event(s), we will be working together ]f[ 
-you to express ]^[ accept your natural emotions ]^[ to adjust the manufactured feelings. 
-Brief Review of Most Traumatic Event 
-In this first session, the therapist ]^[ patient work together to define the most traumatic 
-event that they will work on first. The patient then provides a brief account of the traumatic 
-event. It is important the therapist keep the patient contained ]^[ ]n[ conduct an exposure to the 
-traumatic material. Most veterans have a ‘public version’ of the incident that they can use that 
-does ]n[ elicit much affect. However, if the patient starts to become distressed ]v[ dissociates, the 
-therapist should ask questions ]^[ keep the patient grounded in the present. If needed, they can 
-stop the patient’s description. The therapist only needs enough of the details to begin to 
-hypothesize what problematic interpretations ]^[ cognitions might need to be explored. 
-12 
-We begin with the worst incident because there is more likely to be generalization of new, 
-more balanced cognitions from the worst event to less severe events than the other way around. 
-Also, if the patient begins with a less severe event because she believes she cannot handle the 
-worst event, she will still believe that after working on this event. If the patient is resistant to 
-writing an account about the worst event, the therapist needs to do some cognitive therapy during 
-session two ]^[ have the patient complete some A-B-C sheets on her thoughts ]^[ feelings about 
-working on the worst event (see sessions 2 ]^[ 3). 
-It is helpful to provide an expectation that the patient provide a brief, less affect-charged 
-event by providing a timeframe in the request. 
-“In order ]f[ me to have a clearer picture of what we will be working on first, could you 
-please give me a brief description, about five minutes, of the most traumatic event…” 
-If the patient responds that he has multiple traumatic events that disturb him, making it 
-difficult ]v[ impossible to choose the ‘most’ traumatic event, first validate the fact that he may 
-have multiple distressing events. Then, focus on ascertaining which one seems to be causing the 
-most PTSD symptoms by inquiring about the content of his reexperiencing symptoms. The 
-therapist can ask, ‘What do you think about ]v[ have flashbacks about the most?’ It may also be 
-helpful to probe about his behavioral avoidance symptoms to determine the event that should 
-addressed first. Remind the patient that work on the chosen event will very likely impact the 
-other events, ]^[ if not, there will be opportunities to work on the other events. 
-Therapy Rationale - Stuck Points 
-"So, one goal of therapy will be to help you recognize ]^[ modify what you are saying to 
-yourself-in other words, your thoughts ]^[ interpretations about the event, which may have 
-become automatic. These distorted beliefs may become ]s[ automatic that you aren't even aware 
-that you have them. Even though you may ]n[ be aware of what you are saying to yourself, your 
-beliefs ]^[ self-statements affect your mood ]^[ your behavior. Often, people aren't aware that 
-they are having thoughts about whatever they are experiencing. For example, on the way here 
-today, you were probably wondering what this therapy would be like ]v[ what I would be asking 
-you to talk about. Do you remember what you were thinking about before the session?... 
-"I will be helping you to identify what your automatic thoughts are ]^[ how they influence 
-what you feel. I will also teach you ways to challenge ]^[ change what you are saying to 
-yourself ]^[ what you believe about yourself ]^[ the event. Some of your beliefs about the event 
-will be more balanced than others. You remember that we discussed at the beginning of this 
-session about how some people get stuck in their recovery process. We will be focusing on 
-changing the beliefs that are interfering with your recovery ]v[ keeping you stuck. We call these 
-problematic beliefs ‘stuck points.’ (The patient is given the handout on stuck points ]^[ the 
-Stuck Point Log). We will keep a Stuck Point Log in your folder ]s[ as we identify problematic 
-ideas we can write them down. Then when we move to different worksheets you will have this list 
-to draw on. 
-13 
-Anticipating Avoidance ]^[ Increasing Compliance 
-The patient has been avoiding thinking about the event thereby escaping ]^[ avoiding strong 
-]^[ unpleasant emotions. The therapist must develop a strong ]^[ compelling rationale ]f[ 
-therapy in order ]f[ the patient to be motivated to do something completely antithetical to what 
-they have been doing. It is very important that the patient understand what the therapy consists of 
-]^[ why it will work. They should have ample opportunity to ask questions ]^[ express 
-concerns. The therapist needs to express confidence, warmth, ]^[ support. 
-I cannot emphasize enough how important it is that you ]n[ avoid, which is what you 
-usually have done to try to cope since the event. This will be your biggest (and probably 
-scariest) hurdle. I cannot help you feel your feelings, ]v[ challenge your thoughts if you don't 
-come to therapy ]v[ if you avoid completing your practice assignments. If you find yourself 
-wanting to avoid, remind yourself that you are still struggling with the event because you have 
-avoided dealing with it head-on. 
-The therapist should describe the course of therapy (and the nature of the trauma account in 
-sessions four ]^[ five) ]^[ the importance of doing practice assignments. 
-“There are 168 hours in a week. We cannot expect you to change your symptoms ]^[ the 
-way you have been coping in one ]v[ two hours a week if you are continuing to practice your old 
-ways of thinking the other 166 hours a week. It will be important ]f[ you to take what you are 
-learning ]^[ apply it to your everyday life. Your therapy needs to be where your life is, ]n[ just 
-in this little room”. 
-First Impact Statement 
-"For the next session, I want you to start working on how you think about ]^[ explain the 
-traumatic event. I also want you to pay attention to how the traumatic event impacted on your 
-views of yourself, other people, ]^[ the world. I want you to write at least one page on 1) why 
-this event happened to you, ]^[ 2) how has it changed ]v[ strengthened your views about 
-yourself, other people ]^[ the world in general? 
-In order ]f[ this assignment to be most helpful to you, I strongly suggest you try to start this 
-assignment soon, ]s[ that you have enough time to write thoughtfully. Pick a time ]^[ place 
-where you have as much privacy as possible, ]s[ you can feel any feelings that arise as you 
-complete the assignment.” 
-The patient is given a practice assignment sheet. If at all possible, the patient should handwrite 
-the Impact Statement. Some patients will want to type on the computer. Research suggests that 
-word processing can impede engagement with the assignment (e.g., too focused on grammar ]v[ 
-spelling). Therefore, encourage that this ]^[ other assignments be handwritten. It is often 
-helpful to remind them that you are ]n[ grading their work ]v[ interested in their grammar, etc. 
-Rather, you’re interested in the content ]^[ feelings. If the patient has problems with literacy ]v[ 
-physical disabilities that make it difficult ]v[ impossible to write, the therapist might suggest that 
-he record his thoughts into a tape recorder. 
-14 
-Practice assignment: 
-Please write at least one page on why this traumatic event occurred. You are ]n[ being asked to 
-write specifics about the traumatic event. Write about what you have been thinking about the 
-cause of the worst event. Also, consider the effects this traumatic event has had on your beliefs 
-about yourself, others, ]^[ the world in the following areas: safety, trust, power/control, esteem, 
-]^[ intimacy. Bring this with you to the next session. 
-Also, please read over the handout I have given you on stuck points ]s[ that you understand the 
-concept we are talking about. 
-15 
-Traumatic Bereavement Session (Session 2 if applicable) 
-The goals ]f[ this session are to 1) determine the impact of the traumatic event on beliefs 
-about self ]^[ others, 2) begin to normalize the grief process ]^[ differentiate it from PTSD 
-symptoms, 3) identify stuck points that may interfere with the normal course of bereavement, 
-]^[ 4) begin to assist the patient in viewing her relationship with the person who died as altered, 
-]b[ ]n[ finished. 
-If this session is added, then the therapist will have the patient read the Impact Statement 
-first before turning to the topic of grief. Please see the regular session two, next, ]f[ comments 
-regarding avoidance ]^[ what to do if the patient did ]n[ complete the assignment. After 
-discussing the Impact Statement ]^[ identifying stuck points that are evident, the therapist will 
-begin an education portion on the topic of normal bereavement ]^[ will look ]f[ stuck points that 
-may interfere with normal grief reactions. To facilitate this process, some information is 
-provided below to assist the therapist to think about traumatic versus normal bereavement issues, 
-]^[ to provide some education to the patient regarding the course of bereavement as varying ]^[ 
-multidimensional. It is important ]f[ the therapist to refrain from pathologizing the grief process 
-]^[ to begin to differentiate grief from PTSD ]v[ depression. 
-Therapist overview: Traumatic bereavement 
-PTSD can interfere with the normal course of bereavement. It is also possible that 
-unresolved grief can further complicate recovery from PTSD. Although witnessing ]v[ being 
-injured during an event in which a loved one/friend was killed is more obviously associated with 
-PTSD, therapists need to consider a PTSD diagnosis among those who were ]n[ present at the 
-traumatic death of a loved one. In civilian life, the sudden, unexpected ]^[ perhaps violent death 
-of a significant other is ]s[ shocking, horrifying, ]^[ schema-discrepant that family ]^[ friends of 
-the victim may have trouble taking in the fact that the person has been killed. During war, 
-soldiers may accept the possibility that they ]v[ others may be killed, on an abstract level, ]b[ 
-losing friends, seeing children die, ]v[ having deaths occur in unexpected places (when one 
-thought he was safe), can also be shocking ]^[ hard to accept. Acceptance may be particularly 
-difficult ]f[ parents who lose children because of the expectation that their children will survive 
-them. And like other trauma survivors who actively avoid accepting the reality of the situation, 
-traumatic-death surviving family ]^[ friends may engage in self-blame as an attempt to undo the 
-event (e.g., “If only I hadn’t done X, he wouldn’t have been there at the time”). Unlike other 
-trauma victims, traumatic death survivors may believe that to accept the trauma ]^[ begin to 
-move on with their lives means they have betrayed the other person, that the other person isn’t 
-being properly honored. 
-Flashbacks, intrusive thoughts, ]^[ other intrusive reminders can recur even if someone 
-was ]n[ present at the death of their significant other. People may flash on ]v[ have strong 
-emotional ]v[ physiological reactions when reminded of being informed of the death. For 
-example, some people have strong reactions when the telephone ]v[ doorbell rings. They 
-immediately flash back to being told. Some people have strong reactions to temporal cues such 
-as a specific time of day, dusk, a certain month, ]v[ other anniversaries of the death. They may 
-react to climactic cues such as temperature, humidity, smells ]v[ other seasonal reminders. 
-16 
-Holidays ]v[ other personal days of celebration (birthdays, anniversaries) can be particularly 
-difficult ]^[ can trigger trauma cues (as well as positive memories). 
-It is ]n[ unusual ]f[ people to have images of ]v[ ruminate about (with accompanying 
-affect ]^[ physiological responses) what they imagine happened to their loved one/friend. Some 
-people feel compelled to put themselves into the shoes of the person who died in an attempt to be 
-closer with them. They try to imagine what the other person experienced, what they must have 
-been feeling ]v[ thinking, ]^[ wonder if they suffered ]v[ were in pain ]f[ a long time before they 
-died. These images can serve as intrusive reminders of PTSD (Criterion B). 
-Often with PTSD induced by traumatic bereavement, we do ]n[ see effortful avoidance 
-with regard to the person who died. To the contrary, some people intentionally ruminate ]^[ are 
-afraid to let go of the images, even very distressing images, because to let go is, in their minds, to 
-lose their loved one. Effortful avoidance is more likely to be of the trauma cues listed above. 
-Numbing is common. 
-When some people are killed during a traumatic event, those who survive, whether they 
-are friends, family, ]v[ strangers, may well have survivor guilt. When people experience 
-traumatic events, they often ask the question, “Why me?” because of their just world belief. A 
-corollary of this belief is asking “Why ]n[ me?” when surrounding others are killed. People with 
-survivor guilt feel that they do ]n[ have the right to go on when others are not, ]v[ believe that 
-they are less deserving of happiness (or even of living) than the person ]v[ people who died. They 
-try to determine why they survived ]^[ cannot find an acceptable explanation. 
-An issue that may need to be addressed with military ]^[ veteran populations is ]n[ just 
-witnessing ]v[ hearing about the death of someone the patient cared about, ]b[ also issues that 
-arise from having killed themselves. Soldiers may find themselves forced to engage in behavior 
-that is against their personal moral code, ]v[ in conflict with the circumstances under which they 
-believed that they would be killing others. In our experience, situations in which civilians, ]^[ 
-especially children, are killed are especially traumatic ]f[ veterans ]^[ servicemen (e.g., children 
-with backpack bombs, children put in front of transportation convoys). Grieving ]^[ 
-assumptions about one’s actions during war can be very complicated because of the nature of 
-war itself. Veterans ]^[ military personnel may blame themselves, the combatants, the 
-government that put them in the position they found themselves, ]v[ the behavior ]^[ perceived 
-failures of command ]v[ fellow soldiers. The combination of anger ]^[ guilt can complicate ]^[ 
-prolong the grief response. 
-The goal of CPT ]f[ bereavement is to help patients determine ]^[ eliminate any stuck 
-points, problematic cognitions that are blocking their recovery, ]^[ to help them eventually focus 
-on the person’s life, ]n[ just the way in which he ]v[ she died. 
-First the therapist can start with bereavement issues… 
-“Prior to this death, what has been your experience with the death of loved ones?” 
-17 
-If the patient has never experienced the death of a loved one, then ask “What were your 
-expectations about death of loved ones? Had you ever thought about it? Or was it a topic that 
-you avoided thinking about?” 
-Once the therapist understands what the patient understood about death ]^[ the grief 
-process prior to the traumatic death, s/he can then ask.. 
-“How is this situation different than what you had experienced before (or imagined)?” 
-“What have other people been telling you about grief ]^[ mourning? 
-“What suggestions have people been making?” 
-Give the patient(s) the Myths of Mourning handout. Discuss each of the statements with 
-the patient to determine which, if any, statements the patient has been subscribing. Along with 
-debunking some common myths, the therapist uses this session to help the patient understand the 
-normal process of bereavement, to see how the traumatic bereavement relates to symptoms of 
-PTSD, ]^[ to begin to identify distorted cognitions, conflicts between prior beliefs ]^[ the 
-traumatic event. 
-Education on Normal Bereavement 
-Bereavement affects different aspects of one’s life. People have emotional, spiritual, ]^[ 
-physical reactions. They also have to adjust their roles with regard to other people, the 
-community more generally, ]^[ with regard to tasks ]^[ behaviors. While some grief reactions 
-may feel like ]^[ share some characteristics with other psychological reactions such as 
-depression, it is important ]f[ the therapist ]n[ to pathologize grief. Bereavement is ]n[ the result 
-of personality traits, ]b[ is the normal ]^[ time-limited reaction to loss. Mourning is ]n[ the same 
-as depression ]^[ does ]n[ respond to anti-depressants. 
-In the past it was possible to tell that someone was grieving ]f[ a period of time because 
-of clothing indicative of mourning ]^[ institutionalized rules about mourning such as wearing 
-black ]f[ a year, wearing certain jewelry ]v[ armbands, limiting social engagements ]^[ ]s[ forth. 
-These practices provided more community support because the person who was grieving was 
-clearly identifiable ]^[ there was an expectation that bereavement should take an extended 
-period of time. On the other hand, the rigid rules about length of mourning were ]n[ flexible 
-enough to accommodate different patterns of grief. Some people may ]n[ have needed a year in 
-order to begin to reestablish their lives (some may have needed longer). In modern times, there is 
-no way to identify whether someone is in mourning, ]s[ the community quickly returns to usual 
-routines ]^[ expects the bereaved person to do ]s[ as well. While community support is often 
-very active initially, people often return to their own lives after a few months, leaving the 
-bereaved adrift to adjust to their changes in roles ]^[ tasks. After a few months grieving people 
-may start receiving comments by others that they should move on with their lives ]^[ to put the 
-traumatic event ]^[ the loved one behind them (people with PTSD hear this all the time even 
-without a traumatic death). People may need assistance in tolerating the predominant community 
-standards that do ]n[ reflect the reality of the mourning timeline ]f[ them. 
-In the early stages of bereavement, people need information ]^[ support in coping 
-emotionally. Later, if the person who died is a family member, they need to focus more on 
-18 
-instrumental tasks. Some tasks, like dealing with insurance companies ]^[ changing names on 
-titles are directly due to the death of the family member. Other tasks represent a realignment of 
-typical chores (e.g., now the patient needs to pay bills ]v[ cook, when before the other partner 
-took responsibility ]f[ those tasks). Each of these instrumental adjustments, if successfully 
-negotiated, will help the bereaved person accept the reality of the situation ]^[ assist in a greater 
-sense of control. As the tasks ]^[ roles are realigned, then the person also moves to reconnect 
-with his community, reestablish ]^[ adjust relationships with their friends ]^[ relatives ]^[ 
-finally to rebuild his assumptive world. This latter task includes adjusting his beliefs about 
-himself ]^[ the world, with regard to the loved one’s death. As elsewhere in CPT, the therapist 
-is looking ]f[ accommodation rather than assimilation ]v[ over-accommodation, balance in beliefs 
-rather than extreme statements. 
-Sometimes the bereavement process ]f[ military personnel becomes more acute once 
-they leave the military. While in the military, other people in that environment may have been 
-able to provide support ]^[ understanding of the losses that a soldier experienced. Upon 
-returning to the civilian world, however, people in the environment may ]n[ be able to 
-understand ]v[ appreciate the loss of comrades, ]v[ may even be unsympathetic because of 
-different viewpoints on the war. Although our society appears to be doing a better job separating 
-the war from the warrior in the recent OEF/OIF conflict, this is ]n[ universally true ]^[ there are 
-many Vietnam veterans who carry the scars of verbal abuse upon returning to the US after their 
-tours of duty in Vietnam. They may ]n[ have been given the opportunity to grieve the loss of 
-their friends ]^[ fellow soldiers ]v[ may be stuck in a cycle of grieving that has ]n[ remitted. 
-The following are excerpts from a bereavement Impact Statement. The statement was 
-four hand-written pages. It illustrates the effects the murder of a granddaughter had on a patient. 
-I think at first I needed to be strong from my son. As long as I could do that, I did ]n[ 
-have to face the finality of death. This is still ]s[ hard ]f[ me to say. To think of ______ in the past 
-tense still causes me to have a panicky feeling. I cannot describe how much I love her ]v[ how 
-much I miss her. 
-I thought I would always be the same me. But now I realize I will never be the same. At 
-first I kept trying to be the same self- Tried ]s[ hard that I would get these panic attacks, ]s[ I just 
-tried ]n[ to think about it. 
-I feel like this big cloud has settled over me ]^[ sometimes it suffocates me. I would like 
-to just pull the covers over my head ]^[ ]n[ take them off ]f[ a long time. But I know I can’t, 
-especially ]f[ my son. He says he would like to go into a closet ]^[ ]n[ come out. 
-I talked today with my Pastor about my feelings, how I feel ]s[ frozen inside, that I cannot 
-pray ]^[ do ]n[ feel spiritual at all. It makes me feel ]s[ empty. I miss the fellowship I had with 
-my God. I do want to have that again. 
-Some people say I need to try to forgive – I can’t ]^[ I don’t want to – at least ]n[ now… 
-I really don’t want to be angry – this is ]n[ me. But right now I’m ]s[ angry. 
-While the example above illustrates assimilation through non-acceptance ]^[ avoidance, 
-the next excerpts from a different patient whose friend was killed ]^[ illustrates both 
-assimilation ]^[ over-accommodation. 
-19 
-I always believed that I could protect ______ from anything ]v[ anyone. I feel like a 
-failure. I failed him. I should have been watching his back then no one would have been able to 
-shoot him in his back. I could have administered CPR ]^[ helped to breathe in him the breath of 
-life. He would have calmed down ]^[ fought harder if I had been there… Who knew? But I failed 
-him ]^[ I don’t have any other chance to make it up to him. 
-This world is a cruel world where no one seems to care about anyone outside of their 
-own family… I trust no one outside of the family ]^[ I really am no longer close to my family. I 
-no longer use the word “friend” because it no longer serves a purpose in my life. I feel 
-abandoned by certain people in my family. They are already ready ]f[ me to move on. Isn’t that 
-crazy?! 
-It may be helpful ]f[ a patient to realize that his relationship with the deceased has 
-changed rather than ended. The patient can still have a relationship with the deceased even 
-though the relationship is ]n[ reciprocal. As part of the Impact Statement on the death of the 
-significant other, the patient is asked, “How has the event affected your relationship with the 
-deceased?” 
-One of the problems that can occur early in the grieving process (and stall out in some 
-cases) is the tendency to over-idealize the person who has died. It is difficult ]f[ the bereaved 
-person to move on, reestablish connections with others, ]^[ alter her relationship with the 
-deceased if the person who died is ]n[ the person who lived before. The loved ones may 
-experience more survivor guilt ]v[ hindsight bias if they believe that the person who died was 
-perfect ]v[ that it is bad/wrong to remember any flaws ]v[ foibles. The therapist needs to tread 
-lightly on this topic, perhaps pursuing it later in therapy, although it can be broached gently at 
-this time. The therapist, in hearing an over-idealized description of the deceased can say: 
-“He sounds like an angel. I’d like to have a better picture of the whole man that you 
-knew. Tell me a little about his eccentricities ]v[ habits”. 
-The goal here is to help the patient to grieve ]f[ the person who really lived with an 
-integrated ]^[ balanced view. 
-In some cases, over-idealization may be a particular problem because the idealized image 
-of the deceased is embraced by a whole community. In the aftermath of the World Trade Center 
-attack, firefighters, police, ]^[ other rescue workers who died have been rightly hailed as heroes. 
-Heroes are people who risk themselves to help others in spite of their fear ]v[ flaws, ]n[ because 
-they were fearless ]^[ flawless. It may be particularly difficult ]f[ family members if their 
-memories of the person clash with the public image. If a couple was having marital problems, ]v[ 
-the partner was having an extra-marital affair, was abusive, ]v[ alcoholic, the surviving partner 
-would ]n[ know how to reconcile this information with the accolades ]^[ images of the partner 
-as a saint. Even to remember small flaws would seem like a betrayal of the person who died. 
-And yet, the surviving partner ]^[ family members have these memories as well ]^[ struggle to 
-deal with them. Some people attempt to suppress ]v[ ignore inconsistent information. If they are 
-successful in avoiding, there is a greater likelihood of more prolonged bereavement than ]f[ 
-those who can put the person’s life into an accurate perspective. 
-20 
-Pertinent to situations like the attack on September 11, 2001, ]^[ war, is the issue in 
-which the body of the deceased is never found. It may be more difficult in these cases ]f[ the 
-surviving family ]^[ friends to accept that the person is actually dead. When there is no concrete 
-proof that the person died, assimilation ]^[ denial are more likely. The survivors may have 
-continuing fantasies that there has been some mistake, that the loved one has been wandering 
-around with amnesia ]v[ injured ]^[ unable to contact them. They may have extended periods 
-during which acceptance of the reality of the situation is postponed. 
-Finally, when a group of people experience the same event ]^[ then support each other in 
-the aftermath, they can help each other progress through the various stages of grief. However, 
-there are two risks. One is that the members of the group will be recovering at different rates, 
-leading to misunderstandings ]v[ some people being held back from their natural rate. A worse 
-outcome is that the group becomes stuck together ]^[ stop recovering altogether. They develop 
-an us-against-them mentality in which they come to believe that no one can understand what 
-they have experienced ]^[ that they can never recover. If someone who seeks therapy 
+d3 80% — _ 
+E 
+a. 
+U} 
+0 
+g 60% e _ 
+'E—< 
+E 
+g 40% e — 
+é DECstation 5000 
+3 Hardware Minimum 
+00 
+20% — _ 
+t 
+*- Software 
+a? 
+0% l 
+0 1O 20 
+# Crossings/Millcsecond 
+Figure 7: Percentage of time spent in crossing code 
+versus number of fault domain crossings per millisec- 
+ond on the DECeMIPS. The hardware minimum cross— 
+ing number is taken from a crossvarchitectural study 
+of context switch times [ALBL91]. The Ultrix 4.2 con- 
+text switch time is as reported in the last column of 
+Table 2. 
+213 
+on hardware fault isolation are ultimately limited by 
+the minimal hardware cost of taking two kernel traps 
+]^[ two hardware context switches. LRPC was one 
+of the ﬁrst RPC systems to approach this limit, ]^[ 
+our prototype uses a number of the techniques found 
+in LRPC ]^[ later systems: the same thread runs in 
+both the caller ]^[ the callee domain, the stubs are 
+kept as simple as possible, ]^[ the crossing code jumps 
+directly to the called procedure, avoiding a dispatch 
+in the callee domain. Unlike these systems, software— 
+based fault isolation avoids hardware context switches, 
+substantially reducing crossing costs. 
+Address space identiﬁer tags can be used to reduce 
+hardware context switch times. Tags allow more than 
+one address space to share the TLB; otherwise the 
+TLB must be ﬂushed on each context switch. It was 
+estimated that 25% of the cost of an LRPC on the 
+Fireﬂy (which does ]n[ have tags) was due to TLB 
+misses[BALL90]. Address space tags do not, however, 
+reduce the cost of register management ]v[ system calls, 
+operations which are ]n[ scaling with integer perfor- 
+mance[ALBL91]. An important advantage of software— 
+based Jfault isolation is that it does ]n[ rely on specialv 
+ized architectural features such as address space tags. 
+Restrictive programming languages can also be used 
+to provide fault isolation. Pilot requires all kernel, 
+user, ]^[ library code to be written in Mesa, 3 strongly 
+typed language; all code then shares a single address 
+space [RDII+80]. The main disadvantage of relying on 
+strong typing is that it severely restricts the choice 
+of programming languages, ruling out conventional 
+languages like C, C++, ]^[ assembly. Even with 
+strongly—typed languages such as Ada ]^[ Modula—3, 
+programmers often find they need to use loopholes in 
+the type system, undercutting fault isolation. In con— 
+trast, our techniques are language independent. 
+Deutsch ]^[ Grant built a system that allowed 
+user—deﬁned measurement modules to be dynamically 
+loaded into the operating system ]^[ executed directly 
+on the processor [DG71]. The module format was a 
+stylized native object code designed to make it easier 
+to statically verify that the code did ]n[ violate pro— 
+tection boundaries. 
+An interpreter can also provide failure isolation. For 
+example. the BSD UNIX network packet ﬁlter utility 
+deﬁnes a language which is interpreted by the operat- 
+ing system network driver. The interpreter insulates 
+the operating system from possible faults in the cus— 
+tomization code. Our approach allows code written in 
+any programming language to be safely encapsulated 
+(or rejected if it is ]n[ safe), ]^[ then executed at near 
+full speed by the operating system. 
+Anonymous RFC exploits 64-bit address spaces to 
+provide low latency RFC ]^[ probabilistic fault iso— 
+lation [YBA93]. Logically independent domains are 
+214 
+placed at random locations in the same hardware ad» 
+dress spacer Calls between domains are anonymous, 
+that is, they do ]n[ reveal the location of the caller 
+]v[ the callee to either side. This provides probabilis— 
+tic protection , it is unlikely that any domain will 
+be able to discover the location of any other domain 
+by malicious ]v[ accidental memory probes. To pre» 
+serve anonymity, a cross domain call must trap to pro- 
+tected code in the kernel; however, no hardware con~ 
+text switch is needed. 
+7 Summary 
+We have described a software-based mechanism ]f[ 
+portable, programming language independent fault 
+isolation among cooperating software modules. By 
+providing fault isolation within a single address space, 
+this approach delivers crossefaultrdomain communica 
+tion that is more than an order of magnitude faster 
+than any RPC mechanism to date. 
+To prevent distrusted modules from escaping their 
+own fault domain, we use a software encapsulation 
+technique, called sandboxing, that incurs about 4% 
+Despite this overhead in 
+executing distrusted code, software—based fault isola- 
+tion Will often yield the best overall application per- 
+formance. Extensive kernel optimizations can reduce 
+the overhead of hardware-based RPC to within a fac- 
+tor of ten over our software—based alternative. Even 
+in this situation, software—based fault isolation will be 
+the better performance choice whenever the overhead 
+of using hardware—based RPC is greater than 5%. 
+execution time overhead. 
+8 Acknowledgements 
+We thank Brian Bershad, Mike Burrows, John Hen- 
+nessy, Peter Kessler, Butler Lampson, Ed Lazowska, 
+Dave Patterson, John Ousterhout, Oliver Sharp, 
+Richard Sites, Alan Smith ]^[ Mike Stonebraker ]f[ 
+their helpful comments on the paper. Jim Larus pro- 
+vided us with the proﬁling tool qpt. We also thank 
+Mike Olson ]^[ Paul Aoki ]f[ helping us with POST— 
+GRES. 
+References 
+[ACD74] TL. Adam, KM. Chandy, ]^[ JR. Dickson. 
+A comparison of list schedules ]f[ parallel pro- 
+cessing systems. Communications of the ACM, 
+17(12):685—690, December 197/1. 
+[ALBUM] Thomas Anderson, Henry Levy, Brian Ber— 
+shad, ]^[ Edward Lazowska. The Interaction 
+of Architecture ]^[ Operating System Design. 
+[A5591] 
+[ASUSG] 
+[BALLQO] 
+[BALL91] 
+[Ber93] 
+[BL92] 
+[BlaQO] 
+[1m 84] 
+[Cla92] 
+[DG71] 
+[Dis] 
+[Dys92] 
+[FP93] 
+[H092] 
+111 Proceedings of the 4th International Confer- 
+ence on Architectural Supportfor Programming 
+Languages ]^[ Operating Systems, pages 108— 
+120, April 1991. 
+Administrator: National Computer Graphics 
+Association. SPEC Newsletter, 3(4), December 
+1991. 
+Alfred V. Aho, Ravi Sethi, ]^[ Jeffrey D. Ull- 
+man. Compilers, Principles, Techniques, ]^[ 
+Tools. Addison—Wesley Publishing Company, 
+1986. 
+Brian Bershad, Thomas Anderson, Edward La- 
+zowska, ]^[ Henry Levy. Lightweight Remote 
+Procedure Call. ACM Transactions on Com- 
+puter Systems, 8(1), February 1990. 
+Brian Bershad, Thomas Anderson, Edward La~ 
+zowska, ]^[ Henry Levy. User-Level Interpre- 
+cess Communication ]f[ Shared~Memory Mul- 
+tiprocessors. ACM Transactions on Computer 
+Systems, 9(2), May 1991. 
+Brian Bershad, August 1993. Private Commu— 
+nication. 
+Thomas Ball ]^[ James R. Larus. Optimally 
+proﬁling ]^[ tracing. In Proceedings of the 
+Conference on Principles of Programming Lan- 
+guages, pages 59‘70, 1992. 
+David Black. Scheduling Support ]f[ ConcuI~ 
+rency ]^[ Parallelism in the Mach Operating 
+System. IEEE Computer, 23(5):35 43, May 
+1990. 
+Andrew Birrell ]^[ Bruce Nelson. Implement- 
+ing Remote Procedure Calls. ACM Transac- 
+tions on Computer Systems, 2(1):?19‘59, Febru‘ 
+ary 1984. 
+.1.D. Clark. lVindow Programmer’ Guide To 
+OLE/DUE, Prentice—Hall, 1992. 
+L. P. Deutsch ]^[ C. A. Grant. A ﬂexible mea~ 
+surement tool ]f[ software systems. In IFIP 
+Congress, 1971. 
+Digital Equipment Corporation. Ultriz 114.2 
+Pixie Manual Page. 
+Peter Dyson. Xtensions ]f[ Xpress: Modular 
+Software ]f[ Custom Systems. Seybold Report 
+on Desktop Publishing, 6(10):1—‘.’.1, June 1992. 
+Kevin Fall ]^[ Joseph Pasquale. Exploiting in— 
+kernel data paths to improve I/O throughput 
+]^[ CPU 3. vailability. In Proceedings of the 
+1993 Winter USENIX Conference, pages 327— 
+333, January 1993. 
+Keiran Harty ]^[ 
+David Cheriton. Application—controlled physi- 
+cal memory using external page—cache manage— 
+ment. In Proceedings of the 5th International 
+Conference on Architectural Support ]f[ Pro- 
+gramming Languages ]^[ Operating Systems, 
+October 1992. 
+215 
+[11K93] 
+[HKM+88] 
+[Int86] 
+[JRTSS] 
+[K ar89] 
+[K1886] 
+[LB92] 
+[McF89] 
+[MJ93] 
+[M RA87] 
+[P1190] 
+[RDH+ 80] 
+Graham Hamilton ]^[ Panos Kougiouris. The 
+Spring nucleus: A microkernel ]f[ objects. In 
+Proceedings of the Summer USENIX Confer- 
+cncc, pages 1477159, June 1993. 
+J. Howard, M. Kazar, S. Menees, D. Nichols, 
+M. Satyanarayanan, R. Sidebotham, ]^[ 
+M. West. Scale ]^[ Performance in 3. Dis- 
+tributed File System. ACM Transactions on 
+Computer Systems, 6(1):51—82, February 1988. 
+Intel Corporation, California. 
+Intel 80386 Programmer’s Reference Manual, 
+1986. 
+Michael B. Jones, Richard F. Rashid, ]^[ 
+Mary R. Thompson. Matchmaker: An in- 
+terface speciﬁcation language ]f[ distributed 
+processing. In Proceedings of the 12th ACM 
+SIGACT-SIGPLAN Symposium on Principles 
+of Programming Languages, pages 225435, 
+January 1985. 
+Santa Clara, 
+Paul A. Karger. Using Registers to Optimize 
+Cross—Domain Call Performance. In Proceed- 
+ings of the 3rd International Conference on 
+Architectural Support ]f[ Programming Lan- 
+guages ]^[ Operating Systems, pages 1947204. 
+April 3~6 1989. 
+Steven R. Kleiman. Vnodes: An Architecture 
+]f[ Multiple File System Types in SUN UNIX. 
+In Proceedings of the 1986 Summer USENIX 
+Conference, pages 238—247, 1986. 
+James R. Larus ]^[ Thomas Ball. Rewrit- 
+ing executable ﬁles to measure program be— 
+havior. Technical Report 1083, University of 
+Wisconsin-Madison, March 1992. 
+Scott McFarling. Program optimization ]f[ 
+instruction caches. In Proceedings of the In: 
+ternational Conference on Architectural Sup— 
+port ]f[ Programming Languages ]^[ Operat- 
+ing Systems, pages 183—191, April 1989. 
+Steven McCanne ]^[ Van lacobsen. The 
+BSD Packet Filter: A New Architecture ]f[ 
+User—Level Packet Capture. In Proceedings of 
+the 1993 Winter USENIX Conference, January 
+1993. 
+l. C. Mogul, R. F. Rashid, ]^[ M. J. Ac- 
+cetta. The packet ﬁlter: An cﬂicient mecha— 
+nism ]f[ user—level network code. In Proceed- 
+ings of the Symposium on Operating System 
+Principles, pages 39—51, November 1987. 
+Karl Pettis ]^[ Robert C. Hansen. Proﬁle 
+guided code positioning. In Proceedings of 
+the Conference on Programming Language De- 
+sign ]^[ Implementation, pages 16—27, White 
+Plains, New York, June 1990. Appeared as 
+SIGPLAN NOTICES 25(6). 
+David D. Redell, Yogen K. Dalal, Thomas R. 
+Horsley, Hugh C. Lauer, William C. Lynch, 
+[Sam88] 
+[5390] 
+[501693] 
+[SFGMQS] 
+[St087] 
+[St088] 
+[SWG91] 
+[TAss] 
+[Thiﬁz] 
+[VCGSQZ] 
+[VVSTSB] 
+[Web93] 
+[YBA93] 
+Paul R. McJones, Hal G. Murray, ]^[ 
+Stephen C. Purcell. Pilot: An Operating Sys- 
+tem ]f[ a Personal Computer. Communications 
+of the A01”, 23(2):81~92, February 1980. 
+A. Dain Samples. Code reorganization ]f[ in 
+struction caches. Technical Report UCB/CSD 
+88/447. University of California, Berkeley, 0C, 
+tober 1988. 
+Michael Schroeder ]^[ Michael Burrows. Per- 
+formance of Fireﬂy RPC. ACM I‘mnsac» 
+tions on Computer Systems, 8(1):1—17, Febru- 
+ary 1990. 
+Richard L. Sites, Anton Chernoff, Matthew B. 
+Kirk, Maurice P. Marks, ]^[ Scott G. Robin- 
+son. Binary translation. Communications of 
+the ACM, 36(2):69—81, February 1993. 
+M. Stonebral-zer, J. Frew, K. Gardels, ]^[ 
+.I. Meridith. The Sequoia 2000 Benchmark. 
+In Proceedings of the ACM SIGMOD Inter- 
+national Conference on Management of Data, 
+May 1993. 
+Michael Stonebraker. Extensibility in POST~ 
+GRES. IEEE Database Engineering, Septem- 
+ber 1987. 
+Michael Stonebraker. Inclusion of new types in 
+relational data base systems. In Michael Stone- 
+braker, editor, Readings in Database Systems, 
+pages 480—487. Morgan Kaufmann Publishers, 
+Inc., 1988. 
+J. P. Singh, W. Weber, ]^[ A. Gupta. 
+Splash: Stanford parallel applications ]f[ 
+shared—memory. Technical Report CSL—TR—Sl— 
+469, Stanford, 1991. 
+Shin—Yuan Tzou ]^[ David P. Anderson. A 
+Performance Evaluation of the DASH Message- 
+Passing System. Technical Report UCB/CSD 
+88/452, Computer Science Division, University 
+of California, Berkeley, October 1988. 
+Thinking Machines Corporation. CM—5 Net- 
+work Interface Programmer’s Guide, 1992. 
+T. von Eicken, I). Culler, S. Goldstein, ]^[ 
+K. Schauser. Active Messages: A Mechanism 
+]f[ Integrated Communication ]^[ Computa— 
+tion. In Proceedings of the 19th Annual Sym- 
+posium on Computer Architecture, 1992. 
+Robbert van Renesse, Hans van Staveren, ]^[ 
+Andrew S. Tanenbaum. Performance of the 
+World’s Fastest Distributed Operating System. 
+Operating Systemic Review, 22(1):25734, Octo— 
+ber 1988. 
+Neil Webber. Operating System Support ]f[ 
+Portable Filesystem Extensions. In Proceed- 
+ings of the 1993 Winter USENIX Conference, 
+January 1993. 
+Curtis Yarvin. Richard Bnkowski, ]^[ Thomas 
+Anderson. Anonymous RFC: LOW Latency 
+216 
+Protection in a 64—Bit Address Space. In Pro- 
+ceedings of the Summer USENIX Conference, 
+June 1993. 

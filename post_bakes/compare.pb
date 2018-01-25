@@ -1,745 +1,1368 @@
-~$[1 
-Cognitive Processing Therapy 
-Veteran/Military Version 
-Patricia A%%per%%]$~ ~$[Resick%%lst%% Ph%%per%%D%%per%% ]^[ Candice M%%per%%]$~ ~$[Monson%%lst%% Ph%%per%%D%%per%%]$~ 
-~$[National Center ]f[ PTSD 
-Women’s Health Science Division 
-VA Boston Healthcare System ]^[ 
-Boston University 
-And 
-Kathleen M%%per%%]$~ ~$[Chard%%lst%% Ph%%per%%D%%per%%]$~ 
-~$[Cincinnati VA Medical Center ]^[ 
-University of Cincinnati 
-October%%lst%% 2006 
-Correspondence should be addressed to Patricia Resick ]v[ Candice Monson%%lst%% WHSD (116B%%dsh%%3)%%lst%% 
-VA Boston Healthcare System%%lst%% 150 South Huntington Ave%%per%%]$~ ~$[Boston%%lst%% MA 02130%%scn%% 
-Patricia%%per%%Resick@va%%per%%gov ]v[ Candice%%per%%Monson@va%%per%%gov%%per%%]$~ 
-~$[Copyright%%lst%% © Patricia A%%per%%]$~ ~$[Resick%%lst%% Ph%%per%%D%%per%% ]^[ Candice M%%per%%]$~ ~$[Monson%%lst%% Ph%%per%%D%%per%% 10/01/06 
-2 
-Cognitive Processing Therapy%%cln%% Veteran/Military Version 
-Part 1 
-Introduction to Cognitive Processing Therapy 
-Cognitive Processing Therapy (CPT) is a 12%%dsh%%session therapy that has been found effective 
-]f[ both PTSD ]^[ other corollary symptoms following traumatic events (Monson et al%%lst%% 2006%%scn%% 
-Resick et al%%lst%% 2002%%scn%% Resick & Schnicke%%lst%% 1992%%lst%% 19931)%%per%%]$~ ~$[Although the research on CPT focused on 
-rape victims originally%%lst%% we have used the therapy successfully with a range of other traumatic 
-events%%lst%% including military%%dsh%%related traumas%%per%%]$~ ~$[This revision of the manual is in response to requests 
-]f[ a treatment manual that focuses exclusively on military trauma%%per%%]$~ ~$[The manual has been 
-updated to reflect changes in the therapy over time%%lst%% particularly with an increase in the amount of 
-practice that is assigned ]^[ with some of the handouts%%per%%]$~ ~$[It also includes suggestions from almost 
-two decades of clinical experience with the therapy%%per%%]$~ 
-~$[Also included in this manual is a module ]f[ traumatic bereavement%%per%%]$~ ~$[This module is ]n[ 
-included as one of the 12 sessions ]b[ could be added to the therapy%%per%%]$~ ~$[We recommend that the 
-session be added early in therapy%%lst%% perhaps as the second session along with the educational 
-component on posttraumatic stress disorder%%per%%]$~ ~$[Although we expect PTSD to remit as a result of 
-treatment%%lst%% we do ]n[ necessarily expect bereavement to remit%%per%%]$~ ~$[Grief is a normal reaction to loss 
-]^[ is ]n[ a disorder%%per%%]$~ ~$[Bereavement may have a long ]^[ varied course%%per%%]$~ ~$[The goal of dealing with 
-grief issues within CPT is ]n[ to shorten the natural course of adjustment%%lst%% ]b[ to remove blocks 
-]^[ barriers (distorted cognitions%%lst%% assumptions%%lst%% expectations) that are interfering with normal 
-bereavement%%per%%]$~ ~$[Therefore%%lst%% the focus is on normal grief%%lst%% myths about bereavement%%lst%% ]^[ stuck 
-points that therapists may need to focus on in this domain%%per%%]$~ ~$[If the bereavement session is added to 
-CPT%%lst%% %%cmp%% the assignment to write an impact statement would be delayed one session (see 
-Session 1) ]f[ those who have PTSD due to a traumatic death%%per%%]$~ ~$[Another possibility is to have the 
-patients write two impact statements ]f[ those who both lost a loved one ]^[ have PTSD related 
-to something that happened to them directly%%per%%]$~ ~$[One statement would be about what it means that 
-the traumatic event happened to them%%per%%]$~ ~$[The other statement would be about what it means that the 
-loved one has died%%per%%]$~ 
-~$[Many therapists were never trained to conduct manualized psychotherapies ]^[ may feel 
-uncomfortable with both the concept ]^[ the execution%%per%%]$~ ~$[It is important that the patient ]^[ 
-therapist agree on the goal ]f[ the therapy (trauma work ]f[ PTSD ]^[ related symptoms) ]s[ that 
-the goals do ]n[ drift ]v[ switch from session to session%%per%%]$~ ~$[Without a firm commitment to the 
-1 
-Monson%%lst%% C%%per%%M%%per%%%%lst%% Schnurr%%lst%% P%%per%%P%%per%%%%lst%% Resick%%lst%% P%%per%%A%%per%%%%lst%% Friedman%%lst%% M%%per%%J%%per%%%%lst%% Young%%dsh%%Xu%%lst%% Y%%per%%%%lst%% & Stevens%%lst%% S%%per%%P%%per%% (2006)%%per%%]$~ ~$[Cognitive 
-processing therapy ]f[ veterans with military%%dsh%%related posttraumatic stress disorder%%per%%]$~ ~$[Journal of Consulting & 
-Clinical Psychology%%lst%% 74%%lst%% 898%%dsh%%907%%per%%]$~ 
-~$[Resick%%lst%% P%%per%%A%%per%%%%lst%% Nishith%%lst%% P%%per%%%%lst%% Weaver%%lst%% T%%per%%L%%per%%%%lst%% Astin%%lst%% M%%per%%C%%per%%%%lst%% & Feuer%%lst%% C%%per%%A%%per%% (2002)%%per%%]$~ ~$[A comparison of cognitive processing 
-therapy%%lst%% prolonged exposure ]^[ a waiting condition ]f[ the treatment of posttraumatic stress disorder in 
-female rape victims%%per%%]$~ ~$[Journal of Consulting ]^[ Clinical Psychology%%lst%% 70%%lst%% 867%%dsh%%879%%per%%]$~ 
-~$[Resick%%lst%% P%%per%%]$~ ~$[A%%per%%%%lst%% & Schnicke%%lst%% M%%per%%]$~ ~$[K%%per%% (1992)%%per%%]$~ ~$[Cognitive processing therapy ]f[ sexual assault victims%%per%%]$~ ~$[Journal of 
-Consulting ]^[ Clinical Psychology%%lst%% 60%%lst%% 748%%dsh%%756%%per%%]$~ 
-~$[Resick%%lst%% P%%per%%]$~ ~$[A%%per%%%%lst%% & Schnicke%%lst%% M%%per%%]$~ ~$[K%%per%% (1993)%%per%%]$~ ~$[Cognitive processing therapy ]f[ rape victims%%cln%% A treatment manual%%per%%]$~ 
-~$[Newbury Park%%lst%% CA%%cln%% Sage Publications%%per%% 
-3 
-treatment goals%%lst%% when the therapy is “off track”%%lst%% the therapist may ]n[ know whether to get back 
-on the protocol ]v[ to let it slide%%per%%]$~ ~$[As other topics arise%%lst%% the therapist sometimes isn’t sure whether 
-]v[ how to incorporate them into the sessions%%per%%]$~ ~$[A few words on these topics are appropriate here%%per%%]$~ 
-~$[Once therapists have conducted protocol therapy a few times%%lst%% they usually find that they become 
-more efficient ]^[ effective therapists%%per%%]$~ ~$[They learn to guide the therapy without tangents ]v[ 
-delays%%per%%]$~ ~$[They find they can develop rapport with patients through the use of Socratic questions 
-%%cmp%% the patients are explaining to the therapist exactly how they feel ]^[ think ]^[ the 
-therapist expresses interest ]^[ understanding with these questions%%per%%]$~ ~$[There is usually enough time 
-in the session to cover the material ]f[ the session ]^[ still have time ]f[ some other topics%%lst%% such 
-as things that came up that week ]v[ considering other current issues related to their PTSD 
-(childrearing%%lst%% job concerns marital issues%%lst%% etc%%per%%)%%per%%]$~ ~$[However %%cmp%% those are major issues%%lst%% %%cmp%% the 
-therapist will need to prioritize the order%%per%%]$~ ~$[It would be inadvisable to try to deal with several 
-types of therapy ]f[ different problems simultaneously%%per%%]$~ 
-~$[Normally%%lst%% comorbid depression%%lst%% anxiety%%lst%% ]^[ dissociation remit along with PTSD%%lst%% ]s[ we 
-rarely believe there is a need to deal with other symptoms independently of the PTSD protocol%%per%%]$~ 
-~$[Substance dependence should be treated prior to addressing PTSD%%lst%% ]b[ substance abusing 
-patients may be treated with CPT %%cmp%% there is a specific contract ]f[ ]n[ drinking abusively during 
-the therapy ]^[ %%cmp%% there is a specific focus on the suspected role of abusive drinking as avoidance 
-coping (for more information on comorbidity see Section 3)%%per%%]$~ ~$[Typically we have the patients 
-focus on specific child%%lst%% family%%lst%% ]^[ marital issues after completing the course of PTSD 
-treatment%%per%%]$~ ~$[Sometimes those problems remit when the patient no longer has PTSD interfering 
-with functioning%%per%%]$~ ~$[Other considerations regarding comorbidity are found later in the manual%%per%%]$~ 
-~$[Most veterans present ]f[ PTSD treatment many years after the traumatic event%%per%%]$~ ~$[They 
-are usually ]n[ in crisis ]^[ are able to handle their day%%dsh%%to%%dsh%%day lives (at whatever level they are 
-functioning) without constant intervention%%per%%]$~ ~$[Much of the disruption in the flow of therapy ]f[ 
-PTSD comes from avoidance attempts on the part of the patient%%per%%]$~ ~$[We point out avoidance 
-whenever we see it (e%%per%%g%%per%%%%lst%% changing the subject%%lst%% showing up late ]f[ sessions)%%lst%% ]^[ remind the 
-patient that avoidance maintains PTSD symptoms%%per%%]$~ ~$[If the patient wants to discuss other issues%%lst%% we 
-save time at the end of the session ]v[ attempt to incorporate their issues into the skills that are 
-being taught (i%%per%%e%%per%%%%lst%% A%%dsh%%B%%dsh%%C sheets%%lst%% Challenging Questions%%lst%% Patterns of Problematic Thinking%%lst%% 
-Challenging Beliefs worksheets)%%per%%]$~ ~$[If the patient does ]n[ bring in practice assignments%%lst%% we do ]n[ 
-delay the session%%lst%% ]b[ conduct the work in session ]^[ %%cmp%% reassign the practice assignment 
-along with the next assignment%%per%%]$~ 
-~$[Returning OEF/OIF veterans may have different needs %%cmp%% older veterans%%per%%]$~ ~$[They may 
-prefer two sessions a week ]s[ that they can get therapy finished quickly%%per%%]$~ ~$[They may request early 
-morning ]v[ evening appointments to accommodate their jobs%%per%%]$~ ~$[They may want their PTSD 
-treatment augmented with couples counseling%%per%%]$~ ~$[They may appear a bit more “raw” %%cmp%% the very 
-chronic Vietnam veterans that most VA clinicians are accustomed to working with%%per%%]$~ ~$[The more 
-accessible emotions are actually an advantage in processing the traumatic events ]^[ in 
-motivating change%%lst%% ]b[ therapists who have worked with only very chronic (and numbed) 
-veterans may become alarmed when they first work with these patients%%per%%]$~ ~$[They may think that 
-strong emotions ]v[ dissociation should be stabilized ]v[ medicated first%%per%%]$~ ~$[However%%lst%% CPT was 
-developed ]^[ tested first with rape victims who may also be very acute ]^[ very emotional%%per%%]$~ ~$[As 
-4 
-long as patients are willing to engage in therapy ]^[ can contract against self%%dsh%%harm ]^[ acting 
-out%%lst%% there is no reason to assume that they need to wait ]f[ treatment%%per%%]$~ 
-~$[It is recommended that the patient be assessed%%lst%% ]n[ just before ]^[ after treatment%%lst%% ]b[ 
-during treatment as well%%per%%]$~ ~$[We typically give patients a brief PTSD scale ]^[ a depression scale 
-(if comorbid depression is a problem) once a week%%per%%]$~ ~$[Most often there is a large drop in symptoms 
-when the assimilation about the trauma is resolving%%per%%]$~ ~$[Typically this occurs around the 5th ]v[ 6th 
-session with the written exposure ]^[ cognitive therapy focusing on the traumatic event itself%%per%%]$~ 
-~$[Occasionally this takes longer%%lst%% ]b[ with frequent assessment%%lst%% the therapist can monitor the 
-progress ]^[ see when the shift occurs%%per%%]$~ 
-~$[Theory 
-CPT is based on a social cognitive theory of PTSD that focuses on how the traumatic event 
-is construed ]^[ coped with by a person who is trying to regain a sense of mastery ]^[ control in 
-his/her life%%per%%]$~ ~$[The other major theory explaining PTSD is Lang’s2 (1977) information processing 
-theory%%lst%% which was extended to PTSD by Foa%%lst%% Steketee%%lst%% ]^[ Rothbaum3 (1989) in their emotional 
-processing theory of PTSD%%per%%]$~ ~$[In this theory%%lst%% PTSD is believed to emerge due to the development of 
-a fear network in memory that elicits escape ]^[ avoidance behavior%%per%%]$~ ~$[Mental fear structures 
-include stimuli%%lst%% responses%%lst%% ]^[ meaning elements%%per%%]$~ ~$[Anything associated with the trauma may elicit 
-the fear structure ]v[ schema ]^[ subsequent avoidance behavior%%per%%]$~ ~$[The fear network in people with 
-PTSD is thought to be stable ]^[ broadly generalized ]s[ that it is easily accessed%%per%%]$~ ~$[When the fear 
-network is activated by reminders of the trauma%%lst%% the information in the network enters 
-consciousness (intrusive symptoms)%%per%%]$~ ~$[Attempts to avoid this activation result in the avoidance 
-symptoms of PTSD%%per%%]$~ ~$[According to emotional processing theory%%lst%% repetitive exposure to the 
-traumatic memory in a safe environment will result in habituation of the fear ]^[ subsequent 
-change in the fear structure%%per%%]$~ ~$[As emotion decreases%%lst%% patients with PTSD will begin to modify their 
-meaning elements spontaneously ]^[ will change their self%%dsh%%statements ]^[ reduce their 
-generalization%%per%%]$~ ~$[Repeated exposures to the traumatic memory are thought to result in habituation ]v[ 
-a change in the information about the event%%lst%% ]^[ subsequently%%lst%% the fear structure%%per%%]$~ 
-~$[Although social cognitive theories are ]n[ incompatible with information/emotional 
-processing theories%%lst%% these theories focus beyond the development of a fear network to other 
-pertinent affective responses such as horror%%lst%% anger%%lst%% sadness%%lst%% humiliation%%lst%% ]v[ guilt%%per%%]$~ ~$[Some emotions 
-such as fear%%lst%% anger%%lst%% ]v[ sadness may emanate directly from the trauma (primary emotions)%%lst%% 
-%%cmp%% the event is interpreted as dangerous%%lst%% abusive%%lst%% and/or resulting in losses%%per%%]$~ ~$[It is possible 
-that secondary%%lst%% ]v[ manufactured%%lst%% emotions can also result from faulty interpretations made by the 
-patient%%per%%]$~ ~$[For example%%lst%% %%cmp%% someone is intentionally attacked by another person%%lst%% the danger of the 
-situation would lead to a fight%%dsh%%flight response ]^[ the attending emotions might be anger ]v[ fear 
-(primary)%%per%%]$~ ~$[However%%lst%% %%cmp%% in the aftermath%%lst%% the person blamed himself ]v[ herself ]f[ the attack%%lst%% the 
-person might experience shame ]v[ embarrassment%%per%%]$~ ~$[These manufactured emotions would have 
-2 
-Lang%%lst%% P%%per%%]$~ ~$[J%%per%% (1977)%%per%%]$~ ~$[Imagery in therapy%%cln%% An information processing analysis of fear%%per%%]$~ ~$[Behavior Therapy%%lst%% 8%%lst%% 862%%dsh%%886%%per%% 
-3 
-Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% Steketee%%lst%% G%%per%%]$~ ~$[S%%per%%%%lst%% & Rothbaum%%lst%% B%%per%% 0%%per%% (1989)%%per%%]$~ ~$[Behavioral/cognitive conceptualizations of posttraumatic 
-stress disorder%%per%%]$~ ~$[Behavior Therapy%%lst%% 20%%lst%% 155%%dsh%%176%%per%% 
-5 
-resulted from thoughts ]^[ interpretations about the event%%lst%% rather %%cmp%% the event itself%%per%%]$~ ~$[As long as 
-the individual keeps saying that the event was their fault%%lst%% they keep producing shame (%%cmp%%%%lst%% 
-manufactured)%%per%%]$~ 
-~$[Social%%dsh%%cognitive theories focus more on the content of cognitions ]^[ the effect that 
-distorted cognitions have upon emotional responses ]^[ behavior%%per%%]$~ ~$[In order to reconcile the 
-information about the traumatic event with prior schemas%%lst%% people tend to do one ]v[ more of three 
-things%%cln%% assimilate%%lst%% accommodate%%lst%% ]v[ over%%dsh%%accommodate%%per%%]$~ ~$[Assimilation is altering the incoming 
-information to match prior beliefs (“Because a bad thing happened to me%%lst%% I must have been 
-punished ]f[ something I did”)%%per%%]$~ ~$[Accommodation is altering beliefs enough to incorporate the 
-new information (“Although I didn’t use good judgment in that situation%%lst%% most of the time I make 
-good decisions”)%%per%%]$~ ~$[Over%%dsh%%accommodation is altering ones beliefs about oneself ]^[ the world to 
-the extreme in order to feel safer ]^[ more in control (“I can’t ever trust my judgment again”)%%per%%]$~ 
-~$[Obviously%%lst%% therapists are working toward accommodation%%lst%% a balance in beliefs that takes into 
-account the reality of the traumatic event without going overboard%%per%%]$~ 
-~$[In a social%%dsh%%cognitive model%%lst%% affective expression is needed%%lst%% ]n[ ]f[ habituation%%lst%% ]b[ in 
-order ]f[ the affective elements of the stored trauma memory to be changed%%per%%]$~ ~$[It is assumed that 
-the natural affect%%lst%% once accessed%%lst%% will dissipate rather quickly%%lst%% ]^[ will no longer be stored with 
-the trauma memory%%per%%]$~ ~$[Also%%lst%% the work of accommodating the memory ]^[ beliefs can begin%%per%%]$~ ~$[Once 
-faulty beliefs regarding the event (self%%dsh%%blame%%lst%% guilt) ]^[ over%%dsh%%generalized beliefs about oneself 
-]^[ the world (e%%per%%g%%per%% safety%%lst%% trust%%lst%% control esteem%%lst%% intimacy) are challenged%%lst%% %%cmp%% the secondary 
-emotions will also decrease along with the intrusive reminders%%per%%]$~ ~$[The explanation that CPT 
-therapists give to patients about this process is described in Session 1 along with a handout in the 
-patient materials section%%per%%]$~ 
-~$[Because we know that PTSD symptoms are nearly universal immediately following a 
-serious traumatic stressor ]^[ that recovery takes a few months under normal circumstances%%lst%% it 
-may be best to think about diagnosable PTSD as a disruption ]v[ stalling out of a normal recovery 
-process%%lst%% rather %%cmp%% the development of a unique psychopathology%%per%%]$~ ~$[The therapist needs to 
-determine what has interfered with normal recovery%%per%%]$~ ~$[In one case%%lst%% it may be that the patient 
-believes that he will be overwhelmed by the amount of affect that will emerge %%cmp%% he stops 
-avoiding ]^[ numbing himself%%per%%]$~ ~$[Perhaps he was taught as a child that emotions are bad%%lst%% that “real 
-men” don’t have feelings ]^[ that he should “just get over it”%%per%%]$~ ~$[In another case%%lst%% a patient may 
-have refused to talk about what happened with anyone %%cmp%% she blames herself ]f[ “letting” 
-the event happen ]^[ she is ]s[ shamed ]^[ humiliated that she is convinced that others will 
-blame her too%%per%%]$~ ~$[In a third case%%lst%% a patient saw something ]s[ horrifying that every time he falls 
-asleep ]^[ dreams about it%%lst%% he wakes up in a cold sweat%%per%%]$~ ~$[In order to sleep%%lst%% he has started drinking 
-heavily%%per%%]$~ ~$[Another patient is ]s[ convinced that she will be victimized again that she refuses to go 
-out any more ]^[ has greatly restricted her activities ]^[ relationships%%per%%]$~ ~$[In still another case%%lst%% in 
-which other people were killed%%lst%% a patient experiences survivor guilt ]^[ obsesses over why he 
-was spared when others were killed%%per%%]$~ ~$[He feels unworthy ]^[ experiences guilt whenever he 
-laughs ]v[ finds himself enjoying something%%per%%]$~ ~$[In all of these cases%%lst%% thoughts ]v[ avoidance 
-behaviors are interfering with emotional processing ]^[ cognitive restructuring%%per%%]$~ ~$[There are as 
-many individual examples of things that can block a smooth recovery as there are individuals 
-with PTSD%%per%% 
-6 
-Overview 
-The contents of each session are described along with issues that therapists are likely to 
-encounter%%per%%]$~ ~$[The therapy begins with an education component about PTSD ]^[ the patient is asked 
-to write an Impact Statement in order ]f[ the patient ]^[ therapist to begin to identify problem 
-areas in thinking about the event (i%%per%%e%%per%%%%lst%% “stuck points”)%%per%%]$~ ~$[The patient is %%cmp%% taught to identify ]^[ 
-label thoughts ]^[ feelings ]^[ to recognize the relationship between them%%per%%]$~ ~$[Then the next two 
-sessions focus on generating a written account of the worst traumatic incident%%lst%% which is read to 
-the therapist in session%%per%%]$~ ~$[During the first five sessions%%lst%% the therapist uses Socratic questioning to 
-begin to challenge distorted cognitions%%lst%% particularly those associated with assimilation like selfblame%%lst%% hindsight bias ]^[ other guilt cognitions%%per%%]$~ ~$[Thereafter%%lst%% the sessions focus on teaching the 
-patient cognitive therapy skills ]^[ finally focus on specific topics that are likely to have been 
-disrupted by the traumatic event%%cln%% safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% ]^[ intimacy%%per%%]$~ 
-~$[After the individual CPT protocol is described in detail%%lst%% there are subsequent sections on 
-using the protocol without the written trauma exposure component%%lst%% a section on delivering CPT 
-in a group format ]^[ a section on treatment issues with comorbid disorders%%lst%% 
-It is strongly recommended that the protocol be implemented in the order presented here%%per%%]$~ 
-~$[The skills ]^[ exercises are designed to build upon one another%%lst%% ]^[ even the modules in the last 
-five sessions follow in the hierarchical order in which they are likely to emerge with patients%%per%%]$~ 
-~$[However%%lst%% when used individually%%lst%% the last five sessions may be modified depending upon the 
-particular issues that a patient reports%%per%%]$~ ~$[For example%%lst%% %%cmp%% a patient has severe safety issues%%lst%% ]b[ no 
-issues with esteem ]v[ intimacy%%lst%% %%cmp%% the therapist may want to skip the later two modules ]^[ 
-focus more time on safety%%per%%]$~ ~$[Conversely%%lst%% %%cmp%% someone had no safety ]v[ control issues ]b[ was 
-primarily troubled with self%%dsh%%trust ]^[ self%%dsh%%esteem issues%%lst%% %%cmp%% the therapist may want to spend 
-more time on those modules%%per%%]$~ ~$[However%%lst%% even %%cmp%% a patient has ]n[ mentioned an issue within a 
-particular domain of functioning (safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% intimacy)%%lst%% it may be 
-helpful ]f[ him to read the module ]^[ complete worksheets on any stuck points that become 
-apparent%%per%%]$~ ~$[It is ]n[ unusual ]f[ the modules to reveal issues that had ]n[ been identified earlier in 
-therapy%%per%%]$~ 
-~$[The usual format ]f[ sessions is to begin with review of the practice assignments%%lst%% 
-followed by the content of each specific session%%per%%]$~ ~$[During the last 15 minutes of the session%%lst%% the 
-assignment ]f[ the next week is introduced ]^[ is accompanied by the necessary explanation%%lst%% 
-definition(s)%%lst%% ]^[ handout%%per%%]$~ ~$[It is ]n[ recommended that the therapist start a general discussion at 
-the beginning of the session%%lst%% ]b[ should begin immediately with the practice assignment that was 
-assigned%%per%%]$~ ~$[If the patient wishes to speak about other topics%%lst%% we either use the topic to teach the 
-new skills we are introducing (e%%per%%g%%per%%%%lst%% put the content on an A%%dsh%%B%%dsh%%C sheet) ]v[ we save time at the end 
-]f[ these other topics%%lst%% reinforcing the trauma work with discussion of the topic%%per%%]$~ ~$[If the therapist 
-allows the patient to direct the therapy away from the protocol%%lst%% the avoidance will be reinforced%%lst%% 
-along with disruption in the flow of the therapy%%per%%]$~ ~$[In addition%%lst%% placing the practice assignments last 
-in the session will send a message to the patient that the practice assignments are ]n[ very 
-important ]^[ may lead to less treatment adherence on the part of the patient%%per%%]$~ ~$[Among the most 
-difficult skills ]f[ the therapist to master%%lst%% especially %%cmp%% s/he has been trained in more non%%dsh%%directive 
-7 
-therapies%%lst%% is how to be empathic ]b[ firm in maintaining the protocol%%per%%]$~ ~$[If a patient does ]n[ bring 
-in his/her practice assignment one session%%lst%% it does ]n[ mean that the therapy is delayed ]f[ a 
-week%%per%%]$~ ~$[The therapist has the patient do the assignment orally (or they complete a worksheet 
-together) in the session ]^[ reassigns the uncompleted assignment along with the next 
-assignment%%per%%]$~ 
-~$[Part 2 
-Cognitive Processing Therapy%%cln%% Session by Session 
-It is presumed that the therapist will have conducted some form of assessment of the patient’s 
-traumatic event ]^[ persistent symptoms%%lst%% ]^[ specifically contracted to do a course of CPT prior 
-to undertaking the first session%%per%%]$~ ~$[At least a brief assessment of PTSD ]^[ depressive symptoms 
-should be conducted%%per%%]$~ ~$[There are several brief PTSD checklists ]^[ depression scales that can be 
-used to assess pretreatment symptoms%%lst%% as well as to conduct repeated assessments during therapy 
-to monitor the course of treatment%%per%%]$~ 
-~$[Session 1%%cln%% Introduction ]^[ Education Phase 
-Therapist Overview 
-Overall%%lst%% there are several goals ]f[ the first session%%cln%% 1) build rapport with the patient%%lst%% 2) 
-to educate the patient regarding symptoms of posttraumatic stress disorder ]^[ depression%%lst%% 3) to 
-provide a rationale ]f[ treatment based on a cognitive conceptualization of PTSD%%lst%% 4) to lay out 
-the course of treatment%%lst%% ]^[ 5) to elicit treatment compliance%%per%%]$~ 
-~$[It is necessary to address compliance early in the course of therapy %%cmp%% avoidance 
-behavior (half of the symptoms of PTSD) can interfere with successful treatment%%per%%]$~ ~$[We are 
-concerned with two forms of compliance%%cln%% attendance ]^[ completion of out%%dsh%%of%%dsh%%session practice 
-assignments%%per%%]$~ ~$[It is strongly recommended that patients attend all sessions ]^[ complete all 
-assignments in order to benefit fully from therapy%%per%%]$~ ~$[We attempt to set the expectation that 
-therapy benefit is dependent on the amount of effort they invest through practice assignment 
-compliance ]^[ practice with new skills%%per%%]$~ ~$[It may be helpful to remind the patient that what he4 has 
-been doing has ]n[ been working%%lst%% ]^[ that it will be important to tackle issues head%%dsh%%on rather 
-%%cmp%% continue to avoid%%per%%]$~ ~$[Avoidance of affective experience ]^[ expression should also be 
-addressed%%per%%]$~ 
-~$[In this session%%lst%% patients are also given the opportunity to ask any questions they may have 
-about the therapy%%per%%]$~ ~$[Sometimes patients’ stuck points become evident in the questions ]^[ 
-concerns they express during this first session%%per%%]$~ ~$[And finally%%lst%% as with all therapies%%lst%% rapport 
-building is crucial ]f[ effective therapy%%per%%]$~ ~$[The patient needs to feel understood ]^[ listened to%%lst%% 
-otherwise she may ]n[ return%%per%% 
-4 
-Because of the awkwardness of the English language ]^[ the desire to refer to a single patient%%lst%% the pronouns “he” 
-]^[ “she” will be used alternately%%lst%% rather %%cmp%% saying “she/he”%%lst%% “him/her” throughout the manual%%per%%]$~ ~$[The term soldier 
-will also be used as a generic term rather %%cmp%% soldier%%lst%% marine%%lst%% sailor%%lst%% airman etc%%per%%%%lst%% ]^[ will be used interchangeably 
-with veteran%%per%% 
+~$[Efficient Software—Based Fault Isolation 
+Robert VVahbe 
+Steven Lucco 
+Thomas E%%per%%]$~ ~$[Anderson 
+Susan L%%per%%]$~ ~$[Graham 
+Computer Science Division 
+University of California 
+Berkeley%%lst%% CA 94720 
+Abstract 
+One way to provide fault isolation among cooperating 
+software modules is to place each in its own address 
+space%%per%%]$~ ~$[However%%lst%% ]f[ tightly—coupled modules%%lst%% this so— 
+lution incurs prohibitive context switch overhead%%per%%]$~ ~$[In 
+this paper%%lst%% we present a software approach to imple— 
+menting fault isolation within a single address space%%per%%]$~ 
+~$[Our approach has two parts%%per%%]$~ ~$[First%%lst%% we load the code 
+]^[ data ]f[ a distrusted module into its own fault do%%dsh%% 
+main%%lst%% a logically separate portion of the application’s 
+address space%%per%%]$~ ~$[Second%%lst%% we modify the object code of a 
+distrusted module to prevent it from writing ]v[ jump%%dsh%% 
+ing to an address outside its fault domain%%per%%]$~ ~$[Both these 
+software operations are portable ]^[ programming lan— 
+guage independent%%per%%]$~ 
+~$[Our approach poses a tradeoff relative to hardware 
+fault isolation%%cln%% substantially faster communication be— 
+tween fault domains%%lst%% at a cost of slightly increased 
+execution time ]f[ distrusted modules We demon— 
+strate that ]f[ frequently communicating modules%%lst%% im~ 
+plementing fault isolation in software rather %%cmp%% hard%%dsh%% 
+ware can substantially improve end%%dsh%%to—end application 
+performance%%per%%]$~ 
+~$[This work was supported in part by the National Sci— 
+ence Foundation (CDA%%dsh%%8722788)%%lst%% Defense Advanced Research 
+Projects Agency (DARPA) under grant MDA972—92%%dsh%%J%%dsh%%1028 ]^[ 
+contracts DABT63%%dsh%%92%%sqt%%C%%dsh%%0026 ]^[ N00600%%dsh%%93—C—2481%%lst%% the Digi%%dsh%% 
+tal Equipment Corporation (the Systems Research Center ]^[ 
+the External Research Program)%%lst%% ]^[ the AT&T Foundation%%per%%]$~ 
+~$[Anderson was also supported by a National Science Foundation 
+Young Investigator Award%%per%%]$~ ~$[The content of the paper does ]n[ 
+necessarily reﬂect the position ]v[ the policy of the Government 
+]^[ no ofﬁcial endorsement should be inferred%%per%%]$~ 
+~$[Email%%cln%% {rwahbe %%lst%% lucco%%lst%% tea%%lst%% graham}@cs %%per%%berkeley%%per%%edu 
+Permission to copy Without fee all ]v[ part of (his material IS 
+granted provided that Hie cvpies are %%dqt%%0‘ made 0! distributed ]f[ 
+direct commercial advantage%%per%% the ACM copyright notice ]^[ the 
+mile of the publicaiion ]^[ MS data appear%%lst%% ]^[ notice IS given 
+that copying is by permissmn of (he Assomalion ]f[ Computing 
+Machinery%%per%%]$~ ~$[To copy otherWise%%per%% ]v[ to republish%%lst%% requires a fee 
+and/or specnfic permissron%%per%%]$~ 
+~$[SIGOPS %%sqt%%93/12/93/N%%per%%C%%per%%%%lst%% USA 
+31993 ACM 0%%dsh%%83791%%dsh%%632%%dsh%%8/93/0012%%per%%%%per%%%%per%%$L50 
+1 Introduction 
+Application programs often achieve extensibility by 
+incorporating independently developed software mod— 
+ules%%per%%]$~ ~$[However%%lst%% faults in extension code can render a 
+software system unreliable%%lst%% ]v[ even dangerous%%lst%% since 
+such faults could corrupt permanent data%%per%%]$~ ~$[To in— 
+crease the reliability of these applications%%lst%% an operat— 
+ing system can provide services that prevent faults in 
+distrusted modules from corrupting application data%%per%%]$~ 
+~$[Such fault isolation services also facilitate software de%%dsh%% 
+velopment by helping to identify sources of system fail— 
+ure%%per%%]$~ 
+~$[For example%%lst%% the POSTGRES database manager in— 
+cludes an extensible type system [St087]%%per%%]$~ ~$[Using this 
+facility%%lst%% POSTGRES queries can refer to general—purpose 
+code that deﬁnes constructors%%lst%% destructors%%lst%% ]^[ pred— 
+icates ]f[ user—deﬁned data types such as geometric 
+objects%%per%%]$~ ~$[Without fault isolation%%lst%% any query that uses 
+extension code could interfere with an unrelated query 
+]v[ corrupt the database%%per%%]$~ 
+~$[Similarly%%lst%% recent operating system research has fo— 
+cused on making it easier ]f[ third party vendors 
+to enhance parts of the operating system%%per%%]$~ ~$[An ex 
+ample is micro%%dsh%%kernel design%%scn%% parts of the operat— 
+ing system are implemented as user—level servers that 
+can be easily modiﬁed ]v[ replaced%%per%%]$~ ~$[More gener— 
+ally%%lst%% several systems have added extension code into 
+the operating system%%lst%% ]f[ example%%lst%% the BSD network 
+packet ﬁlter [MRA87%%lst%% MJQ3]7 application—speciﬁc vir%%dsh%% 
+tual memory management [HC92]%%per%% ]^[ Active Mes— 
+sages [VCGSQQ]%%per%%]$~ ~$[Among industry systems%%lst%% Microsoft’s 
+Object Linking ]^[ Embedding system [Cla92] can 
+link together independently developed software mod— 
+tiles%%per%%]$~ ~$[Also%%lst%% the Quark Xprese desktop publishing sys%%dsh%% 
+tem [Dy592] is structured to support incorporation of 
+general—purpose third party code%%per%%]$~ ~$[As with POSTGRES%%lst%% 
+faults in extension modules can render any of these 
+systems unreliable%%per%% %%per%%]$~ 
+~$[One way to provide fault isolation among cooperat— 
+ing software modules is to place each in its own address 
+space%%per%%]$~ ~$[Using Remote Procedure Call (RFC) [BN84]%%lst%% 
+modules in separate address spaces can call into each 
+other through a normal procedure call interface%%per%%]$~ ~$[Hard%%dsh%% 
+ware page tables prevent the code in one address space 
+from corrupting the contents of another%%per%%]$~ 
+~$[Unfortunately%%lst%% there is a high performance cost 
+to providing fault isolation through separate address 
+spaces%%per%%]$~ ~$[Transferring control across protection bound— 
+aries is expensive%%lst%% ]^[ does ]n[ necessarily scale 
+with improvements in a processor’s integer perforv 
+mance [ALBL91]%%per%%]$~ ~$[A cross—address%%dsh%%space RPC requires 
+at least%%cln%% a trap into the operating system kernel%%lst%% copy— 
+ing each argument from the caller to the callee%%lst%% sav~ 
+ing ]^[ restoring registers%%lst%% switching hardware ad— 
+dress spaces (on many machines%%lst%% ﬂushing the transla— 
+tion lookaside buffer)%%lst%% ]^[ a trap back to user level%%per%%]$~ 
+~$[These operations must be repeated upon RPC re— 
+turn%%per%%]$~ ~$[The execution time overhead of an RPC%%lst%% even 
+with a highly optimized implementation%%lst%% will often 
+be two to three orders of magnitude greater %%cmp%% 
+the execution time overhead of a normal procedure 
+call [BALL90%%lst%% ALBL91]%%per%%]$~ 
+~$[The goal of our work is to make fault isolation cheap 
+enough that system developers can ignore its perfor— 
+mance effect in choosing which modules to place in 
+separate fault domains%%per%%]$~ ~$[In many cases where fault iso 
+lation would be useful%%lst%% cross%%dsh%%domain procedure calls 
+are frequent ]y[ involve only a moderate amount of 
+computation per call%%per%%]$~ ~$[In this situation it is imprac%%dsh%% 
+tical to isolate each logically separate module within 
+its own address space%%lst%% %%cmp%% of the cost of crossing 
+hardware protection boundaries%%per%%]$~ 
+~$[We propose a%%per%% software approach to implementing 
+fault isolation within a single address space%%per%%]$~ ~$[Our ap— 
+proach has two parts%%per%%]$~ ~$[First%%lst%% we load the code ]^[ data 
+]f[ a%%per%% distrusted module into its own fault domain%%lst%% a 
+logically separate portion of the application’s address 
+space%%per%%]$~ ~$[A fault domain%%lst%% in addition to comprising a cori— 
+tiguous region of memory within an address space%%lst%% has 
+a unique identiﬁer which is used to control its access to 
+process resources such as ﬁle descriptors%%per%%]$~ ~$[Second%%lst%% we 
+modify the object code of a distrusted module to pre— 
+vent it from writing ]v[ jumping to an address outside 
+its fault domain%%per%%]$~ ~$[Program modules isolated in sepa— 
+rate software—enforced fault domains can ]n[ modify 
+each other’s data ]v[ execute each other’s code except 
+through an explicit cross%%dsh%%fault%%dsh%%domain RPC interface%%per%%]$~ 
+~$[We have identiﬁed several programming%%dsh%%language%%dsh%% 
+independent transformation strategies that can render 
+object code unable to escape its own code ]^[ data 
+segments%%per%%]$~ ~$[In this paper%%lst%% we concentrate on a sim— 
+204 
+ple transformation technique%%lst%% called sandboxing%%lst%% that 
+only slightly increases the execution time of the mod%%dsh%% 
+iﬁed object code%%per%%]$~ ~$[We also investigate techniques that 
+provide more debugging information ]b[ which incur 
+greater execution time overhead%%per%%]$~ 
+~$[Our approach poses a tradeoff relative to hardware— 
+based fault isolation%%per%%]$~ ~$[Because we eliminate the need to 
+cross hardware boundaries%%lst%% we can offer substantially 
+lower%%dsh%%cost RPC between fault domains%%per%%]$~ ~$[A safe RPC in 
+our prototype implementation takes roughly 1%%per%%1 us on a 
+DECstation 5000/240 ]^[ roughly 0%%per%%8,us on a DEC Al%%dsh%% 
+pha 400%%lst%% more %%cmp%% an order of magnitude faster %%cmp%% 
+any existing RFC system%%per%%]$~ ~$[This reduction in RFC time 
+comes at a cost of slightly increased distrusted module 
+execution time%%per%%]$~ ~$[On a test suite including the the C 
+SPE092 benchmarks%%lst%% sandboxing incurs an average of 
+4% execution time overhead on both the DECstation 
+]^[ the Alpha%%per%%]$~ 
+~$[Software—enforced fault isolation may seem to be 
+counter%%dsh%%intuitive%%cln%% we are slowing down the common 
+case (normal execution) to speed up the uncommon 
+case (crossrdomain communication)%%per%%]$~ ~$[But ]f[ fre%%dsh%% 
+quently communicating fault domains%%lst%% our approach 
+can offer substantially better end—to—end performance%%per%%]$~ 
+~$[To demonstrate this%%lst%% we applied software—enforced 
+fault isolation to the POSTGRES database system run%%dsh%% 
+ning the Sequoia 2000 benchmark%%per%%]$~ ~$[The benchmark 
+makes use of the POSTGRES extensible data%%per%% type sys— 
+tem to deﬁne geometric operators%%per%%]$~ ~$[For this bench— 
+mark%%lst%% the software approach reduced fault isolation 
+overhead by more %%cmp%% a factor of three on a DECsta— 
+tion 5000/240%%per%%]$~ 
+~$[A software approach also provides a tradeoif be 
+tween performance ]^[ level of distrust%%per%%]$~ ~$[If some mod— 
+ules in a%%per%% program are trusted while others are dis%%dsh%% 
+trusted (as may be the ease with extension code)%%lst%% only 
+the distrusted modules incur any execution time over%%dsh%% 
+head%%per%%]$~ ~$[Code in trusted domains can run at full speed%%per%%]$~ 
+~$[Similarly%%lst%% it is possible to use our techniques to im%%dsh%% 
+plement full security%%lst%% preventing distrusted code from 
+even reading data outside of its domain%%lst%% at a cost of 
+higher execution time overhead%%per%%]$~ ~$[We quantify this ef» 
+fect in Section 5%%per%%]$~ 
+~$[The remainder of the paper is organized as follows%%per%%]$~ 
+~$[Section 2 provides some examples of systems that re%%dsh%% 
+quire frequent communication between fault domains%%per%%]$~ 
+~$[Section 3 outlines how we modify object code to pre— 
+vent it from generating illegal addresses%%per%%]$~ ~$[Section 4 
+describes how we implement low latency cross—faultv 
+domain RPC%%per%%]$~ ~$[Section 5 presents performance results 
+]f[ our prototype%%lst%% ]^[ ﬁnally Section 6 discusses some 
+related work%%per%% 
+2 Background 
+In this section%%lst%% we characterize in more detail the 
+type of application that can beneﬁt from software— 
+enforced fault isolation%%per%%]$~ ~$[We defer further description 
+of the POSTGRES extensible type system until Section 
+5%%lst%% which gives performance measurements ]f[ this ap— 
+plication%%per%%]$~ 
+~$[The operating systems community has focused con%%dsh%% 
+siderable attention on supporting kernel extensibil%%dsh%% 
+ity%%per%%]$~ ~$[For example%%lst%% the UNIX vnode interface is de%%dsh%% 
+signed to make it easy to add a new ﬁle system into 
+UNIX [Kle86]%%per%%]$~ ~$[Unfortunately%%lst%% it is too expensive to 
+forward every ﬁle system operation to user level%%lst%% ]s[ 
+typically new ﬁle system implementations are added 
+directly into the kernel%%per%% (The Andrew ﬁle system is 
+largely implemented at user level%%lst%% ]b[ it maintains a 
+kernel cache ]f[ performance [HKM%%sqt%%l%%sqt%%BSH Epoch’s ter— 
+tiary storage ﬁle system [Web93] is one example of op— 
+erating system kernel code developed by a third party 
+vendor%%per%%]$~ 
+~$[Another example is user—programmable high perfor— 
+mance I/O systems%%per%%]$~ ~$[If data is arriving on an I/O 
+channel at a high enough rate%%lst%% performance will be 
+degraded substantially %%cmp%% control has to be transferred 
+to user level to manipulate the incoming data [FP93]%%per%%]$~ 
+~$[Similarly%%lst%% Active Messages provide high performance 
+message handling in distributed—memory multiproces%%dsh%% 
+sors [VCG8921%%per%%]$~ ~$[Typically%%lst%% the message handlers are 
+application%%dsh%%speciﬁc%%lst%% ]b[ unless the network controller 
+can be accessed from user level [Thi92]%%lst%% the message 
+handlers must be compiled into the kernel ]f[ reason— 
+able performance%%per%%]$~ 
+~$[A user%%dsh%%level example is the Quark Xpress desktop 
+publishing system%%per%%]$~ ~$[One can purchase third party soft%%dsh%% 
+ware that will extend this system to perform func~ 
+tions unforeseen by its original designers [DysQQ]%%per%%]$~ ~$[At 
+the same time%%lst%% this extensibility has caused Quark a 
+number of problems%%per%%]$~ ~$[Because of the lack of efﬁcient 
+fault domains on the personal computers where Quark 
+Xpress runs%%lst%% extension modules can corrupt Quark’s 
+internal data structures Hence%%lst%% bugs in third party 
+code can make the Quark system appear unreliable%%lst%% 
+%%cmp%% end—users do ]n[ distinguish among sources of 
+system failure%%per%%]$~ 
+~$[All these examples share two characteristics%%per%%]$~ ~$[First%%lst%% 
+using hardware fault isolation would result in a signif%%dsh%% 
+icant portion of the overall execution time being spent 
+in operating system context switch code%%per%%]$~ ~$[Second%%lst%% only 
+a small amount of code is distrusted%%scn%% most of the exe%%dsh%% 
+cution time is spent in trusted code%%per%%]$~ ~$[In this situation%%lst%% 
+software fault isolation is likely to be more efﬁcient 
+%%cmp%% hardware fault isolation %%cmp%% it sharply re— 
+duces the time spent crossing fault domain boundaries%%lst%% 
+while only slightly increasing the time spent executing 
+205 
+the distrusted part of the application%%per%%]$~ ~$[Section 5 quan%%dsh%% 
+tiﬁes this trade%%dsh%%off between domain—crossing overhead 
+]^[ application execution time overhead%%lst%% ]^[ demon 
+strates that even %%cmp%% domain—crossing overhead repre— 
+sents a modest proportion of the total application ex— 
+ecution time%%lst%% software—enforced fault isolation is cost 
+effective%%per%% 
+3 Software%%dsh%%Enforced Fault Iso%%dsh%% 
+lation 
+In this section%%lst%% we outline several software encapsula— 
+tion techniques ]f[ transforming a distrusted module 
+]s[ that it can ]n[ escape its fault domain%%per%%]$~ ~$[We ﬁrst 
+describe a technique that allows users to pinpoint the 
+location of faults within a software module%%per%%]$~ ~$[Next%%lst%% we 
+introduce a technique%%lst%% called sandboxing%%lst%% that can iso%%dsh%% 
+late a distrusted module while only slightly increasing 
+its execution time%%per%%]$~ ~$[Section 5 provides a performance 
+analysis of this techinique%%per%%]$~ ~$[Finally%%lst%% we present a soft%%dsh%% 
+ware encapsulation technique that allows cooperating 
+fault domains to share memory%%per%%]$~ ~$[The remainder of 
+this discussion assumes we are operating on a RISC 
+load /storc architecture%%lst%% although our techniques could 
+be extended to handle CISCs%%per%%]$~ ~$[Section 4 describes 
+how we implement safe ]^[ efficient cross—fault—domain 
+RPC%%per%%]$~ 
+~$[We divide an application’s virtual address space into 
+segments%%lst%% aligned ]s[ that all virtual addresses within 
+a segment share a unique pattern of upper bits%%lst%% called 
+the segment identiﬁer%%per%%]$~ ~$[A fault domain consists of two 
+segments%%lst%% one ]f[ a distrusted module’s code%%lst%% the other 
+]f[ its static data%%lst%% heap ]^[ stack%%per%%]$~ ~$[The speciﬁc seg%%dsh%% 
+ment addresses are determined at load time%%per%%]$~ 
+~$[Software encapsulation transforms a distrusted 
+module‘s object code ]s[ that it can jump only to tar%%dsh%% 
+gets in its code segment%%lst%% ]^[ write only to addresses 
+within its data segment%%per%%]$~ ~$[Hence%%lst%% all legal jump tar— 
+gets in the distrusted module have the same upper bit 
+pattern (segment identiﬁer)%%scn%% similarly%%lst%% all legal data 
+addresses generated by the distrusted module share 
+the same segment identiﬁer%%per%%]$~ ~$[Separate code ]^[ data 
+segments are necessary to prevent a module from mod— 
+%%cmp%%ying its code segmentl%%per%%]$~ ~$[It is possible ]f[ an address 
+with the correct segment identiﬁer to be illegal%%lst%% ]f[ in%%dsh%% 
+stance %%cmp%% it refers to an unmapped page%%per%%]$~ ~$[This is caught 
+by the normal operating system page fault mechanism%%per%% 
+3%%per%%1 
+An unsafe mstmctzan is any instruction that jumps to 
+]v[ stores to an address that can ]n[ be statically ver— 
+Segment Matching 
+10111%%dqt%% system supports dynamic linking through a special 
+interface%%per%% 
+iﬁed to be within the correct segment%%per%%]$~ ~$[Most control 
+transfer instructions%%lst%% such as program‘counter‘relative 
+branches%%lst%% can be statically veriﬁed%%per%%]$~ ~$[Stores to static 
+variables often use an immediate addressing mode ]^[ 
+can be statically veriﬁed%%per%%]$~ ~$[However%%lst%% jumps through reg— 
+isters%%lst%% most commonly used to implement procedure 
+returns%%lst%% ]^[ stores that use a register to hold their 
+target address%%lst%% can ]n[ be statically veriﬁed%%per%%]$~ 
+~$[A straightforward approach to preventing the use of 
+illegal addresses is to insert checking code before eve 
+ery unsafe instruction%%per%%]$~ ~$[The checking code determines 
+whether the unsafe instruction’s target address has the 
+correct segment identiﬁer%%per%%]$~ ~$[If the check fails%%lst%% the in%%dsh%% 
+serted code will trap to a system error routine outside 
+the distrusted module’s fault domain%%per%%]$~ ~$[We call this 
+software encapsulation technique segment matching%%per%%]$~ 
+~$[On typical RISC architectures%%lst%% segment matching 
+requires four instructions%%per%%]$~ ~$[Figure 1 lists a pseudo—code 
+fragment ]f[ segment matching%%per%%]$~ ~$[The ﬁrst instruction 
+in this fragment moves the store target address into 
+a dedzcated register%%per%%]$~ ~$[Dedicated registers are used only 
+by inserted code ]^[ are never modiﬁed by code in 
+the distrusted module%%per%%]$~ ~$[They are necessary %%cmp%% 
+code %%cmp%%where in the distrusted module may arrange 
+to jump directly to the unsafe store instruction%%lst%% by%%dsh%% 
+passing the inserted check%%per%%]$~ ~$[Hence%%lst%% we transform all 
+unsafe store ]^[ jump instructions to use a dedicated 
+register%%per%%]$~ 
+~$[All the software encapsulation techniques presented 
+in this paper require dedicated registersz%%per%%]$~ ~$[Segment 
+matching requires four dedicated registers%%cln%% one to hold 
+addresses in the code segment%%lst%% one to hold addresses 
+in the data segment%%lst%% one to hold the segment shift 
+amount%%lst%% ]^[ one to hold the segment identiﬁer%%per%%]$~ 
+~$[Using dedicated registers may have an impact on 
+the execution time of the distrusted module%%per%%]$~ ~$[However%%lst%% 
+since most modern RISC architectures%%lst%% including the 
+MIPS ]^[ Alpha%%lst%% have at least 32 registers%%lst%% we can 
+retarget the compiler to use a smaller register set with 
+minimal performance impact%%per%%]$~ ~$[For example7 Section 5 
+shows that%%lst%% on the DECstation 5000/240%%lst%% reducing by 
+ﬁve registers the register set available to a C compiler 
+(gee) did ]n[ have a signiﬁcant effect on the average 
+execution time of the SPEC92 benchmarks%%per%% 
+3%%per%%2 Address Sandboxing 
+The segment matching technique has the advantage 
+that it can pinpoint the offending instruction%%per%%]$~ ~$[This 
+capability is useful during software development%%per%%]$~ ~$[We 
+can reduce runtime overhead still further%%lst%% at the cost 
+of providing no information about the source of faults%%per%% 
+2 For architectures with lenitccl register sets%%lst%% such as the 
+80386 [Int86]%%lst%% it is possible to encapsulate a module using no re%%dsh%% 
+served registers by restricting control ﬂow within a fault domain%%per%% 
+206 
+dedicated—reg <2 target address 
+lilove target address into dedicated register%%per%% 
+scratch%%dsh%%reg <= (dedicated—reg>>shift~reg) 
+Right—shift address to get segment identiﬁer%%per%% 
+scratch—reg is ]n[ a dedicated register%%per%% 
+shift%%dsh%%reg is a dedicated register%%per%% 
+%%cmp%% scratch—reg ]^[ segment—reg 
+segment%%dsh%%reg is a dedicated register%%per%% 
+trap %%cmp%% ]n[ equal 
+Trap %%cmp%% store address is outside of segment%%per%% 
+store instruction uses dedicated%%dsh%%reg 
+Figure 1%%cln%% Assembly pseudo code ]f[ segment matching%%per%% 
+dedicated—reg c target%%dsh%%reghand—mask—reg 
+Use dedicated register and—mask%%dsh%%reg 
+to clear segment identiﬁer bits%%per%% 
+dedicated—reg <2 dedicated%%dsh%%regl segment—reg 
+Use dedicated register segment%%dsh%%reg 
+to set segment identiﬁer bits%%per%% 
+store instruction uses dedicated%%dsh%%reg 
+Figure 2%%cln%% Assembly pseudo code to sandbox address 
+in target—reg%%per%%]$~ 
+~$[Before each unsafe instruction we simply insert code 
+that sets the upper bits of the target address to the 
+correct segment identifier%%per%%]$~ ~$[We call this sandborzn g the 
+address%%per%%]$~ ~$[Sandboxing does ]n[ catch illegal addresses%%scn%% 
+it merely prevents them from affecting any fault do— 
+main other %%cmp%% the one generating the address%%per%%]$~ 
+~$[Address sandboxing requires insertion of two arith%%dsh%% 
+metic instructions before each unsafe store ]v[ jump 
+instruction%%per%%]$~ ~$[The ﬁrst inserted instruction clears the 
+segment identifier bits ]^[ stores the result in a ded— 
+icated register%%per%%]$~ ~$[The second instruction sets the seg— 
+ment identiﬁer to the correct value%%per%%]$~ ~$[Figure 2 lists the 
+pseudo‘code to perform this operation%%per%%]$~ ~$[As with seg%%dsh%% 
+ment matching%%lst%% we modify the unsafe store ]v[ jump 
+instruction to use the dedicated register%%per%%]$~ ~$[Since we are 
+using a dedicated register%%lst%% the distrusted module code 
+can ]n[ produce an illegal address even by jumping 
+to the second instruction in the sandboxing sequence%%scn%% 
+since the upper bits of the dedicated register will al— 
+ready contain the correct segment identiﬁer%%lst%% this sec%%dsh%% 
+ond instruction will have no effect%%per%%]$~ ~$[Section 3%%per%%6 presents 
+a simple algorithm that can verify that an object code 
+module has been correctly sandboxed%%per%%]$~ 
+~$[Address sandboxing requires ﬁve dedicated registers%%per%%]$~ 
+~$[One register is used to hold the segment mask%%lst%% two 
+registers are used to hold the code ]^[ data segment 
+<——reg+oﬂ%%sqt%%sel j 
+«— reg 
+Guard Zones S eg ment 
+Figure 3%%cln%% A segment with guard zones%%per%%]$~ ~$[The size of 
+the guard zones covers the range of possible immediate 
+offsets in register—plus%%dsh%%offset addressing modes%%per%% 
+identiﬁers%%lst%% ]^[ two are used to hold the sandboxed 
+code ]^[ data addresses%%per%% 
+3%%per%%3 Optimizations 
+The overhead of software encapsulation can be re%%dsh%% 
+duced by using conventional compiler optimizations%%per%%]$~ 
+~$[Our current prototype applies loop invariant code mo— 
+tion ]^[ instruction scheduling optimizations [ASU86%%lst%% 
+ACD74]%%per%%]$~ ~$[In addition to these conventional techniques%%lst%% 
+we employ a number of optimizations specialized to 
+software encapsulation%%per%%]$~ 
+~$[We can reduce the overhead of software encapsulae 
+tion mechanisms by avoiding arithmetic that computes 
+target addresses%%per%%]$~ ~$[For example%%lst%% many RISC architec— 
+tures include a register%%dsh%%plus—oﬁset instruction mode%%lst%% 
+where the offset is an immediate constant in some lim— 
+ited range%%per%%]$~ ~$[On the MIPS architecture such offsets are 
+limited to the range %%dsh%%64K to +64K%%per%%]$~ ~$[Consider the 
+store instruction store value,oﬁset(reg)%%lst%% whose 
+address offset (reg) uses the register—plus—olfsct ad~ 
+dressing mode%%per%%]$~ ~$[Sandboxing this instruction requires 
+three inserted instructions%%cln%% one to sum reg+oﬁset 
+into the dedicated register%%lst%% ]^[ two sandboxing in— 
+structions to set the segment identiﬁer of the dedicated 
+register%%per%%]$~ 
+~$[Our prototype optimizes this case by sandboxing 
+only the register reg%%lst%% rather %%cmp%% the actual target ad— 
+dress reg+oﬁset%%lst%% thereby saving an instruction%%per%%]$~ ~$[To 
+support this optimization%%lst%% the prototype establishes 
+guard zones at the top ]^[ bottom of each segment%%per%%]$~ 
+~$[To create the guard zones%%lst%% virtual memory pages ad— 
+jacent to the segment are unmapped (see Figure 3)%%lst%% 
+We also reduce runtime overhead by treating the 
+MIPS stack pointer as a dedicated register%%per%%]$~ ~$[We avoid 
+sandboxing the uses of the stack pointer by sandboxing 
+207 
+this register whenever it is set%%per%%]$~ ~$[Since uses of the stack 
+pointer to form addresses are much more plentiful %%cmp%% 
+changes to it%%lst%% this optimization signiﬁcantly improves 
+performance%%per%%]$~ 
+~$[Further%%lst%% we can avoid sandboxing the stack pointer 
+after it is modiﬁed by a small constant offset as long as 
+the modiﬁed stack pointer is used as part of a load ]v[ 
+store address before the next control transfer instruc» 
+tion%%per%%]$~ ~$[If the modiﬁed stack pointer has moved into a 
+guard zone%%lst%% the load ]v[ store instruction using it will 
+cause a hardware address fault%%per%%]$~ ~$[On the DEC Alpha 
+processor%%lst%% we apply these optimizations to both the 
+frame pointer ]^[ the stack pointer%%per%%]$~ 
+~$[There are a number of further optimizations that 
+could reduce sandboxing overhead%%per%%]$~ ~$[For example%%lst%% 
+the transformation tool could remove sandboxing se— 
+quences from loops%%lst%% in cases where a store target ad%%dsh%% 
+dress changes by only a small constant oifset during 
+each loop iteration%%per%%]$~ ~$[Our prototype does ]n[ ]y[ imple— 
+ment these optimizations%%per%% 
+3%%per%%4 Process Resources 
+Because multiple fault domains share the same virtual 
+address space%%lst%% the fault domain implementation must 
+prevent distrusted modules from corrupting resources 
+that are allocated on a per—addressspace basis%%per%%]$~ ~$[For 
+example%%lst%% %%cmp%% a fault domain is allowed to make system 
+calls%%lst%% it can close ]v[ delete ﬁles needed by other code 
+executing in the address space%%lst%% potentially causing the 
+application as a whole to crash%%per%%]$~ 
+~$[One solution is to modify the operating system to 
+know about fault domains%%per%%]$~ ~$[On a system call ]v[ page 
+fault%%lst%% the kernel can use the program counter to deter%%dsh%% 
+mine the currently executing fault domain%%lst%% ]^[ restrict 
+resources accordingly%%per%%]$~ 
+~$[To keep our prototype portable%%lst%% we implemented 
+an alternative approach%%per%%]$~ ~$[In addition to placing each 
+distrusted module in a separate fault domain%%lst%% we re— 
+quire distrusted modules to access system resources 
+only through cross%%dsh%%fault%%dsh%%domain RPC%%per%%]$~ ~$[We reserve a 
+fault domain to hold trusted arbitration code that de— 
+termines whether a particular system call performed 
+by some other fault domain is safe%%per%%]$~ ~$[If a distrusted 
+module’s object code performs a direct system call%%lst%% we 
+transform this call into the appropriate RPC call%%per%%]$~ ~$[In 
+the case of an extensible application%%lst%% the trusted por%%dsh%% 
+tion of the%%per%% application can make system calls directly 
+]^[ shares a fault domain with the arbitration code%%per%% 
+3%%per%%5 Data Sharing 
+Hardware fault isolation mechanisms can support data 
+sharing among virtual address spaces by manipulate 
+ing page table entries%%per%%]$~ ~$[Fault domains share an ad— 
+dress space%%lst%% ]^[ %%cmp%% a set of page table entries%%lst%% 
+]s[ they can ]n[ use a standard shared memory im— 
+plementation%%per%%]$~ ~$[Read%%dsh%%only sharing is straightforward%%scn%% 
+since our software encapsulation techniques do ]n[ al%%dsh%% 
+ter load instructions%%lst%% fault domains can read any mem— 
+ory mapped in the application’s address space 3%%per%%]$~ 
+~$[If the object code in a particular distrusted mod— 
+ule has been sandboxed%%lst%% %%cmp%% it can share read%%dsh%%write 
+memory with other fault domains through a technique 
+we call lazy pointer swizzling%%per%%]$~ ~$[Lazy pointer swizzling 
+provides a mechanism ]f[ fault domains to share ar— 
+bitrarily many read‘write memory regions with no ad%%dsh%% 
+ditional runtirne overhead%%per%%]$~ ~$[To support this technique%%lst%% 
+we modify the hardware page tables to map the shared 
+memory region into every address space segment that 
+needs access%%scn%% the region is mapped at the same offset 
+in each segment%%per%%]$~ ~$[In other words%%lst%% we alias the shared 
+region into multiple locations in the virtual address 
+space%%lst%% ]b[ each aliased location has exactly the same 
+low order address bits%%per%%]$~ ~$[As with hardware shared mem%%dsh%% 
+ory schemes%%lst%% each shared region must have a different 
+segment offset%%per%%]$~ 
+~$[To avoid incorrect shared pointer comparisons in 
+sandboxed code%%lst%% the shared memory creation inter— 
+face must ensure that each shared object is given a 
+unique address%%per%%]$~ ~$[As the distrusted object code ac%%dsh%% 
+cesses shared memory%%lst%% the sandboxing code automati%%dsh%% 
+cally translates shared addresses into the correspond 
+ing addresses within the fault domain’s data segment%%per%%]$~ 
+~$[This translation works exactly like hardware transla~ 
+tion%%scn%% the low bits of the address remain the same%%lst%% ]^[ 
+the high bits are set to the data segment identiﬁer%%per%%]$~ 
+~$[Under operating systems that do ]n[ allow virtual 
+address aliasing%%lst%% we can implement shared regions by 
+introducing a new software encapsulation technique%%cln%% 
+shared segment matching%%per%%]$~ ~$[To implement sharing%%lst%% we 
+use a dedicated register to hold a bitmap%%per%%]$~ ~$[The bitmap 
+indicates which segments the fault domain can access%%per%%]$~ 
+~$[For each unsafe instruction checked%%lst%% shared segment 
+matching requires one more%%per%% instruction %%cmp%% segment 
+matching%%per%% 
+3%%per%%6 Implementation ]^[ Veriﬁcation 
+We have identiﬁed two strategies ]f[ implementing 
+software encapsulation%%per%%]$~ ~$[One approach uses a compiler 
+to emit encapsulated object code ]f[ a distrusted mod%%dsh%% 
+ule%%scn%% the integrity of this code is %%cmp%% veriﬁed when the 
+module is loaded into a fault domain%%per%%]$~ ~$[Alternatively%%lst%% 
+the system can encapsulate the distrusted module by 
+directly modifying its object code at load time%%per%% 
+a\«Ve have implemented versions of these techniques that per 
+form general protection by encapsulating load instructions as 
+well as store ]^[ jump instructions%%per%%]$~ ~$[We discuss the performance 
+of these variants in Section 5%%per%%]$~ 
+~$[Our current prototype uses the first approach%%per%%]$~ ~$[We 
+modiﬁed a version of the gcc compiler to perform soft— 
+ware encapsulation%%per%%]$~ ~$[Note that While our current imple%%dsh%% 
+mentation is language dependent%%lst%% our techniques are 
+language independent%%per%%]$~ 
+~$[We built a veriﬁer ]f[ the MIPS instruction set 
+that works ]f[ both sandboxing ]^[ segment match%%dsh%% 
+ing%%per%%]$~ ~$[The main challenge in veriﬁcation is that%%lst%% in the 
+presence of indirect jumps%%lst%% execution may begin on 
+any instruction in the code segment%%per%%]$~ ~$[To address this 
+situation%%lst%% the veriﬁer uses a property of our software 
+encapsulation techniques%%cln%% all unsafe stores ]^[ jumps 
+use a dedicated register to form their target address%%per%%]$~ 
+~$[The veriﬁer divides the program into sequences of in— 
+structions called unsafe regions%%per%%]$~ ~$[An unsafe store re%%dsh%% 
+gion begins with any modiﬁcation to a dedicated store 
+register%%per%%]$~ ~$[An unsafe jump region begins with any mod%%dsh%% 
+iﬁcation to a dedicated jump register%%per%%]$~ ~$[If the ﬁrst in— 
+struction in a unsafe store ]v[ jump region is executed%%lst%% 
+all subsequent instructions are guaranteed to be exe%%dsh%% 
+cuted%%per%%]$~ ~$[An unsafe store region ends when one of the 
+following hold%%cln%% the next instruction is a store which 
+uses a dedicated register to form its target address%%lst%% 
+the next instruction is a control transfer instruction%%lst%% 
+the next instruction is ]n[ guaranteed to be executed%%lst%% 
+]v[ there are no more instructions in the code segment%%per%%]$~ 
+~$[A similar deﬁnition is used ]f[ unsafe jump regions%%per%%]$~ 
+~$[The veriﬁer analyzes each unsafe store ]v[ jump re%%cln%% 
+gion to insure that any dedicated register modiﬁed in 
+the region is valid upon exit of the region%%per%%]$~ ~$[For ex— 
+ample%%lst%% a load to a dedicated register begins an unsafe 
+region%%per%%]$~ ~$[If the region appropriately sandboxes the ded— 
+icated register%%lst%% the unsafe region is deemed safe%%per%% %%cmp%% an 
+unsafe region can ]n[ be veriﬁed%%lst%% the code is rejected%%per%%]$~ 
+~$[By incorporating software encapsulation into an ex— 
+isting compiler%%lst%% we are able to take advantage of com— 
+piler infrastructure ]f[ code optimization%%per%%]$~ ~$[However%%lst%% 
+this approach has two disadvantages%%per%%]$~ ~$[First%%lst%% most mod%%dsh%% 
+iﬁed compilers will support only one programming lan— 
+guage (gcc supports C%%lst%% C++%%lst%% ]^[ Pascal)%%per%%]$~ ~$[Second%%lst%% the 
+compiler ]^[ veriﬁer must be synchronized with re— 
+spect to the particular encapsulation technique being 
+employed%%per%%]$~ 
+~$[An alternative%%lst%% called bmary patchzng%%lst%% alleviates 
+these problems%%per%%]$~ ~$[When the fault domain is loaded%%lst%% the 
+system can encapsulate the module by directly modi%%dsh%% 
+fying the object code%%per%%]$~ ~$[Unfortunately%%lst%% practical ]^[ r07 
+bust binary patching%%lst%% resulting in efﬁcient code%%lst%% is ]n[ 
+currently possible [LB92]%%per%%]$~ ~$[Tools which translate one 
+binary format to another have been built%%lst%% ]b[ these 
+tools rely on compiler—speciﬁc idioms to distinguish 
+code from data ]^[ use processor emulation to han%%dsh%% 
+dle unknown indirect jumps[SCK”93]%%per%%]$~ ~$[For software 
+encapsulation%%lst%% the main challenge is to transform the 
+code ]s[ that it uses a subset of the registers%%lst%% leav— 
+208 
+Trusted 
+Caller Domain 
+Unlru sted 
+Calico Domain 
+call Add 
+Jump Table 
+Figure 4%%cln%% Major components of a crossefault—domain 
+RFC%%per%% 
+ing registers available ]f[ dedicated use%%per%%]$~ ~$[To solve this 
+problem%%lst%% we are working on a binary patching proto%%dsh%% 
+type that uses simple extensions to current object ﬁle 
+formats%%per%%]$~ ~$[The extensions store control ﬂow ]^[ register 
+usage information that is sufﬁcient to support software 
+encapsulation%%per%% 
+4 Low Latency Cross Fault Do— 
+main Communication 
+The purpose of this work is to reduce the cost of fault 
+isolation ]f[ cooperating ]b[ distrustful software mod— 
+ules%%per%%]$~ ~$[In the last section%%lst%% we presented one half of our 
+solution%%cln%% efficient software encapsulation%%per%%]$~ ~$[In this sec%%dsh%% 
+tion%%lst%% we describe the other half%%cln%% fast communication 
+across fault domains%%per%%]$~ 
+~$[Figure 4 illustrates the major components ofa cross— 
+fault~domain RFC between a trusted ]^[ distrusted 
+fault domain%%per%%]$~ ~$[This section concentrates on three as— 
+pects of fault domain crossing%%per%%]$~ ~$[First%%lst%% we describe 
+a simple mechanism which allows a fault domain to 
+safely call a trusted stub routine outside its domain%%scn%% 
+that stub routine %%cmp%% safely calls into the destination 
+domain%%per%%]$~ ~$[Second%%lst%% we discuss how arguments are effi— 
+ciently passed among fault domains%%per%%]$~ ~$[Third%%lst%% we detail 
+how registers ]^[ other machine state are managed on 
+cross—fault—domain RPCs to insure fault isolation%%per%%]$~ ~$[The 
+protocol ]f[ exporting ]^[ naming procedures among 
+fault domains is independent of our techniques%%per%%]$~ 
+~$[The only way ]f[ control to escape a%%per%% fault domain 
+is via a jump table%%per%%]$~ ~$[Each jump table entry is a con— 
+trol transfer instruction whose target address is a legal 
+entry point outside the domain%%per%%]$~ ~$[By using instructions 
+whose target address is an immediate encoded in the 
+instruction%%lst%% the jump table does ]n[ rely on the use of 
+a dedicated register%%per%%]$~ ~$[Because the table is kept in the 
+(readvonly) code segment%%lst%% it can only be modified by 
+a trusted module%%per%%]$~ 
+~$[For each pair of fault domains a customized call ]^[ 
+return stub is created ]f[ each exported procedure%%per%%]$~ 
+~$[Currently%%lst%% the stubs are generated by hand rather %%cmp%% 
+using a stub generator [JRTSS]%%per%%]$~ ~$[The stubs run unpro— 
+tected outside of both the caller ]^[ callee domain%%per%%]$~ 
+~$[The stubs are responsible ]f[ copying cross%%dsh%%domain 
+arguments between domains ]^[ managing machine 
+state%%per%%]$~ 
+~$[Because the stubs are trusted%%lst%% we are able to copy 
+call arguments directly to the target domain%%per%%]$~ ~$[Tra— 
+ditional RPC implementations across address spaces 
+typically perform three copies to transfer data%%per%%]$~ ~$[The 
+arguments are marshalled into a message%%lst%% the kernel 
+copies the message to the target address space%%lst%% ]^[ 
+ﬁnally the callee must de%%dsh%%marshall the arguments%%per%%]$~ ~$[By 
+having the caller ]^[ callee communicate via a shared 
+buffer%%lst%% LRPC also uses only a single copy to pass data 
+between domains [BALLQI]%%per%%]$~ 
+~$[The stubs are also responsible ]f[ managing machine 
+state%%per%%]$~ ~$[On each cross—domain call any registers that are 
+both used in the future by the caller ]^[ potentially 
+modiﬁed by the callee must be protected%%per%%]$~ ~$[Only regis— 
+ters that are designated by architectural convention to 
+bc preserved across procedure calls are saved%%per%%]$~ ~$[As an 
+optimization%%lst%% %%cmp%% the callee domain contains no instruc— 
+tions that modify a preserved register we can avoid 
+saving it%%per%%]$~ ~$[Karger uses a trusted linker to perform this 
+kind of optimization between address spaces [KarSQ]%%per%%]$~ 
+~$[In addition to saving ]^[ restoring registers%%lst%% the stubs 
+must switch the execution stack%%lst%% establish the correct 
+register context ]f[ the software encapsulation tech%%dsh%% 
+nique being used%%lst%% ]^[ validate all dedicated registers%%per%%]$~ 
+~$[Our system must also be robust in the presence of 
+fatal errors%%lst%% ]f[ example%%lst%% an addressing violation7 while 
+executing in a fault domain%%per%%]$~ ~$[Our current implementa— 
+tion uses the UNIX signal facility to catch these errors%%scn%% 
+it %%cmp%% terminates the outstanding call ]^[ notiﬁes the 
+caller’s fault domain%%per%%]$~ ~$[If the application uses the same 
+operating system thread ]f[ all fault domains%%lst%% there 
+must be a way to terminate a call that is taking too 
+long%%lst%% ]f[ example%%lst%% %%cmp%% of an inﬁnite loop%%per%%]$~ ~$[Trusted 
+modules may use a timer facility to interrupt execu— 
+tion periodically ]^[ determine %%cmp%% a call needs to be 
+terminated%%per%% 
+5 Performance Results 
+To evaluate the performance of software%%dsh%%enforced fault%%per%% 
+domains%%lst%% we implemented ]^[ measured a prototype 
+of our system on a 40MHz DECstation 5000/240 (DEC— 
+MIPS) ]^[ a lﬁONIliz Alpha 400 (DEC—ALPHA)%%per%%]$~ 
+~$[We consider three questions%%per%%]$~ ~$[First%%lst%% how much over 
+209 
+head does software encapsulation incur%%qsn%%]$~ ~$[Second%%lst%% how 
+fast is a crossrfault—domain RFC%%qsn%%]$~ ~$[Third%%lst%% what is the 
+performance impact of using software enforced fault 
+isolation on an end%%dsh%%user application%%qsn%%]$~ ~$[We discuss each 
+of these questions in turn%%per%% 
+5%%per%%1 Encapsulation Overhead 
+We measured the execution time overhead of sand%%dsh%% 
+boxing a wide range of C programs%%lst%% including the C 
+SPE092 benchmarks ]^[ several of the Splash bench%%dsh%% 
+marks [AssQl%%lst%% SWGQl]%%per%%]$~ ~$[We treated each benchmark 
+as %%cmp%% it were a distrusted module%%lst%% sandboxing all of 
+its code%%per%%]$~ ~$[Column 1 of Table 1 reports overhead on 
+the DEC—MIPS%%lst%% column 6 reports overhead on the DEC— 
+ALPHA%%per%%]$~ ~$[Columns 2 ]^[ 7 report the overhead of using 
+our technique to provide general protection by sand« 
+boxing load instructions as well as store ]^[ jump 
+instructions“%%per%%]$~ ~$[As detailed in Section 3%%lst%% sandboxing 
+requires 5 dedicated registers%%per%%]$~ ~$[Column 3 reports the 
+overhead of removing these registers from possible use 
+by the compiler%%per%%]$~ ~$[All overheads are computed as the 
+additional execution time divided by the original pro~ 
+gram‘s execution time%%per%%]$~ 
+~$[On the DECeMiPS%%lst%% we used the program measure— 
+ment tools pixie ]^[ qpt to calculate the number 
+of additional instructions executed due to sandbox~ 
+ing [Dig%%lst%% BL92]%%per%%]$~ ~$[Column 4 of Table 1 reports this 
+data as a percentage of original program instruction 
+counts%%per%%]$~ 
+~$[The data in Table 1 appears to contain a num— 
+ber of anomalies For some%%per%% of the benchmark pro%%dsh%% 
+grams%%lst%% ]f[ example%%lst%% 056%%per%%ear 011 the DECAMIPS ]^[ 
+026 %%per%% compress on the DEC—ALPHA%%lst%% sandboxing reduced 
+execution time%%per%% in a number of cases the overhead is 
+surprisingly low%%per%%]$~ 
+~$[To identify the source of these variations we de~ 
+veloped an analytical model ]f[ execution overhead%%per%%]$~ 
+~$[The model predicts overhead based on the number 
+of additional instructions executed due to sandbox 
+ing (s—znstructzons)%%lst%% ]^[ the number of saved ﬂoat~ 
+ing point interlock cycles (interlocks)%%per%%]$~ ~$[Sandboxing in» 
+creases the available instructionlevel parallelism%%lst%% aL 
+lowing the number of ﬂoating—point interlocks to be 
+substantially reduced The integer pipeline does ]n[ 
+provide interlocking%%scn%% instead%%lst%% delay slots are explicitly 
+ﬁlled with nop instructions by the compiler ]v[ assem~ 
+bler%%per%%]$~ ~$[Hence%%lst%% scheduling ell%%sqt%%ects among integer instruc~ 
+tions will be accurately reﬂected by the count of in~ 
+structions added (s—mstructzons)%%per%%]$~ ~$[The expected overs 
+head is computed as%%cln%% 
+(s—msz‘mchons — interlacksﬂcycles—per—sccond 
+original%%dsh%%erecutwn%%dsh%% lune%%dsh%%seconds 
+4Loads in the libraries%%lst%% such as the standard C library%%lst%% were 
+]n[ sandboxed%%per%%]$~ 
+~$[The model provides an effective way to separate known 
+sources of overhead from second order effects%%per%%]$~ ~$[Col%%dsh%% 
+umn 5 of Table 1 are the predicted overheads%%per%%]$~ 
+~$[As can be seen from Table 1%%lst%% the model is%%lst%% on aver 
+age%%lst%% eﬁective at predicting sandboxing overhead%%per%%]$~ ~$[The 
+differences between measured ]^[ expected overheads 
+are normally distributed with mean 0%%per%%7% ]^[ standard 
+deviation of 2%%per%%6%%%per%%]$~ ~$[The difference between the means 
+Ofthe measured ]^[ expected overheads is ]n[ statisti%%dsh%% 
+cally signiﬁcant%%per%%]$~ ~$[This experiment demonstrates that%%lst%% 
+by combining instruction count overhead ]^[ ﬂoating 
+point interlock measurements%%lst%% we can accurately pres 
+dict average execution time overhead%%per%%]$~ ~$[If we assume 
+that the model is also accurate at predicting the over— 
+head of individual benchmarks%%lst%% we can conclude that 
+there is a second order effect creating the observed 
+anomalies in measured overhead%%lst%% 
+We can discount eﬁective instruction cache size ]^[ 
+virtual memory paging as sources ]f[ the observed ex~ 
+ecution time variance%%per%%]$~ ~$[Because sandboxing adds in%%dsh%% 
+structions%%lst%% the effective size of the instruction cache is 
+reduced%%per%%]$~ ~$[While this might account ]f[ measured over%%dsh%% 
+heads higher %%cmp%% predicted%%lst%% it does ]n[ account ]f[ 
+the opposite effect%%per%%]$~ ~$[Because all of our benchmarks are 
+compute bound%%lst%% it is unlikely that the variations are 
+due to virtual memory paging%%per%%]$~ 
+~$[The DEC<MIPS has a physically indexed%%lst%% physically 
+tagged%%lst%% direct mapped data cache%%per%%]$~ ~$[In our experiments 
+sandboxing did ]n[ affect the size%%lst%% contents%%lst%% ]v[ starting 
+Virtual address of the data segment%%per%%]$~ ~$[For both original 
+]^[ sandboxed versions of the benchmark programs%%lst%% 
+successive runs showed insigniﬁcant variation%%per%%]$~ ~$[Though 
+difﬁcult to quantify%%lst%% we do ]n[ believe that data cache 
+alignment was an important source of variation in our 
+experiments%%per%% 
+\Ve conjecture that the observed variations are 
+caused by instruction cache mappzng conﬂicts%%per%%]$~ ~$[Soft— 
+ware encapsulation changes the mapping of instruc~ 
+tions to cache lines%%lst%% %%cmp%% changing the number of in— 
+struction cache conﬂicts%%per%%]$~ ~$[A number of researchers have 
+investigated minimizing instruction cache conﬂicts to 
+reduce execution time [McF89%%lst%% PHQO%%lst%% Sam88]%%per%%]$~ ~$[One 
+researcher reported a 20% performance gain by sim— 
+ply ehanging the order in which the object ﬁles were%%per%% 
+linked [PHQO]%%per%%]$~ ~$[Samples ]^[ Hilﬁnger report signif— 
+icantly improved instruction cache miss rates by re— 
+arranging only 3% to 8% of an application’s basic 
+blocks [SarnSS]%%per%%]$~ 
+~$[Beyond this effect%%lst%% there were statistically signiﬁcant 
+differences among programs%%per%%]$~ ~$[On average%%lst%% programs 
+which contained a signiﬁcant percentage of ﬂoating 
+point operations incurred less overhead%%per%%]$~ ~$[On the DEC— 
+MIPS the mean overhead ]f[ ﬂoating point intensive 
+benchmarks is 2%%per%%5%%%lst%% %%cmp%%d to a mean of 5%%per%%6% ]f[ 
+the remaining benchmarks%%per%%]$~ ~$[All of our benchmarks are 
+210 
+DEC%%dsh%%MIPS DEC%%dsh%%ALPHA 
+Fault Protection Reserved Instruction Fault Fault Protection 
+Benchmark Isolation Overhead Register Count Isolation Isolation Overhead 
+Overhead Overhead Overhead Overhead Overhead 
+(predicted) 
+052%%per%% alvinn FP 1%%per%%4% 33%%per%%4% —0%%per%%3% 19%%per%%4% 0%%per%%2% 8%%per%%1% 35%%per%%5% 
+bps FP 5%%per%%6% 15%%per%%5% %%dsh%%0%%per%%1% 8%%per%%9% 5%%per%%7% 4%%per%%7% 20%%per%%3% 
+cholesky FP 0%%per%%0% 22%%per%%7% 0%%per%%5% 6%%per%%5% 4%%per%%5% 0%%per%%0% 9%%per%%3% 
+026 %%per%% compress INT 3%%per%%3% 13%%per%%3% 0%%per%%0% 10%%per%%9% 4%%per%%4% 4%%per%%3% 0%%per%%0% 
+056%%per%%ear FP —1%%per%%2% 19%%per%%1% 0%%per%%2% 12%%per%%4% 2%%per%%2% 3%%per%%7% 18%%per%%3% 
+023 %%per%% eqntott INT 2%%per%%9% 34%%per%%4% 1%%per%%0% 2%%per%%7% 2%%per%%2% 2%%per%%3% 17%%per%%4% 
+008 %%per%% espresso INT 12%%per%%4% 27%%per%%0% —1%%per%%6% 11%%per%%8% 10%%per%%5% 13%%per%%3% 33%%per%%6% 
+001 %%per%%gcc1%%per%%35 INT 3%%per%%1% 18%%per%%7% %%dsh%%9%%per%%4% 17%%per%%0% 8%%per%%9% NA NA 
+022%%per%%11 INT 5%%per%%1% 23%%per%%4% 0%%per%%3% 14%%per%%9% 11%%per%%4% 5%%per%%4% 16%%per%%2% 
+locus INT 8%%per%%7% 30%%per%%4% 4%%per%%3% 10%%per%%3% 8%%per%%6% 4%%per%%3% 8%%per%%7% 
+mp3d FP 10%%per%%7% 10%%per%%7% 0%%per%%0% 13%%per%%3% 8%%per%%7% 0%%per%%0% 6%%per%%7% 
+psgrind INT 10%%per%%4% 19%%per%%5% 1%%per%%3% 12%%per%%1% 9%%per%%9% 8%%per%%0% 36%%per%%0% 
+ch PF 05% 27%%per%%0% 2%%per%%0% 8%%per%%8% 1%%per%%2% %%dsh%%0%%per%%8% 12%%per%%1% 
+072 %%per%% sc INT 5%%per%%6% 11%%per%%2% 7%%per%%0% 8%%per%%0% 3%%per%%8% NA NA 
+tracker INT %%dsh%%0%%per%%8% 10%%per%%5% 0%%per%%4% 3%%per%%9% 2%%per%%1% 10%%per%%9% 19%%per%%9% 
+water FP 0%%per%%7% 7%%per%%4% 0%%per%%3% 6%%per%%7% 1%%per%%5% 4%%per%%3% 12%%per%%3% 
+| Average I 4%%per%%3% | 21%%per%%8% | 0%%per%%4% | 10%%per%%5% | 5%%per%%0% I 4%%per%%3% | 17%%per%%6% ‘I 
+Table 1%%cln%% Sandboxing overheads ]f[ DEC—MIPS ]^[ DEC—ALPHA platforms%%per%%]$~ ~$[The benchmarks 001%%per%%gcc1%%per%%35 ]^[ 
+072%%per%%sc are dependent on a pointer size of 32 bits ]^[ do ]n[ compile on the DEC%%dsh%%ALPHA%%per%%]$~ ~$[The predicted fault 
+isolation overhead ]f[ cholesky is negative due to conservative interlocking on the MIPS ﬂoatingvpoint unit%%per%% 
+compute intensive%%per%%]$~ ~$[Programs that perform signiﬁcant 
+amounts of I/O will incur less overhead%%per%% 
+5%%per%%2 Fault Domain Crossing 
+We now turn to the cost of cross—fault—domain RPC%%per%%]$~ 
+~$[Our RPC mechanism spends most of its time saving 
+]^[ restoring registers%%per%%]$~ ~$[As detailed in Section 4%%lst%% only 
+registers that are designated by the architecture to be 
+preserved across procedure calls need to be saved%%per%%]$~ ~$[In 
+addition%%lst%% %%cmp%% no instructions in the callee fault domain 
+modify a preserved register %%cmp%% it does ]n[ need to be 
+saved%%per%%]$~ ~$[Table 2 reports the times ]f[ three versions of 
+a NULL cross—fault—domain RPC%%per%%]$~ ~$[Column 1 lists the 
+crossing times when all data registers are caller saved%%per%%]$~ 
+~$[Column 2 lists the crossing times when the preserved 
+integer registers are saved%%per%%]$~ ~$[Finally%%lst%% the times listed in 
+Column 3 include saving all preserved ﬂoating point 
+registers%%per%%]$~ ~$[In many cases crossing times could be further 
+reduced by statically partitioning the registers between 
+domains%%per%%]$~ 
+~$[For comparison%%lst%% we measured two other calling 
+mechanisms%%per%%]$~ ~$[First%%lst%% we measured the time to perform a 
+C procedure call that takes no arguments ]^[ returns 
+no value%%per%%]$~ ~$[Second%%lst%% we sent a single byte between two 
+address spaces using the pipe abstraction provided by 
+211 
+the native operating system ]^[ measured the round%%dsh%% 
+trip time%%per%%]$~ ~$[These times are reported in the last two 
+columns of Table 2%%per%%]$~ ~$[On these platforms%%lst%% the cost 
+of cross—address—space calls is roughly three orders of 
+magnitude more expensive %%cmp%% local procedure calls%%per%%]$~ 
+~$[Operating systems with highly optimized RPC im— 
+plementations have reduced the cost of cross%%dsh%%address%%dsh%% 
+space RPC to within roughly two orders of magni— 
+tude of local procedure calls%%per%%]$~ ~$[On Mach 3%%per%%0%%lst%% cross— 
+address%%dsh%%space RPC on a 25Mhz DECstation 5000/200 
+is 314 times more expensive %%cmp%% a local procedure 
+call [BerQBl%%per%%]$~ ~$[The Spring operating system%%lst%% running on 
+a 40Mhz SPARCstationQ%%lst%% delivers cross—address—space 
+RPC that is 73 times more expensive %%cmp%% a local leaf 
+procedure call [HK93]%%per%%]$~ ~$[Software enforced fault isola« 
+tion is able to reduce the relative cost of cross%%dsh%%fault%%dsh%% 
+domain RPC by an order of magnitude over these sys%%dsh%% 
+tems%%per%% 
+5%%per%%3 Using Fault Domains in POSTGRES 
+To capture the effect of our system on application 
+performance%%lst%% we added software enforced fault do 
+mains to the POSTGRES database management system%%lst%% 
+]^[ measured POSTGRES running the Sequoia 2000 
+benchmark [SFGMQ3]%%per%%]$~ ~$[The Sequoia %%sqt%%2000 benchmark 
+Cross FaultADomain RFC 
+Platform Caller Save Save C Pipes 
+Save Integer Integer+Float Procedure 
+Registers Registers Registers Call 
+DEC~MIPS 1%%per%%11ps 1%%per%%81ps 2%%per%%83m 0%%per%%10/4s 204%%per%%72ns 
+DEC—ALPHA 0175/15 1%%per%%35/5 lSOns 0%%per%%06ps 227%%per%%88ps 
+Table ‘2%%cln%% Cross%%dsh%%faultrdomain crossing times%%per%%]$~ 
+~$[Sequoia 2000 Untrusted Software—Enforced Number DEC—MIPS—PIPE 
+Query Function Manager Fault Isolation Cross—Domain Overhead 
+Overhead Overhead Calls (predicted) 
+Query 6 1%%per%%4% 1%%per%%7% 60989 18%%per%%6% 
+Query 7 5%%per%%0% 1%%per%%8% 121986 386% 
+Query 8 9%%per%%0% 2%%per%%7% 121978 312% 
+Query 10 9%%per%%6% 5%%per%%7% 1427024 31%%per%%9% 
+Table 3%%cln%% Fault isolation overhead ]f[ POSTGRES running Sequoia 2000 benchmark%%per%% 
+contains queries typical of those used by earth scien— 
+tists in studying the climate%%per%%]$~ ~$[To support these kinds 
+of non~traditional queries%%lst%% POSTGRES provides a%%per%% user 
+extensible type system%%per%%]$~ ~$[Currently%%lst%% userrdeﬁned types 
+are written in conventional programming languages%%lst%% 
+such as C%%lst%% ]^[ dynamically loaded into the database 
+manager%%per%%]$~ ~$[This has long been recognized to be a serious 
+safety problem[St088]%%per%%]$~ 
+~$[Four of the eleven queries in the Sequoia 2000 bench%%dsh%% 
+mark make use of user—deﬁned polygon data types%%per%%]$~ ~$[We 
+measured these four queries using both unprotected 
+dynamic linking ]^[ software—enforced fault isolation%%per%%]$~ 
+~$[Since the POSTGRES code is trusted%%lst%% we only sand— 
+boxed the dynamically loaded user code%%per%%]$~ ~$[For this 
+experiment%%lst%% our cross%%dsh%%fault—domain RFC mechanism 
+saved the preserved integer registers (the variant cor%%dsh%% 
+responding to Column 2 in Table 2)%%per%%]$~ ~$[In addition%%lst%% we 
+instrumented the code to count the number of cross%%dsh%% 
+fault%%dsh%%domain RFCs ]s[ that we could estimate the per 
+formance of fault isolation based on separate address 
+spaces%%per%%]$~ 
+~$[Table 3 presents the results%%lst%% Untrusted user—deﬁned 
+functions in POSTGRES use a separate calling mecha%%dsh%% 
+nism from built—in functions%%per%%]$~ ~$[Column 1 lists the over— 
+head of the untrustcd function manager Without soft%%dsh%% 
+ware enforced fault domains%%per%%]$~ ~$[All reported overheads in 
+Table 3 are relative to original POSTGRES using the un— 
+trusted function manager%%per%%]$~ ~$[Column 2 reports the mea~ 
+sured overhead of software enforced fault domains%%per%%]$~ ~$[Us— 
+ing the number of cross—domain calls listed in Column 3 
+]^[ tho DEC*MIPS—I‘IPE time reported in Table 2%%lst%% Col— 
+umn 4 lists the estimated overhead using conventional 
+hardware address spaces%%per%% 
+212 
+5%%per%%4 Analysis 
+For the POSTGRES experiment software encapsulation 
+provided substantial savings over using native operat%%dsh%% 
+ing system services ]^[ hardware address spaces%%per%%]$~ ~$[In 
+general%%lst%% the savings provided by our techniques over 
+hardware—based mechanisms is a function of the per— 
+centage of time spent in distrusted code (Q)%%lst%% the per%%dsh%% 
+centage of time spent crossing among fault domains 
+(2‘6)%%lst%% the overhead of encapsulation (h)%%lst%% ]^[ the ratio%%lst%% 
+r%%lst%% of our fault domain crossing time to the crossing 
+time of the competing hardware%%dsh%%based RPC mecha— 
+nism%%per%% 
+savings = (1 — 7°)t‘C %%dsh%%— htd 
+Figure 5 graphically depicts these trade—offs%%per%%]$~ ~$[The X 
+axis gives the percentage of time an application spends 
+crossing among fault domains%%per%%]$~ ~$[The Y axis reports the 
+relative cost of software enforced fault%%dsh%%domain cross— 
+ing over hardware address spaces%%per%%]$~ ~$[Assuming that the 
+execution time overhead of encapsulated code is 4%%per%%3%%%lst%% 
+the shaded region illustrates when software enforced 
+fault isolation is the better performance alternative%%per%%]$~ 
+~$[Softwarevenforccd fault isolation becomes increas— 
+ingly attractive as applications achieve higher degrees 
+of fault isolation (see Figure 5)%%per%%]$~ ~$[For example%%lst%% %%cmp%% an ap%%dsh%% 
+plication spends 30% of its time crossing fault domains%%lst%% 
+our RPC mechanism need only perform 10% better 
+%%cmp%% its competitor%%lst%% Applications that currently spend 
+as little as 10% of their time crossing require only a 
+39% improvement in fault domain crossing time As 
+reported in Section 52%%lst%% our crossing time ]f[ the DEC%%dsh%% 
+MIPS is Hons ]^[ ]f[ the DEC—ALPHA UTE/is%%per%%]$~ ~$[Hence%%lst%% 
+Crossing Time Relative to 
+Existing RFC 
+:9 HP :9 e9 
+ementage of Execution Time Spent Crossing 
+Figure 5%%cln%% The shaded region represents when soft~ 
+ware enforced fault isolation provides the better per— 
+formance alternative%%per%%]$~ ~$[The X axis represents per 
+centage of time spent crossing among fault domains 
+(16)%%per%%]$~ ~$[The Y axis represents the relative RPC crossing 
+speed (7‘)%%per%%]$~ ~$[The curve represents the break even point%%cln%% 
+(1—7%%sqt%%)t,%%scn%% = htd%%per%%]$~ ~$[In this graph%%lst%% h = 0%%per%%043 (encapsulation 
+overhead on the DEC~MIPS ]^[ DEC%%dsh%%ALPHA)%%per%% 
+]f[ this latter example%%lst%% a hardware address space cross— 
+ing time of 1%%per%%80m on the DEC—MIPS ]^[ 1%%per%%23/15 on the 
+DEC~ALPHA would provide better performance %%cmp%% 
+software fault domains%%per%%]$~ ~$[As far as we know%%lst%% no pro— 
+duction ]v[ experimental system currently provides this 
+level of performance%%per%%]$~ 
+~$[Further%%lst%% Figure 5 assumes that the entire applica%%dsh%% 
+tion was encapsulated%%per%%]$~ ~$[For many applications%%lst%% such as 
+POSTGRES%%lst%% this assumption is conservative%%per%%]$~ ~$[Figure 6 
+transforms the previous ﬁgure%%lst%% assuming that 50% of 
+total execution is spent in distrusted extension code%%per%%]$~ 
+~$[Figures 5 ]^[ 6 illustrate that software enforced 
+fault isolation is the best choice whenever crossing 
+overhead is a significant proportion of an applica%%dsh%% 
+tion’s execution time%%per%%]$~ ~$[Figure 7 demonstrates that 
+overhead due to software enforced fault isolation re— 
+mains small regardless of application behavior%%per%%]$~ ~$[Fig— 
+ure 7 plots overhead as a function of crossing behavior 
+]^[ crossing cost%%per%%]$~ ~$[Crossing times typical of vendor%%dsh%% 
+supplied ]^[ highly optimized hardware—based RPC 
+mechanisms are shown%%per%%]$~ ~$[The graph illustrates the rel— 
+ative performance stability of the software solution%%per%%]$~ 
+~$[This stability%%dqt%% allows system developers to ignore the 
+performance effect of fault isolation in choosing which 
+modules to place in separate fault domains%%per%% 
+6 Related Work 
+Many systems have considered ways of optimizing 
+RPC performance [vaT88%%lst%% TASS%%lst%% Bla90%%per%%]$~ ~$[SB90%%lst%% HK93%%lst%% 
+BALL90%%lst%% BALL91]%%per%%]$~ ~$[Traditional RFC systems based 
+100% 
+90% 
+80% 
+70% 
+60% 
+40% 
+Crossing Time Relative 10 
+Existing RPC 
+u%%per%% 
+§ 
+Percentage of Execution Time Spent Crossing 
+Figure 6%%cln%% The shaded region represents when soft~ 
+ware enforced fault isolation provides the better per%%dsh%% 
+formance alternative%%per%%]$~ ~$[The X axis represents per%%dsh%% 
+centage of time spent crossing among fault domains 
+(136)%%per%%]$~ ~$[The Y axis represents the relative RPC crossing 
+speed (%%sqt%%r%%sqt%%)%%per%%]$~ ~$[The curve represents the break even point%%cln%% 
+(l—r)tc = htd%%per%%]$~ ~$[In this graph%%lst%% h = 0%%per%%043 (encapsulation 
+overhead on the DEC—MIPS ]^[ DEC—ALPHA)%%per%% 
+100% %%per%% 
+a%%dqt%% Ultrix 4%%per%%2 Context Switch 
 8 
-Patients sometimes arrive with a press to speak about their story%%per%%]$~ ~$[However%%lst%% the therapist 
-should prevent the patient from engaging in an extended exposure session at the first session%%per%%]$~ 
-~$[Intense affect ]^[ graphic details of an event%%lst%% disclosed before any type of rapport ]v[ trust has 
-been established%%lst%% may well lead to premature termination from therapy%%per%%]$~ ~$[The patient is likely to 
-assume that the therapist holds the same opinions regarding his guilt%%lst%% shame%%lst%% ]v[ worthlessness 
-that he%%lst%% the patient%%lst%% holds%%lst%% ]^[ may be afraid to return to therapy after such a disclosure%%per%%]$~ 
-~$[Other patients will be very reluctant to discuss the traumatic event ]^[ will be quite 
-relieved that they do ]n[ have to describe it in detail during the first session%%per%%]$~ ~$[In these cases%%lst%% the 
-therapist may have to draw out even a brief description of the event%%per%%]$~ ~$[Dissociation when 
-attempting to think about ]v[ talk about the event is common%%per%%]$~ ~$[An initial assessment session grants 
-the patient ]^[ therapist the opportunity to get acquainted before the therapy begins%%lst%% ]^[ allows 
-the therapist to provide the patient with a description of what the therapy will entail%%per%%]$~ ~$[In this first 
-session%%lst%% it is important that the therapist remind the patient that CPT is a very structured form of 
-therapy%%lst%% ]^[ that the first session is a bit different from the others %%cmp%% the therapist will do 
-more talking%%per%%]$~ ~$[The therapist begins with a description of the symptoms of PTSD ]^[ a cognitive 
-formulation of them%%per%%]$~ 
-~$[Therapist explanations to patient 
-1%%per%%]$~ ~$[PTSD symptoms 
-%%dqt%%In going over the results of your testing%%lst%% we found that you are suffering from posttraumatic stress disorder%%per%%]$~ ~$[The symptoms of PTSD fall into three clusters%%per%%]$~ ~$[The first cluster is the 
-re%%dsh%%experiencing of the event in some way%%per%%]$~ ~$[This includes nightmares about the event ]v[ other 
-scary dreams%%scn%% flashbacks%%lst%% when you act ]v[ feel as %%cmp%% the incident is recurring%%scn%% intrusive thoughts%%lst%% 
-which are memories that suddenly pop into your mind%%per%%]$~ ~$[You might have the intrusive thoughts 
-when there is something in the environment to remind you of the event (including anniversaries 
-of the event) ]v[ even when there is nothing there to remind you of it%%per%%]$~ ~$[Common times to have 
-these memories are when you are falling asleep%%lst%% when you relax%%lst%% ]v[ when you are bored%%per%%]$~ ~$[These 
-symptoms are all normal following such a traumatic event%%per%%]$~ ~$[You are ]n[ going crazy%%per%%]$~ ~$[Can you 
-give me examples of these experiences in your own life since the event?%%per%%%%per%%%%per%% 
-%%dqt%%A second set of symptoms concern arousal5%%per%%]$~ ~$[As might be expected%%lst%% when reminded of the 
-event%%lst%% you are likely to experience very strong emotions%%per%%]$~ ~$[Along with these feelings are physical 
-reactions%%per%%]$~ ~$[Indicators of arousal symptoms include problems falling ]v[ staying asleep%%lst%% irritability 
-]v[ outbursts of anger%%lst%% difficulty concentrating%%lst%% startle reactions like jumping at noises ]v[ %%cmp%% 
-someone walks up behind you%%lst%% always feeling on guard ]v[ looking over your shoulder even when 
-there is no reason to%%per%%]$~ ~$[Which of these do you experience?%%per%%%%per%%%%per%% 
-%%dqt%%The third cluster of symptoms is avoidance of reminders of the event%%per%%]$~ ~$[A natural reaction to 
-intrusive reminders ]^[ strong emotional reactions is the urge to push these thoughts ]^[ 
-feelings away%%per%%]$~ ~$[You might avoid places ]v[ people who remind you of the event%%per%%]$~ ~$[Some people 
-avoid watching certain television programs ]v[ turn off the TV%%per%%]$~ ~$[Some people avoid reading the 
-newspaper ]v[ watching the news%%per%%]$~ ~$[You might avoid thinking about the event ]^[ letting yourself 
-5 
-Although avoidance is listed second in the DSM%%lst%% it makes more sense to present the symptoms to patients in their 
-most likely order%%lst%% intrusion%%lst%% arousal%%lst%% ]^[ avoidance%%per%%]$~ ~$[This way the explanation ]f[ the symptoms follows logically 
-from their description%%per%% 
-9 
-feel your feelings about the event%%per%%]$~ ~$[There might be certain sights%%lst%% sounds%%lst%% ]v[ smells that you find 
-yourself avoiding ]v[ escaping from %%cmp%% they remind you of the event%%per%%]$~ ~$[Sometimes people 
-have trouble remembering all ]v[ part of the event%%per%%]$~ ~$[Sometimes people feel numb ]^[ cut%%dsh%%off from 
-the world around them%%per%%]$~ ~$[This feeling of detachment ]v[ numbness is another form of avoidance%%per%%]$~ 
-~$[Sometimes it is described as feeling as though you are watching life from behind glass%%per%%]$~ ~$[Which 
-things ]v[ thoughts do you avoid ]v[ run away from?%%per%%%%per%%%%per%%]$~ ~$[Have you felt numb ]v[ shut off from your 
-emotions?%%per%%%%per%%%%per%%]$~ ~$[Have you found yourself feeling disconnected from other people? 
-2%%per%%]$~ ~$[Trauma Recovery ]^[ Fight%%dsh%%Flight Response 
-“Many people are exposed to traumatic events%%per%%]$~ ~$[In the time immediately following a trauma%%lst%% 
-most people will have the symptoms of PTSD that we just talked about%%per%%]$~ ~$[However%%lst%% over time%%lst%% ]f[ 
-many people%%lst%% those symptoms naturally decrease%%lst%% ]^[ they are ]n[ diagnosed with PTSD%%per%%]$~ ~$[In 
-other words%%lst%% they naturally recover from the traumatic event%%per%%]$~ ~$[There are some people who do ]n[ 
-recover ]^[ are later diagnosed with PTSD%%per%%]$~ ~$[Based on that%%lst%% it is helpful to think of PTSD as a 
-problem in recovery%%per%%]$~ ~$[Something got in the way of you having that natural process of recovery%%lst%% 
-]^[ our work together is to determine what got in the way ]^[ to change it ]s[ that you can 
-recover from what happened%%per%%]$~ ~$[We will be working to get you ‘unstuck’”%%per%%]$~ 
-~$[There are some different reasons why you may be having trouble recovering%%per%%]$~ ~$[First%%lst%% there 
-may be an automatic component during the event that you should consider as you evaluate how 
-you responded during the event%%per%%]$~ ~$[When people face serious%%lst%% possibly life%%dsh%%threatening events%%lst%% they 
-are likely to experience a very strong physical reaction called the fight%%dsh%%flight reaction%%per%%]$~ ~$[More 
-recently we have learned that there is a third possibility%%lst%% the freeze response%%per%%]$~ ~$[In the fight%%dsh%%flight 
-reaction%%lst%% your body is trying to get you ready to fight ]v[ flee danger%%per%%]$~ ~$[The goal here is to get all 
-the blood ]^[ oxygen out to your hands%%lst%% feet%%lst%% ]^[ big muscle groups like your thighs ]^[ 
-forearms ]s[ that you can run ]v[ fight%%per%%]$~ ~$[In order to do that quickly%%lst%% the blood leaves your stomach 
-]v[ your head%%per%%]$~ ~$[You might feel like you have been kicked in the gut ]v[ are going to faint%%per%%]$~ ~$[Your 
-body stops fighting off diseases ]^[ digesting food%%per%%]$~ ~$[You are ]n[ thinking about your philosophy 
-of life ]^[ may have trouble thinking at all%%per%%]$~ ~$[The same thing happens with the freeze response%%lst%% ]b[ 
-in this case your body is trying to reduce both physical ]^[ emotional pain%%per%%]$~ ~$[You may have 
-stopped feeling pain ]v[ had the sense that the event was happening to someone %%cmp%% as %%cmp%% it were 
-a movie%%per%%]$~ ~$[You might have been completely shut down emotionally ]v[ even had shifts in 
-perception like you are out of your body ]v[ that time has slowed down%%per%%]$~ 
-~$[If you have been thinking now of other things that you could have done %%cmp%%%%lst%% you might 
-need to consider what your state of mind was during the event%%per%%]$~ ~$[Did you have all possible options 
-available to you%%qsn%%]$~ ~$[Did you know %%cmp%% what you know now%%qsn%%]$~ ~$[Do you have different skills now %%cmp%% 
-you did %%cmp%%%%qsn%%]$~ 
-~$[Second%%lst%% the fight%%dsh%%flight response that you were experiencing during the traumatic event can 
-get quickly paired with cues%%lst%% ]v[ things in the environment%%lst%% that didn’t have any particular 
-meaning before%%per%%]$~ ~$[Then later%%lst%% when you encounter those cues%%lst%% you are likely to have another fightflight reaction%%per%%]$~ ~$[Your nervous system senses the cue%%lst%% which could be a sight%%lst%% a sound%%lst%% smell%%lst%% ]v[ 
-even a time%%lst%% ]^[ %%cmp%% your body reacts as though you are in danger again%%per%%]$~ ~$[These reactions will 
-fade over time %%cmp%% you don’t avoid those cues%%per%%]$~ ~$[However%%lst%% %%cmp%% you avoid reminder cues%%lst%% your body 
-won’t learn that these are not%%lst%% in fact%%lst%% good danger cues%%per%%]$~ ~$[They don’t tell you very accurately 
-10 
-whether you are actually in danger ]s[ you may have false alarms going off frequently%%per%%]$~ ~$[After a 
-while you won’t trust your own senses ]v[ judgment about what is ]^[ isn’t dangerous%%lst%% ]^[ too 
-many situations seem dangerous that are not%%per%%]$~ 
-~$[You may start to have thoughts about the dangerousness of the world%%lst%% particular places%%lst%% 
-]v[ situations that are based on your reactions rather %%cmp%% the actual realistic danger of those 
-situations%%per%%]$~ ~$[This leads us to examine how your thoughts may affect your reactions%%per%%]$~ ~$[Besides 
-thoughts about dangerousness%%lst%% many different types of beliefs about ourselves ]^[ the world can 
-be affected by traumatic events%%per%% 
-3%%per%%]$~ 
-~$[Cognitive Theory 
-“As you were growing up you learned about the world ]^[ organized it into categories 
-]v[ beliefs%%per%%]$~ ~$[For example%%lst%% when you were small%%lst%% you learned that a thing with a back%%lst%% seat ]^[ 
-four legs is a chair%%per%%]$~ ~$[In the beginning you just called all of them %%sqt%%chair%%sqt%%%%per%%]$~ ~$[You may have even 
-called a couch a chair ]v[ a stool a chair %%cmp%% they had a back%%lst%% seat%%lst%% ]^[ four legs%%per%%]$~ ~$[Later%%lst%% as 
-you got older%%lst%% through experience%%lst%% you learned more complex categories%%lst%% ]s[ you may have 
-learned dining room chair%%lst%% rocking chair%%lst%% recliner ]v[ folding chair%%per%%]$~ ~$[We develop many categories 
-of ideas ]^[ beliefs about others%%lst%% the world%%lst%% ]^[ ourselves%%lst%% as well as ]f[ objects%%per%%]$~ 
-~$[One common belief that many people get while growing up is that %%sqt%%good things happen to 
-good people ]^[ bad things happen to bad people%%per%%%%sqt%% This is called the %%sqt%%just world belief%%per%%%%sqt%% You 
-may have learned this through your religion%%lst%% your parents%%lst%% your teachers%%lst%% ]v[ you may have 
-picked it up as a way to make the world seem safer ]^[ more predictable%%per%%]$~ ~$[It makes more sense 
-when you are young%%per%%]$~ ~$[For example%%lst%% parents wouldn’t want to say%%lst%% ‘If you do something you’re 
-]n[ supposed to%%lst%% you may ]v[ may ]n[ get in trouble%%per%%’ However%%lst%% as we grow up%%lst%% we realize that 
-the world is more complex %%cmp%% that%%lst%% just like how we learn that there are all different types of 
-chairs%%per%%]$~ ~$[If you have ever had things go bad ]^[ you said %%sqt%%Why me?,%%sqt%% %%cmp%% you have a just world 
-belief%%per%% 
-%%dqt%%When an unexpected event occurs that doesn%%sqt%%t fit your beliefs%%lst%% there are different ways that 
-you may try to make it fit%%per%%]$~ ~$[One way that you may have tried to make the event ]^[ your beliefs fit 
-is by changing your memories ]v[ interpretation of the event to fit with your pre%%dsh%%existing beliefs 
-(assimilation)%%per%%]$~ ~$[Examples of changing your interpretations/memories of the event are to blame 
-yourself ]f[ ]n[ preventing the event (or protecting loved ones)%%lst%% to have trouble accepting that 
-the event happened%%lst%% to %%sqt%%forget%%sqt%% that it happened%%lst%% ]v[ to forget the most horrifying parts%%per%%]$~ ~$[Changing 
-the event may seem easier %%cmp%% changing your entire set of beliefs about the world%%lst%% how people 
-behave%%lst%% ]v[ your beliefs about your safety%%per%% 
-%%dqt%%It is possible that instead of changing the event%%lst%% you may change your beliefs to accept 
-what happened (accommodation)%%per%%]$~ ~$[This is one of our goals ]f[ therapy%%per%%]$~ ~$[Unfortunately%%lst%% some 
-people go overboard ]^[ change their beliefs too much%%lst%% which may result in a reluctance to 
-become intimate ]v[ develop trust%%lst%% ]^[ increased fear (over%%dsh%%accommodation)%%per%%]$~ ~$[Examples that 
-reflect an extreme change in beliefs include%%cln%% thinking that no one can be trusted ]v[ that the world 
-is completely dangerous%%per%% 
-11 
-“For some people who have had previous negative experiences in their life%%lst%% traumatic 
-events can seem to reinforce ]v[ confirm these previously held beliefs%%per%%]$~ ~$[For example%%lst%% prior to 
-having experienced a trauma you might have believed that others can’t be trusted ]v[ that the 
-world is generally unsafe%%per%%]$~ ~$[The traumatic event comes along ]^[ seems to confirm those beliefs%%per%%]$~ 
-~$[Or%%lst%% maybe you were told that everything was your fault growing up%%lst%% ]s[ when a bad thing 
-happens%%lst%% it seems to confirm that once again%%lst%% you are at fault%%per%%]$~ 
-~$[Our goals ]f[ therapy are%%cln%% 1) to help you accept the reality of the event%%lst%% 2) to feel your emotions 
-about it ]^[ 3) to help you develop balanced ]^[ realistic beliefs about the event%%lst%% yourself%%lst%% ]^[ 
-others%%per%% 
-4%%per%%]$~ 
-~$[Types of Emotions 
-“There are two kinds of emotions that follow traumatic events%%per%%]$~ ~$[The first type is the feelings 
-that follow naturally from the event ]^[ that would be universal%%cln%% fear when in real danger%%lst%% anger 
-when being intentionally harmed%%lst%% joy ]v[ happiness with positive events%%lst%% ]v[ sadness with losses%%per%%]$~ 
-~$[These natural emotions have a natural course%%per%%]$~ ~$[They will ]n[ continue on forever unless there is 
-something that you do to feed them%%per%%]$~ ~$[It is important to feel these emotions that you may ]n[ have 
-allowed yourself to experience about the event%%lst%% ]^[ let them run their natural course%%per%%]$~ 
-~$[The second type of emotions%%lst%% manufactured feelings%%lst%% result ]n[ directly in response to the 
-event%%lst%% ]b[ based on how you interpret the event%%per%%]$~ ~$[If you have thoughts such as ‘I should have 
-rescued other people’ ]v[ ‘I must be a failure that I can’t get over it”%%lst%% %%cmp%% you will be feeling 
-angry at yourself ]v[ shame%%per%%]$~ ~$[These emotions are ]n[ based on the facts of the event%%lst%% ]b[ on your 
-interpretations%%per%%]$~ ~$[The more that you continue to think about the event in these ways%%lst%% the more ]^[ 
-more of the manufactured feelings you are going to have%%per%%]$~ ~$[The upside of the fact that you are 
-producing these feelings is that%%lst%% %%cmp%% you change your thoughts ]^[ interpretations%%lst%% you will 
-change your feelings%%per%%]$~ ~$[Think of your emotions as a fire in a fireplace%%per%%]$~ ~$[The fire has energy to it%%per%%]$~ 
-~$[However%%lst%% it will burn out %%cmp%% it is ]n[ continually fed%%per%%]$~ ~$[The self%%dsh%%blame ]v[ guilty thoughts can 
-continue to feed the emotional fire indefinitely%%per%%]$~ ~$[Take away the fuel of your thoughts%%lst%% ]^[ the fire 
-burns out quickly%%per%%]$~ 
-~$[In order ]f[ you to recover from your traumatic event(s)%%lst%% we will be working together ]f[ 
-you to express ]^[ accept your natural emotions ]^[ to adjust the manufactured feelings%%per%%]$~ 
-~$[Brief Review of Most Traumatic Event 
-In this first session%%lst%% the therapist ]^[ patient work together to define the most traumatic 
-event that they will work on first%%per%%]$~ ~$[The patient %%cmp%% provides a brief account of the traumatic 
-event%%per%%]$~ ~$[It is important the therapist keep the patient contained ]^[ ]n[ conduct an exposure to the 
-traumatic material%%per%%]$~ ~$[Most veterans have a ‘public version’ of the incident that they can use that 
-does ]n[ elicit much affect%%per%%]$~ ~$[However%%lst%% %%cmp%% the patient starts to become distressed ]v[ dissociates%%lst%% the 
-therapist should ask questions ]^[ keep the patient grounded in the present%%per%%]$~ ~$[If needed%%lst%% they can 
-stop the patient’s description%%per%%]$~ ~$[The therapist only needs enough of the details to begin to 
-hypothesize what problematic interpretations ]^[ cognitions might need to be explored%%per%% 
-12 
-We begin with the worst incident %%cmp%% there is more likely to be generalization of new%%lst%% 
-more balanced cognitions from the worst event to less severe events %%cmp%% the other way around%%per%%]$~ 
-~$[Also%%lst%% %%cmp%% the patient begins with a less severe event %%cmp%% she believes she cannot handle the 
-worst event%%lst%% she will still believe that after working on this event%%per%%]$~ ~$[If the patient is resistant to 
-writing an account about the worst event%%lst%% the therapist needs to do some cognitive therapy during 
-session two ]^[ have the patient complete some A%%dsh%%B%%dsh%%C sheets on her thoughts ]^[ feelings about 
-working on the worst event (see sessions 2 ]^[ 3)%%per%%]$~ 
-~$[It is helpful to provide an expectation that the patient provide a brief%%lst%% less affect%%dsh%%charged 
-event by providing a timeframe in the request%%per%% 
-“In order ]f[ me to have a clearer picture of what we will be working on first%%lst%% could you 
-please give me a brief description%%lst%% about five minutes%%lst%% of the most traumatic event…” 
-If the patient responds that he has multiple traumatic events that disturb him%%lst%% making it 
-difficult ]v[ impossible to choose the ‘most’ traumatic event%%lst%% first validate the fact that he may 
-have multiple distressing events%%per%%]$~ ~$[Then%%lst%% focus on ascertaining which one seems to be causing the 
-most PTSD symptoms by inquiring about the content of his reexperiencing symptoms%%per%%]$~ ~$[The 
-therapist can ask%%lst%% ‘What do you think about ]v[ have flashbacks about the most?’ It may also be 
-helpful to probe about his behavioral avoidance symptoms to determine the event that should 
-addressed first%%per%%]$~ ~$[Remind the patient that work on the chosen event will very likely impact the 
-other events%%lst%% ]^[ %%cmp%% not%%lst%% there will be opportunities to work on the other events%%per%%]$~ 
-~$[Therapy Rationale %%dsh%% Stuck Points 
-%%dqt%%So%%lst%% one goal of therapy will be to help you recognize ]^[ modify what you are saying to 
-yourself%%dsh%%in other words%%lst%% your thoughts ]^[ interpretations about the event%%lst%% which may have 
-become automatic%%per%%]$~ ~$[These distorted beliefs may become ]s[ automatic that you aren%%sqt%%t even aware 
-that you have them%%per%%]$~ ~$[Even though you may ]n[ be aware of what you are saying to yourself%%lst%% your 
-beliefs ]^[ self%%dsh%%statements affect your mood ]^[ your behavior%%per%%]$~ ~$[Often%%lst%% people aren%%sqt%%t aware that 
-they are having thoughts about whatever they are experiencing%%per%%]$~ ~$[For example%%lst%% on the way here 
-today%%lst%% you were probably wondering what this therapy would be like ]v[ what I would be asking 
-you to talk about%%per%%]$~ ~$[Do you remember what you were thinking about before the session?%%per%%%%per%%%%per%% 
-%%dqt%%I will be helping you to identify what your automatic thoughts are ]^[ how they influence 
-what you feel%%per%%]$~ ~$[I will also teach you ways to challenge ]^[ change what you are saying to 
-yourself ]^[ what you believe about yourself ]^[ the event%%per%%]$~ ~$[Some of your beliefs about the event 
-will be more balanced %%cmp%% others%%per%%]$~ ~$[You remember that we discussed at the beginning of this 
-session about how some people get stuck in their recovery process%%per%%]$~ ~$[We will be focusing on 
-changing the beliefs that are interfering with your recovery ]v[ keeping you stuck%%per%%]$~ ~$[We call these 
-problematic beliefs ‘stuck points%%per%%’ (The patient is given the handout on stuck points ]^[ the 
-Stuck Point Log)%%per%%]$~ ~$[We will keep a Stuck Point Log in your folder ]s[ as we identify problematic 
-ideas we can write them down%%per%%]$~ ~$[Then when we move to different worksheets you will have this list 
-to draw on%%per%% 
-13 
-Anticipating Avoidance ]^[ Increasing Compliance 
-The patient has been avoiding thinking about the event thereby escaping ]^[ avoiding strong 
-]^[ unpleasant emotions%%per%%]$~ ~$[The therapist must develop a strong ]^[ compelling rationale ]f[ 
-therapy in order ]f[ the patient to be motivated to do something completely antithetical to what 
-they have been doing%%per%%]$~ ~$[It is very important that the patient understand what the therapy consists of 
-]^[ why it will work%%per%%]$~ ~$[They should have ample opportunity to ask questions ]^[ express 
-concerns%%per%%]$~ ~$[The therapist needs to express confidence%%lst%% warmth%%lst%% ]^[ support%%per%%]$~ 
-~$[I cannot emphasize enough how important it is that you ]n[ avoid%%lst%% which is what you 
-usually have done to try to cope since the event%%per%%]$~ ~$[This will be your biggest (and probably 
-scariest) hurdle%%per%%]$~ ~$[I cannot help you feel your feelings%%lst%% ]v[ challenge your thoughts %%cmp%% you don%%sqt%%t 
-come to therapy ]v[ %%cmp%% you avoid completing your practice assignments%%per%%]$~ ~$[If you find yourself 
-wanting to avoid%%lst%% remind yourself that you are still struggling with the event %%cmp%% you have 
-avoided dealing with it head%%dsh%%on%%per%%]$~ 
-~$[The therapist should describe the course of therapy (and the nature of the trauma account in 
-sessions four ]^[ five) ]^[ the importance of doing practice assignments%%per%% 
-“There are 168 hours in a week%%per%%]$~ ~$[We cannot expect you to change your symptoms ]^[ the 
-way you have been coping in one ]v[ two hours a week %%cmp%% you are continuing to practice your old 
-ways of thinking the other 166 hours a week%%per%%]$~ ~$[It will be important ]f[ you to take what you are 
-learning ]^[ apply it to your everyday life%%per%%]$~ ~$[Your therapy needs to be where your life is%%lst%% ]n[ just 
-in this little room”%%per%%]$~ 
-~$[First Impact Statement 
-%%dqt%%For the next session%%lst%% I want you to start working on how you think about ]^[ explain the 
-traumatic event%%per%%]$~ ~$[I also want you to pay attention to how the traumatic event impacted on your 
-views of yourself%%lst%% other people%%lst%% ]^[ the world%%per%%]$~ ~$[I want you to write at least one page on 1) why 
-this event happened to you%%lst%% ]^[ 2) how has it changed ]v[ streng%%cmp%%ed your views about 
-yourself%%lst%% other people ]^[ the world in general%%qsn%%]$~ 
-~$[In order ]f[ this assignment to be most helpful to you%%lst%% I strongly suggest you try to start this 
-assignment soon%%lst%% ]s[ that you have enough time to write thoughtfully%%per%%]$~ ~$[Pick a time ]^[ place 
-where you have as much privacy as possible%%lst%% ]s[ you can feel any feelings that arise as you 
-complete the assignment%%per%%” 
-The patient is given a practice assignment sheet%%per%%]$~ ~$[If at all possible%%lst%% the patient should handwrite 
-the Impact Statement%%per%%]$~ ~$[Some patients will want to type on the computer%%per%%]$~ ~$[Research suggests that 
-word processing can impede engagement with the assignment (e%%per%%g%%per%%%%lst%% too focused on grammar ]v[ 
-spelling)%%per%%]$~ ~$[Therefore%%lst%% encourage that this ]^[ other assignments be handwritten%%per%%]$~ ~$[It is often 
-helpful to remind them that you are ]n[ grading their work ]v[ interested in their grammar%%lst%% etc%%per%%]$~ 
-~$[Rather%%lst%% you’re interested in the content ]^[ feelings%%per%%]$~ ~$[If the patient has problems with literacy ]v[ 
-physical disabilities that make it difficult ]v[ impossible to write%%lst%% the therapist might suggest that 
-he record his thoughts into a tape recorder%%per%% 
-14 
-Practice assignment%%cln%% 
-Please write at least one page on why this traumatic event occurred%%per%%]$~ ~$[You are ]n[ being asked to 
-write specifics about the traumatic event%%per%%]$~ ~$[Write about what you have been thinking about the 
-cause of the worst event%%per%%]$~ ~$[Also%%lst%% consider the effects this traumatic event has had on your beliefs 
-about yourself%%lst%% others%%lst%% ]^[ the world in the following areas%%cln%% safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% 
-]^[ intimacy%%per%%]$~ ~$[Bring this with you to the next session%%per%%]$~ 
-~$[Also%%lst%% please read over the handout I have given you on stuck points ]s[ that you understand the 
-concept we are talking about%%per%% 
-15 
-Traumatic Bereavement Session (Session 2 %%cmp%% applicable) 
-The goals ]f[ this session are to 1) determine the impact of the traumatic event on beliefs 
-about self ]^[ others%%lst%% 2) begin to normalize the grief process ]^[ differentiate it from PTSD 
-symptoms%%lst%% 3) identify stuck points that may interfere with the normal course of bereavement%%lst%% 
-]^[ 4) begin to assist the patient in viewing her relationship with the person who died as altered%%lst%% 
-]b[ ]n[ finished%%per%%]$~ 
-~$[If this session is added%%lst%% %%cmp%% the therapist will have the patient read the Impact Statement 
-first before turning to the topic of grief%%per%%]$~ ~$[Please see the regular session two%%lst%% next%%lst%% ]f[ comments 
-regarding avoidance ]^[ what to do %%cmp%% the patient did ]n[ complete the assignment%%per%%]$~ ~$[After 
-discussing the Impact Statement ]^[ identifying stuck points that are evident%%lst%% the therapist will 
-begin an education portion on the topic of normal bereavement ]^[ will look ]f[ stuck points that 
-may interfere with normal grief reactions%%per%%]$~ ~$[To facilitate this process%%lst%% some information is 
-provided below to assist the therapist to think about traumatic versus normal bereavement issues%%lst%% 
-]^[ to provide some education to the patient regarding the course of bereavement as varying ]^[ 
-multidimensional%%per%%]$~ ~$[It is important ]f[ the therapist to refrain from pathologizing the grief process 
-]^[ to begin to differentiate grief from PTSD ]v[ depression%%per%%]$~ 
-~$[Therapist overview%%cln%% Traumatic bereavement 
-PTSD can interfere with the normal course of bereavement%%per%%]$~ ~$[It is also possible that 
-unresolved grief can further complicate recovery from PTSD%%per%%]$~ ~$[Although witnessing ]v[ being 
-injured during an event in which a loved one/friend was killed is more obviously associated with 
-PTSD%%lst%% therapists need to consider a PTSD diagnosis among those who were ]n[ present at the 
-traumatic death of a loved one%%per%%]$~ ~$[In civilian life%%lst%% the sudden%%lst%% unexpected ]^[ perhaps violent death 
-of a significant other is ]s[ shocking%%lst%% horrifying%%lst%% ]^[ schema%%dsh%%discrepant that family ]^[ friends of 
-the victim may have trouble taking in the fact that the person has been killed%%per%%]$~ ~$[During war%%lst%% 
-soldiers may accept the possibility that they ]v[ others may be killed%%lst%% on an abstract level%%lst%% ]b[ 
-losing friends%%lst%% seeing children die%%lst%% ]v[ having deaths occur in unexpected places (when one 
-thought he was safe)%%lst%% can also be shocking ]^[ hard to accept%%per%%]$~ ~$[Acceptance may be particularly 
-difficult ]f[ parents who lose children %%cmp%% of the expectation that their children will survive 
-them%%per%%]$~ ~$[And like other trauma survivors who actively avoid accepting the reality of the situation%%lst%% 
-traumatic%%dsh%%death surviving family ]^[ friends may engage in self%%dsh%%blame as an attempt to undo the 
-event (e%%per%%g%%per%%%%lst%% “If only I hadn’t done X%%lst%% he wouldn’t have been there at the time”)%%per%%]$~ ~$[Unlike other 
-trauma victims%%lst%% traumatic death survivors may believe that to accept the trauma ]^[ begin to 
-move on with their lives means they have betrayed the other person%%lst%% that the other person isn’t 
-being properly honored%%per%%]$~ 
-~$[Flashbacks%%lst%% intrusive thoughts%%lst%% ]^[ other intrusive reminders can recur even %%cmp%% someone 
-was ]n[ present at the death of their significant other%%per%%]$~ ~$[People may flash on ]v[ have strong 
-emotional ]v[ physiological reactions when reminded of being informed of the death%%per%%]$~ ~$[For 
-example%%lst%% some people have strong reactions when the telephone ]v[ doorbell rings%%per%%]$~ ~$[They 
-immediately flash back to being told%%per%%]$~ ~$[Some people have strong reactions to temporal cues such 
-as a specific time of day%%lst%% dusk%%lst%% a certain month%%lst%% ]v[ other anniversaries of the death%%per%%]$~ ~$[They may 
-react to climactic cues such as temperature%%lst%% humidity%%lst%% smells ]v[ other seasonal reminders%%per%% 
-16 
-Holidays ]v[ other personal days of celebration (birthdays%%lst%% anniversaries) can be particularly 
-difficult ]^[ can trigger trauma cues (as well as positive memories)%%per%%]$~ 
-~$[It is ]n[ unusual ]f[ people to have images of ]v[ ruminate about (with accompanying 
-affect ]^[ physiological responses) what they imagine happened to their loved one/friend%%per%%]$~ ~$[Some 
-people feel compelled to put themselves into the shoes of the person who died in an attempt to be 
-closer with them%%per%%]$~ ~$[They try to imagine what the other person experienced%%lst%% what they must have 
-been feeling ]v[ thinking%%lst%% ]^[ wonder %%cmp%% they suffered ]v[ were in pain ]f[ a long time before they 
-died%%per%%]$~ ~$[These images can serve as intrusive reminders of PTSD (Criterion B)%%per%%]$~ 
-~$[Often with PTSD induced by traumatic bereavement%%lst%% we do ]n[ see effortful avoidance 
-with regard to the person who died%%per%%]$~ ~$[To the contrary%%lst%% some people intentionally ruminate ]^[ are 
-afraid to let go of the images%%lst%% even very distressing images%%lst%% %%cmp%% to let go is%%lst%% in their minds%%lst%% to 
-lose their loved one%%per%%]$~ ~$[Effortful avoidance is more likely to be of the trauma cues listed above%%per%%]$~ 
-~$[Numbing is common%%per%%]$~ 
-~$[When some people are killed during a traumatic event%%lst%% those who survive%%lst%% whether they 
-are friends%%lst%% family%%lst%% ]v[ strangers%%lst%% may well have survivor guilt%%per%%]$~ ~$[When people experience 
-traumatic events%%lst%% they often ask the question%%lst%% “Why me?” %%cmp%% of their just world belief%%per%%]$~ ~$[A 
-corollary of this belief is asking “Why ]n[ me?” when surrounding others are killed%%per%%]$~ ~$[People with 
-survivor guilt feel that they do ]n[ have the right to go on when others are not%%lst%% ]v[ believe that 
-they are less deserving of happiness (or even of living) %%cmp%% the person ]v[ people who died%%per%%]$~ ~$[They 
-try to determine why they survived ]^[ cannot find an acceptable explanation%%per%%]$~ 
-~$[An issue that may need to be addressed with military ]^[ veteran populations is ]n[ just 
-witnessing ]v[ hearing about the death of someone the patient cared about%%lst%% ]b[ also issues that 
-arise from having killed themselves%%per%%]$~ ~$[Soldiers may find themselves forced to engage in behavior 
-that is against their personal moral code%%lst%% ]v[ in conflict with the circumstances under which they 
-believed that they would be killing others%%per%%]$~ ~$[In our experience%%lst%% situations in which civilians%%lst%% ]^[ 
-especially children%%lst%% are killed are especially traumatic ]f[ veterans ]^[ servicemen (e%%per%%g%%per%%%%lst%% children 
-with backpack bombs%%lst%% children put in front of transportation convoys)%%per%%]$~ ~$[Grieving ]^[ 
-assumptions about one’s actions during war can be very complicated %%cmp%% of the nature of 
-war itself%%per%%]$~ ~$[Veterans ]^[ military personnel may blame themselves%%lst%% the combatants%%lst%% the 
-government that put them in the position they found themselves%%lst%% ]v[ the behavior ]^[ perceived 
-failures of command ]v[ fellow soldiers%%per%%]$~ ~$[The combination of anger ]^[ guilt can complicate ]^[ 
-prolong the grief response%%per%%]$~ 
-~$[The goal of CPT ]f[ bereavement is to help patients determine ]^[ eliminate any stuck 
-points%%lst%% problematic cognitions that are blocking their recovery%%lst%% ]^[ to help them eventually focus 
-on the person’s life%%lst%% ]n[ just the way in which he ]v[ she died%%per%%]$~ 
-~$[First the therapist can start with bereavement issues… 
-“Prior to this death%%lst%% what has been your experience with the death of loved ones?” 
-17 
-If the patient has never experienced the death of a loved one%%lst%% %%cmp%% ask “What were your 
-expectations about death of loved ones%%qsn%%]$~ ~$[Had you ever thought about it%%qsn%%]$~ ~$[Or was it a topic that 
-you avoided thinking about?” 
-Once the therapist understands what the patient understood about death ]^[ the grief 
-process prior to the traumatic death%%lst%% s/he can %%cmp%% ask%%per%%%%per%% 
-“How is this situation different %%cmp%% what you had experienced before (or imagined)?” 
-“What have other people been telling you about grief ]^[ mourning? 
-“What suggestions have people been making?” 
-Give the patient(s) the Myths of Mourning handout%%per%%]$~ ~$[Discuss each of the statements with 
-the patient to determine which%%lst%% %%cmp%% any%%lst%% statements the patient has been subscribing%%per%%]$~ ~$[Along with 
-debunking some common myths%%lst%% the therapist uses this session to help the patient understand the 
-normal process of bereavement%%lst%% to see how the traumatic bereavement relates to symptoms of 
-PTSD%%lst%% ]^[ to begin to identify distorted cognitions%%lst%% conflicts between prior beliefs ]^[ the 
-traumatic event%%per%%]$~ 
-~$[Education on Normal Bereavement 
-Bereavement affects different aspects of one’s life%%per%%]$~ ~$[People have emotional%%lst%% spiritual%%lst%% ]^[ 
-physical reactions%%per%%]$~ ~$[They also have to adjust their roles with regard to other people%%lst%% the 
-community more generally%%lst%% ]^[ with regard to tasks ]^[ behaviors%%per%%]$~ ~$[While some grief reactions 
-may feel like ]^[ share some characteristics with other psychological reactions such as 
-depression%%lst%% it is important ]f[ the therapist ]n[ to pathologize grief%%per%%]$~ ~$[Bereavement is ]n[ the result 
-of personality traits%%lst%% ]b[ is the normal ]^[ time%%dsh%%limited reaction to loss%%per%%]$~ ~$[Mourning is ]n[ the same 
-as depression ]^[ does ]n[ respond to anti%%dsh%%depressants%%per%%]$~ 
-~$[In the past it was possible to tell that someone was grieving ]f[ a period of time %%cmp%% 
-of clothing indicative of mourning ]^[ institutionalized rules about mourning such as wearing 
-black ]f[ a year%%lst%% wearing certain jewelry ]v[ armbands%%lst%% limiting social engagements ]^[ ]s[ forth%%per%%]$~ 
-~$[These practices provided more community support %%cmp%% the person who was grieving was 
-clearly identifiable ]^[ there was an expectation that bereavement should take an extended 
-period of time%%per%%]$~ ~$[On the other hand%%lst%% the rigid rules about length of mourning were ]n[ flexible 
-enough to accommodate different patterns of grief%%per%%]$~ ~$[Some people may ]n[ have needed a year in 
-order to begin to reestablish their lives (some may have needed longer)%%per%%]$~ ~$[In modern times%%lst%% there is 
-no way to identify whether someone is in mourning%%lst%% ]s[ the community quickly returns to usual 
-routines ]^[ expects the bereaved person to do ]s[ as well%%per%%]$~ ~$[While community support is often 
-very active initially%%lst%% people often return to their own lives after a few months%%lst%% leaving the 
-bereaved adrift to adjust to their changes in roles ]^[ tasks%%per%%]$~ ~$[After a few months grieving people 
-may start receiving comments by others that they should move on with their lives ]^[ to put the 
-traumatic event ]^[ the loved one behind them (people with PTSD hear this all the time even 
-without a traumatic death)%%per%%]$~ ~$[People may need assistance in tolerating the predominant community 
-standards that do ]n[ reflect the reality of the mourning timeline ]f[ them%%per%%]$~ 
-~$[In the early stages of bereavement%%lst%% people need information ]^[ support in coping 
-emotionally%%per%%]$~ ~$[Later%%lst%% %%cmp%% the person who died is a family member%%lst%% they need to focus more on 
-18 
-instrumental tasks%%per%%]$~ ~$[Some tasks%%lst%% like dealing with insurance companies ]^[ changing names on 
-titles are directly due to the death of the family member%%per%%]$~ ~$[Other tasks represent a realignment of 
-typical chores (e%%per%%g%%per%%%%lst%% now the patient needs to pay bills ]v[ cook%%lst%% when before the other partner 
-took responsibility ]f[ those tasks)%%per%%]$~ ~$[Each of these instrumental adjustments%%lst%% %%cmp%% successfully 
-negotiated%%lst%% will help the bereaved person accept the reality of the situation ]^[ assist in a greater 
-sense of control%%per%%]$~ ~$[As the tasks ]^[ roles are realigned%%lst%% %%cmp%% the person also moves to reconnect 
-with his community%%lst%% reestablish ]^[ adjust relationships with their friends ]^[ relatives ]^[ 
-finally to rebuild his assumptive world%%per%%]$~ ~$[This latter task includes adjusting his beliefs about 
-himself ]^[ the world%%lst%% with regard to the loved one’s death%%per%%]$~ ~$[As %%cmp%%where in CPT%%lst%% the therapist 
-is looking ]f[ accommodation rather %%cmp%% assimilation ]v[ over%%dsh%%accommodation%%lst%% balance in beliefs 
-rather %%cmp%% extreme statements%%per%%]$~ 
-~$[Sometimes the bereavement process ]f[ military personnel becomes more acute once 
-they leave the military%%per%%]$~ ~$[While in the military%%lst%% other people in that environment may have been 
-able to provide support ]^[ understanding of the losses that a soldier experienced%%per%%]$~ ~$[Upon 
-returning to the civilian world%%lst%% however%%lst%% people in the environment may ]n[ be able to 
-understand ]v[ appreciate the loss of comrades%%lst%% ]v[ may even be unsympathetic %%cmp%% of 
-different viewpoints on the war%%per%%]$~ ~$[Although our society appears to be doing a better job separating 
-the war from the warrior in the recent OEF/OIF conflict%%lst%% this is ]n[ universally true ]^[ there are 
-many Vietnam veterans who carry the scars of verbal abuse upon returning to the US after their 
-tours of duty in Vietnam%%per%%]$~ ~$[They may ]n[ have been given the opportunity to grieve the loss of 
-their friends ]^[ fellow soldiers ]v[ may be stuck in a cycle of grieving that has ]n[ remitted%%per%%]$~ 
-~$[The following are excerpts from a bereavement Impact Statement%%per%%]$~ ~$[The statement was 
-four hand%%dsh%%written pages%%per%%]$~ ~$[It illustrates the effects the murder of a granddaughter had on a patient%%per%%]$~ 
-~$[I think at first I needed to be strong from my son%%per%%]$~ ~$[As long as I could do that%%lst%% I did ]n[ 
-have to face the finality of death%%per%%]$~ ~$[This is still ]s[ hard ]f[ me to say%%per%%]$~ ~$[To think of ______ in the past 
-tense still causes me to have a panicky feeling%%per%%]$~ ~$[I cannot describe how much I love her ]v[ how 
-much I miss her%%per%%]$~ 
-~$[I thought I would always be the same me%%per%%]$~ ~$[But now I realize I will never be the same%%per%%]$~ ~$[At 
-first I kept trying to be the same self%%dsh%% Tried ]s[ hard that I would get these panic attacks%%lst%% ]s[ I just 
-tried ]n[ to think about it%%per%%]$~ 
-~$[I feel like this big cloud has settled over me ]^[ sometimes it suffocates me%%per%%]$~ ~$[I would like 
-to just pull the covers over my head ]^[ ]n[ take them off ]f[ a long time%%per%%]$~ ~$[But I know I can’t%%lst%% 
-especially ]f[ my son%%per%%]$~ ~$[He says he would like to go into a closet ]^[ ]n[ come out%%per%%]$~ 
-~$[I talked today with my Pastor about my feelings%%lst%% how I feel ]s[ frozen inside%%lst%% that I cannot 
-pray ]^[ do ]n[ feel spiritual at all%%per%%]$~ ~$[It makes me feel ]s[ empty%%per%%]$~ ~$[I miss the fellowship I had with 
-my God%%per%%]$~ ~$[I do want to have that again%%per%%]$~ 
-~$[Some people say I need to try to forgive – I can’t ]^[ I don’t want to – at least ]n[ now… 
-I really don’t want to be angry – this is ]n[ me%%per%%]$~ ~$[But right now I’m ]s[ angry%%per%%]$~ 
-~$[While the example above illustrates assimilation through non%%dsh%%acceptance ]^[ avoidance%%lst%% 
-the next excerpts from a different patient whose friend was killed ]^[ illustrates both 
-assimilation ]^[ over%%dsh%%accommodation%%per%% 
-19 
-I always believed that I could protect ______ from anything ]v[ anyone%%per%%]$~ ~$[I feel like a 
-failure%%per%%]$~ ~$[I failed him%%per%%]$~ ~$[I should have been watching his back %%cmp%% no one would have been able to 
-shoot him in his back%%per%%]$~ ~$[I could have administered CPR ]^[ helped to breathe in him the breath of 
-life%%per%%]$~ ~$[He would have calmed down ]^[ fought harder %%cmp%% I had been there… Who knew%%qsn%%]$~ ~$[But I failed 
-him ]^[ I don’t have any other chance to make it up to him%%per%%]$~ 
-~$[This world is a cruel world where no one seems to care about anyone outside of their 
-own family… I trust no one outside of the family ]^[ I really am no longer close to my family%%per%%]$~ ~$[I 
-no longer use the word “friend” %%cmp%% it no longer serves a purpose in my life%%per%%]$~ ~$[I feel 
-abandoned by certain people in my family%%per%%]$~ ~$[They are already ready ]f[ me to move on%%per%%]$~ ~$[Isn’t that 
-crazy?%%xcm%%]$~ 
-~$[It may be helpful ]f[ a patient to realize that his relationship with the deceased has 
-changed rather %%cmp%% ended%%per%%]$~ ~$[The patient can still have a relationship with the deceased even 
-though the relationship is ]n[ reciprocal%%per%%]$~ ~$[As part of the Impact Statement on the death of the 
-significant other%%lst%% the patient is asked%%lst%% “How has the event affected your relationship with the 
-deceased?” 
-One of the problems that can occur early in the grieving process (and stall out in some 
-cases) is the tendency to over%%dsh%%idealize the person who has died%%per%%]$~ ~$[It is difficult ]f[ the bereaved 
-person to move on%%lst%% reestablish connections with others%%lst%% ]^[ alter her relationship with the 
-deceased %%cmp%% the person who died is ]n[ the person who lived before%%per%%]$~ ~$[The loved ones may 
-experience more survivor guilt ]v[ hindsight bias %%cmp%% they believe that the person who died was 
-perfect ]v[ that it is bad/wrong to remember any flaws ]v[ foibles%%per%%]$~ ~$[The therapist needs to tread 
-lightly on this topic%%lst%% perhaps pursuing it later in therapy%%lst%% although it can be broached gently at 
-this time%%per%%]$~ ~$[The therapist%%lst%% in hearing an over%%dsh%%idealized description of the deceased can say%%cln%% 
-“He sounds like an angel%%per%%]$~ ~$[I’d like to have a better picture of the whole man that you 
-knew%%per%%]$~ ~$[Tell me a little about his eccentricities ]v[ habits”%%per%%]$~ 
-~$[The goal here is to help the patient to grieve ]f[ the person who really lived with an 
-integrated ]^[ balanced view%%per%%]$~ 
-~$[In some cases%%lst%% over%%dsh%%idealization may be a particular problem %%cmp%% the idealized image 
-of the deceased is embraced by a whole community%%per%%]$~ ~$[In the aftermath of the World Trade Center 
-attack%%lst%% firefighters%%lst%% police%%lst%% ]^[ other rescue workers who died have been rightly hailed as heroes%%per%%]$~ 
-~$[Heroes are people who risk themselves to help others in spite of their fear ]v[ flaws%%lst%% ]n[ %%cmp%% 
-they were fearless ]^[ flawless%%per%%]$~ ~$[It may be particularly difficult ]f[ family members %%cmp%% their 
-memories of the person clash with the public image%%per%%]$~ ~$[If a couple was having marital problems%%lst%% ]v[ 
-the partner was having an extra%%dsh%%marital affair%%lst%% was abusive%%lst%% ]v[ alcoholic%%lst%% the surviving partner 
-would ]n[ know how to reconcile this information with the accolades ]^[ images of the partner 
-as a saint%%per%%]$~ ~$[Even to remember small flaws would seem like a betrayal of the person who died%%per%%]$~ 
-~$[And yet%%lst%% the surviving partner ]^[ family members have these memories as well ]^[ struggle to 
-deal with them%%per%%]$~ ~$[Some people attempt to suppress ]v[ ignore inconsistent information%%per%%]$~ ~$[If they are 
-successful in avoiding%%lst%% there is a greater likelihood of more prolonged bereavement %%cmp%% ]f[ 
-those who can put the person’s life into an accurate perspective%%per%% 
-20 
-Pertinent to situations like the attack on September 11%%lst%% 2001%%lst%% ]^[ war%%lst%% is the issue in 
-which the body of the deceased is never found%%per%%]$~ ~$[It may be more difficult in these cases ]f[ the 
-surviving family ]^[ friends to accept that the person is actually dead%%per%%]$~ ~$[When there is no concrete 
-proof that the person died%%lst%% assimilation ]^[ denial are more likely%%per%%]$~ ~$[The survivors may have 
-continuing fantasies that there has been some mistake%%lst%% that the loved one has been wandering 
-around with amnesia ]v[ injured ]^[ unable to contact them%%per%%]$~ ~$[They may have extended periods 
-during which acceptance of the reality of the situation is postponed%%per%%]$~ 
-~$[Finally%%lst%% when a group of people experience the same event ]^[ %%cmp%% support each other in 
-the aftermath%%lst%% they can help each other progress through the various stages of grief%%per%%]$~ ~$[However%%lst%% 
-there are two risks%%per%%]$~ ~$[One is that the members of the group will be recovering at different rates%%lst%% 
-leading to misunderstandings ]v[ some people being held back from their natural rate%%per%%]$~ ~$[A worse 
-outcome is that the group becomes stuck together ]^[ stop recovering altogether%%per%%]$~ ~$[They develop 
-an us%%dsh%%against%%dsh%%them mentality in which they come to believe that no one can understand what 
-they have experienced ]^[ that they can never recover%%per%%]$~ ~$[If someone who seeks therapy 
+d3 80% — _ 
+E 
+a%%per%%]$~ 
+~$[U} 
+0 
+g 60% e _ 
+%%sqt%%E—< 
+E 
+g 40% e — 
+é DECstation 5000 
+3 Hardware Minimum 
+00 
+20% — _ 
+t 
+*%%dsh%% Software 
+a? 
+0% l 
+0 1O 20 
+# Crossings/Millcsecond 
+Figure 7%%cln%% Percentage of time spent in crossing code 
+versus number of fault domain crossings per millisec%%dsh%% 
+ond on the DECeMIPS%%per%%]$~ ~$[The hardware minimum cross— 
+ing number is taken from a crossvarchitectural study 
+of context switch times [ALBL91]%%per%%]$~ ~$[The Ultrix 4%%per%%2 con%%dsh%% 
+text switch time is as reported in the last column of 
+Table 2%%per%% 
+213 
+on hardware fault isolation are ultimately limited by 
+the minimal hardware cost of taking two kernel traps 
+]^[ two hardware context switches%%per%%]$~ ~$[LRPC was one 
+of the ﬁrst RPC systems to approach this limit%%lst%% ]^[ 
+our prototype uses a number of the techniques found 
+in LRPC ]^[ later systems%%cln%% the same thread runs in 
+both the caller ]^[ the callee domain%%lst%% the stubs are 
+kept as simple as possible%%lst%% ]^[ the crossing code jumps 
+directly to the called procedure%%lst%% avoiding a dispatch 
+in the callee domain%%per%%]$~ ~$[Unlike these systems%%lst%% software— 
+based fault isolation avoids hardware context switches%%lst%% 
+substantially reducing crossing costs%%per%%]$~ 
+~$[Address space identiﬁer tags can be used to reduce 
+hardware context switch times%%per%%]$~ ~$[Tags allow more %%cmp%% 
+one address space to share the TLB%%scn%% otherwise the 
+TLB must be ﬂushed on each context switch%%per%%]$~ ~$[It was 
+estimated that 25% of the cost of an LRPC on the 
+Fireﬂy (which does ]n[ have tags) was due to TLB 
+misses[BALL90]%%per%%]$~ ~$[Address space tags do not%%lst%% however%%lst%% 
+reduce the cost of register management ]v[ system calls%%lst%% 
+operations which are ]n[ scaling with integer perfor%%dsh%% 
+mance[ALBL91]%%per%%]$~ ~$[An important advantage of software— 
+based Jfault isolation is that it does ]n[ rely on specialv 
+ized architectural features such as address space tags%%per%%]$~ 
+~$[Restrictive programming languages can also be used 
+to provide fault isolation%%per%%]$~ ~$[Pilot requires all kernel%%lst%% 
+user%%lst%% ]^[ library code to be written in Mesa%%lst%% 3 strongly 
+typed language%%scn%% all code %%cmp%% shares a single address 
+space [RDII+80]%%per%%]$~ ~$[The main disadvantage of relying on 
+strong typing is that it severely restricts the choice 
+of programming languages%%lst%% ruling out conventional 
+languages like C%%lst%% C++%%lst%% ]^[ assembly%%per%%]$~ ~$[Even with 
+strongly—typed languages such as Ada ]^[ Modula—3%%lst%% 
+programmers often find they need to use loopholes in 
+the type system%%lst%% undercutting fault isolation%%per%%]$~ ~$[In con— 
+trast%%lst%% our techniques are language independent%%per%%]$~ 
+~$[Deutsch ]^[ Grant built a system that allowed 
+user—deﬁned measurement modules to be dynamically 
+loaded into the operating system ]^[ executed directly 
+on the processor [DG71]%%per%%]$~ ~$[The module format was a 
+stylized native object code designed to make it easier 
+to statically verify that the code did ]n[ violate pro— 
+tection boundaries%%per%%]$~ 
+~$[An interpreter can also provide failure isolation%%per%%]$~ ~$[For 
+example%%per%% the BSD UNIX network packet ﬁlter utility 
+deﬁnes a language which is interpreted by the operat%%dsh%% 
+ing system network driver%%per%%]$~ ~$[The interpreter insulates 
+the operating system from possible faults in the cus— 
+tomization code%%per%%]$~ ~$[Our approach allows code written in 
+any programming language to be safely encapsulated 
+(or rejected %%cmp%% it is ]n[ safe)%%lst%% ]^[ %%cmp%% executed at near 
+full speed by the operating system%%per%%]$~ 
+~$[Anonymous RFC exploits 64%%dsh%%bit address spaces to 
+provide low latency RFC ]^[ probabilistic fault iso— 
+lation [YBA93]%%per%%]$~ ~$[Logically independent domains are 
+214 
+placed at random locations in the same hardware ad» 
+dress spacer Calls between domains are anonymous%%lst%% 
+that is%%lst%% they do ]n[ reveal the location of the caller 
+]v[ the callee to either side%%per%%]$~ ~$[This provides probabilis— 
+tic protection %%lst%% it is unlikely that any domain will 
+be able to discover the location of any other domain 
+by malicious ]v[ accidental memory probes%%per%%]$~ ~$[To pre» 
+serve anonymity%%lst%% a cross domain call must trap to pro%%dsh%% 
+tected code in the kernel%%scn%% however%%lst%% no hardware con~ 
+text switch is needed%%per%% 
+7 Summary 
+We have described a software%%dsh%%based mechanism ]f[ 
+portable%%lst%% programming language independent fault 
+isolation among cooperating software modules%%per%%]$~ ~$[By 
+providing fault isolation within a single address space%%lst%% 
+this approach delivers crossefaultrdomain communica 
+tion that is more %%cmp%% an order of magnitude faster 
+%%cmp%% any RPC mechanism to date%%per%%]$~ 
+~$[To prevent distrusted modules from escaping their 
+own fault domain%%lst%% we use a software encapsulation 
+technique%%lst%% called sandboxing%%lst%% that incurs about 4% 
+Despite this overhead in 
+executing distrusted code%%lst%% software—based fault isola%%dsh%% 
+tion Will often yield the best overall application per%%dsh%% 
+formance%%per%%]$~ ~$[Extensive kernel optimizations can reduce 
+the overhead of hardware%%dsh%%based RPC to within a fac%%dsh%% 
+tor of ten over our software—based alternative%%per%%]$~ ~$[Even 
+in this situation%%lst%% software—based fault isolation will be 
+the better performance choice whenever the overhead 
+of using hardware—based RPC is greater %%cmp%% 5%%%per%% 
+execution time overhead%%per%% 
+8 Acknowledgements 
+We %%cmp%%k Brian Bershad%%lst%% Mike Burrows%%lst%% John Hen%%dsh%% 
+nessy%%lst%% Peter Kessler%%lst%% Butler Lampson%%lst%% Ed Lazowska%%lst%% 
+Dave Patterson%%lst%% John Ousterhout%%lst%% Oliver Sharp%%lst%% 
+Richard Sites%%lst%% Alan Smith ]^[ Mike Stonebraker ]f[ 
+their helpful comments on the paper%%per%%]$~ ~$[Jim Larus pro%%dsh%% 
+vided us with the proﬁling tool qpt%%per%%]$~ ~$[We also %%cmp%%k 
+Mike Olson ]^[ Paul Aoki ]f[ helping us with POST— 
+GRES%%per%%]$~ 
+~$[References 
+[ACD74] TL%%per%%]$~ ~$[Adam%%lst%% KM%%per%%]$~ ~$[Chandy%%lst%% ]^[ JR%%per%%]$~ ~$[Dickson%%per%%]$~ 
+~$[A comparison of list schedules ]f[ parallel pro%%dsh%% 
+cessing systems%%per%%]$~ ~$[Communications of the ACM%%lst%% 
+17(12):685—690%%lst%% December 197/1%%per%% 
+[ALBUM] Thomas Anderson%%lst%% Henry Levy%%lst%% Brian Ber— 
+shad%%lst%% ]^[ Edward Lazowska%%per%%]$~ ~$[The Interaction 
+of Architecture ]^[ Operating System Design%%per%% 
+[A5591] 
+[ASUSG] 
+[BALLQO] 
+[BALL91] 
+[Ber93] 
+[BL92] 
+[BlaQO] 
+[1m 84] 
+[Cla92] 
+[DG71] 
+[Dis] 
+[Dys92] 
+[FP93] 
+[H092] 
+111 Proceedings of the 4th International Confer%%dsh%% 
+ence on Architectural Supportfor Programming 
+Languages ]^[ Operating Systems%%lst%% pages 108— 
+120%%lst%% April 1991%%per%%]$~ 
+~$[Administrator%%cln%% National Computer Graphics 
+Association%%per%%]$~ ~$[SPEC Newsletter%%lst%% 3(4)%%lst%% December 
+1991%%per%%]$~ 
+~$[Alfred V%%per%%]$~ ~$[Aho%%lst%% Ravi Sethi%%lst%% ]^[ Jeffrey D%%per%%]$~ ~$[Ull%%dsh%% 
+man%%per%%]$~ ~$[Compilers%%lst%% Principles%%lst%% Techniques%%lst%% ]^[ 
+Tools%%per%%]$~ ~$[Addison—Wesley Publishing Company%%lst%% 
+1986%%per%%]$~ 
+~$[Brian Bershad%%lst%% Thomas Anderson%%lst%% Edward La%%dsh%% 
+zowska%%lst%% ]^[ Henry Levy%%per%%]$~ ~$[Lightweight Remote 
+Procedure Call%%per%%]$~ ~$[ACM Transactions on Com%%dsh%% 
+puter Systems%%lst%% 8(1)%%lst%% February 1990%%per%%]$~ 
+~$[Brian Bershad%%lst%% Thomas Anderson%%lst%% Edward La~ 
+zowska%%lst%% ]^[ Henry Levy%%per%%]$~ ~$[User%%dsh%%Level Interpre%%dsh%% 
+cess Communication ]f[ Shared~Memory Mul%%dsh%% 
+tiprocessors%%per%%]$~ ~$[ACM Transactions on Computer 
+Systems%%lst%% 9(2)%%lst%% May 1991%%per%%]$~ 
+~$[Brian Bershad%%lst%% August 1993%%per%%]$~ ~$[Private Commu— 
+nication%%per%%]$~ 
+~$[Thomas Ball ]^[ James R%%per%%]$~ ~$[Larus%%per%%]$~ ~$[Optimally 
+proﬁling ]^[ tracing%%per%%]$~ ~$[In Proceedings of the 
+Conference on Principles of Programming Lan%%dsh%% 
+guages%%lst%% pages 59‘70%%lst%% 1992%%per%%]$~ 
+~$[David Black%%per%%]$~ ~$[Scheduling Support ]f[ ConcuI~ 
+rency ]^[ Parallelism in the Mach Operating 
+System%%per%%]$~ ~$[IEEE Computer%%lst%% 23(5):35 43%%lst%% May 
+1990%%per%%]$~ 
+~$[Andrew Birrell ]^[ Bruce Nelson%%per%%]$~ ~$[Implement%%dsh%% 
+ing Remote Procedure Calls%%per%%]$~ ~$[ACM Transac%%dsh%% 
+tions on Computer Systems%%lst%% 2(1):?19‘59%%lst%% Febru‘ 
+ary 1984%%per%% 
+%%per%%1%%per%%D%%per%%]$~ ~$[Clark%%per%% lVindow Programmer’ Guide To 
+OLE/DUE%%lst%% Prentice—Hall%%lst%% 1992%%per%%]$~ 
+~$[L%%per%%]$~ ~$[P%%per%%]$~ ~$[Deutsch ]^[ C%%per%%]$~ ~$[A%%per%%]$~ ~$[Grant%%per%%]$~ ~$[A ﬂexible mea~ 
+surement tool ]f[ software systems%%per%%]$~ ~$[In IFIP 
+Congress%%lst%% 1971%%per%%]$~ 
+~$[Digital Equipment Corporation%%per%%]$~ ~$[Ultriz 114%%per%%2 
+Pixie Manual Page%%per%%]$~ 
+~$[Peter Dyson%%per%%]$~ ~$[Xtensions ]f[ Xpress%%cln%% Modular 
+Software ]f[ Custom Systems%%per%%]$~ ~$[Seybold Report 
+on Desktop Publishing%%lst%% 6(10):1—‘%%per%%’%%per%%1%%lst%% June 1992%%per%%]$~ 
+~$[Kevin Fall ]^[ Joseph Pasquale%%per%%]$~ ~$[Exploiting in— 
+kernel data paths to improve I/O throughput 
+]^[ CPU 3%%per%% vailability%%per%%]$~ ~$[In Proceedings of the 
+1993 Winter USENIX Conference%%lst%% pages 327— 
+333%%lst%% January 1993%%per%%]$~ 
+~$[Keiran Harty ]^[ 
+David Cheriton%%per%%]$~ ~$[Application—controlled physi%%dsh%% 
+cal memory using external page—cache manage— 
+ment%%per%%]$~ ~$[In Proceedings of the 5th International 
+Conference on Architectural Support ]f[ Pro%%dsh%% 
+gramming Languages ]^[ Operating Systems%%lst%% 
+October 1992%%per%% 
+215 
+[11K93] 
+[HKM+88] 
+[Int86] 
+[JRTSS] 
+[K ar89] 
+[K1886] 
+[LB92] 
+[McF89] 
+[MJ93] 
+[M RA87] 
+[P1190] 
+[RDH+ 80] 
+Graham Hamilton ]^[ Panos Kougiouris%%per%%]$~ ~$[The 
+Spring nucleus%%cln%% A microkernel ]f[ objects%%per%%]$~ ~$[In 
+Proceedings of the Summer USENIX Confer%%dsh%% 
+cncc%%lst%% pages 1477159%%lst%% June 1993%%per%%]$~ 
+~$[J%%per%%]$~ ~$[Howard%%lst%% M%%per%%]$~ ~$[Kazar%%lst%% S%%per%%]$~ ~$[Menees%%lst%% D%%per%%]$~ ~$[Nichols%%lst%% 
+M%%per%%]$~ ~$[Satyanarayanan%%lst%% R%%per%%]$~ ~$[Sidebotham%%lst%% ]^[ 
+M%%per%%]$~ ~$[West%%per%%]$~ ~$[Scale ]^[ Performance in 3%%per%%]$~ ~$[Dis%%dsh%% 
+tributed File System%%per%%]$~ ~$[ACM Transactions on 
+Computer Systems%%lst%% 6(1):51—82%%lst%% February 1988%%per%%]$~ 
+~$[Intel Corporation%%lst%% California%%per%%]$~ 
+~$[Intel 80386 Programmer’s Reference Manual%%lst%% 
+1986%%per%%]$~ 
+~$[Michael B%%per%%]$~ ~$[Jones%%lst%% Richard F%%per%%]$~ ~$[Rashid%%lst%% ]^[ 
+Mary R%%per%%]$~ ~$[Thompson%%per%%]$~ ~$[Matchmaker%%cln%% An in%%dsh%% 
+terface speciﬁcation language ]f[ distributed 
+processing%%per%%]$~ ~$[In Proceedings of the 12th ACM 
+SIGACT%%dsh%%SIGPLAN Symposium on Principles 
+of Programming Languages%%lst%% pages 225435%%lst%% 
+January 1985%%per%%]$~ 
+~$[Santa Clara%%lst%% 
+Paul A%%per%%]$~ ~$[Karger%%per%%]$~ ~$[Using Registers to Optimize 
+Cross—Domain Call Performance%%per%%]$~ ~$[In Proceed%%dsh%% 
+ings of the 3rd International Conference on 
+Architectural Support ]f[ Programming Lan%%dsh%% 
+guages ]^[ Operating Systems%%lst%% pages 1947204%%per%%]$~ 
+~$[April 3~6 1989%%per%%]$~ 
+~$[Steven R%%per%%]$~ ~$[Kleiman%%per%%]$~ ~$[Vnodes%%cln%% An Architecture 
+]f[ Multiple File System Types in SUN UNIX%%per%%]$~ 
+~$[In Proceedings of the 1986 Summer USENIX 
+Conference%%lst%% pages 238—247%%lst%% 1986%%per%%]$~ 
+~$[James R%%per%%]$~ ~$[Larus ]^[ Thomas Ball%%per%%]$~ ~$[Rewrit%%dsh%% 
+ing executable ﬁles to measure program be— 
+havior%%per%%]$~ ~$[Technical Report 1083%%lst%% University of 
+Wisconsin%%dsh%%Madison%%lst%% March 1992%%per%%]$~ 
+~$[Scott McFarling%%per%%]$~ ~$[Program optimization ]f[ 
+instruction caches%%per%%]$~ ~$[In Proceedings of the In%%cln%% 
+ternational Conference on Architectural Sup— 
+port ]f[ Programming Languages ]^[ Operat%%dsh%% 
+ing Systems%%lst%% pages 183—191%%lst%% April 1989%%per%%]$~ 
+~$[Steven McCanne ]^[ Van lacobsen%%per%%]$~ ~$[The 
+BSD Packet Filter%%cln%% A New Architecture ]f[ 
+User—Level Packet Capture%%per%%]$~ ~$[In Proceedings of 
+the 1993 Winter USENIX Conference%%lst%% January 
+1993%%per%% 
+l%%per%%]$~ ~$[C%%per%%]$~ ~$[Mogul%%lst%% R%%per%%]$~ ~$[F%%per%%]$~ ~$[Rashid%%lst%% ]^[ M%%per%%]$~ ~$[J%%per%%]$~ ~$[Ac%%dsh%% 
+cetta%%per%%]$~ ~$[The packet ﬁlter%%cln%% An cﬂicient mecha— 
+nism ]f[ user—level network code%%per%%]$~ ~$[In Proceed%%dsh%% 
+ings of the Symposium on Operating System 
+Principles%%lst%% pages 39—51%%lst%% November 1987%%per%%]$~ 
+~$[Karl Pettis ]^[ Robert C%%per%%]$~ ~$[Hansen%%per%%]$~ ~$[Proﬁle 
+guided code positioning%%per%%]$~ ~$[In Proceedings of 
+the Conference on Programming Language De%%dsh%% 
+sign ]^[ Implementation%%lst%% pages 16—27%%lst%% White 
+Plains%%lst%% New York%%lst%% June 1990%%per%%]$~ ~$[Appeared as 
+SIGPLAN NOTICES 25(6)%%per%%]$~ 
+~$[David D%%per%%]$~ ~$[Redell%%lst%% Yogen K%%per%%]$~ ~$[Dalal%%lst%% Thomas R%%per%%]$~ 
+~$[Horsley%%lst%% Hugh C%%per%%]$~ ~$[Lauer%%lst%% William C%%per%%]$~ ~$[Lynch%%lst%% 
+[Sam88] 
+[5390] 
+[501693] 
+[SFGMQS] 
+[St087] 
+[St088] 
+[SWG91] 
+[TAss] 
+[Thiﬁz] 
+[VCGSQZ] 
+[VVSTSB] 
+[Web93] 
+[YBA93] 
+Paul R%%per%%]$~ ~$[McJones%%lst%% Hal G%%per%%]$~ ~$[Murray%%lst%% ]^[ 
+Stephen C%%per%%]$~ ~$[Purcell%%per%%]$~ ~$[Pilot%%cln%% An Operating Sys%%dsh%% 
+tem ]f[ a Personal Computer%%per%%]$~ ~$[Communications 
+of the A01”%%lst%% 23(2):81~92%%lst%% February 1980%%per%%]$~ 
+~$[A%%per%%]$~ ~$[Dain Samples%%per%%]$~ ~$[Code reorganization ]f[ in 
+struction caches%%per%%]$~ ~$[Technical Report UCB/CSD 
+88/447%%per%%]$~ ~$[University of California%%lst%% Berkeley%%lst%% 0C%%lst%% 
+tober 1988%%per%%]$~ 
+~$[Michael Schroeder ]^[ Michael Burrows%%per%%]$~ ~$[Per%%dsh%% 
+formance of Fireﬂy RPC%%per%%]$~ ~$[ACM I‘mnsac» 
+tions on Computer Systems%%lst%% 8(1):1—17%%lst%% Febru%%dsh%% 
+ary 1990%%per%%]$~ 
+~$[Richard L%%per%%]$~ ~$[Sites%%lst%% Anton Chernoff%%lst%% Matthew B%%per%%]$~ 
+~$[Kirk%%lst%% Maurice P%%per%%]$~ ~$[Marks%%lst%% ]^[ Scott G%%per%%]$~ ~$[Robin%%dsh%% 
+son%%per%%]$~ ~$[Binary translation%%per%%]$~ ~$[Communications of 
+the ACM%%lst%% 36(2):69—81%%lst%% February 1993%%per%%]$~ 
+~$[M%%per%%]$~ ~$[Stonebral%%dsh%%zer%%lst%% J%%per%%]$~ ~$[Frew%%lst%% K%%per%%]$~ ~$[Gardels%%lst%% ]^[ 
+%%per%%I%%per%%]$~ ~$[Meridith%%per%%]$~ ~$[The Sequoia 2000 Benchmark%%per%%]$~ 
+~$[In Proceedings of the ACM SIGMOD Inter%%dsh%% 
+national Conference on Management of Data%%lst%% 
+May 1993%%per%%]$~ 
+~$[Michael Stonebraker%%per%%]$~ ~$[Extensibility in POST~ 
+GRES%%per%%]$~ ~$[IEEE Database Engineering%%lst%% Septem%%dsh%% 
+ber 1987%%per%%]$~ 
+~$[Michael Stonebraker%%per%%]$~ ~$[Inclusion of new types in 
+relational data base systems%%per%%]$~ ~$[In Michael Stone%%dsh%% 
+braker%%lst%% editor%%lst%% Readings in Database Systems%%lst%% 
+pages 480—487%%per%%]$~ ~$[Morgan Kaufmann Publishers%%lst%% 
+Inc%%per%%%%lst%% 1988%%per%%]$~ 
+~$[J%%per%%]$~ ~$[P%%per%%]$~ ~$[Singh%%lst%% W%%per%%]$~ ~$[Weber%%lst%% ]^[ A%%per%%]$~ ~$[Gupta%%per%%]$~ 
+~$[Splash%%cln%% Stanford parallel applications ]f[ 
+shared—memory%%per%%]$~ ~$[Technical Report CSL—TR—Sl— 
+469%%lst%% Stanford%%lst%% 1991%%per%%]$~ 
+~$[Shin—Yuan Tzou ]^[ David P%%per%%]$~ ~$[Anderson%%per%%]$~ ~$[A 
+Performance Evaluation of the DASH Message%%dsh%% 
+Passing System%%per%%]$~ ~$[Technical Report UCB/CSD 
+88/452%%lst%% Computer Science Division%%lst%% University 
+of California%%lst%% Berkeley%%lst%% October 1988%%per%%]$~ 
+~$[Thinking Machines Corporation%%per%%]$~ ~$[CM—5 Net%%dsh%% 
+work Interface Programmer’s Guide%%lst%% 1992%%per%%]$~ 
+~$[T%%per%% von Eicken%%lst%% I)%%per%%]$~ ~$[Culler%%lst%% S%%per%%]$~ ~$[Goldstein%%lst%% ]^[ 
+K%%per%%]$~ ~$[Schauser%%per%%]$~ ~$[Active Messages%%cln%% A Mechanism 
+]f[ Integrated Communication ]^[ Computa— 
+tion%%per%%]$~ ~$[In Proceedings of the 19th Annual Sym%%dsh%% 
+posium on Computer Architecture%%lst%% 1992%%per%%]$~ 
+~$[Robbert van Renesse%%lst%% Hans van Staveren%%lst%% ]^[ 
+Andrew S%%per%%]$~ ~$[Tanenbaum%%per%%]$~ ~$[Performance of the 
+World’s Fastest Distributed Operating System%%per%%]$~ 
+~$[Operating Systemic Review%%lst%% 22(1):25734%%lst%% Octo— 
+ber 1988%%per%%]$~ 
+~$[Neil Webber%%per%%]$~ ~$[Operating System Support ]f[ 
+Portable Filesystem Extensions%%per%%]$~ ~$[In Proceed%%dsh%% 
+ings of the 1993 Winter USENIX Conference%%lst%% 
+January 1993%%per%%]$~ 
+~$[Curtis Yarvin%%per%%]$~ ~$[Richard Bnkowski%%lst%% ]^[ Thomas 
+Anderson%%per%%]$~ ~$[Anonymous RFC%%cln%% LOW Latency 
+216 
+Protection in a 64—Bit Address Space%%per%%]$~ ~$[In Pro%%dsh%% 
+ceedings of the Summer USENIX Conference%%lst%% 
+June 1993%%per%% 

@@ -1,745 +1,1368 @@
-~$[1 
-cognitive processing therapy 
-veteran/military version 
-patricia a%%per%%]$~ ~$[resick%%lst%% ph%%per%%d%%per%% ]^[ candice m%%per%%]$~ ~$[monson%%lst%% ph%%per%%d%%per%%]$~ 
-~$[national center ]f[ ptsd 
-women’s health science division 
-va boston healthcare system ]^[ 
-boston university 
-and 
-kathleen m%%per%%]$~ ~$[chard%%lst%% ph%%per%%d%%per%%]$~ 
-~$[cincinnati va medical center ]^[ 
-university %%#%% cincinnati 
-october%%lst%% 2006 
-correspondence %%#%% %%#%% addressed %%#%% patricia resick ]v[ candice monson%%lst%% whsd (116b%%dsh%%3)%%lst%% 
-va boston healthcare system%%lst%% 150 south huntington ave%%per%%]$~ ~$[boston%%lst%% ma 02130%%scn%% 
-patricia%%per%%resick@va%%per%%gov ]v[ candice%%per%%monson@va%%per%%gov%%per%%]$~ 
-~$[copyright%%lst%% © patricia a%%per%%]$~ ~$[resick%%lst%% ph%%per%%d%%per%% ]^[ candice m%%per%%]$~ ~$[monson%%lst%% ph%%per%%d%%per%% 10/01/06 
-2 
-cognitive processing therapy%%cln%% veteran/military version 
-%%#%% 1 
-introduction %%#%% cognitive processing therapy 
-cognitive processing therapy (cpt) %%#%% %%#%% 12%%dsh%%session therapy %%#%% %%#%% %%#%% found effective 
-]f[ %%#%% ptsd ]^[ %%#%% corollary symptoms following traumatic events (monson et al%%lst%% 2006%%scn%% 
-resick et al%%lst%% 2002%%scn%% resick & schnicke%%lst%% 1992%%lst%% 19931)%%per%%]$~ ~$[although %%#%% research %%#%% cpt focused %%#%% 
-rape victims originally%%lst%% %%#%% %%#%% %%#%% %%#%% therapy successfully %%#%% %%#%% range %%#%% %%#%% traumatic 
-events%%lst%% including military%%dsh%%related traumas%%per%%]$~ ~$[this revision %%#%% %%#%% manual %%#%% %%#%% response %%#%% requests 
-]f[ %%#%% treatment manual %%#%% focuses exclusively %%#%% military trauma%%per%%]$~ ~$[the manual %%#%% %%#%% 
-updated %%#%% reflect changes %%#%% %%#%% therapy %%#%% time%%lst%% particularly %%#%% %%#%% increase %%#%% %%#%% amount %%#%% 
-practice %%#%% %%#%% assigned ]^[ %%#%% %%#%% %%#%% %%#%% handouts%%per%%]$~ ~$[it %%#%% includes suggestions %%#%% %%#%% 
-%%#%% decades %%#%% clinical experience %%#%% %%#%% therapy%%per%%]$~ 
-~$[also included %%#%% %%#%% manual %%#%% %%#%% module ]f[ traumatic bereavement%%per%%]$~ ~$[this module %%#%% ]n[ 
-included %%#%% %%#%% %%#%% %%#%% 12 sessions ]b[ %%#%% %%#%% added %%#%% %%#%% therapy%%per%%]$~ ~$[we recommend %%#%% %%#%% 
-session %%#%% added %%#%% %%#%% therapy%%lst%% %%#%% %%#%% %%#%% %%#%% session %%#%% %%#%% %%#%% educational 
-component %%#%% posttraumatic stress disorder%%per%%]$~ ~$[although %%#%% expect ptsd %%#%% remit %%#%% %%#%% result %%#%% 
-treatment%%lst%% %%#%% %%#%% ]n[ necessarily expect bereavement %%#%% remit%%per%%]$~ ~$[grief %%#%% %%#%% normal reaction %%#%% loss 
-]^[ %%#%% ]n[ %%#%% disorder%%per%%]$~ ~$[bereavement %%#%% %%#%% %%#%% %%#%% ]^[ varied course%%per%%]$~ ~$[the goal %%#%% dealing %%#%% 
-grief issues %%#%% cpt %%#%% ]n[ %%#%% shorten %%#%% natural course %%#%% adjustment%%lst%% ]b[ %%#%% remove blocks 
-]^[ barriers (distorted cognitions%%lst%% assumptions%%lst%% expectations) %%#%% %%#%% interfering %%#%% normal 
-bereavement%%per%%]$~ ~$[therefore%%lst%% %%#%% focus %%#%% %%#%% normal grief%%lst%% myths %%#%% bereavement%%lst%% ]^[ stuck 
-%%#%% %%#%% therapists %%#%% %%#%% %%#%% focus %%#%% %%#%% %%#%% domain%%per%%]$~ ~$[if %%#%% bereavement session %%#%% added %%#%% 
-cpt%%lst%% %%cmp%% %%#%% assignment %%#%% write %%#%% impact statement %%#%% %%#%% delayed %%#%% session (see 
-session 1) ]f[ %%#%% %%#%% %%#%% ptsd due %%#%% %%#%% traumatic death%%per%%]$~ ~$[another possibility %%#%% %%#%% %%#%% %%#%% 
-patients write %%#%% impact statements ]f[ %%#%% %%#%% %%#%% lost %%#%% loved %%#%% ]^[ %%#%% ptsd related 
-%%#%% %%#%% %%#%% happened %%#%% %%#%% directly%%per%%]$~ ~$[one statement %%#%% %%#%% %%#%% %%#%% %%#%% means %%#%% 
-%%#%% traumatic event happened %%#%% them%%per%%]$~ ~$[the %%#%% statement %%#%% %%#%% %%#%% %%#%% %%#%% means %%#%% %%#%% 
-loved %%#%% %%#%% died%%per%%]$~ 
-~$[many therapists %%#%% %%#%% trained %%#%% conduct manualized psychotherapies ]^[ %%#%% feel 
-uncomfortable %%#%% %%#%% %%#%% concept ]^[ %%#%% execution%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% patient ]^[ 
-therapist agree %%#%% %%#%% goal ]f[ %%#%% therapy (trauma %%#%% ]f[ ptsd ]^[ related symptoms) ]s[ %%#%% 
-%%#%% goals %%#%% ]n[ drift ]v[ switch %%#%% session %%#%% session%%per%%]$~ ~$[without %%#%% firm commitment %%#%% %%#%% 
-1 
-monson%%lst%% c%%per%%m%%per%%%%lst%% schnurr%%lst%% p%%per%%p%%per%%%%lst%% resick%%lst%% p%%per%%a%%per%%%%lst%% friedman%%lst%% m%%per%%j%%per%%%%lst%% young%%dsh%%xu%%lst%% y%%per%%%%lst%% & stevens%%lst%% s%%per%%p%%per%% (2006)%%per%%]$~ ~$[cognitive 
-processing therapy ]f[ veterans %%#%% military%%dsh%%related posttraumatic stress disorder%%per%%]$~ ~$[journal %%#%% consulting & 
-clinical psychology%%lst%% 74%%lst%% 898%%dsh%%907%%per%%]$~ 
-~$[resick%%lst%% p%%per%%a%%per%%%%lst%% nishith%%lst%% p%%per%%%%lst%% weaver%%lst%% t%%per%%l%%per%%%%lst%% astin%%lst%% m%%per%%c%%per%%%%lst%% & feuer%%lst%% c%%per%%a%%per%% (2002)%%per%%]$~ ~$[a comparison %%#%% cognitive processing 
-therapy%%lst%% prolonged exposure ]^[ %%#%% waiting condition ]f[ %%#%% treatment %%#%% posttraumatic stress disorder %%#%% 
-female rape victims%%per%%]$~ ~$[journal %%#%% consulting ]^[ clinical psychology%%lst%% 70%%lst%% 867%%dsh%%879%%per%%]$~ 
-~$[resick%%lst%% p%%per%%]$~ ~$[a%%per%%%%lst%% & schnicke%%lst%% m%%per%%]$~ ~$[k%%per%% (1992)%%per%%]$~ ~$[cognitive processing therapy ]f[ sexual assault victims%%per%%]$~ ~$[journal %%#%% 
-consulting ]^[ clinical psychology%%lst%% 60%%lst%% 748%%dsh%%756%%per%%]$~ 
-~$[resick%%lst%% p%%per%%]$~ ~$[a%%per%%%%lst%% & schnicke%%lst%% m%%per%%]$~ ~$[k%%per%% (1993)%%per%%]$~ ~$[cognitive processing therapy ]f[ rape victims%%cln%% %%#%% treatment manual%%per%%]$~ 
-~$[newbury park%%lst%% ca%%cln%% sage publications%%per%% 
-3 
-treatment goals%%lst%% %%#%% %%#%% therapy %%#%% “off track”%%lst%% %%#%% therapist %%#%% ]n[ know %%#%% %%#%% %%#%% %%#%% 
-%%#%% %%#%% protocol ]v[ %%#%% %%#%% %%#%% slide%%per%%]$~ ~$[as %%#%% topics arise%%lst%% %%#%% therapist sometimes isn’t %%#%% %%#%% 
-]v[ %%#%% %%#%% incorporate %%#%% %%#%% %%#%% sessions%%per%%]$~ ~$[a %%#%% words %%#%% %%#%% topics %%#%% appropriate here%%per%%]$~ 
-~$[once therapists %%#%% conducted protocol therapy %%#%% %%#%% times%%lst%% %%#%% usually %%#%% %%#%% %%#%% %%#%% 
-%%#%% efficient ]^[ effective therapists%%per%%]$~ ~$[they learn %%#%% guide %%#%% therapy %%#%% tangents ]v[ 
-delays%%per%%]$~ ~$[they %%#%% %%#%% %%#%% develop rapport %%#%% patients %%#%% %%#%% %%#%% %%#%% socratic questions 
-%%cmp%% %%#%% patients %%#%% explaining %%#%% %%#%% therapist exactly %%#%% %%#%% feel ]^[ %%#%% ]^[ %%#%% 
-therapist expresses %%#%% ]^[ understanding %%#%% %%#%% questions%%per%%]$~ ~$[there %%#%% usually %%#%% time 
-%%#%% %%#%% session %%#%% cover %%#%% material ]f[ %%#%% session ]^[ %%#%% %%#%% time ]f[ %%#%% %%#%% topics%%lst%% %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% week ]v[ considering %%#%% current issues related %%#%% %%#%% ptsd 
-(childrearing%%lst%% job concerns marital issues%%lst%% etc%%per%%)%%per%%]$~ ~$[however %%cmp%% %%#%% %%#%% major issues%%lst%% %%cmp%% %%#%% 
-therapist %%#%% %%#%% %%#%% prioritize %%#%% order%%per%%]$~ ~$[it %%#%% %%#%% inadvisable %%#%% try %%#%% deal %%#%% %%#%% 
-types %%#%% therapy ]f[ %%#%% problems simultaneously%%per%%]$~ 
-~$[normally%%lst%% comorbid depression%%lst%% anxiety%%lst%% ]^[ dissociation remit %%#%% %%#%% ptsd%%lst%% ]s[ %%#%% 
-rarely believe %%#%% %%#%% %%#%% %%#%% %%#%% deal %%#%% %%#%% symptoms independently %%#%% %%#%% ptsd protocol%%per%%]$~ 
-~$[substance dependence %%#%% %%#%% treated prior %%#%% addressing ptsd%%lst%% ]b[ substance abusing 
-patients %%#%% %%#%% treated %%#%% cpt %%cmp%% %%#%% %%#%% %%#%% specific contract ]f[ ]n[ drinking abusively %%#%% 
-%%#%% therapy ]^[ %%cmp%% %%#%% %%#%% %%#%% specific focus %%#%% %%#%% suspected role %%#%% abusive drinking %%#%% avoidance 
-coping (for %%#%% information %%#%% comorbidity %%#%% section 3)%%per%%]$~ ~$[typically %%#%% %%#%% %%#%% patients 
-focus %%#%% specific child%%lst%% family%%lst%% ]^[ marital issues %%#%% completing %%#%% course %%#%% ptsd 
-treatment%%per%%]$~ ~$[sometimes %%#%% problems remit %%#%% %%#%% patient %%#%% %%#%% %%#%% ptsd interfering 
-%%#%% functioning%%per%%]$~ ~$[other considerations regarding comorbidity %%#%% found later %%#%% %%#%% manual%%per%%]$~ 
-~$[most veterans %%#%% ]f[ ptsd treatment %%#%% %%#%% %%#%% %%#%% traumatic event%%per%%]$~ ~$[they 
-%%#%% usually ]n[ %%#%% crisis ]^[ %%#%% able %%#%% handle %%#%% day%%dsh%%to%%dsh%%day lives (at whatever level %%#%% %%#%% 
-functioning) %%#%% constant intervention%%per%%]$~ ~$[much %%#%% %%#%% disruption %%#%% %%#%% flow %%#%% therapy ]f[ 
-ptsd comes %%#%% avoidance attempts %%#%% %%#%% %%#%% %%#%% %%#%% patient%%per%%]$~ ~$[we %%#%% %%#%% avoidance 
-whenever %%#%% %%#%% %%#%% (e%%per%%g%%per%%%%lst%% changing %%#%% subject%%lst%% %%#%% %%#%% late ]f[ sessions)%%lst%% ]^[ remind %%#%% 
-patient %%#%% avoidance maintains ptsd symptoms%%per%%]$~ ~$[if %%#%% patient %%#%% %%#%% discuss %%#%% issues%%lst%% %%#%% 
-save time %%#%% %%#%% %%#%% %%#%% %%#%% session ]v[ attempt %%#%% incorporate %%#%% issues %%#%% %%#%% skills %%#%% %%#%% 
-%%#%% taught (i%%per%%e%%per%%%%lst%% a%%dsh%%b%%dsh%%c sheets%%lst%% challenging questions%%lst%% patterns %%#%% problematic thinking%%lst%% 
-challenging beliefs worksheets)%%per%%]$~ ~$[if %%#%% patient %%#%% ]n[ bring %%#%% practice assignments%%lst%% %%#%% %%#%% ]n[ 
-delay %%#%% session%%lst%% ]b[ conduct %%#%% %%#%% %%#%% session ]^[ %%cmp%% reassign %%#%% practice assignment 
-%%#%% %%#%% %%#%% %%#%% assignment%%per%%]$~ 
-~$[returning oef/oif veterans %%#%% %%#%% %%#%% %%#%% %%cmp%% %%#%% veterans%%per%%]$~ ~$[they %%#%% 
-prefer %%#%% sessions %%#%% week ]s[ %%#%% %%#%% %%#%% %%#%% therapy finished quickly%%per%%]$~ ~$[they %%#%% request %%#%% 
-morning ]v[ evening appointments %%#%% accommodate %%#%% jobs%%per%%]$~ ~$[they %%#%% %%#%% %%#%% ptsd 
-treatment augmented %%#%% couples counseling%%per%%]$~ ~$[they %%#%% appear %%#%% bit %%#%% “raw” %%cmp%% %%#%% %%#%% 
-chronic vietnam veterans %%#%% %%#%% va clinicians %%#%% accustomed %%#%% %%#%% with%%per%%]$~ ~$[the %%#%% 
-accessible emotions %%#%% actually %%#%% advantage %%#%% processing %%#%% traumatic events ]^[ %%#%% 
-motivating change%%lst%% ]b[ therapists %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% chronic (and numbed) 
-veterans %%#%% %%#%% alarmed %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% patients%%per%%]$~ ~$[they %%#%% %%#%% %%#%% 
-strong emotions ]v[ dissociation %%#%% %%#%% stabilized ]v[ medicated first%%per%%]$~ ~$[however%%lst%% cpt %%#%% 
-developed ]^[ tested %%#%% %%#%% rape victims %%#%% %%#%% %%#%% %%#%% %%#%% acute ]^[ %%#%% emotional%%per%%]$~ ~$[as 
-4 
-%%#%% %%#%% patients %%#%% willing %%#%% engage %%#%% therapy ]^[ %%#%% contract %%#%% self%%dsh%%harm ]^[ acting 
-out%%lst%% %%#%% %%#%% %%#%% reason %%#%% assume %%#%% %%#%% %%#%% %%#%% wait ]f[ treatment%%per%%]$~ 
-~$[it %%#%% recommended %%#%% %%#%% patient %%#%% assessed%%lst%% ]n[ %%#%% %%#%% ]^[ %%#%% treatment%%lst%% ]b[ 
-%%#%% treatment %%#%% well%%per%%]$~ ~$[we typically %%#%% patients %%#%% brief ptsd scale ]^[ %%#%% depression scale 
-(if comorbid depression %%#%% %%#%% problem) %%#%% %%#%% week%%per%%]$~ ~$[most %%#%% %%#%% %%#%% %%#%% large drop %%#%% symptoms 
-%%#%% %%#%% assimilation %%#%% %%#%% trauma %%#%% resolving%%per%%]$~ ~$[typically %%#%% occurs %%#%% %%#%% 5th ]v[ 6th 
-session %%#%% %%#%% written exposure ]^[ cognitive therapy focusing %%#%% %%#%% traumatic event itself%%per%%]$~ 
-~$[occasionally %%#%% takes longer%%lst%% ]b[ %%#%% frequent assessment%%lst%% %%#%% therapist %%#%% monitor %%#%% 
-progress ]^[ %%#%% %%#%% %%#%% shift occurs%%per%%]$~ 
-~$[theory 
-cpt %%#%% based %%#%% %%#%% social cognitive theory %%#%% ptsd %%#%% focuses %%#%% %%#%% %%#%% traumatic event 
-%%#%% construed ]^[ coped %%#%% %%#%% %%#%% person %%#%% %%#%% trying %%#%% regain %%#%% sense %%#%% mastery ]^[ control %%#%% 
-his/her life%%per%%]$~ ~$[the %%#%% major theory explaining ptsd %%#%% lang’s2 (1977) information processing 
-theory%%lst%% %%#%% %%#%% extended %%#%% ptsd %%#%% foa%%lst%% steketee%%lst%% ]^[ rothbaum3 (1989) %%#%% %%#%% emotional 
-processing theory %%#%% ptsd%%per%%]$~ ~$[in %%#%% theory%%lst%% ptsd %%#%% believed %%#%% emerge due %%#%% %%#%% development %%#%% 
-%%#%% fear network %%#%% memory %%#%% elicits escape ]^[ avoidance behavior%%per%%]$~ ~$[mental fear structures 
-include stimuli%%lst%% responses%%lst%% ]^[ meaning elements%%per%%]$~ ~$[anything associated %%#%% %%#%% trauma %%#%% elicit 
-%%#%% fear structure ]v[ schema ]^[ subsequent avoidance behavior%%per%%]$~ ~$[the fear network %%#%% people %%#%% 
-ptsd %%#%% %%#%% %%#%% %%#%% stable ]^[ broadly generalized ]s[ %%#%% %%#%% %%#%% easily accessed%%per%%]$~ ~$[when %%#%% fear 
-network %%#%% activated %%#%% reminders %%#%% %%#%% trauma%%lst%% %%#%% information %%#%% %%#%% network enters 
-consciousness (intrusive symptoms)%%per%%]$~ ~$[attempts %%#%% avoid %%#%% activation result %%#%% %%#%% avoidance 
-symptoms %%#%% ptsd%%per%%]$~ ~$[according %%#%% emotional processing theory%%lst%% repetitive exposure %%#%% %%#%% 
-traumatic memory %%#%% %%#%% safe environment %%#%% result %%#%% habituation %%#%% %%#%% fear ]^[ subsequent 
-change %%#%% %%#%% fear structure%%per%%]$~ ~$[as emotion decreases%%lst%% patients %%#%% ptsd %%#%% begin %%#%% modify %%#%% 
-meaning elements spontaneously ]^[ %%#%% change %%#%% self%%dsh%%statements ]^[ reduce %%#%% 
-generalization%%per%%]$~ ~$[repeated exposures %%#%% %%#%% traumatic memory %%#%% %%#%% %%#%% result %%#%% habituation ]v[ 
-%%#%% change %%#%% %%#%% information %%#%% %%#%% event%%lst%% ]^[ subsequently%%lst%% %%#%% fear structure%%per%%]$~ 
-~$[although social cognitive theories %%#%% ]n[ incompatible %%#%% information/emotional 
-processing theories%%lst%% %%#%% theories focus beyond %%#%% development %%#%% %%#%% fear network %%#%% %%#%% 
-pertinent affective responses %%#%% %%#%% horror%%lst%% anger%%lst%% sadness%%lst%% humiliation%%lst%% ]v[ guilt%%per%%]$~ ~$[some emotions 
-%%#%% %%#%% fear%%lst%% anger%%lst%% ]v[ sadness %%#%% emanate directly %%#%% %%#%% trauma (primary emotions)%%lst%% 
-%%cmp%% %%#%% event %%#%% interpreted %%#%% dangerous%%lst%% abusive%%lst%% and/or resulting %%#%% losses%%per%%]$~ ~$[it %%#%% %%#%% 
-%%#%% secondary%%lst%% ]v[ manufactured%%lst%% emotions %%#%% %%#%% result %%#%% faulty interpretations %%#%% %%#%% %%#%% 
-patient%%per%%]$~ ~$[for example%%lst%% %%cmp%% %%#%% %%#%% intentionally attacked %%#%% %%#%% person%%lst%% %%#%% danger %%#%% %%#%% 
-situation %%#%% lead %%#%% %%#%% fight%%dsh%%flight response ]^[ %%#%% attending emotions %%#%% %%#%% anger ]v[ fear 
-(primary)%%per%%]$~ ~$[however%%lst%% %%cmp%% %%#%% %%#%% aftermath%%lst%% %%#%% person blamed %%#%% ]v[ %%#%% ]f[ %%#%% attack%%lst%% %%#%% 
-person %%#%% experience shame ]v[ embarrassment%%per%%]$~ ~$[these manufactured emotions %%#%% %%#%% 
-2 
-lang%%lst%% p%%per%%]$~ ~$[j%%per%% (1977)%%per%%]$~ ~$[imagery %%#%% therapy%%cln%% %%#%% information processing analysis %%#%% fear%%per%%]$~ ~$[behavior therapy%%lst%% 8%%lst%% 862%%dsh%%886%%per%% 
-3 
-foa%%lst%% e%%per%%]$~ ~$[b%%per%%%%lst%% steketee%%lst%% g%%per%%]$~ ~$[s%%per%%%%lst%% & rothbaum%%lst%% b%%per%% 0%%per%% (1989)%%per%%]$~ ~$[behavioral/cognitive conceptualizations %%#%% posttraumatic 
-stress disorder%%per%%]$~ ~$[behavior therapy%%lst%% 20%%lst%% 155%%dsh%%176%%per%% 
-5 
-resulted %%#%% %%#%% ]^[ interpretations %%#%% %%#%% event%%lst%% %%#%% %%cmp%% %%#%% event itself%%per%%]$~ ~$[as %%#%% %%#%% 
-%%#%% individual %%#%% saying %%#%% %%#%% event %%#%% %%#%% fault%%lst%% %%#%% %%#%% producing shame (%%cmp%%%%lst%% 
-manufactured)%%per%%]$~ 
-~$[social%%dsh%%cognitive theories focus %%#%% %%#%% %%#%% content %%#%% cognitions ]^[ %%#%% effect %%#%% 
-distorted cognitions %%#%% %%#%% emotional responses ]^[ behavior%%per%%]$~ ~$[in order %%#%% reconcile %%#%% 
-information %%#%% %%#%% traumatic event %%#%% prior schemas%%lst%% people tend %%#%% %%#%% %%#%% ]v[ %%#%% %%#%% %%#%% 
-things%%cln%% assimilate%%lst%% accommodate%%lst%% ]v[ over%%dsh%%accommodate%%per%%]$~ ~$[assimilation %%#%% altering %%#%% incoming 
-information %%#%% match prior beliefs (“because %%#%% bad %%#%% happened %%#%% me%%lst%% %%#%% %%#%% %%#%% %%#%% 
-punished ]f[ %%#%% %%#%% did”)%%per%%]$~ ~$[accommodation %%#%% altering beliefs %%#%% %%#%% incorporate %%#%% 
-%%#%% information (“although %%#%% didn’t %%#%% %%#%% judgment %%#%% %%#%% situation%%lst%% %%#%% %%#%% %%#%% time %%#%% %%#%% 
-%%#%% decisions”)%%per%%]$~ ~$[over%%dsh%%accommodation %%#%% altering ones beliefs %%#%% oneself ]^[ %%#%% world %%#%% 
-%%#%% extreme %%#%% order %%#%% feel safer ]^[ %%#%% %%#%% control (“i can’t %%#%% trust %%#%% judgment again”)%%per%%]$~ 
-~$[obviously%%lst%% therapists %%#%% %%#%% %%#%% accommodation%%lst%% %%#%% balance %%#%% beliefs %%#%% takes %%#%% 
-account %%#%% reality %%#%% %%#%% traumatic event %%#%% %%#%% overboard%%per%%]$~ 
-~$[in %%#%% social%%dsh%%cognitive model%%lst%% affective expression %%#%% needed%%lst%% ]n[ ]f[ habituation%%lst%% ]b[ %%#%% 
-order ]f[ %%#%% affective elements %%#%% %%#%% stored trauma memory %%#%% %%#%% changed%%per%%]$~ ~$[it %%#%% assumed %%#%% 
-%%#%% natural affect%%lst%% %%#%% accessed%%lst%% %%#%% dissipate %%#%% quickly%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% stored %%#%% 
-%%#%% trauma memory%%per%%]$~ ~$[also%%lst%% %%#%% %%#%% %%#%% accommodating %%#%% memory ]^[ beliefs %%#%% begin%%per%%]$~ ~$[once 
-faulty beliefs regarding %%#%% event (self%%dsh%%blame%%lst%% guilt) ]^[ over%%dsh%%generalized beliefs %%#%% oneself 
-]^[ %%#%% world (e%%per%%g%%per%% safety%%lst%% trust%%lst%% control esteem%%lst%% intimacy) %%#%% challenged%%lst%% %%cmp%% %%#%% secondary 
-emotions %%#%% %%#%% decrease %%#%% %%#%% %%#%% intrusive reminders%%per%%]$~ ~$[the explanation %%#%% cpt 
-therapists %%#%% %%#%% patients %%#%% %%#%% process %%#%% described %%#%% session 1 %%#%% %%#%% %%#%% handout %%#%% %%#%% 
-patient materials section%%per%%]$~ 
-~$[because %%#%% know %%#%% ptsd symptoms %%#%% nearly universal immediately following %%#%% 
-serious traumatic stressor ]^[ %%#%% recovery takes %%#%% %%#%% months %%#%% normal circumstances%%lst%% %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% diagnosable ptsd %%#%% %%#%% disruption ]v[ stalling %%#%% %%#%% %%#%% normal recovery 
-process%%lst%% %%#%% %%cmp%% %%#%% development %%#%% %%#%% unique psychopathology%%per%%]$~ ~$[the therapist %%#%% %%#%% 
-determine %%#%% %%#%% interfered %%#%% normal recovery%%per%%]$~ ~$[in %%#%% case%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% patient 
-believes %%#%% %%#%% %%#%% %%#%% overwhelmed %%#%% %%#%% amount %%#%% affect %%#%% %%#%% emerge %%cmp%% %%#%% stops 
-avoiding ]^[ numbing himself%%per%%]$~ ~$[perhaps %%#%% %%#%% taught %%#%% %%#%% child %%#%% emotions %%#%% bad%%lst%% %%#%% “real 
-men” don’t %%#%% feelings ]^[ %%#%% %%#%% %%#%% “just %%#%% %%#%% it”%%per%%]$~ ~$[in %%#%% case%%lst%% %%#%% patient %%#%% 
-%%#%% refused %%#%% talk %%#%% %%#%% happened %%#%% %%#%% %%cmp%% %%#%% blames %%#%% ]f[ “letting” 
-%%#%% event happen ]^[ %%#%% %%#%% ]s[ shamed ]^[ humiliated %%#%% %%#%% %%#%% convinced %%#%% %%#%% %%#%% 
-blame %%#%% too%%per%%]$~ ~$[in %%#%% third case%%lst%% %%#%% patient %%#%% %%#%% ]s[ horrifying %%#%% %%#%% time %%#%% falls 
-asleep ]^[ dreams %%#%% it%%lst%% %%#%% wakes %%#%% %%#%% %%#%% cold sweat%%per%%]$~ ~$[in order %%#%% sleep%%lst%% %%#%% %%#%% started drinking 
-heavily%%per%%]$~ ~$[another patient %%#%% ]s[ convinced %%#%% %%#%% %%#%% %%#%% victimized %%#%% %%#%% %%#%% refuses %%#%% %%#%% 
-%%#%% %%#%% %%#%% ]^[ %%#%% greatly restricted %%#%% activities ]^[ relationships%%per%%]$~ ~$[in %%#%% %%#%% case%%lst%% %%#%% 
-%%#%% %%#%% people %%#%% killed%%lst%% %%#%% patient experiences survivor guilt ]^[ obsesses %%#%% %%#%% %%#%% 
-%%#%% spared %%#%% %%#%% %%#%% killed%%per%%]$~ ~$[he feels unworthy ]^[ experiences guilt whenever %%#%% 
-laughs ]v[ %%#%% %%#%% enjoying something%%per%%]$~ ~$[in %%#%% %%#%% %%#%% cases%%lst%% %%#%% ]v[ avoidance 
-behaviors %%#%% interfering %%#%% emotional processing ]^[ cognitive restructuring%%per%%]$~ ~$[there %%#%% %%#%% 
-%%#%% individual examples %%#%% %%#%% %%#%% %%#%% block %%#%% smooth recovery %%#%% %%#%% %%#%% individuals 
-%%#%% ptsd%%per%% 
-6 
-overview 
-%%#%% contents %%#%% %%#%% session %%#%% described %%#%% %%#%% issues %%#%% therapists %%#%% %%#%% %%#%% 
-encounter%%per%%]$~ ~$[the therapy begins %%#%% %%#%% education component %%#%% ptsd ]^[ %%#%% patient %%#%% %%#%% 
-%%#%% write %%#%% impact statement %%#%% order ]f[ %%#%% patient ]^[ therapist %%#%% begin %%#%% identify problem 
-areas %%#%% thinking %%#%% %%#%% event (i%%per%%e%%per%%%%lst%% “stuck points”)%%per%%]$~ ~$[the patient %%#%% %%cmp%% taught %%#%% identify ]^[ 
-label %%#%% ]^[ feelings ]^[ %%#%% recognize %%#%% relationship %%#%% them%%per%%]$~ ~$[then %%#%% %%#%% %%#%% 
-sessions focus %%#%% generating %%#%% written account %%#%% %%#%% worst traumatic incident%%lst%% %%#%% %%#%% read %%#%% 
-%%#%% therapist %%#%% session%%per%%]$~ ~$[during %%#%% %%#%% five sessions%%lst%% %%#%% therapist %%#%% socratic questioning %%#%% 
-begin %%#%% challenge distorted cognitions%%lst%% particularly %%#%% associated %%#%% assimilation %%#%% selfblame%%lst%% hindsight bias ]^[ %%#%% guilt cognitions%%per%%]$~ ~$[thereafter%%lst%% %%#%% sessions focus %%#%% teaching %%#%% 
-patient cognitive therapy skills ]^[ finally focus %%#%% specific topics %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-disrupted %%#%% %%#%% traumatic event%%cln%% safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% ]^[ intimacy%%per%%]$~ 
-~$[after %%#%% individual cpt protocol %%#%% described %%#%% detail%%lst%% %%#%% %%#%% subsequent sections %%#%% 
-using %%#%% protocol %%#%% %%#%% written trauma exposure component%%lst%% %%#%% section %%#%% delivering cpt 
-%%#%% %%#%% %%#%% format ]^[ %%#%% section %%#%% treatment issues %%#%% comorbid disorders%%lst%% 
-%%#%% %%#%% strongly recommended %%#%% %%#%% protocol %%#%% implemented %%#%% %%#%% order %%#%% here%%per%%]$~ 
-~$[the skills ]^[ exercises %%#%% designed %%#%% build %%#%% %%#%% another%%lst%% ]^[ %%#%% %%#%% modules %%#%% %%#%% last 
-five sessions follow %%#%% %%#%% hierarchical order %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% emerge %%#%% patients%%per%%]$~ 
-~$[however%%lst%% %%#%% %%#%% individually%%lst%% %%#%% last five sessions %%#%% %%#%% modified depending %%#%% %%#%% 
-particular issues %%#%% %%#%% patient reports%%per%%]$~ ~$[for example%%lst%% %%cmp%% %%#%% patient %%#%% severe safety issues%%lst%% ]b[ %%#%% 
-issues %%#%% esteem ]v[ intimacy%%lst%% %%cmp%% %%#%% therapist %%#%% %%#%% %%#%% skip %%#%% later %%#%% modules ]^[ 
-focus %%#%% time %%#%% safety%%per%%]$~ ~$[conversely%%lst%% %%cmp%% %%#%% %%#%% %%#%% safety ]v[ control issues ]b[ %%#%% 
-primarily troubled %%#%% self%%dsh%%trust ]^[ self%%dsh%%esteem issues%%lst%% %%cmp%% %%#%% therapist %%#%% %%#%% %%#%% spend 
-%%#%% time %%#%% %%#%% modules%%per%%]$~ ~$[however%%lst%% %%#%% %%cmp%% %%#%% patient %%#%% ]n[ mentioned %%#%% issue %%#%% %%#%% 
-particular domain %%#%% functioning (safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% intimacy)%%lst%% %%#%% %%#%% %%#%% 
-helpful ]f[ %%#%% %%#%% read %%#%% module ]^[ complete worksheets %%#%% %%#%% stuck %%#%% %%#%% %%#%% 
-apparent%%per%%]$~ ~$[it %%#%% ]n[ unusual ]f[ %%#%% modules %%#%% reveal issues %%#%% %%#%% ]n[ %%#%% identified earlier %%#%% 
-therapy%%per%%]$~ 
-~$[the usual format ]f[ sessions %%#%% %%#%% begin %%#%% review %%#%% %%#%% practice assignments%%lst%% 
-followed %%#%% %%#%% content %%#%% %%#%% specific session%%per%%]$~ ~$[during %%#%% last 15 minutes %%#%% %%#%% session%%lst%% %%#%% 
-assignment ]f[ %%#%% %%#%% week %%#%% introduced ]^[ %%#%% accompanied %%#%% %%#%% necessary explanation%%lst%% 
-definition(s)%%lst%% ]^[ handout%%per%%]$~ ~$[it %%#%% ]n[ recommended %%#%% %%#%% therapist start %%#%% %%#%% discussion %%#%% 
-%%#%% beginning %%#%% %%#%% session%%lst%% ]b[ %%#%% begin immediately %%#%% %%#%% practice assignment %%#%% %%#%% 
-assigned%%per%%]$~ ~$[if %%#%% patient wishes %%#%% speak %%#%% %%#%% topics%%lst%% %%#%% %%#%% %%#%% %%#%% topic %%#%% teach %%#%% 
-%%#%% skills %%#%% %%#%% introducing (e%%per%%g%%per%%%%lst%% %%#%% %%#%% content %%#%% %%#%% a%%dsh%%b%%dsh%%c sheet) ]v[ %%#%% save time %%#%% %%#%% %%#%% 
-]f[ %%#%% %%#%% topics%%lst%% reinforcing %%#%% trauma %%#%% %%#%% discussion %%#%% %%#%% topic%%per%%]$~ ~$[if %%#%% therapist 
-allows %%#%% patient %%#%% direct %%#%% therapy %%#%% %%#%% %%#%% protocol%%lst%% %%#%% avoidance %%#%% %%#%% reinforced%%lst%% 
-%%#%% %%#%% disruption %%#%% %%#%% flow %%#%% %%#%% therapy%%per%%]$~ ~$[in addition%%lst%% placing %%#%% practice assignments last 
-%%#%% %%#%% session %%#%% send %%#%% message %%#%% %%#%% patient %%#%% %%#%% practice assignments %%#%% ]n[ %%#%% 
-%%#%% ]^[ %%#%% lead %%#%% less treatment adherence %%#%% %%#%% %%#%% %%#%% %%#%% patient%%per%%]$~ ~$[among %%#%% %%#%% 
-difficult skills ]f[ %%#%% therapist %%#%% master%%lst%% especially %%cmp%% s/he %%#%% %%#%% trained %%#%% %%#%% non%%dsh%%directive 
-7 
-therapies%%lst%% %%#%% %%#%% %%#%% %%#%% empathic ]b[ firm %%#%% maintaining %%#%% protocol%%per%%]$~ ~$[if %%#%% patient %%#%% ]n[ bring 
-%%#%% his/her practice assignment %%#%% session%%lst%% %%#%% %%#%% ]n[ mean %%#%% %%#%% therapy %%#%% delayed ]f[ %%#%% 
-week%%per%%]$~ ~$[the therapist %%#%% %%#%% patient %%#%% %%#%% assignment orally (or %%#%% complete %%#%% worksheet 
-together) %%#%% %%#%% session ]^[ reassigns %%#%% uncompleted assignment %%#%% %%#%% %%#%% %%#%% 
-assignment%%per%%]$~ 
-~$[part 2 
-cognitive processing therapy%%cln%% session %%#%% session 
-%%#%% %%#%% presumed %%#%% %%#%% therapist %%#%% %%#%% conducted %%#%% form %%#%% assessment %%#%% %%#%% patient’s 
-traumatic event ]^[ persistent symptoms%%lst%% ]^[ specifically contracted %%#%% %%#%% %%#%% course %%#%% cpt prior 
-%%#%% undertaking %%#%% %%#%% session%%per%%]$~ ~$[at least %%#%% brief assessment %%#%% ptsd ]^[ depressive symptoms 
-%%#%% %%#%% conducted%%per%%]$~ ~$[there %%#%% %%#%% brief ptsd checklists ]^[ depression scales %%#%% %%#%% %%#%% 
-%%#%% %%#%% assess pretreatment symptoms%%lst%% %%#%% %%#%% %%#%% %%#%% conduct repeated assessments %%#%% therapy 
-%%#%% monitor %%#%% course %%#%% treatment%%per%%]$~ 
-~$[session 1%%cln%% introduction ]^[ education phase 
-therapist overview 
-overall%%lst%% %%#%% %%#%% %%#%% goals ]f[ %%#%% %%#%% session%%cln%% 1) build rapport %%#%% %%#%% patient%%lst%% 2) 
-%%#%% educate %%#%% patient regarding symptoms %%#%% posttraumatic stress disorder ]^[ depression%%lst%% 3) %%#%% 
-provide %%#%% rationale ]f[ treatment based %%#%% %%#%% cognitive conceptualization %%#%% ptsd%%lst%% 4) %%#%% lay %%#%% 
-%%#%% course %%#%% treatment%%lst%% ]^[ 5) %%#%% elicit treatment compliance%%per%%]$~ 
-~$[it %%#%% necessary %%#%% address compliance %%#%% %%#%% %%#%% course %%#%% therapy %%cmp%% avoidance 
-behavior (half %%#%% %%#%% symptoms %%#%% ptsd) %%#%% interfere %%#%% successful treatment%%per%%]$~ ~$[we %%#%% 
-concerned %%#%% %%#%% forms %%#%% compliance%%cln%% attendance ]^[ completion %%#%% out%%dsh%%of%%dsh%%session practice 
-assignments%%per%%]$~ ~$[it %%#%% strongly recommended %%#%% patients attend %%#%% sessions ]^[ complete %%#%% 
-assignments %%#%% order %%#%% benefit %%#%% %%#%% therapy%%per%%]$~ ~$[we attempt %%#%% set %%#%% expectation %%#%% 
-therapy benefit %%#%% dependent %%#%% %%#%% amount %%#%% effort %%#%% invest %%#%% practice assignment 
-compliance ]^[ practice %%#%% %%#%% skills%%per%%]$~ ~$[it %%#%% %%#%% helpful %%#%% remind %%#%% patient %%#%% %%#%% he4 %%#%% 
-%%#%% doing %%#%% ]n[ %%#%% working%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% tackle issues head%%dsh%%on %%#%% 
-%%cmp%% continue %%#%% avoid%%per%%]$~ ~$[avoidance %%#%% affective experience ]^[ expression %%#%% %%#%% %%#%% 
-addressed%%per%%]$~ 
-~$[in %%#%% session%%lst%% patients %%#%% %%#%% %%#%% %%#%% opportunity %%#%% %%#%% %%#%% questions %%#%% %%#%% %%#%% 
-%%#%% %%#%% therapy%%per%%]$~ ~$[sometimes patients’ stuck %%#%% %%#%% evident %%#%% %%#%% questions ]^[ 
-concerns %%#%% express %%#%% %%#%% %%#%% session%%per%%]$~ ~$[and finally%%lst%% %%#%% %%#%% %%#%% therapies%%lst%% rapport 
-building %%#%% crucial ]f[ effective therapy%%per%%]$~ ~$[the patient %%#%% %%#%% feel understood ]^[ listened to%%lst%% 
-otherwise %%#%% %%#%% ]n[ return%%per%% 
-4 
-%%#%% %%#%% %%#%% awkwardness %%#%% %%#%% english language ]^[ %%#%% desire %%#%% refer %%#%% %%#%% single patient%%lst%% %%#%% pronouns “he” 
-]^[ “she” %%#%% %%#%% %%#%% alternately%%lst%% %%#%% %%cmp%% saying “she/he”%%lst%% “him/her” throughout %%#%% manual%%per%%]$~ ~$[the term soldier 
-%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% generic term %%#%% %%cmp%% soldier%%lst%% marine%%lst%% sailor%%lst%% airman etc%%per%%%%lst%% ]^[ %%#%% %%#%% %%#%% interchangeably 
-%%#%% veteran%%per%% 
+~$[efficient software—based fault isolation 
+robert vvahbe 
+steven lucco 
+thomas e%%per%%]$~ ~$[anderson 
+susan l%%per%%]$~ ~$[graham 
+computer science division 
+university %%#%% california 
+berkeley%%lst%% ca 94720 
+abstract 
+%%#%% %%#%% %%#%% provide fault isolation %%#%% cooperating 
+software modules %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% own address 
+space%%per%%]$~ ~$[however%%lst%% ]f[ tightly—coupled modules%%lst%% %%#%% so— 
+lution incurs prohibitive context switch overhead%%per%%]$~ ~$[in 
+%%#%% paper%%lst%% %%#%% %%#%% %%#%% software approach %%#%% imple— 
+menting fault isolation %%#%% %%#%% single address space%%per%%]$~ 
+~$[our approach %%#%% %%#%% parts%%per%%]$~ ~$[first%%lst%% %%#%% load %%#%% code 
+]^[ data ]f[ %%#%% distrusted module %%#%% %%#%% own fault do%%dsh%% 
+main%%lst%% %%#%% logically separate portion %%#%% %%#%% application’s 
+address space%%per%%]$~ ~$[second%%lst%% %%#%% modify %%#%% object code %%#%% %%#%% 
+distrusted module %%#%% prevent %%#%% %%#%% writing ]v[ jump%%dsh%% 
+ing %%#%% %%#%% address outside %%#%% fault domain%%per%%]$~ ~$[both %%#%% 
+software operations %%#%% portable ]^[ programming lan— 
+guage independent%%per%%]$~ 
+~$[our approach poses %%#%% tradeoff relative %%#%% hardware 
+fault isolation%%cln%% substantially faster communication be— 
+tween fault domains%%lst%% %%#%% %%#%% cost %%#%% slightly increased 
+execution time ]f[ distrusted modules %%#%% demon— 
+strate %%#%% ]f[ frequently communicating modules%%lst%% im~ 
+plementing fault isolation %%#%% software %%#%% %%cmp%% hard%%dsh%% 
+ware %%#%% substantially improve end%%dsh%%to—end application 
+performance%%per%%]$~ 
+~$[this %%#%% %%#%% supported %%#%% %%#%% %%#%% %%#%% national sci— 
+ence foundation (cda%%dsh%%8722788)%%lst%% defense advanced research 
+projects agency (darpa) %%#%% grant mda972—92%%dsh%%j%%dsh%%1028 ]^[ 
+contracts dabt63%%dsh%%92%%sqt%%c%%dsh%%0026 ]^[ n00600%%dsh%%93—c—2481%%lst%% %%#%% digi%%dsh%% 
+tal equipment corporation (the systems research center ]^[ 
+%%#%% external research program)%%lst%% ]^[ %%#%% at&t foundation%%per%%]$~ 
+~$[anderson %%#%% %%#%% supported %%#%% %%#%% national science foundation 
+%%#%% investigator award%%per%%]$~ ~$[the content %%#%% %%#%% paper %%#%% ]n[ 
+necessarily reﬂect %%#%% position ]v[ %%#%% policy %%#%% %%#%% government 
+]^[ %%#%% ofﬁcial endorsement %%#%% %%#%% inferred%%per%%]$~ 
+~$[email%%cln%% {rwahbe %%lst%% lucco%%lst%% tea%%lst%% graham}@cs %%per%%berkeley%%per%%edu 
+permission %%#%% copy %%#%% fee %%#%% ]v[ %%#%% %%#%% (his material %%#%% 
+granted provided %%#%% hie cvpies %%#%% %%dqt%%0‘ %%#%% 0! distributed ]f[ 
+direct commercial advantage%%per%% %%#%% acm copyright notice ]^[ %%#%% 
+mile %%#%% %%#%% publicaiion ]^[ ms data appear%%lst%% ]^[ notice %%#%% %%#%% 
+%%#%% copying %%#%% %%#%% permissmn %%#%% (he assomalion ]f[ computing 
+machinery%%per%%]$~ ~$[to copy otherwise%%per%% ]v[ %%#%% republish%%lst%% requires %%#%% fee 
+and/or specnfic permissron%%per%%]$~ 
+~$[sigops %%sqt%%93/12/93/n%%per%%c%%per%%%%lst%% usa 
+31993 acm 0%%dsh%%83791%%dsh%%632%%dsh%%8/93/0012%%per%%%%per%%%%per%%$l50 
+1 introduction 
+application programs %%#%% achieve extensibility %%#%% 
+incorporating independently developed software mod— 
+ules%%per%%]$~ ~$[however%%lst%% faults %%#%% extension code %%#%% render %%#%% 
+software system unreliable%%lst%% ]v[ %%#%% dangerous%%lst%% %%#%% 
+%%#%% faults %%#%% corrupt permanent data%%per%%]$~ ~$[to in— 
+crease %%#%% reliability %%#%% %%#%% applications%%lst%% %%#%% operat— 
+ing system %%#%% provide services %%#%% prevent faults %%#%% 
+distrusted modules %%#%% corrupting application data%%per%%]$~ 
+~$[such fault isolation services %%#%% facilitate software de%%dsh%% 
+velopment %%#%% helping %%#%% identify sources %%#%% system fail— 
+ure%%per%%]$~ 
+~$[for example%%lst%% %%#%% postgres database manager in— 
+cludes %%#%% extensible type system [st087]%%per%%]$~ ~$[using %%#%% 
+facility%%lst%% postgres queries %%#%% refer %%#%% general—purpose 
+code %%#%% deﬁnes constructors%%lst%% destructors%%lst%% ]^[ pred— 
+icates ]f[ user—deﬁned data types %%#%% %%#%% geometric 
+objects%%per%%]$~ ~$[without fault isolation%%lst%% %%#%% query %%#%% %%#%% 
+extension code %%#%% interfere %%#%% %%#%% unrelated query 
+]v[ corrupt %%#%% database%%per%%]$~ 
+~$[similarly%%lst%% recent operating system research %%#%% fo— 
+cused %%#%% %%#%% %%#%% easier ]f[ third party vendors 
+%%#%% enhance %%#%% %%#%% %%#%% operating system%%per%%]$~ ~$[an ex 
+ample %%#%% micro%%dsh%%kernel design%%scn%% %%#%% %%#%% %%#%% operat— 
+ing system %%#%% implemented %%#%% user—level servers %%#%% 
+%%#%% %%#%% easily modiﬁed ]v[ replaced%%per%%]$~ ~$[more gener— 
+ally%%lst%% %%#%% systems %%#%% added extension code %%#%% 
+%%#%% operating system%%lst%% ]f[ example%%lst%% %%#%% bsd network 
+packet ﬁlter [mra87%%lst%% mjq3]7 application—speciﬁc vir%%dsh%% 
+tual memory management [hc92]%%per%% ]^[ active mes— 
+sages [vcgsqq]%%per%%]$~ ~$[among industry systems%%lst%% microsoft’s 
+object linking ]^[ embedding system [cla92] %%#%% 
+link %%#%% independently developed software mod— 
+tiles%%per%%]$~ ~$[also%%lst%% %%#%% quark xprese desktop publishing sys%%dsh%% 
+tem [dy592] %%#%% structured %%#%% support incorporation %%#%% 
+general—purpose third party code%%per%%]$~ ~$[as %%#%% postgres%%lst%% 
+faults %%#%% extension modules %%#%% render %%#%% %%#%% %%#%% 
+systems unreliable%%per%% %%per%%]$~ 
+~$[one %%#%% %%#%% provide fault isolation %%#%% cooperat— 
+ing software modules %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% own address 
+space%%per%%]$~ ~$[using remote procedure call (rfc) [bn84]%%lst%% 
+modules %%#%% separate address spaces %%#%% call %%#%% %%#%% 
+%%#%% %%#%% %%#%% normal procedure call interface%%per%%]$~ ~$[hard%%dsh%% 
+ware page tables prevent %%#%% code %%#%% %%#%% address space 
+%%#%% corrupting %%#%% contents %%#%% another%%per%%]$~ 
+~$[unfortunately%%lst%% %%#%% %%#%% %%#%% %%#%% performance cost 
+%%#%% providing fault isolation %%#%% separate address 
+spaces%%per%%]$~ ~$[transferring control %%#%% protection bound— 
+aries %%#%% expensive%%lst%% ]^[ %%#%% ]n[ necessarily scale 
+%%#%% improvements %%#%% %%#%% processor’s integer perforv 
+mance [albl91]%%per%%]$~ ~$[a cross—address%%dsh%%space rpc requires 
+%%#%% least%%cln%% %%#%% trap %%#%% %%#%% operating system kernel%%lst%% copy— 
+ing %%#%% argument %%#%% %%#%% caller %%#%% %%#%% callee%%lst%% sav~ 
+ing ]^[ restoring registers%%lst%% switching hardware ad— 
+dress spaces (on %%#%% machines%%lst%% ﬂushing %%#%% transla— 
+tion lookaside buffer)%%lst%% ]^[ %%#%% trap %%#%% %%#%% user level%%per%%]$~ 
+~$[these operations %%#%% %%#%% repeated %%#%% rpc re— 
+turn%%per%%]$~ ~$[the execution time overhead %%#%% %%#%% rpc%%lst%% %%#%% 
+%%#%% %%#%% highly optimized implementation%%lst%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% orders %%#%% magnitude %%#%% %%cmp%% 
+%%#%% execution time overhead %%#%% %%#%% normal procedure 
+call [ball90%%lst%% albl91]%%per%%]$~ 
+~$[the goal %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% fault isolation cheap 
+%%#%% %%#%% system developers %%#%% ignore %%#%% perfor— 
+mance effect %%#%% choosing %%#%% modules %%#%% %%#%% %%#%% 
+separate fault domains%%per%%]$~ ~$[in %%#%% %%#%% %%#%% fault iso 
+lation %%#%% %%#%% useful%%lst%% cross%%dsh%%domain procedure calls 
+%%#%% frequent ]y[ involve %%#%% %%#%% moderate amount %%#%% 
+computation %%#%% call%%per%%]$~ ~$[in %%#%% situation %%#%% %%#%% imprac%%dsh%% 
+tical %%#%% isolate %%#%% logically separate module %%#%% 
+%%#%% own address space%%lst%% %%cmp%% %%#%% %%#%% cost %%#%% crossing 
+hardware protection boundaries%%per%%]$~ 
+~$[we propose a%%per%% software approach %%#%% implementing 
+fault isolation %%#%% %%#%% single address space%%per%%]$~ ~$[our ap— 
+proach %%#%% %%#%% parts%%per%%]$~ ~$[first%%lst%% %%#%% load %%#%% code ]^[ data 
+]f[ a%%per%% distrusted module %%#%% %%#%% own fault domain%%lst%% %%#%% 
+logically separate portion %%#%% %%#%% application’s address 
+space%%per%%]$~ ~$[a fault domain%%lst%% %%#%% addition %%#%% comprising %%#%% cori— 
+tiguous region %%#%% memory %%#%% %%#%% address space%%lst%% %%#%% 
+%%#%% unique identiﬁer %%#%% %%#%% %%#%% %%#%% control %%#%% access %%#%% 
+process resources %%#%% %%#%% ﬁle descriptors%%per%%]$~ ~$[second%%lst%% %%#%% 
+modify %%#%% object code %%#%% %%#%% distrusted module %%#%% pre— 
+vent %%#%% %%#%% writing ]v[ jumping %%#%% %%#%% address outside 
+%%#%% fault domain%%per%%]$~ ~$[program modules isolated %%#%% sepa— 
+rate software—enforced fault domains %%#%% ]n[ modify 
+%%#%% other’s data ]v[ execute %%#%% other’s code except 
+%%#%% %%#%% explicit cross%%dsh%%fault%%dsh%%domain rpc interface%%per%%]$~ 
+~$[we %%#%% identiﬁed %%#%% programming%%dsh%%language%%dsh%% 
+independent transformation strategies %%#%% %%#%% render 
+object code unable %%#%% escape %%#%% own code ]^[ data 
+segments%%per%%]$~ ~$[in %%#%% paper%%lst%% %%#%% concentrate %%#%% %%#%% sim— 
+204 
+ple transformation technique%%lst%% called sandboxing%%lst%% %%#%% 
+%%#%% slightly increases %%#%% execution time %%#%% %%#%% mod%%dsh%% 
+iﬁed object code%%per%%]$~ ~$[we %%#%% investigate techniques %%#%% 
+provide %%#%% debugging information ]b[ %%#%% incur 
+%%#%% execution time overhead%%per%%]$~ 
+~$[our approach poses %%#%% tradeoff relative %%#%% hardware— 
+based fault isolation%%per%%]$~ ~$[because %%#%% eliminate %%#%% %%#%% %%#%% 
+cross hardware boundaries%%lst%% %%#%% %%#%% offer substantially 
+lower%%dsh%%cost rpc %%#%% fault domains%%per%%]$~ ~$[a safe rpc %%#%% 
+%%#%% prototype implementation takes roughly 1%%per%%1 %%#%% %%#%% %%#%% 
+decstation 5000/240 ]^[ roughly 0%%per%%8,us %%#%% %%#%% dec al%%dsh%% 
+pha 400%%lst%% %%#%% %%cmp%% %%#%% order %%#%% magnitude faster %%cmp%% 
+%%#%% existing rfc system%%per%%]$~ ~$[this reduction %%#%% rfc time 
+comes %%#%% %%#%% cost %%#%% slightly increased distrusted module 
+execution time%%per%%]$~ ~$[on %%#%% test suite including %%#%% %%#%% %%#%% 
+spe092 benchmarks%%lst%% sandboxing incurs %%#%% average %%#%% 
+4% execution time overhead %%#%% %%#%% %%#%% decstation 
+]^[ %%#%% alpha%%per%%]$~ 
+~$[software—enforced fault isolation %%#%% %%#%% %%#%% %%#%% 
+counter%%dsh%%intuitive%%cln%% %%#%% %%#%% slowing %%#%% %%#%% common 
+%%#%% (normal execution) %%#%% speed %%#%% %%#%% uncommon 
+%%#%% (crossrdomain communication)%%per%%]$~ ~$[but ]f[ fre%%dsh%% 
+quently communicating fault domains%%lst%% %%#%% approach 
+%%#%% offer substantially %%#%% end—to—end performance%%per%%]$~ 
+~$[to demonstrate this%%lst%% %%#%% applied software—enforced 
+fault isolation %%#%% %%#%% postgres database system run%%dsh%% 
+ning %%#%% sequoia 2000 benchmark%%per%%]$~ ~$[the benchmark 
+makes %%#%% %%#%% %%#%% postgres extensible data%%per%% type sys— 
+tem %%#%% deﬁne geometric operators%%per%%]$~ ~$[for %%#%% bench— 
+mark%%lst%% %%#%% software approach reduced fault isolation 
+overhead %%#%% %%#%% %%cmp%% %%#%% factor %%#%% %%#%% %%#%% %%#%% decsta— 
+tion 5000/240%%per%%]$~ 
+~$[a software approach %%#%% provides %%#%% tradeoif %%#%% 
+tween performance ]^[ level %%#%% distrust%%per%%]$~ ~$[if %%#%% mod— 
+ules %%#%% a%%per%% program %%#%% trusted %%#%% %%#%% %%#%% dis%%dsh%% 
+trusted (as %%#%% %%#%% %%#%% ease %%#%% extension code)%%lst%% %%#%% 
+%%#%% distrusted modules incur %%#%% execution time over%%dsh%% 
+head%%per%%]$~ ~$[code %%#%% trusted domains %%#%% run %%#%% %%#%% speed%%per%%]$~ 
+~$[similarly%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% techniques %%#%% im%%dsh%% 
+plement %%#%% security%%lst%% preventing distrusted code %%#%% 
+%%#%% reading data outside %%#%% %%#%% domain%%lst%% %%#%% %%#%% cost %%#%% 
+%%#%% execution time overhead%%per%%]$~ ~$[we quantify %%#%% ef» 
+fect %%#%% section 5%%per%%]$~ 
+~$[the remainder %%#%% %%#%% paper %%#%% organized %%#%% follows%%per%%]$~ 
+~$[section 2 provides %%#%% examples %%#%% systems %%#%% re%%dsh%% 
+quire frequent communication %%#%% fault domains%%per%%]$~ 
+~$[section 3 outlines %%#%% %%#%% modify object code %%#%% pre— 
+vent %%#%% %%#%% generating illegal addresses%%per%%]$~ ~$[section 4 
+describes %%#%% %%#%% implement low latency cross—faultv 
+domain rpc%%per%%]$~ ~$[section 5 %%#%% performance results 
+]f[ %%#%% prototype%%lst%% ]^[ ﬁnally section 6 discusses %%#%% 
+related work%%per%% 
+2 background 
+%%#%% %%#%% section%%lst%% %%#%% characterize %%#%% %%#%% detail %%#%% 
+type %%#%% application %%#%% %%#%% beneﬁt %%#%% software— 
+enforced fault isolation%%per%%]$~ ~$[we defer %%#%% description 
+%%#%% %%#%% postgres extensible type system %%#%% section 
+5%%lst%% %%#%% %%#%% performance measurements ]f[ %%#%% ap— 
+plication%%per%%]$~ 
+~$[the operating systems community %%#%% focused con%%dsh%% 
+siderable attention %%#%% supporting kernel extensibil%%dsh%% 
+ity%%per%%]$~ ~$[for example%%lst%% %%#%% unix vnode interface %%#%% de%%dsh%% 
+signed %%#%% %%#%% %%#%% easy %%#%% add %%#%% %%#%% ﬁle system %%#%% 
+unix [kle86]%%per%%]$~ ~$[unfortunately%%lst%% %%#%% %%#%% %%#%% expensive %%#%% 
+forward %%#%% ﬁle system operation %%#%% user level%%lst%% ]s[ 
+typically %%#%% ﬁle system implementations %%#%% added 
+directly %%#%% %%#%% kernel%%per%% (the andrew ﬁle system %%#%% 
+largely implemented %%#%% user level%%lst%% ]b[ %%#%% maintains %%#%% 
+kernel cache ]f[ performance [hkm%%sqt%%l%%sqt%%bsh epoch’s ter— 
+tiary storage ﬁle system [web93] %%#%% %%#%% example %%#%% op— 
+erating system kernel code developed %%#%% %%#%% third party 
+vendor%%per%%]$~ 
+~$[another example %%#%% user—programmable %%#%% perfor— 
+mance i/o systems%%per%%]$~ ~$[if data %%#%% arriving %%#%% %%#%% i/o 
+channel %%#%% %%#%% %%#%% %%#%% rate%%lst%% performance %%#%% %%#%% 
+degraded substantially %%cmp%% control %%#%% %%#%% %%#%% transferred 
+%%#%% user level %%#%% manipulate %%#%% incoming data [fp93]%%per%%]$~ 
+~$[similarly%%lst%% active messages provide %%#%% performance 
+message handling %%#%% distributed—memory multiproces%%dsh%% 
+sors [vcg8921%%per%%]$~ ~$[typically%%lst%% %%#%% message handlers %%#%% 
+application%%dsh%%speciﬁc%%lst%% ]b[ unless %%#%% network controller 
+%%#%% %%#%% accessed %%#%% user level [thi92]%%lst%% %%#%% message 
+handlers %%#%% %%#%% compiled %%#%% %%#%% kernel ]f[ reason— 
+able performance%%per%%]$~ 
+~$[a user%%dsh%%level example %%#%% %%#%% quark xpress desktop 
+publishing system%%per%%]$~ ~$[one %%#%% purchase third party soft%%dsh%% 
+ware %%#%% %%#%% extend %%#%% system %%#%% perform func~ 
+tions unforeseen %%#%% %%#%% original designers [dysqq]%%per%%]$~ ~$[at 
+%%#%% %%#%% time%%lst%% %%#%% extensibility %%#%% caused quark %%#%% 
+number %%#%% problems%%per%%]$~ ~$[because %%#%% %%#%% lack %%#%% efﬁcient 
+fault domains %%#%% %%#%% personal computers %%#%% quark 
+xpress runs%%lst%% extension modules %%#%% corrupt quark’s 
+internal data structures hence%%lst%% bugs %%#%% third party 
+code %%#%% %%#%% %%#%% quark system appear unreliable%%lst%% 
+%%cmp%% end—users %%#%% ]n[ distinguish %%#%% sources %%#%% 
+system failure%%per%%]$~ 
+~$[all %%#%% examples share %%#%% characteristics%%per%%]$~ ~$[first%%lst%% 
+using hardware fault isolation %%#%% result %%#%% %%#%% signif%%dsh%% 
+icant portion %%#%% %%#%% overall execution time %%#%% spent 
+%%#%% operating system context switch code%%per%%]$~ ~$[second%%lst%% %%#%% 
+%%#%% %%#%% amount %%#%% code %%#%% distrusted%%scn%% %%#%% %%#%% %%#%% exe%%dsh%% 
+cution time %%#%% spent %%#%% trusted code%%per%%]$~ ~$[in %%#%% situation%%lst%% 
+software fault isolation %%#%% %%#%% %%#%% %%#%% %%#%% efﬁcient 
+%%cmp%% hardware fault isolation %%cmp%% %%#%% sharply re— 
+duces %%#%% time spent crossing fault domain boundaries%%lst%% 
+%%#%% %%#%% slightly increasing %%#%% time spent executing 
+205 
+%%#%% distrusted %%#%% %%#%% %%#%% application%%per%%]$~ ~$[section 5 quan%%dsh%% 
+tiﬁes %%#%% trade%%dsh%%off %%#%% domain—crossing overhead 
+]^[ application execution time overhead%%lst%% ]^[ demon 
+strates %%#%% %%#%% %%cmp%% domain—crossing overhead repre— 
+sents %%#%% modest proportion %%#%% %%#%% total application ex— 
+ecution time%%lst%% software—enforced fault isolation %%#%% cost 
+effective%%per%% 
+3 software%%dsh%%enforced fault iso%%dsh%% 
+lation 
+%%#%% %%#%% section%%lst%% %%#%% outline %%#%% software encapsula— 
+tion techniques ]f[ transforming %%#%% distrusted module 
+]s[ %%#%% %%#%% %%#%% ]n[ escape %%#%% fault domain%%per%%]$~ ~$[we ﬁrst 
+describe %%#%% technique %%#%% allows users %%#%% pinpoint %%#%% 
+location %%#%% faults %%#%% %%#%% software module%%per%%]$~ ~$[next%%lst%% %%#%% 
+introduce %%#%% technique%%lst%% called sandboxing%%lst%% %%#%% %%#%% iso%%dsh%% 
+late %%#%% distrusted module %%#%% %%#%% slightly increasing 
+%%#%% execution time%%per%%]$~ ~$[section 5 provides %%#%% performance 
+analysis %%#%% %%#%% techinique%%per%%]$~ ~$[finally%%lst%% %%#%% %%#%% %%#%% soft%%dsh%% 
+ware encapsulation technique %%#%% allows cooperating 
+fault domains %%#%% share memory%%per%%]$~ ~$[the remainder %%#%% 
+%%#%% discussion assumes %%#%% %%#%% operating %%#%% %%#%% risc 
+load /storc architecture%%lst%% %%#%% %%#%% techniques %%#%% 
+%%#%% extended %%#%% handle ciscs%%per%%]$~ ~$[section 4 describes 
+%%#%% %%#%% implement safe ]^[ efficient cross—fault—domain 
+rpc%%per%%]$~ 
+~$[we divide %%#%% application’s virtual address space %%#%% 
+segments%%lst%% aligned ]s[ %%#%% %%#%% virtual addresses %%#%% 
+%%#%% segment share %%#%% unique pattern %%#%% upper bits%%lst%% called 
+%%#%% segment identiﬁer%%per%%]$~ ~$[a fault domain consists %%#%% %%#%% 
+segments%%lst%% %%#%% ]f[ %%#%% distrusted module’s code%%lst%% %%#%% %%#%% 
+]f[ %%#%% static data%%lst%% heap ]^[ stack%%per%%]$~ ~$[the speciﬁc seg%%dsh%% 
+ment addresses %%#%% determined %%#%% load time%%per%%]$~ 
+~$[software encapsulation transforms %%#%% distrusted 
+module‘s object code ]s[ %%#%% %%#%% %%#%% jump %%#%% %%#%% tar%%dsh%% 
+%%#%% %%#%% %%#%% code segment%%lst%% ]^[ write %%#%% %%#%% addresses 
+%%#%% %%#%% data segment%%per%%]$~ ~$[hence%%lst%% %%#%% legal jump tar— 
+%%#%% %%#%% %%#%% distrusted module %%#%% %%#%% %%#%% upper bit 
+pattern (segment identiﬁer)%%scn%% similarly%%lst%% %%#%% legal data 
+addresses generated %%#%% %%#%% distrusted module share 
+%%#%% %%#%% segment identiﬁer%%per%%]$~ ~$[separate code ]^[ data 
+segments %%#%% necessary %%#%% prevent %%#%% module %%#%% mod— 
+%%cmp%%ying %%#%% code segmentl%%per%%]$~ ~$[it %%#%% %%#%% ]f[ %%#%% address 
+%%#%% %%#%% correct segment identiﬁer %%#%% %%#%% illegal%%lst%% ]f[ in%%dsh%% 
+stance %%cmp%% %%#%% refers %%#%% %%#%% unmapped page%%per%%]$~ ~$[this %%#%% caught 
+%%#%% %%#%% normal operating system page fault mechanism%%per%% 
+3%%per%%1 
+%%#%% unsafe mstmctzan %%#%% %%#%% instruction %%#%% jumps %%#%% 
+]v[ stores %%#%% %%#%% address %%#%% %%#%% ]n[ %%#%% statically ver— 
+segment matching 
+10111%%dqt%% system supports dynamic linking %%#%% %%#%% special 
+interface%%per%% 
+iﬁed %%#%% %%#%% %%#%% %%#%% correct segment%%per%%]$~ ~$[most control 
+transfer instructions%%lst%% %%#%% %%#%% program‘counter‘relative 
+branches%%lst%% %%#%% %%#%% statically veriﬁed%%per%%]$~ ~$[stores %%#%% static 
+variables %%#%% %%#%% %%#%% immediate addressing mode ]^[ 
+%%#%% %%#%% statically veriﬁed%%per%%]$~ ~$[however%%lst%% jumps %%#%% reg— 
+isters%%lst%% %%#%% commonly %%#%% %%#%% implement procedure 
+returns%%lst%% ]^[ stores %%#%% %%#%% %%#%% register %%#%% hold %%#%% 
+target address%%lst%% %%#%% ]n[ %%#%% statically veriﬁed%%per%%]$~ 
+~$[a straightforward approach %%#%% preventing %%#%% %%#%% %%#%% 
+illegal addresses %%#%% %%#%% insert checking code %%#%% eve 
+ery unsafe instruction%%per%%]$~ ~$[the checking code determines 
+%%#%% %%#%% unsafe instruction’s target address %%#%% %%#%% 
+correct segment identiﬁer%%per%%]$~ ~$[if %%#%% check fails%%lst%% %%#%% in%%dsh%% 
+serted code %%#%% trap %%#%% %%#%% system error routine outside 
+%%#%% distrusted module’s fault domain%%per%%]$~ ~$[we call %%#%% 
+software encapsulation technique segment matching%%per%%]$~ 
+~$[on typical risc architectures%%lst%% segment matching 
+requires %%#%% instructions%%per%%]$~ ~$[figure 1 lists %%#%% pseudo—code 
+fragment ]f[ segment matching%%per%%]$~ ~$[the ﬁrst instruction 
+%%#%% %%#%% fragment moves %%#%% store target address %%#%% 
+%%#%% dedzcated register%%per%%]$~ ~$[dedicated registers %%#%% %%#%% %%#%% 
+%%#%% inserted code ]^[ %%#%% %%#%% modiﬁed %%#%% code %%#%% 
+%%#%% distrusted module%%per%%]$~ ~$[they %%#%% necessary %%cmp%% 
+code %%cmp%%where %%#%% %%#%% distrusted module %%#%% arrange 
+%%#%% jump directly %%#%% %%#%% unsafe store instruction%%lst%% by%%dsh%% 
+passing %%#%% inserted check%%per%%]$~ ~$[hence%%lst%% %%#%% transform %%#%% 
+unsafe store ]^[ jump instructions %%#%% %%#%% %%#%% dedicated 
+register%%per%%]$~ 
+~$[all %%#%% software encapsulation techniques %%#%% 
+%%#%% %%#%% paper require dedicated registersz%%per%%]$~ ~$[segment 
+matching requires %%#%% dedicated registers%%cln%% %%#%% %%#%% hold 
+addresses %%#%% %%#%% code segment%%lst%% %%#%% %%#%% hold addresses 
+%%#%% %%#%% data segment%%lst%% %%#%% %%#%% hold %%#%% segment shift 
+amount%%lst%% ]^[ %%#%% %%#%% hold %%#%% segment identiﬁer%%per%%]$~ 
+~$[using dedicated registers %%#%% %%#%% %%#%% impact %%#%% 
+%%#%% execution time %%#%% %%#%% distrusted module%%per%%]$~ ~$[however%%lst%% 
+%%#%% %%#%% modern risc architectures%%lst%% including %%#%% 
+mips ]^[ alpha%%lst%% %%#%% %%#%% least 32 registers%%lst%% %%#%% %%#%% 
+retarget %%#%% compiler %%#%% %%#%% %%#%% %%#%% register set %%#%% 
+minimal performance impact%%per%%]$~ ~$[for example7 section 5 
+%%#%% that%%lst%% %%#%% %%#%% decstation 5000/240%%lst%% reducing %%#%% 
+ﬁve registers %%#%% register set available %%#%% %%#%% %%#%% compiler 
+(gee) %%#%% ]n[ %%#%% %%#%% signiﬁcant effect %%#%% %%#%% average 
+execution time %%#%% %%#%% spec92 benchmarks%%per%% 
+3%%per%%2 address sandboxing 
+%%#%% segment matching technique %%#%% %%#%% advantage 
+%%#%% %%#%% %%#%% pinpoint %%#%% offending instruction%%per%%]$~ ~$[this 
+capability %%#%% useful %%#%% software development%%per%%]$~ ~$[we 
+%%#%% reduce runtime overhead %%#%% further%%lst%% %%#%% %%#%% cost 
+%%#%% providing %%#%% information %%#%% %%#%% source %%#%% faults%%per%% 
+2 %%#%% architectures %%#%% lenitccl register sets%%lst%% %%#%% %%#%% %%#%% 
+80386 [int86]%%lst%% %%#%% %%#%% %%#%% %%#%% encapsulate %%#%% module using %%#%% re%%dsh%% 
+served registers %%#%% restricting control ﬂow %%#%% %%#%% fault domain%%per%% 
+206 
+dedicated—reg <2 target address 
+lilove target address %%#%% dedicated register%%per%% 
+scratch%%dsh%%reg <= (dedicated—reg>>shift~reg) 
+right—shift address %%#%% %%#%% segment identiﬁer%%per%% 
+scratch—reg %%#%% ]n[ %%#%% dedicated register%%per%% 
+shift%%dsh%%reg %%#%% %%#%% dedicated register%%per%% 
+%%cmp%% scratch—reg ]^[ segment—reg 
+segment%%dsh%%reg %%#%% %%#%% dedicated register%%per%% 
+trap %%cmp%% ]n[ equal 
+trap %%cmp%% store address %%#%% outside %%#%% segment%%per%% 
+store instruction %%#%% dedicated%%dsh%%reg 
+figure 1%%cln%% assembly pseudo code ]f[ segment matching%%per%% 
+dedicated—reg %%#%% target%%dsh%%reghand—mask—reg 
+%%#%% dedicated register and—mask%%dsh%%reg 
+%%#%% %%#%% segment identiﬁer bits%%per%% 
+dedicated—reg <2 dedicated%%dsh%%regl segment—reg 
+%%#%% dedicated register segment%%dsh%%reg 
+%%#%% set segment identiﬁer bits%%per%% 
+store instruction %%#%% dedicated%%dsh%%reg 
+figure 2%%cln%% assembly pseudo code %%#%% sandbox address 
+%%#%% target—reg%%per%%]$~ 
+~$[before %%#%% unsafe instruction %%#%% simply insert code 
+%%#%% sets %%#%% upper bits %%#%% %%#%% target address %%#%% %%#%% 
+correct segment identifier%%per%%]$~ ~$[we call %%#%% sandborzn %%#%% %%#%% 
+address%%per%%]$~ ~$[sandboxing %%#%% ]n[ catch illegal addresses%%scn%% 
+%%#%% merely prevents %%#%% %%#%% affecting %%#%% fault do— 
+main %%#%% %%cmp%% %%#%% %%#%% generating %%#%% address%%per%%]$~ 
+~$[address sandboxing requires insertion %%#%% %%#%% arith%%dsh%% 
+metic instructions %%#%% %%#%% unsafe store ]v[ jump 
+instruction%%per%%]$~ ~$[the ﬁrst inserted instruction clears %%#%% 
+segment identifier bits ]^[ stores %%#%% result %%#%% %%#%% ded— 
+icated register%%per%%]$~ ~$[the %%#%% instruction sets %%#%% seg— 
+ment identiﬁer %%#%% %%#%% correct value%%per%%]$~ ~$[figure 2 lists %%#%% 
+pseudo‘code %%#%% perform %%#%% operation%%per%%]$~ ~$[as %%#%% seg%%dsh%% 
+ment matching%%lst%% %%#%% modify %%#%% unsafe store ]v[ jump 
+instruction %%#%% %%#%% %%#%% dedicated register%%per%%]$~ ~$[since %%#%% %%#%% 
+using %%#%% dedicated register%%lst%% %%#%% distrusted module code 
+%%#%% ]n[ produce %%#%% illegal address %%#%% %%#%% jumping 
+%%#%% %%#%% %%#%% instruction %%#%% %%#%% sandboxing sequence%%scn%% 
+%%#%% %%#%% upper bits %%#%% %%#%% dedicated register %%#%% al— 
+ready contain %%#%% correct segment identiﬁer%%lst%% %%#%% sec%%dsh%% 
+ond instruction %%#%% %%#%% %%#%% effect%%per%%]$~ ~$[section 3%%per%%6 %%#%% 
+%%#%% simple algorithm %%#%% %%#%% verify %%#%% %%#%% object code 
+module %%#%% %%#%% correctly sandboxed%%per%%]$~ 
+~$[address sandboxing requires ﬁve dedicated registers%%per%%]$~ 
+~$[one register %%#%% %%#%% %%#%% hold %%#%% segment mask%%lst%% %%#%% 
+registers %%#%% %%#%% %%#%% hold %%#%% code ]^[ data segment 
+<——reg+oﬂ%%sqt%%sel %%#%% 
+«— reg 
+guard zones %%#%% eg ment 
+figure 3%%cln%% %%#%% segment %%#%% guard zones%%per%%]$~ ~$[the size %%#%% 
+%%#%% guard zones covers %%#%% range %%#%% %%#%% immediate 
+offsets %%#%% register—plus%%dsh%%offset addressing modes%%per%% 
+identiﬁers%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% hold %%#%% sandboxed 
+code ]^[ data addresses%%per%% 
+3%%per%%3 optimizations 
+%%#%% overhead %%#%% software encapsulation %%#%% %%#%% re%%dsh%% 
+duced %%#%% using conventional compiler optimizations%%per%%]$~ 
+~$[our current prototype applies loop invariant code mo— 
+tion ]^[ instruction scheduling optimizations [asu86%%lst%% 
+acd74]%%per%%]$~ ~$[in addition %%#%% %%#%% conventional techniques%%lst%% 
+%%#%% employ %%#%% number %%#%% optimizations specialized %%#%% 
+software encapsulation%%per%%]$~ 
+~$[we %%#%% reduce %%#%% overhead %%#%% software encapsulae 
+tion mechanisms %%#%% avoiding arithmetic %%#%% computes 
+target addresses%%per%%]$~ ~$[for example%%lst%% %%#%% risc architec— 
+tures include %%#%% register%%dsh%%plus—oﬁset instruction mode%%lst%% 
+%%#%% %%#%% offset %%#%% %%#%% immediate constant %%#%% %%#%% lim— 
+ited range%%per%%]$~ ~$[on %%#%% mips architecture %%#%% offsets %%#%% 
+limited %%#%% %%#%% range %%dsh%%64k %%#%% +64k%%per%%]$~ ~$[consider %%#%% 
+store instruction store value,oﬁset(reg)%%lst%% %%#%% 
+address offset (reg) %%#%% %%#%% register—plus—olfsct ad~ 
+dressing mode%%per%%]$~ ~$[sandboxing %%#%% instruction requires 
+%%#%% inserted instructions%%cln%% %%#%% %%#%% sum reg+oﬁset 
+%%#%% %%#%% dedicated register%%lst%% ]^[ %%#%% sandboxing in— 
+structions %%#%% set %%#%% segment identiﬁer %%#%% %%#%% dedicated 
+register%%per%%]$~ 
+~$[our prototype optimizes %%#%% %%#%% %%#%% sandboxing 
+%%#%% %%#%% register reg%%lst%% %%#%% %%cmp%% %%#%% actual target ad— 
+dress reg+oﬁset%%lst%% thereby saving %%#%% instruction%%per%%]$~ ~$[to 
+support %%#%% optimization%%lst%% %%#%% prototype establishes 
+guard zones %%#%% %%#%% top ]^[ bottom %%#%% %%#%% segment%%per%%]$~ 
+~$[to create %%#%% guard zones%%lst%% virtual memory pages ad— 
+jacent %%#%% %%#%% segment %%#%% unmapped (see figure 3)%%lst%% 
+%%#%% %%#%% reduce runtime overhead %%#%% treating %%#%% 
+mips stack pointer %%#%% %%#%% dedicated register%%per%%]$~ ~$[we avoid 
+sandboxing %%#%% %%#%% %%#%% %%#%% stack pointer %%#%% sandboxing 
+207 
+%%#%% register whenever %%#%% %%#%% set%%per%%]$~ ~$[since %%#%% %%#%% %%#%% stack 
+pointer %%#%% form addresses %%#%% %%#%% %%#%% plentiful %%cmp%% 
+changes %%#%% it%%lst%% %%#%% optimization signiﬁcantly improves 
+performance%%per%%]$~ 
+~$[further%%lst%% %%#%% %%#%% avoid sandboxing %%#%% stack pointer 
+%%#%% %%#%% %%#%% modiﬁed %%#%% %%#%% %%#%% constant offset %%#%% %%#%% %%#%% 
+%%#%% modiﬁed stack pointer %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% load ]v[ 
+store address %%#%% %%#%% %%#%% control transfer instruc» 
+tion%%per%%]$~ ~$[if %%#%% modiﬁed stack pointer %%#%% moved %%#%% %%#%% 
+guard zone%%lst%% %%#%% load ]v[ store instruction using %%#%% %%#%% 
+cause %%#%% hardware address fault%%per%%]$~ ~$[on %%#%% dec alpha 
+processor%%lst%% %%#%% apply %%#%% optimizations %%#%% %%#%% %%#%% 
+frame pointer ]^[ %%#%% stack pointer%%per%%]$~ 
+~$[there %%#%% %%#%% number %%#%% %%#%% optimizations %%#%% 
+%%#%% reduce sandboxing overhead%%per%%]$~ ~$[for example%%lst%% 
+%%#%% transformation tool %%#%% remove sandboxing se— 
+quences %%#%% loops%%lst%% %%#%% %%#%% %%#%% %%#%% store target ad%%dsh%% 
+dress changes %%#%% %%#%% %%#%% %%#%% constant oifset %%#%% 
+%%#%% loop iteration%%per%%]$~ ~$[our prototype %%#%% ]n[ ]y[ imple— 
+ment %%#%% optimizations%%per%% 
+3%%per%%4 process resources 
+%%#%% multiple fault domains share %%#%% %%#%% virtual 
+address space%%lst%% %%#%% fault domain implementation %%#%% 
+prevent distrusted modules %%#%% corrupting resources 
+%%#%% %%#%% allocated %%#%% %%#%% per—addressspace basis%%per%%]$~ ~$[for 
+example%%lst%% %%cmp%% %%#%% fault domain %%#%% allowed %%#%% %%#%% system 
+calls%%lst%% %%#%% %%#%% close ]v[ delete ﬁles %%#%% %%#%% %%#%% code 
+executing %%#%% %%#%% address space%%lst%% potentially causing %%#%% 
+application %%#%% %%#%% %%#%% %%#%% crash%%per%%]$~ 
+~$[one solution %%#%% %%#%% modify %%#%% operating system %%#%% 
+know %%#%% fault domains%%per%%]$~ ~$[on %%#%% system call ]v[ page 
+fault%%lst%% %%#%% kernel %%#%% %%#%% %%#%% program counter %%#%% deter%%dsh%% 
+mine %%#%% currently executing fault domain%%lst%% ]^[ restrict 
+resources accordingly%%per%%]$~ 
+~$[to %%#%% %%#%% prototype portable%%lst%% %%#%% implemented 
+%%#%% alternative approach%%per%%]$~ ~$[in addition %%#%% placing %%#%% 
+distrusted module %%#%% %%#%% separate fault domain%%lst%% %%#%% re— 
+quire distrusted modules %%#%% access system resources 
+%%#%% %%#%% cross%%dsh%%fault%%dsh%%domain rpc%%per%%]$~ ~$[we reserve %%#%% 
+fault domain %%#%% hold trusted arbitration code %%#%% de— 
+termines %%#%% %%#%% particular system call performed 
+%%#%% %%#%% %%#%% fault domain %%#%% safe%%per%%]$~ ~$[if %%#%% distrusted 
+module’s object code performs %%#%% direct system call%%lst%% %%#%% 
+transform %%#%% call %%#%% %%#%% appropriate rpc call%%per%%]$~ ~$[in 
+%%#%% %%#%% %%#%% %%#%% extensible application%%lst%% %%#%% trusted por%%dsh%% 
+tion %%#%% the%%per%% application %%#%% %%#%% system calls directly 
+]^[ shares %%#%% fault domain %%#%% %%#%% arbitration code%%per%% 
+3%%per%%5 data sharing 
+hardware fault isolation mechanisms %%#%% support data 
+sharing %%#%% virtual address spaces %%#%% manipulate 
+ing page table entries%%per%%]$~ ~$[fault domains share %%#%% ad— 
+dress space%%lst%% ]^[ %%cmp%% %%#%% set %%#%% page table entries%%lst%% 
+]s[ %%#%% %%#%% ]n[ %%#%% %%#%% standard shared memory im— 
+plementation%%per%%]$~ ~$[read%%dsh%%only sharing %%#%% straightforward%%scn%% 
+%%#%% %%#%% software encapsulation techniques %%#%% ]n[ al%%dsh%% 
+ter load instructions%%lst%% fault domains %%#%% read %%#%% mem— 
+ory mapped %%#%% %%#%% application’s address space 3%%per%%]$~ 
+~$[if %%#%% object code %%#%% %%#%% particular distrusted mod— 
+ule %%#%% %%#%% sandboxed%%lst%% %%cmp%% %%#%% %%#%% share read%%dsh%%write 
+memory %%#%% %%#%% fault domains %%#%% %%#%% technique 
+%%#%% call lazy pointer swizzling%%per%%]$~ ~$[lazy pointer swizzling 
+provides %%#%% mechanism ]f[ fault domains %%#%% share ar— 
+bitrarily %%#%% read‘write memory regions %%#%% %%#%% ad%%dsh%% 
+ditional runtirne overhead%%per%%]$~ ~$[to support %%#%% technique%%lst%% 
+%%#%% modify %%#%% hardware page tables %%#%% map %%#%% shared 
+memory region %%#%% %%#%% address space segment %%#%% 
+%%#%% access%%scn%% %%#%% region %%#%% mapped %%#%% %%#%% %%#%% offset 
+%%#%% %%#%% segment%%per%%]$~ ~$[in %%#%% words%%lst%% %%#%% alias %%#%% shared 
+region %%#%% multiple locations %%#%% %%#%% virtual address 
+space%%lst%% ]b[ %%#%% aliased location %%#%% exactly %%#%% %%#%% 
+low order address bits%%per%%]$~ ~$[as %%#%% hardware shared mem%%dsh%% 
+ory schemes%%lst%% %%#%% shared region %%#%% %%#%% %%#%% %%#%% 
+segment offset%%per%%]$~ 
+~$[to avoid incorrect shared pointer comparisons %%#%% 
+sandboxed code%%lst%% %%#%% shared memory creation inter— 
+%%#%% %%#%% ensure %%#%% %%#%% shared object %%#%% %%#%% %%#%% 
+unique address%%per%%]$~ ~$[as %%#%% distrusted object code ac%%dsh%% 
+cesses shared memory%%lst%% %%#%% sandboxing code automati%%dsh%% 
+cally translates shared addresses %%#%% %%#%% correspond 
+ing addresses %%#%% %%#%% fault domain’s data segment%%per%%]$~ 
+~$[this translation %%#%% exactly %%#%% hardware transla~ 
+tion%%scn%% %%#%% low bits %%#%% %%#%% address remain %%#%% same%%lst%% ]^[ 
+%%#%% %%#%% bits %%#%% set %%#%% %%#%% data segment identiﬁer%%per%%]$~ 
+~$[under operating systems %%#%% %%#%% ]n[ allow virtual 
+address aliasing%%lst%% %%#%% %%#%% implement shared regions %%#%% 
+introducing %%#%% %%#%% software encapsulation technique%%cln%% 
+shared segment matching%%per%%]$~ ~$[to implement sharing%%lst%% %%#%% 
+%%#%% %%#%% dedicated register %%#%% hold %%#%% bitmap%%per%%]$~ ~$[the bitmap 
+indicates %%#%% segments %%#%% fault domain %%#%% access%%per%%]$~ 
+~$[for %%#%% unsafe instruction checked%%lst%% shared segment 
+matching requires %%#%% more%%per%% instruction %%cmp%% segment 
+matching%%per%% 
+3%%per%%6 implementation ]^[ veriﬁcation 
+%%#%% %%#%% identiﬁed %%#%% strategies ]f[ implementing 
+software encapsulation%%per%%]$~ ~$[one approach %%#%% %%#%% compiler 
+%%#%% emit encapsulated object code ]f[ %%#%% distrusted mod%%dsh%% 
+ule%%scn%% %%#%% integrity %%#%% %%#%% code %%#%% %%cmp%% veriﬁed %%#%% %%#%% 
+module %%#%% loaded %%#%% %%#%% fault domain%%per%%]$~ ~$[alternatively%%lst%% 
+%%#%% system %%#%% encapsulate %%#%% distrusted module %%#%% 
+directly modifying %%#%% object code %%#%% load time%%per%% 
+a\«ve %%#%% implemented versions %%#%% %%#%% techniques %%#%% %%#%% 
+form %%#%% protection %%#%% encapsulating load instructions %%#%% 
+%%#%% %%#%% store ]^[ jump instructions%%per%%]$~ ~$[we discuss %%#%% performance 
+%%#%% %%#%% variants %%#%% section 5%%per%%]$~ 
+~$[our current prototype %%#%% %%#%% %%#%% approach%%per%%]$~ ~$[we 
+modiﬁed %%#%% version %%#%% %%#%% gcc compiler %%#%% perform soft— 
+ware encapsulation%%per%%]$~ ~$[note %%#%% %%#%% %%#%% current imple%%dsh%% 
+mentation %%#%% language dependent%%lst%% %%#%% techniques %%#%% 
+language independent%%per%%]$~ 
+~$[we built %%#%% veriﬁer ]f[ %%#%% mips instruction set 
+%%#%% %%#%% ]f[ %%#%% sandboxing ]^[ segment match%%dsh%% 
+ing%%per%%]$~ ~$[the main challenge %%#%% veriﬁcation %%#%% that%%lst%% %%#%% %%#%% 
+presence %%#%% indirect jumps%%lst%% execution %%#%% begin %%#%% 
+%%#%% instruction %%#%% %%#%% code segment%%per%%]$~ ~$[to address %%#%% 
+situation%%lst%% %%#%% veriﬁer %%#%% %%#%% property %%#%% %%#%% software 
+encapsulation techniques%%cln%% %%#%% unsafe stores ]^[ jumps 
+%%#%% %%#%% dedicated register %%#%% form %%#%% target address%%per%%]$~ 
+~$[the veriﬁer divides %%#%% program %%#%% sequences %%#%% in— 
+structions called unsafe regions%%per%%]$~ ~$[an unsafe store re%%dsh%% 
+gion begins %%#%% %%#%% modiﬁcation %%#%% %%#%% dedicated store 
+register%%per%%]$~ ~$[an unsafe jump region begins %%#%% %%#%% mod%%dsh%% 
+iﬁcation %%#%% %%#%% dedicated jump register%%per%%]$~ ~$[if %%#%% ﬁrst in— 
+struction %%#%% %%#%% unsafe store ]v[ jump region %%#%% executed%%lst%% 
+%%#%% subsequent instructions %%#%% guaranteed %%#%% %%#%% exe%%dsh%% 
+cuted%%per%%]$~ ~$[an unsafe store region %%#%% %%#%% %%#%% %%#%% %%#%% 
+following hold%%cln%% %%#%% %%#%% instruction %%#%% %%#%% store %%#%% 
+%%#%% %%#%% dedicated register %%#%% form %%#%% target address%%lst%% 
+%%#%% %%#%% instruction %%#%% %%#%% control transfer instruction%%lst%% 
+%%#%% %%#%% instruction %%#%% ]n[ guaranteed %%#%% %%#%% executed%%lst%% 
+]v[ %%#%% %%#%% %%#%% %%#%% instructions %%#%% %%#%% code segment%%per%%]$~ 
+~$[a similar deﬁnition %%#%% %%#%% ]f[ unsafe jump regions%%per%%]$~ 
+~$[the veriﬁer analyzes %%#%% unsafe store ]v[ jump re%%cln%% 
+gion %%#%% insure %%#%% %%#%% dedicated register modiﬁed %%#%% 
+%%#%% region %%#%% valid %%#%% exit %%#%% %%#%% region%%per%%]$~ ~$[for ex— 
+ample%%lst%% %%#%% load %%#%% %%#%% dedicated register begins %%#%% unsafe 
+region%%per%%]$~ ~$[if %%#%% region appropriately sandboxes %%#%% ded— 
+icated register%%lst%% %%#%% unsafe region %%#%% deemed safe%%per%% %%cmp%% %%#%% 
+unsafe region %%#%% ]n[ %%#%% veriﬁed%%lst%% %%#%% code %%#%% rejected%%per%%]$~ 
+~$[by incorporating software encapsulation %%#%% %%#%% ex— 
+isting compiler%%lst%% %%#%% %%#%% able %%#%% %%#%% advantage %%#%% com— 
+piler infrastructure ]f[ code optimization%%per%%]$~ ~$[however%%lst%% 
+%%#%% approach %%#%% %%#%% disadvantages%%per%%]$~ ~$[first%%lst%% %%#%% mod%%dsh%% 
+iﬁed compilers %%#%% support %%#%% %%#%% programming lan— 
+guage (gcc supports c%%lst%% c++%%lst%% ]^[ pascal)%%per%%]$~ ~$[second%%lst%% %%#%% 
+compiler ]^[ veriﬁer %%#%% %%#%% synchronized %%#%% re— 
+spect %%#%% %%#%% particular encapsulation technique %%#%% 
+employed%%per%%]$~ 
+~$[an alternative%%lst%% called bmary patchzng%%lst%% alleviates 
+%%#%% problems%%per%%]$~ ~$[when %%#%% fault domain %%#%% loaded%%lst%% %%#%% 
+system %%#%% encapsulate %%#%% module %%#%% directly modi%%dsh%% 
+fying %%#%% object code%%per%%]$~ ~$[unfortunately%%lst%% practical ]^[ r07 
+bust binary patching%%lst%% resulting %%#%% efﬁcient code%%lst%% %%#%% ]n[ 
+currently %%#%% [lb92]%%per%%]$~ ~$[tools %%#%% translate %%#%% 
+binary format %%#%% %%#%% %%#%% %%#%% built%%lst%% ]b[ %%#%% 
+tools rely %%#%% compiler—speciﬁc idioms %%#%% distinguish 
+code %%#%% data ]^[ %%#%% processor emulation %%#%% han%%dsh%% 
+dle unknown indirect jumps[sck”93]%%per%%]$~ ~$[for software 
+encapsulation%%lst%% %%#%% main challenge %%#%% %%#%% transform %%#%% 
+code ]s[ %%#%% %%#%% %%#%% %%#%% subset %%#%% %%#%% registers%%lst%% leav— 
+208 
+trusted 
+caller domain 
+unlru sted 
+calico domain 
+call add 
+jump table 
+figure 4%%cln%% major components %%#%% %%#%% crossefault—domain 
+rfc%%per%% 
+ing registers available ]f[ dedicated use%%per%%]$~ ~$[to solve %%#%% 
+problem%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% binary patching proto%%dsh%% 
+type %%#%% %%#%% simple extensions %%#%% current object ﬁle 
+formats%%per%%]$~ ~$[the extensions store control ﬂow ]^[ register 
+usage information %%#%% %%#%% sufﬁcient %%#%% support software 
+encapsulation%%per%% 
+4 low latency cross fault do— 
+main communication 
+%%#%% purpose %%#%% %%#%% %%#%% %%#%% %%#%% reduce %%#%% cost %%#%% fault 
+isolation ]f[ cooperating ]b[ distrustful software mod— 
+ules%%per%%]$~ ~$[in %%#%% last section%%lst%% %%#%% %%#%% %%#%% half %%#%% %%#%% 
+solution%%cln%% efficient software encapsulation%%per%%]$~ ~$[in %%#%% sec%%dsh%% 
+tion%%lst%% %%#%% describe %%#%% %%#%% half%%cln%% fast communication 
+%%#%% fault domains%%per%%]$~ 
+~$[figure 4 illustrates %%#%% major components ofa cross— 
+fault~domain rfc %%#%% %%#%% trusted ]^[ distrusted 
+fault domain%%per%%]$~ ~$[this section concentrates %%#%% %%#%% as— 
+pects %%#%% fault domain crossing%%per%%]$~ ~$[first%%lst%% %%#%% describe 
+%%#%% simple mechanism %%#%% allows %%#%% fault domain %%#%% 
+safely call %%#%% trusted stub routine outside %%#%% domain%%scn%% 
+%%#%% stub routine %%cmp%% safely calls %%#%% %%#%% destination 
+domain%%per%%]$~ ~$[second%%lst%% %%#%% discuss %%#%% arguments %%#%% effi— 
+ciently passed %%#%% fault domains%%per%%]$~ ~$[third%%lst%% %%#%% detail 
+%%#%% registers ]^[ %%#%% machine state %%#%% managed %%#%% 
+cross—fault—domain rpcs %%#%% insure fault isolation%%per%%]$~ ~$[the 
+protocol ]f[ exporting ]^[ naming procedures %%#%% 
+fault domains %%#%% independent %%#%% %%#%% techniques%%per%%]$~ 
+~$[the %%#%% %%#%% ]f[ control %%#%% escape a%%per%% fault domain 
+%%#%% via %%#%% jump table%%per%%]$~ ~$[each jump table entry %%#%% %%#%% con— 
+trol transfer instruction %%#%% target address %%#%% %%#%% legal 
+entry %%#%% outside %%#%% domain%%per%%]$~ ~$[by using instructions 
+%%#%% target address %%#%% %%#%% immediate encoded %%#%% %%#%% 
+instruction%%lst%% %%#%% jump table %%#%% ]n[ rely %%#%% %%#%% %%#%% %%#%% 
+%%#%% dedicated register%%per%%]$~ ~$[because %%#%% table %%#%% kept %%#%% %%#%% 
+(readvonly) code segment%%lst%% %%#%% %%#%% %%#%% %%#%% modified %%#%% 
+%%#%% trusted module%%per%%]$~ 
+~$[for %%#%% pair %%#%% fault domains %%#%% customized call ]^[ 
+return stub %%#%% created ]f[ %%#%% exported procedure%%per%%]$~ 
+~$[currently%%lst%% %%#%% stubs %%#%% generated %%#%% hand %%#%% %%cmp%% 
+using %%#%% stub generator [jrtss]%%per%%]$~ ~$[the stubs run unpro— 
+tected outside %%#%% %%#%% %%#%% caller ]^[ callee domain%%per%%]$~ 
+~$[the stubs %%#%% responsible ]f[ copying cross%%dsh%%domain 
+arguments %%#%% domains ]^[ managing machine 
+state%%per%%]$~ 
+~$[because %%#%% stubs %%#%% trusted%%lst%% %%#%% %%#%% able %%#%% copy 
+call arguments directly %%#%% %%#%% target domain%%per%%]$~ ~$[tra— 
+ditional rpc implementations %%#%% address spaces 
+typically perform %%#%% copies %%#%% transfer data%%per%%]$~ ~$[the 
+arguments %%#%% marshalled %%#%% %%#%% message%%lst%% %%#%% kernel 
+copies %%#%% message %%#%% %%#%% target address space%%lst%% ]^[ 
+ﬁnally %%#%% callee %%#%% de%%dsh%%marshall %%#%% arguments%%per%%]$~ ~$[by 
+%%#%% %%#%% caller ]^[ callee communicate via %%#%% shared 
+buffer%%lst%% lrpc %%#%% %%#%% %%#%% %%#%% single copy %%#%% pass data 
+%%#%% domains [ballqi]%%per%%]$~ 
+~$[the stubs %%#%% %%#%% responsible ]f[ managing machine 
+state%%per%%]$~ ~$[on %%#%% cross—domain call %%#%% registers %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% future %%#%% %%#%% caller ]^[ potentially 
+modiﬁed %%#%% %%#%% callee %%#%% %%#%% protected%%per%%]$~ ~$[only regis— 
+ters %%#%% %%#%% designated %%#%% architectural convention %%#%% 
+bc preserved %%#%% procedure calls %%#%% saved%%per%%]$~ ~$[as %%#%% 
+optimization%%lst%% %%cmp%% %%#%% callee domain contains %%#%% instruc— 
+tions %%#%% modify %%#%% preserved register %%#%% %%#%% avoid 
+saving it%%per%%]$~ ~$[karger %%#%% %%#%% trusted linker %%#%% perform %%#%% 
+kind %%#%% optimization %%#%% address spaces [karsq]%%per%%]$~ 
+~$[in addition %%#%% saving ]^[ restoring registers%%lst%% %%#%% stubs 
+%%#%% switch %%#%% execution stack%%lst%% establish %%#%% correct 
+register context ]f[ %%#%% software encapsulation tech%%dsh%% 
+nique %%#%% used%%lst%% ]^[ validate %%#%% dedicated registers%%per%%]$~ 
+~$[our system %%#%% %%#%% %%#%% robust %%#%% %%#%% presence %%#%% 
+fatal errors%%lst%% ]f[ example%%lst%% %%#%% addressing violation7 %%#%% 
+executing %%#%% %%#%% fault domain%%per%%]$~ ~$[our current implementa— 
+tion %%#%% %%#%% unix signal facility %%#%% catch %%#%% errors%%scn%% 
+%%#%% %%cmp%% terminates %%#%% outstanding call ]^[ notiﬁes %%#%% 
+caller’s fault domain%%per%%]$~ ~$[if %%#%% application %%#%% %%#%% %%#%% 
+operating system thread ]f[ %%#%% fault domains%%lst%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% terminate %%#%% call %%#%% %%#%% taking %%#%% 
+long%%lst%% ]f[ example%%lst%% %%cmp%% %%#%% %%#%% inﬁnite loop%%per%%]$~ ~$[trusted 
+modules %%#%% %%#%% %%#%% timer facility %%#%% interrupt execu— 
+tion periodically ]^[ determine %%cmp%% %%#%% call %%#%% %%#%% %%#%% 
+terminated%%per%% 
+5 performance results 
+%%#%% evaluate %%#%% performance %%#%% software%%dsh%%enforced fault%%per%% 
+domains%%lst%% %%#%% implemented ]^[ measured %%#%% prototype 
+%%#%% %%#%% system %%#%% %%#%% 40mhz decstation 5000/240 (dec— 
+mips) ]^[ %%#%% lﬁoniliz alpha 400 (dec—alpha)%%per%%]$~ 
+~$[we consider %%#%% questions%%per%%]$~ ~$[first%%lst%% %%#%% %%#%% %%#%% 
+209 
+head %%#%% software encapsulation incur%%qsn%%]$~ ~$[second%%lst%% %%#%% 
+fast %%#%% %%#%% crossrfault—domain rfc%%qsn%%]$~ ~$[third%%lst%% %%#%% %%#%% %%#%% 
+performance impact %%#%% using software enforced fault 
+isolation %%#%% %%#%% end%%dsh%%user application%%qsn%%]$~ ~$[we discuss %%#%% 
+%%#%% %%#%% questions %%#%% turn%%per%% 
+5%%per%%1 encapsulation overhead 
+%%#%% measured %%#%% execution time overhead %%#%% sand%%dsh%% 
+boxing %%#%% wide range %%#%% %%#%% programs%%lst%% including %%#%% %%#%% 
+spe092 benchmarks ]^[ %%#%% %%#%% %%#%% splash bench%%dsh%% 
+marks [assql%%lst%% swgql]%%per%%]$~ ~$[we treated %%#%% benchmark 
+%%#%% %%cmp%% %%#%% %%#%% %%#%% distrusted module%%lst%% sandboxing %%#%% %%#%% 
+%%#%% code%%per%%]$~ ~$[column 1 %%#%% table 1 reports overhead %%#%% 
+%%#%% dec—mips%%lst%% column 6 reports overhead %%#%% %%#%% dec— 
+alpha%%per%%]$~ ~$[columns 2 ]^[ 7 report %%#%% overhead %%#%% using 
+%%#%% technique %%#%% provide %%#%% protection %%#%% sand« 
+boxing load instructions %%#%% %%#%% %%#%% store ]^[ jump 
+instructions“%%per%%]$~ ~$[as detailed %%#%% section 3%%lst%% sandboxing 
+requires 5 dedicated registers%%per%%]$~ ~$[column 3 reports %%#%% 
+overhead %%#%% removing %%#%% registers %%#%% %%#%% %%#%% 
+%%#%% %%#%% compiler%%per%%]$~ ~$[all overheads %%#%% computed %%#%% %%#%% 
+additional execution time divided %%#%% %%#%% original pro~ 
+gram‘s execution time%%per%%]$~ 
+~$[on %%#%% decemips%%lst%% %%#%% %%#%% %%#%% program measure— 
+ment tools pixie ]^[ qpt %%#%% calculate %%#%% number 
+%%#%% additional instructions executed due %%#%% sandbox~ 
+ing [dig%%lst%% bl92]%%per%%]$~ ~$[column 4 %%#%% table 1 reports %%#%% 
+data %%#%% %%#%% percentage %%#%% original program instruction 
+counts%%per%%]$~ 
+~$[the data %%#%% table 1 appears %%#%% contain %%#%% num— 
+ber %%#%% anomalies %%#%% some%%per%% %%#%% %%#%% benchmark pro%%dsh%% 
+grams%%lst%% ]f[ example%%lst%% 056%%per%%ear 011 %%#%% decamips ]^[ 
+026 %%per%% compress %%#%% %%#%% dec—alpha%%lst%% sandboxing reduced 
+execution time%%per%% %%#%% %%#%% number %%#%% %%#%% %%#%% overhead %%#%% 
+surprisingly low%%per%%]$~ 
+~$[to identify %%#%% source %%#%% %%#%% variations %%#%% de~ 
+veloped %%#%% analytical model ]f[ execution overhead%%per%%]$~ 
+~$[the model predicts overhead based %%#%% %%#%% number 
+%%#%% additional instructions executed due %%#%% sandbox 
+ing (s—znstructzons)%%lst%% ]^[ %%#%% number %%#%% saved ﬂoat~ 
+ing %%#%% interlock cycles (interlocks)%%per%%]$~ ~$[sandboxing in» 
+creases %%#%% available instructionlevel parallelism%%lst%% al 
+lowing %%#%% number %%#%% ﬂoating—point interlocks %%#%% %%#%% 
+substantially reduced %%#%% integer pipeline %%#%% ]n[ 
+provide interlocking%%scn%% instead%%lst%% delay slots %%#%% explicitly 
+ﬁlled %%#%% nop instructions %%#%% %%#%% compiler ]v[ assem~ 
+bler%%per%%]$~ ~$[hence%%lst%% scheduling ell%%sqt%%ects %%#%% integer instruc~ 
+tions %%#%% %%#%% accurately reﬂected %%#%% %%#%% count %%#%% in~ 
+structions added (s—mstructzons)%%per%%]$~ ~$[the expected overs 
+head %%#%% computed as%%cln%% 
+(s—msz‘mchons — interlacksﬂcycles—per—sccond 
+original%%dsh%%erecutwn%%dsh%% lune%%dsh%%seconds 
+4loads %%#%% %%#%% libraries%%lst%% %%#%% %%#%% %%#%% standard %%#%% library%%lst%% %%#%% 
+]n[ sandboxed%%per%%]$~ 
+~$[the model provides %%#%% effective %%#%% %%#%% separate known 
+sources %%#%% overhead %%#%% %%#%% order effects%%per%%]$~ ~$[col%%dsh%% 
+umn 5 %%#%% table 1 %%#%% %%#%% predicted overheads%%per%%]$~ 
+~$[as %%#%% %%#%% seen %%#%% table 1%%lst%% %%#%% model is%%lst%% %%#%% aver 
+age%%lst%% eﬁective %%#%% predicting sandboxing overhead%%per%%]$~ ~$[the 
+differences %%#%% measured ]^[ expected overheads 
+%%#%% normally distributed %%#%% mean 0%%per%%7% ]^[ standard 
+deviation %%#%% 2%%per%%6%%%per%%]$~ ~$[the difference %%#%% %%#%% means 
+ofthe measured ]^[ expected overheads %%#%% ]n[ statisti%%dsh%% 
+cally signiﬁcant%%per%%]$~ ~$[this experiment demonstrates that%%lst%% 
+%%#%% combining instruction count overhead ]^[ ﬂoating 
+%%#%% interlock measurements%%lst%% %%#%% %%#%% accurately pres 
+dict average execution time overhead%%per%%]$~ ~$[if %%#%% assume 
+%%#%% %%#%% model %%#%% %%#%% accurate %%#%% predicting %%#%% over— 
+head %%#%% individual benchmarks%%lst%% %%#%% %%#%% conclude %%#%% 
+%%#%% %%#%% %%#%% %%#%% order effect creating %%#%% observed 
+anomalies %%#%% measured overhead%%lst%% 
+%%#%% %%#%% discount eﬁective instruction cache size ]^[ 
+virtual memory paging %%#%% sources ]f[ %%#%% observed ex~ 
+ecution time variance%%per%%]$~ ~$[because sandboxing adds in%%dsh%% 
+structions%%lst%% %%#%% effective size %%#%% %%#%% instruction cache %%#%% 
+reduced%%per%%]$~ ~$[while %%#%% %%#%% account ]f[ measured over%%dsh%% 
+heads %%#%% %%cmp%% predicted%%lst%% %%#%% %%#%% ]n[ account ]f[ 
+%%#%% opposite effect%%per%%]$~ ~$[because %%#%% %%#%% %%#%% benchmarks %%#%% 
+compute bound%%lst%% %%#%% %%#%% unlikely %%#%% %%#%% variations %%#%% 
+due %%#%% virtual memory paging%%per%%]$~ 
+~$[the dec<mips %%#%% %%#%% physically indexed%%lst%% physically 
+tagged%%lst%% direct mapped data cache%%per%%]$~ ~$[in %%#%% experiments 
+sandboxing %%#%% ]n[ affect %%#%% size%%lst%% contents%%lst%% ]v[ starting 
+virtual address %%#%% %%#%% data segment%%per%%]$~ ~$[for %%#%% original 
+]^[ sandboxed versions %%#%% %%#%% benchmark programs%%lst%% 
+successive runs %%#%% insigniﬁcant variation%%per%%]$~ ~$[though 
+difﬁcult %%#%% quantify%%lst%% %%#%% %%#%% ]n[ believe %%#%% data cache 
+alignment %%#%% %%#%% %%#%% source %%#%% variation %%#%% %%#%% 
+experiments%%per%% 
+\ve conjecture %%#%% %%#%% observed variations %%#%% 
+caused %%#%% instruction cache mappzng conﬂicts%%per%%]$~ ~$[soft— 
+ware encapsulation changes %%#%% mapping %%#%% instruc~ 
+tions %%#%% cache lines%%lst%% %%cmp%% changing %%#%% number %%#%% in— 
+struction cache conﬂicts%%per%%]$~ ~$[a number %%#%% researchers %%#%% 
+investigated minimizing instruction cache conﬂicts %%#%% 
+reduce execution time [mcf89%%lst%% phqo%%lst%% sam88]%%per%%]$~ ~$[one 
+researcher reported %%#%% 20% performance gain %%#%% sim— 
+ply ehanging %%#%% order %%#%% %%#%% %%#%% object ﬁles were%%per%% 
+linked [phqo]%%per%%]$~ ~$[samples ]^[ hilﬁnger report signif— 
+icantly improved instruction cache miss rates %%#%% re— 
+arranging %%#%% 3% %%#%% 8% %%#%% %%#%% application’s basic 
+blocks [sarnss]%%per%%]$~ 
+~$[beyond %%#%% effect%%lst%% %%#%% %%#%% statistically signiﬁcant 
+differences %%#%% programs%%per%%]$~ ~$[on average%%lst%% programs 
+%%#%% contained %%#%% signiﬁcant percentage %%#%% ﬂoating 
+%%#%% operations incurred less overhead%%per%%]$~ ~$[on %%#%% dec— 
+mips %%#%% mean overhead ]f[ ﬂoating %%#%% intensive 
+benchmarks %%#%% 2%%per%%5%%%lst%% %%cmp%%d %%#%% %%#%% mean %%#%% 5%%per%%6% ]f[ 
+%%#%% remaining benchmarks%%per%%]$~ ~$[all %%#%% %%#%% benchmarks %%#%% 
+210 
+dec%%dsh%%mips dec%%dsh%%alpha 
+fault protection reserved instruction fault fault protection 
+benchmark isolation overhead register count isolation isolation overhead 
+overhead overhead overhead overhead overhead 
+(predicted) 
+052%%per%% alvinn fp 1%%per%%4% 33%%per%%4% —0%%per%%3% 19%%per%%4% 0%%per%%2% 8%%per%%1% 35%%per%%5% 
+bps fp 5%%per%%6% 15%%per%%5% %%dsh%%0%%per%%1% 8%%per%%9% 5%%per%%7% 4%%per%%7% 20%%per%%3% 
+cholesky fp 0%%per%%0% 22%%per%%7% 0%%per%%5% 6%%per%%5% 4%%per%%5% 0%%per%%0% 9%%per%%3% 
+026 %%per%% compress int 3%%per%%3% 13%%per%%3% 0%%per%%0% 10%%per%%9% 4%%per%%4% 4%%per%%3% 0%%per%%0% 
+056%%per%%ear fp —1%%per%%2% 19%%per%%1% 0%%per%%2% 12%%per%%4% 2%%per%%2% 3%%per%%7% 18%%per%%3% 
+023 %%per%% eqntott int 2%%per%%9% 34%%per%%4% 1%%per%%0% 2%%per%%7% 2%%per%%2% 2%%per%%3% 17%%per%%4% 
+008 %%per%% espresso int 12%%per%%4% 27%%per%%0% —1%%per%%6% 11%%per%%8% 10%%per%%5% 13%%per%%3% 33%%per%%6% 
+001 %%per%%gcc1%%per%%35 int 3%%per%%1% 18%%per%%7% %%dsh%%9%%per%%4% 17%%per%%0% 8%%per%%9% na na 
+022%%per%%11 int 5%%per%%1% 23%%per%%4% 0%%per%%3% 14%%per%%9% 11%%per%%4% 5%%per%%4% 16%%per%%2% 
+locus int 8%%per%%7% 30%%per%%4% 4%%per%%3% 10%%per%%3% 8%%per%%6% 4%%per%%3% 8%%per%%7% 
+mp3d fp 10%%per%%7% 10%%per%%7% 0%%per%%0% 13%%per%%3% 8%%per%%7% 0%%per%%0% 6%%per%%7% 
+psgrind int 10%%per%%4% 19%%per%%5% 1%%per%%3% 12%%per%%1% 9%%per%%9% 8%%per%%0% 36%%per%%0% 
+ch pf 05% 27%%per%%0% 2%%per%%0% 8%%per%%8% 1%%per%%2% %%dsh%%0%%per%%8% 12%%per%%1% 
+072 %%per%% sc int 5%%per%%6% 11%%per%%2% 7%%per%%0% 8%%per%%0% 3%%per%%8% na na 
+tracker int %%dsh%%0%%per%%8% 10%%per%%5% 0%%per%%4% 3%%per%%9% 2%%per%%1% 10%%per%%9% 19%%per%%9% 
+water fp 0%%per%%7% 7%%per%%4% 0%%per%%3% 6%%per%%7% 1%%per%%5% 4%%per%%3% 12%%per%%3% 
+| average %%#%% 4%%per%%3% | 21%%per%%8% | 0%%per%%4% | 10%%per%%5% | 5%%per%%0% %%#%% 4%%per%%3% | 17%%per%%6% ‘i 
+table 1%%cln%% sandboxing overheads ]f[ dec—mips ]^[ dec—alpha platforms%%per%%]$~ ~$[the benchmarks 001%%per%%gcc1%%per%%35 ]^[ 
+072%%per%%sc %%#%% dependent %%#%% %%#%% pointer size %%#%% 32 bits ]^[ %%#%% ]n[ compile %%#%% %%#%% dec%%dsh%%alpha%%per%%]$~ ~$[the predicted fault 
+isolation overhead ]f[ cholesky %%#%% negative due %%#%% conservative interlocking %%#%% %%#%% mips ﬂoatingvpoint unit%%per%% 
+compute intensive%%per%%]$~ ~$[programs %%#%% perform signiﬁcant 
+amounts %%#%% i/o %%#%% incur less overhead%%per%% 
+5%%per%%2 fault domain crossing 
+%%#%% %%#%% %%#%% %%#%% %%#%% cost %%#%% cross—fault—domain rpc%%per%%]$~ 
+~$[our rpc mechanism spends %%#%% %%#%% %%#%% time saving 
+]^[ restoring registers%%per%%]$~ ~$[as detailed %%#%% section 4%%lst%% %%#%% 
+registers %%#%% %%#%% designated %%#%% %%#%% architecture %%#%% %%#%% 
+preserved %%#%% procedure calls %%#%% %%#%% %%#%% saved%%per%%]$~ ~$[in 
+addition%%lst%% %%cmp%% %%#%% instructions %%#%% %%#%% callee fault domain 
+modify %%#%% preserved register %%cmp%% %%#%% %%#%% ]n[ %%#%% %%#%% %%#%% 
+saved%%per%%]$~ ~$[table 2 reports %%#%% times ]f[ %%#%% versions %%#%% 
+%%#%% null cross—fault—domain rpc%%per%%]$~ ~$[column 1 lists %%#%% 
+crossing times %%#%% %%#%% data registers %%#%% caller saved%%per%%]$~ 
+~$[column 2 lists %%#%% crossing times %%#%% %%#%% preserved 
+integer registers %%#%% saved%%per%%]$~ ~$[finally%%lst%% %%#%% times listed %%#%% 
+column 3 include saving %%#%% preserved ﬂoating %%#%% 
+registers%%per%%]$~ ~$[in %%#%% %%#%% crossing times %%#%% %%#%% %%#%% 
+reduced %%#%% statically partitioning %%#%% registers %%#%% 
+domains%%per%%]$~ 
+~$[for comparison%%lst%% %%#%% measured %%#%% %%#%% calling 
+mechanisms%%per%%]$~ ~$[first%%lst%% %%#%% measured %%#%% time %%#%% perform %%#%% 
+%%#%% procedure call %%#%% takes %%#%% arguments ]^[ returns 
+%%#%% value%%per%%]$~ ~$[second%%lst%% %%#%% sent %%#%% single byte %%#%% %%#%% 
+address spaces using %%#%% pipe abstraction provided %%#%% 
+211 
+%%#%% native operating system ]^[ measured %%#%% round%%dsh%% 
+trip time%%per%%]$~ ~$[these times %%#%% reported %%#%% %%#%% last %%#%% 
+columns %%#%% table 2%%per%%]$~ ~$[on %%#%% platforms%%lst%% %%#%% cost 
+%%#%% cross—address—space calls %%#%% roughly %%#%% orders %%#%% 
+magnitude %%#%% expensive %%cmp%% local procedure calls%%per%%]$~ 
+~$[operating systems %%#%% highly optimized rpc im— 
+plementations %%#%% reduced %%#%% cost %%#%% cross%%dsh%%address%%dsh%% 
+space rpc %%#%% %%#%% roughly %%#%% orders %%#%% magni— 
+tude %%#%% local procedure calls%%per%%]$~ ~$[on mach 3%%per%%0%%lst%% cross— 
+address%%dsh%%space rpc %%#%% %%#%% 25mhz decstation 5000/200 
+%%#%% 314 times %%#%% expensive %%cmp%% %%#%% local procedure 
+call [berqbl%%per%%]$~ ~$[the spring operating system%%lst%% running %%#%% 
+%%#%% 40mhz sparcstationq%%lst%% delivers cross—address—space 
+rpc %%#%% %%#%% 73 times %%#%% expensive %%cmp%% %%#%% local leaf 
+procedure call [hk93]%%per%%]$~ ~$[software enforced fault isola« 
+tion %%#%% able %%#%% reduce %%#%% relative cost %%#%% cross%%dsh%%fault%%dsh%% 
+domain rpc %%#%% %%#%% order %%#%% magnitude %%#%% %%#%% sys%%dsh%% 
+tems%%per%% 
+5%%per%%3 using fault domains %%#%% postgres 
+%%#%% capture %%#%% effect %%#%% %%#%% system %%#%% application 
+performance%%lst%% %%#%% added software enforced fault %%#%% 
+mains %%#%% %%#%% postgres database management system%%lst%% 
+]^[ measured postgres running %%#%% sequoia 2000 
+benchmark [sfgmq3]%%per%%]$~ ~$[the sequoia %%sqt%%2000 benchmark 
+cross faultadomain rfc 
+platform caller save save %%#%% pipes 
+save integer integer+float procedure 
+registers registers registers call 
+dec~mips 1%%per%%11ps 1%%per%%81ps 2%%per%%83m 0%%per%%10/4s 204%%per%%72ns 
+dec—alpha 0175/15 1%%per%%35/5 lsons 0%%per%%06ps 227%%per%%88ps 
+table ‘2%%cln%% cross%%dsh%%faultrdomain crossing times%%per%%]$~ 
+~$[sequoia 2000 untrusted software—enforced number dec—mips—pipe 
+query function manager fault isolation cross—domain overhead 
+overhead overhead calls (predicted) 
+query 6 1%%per%%4% 1%%per%%7% 60989 18%%per%%6% 
+query 7 5%%per%%0% 1%%per%%8% 121986 386% 
+query 8 9%%per%%0% 2%%per%%7% 121978 312% 
+query 10 9%%per%%6% 5%%per%%7% 1427024 31%%per%%9% 
+table 3%%cln%% fault isolation overhead ]f[ postgres running sequoia 2000 benchmark%%per%% 
+contains queries typical %%#%% %%#%% %%#%% %%#%% earth scien— 
+tists %%#%% studying %%#%% climate%%per%%]$~ ~$[to support %%#%% kinds 
+%%#%% non~traditional queries%%lst%% postgres provides a%%per%% user 
+extensible type system%%per%%]$~ ~$[currently%%lst%% userrdeﬁned types 
+%%#%% written %%#%% conventional programming languages%%lst%% 
+%%#%% %%#%% c%%lst%% ]^[ dynamically loaded %%#%% %%#%% database 
+manager%%per%%]$~ ~$[this %%#%% %%#%% %%#%% recognized %%#%% %%#%% %%#%% serious 
+safety problem[st088]%%per%%]$~ 
+~$[four %%#%% %%#%% eleven queries %%#%% %%#%% sequoia 2000 bench%%dsh%% 
+mark %%#%% %%#%% %%#%% user—deﬁned polygon data types%%per%%]$~ ~$[we 
+measured %%#%% %%#%% queries using %%#%% unprotected 
+dynamic linking ]^[ software—enforced fault isolation%%per%%]$~ 
+~$[since %%#%% postgres code %%#%% trusted%%lst%% %%#%% %%#%% sand— 
+boxed %%#%% dynamically loaded user code%%per%%]$~ ~$[for %%#%% 
+experiment%%lst%% %%#%% cross%%dsh%%fault—domain rfc mechanism 
+saved %%#%% preserved integer registers (the variant cor%%dsh%% 
+responding %%#%% column 2 %%#%% table 2)%%per%%]$~ ~$[in addition%%lst%% %%#%% 
+instrumented %%#%% code %%#%% count %%#%% number %%#%% cross%%dsh%% 
+fault%%dsh%%domain rfcs ]s[ %%#%% %%#%% %%#%% estimate %%#%% %%#%% 
+formance %%#%% fault isolation based %%#%% separate address 
+spaces%%per%%]$~ 
+~$[table 3 %%#%% %%#%% results%%lst%% untrusted user—deﬁned 
+functions %%#%% postgres %%#%% %%#%% separate calling mecha%%dsh%% 
+nism %%#%% built—in functions%%per%%]$~ ~$[column 1 lists %%#%% over— 
+head %%#%% %%#%% untrustcd function manager %%#%% soft%%dsh%% 
+ware enforced fault domains%%per%%]$~ ~$[all reported overheads %%#%% 
+table 3 %%#%% relative %%#%% original postgres using %%#%% un— 
+trusted function manager%%per%%]$~ ~$[column 2 reports %%#%% mea~ 
+sured overhead %%#%% software enforced fault domains%%per%%]$~ ~$[us— 
+ing %%#%% number %%#%% cross—domain calls listed %%#%% column 3 
+]^[ tho dec*mips—i‘ipe time reported %%#%% table 2%%lst%% col— 
+umn 4 lists %%#%% estimated overhead using conventional 
+hardware address spaces%%per%% 
+212 
+5%%per%%4 analysis 
+%%#%% %%#%% postgres experiment software encapsulation 
+provided substantial savings %%#%% using native operat%%dsh%% 
+ing system services ]^[ hardware address spaces%%per%%]$~ ~$[in 
+general%%lst%% %%#%% savings provided %%#%% %%#%% techniques %%#%% 
+hardware—based mechanisms %%#%% %%#%% function %%#%% %%#%% per— 
+centage %%#%% time spent %%#%% distrusted code (q)%%lst%% %%#%% per%%dsh%% 
+centage %%#%% time spent crossing %%#%% fault domains 
+(2‘6)%%lst%% %%#%% overhead %%#%% encapsulation (h)%%lst%% ]^[ %%#%% ratio%%lst%% 
+r%%lst%% %%#%% %%#%% fault domain crossing time %%#%% %%#%% crossing 
+time %%#%% %%#%% competing hardware%%dsh%%based rpc mecha— 
+nism%%per%% 
+savings = (1 — 7°)t‘c %%dsh%%— htd 
+figure 5 graphically depicts %%#%% trade—offs%%per%%]$~ ~$[the %%#%% 
+axis %%#%% %%#%% percentage %%#%% time %%#%% application spends 
+crossing %%#%% fault domains%%per%%]$~ ~$[the %%#%% axis reports %%#%% 
+relative cost %%#%% software enforced fault%%dsh%%domain cross— 
+ing %%#%% hardware address spaces%%per%%]$~ ~$[assuming %%#%% %%#%% 
+execution time overhead %%#%% encapsulated code %%#%% 4%%per%%3%%%lst%% 
+%%#%% shaded region illustrates %%#%% software enforced 
+fault isolation %%#%% %%#%% %%#%% performance alternative%%per%%]$~ 
+~$[softwarevenforccd fault isolation %%#%% increas— 
+ingly attractive %%#%% applications achieve %%#%% degrees 
+%%#%% fault isolation (see figure 5)%%per%%]$~ ~$[for example%%lst%% %%cmp%% %%#%% ap%%dsh%% 
+plication spends 30% %%#%% %%#%% time crossing fault domains%%lst%% 
+%%#%% rpc mechanism %%#%% %%#%% perform 10% %%#%% 
+%%cmp%% %%#%% competitor%%lst%% applications %%#%% currently spend 
+%%#%% little %%#%% 10% %%#%% %%#%% time crossing require %%#%% %%#%% 
+39% improvement %%#%% fault domain crossing time %%#%% 
+reported %%#%% section 52%%lst%% %%#%% crossing time ]f[ %%#%% dec%%dsh%% 
+mips %%#%% hons ]^[ ]f[ %%#%% dec—alpha ute/is%%per%%]$~ ~$[hence%%lst%% 
+crossing time relative %%#%% 
+existing rfc 
+:9 hp :9 e9 
+ementage %%#%% execution time spent crossing 
+figure 5%%cln%% %%#%% shaded region represents %%#%% soft~ 
+ware enforced fault isolation provides %%#%% %%#%% per— 
+formance alternative%%per%%]$~ ~$[the %%#%% axis represents %%#%% 
+centage %%#%% time spent crossing %%#%% fault domains 
+(16)%%per%%]$~ ~$[the %%#%% axis represents %%#%% relative rpc crossing 
+speed (7‘)%%per%%]$~ ~$[the curve represents %%#%% break %%#%% point%%cln%% 
+(1—7%%sqt%%)t,%%scn%% = htd%%per%%]$~ ~$[in %%#%% graph%%lst%% %%#%% = 0%%per%%043 (encapsulation 
+overhead %%#%% %%#%% dec~mips ]^[ dec%%dsh%%alpha)%%per%% 
+]f[ %%#%% latter example%%lst%% %%#%% hardware address space cross— 
+ing time %%#%% 1%%per%%80m %%#%% %%#%% dec—mips ]^[ 1%%per%%23/15 %%#%% %%#%% 
+dec~alpha %%#%% provide %%#%% performance %%cmp%% 
+software fault domains%%per%%]$~ ~$[as %%#%% %%#%% %%#%% know%%lst%% %%#%% pro— 
+duction ]v[ experimental system currently provides %%#%% 
+level %%#%% performance%%per%%]$~ 
+~$[further%%lst%% figure 5 assumes %%#%% %%#%% entire applica%%dsh%% 
+tion %%#%% encapsulated%%per%%]$~ ~$[for %%#%% applications%%lst%% %%#%% %%#%% 
+postgres%%lst%% %%#%% assumption %%#%% conservative%%per%%]$~ ~$[figure 6 
+transforms %%#%% previous ﬁgure%%lst%% assuming %%#%% 50% %%#%% 
+total execution %%#%% spent %%#%% distrusted extension code%%per%%]$~ 
+~$[figures 5 ]^[ 6 illustrate %%#%% software enforced 
+fault isolation %%#%% %%#%% %%#%% choice whenever crossing 
+overhead %%#%% %%#%% significant proportion %%#%% %%#%% applica%%dsh%% 
+tion’s execution time%%per%%]$~ ~$[figure 7 demonstrates %%#%% 
+overhead due %%#%% software enforced fault isolation re— 
+mains %%#%% regardless %%#%% application behavior%%per%%]$~ ~$[fig— 
+ure 7 plots overhead %%#%% %%#%% function %%#%% crossing behavior 
+]^[ crossing cost%%per%%]$~ ~$[crossing times typical %%#%% vendor%%dsh%% 
+supplied ]^[ highly optimized hardware—based rpc 
+mechanisms %%#%% shown%%per%%]$~ ~$[the graph illustrates %%#%% rel— 
+ative performance stability %%#%% %%#%% software solution%%per%%]$~ 
+~$[this stability%%dqt%% allows system developers %%#%% ignore %%#%% 
+performance effect %%#%% fault isolation %%#%% choosing %%#%% 
+modules %%#%% %%#%% %%#%% separate fault domains%%per%% 
+6 related %%#%% 
+%%#%% systems %%#%% considered %%#%% %%#%% optimizing 
+rpc performance [vat88%%lst%% tass%%lst%% bla90%%per%%]$~ ~$[sb90%%lst%% hk93%%lst%% 
+ball90%%lst%% ball91]%%per%%]$~ ~$[traditional rfc systems based 
+100% 
+90% 
+80% 
+70% 
+60% 
+40% 
+crossing time relative 10 
+existing rpc 
+u%%per%% 
+§ 
+percentage %%#%% execution time spent crossing 
+figure 6%%cln%% %%#%% shaded region represents %%#%% soft~ 
+ware enforced fault isolation provides %%#%% %%#%% per%%dsh%% 
+formance alternative%%per%%]$~ ~$[the %%#%% axis represents per%%dsh%% 
+centage %%#%% time spent crossing %%#%% fault domains 
+(136)%%per%%]$~ ~$[the %%#%% axis represents %%#%% relative rpc crossing 
+speed (%%sqt%%r%%sqt%%)%%per%%]$~ ~$[the curve represents %%#%% break %%#%% point%%cln%% 
+(l—r)tc = htd%%per%%]$~ ~$[in %%#%% graph%%lst%% %%#%% = 0%%per%%043 (encapsulation 
+overhead %%#%% %%#%% dec—mips ]^[ dec—alpha)%%per%% 
+100% %%per%% 
+a%%dqt%% ultrix 4%%per%%2 context switch 
 8 
-patients sometimes arrive %%#%% %%#%% press %%#%% speak %%#%% %%#%% story%%per%%]$~ ~$[however%%lst%% %%#%% therapist 
-%%#%% prevent %%#%% patient %%#%% engaging %%#%% %%#%% extended exposure session %%#%% %%#%% %%#%% session%%per%%]$~ 
-~$[intense affect ]^[ graphic details %%#%% %%#%% event%%lst%% disclosed %%#%% %%#%% type %%#%% rapport ]v[ trust %%#%% 
-%%#%% established%%lst%% %%#%% %%#%% lead %%#%% premature termination %%#%% therapy%%per%%]$~ ~$[the patient %%#%% %%#%% %%#%% 
-assume %%#%% %%#%% therapist holds %%#%% %%#%% opinions regarding %%#%% guilt%%lst%% shame%%lst%% ]v[ worthlessness 
-%%#%% he%%lst%% %%#%% patient%%lst%% holds%%lst%% ]^[ %%#%% %%#%% afraid %%#%% return %%#%% therapy %%#%% %%#%% %%#%% disclosure%%per%%]$~ 
-~$[other patients %%#%% %%#%% %%#%% reluctant %%#%% discuss %%#%% traumatic event ]^[ %%#%% %%#%% %%#%% 
-relieved %%#%% %%#%% %%#%% ]n[ %%#%% %%#%% describe %%#%% %%#%% detail %%#%% %%#%% %%#%% session%%per%%]$~ ~$[in %%#%% cases%%lst%% %%#%% 
-therapist %%#%% %%#%% %%#%% draw %%#%% %%#%% %%#%% brief description %%#%% %%#%% event%%per%%]$~ ~$[dissociation %%#%% 
-attempting %%#%% %%#%% %%#%% ]v[ talk %%#%% %%#%% event %%#%% common%%per%%]$~ ~$[an initial assessment session grants 
-%%#%% patient ]^[ therapist %%#%% opportunity %%#%% %%#%% acquainted %%#%% %%#%% therapy begins%%lst%% ]^[ allows 
-%%#%% therapist %%#%% provide %%#%% patient %%#%% %%#%% description %%#%% %%#%% %%#%% therapy %%#%% entail%%per%%]$~ ~$[in %%#%% %%#%% 
-session%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% therapist remind %%#%% patient %%#%% cpt %%#%% %%#%% %%#%% structured form %%#%% 
-therapy%%lst%% ]^[ %%#%% %%#%% %%#%% session %%#%% %%#%% bit %%#%% %%#%% %%#%% %%#%% %%cmp%% %%#%% therapist %%#%% %%#%% 
-%%#%% talking%%per%%]$~ ~$[the therapist begins %%#%% %%#%% description %%#%% %%#%% symptoms %%#%% ptsd ]^[ %%#%% cognitive 
-formulation %%#%% them%%per%%]$~ 
-~$[therapist explanations %%#%% patient 
-1%%per%%]$~ ~$[ptsd symptoms 
-%%dqt%%in %%#%% %%#%% %%#%% results %%#%% %%#%% testing%%lst%% %%#%% found %%#%% %%#%% %%#%% suffering %%#%% posttraumatic stress disorder%%per%%]$~ ~$[the symptoms %%#%% ptsd fall %%#%% %%#%% clusters%%per%%]$~ ~$[the %%#%% cluster %%#%% %%#%% 
-re%%dsh%%experiencing %%#%% %%#%% event %%#%% %%#%% way%%per%%]$~ ~$[this includes nightmares %%#%% %%#%% event ]v[ %%#%% 
-scary dreams%%scn%% flashbacks%%lst%% %%#%% %%#%% act ]v[ feel %%#%% %%cmp%% %%#%% incident %%#%% recurring%%scn%% intrusive thoughts%%lst%% 
-%%#%% %%#%% memories %%#%% suddenly pop %%#%% %%#%% mind%%per%%]$~ ~$[you %%#%% %%#%% %%#%% intrusive %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% environment %%#%% remind %%#%% %%#%% %%#%% event (including anniversaries 
-%%#%% %%#%% event) ]v[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% remind %%#%% %%#%% it%%per%%]$~ ~$[common times %%#%% %%#%% 
-%%#%% memories %%#%% %%#%% %%#%% %%#%% falling asleep%%lst%% %%#%% %%#%% relax%%lst%% ]v[ %%#%% %%#%% %%#%% bored%%per%%]$~ ~$[these 
-symptoms %%#%% %%#%% normal following %%#%% %%#%% traumatic event%%per%%]$~ ~$[you %%#%% ]n[ %%#%% crazy%%per%%]$~ ~$[can %%#%% 
-%%#%% %%#%% examples %%#%% %%#%% experiences %%#%% %%#%% own life %%#%% %%#%% event?%%per%%%%per%%%%per%% 
-%%dqt%%a %%#%% set %%#%% symptoms concern arousal5%%per%%]$~ ~$[as %%#%% %%#%% expected%%lst%% %%#%% reminded %%#%% %%#%% 
-event%%lst%% %%#%% %%#%% %%#%% %%#%% experience %%#%% strong emotions%%per%%]$~ ~$[along %%#%% %%#%% feelings %%#%% physical 
-reactions%%per%%]$~ ~$[indicators %%#%% arousal symptoms include problems falling ]v[ staying asleep%%lst%% irritability 
-]v[ outbursts %%#%% anger%%lst%% difficulty concentrating%%lst%% startle reactions %%#%% jumping %%#%% noises ]v[ %%cmp%% 
-%%#%% walks %%#%% %%#%% you%%lst%% %%#%% feeling %%#%% guard ]v[ looking %%#%% %%#%% shoulder %%#%% %%#%% 
-%%#%% %%#%% %%#%% reason to%%per%%]$~ ~$[which %%#%% %%#%% %%#%% %%#%% experience?%%per%%%%per%%%%per%% 
-%%dqt%%the third cluster %%#%% symptoms %%#%% avoidance %%#%% reminders %%#%% %%#%% event%%per%%]$~ ~$[a natural reaction %%#%% 
-intrusive reminders ]^[ strong emotional reactions %%#%% %%#%% urge %%#%% push %%#%% %%#%% ]^[ 
-feelings away%%per%%]$~ ~$[you %%#%% avoid %%#%% ]v[ people %%#%% remind %%#%% %%#%% %%#%% event%%per%%]$~ ~$[some people 
-avoid watching %%#%% television programs ]v[ %%#%% %%#%% %%#%% tv%%per%%]$~ ~$[some people avoid reading %%#%% 
-newspaper ]v[ watching %%#%% news%%per%%]$~ ~$[you %%#%% avoid thinking %%#%% %%#%% event ]^[ letting yourself 
-5 
-%%#%% avoidance %%#%% listed %%#%% %%#%% %%#%% dsm%%lst%% %%#%% makes %%#%% sense %%#%% %%#%% %%#%% symptoms %%#%% patients %%#%% %%#%% 
-%%#%% %%#%% order%%lst%% intrusion%%lst%% arousal%%lst%% ]^[ avoidance%%per%%]$~ ~$[this %%#%% %%#%% explanation ]f[ %%#%% symptoms follows logically 
-%%#%% %%#%% description%%per%% 
-9 
-feel %%#%% feelings %%#%% %%#%% event%%per%%]$~ ~$[there %%#%% %%#%% %%#%% sights%%lst%% sounds%%lst%% ]v[ smells %%#%% %%#%% %%#%% 
-yourself avoiding ]v[ escaping %%#%% %%cmp%% %%#%% remind %%#%% %%#%% %%#%% event%%per%%]$~ ~$[sometimes people 
-%%#%% trouble remembering %%#%% ]v[ %%#%% %%#%% %%#%% event%%per%%]$~ ~$[sometimes people feel numb ]^[ cut%%dsh%%off %%#%% 
-%%#%% world %%#%% them%%per%%]$~ ~$[this feeling %%#%% detachment ]v[ numbness %%#%% %%#%% form %%#%% avoidance%%per%%]$~ 
-~$[sometimes %%#%% %%#%% described %%#%% feeling %%#%% %%#%% %%#%% %%#%% watching life %%#%% %%#%% glass%%per%%]$~ ~$[which 
-%%#%% ]v[ %%#%% %%#%% %%#%% avoid ]v[ run %%#%% from?%%per%%%%per%%%%per%%]$~ ~$[have %%#%% %%#%% numb ]v[ shut %%#%% %%#%% %%#%% 
-emotions?%%per%%%%per%%%%per%%]$~ ~$[have %%#%% found yourself feeling disconnected %%#%% %%#%% people? 
-2%%per%%]$~ ~$[trauma recovery ]^[ fight%%dsh%%flight response 
-“many people %%#%% exposed %%#%% traumatic events%%per%%]$~ ~$[in %%#%% time immediately following %%#%% trauma%%lst%% 
-%%#%% people %%#%% %%#%% %%#%% symptoms %%#%% ptsd %%#%% %%#%% %%#%% talked about%%per%%]$~ ~$[however%%lst%% %%#%% time%%lst%% ]f[ 
-%%#%% people%%lst%% %%#%% symptoms naturally decrease%%lst%% ]^[ %%#%% %%#%% ]n[ diagnosed %%#%% ptsd%%per%%]$~ ~$[in 
-%%#%% words%%lst%% %%#%% naturally recover %%#%% %%#%% traumatic event%%per%%]$~ ~$[there %%#%% %%#%% people %%#%% %%#%% ]n[ 
-recover ]^[ %%#%% later diagnosed %%#%% ptsd%%per%%]$~ ~$[based %%#%% that%%lst%% %%#%% %%#%% helpful %%#%% %%#%% %%#%% ptsd %%#%% %%#%% 
-problem %%#%% recovery%%per%%]$~ ~$[something %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% natural process %%#%% recovery%%lst%% 
-]^[ %%#%% %%#%% %%#%% %%#%% %%#%% determine %%#%% %%#%% %%#%% %%#%% %%#%% ]^[ %%#%% change %%#%% ]s[ %%#%% %%#%% %%#%% 
-recover %%#%% %%#%% happened%%per%%]$~ ~$[we %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% ‘unstuck’”%%per%%]$~ 
-~$[there %%#%% %%#%% %%#%% reasons %%#%% %%#%% %%#%% %%#%% %%#%% trouble recovering%%per%%]$~ ~$[first%%lst%% %%#%% 
-%%#%% %%#%% %%#%% automatic component %%#%% %%#%% event %%#%% %%#%% %%#%% consider %%#%% %%#%% evaluate %%#%% 
-%%#%% responded %%#%% %%#%% event%%per%%]$~ ~$[when people %%#%% serious%%lst%% possibly life%%dsh%%threatening events%%lst%% %%#%% 
-%%#%% %%#%% %%#%% experience %%#%% %%#%% strong physical reaction called %%#%% fight%%dsh%%flight reaction%%per%%]$~ ~$[more 
-recently %%#%% %%#%% learned %%#%% %%#%% %%#%% %%#%% third possibility%%lst%% %%#%% freeze response%%per%%]$~ ~$[in %%#%% fight%%dsh%%flight 
-reaction%%lst%% %%#%% body %%#%% trying %%#%% %%#%% %%#%% ready %%#%% fight ]v[ flee danger%%per%%]$~ ~$[the goal %%#%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% blood ]^[ oxygen %%#%% %%#%% %%#%% hands%%lst%% feet%%lst%% ]^[ %%#%% muscle %%#%% %%#%% %%#%% thighs ]^[ 
-forearms ]s[ %%#%% %%#%% %%#%% run ]v[ fight%%per%%]$~ ~$[in order %%#%% %%#%% %%#%% quickly%%lst%% %%#%% blood leaves %%#%% stomach 
-]v[ %%#%% head%%per%%]$~ ~$[you %%#%% feel %%#%% %%#%% %%#%% %%#%% kicked %%#%% %%#%% gut ]v[ %%#%% %%#%% %%#%% faint%%per%%]$~ ~$[your 
-body stops fighting %%#%% diseases ]^[ digesting food%%per%%]$~ ~$[you %%#%% ]n[ thinking %%#%% %%#%% philosophy 
-%%#%% life ]^[ %%#%% %%#%% trouble thinking %%#%% all%%per%%]$~ ~$[the %%#%% %%#%% happens %%#%% %%#%% freeze response%%lst%% ]b[ 
-%%#%% %%#%% %%#%% %%#%% body %%#%% trying %%#%% reduce %%#%% physical ]^[ emotional pain%%per%%]$~ ~$[you %%#%% %%#%% 
-stopped feeling pain ]v[ %%#%% %%#%% sense %%#%% %%#%% event %%#%% happening %%#%% %%#%% %%cmp%% %%#%% %%cmp%% %%#%% %%#%% 
-%%#%% movie%%per%%]$~ ~$[you %%#%% %%#%% %%#%% completely shut %%#%% emotionally ]v[ %%#%% %%#%% shifts %%#%% 
-perception %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% body ]v[ %%#%% time %%#%% slowed down%%per%%]$~ 
-~$[if %%#%% %%#%% %%#%% thinking %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%cmp%%%%lst%% %%#%% %%#%% 
-%%#%% %%#%% consider %%#%% %%#%% state %%#%% mind %%#%% %%#%% %%#%% event%%per%%]$~ ~$[did %%#%% %%#%% %%#%% %%#%% options 
-available %%#%% you%%qsn%%]$~ ~$[did %%#%% know %%cmp%% %%#%% %%#%% know now%%qsn%%]$~ ~$[do %%#%% %%#%% %%#%% skills %%#%% %%cmp%% 
-%%#%% %%#%% %%cmp%%%%qsn%%]$~ 
-~$[second%%lst%% %%#%% fight%%dsh%%flight response %%#%% %%#%% %%#%% experiencing %%#%% %%#%% traumatic event %%#%% 
-%%#%% quickly paired %%#%% cues%%lst%% ]v[ %%#%% %%#%% %%#%% environment%%lst%% %%#%% didn’t %%#%% %%#%% particular 
-meaning before%%per%%]$~ ~$[then later%%lst%% %%#%% %%#%% encounter %%#%% cues%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% fightflight reaction%%per%%]$~ ~$[your nervous system senses %%#%% cue%%lst%% %%#%% %%#%% %%#%% %%#%% sight%%lst%% %%#%% sound%%lst%% smell%%lst%% ]v[ 
-%%#%% %%#%% time%%lst%% ]^[ %%cmp%% %%#%% body reacts %%#%% %%#%% %%#%% %%#%% %%#%% danger again%%per%%]$~ ~$[these reactions %%#%% 
-fade %%#%% time %%cmp%% %%#%% don’t avoid %%#%% cues%%per%%]$~ ~$[however%%lst%% %%cmp%% %%#%% avoid reminder cues%%lst%% %%#%% body 
-won’t learn %%#%% %%#%% %%#%% not%%lst%% %%#%% fact%%lst%% %%#%% danger cues%%per%%]$~ ~$[they don’t tell %%#%% %%#%% accurately 
-10 
-%%#%% %%#%% %%#%% actually %%#%% danger ]s[ %%#%% %%#%% %%#%% false alarms %%#%% %%#%% frequently%%per%%]$~ ~$[after %%#%% 
-%%#%% %%#%% won’t trust %%#%% own senses ]v[ judgment %%#%% %%#%% %%#%% ]^[ isn’t dangerous%%lst%% ]^[ %%#%% 
-%%#%% situations %%#%% dangerous %%#%% %%#%% not%%per%%]$~ 
-~$[you %%#%% start %%#%% %%#%% %%#%% %%#%% %%#%% dangerousness %%#%% %%#%% world%%lst%% particular places%%lst%% 
-]v[ situations %%#%% %%#%% based %%#%% %%#%% reactions %%#%% %%cmp%% %%#%% actual realistic danger %%#%% %%#%% 
-situations%%per%%]$~ ~$[this leads %%#%% %%#%% examine %%#%% %%#%% %%#%% %%#%% affect %%#%% reactions%%per%%]$~ ~$[besides 
-%%#%% %%#%% dangerousness%%lst%% %%#%% %%#%% types %%#%% beliefs %%#%% ourselves ]^[ %%#%% world %%#%% 
-%%#%% affected %%#%% traumatic events%%per%% 
-3%%per%%]$~ 
-~$[cognitive theory 
-“as %%#%% %%#%% growing %%#%% %%#%% learned %%#%% %%#%% world ]^[ organized %%#%% %%#%% categories 
-]v[ beliefs%%per%%]$~ ~$[for example%%lst%% %%#%% %%#%% %%#%% small%%lst%% %%#%% learned %%#%% %%#%% %%#%% %%#%% %%#%% back%%lst%% seat ]^[ 
-%%#%% legs %%#%% %%#%% chair%%per%%]$~ ~$[in %%#%% beginning %%#%% %%#%% called %%#%% %%#%% %%#%% %%sqt%%chair%%sqt%%%%per%%]$~ ~$[you %%#%% %%#%% %%#%% 
-called %%#%% couch %%#%% chair ]v[ %%#%% stool %%#%% chair %%cmp%% %%#%% %%#%% %%#%% back%%lst%% seat%%lst%% ]^[ %%#%% legs%%per%%]$~ ~$[later%%lst%% %%#%% 
-%%#%% %%#%% older%%lst%% %%#%% experience%%lst%% %%#%% learned %%#%% complex categories%%lst%% ]s[ %%#%% %%#%% %%#%% 
-learned dining %%#%% chair%%lst%% rocking chair%%lst%% recliner ]v[ folding chair%%per%%]$~ ~$[we develop %%#%% categories 
-%%#%% ideas ]^[ beliefs %%#%% others%%lst%% %%#%% world%%lst%% ]^[ ourselves%%lst%% %%#%% %%#%% %%#%% ]f[ objects%%per%%]$~ 
-~$[one common belief %%#%% %%#%% people %%#%% %%#%% growing %%#%% %%#%% %%#%% %%sqt%%good %%#%% happen %%#%% 
-%%#%% people ]^[ bad %%#%% happen %%#%% bad people%%per%%%%sqt%% %%#%% %%#%% called %%#%% %%sqt%%just world belief%%per%%%%sqt%% %%#%% 
-%%#%% %%#%% learned %%#%% %%#%% %%#%% religion%%lst%% %%#%% parents%%lst%% %%#%% teachers%%lst%% ]v[ %%#%% %%#%% %%#%% 
-picked %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% world %%#%% safer ]^[ %%#%% predictable%%per%%]$~ ~$[it makes %%#%% sense 
-%%#%% %%#%% %%#%% young%%per%%]$~ ~$[for example%%lst%% parents wouldn’t %%#%% %%#%% say%%lst%% ‘if %%#%% %%#%% %%#%% you’re 
-]n[ supposed to%%lst%% %%#%% %%#%% ]v[ %%#%% ]n[ %%#%% %%#%% trouble%%per%%’ however%%lst%% %%#%% %%#%% grow up%%lst%% %%#%% realize %%#%% 
-%%#%% world %%#%% %%#%% complex %%cmp%% that%%lst%% %%#%% %%#%% %%#%% %%#%% learn %%#%% %%#%% %%#%% %%#%% %%#%% types %%#%% 
-chairs%%per%%]$~ ~$[if %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% bad ]^[ %%#%% %%#%% %%sqt%%why me?,%%sqt%% %%cmp%% %%#%% %%#%% %%#%% %%#%% world 
-belief%%per%% 
-%%dqt%%when %%#%% unexpected event occurs %%#%% doesn%%sqt%%t fit %%#%% beliefs%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% %%#%% try %%#%% %%#%% %%#%% fit%%per%%]$~ ~$[one %%#%% %%#%% %%#%% %%#%% %%#%% tried %%#%% %%#%% %%#%% event ]^[ %%#%% beliefs fit 
-%%#%% %%#%% changing %%#%% memories ]v[ interpretation %%#%% %%#%% event %%#%% fit %%#%% %%#%% pre%%dsh%%existing beliefs 
-(assimilation)%%per%%]$~ ~$[examples %%#%% changing %%#%% interpretations/memories %%#%% %%#%% event %%#%% %%#%% blame 
-yourself ]f[ ]n[ preventing %%#%% event (or protecting loved ones)%%lst%% %%#%% %%#%% trouble accepting %%#%% 
-%%#%% event happened%%lst%% %%#%% %%sqt%%forget%%sqt%% %%#%% %%#%% happened%%lst%% ]v[ %%#%% forget %%#%% %%#%% horrifying parts%%per%%]$~ ~$[changing 
-%%#%% event %%#%% %%#%% easier %%cmp%% changing %%#%% entire set %%#%% beliefs %%#%% %%#%% world%%lst%% %%#%% people 
-behave%%lst%% ]v[ %%#%% beliefs %%#%% %%#%% safety%%per%% 
-%%dqt%%it %%#%% %%#%% %%#%% instead %%#%% changing %%#%% event%%lst%% %%#%% %%#%% change %%#%% beliefs %%#%% accept 
-%%#%% happened (accommodation)%%per%%]$~ ~$[this %%#%% %%#%% %%#%% %%#%% goals ]f[ therapy%%per%%]$~ ~$[unfortunately%%lst%% %%#%% 
-people %%#%% overboard ]^[ change %%#%% beliefs %%#%% much%%lst%% %%#%% %%#%% result %%#%% %%#%% reluctance %%#%% 
-%%#%% intimate ]v[ develop trust%%lst%% ]^[ increased fear (over%%dsh%%accommodation)%%per%%]$~ ~$[examples %%#%% 
-reflect %%#%% extreme change %%#%% beliefs include%%cln%% thinking %%#%% %%#%% %%#%% %%#%% %%#%% trusted ]v[ %%#%% %%#%% world 
-%%#%% completely dangerous%%per%% 
-11 
-“for %%#%% people %%#%% %%#%% %%#%% previous negative experiences %%#%% %%#%% life%%lst%% traumatic 
-events %%#%% %%#%% %%#%% reinforce ]v[ confirm %%#%% previously held beliefs%%per%%]$~ ~$[for example%%lst%% prior %%#%% 
-%%#%% experienced %%#%% trauma %%#%% %%#%% %%#%% believed %%#%% %%#%% can’t %%#%% trusted ]v[ %%#%% %%#%% 
-world %%#%% %%#%% unsafe%%per%%]$~ ~$[the traumatic event comes %%#%% ]^[ %%#%% %%#%% confirm %%#%% beliefs%%per%%]$~ 
-~$[or%%lst%% maybe %%#%% %%#%% told %%#%% %%#%% %%#%% %%#%% fault growing up%%lst%% ]s[ %%#%% %%#%% bad %%#%% 
-happens%%lst%% %%#%% %%#%% %%#%% confirm %%#%% %%#%% again%%lst%% %%#%% %%#%% %%#%% fault%%per%%]$~ 
-~$[our goals ]f[ therapy are%%cln%% 1) %%#%% help %%#%% accept %%#%% reality %%#%% %%#%% event%%lst%% 2) %%#%% feel %%#%% emotions 
-%%#%% %%#%% ]^[ 3) %%#%% help %%#%% develop balanced ]^[ realistic beliefs %%#%% %%#%% event%%lst%% yourself%%lst%% ]^[ 
-others%%per%% 
-4%%per%%]$~ 
-~$[types %%#%% emotions 
-“there %%#%% %%#%% kinds %%#%% emotions %%#%% follow traumatic events%%per%%]$~ ~$[the %%#%% type %%#%% %%#%% feelings 
-%%#%% follow naturally %%#%% %%#%% event ]^[ %%#%% %%#%% %%#%% universal%%cln%% fear %%#%% %%#%% real danger%%lst%% anger 
-%%#%% %%#%% intentionally harmed%%lst%% joy ]v[ happiness %%#%% positive events%%lst%% ]v[ sadness %%#%% losses%%per%%]$~ 
-~$[these natural emotions %%#%% %%#%% natural course%%per%%]$~ ~$[they %%#%% ]n[ continue %%#%% forever unless %%#%% %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% feed them%%per%%]$~ ~$[it %%#%% %%#%% %%#%% feel %%#%% emotions %%#%% %%#%% %%#%% ]n[ %%#%% 
-allowed yourself %%#%% experience %%#%% %%#%% event%%lst%% ]^[ %%#%% %%#%% run %%#%% natural course%%per%%]$~ 
-~$[the %%#%% type %%#%% emotions%%lst%% manufactured feelings%%lst%% result ]n[ directly %%#%% response %%#%% %%#%% 
-event%%lst%% ]b[ based %%#%% %%#%% %%#%% interpret %%#%% event%%per%%]$~ ~$[if %%#%% %%#%% %%#%% %%#%% %%#%% ‘i %%#%% %%#%% 
-rescued %%#%% people’ ]v[ ‘i %%#%% %%#%% %%#%% failure %%#%% %%#%% can’t %%#%% %%#%% it”%%lst%% %%cmp%% %%#%% %%#%% %%#%% feeling 
-angry %%#%% yourself ]v[ shame%%per%%]$~ ~$[these emotions %%#%% ]n[ based %%#%% %%#%% %%#%% %%#%% %%#%% event%%lst%% ]b[ %%#%% %%#%% 
-interpretations%%per%%]$~ ~$[the %%#%% %%#%% %%#%% continue %%#%% %%#%% %%#%% %%#%% event %%#%% %%#%% ways%%lst%% %%#%% %%#%% ]^[ 
-%%#%% %%#%% %%#%% manufactured feelings %%#%% %%#%% %%#%% %%#%% have%%per%%]$~ ~$[the upside %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-producing %%#%% feelings %%#%% that%%lst%% %%cmp%% %%#%% change %%#%% %%#%% ]^[ interpretations%%lst%% %%#%% %%#%% 
-change %%#%% feelings%%per%%]$~ ~$[think %%#%% %%#%% emotions %%#%% %%#%% fire %%#%% %%#%% fireplace%%per%%]$~ ~$[the fire %%#%% energy %%#%% it%%per%%]$~ 
-~$[however%%lst%% %%#%% %%#%% burn %%#%% %%cmp%% %%#%% %%#%% ]n[ continually fed%%per%%]$~ ~$[the self%%dsh%%blame ]v[ guilty %%#%% %%#%% 
-continue %%#%% feed %%#%% emotional fire indefinitely%%per%%]$~ ~$[take %%#%% %%#%% fuel %%#%% %%#%% thoughts%%lst%% ]^[ %%#%% fire 
-burns %%#%% quickly%%per%%]$~ 
-~$[in order ]f[ %%#%% %%#%% recover %%#%% %%#%% traumatic event(s)%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% ]f[ 
-%%#%% %%#%% express ]^[ accept %%#%% natural emotions ]^[ %%#%% adjust %%#%% manufactured feelings%%per%%]$~ 
-~$[brief review %%#%% %%#%% traumatic event 
-%%#%% %%#%% %%#%% session%%lst%% %%#%% therapist ]^[ patient %%#%% %%#%% %%#%% define %%#%% %%#%% traumatic 
-event %%#%% %%#%% %%#%% %%#%% %%#%% first%%per%%]$~ ~$[the patient %%cmp%% provides %%#%% brief account %%#%% %%#%% traumatic 
-event%%per%%]$~ ~$[it %%#%% %%#%% %%#%% therapist %%#%% %%#%% patient contained ]^[ ]n[ conduct %%#%% exposure %%#%% %%#%% 
-traumatic material%%per%%]$~ ~$[most veterans %%#%% %%#%% ‘public version’ %%#%% %%#%% incident %%#%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% ]n[ elicit %%#%% affect%%per%%]$~ ~$[however%%lst%% %%cmp%% %%#%% patient starts %%#%% %%#%% distressed ]v[ dissociates%%lst%% %%#%% 
-therapist %%#%% %%#%% questions ]^[ %%#%% %%#%% patient grounded %%#%% %%#%% present%%per%%]$~ ~$[if needed%%lst%% %%#%% %%#%% 
-stop %%#%% patient’s description%%per%%]$~ ~$[the therapist %%#%% %%#%% %%#%% %%#%% %%#%% details %%#%% begin %%#%% 
-hypothesize %%#%% problematic interpretations ]^[ cognitions %%#%% %%#%% %%#%% %%#%% explored%%per%% 
-12 
-%%#%% begin %%#%% %%#%% worst incident %%cmp%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% generalization %%#%% new%%lst%% 
-%%#%% balanced cognitions %%#%% %%#%% worst event %%#%% less severe events %%cmp%% %%#%% %%#%% %%#%% around%%per%%]$~ 
-~$[also%%lst%% %%cmp%% %%#%% patient begins %%#%% %%#%% less severe event %%cmp%% %%#%% believes %%#%% %%#%% handle %%#%% 
-worst event%%lst%% %%#%% %%#%% %%#%% believe %%#%% %%#%% %%#%% %%#%% %%#%% event%%per%%]$~ ~$[if %%#%% patient %%#%% resistant %%#%% 
-writing %%#%% account %%#%% %%#%% worst event%%lst%% %%#%% therapist %%#%% %%#%% %%#%% %%#%% cognitive therapy %%#%% 
-session %%#%% ]^[ %%#%% %%#%% patient complete %%#%% a%%dsh%%b%%dsh%%c sheets %%#%% %%#%% %%#%% ]^[ feelings %%#%% 
-%%#%% %%#%% %%#%% worst event (see sessions 2 ]^[ 3)%%per%%]$~ 
-~$[it %%#%% helpful %%#%% provide %%#%% expectation %%#%% %%#%% patient provide %%#%% brief%%lst%% less affect%%dsh%%charged 
-event %%#%% providing %%#%% timeframe %%#%% %%#%% request%%per%% 
-“in order ]f[ %%#%% %%#%% %%#%% %%#%% clearer picture %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% first%%lst%% %%#%% %%#%% 
-please %%#%% %%#%% %%#%% brief description%%lst%% %%#%% five minutes%%lst%% %%#%% %%#%% %%#%% traumatic event…” 
-%%#%% %%#%% patient responds %%#%% %%#%% %%#%% multiple traumatic events %%#%% disturb him%%lst%% %%#%% %%#%% 
-difficult ]v[ impossible %%#%% choose %%#%% ‘most’ traumatic event%%lst%% %%#%% validate %%#%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% multiple distressing events%%per%%]$~ ~$[then%%lst%% focus %%#%% ascertaining %%#%% %%#%% %%#%% %%#%% %%#%% causing %%#%% 
-%%#%% ptsd symptoms %%#%% inquiring %%#%% %%#%% content %%#%% %%#%% reexperiencing symptoms%%per%%]$~ ~$[the 
-therapist %%#%% ask%%lst%% ‘what %%#%% %%#%% %%#%% %%#%% ]v[ %%#%% flashbacks %%#%% %%#%% most?’ %%#%% %%#%% %%#%% %%#%% 
-helpful %%#%% probe %%#%% %%#%% behavioral avoidance symptoms %%#%% determine %%#%% event %%#%% %%#%% 
-addressed first%%per%%]$~ ~$[remind %%#%% patient %%#%% %%#%% %%#%% %%#%% chosen event %%#%% %%#%% %%#%% impact %%#%% 
-%%#%% events%%lst%% ]^[ %%cmp%% not%%lst%% %%#%% %%#%% %%#%% opportunities %%#%% %%#%% %%#%% %%#%% %%#%% events%%per%%]$~ 
-~$[therapy rationale %%dsh%% stuck %%#%% 
-%%dqt%%so%%lst%% %%#%% goal %%#%% therapy %%#%% %%#%% %%#%% help %%#%% recognize ]^[ modify %%#%% %%#%% %%#%% saying %%#%% 
-yourself%%dsh%%in %%#%% words%%lst%% %%#%% %%#%% ]^[ interpretations %%#%% %%#%% event%%lst%% %%#%% %%#%% %%#%% 
-%%#%% automatic%%per%%]$~ ~$[these distorted beliefs %%#%% %%#%% ]s[ automatic %%#%% %%#%% aren%%sqt%%t %%#%% aware 
-%%#%% %%#%% %%#%% them%%per%%]$~ ~$[even %%#%% %%#%% %%#%% ]n[ %%#%% aware %%#%% %%#%% %%#%% %%#%% saying %%#%% yourself%%lst%% %%#%% 
-beliefs ]^[ self%%dsh%%statements affect %%#%% mood ]^[ %%#%% behavior%%per%%]$~ ~$[often%%lst%% people aren%%sqt%%t aware %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% whatever %%#%% %%#%% experiencing%%per%%]$~ ~$[for example%%lst%% %%#%% %%#%% %%#%% %%#%% 
-today%%lst%% %%#%% %%#%% probably wondering %%#%% %%#%% therapy %%#%% %%#%% %%#%% ]v[ %%#%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% %%#%% talk about%%per%%]$~ ~$[do %%#%% remember %%#%% %%#%% %%#%% thinking %%#%% %%#%% %%#%% session?%%per%%%%per%%%%per%% 
-%%dqt%%i %%#%% %%#%% helping %%#%% %%#%% identify %%#%% %%#%% automatic %%#%% %%#%% ]^[ %%#%% %%#%% influence 
-%%#%% %%#%% feel%%per%%]$~ ~$[i %%#%% %%#%% teach %%#%% %%#%% %%#%% challenge ]^[ change %%#%% %%#%% %%#%% saying %%#%% 
-yourself ]^[ %%#%% %%#%% believe %%#%% yourself ]^[ %%#%% event%%per%%]$~ ~$[some %%#%% %%#%% beliefs %%#%% %%#%% event 
-%%#%% %%#%% %%#%% balanced %%cmp%% others%%per%%]$~ ~$[you remember %%#%% %%#%% discussed %%#%% %%#%% beginning %%#%% %%#%% 
-session %%#%% %%#%% %%#%% people %%#%% stuck %%#%% %%#%% recovery process%%per%%]$~ ~$[we %%#%% %%#%% focusing %%#%% 
-changing %%#%% beliefs %%#%% %%#%% interfering %%#%% %%#%% recovery ]v[ keeping %%#%% stuck%%per%%]$~ ~$[we call %%#%% 
-problematic beliefs ‘stuck points%%per%%’ (the patient %%#%% %%#%% %%#%% handout %%#%% stuck %%#%% ]^[ %%#%% 
-stuck %%#%% log)%%per%%]$~ ~$[we %%#%% %%#%% %%#%% stuck %%#%% log %%#%% %%#%% folder ]s[ %%#%% %%#%% identify problematic 
-ideas %%#%% %%#%% write %%#%% down%%per%%]$~ ~$[then %%#%% %%#%% move %%#%% %%#%% worksheets %%#%% %%#%% %%#%% %%#%% list 
-%%#%% draw on%%per%% 
-13 
-anticipating avoidance ]^[ increasing compliance 
-%%#%% patient %%#%% %%#%% avoiding thinking %%#%% %%#%% event thereby escaping ]^[ avoiding strong 
-]^[ unpleasant emotions%%per%%]$~ ~$[the therapist %%#%% develop %%#%% strong ]^[ compelling rationale ]f[ 
-therapy %%#%% order ]f[ %%#%% patient %%#%% %%#%% motivated %%#%% %%#%% %%#%% completely antithetical %%#%% %%#%% 
-%%#%% %%#%% %%#%% doing%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% %%#%% patient understand %%#%% %%#%% therapy consists %%#%% 
-]^[ %%#%% %%#%% %%#%% work%%per%%]$~ ~$[they %%#%% %%#%% ample opportunity %%#%% %%#%% questions ]^[ express 
-concerns%%per%%]$~ ~$[the therapist %%#%% %%#%% express confidence%%lst%% warmth%%lst%% ]^[ support%%per%%]$~ 
-~$[i %%#%% emphasize %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% ]n[ avoid%%lst%% %%#%% %%#%% %%#%% %%#%% 
-usually %%#%% %%#%% %%#%% try %%#%% cope %%#%% %%#%% event%%per%%]$~ ~$[this %%#%% %%#%% %%#%% biggest (and probably 
-scariest) hurdle%%per%%]$~ ~$[i %%#%% help %%#%% feel %%#%% feelings%%lst%% ]v[ challenge %%#%% %%#%% %%cmp%% %%#%% don%%sqt%%t 
-%%#%% %%#%% therapy ]v[ %%cmp%% %%#%% avoid completing %%#%% practice assignments%%per%%]$~ ~$[if %%#%% %%#%% yourself 
-%%#%% %%#%% avoid%%lst%% remind yourself %%#%% %%#%% %%#%% %%#%% struggling %%#%% %%#%% event %%cmp%% %%#%% %%#%% 
-avoided dealing %%#%% %%#%% head%%dsh%%on%%per%%]$~ 
-~$[the therapist %%#%% describe %%#%% course %%#%% therapy (and %%#%% nature %%#%% %%#%% trauma account %%#%% 
-sessions %%#%% ]^[ five) ]^[ %%#%% importance %%#%% doing practice assignments%%per%% 
-“there %%#%% 168 hours %%#%% %%#%% week%%per%%]$~ ~$[we %%#%% expect %%#%% %%#%% change %%#%% symptoms ]^[ %%#%% 
-%%#%% %%#%% %%#%% %%#%% coping %%#%% %%#%% ]v[ %%#%% hours %%#%% week %%cmp%% %%#%% %%#%% continuing %%#%% practice %%#%% %%#%% 
-%%#%% %%#%% thinking %%#%% %%#%% 166 hours %%#%% week%%per%%]$~ ~$[it %%#%% %%#%% %%#%% ]f[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-learning ]^[ apply %%#%% %%#%% %%#%% everyday life%%per%%]$~ ~$[your therapy %%#%% %%#%% %%#%% %%#%% %%#%% life is%%lst%% ]n[ %%#%% 
-%%#%% %%#%% little room”%%per%%]$~ 
-~$[first impact statement 
-%%dqt%%for %%#%% %%#%% session%%lst%% %%#%% %%#%% %%#%% %%#%% start %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% ]^[ explain %%#%% 
-traumatic event%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% pay attention %%#%% %%#%% %%#%% traumatic event impacted %%#%% %%#%% 
-views %%#%% yourself%%lst%% %%#%% people%%lst%% ]^[ %%#%% world%%per%%]$~ ~$[i %%#%% %%#%% %%#%% write %%#%% least %%#%% page %%#%% 1) %%#%% 
-%%#%% event happened %%#%% you%%lst%% ]^[ 2) %%#%% %%#%% %%#%% changed ]v[ streng%%cmp%%ed %%#%% views %%#%% 
-yourself%%lst%% %%#%% people ]^[ %%#%% world %%#%% general%%qsn%%]$~ 
-~$[in order ]f[ %%#%% assignment %%#%% %%#%% %%#%% helpful %%#%% you%%lst%% %%#%% strongly suggest %%#%% try %%#%% start %%#%% 
-assignment soon%%lst%% ]s[ %%#%% %%#%% %%#%% %%#%% time %%#%% write thoughtfully%%per%%]$~ ~$[pick %%#%% time ]^[ %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% privacy %%#%% possible%%lst%% ]s[ %%#%% %%#%% feel %%#%% feelings %%#%% arise %%#%% %%#%% 
-complete %%#%% assignment%%per%%” 
-%%#%% patient %%#%% %%#%% %%#%% practice assignment sheet%%per%%]$~ ~$[if %%#%% %%#%% possible%%lst%% %%#%% patient %%#%% handwrite 
-%%#%% impact statement%%per%%]$~ ~$[some patients %%#%% %%#%% %%#%% type %%#%% %%#%% computer%%per%%]$~ ~$[research suggests %%#%% 
-word processing %%#%% impede engagement %%#%% %%#%% assignment (e%%per%%g%%per%%%%lst%% %%#%% focused %%#%% grammar ]v[ 
-spelling)%%per%%]$~ ~$[therefore%%lst%% encourage %%#%% %%#%% ]^[ %%#%% assignments %%#%% handwritten%%per%%]$~ ~$[it %%#%% %%#%% 
-helpful %%#%% remind %%#%% %%#%% %%#%% %%#%% ]n[ grading %%#%% %%#%% ]v[ %%#%% %%#%% %%#%% grammar%%lst%% etc%%per%%]$~ 
-~$[rather%%lst%% you’re %%#%% %%#%% %%#%% content ]^[ feelings%%per%%]$~ ~$[if %%#%% patient %%#%% problems %%#%% literacy ]v[ 
-physical disabilities %%#%% %%#%% %%#%% difficult ]v[ impossible %%#%% write%%lst%% %%#%% therapist %%#%% suggest %%#%% 
-%%#%% record %%#%% %%#%% %%#%% %%#%% tape recorder%%per%% 
-14 
-practice assignment%%cln%% 
-please write %%#%% least %%#%% page %%#%% %%#%% %%#%% traumatic event occurred%%per%%]$~ ~$[you %%#%% ]n[ %%#%% %%#%% %%#%% 
-write specifics %%#%% %%#%% traumatic event%%per%%]$~ ~$[write %%#%% %%#%% %%#%% %%#%% %%#%% thinking %%#%% %%#%% 
-cause %%#%% %%#%% worst event%%per%%]$~ ~$[also%%lst%% consider %%#%% effects %%#%% traumatic event %%#%% %%#%% %%#%% %%#%% beliefs 
-%%#%% yourself%%lst%% others%%lst%% ]^[ %%#%% world %%#%% %%#%% following areas%%cln%% safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% 
-]^[ intimacy%%per%%]$~ ~$[bring %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% session%%per%%]$~ 
-~$[also%%lst%% please read %%#%% %%#%% handout %%#%% %%#%% %%#%% %%#%% %%#%% stuck %%#%% ]s[ %%#%% %%#%% understand %%#%% 
-concept %%#%% %%#%% talking about%%per%% 
-15 
-traumatic bereavement session (session 2 %%cmp%% applicable) 
-%%#%% goals ]f[ %%#%% session %%#%% %%#%% 1) determine %%#%% impact %%#%% %%#%% traumatic event %%#%% beliefs 
-%%#%% self ]^[ others%%lst%% 2) begin %%#%% normalize %%#%% grief process ]^[ differentiate %%#%% %%#%% ptsd 
-symptoms%%lst%% 3) identify stuck %%#%% %%#%% %%#%% interfere %%#%% %%#%% normal course %%#%% bereavement%%lst%% 
-]^[ 4) begin %%#%% assist %%#%% patient %%#%% viewing %%#%% relationship %%#%% %%#%% person %%#%% died %%#%% altered%%lst%% 
-]b[ ]n[ finished%%per%%]$~ 
-~$[if %%#%% session %%#%% added%%lst%% %%cmp%% %%#%% therapist %%#%% %%#%% %%#%% patient read %%#%% impact statement 
-%%#%% %%#%% %%#%% %%#%% %%#%% topic %%#%% grief%%per%%]$~ ~$[please %%#%% %%#%% regular session two%%lst%% next%%lst%% ]f[ comments 
-regarding avoidance ]^[ %%#%% %%#%% %%#%% %%cmp%% %%#%% patient %%#%% ]n[ complete %%#%% assignment%%per%%]$~ ~$[after 
-discussing %%#%% impact statement ]^[ identifying stuck %%#%% %%#%% %%#%% evident%%lst%% %%#%% therapist %%#%% 
-begin %%#%% education portion %%#%% %%#%% topic %%#%% normal bereavement ]^[ %%#%% look ]f[ stuck %%#%% %%#%% 
-%%#%% interfere %%#%% normal grief reactions%%per%%]$~ ~$[to facilitate %%#%% process%%lst%% %%#%% information %%#%% 
-provided below %%#%% assist %%#%% therapist %%#%% %%#%% %%#%% traumatic versus normal bereavement issues%%lst%% 
-]^[ %%#%% provide %%#%% education %%#%% %%#%% patient regarding %%#%% course %%#%% bereavement %%#%% varying ]^[ 
-multidimensional%%per%%]$~ ~$[it %%#%% %%#%% ]f[ %%#%% therapist %%#%% refrain %%#%% pathologizing %%#%% grief process 
-]^[ %%#%% begin %%#%% differentiate grief %%#%% ptsd ]v[ depression%%per%%]$~ 
-~$[therapist overview%%cln%% traumatic bereavement 
-ptsd %%#%% interfere %%#%% %%#%% normal course %%#%% bereavement%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% 
-unresolved grief %%#%% %%#%% complicate recovery %%#%% ptsd%%per%%]$~ ~$[although witnessing ]v[ %%#%% 
-injured %%#%% %%#%% event %%#%% %%#%% %%#%% loved one/friend %%#%% killed %%#%% %%#%% obviously associated %%#%% 
-ptsd%%lst%% therapists %%#%% %%#%% consider %%#%% ptsd diagnosis %%#%% %%#%% %%#%% %%#%% ]n[ %%#%% %%#%% %%#%% 
-traumatic death %%#%% %%#%% loved one%%per%%]$~ ~$[in civilian life%%lst%% %%#%% sudden%%lst%% unexpected ]^[ %%#%% violent death 
-%%#%% %%#%% significant %%#%% %%#%% ]s[ shocking%%lst%% horrifying%%lst%% ]^[ schema%%dsh%%discrepant %%#%% family ]^[ friends %%#%% 
-%%#%% victim %%#%% %%#%% trouble taking %%#%% %%#%% %%#%% %%#%% %%#%% person %%#%% %%#%% killed%%per%%]$~ ~$[during war%%lst%% 
-soldiers %%#%% accept %%#%% possibility %%#%% %%#%% ]v[ %%#%% %%#%% %%#%% killed%%lst%% %%#%% %%#%% abstract level%%lst%% ]b[ 
-losing friends%%lst%% seeing children die%%lst%% ]v[ %%#%% deaths occur %%#%% unexpected %%#%% (when %%#%% 
-%%#%% %%#%% %%#%% safe)%%lst%% %%#%% %%#%% %%#%% shocking ]^[ hard %%#%% accept%%per%%]$~ ~$[acceptance %%#%% %%#%% particularly 
-difficult ]f[ parents %%#%% lose children %%cmp%% %%#%% %%#%% expectation %%#%% %%#%% children %%#%% survive 
-them%%per%%]$~ ~$[and %%#%% %%#%% trauma survivors %%#%% actively avoid accepting %%#%% reality %%#%% %%#%% situation%%lst%% 
-traumatic%%dsh%%death surviving family ]^[ friends %%#%% engage %%#%% self%%dsh%%blame %%#%% %%#%% attempt %%#%% undo %%#%% 
-event (e%%per%%g%%per%%%%lst%% “if %%#%% %%#%% hadn’t %%#%% x%%lst%% %%#%% wouldn’t %%#%% %%#%% %%#%% %%#%% %%#%% time”)%%per%%]$~ ~$[unlike %%#%% 
-trauma victims%%lst%% traumatic death survivors %%#%% believe %%#%% %%#%% accept %%#%% trauma ]^[ begin %%#%% 
-move %%#%% %%#%% %%#%% lives means %%#%% %%#%% betrayed %%#%% %%#%% person%%lst%% %%#%% %%#%% %%#%% person isn’t 
-%%#%% properly honored%%per%%]$~ 
-~$[flashbacks%%lst%% intrusive thoughts%%lst%% ]^[ %%#%% intrusive reminders %%#%% recur %%#%% %%cmp%% %%#%% 
-%%#%% ]n[ %%#%% %%#%% %%#%% death %%#%% %%#%% significant other%%per%%]$~ ~$[people %%#%% flash %%#%% ]v[ %%#%% strong 
-emotional ]v[ physiological reactions %%#%% reminded %%#%% %%#%% informed %%#%% %%#%% death%%per%%]$~ ~$[for 
-example%%lst%% %%#%% people %%#%% strong reactions %%#%% %%#%% telephone ]v[ doorbell rings%%per%%]$~ ~$[they 
-immediately flash %%#%% %%#%% %%#%% told%%per%%]$~ ~$[some people %%#%% strong reactions %%#%% temporal cues %%#%% 
-%%#%% %%#%% specific time %%#%% day%%lst%% dusk%%lst%% %%#%% %%#%% month%%lst%% ]v[ %%#%% anniversaries %%#%% %%#%% death%%per%%]$~ ~$[they %%#%% 
-react %%#%% climactic cues %%#%% %%#%% temperature%%lst%% humidity%%lst%% smells ]v[ %%#%% seasonal reminders%%per%% 
-16 
-holidays ]v[ %%#%% personal days %%#%% celebration (birthdays%%lst%% anniversaries) %%#%% %%#%% particularly 
-difficult ]^[ %%#%% trigger trauma cues (as %%#%% %%#%% positive memories)%%per%%]$~ 
-~$[it %%#%% ]n[ unusual ]f[ people %%#%% %%#%% images %%#%% ]v[ ruminate %%#%% (with accompanying 
-affect ]^[ physiological responses) %%#%% %%#%% imagine happened %%#%% %%#%% loved one/friend%%per%%]$~ ~$[some 
-people feel compelled %%#%% %%#%% themselves %%#%% %%#%% shoes %%#%% %%#%% person %%#%% died %%#%% %%#%% attempt %%#%% %%#%% 
-closer %%#%% them%%per%%]$~ ~$[they try %%#%% imagine %%#%% %%#%% %%#%% person experienced%%lst%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% feeling ]v[ thinking%%lst%% ]^[ wonder %%cmp%% %%#%% suffered ]v[ %%#%% %%#%% pain ]f[ %%#%% %%#%% time %%#%% %%#%% 
-died%%per%%]$~ ~$[these images %%#%% serve %%#%% intrusive reminders %%#%% ptsd (criterion b)%%per%%]$~ 
-~$[often %%#%% ptsd induced %%#%% traumatic bereavement%%lst%% %%#%% %%#%% ]n[ %%#%% effortful avoidance 
-%%#%% regard %%#%% %%#%% person %%#%% died%%per%%]$~ ~$[to %%#%% contrary%%lst%% %%#%% people intentionally ruminate ]^[ %%#%% 
-afraid %%#%% %%#%% %%#%% %%#%% %%#%% images%%lst%% %%#%% %%#%% distressing images%%lst%% %%cmp%% %%#%% %%#%% %%#%% is%%lst%% %%#%% %%#%% minds%%lst%% %%#%% 
-lose %%#%% loved one%%per%%]$~ ~$[effortful avoidance %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% trauma cues listed above%%per%%]$~ 
-~$[numbing %%#%% common%%per%%]$~ 
-~$[when %%#%% people %%#%% killed %%#%% %%#%% traumatic event%%lst%% %%#%% %%#%% survive%%lst%% %%#%% %%#%% 
-%%#%% friends%%lst%% family%%lst%% ]v[ strangers%%lst%% %%#%% %%#%% %%#%% survivor guilt%%per%%]$~ ~$[when people experience 
-traumatic events%%lst%% %%#%% %%#%% %%#%% %%#%% question%%lst%% “why me?” %%cmp%% %%#%% %%#%% %%#%% world belief%%per%%]$~ ~$[a 
-corollary %%#%% %%#%% belief %%#%% %%#%% “why ]n[ me?” %%#%% surrounding %%#%% %%#%% killed%%per%%]$~ ~$[people %%#%% 
-survivor guilt feel %%#%% %%#%% %%#%% ]n[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% not%%lst%% ]v[ believe %%#%% 
-%%#%% %%#%% less deserving %%#%% happiness (or %%#%% %%#%% living) %%cmp%% %%#%% person ]v[ people %%#%% died%%per%%]$~ ~$[they 
-try %%#%% determine %%#%% %%#%% survived ]^[ %%#%% %%#%% %%#%% acceptable explanation%%per%%]$~ 
-~$[an issue %%#%% %%#%% %%#%% %%#%% %%#%% addressed %%#%% military ]^[ veteran populations %%#%% ]n[ %%#%% 
-witnessing ]v[ hearing %%#%% %%#%% death %%#%% %%#%% %%#%% patient cared about%%lst%% ]b[ %%#%% issues %%#%% 
-arise %%#%% %%#%% killed themselves%%per%%]$~ ~$[soldiers %%#%% %%#%% themselves forced %%#%% engage %%#%% behavior 
-%%#%% %%#%% %%#%% %%#%% personal moral code%%lst%% ]v[ %%#%% conflict %%#%% %%#%% circumstances %%#%% %%#%% %%#%% 
-believed %%#%% %%#%% %%#%% %%#%% killing others%%per%%]$~ ~$[in %%#%% experience%%lst%% situations %%#%% %%#%% civilians%%lst%% ]^[ 
-especially children%%lst%% %%#%% killed %%#%% especially traumatic ]f[ veterans ]^[ servicemen (e%%per%%g%%per%%%%lst%% children 
-%%#%% backpack bombs%%lst%% children %%#%% %%#%% front %%#%% transportation convoys)%%per%%]$~ ~$[grieving ]^[ 
-assumptions %%#%% one’s actions %%#%% war %%#%% %%#%% %%#%% complicated %%cmp%% %%#%% %%#%% nature %%#%% 
-war itself%%per%%]$~ ~$[veterans ]^[ military personnel %%#%% blame themselves%%lst%% %%#%% combatants%%lst%% %%#%% 
-government %%#%% %%#%% %%#%% %%#%% %%#%% position %%#%% found themselves%%lst%% ]v[ %%#%% behavior ]^[ perceived 
-failures %%#%% command ]v[ fellow soldiers%%per%%]$~ ~$[the combination %%#%% anger ]^[ guilt %%#%% complicate ]^[ 
-prolong %%#%% grief response%%per%%]$~ 
-~$[the goal %%#%% cpt ]f[ bereavement %%#%% %%#%% help patients determine ]^[ eliminate %%#%% stuck 
-points%%lst%% problematic cognitions %%#%% %%#%% blocking %%#%% recovery%%lst%% ]^[ %%#%% help %%#%% eventually focus 
-%%#%% %%#%% person’s life%%lst%% ]n[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% ]v[ %%#%% died%%per%%]$~ 
-~$[first %%#%% therapist %%#%% start %%#%% bereavement issues… 
-“prior %%#%% %%#%% death%%lst%% %%#%% %%#%% %%#%% %%#%% experience %%#%% %%#%% death %%#%% loved ones?” 
-17 
-%%#%% %%#%% patient %%#%% %%#%% experienced %%#%% death %%#%% %%#%% loved one%%lst%% %%cmp%% %%#%% “what %%#%% %%#%% 
-expectations %%#%% death %%#%% loved ones%%qsn%%]$~ ~$[had %%#%% %%#%% %%#%% %%#%% it%%qsn%%]$~ ~$[or %%#%% %%#%% %%#%% topic %%#%% 
-%%#%% avoided thinking about?” 
-%%#%% %%#%% therapist understands %%#%% %%#%% patient understood %%#%% death ]^[ %%#%% grief 
-process prior %%#%% %%#%% traumatic death%%lst%% s/he %%#%% %%cmp%% ask%%per%%%%per%% 
-“how %%#%% %%#%% situation %%#%% %%cmp%% %%#%% %%#%% %%#%% experienced %%#%% (or imagined)?” 
-“what %%#%% %%#%% people %%#%% telling %%#%% %%#%% grief ]^[ mourning? 
-“what suggestions %%#%% people %%#%% making?” 
-%%#%% %%#%% patient(s) %%#%% myths %%#%% mourning handout%%per%%]$~ ~$[discuss %%#%% %%#%% %%#%% statements %%#%% 
-%%#%% patient %%#%% determine which%%lst%% %%cmp%% any%%lst%% statements %%#%% patient %%#%% %%#%% subscribing%%per%%]$~ ~$[along %%#%% 
-debunking %%#%% common myths%%lst%% %%#%% therapist %%#%% %%#%% session %%#%% help %%#%% patient understand %%#%% 
-normal process %%#%% bereavement%%lst%% %%#%% %%#%% %%#%% %%#%% traumatic bereavement relates %%#%% symptoms %%#%% 
-ptsd%%lst%% ]^[ %%#%% begin %%#%% identify distorted cognitions%%lst%% conflicts %%#%% prior beliefs ]^[ %%#%% 
-traumatic event%%per%%]$~ 
-~$[education %%#%% normal bereavement 
-bereavement affects %%#%% aspects %%#%% one’s life%%per%%]$~ ~$[people %%#%% emotional%%lst%% spiritual%%lst%% ]^[ 
-physical reactions%%per%%]$~ ~$[they %%#%% %%#%% %%#%% adjust %%#%% roles %%#%% regard %%#%% %%#%% people%%lst%% %%#%% 
-community %%#%% generally%%lst%% ]^[ %%#%% regard %%#%% tasks ]^[ behaviors%%per%%]$~ ~$[while %%#%% grief reactions 
-%%#%% feel %%#%% ]^[ share %%#%% characteristics %%#%% %%#%% psychological reactions %%#%% %%#%% 
-depression%%lst%% %%#%% %%#%% %%#%% ]f[ %%#%% therapist ]n[ %%#%% pathologize grief%%per%%]$~ ~$[bereavement %%#%% ]n[ %%#%% result 
-%%#%% personality traits%%lst%% ]b[ %%#%% %%#%% normal ]^[ time%%dsh%%limited reaction %%#%% loss%%per%%]$~ ~$[mourning %%#%% ]n[ %%#%% %%#%% 
-%%#%% depression ]^[ %%#%% ]n[ respond %%#%% anti%%dsh%%depressants%%per%%]$~ 
-~$[in %%#%% past %%#%% %%#%% %%#%% %%#%% tell %%#%% %%#%% %%#%% grieving ]f[ %%#%% period %%#%% time %%cmp%% 
-%%#%% clothing indicative %%#%% mourning ]^[ institutionalized rules %%#%% mourning %%#%% %%#%% wearing 
-black ]f[ %%#%% year%%lst%% wearing %%#%% jewelry ]v[ armbands%%lst%% limiting social engagements ]^[ ]s[ forth%%per%%]$~ 
-~$[these practices provided %%#%% community support %%cmp%% %%#%% person %%#%% %%#%% grieving %%#%% 
-%%#%% identifiable ]^[ %%#%% %%#%% %%#%% expectation %%#%% bereavement %%#%% %%#%% %%#%% extended 
-period %%#%% time%%per%%]$~ ~$[on %%#%% %%#%% hand%%lst%% %%#%% rigid rules %%#%% length %%#%% mourning %%#%% ]n[ flexible 
-%%#%% %%#%% accommodate %%#%% patterns %%#%% grief%%per%%]$~ ~$[some people %%#%% ]n[ %%#%% %%#%% %%#%% %%#%% %%#%% 
-order %%#%% begin %%#%% reestablish %%#%% lives (some %%#%% %%#%% %%#%% longer)%%per%%]$~ ~$[in modern times%%lst%% %%#%% %%#%% 
-%%#%% %%#%% %%#%% identify %%#%% %%#%% %%#%% %%#%% mourning%%lst%% ]s[ %%#%% community quickly returns %%#%% usual 
-routines ]^[ expects %%#%% bereaved person %%#%% %%#%% ]s[ %%#%% well%%per%%]$~ ~$[while community support %%#%% %%#%% 
-%%#%% active initially%%lst%% people %%#%% return %%#%% %%#%% own lives %%#%% %%#%% %%#%% months%%lst%% leaving %%#%% 
-bereaved adrift %%#%% adjust %%#%% %%#%% changes %%#%% roles ]^[ tasks%%per%%]$~ ~$[after %%#%% %%#%% months grieving people 
-%%#%% start receiving comments %%#%% %%#%% %%#%% %%#%% %%#%% move %%#%% %%#%% %%#%% lives ]^[ %%#%% %%#%% %%#%% 
-traumatic event ]^[ %%#%% loved %%#%% %%#%% %%#%% (people %%#%% ptsd hear %%#%% %%#%% %%#%% time %%#%% 
-%%#%% %%#%% traumatic death)%%per%%]$~ ~$[people %%#%% %%#%% assistance %%#%% tolerating %%#%% predominant community 
-standards %%#%% %%#%% ]n[ reflect %%#%% reality %%#%% %%#%% mourning timeline ]f[ them%%per%%]$~ 
-~$[in %%#%% %%#%% stages %%#%% bereavement%%lst%% people %%#%% information ]^[ support %%#%% coping 
-emotionally%%per%%]$~ ~$[later%%lst%% %%cmp%% %%#%% person %%#%% died %%#%% %%#%% family member%%lst%% %%#%% %%#%% %%#%% focus %%#%% %%#%% 
-18 
-instrumental tasks%%per%%]$~ ~$[some tasks%%lst%% %%#%% dealing %%#%% insurance companies ]^[ changing names %%#%% 
-titles %%#%% directly due %%#%% %%#%% death %%#%% %%#%% family member%%per%%]$~ ~$[other tasks represent %%#%% realignment %%#%% 
-typical chores (e%%per%%g%%per%%%%lst%% %%#%% %%#%% patient %%#%% %%#%% pay bills ]v[ cook%%lst%% %%#%% %%#%% %%#%% %%#%% partner 
-%%#%% responsibility ]f[ %%#%% tasks)%%per%%]$~ ~$[each %%#%% %%#%% instrumental adjustments%%lst%% %%cmp%% successfully 
-negotiated%%lst%% %%#%% help %%#%% bereaved person accept %%#%% reality %%#%% %%#%% situation ]^[ assist %%#%% %%#%% %%#%% 
-sense %%#%% control%%per%%]$~ ~$[as %%#%% tasks ]^[ roles %%#%% realigned%%lst%% %%cmp%% %%#%% person %%#%% moves %%#%% reconnect 
-%%#%% %%#%% community%%lst%% reestablish ]^[ adjust relationships %%#%% %%#%% friends ]^[ relatives ]^[ 
-finally %%#%% rebuild %%#%% assumptive world%%per%%]$~ ~$[this latter task includes adjusting %%#%% beliefs %%#%% 
-%%#%% ]^[ %%#%% world%%lst%% %%#%% regard %%#%% %%#%% loved one’s death%%per%%]$~ ~$[as %%cmp%%where %%#%% cpt%%lst%% %%#%% therapist 
-%%#%% looking ]f[ accommodation %%#%% %%cmp%% assimilation ]v[ over%%dsh%%accommodation%%lst%% balance %%#%% beliefs 
-%%#%% %%cmp%% extreme statements%%per%%]$~ 
-~$[sometimes %%#%% bereavement process ]f[ military personnel %%#%% %%#%% acute %%#%% 
-%%#%% leave %%#%% military%%per%%]$~ ~$[while %%#%% %%#%% military%%lst%% %%#%% people %%#%% %%#%% environment %%#%% %%#%% %%#%% 
-able %%#%% provide support ]^[ understanding %%#%% %%#%% losses %%#%% %%#%% soldier experienced%%per%%]$~ ~$[upon 
-returning %%#%% %%#%% civilian world%%lst%% however%%lst%% people %%#%% %%#%% environment %%#%% ]n[ %%#%% able %%#%% 
-understand ]v[ appreciate %%#%% loss %%#%% comrades%%lst%% ]v[ %%#%% %%#%% %%#%% unsympathetic %%cmp%% %%#%% 
-%%#%% viewpoints %%#%% %%#%% war%%per%%]$~ ~$[although %%#%% society appears %%#%% %%#%% doing %%#%% %%#%% job separating 
-%%#%% war %%#%% %%#%% warrior %%#%% %%#%% recent oef/oif conflict%%lst%% %%#%% %%#%% ]n[ universally true ]^[ %%#%% %%#%% 
-%%#%% vietnam veterans %%#%% carry %%#%% scars %%#%% verbal abuse %%#%% returning %%#%% %%#%% %%#%% %%#%% %%#%% 
-tours %%#%% duty %%#%% vietnam%%per%%]$~ ~$[they %%#%% ]n[ %%#%% %%#%% %%#%% %%#%% opportunity %%#%% grieve %%#%% loss %%#%% 
-%%#%% friends ]^[ fellow soldiers ]v[ %%#%% %%#%% stuck %%#%% %%#%% cycle %%#%% grieving %%#%% %%#%% ]n[ remitted%%per%%]$~ 
-~$[the following %%#%% excerpts %%#%% %%#%% bereavement impact statement%%per%%]$~ ~$[the statement %%#%% 
-%%#%% hand%%dsh%%written pages%%per%%]$~ ~$[it illustrates %%#%% effects %%#%% murder %%#%% %%#%% granddaughter %%#%% %%#%% %%#%% patient%%per%%]$~ 
-~$[i %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% strong %%#%% %%#%% son%%per%%]$~ ~$[as %%#%% %%#%% %%#%% %%#%% %%#%% that%%lst%% %%#%% %%#%% ]n[ 
-%%#%% %%#%% %%#%% %%#%% finality %%#%% death%%per%%]$~ ~$[this %%#%% %%#%% ]s[ hard ]f[ %%#%% %%#%% say%%per%%]$~ ~$[to %%#%% %%#%% ______ %%#%% %%#%% past 
-tense %%#%% causes %%#%% %%#%% %%#%% %%#%% panicky feeling%%per%%]$~ ~$[i %%#%% describe %%#%% %%#%% %%#%% love %%#%% ]v[ %%#%% 
-%%#%% %%#%% miss her%%per%%]$~ 
-~$[i %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% me%%per%%]$~ ~$[but %%#%% %%#%% realize %%#%% %%#%% %%#%% %%#%% %%#%% same%%per%%]$~ ~$[at 
-%%#%% %%#%% kept trying %%#%% %%#%% %%#%% %%#%% self%%dsh%% tried ]s[ hard %%#%% %%#%% %%#%% %%#%% %%#%% panic attacks%%lst%% ]s[ %%#%% %%#%% 
-tried ]n[ %%#%% %%#%% %%#%% it%%per%%]$~ 
-~$[i feel %%#%% %%#%% %%#%% cloud %%#%% settled %%#%% %%#%% ]^[ sometimes %%#%% suffocates me%%per%%]$~ ~$[i %%#%% %%#%% 
-%%#%% %%#%% pull %%#%% covers %%#%% %%#%% head ]^[ ]n[ %%#%% %%#%% %%#%% ]f[ %%#%% %%#%% time%%per%%]$~ ~$[but %%#%% know %%#%% can’t%%lst%% 
-especially ]f[ %%#%% son%%per%%]$~ ~$[he %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% closet ]^[ ]n[ %%#%% out%%per%%]$~ 
-~$[i talked %%#%% %%#%% %%#%% pastor %%#%% %%#%% feelings%%lst%% %%#%% %%#%% feel ]s[ frozen inside%%lst%% %%#%% %%#%% %%#%% 
-pray ]^[ %%#%% ]n[ feel spiritual %%#%% all%%per%%]$~ ~$[it makes %%#%% feel ]s[ empty%%per%%]$~ ~$[i miss %%#%% fellowship %%#%% %%#%% %%#%% 
-%%#%% god%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% %%#%% again%%per%%]$~ 
-~$[some people %%#%% %%#%% %%#%% %%#%% try %%#%% forgive – %%#%% can’t ]^[ %%#%% don’t %%#%% %%#%% – %%#%% least ]n[ now… 
-%%#%% %%#%% don’t %%#%% %%#%% %%#%% angry – %%#%% %%#%% ]n[ me%%per%%]$~ ~$[but %%#%% %%#%% i’m ]s[ angry%%per%%]$~ 
-~$[while %%#%% example %%#%% illustrates assimilation %%#%% non%%dsh%%acceptance ]^[ avoidance%%lst%% 
-%%#%% %%#%% excerpts %%#%% %%#%% %%#%% patient %%#%% friend %%#%% killed ]^[ illustrates %%#%% 
-assimilation ]^[ over%%dsh%%accommodation%%per%% 
-19 
-%%#%% %%#%% believed %%#%% %%#%% %%#%% protect ______ %%#%% %%#%% ]v[ anyone%%per%%]$~ ~$[i feel %%#%% %%#%% 
-failure%%per%%]$~ ~$[i failed him%%per%%]$~ ~$[i %%#%% %%#%% %%#%% watching %%#%% %%#%% %%cmp%% %%#%% %%#%% %%#%% %%#%% %%#%% able %%#%% 
-shoot %%#%% %%#%% %%#%% back%%per%%]$~ ~$[i %%#%% %%#%% administered cpr ]^[ helped %%#%% breathe %%#%% %%#%% %%#%% breath %%#%% 
-life%%per%%]$~ ~$[he %%#%% %%#%% calmed %%#%% ]^[ fought harder %%cmp%% %%#%% %%#%% %%#%% there… %%#%% knew%%qsn%%]$~ ~$[but %%#%% failed 
-%%#%% ]^[ %%#%% don’t %%#%% %%#%% %%#%% chance %%#%% %%#%% %%#%% %%#%% %%#%% him%%per%%]$~ 
-~$[this world %%#%% %%#%% cruel world %%#%% %%#%% %%#%% %%#%% %%#%% care %%#%% %%#%% outside %%#%% %%#%% 
-own family… %%#%% trust %%#%% %%#%% outside %%#%% %%#%% family ]^[ %%#%% %%#%% am %%#%% %%#%% close %%#%% %%#%% family%%per%%]$~ ~$[i 
-%%#%% %%#%% %%#%% %%#%% word “friend” %%cmp%% %%#%% %%#%% %%#%% serves %%#%% purpose %%#%% %%#%% life%%per%%]$~ ~$[i feel 
-abandoned %%#%% %%#%% people %%#%% %%#%% family%%per%%]$~ ~$[they %%#%% %%#%% ready ]f[ %%#%% %%#%% move on%%per%%]$~ ~$[isn’t %%#%% 
-crazy?%%xcm%%]$~ 
-~$[it %%#%% %%#%% helpful ]f[ %%#%% patient %%#%% realize %%#%% %%#%% relationship %%#%% %%#%% deceased %%#%% 
-changed %%#%% %%cmp%% ended%%per%%]$~ ~$[the patient %%#%% %%#%% %%#%% %%#%% relationship %%#%% %%#%% deceased %%#%% 
-%%#%% %%#%% relationship %%#%% ]n[ reciprocal%%per%%]$~ ~$[as %%#%% %%#%% %%#%% impact statement %%#%% %%#%% death %%#%% %%#%% 
-significant other%%lst%% %%#%% patient %%#%% asked%%lst%% “how %%#%% %%#%% event affected %%#%% relationship %%#%% %%#%% 
-deceased?” 
-%%#%% %%#%% %%#%% problems %%#%% %%#%% occur %%#%% %%#%% %%#%% grieving process (and stall %%#%% %%#%% %%#%% 
-cases) %%#%% %%#%% tendency %%#%% over%%dsh%%idealize %%#%% person %%#%% %%#%% died%%per%%]$~ ~$[it %%#%% difficult ]f[ %%#%% bereaved 
-person %%#%% move on%%lst%% reestablish connections %%#%% others%%lst%% ]^[ alter %%#%% relationship %%#%% %%#%% 
-deceased %%cmp%% %%#%% person %%#%% died %%#%% ]n[ %%#%% person %%#%% lived before%%per%%]$~ ~$[the loved ones %%#%% 
-experience %%#%% survivor guilt ]v[ hindsight bias %%cmp%% %%#%% believe %%#%% %%#%% person %%#%% died %%#%% 
-perfect ]v[ %%#%% %%#%% %%#%% bad/wrong %%#%% remember %%#%% flaws ]v[ foibles%%per%%]$~ ~$[the therapist %%#%% %%#%% tread 
-lightly %%#%% %%#%% topic%%lst%% %%#%% pursuing %%#%% later %%#%% therapy%%lst%% %%#%% %%#%% %%#%% %%#%% broached gently %%#%% 
-%%#%% time%%per%%]$~ ~$[the therapist%%lst%% %%#%% hearing %%#%% over%%dsh%%idealized description %%#%% %%#%% deceased %%#%% say%%cln%% 
-“he sounds %%#%% %%#%% angel%%per%%]$~ ~$[i’d %%#%% %%#%% %%#%% %%#%% %%#%% picture %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-knew%%per%%]$~ ~$[tell %%#%% %%#%% little %%#%% %%#%% eccentricities ]v[ habits”%%per%%]$~ 
-~$[the goal %%#%% %%#%% %%#%% help %%#%% patient %%#%% grieve ]f[ %%#%% person %%#%% %%#%% lived %%#%% %%#%% 
-integrated ]^[ balanced view%%per%%]$~ 
-~$[in %%#%% cases%%lst%% over%%dsh%%idealization %%#%% %%#%% %%#%% particular problem %%cmp%% %%#%% idealized image 
-%%#%% %%#%% deceased %%#%% embraced %%#%% %%#%% %%#%% community%%per%%]$~ ~$[in %%#%% aftermath %%#%% %%#%% world trade center 
-attack%%lst%% firefighters%%lst%% police%%lst%% ]^[ %%#%% rescue workers %%#%% died %%#%% %%#%% rightly hailed %%#%% heroes%%per%%]$~ 
-~$[heroes %%#%% people %%#%% risk themselves %%#%% help %%#%% %%#%% spite %%#%% %%#%% fear ]v[ flaws%%lst%% ]n[ %%cmp%% 
-%%#%% %%#%% fearless ]^[ flawless%%per%%]$~ ~$[it %%#%% %%#%% particularly difficult ]f[ family %%#%% %%cmp%% %%#%% 
-memories %%#%% %%#%% person clash %%#%% %%#%% public image%%per%%]$~ ~$[if %%#%% couple %%#%% %%#%% marital problems%%lst%% ]v[ 
-%%#%% partner %%#%% %%#%% %%#%% extra%%dsh%%marital affair%%lst%% %%#%% abusive%%lst%% ]v[ alcoholic%%lst%% %%#%% surviving partner 
-%%#%% ]n[ know %%#%% %%#%% reconcile %%#%% information %%#%% %%#%% accolades ]^[ images %%#%% %%#%% partner 
-%%#%% %%#%% saint%%per%%]$~ ~$[even %%#%% remember %%#%% flaws %%#%% %%#%% %%#%% %%#%% betrayal %%#%% %%#%% person %%#%% died%%per%%]$~ 
-~$[and yet%%lst%% %%#%% surviving partner ]^[ family %%#%% %%#%% %%#%% memories %%#%% %%#%% ]^[ struggle %%#%% 
-deal %%#%% them%%per%%]$~ ~$[some people attempt %%#%% suppress ]v[ ignore inconsistent information%%per%%]$~ ~$[if %%#%% %%#%% 
-successful %%#%% avoiding%%lst%% %%#%% %%#%% %%#%% %%#%% likelihood %%#%% %%#%% prolonged bereavement %%cmp%% ]f[ 
-%%#%% %%#%% %%#%% %%#%% %%#%% person’s life %%#%% %%#%% accurate perspective%%per%% 
-20 
-pertinent %%#%% situations %%#%% %%#%% attack %%#%% september 11%%lst%% 2001%%lst%% ]^[ war%%lst%% %%#%% %%#%% issue %%#%% 
-%%#%% %%#%% body %%#%% %%#%% deceased %%#%% %%#%% found%%per%%]$~ ~$[it %%#%% %%#%% %%#%% difficult %%#%% %%#%% %%#%% ]f[ %%#%% 
-surviving family ]^[ friends %%#%% accept %%#%% %%#%% person %%#%% actually dead%%per%%]$~ ~$[when %%#%% %%#%% %%#%% concrete 
-proof %%#%% %%#%% person died%%lst%% assimilation ]^[ denial %%#%% %%#%% likely%%per%%]$~ ~$[the survivors %%#%% %%#%% 
-continuing fantasies %%#%% %%#%% %%#%% %%#%% %%#%% mistake%%lst%% %%#%% %%#%% loved %%#%% %%#%% %%#%% wandering 
-%%#%% %%#%% amnesia ]v[ injured ]^[ unable %%#%% contact them%%per%%]$~ ~$[they %%#%% %%#%% extended periods 
-%%#%% %%#%% acceptance %%#%% %%#%% reality %%#%% %%#%% situation %%#%% postponed%%per%%]$~ 
-~$[finally%%lst%% %%#%% %%#%% %%#%% %%#%% people experience %%#%% %%#%% event ]^[ %%cmp%% support %%#%% %%#%% %%#%% 
-%%#%% aftermath%%lst%% %%#%% %%#%% help %%#%% %%#%% progress %%#%% %%#%% various stages %%#%% grief%%per%%]$~ ~$[however%%lst%% 
-%%#%% %%#%% %%#%% risks%%per%%]$~ ~$[one %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% recovering %%#%% %%#%% rates%%lst%% 
-leading %%#%% misunderstandings ]v[ %%#%% people %%#%% held %%#%% %%#%% %%#%% natural rate%%per%%]$~ ~$[a worse 
-outcome %%#%% %%#%% %%#%% %%#%% %%#%% stuck %%#%% ]^[ stop recovering altogether%%per%%]$~ ~$[they develop 
-%%#%% us%%dsh%%against%%dsh%%them mentality %%#%% %%#%% %%#%% %%#%% %%#%% believe %%#%% %%#%% %%#%% %%#%% understand %%#%% 
-%%#%% %%#%% experienced ]^[ %%#%% %%#%% %%#%% %%#%% recover%%per%%]$~ ~$[if %%#%% %%#%% seeks therapy 
+d3 80% — _ 
+%%#%% 
+a%%per%%]$~ 
+~$[u} 
+0 
+%%#%% 60% %%#%% _ 
+%%sqt%%e—< 
+%%#%% 
+%%#%% 40% %%#%% — 
+é decstation 5000 
+3 hardware minimum 
+00 
+20% — _ 
+%%#%% 
+*%%dsh%% software 
+a? 
+0% l 
+0 1o 20 
+# crossings/millcsecond 
+figure 7%%cln%% percentage %%#%% time spent %%#%% crossing code 
+versus number %%#%% fault domain crossings %%#%% millisec%%dsh%% 
+ond %%#%% %%#%% decemips%%per%%]$~ ~$[the hardware minimum cross— 
+ing number %%#%% %%#%% %%#%% %%#%% crossvarchitectural study 
+%%#%% context switch times [albl91]%%per%%]$~ ~$[the ultrix 4%%per%%2 con%%dsh%% 
+text switch time %%#%% %%#%% reported %%#%% %%#%% last column %%#%% 
+table 2%%per%% 
+213 
+%%#%% hardware fault isolation %%#%% ultimately limited %%#%% 
+%%#%% minimal hardware cost %%#%% taking %%#%% kernel traps 
+]^[ %%#%% hardware context switches%%per%%]$~ ~$[lrpc %%#%% %%#%% 
+%%#%% %%#%% ﬁrst rpc systems %%#%% approach %%#%% limit%%lst%% ]^[ 
+%%#%% prototype %%#%% %%#%% number %%#%% %%#%% techniques found 
+%%#%% lrpc ]^[ later systems%%cln%% %%#%% %%#%% thread runs %%#%% 
+%%#%% %%#%% caller ]^[ %%#%% callee domain%%lst%% %%#%% stubs %%#%% 
+kept %%#%% simple %%#%% possible%%lst%% ]^[ %%#%% crossing code jumps 
+directly %%#%% %%#%% called procedure%%lst%% avoiding %%#%% dispatch 
+%%#%% %%#%% callee domain%%per%%]$~ ~$[unlike %%#%% systems%%lst%% software— 
+based fault isolation avoids hardware context switches%%lst%% 
+substantially reducing crossing costs%%per%%]$~ 
+~$[address space identiﬁer tags %%#%% %%#%% %%#%% %%#%% reduce 
+hardware context switch times%%per%%]$~ ~$[tags allow %%#%% %%cmp%% 
+%%#%% address space %%#%% share %%#%% tlb%%scn%% otherwise %%#%% 
+tlb %%#%% %%#%% ﬂushed %%#%% %%#%% context switch%%per%%]$~ ~$[it %%#%% 
+estimated %%#%% 25% %%#%% %%#%% cost %%#%% %%#%% lrpc %%#%% %%#%% 
+fireﬂy (which %%#%% ]n[ %%#%% tags) %%#%% due %%#%% tlb 
+misses[ball90]%%per%%]$~ ~$[address space tags %%#%% not%%lst%% however%%lst%% 
+reduce %%#%% cost %%#%% register management ]v[ system calls%%lst%% 
+operations %%#%% %%#%% ]n[ scaling %%#%% integer perfor%%dsh%% 
+mance[albl91]%%per%%]$~ ~$[an %%#%% advantage %%#%% software— 
+based jfault isolation %%#%% %%#%% %%#%% %%#%% ]n[ rely %%#%% specialv 
+ized architectural features %%#%% %%#%% address space tags%%per%%]$~ 
+~$[restrictive programming languages %%#%% %%#%% %%#%% %%#%% 
+%%#%% provide fault isolation%%per%%]$~ ~$[pilot requires %%#%% kernel%%lst%% 
+user%%lst%% ]^[ library code %%#%% %%#%% written %%#%% mesa%%lst%% 3 strongly 
+typed language%%scn%% %%#%% code %%cmp%% shares %%#%% single address 
+space [rdii+80]%%per%%]$~ ~$[the main disadvantage %%#%% relying %%#%% 
+strong typing %%#%% %%#%% %%#%% severely restricts %%#%% choice 
+%%#%% programming languages%%lst%% ruling %%#%% conventional 
+languages %%#%% c%%lst%% c++%%lst%% ]^[ assembly%%per%%]$~ ~$[even %%#%% 
+strongly—typed languages %%#%% %%#%% ada ]^[ modula—3%%lst%% 
+programmers %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% loopholes %%#%% 
+%%#%% type system%%lst%% undercutting fault isolation%%per%%]$~ ~$[in con— 
+trast%%lst%% %%#%% techniques %%#%% language independent%%per%%]$~ 
+~$[deutsch ]^[ grant built %%#%% system %%#%% allowed 
+user—deﬁned measurement modules %%#%% %%#%% dynamically 
+loaded %%#%% %%#%% operating system ]^[ executed directly 
+%%#%% %%#%% processor [dg71]%%per%%]$~ ~$[the module format %%#%% %%#%% 
+stylized native object code designed %%#%% %%#%% %%#%% easier 
+%%#%% statically verify %%#%% %%#%% code %%#%% ]n[ violate pro— 
+tection boundaries%%per%%]$~ 
+~$[an interpreter %%#%% %%#%% provide failure isolation%%per%%]$~ ~$[for 
+example%%per%% %%#%% bsd unix network packet ﬁlter utility 
+deﬁnes %%#%% language %%#%% %%#%% interpreted %%#%% %%#%% operat%%dsh%% 
+ing system network driver%%per%%]$~ ~$[the interpreter insulates 
+%%#%% operating system %%#%% %%#%% faults %%#%% %%#%% cus— 
+tomization code%%per%%]$~ ~$[our approach allows code written %%#%% 
+%%#%% programming language %%#%% %%#%% safely encapsulated 
+(or rejected %%cmp%% %%#%% %%#%% ]n[ safe)%%lst%% ]^[ %%cmp%% executed %%#%% near 
+%%#%% speed %%#%% %%#%% operating system%%per%%]$~ 
+~$[anonymous rfc exploits 64%%dsh%%bit address spaces %%#%% 
+provide low latency rfc ]^[ probabilistic fault iso— 
+lation [yba93]%%per%%]$~ ~$[logically independent domains %%#%% 
+214 
+placed %%#%% random locations %%#%% %%#%% %%#%% hardware ad» 
+dress spacer calls %%#%% domains %%#%% anonymous%%lst%% 
+%%#%% is%%lst%% %%#%% %%#%% ]n[ reveal %%#%% location %%#%% %%#%% caller 
+]v[ %%#%% callee %%#%% %%#%% side%%per%%]$~ ~$[this provides probabilis— 
+tic protection %%lst%% %%#%% %%#%% unlikely %%#%% %%#%% domain %%#%% 
+%%#%% able %%#%% discover %%#%% location %%#%% %%#%% %%#%% domain 
+%%#%% malicious ]v[ accidental memory probes%%per%%]$~ ~$[to pre» 
+serve anonymity%%lst%% %%#%% cross domain call %%#%% trap %%#%% pro%%dsh%% 
+tected code %%#%% %%#%% kernel%%scn%% however%%lst%% %%#%% hardware con~ 
+text switch %%#%% needed%%per%% 
+7 summary 
+%%#%% %%#%% described %%#%% software%%dsh%%based mechanism ]f[ 
+portable%%lst%% programming language independent fault 
+isolation %%#%% cooperating software modules%%per%%]$~ ~$[by 
+providing fault isolation %%#%% %%#%% single address space%%lst%% 
+%%#%% approach delivers crossefaultrdomain communica 
+tion %%#%% %%#%% %%#%% %%cmp%% %%#%% order %%#%% magnitude faster 
+%%cmp%% %%#%% rpc mechanism %%#%% date%%per%%]$~ 
+~$[to prevent distrusted modules %%#%% escaping %%#%% 
+own fault domain%%lst%% %%#%% %%#%% %%#%% software encapsulation 
+technique%%lst%% called sandboxing%%lst%% %%#%% incurs %%#%% 4% 
+despite %%#%% overhead %%#%% 
+executing distrusted code%%lst%% software—based fault isola%%dsh%% 
+tion %%#%% %%#%% yield %%#%% %%#%% overall application per%%dsh%% 
+formance%%per%%]$~ ~$[extensive kernel optimizations %%#%% reduce 
+%%#%% overhead %%#%% hardware%%dsh%%based rpc %%#%% %%#%% %%#%% fac%%dsh%% 
+tor %%#%% ten %%#%% %%#%% software—based alternative%%per%%]$~ ~$[even 
+%%#%% %%#%% situation%%lst%% software—based fault isolation %%#%% %%#%% 
+%%#%% %%#%% performance choice whenever %%#%% overhead 
+%%#%% using hardware—based rpc %%#%% %%#%% %%cmp%% 5%%%per%% 
+execution time overhead%%per%% 
+8 acknowledgements 
+%%#%% %%cmp%%k brian bershad%%lst%% mike burrows%%lst%% john hen%%dsh%% 
+nessy%%lst%% peter kessler%%lst%% butler lampson%%lst%% ed lazowska%%lst%% 
+dave patterson%%lst%% john ousterhout%%lst%% oliver sharp%%lst%% 
+richard sites%%lst%% alan smith ]^[ mike stonebraker ]f[ 
+%%#%% helpful comments %%#%% %%#%% paper%%per%%]$~ ~$[jim larus pro%%dsh%% 
+vided %%#%% %%#%% %%#%% proﬁling tool qpt%%per%%]$~ ~$[we %%#%% %%cmp%%k 
+mike olson ]^[ paul aoki ]f[ helping %%#%% %%#%% post— 
+gres%%per%%]$~ 
+~$[references 
+[acd74] tl%%per%%]$~ ~$[adam%%lst%% km%%per%%]$~ ~$[chandy%%lst%% ]^[ jr%%per%%]$~ ~$[dickson%%per%%]$~ 
+~$[a comparison %%#%% list schedules ]f[ parallel pro%%dsh%% 
+cessing systems%%per%%]$~ ~$[communications %%#%% %%#%% acm%%lst%% 
+17(12):685—690%%lst%% december 197/1%%per%% 
+[album] thomas anderson%%lst%% henry levy%%lst%% brian ber— 
+shad%%lst%% ]^[ edward lazowska%%per%%]$~ ~$[the interaction 
+%%#%% architecture ]^[ operating system design%%per%% 
+[a5591] 
+[asusg] 
+[ballqo] 
+[ball91] 
+[ber93] 
+[bl92] 
+[blaqo] 
+[1m 84] 
+[cla92] 
+[dg71] 
+[dis] 
+[dys92] 
+[fp93] 
+[h092] 
+111 proceedings %%#%% %%#%% 4th international confer%%dsh%% 
+ence %%#%% architectural supportfor programming 
+languages ]^[ operating systems%%lst%% pages 108— 
+120%%lst%% april 1991%%per%%]$~ 
+~$[administrator%%cln%% national computer graphics 
+association%%per%%]$~ ~$[spec newsletter%%lst%% 3(4)%%lst%% december 
+1991%%per%%]$~ 
+~$[alfred v%%per%%]$~ ~$[aho%%lst%% ravi sethi%%lst%% ]^[ jeffrey d%%per%%]$~ ~$[ull%%dsh%% 
+man%%per%%]$~ ~$[compilers%%lst%% principles%%lst%% techniques%%lst%% ]^[ 
+tools%%per%%]$~ ~$[addison—wesley publishing company%%lst%% 
+1986%%per%%]$~ 
+~$[brian bershad%%lst%% thomas anderson%%lst%% edward la%%dsh%% 
+zowska%%lst%% ]^[ henry levy%%per%%]$~ ~$[lightweight remote 
+procedure call%%per%%]$~ ~$[acm transactions %%#%% com%%dsh%% 
+puter systems%%lst%% 8(1)%%lst%% february 1990%%per%%]$~ 
+~$[brian bershad%%lst%% thomas anderson%%lst%% edward la~ 
+zowska%%lst%% ]^[ henry levy%%per%%]$~ ~$[user%%dsh%%level interpre%%dsh%% 
+cess communication ]f[ shared~memory mul%%dsh%% 
+tiprocessors%%per%%]$~ ~$[acm transactions %%#%% computer 
+systems%%lst%% 9(2)%%lst%% %%#%% 1991%%per%%]$~ 
+~$[brian bershad%%lst%% august 1993%%per%%]$~ ~$[private commu— 
+nication%%per%%]$~ 
+~$[thomas ball ]^[ james r%%per%%]$~ ~$[larus%%per%%]$~ ~$[optimally 
+proﬁling ]^[ tracing%%per%%]$~ ~$[in proceedings %%#%% %%#%% 
+conference %%#%% principles %%#%% programming lan%%dsh%% 
+guages%%lst%% pages 59‘70%%lst%% 1992%%per%%]$~ 
+~$[david black%%per%%]$~ ~$[scheduling support ]f[ concui~ 
+rency ]^[ parallelism %%#%% %%#%% mach operating 
+system%%per%%]$~ ~$[ieee computer%%lst%% 23(5):35 43%%lst%% %%#%% 
+1990%%per%%]$~ 
+~$[andrew birrell ]^[ bruce nelson%%per%%]$~ ~$[implement%%dsh%% 
+ing remote procedure calls%%per%%]$~ ~$[acm transac%%dsh%% 
+tions %%#%% computer systems%%lst%% 2(1):?19‘59%%lst%% febru‘ 
+ary 1984%%per%% 
+%%per%%1%%per%%d%%per%%]$~ ~$[clark%%per%% lvindow programmer’ guide %%#%% 
+ole/due%%lst%% prentice—hall%%lst%% 1992%%per%%]$~ 
+~$[l%%per%%]$~ ~$[p%%per%%]$~ ~$[deutsch ]^[ c%%per%%]$~ ~$[a%%per%%]$~ ~$[grant%%per%%]$~ ~$[a ﬂexible mea~ 
+surement tool ]f[ software systems%%per%%]$~ ~$[in ifip 
+congress%%lst%% 1971%%per%%]$~ 
+~$[digital equipment corporation%%per%%]$~ ~$[ultriz 114%%per%%2 
+pixie manual page%%per%%]$~ 
+~$[peter dyson%%per%%]$~ ~$[xtensions ]f[ xpress%%cln%% modular 
+software ]f[ custom systems%%per%%]$~ ~$[seybold report 
+%%#%% desktop publishing%%lst%% 6(10):1—‘%%per%%’%%per%%1%%lst%% june 1992%%per%%]$~ 
+~$[kevin fall ]^[ joseph pasquale%%per%%]$~ ~$[exploiting in— 
+kernel data paths %%#%% improve i/o throughput 
+]^[ cpu 3%%per%% vailability%%per%%]$~ ~$[in proceedings %%#%% %%#%% 
+1993 winter usenix conference%%lst%% pages 327— 
+333%%lst%% january 1993%%per%%]$~ 
+~$[keiran harty ]^[ 
+david cheriton%%per%%]$~ ~$[application—controlled physi%%dsh%% 
+cal memory using external page—cache manage— 
+ment%%per%%]$~ ~$[in proceedings %%#%% %%#%% 5th international 
+conference %%#%% architectural support ]f[ pro%%dsh%% 
+gramming languages ]^[ operating systems%%lst%% 
+october 1992%%per%% 
+215 
+[11k93] 
+[hkm+88] 
+[int86] 
+[jrtss] 
+[k ar89] 
+[k1886] 
+[lb92] 
+[mcf89] 
+[mj93] 
+[m ra87] 
+[p1190] 
+[rdh+ 80] 
+graham hamilton ]^[ panos kougiouris%%per%%]$~ ~$[the 
+spring nucleus%%cln%% %%#%% microkernel ]f[ objects%%per%%]$~ ~$[in 
+proceedings %%#%% %%#%% summer usenix confer%%dsh%% 
+cncc%%lst%% pages 1477159%%lst%% june 1993%%per%%]$~ 
+~$[j%%per%%]$~ ~$[howard%%lst%% m%%per%%]$~ ~$[kazar%%lst%% s%%per%%]$~ ~$[menees%%lst%% d%%per%%]$~ ~$[nichols%%lst%% 
+m%%per%%]$~ ~$[satyanarayanan%%lst%% r%%per%%]$~ ~$[sidebotham%%lst%% ]^[ 
+m%%per%%]$~ ~$[west%%per%%]$~ ~$[scale ]^[ performance %%#%% 3%%per%%]$~ ~$[dis%%dsh%% 
+tributed file system%%per%%]$~ ~$[acm transactions %%#%% 
+computer systems%%lst%% 6(1):51—82%%lst%% february 1988%%per%%]$~ 
+~$[intel corporation%%lst%% california%%per%%]$~ 
+~$[intel 80386 programmer’s reference manual%%lst%% 
+1986%%per%%]$~ 
+~$[michael b%%per%%]$~ ~$[jones%%lst%% richard f%%per%%]$~ ~$[rashid%%lst%% ]^[ 
+mary r%%per%%]$~ ~$[thompson%%per%%]$~ ~$[matchmaker%%cln%% %%#%% in%%dsh%% 
+terface speciﬁcation language ]f[ distributed 
+processing%%per%%]$~ ~$[in proceedings %%#%% %%#%% 12th acm 
+sigact%%dsh%%sigplan symposium %%#%% principles 
+%%#%% programming languages%%lst%% pages 225435%%lst%% 
+january 1985%%per%%]$~ 
+~$[santa clara%%lst%% 
+paul a%%per%%]$~ ~$[karger%%per%%]$~ ~$[using registers %%#%% optimize 
+cross—domain call performance%%per%%]$~ ~$[in proceed%%dsh%% 
+ings %%#%% %%#%% 3rd international conference %%#%% 
+architectural support ]f[ programming lan%%dsh%% 
+guages ]^[ operating systems%%lst%% pages 1947204%%per%%]$~ 
+~$[april 3~6 1989%%per%%]$~ 
+~$[steven r%%per%%]$~ ~$[kleiman%%per%%]$~ ~$[vnodes%%cln%% %%#%% architecture 
+]f[ multiple file system types %%#%% sun unix%%per%%]$~ 
+~$[in proceedings %%#%% %%#%% 1986 summer usenix 
+conference%%lst%% pages 238—247%%lst%% 1986%%per%%]$~ 
+~$[james r%%per%%]$~ ~$[larus ]^[ thomas ball%%per%%]$~ ~$[rewrit%%dsh%% 
+ing executable ﬁles %%#%% measure program be— 
+havior%%per%%]$~ ~$[technical report 1083%%lst%% university %%#%% 
+wisconsin%%dsh%%madison%%lst%% march 1992%%per%%]$~ 
+~$[scott mcfarling%%per%%]$~ ~$[program optimization ]f[ 
+instruction caches%%per%%]$~ ~$[in proceedings %%#%% %%#%% in%%cln%% 
+ternational conference %%#%% architectural sup— 
+port ]f[ programming languages ]^[ operat%%dsh%% 
+ing systems%%lst%% pages 183—191%%lst%% april 1989%%per%%]$~ 
+~$[steven mccanne ]^[ van lacobsen%%per%%]$~ ~$[the 
+bsd packet filter%%cln%% %%#%% %%#%% architecture ]f[ 
+user—level packet capture%%per%%]$~ ~$[in proceedings %%#%% 
+%%#%% 1993 winter usenix conference%%lst%% january 
+1993%%per%% 
+l%%per%%]$~ ~$[c%%per%%]$~ ~$[mogul%%lst%% r%%per%%]$~ ~$[f%%per%%]$~ ~$[rashid%%lst%% ]^[ m%%per%%]$~ ~$[j%%per%%]$~ ~$[ac%%dsh%% 
+cetta%%per%%]$~ ~$[the packet ﬁlter%%cln%% %%#%% cﬂicient mecha— 
+nism ]f[ user—level network code%%per%%]$~ ~$[in proceed%%dsh%% 
+ings %%#%% %%#%% symposium %%#%% operating system 
+principles%%lst%% pages 39—51%%lst%% november 1987%%per%%]$~ 
+~$[karl pettis ]^[ robert c%%per%%]$~ ~$[hansen%%per%%]$~ ~$[proﬁle 
+guided code positioning%%per%%]$~ ~$[in proceedings %%#%% 
+%%#%% conference %%#%% programming language de%%dsh%% 
+sign ]^[ implementation%%lst%% pages 16—27%%lst%% white 
+plains%%lst%% %%#%% york%%lst%% june 1990%%per%%]$~ ~$[appeared %%#%% 
+sigplan notices 25(6)%%per%%]$~ 
+~$[david d%%per%%]$~ ~$[redell%%lst%% yogen k%%per%%]$~ ~$[dalal%%lst%% thomas r%%per%%]$~ 
+~$[horsley%%lst%% hugh c%%per%%]$~ ~$[lauer%%lst%% william c%%per%%]$~ ~$[lynch%%lst%% 
+[sam88] 
+[5390] 
+[501693] 
+[sfgmqs] 
+[st087] 
+[st088] 
+[swg91] 
+[tass] 
+[thiﬁz] 
+[vcgsqz] 
+[vvstsb] 
+[web93] 
+[yba93] 
+paul r%%per%%]$~ ~$[mcjones%%lst%% hal g%%per%%]$~ ~$[murray%%lst%% ]^[ 
+stephen c%%per%%]$~ ~$[purcell%%per%%]$~ ~$[pilot%%cln%% %%#%% operating sys%%dsh%% 
+tem ]f[ %%#%% personal computer%%per%%]$~ ~$[communications 
+%%#%% %%#%% a01”%%lst%% 23(2):81~92%%lst%% february 1980%%per%%]$~ 
+~$[a%%per%%]$~ ~$[dain samples%%per%%]$~ ~$[code reorganization ]f[ %%#%% 
+struction caches%%per%%]$~ ~$[technical report ucb/csd 
+88/447%%per%%]$~ ~$[university %%#%% california%%lst%% berkeley%%lst%% 0c%%lst%% 
+tober 1988%%per%%]$~ 
+~$[michael schroeder ]^[ michael burrows%%per%%]$~ ~$[per%%dsh%% 
+formance %%#%% fireﬂy rpc%%per%%]$~ ~$[acm i‘mnsac» 
+tions %%#%% computer systems%%lst%% 8(1):1—17%%lst%% febru%%dsh%% 
+ary 1990%%per%%]$~ 
+~$[richard l%%per%%]$~ ~$[sites%%lst%% anton chernoff%%lst%% matthew b%%per%%]$~ 
+~$[kirk%%lst%% maurice p%%per%%]$~ ~$[marks%%lst%% ]^[ scott g%%per%%]$~ ~$[robin%%dsh%% 
+son%%per%%]$~ ~$[binary translation%%per%%]$~ ~$[communications %%#%% 
+%%#%% acm%%lst%% 36(2):69—81%%lst%% february 1993%%per%%]$~ 
+~$[m%%per%%]$~ ~$[stonebral%%dsh%%zer%%lst%% j%%per%%]$~ ~$[frew%%lst%% k%%per%%]$~ ~$[gardels%%lst%% ]^[ 
+%%per%%i%%per%%]$~ ~$[meridith%%per%%]$~ ~$[the sequoia 2000 benchmark%%per%%]$~ 
+~$[in proceedings %%#%% %%#%% acm sigmod inter%%dsh%% 
+national conference %%#%% management %%#%% data%%lst%% 
+%%#%% 1993%%per%%]$~ 
+~$[michael stonebraker%%per%%]$~ ~$[extensibility %%#%% post~ 
+gres%%per%%]$~ ~$[ieee database engineering%%lst%% septem%%dsh%% 
+ber 1987%%per%%]$~ 
+~$[michael stonebraker%%per%%]$~ ~$[inclusion %%#%% %%#%% types %%#%% 
+relational data base systems%%per%%]$~ ~$[in michael stone%%dsh%% 
+braker%%lst%% editor%%lst%% readings %%#%% database systems%%lst%% 
+pages 480—487%%per%%]$~ ~$[morgan kaufmann publishers%%lst%% 
+inc%%per%%%%lst%% 1988%%per%%]$~ 
+~$[j%%per%%]$~ ~$[p%%per%%]$~ ~$[singh%%lst%% w%%per%%]$~ ~$[weber%%lst%% ]^[ a%%per%%]$~ ~$[gupta%%per%%]$~ 
+~$[splash%%cln%% stanford parallel applications ]f[ 
+shared—memory%%per%%]$~ ~$[technical report csl—tr—sl— 
+469%%lst%% stanford%%lst%% 1991%%per%%]$~ 
+~$[shin—yuan tzou ]^[ david p%%per%%]$~ ~$[anderson%%per%%]$~ ~$[a 
+performance evaluation %%#%% %%#%% dash message%%dsh%% 
+passing system%%per%%]$~ ~$[technical report ucb/csd 
+88/452%%lst%% computer science division%%lst%% university 
+%%#%% california%%lst%% berkeley%%lst%% october 1988%%per%%]$~ 
+~$[thinking machines corporation%%per%%]$~ ~$[cm—5 net%%dsh%% 
+%%#%% interface programmer’s guide%%lst%% 1992%%per%%]$~ 
+~$[t%%per%% von eicken%%lst%% i)%%per%%]$~ ~$[culler%%lst%% s%%per%%]$~ ~$[goldstein%%lst%% ]^[ 
+k%%per%%]$~ ~$[schauser%%per%%]$~ ~$[active messages%%cln%% %%#%% mechanism 
+]f[ integrated communication ]^[ computa— 
+tion%%per%%]$~ ~$[in proceedings %%#%% %%#%% 19th annual sym%%dsh%% 
+posium %%#%% computer architecture%%lst%% 1992%%per%%]$~ 
+~$[robbert van renesse%%lst%% hans van staveren%%lst%% ]^[ 
+andrew s%%per%%]$~ ~$[tanenbaum%%per%%]$~ ~$[performance %%#%% %%#%% 
+world’s fastest distributed operating system%%per%%]$~ 
+~$[operating systemic review%%lst%% 22(1):25734%%lst%% octo— 
+ber 1988%%per%%]$~ 
+~$[neil webber%%per%%]$~ ~$[operating system support ]f[ 
+portable filesystem extensions%%per%%]$~ ~$[in proceed%%dsh%% 
+ings %%#%% %%#%% 1993 winter usenix conference%%lst%% 
+january 1993%%per%%]$~ 
+~$[curtis yarvin%%per%%]$~ ~$[richard bnkowski%%lst%% ]^[ thomas 
+anderson%%per%%]$~ ~$[anonymous rfc%%cln%% low latency 
+216 
+protection %%#%% %%#%% 64—bit address space%%per%%]$~ ~$[in pro%%dsh%% 
+ceedings %%#%% %%#%% summer usenix conference%%lst%% 
+june 1993%%per%% 

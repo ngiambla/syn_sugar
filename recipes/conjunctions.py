@@ -23,6 +23,14 @@ class conjunctions:
 				_ingredients_all[_label]="]v["
 			if "but" == _ingredients_all[_label]:
 				_ingredients_all[_label]="]b["
+			if "for" == _ingredients_all[_label]:
+				_ingredients_all[_label]="]f["
+			if "not" == _ingredients_all[_label]:
+				_ingredients_all[_label]="]n["
+			if "yet" == _ingredients_all[_label]:
+				_ingredients_all[_label]="]y["
+			if "so" == _ingredients_all[_label]:
+				_ingredients_all[_label]="]s["
 
 		with open("post_bakes/"+self.recipe+".pb", "w+") as f:
 			line 	= 	0
@@ -38,4 +46,4 @@ class conjunctions:
 		_ingredients.update(_ingredients_all, _ingredient_mapping)
 		print("")	
 
-		return ["]^[", "]v[", "]b["]
+		return ["]^[", "]v[", "]b[", "]f[", "]n[", "]y[", "]s["]

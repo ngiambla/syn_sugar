@@ -110,8 +110,70 @@ class garnish:
 				vec = vec + [sentence_map[_label][special_item]]
 			vec=vec + [sentence_length_map[_label]]
 			sentence_vec_map[_label]=vec
-	
-			
+
+		seen_labels		=	{}
+		sen_pairs 		=	{}
+
+		for _i_label in sentence_vec_map:
+			a=sentence_vec_map[_i_label]
+			seen_labels[_i_label]=0
+
+			for _j_label in sentence_vec_map:
+				if  _j_label not in seen_labels:
+					b=sentence_vec_map[_j_label]
+					hamming_dis = mutils.hamming_distance(a, b)
+					if hamming_dis not in sen_pairs: 
+						sen_pairs[hamming_dis] = {}
+
+						if _i_label not in sen_pairs[hamming_dis]:
+							sfs=[]
+							for i in range(_i_label, sentence_length_map[_i_label]+_i_label):
+								sfs.append(ingredient_freq_map[ingredient_free_map[_i_label]])
+							sen_pairs[hamming_dis][_i_label]=mutils.entropy(sfs)
+						if _j_label not in sen_pairs[hamming_dis]:
+							sfs=[]
+							for i in range(_j_label, sentence_length_map[_j_label]+_j_label):
+								sfs.append(ingredient_freq_map[ingredient_free_map[_j_label]])
+							sen_pairs[hamming_dis][_j_label]=mutils.entropy(sfs)
+					else:
+						if _i_label not in sen_pairs[hamming_dis]:
+							sfs=[]
+							for i in range(_i_label, sentence_length_map[_i_label]+_i_label):
+								sfs.append(ingredient_freq_map[ingredient_free_map[_i_label]])
+							sen_pairs[hamming_dis][_i_label]=mutils.entropy(sfs)
+						if _j_label not in sen_pairs[hamming_dis]:
+							sfs=[]
+							for i in range(_j_label, sentence_length_map[_j_label]+_j_label):
+								sfs.append(ingredient_freq_map[ingredient_free_map[_j_label]])
+							sen_pairs[hamming_dis][_j_label]=mutils.entropy(sfs)
+
+		for _bin in sen_pairs:
+			print(bcolors.OKGREEN+"Similarity: "+str(_bin)+bcolors.ENDC)
+			s1=""
+
+			for label in sen_pairs[_bin]:
+				if sen_pairs[_bin][label] < -500:
+					s1=s1+"[Entropy: "+str(sen_pairs[_bin][label])+"]\n  "	
+					for i in range(label, sentence_length_map[label]+label):
+						s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
+					s1=s1+"\n"
+			print(s1)
+					#if cosine_sim < 0.8 or correlation < 0.8:
+						#print("Correlation      : "+str(correlation))
+						#print("Cosine Sim       : "+str(cosine_sim))
+
+					# print("Hamming Distance : "+str(hamming_dis))
+
+					# s1=""
+					# for i in range(_i_label, sentence_length_map[_i_label]+_i_label):
+					# 	s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]
+
+					# s2=""
+					# for j in range(_j_label, sentence_length_map[_j_label]+_j_label):
+					# 	s2=s2+" "+_ingredients.get_unprepped_ingredients()[j]
+					# print(bcolors.FAIL+"Entropy: [" +str(mutils.entropy(a)) +"]"+s1)
+					# print("\n"+"Entropy: [" +str(mutils.entropy(b)) +"]"+s2+bcolors.ENDC)
+
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

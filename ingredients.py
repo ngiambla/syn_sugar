@@ -4,7 +4,7 @@ class ingredients:
 
 	def __init__(self, _ingredients, _ingredient_mapping, _cuisine):
 		self._ingredients				=	_ingredients
-		self._unprepped_ingredients		= 	_ingredients
+		self._unprepped_ingredients		= 	_ingredients.copy()
 		self._ingredient_mapping 		= 	_ingredient_mapping
 		self._cuisine					=	_cuisine
 

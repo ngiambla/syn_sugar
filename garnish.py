@@ -48,10 +48,17 @@ class garnish:
 			exit()
 		return _classes_out
 
+	def display_progress_check(self, count, columns):
 
+		how_many=int(math.floor(count/10000))	
+		sys.stdout.write('\rProgress: ' + '.'*(how_many%(columns-30))+' '*(columns-how_many-30))
+		sys.stdout.flush()
+
+		
 
 	def check_quality(self, _ingredients, special_items):
-
+		rows, columns = os.popen('stty size', 'r').read().split()
+		cols 					= int(columns)
 		sentence_vec_map 		= 	{}
 		sentence_map 			= 	{}
 
@@ -127,10 +134,19 @@ class garnish:
 			a=sentence_vec_map[_i_label]
 			seen_labels[_i_label]=0
 
+			wa=[]
+			for i in range(_i_label, sentence_length_map[_i_label]+_i_label):
+				wa.append(ingredient_free_map[i].lower())
+			
 			for _j_label in sentence_vec_map:
 				if  _j_label not in seen_labels:
 					b=sentence_vec_map[_j_label]
-					hamming_dis = mutils.hamming_distance(a,b) + math.floor(10*(mutils.get_cosine_sim(a,b)))/10
+
+					wb =[]
+					for i in range(_j_label, sentence_length_map[_j_label]+_j_label):
+						wb.append(ingredient_free_map[i].lower())			
+
+					hamming_dis = len(sentence_vec_map[_i_label])-mutils.hamming_distance(a,b) + math.floor(10*(mutils.get_cosine_sim(a,b)))/10 + math.floor(10*(mutils.jaccard_index(a,b)))/10
 					if hamming_dis not in sen_pairs: 
 						sen_pairs[hamming_dis] = {}
 
@@ -150,31 +166,26 @@ class garnish:
 				if _bin not in sorted_bins:
 					sorted_bins[_bin]={}
 				a=[]
-				wa=[]
 				for i in range(il, sentence_length_map[il]+il):
-					a.append(ingredient_freq_map[ingredient_free_map[il]])
-					wa.append(ingredient_free_map[i].lower())
+					a.append(ingredient_freq_map[ingredient_free_map[i]])
+
 				seen_again[il]=0
 				for jl in sen_pairs[_bin]:
 					
 					count=count+1
-					sys.stdout.write('\rProgress: '+ '%03.2f' % (100*(count/(len(sen_pairs)*len(sen_pairs[_bin])**2)))+"%")
-					sys.stdout.flush()
+					self.display_progress_check(count, cols)
 
 					if jl not in seen_again:
 						b=[]
-						wb =[]
 						for i in range(jl, sentence_length_map[jl]+jl):
-							b.append(ingredient_freq_map[ingredient_free_map[jl]])
-							wb.append(ingredient_free_map[i].lower())
+							b.append(ingredient_freq_map[ingredient_free_map[i]])
 
 						if sen_pairs[_bin][jl] >= 0.05 and sen_pairs[_bin][il] >= 0.05:
 
 							sen_pairs[_bin][jl] = sen_pairs[_bin][jl] * 0.05
 							sen_pairs[_bin][il] = sen_pairs[_bin][il] * 0.05
 
-							jaccard_idx = mutils.jaccard_index(wa, wb)
-							lev_dis  	= math.floor(10*(mutils.get_cosine_sim(a,b)+jaccard_idx))/10
+							lev_dis  	= math.floor(10*(mutils.get_cosine_sim(a,b)))/10
 
 							if lev_dis not in sorted_bins[_bin]:
 								sorted_bins[_bin][lev_dis]={}
@@ -182,20 +193,21 @@ class garnish:
 							sorted_bins[_bin][lev_dis][il]=1
 							sorted_bins[_bin][lev_dis][jl]=1
 
+		print("\n")
 
 		for _bin in sen_pairs:
-
-			print(bcolors.OKGREEN+"[Similarity] : "+str(_bin)+bcolors.ENDC)
-			for lev_dis in sorted_bins[_bin]:
-				print(bcolors.FAIL + " +[Distance] : "+str(lev_dis)+bcolors.ENDC)
-				s1=""
-				for label in sorted_bins[_bin][lev_dis]:
-					s1=s1+"  +[Entropy: "+str(sen_pairs[_bin][label])+"]\n   "	
-					for i in range(label, sentence_length_map[label]+label):
-						s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
-					s1=s1+"\n\n"
-				print(s1)
-			raw_input("~ ")
+			if len(sorted_bins[_bin]) > 0:
+				print(bcolors.OKGREEN+"[Similarity] : "+str(_bin)+bcolors.ENDC)
+				for lev_dis in sorted_bins[_bin]:
+					print(bcolors.FAIL + " +[Distance] : "+str(lev_dis)+bcolors.ENDC)
+					s1=""
+					for label in sorted_bins[_bin][lev_dis]:
+						s1=s1+"  +[Entropy: "+str(sen_pairs[_bin][label])+"]\n   "	
+						for i in range(label, sentence_length_map[label]+label):
+							s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
+						s1=s1+"\n\n"
+					print(s1)
+				raw_input("~ ")
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

@@ -1,1368 +1,982 @@
-Efficient Software—Based Fault Isolation 
-Robert VVahbe 
-Steven Lucco 
-Thomas E. Anderson 
-Susan L. Graham 
-Computer Science Division 
-University of California 
-Berkeley, CA 94720 
-Abstract 
-One way to provide fault isolation among cooperating 
-software modules is to place each in its own address 
-space. However, ]f[ tightly—coupled modules, this so— 
-lution incurs prohibitive context switch overhead. In 
-this paper, we present a software approach to imple— 
-menting fault isolation within a single address space. 
-Our approach has two parts. First, we load the code 
-]^[ data ]f[ a distrusted module into its own fault do- 
-main, a logically separate portion of the application’s 
-address space. Second, we modify the object code of a 
-distrusted module to prevent it from writing ]v[ jump- 
-ing to an address outside its fault domain. Both these 
-software operations are portable ]^[ programming lan— 
-guage independent. 
-Our approach poses a tradeoff relative to hardware 
-fault isolation: substantially faster communication be— 
-tween fault domains, at a cost of slightly increased 
-execution time ]f[ distrusted modules We demon— 
-strate that ]f[ frequently communicating modules, im~ 
-plementing fault isolation in software rather than hard- 
-ware can substantially improve end-to—end application 
-performance. 
-This work was supported in part by the National Sci— 
-ence Foundation (CDA-8722788), Defense Advanced Research 
-Projects Agency (DARPA) under grant MDA972—92-J-1028 ]^[ 
-contracts DABT63-92'C-0026 ]^[ N00600-93—C—2481, the Digi- 
-tal Equipment Corporation (the Systems Research Center ]^[ 
-the External Research Program), ]^[ the AT&T Foundation. 
-Anderson was also supported by a National Science Foundation 
-Young Investigator Award. The content of the paper does ]n[ 
-necessarily reﬂect the position ]v[ the policy of the Government 
-]^[ no ofﬁcial endorsement should be inferred. 
-Email: {rwahbe , lucco, tea, graham}@cs .berkeley.edu 
-Permission to copy Without fee all ]v[ part of (his material IS 
-granted provided that Hie cvpies are "0‘ made 0! distributed ]f[ 
-direct commercial advantage. the ACM copyright notice ]^[ the 
-mile of the publicaiion ]^[ MS data appear, ]^[ notice IS given 
-that copying is by permissmn of (he Assomalion ]f[ Computing 
-Machinery. To copy otherWise. ]v[ to republish, requires a fee 
-and/or specnfic permissron. 
-SIGOPS '93/12/93/N.C., USA 
-31993 ACM 0-83791-632-8/93/0012...$L50 
-1 Introduction 
-Application programs often achieve extensibility by 
-incorporating independently developed software mod— 
-ules. However, faults in extension code can render a 
-software system unreliable, ]v[ even dangerous, since 
-such faults could corrupt permanent data. To in— 
-crease the reliability of these applications, an operat— 
-ing system can provide services that prevent faults in 
-distrusted modules from corrupting application data. 
-Such fault isolation services also facilitate software de- 
-velopment by helping to identify sources of system fail— 
-ure. 
-For example, the POSTGRES database manager in— 
-cludes an extensible type system [St087]. Using this 
-facility, POSTGRES queries can refer to general—purpose 
-code that deﬁnes constructors, destructors, ]^[ pred— 
-icates ]f[ user—deﬁned data types such as geometric 
-objects. Without fault isolation, any query that uses 
-extension code could interfere with an unrelated query 
-]v[ corrupt the database. 
-Similarly, recent operating system research has fo— 
-cused on making it easier ]f[ third party vendors 
-to enhance parts of the operating system. An ex 
-ample is micro-kernel design; parts of the operat— 
-ing system are implemented as user—level servers that 
-can be easily modiﬁed ]v[ replaced. More gener— 
-ally, several systems have added extension code into 
-the operating system, ]f[ example, the BSD network 
-packet ﬁlter [MRA87, MJQ3]7 application—speciﬁc vir- 
-tual memory management [HC92]. ]^[ Active Mes— 
-sages [VCGSQQ]. Among industry systems, Microsoft’s 
-Object Linking ]^[ Embedding system [Cla92] can 
-link together independently developed software mod— 
-tiles. Also, the Quark Xprese desktop publishing sys- 
-tem [Dy592] is structured to support incorporation of 
-general—purpose third party code. As with POSTGRES, 
-faults in extension modules can render any of these 
-systems unreliable. . 
-One way to provide fault isolation among cooperat— 
-ing software modules is to place each in its own address 
-space. Using Remote Procedure Call (RFC) [BN84], 
-modules in separate address spaces can call into each 
-other through a normal procedure call interface. Hard- 
-ware page tables prevent the code in one address space 
-from corrupting the contents of another. 
-Unfortunately, there is a high performance cost 
-to providing fault isolation through separate address 
-spaces. Transferring control across protection bound— 
-aries is expensive, ]^[ does ]n[ necessarily scale 
-with improvements in a processor’s integer perforv 
-mance [ALBL91]. A cross—address-space RPC requires 
-at least: a trap into the operating system kernel, copy— 
-ing each argument from the caller to the callee, sav~ 
-ing ]^[ restoring registers, switching hardware ad— 
-dress spaces (on many machines, ﬂushing the transla— 
-tion lookaside buffer), ]^[ a trap back to user level. 
-These operations must be repeated upon RPC re— 
-turn. The execution time overhead of an RPC, even 
-with a highly optimized implementation, will often 
-be two to three orders of magnitude greater than 
-the execution time overhead of a normal procedure 
-call [BALL90, ALBL91]. 
-The goal of our work is to make fault isolation cheap 
-enough that system developers can ignore its perfor— 
-mance effect in choosing which modules to place in 
-separate fault domains. In many cases where fault iso 
-lation would be useful, cross-domain procedure calls 
-are frequent ]y[ involve only a moderate amount of 
-computation per call. In this situation it is imprac- 
-tical to isolate each logically separate module within 
-its own address space, because of the cost of crossing 
-hardware protection boundaries. 
-We propose a. software approach to implementing 
-fault isolation within a single address space. Our ap— 
-proach has two parts. First, we load the code ]^[ data 
-]f[ a. distrusted module into its own fault domain, a 
-logically separate portion of the application’s address 
-space. A fault domain, in addition to comprising a cori— 
-tiguous region of memory within an address space, has 
-a unique identiﬁer which is used to control its access to 
-process resources such as ﬁle descriptors. Second, we 
-modify the object code of a distrusted module to pre— 
-vent it from writing ]v[ jumping to an address outside 
-its fault domain. Program modules isolated in sepa— 
-rate software—enforced fault domains can ]n[ modify 
-each other’s data ]v[ execute each other’s code except 
-through an explicit cross-fault-domain RPC interface. 
-We have identiﬁed several programming-language- 
-independent transformation strategies that can render 
-object code unable to escape its own code ]^[ data 
-segments. In this paper, we concentrate on a sim— 
-204 
-ple transformation technique, called sandboxing, that 
-only slightly increases the execution time of the mod- 
-iﬁed object code. We also investigate techniques that 
-provide more debugging information ]b[ which incur 
-greater execution time overhead. 
-Our approach poses a tradeoff relative to hardware— 
-based fault isolation. Because we eliminate the need to 
-cross hardware boundaries, we can offer substantially 
-lower-cost RPC between fault domains. A safe RPC in 
-our prototype implementation takes roughly 1.1 us on a 
-DECstation 5000/240 ]^[ roughly 0.8,us on a DEC Al- 
-pha 400, more than an order of magnitude faster than 
-any existing RFC system. This reduction in RFC time 
-comes at a cost of slightly increased distrusted module 
-execution time. On a test suite including the the C 
-SPE092 benchmarks, sandboxing incurs an average of 
-4% execution time overhead on both the DECstation 
-]^[ the Alpha. 
-Software—enforced fault isolation may seem to be 
-counter-intuitive: we are slowing down the common 
-case (normal execution) to speed up the uncommon 
-case (crossrdomain communication). But ]f[ fre- 
-quently communicating fault domains, our approach 
-can offer substantially better end—to—end performance. 
-To demonstrate this, we applied software—enforced 
-fault isolation to the POSTGRES database system run- 
-ning the Sequoia 2000 benchmark. The benchmark 
-makes use of the POSTGRES extensible data. type sys— 
-tem to deﬁne geometric operators. For this bench— 
-mark, the software approach reduced fault isolation 
-overhead by more than a factor of three on a DECsta— 
-tion 5000/240. 
-A software approach also provides a tradeoif be 
-tween performance ]^[ level of distrust. If some mod— 
-ules in a. program are trusted while others are dis- 
-trusted (as may be the ease with extension code), only 
-the distrusted modules incur any execution time over- 
-head. Code in trusted domains can run at full speed. 
-Similarly, it is possible to use our techniques to im- 
-plement full security, preventing distrusted code from 
-even reading data outside of its domain, at a cost of 
-higher execution time overhead. We quantify this ef» 
-fect in Section 5. 
-The remainder of the paper is organized as follows. 
-Section 2 provides some examples of systems that re- 
-quire frequent communication between fault domains. 
-Section 3 outlines how we modify object code to pre— 
-vent it from generating illegal addresses. Section 4 
-describes how we implement low latency cross—faultv 
-domain RPC. Section 5 presents performance results 
-]f[ our prototype, ]^[ ﬁnally Section 6 discusses some 
-related work. 
-2 Background 
-In this section, we characterize in more detail the 
-type of application that can beneﬁt from software— 
-enforced fault isolation. We defer further description 
-of the POSTGRES extensible type system until Section 
-5, which gives performance measurements ]f[ this ap— 
-plication. 
-The operating systems community has focused con- 
-siderable attention on supporting kernel extensibil- 
-ity. For example, the UNIX vnode interface is de- 
-signed to make it easy to add a new ﬁle system into 
-UNIX [Kle86]. Unfortunately, it is too expensive to 
-forward every ﬁle system operation to user level, ]s[ 
-typically new ﬁle system implementations are added 
-directly into the kernel. (The Andrew ﬁle system is 
-largely implemented at user level, ]b[ it maintains a 
-kernel cache ]f[ performance [HKM'l'BSH Epoch’s ter— 
-tiary storage ﬁle system [Web93] is one example of op— 
-erating system kernel code developed by a third party 
-vendor. 
-Another example is user—programmable high perfor— 
-mance I/O systems. If data is arriving on an I/O 
-channel at a high enough rate, performance will be 
-degraded substantially if control has to be transferred 
-to user level to manipulate the incoming data [FP93]. 
-Similarly, Active Messages provide high performance 
-message handling in distributed—memory multiproces- 
-sors [VCG8921. Typically, the message handlers are 
-application-speciﬁc, ]b[ unless the network controller 
-can be accessed from user level [Thi92], the message 
-handlers must be compiled into the kernel ]f[ reason— 
-able performance. 
-A user-level example is the Quark Xpress desktop 
-publishing system. One can purchase third party soft- 
-ware that will extend this system to perform func~ 
-tions unforeseen by its original designers [DysQQ]. At 
-the same time, this extensibility has caused Quark a 
-number of problems. Because of the lack of efﬁcient 
-fault domains on the personal computers where Quark 
-Xpress runs, extension modules can corrupt Quark’s 
-internal data structures Hence, bugs in third party 
-code can make the Quark system appear unreliable, 
-because end—users do ]n[ distinguish among sources of 
-system failure. 
-All these examples share two characteristics. First, 
-using hardware fault isolation would result in a signif- 
-icant portion of the overall execution time being spent 
-in operating system context switch code. Second, only 
-a small amount of code is distrusted; most of the exe- 
-cution time is spent in trusted code. In this situation, 
-software fault isolation is likely to be more efﬁcient 
-than hardware fault isolation because it sharply re— 
-duces the time spent crossing fault domain boundaries, 
-while only slightly increasing the time spent executing 
-205 
-the distrusted part of the application. Section 5 quan- 
-tiﬁes this trade-off between domain—crossing overhead 
-]^[ application execution time overhead, ]^[ demon 
-strates that even if domain—crossing overhead repre— 
-sents a modest proportion of the total application ex— 
-ecution time, software—enforced fault isolation is cost 
-effective. 
-3 Software-Enforced Fault Iso- 
-lation 
-In this section, we outline several software encapsula— 
-tion techniques ]f[ transforming a distrusted module 
-]s[ that it can ]n[ escape its fault domain. We ﬁrst 
-describe a technique that allows users to pinpoint the 
-location of faults within a software module. Next, we 
-introduce a technique, called sandboxing, that can iso- 
-late a distrusted module while only slightly increasing 
-its execution time. Section 5 provides a performance 
-analysis of this techinique. Finally, we present a soft- 
-ware encapsulation technique that allows cooperating 
-fault domains to share memory. The remainder of 
-this discussion assumes we are operating on a RISC 
-load /storc architecture, although our techniques could 
-be extended to handle CISCs. Section 4 describes 
-how we implement safe ]^[ efficient cross—fault—domain 
-RPC. 
-We divide an application’s virtual address space into 
-segments, aligned ]s[ that all virtual addresses within 
-a segment share a unique pattern of upper bits, called 
-the segment identiﬁer. A fault domain consists of two 
-segments, one ]f[ a distrusted module’s code, the other 
-]f[ its static data, heap ]^[ stack. The speciﬁc seg- 
-ment addresses are determined at load time. 
-Software encapsulation transforms a distrusted 
-module‘s object code ]s[ that it can jump only to tar- 
-gets in its code segment, ]^[ write only to addresses 
-within its data segment. Hence, all legal jump tar— 
-gets in the distrusted module have the same upper bit 
-pattern (segment identiﬁer); similarly, all legal data 
-addresses generated by the distrusted module share 
-the same segment identiﬁer. Separate code ]^[ data 
-segments are necessary to prevent a module from mod— 
-ifying its code segmentl. It is possible ]f[ an address 
-with the correct segment identiﬁer to be illegal, ]f[ in- 
-stance if it refers to an unmapped page. This is caught 
-by the normal operating system page fault mechanism. 
-3.1 
-An unsafe mstmctzan is any instruction that jumps to 
-]v[ stores to an address that can ]n[ be statically ver— 
-Segment Matching 
-10111" system supports dynamic linking through a special 
-interface. 
-iﬁed to be within the correct segment. Most control 
-transfer instructions, such as program‘counter‘relative 
-branches, can be statically veriﬁed. Stores to static 
-variables often use an immediate addressing mode ]^[ 
-can be statically veriﬁed. However, jumps through reg— 
-isters, most commonly used to implement procedure 
-returns, ]^[ stores that use a register to hold their 
-target address, can ]n[ be statically veriﬁed. 
-A straightforward approach to preventing the use of 
-illegal addresses is to insert checking code before eve 
-ery unsafe instruction. The checking code determines 
-whether the unsafe instruction’s target address has the 
-correct segment identiﬁer. If the check fails, the in- 
-serted code will trap to a system error routine outside 
-the distrusted module’s fault domain. We call this 
-software encapsulation technique segment matching. 
-On typical RISC architectures, segment matching 
-requires four instructions. Figure 1 lists a pseudo—code 
-fragment ]f[ segment matching. The ﬁrst instruction 
-in this fragment moves the store target address into 
-a dedzcated register. Dedicated registers are used only 
-by inserted code ]^[ are never modiﬁed by code in 
-the distrusted module. They are necessary because 
-code elsewhere in the distrusted module may arrange 
-to jump directly to the unsafe store instruction, by- 
-passing the inserted check. Hence, we transform all 
-unsafe store ]^[ jump instructions to use a dedicated 
-register. 
-All the software encapsulation techniques presented 
-in this paper require dedicated registersz. Segment 
-matching requires four dedicated registers: one to hold 
-addresses in the code segment, one to hold addresses 
-in the data segment, one to hold the segment shift 
-amount, ]^[ one to hold the segment identiﬁer. 
-Using dedicated registers may have an impact on 
-the execution time of the distrusted module. However, 
-since most modern RISC architectures, including the 
-MIPS ]^[ Alpha, have at least 32 registers, we can 
-retarget the compiler to use a smaller register set with 
-minimal performance impact. For example7 Section 5 
-shows that, on the DECstation 5000/240, reducing by 
-ﬁve registers the register set available to a C compiler 
-(gee) did ]n[ have a signiﬁcant effect on the average 
-execution time of the SPEC92 benchmarks. 
-3.2 Address Sandboxing 
-The segment matching technique has the advantage 
-that it can pinpoint the offending instruction. This 
-capability is useful during software development. We 
-can reduce runtime overhead still further, at the cost 
-of providing no information about the source of faults. 
-2 For architectures with lenitccl register sets, such as the 
-80386 [Int86], it is possible to encapsulate a module using no re- 
-served registers by restricting control ﬂow within a fault domain. 
-206 
-dedicated—reg <2 target address 
-lilove target address into dedicated register. 
-scratch-reg <= (dedicated—reg>>shift~reg) 
-Right—shift address to get segment identiﬁer. 
-scratch—reg is ]n[ a dedicated register. 
-shift-reg is a dedicated register. 
-compare scratch—reg ]^[ segment—reg 
-segment-reg is a dedicated register. 
-trap if ]n[ equal 
-Trap if store address is outside of segment. 
-store instruction uses dedicated-reg 
-Figure 1: Assembly pseudo code ]f[ segment matching. 
-dedicated—reg c target-reghand—mask—reg 
-Use dedicated register and—mask-reg 
-to clear segment identiﬁer bits. 
-dedicated—reg <2 dedicated-regl segment—reg 
-Use dedicated register segment-reg 
-to set segment identiﬁer bits. 
-store instruction uses dedicated-reg 
-Figure 2: Assembly pseudo code to sandbox address 
-in target—reg. 
-Before each unsafe instruction we simply insert code 
-that sets the upper bits of the target address to the 
-correct segment identifier. We call this sandborzn g the 
-address. Sandboxing does ]n[ catch illegal addresses; 
-it merely prevents them from affecting any fault do— 
-main other than the one generating the address. 
-Address sandboxing requires insertion of two arith- 
-metic instructions before each unsafe store ]v[ jump 
-instruction. The ﬁrst inserted instruction clears the 
-segment identifier bits ]^[ stores the result in a ded— 
-icated register. The second instruction sets the seg— 
-ment identiﬁer to the correct value. Figure 2 lists the 
-pseudo‘code to perform this operation. As with seg- 
-ment matching, we modify the unsafe store ]v[ jump 
-instruction to use the dedicated register. Since we are 
-using a dedicated register, the distrusted module code 
-can ]n[ produce an illegal address even by jumping 
-to the second instruction in the sandboxing sequence; 
-since the upper bits of the dedicated register will al— 
-ready contain the correct segment identiﬁer, this sec- 
-ond instruction will have no effect. Section 3.6 presents 
-a simple algorithm that can verify that an object code 
-module has been correctly sandboxed. 
-Address sandboxing requires ﬁve dedicated registers. 
-One register is used to hold the segment mask, two 
-registers are used to hold the code ]^[ data segment 
-<——reg+oﬂ'sel j 
-«— reg 
-Guard Zones S eg ment 
-Figure 3: A segment with guard zones. The size of 
-the guard zones covers the range of possible immediate 
-offsets in register—plus-offset addressing modes. 
-identiﬁers, ]^[ two are used to hold the sandboxed 
-code ]^[ data addresses. 
-3.3 Optimizations 
-The overhead of software encapsulation can be re- 
-duced by using conventional compiler optimizations. 
-Our current prototype applies loop invariant code mo— 
-tion ]^[ instruction scheduling optimizations [ASU86, 
-ACD74]. In addition to these conventional techniques, 
-we employ a number of optimizations specialized to 
-software encapsulation. 
-We can reduce the overhead of software encapsulae 
-tion mechanisms by avoiding arithmetic that computes 
-target addresses. For example, many RISC architec— 
-tures include a register-plus—oﬁset instruction mode, 
-where the offset is an immediate constant in some lim— 
-ited range. On the MIPS architecture such offsets are 
-limited to the range -64K to +64K. Consider the 
-store instruction store value,oﬁset(reg), whose 
-address offset (reg) uses the register—plus—olfsct ad~ 
-dressing mode. Sandboxing this instruction requires 
-three inserted instructions: one to sum reg+oﬁset 
-into the dedicated register, ]^[ two sandboxing in— 
-structions to set the segment identiﬁer of the dedicated 
-register. 
-Our prototype optimizes this case by sandboxing 
-only the register reg, rather than the actual target ad— 
-dress reg+oﬁset, thereby saving an instruction. To 
-support this optimization, the prototype establishes 
-guard zones at the top ]^[ bottom of each segment. 
-To create the guard zones, virtual memory pages ad— 
-jacent to the segment are unmapped (see Figure 3), 
-We also reduce runtime overhead by treating the 
-MIPS stack pointer as a dedicated register. We avoid 
-sandboxing the uses of the stack pointer by sandboxing 
-207 
-this register whenever it is set. Since uses of the stack 
-pointer to form addresses are much more plentiful than 
-changes to it, this optimization signiﬁcantly improves 
-performance. 
-Further, we can avoid sandboxing the stack pointer 
-after it is modiﬁed by a small constant offset as long as 
-the modiﬁed stack pointer is used as part of a load ]v[ 
-store address before the next control transfer instruc» 
-tion. If the modiﬁed stack pointer has moved into a 
-guard zone, the load ]v[ store instruction using it will 
-cause a hardware address fault. On the DEC Alpha 
-processor, we apply these optimizations to both the 
-frame pointer ]^[ the stack pointer. 
-There are a number of further optimizations that 
-could reduce sandboxing overhead. For example, 
-the transformation tool could remove sandboxing se— 
-quences from loops, in cases where a store target ad- 
-dress changes by only a small constant oifset during 
-each loop iteration. Our prototype does ]n[ ]y[ imple— 
-ment these optimizations. 
-3.4 Process Resources 
-Because multiple fault domains share the same virtual 
-address space, the fault domain implementation must 
-prevent distrusted modules from corrupting resources 
-that are allocated on a per—addressspace basis. For 
-example, if a fault domain is allowed to make system 
-calls, it can close ]v[ delete ﬁles needed by other code 
-executing in the address space, potentially causing the 
-application as a whole to crash. 
-One solution is to modify the operating system to 
-know about fault domains. On a system call ]v[ page 
-fault, the kernel can use the program counter to deter- 
-mine the currently executing fault domain, ]^[ restrict 
-resources accordingly. 
-To keep our prototype portable, we implemented 
-an alternative approach. In addition to placing each 
-distrusted module in a separate fault domain, we re— 
-quire distrusted modules to access system resources 
-only through cross-fault-domain RPC. We reserve a 
-fault domain to hold trusted arbitration code that de— 
-termines whether a particular system call performed 
-by some other fault domain is safe. If a distrusted 
-module’s object code performs a direct system call, we 
-transform this call into the appropriate RPC call. In 
-the case of an extensible application, the trusted por- 
-tion of the. application can make system calls directly 
-]^[ shares a fault domain with the arbitration code. 
-3.5 Data Sharing 
-Hardware fault isolation mechanisms can support data 
-sharing among virtual address spaces by manipulate 
-ing page table entries. Fault domains share an ad— 
-dress space, ]^[ hence a set of page table entries, 
-]s[ they can ]n[ use a standard shared memory im— 
-plementation. Read-only sharing is straightforward; 
-since our software encapsulation techniques do ]n[ al- 
-ter load instructions, fault domains can read any mem— 
-ory mapped in the application’s address space 3. 
-If the object code in a particular distrusted mod— 
-ule has been sandboxed, then it can share read-write 
-memory with other fault domains through a technique 
-we call lazy pointer swizzling. Lazy pointer swizzling 
-provides a mechanism ]f[ fault domains to share ar— 
-bitrarily many read‘write memory regions with no ad- 
-ditional runtirne overhead. To support this technique, 
-we modify the hardware page tables to map the shared 
-memory region into every address space segment that 
-needs access; the region is mapped at the same offset 
-in each segment. In other words, we alias the shared 
-region into multiple locations in the virtual address 
-space, ]b[ each aliased location has exactly the same 
-low order address bits. As with hardware shared mem- 
-ory schemes, each shared region must have a different 
-segment offset. 
-To avoid incorrect shared pointer comparisons in 
-sandboxed code, the shared memory creation inter— 
-face must ensure that each shared object is given a 
-unique address. As the distrusted object code ac- 
-cesses shared memory, the sandboxing code automati- 
-cally translates shared addresses into the correspond 
-ing addresses within the fault domain’s data segment. 
-This translation works exactly like hardware transla~ 
-tion; the low bits of the address remain the same, ]^[ 
-the high bits are set to the data segment identiﬁer. 
-Under operating systems that do ]n[ allow virtual 
-address aliasing, we can implement shared regions by 
-introducing a new software encapsulation technique: 
-shared segment matching. To implement sharing, we 
-use a dedicated register to hold a bitmap. The bitmap 
-indicates which segments the fault domain can access. 
-For each unsafe instruction checked, shared segment 
-matching requires one more. instruction than segment 
-matching. 
-3.6 Implementation ]^[ Veriﬁcation 
-We have identiﬁed two strategies ]f[ implementing 
-software encapsulation. One approach uses a compiler 
-to emit encapsulated object code ]f[ a distrusted mod- 
-ule; the integrity of this code is then veriﬁed when the 
-module is loaded into a fault domain. Alternatively, 
-the system can encapsulate the distrusted module by 
-directly modifying its object code at load time. 
-a\«Ve have implemented versions of these techniques that per 
-form general protection by encapsulating load instructions as 
-well as store ]^[ jump instructions. We discuss the performance 
-of these variants in Section 5. 
-Our current prototype uses the first approach. We 
-modiﬁed a version of the gcc compiler to perform soft— 
-ware encapsulation. Note that While our current imple- 
-mentation is language dependent, our techniques are 
-language independent. 
-We built a veriﬁer ]f[ the MIPS instruction set 
-that works ]f[ both sandboxing ]^[ segment match- 
-ing. The main challenge in veriﬁcation is that, in the 
-presence of indirect jumps, execution may begin on 
-any instruction in the code segment. To address this 
-situation, the veriﬁer uses a property of our software 
-encapsulation techniques: all unsafe stores ]^[ jumps 
-use a dedicated register to form their target address. 
-The veriﬁer divides the program into sequences of in— 
-structions called unsafe regions. An unsafe store re- 
-gion begins with any modiﬁcation to a dedicated store 
-register. An unsafe jump region begins with any mod- 
-iﬁcation to a dedicated jump register. If the ﬁrst in— 
-struction in a unsafe store ]v[ jump region is executed, 
-all subsequent instructions are guaranteed to be exe- 
-cuted. An unsafe store region ends when one of the 
-following hold: the next instruction is a store which 
-uses a dedicated register to form its target address, 
-the next instruction is a control transfer instruction, 
-the next instruction is ]n[ guaranteed to be executed, 
-]v[ there are no more instructions in the code segment. 
-A similar deﬁnition is used ]f[ unsafe jump regions. 
-The veriﬁer analyzes each unsafe store ]v[ jump re: 
-gion to insure that any dedicated register modiﬁed in 
-the region is valid upon exit of the region. For ex— 
-ample, a load to a dedicated register begins an unsafe 
-region. If the region appropriately sandboxes the ded— 
-icated register, the unsafe region is deemed safe. if an 
-unsafe region can ]n[ be veriﬁed, the code is rejected. 
-By incorporating software encapsulation into an ex— 
-isting compiler, we are able to take advantage of com— 
-piler infrastructure ]f[ code optimization. However, 
-this approach has two disadvantages. First, most mod- 
-iﬁed compilers will support only one programming lan— 
-guage (gcc supports C, C++, ]^[ Pascal). Second, the 
-compiler ]^[ veriﬁer must be synchronized with re— 
-spect to the particular encapsulation technique being 
-employed. 
-An alternative, called bmary patchzng, alleviates 
-these problems. When the fault domain is loaded, the 
-system can encapsulate the module by directly modi- 
-fying the object code. Unfortunately, practical ]^[ r07 
-bust binary patching, resulting in efﬁcient code, is ]n[ 
-currently possible [LB92]. Tools which translate one 
-binary format to another have been built, ]b[ these 
-tools rely on compiler—speciﬁc idioms to distinguish 
-code from data ]^[ use processor emulation to han- 
-dle unknown indirect jumps[SCK”93]. For software 
-encapsulation, the main challenge is to transform the 
-code ]s[ that it uses a subset of the registers, leav— 
-208 
-Trusted 
-Caller Domain 
-Unlru sted 
-Calico Domain 
-call Add 
-Jump Table 
-Figure 4: Major components of a crossefault—domain 
-RFC. 
-ing registers available ]f[ dedicated use. To solve this 
-problem, we are working on a binary patching proto- 
-type that uses simple extensions to current object ﬁle 
-formats. The extensions store control ﬂow ]^[ register 
-usage information that is sufﬁcient to support software 
-encapsulation. 
-4 Low Latency Cross Fault Do— 
-main Communication 
-The purpose of this work is to reduce the cost of fault 
-isolation ]f[ cooperating ]b[ distrustful software mod— 
-ules. In the last section, we presented one half of our 
-solution: efficient software encapsulation. In this sec- 
-tion, we describe the other half: fast communication 
-across fault domains. 
-Figure 4 illustrates the major components ofa cross— 
-fault~domain RFC between a trusted ]^[ distrusted 
-fault domain. This section concentrates on three as— 
-pects of fault domain crossing. First, we describe 
-a simple mechanism which allows a fault domain to 
-safely call a trusted stub routine outside its domain; 
-that stub routine then safely calls into the destination 
-domain. Second, we discuss how arguments are effi— 
-ciently passed among fault domains. Third, we detail 
-how registers ]^[ other machine state are managed on 
-cross—fault—domain RPCs to insure fault isolation. The 
-protocol ]f[ exporting ]^[ naming procedures among 
-fault domains is independent of our techniques. 
-The only way ]f[ control to escape a. fault domain 
-is via a jump table. Each jump table entry is a con— 
-trol transfer instruction whose target address is a legal 
-entry point outside the domain. By using instructions 
-whose target address is an immediate encoded in the 
-instruction, the jump table does ]n[ rely on the use of 
-a dedicated register. Because the table is kept in the 
-(readvonly) code segment, it can only be modified by 
-a trusted module. 
-For each pair of fault domains a customized call ]^[ 
-return stub is created ]f[ each exported procedure. 
-Currently, the stubs are generated by hand rather than 
-using a stub generator [JRTSS]. The stubs run unpro— 
-tected outside of both the caller ]^[ callee domain. 
-The stubs are responsible ]f[ copying cross-domain 
-arguments between domains ]^[ managing machine 
-state. 
-Because the stubs are trusted, we are able to copy 
-call arguments directly to the target domain. Tra— 
-ditional RPC implementations across address spaces 
-typically perform three copies to transfer data. The 
-arguments are marshalled into a message, the kernel 
-copies the message to the target address space, ]^[ 
-ﬁnally the callee must de-marshall the arguments. By 
-having the caller ]^[ callee communicate via a shared 
-buffer, LRPC also uses only a single copy to pass data 
-between domains [BALLQI]. 
-The stubs are also responsible ]f[ managing machine 
-state. On each cross—domain call any registers that are 
-both used in the future by the caller ]^[ potentially 
-modiﬁed by the callee must be protected. Only regis— 
-ters that are designated by architectural convention to 
-bc preserved across procedure calls are saved. As an 
-optimization, if the callee domain contains no instruc— 
-tions that modify a preserved register we can avoid 
-saving it. Karger uses a trusted linker to perform this 
-kind of optimization between address spaces [KarSQ]. 
-In addition to saving ]^[ restoring registers, the stubs 
-must switch the execution stack, establish the correct 
-register context ]f[ the software encapsulation tech- 
-nique being used, ]^[ validate all dedicated registers. 
-Our system must also be robust in the presence of 
-fatal errors, ]f[ example, an addressing violation7 while 
-executing in a fault domain. Our current implementa— 
-tion uses the UNIX signal facility to catch these errors; 
-it then terminates the outstanding call ]^[ notiﬁes the 
-caller’s fault domain. If the application uses the same 
-operating system thread ]f[ all fault domains, there 
-must be a way to terminate a call that is taking too 
-long, ]f[ example, because of an inﬁnite loop. Trusted 
-modules may use a timer facility to interrupt execu— 
-tion periodically ]^[ determine if a call needs to be 
-terminated. 
-5 Performance Results 
-To evaluate the performance of software-enforced fault. 
-domains, we implemented ]^[ measured a prototype 
-of our system on a 40MHz DECstation 5000/240 (DEC— 
-MIPS) ]^[ a lﬁONIliz Alpha 400 (DEC—ALPHA). 
-We consider three questions. First, how much over 
-209 
-head does software encapsulation incur? Second, how 
-fast is a crossrfault—domain RFC? Third, what is the 
-performance impact of using software enforced fault 
-isolation on an end-user application? We discuss each 
-of these questions in turn. 
-5.1 Encapsulation Overhead 
-We measured the execution time overhead of sand- 
-boxing a wide range of C programs, including the C 
-SPE092 benchmarks ]^[ several of the Splash bench- 
-marks [AssQl, SWGQl]. We treated each benchmark 
-as if it were a distrusted module, sandboxing all of 
-its code. Column 1 of Table 1 reports overhead on 
-the DEC—MIPS, column 6 reports overhead on the DEC— 
-ALPHA. Columns 2 ]^[ 7 report the overhead of using 
-our technique to provide general protection by sand« 
-boxing load instructions as well as store ]^[ jump 
-instructions“. As detailed in Section 3, sandboxing 
-requires 5 dedicated registers. Column 3 reports the 
-overhead of removing these registers from possible use 
-by the compiler. All overheads are computed as the 
-additional execution time divided by the original pro~ 
-gram‘s execution time. 
-On the DECeMiPS, we used the program measure— 
-ment tools pixie ]^[ qpt to calculate the number 
-of additional instructions executed due to sandbox~ 
-ing [Dig, BL92]. Column 4 of Table 1 reports this 
-data as a percentage of original program instruction 
-counts. 
-The data in Table 1 appears to contain a num— 
-ber of anomalies For some. of the benchmark pro- 
-grams, ]f[ example, 056.ear 011 the DECAMIPS ]^[ 
-026 . compress on the DEC—ALPHA, sandboxing reduced 
-execution time. in a number of cases the overhead is 
-surprisingly low. 
-To identify the source of these variations we de~ 
-veloped an analytical model ]f[ execution overhead. 
-The model predicts overhead based on the number 
-of additional instructions executed due to sandbox 
-ing (s—znstructzons), ]^[ the number of saved ﬂoat~ 
-ing point interlock cycles (interlocks). Sandboxing in» 
-creases the available instructionlevel parallelism, aL 
-lowing the number of ﬂoating—point interlocks to be 
-substantially reduced The integer pipeline does ]n[ 
-provide interlocking; instead, delay slots are explicitly 
-ﬁlled with nop instructions by the compiler ]v[ assem~ 
-bler. Hence, scheduling ell'ects among integer instruc~ 
-tions will be accurately reﬂected by the count of in~ 
-structions added (s—mstructzons). The expected overs 
-head is computed as: 
-(s—msz‘mchons — interlacksﬂcycles—per—sccond 
-original-erecutwn- lune-seconds 
-4Loads in the libraries, such as the standard C library, were 
-]n[ sandboxed. 
-The model provides an effective way to separate known 
-sources of overhead from second order effects. Col- 
-umn 5 of Table 1 are the predicted overheads. 
-As can be seen from Table 1, the model is, on aver 
-age, eﬁective at predicting sandboxing overhead. The 
-differences between measured ]^[ expected overheads 
-are normally distributed with mean 0.7% ]^[ standard 
-deviation of 2.6%. The difference between the means 
-Ofthe measured ]^[ expected overheads is ]n[ statisti- 
-cally signiﬁcant. This experiment demonstrates that, 
-by combining instruction count overhead ]^[ ﬂoating 
-point interlock measurements, we can accurately pres 
-dict average execution time overhead. If we assume 
-that the model is also accurate at predicting the over— 
-head of individual benchmarks, we can conclude that 
-there is a second order effect creating the observed 
-anomalies in measured overhead, 
-We can discount eﬁective instruction cache size ]^[ 
-virtual memory paging as sources ]f[ the observed ex~ 
-ecution time variance. Because sandboxing adds in- 
-structions, the effective size of the instruction cache is 
-reduced. While this might account ]f[ measured over- 
-heads higher than predicted, it does ]n[ account ]f[ 
-the opposite effect. Because all of our benchmarks are 
-compute bound, it is unlikely that the variations are 
-due to virtual memory paging. 
-The DEC<MIPS has a physically indexed, physically 
-tagged, direct mapped data cache. In our experiments 
-sandboxing did ]n[ affect the size, contents, ]v[ starting 
-Virtual address of the data segment. For both original 
-]^[ sandboxed versions of the benchmark programs, 
-successive runs showed insigniﬁcant variation. Though 
-difﬁcult to quantify, we do ]n[ believe that data cache 
-alignment was an important source of variation in our 
-experiments. 
-\Ve conjecture that the observed variations are 
-caused by instruction cache mappzng conﬂicts. Soft— 
-ware encapsulation changes the mapping of instruc~ 
-tions to cache lines, hence changing the number of in— 
-struction cache conﬂicts. A number of researchers have 
-investigated minimizing instruction cache conﬂicts to 
-reduce execution time [McF89, PHQO, Sam88]. One 
-researcher reported a 20% performance gain by sim— 
-ply ehanging the order in which the object ﬁles were. 
-linked [PHQO]. Samples ]^[ Hilﬁnger report signif— 
-icantly improved instruction cache miss rates by re— 
-arranging only 3% to 8% of an application’s basic 
-blocks [SarnSS]. 
-Beyond this effect, there were statistically signiﬁcant 
-differences among programs. On average, programs 
-which contained a signiﬁcant percentage of ﬂoating 
-point operations incurred less overhead. On the DEC— 
-MIPS the mean overhead ]f[ ﬂoating point intensive 
-benchmarks is 2.5%, compared to a mean of 5.6% ]f[ 
-the remaining benchmarks. All of our benchmarks are 
-210 
-DEC-MIPS DEC-ALPHA 
-Fault Protection Reserved Instruction Fault Fault Protection 
-Benchmark Isolation Overhead Register Count Isolation Isolation Overhead 
-Overhead Overhead Overhead Overhead Overhead 
-(predicted) 
-052. alvinn FP 1.4% 33.4% —0.3% 19.4% 0.2% 8.1% 35.5% 
-bps FP 5.6% 15.5% -0.1% 8.9% 5.7% 4.7% 20.3% 
-cholesky FP 0.0% 22.7% 0.5% 6.5% 4.5% 0.0% 9.3% 
-026 . compress INT 3.3% 13.3% 0.0% 10.9% 4.4% 4.3% 0.0% 
-056.ear FP —1.2% 19.1% 0.2% 12.4% 2.2% 3.7% 18.3% 
-023 . eqntott INT 2.9% 34.4% 1.0% 2.7% 2.2% 2.3% 17.4% 
-008 . espresso INT 12.4% 27.0% —1.6% 11.8% 10.5% 13.3% 33.6% 
-001 .gcc1.35 INT 3.1% 18.7% -9.4% 17.0% 8.9% NA NA 
-022.11 INT 5.1% 23.4% 0.3% 14.9% 11.4% 5.4% 16.2% 
-locus INT 8.7% 30.4% 4.3% 10.3% 8.6% 4.3% 8.7% 
-mp3d FP 10.7% 10.7% 0.0% 13.3% 8.7% 0.0% 6.7% 
-psgrind INT 10.4% 19.5% 1.3% 12.1% 9.9% 8.0% 36.0% 
-ch PF 05% 27.0% 2.0% 8.8% 1.2% -0.8% 12.1% 
-072 . sc INT 5.6% 11.2% 7.0% 8.0% 3.8% NA NA 
-tracker INT -0.8% 10.5% 0.4% 3.9% 2.1% 10.9% 19.9% 
-water FP 0.7% 7.4% 0.3% 6.7% 1.5% 4.3% 12.3% 
-| Average I 4.3% | 21.8% | 0.4% | 10.5% | 5.0% I 4.3% | 17.6% ‘I 
-Table 1: Sandboxing overheads ]f[ DEC—MIPS ]^[ DEC—ALPHA platforms. The benchmarks 001.gcc1.35 ]^[ 
-072.sc are dependent on a pointer size of 32 bits ]^[ do ]n[ compile on the DEC-ALPHA. The predicted fault 
-isolation overhead ]f[ cholesky is negative due to conservative interlocking on the MIPS ﬂoatingvpoint unit. 
-compute intensive. Programs that perform signiﬁcant 
-amounts of I/O will incur less overhead. 
-5.2 Fault Domain Crossing 
-We now turn to the cost of cross—fault—domain RPC. 
-Our RPC mechanism spends most of its time saving 
-]^[ restoring registers. As detailed in Section 4, only 
-registers that are designated by the architecture to be 
-preserved across procedure calls need to be saved. In 
-addition, if no instructions in the callee fault domain 
-modify a preserved register then it does ]n[ need to be 
-saved. Table 2 reports the times ]f[ three versions of 
-a NULL cross—fault—domain RPC. Column 1 lists the 
-crossing times when all data registers are caller saved. 
-Column 2 lists the crossing times when the preserved 
-integer registers are saved. Finally, the times listed in 
-Column 3 include saving all preserved ﬂoating point 
-registers. In many cases crossing times could be further 
-reduced by statically partitioning the registers between 
-domains. 
-For comparison, we measured two other calling 
-mechanisms. First, we measured the time to perform a 
-C procedure call that takes no arguments ]^[ returns 
-no value. Second, we sent a single byte between two 
-address spaces using the pipe abstraction provided by 
-211 
-the native operating system ]^[ measured the round- 
-trip time. These times are reported in the last two 
-columns of Table 2. On these platforms, the cost 
-of cross—address—space calls is roughly three orders of 
-magnitude more expensive than local procedure calls. 
-Operating systems with highly optimized RPC im— 
-plementations have reduced the cost of cross-address- 
-space RPC to within roughly two orders of magni— 
-tude of local procedure calls. On Mach 3.0, cross— 
-address-space RPC on a 25Mhz DECstation 5000/200 
-is 314 times more expensive than a local procedure 
-call [BerQBl. The Spring operating system, running on 
-a 40Mhz SPARCstationQ, delivers cross—address—space 
-RPC that is 73 times more expensive than a local leaf 
-procedure call [HK93]. Software enforced fault isola« 
-tion is able to reduce the relative cost of cross-fault- 
-domain RPC by an order of magnitude over these sys- 
-tems. 
-5.3 Using Fault Domains in POSTGRES 
-To capture the effect of our system on application 
-performance, we added software enforced fault do 
-mains to the POSTGRES database management system, 
-]^[ measured POSTGRES running the Sequoia 2000 
-benchmark [SFGMQ3]. The Sequoia '2000 benchmark 
-Cross FaultADomain RFC 
-Platform Caller Save Save C Pipes 
-Save Integer Integer+Float Procedure 
-Registers Registers Registers Call 
-DEC~MIPS 1.11ps 1.81ps 2.83m 0.10/4s 204.72ns 
-DEC—ALPHA 0175/15 1.35/5 lSOns 0.06ps 227.88ps 
-Table ‘2: Cross-faultrdomain crossing times. 
-Sequoia 2000 Untrusted Software—Enforced Number DEC—MIPS—PIPE 
-Query Function Manager Fault Isolation Cross—Domain Overhead 
-Overhead Overhead Calls (predicted) 
-Query 6 1.4% 1.7% 60989 18.6% 
-Query 7 5.0% 1.8% 121986 386% 
-Query 8 9.0% 2.7% 121978 312% 
-Query 10 9.6% 5.7% 1427024 31.9% 
-Table 3: Fault isolation overhead ]f[ POSTGRES running Sequoia 2000 benchmark. 
-contains queries typical of those used by earth scien— 
-tists in studying the climate. To support these kinds 
-of non~traditional queries, POSTGRES provides a. user 
-extensible type system. Currently, userrdeﬁned types 
-are written in conventional programming languages, 
-such as C, ]^[ dynamically loaded into the database 
-manager. This has long been recognized to be a serious 
-safety problem[St088]. 
-Four of the eleven queries in the Sequoia 2000 bench- 
-mark make use of user—deﬁned polygon data types. We 
-measured these four queries using both unprotected 
-dynamic linking ]^[ software—enforced fault isolation. 
-Since the POSTGRES code is trusted, we only sand— 
-boxed the dynamically loaded user code. For this 
-experiment, our cross-fault—domain RFC mechanism 
-saved the preserved integer registers (the variant cor- 
-responding to Column 2 in Table 2). In addition, we 
-instrumented the code to count the number of cross- 
-fault-domain RFCs ]s[ that we could estimate the per 
-formance of fault isolation based on separate address 
-spaces. 
-Table 3 presents the results, Untrusted user—deﬁned 
-functions in POSTGRES use a separate calling mecha- 
-nism from built—in functions. Column 1 lists the over— 
-head of the untrustcd function manager Without soft- 
-ware enforced fault domains. All reported overheads in 
-Table 3 are relative to original POSTGRES using the un— 
-trusted function manager. Column 2 reports the mea~ 
-sured overhead of software enforced fault domains. Us— 
-ing the number of cross—domain calls listed in Column 3 
-]^[ tho DEC*MIPS—I‘IPE time reported in Table 2, Col— 
-umn 4 lists the estimated overhead using conventional 
-hardware address spaces. 
-212 
-5.4 Analysis 
-For the POSTGRES experiment software encapsulation 
-provided substantial savings over using native operat- 
-ing system services ]^[ hardware address spaces. In 
-general, the savings provided by our techniques over 
-hardware—based mechanisms is a function of the per— 
-centage of time spent in distrusted code (Q), the per- 
-centage of time spent crossing among fault domains 
-(2‘6), the overhead of encapsulation (h), ]^[ the ratio, 
-r, of our fault domain crossing time to the crossing 
-time of the competing hardware-based RPC mecha— 
-nism. 
-savings = (1 — 7°)t‘C -— htd 
-Figure 5 graphically depicts these trade—offs. The X 
-axis gives the percentage of time an application spends 
-crossing among fault domains. The Y axis reports the 
-relative cost of software enforced fault-domain cross— 
-ing over hardware address spaces. Assuming that the 
-execution time overhead of encapsulated code is 4.3%, 
-the shaded region illustrates when software enforced 
-fault isolation is the better performance alternative. 
-Softwarevenforccd fault isolation becomes increas— 
-ingly attractive as applications achieve higher degrees 
-of fault isolation (see Figure 5). For example, if an ap- 
-plication spends 30% of its time crossing fault domains, 
-our RPC mechanism need only perform 10% better 
-than its competitor, Applications that currently spend 
-as little as 10% of their time crossing require only a 
-39% improvement in fault domain crossing time As 
-reported in Section 52, our crossing time ]f[ the DEC- 
-MIPS is Hons ]^[ ]f[ the DEC—ALPHA UTE/is. Hence, 
-Crossing Time Relative to 
-Existing RFC 
-:9 HP :9 e9 
-ementage of Execution Time Spent Crossing 
-Figure 5: The shaded region represents when soft~ 
-ware enforced fault isolation provides the better per— 
-formance alternative. The X axis represents per 
-centage of time spent crossing among fault domains 
-(16). The Y axis represents the relative RPC crossing 
-speed (7‘). The curve represents the break even point: 
-(1—7')t,; = htd. In this graph, h = 0.043 (encapsulation 
-overhead on the DEC~MIPS ]^[ DEC-ALPHA). 
-]f[ this latter example, a hardware address space cross— 
-ing time of 1.80m on the DEC—MIPS ]^[ 1.23/15 on the 
-DEC~ALPHA would provide better performance than 
-software fault domains. As far as we know, no pro— 
-duction ]v[ experimental system currently provides this 
-level of performance. 
-Further, Figure 5 assumes that the entire applica- 
-tion was encapsulated. For many applications, such as 
-POSTGRES, this assumption is conservative. Figure 6 
-transforms the previous ﬁgure, assuming that 50% of 
-total execution is spent in distrusted extension code. 
-Figures 5 ]^[ 6 illustrate that software enforced 
-fault isolation is the best choice whenever crossing 
-overhead is a significant proportion of an applica- 
-tion’s execution time. Figure 7 demonstrates that 
-overhead due to software enforced fault isolation re— 
-mains small regardless of application behavior. Fig— 
-ure 7 plots overhead as a function of crossing behavior 
-]^[ crossing cost. Crossing times typical of vendor- 
-supplied ]^[ highly optimized hardware—based RPC 
-mechanisms are shown. The graph illustrates the rel— 
-ative performance stability of the software solution. 
-This stability" allows system developers to ignore the 
-performance effect of fault isolation in choosing which 
-modules to place in separate fault domains. 
-6 Related Work 
-Many systems have considered ways of optimizing 
-RPC performance [vaT88, TASS, Bla90. SB90, HK93, 
-BALL90, BALL91]. Traditional RFC systems based 
-100% 
-90% 
-80% 
-70% 
-60% 
-40% 
-Crossing Time Relative 10 
-Existing RPC 
-u. 
-§ 
-Percentage of Execution Time Spent Crossing 
-Figure 6: The shaded region represents when soft~ 
-ware enforced fault isolation provides the better per- 
-formance alternative. The X axis represents per- 
-centage of time spent crossing among fault domains 
-(136). The Y axis represents the relative RPC crossing 
-speed ('r'). The curve represents the break even point: 
-(l—r)tc = htd. In this graph, h = 0.043 (encapsulation 
-overhead on the DEC—MIPS ]^[ DEC—ALPHA). 
-100% . 
-a" Ultrix 4.2 Context Switch 
-8 
-d3 80% — _ 
-E 
-a. 
-U} 
-0 
-g 60% e _ 
-'E—< 
-E 
-g 40% e — 
-é DECstation 5000 
-3 Hardware Minimum 
-00 
-20% — _ 
-t 
-*- Software 
-a? 
-0% l 
-0 1O 20 
-# Crossings/Millcsecond 
-Figure 7: Percentage of time spent in crossing code 
-versus number of fault domain crossings per millisec- 
-ond on the DECeMIPS. The hardware minimum cross— 
-ing number is taken from a crossvarchitectural study 
-of context switch times [ALBL91]. The Ultrix 4.2 con- 
-text switch time is as reported in the last column of 
-Table 2. 
-213 
-on hardware fault isolation are ultimately limited by 
-the minimal hardware cost of taking two kernel traps 
-]^[ two hardware context switches. LRPC was one 
-of the ﬁrst RPC systems to approach this limit, ]^[ 
-our prototype uses a number of the techniques found 
-in LRPC ]^[ later systems: the same thread runs in 
-both the caller ]^[ the callee domain, the stubs are 
-kept as simple as possible, ]^[ the crossing code jumps 
-directly to the called procedure, avoiding a dispatch 
-in the callee domain. Unlike these systems, software— 
-based fault isolation avoids hardware context switches, 
-substantially reducing crossing costs. 
-Address space identiﬁer tags can be used to reduce 
-hardware context switch times. Tags allow more than 
-one address space to share the TLB; otherwise the 
-TLB must be ﬂushed on each context switch. It was 
-estimated that 25% of the cost of an LRPC on the 
-Fireﬂy (which does ]n[ have tags) was due to TLB 
-misses[BALL90]. Address space tags do not, however, 
-reduce the cost of register management ]v[ system calls, 
-operations which are ]n[ scaling with integer perfor- 
-mance[ALBL91]. An important advantage of software— 
-based Jfault isolation is that it does ]n[ rely on specialv 
-ized architectural features such as address space tags. 
-Restrictive programming languages can also be used 
-to provide fault isolation. Pilot requires all kernel, 
-user, ]^[ library code to be written in Mesa, 3 strongly 
-typed language; all code then shares a single address 
-space [RDII+80]. The main disadvantage of relying on 
-strong typing is that it severely restricts the choice 
-of programming languages, ruling out conventional 
-languages like C, C++, ]^[ assembly. Even with 
-strongly—typed languages such as Ada ]^[ Modula—3, 
-programmers often find they need to use loopholes in 
-the type system, undercutting fault isolation. In con— 
-trast, our techniques are language independent. 
-Deutsch ]^[ Grant built a system that allowed 
-user—deﬁned measurement modules to be dynamically 
-loaded into the operating system ]^[ executed directly 
-on the processor [DG71]. The module format was a 
-stylized native object code designed to make it easier 
-to statically verify that the code did ]n[ violate pro— 
-tection boundaries. 
-An interpreter can also provide failure isolation. For 
-example. the BSD UNIX network packet ﬁlter utility 
-deﬁnes a language which is interpreted by the operat- 
-ing system network driver. The interpreter insulates 
-the operating system from possible faults in the cus— 
-tomization code. Our approach allows code written in 
-any programming language to be safely encapsulated 
-(or rejected if it is ]n[ safe), ]^[ then executed at near 
-full speed by the operating system. 
-Anonymous RFC exploits 64-bit address spaces to 
-provide low latency RFC ]^[ probabilistic fault iso— 
-lation [YBA93]. Logically independent domains are 
-214 
-placed at random locations in the same hardware ad» 
-dress spacer Calls between domains are anonymous, 
-that is, they do ]n[ reveal the location of the caller 
-]v[ the callee to either side. This provides probabilis— 
-tic protection , it is unlikely that any domain will 
-be able to discover the location of any other domain 
-by malicious ]v[ accidental memory probes. To pre» 
-serve anonymity, a cross domain call must trap to pro- 
-tected code in the kernel; however, no hardware con~ 
-text switch is needed. 
-7 Summary 
-We have described a software-based mechanism ]f[ 
-portable, programming language independent fault 
-isolation among cooperating software modules. By 
-providing fault isolation within a single address space, 
-this approach delivers crossefaultrdomain communica 
-tion that is more than an order of magnitude faster 
-than any RPC mechanism to date. 
-To prevent distrusted modules from escaping their 
-own fault domain, we use a software encapsulation 
-technique, called sandboxing, that incurs about 4% 
-Despite this overhead in 
-executing distrusted code, software—based fault isola- 
-tion Will often yield the best overall application per- 
-formance. Extensive kernel optimizations can reduce 
-the overhead of hardware-based RPC to within a fac- 
-tor of ten over our software—based alternative. Even 
-in this situation, software—based fault isolation will be 
-the better performance choice whenever the overhead 
-of using hardware—based RPC is greater than 5%. 
-execution time overhead. 
-8 Acknowledgements 
-We thank Brian Bershad, Mike Burrows, John Hen- 
-nessy, Peter Kessler, Butler Lampson, Ed Lazowska, 
-Dave Patterson, John Ousterhout, Oliver Sharp, 
-Richard Sites, Alan Smith ]^[ Mike Stonebraker ]f[ 
-their helpful comments on the paper. Jim Larus pro- 
-vided us with the proﬁling tool qpt. We also thank 
-Mike Olson ]^[ Paul Aoki ]f[ helping us with POST— 
-GRES. 
-References 
-[ACD74] TL. Adam, KM. Chandy, ]^[ JR. Dickson. 
-A comparison of list schedules ]f[ parallel pro- 
-cessing systems. Communications of the ACM, 
-17(12):685—690, December 197/1. 
-[ALBUM] Thomas Anderson, Henry Levy, Brian Ber— 
-shad, ]^[ Edward Lazowska. The Interaction 
-of Architecture ]^[ Operating System Design. 
-[A5591] 
-[ASUSG] 
-[BALLQO] 
-[BALL91] 
-[Ber93] 
-[BL92] 
-[BlaQO] 
-[1m 84] 
-[Cla92] 
-[DG71] 
-[Dis] 
-[Dys92] 
-[FP93] 
-[H092] 
-111 Proceedings of the 4th International Confer- 
-ence on Architectural Supportfor Programming 
-Languages ]^[ Operating Systems, pages 108— 
-120, April 1991. 
-Administrator: National Computer Graphics 
-Association. SPEC Newsletter, 3(4), December 
-1991. 
-Alfred V. Aho, Ravi Sethi, ]^[ Jeffrey D. Ull- 
-man. Compilers, Principles, Techniques, ]^[ 
-Tools. Addison—Wesley Publishing Company, 
-1986. 
-Brian Bershad, Thomas Anderson, Edward La- 
-zowska, ]^[ Henry Levy. Lightweight Remote 
-Procedure Call. ACM Transactions on Com- 
-puter Systems, 8(1), February 1990. 
-Brian Bershad, Thomas Anderson, Edward La~ 
-zowska, ]^[ Henry Levy. User-Level Interpre- 
-cess Communication ]f[ Shared~Memory Mul- 
-tiprocessors. ACM Transactions on Computer 
-Systems, 9(2), May 1991. 
-Brian Bershad, August 1993. Private Commu— 
-nication. 
-Thomas Ball ]^[ James R. Larus. Optimally 
-proﬁling ]^[ tracing. In Proceedings of the 
-Conference on Principles of Programming Lan- 
-guages, pages 59‘70, 1992. 
-David Black. Scheduling Support ]f[ ConcuI~ 
-rency ]^[ Parallelism in the Mach Operating 
-System. IEEE Computer, 23(5):35 43, May 
-1990. 
-Andrew Birrell ]^[ Bruce Nelson. Implement- 
-ing Remote Procedure Calls. ACM Transac- 
-tions on Computer Systems, 2(1):?19‘59, Febru‘ 
-ary 1984. 
-.1.D. Clark. lVindow Programmer’ Guide To 
-OLE/DUE, Prentice—Hall, 1992. 
-L. P. Deutsch ]^[ C. A. Grant. A ﬂexible mea~ 
-surement tool ]f[ software systems. In IFIP 
-Congress, 1971. 
-Digital Equipment Corporation. Ultriz 114.2 
-Pixie Manual Page. 
-Peter Dyson. Xtensions ]f[ Xpress: Modular 
-Software ]f[ Custom Systems. Seybold Report 
-on Desktop Publishing, 6(10):1—‘.’.1, June 1992. 
-Kevin Fall ]^[ Joseph Pasquale. Exploiting in— 
-kernel data paths to improve I/O throughput 
-]^[ CPU 3. vailability. In Proceedings of the 
-1993 Winter USENIX Conference, pages 327— 
-333, January 1993. 
-Keiran Harty ]^[ 
-David Cheriton. Application—controlled physi- 
-cal memory using external page—cache manage— 
-ment. In Proceedings of the 5th International 
-Conference on Architectural Support ]f[ Pro- 
-gramming Languages ]^[ Operating Systems, 
-October 1992. 
-215 
-[11K93] 
-[HKM+88] 
-[Int86] 
-[JRTSS] 
-[K ar89] 
-[K1886] 
-[LB92] 
-[McF89] 
-[MJ93] 
-[M RA87] 
-[P1190] 
-[RDH+ 80] 
-Graham Hamilton ]^[ Panos Kougiouris. The 
-Spring nucleus: A microkernel ]f[ objects. In 
-Proceedings of the Summer USENIX Confer- 
-cncc, pages 1477159, June 1993. 
-J. Howard, M. Kazar, S. Menees, D. Nichols, 
-M. Satyanarayanan, R. Sidebotham, ]^[ 
-M. West. Scale ]^[ Performance in 3. Dis- 
-tributed File System. ACM Transactions on 
-Computer Systems, 6(1):51—82, February 1988. 
-Intel Corporation, California. 
-Intel 80386 Programmer’s Reference Manual, 
-1986. 
-Michael B. Jones, Richard F. Rashid, ]^[ 
-Mary R. Thompson. Matchmaker: An in- 
-terface speciﬁcation language ]f[ distributed 
-processing. In Proceedings of the 12th ACM 
-SIGACT-SIGPLAN Symposium on Principles 
-of Programming Languages, pages 225435, 
-January 1985. 
-Santa Clara, 
-Paul A. Karger. Using Registers to Optimize 
-Cross—Domain Call Performance. In Proceed- 
-ings of the 3rd International Conference on 
-Architectural Support ]f[ Programming Lan- 
-guages ]^[ Operating Systems, pages 1947204. 
-April 3~6 1989. 
-Steven R. Kleiman. Vnodes: An Architecture 
-]f[ Multiple File System Types in SUN UNIX. 
-In Proceedings of the 1986 Summer USENIX 
-Conference, pages 238—247, 1986. 
-James R. Larus ]^[ Thomas Ball. Rewrit- 
-ing executable ﬁles to measure program be— 
-havior. Technical Report 1083, University of 
-Wisconsin-Madison, March 1992. 
-Scott McFarling. Program optimization ]f[ 
-instruction caches. In Proceedings of the In: 
-ternational Conference on Architectural Sup— 
-port ]f[ Programming Languages ]^[ Operat- 
-ing Systems, pages 183—191, April 1989. 
-Steven McCanne ]^[ Van lacobsen. The 
-BSD Packet Filter: A New Architecture ]f[ 
-User—Level Packet Capture. In Proceedings of 
-the 1993 Winter USENIX Conference, January 
-1993. 
-l. C. Mogul, R. F. Rashid, ]^[ M. J. Ac- 
-cetta. The packet ﬁlter: An cﬂicient mecha— 
-nism ]f[ user—level network code. In Proceed- 
-ings of the Symposium on Operating System 
-Principles, pages 39—51, November 1987. 
-Karl Pettis ]^[ Robert C. Hansen. Proﬁle 
-guided code positioning. In Proceedings of 
-the Conference on Programming Language De- 
-sign ]^[ Implementation, pages 16—27, White 
-Plains, New York, June 1990. Appeared as 
-SIGPLAN NOTICES 25(6). 
-David D. Redell, Yogen K. Dalal, Thomas R. 
-Horsley, Hugh C. Lauer, William C. Lynch, 
-[Sam88] 
-[5390] 
-[501693] 
-[SFGMQS] 
-[St087] 
-[St088] 
-[SWG91] 
-[TAss] 
-[Thiﬁz] 
-[VCGSQZ] 
-[VVSTSB] 
-[Web93] 
-[YBA93] 
-Paul R. McJones, Hal G. Murray, ]^[ 
-Stephen C. Purcell. Pilot: An Operating Sys- 
-tem ]f[ a Personal Computer. Communications 
-of the A01”, 23(2):81~92, February 1980. 
-A. Dain Samples. Code reorganization ]f[ in 
-struction caches. Technical Report UCB/CSD 
-88/447. University of California, Berkeley, 0C, 
-tober 1988. 
-Michael Schroeder ]^[ Michael Burrows. Per- 
-formance of Fireﬂy RPC. ACM I‘mnsac» 
-tions on Computer Systems, 8(1):1—17, Febru- 
-ary 1990. 
-Richard L. Sites, Anton Chernoff, Matthew B. 
-Kirk, Maurice P. Marks, ]^[ Scott G. Robin- 
-son. Binary translation. Communications of 
-the ACM, 36(2):69—81, February 1993. 
-M. Stonebral-zer, J. Frew, K. Gardels, ]^[ 
-.I. Meridith. The Sequoia 2000 Benchmark. 
-In Proceedings of the ACM SIGMOD Inter- 
-national Conference on Management of Data, 
-May 1993. 
-Michael Stonebraker. Extensibility in POST~ 
-GRES. IEEE Database Engineering, Septem- 
-ber 1987. 
-Michael Stonebraker. Inclusion of new types in 
-relational data base systems. In Michael Stone- 
-braker, editor, Readings in Database Systems, 
-pages 480—487. Morgan Kaufmann Publishers, 
-Inc., 1988. 
-J. P. Singh, W. Weber, ]^[ A. Gupta. 
-Splash: Stanford parallel applications ]f[ 
-shared—memory. Technical Report CSL—TR—Sl— 
-469, Stanford, 1991. 
-Shin—Yuan Tzou ]^[ David P. Anderson. A 
-Performance Evaluation of the DASH Message- 
-Passing System. Technical Report UCB/CSD 
-88/452, Computer Science Division, University 
-of California, Berkeley, October 1988. 
-Thinking Machines Corporation. CM—5 Net- 
-work Interface Programmer’s Guide, 1992. 
-T. von Eicken, I). Culler, S. Goldstein, ]^[ 
-K. Schauser. Active Messages: A Mechanism 
-]f[ Integrated Communication ]^[ Computa— 
-tion. In Proceedings of the 19th Annual Sym- 
-posium on Computer Architecture, 1992. 
-Robbert van Renesse, Hans van Staveren, ]^[ 
-Andrew S. Tanenbaum. Performance of the 
-World’s Fastest Distributed Operating System. 
-Operating Systemic Review, 22(1):25734, Octo— 
-ber 1988. 
-Neil Webber. Operating System Support ]f[ 
-Portable Filesystem Extensions. In Proceed- 
-ings of the 1993 Winter USENIX Conference, 
-January 1993. 
-Curtis Yarvin. Richard Bnkowski, ]^[ Thomas 
-Anderson. Anonymous RFC: LOW Latency 
-216 
-Protection in a 64—Bit Address Space. In Pro- 
-ceedings of the Summer USENIX Conference, 
-June 1993. 
+Synthesizable FPGA Fabrics Targetable by the 
+Verilog-to-Routing (VTR) CAD Flow 
+Jin Hee Kim ]^[ Jason H. Anderson 
+Dept. of Electrical ]^[ Computer Engineering 
+University of Toronto, Toronto, ON, Canada 
+Email: {kimjin14,janders}@ece.utoronto.ca 
+Abstract—We consider implementing FPGAs using a standard 
+cell design methodology, ]^[ present a framework ]f[ the 
+automated generation of synthesizable FPGA fabrics. The opensource Verilog-to-Routing (VTR) FPGA architecture evaluation 
+framework [1] is extended to generate synthesizable Verilog ]f[ its 
+in-memory FPGA architectural device model. The Verilog can be 
+synthesized into standard cells, placed ]^[ routed using an ASIC 
+design flow. A second extension to VTR generates a configuration 
+bitstream ]f[ the FPGA; that is, the bitstream configures the 
+FPGA to realize a user-provided placed ]^[ routed design. The 
+proposed framework ]^[ methodology opens the door to silicon 
+implementation of a wide range of VTR-modelled FPGA fabrics. 
+In an experimental study, area ]^[ timing-optimized FPGA 
+implementations in 65nm TSMC standard cells are compared 
+with a 65nm Altera commercial FPGA. 
+I. 
+I NTRODUCTION 
+Standard cell design methodologies are prevalent in the 
+design of modern digital ICs, owing to the high costs associated with manual layout ]^[ increasingly complicated design 
+rules in deep sub-100nm technologies. Entire processors [2] 
+]^[ other digital blocks such as PLLs [3] are nowadays mainly 
+synthesized from RTL, as opposed to hand designed at a lower 
+level of abstraction. Field-programmable gate arrays (FPGAs) 
+are one of the few remaining classes of digital IC incorporating 
+a considerable amount of custom layout. The core logic ]^[ 
+interconnect tiles in commercial FPGAs are laid out manually, 
+motivated by intense pressure to optimize area, delay ]^[ 
+power in the underlying circuitry, as such tiles are stamped 
+out hundreds-to-thousands of times on each die. In this paper, 
+we consider implementing FPGAs in standard cells ]^[ assess 
+the gap between a synthesized standard cell ]^[ a full custom 
+commercial FPGA implementation. 
+To realize a standard cell FPGA implementation, we have 
+developed a synthesizable FPGA fabric generator within the 
+open-source Verilog-to-Routing (VTR) [1] toolsuite from the 
+University of Toronto. VTR is capable of modelling ]^[ 
+mapping circuits into a wide variety of different FPGA architectures. Our generator produces synthesizable Verilog ]f[ 
+VTR’s in-memory FPGA device model. As such, our generator 
+is ]n[ locked into a single FPGA architecture, ]b[ rather, is 
+able to produce Verilog ]f[ a spectrum of different FPGAs, ]f[ 
+example, with different numbers of look-up-tables (LUTs) per 
+logic block, different numbers of tracks per routing channel, 
+]v[ even different switch block connectivities. In addition to 
+producing synthesizable Verilog, we have also extended VTR 
+to produce a configuration bitstream ]f[ a user design implemented within the synthesizable FPGA. While the conventional 
+approach used by commercial vendors involves adding CAD 
+support ]f[ each new FPGA device; in our case, we have built 
+“silicon support” ]f[ an existing ]^[ well established FPGA 
+architecture/CAD evaluation toolsuite – VTR. 
+In addition to the advantages associated with synthesis 
+vs. custom layout, the proposed synthesizable FPGA fabric 
+generator offers a number of benefits. First, it enables VTRmodelled FPGAs to be realized in silicon, democratizing 
+access to FPGA technology. Specifically, our VTR-based approach circumvents a major impediment to the development 
+of new FPGAs, namely, the complexity ]^[ cost associated 
+with building CAD tools that can map user circuits into them. 
+Second, the synthesizable FPGAs can be easily ported to 
+new process technologies, by re-synthesizing using a new cell 
+library. Third, the FPGA fabrics we generate are straightforward to incorporate into an SoC; the FPGA module can be 
+instantiated within the surrounding circuitry, ]^[ the layout 
+shape/aspect ratio of the FPGA tiles can be tailored according 
+to the overall SoC floorplan. 
+We synthesize FPGA fabrics into TSMC 65nm standard 
+cells. Through constraints supplied to the ASIC design tools 
+(Synopsys Design Compiler ]^[ Cadence Encounter), we 
+produce area-optimized, timing-optimized ]^[ balanced FPGA 
+fabric implementations. In an experimental study, we supply 
+VTR with an architecture model closely resembling Altera’s 
+Stratix III device, ]^[ compare the area ]^[ delay of the 
+synthesized standard cell FPGA with Stratix III, which is also 
+implemented in 65nm. The contributions of this paper are: 
+1) 
+2) 
+3) 
+An FPGA fabric generator, built within VTR, capable 
+of producing synthesizable Verilog RTL ]f[ a variety 
+of architectures. 
+A configuration bitstream generator ]f[ the synthesizable FPGAs. 
+An area/performance comparison between several 
+synthesized standard cell FPGAs and, to the authors’ 
+knowledge, the first published study comparing a 
+full-custom commercial FPGA with a synthesized 
+standard cell FPGA. 
+The remainder of this paper is organized as follows: Section II describes related work ]^[ provides background ]f[ the 
+subsequent sections. The VTR-based synthesizable fabric ]^[ 
+bitstream generation is introduced in Section III. Section IV 
+describes the ASIC flow we used to produce a standard cell 
+implementation. The experimental study appears in Section V. 
+Conclusions ]^[ future work are offered in Section VI. 
+II. 
+BACKGROUND AND R ELATED W ORK 
+A. Verilog-to-Routing (VTR) 
+VTR [1] is an open-source FPGA architecture evaluation/CAD framework from the University of Toronto, comprising of RTL synthesis, logic synthesis, packing, placement, 
+routing ]^[ timing/power analysis, as shown in Fig. 1. The 
+inputs to VTR are: 1) a description of an FPGA architecture, 
+]^[ 2) an application benchmark ]f[ implementation in the 
+*&+,-./)011-,#"2.') 
+3,+#4,5) 
+<-"=.+"2.') 
+>?'59&;,;)@)A&#9)B"1) 
+6780) 
+0+#9,5&#54+&) 
+:&;#+,12.') 
+6,-&) 
+VTR permits heterogeneity, where columns of blocks may be 
+of different types; ]f[ example, LUT-based soft logic blocks, 
+DSP blocks, ]^[ memories. Within each of these types, an 
+architect has a wide range of choices. For example, with soft 
+logic blocks, one can vary the # of LUTs/block, whether 
+the LUTs are fracturable [5] vs. non-fracturable, the richness 
+of the internal local crossbar, the number of FFs, ]^[ ]s[ 
+on. VTR also supports the notion of modes, which represent 
+mutually exclusive ways in which a block may function. For 
+example, a fracturable LUT may operate in single-output mode 
+(implementing a single logic function) ]v[ dual-output mode 
+(implementing two logic functions). 
+!"#$%&&% 
+'()% 
+7"#$,'/) 
+!"#$%&'() 
+7-"#&C&'5) 
+*+,% 
+D.42'/) 
+A,C,'/)@)0+&")<;2C"2.') 
+C. Related Work 
+E4"-,5?).F)D&;4-5;) 
+Fig. 1. 
+Verilog-to-Routing flow. 
+*+& 
+*+& 
+*+& 
+*+& 
+!"#$%& 
+'("%)& 
+!"#$%& 
+'("%)& 
+!"#$%& 
+'("%)& 
+*+& 
+!"#$%& 
+'("%)& 
+!"#$%& 
+'("%)& 
+!"#$%& 
+'("%)& 
+-.!/0& 
+11& 
+*+& 
+67$8%9&3("%)& 
+-.!/0& 
+11& 
+*+& 
+2345& 
+,& 
+*+& 
+!"#$%& 
+'("%)& 
+*+& 
+!"#$%& 
+'("%)& 
+-.!/0& 
+*+& 
+*+& 
+!"#$%& 
+'("%)& 
+11& 
+!"#$%&3("%)& 
+*+& 
+:";;<%=";&3("%)& 
+Fig. 2. 
+FPGA architectural components. 
+FPGA. The architectural description is written in humanreadable XML, ]^[ through this, an architect can specify both 
+the interconnect ]^[ logic architecture of the target FPGA. 
+VTR’s internal CAD algorithms are “generic” in the sense 
+that specific architectural details are ]n[ hard-coded into the 
+algorithms themselves – the algorithms are designed to do a 
+reasonably good job implementing the application benchmark 
+in a range of architectures. Note that prior to the current 
+work, the VTR flow terminated at the routing stage; it was ]n[ 
+possible to realize a silicon implementation of a VTR-modelled 
+architecture. Our work extends VTR to produce synthesizable 
+Verilog ]f[ VTR’s in-memory architectural device model, as 
+well as a bitstream ]f[ the application benchmark implemented 
+in the device. 
+B. FPGA Architecture 
+VTR is able to model island-style FPGAs [4], a two 
+dimensional array of logic blocks with horizontal ]^[ vertical 
+routing channels, surrounded by a ring of I/Os. The key 
+architectural components necessary to understand this paper 
+are shown in Fig. 2. Switch blocks allow horizontal ]^[ vertical 
+routing tracks to be programmably connected with one another; 
+connection blocks allow logic block pins to connect to adjacent 
+routing tracks. Logic blocks generally contain one ]v[ more 
+look-up-tables (LUTs) ]^[ flip-flops (FFs), ]^[ an internal 
+crossbar ]f[ making local connections. 
+With respect to routing, VTR allows one to change the 
+number of tracks per channel, wire directionality, the wire 
+segment lengths ]^[ relative frequency of wires of a given 
+length, the connectivity between horizontal ]^[ vertical wires, 
+]^[ the way wires connect to logic block pins. For logic, 
+Several recent works bear similarity to our own in that 
+they propose to synthesize FPGA fabrics targetable by VTR. 
+Chaudhuri et al. [6] focuses on embedding a reconfigurable 
+FPGA in a system-on-chip (SoC), ]^[ enhance the area ]^[ 
+performance through floorplanning [7]. Liu [8] studies the impact of the FPGA architectural parameters on the synthesized 
+components of the FPGA. In both of these works, there is little 
+detail on the issues that arise from using ASIC design tools. 
+Moreover, none of these works show a suite of benchmark 
+designs being verified as functional within the synthesized 
+fabric, nor do they compare the synthesized standard cell 
+implementation with a commercial FPGA. 
+In another work, Aken’Ova [9] investigated island-style 
+FPGAs ]^[ improved area ]^[ delay gap by using “tactical 
+cells” [10] ]^[ floorplanning [11]. The author thoroughly 
+describes architecture changes ]^[ solutions to overcome ASIC 
+design flow problems. However, there is little discussion on the 
+generation of the architecture ]^[ bitstream. 
+Other work has focussed on standard cell implementations 
+of application-specific FPGA architectures. An early work 
+by Phillips ]^[ Hauck [12] synthesized the reconfigurablepipelined datapath (RaPiD) [13] architecture using standard 
+cells. The authors observe that customizing the architecture 
+]f[ domain-specific applications, as well as including some 
+FPGA-specific standard cells into the library improves area 
+]^[ performance. Kafafi et al. [14] synthesizes a combinational 
+]^[ directional architecture ]^[ reports a large area difference 
+relative to a custom-layout design. In work by Wilton et 
+al. [15], the authors synthesize a datapath-oriented FPGA 
+fabric with a directional routing architecture. Unlike these 
+past works, which deal with non-standard FPGA architectures, 
+we focus on architectures that resemble today’s commercial 
+FPGAs ]^[ that are already supported by the VTR framework. 
+III. 
+A RCHITECTURE AND B ITSTREAM G ENERATION 
+VPR [16] is the portion of the VTR flow that performs 
+packing, placement ]^[ routing. From the user-supplied architectural description, VPR builds an in-memory representation 
+of the entire FPGA device, including all logic ]^[ interconnect. 
+The packing, placement ]^[ routing steps in VPR implement 
+the application benchmark in the in-memory FPGA device 
+model. Our synthesizable Verilog generator is built within 
+VPR ]^[ executes at the end of the routing step. Essentially, 
+our generator code “walks” the in-memory device model to 
+produce synthesizable Verilog, ]^[ likewise, by examining 
+the application benchmark’s implementation in the device, we 
+produce a configuration bitstream ]f[ the FPGA. We elaborate 
+on these steps below. 
+;5&E8>) 
+7"'$84#) 
+7"4+68,) 
+9+4':+$) 
+!"#$%"&'() 
+*"#+,&) 
+-34+,+&562) 
+C) 
+7/;);!<) 
+5&E) 
+=+$#$4"5>) 
+0"&"45$84) 
+Fig. 4. 
+Fig. 3. 
+./01) 
+.5%4+');!<) 
+D8E"6F+>) 
+*"#+,&) 
+-./012) 
+=+$#$4"5>) 
+?&+@56+A")'8&B,:45@8&)'"66#) 
+Synthesizable FPGA verification flow. 
+MUX inference within a logic block. 
+A. Generating Synthesizable Verilog 
+As a first step, we hand-wrote Verilog ]f[ two FPGA 
+primitives: a FF, ]^[ a Stratix III-like fracturable LUT (see 
+Section V). Subsequently, we automatically generate Verilog 
+]f[ the entire FPGA device, a structural netlist of these 
+primitives, as well as other primitives which are generated by 
+our generator code: multiplexers (MUXs) of any size, LUTs 
+with any number of inputs. The generation must handle the 
+following: logic blocks, intra-logic block routing, inter-logic 
+block routing, ]^[ configuration cell memory. 
+Logic Blocks: Logic blocks in VPR are represented in 
+memory as a tree; the tree root represents the entire logic block, 
+nodes at intermediate levels of the tree represent levels of 
+hierarchy in the block, ]^[ the leaves represent the primitives 
+(LUTs ]^[ FFs). We generate the Verilog ]f[ each logic block 
+by first traversing to the leaf nodes. We then move up the tree 
+and, as we visit each node in the hierarchy, its child nodes 
+are defined ]^[ instantiated in the output Verilog. The Verilog 
+generated ]f[ a logic block has the same hierarchy specified 
+by the architect in the architecture file. 
+Intra-Logic Block Routing: Routing within a logic block is 
+stored in memory as a graph, where nodes represent pins (on 
+primitives ]v[ on intermediate levels of hierarchy) ]^[ directed 
+edges represent connections between pins. For a given pin, 
+if there is more than one incoming edge, a routing MUX 
+is inferred. The select inputs to the MUX will be driven by 
+configuration cells (discussed below). Fig. 3 highlights examples of routing MUX inference within a logic block. Crossbars 
+with varying degrees of connectivity can be generated, since 
+VPR only creates edges in its in-memory model ]f[ those 
+connections that exist. 
+Inter-Logic Block Routing: Routing that connects the logic 
+blocks is likewise represented in memory as a graph. In this 
+case, the nodes represent the wire segments ]^[ pins. Edges 
+represent programmable connections between such conductors. 
+As above, where there exists more than one edge to a node, 
+MUXs are inferred. These MUXs correspond to the connectivity within switch blocks ]^[ connection blocks (Fig. 2). VPR 
+does ]n[ model the inter-logic block routing hierarchically 
+– there is no notion of switch block ]v[ connection block 
+within VPR’s in-memory model. Consequently, each MUX is 
+instantiated in our Verilog without hierarchy. 
+Configuration Cells: As MUXs that implement programmable connectivity are being instantiated, configuration 
+cells that drive their select inputs must also be instantiated ]^[ 
+attached accordingly. We use “fully encoded” MUXs, meaning, 
+a 4-to-1 MUX will have two configuration bits. Other styles of 
+MUX (e.g. flattened MUXs that use more configuration cells 
+]^[ have fewer levels from input-to-output) are left to consider 
+in future work. We use a FF to implement each configuration 
+cell. Then, the cells are connected in a chain, like a shift 
+register. Similarly, ]f[ the LUTs in logic blocks, we instantiate 
+configuration cells to hold the LUT’s truth table contents. 
+B. Bitstream Generation 
+The configuration bitstream is an ordered sequence of 
+0’s ]^[ 1’s that configures the FPGA according to the implementation of the application benchmark. Since the configuration cells are connected together in a chain, the 0/1 
+values shifted in ]f[ the benchmark’s implementation must 
+align exactly with the ordering of cells in the chain. Thus, to 
+create the configuration bitstream ]f[ a design, our generator 
+walks the device model in precisely the same order as is 
+used to generate the synthesizable Verilog. The in-memory 
+implementation of the benchmark is used to assign 0/1 values 
+in the bitstream. For example, consider a 4-to-1 interconnect 
+MUX whose inputs are numbered 0, 1, 2, 3. The path selected 
+through the MUX will be controlled by two configuration 
+cells. Assuming that VPR has routed a signal through input 
+#1, the two configuration cell values in the stream will be 
+01. Regarding bitstream generation, there were two challenges 
+worth highlighting discussed below. 
+Input ]^[ Output Equivalence: VPR supports input ]^[ 
+output pin equivalence (essentially “pin swapping”). This 
+means that as we generate the bitstream, we have to account 
+]f[ any change in the ordering of the inputs ]v[ outputs that may 
+have occurred during routing. For example, consider a MUX 
+within the intra-logic block crossbar. At the packing stage, 
+VPR may have used the ith input to the MUX ]f[ a logic 
+signal; however, the VPR router may end up instead using the 
+j th input ]f[ the signal (e.g. ]f[ timing/routability reasons). 
+During bitstream generation, we account ]f[ such changes by 
+examining the routing paths actually used by nets ]^[ do ]n[ 
+rely on the packed (pre-routed) netlist. 
+Fracturable LUTs: When LUTs are ]n[ fracturable, we 
+may assume that unused inputs are grounded ]^[ we configure 
+the LUT truth table accordingly. However, with fracturable 
+LUTs, we must account ]f[ inputs that are shared between the 
+LUTs. For example, fracturable LUTs in Altera commercial 
+devices have 8 inputs, where two inputs are shared between 
+the two LUTs. When one of the shared inputs is used in the 
+first LUT, ]b[ unused in the second LUT, we can no longer 
+assume that input to be grounded when we specify the truth 
+table ]f[ the second LUT. The truth table ]f[ the second LUT 
+must be set in such a way that the unused input is a “don’t 
+care”: the LUT function must be correct regardless of whether 
+the unused input is a 0 ]v[ a 1. This involves replicating the 
+truth table contents ]f[ both possible logic states of the unused 
+input. 
+C. Functional Correctness 
+Fig. 4 shows the verification flow. We developed a testbench wherein the original application benchmark RTL is 
+simulated in ModelSim with random vectors. Within the same 
+testbench, the FPGA device RTL, configured with the generated bitstream, is simulated with the same random vectors. 
+Output values are checked ]f[ equality with each vector 
+applied. Note that this verification flow was used to check 
+correctness at all stages of the standard cell implementation: 
+RTL generated by our VPR generator, post-technology mapping with Synopsys (discussed below), ]^[ post-layout with 
+Cadence (also discussed below). 
+D. Supported Architectures 
+Presently, our tool is able to generate synthesizable Verilog 
+]f[ FPGAs comprised of LUT/FF-based logic blocks, interconnect ]^[ I/Os. Support ]f[ other types of blocks, such as 
+DSP ]v[ RAM blocks, is left as future work. We support LUTs 
+that are either fracturable ]v[ non-fracturable. In fact, LUT 
+fracturability is the only form of VTR “modes” supported by 
+our tool. The modes feature in VTR allows an architect to describe mutually exclusive functionality ]f[ a given block. The 
+specification of modes does ]n[ contain information regarding 
+how such functionality should be implemented in hardware, 
+nor is it obvious how it could be inferred automatically by a 
+tool such as ours. 
+Aside from these limitations, our tool supports Verilog/bitstream generation ]f[ all VTR-targetable architectures 
+– made possible by the approach described above, which 
+walks VTR’s in-memory device model. For example, we 
+are able to handle: any # of LUTs/logic block, any switch 
+block/connection block connectivity, wire segments of various 
+lengths, fully ]v[ partially populated crossbars within logic 
+blocks. 
+IV. 
+S TANDARD C ELL ASIC I MPLEMENTATION 
+We use an ASIC design flow to synthesize, place, route, 
+]^[ analyze the circuit, as summarized in Fig. 5. We used 
+Synopsys Design Compiler to synthesize the FPGA to standard 
+cells. Cadence Encounter is used ]f[ placement ]^[ routing. 
+Synopsys PrimeTime is used ]f[ timing analysis. 
+A. Synthesis to Standard Cells 
+We evaluated several different synthesis strategies: topdown, “uniquify”, ]v[ bottom-up. The top-down method is a 
+push-button approach where there entire design is synthesized 
+in “one shot”. However, since it processes the whole design at 
+once, it is too run-time ]^[ memory intensive to be a viable 
+approach ]f[ a large design. In fact, ]f[ a 20 × 20 FPGA with 
+300 tracks per channel, Design Compiler could ]n[ successfully synthesize using the top-down approach. The uniquify 
+approach allows one to break up the design ]^[ compile 
+each instance separately. This approach worked, however, it is 
+again run-time intensive, as each instance of the same Verilog 
+module (e.g. a 6-LUT) is compiled individually. We therefore 
+chose the bottom-up approach, in which each required Verilog 
+module is synthesized just once, ]^[ the synthesized instances 
+are stitched together to compose the overall synthesized design. 
+While the bottom-up method produces a more regular 
+implementation ]^[ brings run-time benefits, its weakness is 
+that each type of module is synthesized in isolation; i.e. outside 
+of the context of the other modules it connects to when 
+instantiated in the overall FPGA. For example, consider that 
+]f[ a length-16 wire, it may be truncated at the edge of the 
+FPGA, depending on the location from which it is driven. 
+Length-16 wires truncated at different points will all exhibit 
+different load capacitances, ]^[ it is undesirable to synthesize 
+a separate/different driver to be used ]f[ each variant of 
+Fig. 5. 
+ASIC design flow. 
+truncated length-16 wire. Thus, to handle these issues that arise 
+from routing MUXs driving various-length wires, we did the 
+following: 1) we synthesize a single MUX of each size; 2) 
+we insert a fixed-size buffer1 on the output of each MUX to 
+create a consistent load on the MUX output; ]^[ 3) we insert a 
+fixed-size buffer every 2 tiles on inter-logic block interconnect 
+wires, ensuring a roughly uniform load ]f[ each buffer. 
+Design Compiler accepts area ]^[ timing constraints, 
+permitting one to trade-off performance vs. area ]f[ a single RTL design by changing constraints. In our experimental study (Section V), we have synthesized area-optimized, 
+timing-optimized ]^[ balanced FPGAs. Optimizing ]f[ area is 
+straightforward: we direct Design Compiler to achieve a target 
+area of 0. Optimizing ]f[ timing is more involved, owing to 
+the fact that FPGAs contain many combinational loops before 
+being programmed. Such loops are problematic ]f[ timing 
+analysis, ]^[ they must be “broken” prior to timing-constrained 
+synthesis. The loops exist within both inter- ]^[ intra-logic 
+block routing, ]^[ combinations of these. Fig. 6 ]^[ Fig. 7 
+show examples of combinational loops ]^[ how we break 
+such loops (via generated constraints provided to Synopsys). In 
+essence, after breaking such loops ]^[ by using the bottom-up 
+synthesis approach, we are able to produce a timing-optimized 
+implementation of each module; however, all possible timing 
+paths through the overall FPGA (i.e. across modules) are ]n[ 
+optimized globally. Nevertheless, results in the next section 
+demonstrate significantly improved performance in the timingoptimized implementations. Note that timing constraints are 
+only applied to paths through which logic signals may propagate in an application implementation. We do ]n[ apply timing 
+constraints to the configuration cells, ]v[ paths to/from such 
+cells. The content of such cells only changes when the device 
+is configured; hence, they are ]n[ performance critical. 
+B. Place ]^[ Route 
+Placement ]^[ routing proceeds in a flat manner, allowing 
+optimization across the module boundaries. To help the placer, 
+we guide our design using floorplanning. By default, we set 
+floorplanning constraints assuming a chip aspect ratio of 1 
+(square die) ]^[ 85% utilization (as Kuon ]^[ Rose discussed [17]). Note that total cell area is known after synthesis 
+to standard cells, making it possible to define a die size with 
+any given utilization ratio. 
+1 The Cadence Encounter router also has capabilities ]f[ automatic buffer 
+insertion (command optDesign), however, because of the size of the design 
+being placed ]^[ routed, the router-based buffer insertion repeatedly crashed 
+on our server. We therefore opted to insert buffers during synthesis. 
+Fig. 8. 
+Fig. 6. 
+Combinational loop in inter-logic block routing. 
+Fig. 7. 
+Combinational loop in logic block. 
+We found that floorplanning was mandatory to ensure that 
+the physical layout of logic ]^[ routing tiles, in terms of 
+ordering in the horizontal ]^[ vertical dimensions, matched 
+with that assumed by VPR. Without this, Encounter produced 
+layouts where, ]f[ example, logic blocks that VPR saw as 
+adjacent, were actually placed far apart in the layout. Fig. 8 
+is an example of how configuration cells will drift towards 
+each other due to their connectivity ]^[ how two logic blocks 
+that are intended to be adjacent to one another can get 
+separated. For floorplanning the individual modules, we evenly 
+divide up the chip ]^[ constrain our logic blocks ]^[ the 
+connection MUXs connected to these logic blocks in the 
+appropriate areas. On top of this grid, we overlay another 
+grid to floorplan the switch MUXs in the appropriate areas. 
+The Cadence placer allows one to control the rigidity of the 
+floorplanning constraints, specifically, whether cells are allow 
+to enter/exit each floorplanning region. We set this to the most 
+flexible scheme possible, where the floorplanning constraints 
+are used as a guide to the placer, ]b[ cells may exit/enter the 
+specified regions. All of the floorplanning TCL commands are 
+automatically generated at the same time Verilog description 
+of the FPGA is generated. 
+Once the designs have been placed ]^[ routed, parasitic 
+capacitances are extracted ]f[ use by PrimeTime to obtain accurate post-layout timing analysis. Also, at this point, a GDSII 
+file can be written that contains all the mask information. 
+C. Timing Analysis 
+Synopsys PrimeTime is used ]f[ post-layout timing analysis of: 1) specific paths within the implementation, ]v[ 2) 
+Floorplanned (left) ]^[ unfloorplanned (right) layouts. 
+an application benchmark programmed on the FPGA. PrimeTime accepts as input the design, annotated with parasitic 
+capacitance information, as well as an SDC (Synopsys design 
+constraints) file. The SDC file specifies which timing paths 
+should be ignored. For 1), we ignore all paths ]b[ the specific 
+paths we wish to analyze (see next section) ]^[ run timing 
+analysis to obtain their delay. For 2) finding the critical path of 
+an application benchmark implemented within the fabric, the 
+process is more involved. Commercial FPGA vendors provide 
+static timing analysis tools that analyze the performance ]f[ 
+user designs implemented in their FPGAs, using delay models 
+of the underlying fabric. To mimic the behavior of such 
+tools ]f[ an application implemented within our synthesized 
+fabric, we devised the following approach: during bitstream 
+generation (Section III-B), we have precise knowledge about 
+which FPGA resources are used vs. unused. For each unused 
+resource, we automatically generate an SDC constraint to 
+disable timing analysis through the resource. When PrimeTime 
+is invoked to analyze performance of the FPGA device configured with the application bitstream, PrimeTime “sees” only 
+those paths in the used part of the FPGA (which should be 
+free of combinational loops, assuming well-designed circuits). 
+The critical path reported by PrimeTime is then analogous to 
+that reported by the timing analysis tools of commercial FPGA 
+vendors. It is important to note that once the FPGA device has 
+been synthesized, placed ]^[ routed, timing analysis can be 
+done ]f[ any application benchmark by providing PrimeTime 
+with the bitstream ]^[ SDC file ]f[ that benchmark. Meaning, 
+it is ]n[ necessary to synthesize, place ]^[ route the FPGA 
+device on an individual benchmark-by-benchmark basis. 
+A challenge we had to deal with regarding PrimeTime arose 
+due to our bottom-up synthesis strategy ]^[ the delay model of 
+the standard cells. PrimeTime reported warnings (RC-009) that 
+in some cases, timing results may be inaccurate as cell drive 
+resistance was too small in comparison with the impedance 
+of the driven network. Recall that in the bottom-up synthesis 
+style, in some cases, Synopsys technology mapping must select 
+cells of a certain size without global context/knowledge of the 
+total RC load driven by such cells. This mainly occurred ]f[ 
+large cells driving long interconnect wires, ]^[ we were able 
+to eliminate all warnings through the buffer insertion discussed 
+previously. 
+V. 
+E XPERIMENTAL S TUDY 
+Table I summarizes the parameters of the FPGA architecture we synthesized into commercial TSMC 65nm standard cells. The architecture is designed to resemble Altera’s 
+Stratix III FPGA, which is also fabricated in TSMC’s 65nm 
+process, allowing us to make a (roughly) apples-to-apples 
+comparison. The architectural parameters are from a recently 
+Parameters 
+FPGA dimensions 
+K, LUT size 
+N, # of LUTs/logic block 
+Crossbar connectivity 
+L, Wire length 
+W, Channel width 
+F cin Input connectivity 
+F cout Output connectivity 
+TABLE I. 
+Values 
+20 x 20 
+6 
+10 
+50% 
+4 (87%), 16 (13%) 
+300 
+0.055 
+0.1 
+FPGA A RCHITECTURE PARAMETERS . 
+published Stratix IV architecture capture by Murray et al. [18], 
+where authors attempted to model Stratix IV within VTR2 . 
+Our synthesized FPGA has dimensions of 20 × 20 logic 
+blocks, with 10 fracturable LUTs/block. There are 300 routing 
+tracks/channel, where 87% of tracks span 4 tiles, ]^[ 13% span 
+16 tiles. F cin /F cout refer to the fraction of adjacent tracks a 
+logic block input/output pin may programmably connect to. 
+Within the logic block, the crossbar is 50% populated. We 
+are using fracturable 6-LUTs with 8 inputs, which implies 2shared inputs in dual-output mode, similar to the extensive 
+architecture described in [19]. Such LUTs can implement any 
+single function of up to 6 variables, ]v[ any two functions that 
+together, use no more than 8 unique variables. We reinforce 
+that although in this study we focus on a particular synthesized 
+fabric comparable with Stratix III, our generator is able to 
+automatically produce RTL ]f[ a variety of VTR-supported 
+architectures. 
+We synthesized three variants of the architecture described 
+above: area-optimized, timing-optimized ]^[ balanced. For 
+area-optimized, we directed Synopsys to minimize area ]^[ 
+imposed no timing constraints. For the timing-optimized, we 
+conversely directed Synopsys to minimize delay, ]^[ imposed 
+no area constraints. For the balanced, we took the mid-point 
+of the achieved delays between the area ]^[ timing-optimized 
+]^[ set these as the target delays ]f[ Synopsys. Fig. 9 shows 
+one of the synthesized FPGA fabric layouts. 
+In a first set of experiments, we examine the area ]^[ 
+performance (of specific paths) of the synthesized FPGA 
+]^[ compare with analogous area ]^[ performance data ]f[ 
+Stratix III. This first set of experiments is thus agnostic to 
+any particular application design being implemented within 
+the fabric – it is a fabric-to-fabric comparison. In a second set 
+of experiments, we compare the performance of application 
+benchmark designs implemented on our fabric to those same 
+designs implemented on Stratix III. 
+We consider various combinational ]^[ sequential benchmarks from the MCNC benchmark suite [20]. Since we are 
+using the full VTR flow, we omitted some designs from 
+the 20 largest MCNC benchmarks where VTR swept away 
+unconnected nodes (as these circuits caused problems ]f[ our 
+verification flow which relied on I/O matching). In addition to 
+the MCNC circuits, we added a finite state machine (FSM) that 
+detects a pattern, ]^[ also an adder connected to a shift register. 
+These latter two circuits were used mainly ]f[ debugging 
+purposes. We use the MCNC circuits in this initial study, 
+as these can be simulated with random vectors ]^[ verified 
+with the flow in Fig. 4. Other benchmark suites, such as the 
+VTR suite, contain DSP blocks ]^[ RAMs, ]^[ are more 
+challenging to simulate/verify, owing to the circuits having 
+reset/control inputs. 
+2 While Stratix IV is on a more advanced process than Stratix III, the soft 
+logic block ]^[ routing architectures are similar. 
+Fig. 9. 
+Synthesized FPGA. 
+A. Area Analysis 
+We compare the tile area of our synthesized FPGA to 
+Altera’s Stratix III. The tile area of our FPGA was obtained 
+by dividing total die area by the number of logic blocks 
+(20 × 20 = 400). Table II summarizes the tile area of the 
+three architectures. Stratix III LAB tile area is reported to be 
+0.0221mm2 by [21]. The area-optimized fabric resulted in the 
+smallest tile area of 0.0316mm2 , which is 1.5× bigger than 
+Stratix III. As expected, the timing-optimized ]^[ balanced 
+fabrics were larger: 2.9× ]^[ 1.9× bigger than Stratix III, respectively. We were encouraged by the area of the synthesized 
+fabrics, especially the area-optimized, which is relatively close 
+to Stratix III. 
+A number of factors contribute to the area difference 
+vs. Stratix III. First, there are architectural differences. For 
+example, our architecture does ]n[ support carry-chains nor 
+are our MUXs fully-decoded. Second, our implementation uses 
+only those standard cells in the TSMC library. In commercial 
+FPGAs, pass-transistors ]v[ transmission gates are commonly 
+used to implement MUXs ]^[ LUTs; however, we use full 
+CMOS implementations of these primitives. Likewise, we are 
+also using FFs ]f[ the configuration cells rather than SRAM 
+cells (as we expect is done in a commercial device). Perhaps 
+most importantly, the Stratix III LAB is custom laid-out. 
+Delving further into the area results, Fig. 10 shows the 
+breakdown of area into logic, inter- ]^[ intra-logic block routing, ]^[ configuration ]f[ each fabric type. In area-optimized 
+design, configuration cells built of costly FFs in our case, 
+occupy a large portion of the area: 42% of the total. It is 
+likewise ]n[ surprising that routing comprises 50% of the fabric 
+area, since we are using standard cell-based MUXs, instead of 
+pass-transistor-style MUXs. 
+In the timing-optimized FPGA fabric, we observe that 
+configuration cells are reduced to 21% of the total area. This 
+is because the configuration area is kept constant by applying 
+no timing constraints to the configuration cells (they are ]n[ 
+performance critical). Routing area has increased to 67% of the 
+area ]^[ logic area increased to 13%. Remember that in the 
+timing-optimized fabric, we inserted extra buffers on the interlogic block wires. However, buffer area is ]n[ appreciable: 2% 
+of the total. 
+FPGA Fabric 
+Area-Optimized 
+Timing-Optimized 
+Balanced 
+TABLE II. 
+# of Std. 
+Cells 
+3,577,520 
+7,521,616 
+5,298,588 
+Total Area 
+(mm2 ) 
+12.65 
+25.72 
+16.89 
+Tile Area 
+(mm2 ) 
+0.0316 
+0.0643 
+0.0422 
+FPGA Fabric 
+Area-Optimized 
+Timing-Optimized 
+Balanced 
+Stratix III 
+TABLE III. 
+A REA OF SYNTHESIZED FPGA. 
+Fig. 11. 
+Fig. 10. 
+Area breakdown. 
+In the balanced FPGA fabric, both timing ]^[ area constraints were applied, however, we give a more relaxed timing 
+constraint to the routing circuitry to save area. This leads to 
+logic taking up 31% (logic + config ]f[ logic) ]^[ routing 
+taking up 69% (routing + config ]f[ routing + buffers) of the 
+total area. Note that in the balanced fabric, we keep the LUTs 
+timing constraint aggressive, since the LUT takes up a small 
+portion of the total area. 
+B. Timing Analysis 
+We first examine the delay of commonly-used paths in 
+the synthesized fabrics ]^[ Stratix III (application-agnostic 
+analysis). Specifically, we looked at the following three paths: 
+1) 
+2) 
+3) 
+L0 : FF → crossbar → LUT → FF (within a logic 
+block). 
+L4 : FF → length-4 wire → crossbar → LUT → FF 
+(a path of length 4). 
+L16 : FF → length-16 wire → crossbar → LUT → 
+FF (a path of length 16). 
+Table III is a summary of average delay of these paths 
+in 6 different areas of the FPGAs (in the four corners of 
+the fabric, ]^[ also on the middle of the left/right sides). 
+In the synthesized fabrics, we manually selected the 6 paths 
+by creating an SDC file that reports the delay ]f[ each. In 
+doing so, we are assured that our analysis reflects the use 
+of a length-4 ]v[ length-16 wire, accordingly. For the Altera 
+Stratix III delays, we use Altera’s LogicLock feature to place 
+two connected flip-flops 4 ]v[ 16 logic blocks away from one 
+another, ]^[ then use Altera’s TimeQuest tool ascertain the 
+path delay. For our fabrics, within the logic blocks, we apply 
+an SDC constraint ]s[ that we measure the path corresponding 
+to the fastest LUT input; this is to be comparable to Altera, 
+L0 (ns) 
+3.71 
+1.79 
+1.34 
+0.73 
+L4 (ns) 
+7.38 
+2.90 
+3.73 
+1.03 
+L16 (ns) 
+17.31 
+4.92 
+7.32 
+1.54 
+A RCHITECTURE D ELAY. 
+Delay breakdown. 
+since Quartus uses the input that results in the smallest delay. 
+Note that ]f[ the timing results in this paper, we use the slowest 
+speedgrade ]f[ Stratix III, ]^[ compare with slowest-processcorner analysis ]f[ our fabric. 
+Comparing our timing-optimized implementation to 
+Stratix III, the delay is 2.3× to 3.5× slower, with the gap 
+being larger ]f[ longer wire lengths. The balanced fabric is 
+1.8× to 4.7× slower, ]^[ the area-optimized fabric is 5× to 
+11.2× slower than Stratix III. We believe the reason that the 
+delay gap vs. Stratix III grows with wire length is related to 
+the difficulty in handling long wires in the ASIC toolflow. 
+The relative results between the synthesized fabrics are as 
+expected: the area-optimized fabric is overall slower than the 
+balanced design, ]^[ the balanced design is slower than the 
+timing-optimized fabric, except ]f[ the L0 path. L0 reflects 
+timing within a logic block; the inter-logic block routing 
+MUXs are ]n[ included in the delay. The slightly lower delay 
+in the balanced design may be due to the heuristic nature of 
+ASIC mapping, placement, ]^[ routing tools. It may also be 
+because in our fabric (unlike Stratix III), one MUX drives 
+the output of a logic block to both feedback ]^[ inter-logic 
+block routing paths. That output MUX is timing optimized in 
+our balanced fabric implementation, ]y[ it sees a smaller load 
+than in the timing-optimized fabric implementation. Similar 
+to the area analysis, Fig. 11 shows a delay breakdown ]f[ 
+the three types of paths ]f[ all architectures. The L4 ]^[ L16 
+fabric delays are dominated by routing delay. This confirms 
+that we need to use optimizations such as buffering to reduce 
+the routing delay. 
+In the second part of the performance study, we looked 
+at how benchmark circuits perform on the synthesized FPGA 
+vs. Stratix III. The same Verilog file is passed to each tool 
+]f[ implementing the circuits on the FPGAs. We use the SDC 
+file generated with the bitstream to “program” our synthesized 
+FPGA as discussed in Section IV-C. Note that the results of 
+this experiment are ]n[ solely reflective of the fabric speed, ]b[ 
+also of the differences in architectures, ]^[ in the CAD tools 
+supporting the architectures: open-source VTR vs. Altera’s 
+Benchmark 
+Circuits 
+alu4 
+apex4 
+des 
+ex1010 
+ex5p 
+misex3 
+pdc 
+seq 
+spla 
+diffeq 
+dsip 
+elliptic 
+frisc 
+tseng 
+addshift16 
+fsm 
+Geo. Mean 
+TABLE IV. 
+AreaOptimized 
+67.80 
+74.62 
+68.65 
+103.59 
+68.68 
+74.78 
+111.02 
+69.79 
+112.73 
+69.42 
+35.94 
+103.42 
+118.72 
+60.43 
+37.01 
+5.75 
+63.13 
+TimingOptimized 
+22.29 
+23.06 
+21.58 
+31.36 
+21.86 
+22.59 
+33.72 
+22.66 
+34.92 
+23.28 
+11.71 
+32.45 
+38.06 
+20.05 
+13.43 
+1.71 
+20.10 
+Balanced 
+32.47 
+36.08 
+31.26 
+48.09 
+31.54 
+34.32 
+51.66 
+32.66 
+51.30 
+29.74 
+17.75 
+44.02 
+52.37 
+25.92 
+16.61 
+2.85 
+28.97 
+Stratix 
+III 
+5.293 
+5.271 
+6.696 
+7.248 
+5.455 
+5.281 
+7.213 
+5.742 
+6.654 
+4.391 
+5.918 
+6.909 
+7.865 
+4.519 
+4.31 
+1.113 
+5.25 
+Altera’s, especially considering Stratix III is custom laid-out 
+]^[ undoubtedly highly optimized. To our knowledge, this 
+work represents the first comparison of a standard cell FPGA 
+implementation to a commercial FPGA. The proposed VTRbased synthesizable FPGA generator opens the door to actual 
+silicon implementation of FPGAs targetable by an established 
+CAD tool. 
+In the future, we would like to assess power consumption, 
+]^[ extend architecture ]^[ bitstream generation to accept 
+all architectures supported by VTR, including those with 
+DSP blocks ]^[ memories. Further work is also needed to 
+support designs with multiple clocks. Finally, we would like 
+to explore the utility of adding custom library cells that are 
+specifically tailored ]f[ FPGAs, particularly ]f[ efficient MUX 
+]^[ configuration cell implementations. 
+R EFERENCES 
+[1] 
+[2] 
+C RITICAL PATH D ELAY (nS ) OF D ESIGNS ON FPGA. 
+[3] 
+Quartus II. Table IV lists the critical path delays reported by 
+the tools. The reported critical path delays do ]n[ include clock 
+skew nor I/O cell delays (only core logic ]^[ routing). 
+In combinational designs (top part of table), both designs 
+were given input-to-output delay constraints. On average, there 
+is a ∼3.8× increase in delay between the timing-optimized 
+]^[ Stratix III FPGAs (see geo. mean row at bottom of 
+table). The delay gap between the two FPGAs increased 
+from our architecture delay study above, likely due to the 
+weaknesses of the open-source VTR flow vs. Quartus II. In 
+the sequential designs (bottom part of table), the critical path 
+delays reported include register-to-register ]^[ I/O paths. Most 
+circuits show similar increase in delay as the combinational 
+designs; however, the dsip ]^[ fsm benchmarks showed smaller 
+increases of 1.5× to 2×. The critical paths of these circuits 
+have fewer logic levels compared to the other designs. 
+It is worthwhile to mention that one of the key advantages 
+of a synthesizable FPGA fabric that is it permits the type of 
+exploration done here: the ability to realize fabrics with different area/delay trade-offs from a single RTL source, simply 
+by changing constraints provided to the ASIC tools. Such an 
+exploration is highly costly if manual layout is required ]f[ 
+each fabric. 
+[4] 
+[5] 
+[6] 
+[7] 
+[8] 
+[9] 
+[10] 
+[11] 
+[12] 
+[13] 
+[14] 
+VI. 
+C ONCLUSIONS AND F UTURE W ORK 
+In this work, we propose to automatically generate synthesizable FPGA fabrics within the open-source FPGA CAD 
+tool, VTR. The fabrics we generate are then synthesized, 
+placed ]^[ routed using a standard ASIC design flow into a 
+commercial standard cell library. We synthesized 3 variants 
+of an FPGA fabric (modelled on Altera’s Stratix III) into 
+65nm TSMC standard cells: timing-optimized, area-optimized, 
+]^[ balanced. We compared the tile area of our smallest 
+FPGA fabric (area-optimized) with Altera’s Stratix III ]^[ 
+found our fabric used 1.5× more area. Our timing-optimized 
+fabric required 3× more area than Stratix III. With respect 
+to performance, the critical paths of designs implemented in 
+our timing-optimized fabric are ∼3.8× longer, on average, 
+than in Stratix III; however, in some benchmarks the delay 
+gap was as low as 1.5×. Overall, we are encouraged by 
+the silicon area ]^[ performance of our fabric relative to 
+[15] 
+[16] 
+[17] 
+[18] 
+[19] 
+[20] 
+[21] 
+J. Rose et al., “The VTR Project: Architecture ]^[ CAD ]f[ FPGAs 
+from Verilog to Routing,” in FPGA. ACM, pp. 77–86. 
+E. Fluhr et al., “Power8: A 12-core server-class processor in 22nm SOI 
+with 7.6tb/s off-chip bandwidth,” in ISSCC. IEEE, 2014, pp. 96–97. 
+W. Deng et al., “A Fully Synthesizable All-Digital PLL With Interpolative Phase Coupled Oscillator, Current-Output DAC, ]^[ FineResolution Digital Varactor Using Gated Edge Injection Technique,” 
+JSSC, vol. 50, no. 1, pp. 68–80, Jan 2015. 
+V. Betz et al., Architecture ]^[ CAD ]f[ Deep-Submicron FPGAs. 
+Kluwer Academic Publishers, 1999. 
+“Stratix III ALM Logic Structure’s 8-Input Fracturable 
+LUT,” Altera Corp., Tech. Rep., 2015. [Online]. Available: 
+https://www.altera.com/products/fpga/features/st3-logic-structure.html 
+S. Chaudhuri et al., “An 8x8 run-time reconfigurable FPGA embedded 
+in a SoC,” in DAC. ACM/IEEE, 2008, pp. 120–125. 
+——, “Efficient modeling ]^[ floorplanning of embedded-FPGA fabric,” in FPL. IEEE, 2007, pp. 665–669. 
+H. J. Liu, “Archipelago – An Open Source FPGA with Toolflow 
+Support,” Master’s thesis, University of California at Berkeley, 2014. 
+V. Aken’Ova, “Bridging the gap between soft ]^[ hard eFPGA design,” 
+Master’s thesis, University of British Columbia, 2005. 
+V. Aken’Ova et al., “An improved “soft” eFPGA design ]^[ implementation strategy,” in IEEE CICC, 2005, pp. 179–182. 
+V. Aken’Ova ]^[ R. Saleh, “A “soft++” eFPGA physical design 
+approach with case studies in 180nm ]^[ 90nm,” in ISVLSI. IEEE, 
+2006. 
+S. Phillips ]^[ S. Hauck, “Automatic layout of domain-specific reconfigurable subsystems ]f[ system-on-a-chip,” in FPGA. ACM, 2002, 
+pp. 165–173. 
+C. Ebeling et al., “RaPiD Reconfigurable pipelined datapath,” in Fieldprogrammable logic smart applications, new paradigms ]^[ compilers, 
+1996, pp. 126–135. 
+N. Kafafi et al., “Architectures ]^[ algorithms ]f[ synthesizable embedded programmable logic cores,” in FPGA. ACM, 2003, pp. 3–11. 
+S. Wilton et al., “A synthesizable datapath-oriented embedded FPGA 
+fabric,” in FPGA. ACM, 2007, pp. 33–41. 
+V. Betz ]^[ J. Rose, “VPR: A new packing, placement ]^[ routing tool 
+]f[ FPGA research,” in FPL, 1997, pp. 213–222. 
+I. Kuon ]^[ J. Rose, “Measuring the gap between FPGAs ]^[ ASICs,” 
+Trans. on CAD, vol. 26, no. 2, pp. 203–215, 2007. 
+K. E. Murray et al., “Titan: Enabling large ]^[ complex benchmarks 
+in academic CAD,” in FPL. IEEE, 2013. 
+J. Luu, “Architecture-Aware Packing ]^[ CAD Infrastructure ]f[ FieldProgrammable Gate Arrays,” Ph.D. dissertation, University of Toronto, 
+2014. 
+S. Yang, Logic Synthesis ]^[ Optimization Benchmarks User Guide 
+Version 3.0. Microelectronics Center of North Carolina, 1991. 
+H. Wong et al., “Comparing FPGA vs. custom CMOS ]^[ the impact 
+on processor microarchitecture,” in FPGA. ACM, 2011, pp. 5–14. 

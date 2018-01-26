@@ -1,3 +1,4 @@
+from __future__ import division
 from scipy import spatial
 
 import numpy as np 
@@ -15,7 +16,6 @@ def get_cosine_sim(a, b):
 
 def correlate(a, b):
 	return np.corrcoef(a, b)[0][1]
-
 
 def levenshtein(s, t):
 		if s == t: return 0
@@ -48,3 +48,12 @@ def entropy(vec):
 
 	h=h*(-1)
 	return h
+
+
+def jaccard_index(ap, bp):
+	a=set(ap)
+	b=set(bp)
+	r_int=a.intersection(b)
+	r_uni=a.union(b)
+	
+	return len(r_int)/len(r_uni)

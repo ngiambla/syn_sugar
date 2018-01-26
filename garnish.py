@@ -130,7 +130,7 @@ class garnish:
 			for _j_label in sentence_vec_map:
 				if  _j_label not in seen_labels:
 					b=sentence_vec_map[_j_label]
-					hamming_dis = mutils.hamming_distance(a, b)
+					hamming_dis = mutils.hamming_distance(a,b) + math.floor(10*(mutils.get_cosine_sim(a,b)))/10
 					if hamming_dis not in sen_pairs: 
 						sen_pairs[hamming_dis] = {}
 
@@ -142,6 +142,7 @@ class garnish:
 					
 
 		sorted_bins={}
+		count=0
 		for _bin in sen_pairs:
 			seen_again={}
 
@@ -149,30 +150,43 @@ class garnish:
 				if _bin not in sorted_bins:
 					sorted_bins[_bin]={}
 				a=[]
+				wa=[]
 				for i in range(il, sentence_length_map[il]+il):
 					a.append(ingredient_freq_map[ingredient_free_map[il]])
+					wa.append(ingredient_free_map[i].lower())
 				seen_again[il]=0
 				for jl in sen_pairs[_bin]:
+					
+					count=count+1
+					sys.stdout.write('\rProgress: '+ '%03.2f' % (100*(count/(len(sen_pairs)*len(sen_pairs[_bin])**2)))+"%")
+					sys.stdout.flush()
+
 					if jl not in seen_again:
 						b=[]
+						wb =[]
 						for i in range(jl, sentence_length_map[jl]+jl):
 							b.append(ingredient_freq_map[ingredient_free_map[jl]])
+							wb.append(ingredient_free_map[i].lower())
+
 						if sen_pairs[_bin][jl] >= 0.05 and sen_pairs[_bin][il] >= 0.05:
 
-							lev_dis = math.floor(10*mutils.get_cosine_sim(a,b))/10
+							sen_pairs[_bin][jl] = sen_pairs[_bin][jl] * 0.05
+							sen_pairs[_bin][il] = sen_pairs[_bin][il] * 0.05
 
-							if lev_dis < 10:
-								if lev_dis not in sorted_bins[_bin]:
-									sorted_bins[_bin][lev_dis]={}
+							jaccard_idx = mutils.jaccard_index(wa, wb)
+							lev_dis  	= math.floor(10*(mutils.get_cosine_sim(a,b)+jaccard_idx))/10
 
-								sorted_bins[_bin][lev_dis][il]=1
-								sorted_bins[_bin][lev_dis][jl]=1
+							if lev_dis not in sorted_bins[_bin]:
+								sorted_bins[_bin][lev_dis]={}
+
+							sorted_bins[_bin][lev_dis][il]=1
+							sorted_bins[_bin][lev_dis][jl]=1
+
 
 		for _bin in sen_pairs:
 
 			print(bcolors.OKGREEN+"[Similarity] : "+str(_bin)+bcolors.ENDC)
 			for lev_dis in sorted_bins[_bin]:
-
 				print(bcolors.FAIL + " +[Distance] : "+str(lev_dis)+bcolors.ENDC)
 				s1=""
 				for label in sorted_bins[_bin][lev_dis]:

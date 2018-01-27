@@ -1,982 +1,195 @@
-Synthesizable FPGA Fabrics Targetable by the 
-Verilog-to-Routing (VTR) CAD Flow 
-Jin Hee Kim ]^[ Jason H. Anderson 
-Dept. of Electrical ]^[ Computer Engineering 
-University of Toronto, Toronto, ON, Canada 
-Email: {kimjin14,janders}@ece.utoronto.ca 
-Abstract—We consider implementing FPGAs using a standard 
-cell design methodology, ]^[ present a framework ]f[ the 
-automated generation of synthesizable FPGA fabrics. The opensource Verilog-to-Routing (VTR) FPGA architecture evaluation 
-framework [1] is extended to generate synthesizable Verilog ]f[ its 
-in-memory FPGA architectural device model. The Verilog can be 
-synthesized into standard cells, placed ]^[ routed using an ASIC 
-design flow. A second extension to VTR generates a configuration 
-bitstream ]f[ the FPGA; that is, the bitstream configures the 
-FPGA to realize a user-provided placed ]^[ routed design. The 
-proposed framework ]^[ methodology opens the door to silicon 
-implementation of a wide range of VTR-modelled FPGA fabrics. 
-In an experimental study, area ]^[ timing-optimized FPGA 
-implementations in 65nm TSMC standard cells are compared 
-with a 65nm Altera commercial FPGA. 
-I. 
-I NTRODUCTION 
-Standard cell design methodologies are prevalent in the 
-design of modern digital ICs, owing to the high costs associated with manual layout ]^[ increasingly complicated design 
-rules in deep sub-100nm technologies. Entire processors [2] 
-]^[ other digital blocks such as PLLs [3] are nowadays mainly 
-synthesized from RTL, as opposed to hand designed at a lower 
-level of abstraction. Field-programmable gate arrays (FPGAs) 
-are one of the few remaining classes of digital IC incorporating 
-a considerable amount of custom layout. The core logic ]^[ 
-interconnect tiles in commercial FPGAs are laid out manually, 
-motivated by intense pressure to optimize area, delay ]^[ 
-power in the underlying circuitry, as such tiles are stamped 
-out hundreds-to-thousands of times on each die. In this paper, 
-we consider implementing FPGAs in standard cells ]^[ assess 
-the gap between a synthesized standard cell ]^[ a full custom 
-commercial FPGA implementation. 
-To realize a standard cell FPGA implementation, we have 
-developed a synthesizable FPGA fabric generator within the 
-open-source Verilog-to-Routing (VTR) [1] toolsuite from the 
-University of Toronto. VTR is capable of modelling ]^[ 
-mapping circuits into a wide variety of different FPGA architectures. Our generator produces synthesizable Verilog ]f[ 
-VTR’s in-memory FPGA device model. As such, our generator 
-is ]n[ locked into a single FPGA architecture, ]b[ rather, is 
-able to produce Verilog ]f[ a spectrum of different FPGAs, ]f[ 
-example, with different numbers of look-up-tables (LUTs) per 
-logic block, different numbers of tracks per routing channel, 
-]v[ even different switch block connectivities. In addition to 
-producing synthesizable Verilog, we have also extended VTR 
-to produce a configuration bitstream ]f[ a user design implemented within the synthesizable FPGA. While the conventional 
-approach used by commercial vendors involves adding CAD 
-support ]f[ each new FPGA device; in our case, we have built 
-“silicon support” ]f[ an existing ]^[ well established FPGA 
-architecture/CAD evaluation toolsuite – VTR. 
-In addition to the advantages associated with synthesis 
-vs. custom layout, the proposed synthesizable FPGA fabric 
-generator offers a number of benefits. First, it enables VTRmodelled FPGAs to be realized in silicon, democratizing 
-access to FPGA technology. Specifically, our VTR-based approach circumvents a major impediment to the development 
-of new FPGAs, namely, the complexity ]^[ cost associated 
-with building CAD tools that can map user circuits into them. 
-Second, the synthesizable FPGAs can be easily ported to 
-new process technologies, by re-synthesizing using a new cell 
-library. Third, the FPGA fabrics we generate are straightforward to incorporate into an SoC; the FPGA module can be 
-instantiated within the surrounding circuitry, ]^[ the layout 
-shape/aspect ratio of the FPGA tiles can be tailored according 
-to the overall SoC floorplan. 
-We synthesize FPGA fabrics into TSMC 65nm standard 
-cells. Through constraints supplied to the ASIC design tools 
-(Synopsys Design Compiler ]^[ Cadence Encounter), we 
-produce area-optimized, timing-optimized ]^[ balanced FPGA 
-fabric implementations. In an experimental study, we supply 
-VTR with an architecture model closely resembling Altera’s 
-Stratix III device, ]^[ compare the area ]^[ delay of the 
-synthesized standard cell FPGA with Stratix III, which is also 
-implemented in 65nm. The contributions of this paper are: 
-1) 
-2) 
-3) 
-An FPGA fabric generator, built within VTR, capable 
-of producing synthesizable Verilog RTL ]f[ a variety 
-of architectures. 
-A configuration bitstream generator ]f[ the synthesizable FPGAs. 
-An area/performance comparison between several 
-synthesized standard cell FPGAs and, to the authors’ 
-knowledge, the first published study comparing a 
-full-custom commercial FPGA with a synthesized 
-standard cell FPGA. 
-The remainder of this paper is organized as follows: Section II describes related work ]^[ provides background ]f[ the 
-subsequent sections. The VTR-based synthesizable fabric ]^[ 
-bitstream generation is introduced in Section III. Section IV 
-describes the ASIC flow we used to produce a standard cell 
-implementation. The experimental study appears in Section V. 
-Conclusions ]^[ future work are offered in Section VI. 
-II. 
-BACKGROUND AND R ELATED W ORK 
-A. Verilog-to-Routing (VTR) 
-VTR [1] is an open-source FPGA architecture evaluation/CAD framework from the University of Toronto, comprising of RTL synthesis, logic synthesis, packing, placement, 
-routing ]^[ timing/power analysis, as shown in Fig. 1. The 
-inputs to VTR are: 1) a description of an FPGA architecture, 
-]^[ 2) an application benchmark ]f[ implementation in the 
-*&+,-./)011-,#"2.') 
-3,+#4,5) 
-<-"=.+"2.') 
->?'59&;,;)@)A&#9)B"1) 
-6780) 
-0+#9,5&#54+&) 
-:&;#+,12.') 
-6,-&) 
-VTR permits heterogeneity, where columns of blocks may be 
-of different types; ]f[ example, LUT-based soft logic blocks, 
-DSP blocks, ]^[ memories. Within each of these types, an 
-architect has a wide range of choices. For example, with soft 
-logic blocks, one can vary the # of LUTs/block, whether 
-the LUTs are fracturable [5] vs. non-fracturable, the richness 
-of the internal local crossbar, the number of FFs, ]^[ ]s[ 
-on. VTR also supports the notion of modes, which represent 
-mutually exclusive ways in which a block may function. For 
-example, a fracturable LUT may operate in single-output mode 
-(implementing a single logic function) ]v[ dual-output mode 
-(implementing two logic functions). 
-!"#$%&&% 
-'()% 
-7"#$,'/) 
-!"#$%&'() 
-7-"#&C&'5) 
-*+,% 
-D.42'/) 
-A,C,'/)@)0+&")<;2C"2.') 
-C. Related Work 
-E4"-,5?).F)D&;4-5;) 
-Fig. 1. 
-Verilog-to-Routing flow. 
-*+& 
-*+& 
-*+& 
-*+& 
-!"#$%& 
-'("%)& 
-!"#$%& 
-'("%)& 
-!"#$%& 
-'("%)& 
-*+& 
-!"#$%& 
-'("%)& 
-!"#$%& 
-'("%)& 
-!"#$%& 
-'("%)& 
--.!/0& 
-11& 
-*+& 
-67$8%9&3("%)& 
--.!/0& 
-11& 
-*+& 
-2345& 
-,& 
-*+& 
-!"#$%& 
-'("%)& 
-*+& 
-!"#$%& 
-'("%)& 
--.!/0& 
-*+& 
-*+& 
-!"#$%& 
-'("%)& 
-11& 
-!"#$%&3("%)& 
-*+& 
-:";;<%=";&3("%)& 
-Fig. 2. 
-FPGA architectural components. 
-FPGA. The architectural description is written in humanreadable XML, ]^[ through this, an architect can specify both 
-the interconnect ]^[ logic architecture of the target FPGA. 
-VTR’s internal CAD algorithms are “generic” in the sense 
-that specific architectural details are ]n[ hard-coded into the 
-algorithms themselves – the algorithms are designed to do a 
-reasonably good job implementing the application benchmark 
-in a range of architectures. Note that prior to the current 
-work, the VTR flow terminated at the routing stage; it was ]n[ 
-possible to realize a silicon implementation of a VTR-modelled 
-architecture. Our work extends VTR to produce synthesizable 
-Verilog ]f[ VTR’s in-memory architectural device model, as 
-well as a bitstream ]f[ the application benchmark implemented 
-in the device. 
-B. FPGA Architecture 
-VTR is able to model island-style FPGAs [4], a two 
-dimensional array of logic blocks with horizontal ]^[ vertical 
-routing channels, surrounded by a ring of I/Os. The key 
-architectural components necessary to understand this paper 
-are shown in Fig. 2. Switch blocks allow horizontal ]^[ vertical 
-routing tracks to be programmably connected with one another; 
-connection blocks allow logic block pins to connect to adjacent 
-routing tracks. Logic blocks generally contain one ]v[ more 
-look-up-tables (LUTs) ]^[ flip-flops (FFs), ]^[ an internal 
-crossbar ]f[ making local connections. 
-With respect to routing, VTR allows one to change the 
-number of tracks per channel, wire directionality, the wire 
-segment lengths ]^[ relative frequency of wires of a given 
-length, the connectivity between horizontal ]^[ vertical wires, 
-]^[ the way wires connect to logic block pins. For logic, 
-Several recent works bear similarity to our own in that 
-they propose to synthesize FPGA fabrics targetable by VTR. 
-Chaudhuri et al. [6] focuses on embedding a reconfigurable 
-FPGA in a system-on-chip (SoC), ]^[ enhance the area ]^[ 
-performance through floorplanning [7]. Liu [8] studies the impact of the FPGA architectural parameters on the synthesized 
-components of the FPGA. In both of these works, there is little 
-detail on the issues that arise from using ASIC design tools. 
-Moreover, none of these works show a suite of benchmark 
-designs being verified as functional within the synthesized 
-fabric, nor do they compare the synthesized standard cell 
-implementation with a commercial FPGA. 
-In another work, Aken’Ova [9] investigated island-style 
-FPGAs ]^[ improved area ]^[ delay gap by using “tactical 
-cells” [10] ]^[ floorplanning [11]. The author thoroughly 
-describes architecture changes ]^[ solutions to overcome ASIC 
-design flow problems. However, there is little discussion on the 
-generation of the architecture ]^[ bitstream. 
-Other work has focussed on standard cell implementations 
-of application-specific FPGA architectures. An early work 
-by Phillips ]^[ Hauck [12] synthesized the reconfigurablepipelined datapath (RaPiD) [13] architecture using standard 
-cells. The authors observe that customizing the architecture 
-]f[ domain-specific applications, as well as including some 
-FPGA-specific standard cells into the library improves area 
-]^[ performance. Kafafi et al. [14] synthesizes a combinational 
-]^[ directional architecture ]^[ reports a large area difference 
-relative to a custom-layout design. In work by Wilton et 
-al. [15], the authors synthesize a datapath-oriented FPGA 
-fabric with a directional routing architecture. Unlike these 
-past works, which deal with non-standard FPGA architectures, 
-we focus on architectures that resemble today’s commercial 
-FPGAs ]^[ that are already supported by the VTR framework. 
-III. 
-A RCHITECTURE AND B ITSTREAM G ENERATION 
-VPR [16] is the portion of the VTR flow that performs 
-packing, placement ]^[ routing. From the user-supplied architectural description, VPR builds an in-memory representation 
-of the entire FPGA device, including all logic ]^[ interconnect. 
-The packing, placement ]^[ routing steps in VPR implement 
-the application benchmark in the in-memory FPGA device 
-model. Our synthesizable Verilog generator is built within 
-VPR ]^[ executes at the end of the routing step. Essentially, 
-our generator code “walks” the in-memory device model to 
-produce synthesizable Verilog, ]^[ likewise, by examining 
-the application benchmark’s implementation in the device, we 
-produce a configuration bitstream ]f[ the FPGA. We elaborate 
-on these steps below. 
-;5&E8>) 
-7"'$84#) 
-7"4+68,) 
-9+4':+$) 
-!"#$%"&'() 
-*"#+,&) 
--34+,+&562) 
-C) 
-7/;);!<) 
-5&E) 
-=+$#$4"5>) 
-0"&"45$84) 
-Fig. 4. 
-Fig. 3. 
-./01) 
-.5%4+');!<) 
-D8E"6F+>) 
-*"#+,&) 
--./012) 
-=+$#$4"5>) 
-?&+@56+A")'8&B,:45@8&)'"66#) 
-Synthesizable FPGA verification flow. 
-MUX inference within a logic block. 
-A. Generating Synthesizable Verilog 
-As a first step, we hand-wrote Verilog ]f[ two FPGA 
-primitives: a FF, ]^[ a Stratix III-like fracturable LUT (see 
-Section V). Subsequently, we automatically generate Verilog 
-]f[ the entire FPGA device, a structural netlist of these 
-primitives, as well as other primitives which are generated by 
-our generator code: multiplexers (MUXs) of any size, LUTs 
-with any number of inputs. The generation must handle the 
-following: logic blocks, intra-logic block routing, inter-logic 
-block routing, ]^[ configuration cell memory. 
-Logic Blocks: Logic blocks in VPR are represented in 
-memory as a tree; the tree root represents the entire logic block, 
-nodes at intermediate levels of the tree represent levels of 
-hierarchy in the block, ]^[ the leaves represent the primitives 
-(LUTs ]^[ FFs). We generate the Verilog ]f[ each logic block 
-by first traversing to the leaf nodes. We then move up the tree 
-and, as we visit each node in the hierarchy, its child nodes 
-are defined ]^[ instantiated in the output Verilog. The Verilog 
-generated ]f[ a logic block has the same hierarchy specified 
-by the architect in the architecture file. 
-Intra-Logic Block Routing: Routing within a logic block is 
-stored in memory as a graph, where nodes represent pins (on 
-primitives ]v[ on intermediate levels of hierarchy) ]^[ directed 
-edges represent connections between pins. For a given pin, 
-if there is more than one incoming edge, a routing MUX 
-is inferred. The select inputs to the MUX will be driven by 
-configuration cells (discussed below). Fig. 3 highlights examples of routing MUX inference within a logic block. Crossbars 
-with varying degrees of connectivity can be generated, since 
-VPR only creates edges in its in-memory model ]f[ those 
-connections that exist. 
-Inter-Logic Block Routing: Routing that connects the logic 
-blocks is likewise represented in memory as a graph. In this 
-case, the nodes represent the wire segments ]^[ pins. Edges 
-represent programmable connections between such conductors. 
-As above, where there exists more than one edge to a node, 
-MUXs are inferred. These MUXs correspond to the connectivity within switch blocks ]^[ connection blocks (Fig. 2). VPR 
-does ]n[ model the inter-logic block routing hierarchically 
-– there is no notion of switch block ]v[ connection block 
-within VPR’s in-memory model. Consequently, each MUX is 
-instantiated in our Verilog without hierarchy. 
-Configuration Cells: As MUXs that implement programmable connectivity are being instantiated, configuration 
-cells that drive their select inputs must also be instantiated ]^[ 
-attached accordingly. We use “fully encoded” MUXs, meaning, 
-a 4-to-1 MUX will have two configuration bits. Other styles of 
-MUX (e.g. flattened MUXs that use more configuration cells 
-]^[ have fewer levels from input-to-output) are left to consider 
-in future work. We use a FF to implement each configuration 
-cell. Then, the cells are connected in a chain, like a shift 
-register. Similarly, ]f[ the LUTs in logic blocks, we instantiate 
-configuration cells to hold the LUT’s truth table contents. 
-B. Bitstream Generation 
-The configuration bitstream is an ordered sequence of 
-0’s ]^[ 1’s that configures the FPGA according to the implementation of the application benchmark. Since the configuration cells are connected together in a chain, the 0/1 
-values shifted in ]f[ the benchmark’s implementation must 
-align exactly with the ordering of cells in the chain. Thus, to 
-create the configuration bitstream ]f[ a design, our generator 
-walks the device model in precisely the same order as is 
-used to generate the synthesizable Verilog. The in-memory 
-implementation of the benchmark is used to assign 0/1 values 
-in the bitstream. For example, consider a 4-to-1 interconnect 
-MUX whose inputs are numbered 0, 1, 2, 3. The path selected 
-through the MUX will be controlled by two configuration 
-cells. Assuming that VPR has routed a signal through input 
-#1, the two configuration cell values in the stream will be 
-01. Regarding bitstream generation, there were two challenges 
-worth highlighting discussed below. 
-Input ]^[ Output Equivalence: VPR supports input ]^[ 
-output pin equivalence (essentially “pin swapping”). This 
-means that as we generate the bitstream, we have to account 
-]f[ any change in the ordering of the inputs ]v[ outputs that may 
-have occurred during routing. For example, consider a MUX 
-within the intra-logic block crossbar. At the packing stage, 
-VPR may have used the ith input to the MUX ]f[ a logic 
-signal; however, the VPR router may end up instead using the 
-j th input ]f[ the signal (e.g. ]f[ timing/routability reasons). 
-During bitstream generation, we account ]f[ such changes by 
-examining the routing paths actually used by nets ]^[ do ]n[ 
-rely on the packed (pre-routed) netlist. 
-Fracturable LUTs: When LUTs are ]n[ fracturable, we 
-may assume that unused inputs are grounded ]^[ we configure 
-the LUT truth table accordingly. However, with fracturable 
-LUTs, we must account ]f[ inputs that are shared between the 
-LUTs. For example, fracturable LUTs in Altera commercial 
-devices have 8 inputs, where two inputs are shared between 
-the two LUTs. When one of the shared inputs is used in the 
-first LUT, ]b[ unused in the second LUT, we can no longer 
-assume that input to be grounded when we specify the truth 
-table ]f[ the second LUT. The truth table ]f[ the second LUT 
-must be set in such a way that the unused input is a “don’t 
-care”: the LUT function must be correct regardless of whether 
-the unused input is a 0 ]v[ a 1. This involves replicating the 
-truth table contents ]f[ both possible logic states of the unused 
-input. 
-C. Functional Correctness 
-Fig. 4 shows the verification flow. We developed a testbench wherein the original application benchmark RTL is 
-simulated in ModelSim with random vectors. Within the same 
-testbench, the FPGA device RTL, configured with the generated bitstream, is simulated with the same random vectors. 
-Output values are checked ]f[ equality with each vector 
-applied. Note that this verification flow was used to check 
-correctness at all stages of the standard cell implementation: 
-RTL generated by our VPR generator, post-technology mapping with Synopsys (discussed below), ]^[ post-layout with 
-Cadence (also discussed below). 
-D. Supported Architectures 
-Presently, our tool is able to generate synthesizable Verilog 
-]f[ FPGAs comprised of LUT/FF-based logic blocks, interconnect ]^[ I/Os. Support ]f[ other types of blocks, such as 
-DSP ]v[ RAM blocks, is left as future work. We support LUTs 
-that are either fracturable ]v[ non-fracturable. In fact, LUT 
-fracturability is the only form of VTR “modes” supported by 
-our tool. The modes feature in VTR allows an architect to describe mutually exclusive functionality ]f[ a given block. The 
-specification of modes does ]n[ contain information regarding 
-how such functionality should be implemented in hardware, 
-nor is it obvious how it could be inferred automatically by a 
-tool such as ours. 
-Aside from these limitations, our tool supports Verilog/bitstream generation ]f[ all VTR-targetable architectures 
-– made possible by the approach described above, which 
-walks VTR’s in-memory device model. For example, we 
-are able to handle: any # of LUTs/logic block, any switch 
-block/connection block connectivity, wire segments of various 
-lengths, fully ]v[ partially populated crossbars within logic 
-blocks. 
-IV. 
-S TANDARD C ELL ASIC I MPLEMENTATION 
-We use an ASIC design flow to synthesize, place, route, 
-]^[ analyze the circuit, as summarized in Fig. 5. We used 
-Synopsys Design Compiler to synthesize the FPGA to standard 
-cells. Cadence Encounter is used ]f[ placement ]^[ routing. 
-Synopsys PrimeTime is used ]f[ timing analysis. 
-A. Synthesis to Standard Cells 
-We evaluated several different synthesis strategies: topdown, “uniquify”, ]v[ bottom-up. The top-down method is a 
-push-button approach where there entire design is synthesized 
-in “one shot”. However, since it processes the whole design at 
-once, it is too run-time ]^[ memory intensive to be a viable 
-approach ]f[ a large design. In fact, ]f[ a 20 × 20 FPGA with 
-300 tracks per channel, Design Compiler could ]n[ successfully synthesize using the top-down approach. The uniquify 
-approach allows one to break up the design ]^[ compile 
-each instance separately. This approach worked, however, it is 
-again run-time intensive, as each instance of the same Verilog 
-module (e.g. a 6-LUT) is compiled individually. We therefore 
-chose the bottom-up approach, in which each required Verilog 
-module is synthesized just once, ]^[ the synthesized instances 
-are stitched together to compose the overall synthesized design. 
-While the bottom-up method produces a more regular 
-implementation ]^[ brings run-time benefits, its weakness is 
-that each type of module is synthesized in isolation; i.e. outside 
-of the context of the other modules it connects to when 
-instantiated in the overall FPGA. For example, consider that 
-]f[ a length-16 wire, it may be truncated at the edge of the 
-FPGA, depending on the location from which it is driven. 
-Length-16 wires truncated at different points will all exhibit 
-different load capacitances, ]^[ it is undesirable to synthesize 
-a separate/different driver to be used ]f[ each variant of 
-Fig. 5. 
-ASIC design flow. 
-truncated length-16 wire. Thus, to handle these issues that arise 
-from routing MUXs driving various-length wires, we did the 
-following: 1) we synthesize a single MUX of each size; 2) 
-we insert a fixed-size buffer1 on the output of each MUX to 
-create a consistent load on the MUX output; ]^[ 3) we insert a 
-fixed-size buffer every 2 tiles on inter-logic block interconnect 
-wires, ensuring a roughly uniform load ]f[ each buffer. 
-Design Compiler accepts area ]^[ timing constraints, 
-permitting one to trade-off performance vs. area ]f[ a single RTL design by changing constraints. In our experimental study (Section V), we have synthesized area-optimized, 
-timing-optimized ]^[ balanced FPGAs. Optimizing ]f[ area is 
-straightforward: we direct Design Compiler to achieve a target 
-area of 0. Optimizing ]f[ timing is more involved, owing to 
-the fact that FPGAs contain many combinational loops before 
-being programmed. Such loops are problematic ]f[ timing 
-analysis, ]^[ they must be “broken” prior to timing-constrained 
-synthesis. The loops exist within both inter- ]^[ intra-logic 
-block routing, ]^[ combinations of these. Fig. 6 ]^[ Fig. 7 
-show examples of combinational loops ]^[ how we break 
-such loops (via generated constraints provided to Synopsys). In 
-essence, after breaking such loops ]^[ by using the bottom-up 
-synthesis approach, we are able to produce a timing-optimized 
-implementation of each module; however, all possible timing 
-paths through the overall FPGA (i.e. across modules) are ]n[ 
-optimized globally. Nevertheless, results in the next section 
-demonstrate significantly improved performance in the timingoptimized implementations. Note that timing constraints are 
-only applied to paths through which logic signals may propagate in an application implementation. We do ]n[ apply timing 
-constraints to the configuration cells, ]v[ paths to/from such 
-cells. The content of such cells only changes when the device 
-is configured; hence, they are ]n[ performance critical. 
-B. Place ]^[ Route 
-Placement ]^[ routing proceeds in a flat manner, allowing 
-optimization across the module boundaries. To help the placer, 
-we guide our design using floorplanning. By default, we set 
-floorplanning constraints assuming a chip aspect ratio of 1 
-(square die) ]^[ 85% utilization (as Kuon ]^[ Rose discussed [17]). Note that total cell area is known after synthesis 
-to standard cells, making it possible to define a die size with 
-any given utilization ratio. 
-1 The Cadence Encounter router also has capabilities ]f[ automatic buffer 
-insertion (command optDesign), however, because of the size of the design 
-being placed ]^[ routed, the router-based buffer insertion repeatedly crashed 
-on our server. We therefore opted to insert buffers during synthesis. 
-Fig. 8. 
-Fig. 6. 
-Combinational loop in inter-logic block routing. 
-Fig. 7. 
-Combinational loop in logic block. 
-We found that floorplanning was mandatory to ensure that 
-the physical layout of logic ]^[ routing tiles, in terms of 
-ordering in the horizontal ]^[ vertical dimensions, matched 
-with that assumed by VPR. Without this, Encounter produced 
-layouts where, ]f[ example, logic blocks that VPR saw as 
-adjacent, were actually placed far apart in the layout. Fig. 8 
-is an example of how configuration cells will drift towards 
-each other due to their connectivity ]^[ how two logic blocks 
-that are intended to be adjacent to one another can get 
-separated. For floorplanning the individual modules, we evenly 
-divide up the chip ]^[ constrain our logic blocks ]^[ the 
-connection MUXs connected to these logic blocks in the 
-appropriate areas. On top of this grid, we overlay another 
-grid to floorplan the switch MUXs in the appropriate areas. 
-The Cadence placer allows one to control the rigidity of the 
-floorplanning constraints, specifically, whether cells are allow 
-to enter/exit each floorplanning region. We set this to the most 
-flexible scheme possible, where the floorplanning constraints 
-are used as a guide to the placer, ]b[ cells may exit/enter the 
-specified regions. All of the floorplanning TCL commands are 
-automatically generated at the same time Verilog description 
-of the FPGA is generated. 
-Once the designs have been placed ]^[ routed, parasitic 
-capacitances are extracted ]f[ use by PrimeTime to obtain accurate post-layout timing analysis. Also, at this point, a GDSII 
-file can be written that contains all the mask information. 
-C. Timing Analysis 
-Synopsys PrimeTime is used ]f[ post-layout timing analysis of: 1) specific paths within the implementation, ]v[ 2) 
-Floorplanned (left) ]^[ unfloorplanned (right) layouts. 
-an application benchmark programmed on the FPGA. PrimeTime accepts as input the design, annotated with parasitic 
-capacitance information, as well as an SDC (Synopsys design 
-constraints) file. The SDC file specifies which timing paths 
-should be ignored. For 1), we ignore all paths ]b[ the specific 
-paths we wish to analyze (see next section) ]^[ run timing 
-analysis to obtain their delay. For 2) finding the critical path of 
-an application benchmark implemented within the fabric, the 
-process is more involved. Commercial FPGA vendors provide 
-static timing analysis tools that analyze the performance ]f[ 
-user designs implemented in their FPGAs, using delay models 
-of the underlying fabric. To mimic the behavior of such 
-tools ]f[ an application implemented within our synthesized 
-fabric, we devised the following approach: during bitstream 
-generation (Section III-B), we have precise knowledge about 
-which FPGA resources are used vs. unused. For each unused 
-resource, we automatically generate an SDC constraint to 
-disable timing analysis through the resource. When PrimeTime 
-is invoked to analyze performance of the FPGA device configured with the application bitstream, PrimeTime “sees” only 
-those paths in the used part of the FPGA (which should be 
-free of combinational loops, assuming well-designed circuits). 
-The critical path reported by PrimeTime is then analogous to 
-that reported by the timing analysis tools of commercial FPGA 
-vendors. It is important to note that once the FPGA device has 
-been synthesized, placed ]^[ routed, timing analysis can be 
-done ]f[ any application benchmark by providing PrimeTime 
-with the bitstream ]^[ SDC file ]f[ that benchmark. Meaning, 
-it is ]n[ necessary to synthesize, place ]^[ route the FPGA 
-device on an individual benchmark-by-benchmark basis. 
-A challenge we had to deal with regarding PrimeTime arose 
-due to our bottom-up synthesis strategy ]^[ the delay model of 
-the standard cells. PrimeTime reported warnings (RC-009) that 
-in some cases, timing results may be inaccurate as cell drive 
-resistance was too small in comparison with the impedance 
-of the driven network. Recall that in the bottom-up synthesis 
-style, in some cases, Synopsys technology mapping must select 
-cells of a certain size without global context/knowledge of the 
-total RC load driven by such cells. This mainly occurred ]f[ 
-large cells driving long interconnect wires, ]^[ we were able 
-to eliminate all warnings through the buffer insertion discussed 
-previously. 
-V. 
-E XPERIMENTAL S TUDY 
-Table I summarizes the parameters of the FPGA architecture we synthesized into commercial TSMC 65nm standard cells. The architecture is designed to resemble Altera’s 
-Stratix III FPGA, which is also fabricated in TSMC’s 65nm 
-process, allowing us to make a (roughly) apples-to-apples 
-comparison. The architectural parameters are from a recently 
-Parameters 
-FPGA dimensions 
-K, LUT size 
-N, # of LUTs/logic block 
-Crossbar connectivity 
-L, Wire length 
-W, Channel width 
-F cin Input connectivity 
-F cout Output connectivity 
-TABLE I. 
-Values 
-20 x 20 
-6 
-10 
-50% 
-4 (87%), 16 (13%) 
-300 
-0.055 
-0.1 
-FPGA A RCHITECTURE PARAMETERS . 
-published Stratix IV architecture capture by Murray et al. [18], 
-where authors attempted to model Stratix IV within VTR2 . 
-Our synthesized FPGA has dimensions of 20 × 20 logic 
-blocks, with 10 fracturable LUTs/block. There are 300 routing 
-tracks/channel, where 87% of tracks span 4 tiles, ]^[ 13% span 
-16 tiles. F cin /F cout refer to the fraction of adjacent tracks a 
-logic block input/output pin may programmably connect to. 
-Within the logic block, the crossbar is 50% populated. We 
-are using fracturable 6-LUTs with 8 inputs, which implies 2shared inputs in dual-output mode, similar to the extensive 
-architecture described in [19]. Such LUTs can implement any 
-single function of up to 6 variables, ]v[ any two functions that 
-together, use no more than 8 unique variables. We reinforce 
-that although in this study we focus on a particular synthesized 
-fabric comparable with Stratix III, our generator is able to 
-automatically produce RTL ]f[ a variety of VTR-supported 
-architectures. 
-We synthesized three variants of the architecture described 
-above: area-optimized, timing-optimized ]^[ balanced. For 
-area-optimized, we directed Synopsys to minimize area ]^[ 
-imposed no timing constraints. For the timing-optimized, we 
-conversely directed Synopsys to minimize delay, ]^[ imposed 
-no area constraints. For the balanced, we took the mid-point 
-of the achieved delays between the area ]^[ timing-optimized 
-]^[ set these as the target delays ]f[ Synopsys. Fig. 9 shows 
-one of the synthesized FPGA fabric layouts. 
-In a first set of experiments, we examine the area ]^[ 
-performance (of specific paths) of the synthesized FPGA 
-]^[ compare with analogous area ]^[ performance data ]f[ 
-Stratix III. This first set of experiments is thus agnostic to 
-any particular application design being implemented within 
-the fabric – it is a fabric-to-fabric comparison. In a second set 
-of experiments, we compare the performance of application 
-benchmark designs implemented on our fabric to those same 
-designs implemented on Stratix III. 
-We consider various combinational ]^[ sequential benchmarks from the MCNC benchmark suite [20]. Since we are 
-using the full VTR flow, we omitted some designs from 
-the 20 largest MCNC benchmarks where VTR swept away 
-unconnected nodes (as these circuits caused problems ]f[ our 
-verification flow which relied on I/O matching). In addition to 
-the MCNC circuits, we added a finite state machine (FSM) that 
-detects a pattern, ]^[ also an adder connected to a shift register. 
-These latter two circuits were used mainly ]f[ debugging 
-purposes. We use the MCNC circuits in this initial study, 
-as these can be simulated with random vectors ]^[ verified 
-with the flow in Fig. 4. Other benchmark suites, such as the 
-VTR suite, contain DSP blocks ]^[ RAMs, ]^[ are more 
-challenging to simulate/verify, owing to the circuits having 
-reset/control inputs. 
-2 While Stratix IV is on a more advanced process than Stratix III, the soft 
-logic block ]^[ routing architectures are similar. 
-Fig. 9. 
-Synthesized FPGA. 
-A. Area Analysis 
-We compare the tile area of our synthesized FPGA to 
-Altera’s Stratix III. The tile area of our FPGA was obtained 
-by dividing total die area by the number of logic blocks 
-(20 × 20 = 400). Table II summarizes the tile area of the 
-three architectures. Stratix III LAB tile area is reported to be 
-0.0221mm2 by [21]. The area-optimized fabric resulted in the 
-smallest tile area of 0.0316mm2 , which is 1.5× bigger than 
-Stratix III. As expected, the timing-optimized ]^[ balanced 
-fabrics were larger: 2.9× ]^[ 1.9× bigger than Stratix III, respectively. We were encouraged by the area of the synthesized 
-fabrics, especially the area-optimized, which is relatively close 
-to Stratix III. 
-A number of factors contribute to the area difference 
-vs. Stratix III. First, there are architectural differences. For 
-example, our architecture does ]n[ support carry-chains nor 
-are our MUXs fully-decoded. Second, our implementation uses 
-only those standard cells in the TSMC library. In commercial 
-FPGAs, pass-transistors ]v[ transmission gates are commonly 
-used to implement MUXs ]^[ LUTs; however, we use full 
-CMOS implementations of these primitives. Likewise, we are 
-also using FFs ]f[ the configuration cells rather than SRAM 
-cells (as we expect is done in a commercial device). Perhaps 
-most importantly, the Stratix III LAB is custom laid-out. 
-Delving further into the area results, Fig. 10 shows the 
-breakdown of area into logic, inter- ]^[ intra-logic block routing, ]^[ configuration ]f[ each fabric type. In area-optimized 
-design, configuration cells built of costly FFs in our case, 
-occupy a large portion of the area: 42% of the total. It is 
-likewise ]n[ surprising that routing comprises 50% of the fabric 
-area, since we are using standard cell-based MUXs, instead of 
-pass-transistor-style MUXs. 
-In the timing-optimized FPGA fabric, we observe that 
-configuration cells are reduced to 21% of the total area. This 
-is because the configuration area is kept constant by applying 
-no timing constraints to the configuration cells (they are ]n[ 
-performance critical). Routing area has increased to 67% of the 
-area ]^[ logic area increased to 13%. Remember that in the 
-timing-optimized fabric, we inserted extra buffers on the interlogic block wires. However, buffer area is ]n[ appreciable: 2% 
-of the total. 
-FPGA Fabric 
-Area-Optimized 
-Timing-Optimized 
-Balanced 
-TABLE II. 
-# of Std. 
-Cells 
-3,577,520 
-7,521,616 
-5,298,588 
-Total Area 
-(mm2 ) 
-12.65 
-25.72 
-16.89 
-Tile Area 
-(mm2 ) 
-0.0316 
-0.0643 
-0.0422 
-FPGA Fabric 
-Area-Optimized 
-Timing-Optimized 
-Balanced 
-Stratix III 
-TABLE III. 
-A REA OF SYNTHESIZED FPGA. 
-Fig. 11. 
-Fig. 10. 
-Area breakdown. 
-In the balanced FPGA fabric, both timing ]^[ area constraints were applied, however, we give a more relaxed timing 
-constraint to the routing circuitry to save area. This leads to 
-logic taking up 31% (logic + config ]f[ logic) ]^[ routing 
-taking up 69% (routing + config ]f[ routing + buffers) of the 
-total area. Note that in the balanced fabric, we keep the LUTs 
-timing constraint aggressive, since the LUT takes up a small 
-portion of the total area. 
-B. Timing Analysis 
-We first examine the delay of commonly-used paths in 
-the synthesized fabrics ]^[ Stratix III (application-agnostic 
-analysis). Specifically, we looked at the following three paths: 
-1) 
-2) 
-3) 
-L0 : FF → crossbar → LUT → FF (within a logic 
-block). 
-L4 : FF → length-4 wire → crossbar → LUT → FF 
-(a path of length 4). 
-L16 : FF → length-16 wire → crossbar → LUT → 
-FF (a path of length 16). 
-Table III is a summary of average delay of these paths 
-in 6 different areas of the FPGAs (in the four corners of 
-the fabric, ]^[ also on the middle of the left/right sides). 
-In the synthesized fabrics, we manually selected the 6 paths 
-by creating an SDC file that reports the delay ]f[ each. In 
-doing so, we are assured that our analysis reflects the use 
-of a length-4 ]v[ length-16 wire, accordingly. For the Altera 
-Stratix III delays, we use Altera’s LogicLock feature to place 
-two connected flip-flops 4 ]v[ 16 logic blocks away from one 
-another, ]^[ then use Altera’s TimeQuest tool ascertain the 
-path delay. For our fabrics, within the logic blocks, we apply 
-an SDC constraint ]s[ that we measure the path corresponding 
-to the fastest LUT input; this is to be comparable to Altera, 
-L0 (ns) 
-3.71 
-1.79 
-1.34 
-0.73 
-L4 (ns) 
-7.38 
-2.90 
-3.73 
-1.03 
-L16 (ns) 
-17.31 
-4.92 
-7.32 
-1.54 
-A RCHITECTURE D ELAY. 
-Delay breakdown. 
-since Quartus uses the input that results in the smallest delay. 
-Note that ]f[ the timing results in this paper, we use the slowest 
-speedgrade ]f[ Stratix III, ]^[ compare with slowest-processcorner analysis ]f[ our fabric. 
-Comparing our timing-optimized implementation to 
-Stratix III, the delay is 2.3× to 3.5× slower, with the gap 
-being larger ]f[ longer wire lengths. The balanced fabric is 
-1.8× to 4.7× slower, ]^[ the area-optimized fabric is 5× to 
-11.2× slower than Stratix III. We believe the reason that the 
-delay gap vs. Stratix III grows with wire length is related to 
-the difficulty in handling long wires in the ASIC toolflow. 
-The relative results between the synthesized fabrics are as 
-expected: the area-optimized fabric is overall slower than the 
-balanced design, ]^[ the balanced design is slower than the 
-timing-optimized fabric, except ]f[ the L0 path. L0 reflects 
-timing within a logic block; the inter-logic block routing 
-MUXs are ]n[ included in the delay. The slightly lower delay 
-in the balanced design may be due to the heuristic nature of 
-ASIC mapping, placement, ]^[ routing tools. It may also be 
-because in our fabric (unlike Stratix III), one MUX drives 
-the output of a logic block to both feedback ]^[ inter-logic 
-block routing paths. That output MUX is timing optimized in 
-our balanced fabric implementation, ]y[ it sees a smaller load 
-than in the timing-optimized fabric implementation. Similar 
-to the area analysis, Fig. 11 shows a delay breakdown ]f[ 
-the three types of paths ]f[ all architectures. The L4 ]^[ L16 
-fabric delays are dominated by routing delay. This confirms 
-that we need to use optimizations such as buffering to reduce 
-the routing delay. 
-In the second part of the performance study, we looked 
-at how benchmark circuits perform on the synthesized FPGA 
-vs. Stratix III. The same Verilog file is passed to each tool 
-]f[ implementing the circuits on the FPGAs. We use the SDC 
-file generated with the bitstream to “program” our synthesized 
-FPGA as discussed in Section IV-C. Note that the results of 
-this experiment are ]n[ solely reflective of the fabric speed, ]b[ 
-also of the differences in architectures, ]^[ in the CAD tools 
-supporting the architectures: open-source VTR vs. Altera’s 
-Benchmark 
-Circuits 
-alu4 
-apex4 
-des 
-ex1010 
-ex5p 
-misex3 
-pdc 
-seq 
-spla 
-diffeq 
-dsip 
-elliptic 
-frisc 
-tseng 
-addshift16 
-fsm 
-Geo. Mean 
-TABLE IV. 
-AreaOptimized 
-67.80 
-74.62 
-68.65 
-103.59 
-68.68 
-74.78 
-111.02 
-69.79 
-112.73 
-69.42 
-35.94 
-103.42 
-118.72 
-60.43 
-37.01 
-5.75 
-63.13 
-TimingOptimized 
-22.29 
-23.06 
-21.58 
-31.36 
-21.86 
-22.59 
-33.72 
-22.66 
-34.92 
-23.28 
-11.71 
-32.45 
-38.06 
-20.05 
-13.43 
-1.71 
-20.10 
-Balanced 
-32.47 
-36.08 
-31.26 
-48.09 
-31.54 
-34.32 
-51.66 
-32.66 
-51.30 
-29.74 
-17.75 
-44.02 
-52.37 
-25.92 
-16.61 
-2.85 
-28.97 
-Stratix 
-III 
-5.293 
-5.271 
-6.696 
-7.248 
-5.455 
-5.281 
-7.213 
-5.742 
-6.654 
-4.391 
-5.918 
-6.909 
-7.865 
-4.519 
-4.31 
-1.113 
-5.25 
-Altera’s, especially considering Stratix III is custom laid-out 
-]^[ undoubtedly highly optimized. To our knowledge, this 
-work represents the first comparison of a standard cell FPGA 
-implementation to a commercial FPGA. The proposed VTRbased synthesizable FPGA generator opens the door to actual 
-silicon implementation of FPGAs targetable by an established 
-CAD tool. 
-In the future, we would like to assess power consumption, 
-]^[ extend architecture ]^[ bitstream generation to accept 
-all architectures supported by VTR, including those with 
-DSP blocks ]^[ memories. Further work is also needed to 
-support designs with multiple clocks. Finally, we would like 
-to explore the utility of adding custom library cells that are 
-specifically tailored ]f[ FPGAs, particularly ]f[ efficient MUX 
-]^[ configuration cell implementations. 
-R EFERENCES 
-[1] 
-[2] 
-C RITICAL PATH D ELAY (nS ) OF D ESIGNS ON FPGA. 
-[3] 
-Quartus II. Table IV lists the critical path delays reported by 
-the tools. The reported critical path delays do ]n[ include clock 
-skew nor I/O cell delays (only core logic ]^[ routing). 
-In combinational designs (top part of table), both designs 
-were given input-to-output delay constraints. On average, there 
-is a ∼3.8× increase in delay between the timing-optimized 
-]^[ Stratix III FPGAs (see geo. mean row at bottom of 
-table). The delay gap between the two FPGAs increased 
-from our architecture delay study above, likely due to the 
-weaknesses of the open-source VTR flow vs. Quartus II. In 
-the sequential designs (bottom part of table), the critical path 
-delays reported include register-to-register ]^[ I/O paths. Most 
-circuits show similar increase in delay as the combinational 
-designs; however, the dsip ]^[ fsm benchmarks showed smaller 
-increases of 1.5× to 2×. The critical paths of these circuits 
-have fewer logic levels compared to the other designs. 
-It is worthwhile to mention that one of the key advantages 
-of a synthesizable FPGA fabric that is it permits the type of 
-exploration done here: the ability to realize fabrics with different area/delay trade-offs from a single RTL source, simply 
-by changing constraints provided to the ASIC tools. Such an 
-exploration is highly costly if manual layout is required ]f[ 
-each fabric. 
-[4] 
-[5] 
-[6] 
-[7] 
-[8] 
-[9] 
-[10] 
-[11] 
-[12] 
-[13] 
-[14] 
-VI. 
-C ONCLUSIONS AND F UTURE W ORK 
-In this work, we propose to automatically generate synthesizable FPGA fabrics within the open-source FPGA CAD 
-tool, VTR. The fabrics we generate are then synthesized, 
-placed ]^[ routed using a standard ASIC design flow into a 
-commercial standard cell library. We synthesized 3 variants 
-of an FPGA fabric (modelled on Altera’s Stratix III) into 
-65nm TSMC standard cells: timing-optimized, area-optimized, 
-]^[ balanced. We compared the tile area of our smallest 
-FPGA fabric (area-optimized) with Altera’s Stratix III ]^[ 
-found our fabric used 1.5× more area. Our timing-optimized 
-fabric required 3× more area than Stratix III. With respect 
-to performance, the critical paths of designs implemented in 
-our timing-optimized fabric are ∼3.8× longer, on average, 
-than in Stratix III; however, in some benchmarks the delay 
-gap was as low as 1.5×. Overall, we are encouraged by 
-the silicon area ]^[ performance of our fabric relative to 
-[15] 
-[16] 
-[17] 
-[18] 
-[19] 
-[20] 
-[21] 
-J. Rose et al., “The VTR Project: Architecture ]^[ CAD ]f[ FPGAs 
-from Verilog to Routing,” in FPGA. ACM, pp. 77–86. 
-E. Fluhr et al., “Power8: A 12-core server-class processor in 22nm SOI 
-with 7.6tb/s off-chip bandwidth,” in ISSCC. IEEE, 2014, pp. 96–97. 
-W. Deng et al., “A Fully Synthesizable All-Digital PLL With Interpolative Phase Coupled Oscillator, Current-Output DAC, ]^[ FineResolution Digital Varactor Using Gated Edge Injection Technique,” 
-JSSC, vol. 50, no. 1, pp. 68–80, Jan 2015. 
-V. Betz et al., Architecture ]^[ CAD ]f[ Deep-Submicron FPGAs. 
-Kluwer Academic Publishers, 1999. 
-“Stratix III ALM Logic Structure’s 8-Input Fracturable 
-LUT,” Altera Corp., Tech. Rep., 2015. [Online]. Available: 
-https://www.altera.com/products/fpga/features/st3-logic-structure.html 
-S. Chaudhuri et al., “An 8x8 run-time reconfigurable FPGA embedded 
-in a SoC,” in DAC. ACM/IEEE, 2008, pp. 120–125. 
-——, “Efficient modeling ]^[ floorplanning of embedded-FPGA fabric,” in FPL. IEEE, 2007, pp. 665–669. 
-H. J. Liu, “Archipelago – An Open Source FPGA with Toolflow 
-Support,” Master’s thesis, University of California at Berkeley, 2014. 
-V. Aken’Ova, “Bridging the gap between soft ]^[ hard eFPGA design,” 
-Master’s thesis, University of British Columbia, 2005. 
-V. Aken’Ova et al., “An improved “soft” eFPGA design ]^[ implementation strategy,” in IEEE CICC, 2005, pp. 179–182. 
-V. Aken’Ova ]^[ R. Saleh, “A “soft++” eFPGA physical design 
-approach with case studies in 180nm ]^[ 90nm,” in ISVLSI. IEEE, 
-2006. 
-S. Phillips ]^[ S. Hauck, “Automatic layout of domain-specific reconfigurable subsystems ]f[ system-on-a-chip,” in FPGA. ACM, 2002, 
-pp. 165–173. 
-C. Ebeling et al., “RaPiD Reconfigurable pipelined datapath,” in Fieldprogrammable logic smart applications, new paradigms ]^[ compilers, 
-1996, pp. 126–135. 
-N. Kafafi et al., “Architectures ]^[ algorithms ]f[ synthesizable embedded programmable logic cores,” in FPGA. ACM, 2003, pp. 3–11. 
-S. Wilton et al., “A synthesizable datapath-oriented embedded FPGA 
-fabric,” in FPGA. ACM, 2007, pp. 33–41. 
-V. Betz ]^[ J. Rose, “VPR: A new packing, placement ]^[ routing tool 
-]f[ FPGA research,” in FPL, 1997, pp. 213–222. 
-I. Kuon ]^[ J. Rose, “Measuring the gap between FPGAs ]^[ ASICs,” 
-Trans. on CAD, vol. 26, no. 2, pp. 203–215, 2007. 
-K. E. Murray et al., “Titan: Enabling large ]^[ complex benchmarks 
-in academic CAD,” in FPL. IEEE, 2013. 
-J. Luu, “Architecture-Aware Packing ]^[ CAD Infrastructure ]f[ FieldProgrammable Gate Arrays,” Ph.D. dissertation, University of Toronto, 
-2014. 
-S. Yang, Logic Synthesis ]^[ Optimization Benchmarks User Guide 
-Version 3.0. Microelectronics Center of North Carolina, 1991. 
-H. Wong et al., “Comparing FPGA vs. custom CMOS ]^[ the impact 
-on processor microarchitecture,” in FPGA. ACM, 2011, pp. 5–14. 
+Giamblanco 1 
+Nicholas V. Giamblanco 
+ENG503 - Science Fiction 
+Professor David Copeland 
+Monday, November 21st, 2016 
+New Crobuzon - The Mirror to Our World 
+Question No. 1 
+Science Fiction has more substance than space ships, alien interactions ]^[ other intergalactic 
+experiences. This genre provides a connection to science, society ]^[ morality, through fiction. 
+Science Fiction is the bridging ]^[ extrapolation between reality ]^[ an alternate world where 
+science is the catalyst ]f[ open-ended ethical ]^[ moral questions. These questions are significant 
+to our society, as we citizens often neglect our reflective duties. Our world contains many ethical 
+]^[ moral issues, ]b[ many of these issues are suppressed by our ignorance ]^[ our lack of 
+responsibility. Walking by the homeless, purchasing clothing to feel good, polluting the environment, 
+consuming an abnormal amount of food while people starve; these are examples of our ignorance 
+]^[ irresponsibility. These problems must be addressed ]^[ investigated in order to create a solution. 
+By using Science Fiction, we grasp the attention of society ]^[ can ask significant questions to 
+highlight problems our society ignores. Perdido Street Station written by China Mieville ´ , provides 
+a connection to our world through the fictional city of New Crobuzon. This connection ]n[ only 
+introduces science fiction’s dependency on this city, ]b[ its exploration provides an obscure lens to 
+our world’s issues. The city’s noir description, its underlying corruption ]^[ lies, ]^[ the cultural 
+differences between Issac ]^[ Lin provide this relationship to our world’s issues. 
+Visual descriptions of a physical environment provide information about the environment’s 
+appearance, inhabitants, ]^[ the emotional atmosphere. In literature, these elements combine to 
+form a relationship with a theme. In Perdido Street Station the noir element of our world is explored 
+]^[ mirrored in New Crobuzon. The description of this city’s entrance, the exploration of the 
+innards of this city, ]^[ the description of the city’s architecture reflect the noir nature of society. 
+This steam-punk novel begins the story with a passenger on a boat, entering an ominous area. The 
+Giamblanco 2 
+passenger begins his tale by describing the location of the boat, ]^[ the body of water it’s traveling 
+on. The boat is traveling on a river that ”...twists ]^[ turns to face the city. It looms suddenly, 
+massive, stamped on the landscape,”(Mieville, 2001, p. 4). The author’s thought was to indicate ´ 
+the prominence of the city, ]^[ how it is ]n[ avoidable. Just as any traveler approaches any city 
+through means of air travel, boating journeys, ]v[ driving, a big city cannot be missed. As the 
+journey progresses, the passenger begins to describe details of the city, ”Its lights wells up around 
+the surrounds, the rock hills, like bruise-blood,”(Mieville, 2001, p. 4) ]^[ ”Its ´ dirty towers glow. I 
+am debased,”(Mieville, 2001, p. 4). The description of the entrance into New Crobuzon provides an ´ 
+emotional atmosphere with sensations involved in debasement, disgust, ]^[ dirtiness. The author is 
+explicit, direct ]^[ grim with the introduction to the city, ”New Crobuzon was a huge plague pit, 
+a morbific city,”(Mieville, 2001, p. 9). ´ Mieville ´ is opening up our eyes to the truth of our world, 
+how dirty, ]^[ disgusting it really is. As the novel progresses, Lin is introduced. She is one of 
+the main characters of Perdido Street Station. She is a Khepri (a humanoid insect, similar to a 
+beetle). One of Lin’s distinct emotional characteristics is her dislike ]f[ her culture. This dislike 
+drives her to leave her sanction, ]^[ change her lifestyle. Lin is an artist, ]b[ maintains practices 
+that are unconventional ]f[ her cultural standards of art. Lin’s interesting personality allows ]f[ 
+an in-depth exploration into the innards of New Crobuzon. In Chapter 2, Lin makes her way into 
+the heart of this grim city. She begins her passage into the core of the city with clogs wet with 
+”... organic muck from the street, rich pickings ]f[ the furtive creatures peering from the drain.” 
+(Mieville, 2001, p. 13). Once again, Mi ´ eville reinforces the the city’s dirtiness ]^[ griminess, in ´ 
+hopes of grabbing the reader’s attention ]f[ comparison to our world. Lin continues her journey 
+in a cab. Dark imagery is presented during this ride, of the Flyside Militia Tower, with its ”... 
+vast filthy pudgy pillar, squat ]^[ mean, somehow, ]f[ all it thirty-five storeys,”(Mieville, 2001, p. ´ 
+14) ]^[ of the half inflated dirigible, ”...It flapped ]^[ lolled ]^[ swelled like a dying fish. She 
+could feel its engine humming, even through the layers of air, as it stained to disappear into the 
+gun-grey clouds.”(Mieville, 2001, p. 14). The intensity of the descriptive elements increase as her ´ 
+journey continues, until she reaches the, ”architectural tissue where the fibres of the city congealed, 
+Giamblanco 3 
+where the skyrails of the militia radiated out from the Spike like a web ... Perdido Street Station,” 
+(Mieville, 2001, p. 16). The emphasis of darkness, dirtiness, ]^[ debasement in New Crobuzon ´ 
+provoke the reader to reflect upon the world we currently live in. The city’s architecture supports 
+this negative intensity the author is conveying to the reader, ”The rotting buildings lean against 
+each other, exhausted,”(Mieville, 2001, p. 4). Furthermore, the architecture represents the cold ´ 
+]^[ unfulfilled emotions surrounding this city, ”Extra Storeys are rendered in the cold white muck 
+which fills gaps between houses ]^[ dead-end alleys,”(Mieville, 2001, p. 5). The beginning of ´ 
+chapter six continues this noir journey, ”Even the trains that moved innumerable women ]^[ men 
+]^[ commodities around New Crobuzon’s great carcuss fought to stay about the houses, as if they 
+were afraid of the putrefaction of architecture,”(Mieville, 2001, p. 39). The imagery surrounding ´ 
+the rotting, decaying, dirty city was intended by the author to convey a reflection of our world. This 
+reflection was emphasized through the grim introduction of New Crobuzon, the exploration of the 
+city’s innards, ]^[ the architectural pieces within the city. 
+The act of lying, is to declare ”An intentionally false statement,”(Oxford University Press, n.d.). 
+As a society, humans frown upon individuals that lie. However, the act of lying is ubiquitous in our 
+society. Intentionally false statements can be used to deceive a target, where the target may be a 
+computing system ]v[ a society. A computer hacker can deceive ]^[ gain access to the computing 
+system. A society can be deceived by a presidential candidate who lies to the public ]^[ manages to 
+win the presidential election. Once the target system is deceived, corruption can ensue. The hacked 
+computing system is subject to file corruption, data corruption, etc. The deceived society is subject 
+to war, segregation, poverty, abuse, ]^[ corruption. Perdido Street Station’s city of New Crobuzon 
+mirrors these elements of lies, deceit, ]^[ corruption through the characters of Yagharek, Bentham 
+Rudgutter, ]^[ Mr. Motley. The character Yagharek, is one to investigate ]f[ characteristics of 
+deceit. His introduction is abrupt, ”... the door swung open ]^[ shut again below,”(Mieville, 2001, p. ´ 
+20). This is where Issac - one of the main characters of the story - is introduced to Yagharek. Issac 
+is a scientist known in New Crobuzon ]f[ his controversial research. Yagharek is a member of the 
+Garuda species, (a species that closely resembles birds). This Garuda contacted Issac in hopes of 
+Giamblanco 4 
+reviving Yagharek’s wings, which, ”...Issac realized that the wings had been sawed from Yagharek’s 
+back. No single sudden cut, ]b[ a long, drawn out torturous cut.” (Mieville, 2001, p. 31). Curiously, ´ 
+Issac probed Yagharek, in order to find out what had happened to Yagharek. Issac discovers that this 
+occurred due to a ”..choice theft in the second degree... with utter disrespect,” ]^[ is kept in the dark 
+about its meaning.(Mieville, 2001, p. 32). The authors intention ]f[ this vague response becomes ´ 
+clear near the end of the novel. Issac agrees to help Yagharek to revitalize his wings. However, 
+Issac was deceived by Yagharek. Yagharek had raped a member of his species. This was choice 
+theft in the second degree. Yagharek’s choice to be elusive with details regarding this punishment 
+is a clear example of deceit. Mieville’s involvement of Yagharek’s deceit provides the plot of the ´ 
+novel, ]b[ it also reveals other underlying corruption within New Crobuzon. The mayor, Bentham 
+Rudgutter, proves to be a source of corruption in Perdido Street Station. Rudgutter has ”got fingers 
+in every fucking pie you can think of,”(Mieville, 2001, p. 81). The mayor of New Crobuzon has ´ 
+been involved in many illicit acts, including his government personnel. They all, ”Churn out the 
+commodity, grab the profit, get the militia to tidy up your customers afterwards, get a new crop 
+of Remade ]v[ slave-miners,”(Mieville, 2001, p. 81). By adding corruption in a governmental ´ 
+figure, Mieville provides the comparison to our corporate sector, ]^[ the elements that drives these ´ 
+corporate giants - lies, deceit ]^[ corruption. The mayor’s illicit activities include bargaining with 
+demons, ”We haven’t even discussed yet, Ambassador. I assure you I can make a very generous 
+offer,” (Mieville, 2001, p. 161). By bargaining with the demon ambassador, Rudgutter proves his ´ 
+corrupt nature; Demons are the symbol of evil. The mayor is also involved with crime related gangs, 
+”What by damn, what in Jabber’s name, what the godshit was Motley playing at? I thought the man 
+was supposed to be professional...,”(Mieville, 2001, p. 156). Finally, Rudgutter has affliations with ´ 
+Mr. Motley, the most feared ganglord in the city ]^[ is equally deceitful ]^[ corrupt. Mr. Motley’s 
+appearance provides an allusion to the theme of corruption, deceit ]^[ lies, ”Scraps of skin ]^[ fur 
+]^[ feathers swung as he moved; tiny limbs clutched; eyes rolled from obscure niches; antlers ]^[ 
+protrusions of bone jutted precariously,”(Mieville, 2001, p. 28). The description of Mr. Motley is ´ 
+the imagery of corruption. His body is a random ]^[ awkward synthesis, providing the comparison 
+Giamblanco 5 
+to our obsession with material goods. The author has chosen to represent our desire ]f[ material 
+goods with this character to explain how materialists are corrupt. Mr. Motley’s character provides 
+more on this theme of corruption, as we see his role in the city of New Crobuzon, ”He talked idly 
+of turf wars in Griss Twist ]^[ Badside, dropped hints of gangland massacres in the heart of The 
+Crow,”(Mieville, 2001, p. 120). The author is establishing Mr. Motley’s power in New Crobuzon. ´ 
+The power Mr. Motley has affects Lin during their sessions together. Through repetition of his 
+corrupt plans, ”Mr. Motley’s blithe chat crept in,”(Mieville, 2001, p. 120) to Lin’s mind. This ´ 
+distorts her thoughts, as she found herself, ”idly wondering,”(Mieville, 2001, p. 120) ]^[ concerned ´ 
+about these plans. Mieville is ensuring Mr. Motley be treated as a corrupt computer program, which ´ 
+creates corruption in any memory space it is connected to. In this case, Mr. Motley is corrupting the 
+city of New Crobuzon, the Mayor of this Dystopian city, ]^[ Lin. 
+Culture is essential to any society. Culture, is ”the beliefs, customs, arts, etc., of a particular 
+society, group, place, ]v[ time” (Merriam-Webster, 2016). Some cities in the modern world consist of 
+an infusion of different cultures. New Crobuzon hosts a wide variety of cultures: Cactace, Remades, 
+Vodyanoi, Khepri, ]^[ many others. With these cultural salads, it is important to investigate 
+their relationships. Cultural mixing may pose issues in romance, lifestyle, ]^[ society. This 
+city in Perdido Street Station, poses questions about multicultural relationships. Issac ]^[ Lin’s 
+multicultural relationship is explored ]f[ its differences ]^[ similarities from a multicultural view, 
+]^[ its reflection to our world. Initially, Perdido Street Station introduces New Crobuzon through 
+a human, Issac. By viewing New Crobuzon through Issac’s eyes in chapter one, cultural traits of 
+humans are presented. Dreaming is an innate trait to humans. The introduction to Issac is brought 
+about by living through one of his dreams. This dream in particular is a nightmare, where Issac was, 
+”staring anxiously at the class when that unctuous bastard Vermishank had looked in,”(Mieville, ´ 
+2001, p. 8). The dreaming mechanism is presented to provide a recognizable feeling, ensuring the 
+reader feels connected. The specific use of a nightmare is important as it unveils human qualities of 
+fear, misery, ]^[ loathing. Issac feels misery, as he failed as a teacher, while working at a university. 
+Issac is also sensitive to external judgment. His sensitivity is brought about when Lin signs, ”You 
+Giamblanco 6 
+hide us ]s[ you can publish articles ]f[ people you despise,”(Mieville, 2001, p. 12) in regards to ´ 
+his failure in the academic world. Issac responds with a defensive comment, wondering how Lin 
+would feel ”if the art-world threatened to ostracize her,”(Mieville, 2001, p. 12). This is a typical ´ 
+human characteristic. Mieville demonstrates these human characteristics with Issac in order to ´ 
+provide a familiarity to our world. Issac is our common ground in New Crobuzon. The Khepri 
+culture is introduced within the second chapter of this novel, through the use of Lin. Lin is the key 
+to understanding this culture. She is able to provide this view as she is an outsider to her culture, 
+”She breathed easier when the streets around her were clean of beetle cement, ]^[ the only Khepri 
+in the crowds were, like here, outcasts,”(Mieville, 2001, p. 16). By being an outsider to the culture, ´ 
+Lin can identify many qualities of the Khepri: ”You have nothing, surrounded by people that mock 
+you as bugs, buy your art cheap, ]^[ sell you food dear, ]b[ because there are others with even 
+less you style yourselves the protectors of the Khepri way. I’m out. I dress how I like. My art is 
+mine,”(Mieville, 2001, p. 16). The Khepri culture is comparable to a boxed-in religious community, ´ 
+where no external thinking is required - just follow blindly with no questions. The author ensures 
+the reader is aware of this, ”Lin’s broodma (who scorned a name as decadent affection) taught Lin 
+]^[ her broodsister that Insect Aspect was the lord of all creation... He had shat out the universe 
+after eating the void, in a mindless act of cosmic creation... they were also taught to worship 
+]^[ serve their mindless brothers”(Mieville, 2001, p. 123). By creating a religious dimension in ´ 
+which a culture is closed off to new ideas, the author has created a link to our world’s cultures ]^[ 
+their beliefs. Lin’s dislike ]f[ her culture reinforces this idea, as many individuals in our world do 
+]n[ support such a one-sided view on life. Lin’s dislike ]f[ the ”Khepri Way” creates a want ]f[ 
+reintegration into another culture. Lin has, ”steeped herself enough in human culture,”(Mieville, ´ 
+2001, p. 83) to become like a human. This want allows the reader to connect to Lin, as it is 
+common ]f[ individuals of different cultures to change their beliefs, customs, ]^[ rituals to fit into 
+another culture. Although her species is alien to us, Mieville has added human characteristics to the ´ 
+Khepri ]f[ us to compare with foreign cultures in our world. These differences ]^[ similarities in 
+Khepri ]^[ Humans are explored, through Issac ]^[ Lin’s relationship. This cultural relationship is 
+Giamblanco 7 
+introduced in the initial chapters of this novel. In certain areas of the city, the couple must hide their 
+status, ”Issac ]^[ Lin had been lovers nearly two years. They had always tried ]n[ to think too hard 
+about the rules of their relationship... Innocent remarks ]^[ askance looks from others, a moment 
+of contact too long in a public-a note from a grocer-was a reminder that they were,in some contexts, 
+living a secret”(Mieville, 2001, p. 10). The author is allowing the reader to relate to instances in our ´ 
+world of forbidden love. Even differences in physical characteristics demonstrate awkwardness, ”I 
+see clearly as you, clearer. For you it is undifferentiated. In one corner a slum collapsing, in another 
+a new train with pistons shining... For me each tiny part has integrity, each fractionally different 
+from the next, until all variation is accounted for, incrementally, rationally”(Mieville, 2001, p. 13). ´ 
+This awkwardness is presented to the reader to highlight differences in culture. These slight cultural 
+differences reflect to our world, where couples of different cultures experience many awkward ]^[ 
+unusual adjustments. The author presents the reader with this relationship as it reflects upon the 
+cultural differences in our world, ]^[ how it affects relationships in a personal ]^[ romantic way. 
+Couples of different cultures often abide by foreign rules ]^[ traditions that over complicate their 
+relationship. By exploring these different cultures, ]^[ their intermingling, a connection to our 
+world is established, ]^[ the reader is able to understand issues regarding multiculturalism. 
+It is absolutely imperative ]f[ society to reflect upon its current state, status, ]^[ condition. By 
+reflecting on our society, it is possible ]f[ positive ]^[ healthy growth in all subjects ]^[ interests. 
+Unfortunately, the frequency of this self-reflection does ]n[ meet the requirements ]f[ this growth. 
+Perdido Street Station explores this deficiency, ]^[ uses Science Fiction as a mirror to our world. 
+New Crobuzon temporarily replaces our world through an abstract ]^[ obscure lens. Issues that 
+reflect politics, society, ]^[ morality are targeted with this city. New Crobuzon explores the darkness 
+of reality, lies, deceit, ]^[ corruption, the cultural infusion of Lin ]^[ Issac’s relationship ]^[ its 
+relationship to our world. Ultimately, the Science Fiction in Perdido Street Station is this obscure, 
+bizarre magnifying glass, which enlarges issues in our world through the dystopic city of New 
+Crobuzon. 

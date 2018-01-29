@@ -166,6 +166,7 @@ class garnish:
 
 		sorted_bins 	= 	{}
 		ent_lim 		= 	avg_entropy
+		miss_count 		=  	0
 
 		for _bin in sen_pairs:
 			seen_again={}
@@ -194,21 +195,23 @@ class garnish:
 									b.append(ingredient_freq_map[ingredient_free_map[i]])
 									wb.append(ingredient_free_map[i].lower())
 
-								sen_pairs[_bin][jl] = sen_pairs[_bin][jl] * 0.01
-								sen_pairs[_bin][il] = sen_pairs[_bin][il] * 0.01
-
 								ent_lim = ent_lim + ent_lim*0.05
 
-								sim_j  = math.floor(10*(mutils.get_cosine_sim(a,b)))/10 + math.floor(10*(mutils.jaccard_index(wa,wb)))/10
+								sim_j  = math.floor(10*(mutils.get_cosine_sim(a,b))) + math.floor(10*(mutils.jaccard_index(wa,wb)))
 
 								if sim_j not in sorted_bins[_bin]:
 									sorted_bins[_bin][sim_j]={}
 
 								sorted_bins[_bin][sim_j][il]=1
 								sorted_bins[_bin][sim_j][jl]=1
+						else:
+							miss_count=miss_count+1
+							if miss_count == int(len(sen_pairs[_bin])/2):
+								ent_lim = ent_lim*0.9
+								miss_count = 0
+
 
 		print("\n")
-
 		for _bin in sen_pairs:
 			if len(sorted_bins[_bin]) > 0:
 				print(bcolors.OKGREEN+"[Similarity] : "+str(_bin)+bcolors.ENDC)
@@ -221,7 +224,11 @@ class garnish:
 							s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
 						s1=s1+"\n\n"
 					print(s1)
-				raw_input("~ ")
+					
+				print(bcolors.GREENBACK + "Press [c] to exit. [return] contiues. " +bcolors.ENDC)
+				ans=raw_input("~ ")
+				if ans == "c":
+					break
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

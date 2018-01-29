@@ -1,195 +1,1059 @@
-Giamblanco 1 
-Nicholas V. Giamblanco 
-ENG503 - Science Fiction 
-Professor David Copeland 
-Monday, November 21st, 2016 
-New Crobuzon - The Mirror to Our World 
-Question No. 1 
-Science Fiction has more substance than space ships, alien interactions ]^[ other intergalactic 
-experiences. This genre provides a connection to science, society ]^[ morality, through fiction. 
-Science Fiction is the bridging ]^[ extrapolation between reality ]^[ an alternate world where 
-science is the catalyst ]f[ open-ended ethical ]^[ moral questions. These questions are significant 
-to our society, as we citizens often neglect our reflective duties. Our world contains many ethical 
-]^[ moral issues, ]b[ many of these issues are suppressed by our ignorance ]^[ our lack of 
-responsibility. Walking by the homeless, purchasing clothing to feel good, polluting the environment, 
-consuming an abnormal amount of food while people starve; these are examples of our ignorance 
-]^[ irresponsibility. These problems must be addressed ]^[ investigated in order to create a solution. 
-By using Science Fiction, we grasp the attention of society ]^[ can ask significant questions to 
-highlight problems our society ignores. Perdido Street Station written by China Mieville ´ , provides 
-a connection to our world through the fictional city of New Crobuzon. This connection ]n[ only 
-introduces science fiction’s dependency on this city, ]b[ its exploration provides an obscure lens to 
-our world’s issues. The city’s noir description, its underlying corruption ]^[ lies, ]^[ the cultural 
-differences between Issac ]^[ Lin provide this relationship to our world’s issues. 
-Visual descriptions of a physical environment provide information about the environment’s 
-appearance, inhabitants, ]^[ the emotional atmosphere. In literature, these elements combine to 
-form a relationship with a theme. In Perdido Street Station the noir element of our world is explored 
-]^[ mirrored in New Crobuzon. The description of this city’s entrance, the exploration of the 
-innards of this city, ]^[ the description of the city’s architecture reflect the noir nature of society. 
-This steam-punk novel begins the story with a passenger on a boat, entering an ominous area. The 
-Giamblanco 2 
-passenger begins his tale by describing the location of the boat, ]^[ the body of water it’s traveling 
-on. The boat is traveling on a river that ”...twists ]^[ turns to face the city. It looms suddenly, 
-massive, stamped on the landscape,”(Mieville, 2001, p. 4). The author’s thought was to indicate ´ 
-the prominence of the city, ]^[ how it is ]n[ avoidable. Just as any traveler approaches any city 
-through means of air travel, boating journeys, ]v[ driving, a big city cannot be missed. As the 
-journey progresses, the passenger begins to describe details of the city, ”Its lights wells up around 
-the surrounds, the rock hills, like bruise-blood,”(Mieville, 2001, p. 4) ]^[ ”Its ´ dirty towers glow. I 
-am debased,”(Mieville, 2001, p. 4). The description of the entrance into New Crobuzon provides an ´ 
-emotional atmosphere with sensations involved in debasement, disgust, ]^[ dirtiness. The author is 
-explicit, direct ]^[ grim with the introduction to the city, ”New Crobuzon was a huge plague pit, 
-a morbific city,”(Mieville, 2001, p. 9). ´ Mieville ´ is opening up our eyes to the truth of our world, 
-how dirty, ]^[ disgusting it really is. As the novel progresses, Lin is introduced. She is one of 
-the main characters of Perdido Street Station. She is a Khepri (a humanoid insect, similar to a 
-beetle). One of Lin’s distinct emotional characteristics is her dislike ]f[ her culture. This dislike 
-drives her to leave her sanction, ]^[ change her lifestyle. Lin is an artist, ]b[ maintains practices 
-that are unconventional ]f[ her cultural standards of art. Lin’s interesting personality allows ]f[ 
-an in-depth exploration into the innards of New Crobuzon. In Chapter 2, Lin makes her way into 
-the heart of this grim city. She begins her passage into the core of the city with clogs wet with 
-”... organic muck from the street, rich pickings ]f[ the furtive creatures peering from the drain.” 
-(Mieville, 2001, p. 13). Once again, Mi ´ eville reinforces the the city’s dirtiness ]^[ griminess, in ´ 
-hopes of grabbing the reader’s attention ]f[ comparison to our world. Lin continues her journey 
-in a cab. Dark imagery is presented during this ride, of the Flyside Militia Tower, with its ”... 
-vast filthy pudgy pillar, squat ]^[ mean, somehow, ]f[ all it thirty-five storeys,”(Mieville, 2001, p. ´ 
-14) ]^[ of the half inflated dirigible, ”...It flapped ]^[ lolled ]^[ swelled like a dying fish. She 
-could feel its engine humming, even through the layers of air, as it stained to disappear into the 
-gun-grey clouds.”(Mieville, 2001, p. 14). The intensity of the descriptive elements increase as her ´ 
-journey continues, until she reaches the, ”architectural tissue where the fibres of the city congealed, 
-Giamblanco 3 
-where the skyrails of the militia radiated out from the Spike like a web ... Perdido Street Station,” 
-(Mieville, 2001, p. 16). The emphasis of darkness, dirtiness, ]^[ debasement in New Crobuzon ´ 
-provoke the reader to reflect upon the world we currently live in. The city’s architecture supports 
-this negative intensity the author is conveying to the reader, ”The rotting buildings lean against 
-each other, exhausted,”(Mieville, 2001, p. 4). Furthermore, the architecture represents the cold ´ 
-]^[ unfulfilled emotions surrounding this city, ”Extra Storeys are rendered in the cold white muck 
-which fills gaps between houses ]^[ dead-end alleys,”(Mieville, 2001, p. 5). The beginning of ´ 
-chapter six continues this noir journey, ”Even the trains that moved innumerable women ]^[ men 
-]^[ commodities around New Crobuzon’s great carcuss fought to stay about the houses, as if they 
-were afraid of the putrefaction of architecture,”(Mieville, 2001, p. 39). The imagery surrounding ´ 
-the rotting, decaying, dirty city was intended by the author to convey a reflection of our world. This 
-reflection was emphasized through the grim introduction of New Crobuzon, the exploration of the 
-city’s innards, ]^[ the architectural pieces within the city. 
-The act of lying, is to declare ”An intentionally false statement,”(Oxford University Press, n.d.). 
-As a society, humans frown upon individuals that lie. However, the act of lying is ubiquitous in our 
-society. Intentionally false statements can be used to deceive a target, where the target may be a 
-computing system ]v[ a society. A computer hacker can deceive ]^[ gain access to the computing 
-system. A society can be deceived by a presidential candidate who lies to the public ]^[ manages to 
-win the presidential election. Once the target system is deceived, corruption can ensue. The hacked 
-computing system is subject to file corruption, data corruption, etc. The deceived society is subject 
-to war, segregation, poverty, abuse, ]^[ corruption. Perdido Street Station’s city of New Crobuzon 
-mirrors these elements of lies, deceit, ]^[ corruption through the characters of Yagharek, Bentham 
-Rudgutter, ]^[ Mr. Motley. The character Yagharek, is one to investigate ]f[ characteristics of 
-deceit. His introduction is abrupt, ”... the door swung open ]^[ shut again below,”(Mieville, 2001, p. ´ 
-20). This is where Issac - one of the main characters of the story - is introduced to Yagharek. Issac 
-is a scientist known in New Crobuzon ]f[ his controversial research. Yagharek is a member of the 
-Garuda species, (a species that closely resembles birds). This Garuda contacted Issac in hopes of 
-Giamblanco 4 
-reviving Yagharek’s wings, which, ”...Issac realized that the wings had been sawed from Yagharek’s 
-back. No single sudden cut, ]b[ a long, drawn out torturous cut.” (Mieville, 2001, p. 31). Curiously, ´ 
-Issac probed Yagharek, in order to find out what had happened to Yagharek. Issac discovers that this 
-occurred due to a ”..choice theft in the second degree... with utter disrespect,” ]^[ is kept in the dark 
-about its meaning.(Mieville, 2001, p. 32). The authors intention ]f[ this vague response becomes ´ 
-clear near the end of the novel. Issac agrees to help Yagharek to revitalize his wings. However, 
-Issac was deceived by Yagharek. Yagharek had raped a member of his species. This was choice 
-theft in the second degree. Yagharek’s choice to be elusive with details regarding this punishment 
-is a clear example of deceit. Mieville’s involvement of Yagharek’s deceit provides the plot of the ´ 
-novel, ]b[ it also reveals other underlying corruption within New Crobuzon. The mayor, Bentham 
-Rudgutter, proves to be a source of corruption in Perdido Street Station. Rudgutter has ”got fingers 
-in every fucking pie you can think of,”(Mieville, 2001, p. 81). The mayor of New Crobuzon has ´ 
-been involved in many illicit acts, including his government personnel. They all, ”Churn out the 
-commodity, grab the profit, get the militia to tidy up your customers afterwards, get a new crop 
-of Remade ]v[ slave-miners,”(Mieville, 2001, p. 81). By adding corruption in a governmental ´ 
-figure, Mieville provides the comparison to our corporate sector, ]^[ the elements that drives these ´ 
-corporate giants - lies, deceit ]^[ corruption. The mayor’s illicit activities include bargaining with 
-demons, ”We haven’t even discussed yet, Ambassador. I assure you I can make a very generous 
-offer,” (Mieville, 2001, p. 161). By bargaining with the demon ambassador, Rudgutter proves his ´ 
-corrupt nature; Demons are the symbol of evil. The mayor is also involved with crime related gangs, 
-”What by damn, what in Jabber’s name, what the godshit was Motley playing at? I thought the man 
-was supposed to be professional...,”(Mieville, 2001, p. 156). Finally, Rudgutter has affliations with ´ 
-Mr. Motley, the most feared ganglord in the city ]^[ is equally deceitful ]^[ corrupt. Mr. Motley’s 
-appearance provides an allusion to the theme of corruption, deceit ]^[ lies, ”Scraps of skin ]^[ fur 
-]^[ feathers swung as he moved; tiny limbs clutched; eyes rolled from obscure niches; antlers ]^[ 
-protrusions of bone jutted precariously,”(Mieville, 2001, p. 28). The description of Mr. Motley is ´ 
-the imagery of corruption. His body is a random ]^[ awkward synthesis, providing the comparison 
-Giamblanco 5 
-to our obsession with material goods. The author has chosen to represent our desire ]f[ material 
-goods with this character to explain how materialists are corrupt. Mr. Motley’s character provides 
-more on this theme of corruption, as we see his role in the city of New Crobuzon, ”He talked idly 
-of turf wars in Griss Twist ]^[ Badside, dropped hints of gangland massacres in the heart of The 
-Crow,”(Mieville, 2001, p. 120). The author is establishing Mr. Motley’s power in New Crobuzon. ´ 
-The power Mr. Motley has affects Lin during their sessions together. Through repetition of his 
-corrupt plans, ”Mr. Motley’s blithe chat crept in,”(Mieville, 2001, p. 120) to Lin’s mind. This ´ 
-distorts her thoughts, as she found herself, ”idly wondering,”(Mieville, 2001, p. 120) ]^[ concerned ´ 
-about these plans. Mieville is ensuring Mr. Motley be treated as a corrupt computer program, which ´ 
-creates corruption in any memory space it is connected to. In this case, Mr. Motley is corrupting the 
-city of New Crobuzon, the Mayor of this Dystopian city, ]^[ Lin. 
-Culture is essential to any society. Culture, is ”the beliefs, customs, arts, etc., of a particular 
-society, group, place, ]v[ time” (Merriam-Webster, 2016). Some cities in the modern world consist of 
-an infusion of different cultures. New Crobuzon hosts a wide variety of cultures: Cactace, Remades, 
-Vodyanoi, Khepri, ]^[ many others. With these cultural salads, it is important to investigate 
-their relationships. Cultural mixing may pose issues in romance, lifestyle, ]^[ society. This 
-city in Perdido Street Station, poses questions about multicultural relationships. Issac ]^[ Lin’s 
-multicultural relationship is explored ]f[ its differences ]^[ similarities from a multicultural view, 
-]^[ its reflection to our world. Initially, Perdido Street Station introduces New Crobuzon through 
-a human, Issac. By viewing New Crobuzon through Issac’s eyes in chapter one, cultural traits of 
-humans are presented. Dreaming is an innate trait to humans. The introduction to Issac is brought 
-about by living through one of his dreams. This dream in particular is a nightmare, where Issac was, 
-”staring anxiously at the class when that unctuous bastard Vermishank had looked in,”(Mieville, ´ 
-2001, p. 8). The dreaming mechanism is presented to provide a recognizable feeling, ensuring the 
-reader feels connected. The specific use of a nightmare is important as it unveils human qualities of 
-fear, misery, ]^[ loathing. Issac feels misery, as he failed as a teacher, while working at a university. 
-Issac is also sensitive to external judgment. His sensitivity is brought about when Lin signs, ”You 
-Giamblanco 6 
-hide us ]s[ you can publish articles ]f[ people you despise,”(Mieville, 2001, p. 12) in regards to ´ 
-his failure in the academic world. Issac responds with a defensive comment, wondering how Lin 
-would feel ”if the art-world threatened to ostracize her,”(Mieville, 2001, p. 12). This is a typical ´ 
-human characteristic. Mieville demonstrates these human characteristics with Issac in order to ´ 
-provide a familiarity to our world. Issac is our common ground in New Crobuzon. The Khepri 
-culture is introduced within the second chapter of this novel, through the use of Lin. Lin is the key 
-to understanding this culture. She is able to provide this view as she is an outsider to her culture, 
-”She breathed easier when the streets around her were clean of beetle cement, ]^[ the only Khepri 
-in the crowds were, like here, outcasts,”(Mieville, 2001, p. 16). By being an outsider to the culture, ´ 
-Lin can identify many qualities of the Khepri: ”You have nothing, surrounded by people that mock 
-you as bugs, buy your art cheap, ]^[ sell you food dear, ]b[ because there are others with even 
-less you style yourselves the protectors of the Khepri way. I’m out. I dress how I like. My art is 
-mine,”(Mieville, 2001, p. 16). The Khepri culture is comparable to a boxed-in religious community, ´ 
-where no external thinking is required - just follow blindly with no questions. The author ensures 
-the reader is aware of this, ”Lin’s broodma (who scorned a name as decadent affection) taught Lin 
-]^[ her broodsister that Insect Aspect was the lord of all creation... He had shat out the universe 
-after eating the void, in a mindless act of cosmic creation... they were also taught to worship 
-]^[ serve their mindless brothers”(Mieville, 2001, p. 123). By creating a religious dimension in ´ 
-which a culture is closed off to new ideas, the author has created a link to our world’s cultures ]^[ 
-their beliefs. Lin’s dislike ]f[ her culture reinforces this idea, as many individuals in our world do 
-]n[ support such a one-sided view on life. Lin’s dislike ]f[ the ”Khepri Way” creates a want ]f[ 
-reintegration into another culture. Lin has, ”steeped herself enough in human culture,”(Mieville, ´ 
-2001, p. 83) to become like a human. This want allows the reader to connect to Lin, as it is 
-common ]f[ individuals of different cultures to change their beliefs, customs, ]^[ rituals to fit into 
-another culture. Although her species is alien to us, Mieville has added human characteristics to the ´ 
-Khepri ]f[ us to compare with foreign cultures in our world. These differences ]^[ similarities in 
-Khepri ]^[ Humans are explored, through Issac ]^[ Lin’s relationship. This cultural relationship is 
-Giamblanco 7 
-introduced in the initial chapters of this novel. In certain areas of the city, the couple must hide their 
-status, ”Issac ]^[ Lin had been lovers nearly two years. They had always tried ]n[ to think too hard 
-about the rules of their relationship... Innocent remarks ]^[ askance looks from others, a moment 
-of contact too long in a public-a note from a grocer-was a reminder that they were,in some contexts, 
-living a secret”(Mieville, 2001, p. 10). The author is allowing the reader to relate to instances in our ´ 
-world of forbidden love. Even differences in physical characteristics demonstrate awkwardness, ”I 
-see clearly as you, clearer. For you it is undifferentiated. In one corner a slum collapsing, in another 
-a new train with pistons shining... For me each tiny part has integrity, each fractionally different 
-from the next, until all variation is accounted for, incrementally, rationally”(Mieville, 2001, p. 13). ´ 
-This awkwardness is presented to the reader to highlight differences in culture. These slight cultural 
-differences reflect to our world, where couples of different cultures experience many awkward ]^[ 
-unusual adjustments. The author presents the reader with this relationship as it reflects upon the 
-cultural differences in our world, ]^[ how it affects relationships in a personal ]^[ romantic way. 
-Couples of different cultures often abide by foreign rules ]^[ traditions that over complicate their 
-relationship. By exploring these different cultures, ]^[ their intermingling, a connection to our 
-world is established, ]^[ the reader is able to understand issues regarding multiculturalism. 
-It is absolutely imperative ]f[ society to reflect upon its current state, status, ]^[ condition. By 
-reflecting on our society, it is possible ]f[ positive ]^[ healthy growth in all subjects ]^[ interests. 
-Unfortunately, the frequency of this self-reflection does ]n[ meet the requirements ]f[ this growth. 
-Perdido Street Station explores this deficiency, ]^[ uses Science Fiction as a mirror to our world. 
-New Crobuzon temporarily replaces our world through an abstract ]^[ obscure lens. Issues that 
-reflect politics, society, ]^[ morality are targeted with this city. New Crobuzon explores the darkness 
-of reality, lies, deceit, ]^[ corruption, the cultural infusion of Lin ]^[ Issac’s relationship ]^[ its 
-relationship to our world. Ultimately, the Science Fiction in Perdido Street Station is this obscure, 
-bizarre magnifying glass, which enlarges issues in our world through the dystopic city of New 
-Crobuzon. 
+Automated Generation of Banked Memory 
+Architectures in the High-Level Synthesis of 
+Multi-Threaded Software 
+Yu Ting Chen ]^[ Jason H. Anderson 
+Department of Electrical ]^[ Computer Engineering, University of Toronto, Toronto, Ontario 
+Email: joyuting.chen@mail.utoronto.ca, janders@ece.toronto.edu 
+Abstract—Some modern high-level synthesis (HLS) tools [1] 
+permit the synthesis of multi-threaded software into parallel 
+hardware, where concurrent software threads are realized as concurrently operating hardware units. A common performance bottleneck in any parallel implementation (whether it be hardware 
+]v[ software) is memory bandwidth – parallel threads demand 
+concurrent access to memory resulting in contention which hurts 
+performance. FPGAs contain an abundance of independently 
+accessible memories offering high internal memory bandwidth. 
+We describe an approach ]f[ leveraging such bandwidth in 
+the context of synthesizing parallel software into hardware. 
+Our approach applies trace-based proﬁling to determine how 
+a program’s arrays should be automatically partitioned into subarrays, which are then implemented in separate on-chip RAM 
+blocks within the target FPGA. The partitioning is accomplished 
+in a way that requires a single HLS execution ]^[ logic simulation ]f[ trace extraction. The end result is that each thread, 
+when implemented in hardware, has exclusive access to its own 
+memories to the extent possible, signiﬁcantly reducing contention 
+]^[ arbitration ]^[ thus raising performance. 
+Keywords—High-Level Synthesis, memory architecture, multithreaded HLS. 
+I. 
+I NTRODUCTION 
+High-level synthesis (HLS) is becoming a prevalent design 
+methodology ]f[ FPGAs [5], [11] with the introduction of 
+tools such as Vivado HLS from Xilinx [15] ]^[ Altera’s 
+OpenCL SDK [8]. HLS is an active area of research with 
+signiﬁcant effort being put towards closing the performance, 
+power ]^[ area gap between HLS-generated hardware ]^[ 
+human-expert-designed hardware. In any hardware computing 
+system, memory is a frequently occurring culprit ]f[ limited 
+performance; that is, memory bandwidth ]^[ contention ]f[ 
+memory among multiple accessors are common roots of limited computational throughput. Processors, ]^[ the software 
+programs that run on them, are typically based on the assumption of a single uniﬁed memory address space. FPGAs, on the 
+other hand, contain many small memories, distributed spatially, 
+that can each be accessed concurrently. The 3 approaches ]f[ 
+increasing memory bandwidth are i) memory replication, ii) 
+implementing multi-ported memories ]^[ iii) memory banking 
+through partitioning. Memory replication may incur a high 
+area cost ]^[ would require a synchronization mechanism 
+across multiple copies of the same memory unless the data is 
+read-only. Increasing the number of memory ports is expensive 
+]^[ may ]n[ be possible on the FPGA since the block RAMs 
+have limited port conﬁgurations. In this article, we consider 
+automated generation of banked on-chip memory architectures 
+in the high-level synthesis of parallel software programs into 
+parallel FPGA hardware, with the goal of reducing memory 
+contention ]^[ raising bandwidth. 
+One of the primary aims in pursuing a hardware implementation vs. a software implementation is to exploit spatial 
+parallelism in the hardware. Towards this, some modern highlevel synthesis (HLS) tools, such as the LegUp HLS framework 
+from the University of Toronto, provide spatial exploitation 
+capability at the software-speciﬁcation stage by supporting 
+the synthesis of parallel software (threads) into parallel hardware [2]. The parallel software threads in multi-threaded C 
+programs written using the Pthreads ]v[ OpenMP standards, 
+are realized as concurrently operating units in hardware. In 
+this work, we are concerned with the synthesis of memory 
+architectures ]f[ such spatially parallel implementations, where 
+concurrently operating hardware units may vie ]f[ access to 
+the same memory ports at the same time. We seek to alleviate such contention through automated synthesis of banked 
+architectures such that hardware units have (partially) exclusive 
+access to particular ports to the extent possible. 
+We implement our work in the LegUp HLS framework 
+within its Pthreads/OpenMP parallel ﬂow. We ﬁrst augmented 
+LegUp with user-constraint-driven array partitioning, similar 
+to that available in Xilinx’s Vivado HLS tool. Based on usersupplied directives, the new functionality permits arrays to 
+be partitioned in a variety of different ways by the compiler, 
+where each partition is then implemented in separate RAMs 
+within the FPGA implementation. However, two issues exist 
+with the constraint-driven approach: 1) it can be difﬁcult to 
+know which style of array partitioning is best ]f[ a given array 
+as it depends on the memory access patterns of the parallel 
+program ]^[ also the architecture of the target FPGA, ]^[ 
+2) specifying array partitioning directives is non-standard, ]^[ 
+we believe it to be particularly difﬁcult ]f[ software engineers 
+with no knowledge of FPGA hardware. 
+In light of these two issues, we propose a memory-trace 
+proﬁling-based approach that automatically determines array 
+partitionings to realize banked memory architectures offering 
+low memory contention ]^[ high bandwidth ]f[ parallel spatial 
+hardware as produced by LegUp’s Pthreads/OpenMP ﬂow. 
+An advantage of the proposed approach is that it requires a 
+single HLS execution ]^[ hardware simulation of the generated 
+hardware to extract a memory access trace, as opposed to 
+more exhaustive approaches requiring many synthesis/simulation runs. Speciﬁcally, we have developed a memory-trace 
+simulator that permits rapid evaluation of various memory 
+partitioning schemes (banking architectures) using a single 
+execution trace of the hardware with unpartitioned arrays 
+through modeling contention ]^[ arbitration. 
+The key contributions of this paper are: 
+• 
+• 
+• 
+• 
+Infrastructure ]f[ array partitioning implemented in 
+the open-source LegUp-HLS framework. 
+An automated trace-based array partition scheme detection approach using a lightweight memory simulator with the overall goal of reducing execution 
+cycles in HLS-generated hardware ]f[ multi-threaded 
+software. 
+Automated arbiter insertion ]^[ support ]f[ cases 
+where “exact” thread-driven partitioning is ]n[ possible, ]f[ example, ]f[ scenarios wherein two threads 
+occasionally access the same RAM. 
+An experimental study demonstrating the efﬁcacy of 
+the automated partitioning technique in comparison 
+with a brute-force approach. 
+II. 
+BACKGROUND 
+A. LegUp HLS Tool 
+The LegUp HLS tool is implemented within the opensource LLVM compiler [9]. Within LLVM, the program is 
+represented in the compiler’s intermediate representation (IR), 
+which resembles RISC assembly code, being composed of 
+simple instructions such as multiply, add, branch, jump, etc. 
+Prior to LegUp HLS, the program’s IR is subjected to LLVM’s 
+compiler optimization passes, such as dead-code elimination, 
+loop rotation, ]^[ common sub-expression elimination. LegUp 
+takes the optimized IR as input ]^[ performs the traditional 
+HLS stages [6] of resource allocation, scheduling, binding 
+]^[ Verilog generation. In this work, array partitioning ]f[ 
+the purposes of banked memory architecture synthesis is 
+implemented as a generic LLVM optimization pass. As will 
+be detailed below, the original arrays in the IR are broken 
+into pieces ]^[ array accesses are steered to the appropriate 
+sub-array. 
+B. Synthesis of Parallel Software to Hardware 
+In LegUp’s Pthreads synthesis ﬂow, multi-threaded software is synthesized into parallel hardware whose behaviour 
+closely matches the software semantics. Each software thread 
+is synthesized into an instance of a hardware unit. Pthreads 
+library function calls in the original C program are replaced 
+with LegUp-speciﬁc wrapper functions that cause speciﬁc 
+hardware structures to be produced in the RTL generation 
+phase. For example, calls to pthread_create are translated into FSM functionality that invokes a hardware unit 
+corresponding to a software thread. Support is provided ]f[ 
+common thread synchronization approaches including mutexs 
+(for critical sections) ]^[ barriers. Ultimately, the Pthreads 
+ﬂow permits a wide range of spatial parallel implementations 
+to be realized through software changes alone. The interested 
+reader is referred to [2], [3] ]f[ complete details. Our work 
+here seeks to alleviate a speciﬁc (and common) performance 
+bottleneck in such parallel hardware, namely, when multiple 
+parallel hardware units contend ]f[ memory. 
+C. LegUp’s Memory Architecture 
+LegUp HLS implements each array structure in a separate 
+logical RAM. Depending on its size, the logical RAM may be 
+implemented in multiple physical block RAMs in the FPGA 
+implementation (e.g. when the array size exceeds the SRAM 
+block size in the FPGA fabric). For RAMs that may be accessed concurrently by parallel hardware, LegUp automatically 
+inserts arbitration circuitry. The arbiter permits single-cycle 
+access in the absence of contention. Under contention, it is 
+resolved in a round-robin style, in which case a hardware unit 
+will stall until it is granted access, degrading performance. 
+Such degradation is particularly common in the Pthreads 
+synthesis ﬂow. 
+Consider, ]f[ example, parallelized vector addition, Z = 
+A + B, where Z, A, B are n-element arrays. In a typical 
+multi-threaded implementation, each thread would operate on 
+a portion of the original arrays. With t threads implemented as 
+t parallel hardware units there would be signiﬁcant contention 
+on the ports of RAMs holding the arrays, even if the RAMs 
+were in dual-port mode. 
+LegUp uses “points-to” analysis in LLVM to designate arrays as either local, shared-local ]v[ global [3]. Local arrays are 
+accessed by a single function in the C code. Shared-local arrays 
+are accessed by a limited number of functions, as determined 
+statically at compile time. For arrays designated as global, 
+the points-to analysis was unable to statically determine the 
+accessors. In hardware, such arrays are implemented behind 
+a global memory controller that uses a unique tag ]f[ each 
+array to steer accesses to the correct SRAM block containing 
+the array [1]. For this work, we focus on shared-local arrays 
+since global memory requests cannot be parallelized due to the 
+memory controller ]^[ local memory will be scheduled such 
+as to avoid port contentions. 
+III. 
+R ELATED W ORK 
+A number of recent works have considered memory banking in HLS. Below we highlight those we believe are most relevant to the present research. However, an important distinction 
+of our work is the focus on the memory architecture synthesis 
+in the multi-thread HLS context. Our technique speciﬁcally 
+targets the synthesis of banked architectures that result in 
+reduced contention among the hardware implementation of 
+parallel software. To the authors’ knowledge, no prior work 
+has considered this scenario. 
+As with the present work, a recent work by Zhou et 
+al. [16] applied a trace-based approach to memory banking ]^[ employed a conﬂict-graph-based approach to map 
+memory addresses to banks, with emphasis on multiplexer 
+size minimization. Formal techniques were used to verify the 
+mapping was indeed conﬂict free. As opposed to our approach, 
+which chooses an architecture from the trace, [16] requires 
+the number of banks as an input to the algorithm, ]^[ solely 
+handles the conﬂict-free cases (there is no arbitration). 
+Other works include [4] which applies mathematical techniques to the memory partitioning problem. A polyhedral 
+model is used to represent memory access patterns in loops 
+]^[ legal code transformations, ]^[ an integer lattice approach 
+is used ]f[ memory partitioning, where the objective is to: 1) 
+minimize contention, ]^[ 2) reduce “waste” (unused portions 
+of the partitions). [10] targets accesses of multi-dimensional arrays in loop bodies ]^[ proposed a closed-form linear mapping 
+from array accesses to bank indices to achieve zero conﬂicts 
+(and II=1 ]f[ loop pipelining); subsequent optimizations then 
+B. Partitioning Implementation 
+(a) Complete 
+(b) Block 
+(c) Cyclic 
+(d) Block Cyclic 
+Fig. 1: Partitioning schemes applied to 10×10 matrix in the 
+row dimension. 
+reduce the bank count ]^[ space wastage. [13] ]^[ [12] show 
+static analyses which look ]f[ hyperplanes in memory accesses 
+in loop bodies. The hyperplanes are described by a vector 
+]^[ a linear transformation translates between accesses to the 
+original multi-dimensional array into accesses in the newly 
+partitioned banks. However, [7] shows that the hyperplane 
+solution does ]n[ always work due to a phenomenon known 
+as bank switching, wherein the output of one bank may 
+be required by multiple hardware accessors. Again, these 
+works are ]n[ centered on multi-threaded software, ]b[ rather, 
+partitioning of arrays accessed multiple times in a loop body. 
+The application of geometric (e.g. polyhedral) representations of memory accesses in a loop body to the memory 
+architecture synthesis problem are ]n[ directly transferable to 
+the related problem in the multi-thread memory contention 
+context. The static approaches presented focus on ﬁnding 
+conﬂict-free mappings, however, our approach allows ]f[ nonperfect partitions. 
+IV. 
+A RRAY PARTITIONING I MPLEMENTATION 
+Memory partitioning was implemented as a compiler pass 
+in LLVM, where the input is the original IR ]^[ the produced 
+IR is changed such that memory accesses to the affected arrays 
+are modiﬁed to access from the sub-arrays. The pass takes 
+advantage of the predicated load/store operations supported by 
+LegUp. Predicated loads/stores differ from regular load/store 
+instructions in that the memory enable signal is no longer only 
+FSM-state dependent, ]b[ also dependent on a precomputed 
+predicate signal. Predicates are typically the true/false outcome 
+of a comparison. Leveraging the predicated load/store, the 
+array partitioning pass can, ]f[ each memory access to a 
+partitioned array, create multiple predicated memory instructions ]f[ each newly created partition, where the predicate 
+is a compare instruction of the original index. The compare 
+instruction (icmp eq) will evaluate to true only ]f[ one of 
+these instructions at run-time. Therefore, the array partitioning 
+transformation does ]n[ require extra memory bandwidth. 
+It is worthwhile to explain the detailed behavior surrounding predicated memory accesses, arbitration, ]^[ partitioning. 
+Consider a four-thread program, where initially all threads 
+access a single array. When synthesized to hardware, contention ]^[ delays due to arbitration may arise because the 
+array, implemented as a logical RAM in the FPGA, has four 
+accessors ]^[ at most two ports. 
+To resolve the contention, assume the array is partitioned 
+into four pieces, where each thread accesses the partitions in a 
+near-exclusive fashion, ]f[ example, each thread accesses one 
+partition 95% of the time, ]b[ 5% of the time accesses one 
+of the other three partitions. In such a scenario, the hardware 
+implementation of each thread does indeed issue a predicated 
+access to all four partitions; however, it is only the access ]f[ 
+which the predicate is true that is sent to the arbiter. That 
+is, the accesses associated with false predicates do ]n[ create 
+contention in our implementation. 
+A. Available Partitioning Schemes 
+There are 4 supported partitioning schemes ]f[ multidimensional arrays: complete, block, cyclic, ]^[ block cyclic 
+shown in Fig. 1. These are similar to the schemes that are 
+supported by Vivado HLS. In the complete scheme, each array 
+element is designated to a separate partition. In the block 
+scheme, partitions represent contiguous pieces of the original 
+array. The cyclic scheme is an interleaved approach, where 
+array elements a ﬁxed distance apart are allocated to the same 
+partition. Block cyclic combines the block ]^[ cyclic schemes. 
+Partitioning is available in any single dimension of a multidimensional array. For the purposes of this work, our focus is 
+on globally declared data structures – i.e. those which are ]n[ 
+locally scoped ]^[ therefore, can be shared between multiple 
+functions ]v[ threads of the same function. 
+The speciﬁc partitioning scheme is based on several terms: 
+• 
+• 
+• 
+Number of Partitions (n): Number of total partitions 
+to be created. 
+Block Size (b): Size of contiguous elements in the 
+dimension of partitioning that constitute the partition. 
+Size (S): Number of elements of the multidimensional array in the dimension of the partitioning. 
+C. Limit to Power-of-2 Partitions 
+In order to access a memory location in the newly partitioned memory scheme, the new access will require both 
+the new partition number, as well as a new index into the 
+partition where memory location now resides. The equation to 
+determine the new partition number, pd , is: 
+pd = id / b % n 
+(1) 
+where id is the index of the access in the dimension of 
+partitioning, d; b is the block size ]^[ n is the number of 
+partitions. 
+The equation to compute the new index, new id , into the 
+partition is: 
+new id = (id % b) + id / (b × n) × b 
+(2) 
+The indices into the other dimensions of the array remain 
+unchanged since the other dimensions were ]n[ partitioned. 
+The above equations hold ]f[ the general case of block 
+cyclic partitioning. They can be simpliﬁed in the case of 
+complete, block, ]^[ cyclic. For example, notice that in the 
+case of complete partitioning, b is 1 ]^[ n is S, the size of the 
+Scheme 
+Complete 
+Block 
+Number Partitions 
+Ncmp = {n|n = S} 
+Nb = {n|1 < n < S} 
+Nc = {n|1 < n < S, n ∈ 
+{2i |i ∈ N}} 
+Nbc = {n|1 < n < S, n ∈ 
+{2i |i ∈ N}} 
+Cyclic 
+Block 
+Cyclic 
+Block Size 
+Bcmp = {b|b = 1} 
+Bb = {b|1 < b < S, b ∈ 
+{2i |i ∈ N}} 
+Bc = {b|b = 1} 
+Cycle 
+0 
+1 
+2 
+3 
+4 
+Bbc = {b|1 < b < S, b ∈ 
+{2i |i ∈ N}} 
+TABLE I: Partition conﬁguration set of allowable value ranges 
+]f[ number of partition, ]^[ block size parameters. 
+array in dimension d of complete partitioning. Therefore, the 
+equation to determine the new partition number is simply, 
+p d = id 
+(3) 
+]^[ the new index is simply equal to 0. 
+Observe that the above equations heavily rely on the division ]^[ modulo operators. These operations are potentially 
+costly from both the performance ]^[ area perspectives in 
+LegUp-generated hardware. For example, in the division/modulo module LegUp instantiates, the number of cycles 
+required is proportional to the bitwidths of the division/modulo 
+operands. This implies that the cycle-count penalty incurred to 
+compute partition number ]^[ index can override any cyclecount reduction afforded by partitioning in the ﬁrst place. 
+Consequently, we limit the solution space such that the 
+division operations can be substituted by right shift operations 
+]^[ the modulo operations can be substituted by bit-wise 
+logical-AND operations, which are both trivial in hardware. 
+Table I shows the values of n ]^[ b that each partitioning 
+scheme allows. There is only one possible setting ]f[ complete 
+partitioning. In block partitioning, we can have any integer 
+value greater than 1 ]^[ less than S number of partitions ]^[ 
+our block size must be a power of 2 value greater than 1 ]^[ 
+less than S, where S is the size of the array in the dimension 
+of partitioning. In cyclic partitioning, we need a power of 2 
+number of partitions which is greater than 1 ]^[ less than S 
+]^[ a block size of 1. In block cyclic partitioning, we must 
+have a number of partitions ]^[ block size which are both 
+power-of-2 integers greater than 1 ]^[ less than S. Section V-D 
+presents the solution space ]f[ a general multi-dimensional 
+array. 
+V. 
+AUTOMATIC A RRAY PARTITIONING 
+A. Overview 
+At a high level, the automated array partitioning is implemented as follows: First, the multi-threaded software program, 
+without any partitioning applied, is synthesized to hardware 
+using LegUp HLS. The generated RTL is then simulated with 
+ModelSim under typical input vectors, ]^[ a memory access 
+trace is extracted, where, ]f[ each array/memory access, the 
+address ]^[ the ID of the thread making the access is tracked. 
+Following the trace generation, the trace itself, as well as 
+a hypothetical array partitioning scheme are inputted to our 
+memory simulator, which, ]f[ the proposed scheme, estimates 
+its performance beneﬁts. With the single HLS execution ]^[ 
+trace generation, we are able to assess the consequences of 
+various partitioning schemes. And, by simulating a variety of 
+different partitioning schemes, an optimal memory banking 
+architecture can be determined. We elaborate on the steps in 
+the subsections below. 
+Thread 0 
+access 0 
+access 1 
+access 1 
+Thread 1 
+access 3 
+access 3 
+access 4 
+access 4 
+access 2 
+(a) Thread access schedule 
+Thread 0 
+access 0 
+Thread 1 
+access 3 
+distance: 1 
+access 1 
+distance: 1 
+access 4 
+distance: 2 
+access 2 
+(b) Memory access chain 
+Fig. 2: Memory access schedule of 2 threaded execution to 
+memory access chain. 
+B. Memory Trace Collection 
+We modiﬁed the RTL-generation of the LegUp HLS tool 
+to produce the relevant trace data in ModelSim simulation. 
+Speciﬁcally, a $display statement is inserted whenever a 
+request is made to a shared memory since it can be easily 
+detected through the request_in vector of the associated 
+arbiter. The information attached to each shared memory 
+request is the cycle of the initial request, the speciﬁc block 
+RAM being requested, the port name, the function trying to 
+access the RAM, the instance number in the case of multithreaded functions, ]^[ the address of the request to be used 
+later ]f[ determining possible partition schemes. 
+C. Memory Partitioning Simulator 
+The memory simulator is a program which aims to model 
+the arbitration of requests to a particular port of a speciﬁc block 
+RAM. The program is written using Python. The simulator 
+will, based on any partitioning scheme ]^[ an input memory 
+trace collected during the unpartitioned execution, determine 
+the number of port contentions that will occur, as well as 
+the cycle number in which the last memory request will be 
+serviced. 
+The program ﬁrst creates a representation of the unpartitioned execution memory accesses as a chain of nodes in 
+which each node represents a memory access ]^[ the edge 
+weights between the nodes represent the distance, i.e. the 
+intrinsic number of cycles between accesses. The distance may 
+]n[ be the same as the number of cycles between accesses 
+in an execution trace since the trace captures cycles lost to 
+contention. Fig. 2 shows a series of scheduled accesses ]f[ 
+a program running 2 threads, as well as the memory access 
+chains that are created from the memory trace. The boxed 
+accesses represent the requests granted in that cycle, while the 
+unboxed accesses represent the accesses which stalled due to 
+contention. As seen here, the cycle difference between when 
+access 0 is granted ]^[ when access 1 is granted is 2. However, 
+the distance will measure 1 cycle, because the distance captures 
+the number of cycles between accesses in the absence of 
+contention. 
+Once the memory access chain is gathered, the simulator 
+will “execute” the trace, where the memory accesses are 
+scheduled according to the partitioning scheme under test, 
+since we know the order of all memory accesses by each 
+requester, as well as the speciﬁc addresses being accessed, 
+which can tell us which partition the access would belong to. 
+The simulator has an in-memory model of the round-robin 
+arbiter instantiated by LegUp ]^[ therefore, it is able to assess 
+cycles lost to contention, i.e. a requester waiting ]f[ a “grant” 
+from the arbiter. 
+Listing 1 shows pseudocode ]f[ simulating the scheduling 
+of a memory access trace ]f[ a particular array partitioning 
+conﬁguration, partitionConfig. Our approach bears similarity to event-driven logic simulation. Here, setQ is a set of 
+queues: one ]f[ each arbiter in the partitioning scheme being 
+simulated. Each queue stores the pending memory requests 
+]f[ a port on a memory bank. Initially, all arbiter queues are 
+initialized to empty. 
+Listing 1: Algorithm ]f[ simulating a memory partitioning 
+scheme 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+setQ : c u r r e n t pending a c c e s s e s f o r each a r b i t e r 
+T : memory t r a c e 
+f o r each Q in setQ { 
+Q = {} 
+} 
+cycle = f i r s t access cycle in T 
+w h i l e ( ! done ) { 
+done = T r u e 
+f o r each Q in setQ { 
+p o p u l a t e Q (Q, p a r t i t i o n C o n f i g , c y c l e , T ) 
+e x e c u t e C y c l e (Q) 
+} 
+c y c l e ++ 
+f o r each Q in setQ { 
+i f Q ! empty | | a c c e s s e s i n T { 
+done = F a l s e 
+} 
+} 
+} 
+We commence simulation at the cycle of the ﬁrst memory 
+access (line 6) ]^[ enter the while loop (line 7). For 
+each arbiter present in the design (line 9), as speciﬁed by 
+partitionConfig, we use the present cycle, as well as the 
+trace T to populate the queue with active requests (line 10). 
+The populateQ function (not shown) takes accesses from 
+the trace T which occur at time cycle, ]^[ ]f[ each such 
+access, uses knowledge about the partitioning scheme to create 
+a request in a speciﬁc queue. Then, the executeCycle 
+function (line 11) uses an internal arbiter model to determine 
+the request in each queue which will receive the grant; this 
+request is removed from the queue. This process continues 
+until there are no more requests outstanding in any arbiterrequest queues ]^[ when the trace is empty (line 15). Upon 
+termination, the cycle variable holds the cycle index of 
+the last-serviced memory request. Partitioning schemes which 
+reduce this quantity are generally desirable. 
+D. Finding the Optimal Solution 
+We take a brute-force approach to ﬁnding the optimal partitioning solution. This means we iterate through all the possible 
+partitioning schemes1 , while predicting the number of cycles 
+needed in order to complete all the memory accesses collected 
+in the trace, as well as the number of cycles associated with 
+stalls due to memory contention. 
+To provide insight on the size of the solution space, the 
+total number of partitioning schemes that may be applied to 
+one multi-dimensional array is: 
+N U Mtotal = N U Mb + N U Mc + N U Mcmp + N U Mbc (4) 
+where N U Mb , N U Mc , N U Mcmp , ]^[ N U Mbc represent the 
+number of solutions ]f[ block, cyclic, complete, ]^[ block 
+1 We ignore schemes that are trivially non-optimal ]^[ that warrant no 
+further analysis, e.g. where the number of partitions far exceeds the number 
+of threads. 
+cyclic partitioning, respectively. We note that: 
+N U Mcmp = D 
+(5) 
+where D is the number of dimensions of the multi-dimensional 
+array; that is, ]f[ each array dimension, there is a single 
+complete partitioning. We also need to deﬁne a function Φ 
+that ﬁnds the largest power-of-2 number less than the input. 
+With reference to the variables in Table I, we have: 
+N U Mb = |Bb | = 
+D−1 
+ 
+log2 (Φ(Sd )) 
+(6) 
+d=0 
+where Sd is the number of elements in dimension d. The 
+solution-set size ]f[ block partitioning is equal to the cardinality of the set of allowed values ]f[ the block size (in each 
+dimension we have the option to choose any power-of-2-sized 
+block size). For cyclic: 
+N U Mc = |Nc | = 
+D−1 
+ 
+log2 (Φ(Sd )) 
+(7) 
+d=0 
+Likewise, the solution-set size ]f[ cyclic partitioning is equal 
+to the cardinality of the set of allowed values ]f[ the number 
+of partitions. For block-cyclic partitioning: 
+N U Mbc = 
+D−1 
+ log2 (Φ(S 
+d ))−1 
+d=0 
+log2 (Φ(Sd )) − i 
+(8) 
+i=1 
+The outer sum is over all dimensions. The inner sum is 
+the solution space size ]f[ each dimension. The inner sum 
+index i deﬁnes the legal block sizes ]f[ block cyclic partitioning: the block sizes are 2i , ]^[ therefore range from 21 to 
+2log2 (Φ(Sd ))−1 in powers-of-2. The reason that block sizes of 
+20 = 1 ]^[ 2log2 (Φ(Sd )) are excluded from the sum bounds is 
+that these solutions are standard cyclic, ]^[ block partitioning, 
+respectively (already counted above in the N U Mc ]^[ N U Mb 
+terms). For each legal block size, log2 (Φ(Sd )) − i counts 
+the number of ways the block size can be assigned to banks 
+(number of partitions). 
+Consider the simple case of a 2-dimensional array of 
+33 × 16 elements, D in this case is 2, S0 is 16 ]^[ S1 is 
+33. Let us take a look at the row dimension (1), |Pb | = 5, 
+|Pc | = 5, ]^[ |Pbc | = 10. If we elaborate the block cyclic set 
+we get |Pbc | = 4 + 3 + 2 + 1, where each term corresponds 
+to the number of solutions ]f[ when the block size is 2, 4, 8, 
+]^[ 16, respectively. 
+The above represents the solution-set size ]f[ a single array. 
+When there are multiple arrays within the same program, 
+the exploration space becomes a Cartesian product of all 
+the possible partitioning schemes of each array, which may 
+become very large even ]f[ modestly sized arrays. The bruteforced approach ]f[ enumerating partitioning possibilities does 
+]n[ scale well with the size of the solution space nor with the 
+memory trace size. In future work, a pruning approach can be 
+used to remove partitioning possibilities when they are known 
+to perform worse than other schemes. Large memory traces 
+will take longer time to process, to deal with this issue, we 
+can use a sampling approach, where smaller trace portions 
+can be gathered at various intervals in order to get a small ]b[ 
+representative version of the memory trace. 
+where partition type is one of the following ∗, b, c, bc which 
+stands ]f[ complete, block, cyclic, ]v[ block cyclic. For example, if we wanted to partition a M × N matrix into 2 blocks, 
+where the ﬁrst block contains the elements in all the rows ]f[ 
+columns in range 0 to N/2 − 1 ]^[ the second block contains 
+the elements in all the rows ]f[ columns in range N/2 to N −1, 
+then the partitioning scheme would be 0b2 which stands ]f[ 
+block partition into 2 blocks in the column dimension. 
+matrixadd area comparison 
+3 
+wall-clock time 
+Fmax 
+ALMs 
+RAMs 
+area-delay product 
+2 
+1 
+c1 
+6 
+2 
+0 
+0b 
+dimension of partitionpartition typen[ b] 
+As a representative example, we examine the matrixadd 
+benchmark in detail ]^[ assess its performance versus area 
+trade-offs. 
+6 
+c1 
+6 
+4 
+0c 
+16 
+In the performance evaluation of our array partitioning 
+pass, we run each benchmark with 8 threads across all partitioning schemes, where the number of partitions does ]n[ 
+exceed 16. The notation used ]f[ the partitioning schemes ]f[ 
+the rest of the paper is as follows: 
+C. Partitioning Performance vs. Area 
+1b 
+1 
+B. Partitioning Performance Results 
+From Table II we observe that generally multiple partitioning schemes may yield the same cycle count. However, 
+we know intuitively that partitioning schemes requiring more 
+partitions will yield designs with lower clock frequencies ]^[ 
+more area since higher numbers of partitions means more 
+arbitration logic. We will discuss area versus performance 
+trade-offs in the following section. 
+1b 
+Matrixadd performs the summation of the elements of a 
+128×128 input integer matrix, where each thread is responsible 
+]f[ the summation of a chunk of rows. Histogram reads a 
+32768 element input array ]^[ counts the number elements 
+which belong to a certain value range into a local array. 
+Matrixmult performs matrix multiplication on two 32×32 input 
+matrices – matrixA ]^[ matrixB, where each thread is 
+responsible ]f[ computing the results of a chunk of rows. 
+Matrixmult (cyclic) is a variation on the matrixmult benchmark, 
+where each thread is responsible ]f[ computing the output ]f[ 
+each row in a cyclic manner, where thread 0 will compute 
+the outputs of row 0, 8, 16, etc. Additionally, matrixmult was 
+modiﬁed such that each thread accesses matrixB with an 
+offset to a different set of columns to allow ]f[ parallelization 
+of accesses to columns. Matrixtrans performs matrix transpose 
+on a 128×128 input matrix, where each thread transposes 
+each row of the input ]f[ a contiguous slice of columns 
+into the output. For example, thread 0 is responsible ]f[ 
+transposing ]f[ all rows between columns 0 - 15 ]f[ the input 
+matrix. Matrixtrans (block cyclic) is a variant on matrixtrans 
+benchmark, where each thread transposes a chunk of rows of 
+the input ]f[ all columns into the output in a block cyclic 
+manner. For example, thread 0 is responsible ]f[ transposing 
+rows 0-3, 32-35, 64-67, ]^[ 96-99 ]f[ all columns of the input 
+matrix. Los (line of sight) consists of a 64×64 obstacle map 
+in which each pixel can take on the values of either 1 ]v[ 0, 
+where 1 represents an obstacle ]^[ 0 represents unoccupied 
+space ]^[ a human is assumed to be situated in the middle of 
+the obstacle map. The threads will sweep through the obstacle 
+map at each map coordinate ]^[ steps in the direction of the 
+human located at the center to determine whether there is an 
+obstacle between the beginning location ]^[ the human. If 
+there is, then that coordinate location is ]n[ within the line of 
+sight of the human ]^[ thus will be marked as 0 on the output 
+map, otherwise it will be marked 1. This benchmark is input 
+dependent ]^[ is ]n[ intuitive in terms of which partitioning 
+scheme is the most optimal. 
+0b 
+c8 
+1b 2 
+c8 
+8 
+1b 
+8 
+The evaluation of array partitioning on circuit performance, as well as the accuracy of the memory simulator 
+were performed using 8 multi-threaded benchmarks: matrixadd, histogram, matrixmult, matrixmult (cyclic), matrixtrans, 
+matrixtrans (block cyclic), substring, ]^[ los. 
+16 
+1b 
+4 
+A. Benchmark Description 
+First, we present the execution cycles reduction results in 
+Table II. The second column shows the cycle count ]f[ the 
+baseline unpartitioned case ]f[ the parallel kernel region only 
+(not including error checking); the third column shows the 
+cycle count of the partitioned cases leading to the lowest cycle 
+count also ]f[ the parallel kernel region; the fourth column 
+shows the cycle of the last memory access to the arrays 
+under partitioning, which will be useful ]f[ comparison in 
+Section VI-D; the ﬁfth column shows the cycle count speedup 
+of the partitioned over the unpartitioned case; ]^[ column 
+six shows the partitioning scheme(s) that lead to the best 
+cycle count. In matrixmult, matrixmult (cyclic), matrixtrans, 
+]^[ matrixtrans (block cyclic) the benchmarks each contain 2 
+matrices, ]^[ both can be partitioned. The results presented 
+show the partitioning schemes leading to the best cycle execution ]f[ the matrix matrixA in matrixmult ]^[ matrixmult 
+(cyclic), ]^[ ]f[ the matrix input_array in matrixtrans 
+]^[ matrixtrans (block cyclic). Since the access patterns ]f[ 
+the 2 matrices in these 4 benchmarks are transposed of each 
+other, i.e. ]f[ matrixmult matrixA is accessed row by row 
+while matrixB is accessed column by column, the partition 
+scheme which leads to the best cycles execution in one matrix 
+can simply be applied to the other matrix in the opposite 
+dimension. This means, the partitioning scheme leading to 
+one of the lowest cycle count ]f[ matrixadd is 0b16 ]f[ 
+matrixA ]^[ 1b16 ]f[ matrixB. The geomean speedup of 
+all 8 benchmarks is 2.21×. 
+1b 
+c4 
+E XPERIMENTAL R ESULTS 
+Normalized Performance ]^[ Area 
+VI. 
+Fig. 3: Area ]^[ wall-clock time variations among “best” 
+performing matrixadd partitions. 
+Fig. 3 shows the relative wall-clock time, Fmax, ALMs 
+]^[ RAM usage, ]^[ area-delay products of the 9 partitioning 
+schemes leading to the best cycle count found through ModelSim simulation. All values are normalized to the unpartitioned 
+design results. The area-delay product is calculated using the 
+relative area-scaling factors presented in [14]. The scaling 
+benchmark 
+matrixadd 
+histogram 
+matrixmult 
+matrixmult (cyclic) 
+matrixtrans 
+matrixtrans (blockcyclic) 
+parallel region cycles 
+16396 
+4157 
+33077 
+24013 
+32839 
+16799 
+32837 
+16794 
+16395 
+6423 
+16482 
+6348 
+substring 
+los 
+16396 
+83217 
+last memory cycle 
+4163 
+23987 
+16793 
+16789 
+6419 
+6344 
+speedup 
+3.94 
+1.38 
+1.95 
+1.95 
+2.55 
+2.60 
+4117 
+79537 
+3.98 
+1.05 
+4120 
+79543 
+partition schemes 
+1b4, 1b8, 1b16, 0c16, 0bc8 2, 0bc16 2, 1bc4 16, 1bc8 8, 1bc16 4 
+0b8, 0b16 
+0b16, 1b4, 1b8, 1b16, 0c8, 0c16, 1c16, 0bc4 2, 0bc8 2, 1bc4 4, 1bc8 2 
+0b16, 1b16, 0c8, 0c16, 1c4, 1c8, 1c16, 0bc4 2, 0bc8 2, 1bc4 2, 1bc8 2 
+0b4, 0b8, 0b16, 0c8, 0c16, 0bc4 2, 0bc8 2, 0bc8 4, 0bc8 8, 0bc16 2, 0bc16 4 
+0c8, 0c16, 1c16, 1b16, 0bc4 2, 0bc8 2, 0bc16 2, 1bc4 4, 1bc4 8, 1bc8 2, 
+1bc8 4, 1bc8 8, 1bc16 2, 1bc16 4 
+0c4, 0c8, 0c16, 0b8, 0b16, 0bc8 2, 0bc8 1024, 0bc16 2, 0bc16 512 
+1bc16 2 
+TABLE II: Baseline unpartitioned versus best partition scheme(s) execution cycles. 
+matrixadd performance 
+however, the clock frequency reduces between 8 partitions to 
+16 partitions from 90.39 MHz to 78.55 MHz, while the ALM, 
+register, ]^[ RAM usage all increase as we expect. 
+183.26 
+16,376 
+cycles 
+16,396 14,720 
+contentions 
+Wall-clock Time[μs] 
+89.48 
+D. Evaluation of the Memory Simulator 
+·104 
+7,681 
+55.97 
+5,119 
+1 2 
+4 
+52.92 
+45.99 
+4,157 
+1.5 
+4,157 
+0 
+8 
+number of partitions 
+16 
+0 
+(a) Performance result comparing total execution cycles of benchmark 
+as well as the number of resulting contentions ]^[ wall-clock time 
+computed using the Fmax achieved. 
+Predicted cycle 
+8,214 
+1 
+0.5 
+0.5 
+matrixadd area 
+68 68 
+1 2 
+1.5 
+5,253 
+3,821 
+ALMs 
+registers 
+RAMs 
+Fmax[MHz] 
+4 
+·104 
+·104 
+78.55 
+4,918 
+2,845 
+2,689 
+1.5 
+(a) matrixadd benchmark 
+8,478 
+60 
+90.39 
+6,127 
+8 
+number of partitions 
+16 
+(b) Area result comparing total number of ALMs, registers, block 
+RAMs, as well as the Fmax achieved after static timing analysis. 
+Fig. 4: Performance ]^[ area comparison ]f[ matrixadd benchmark with block cyclic partitioning across different numbers 
+of partitions with block size 2. 
+factor ]f[ the ALUT (half-ALM) is presented as 0.05 in [14], 
+which we multiply by 2 to estimate the area of a full ALM. The 
+scaling factor ]f[ an M9K RAM block is given as 2.87 in [14], 
+which we multiply by 1.1 to estimate the area of an M10K 
+RAM. Notice that even among these “optimal” partitionings, 
+the normalized area-delay product ﬂuctuates between 0.31 to 
+0.63. The main cause of this is due to the high area cost of 
+partitioning in some of these schemes. 
+It is also important to observe that partitioning leads to 
+diminishing returns in terms of cycle count, ]b[ may incur 
+signiﬁcant area costs. Fig. 4a ]^[ Fig. 4b show the performance 
+]^[ area of the matrixadd benchmark respectively under blockcyclic partitioning in the column dimension (0) ]f[ various 
+numbers of partitions ]^[ a block size of 2. Observe that the 
+execution cycles reaches a minimum ]f[ 8 ]^[ 16 partitions, 
+Predicted cycle 
+4,325 
+4,029 
+4 
+8,442 
+68 
+68 
+91.8 91.46 
+89.47 
+1 
+Actual cycle 
+1 
+0.5 
+0.5 
+1 
+Actual cycle 
+1.5 
+·104 
+(b) substring benchmark 
+Fig. 5: Memory simulator predicted versus actual cycle of last 
+memory access. 
+The goal of the memory simulator is to accurately predict 
+the schedule of memory accesses of the circuit under various 
+partitioning schemes from a memory access trace gathered 
+from an unpartitioned implementation of the circuit under 
+a representative input. The size of the exploration space is 
+described in Section V-D. In this evaluation, we perform a 
+prediction of the execution cycle count under all possible 
+partition schemes where the number of partitions does ]n[ 
+exceed 16 ]^[ compare the results to the results from Table II 
+in Section VI-B to see if i) the optimal partitioning schemes 
+were detected ]^[ if ii) the predicted cycle of last memory 
+access reported by the memory simulator matches the actual 
+cycle from ModelSim simulation. 
+Table III shows the predicted ]^[ actual cycle of last 
+memory access of the partitioned arrays, the absolute percent- 
+benchmark 
+actual cycle of last 
+memory access 
+4163 
+23987 
+16799 
+16789 
+6419 
+6344 
+% error 
+matrixadd 
+histogram 
+matrixmult 
+matrixmult (cyclic) 
+matrixtrans 
+matrixtrans (blockcyclic) 
+predicted cycle of 
+last memory access 
+4163 
+23987 
+16793 
+16789 
+6420 
+6345 
+substring 
+los 
+4117 
+79537 
+4117 
+79537 
+16.52 
+0 
+0 
+0.004 
+0.03 
+0.16 
+0.01 
+0.01 
+partitioning schemes 
+1b4, 1b8, 1b16, 0c16, 0bc8 2, 0bc16 2, 1bc4 16, 1bc8 8, 1bc16 4 
+0b8, 0b16 
+0b16, 1b4, 1b8, 1b16, 0c8, 0c16, 1c16, 0bc4 2, 0bc8 2, 1bc4 4, 1bc8 2 
+0b16, 1b16, 0c8, 0c16, 1c4, 1c8, 1c16, 0bc4 2, 0bc8 2, 1bc4 2, 1bc8 2 
+0b4, 0b8, 0b16, 0c8, 0c16, 0bc4 2, 0bc8 2, 0bc8 4, 0bc8 8, 0bc16 2, 0bc16 4 
+0c8, 0c16, 1c16, 1b16, 0bc4 2, 0bc8 2, 0bc16 2, 1bc4 4, 1bc4 8, 1bc8 2, 
+1bc8 4, 1bc8 8, 1bc16 2, 1bc16 4 
+0c8, 0c16, 0b8, 0b16, 0bc8 2, 0bc8 1024, 0bc16 2, 0bc16 512 (missing: 0c4) 
+1bc16 2 
+TABLE III: Memory simulator evaluation ]f[ 16 partitions ]^[ under. 
+age error ]f[ all cases of partitioning, where the number of 
+partitions is equal ]v[ less than 16, as well as the partition 
+schemes predicted by the memory simulator to have the lowest 
+last cycle of memory access. Fig. 5a shows the accuracy of 
+the memory simulator ]f[ the matrixadd benchmark, where 
+the horizontal axis plots the actual cycle of the last memory 
+access to the arrays of interest ]^[ the vertical axis plots the 
+predicted cycle of last memory access. The closer to the red 
+line the data falls, the more accurate the prediction. Fig. 5b 
+shows the accuracy of the memory simulator ]f[ the substring 
+benchmark. The absolute percentage error ]f[ the substring 
+benchmark is 16.52%. The source of error was determined to 
+be differences in scheduling due to different port bindings ]f[ 
+memory accesses between the original unpartitioned case, from 
+which we extract the memory access chain, ]^[ the memory 
+port binding during the HLS of the partitioned case. 
+For 7 of the 8 test cases, the memory simulator was able to 
+accurately predict the partitioning schemes which lead to the 
+lowest execution cycles. In the case of substring, the memory 
+simulator missed 1 of the 9 best partitioning schemes. These 
+results are encouraging since looking from the variety of best 
+partitioning schemes, we see that many of these schemes are 
+non-intuitive. This means that it is hard ]f[ a designer to 
+realize that the partitioning scheme 1bc4 16 ]f[ the benchmark 
+matrixadd leads to one of the best solutions. As seen from 
+the area comparison in Fig. 3, this solution actually leads to 
+the lowest normalized area-delay product. This is where the 
+memory simulator-driven automatic memory partitioning tool 
+becomes a useful tool in detecting multiple good solutions to 
+prune the exploration space ]f[ the hardware/software designer. 
+VII. 
+C ONCLUSION 
+Memory access is often a performance bottleneck in computer hardware. In this paper, we considered memory architecture synthesis in the HLS context, speciﬁcally in the synthesis 
+of parallel hardware from parallel multi-threaded software. We 
+implemented ﬂexible array partitioning as an LLVM compiler 
+pass within the LegUp HLS framework. The array partitions 
+are implemented as separate logical RAMs (banks) in the 
+hardware, with arbiters inserted to manage concurrent accesses 
+among threads. With the banked architecture synthesis, the 
+geomean speed up of the parallel execution cycles is 2.21×, 
+across 8 benchmarks. 
+As it is onerous ]f[ one to select an array partitioning ]^[ 
+specify it using specialized compiler pragmas, we devised an 
+automatic memory partitioning tool that uses a cycle accurate 
+memory simulator, which, with an accurate model of memory 
+access arbitration can predict with an average absolute percent 
+error of 2.09% the last memory cycle of access of our 8 
+multi-threaded benchmarks. The simulator can be applied to 
+automatically select the best partitioning ]f[ an array. 
+Future work will look at the interdependency of memory 
+bank architecture synthesis ]^[ the memory port binding step 
+of the HLS ﬂow, as well as how selective multi-pumping of 
+memories may be combined with the proposed partitioning 
+techniques. The brute-force partitioning scheme enumeration 
+approach can also be swapped ]f[ a smarter pruning approach 
+in order to make programs with multiple arrays tractable in 
+this trace-based solution. 
+R EFERENCES 
+[1] 
+[2] 
+[3] 
+[4] 
+[5] 
+[6] 
+[7] 
+[8] 
+[9] 
+[10] 
+[11] 
+[12] 
+[13] 
+[14] 
+[15] 
+[16] 
+A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, T. Czajkowski, 
+S. D. Brown, ]^[ J. H. Anderson. LegUp: An open-source high-level 
+synthesis tool ]f[ FPGA-based processor/accelerator systems. ACM 
+Trans. Embed. Comput. Syst., 13(2), 2013. 
+J. Choi, J. Anderson, ]^[ S. Brown. From software threads to parallel 
+hardware in FPGA high-level synthesis. In IEEE FPT, pages 270–279, 
+2013. 
+J. Choi, S. Brown, ]^[ J. Anderson. Resource ]^[ memory management 
+techniques ]f[ the high-level synthesis of software threads into parallel 
+FPGA hardware. In IEEE FPT, pages 152–159, 2015. 
+A. Cilardo ]^[ L. Gallo. Improving multibank memory access parallelism with lattice-based partitioning. ACM Trans. Archit. Code Optim., 
+11(4), Jan. 2015. 
+J. Cong, B. Liu, S. Neuendorffer, J. Noguera, K. A. Vissers, ]^[ 
+Z. Zhang. High-level synthesis ]f[ fpgas: From prototyping to deployment. IEEE Trans. on CAD, 30(4):473–491, 2011. 
+P. Coussy, D. D. Gajski, M. Meredith, ]^[ A. Takach. An introduction 
+to high-level synthesis. IEEE Design Test of Computers, 26(4):8–17, 
+2009. 
+L. Gallo, A. Cilardo, D. Thomas, S. Bayliss, ]^[ G. A. Constantinides. 
+Area implications of memory partitioning ]f[ high-level synthesis on 
+FPGAs. In FPL, 2014. 
+Intel Corp. Intel Corp. Intel FPGA SDK ]f[ OpenCL. https://www. 
+altera.com/products/design-software/embedded-software-developers/ 
+opencl/overview.html. 
+C. Lattner ]^[ V. S. Adve. LLVM: A compilation framework ]f[ 
+lifelong program analysis & transformation. In IEEE/ACM CGO, pages 
+75–88, 2004. 
+C. Meng, S. Yin, P. Ouyang, L. Liu, ]^[ S. Wei. Efﬁcient memory 
+partitioning ]f[ parallel data access in multidimensional arrays. In 
+IEEE/ACM DAC, 2015. 
+R. Nane, V. M. Sima, C. Pilato, J. Choi, B. Fort, A. Canis, Y. T. Chen, 
+H. Hsiao, S. Brown, F. Ferrandi, J. Anderson, ]^[ K. Bertels. A survey 
+]^[ evaluation of FPGA high-level synthesis tools. IEEE Trans. on 
+CAD, 35(10):1591–1604, 2016. 
+Y. Wang, P. Li, ]^[ J. Cong. Theory ]^[ algorithm ]f[ generalized 
+memory partitioning in high-level synthesis. In ACM FPGA, pages 
+199–208, 2014. 
+Y. Wang, P. Li, P. Zhang, C. Zhang, ]^[ J. Cong. Memory partitioning 
+]f[ multidimensional arrays in high-level synthesis. In ACM/IEEE DAC, 
+2013. 
+H. Wong, V. Betz, ]^[ J. Rose. Comparing fpga vs. custom cmos ]^[ 
+the impact on processor microarchitecture. In Proceedings of the 19th 
+ACM/SIGDA International Symposium on Field Programmable Gate 
+Arrays, FPGA ’11, pages 5–14, New York, NY, USA, 2011. ACM. 
+Xilinx Inc. Vivado HLS. https://www.xilinx.com/products/design-tools/ 
+vivado/integration.html, 2017. 
+Y. Zhou, K. M. Al-Hawaj, ]^[ Z. Zhang. A new approach to automatic 
+memory banking using trace-based address mining. In ACM FPGA, 
+pages 179–188, 2017. 

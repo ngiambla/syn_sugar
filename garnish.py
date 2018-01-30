@@ -120,7 +120,8 @@ class garnish:
 
 			sfs=[]
 			for i in range(_label, sentence_length_map[_label]+_label):
-				sfs.append(ingredient_freq_map[ingredient_free_map[_label]]/len(ingredient_free_map))
+				if _ingredients_all[i] != "%%#%%":
+					sfs.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
 			sentence_entropy_map[_label]=100*mutils.entropy(sfs)/(sentence_length_map[_label]+_label)
 			avg_entropy = avg_entropy + sentence_entropy_map[_label] 
 			if sentence_entropy_map[_label] > max_entropy:
@@ -152,6 +153,7 @@ class garnish:
 					hamming_sim = len(sentence_vec_map[_i_label])-mutils.hamming_distance(a,b)
 
 					sim_i = math.floor(10*(hamming_sim)/len(sentence_vec_map[_i_label]))/10 + math.floor(10*(mutils.get_cosine_sim(a,b)))/10
+
 					if sim_i not in sen_pairs: 
 						sen_pairs[sim_i] = {}
 

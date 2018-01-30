@@ -1,1059 +1,745 @@
-~$[Automated Generation of Banked Memory 
-Architectures in the High%%dsh%%Level Synthesis of 
-Multi%%dsh%%Threaded Software 
-Yu Ting Chen ]^[ Jason H%%per%%]$~ ~$[Anderson 
-Department of Electrical ]^[ Computer Engineering%%lst%% University of Toronto%%lst%% Toronto%%lst%% Ontario 
-Email%%cln%% joyuting%%per%%chen@mail%%per%%utoronto%%per%%ca%%lst%% janders@ece%%per%%toronto%%per%%edu 
-Abstract—Some modern high%%dsh%%level synthesis (HLS) tools [1] 
-permit the synthesis of multi%%dsh%%threaded software into parallel 
-hardware%%lst%% where concurrent software threads are realized as concurrently operating hardware units%%per%%]$~ ~$[A common performance bottleneck in any parallel implementation (whether it be hardware 
-]v[ software) is memory bandwidth – parallel threads demand 
-concurrent access to memory resulting in contention which hurts 
-performance%%per%%]$~ ~$[FPGAs contain an abundance of independently 
-accessible memories offering high internal memory bandwidth%%per%%]$~ 
-~$[We describe an approach ]f[ leveraging such bandwidth in 
-the context of synthesizing parallel software into hardware%%per%%]$~ 
-~$[Our approach applies trace%%dsh%%based proﬁling to determine how 
-a program’s arrays should be automatically partitioned into subarrays%%lst%% which are %%cmp%% implemented in separate on%%dsh%%chip RAM 
-blocks within the target FPGA%%per%%]$~ ~$[The partitioning is accomplished 
-in a way that requires a single HLS execution ]^[ logic simulation ]f[ trace extraction%%per%%]$~ ~$[The end result is that each thread%%lst%% 
-when implemented in hardware%%lst%% has exclusive access to its own 
-memories to the extent possible%%lst%% signiﬁcantly reducing contention 
-]^[ arbitration ]^[ thus raising performance%%per%%]$~ 
-~$[Keywords—High%%dsh%%Level Synthesis%%lst%% memory architecture%%lst%% multithreaded HLS%%per%%]$~ 
-~$[I%%per%%]$~ 
-~$[I NTRODUCTION 
-High%%dsh%%level synthesis (HLS) is becoming a prevalent design 
-methodology ]f[ FPGAs [5]%%lst%% [11] with the introduction of 
-tools such as Vivado HLS from Xilinx [15] ]^[ Altera’s 
-OpenCL SDK [8]%%per%%]$~ ~$[HLS is an active area of research with 
-signiﬁcant effort being put towards closing the performance%%lst%% 
-power ]^[ area gap between HLS%%dsh%%generated hardware ]^[ 
-human%%dsh%%expert%%dsh%%designed hardware%%per%%]$~ ~$[In any hardware computing 
-system%%lst%% memory is a frequently occurring culprit ]f[ limited 
-performance%%scn%% that is%%lst%% memory bandwidth ]^[ contention ]f[ 
-memory among multiple accessors are common roots of limited computational throughput%%per%%]$~ ~$[Processors%%lst%% ]^[ the software 
-programs that run on them%%lst%% are typically based on the assumption of a single uniﬁed memory address space%%per%%]$~ ~$[FPGAs%%lst%% on the 
-other hand%%lst%% contain many small memories%%lst%% distributed spatially%%lst%% 
-that can each be accessed concurrently%%per%%]$~ ~$[The 3 approaches ]f[ 
-increasing memory bandwidth are i) memory replication%%lst%% ii) 
-implementing multi%%dsh%%ported memories ]^[ iii) memory banking 
-through partitioning%%per%%]$~ ~$[Memory replication may incur a high 
-area cost ]^[ would require a synchronization mechanism 
-across multiple copies of the same memory unless the data is 
-read%%dsh%%only%%per%%]$~ ~$[Increasing the number of memory ports is expensive 
-]^[ may ]n[ be possible on the FPGA since the block RAMs 
-have limited port conﬁgurations%%per%%]$~ ~$[In this article%%lst%% we consider 
-automated generation of banked on%%dsh%%chip memory architectures 
-in the high%%dsh%%level synthesis of parallel software programs into 
-parallel FPGA hardware%%lst%% with the goal of reducing memory 
-contention ]^[ raising bandwidth%%per%%]$~ 
-~$[One of the primary aims in pursuing a hardware implementation vs%%per%% a software implementation is to exploit spatial 
-parallelism in the hardware%%per%%]$~ ~$[Towards this%%lst%% some modern highlevel synthesis (HLS) tools%%lst%% such as the LegUp HLS framework 
-from the University of Toronto%%lst%% provide spatial exploitation 
-capability at the software%%dsh%%speciﬁcation stage by supporting 
-the synthesis of parallel software (threads) into parallel hardware [2]%%per%%]$~ ~$[The parallel software threads in multi%%dsh%%threaded C 
-programs written using the Pthreads ]v[ OpenMP standards%%lst%% 
-are realized as concurrently operating units in hardware%%per%%]$~ ~$[In 
-this work%%lst%% we are concerned with the synthesis of memory 
-architectures ]f[ such spatially parallel implementations%%lst%% where 
-concurrently operating hardware units may vie ]f[ access to 
-the same memory ports at the same time%%per%%]$~ ~$[We seek to alleviate such contention through automated synthesis of banked 
-architectures such that hardware units have (partially) exclusive 
-access to particular ports to the extent possible%%per%%]$~ 
-~$[We implement our work in the LegUp HLS framework 
-within its Pthreads/OpenMP parallel ﬂow%%per%%]$~ ~$[We ﬁrst augmented 
-LegUp with user%%dsh%%constraint%%dsh%%driven array partitioning%%lst%% similar 
-to that available in Xilinx’s Vivado HLS tool%%per%%]$~ ~$[Based on usersupplied directives%%lst%% the new functionality permits arrays to 
-be partitioned in a variety of different ways by the compiler%%lst%% 
-where each partition is %%cmp%% implemented in separate RAMs 
-within the FPGA implementation%%per%%]$~ ~$[However%%lst%% two issues exist 
-with the constraint%%dsh%%driven approach%%cln%% 1) it can be difﬁcult to 
-know which style of array partitioning is best ]f[ a given array 
-as it depends on the memory access patterns of the parallel 
-program ]^[ also the architecture of the target FPGA%%lst%% ]^[ 
-2) specifying array partitioning directives is non%%dsh%%standard%%lst%% ]^[ 
-we believe it to be particularly difﬁcult ]f[ software engineers 
-with no knowledge of FPGA hardware%%per%%]$~ 
-~$[In light of these two issues%%lst%% we propose a memory%%dsh%%trace 
-proﬁling%%dsh%%based approach that automatically determines array 
-partitionings to realize banked memory architectures offering 
-low memory contention ]^[ high bandwidth ]f[ parallel spatial 
-hardware as produced by LegUp’s Pthreads/OpenMP ﬂow%%per%%]$~ 
-~$[An advantage of the proposed approach is that it requires a 
-single HLS execution ]^[ hardware simulation of the generated 
-hardware to extract a memory access trace%%lst%% as opposed to 
-more exhaustive approaches requiring many synthesis/simulation runs%%per%%]$~ ~$[Speciﬁcally%%lst%% we have developed a memory%%dsh%%trace 
-simulator that permits rapid evaluation of various memory 
-partitioning schemes (banking architectures) using a single 
-execution trace of the hardware with unpartitioned arrays 
-through modeling contention ]^[ arbitration%%per%%]$~ 
-~$[The key contributions of this paper are%%cln%% 
-• 
-• 
-• 
-• 
-Infrastructure ]f[ array partitioning implemented in 
-the open%%dsh%%source LegUp%%dsh%%HLS framework%%per%%]$~ 
-~$[An automated trace%%dsh%%based array partition scheme detection approach using a lightweight memory simulator with the overall goal of reducing execution 
-cycles in HLS%%dsh%%generated hardware ]f[ multi%%dsh%%threaded 
-software%%per%%]$~ 
-~$[Automated arbiter insertion ]^[ support ]f[ cases 
-where “exact” thread%%dsh%%driven partitioning is ]n[ possible%%lst%% ]f[ example%%lst%% ]f[ scenarios wherein two threads 
-occasionally access the same RAM%%per%%]$~ 
-~$[An experimental study demonstrating the efﬁcacy of 
-the automated partitioning technique in comparison 
-with a brute%%dsh%%force approach%%per%%]$~ 
-~$[II%%per%%]$~ 
-~$[BACKGROUND 
-A%%per%%]$~ ~$[LegUp HLS Tool 
-The LegUp HLS tool is implemented within the opensource LLVM compiler [9]%%per%%]$~ ~$[Within LLVM%%lst%% the program is 
-represented in the compiler’s intermediate representation (IR)%%lst%% 
-which resembles RISC assembly code%%lst%% being composed of 
-simple instructions such as multiply%%lst%% add%%lst%% branch%%lst%% jump%%lst%% etc%%per%%]$~ 
-~$[Prior to LegUp HLS%%lst%% the program’s IR is subjected to LLVM’s 
-compiler optimization passes%%lst%% such as dead%%dsh%%code elimination%%lst%% 
-loop rotation%%lst%% ]^[ common sub%%dsh%%expression elimination%%per%%]$~ ~$[LegUp 
-takes the optimized IR as input ]^[ performs the traditional 
-HLS stages [6] of resource allocation%%lst%% scheduling%%lst%% binding 
-]^[ Verilog generation%%per%%]$~ ~$[In this work%%lst%% array partitioning ]f[ 
-the purposes of banked memory architecture synthesis is 
-implemented as a generic LLVM optimization pass%%per%%]$~ ~$[As will 
-be detailed below%%lst%% the original arrays in the IR are broken 
-into pieces ]^[ array accesses are steered to the appropriate 
-sub%%dsh%%array%%per%%]$~ 
-~$[B%%per%%]$~ ~$[Synthesis of Parallel Software to Hardware 
-In LegUp’s Pthreads synthesis ﬂow%%lst%% multi%%dsh%%threaded software is synthesized into parallel hardware whose behaviour 
-closely matches the software semantics%%per%%]$~ ~$[Each software thread 
-is synthesized into an instance of a hardware unit%%per%%]$~ ~$[Pthreads 
-library function calls in the original C program are replaced 
-with LegUp%%dsh%%speciﬁc wrapper functions that cause speciﬁc 
-hardware structures to be produced in the RTL generation 
-phase%%per%%]$~ ~$[For example%%lst%% calls to pthread_create are translated into FSM functionality that invokes a hardware unit 
-corresponding to a software thread%%per%%]$~ ~$[Support is provided ]f[ 
-common thread synchronization approaches including mutexs 
-(for critical sections) ]^[ barriers%%per%%]$~ ~$[Ultimately%%lst%% the Pthreads 
-ﬂow permits a wide range of spatial parallel implementations 
-to be realized through software changes alone%%per%%]$~ ~$[The interested 
-reader is referred to [2]%%lst%% [3] ]f[ complete details%%per%%]$~ ~$[Our work 
-here seeks to alleviate a speciﬁc (and common) performance 
-bottleneck in such parallel hardware%%lst%% namely%%lst%% when multiple 
-parallel hardware units contend ]f[ memory%%per%%]$~ 
-~$[C%%per%%]$~ ~$[LegUp’s Memory Architecture 
-LegUp HLS implements each array structure in a separate 
-logical RAM%%per%%]$~ ~$[Depending on its size%%lst%% the logical RAM may be 
-implemented in multiple physical block RAMs in the FPGA 
-implementation (e%%per%%g%%per%% when the array size exceeds the SRAM 
-block size in the FPGA fabric)%%per%%]$~ ~$[For RAMs that may be accessed concurrently by parallel hardware%%lst%% LegUp automatically 
-inserts arbitration circuitry%%per%%]$~ ~$[The arbiter permits single%%dsh%%cycle 
-access in the absence of contention%%per%%]$~ ~$[Under contention%%lst%% it is 
-resolved in a round%%dsh%%robin style%%lst%% in which case a hardware unit 
-will stall until it is granted access%%lst%% degrading performance%%per%%]$~ 
-~$[Such degradation is particularly common in the Pthreads 
-synthesis ﬂow%%per%%]$~ 
-~$[Consider%%lst%% ]f[ example%%lst%% parallelized vector addition%%lst%% Z = 
-A + B%%lst%% where Z%%lst%% A%%lst%% B are n%%dsh%%element arrays%%per%%]$~ ~$[In a typical 
-multi%%dsh%%threaded implementation%%lst%% each thread would operate on 
-a portion of the original arrays%%per%%]$~ ~$[With t threads implemented as 
-t parallel hardware units there would be signiﬁcant contention 
-on the ports of RAMs holding the arrays%%lst%% even %%cmp%% the RAMs 
-were in dual%%dsh%%port mode%%per%%]$~ 
-~$[LegUp uses “points%%dsh%%to” analysis in LLVM to designate arrays as either local%%lst%% shared%%dsh%%local ]v[ global [3]%%per%%]$~ ~$[Local arrays are 
-accessed by a single function in the C code%%per%%]$~ ~$[Shared%%dsh%%local arrays 
-are accessed by a limited number of functions%%lst%% as determined 
-statically at compile time%%per%%]$~ ~$[For arrays designated as global%%lst%% 
-the points%%dsh%%to analysis was unable to statically determine the 
-accessors%%per%%]$~ ~$[In hardware%%lst%% such arrays are implemented behind 
-a global memory controller that uses a unique tag ]f[ each 
-array to steer accesses to the correct SRAM block containing 
-the array [1]%%per%%]$~ ~$[For this work%%lst%% we focus on shared%%dsh%%local arrays 
-since global memory requests cannot be parallelized due to the 
-memory controller ]^[ local memory will be scheduled such 
-as to avoid port contentions%%per%%]$~ 
-~$[III%%per%%]$~ 
-~$[R ELATED W ORK 
-A number of recent works have considered memory banking in HLS%%per%%]$~ ~$[Below we highlight those we believe are most relevant to the present research%%per%%]$~ ~$[However%%lst%% an important distinction 
-of our work is the focus on the memory architecture synthesis 
-in the multi%%dsh%%thread HLS context%%per%%]$~ ~$[Our technique speciﬁcally 
-targets the synthesis of banked architectures that result in 
-reduced contention among the hardware implementation of 
-parallel software%%per%%]$~ ~$[To the authors’ knowledge%%lst%% no prior work 
-has considered this scenario%%per%%]$~ 
-~$[As with the present work%%lst%% a recent work by Zhou et 
-al%%per%% [16] applied a trace%%dsh%%based approach to memory banking ]^[ employed a conﬂict%%dsh%%graph%%dsh%%based approach to map 
-memory addresses to banks%%lst%% with emphasis on multiplexer 
-size minimization%%per%%]$~ ~$[Formal techniques were used to verify the 
-mapping was indeed conﬂict free%%per%%]$~ ~$[As opposed to our approach%%lst%% 
-which chooses an architecture from the trace%%lst%% [16] requires 
-the number of banks as an input to the algorithm%%lst%% ]^[ solely 
-handles the conﬂict%%dsh%%free cases (there is no arbitration)%%per%%]$~ 
-~$[Other works include [4] which applies mathematical techniques to the memory partitioning problem%%per%%]$~ ~$[A polyhedral 
-model is used to represent memory access patterns in loops 
-]^[ legal code transformations%%lst%% ]^[ an integer lattice approach 
-is used ]f[ memory partitioning%%lst%% where the objective is to%%cln%% 1) 
-minimize contention%%lst%% ]^[ 2) reduce “waste” (unused portions 
-of the partitions)%%per%% [10] targets accesses of multi%%dsh%%dimensional arrays in loop bodies ]^[ proposed a closed%%dsh%%form linear mapping 
-from array accesses to bank indices to achieve zero conﬂicts 
-(and II=1 ]f[ loop pipelining)%%scn%% subsequent optimizations %%cmp%% 
-B%%per%%]$~ ~$[Partitioning Implementation 
-(a) Complete 
-(b) Block 
-(c) Cyclic 
-(d) Block Cyclic 
-Fig%%per%% 1%%cln%% Partitioning schemes applied to 10×10 matrix in the 
-row dimension%%per%% 
-reduce the bank count ]^[ space wastage%%per%% [13] ]^[ [12] show 
-static analyses which look ]f[ hyperplanes in memory accesses 
-in loop bodies%%per%%]$~ ~$[The hyperplanes are described by a vector 
-]^[ a linear transformation translates between accesses to the 
-original multi%%dsh%%dimensional array into accesses in the newly 
-partitioned banks%%per%%]$~ ~$[However%%lst%% [7] shows that the hyperplane 
-solution does ]n[ always work due to a phenomenon known 
-as bank switching%%lst%% wherein the output of one bank may 
-be required by multiple hardware accessors%%per%%]$~ ~$[Again%%lst%% these 
-works are ]n[ centered on multi%%dsh%%threaded software%%lst%% ]b[ rather%%lst%% 
-partitioning of arrays accessed multiple times in a loop body%%per%%]$~ 
-~$[The application of geometric (e%%per%%g%%per%% polyhedral) representations of memory accesses in a loop body to the memory 
-architecture synthesis problem are ]n[ directly transferable to 
-the related problem in the multi%%dsh%%thread memory contention 
-context%%per%%]$~ ~$[The static approaches presented focus on ﬁnding 
-conﬂict%%dsh%%free mappings%%lst%% however%%lst%% our approach allows ]f[ nonperfect partitions%%per%%]$~ 
-~$[IV%%per%%]$~ 
-~$[A RRAY PARTITIONING I MPLEMENTATION 
-Memory partitioning was implemented as a compiler pass 
-in LLVM%%lst%% where the input is the original IR ]^[ the produced 
-IR is changed such that memory accesses to the affected arrays 
-are modiﬁed to access from the sub%%dsh%%arrays%%per%%]$~ ~$[The pass takes 
-advantage of the predicated load/store operations supported by 
-LegUp%%per%%]$~ ~$[Predicated loads/stores differ from regular load/store 
-instructions in that the memory enable signal is no longer only 
-FSM%%dsh%%state dependent%%lst%% ]b[ also dependent on a precomputed 
-predicate signal%%per%%]$~ ~$[Predicates are typically the true/false outcome 
-of a comparison%%per%%]$~ ~$[Leveraging the predicated load/store%%lst%% the 
-array partitioning pass can%%lst%% ]f[ each memory access to a 
-partitioned array%%lst%% create multiple predicated memory instructions ]f[ each newly created partition%%lst%% where the predicate 
-is a %%cmp%% instruction of the original index%%per%%]$~ ~$[The %%cmp%% 
-instruction (icmp eq) will evaluate to true only ]f[ one of 
-these instructions at run%%dsh%%time%%per%%]$~ ~$[Therefore%%lst%% the array partitioning 
-transformation does ]n[ require extra memory bandwidth%%per%%]$~ 
-~$[It is worthwhile to explain the detailed behavior surrounding predicated memory accesses%%lst%% arbitration%%lst%% ]^[ partitioning%%per%%]$~ 
-~$[Consider a four%%dsh%%thread program%%lst%% where initially all threads 
-access a single array%%per%%]$~ ~$[When synthesized to hardware%%lst%% contention ]^[ delays due to arbitration may arise %%cmp%% the 
-array%%lst%% implemented as a logical RAM in the FPGA%%lst%% has four 
-accessors ]^[ at most two ports%%per%%]$~ 
-~$[To resolve the contention%%lst%% assume the array is partitioned 
-into four pieces%%lst%% where each thread accesses the partitions in a 
-near%%dsh%%exclusive fashion%%lst%% ]f[ example%%lst%% each thread accesses one 
-partition 95% of the time%%lst%% ]b[ 5% of the time accesses one 
-of the other three partitions%%per%%]$~ ~$[In such a scenario%%lst%% the hardware 
-implementation of each thread does indeed issue a predicated 
-access to all four partitions%%scn%% however%%lst%% it is only the access ]f[ 
-which the predicate is true that is sent to the arbiter%%per%%]$~ ~$[That 
-is%%lst%% the accesses associated with false predicates do ]n[ create 
-contention in our implementation%%per%%]$~ 
-~$[A%%per%%]$~ ~$[Available Partitioning Schemes 
-There are 4 supported partitioning schemes ]f[ multidimensional arrays%%cln%% complete%%lst%% block%%lst%% cyclic%%lst%% ]^[ block cyclic 
-shown in Fig%%per%% 1%%per%%]$~ ~$[These are similar to the schemes that are 
-supported by Vivado HLS%%per%%]$~ ~$[In the complete scheme%%lst%% each array 
-element is designated to a separate partition%%per%%]$~ ~$[In the block 
-scheme%%lst%% partitions represent contiguous pieces of the original 
-array%%per%%]$~ ~$[The cyclic scheme is an interleaved approach%%lst%% where 
-array elements a ﬁxed distance apart are allocated to the same 
-partition%%per%%]$~ ~$[Block cyclic combines the block ]^[ cyclic schemes%%per%%]$~ 
-~$[Partitioning is available in any single dimension of a multidimensional array%%per%%]$~ ~$[For the purposes of this work%%lst%% our focus is 
-on globally declared data structures – i%%per%%e%%per%% those which are ]n[ 
-locally scoped ]^[ %%cmp%%%%lst%% can be shared between multiple 
-functions ]v[ threads of the same function%%per%%]$~ 
-~$[The speciﬁc partitioning scheme is based on several terms%%cln%% 
-• 
-• 
-• 
-Number of Partitions (n)%%cln%% Number of total partitions 
-to be created%%per%%]$~ 
-~$[Block Size (b)%%cln%% Size of contiguous elements in the 
-dimension of partitioning that constitute the partition%%per%%]$~ 
-~$[Size (S)%%cln%% Number of elements of the multidimensional array in the dimension of the partitioning%%per%%]$~ 
-~$[C%%per%%]$~ ~$[Limit to Power%%dsh%%of%%dsh%%2 Partitions 
-In order to access a memory location in the newly partitioned memory scheme%%lst%% the new access will require both 
-the new partition number%%lst%% as well as a new index into the 
-partition where memory location now resides%%per%%]$~ ~$[The equation to 
-determine the new partition number%%lst%% pd %%lst%% is%%cln%% 
-pd = id / b % n 
-(1) 
-where id is the index of the access in the dimension of 
-partitioning%%lst%% d%%scn%% b is the block size ]^[ n is the number of 
-partitions%%per%%]$~ 
-~$[The equation to compute the new index%%lst%% new id %%lst%% into the 
-partition is%%cln%% 
-new id = (id % b) + id / (b × n) × b 
-(2) 
-The indices into the other dimensions of the array remain 
-unchanged since the other dimensions were ]n[ partitioned%%per%%]$~ 
-~$[The above equations hold ]f[ the general case of block 
-cyclic partitioning%%per%%]$~ ~$[They can be simpliﬁed in the case of 
-complete%%lst%% block%%lst%% ]^[ cyclic%%per%%]$~ ~$[For example%%lst%% notice that in the 
-case of complete partitioning%%lst%% b is 1 ]^[ n is S%%lst%% the size of the 
-Scheme 
-Complete 
-Block 
-Number Partitions 
-Ncmp = {n|n = S} 
-Nb = {n|1 < n < S} 
-Nc = {n|1 < n < S%%lst%% n ∈ 
-{2i |i ∈ N}} 
-Nbc = {n|1 < n < S%%lst%% n ∈ 
-{2i |i ∈ N}} 
-Cyclic 
-Block 
-Cyclic 
-Block Size 
-Bcmp = {b|b = 1} 
-Bb = {b|1 < b < S%%lst%% b ∈ 
-{2i |i ∈ N}} 
-Bc = {b|b = 1} 
-Cycle 
-0 
-1 
+~$[1 
+Cognitive Processing Therapy 
+Veteran/Military Version 
+Patricia A%%per%%]$~ ~$[Resick%%lst%% Ph%%per%%D%%per%% ]^[ Candice M%%per%%]$~ ~$[Monson%%lst%% Ph%%per%%D%%per%%]$~ 
+~$[National Center ]f[ PTSD 
+Women’s Health Science Division 
+VA Boston Healthcare System ]^[ 
+Boston University 
+And 
+Kathleen M%%per%%]$~ ~$[Chard%%lst%% Ph%%per%%D%%per%%]$~ 
+~$[Cincinnati VA Medical Center ]^[ 
+University of Cincinnati 
+October%%lst%% 2006 
+Correspondence should be addressed to Patricia Resick ]v[ Candice Monson%%lst%% WHSD (116B%%dsh%%3)%%lst%% 
+VA Boston Healthcare System%%lst%% 150 South Huntington Ave%%per%%]$~ ~$[Boston%%lst%% MA 02130%%scn%% 
+Patricia%%per%%Resick@va%%per%%gov ]v[ Candice%%per%%Monson@va%%per%%gov%%per%%]$~ 
+~$[Copyright%%lst%% © Patricia A%%per%%]$~ ~$[Resick%%lst%% Ph%%per%%D%%per%% ]^[ Candice M%%per%%]$~ ~$[Monson%%lst%% Ph%%per%%D%%per%% 10/01/06 
 2 
-3 
-4 
-Bbc = {b|1 < b < S%%lst%% b ∈ 
-{2i |i ∈ N}} 
-TABLE I%%cln%% Partition conﬁguration set of allowable value ranges 
-]f[ number of partition%%lst%% ]^[ block size parameters%%per%% 
-array in dimension d of complete partitioning%%per%%]$~ ~$[Therefore%%lst%% the 
-equation to determine the new partition number is simply%%lst%% 
-p d = id 
-(3) 
-]^[ the new index is simply equal to 0%%per%%]$~ 
-~$[Observe that the above equations heavily rely on the division ]^[ modulo operators%%per%%]$~ ~$[These operations are potentially 
-costly from both the performance ]^[ area perspectives in 
-LegUp%%dsh%%generated hardware%%per%%]$~ ~$[For example%%lst%% in the division/modulo module LegUp instantiates%%lst%% the number of cycles 
-required is proportional to the bitwidths of the division/modulo 
-operands%%per%%]$~ ~$[This implies that the cycle%%dsh%%count penalty incurred to 
-compute partition number ]^[ index can override any cyclecount reduction afforded by partitioning in the ﬁrst place%%per%%]$~ 
-~$[Consequently%%lst%% we limit the solution space such that the 
-division operations can be substituted by right shift operations 
-]^[ the modulo operations can be substituted by bit%%dsh%%wise 
-logical%%dsh%%AND operations%%lst%% which are both trivial in hardware%%per%%]$~ 
-~$[Table I shows the values of n ]^[ b that each partitioning 
-scheme allows%%per%%]$~ ~$[There is only one possible setting ]f[ complete 
-partitioning%%per%%]$~ ~$[In block partitioning%%lst%% we can have any integer 
-value greater %%cmp%% 1 ]^[ less %%cmp%% S number of partitions ]^[ 
-our block size must be a power of 2 value greater %%cmp%% 1 ]^[ 
-less %%cmp%% S%%lst%% where S is the size of the array in the dimension 
-of partitioning%%per%%]$~ ~$[In cyclic partitioning%%lst%% we need a power of 2 
-number of partitions which is greater %%cmp%% 1 ]^[ less %%cmp%% S 
-]^[ a block size of 1%%per%%]$~ ~$[In block cyclic partitioning%%lst%% we must 
-have a number of partitions ]^[ block size which are both 
-power%%dsh%%of%%dsh%%2 integers greater %%cmp%% 1 ]^[ less %%cmp%% S%%per%%]$~ ~$[Section V%%dsh%%D 
-presents the solution space ]f[ a general multi%%dsh%%dimensional 
-array%%per%%]$~ 
-~$[V%%per%%]$~ 
-~$[AUTOMATIC A RRAY PARTITIONING 
-A%%per%%]$~ ~$[Overview 
-At a high level%%lst%% the automated array partitioning is implemented as follows%%cln%% First%%lst%% the multi%%dsh%%threaded software program%%lst%% 
-without any partitioning applied%%lst%% is synthesized to hardware 
-using LegUp HLS%%per%%]$~ ~$[The generated RTL is %%cmp%% simulated with 
-ModelSim under typical input vectors%%lst%% ]^[ a memory access 
-trace is extracted%%lst%% where%%lst%% ]f[ each array/memory access%%lst%% the 
-address ]^[ the ID of the thread making the access is tracked%%per%%]$~ 
-~$[Following the trace generation%%lst%% the trace itself%%lst%% as well as 
-a hypothetical array partitioning scheme are inputted to our 
-memory simulator%%lst%% which%%lst%% ]f[ the proposed scheme%%lst%% estimates 
-its performance beneﬁts%%per%%]$~ ~$[With the single HLS execution ]^[ 
-trace generation%%lst%% we are able to assess the consequences of 
-various partitioning schemes%%per%%]$~ ~$[And%%lst%% by simulating a variety of 
-different partitioning schemes%%lst%% an optimal memory banking 
-architecture can be determined%%per%%]$~ ~$[We elaborate on the steps in 
-the subsections below%%per%%]$~ 
-~$[Thread 0 
-access 0 
-access 1 
-access 1 
-Thread 1 
-access 3 
-access 3 
-access 4 
-access 4 
-access 2 
-(a) Thread access schedule 
-Thread 0 
-access 0 
-Thread 1 
-access 3 
-distance%%cln%% 1 
-access 1 
-distance%%cln%% 1 
-access 4 
-distance%%cln%% 2 
-access 2 
-(b) Memory access chain 
-Fig%%per%% 2%%cln%% Memory access schedule of 2 threaded execution to 
-memory access chain%%per%%]$~ 
-~$[B%%per%%]$~ ~$[Memory Trace Collection 
-We modiﬁed the RTL%%dsh%%generation of the LegUp HLS tool 
-to produce the relevant trace data in ModelSim simulation%%per%%]$~ 
-~$[Speciﬁcally%%lst%% a $display statement is inserted whenever a 
-request is made to a shared memory since it can be easily 
-detected through the request_in vector of the associated 
-arbiter%%per%%]$~ ~$[The information attached to each shared memory 
-request is the cycle of the initial request%%lst%% the speciﬁc block 
-RAM being requested%%lst%% the port name%%lst%% the function trying to 
-access the RAM%%lst%% the instance number in the case of multithreaded functions%%lst%% ]^[ the address of the request to be used 
-later ]f[ determining possible partition schemes%%per%%]$~ 
-~$[C%%per%%]$~ ~$[Memory Partitioning Simulator 
-The memory simulator is a program which aims to model 
-the arbitration of requests to a particular port of a speciﬁc block 
-RAM%%per%%]$~ ~$[The program is written using Python%%per%%]$~ ~$[The simulator 
-will%%lst%% based on any partitioning scheme ]^[ an input memory 
-trace collected during the unpartitioned execution%%lst%% determine 
-the number of port contentions that will occur%%lst%% as well as 
-the cycle number in which the last memory request will be 
-serviced%%per%%]$~ 
-~$[The program ﬁrst creates a representation of the unpartitioned execution memory accesses as a chain of nodes in 
-which each node represents a memory access ]^[ the edge 
-weights between the nodes represent the distance%%lst%% i%%per%%e%%per%% the 
-intrinsic number of cycles between accesses%%per%%]$~ ~$[The distance may 
-]n[ be the same as the number of cycles between accesses 
-in an execution trace since the trace captures cycles lost to 
-contention%%per%%]$~ ~$[Fig%%per%% 2 shows a series of scheduled accesses ]f[ 
-a program running 2 threads%%lst%% as well as the memory access 
-chains that are created from the memory trace%%per%%]$~ ~$[The boxed 
-accesses represent the requests granted in that cycle%%lst%% while the 
-unboxed accesses represent the accesses which stalled due to 
-contention%%per%%]$~ ~$[As seen here%%lst%% the cycle difference between when 
-access 0 is granted ]^[ when access 1 is granted is 2%%per%%]$~ ~$[However%%lst%% 
-the distance will measure 1 cycle%%lst%% %%cmp%% the distance captures 
-the number of cycles between accesses in the absence of 
-contention%%per%%]$~ 
-~$[Once the memory access chain is gathered%%lst%% the simulator 
-will “execute” the trace%%lst%% where the memory accesses are 
-scheduled according to the partitioning scheme under test%%lst%% 
-since we know the order of all memory accesses by each 
-requester%%lst%% as well as the speciﬁc addresses being accessed%%lst%% 
-which can tell us which partition the access would belong to%%per%%]$~ 
-~$[The simulator has an in%%dsh%%memory model of the round%%dsh%%robin 
-arbiter instantiated by LegUp ]^[ %%cmp%%%%lst%% it is able to assess 
-cycles lost to contention%%lst%% i%%per%%e%%per%% a requester waiting ]f[ a “grant” 
-from the arbiter%%per%%]$~ 
-~$[Listing 1 shows pseudocode ]f[ simulating the scheduling 
-of a memory access trace ]f[ a particular array partitioning 
-conﬁguration%%lst%% partitionConfig%%per%%]$~ ~$[Our approach bears similarity to event%%dsh%%driven logic simulation%%per%%]$~ ~$[Here%%lst%% setQ is a set of 
-queues%%cln%% one ]f[ each arbiter in the partitioning scheme being 
-simulated%%per%%]$~ ~$[Each queue stores the pending memory requests 
-]f[ a port on a memory bank%%per%%]$~ ~$[Initially%%lst%% all arbiter queues are 
-initialized to empty%%per%%]$~ 
-~$[Listing 1%%cln%% Algorithm ]f[ simulating a memory partitioning 
-scheme 
+Cognitive Processing Therapy%%cln%% Veteran/Military Version 
+Part 1 
+Introduction to Cognitive Processing Therapy 
+Cognitive Processing Therapy (CPT) is a 12%%dsh%%session therapy that has been found effective 
+]f[ both PTSD ]^[ other corollary symptoms following traumatic events (Monson et al%%lst%% 2006%%scn%% 
+Resick et al%%lst%% 2002%%scn%% Resick & Schnicke%%lst%% 1992%%lst%% 19931)%%per%%]$~ ~$[Although the research on CPT focused on 
+rape victims originally%%lst%% we have used the therapy successfully with a range of other traumatic 
+events%%lst%% including military%%dsh%%related traumas%%per%%]$~ ~$[This revision of the manual is in response to requests 
+]f[ a treatment manual that focuses exclusively on military trauma%%per%%]$~ ~$[The manual has been 
+updated to reflect changes in the therapy over time%%lst%% particularly with an increase in the amount of 
+practice that is assigned ]^[ with some of the handouts%%per%%]$~ ~$[It also includes suggestions from almost 
+two decades of clinical experience with the therapy%%per%%]$~ 
+~$[Also included in this manual is a module ]f[ traumatic bereavement%%per%%]$~ ~$[This module is ]n[ 
+included as one of the 12 sessions ]b[ could be added to the therapy%%per%%]$~ ~$[We recommend that the 
+session be added early in therapy%%lst%% perhaps as the second session along with the educational 
+component on posttraumatic stress disorder%%per%%]$~ ~$[Although we expect PTSD to remit as a result of 
+treatment%%lst%% we do ]n[ necessarily expect bereavement to remit%%per%%]$~ ~$[Grief is a normal reaction to loss 
+]^[ is ]n[ a disorder%%per%%]$~ ~$[Bereavement may have a long ]^[ varied course%%per%%]$~ ~$[The goal of dealing with 
+grief issues within CPT is ]n[ to shorten the natural course of adjustment%%lst%% ]b[ to remove blocks 
+]^[ barriers (distorted cognitions%%lst%% assumptions%%lst%% expectations) that are interfering with normal 
+bereavement%%per%%]$~ ~$[Therefore%%lst%% the focus is on normal grief%%lst%% myths about bereavement%%lst%% ]^[ stuck 
+points that therapists may need to focus on in this domain%%per%%]$~ ~$[If the bereavement session is added to 
+CPT%%lst%% %%cmp%% the assignment to write an impact statement would be delayed one session (see 
+Session 1) ]f[ those who have PTSD due to a traumatic death%%per%%]$~ ~$[Another possibility is to have the 
+patients write two impact statements ]f[ those who both lost a loved one ]^[ have PTSD related 
+to something that happened to them directly%%per%%]$~ ~$[One statement would be about what it means that 
+the traumatic event happened to them%%per%%]$~ ~$[The other statement would be about what it means that the 
+loved one has died%%per%%]$~ 
+~$[Many therapists were never trained to conduct manualized psychotherapies ]^[ may feel 
+uncomfortable with both the concept ]^[ the execution%%per%%]$~ ~$[It is important that the patient ]^[ 
+therapist agree on the goal ]f[ the therapy (trauma work ]f[ PTSD ]^[ related symptoms) ]s[ that 
+the goals do ]n[ drift ]v[ switch from session to session%%per%%]$~ ~$[Without a firm commitment to the 
 1 
-2 
+Monson%%lst%% C%%per%%M%%per%%%%lst%% Schnurr%%lst%% P%%per%%P%%per%%%%lst%% Resick%%lst%% P%%per%%A%%per%%%%lst%% Friedman%%lst%% M%%per%%J%%per%%%%lst%% Young%%dsh%%Xu%%lst%% Y%%per%%%%lst%% & Stevens%%lst%% S%%per%%P%%per%% (2006)%%per%%]$~ ~$[Cognitive 
+processing therapy ]f[ veterans with military%%dsh%%related posttraumatic stress disorder%%per%%]$~ ~$[Journal of Consulting & 
+Clinical Psychology%%lst%% 74%%lst%% 898%%dsh%%907%%per%%]$~ 
+~$[Resick%%lst%% P%%per%%A%%per%%%%lst%% Nishith%%lst%% P%%per%%%%lst%% Weaver%%lst%% T%%per%%L%%per%%%%lst%% Astin%%lst%% M%%per%%C%%per%%%%lst%% & Feuer%%lst%% C%%per%%A%%per%% (2002)%%per%%]$~ ~$[A comparison of cognitive processing 
+therapy%%lst%% prolonged exposure ]^[ a waiting condition ]f[ the treatment of posttraumatic stress disorder in 
+female rape victims%%per%%]$~ ~$[Journal of Consulting ]^[ Clinical Psychology%%lst%% 70%%lst%% 867%%dsh%%879%%per%%]$~ 
+~$[Resick%%lst%% P%%per%%]$~ ~$[A%%per%%%%lst%% & Schnicke%%lst%% M%%per%%]$~ ~$[K%%per%% (1992)%%per%%]$~ ~$[Cognitive processing therapy ]f[ sexual assault victims%%per%%]$~ ~$[Journal of 
+Consulting ]^[ Clinical Psychology%%lst%% 60%%lst%% 748%%dsh%%756%%per%%]$~ 
+~$[Resick%%lst%% P%%per%%]$~ ~$[A%%per%%%%lst%% & Schnicke%%lst%% M%%per%%]$~ ~$[K%%per%% (1993)%%per%%]$~ ~$[Cognitive processing therapy ]f[ rape victims%%cln%% A treatment manual%%per%%]$~ 
+~$[Newbury Park%%lst%% CA%%cln%% Sage Publications%%per%% 
 3 
+treatment goals%%lst%% when the therapy is “off track”%%lst%% the therapist may ]n[ know whether to get back 
+on the protocol ]v[ to let it slide%%per%%]$~ ~$[As other topics arise%%lst%% the therapist sometimes isn’t sure whether 
+]v[ how to incorporate them into the sessions%%per%%]$~ ~$[A few words on these topics are appropriate here%%per%%]$~ 
+~$[Once therapists have conducted protocol therapy a few times%%lst%% they usually find that they become 
+more efficient ]^[ effective therapists%%per%%]$~ ~$[They learn to guide the therapy without tangents ]v[ 
+delays%%per%%]$~ ~$[They find they can develop rapport with patients through the use of Socratic questions 
+%%cmp%% the patients are explaining to the therapist exactly how they feel ]^[ think ]^[ the 
+therapist expresses interest ]^[ understanding with these questions%%per%%]$~ ~$[There is usually enough time 
+in the session to cover the material ]f[ the session ]^[ still have time ]f[ some other topics%%lst%% such 
+as things that came up that week ]v[ considering other current issues related to their PTSD 
+(childrearing%%lst%% job concerns marital issues%%lst%% etc%%per%%)%%per%%]$~ ~$[However %%cmp%% those are major issues%%lst%% %%cmp%% the 
+therapist will need to prioritize the order%%per%%]$~ ~$[It would be inadvisable to try to deal with several 
+types of therapy ]f[ different problems simultaneously%%per%%]$~ 
+~$[Normally%%lst%% comorbid depression%%lst%% anxiety%%lst%% ]^[ dissociation remit along with PTSD%%lst%% ]s[ we 
+rarely believe there is a need to deal with other symptoms independently of the PTSD protocol%%per%%]$~ 
+~$[Substance dependence should be treated prior to addressing PTSD%%lst%% ]b[ substance abusing 
+patients may be treated with CPT %%cmp%% there is a specific contract ]f[ ]n[ drinking abusively during 
+the therapy ]^[ %%cmp%% there is a specific focus on the suspected role of abusive drinking as avoidance 
+coping (for more information on comorbidity see Section 3)%%per%%]$~ ~$[Typically we have the patients 
+focus on specific child%%lst%% family%%lst%% ]^[ marital issues after completing the course of PTSD 
+treatment%%per%%]$~ ~$[Sometimes those problems remit when the patient no longer has PTSD interfering 
+with functioning%%per%%]$~ ~$[Other considerations regarding comorbidity are found later in the manual%%per%%]$~ 
+~$[Most veterans present ]f[ PTSD treatment many years after the traumatic event%%per%%]$~ ~$[They 
+are usually ]n[ in crisis ]^[ are able to handle their day%%dsh%%to%%dsh%%day lives (at whatever level they are 
+functioning) without constant intervention%%per%%]$~ ~$[Much of the disruption in the flow of therapy ]f[ 
+PTSD comes from avoidance attempts on the part of the patient%%per%%]$~ ~$[We point out avoidance 
+whenever we see it (e%%per%%g%%per%%%%lst%% changing the subject%%lst%% showing up late ]f[ sessions)%%lst%% ]^[ remind the 
+patient that avoidance maintains PTSD symptoms%%per%%]$~ ~$[If the patient wants to discuss other issues%%lst%% we 
+save time at the end of the session ]v[ attempt to incorporate their issues into the skills that are 
+being taught (i%%per%%e%%per%%%%lst%% A%%dsh%%B%%dsh%%C sheets%%lst%% Challenging Questions%%lst%% Patterns of Problematic Thinking%%lst%% 
+Challenging Beliefs worksheets)%%per%%]$~ ~$[If the patient does ]n[ bring in practice assignments%%lst%% we do ]n[ 
+delay the session%%lst%% ]b[ conduct the work in session ]^[ %%cmp%% reassign the practice assignment 
+along with the next assignment%%per%%]$~ 
+~$[Returning OEF/OIF veterans may have different needs %%cmp%% older veterans%%per%%]$~ ~$[They may 
+prefer two sessions a week ]s[ that they can get therapy finished quickly%%per%%]$~ ~$[They may request early 
+morning ]v[ evening appointments to accommodate their jobs%%per%%]$~ ~$[They may want their PTSD 
+treatment augmented with couples counseling%%per%%]$~ ~$[They may appear a bit more “raw” %%cmp%% the very 
+chronic Vietnam veterans that most VA clinicians are accustomed to working with%%per%%]$~ ~$[The more 
+accessible emotions are actually an advantage in processing the traumatic events ]^[ in 
+motivating change%%lst%% ]b[ therapists who have worked with only very chronic (and numbed) 
+veterans may become alarmed when they first work with these patients%%per%%]$~ ~$[They may think that 
+strong emotions ]v[ dissociation should be stabilized ]v[ medicated first%%per%%]$~ ~$[However%%lst%% CPT was 
+developed ]^[ tested first with rape victims who may also be very acute ]^[ very emotional%%per%%]$~ ~$[As 
 4 
+long as patients are willing to engage in therapy ]^[ can contract against self%%dsh%%harm ]^[ acting 
+out%%lst%% there is no reason to assume that they need to wait ]f[ treatment%%per%%]$~ 
+~$[It is recommended that the patient be assessed%%lst%% ]n[ just before ]^[ after treatment%%lst%% ]b[ 
+during treatment as well%%per%%]$~ ~$[We typically give patients a brief PTSD scale ]^[ a depression scale 
+(if comorbid depression is a problem) once a week%%per%%]$~ ~$[Most often there is a large drop in symptoms 
+when the assimilation about the trauma is resolving%%per%%]$~ ~$[Typically this occurs around the 5th ]v[ 6th 
+session with the written exposure ]^[ cognitive therapy focusing on the traumatic event itself%%per%%]$~ 
+~$[Occasionally this takes longer%%lst%% ]b[ with frequent assessment%%lst%% the therapist can monitor the 
+progress ]^[ see when the shift occurs%%per%%]$~ 
+~$[Theory 
+CPT is based on a social cognitive theory of PTSD that focuses on how the traumatic event 
+is construed ]^[ coped with by a person who is trying to regain a sense of mastery ]^[ control in 
+his/her life%%per%%]$~ ~$[The other major theory explaining PTSD is Lang’s2 (1977) information processing 
+theory%%lst%% which was extended to PTSD by Foa%%lst%% Steketee%%lst%% ]^[ Rothbaum3 (1989) in their emotional 
+processing theory of PTSD%%per%%]$~ ~$[In this theory%%lst%% PTSD is believed to emerge due to the development of 
+a fear network in memory that elicits escape ]^[ avoidance behavior%%per%%]$~ ~$[Mental fear structures 
+include stimuli%%lst%% responses%%lst%% ]^[ meaning elements%%per%%]$~ ~$[Anything associated with the trauma may elicit 
+the fear structure ]v[ schema ]^[ subsequent avoidance behavior%%per%%]$~ ~$[The fear network in people with 
+PTSD is thought to be stable ]^[ broadly generalized ]s[ that it is easily accessed%%per%%]$~ ~$[When the fear 
+network is activated by reminders of the trauma%%lst%% the information in the network enters 
+consciousness (intrusive symptoms)%%per%%]$~ ~$[Attempts to avoid this activation result in the avoidance 
+symptoms of PTSD%%per%%]$~ ~$[According to emotional processing theory%%lst%% repetitive exposure to the 
+traumatic memory in a safe environment will result in habituation of the fear ]^[ subsequent 
+change in the fear structure%%per%%]$~ ~$[As emotion decreases%%lst%% patients with PTSD will begin to modify their 
+meaning elements spontaneously ]^[ will change their self%%dsh%%statements ]^[ reduce their 
+generalization%%per%%]$~ ~$[Repeated exposures to the traumatic memory are thought to result in habituation ]v[ 
+a change in the information about the event%%lst%% ]^[ subsequently%%lst%% the fear structure%%per%%]$~ 
+~$[Although social cognitive theories are ]n[ incompatible with information/emotional 
+processing theories%%lst%% these theories focus beyond the development of a fear network to other 
+pertinent affective responses such as horror%%lst%% anger%%lst%% sadness%%lst%% humiliation%%lst%% ]v[ guilt%%per%%]$~ ~$[Some emotions 
+such as fear%%lst%% anger%%lst%% ]v[ sadness may emanate directly from the trauma (primary emotions)%%lst%% 
+%%cmp%% the event is interpreted as dangerous%%lst%% abusive%%lst%% and/or resulting in losses%%per%%]$~ ~$[It is possible 
+that secondary%%lst%% ]v[ manufactured%%lst%% emotions can also result from faulty interpretations made by the 
+patient%%per%%]$~ ~$[For example%%lst%% %%cmp%% someone is intentionally attacked by another person%%lst%% the danger of the 
+situation would lead to a fight%%dsh%%flight response ]^[ the attending emotions might be anger ]v[ fear 
+(primary)%%per%%]$~ ~$[However%%lst%% %%cmp%% in the aftermath%%lst%% the person blamed himself ]v[ herself ]f[ the attack%%lst%% the 
+person might experience shame ]v[ embarrassment%%per%%]$~ ~$[These manufactured emotions would have 
+2 
+Lang%%lst%% P%%per%%]$~ ~$[J%%per%% (1977)%%per%%]$~ ~$[Imagery in therapy%%cln%% An information processing analysis of fear%%per%%]$~ ~$[Behavior Therapy%%lst%% 8%%lst%% 862%%dsh%%886%%per%% 
+3 
+Foa%%lst%% E%%per%%]$~ ~$[B%%per%%%%lst%% Steketee%%lst%% G%%per%%]$~ ~$[S%%per%%%%lst%% & Rothbaum%%lst%% B%%per%% 0%%per%% (1989)%%per%%]$~ ~$[Behavioral/cognitive conceptualizations of posttraumatic 
+stress disorder%%per%%]$~ ~$[Behavior Therapy%%lst%% 20%%lst%% 155%%dsh%%176%%per%% 
 5 
+resulted from thoughts ]^[ interpretations about the event%%lst%% rather %%cmp%% the event itself%%per%%]$~ ~$[As long as 
+the individual keeps saying that the event was their fault%%lst%% they keep producing shame (%%cmp%%%%lst%% 
+manufactured)%%per%%]$~ 
+~$[Social%%dsh%%cognitive theories focus more on the content of cognitions ]^[ the effect that 
+distorted cognitions have upon emotional responses ]^[ behavior%%per%%]$~ ~$[In order to reconcile the 
+information about the traumatic event with prior schemas%%lst%% people tend to do one ]v[ more of three 
+things%%cln%% assimilate%%lst%% accommodate%%lst%% ]v[ over%%dsh%%accommodate%%per%%]$~ ~$[Assimilation is altering the incoming 
+information to match prior beliefs (“Because a bad thing happened to me%%lst%% I must have been 
+punished ]f[ something I did”)%%per%%]$~ ~$[Accommodation is altering beliefs enough to incorporate the 
+new information (“Although I didn’t use good judgment in that situation%%lst%% most of the time I make 
+good decisions”)%%per%%]$~ ~$[Over%%dsh%%accommodation is altering ones beliefs about oneself ]^[ the world to 
+the extreme in order to feel safer ]^[ more in control (“I can’t ever trust my judgment again”)%%per%%]$~ 
+~$[Obviously%%lst%% therapists are working toward accommodation%%lst%% a balance in beliefs that takes into 
+account the reality of the traumatic event without going overboard%%per%%]$~ 
+~$[In a social%%dsh%%cognitive model%%lst%% affective expression is needed%%lst%% ]n[ ]f[ habituation%%lst%% ]b[ in 
+order ]f[ the affective elements of the stored trauma memory to be changed%%per%%]$~ ~$[It is assumed that 
+the natural affect%%lst%% once accessed%%lst%% will dissipate rather quickly%%lst%% ]^[ will no longer be stored with 
+the trauma memory%%per%%]$~ ~$[Also%%lst%% the work of accommodating the memory ]^[ beliefs can begin%%per%%]$~ ~$[Once 
+faulty beliefs regarding the event (self%%dsh%%blame%%lst%% guilt) ]^[ over%%dsh%%generalized beliefs about oneself 
+]^[ the world (e%%per%%g%%per%% safety%%lst%% trust%%lst%% control esteem%%lst%% intimacy) are challenged%%lst%% %%cmp%% the secondary 
+emotions will also decrease along with the intrusive reminders%%per%%]$~ ~$[The explanation that CPT 
+therapists give to patients about this process is described in Session 1 along with a handout in the 
+patient materials section%%per%%]$~ 
+~$[Because we know that PTSD symptoms are nearly universal immediately following a 
+serious traumatic stressor ]^[ that recovery takes a few months under normal circumstances%%lst%% it 
+may be best to think about diagnosable PTSD as a disruption ]v[ stalling out of a normal recovery 
+process%%lst%% rather %%cmp%% the development of a unique psychopathology%%per%%]$~ ~$[The therapist needs to 
+determine what has interfered with normal recovery%%per%%]$~ ~$[In one case%%lst%% it may be that the patient 
+believes that he will be overwhelmed by the amount of affect that will emerge %%cmp%% he stops 
+avoiding ]^[ numbing himself%%per%%]$~ ~$[Perhaps he was taught as a child that emotions are bad%%lst%% that “real 
+men” don’t have feelings ]^[ that he should “just get over it”%%per%%]$~ ~$[In another case%%lst%% a patient may 
+have refused to talk about what happened with anyone %%cmp%% she blames herself ]f[ “letting” 
+the event happen ]^[ she is ]s[ shamed ]^[ humiliated that she is convinced that others will 
+blame her too%%per%%]$~ ~$[In a third case%%lst%% a patient saw something ]s[ horrifying that every time he falls 
+asleep ]^[ dreams about it%%lst%% he wakes up in a cold sweat%%per%%]$~ ~$[In order to sleep%%lst%% he has started drinking 
+heavily%%per%%]$~ ~$[Another patient is ]s[ convinced that she will be victimized again that she refuses to go 
+out any more ]^[ has greatly restricted her activities ]^[ relationships%%per%%]$~ ~$[In still another case%%lst%% in 
+which other people were killed%%lst%% a patient experiences survivor guilt ]^[ obsesses over why he 
+was spared when others were killed%%per%%]$~ ~$[He feels unworthy ]^[ experiences guilt whenever he 
+laughs ]v[ finds himself enjoying something%%per%%]$~ ~$[In all of these cases%%lst%% thoughts ]v[ avoidance 
+behaviors are interfering with emotional processing ]^[ cognitive restructuring%%per%%]$~ ~$[There are as 
+many individual examples of things that can block a smooth recovery as there are individuals 
+with PTSD%%per%% 
 6 
+Overview 
+The contents of each session are described along with issues that therapists are likely to 
+encounter%%per%%]$~ ~$[The therapy begins with an education component about PTSD ]^[ the patient is asked 
+to write an Impact Statement in order ]f[ the patient ]^[ therapist to begin to identify problem 
+areas in thinking about the event (i%%per%%e%%per%%%%lst%% “stuck points”)%%per%%]$~ ~$[The patient is %%cmp%% taught to identify ]^[ 
+label thoughts ]^[ feelings ]^[ to recognize the relationship between them%%per%%]$~ ~$[Then the next two 
+sessions focus on generating a written account of the worst traumatic incident%%lst%% which is read to 
+the therapist in session%%per%%]$~ ~$[During the first five sessions%%lst%% the therapist uses Socratic questioning to 
+begin to challenge distorted cognitions%%lst%% particularly those associated with assimilation like selfblame%%lst%% hindsight bias ]^[ other guilt cognitions%%per%%]$~ ~$[Thereafter%%lst%% the sessions focus on teaching the 
+patient cognitive therapy skills ]^[ finally focus on specific topics that are likely to have been 
+disrupted by the traumatic event%%cln%% safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% ]^[ intimacy%%per%%]$~ 
+~$[After the individual CPT protocol is described in detail%%lst%% there are subsequent sections on 
+using the protocol without the written trauma exposure component%%lst%% a section on delivering CPT 
+in a group format ]^[ a section on treatment issues with comorbid disorders%%lst%% 
+It is strongly recommended that the protocol be implemented in the order presented here%%per%%]$~ 
+~$[The skills ]^[ exercises are designed to build upon one another%%lst%% ]^[ even the modules in the last 
+five sessions follow in the hierarchical order in which they are likely to emerge with patients%%per%%]$~ 
+~$[However%%lst%% when used individually%%lst%% the last five sessions may be modified depending upon the 
+particular issues that a patient reports%%per%%]$~ ~$[For example%%lst%% %%cmp%% a patient has severe safety issues%%lst%% ]b[ no 
+issues with esteem ]v[ intimacy%%lst%% %%cmp%% the therapist may want to skip the later two modules ]^[ 
+focus more time on safety%%per%%]$~ ~$[Conversely%%lst%% %%cmp%% someone had no safety ]v[ control issues ]b[ was 
+primarily troubled with self%%dsh%%trust ]^[ self%%dsh%%esteem issues%%lst%% %%cmp%% the therapist may want to spend 
+more time on those modules%%per%%]$~ ~$[However%%lst%% even %%cmp%% a patient has ]n[ mentioned an issue within a 
+particular domain of functioning (safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% intimacy)%%lst%% it may be 
+helpful ]f[ him to read the module ]^[ complete worksheets on any stuck points that become 
+apparent%%per%%]$~ ~$[It is ]n[ unusual ]f[ the modules to reveal issues that had ]n[ been identified earlier in 
+therapy%%per%%]$~ 
+~$[The usual format ]f[ sessions is to begin with review of the practice assignments%%lst%% 
+followed by the content of each specific session%%per%%]$~ ~$[During the last 15 minutes of the session%%lst%% the 
+assignment ]f[ the next week is introduced ]^[ is accompanied by the necessary explanation%%lst%% 
+definition(s)%%lst%% ]^[ handout%%per%%]$~ ~$[It is ]n[ recommended that the therapist start a general discussion at 
+the beginning of the session%%lst%% ]b[ should begin immediately with the practice assignment that was 
+assigned%%per%%]$~ ~$[If the patient wishes to speak about other topics%%lst%% we either use the topic to teach the 
+new skills we are introducing (e%%per%%g%%per%%%%lst%% put the content on an A%%dsh%%B%%dsh%%C sheet) ]v[ we save time at the end 
+]f[ these other topics%%lst%% reinforcing the trauma work with discussion of the topic%%per%%]$~ ~$[If the therapist 
+allows the patient to direct the therapy away from the protocol%%lst%% the avoidance will be reinforced%%lst%% 
+along with disruption in the flow of the therapy%%per%%]$~ ~$[In addition%%lst%% placing the practice assignments last 
+in the session will send a message to the patient that the practice assignments are ]n[ very 
+important ]^[ may lead to less treatment adherence on the part of the patient%%per%%]$~ ~$[Among the most 
+difficult skills ]f[ the therapist to master%%lst%% especially %%cmp%% s/he has been trained in more non%%dsh%%directive 
 7 
+therapies%%lst%% is how to be empathic ]b[ firm in maintaining the protocol%%per%%]$~ ~$[If a patient does ]n[ bring 
+in his/her practice assignment one session%%lst%% it does ]n[ mean that the therapy is delayed ]f[ a 
+week%%per%%]$~ ~$[The therapist has the patient do the assignment orally (or they complete a worksheet 
+together) in the session ]^[ reassigns the uncompleted assignment along with the next 
+assignment%%per%%]$~ 
+~$[Part 2 
+Cognitive Processing Therapy%%cln%% Session by Session 
+It is presumed that the therapist will have conducted some form of assessment of the patient’s 
+traumatic event ]^[ persistent symptoms%%lst%% ]^[ specifically contracted to do a course of CPT prior 
+to undertaking the first session%%per%%]$~ ~$[At least a brief assessment of PTSD ]^[ depressive symptoms 
+should be conducted%%per%%]$~ ~$[There are several brief PTSD checklists ]^[ depression scales that can be 
+used to assess pretreatment symptoms%%lst%% as well as to conduct repeated assessments during therapy 
+to monitor the course of treatment%%per%%]$~ 
+~$[Session 1%%cln%% Introduction ]^[ Education Phase 
+Therapist Overview 
+Overall%%lst%% there are several goals ]f[ the first session%%cln%% 1) build rapport with the patient%%lst%% 2) 
+to educate the patient regarding symptoms of posttraumatic stress disorder ]^[ depression%%lst%% 3) to 
+provide a rationale ]f[ treatment based on a cognitive conceptualization of PTSD%%lst%% 4) to lay out 
+the course of treatment%%lst%% ]^[ 5) to elicit treatment compliance%%per%%]$~ 
+~$[It is necessary to address compliance early in the course of therapy %%cmp%% avoidance 
+behavior (half of the symptoms of PTSD) can interfere with successful treatment%%per%%]$~ ~$[We are 
+concerned with two forms of compliance%%cln%% attendance ]^[ completion of out%%dsh%%of%%dsh%%session practice 
+assignments%%per%%]$~ ~$[It is strongly recommended that patients attend all sessions ]^[ complete all 
+assignments in order to benefit fully from therapy%%per%%]$~ ~$[We attempt to set the expectation that 
+therapy benefit is dependent on the amount of effort they invest through practice assignment 
+compliance ]^[ practice with new skills%%per%%]$~ ~$[It may be helpful to remind the patient that what he4 has 
+been doing has ]n[ been working%%lst%% ]^[ that it will be important to tackle issues head%%dsh%%on rather 
+%%cmp%% continue to avoid%%per%%]$~ ~$[Avoidance of affective experience ]^[ expression should also be 
+addressed%%per%%]$~ 
+~$[In this session%%lst%% patients are also given the opportunity to ask any questions they may have 
+about the therapy%%per%%]$~ ~$[Sometimes patients’ stuck points become evident in the questions ]^[ 
+concerns they express during this first session%%per%%]$~ ~$[And finally%%lst%% as with all therapies%%lst%% rapport 
+building is crucial ]f[ effective therapy%%per%%]$~ ~$[The patient needs to feel understood ]^[ listened to%%lst%% 
+otherwise she may ]n[ return%%per%% 
+4 
+Because of the awkwardness of the English language ]^[ the desire to refer to a single patient%%lst%% the pronouns “he” 
+]^[ “she” will be used alternately%%lst%% rather %%cmp%% saying “she/he”%%lst%% “him/her” throughout the manual%%per%%]$~ ~$[The term soldier 
+will also be used as a generic term rather %%cmp%% soldier%%lst%% marine%%lst%% sailor%%lst%% airman etc%%per%%%%lst%% ]^[ will be used interchangeably 
+with veteran%%per%% 
 8 
+Patients sometimes arrive with a press to speak about their story%%per%%]$~ ~$[However%%lst%% the therapist 
+should prevent the patient from engaging in an extended exposure session at the first session%%per%%]$~ 
+~$[Intense affect ]^[ graphic details of an event%%lst%% disclosed before any type of rapport ]v[ trust has 
+been established%%lst%% may well lead to premature termination from therapy%%per%%]$~ ~$[The patient is likely to 
+assume that the therapist holds the same opinions regarding his guilt%%lst%% shame%%lst%% ]v[ worthlessness 
+that he%%lst%% the patient%%lst%% holds%%lst%% ]^[ may be afraid to return to therapy after such a disclosure%%per%%]$~ 
+~$[Other patients will be very reluctant to discuss the traumatic event ]^[ will be quite 
+relieved that they do ]n[ have to describe it in detail during the first session%%per%%]$~ ~$[In these cases%%lst%% the 
+therapist may have to draw out even a brief description of the event%%per%%]$~ ~$[Dissociation when 
+attempting to think about ]v[ talk about the event is common%%per%%]$~ ~$[An initial assessment session grants 
+the patient ]^[ therapist the opportunity to get acquainted before the therapy begins%%lst%% ]^[ allows 
+the therapist to provide the patient with a description of what the therapy will entail%%per%%]$~ ~$[In this first 
+session%%lst%% it is important that the therapist remind the patient that CPT is a very structured form of 
+therapy%%lst%% ]^[ that the first session is a bit different from the others %%cmp%% the therapist will do 
+more talking%%per%%]$~ ~$[The therapist begins with a description of the symptoms of PTSD ]^[ a cognitive 
+formulation of them%%per%%]$~ 
+~$[Therapist explanations to patient 
+1%%per%%]$~ ~$[PTSD symptoms 
+%%dqt%%In going over the results of your testing%%lst%% we found that you are suffering from posttraumatic stress disorder%%per%%]$~ ~$[The symptoms of PTSD fall into three clusters%%per%%]$~ ~$[The first cluster is the 
+re%%dsh%%experiencing of the event in some way%%per%%]$~ ~$[This includes nightmares about the event ]v[ other 
+scary dreams%%scn%% flashbacks%%lst%% when you act ]v[ feel as %%cmp%% the incident is recurring%%scn%% intrusive thoughts%%lst%% 
+which are memories that suddenly pop into your mind%%per%%]$~ ~$[You might have the intrusive thoughts 
+when there is something in the environment to remind you of the event (including anniversaries 
+of the event) ]v[ even when there is nothing there to remind you of it%%per%%]$~ ~$[Common times to have 
+these memories are when you are falling asleep%%lst%% when you relax%%lst%% ]v[ when you are bored%%per%%]$~ ~$[These 
+symptoms are all normal following such a traumatic event%%per%%]$~ ~$[You are ]n[ going crazy%%per%%]$~ ~$[Can you 
+give me examples of these experiences in your own life since the event?%%per%%%%per%%%%per%% 
+%%dqt%%A second set of symptoms concern arousal5%%per%%]$~ ~$[As might be expected%%lst%% when reminded of the 
+event%%lst%% you are likely to experience very strong emotions%%per%%]$~ ~$[Along with these feelings are physical 
+reactions%%per%%]$~ ~$[Indicators of arousal symptoms include problems falling ]v[ staying asleep%%lst%% irritability 
+]v[ outbursts of anger%%lst%% difficulty concentrating%%lst%% startle reactions like jumping at noises ]v[ %%cmp%% 
+someone walks up behind you%%lst%% always feeling on guard ]v[ looking over your shoulder even when 
+there is no reason to%%per%%]$~ ~$[Which of these do you experience?%%per%%%%per%%%%per%% 
+%%dqt%%The third cluster of symptoms is avoidance of reminders of the event%%per%%]$~ ~$[A natural reaction to 
+intrusive reminders ]^[ strong emotional reactions is the urge to push these thoughts ]^[ 
+feelings away%%per%%]$~ ~$[You might avoid places ]v[ people who remind you of the event%%per%%]$~ ~$[Some people 
+avoid watching certain television programs ]v[ turn off the TV%%per%%]$~ ~$[Some people avoid reading the 
+newspaper ]v[ watching the news%%per%%]$~ ~$[You might avoid thinking about the event ]^[ letting yourself 
+5 
+Although avoidance is listed second in the DSM%%lst%% it makes more sense to present the symptoms to patients in their 
+most likely order%%lst%% intrusion%%lst%% arousal%%lst%% ]^[ avoidance%%per%%]$~ ~$[This way the explanation ]f[ the symptoms follows logically 
+from their description%%per%% 
 9 
+feel your feelings about the event%%per%%]$~ ~$[There might be certain sights%%lst%% sounds%%lst%% ]v[ smells that you find 
+yourself avoiding ]v[ escaping from %%cmp%% they remind you of the event%%per%%]$~ ~$[Sometimes people 
+have trouble remembering all ]v[ part of the event%%per%%]$~ ~$[Sometimes people feel numb ]^[ cut%%dsh%%off from 
+the world around them%%per%%]$~ ~$[This feeling of detachment ]v[ numbness is another form of avoidance%%per%%]$~ 
+~$[Sometimes it is described as feeling as though you are watching life from behind glass%%per%%]$~ ~$[Which 
+things ]v[ thoughts do you avoid ]v[ run away from?%%per%%%%per%%%%per%%]$~ ~$[Have you felt numb ]v[ shut off from your 
+emotions?%%per%%%%per%%%%per%%]$~ ~$[Have you found yourself feeling disconnected from other people? 
+2%%per%%]$~ ~$[Trauma Recovery ]^[ Fight%%dsh%%Flight Response 
+“Many people are exposed to traumatic events%%per%%]$~ ~$[In the time immediately following a trauma%%lst%% 
+most people will have the symptoms of PTSD that we just talked about%%per%%]$~ ~$[However%%lst%% over time%%lst%% ]f[ 
+many people%%lst%% those symptoms naturally decrease%%lst%% ]^[ they are ]n[ diagnosed with PTSD%%per%%]$~ ~$[In 
+other words%%lst%% they naturally recover from the traumatic event%%per%%]$~ ~$[There are some people who do ]n[ 
+recover ]^[ are later diagnosed with PTSD%%per%%]$~ ~$[Based on that%%lst%% it is helpful to think of PTSD as a 
+problem in recovery%%per%%]$~ ~$[Something got in the way of you having that natural process of recovery%%lst%% 
+]^[ our work together is to determine what got in the way ]^[ to change it ]s[ that you can 
+recover from what happened%%per%%]$~ ~$[We will be working to get you ‘unstuck’”%%per%%]$~ 
+~$[There are some different reasons why you may be having trouble recovering%%per%%]$~ ~$[First%%lst%% there 
+may be an automatic component during the event that you should consider as you evaluate how 
+you responded during the event%%per%%]$~ ~$[When people face serious%%lst%% possibly life%%dsh%%threatening events%%lst%% they 
+are likely to experience a very strong physical reaction called the fight%%dsh%%flight reaction%%per%%]$~ ~$[More 
+recently we have learned that there is a third possibility%%lst%% the freeze response%%per%%]$~ ~$[In the fight%%dsh%%flight 
+reaction%%lst%% your body is trying to get you ready to fight ]v[ flee danger%%per%%]$~ ~$[The goal here is to get all 
+the blood ]^[ oxygen out to your hands%%lst%% feet%%lst%% ]^[ big muscle groups like your thighs ]^[ 
+forearms ]s[ that you can run ]v[ fight%%per%%]$~ ~$[In order to do that quickly%%lst%% the blood leaves your stomach 
+]v[ your head%%per%%]$~ ~$[You might feel like you have been kicked in the gut ]v[ are going to faint%%per%%]$~ ~$[Your 
+body stops fighting off diseases ]^[ digesting food%%per%%]$~ ~$[You are ]n[ thinking about your philosophy 
+of life ]^[ may have trouble thinking at all%%per%%]$~ ~$[The same thing happens with the freeze response%%lst%% ]b[ 
+in this case your body is trying to reduce both physical ]^[ emotional pain%%per%%]$~ ~$[You may have 
+stopped feeling pain ]v[ had the sense that the event was happening to someone %%cmp%% as %%cmp%% it were 
+a movie%%per%%]$~ ~$[You might have been completely shut down emotionally ]v[ even had shifts in 
+perception like you are out of your body ]v[ that time has slowed down%%per%%]$~ 
+~$[If you have been thinking now of other things that you could have done %%cmp%%%%lst%% you might 
+need to consider what your state of mind was during the event%%per%%]$~ ~$[Did you have all possible options 
+available to you%%qsn%%]$~ ~$[Did you know %%cmp%% what you know now%%qsn%%]$~ ~$[Do you have different skills now %%cmp%% 
+you did %%cmp%%%%qsn%%]$~ 
+~$[Second%%lst%% the fight%%dsh%%flight response that you were experiencing during the traumatic event can 
+get quickly paired with cues%%lst%% ]v[ things in the environment%%lst%% that didn’t have any particular 
+meaning before%%per%%]$~ ~$[Then later%%lst%% when you encounter those cues%%lst%% you are likely to have another fightflight reaction%%per%%]$~ ~$[Your nervous system senses the cue%%lst%% which could be a sight%%lst%% a sound%%lst%% smell%%lst%% ]v[ 
+even a time%%lst%% ]^[ %%cmp%% your body reacts as though you are in danger again%%per%%]$~ ~$[These reactions will 
+fade over time %%cmp%% you don’t avoid those cues%%per%%]$~ ~$[However%%lst%% %%cmp%% you avoid reminder cues%%lst%% your body 
+won’t learn that these are not%%lst%% in fact%%lst%% good danger cues%%per%%]$~ ~$[They don’t tell you very accurately 
 10 
+whether you are actually in danger ]s[ you may have false alarms going off frequently%%per%%]$~ ~$[After a 
+while you won’t trust your own senses ]v[ judgment about what is ]^[ isn’t dangerous%%lst%% ]^[ too 
+many situations seem dangerous that are not%%per%%]$~ 
+~$[You may start to have thoughts about the dangerousness of the world%%lst%% particular places%%lst%% 
+]v[ situations that are based on your reactions rather %%cmp%% the actual realistic danger of those 
+situations%%per%%]$~ ~$[This leads us to examine how your thoughts may affect your reactions%%per%%]$~ ~$[Besides 
+thoughts about dangerousness%%lst%% many different types of beliefs about ourselves ]^[ the world can 
+be affected by traumatic events%%per%% 
+3%%per%%]$~ 
+~$[Cognitive Theory 
+“As you were growing up you learned about the world ]^[ organized it into categories 
+]v[ beliefs%%per%%]$~ ~$[For example%%lst%% when you were small%%lst%% you learned that a thing with a back%%lst%% seat ]^[ 
+four legs is a chair%%per%%]$~ ~$[In the beginning you just called all of them %%sqt%%chair%%sqt%%%%per%%]$~ ~$[You may have even 
+called a couch a chair ]v[ a stool a chair %%cmp%% they had a back%%lst%% seat%%lst%% ]^[ four legs%%per%%]$~ ~$[Later%%lst%% as 
+you got older%%lst%% through experience%%lst%% you learned more complex categories%%lst%% ]s[ you may have 
+learned dining room chair%%lst%% rocking chair%%lst%% recliner ]v[ folding chair%%per%%]$~ ~$[We develop many categories 
+of ideas ]^[ beliefs about others%%lst%% the world%%lst%% ]^[ ourselves%%lst%% as well as ]f[ objects%%per%%]$~ 
+~$[One common belief that many people get while growing up is that %%sqt%%good things happen to 
+good people ]^[ bad things happen to bad people%%per%%%%sqt%% This is called the %%sqt%%just world belief%%per%%%%sqt%% You 
+may have learned this through your religion%%lst%% your parents%%lst%% your teachers%%lst%% ]v[ you may have 
+picked it up as a way to make the world seem safer ]^[ more predictable%%per%%]$~ ~$[It makes more sense 
+when you are young%%per%%]$~ ~$[For example%%lst%% parents wouldn’t want to say%%lst%% ‘If you do something you’re 
+]n[ supposed to%%lst%% you may ]v[ may ]n[ get in trouble%%per%%’ However%%lst%% as we grow up%%lst%% we realize that 
+the world is more complex %%cmp%% that%%lst%% just like how we learn that there are all different types of 
+chairs%%per%%]$~ ~$[If you have ever had things go bad ]^[ you said %%sqt%%Why me?,%%sqt%% %%cmp%% you have a just world 
+belief%%per%% 
+%%dqt%%When an unexpected event occurs that doesn%%sqt%%t fit your beliefs%%lst%% there are different ways that 
+you may try to make it fit%%per%%]$~ ~$[One way that you may have tried to make the event ]^[ your beliefs fit 
+is by changing your memories ]v[ interpretation of the event to fit with your pre%%dsh%%existing beliefs 
+(assimilation)%%per%%]$~ ~$[Examples of changing your interpretations/memories of the event are to blame 
+yourself ]f[ ]n[ preventing the event (or protecting loved ones)%%lst%% to have trouble accepting that 
+the event happened%%lst%% to %%sqt%%forget%%sqt%% that it happened%%lst%% ]v[ to forget the most horrifying parts%%per%%]$~ ~$[Changing 
+the event may seem easier %%cmp%% changing your entire set of beliefs about the world%%lst%% how people 
+behave%%lst%% ]v[ your beliefs about your safety%%per%% 
+%%dqt%%It is possible that instead of changing the event%%lst%% you may change your beliefs to accept 
+what happened (accommodation)%%per%%]$~ ~$[This is one of our goals ]f[ therapy%%per%%]$~ ~$[Unfortunately%%lst%% some 
+people go overboard ]^[ change their beliefs too much%%lst%% which may result in a reluctance to 
+become intimate ]v[ develop trust%%lst%% ]^[ increased fear (over%%dsh%%accommodation)%%per%%]$~ ~$[Examples that 
+reflect an extreme change in beliefs include%%cln%% thinking that no one can be trusted ]v[ that the world 
+is completely dangerous%%per%% 
 11 
+“For some people who have had previous negative experiences in their life%%lst%% traumatic 
+events can seem to reinforce ]v[ confirm these previously held beliefs%%per%%]$~ ~$[For example%%lst%% prior to 
+having experienced a trauma you might have believed that others can’t be trusted ]v[ that the 
+world is generally unsafe%%per%%]$~ ~$[The traumatic event comes along ]^[ seems to confirm those beliefs%%per%%]$~ 
+~$[Or%%lst%% maybe you were told that everything was your fault growing up%%lst%% ]s[ when a bad thing 
+happens%%lst%% it seems to confirm that once again%%lst%% you are at fault%%per%%]$~ 
+~$[Our goals ]f[ therapy are%%cln%% 1) to help you accept the reality of the event%%lst%% 2) to feel your emotions 
+about it ]^[ 3) to help you develop balanced ]^[ realistic beliefs about the event%%lst%% yourself%%lst%% ]^[ 
+others%%per%% 
+4%%per%%]$~ 
+~$[Types of Emotions 
+“There are two kinds of emotions that follow traumatic events%%per%%]$~ ~$[The first type is the feelings 
+that follow naturally from the event ]^[ that would be universal%%cln%% fear when in real danger%%lst%% anger 
+when being intentionally harmed%%lst%% joy ]v[ happiness with positive events%%lst%% ]v[ sadness with losses%%per%%]$~ 
+~$[These natural emotions have a natural course%%per%%]$~ ~$[They will ]n[ continue on forever unless there is 
+something that you do to feed them%%per%%]$~ ~$[It is important to feel these emotions that you may ]n[ have 
+allowed yourself to experience about the event%%lst%% ]^[ let them run their natural course%%per%%]$~ 
+~$[The second type of emotions%%lst%% manufactured feelings%%lst%% result ]n[ directly in response to the 
+event%%lst%% ]b[ based on how you interpret the event%%per%%]$~ ~$[If you have thoughts such as ‘I should have 
+rescued other people’ ]v[ ‘I must be a failure that I can’t get over it”%%lst%% %%cmp%% you will be feeling 
+angry at yourself ]v[ shame%%per%%]$~ ~$[These emotions are ]n[ based on the facts of the event%%lst%% ]b[ on your 
+interpretations%%per%%]$~ ~$[The more that you continue to think about the event in these ways%%lst%% the more ]^[ 
+more of the manufactured feelings you are going to have%%per%%]$~ ~$[The upside of the fact that you are 
+producing these feelings is that%%lst%% %%cmp%% you change your thoughts ]^[ interpretations%%lst%% you will 
+change your feelings%%per%%]$~ ~$[Think of your emotions as a fire in a fireplace%%per%%]$~ ~$[The fire has energy to it%%per%%]$~ 
+~$[However%%lst%% it will burn out %%cmp%% it is ]n[ continually fed%%per%%]$~ ~$[The self%%dsh%%blame ]v[ guilty thoughts can 
+continue to feed the emotional fire indefinitely%%per%%]$~ ~$[Take away the fuel of your thoughts%%lst%% ]^[ the fire 
+burns out quickly%%per%%]$~ 
+~$[In order ]f[ you to recover from your traumatic event(s)%%lst%% we will be working together ]f[ 
+you to express ]^[ accept your natural emotions ]^[ to adjust the manufactured feelings%%per%%]$~ 
+~$[Brief Review of Most Traumatic Event 
+In this first session%%lst%% the therapist ]^[ patient work together to define the most traumatic 
+event that they will work on first%%per%%]$~ ~$[The patient %%cmp%% provides a brief account of the traumatic 
+event%%per%%]$~ ~$[It is important the therapist keep the patient contained ]^[ ]n[ conduct an exposure to the 
+traumatic material%%per%%]$~ ~$[Most veterans have a ‘public version’ of the incident that they can use that 
+does ]n[ elicit much affect%%per%%]$~ ~$[However%%lst%% %%cmp%% the patient starts to become distressed ]v[ dissociates%%lst%% the 
+therapist should ask questions ]^[ keep the patient grounded in the present%%per%%]$~ ~$[If needed%%lst%% they can 
+stop the patient’s description%%per%%]$~ ~$[The therapist only needs enough of the details to begin to 
+hypothesize what problematic interpretations ]^[ cognitions might need to be explored%%per%% 
 12 
+We begin with the worst incident %%cmp%% there is more likely to be generalization of new%%lst%% 
+more balanced cognitions from the worst event to less severe events %%cmp%% the other way around%%per%%]$~ 
+~$[Also%%lst%% %%cmp%% the patient begins with a less severe event %%cmp%% she believes she cannot handle the 
+worst event%%lst%% she will still believe that after working on this event%%per%%]$~ ~$[If the patient is resistant to 
+writing an account about the worst event%%lst%% the therapist needs to do some cognitive therapy during 
+session two ]^[ have the patient complete some A%%dsh%%B%%dsh%%C sheets on her thoughts ]^[ feelings about 
+working on the worst event (see sessions 2 ]^[ 3)%%per%%]$~ 
+~$[It is helpful to provide an expectation that the patient provide a brief%%lst%% less affect%%dsh%%charged 
+event by providing a timeframe in the request%%per%% 
+“In order ]f[ me to have a clearer picture of what we will be working on first%%lst%% could you 
+please give me a brief description%%lst%% about five minutes%%lst%% of the most traumatic event…” 
+If the patient responds that he has multiple traumatic events that disturb him%%lst%% making it 
+difficult ]v[ impossible to choose the ‘most’ traumatic event%%lst%% first validate the fact that he may 
+have multiple distressing events%%per%%]$~ ~$[Then%%lst%% focus on ascertaining which one seems to be causing the 
+most PTSD symptoms by inquiring about the content of his reexperiencing symptoms%%per%%]$~ ~$[The 
+therapist can ask%%lst%% ‘What do you think about ]v[ have flashbacks about the most?’ It may also be 
+helpful to probe about his behavioral avoidance symptoms to determine the event that should 
+addressed first%%per%%]$~ ~$[Remind the patient that work on the chosen event will very likely impact the 
+other events%%lst%% ]^[ %%cmp%% not%%lst%% there will be opportunities to work on the other events%%per%%]$~ 
+~$[Therapy Rationale %%dsh%% Stuck Points 
+%%dqt%%So%%lst%% one goal of therapy will be to help you recognize ]^[ modify what you are saying to 
+yourself%%dsh%%in other words%%lst%% your thoughts ]^[ interpretations about the event%%lst%% which may have 
+become automatic%%per%%]$~ ~$[These distorted beliefs may become ]s[ automatic that you aren%%sqt%%t even aware 
+that you have them%%per%%]$~ ~$[Even though you may ]n[ be aware of what you are saying to yourself%%lst%% your 
+beliefs ]^[ self%%dsh%%statements affect your mood ]^[ your behavior%%per%%]$~ ~$[Often%%lst%% people aren%%sqt%%t aware that 
+they are having thoughts about whatever they are experiencing%%per%%]$~ ~$[For example%%lst%% on the way here 
+today%%lst%% you were probably wondering what this therapy would be like ]v[ what I would be asking 
+you to talk about%%per%%]$~ ~$[Do you remember what you were thinking about before the session?%%per%%%%per%%%%per%% 
+%%dqt%%I will be helping you to identify what your automatic thoughts are ]^[ how they influence 
+what you feel%%per%%]$~ ~$[I will also teach you ways to challenge ]^[ change what you are saying to 
+yourself ]^[ what you believe about yourself ]^[ the event%%per%%]$~ ~$[Some of your beliefs about the event 
+will be more balanced %%cmp%% others%%per%%]$~ ~$[You remember that we discussed at the beginning of this 
+session about how some people get stuck in their recovery process%%per%%]$~ ~$[We will be focusing on 
+changing the beliefs that are interfering with your recovery ]v[ keeping you stuck%%per%%]$~ ~$[We call these 
+problematic beliefs ‘stuck points%%per%%’ (The patient is given the handout on stuck points ]^[ the 
+Stuck Point Log)%%per%%]$~ ~$[We will keep a Stuck Point Log in your folder ]s[ as we identify problematic 
+ideas we can write them down%%per%%]$~ ~$[Then when we move to different worksheets you will have this list 
+to draw on%%per%% 
 13 
+Anticipating Avoidance ]^[ Increasing Compliance 
+The patient has been avoiding thinking about the event thereby escaping ]^[ avoiding strong 
+]^[ unpleasant emotions%%per%%]$~ ~$[The therapist must develop a strong ]^[ compelling rationale ]f[ 
+therapy in order ]f[ the patient to be motivated to do something completely antithetical to what 
+they have been doing%%per%%]$~ ~$[It is very important that the patient understand what the therapy consists of 
+]^[ why it will work%%per%%]$~ ~$[They should have ample opportunity to ask questions ]^[ express 
+concerns%%per%%]$~ ~$[The therapist needs to express confidence%%lst%% warmth%%lst%% ]^[ support%%per%%]$~ 
+~$[I cannot emphasize enough how important it is that you ]n[ avoid%%lst%% which is what you 
+usually have done to try to cope since the event%%per%%]$~ ~$[This will be your biggest (and probably 
+scariest) hurdle%%per%%]$~ ~$[I cannot help you feel your feelings%%lst%% ]v[ challenge your thoughts %%cmp%% you don%%sqt%%t 
+come to therapy ]v[ %%cmp%% you avoid completing your practice assignments%%per%%]$~ ~$[If you find yourself 
+wanting to avoid%%lst%% remind yourself that you are still struggling with the event %%cmp%% you have 
+avoided dealing with it head%%dsh%%on%%per%%]$~ 
+~$[The therapist should describe the course of therapy (and the nature of the trauma account in 
+sessions four ]^[ five) ]^[ the importance of doing practice assignments%%per%% 
+“There are 168 hours in a week%%per%%]$~ ~$[We cannot expect you to change your symptoms ]^[ the 
+way you have been coping in one ]v[ two hours a week %%cmp%% you are continuing to practice your old 
+ways of thinking the other 166 hours a week%%per%%]$~ ~$[It will be important ]f[ you to take what you are 
+learning ]^[ apply it to your everyday life%%per%%]$~ ~$[Your therapy needs to be where your life is%%lst%% ]n[ just 
+in this little room”%%per%%]$~ 
+~$[First Impact Statement 
+%%dqt%%For the next session%%lst%% I want you to start working on how you think about ]^[ explain the 
+traumatic event%%per%%]$~ ~$[I also want you to pay attention to how the traumatic event impacted on your 
+views of yourself%%lst%% other people%%lst%% ]^[ the world%%per%%]$~ ~$[I want you to write at least one page on 1) why 
+this event happened to you%%lst%% ]^[ 2) how has it changed ]v[ streng%%cmp%%ed your views about 
+yourself%%lst%% other people ]^[ the world in general%%qsn%%]$~ 
+~$[In order ]f[ this assignment to be most helpful to you%%lst%% I strongly suggest you try to start this 
+assignment soon%%lst%% ]s[ that you have enough time to write thoughtfully%%per%%]$~ ~$[Pick a time ]^[ place 
+where you have as much privacy as possible%%lst%% ]s[ you can feel any feelings that arise as you 
+complete the assignment%%per%%” 
+The patient is given a practice assignment sheet%%per%%]$~ ~$[If at all possible%%lst%% the patient should handwrite 
+the Impact Statement%%per%%]$~ ~$[Some patients will want to type on the computer%%per%%]$~ ~$[Research suggests that 
+word processing can impede engagement with the assignment (e%%per%%g%%per%%%%lst%% too focused on grammar ]v[ 
+spelling)%%per%%]$~ ~$[Therefore%%lst%% encourage that this ]^[ other assignments be handwritten%%per%%]$~ ~$[It is often 
+helpful to remind them that you are ]n[ grading their work ]v[ interested in their grammar%%lst%% etc%%per%%]$~ 
+~$[Rather%%lst%% you’re interested in the content ]^[ feelings%%per%%]$~ ~$[If the patient has problems with literacy ]v[ 
+physical disabilities that make it difficult ]v[ impossible to write%%lst%% the therapist might suggest that 
+he record his thoughts into a tape recorder%%per%% 
 14 
+Practice assignment%%cln%% 
+Please write at least one page on why this traumatic event occurred%%per%%]$~ ~$[You are ]n[ being asked to 
+write specifics about the traumatic event%%per%%]$~ ~$[Write about what you have been thinking about the 
+cause of the worst event%%per%%]$~ ~$[Also%%lst%% consider the effects this traumatic event has had on your beliefs 
+about yourself%%lst%% others%%lst%% ]^[ the world in the following areas%%cln%% safety%%lst%% trust%%lst%% power/control%%lst%% esteem%%lst%% 
+]^[ intimacy%%per%%]$~ ~$[Bring this with you to the next session%%per%%]$~ 
+~$[Also%%lst%% please read over the handout I have given you on stuck points ]s[ that you understand the 
+concept we are talking about%%per%% 
 15 
+Traumatic Bereavement Session (Session 2 %%cmp%% applicable) 
+The goals ]f[ this session are to 1) determine the impact of the traumatic event on beliefs 
+about self ]^[ others%%lst%% 2) begin to normalize the grief process ]^[ differentiate it from PTSD 
+symptoms%%lst%% 3) identify stuck points that may interfere with the normal course of bereavement%%lst%% 
+]^[ 4) begin to assist the patient in viewing her relationship with the person who died as altered%%lst%% 
+]b[ ]n[ finished%%per%%]$~ 
+~$[If this session is added%%lst%% %%cmp%% the therapist will have the patient read the Impact Statement 
+first before turning to the topic of grief%%per%%]$~ ~$[Please see the regular session two%%lst%% next%%lst%% ]f[ comments 
+regarding avoidance ]^[ what to do %%cmp%% the patient did ]n[ complete the assignment%%per%%]$~ ~$[After 
+discussing the Impact Statement ]^[ identifying stuck points that are evident%%lst%% the therapist will 
+begin an education portion on the topic of normal bereavement ]^[ will look ]f[ stuck points that 
+may interfere with normal grief reactions%%per%%]$~ ~$[To facilitate this process%%lst%% some information is 
+provided below to assist the therapist to think about traumatic versus normal bereavement issues%%lst%% 
+]^[ to provide some education to the patient regarding the course of bereavement as varying ]^[ 
+multidimensional%%per%%]$~ ~$[It is important ]f[ the therapist to refrain from pathologizing the grief process 
+]^[ to begin to differentiate grief from PTSD ]v[ depression%%per%%]$~ 
+~$[Therapist overview%%cln%% Traumatic bereavement 
+PTSD can interfere with the normal course of bereavement%%per%%]$~ ~$[It is also possible that 
+unresolved grief can further complicate recovery from PTSD%%per%%]$~ ~$[Although witnessing ]v[ being 
+injured during an event in which a loved one/friend was killed is more obviously associated with 
+PTSD%%lst%% therapists need to consider a PTSD diagnosis among those who were ]n[ present at the 
+traumatic death of a loved one%%per%%]$~ ~$[In civilian life%%lst%% the sudden%%lst%% unexpected ]^[ perhaps violent death 
+of a significant other is ]s[ shocking%%lst%% horrifying%%lst%% ]^[ schema%%dsh%%discrepant that family ]^[ friends of 
+the victim may have trouble taking in the fact that the person has been killed%%per%%]$~ ~$[During war%%lst%% 
+soldiers may accept the possibility that they ]v[ others may be killed%%lst%% on an abstract level%%lst%% ]b[ 
+losing friends%%lst%% seeing children die%%lst%% ]v[ having deaths occur in unexpected places (when one 
+thought he was safe)%%lst%% can also be shocking ]^[ hard to accept%%per%%]$~ ~$[Acceptance may be particularly 
+difficult ]f[ parents who lose children %%cmp%% of the expectation that their children will survive 
+them%%per%%]$~ ~$[And like other trauma survivors who actively avoid accepting the reality of the situation%%lst%% 
+traumatic%%dsh%%death surviving family ]^[ friends may engage in self%%dsh%%blame as an attempt to undo the 
+event (e%%per%%g%%per%%%%lst%% “If only I hadn’t done X%%lst%% he wouldn’t have been there at the time”)%%per%%]$~ ~$[Unlike other 
+trauma victims%%lst%% traumatic death survivors may believe that to accept the trauma ]^[ begin to 
+move on with their lives means they have betrayed the other person%%lst%% that the other person isn’t 
+being properly honored%%per%%]$~ 
+~$[Flashbacks%%lst%% intrusive thoughts%%lst%% ]^[ other intrusive reminders can recur even %%cmp%% someone 
+was ]n[ present at the death of their significant other%%per%%]$~ ~$[People may flash on ]v[ have strong 
+emotional ]v[ physiological reactions when reminded of being informed of the death%%per%%]$~ ~$[For 
+example%%lst%% some people have strong reactions when the telephone ]v[ doorbell rings%%per%%]$~ ~$[They 
+immediately flash back to being told%%per%%]$~ ~$[Some people have strong reactions to temporal cues such 
+as a specific time of day%%lst%% dusk%%lst%% a certain month%%lst%% ]v[ other anniversaries of the death%%per%%]$~ ~$[They may 
+react to climactic cues such as temperature%%lst%% humidity%%lst%% smells ]v[ other seasonal reminders%%per%% 
 16 
+Holidays ]v[ other personal days of celebration (birthdays%%lst%% anniversaries) can be particularly 
+difficult ]^[ can trigger trauma cues (as well as positive memories)%%per%%]$~ 
+~$[It is ]n[ unusual ]f[ people to have images of ]v[ ruminate about (with accompanying 
+affect ]^[ physiological responses) what they imagine happened to their loved one/friend%%per%%]$~ ~$[Some 
+people feel compelled to put themselves into the shoes of the person who died in an attempt to be 
+closer with them%%per%%]$~ ~$[They try to imagine what the other person experienced%%lst%% what they must have 
+been feeling ]v[ thinking%%lst%% ]^[ wonder %%cmp%% they suffered ]v[ were in pain ]f[ a long time before they 
+died%%per%%]$~ ~$[These images can serve as intrusive reminders of PTSD (Criterion B)%%per%%]$~ 
+~$[Often with PTSD induced by traumatic bereavement%%lst%% we do ]n[ see effortful avoidance 
+with regard to the person who died%%per%%]$~ ~$[To the contrary%%lst%% some people intentionally ruminate ]^[ are 
+afraid to let go of the images%%lst%% even very distressing images%%lst%% %%cmp%% to let go is%%lst%% in their minds%%lst%% to 
+lose their loved one%%per%%]$~ ~$[Effortful avoidance is more likely to be of the trauma cues listed above%%per%%]$~ 
+~$[Numbing is common%%per%%]$~ 
+~$[When some people are killed during a traumatic event%%lst%% those who survive%%lst%% whether they 
+are friends%%lst%% family%%lst%% ]v[ strangers%%lst%% may well have survivor guilt%%per%%]$~ ~$[When people experience 
+traumatic events%%lst%% they often ask the question%%lst%% “Why me?” %%cmp%% of their just world belief%%per%%]$~ ~$[A 
+corollary of this belief is asking “Why ]n[ me?” when surrounding others are killed%%per%%]$~ ~$[People with 
+survivor guilt feel that they do ]n[ have the right to go on when others are not%%lst%% ]v[ believe that 
+they are less deserving of happiness (or even of living) %%cmp%% the person ]v[ people who died%%per%%]$~ ~$[They 
+try to determine why they survived ]^[ cannot find an acceptable explanation%%per%%]$~ 
+~$[An issue that may need to be addressed with military ]^[ veteran populations is ]n[ just 
+witnessing ]v[ hearing about the death of someone the patient cared about%%lst%% ]b[ also issues that 
+arise from having killed themselves%%per%%]$~ ~$[Soldiers may find themselves forced to engage in behavior 
+that is against their personal moral code%%lst%% ]v[ in conflict with the circumstances under which they 
+believed that they would be killing others%%per%%]$~ ~$[In our experience%%lst%% situations in which civilians%%lst%% ]^[ 
+especially children%%lst%% are killed are especially traumatic ]f[ veterans ]^[ servicemen (e%%per%%g%%per%%%%lst%% children 
+with backpack bombs%%lst%% children put in front of transportation convoys)%%per%%]$~ ~$[Grieving ]^[ 
+assumptions about one’s actions during war can be very complicated %%cmp%% of the nature of 
+war itself%%per%%]$~ ~$[Veterans ]^[ military personnel may blame themselves%%lst%% the combatants%%lst%% the 
+government that put them in the position they found themselves%%lst%% ]v[ the behavior ]^[ perceived 
+failures of command ]v[ fellow soldiers%%per%%]$~ ~$[The combination of anger ]^[ guilt can complicate ]^[ 
+prolong the grief response%%per%%]$~ 
+~$[The goal of CPT ]f[ bereavement is to help patients determine ]^[ eliminate any stuck 
+points%%lst%% problematic cognitions that are blocking their recovery%%lst%% ]^[ to help them eventually focus 
+on the person’s life%%lst%% ]n[ just the way in which he ]v[ she died%%per%%]$~ 
+~$[First the therapist can start with bereavement issues… 
+“Prior to this death%%lst%% what has been your experience with the death of loved ones?” 
 17 
+If the patient has never experienced the death of a loved one%%lst%% %%cmp%% ask “What were your 
+expectations about death of loved ones%%qsn%%]$~ ~$[Had you ever thought about it%%qsn%%]$~ ~$[Or was it a topic that 
+you avoided thinking about?” 
+Once the therapist understands what the patient understood about death ]^[ the grief 
+process prior to the traumatic death%%lst%% s/he can %%cmp%% ask%%per%%%%per%% 
+“How is this situation different %%cmp%% what you had experienced before (or imagined)?” 
+“What have other people been telling you about grief ]^[ mourning? 
+“What suggestions have people been making?” 
+Give the patient(s) the Myths of Mourning handout%%per%%]$~ ~$[Discuss each of the statements with 
+the patient to determine which%%lst%% %%cmp%% any%%lst%% statements the patient has been subscribing%%per%%]$~ ~$[Along with 
+debunking some common myths%%lst%% the therapist uses this session to help the patient understand the 
+normal process of bereavement%%lst%% to see how the traumatic bereavement relates to symptoms of 
+PTSD%%lst%% ]^[ to begin to identify distorted cognitions%%lst%% conflicts between prior beliefs ]^[ the 
+traumatic event%%per%%]$~ 
+~$[Education on Normal Bereavement 
+Bereavement affects different aspects of one’s life%%per%%]$~ ~$[People have emotional%%lst%% spiritual%%lst%% ]^[ 
+physical reactions%%per%%]$~ ~$[They also have to adjust their roles with regard to other people%%lst%% the 
+community more generally%%lst%% ]^[ with regard to tasks ]^[ behaviors%%per%%]$~ ~$[While some grief reactions 
+may feel like ]^[ share some characteristics with other psychological reactions such as 
+depression%%lst%% it is important ]f[ the therapist ]n[ to pathologize grief%%per%%]$~ ~$[Bereavement is ]n[ the result 
+of personality traits%%lst%% ]b[ is the normal ]^[ time%%dsh%%limited reaction to loss%%per%%]$~ ~$[Mourning is ]n[ the same 
+as depression ]^[ does ]n[ respond to anti%%dsh%%depressants%%per%%]$~ 
+~$[In the past it was possible to tell that someone was grieving ]f[ a period of time %%cmp%% 
+of clothing indicative of mourning ]^[ institutionalized rules about mourning such as wearing 
+black ]f[ a year%%lst%% wearing certain jewelry ]v[ armbands%%lst%% limiting social engagements ]^[ ]s[ forth%%per%%]$~ 
+~$[These practices provided more community support %%cmp%% the person who was grieving was 
+clearly identifiable ]^[ there was an expectation that bereavement should take an extended 
+period of time%%per%%]$~ ~$[On the other hand%%lst%% the rigid rules about length of mourning were ]n[ flexible 
+enough to accommodate different patterns of grief%%per%%]$~ ~$[Some people may ]n[ have needed a year in 
+order to begin to reestablish their lives (some may have needed longer)%%per%%]$~ ~$[In modern times%%lst%% there is 
+no way to identify whether someone is in mourning%%lst%% ]s[ the community quickly returns to usual 
+routines ]^[ expects the bereaved person to do ]s[ as well%%per%%]$~ ~$[While community support is often 
+very active initially%%lst%% people often return to their own lives after a few months%%lst%% leaving the 
+bereaved adrift to adjust to their changes in roles ]^[ tasks%%per%%]$~ ~$[After a few months grieving people 
+may start receiving comments by others that they should move on with their lives ]^[ to put the 
+traumatic event ]^[ the loved one behind them (people with PTSD hear this all the time even 
+without a traumatic death)%%per%%]$~ ~$[People may need assistance in tolerating the predominant community 
+standards that do ]n[ reflect the reality of the mourning timeline ]f[ them%%per%%]$~ 
+~$[In the early stages of bereavement%%lst%% people need information ]^[ support in coping 
+emotionally%%per%%]$~ ~$[Later%%lst%% %%cmp%% the person who died is a family member%%lst%% they need to focus more on 
 18 
+instrumental tasks%%per%%]$~ ~$[Some tasks%%lst%% like dealing with insurance companies ]^[ changing names on 
+titles are directly due to the death of the family member%%per%%]$~ ~$[Other tasks represent a realignment of 
+typical chores (e%%per%%g%%per%%%%lst%% now the patient needs to pay bills ]v[ cook%%lst%% when before the other partner 
+took responsibility ]f[ those tasks)%%per%%]$~ ~$[Each of these instrumental adjustments%%lst%% %%cmp%% successfully 
+negotiated%%lst%% will help the bereaved person accept the reality of the situation ]^[ assist in a greater 
+sense of control%%per%%]$~ ~$[As the tasks ]^[ roles are realigned%%lst%% %%cmp%% the person also moves to reconnect 
+with his community%%lst%% reestablish ]^[ adjust relationships with their friends ]^[ relatives ]^[ 
+finally to rebuild his assumptive world%%per%%]$~ ~$[This latter task includes adjusting his beliefs about 
+himself ]^[ the world%%lst%% with regard to the loved one’s death%%per%%]$~ ~$[As %%cmp%%where in CPT%%lst%% the therapist 
+is looking ]f[ accommodation rather %%cmp%% assimilation ]v[ over%%dsh%%accommodation%%lst%% balance in beliefs 
+rather %%cmp%% extreme statements%%per%%]$~ 
+~$[Sometimes the bereavement process ]f[ military personnel becomes more acute once 
+they leave the military%%per%%]$~ ~$[While in the military%%lst%% other people in that environment may have been 
+able to provide support ]^[ understanding of the losses that a soldier experienced%%per%%]$~ ~$[Upon 
+returning to the civilian world%%lst%% however%%lst%% people in the environment may ]n[ be able to 
+understand ]v[ appreciate the loss of comrades%%lst%% ]v[ may even be unsympathetic %%cmp%% of 
+different viewpoints on the war%%per%%]$~ ~$[Although our society appears to be doing a better job separating 
+the war from the warrior in the recent OEF/OIF conflict%%lst%% this is ]n[ universally true ]^[ there are 
+many Vietnam veterans who carry the scars of verbal abuse upon returning to the US after their 
+tours of duty in Vietnam%%per%%]$~ ~$[They may ]n[ have been given the opportunity to grieve the loss of 
+their friends ]^[ fellow soldiers ]v[ may be stuck in a cycle of grieving that has ]n[ remitted%%per%%]$~ 
+~$[The following are excerpts from a bereavement Impact Statement%%per%%]$~ ~$[The statement was 
+four hand%%dsh%%written pages%%per%%]$~ ~$[It illustrates the effects the murder of a granddaughter had on a patient%%per%%]$~ 
+~$[I think at first I needed to be strong from my son%%per%%]$~ ~$[As long as I could do that%%lst%% I did ]n[ 
+have to face the finality of death%%per%%]$~ ~$[This is still ]s[ hard ]f[ me to say%%per%%]$~ ~$[To think of ______ in the past 
+tense still causes me to have a panicky feeling%%per%%]$~ ~$[I cannot describe how much I love her ]v[ how 
+much I miss her%%per%%]$~ 
+~$[I thought I would always be the same me%%per%%]$~ ~$[But now I realize I will never be the same%%per%%]$~ ~$[At 
+first I kept trying to be the same self%%dsh%% Tried ]s[ hard that I would get these panic attacks%%lst%% ]s[ I just 
+tried ]n[ to think about it%%per%%]$~ 
+~$[I feel like this big cloud has settled over me ]^[ sometimes it suffocates me%%per%%]$~ ~$[I would like 
+to just pull the covers over my head ]^[ ]n[ take them off ]f[ a long time%%per%%]$~ ~$[But I know I can’t%%lst%% 
+especially ]f[ my son%%per%%]$~ ~$[He says he would like to go into a closet ]^[ ]n[ come out%%per%%]$~ 
+~$[I talked today with my Pastor about my feelings%%lst%% how I feel ]s[ frozen inside%%lst%% that I cannot 
+pray ]^[ do ]n[ feel spiritual at all%%per%%]$~ ~$[It makes me feel ]s[ empty%%per%%]$~ ~$[I miss the fellowship I had with 
+my God%%per%%]$~ ~$[I do want to have that again%%per%%]$~ 
+~$[Some people say I need to try to forgive – I can’t ]^[ I don’t want to – at least ]n[ now… 
+I really don’t want to be angry – this is ]n[ me%%per%%]$~ ~$[But right now I’m ]s[ angry%%per%%]$~ 
+~$[While the example above illustrates assimilation through non%%dsh%%acceptance ]^[ avoidance%%lst%% 
+the next excerpts from a different patient whose friend was killed ]^[ illustrates both 
+assimilation ]^[ over%%dsh%%accommodation%%per%% 
 19 
-setQ %%cln%% c u r r e n t pending a c c e s s e s f o r each a r b i t e r 
-T %%cln%% memory t r a c e 
-f o r each Q in setQ { 
-Q = {} 
-} 
-cycle = f i r s t access cycle in T 
-w h i l e ( ! done ) { 
-done = T r u e 
-f o r each Q in setQ { 
-p o p u l a t e Q (Q%%lst%% p a r t i t i o n C o n f i g %%lst%% c y c l e %%lst%% T ) 
-e x e c u t e C y c l e (Q) 
-} 
-c y c l e ++ 
-f o r each Q in setQ { 
-i f Q ! empty | | a c c e s s e s i n T { 
-done = F a l s e 
-} 
-} 
-} 
-We commence simulation at the cycle of the ﬁrst memory 
-access (line 6) ]^[ enter the while loop (line 7)%%per%%]$~ ~$[For 
-each arbiter present in the design (line 9)%%lst%% as speciﬁed by 
-partitionConfig%%lst%% we use the present cycle%%lst%% as well as the 
-trace T to populate the queue with active requests (line 10)%%per%%]$~ 
-~$[The populateQ function (not shown) takes accesses from 
-the trace T which occur at time cycle%%lst%% ]^[ ]f[ each such 
-access%%lst%% uses knowledge about the partitioning scheme to create 
-a request in a speciﬁc queue%%per%%]$~ ~$[Then%%lst%% the executeCycle 
-function (line 11) uses an internal arbiter model to determine 
-the request in each queue which will receive the grant%%scn%% this 
-request is removed from the queue%%per%%]$~ ~$[This process continues 
-until there are no more requests outstanding in any arbiterrequest queues ]^[ when the trace is empty (line 15)%%per%%]$~ ~$[Upon 
-termination%%lst%% the cycle variable holds the cycle index of 
-the last%%dsh%%serviced memory request%%per%%]$~ ~$[Partitioning schemes which 
-reduce this quantity are generally desirable%%per%%]$~ 
-~$[D%%per%%]$~ ~$[Finding the Optimal Solution 
-We take a brute%%dsh%%force approach to ﬁnding the optimal partitioning solution%%per%%]$~ ~$[This means we iterate through all the possible 
-partitioning schemes1 %%lst%% while predicting the number of cycles 
-needed in order to complete all the memory accesses collected 
-in the trace%%lst%% as well as the number of cycles associated with 
-stalls due to memory contention%%per%%]$~ 
-~$[To provide insight on the size of the solution space%%lst%% the 
-total number of partitioning schemes that may be applied to 
-one multi%%dsh%%dimensional array is%%cln%% 
-N U Mtotal = N U Mb + N U Mc + N U Mcmp + N U Mbc (4) 
-where N U Mb %%lst%% N U Mc %%lst%% N U Mcmp %%lst%% ]^[ N U Mbc represent the 
-number of solutions ]f[ block%%lst%% cyclic%%lst%% complete%%lst%% ]^[ block 
-1 We ignore schemes that are trivially non%%dsh%%optimal ]^[ that warrant no 
-further analysis%%lst%% e%%per%%g%%per%% where the number of partitions far exceeds the number 
-of threads%%per%% 
-cyclic partitioning%%lst%% respectively%%per%%]$~ ~$[We note that%%cln%% 
-N U Mcmp = D 
-(5) 
-where D is the number of dimensions of the multi%%dsh%%dimensional 
-array%%scn%% that is%%lst%% ]f[ each array dimension%%lst%% there is a single 
-complete partitioning%%per%%]$~ ~$[We also need to deﬁne a function Φ 
-that ﬁnds the largest power%%dsh%%of%%dsh%%2 number less %%cmp%% the input%%per%%]$~ 
-~$[With reference to the variables in Table I%%lst%% we have%%cln%% 
-N U Mb = |Bb | = 
-D−1 
- 
-log2 (Φ(Sd )) 
-(6) 
-d=0 
-where Sd is the number of elements in dimension d%%per%%]$~ ~$[The 
-solution%%dsh%%set size ]f[ block partitioning is equal to the cardinality of the set of allowed values ]f[ the block size (in each 
-dimension we have the option to choose any power%%dsh%%of%%dsh%%2%%dsh%%sized 
-block size)%%per%%]$~ ~$[For cyclic%%cln%% 
-N U Mc = |Nc | = 
-D−1 
- 
-log2 (Φ(Sd )) 
-(7) 
-d=0 
-Likewise%%lst%% the solution%%dsh%%set size ]f[ cyclic partitioning is equal 
-to the cardinality of the set of allowed values ]f[ the number 
-of partitions%%per%%]$~ ~$[For block%%dsh%%cyclic partitioning%%cln%% 
-N U Mbc = 
-D−1 
- log2 (Φ(S 
-d ))−1 
-d=0 
-log2 (Φ(Sd )) − i 
-(8) 
-i=1 
-The outer sum is over all dimensions%%per%%]$~ ~$[The inner sum is 
-the solution space size ]f[ each dimension%%per%%]$~ ~$[The inner sum 
-index i deﬁnes the legal block sizes ]f[ block cyclic partitioning%%cln%% the block sizes are 2i %%lst%% ]^[ %%cmp%% range from 21 to 
-2log2 (Φ(Sd ))−1 in powers%%dsh%%of%%dsh%%2%%per%%]$~ ~$[The reason that block sizes of 
-20 = 1 ]^[ 2log2 (Φ(Sd )) are excluded from the sum bounds is 
-that these solutions are standard cyclic%%lst%% ]^[ block partitioning%%lst%% 
-respectively (already counted above in the N U Mc ]^[ N U Mb 
-terms)%%per%%]$~ ~$[For each legal block size%%lst%% log2 (Φ(Sd )) − i counts 
-the number of ways the block size can be assigned to banks 
-(number of partitions)%%per%%]$~ 
-~$[Consider the simple case of a 2%%dsh%%dimensional array of 
-33 × 16 elements%%lst%% D in this case is 2%%lst%% S0 is 16 ]^[ S1 is 
-33%%per%%]$~ ~$[Let us take a look at the row dimension (1)%%lst%% |Pb | = 5%%lst%% 
-|Pc | = 5%%lst%% ]^[ |Pbc | = 10%%per%%]$~ ~$[If we elaborate the block cyclic set 
-we get |Pbc | = 4 + 3 + 2 + 1%%lst%% where each term corresponds 
-to the number of solutions ]f[ when the block size is 2%%lst%% 4%%lst%% 8%%lst%% 
-]^[ 16%%lst%% respectively%%per%%]$~ 
-~$[The above represents the solution%%dsh%%set size ]f[ a single array%%per%%]$~ 
-~$[When there are multiple arrays within the same program%%lst%% 
-the exploration space becomes a Cartesian product of all 
-the possible partitioning schemes of each array%%lst%% which may 
-become very large even ]f[ modestly sized arrays%%per%%]$~ ~$[The bruteforced approach ]f[ enumerating partitioning possibilities does 
-]n[ scale well with the size of the solution space nor with the 
-memory trace size%%per%%]$~ ~$[In future work%%lst%% a pruning approach can be 
-used to remove partitioning possibilities when they are known 
-to perform worse %%cmp%% other schemes%%per%%]$~ ~$[Large memory traces 
-will take longer time to process%%lst%% to deal with this issue%%lst%% we 
-can use a sampling approach%%lst%% where smaller trace portions 
-can be gathered at various intervals in order to get a small ]b[ 
-representative version of the memory trace%%per%% 
-where partition type is one of the following ∗%%lst%% b%%lst%% c%%lst%% bc which 
-stands ]f[ complete%%lst%% block%%lst%% cyclic%%lst%% ]v[ block cyclic%%per%%]$~ ~$[For example%%lst%% %%cmp%% we wanted to partition a M × N matrix into 2 blocks%%lst%% 
-where the ﬁrst block contains the elements in all the rows ]f[ 
-columns in range 0 to N/2 − 1 ]^[ the second block contains 
-the elements in all the rows ]f[ columns in range N/2 to N −1%%lst%% 
-%%cmp%% the partitioning scheme would be 0b2 which stands ]f[ 
-block partition into 2 blocks in the column dimension%%per%% 
-matrixadd area comparison 
-3 
-wall%%dsh%%clock time 
-Fmax 
-ALMs 
-RAMs 
-area%%dsh%%delay product 
-2 
-1 
-c1 
-6 
-2 
-0 
-0b 
-dimension of partitionpartition typen[ b] 
-As a representative example%%lst%% we examine the matrixadd 
-benchmark in detail ]^[ assess its performance versus area 
-trade%%dsh%%offs%%per%% 
-6 
-c1 
-6 
-4 
-0c 
-16 
-In the performance evaluation of our array partitioning 
-pass%%lst%% we run each benchmark with 8 threads across all partitioning schemes%%lst%% where the number of partitions does ]n[ 
-exceed 16%%per%%]$~ ~$[The notation used ]f[ the partitioning schemes ]f[ 
-the rest of the paper is as follows%%cln%% 
-C%%per%%]$~ ~$[Partitioning Performance vs%%per%%]$~ ~$[Area 
-1b 
-1 
-B%%per%%]$~ ~$[Partitioning Performance Results 
-From Table II we observe that generally multiple partitioning schemes may yield the same cycle count%%per%%]$~ ~$[However%%lst%% 
-we know intuitively that partitioning schemes requiring more 
-partitions will yield designs with lower clock frequencies ]^[ 
-more area since higher numbers of partitions means more 
-arbitration logic%%per%%]$~ ~$[We will discuss area versus performance 
-trade%%dsh%%offs in the following section%%per%% 
-1b 
-Matrixadd performs the summation of the elements of a 
-128×128 input integer matrix%%lst%% where each thread is responsible 
-]f[ the summation of a chunk of rows%%per%%]$~ ~$[Histogram reads a 
-32768 element input array ]^[ counts the number elements 
-which belong to a certain value range into a local array%%per%%]$~ 
-~$[Matrixmult performs matrix multiplication on two 32×32 input 
-matrices – matrixA ]^[ matrixB%%lst%% where each thread is 
-responsible ]f[ computing the results of a chunk of rows%%per%%]$~ 
-~$[Matrixmult (cyclic) is a variation on the matrixmult benchmark%%lst%% 
-where each thread is responsible ]f[ computing the output ]f[ 
-each row in a cyclic manner%%lst%% where thread 0 will compute 
-the outputs of row 0%%lst%% 8%%lst%% 16%%lst%% etc%%per%%]$~ ~$[Additionally%%lst%% matrixmult was 
-modiﬁed such that each thread accesses matrixB with an 
-offset to a different set of columns to allow ]f[ parallelization 
-of accesses to columns%%per%%]$~ ~$[Matrixtrans performs matrix transpose 
-on a 128×128 input matrix%%lst%% where each thread transposes 
-each row of the input ]f[ a contiguous slice of columns 
-into the output%%per%%]$~ ~$[For example%%lst%% thread 0 is responsible ]f[ 
-transposing ]f[ all rows between columns 0 %%dsh%% 15 ]f[ the input 
-matrix%%per%%]$~ ~$[Matrixtrans (block cyclic) is a variant on matrixtrans 
-benchmark%%lst%% where each thread transposes a chunk of rows of 
-the input ]f[ all columns into the output in a block cyclic 
-manner%%per%%]$~ ~$[For example%%lst%% thread 0 is responsible ]f[ transposing 
-rows 0%%dsh%%3%%lst%% 32%%dsh%%35%%lst%% 64%%dsh%%67%%lst%% ]^[ 96%%dsh%%99 ]f[ all columns of the input 
-matrix%%per%%]$~ ~$[Los (line of sight) consists of a 64×64 obstacle map 
-in which each pixel can take on the values of either 1 ]v[ 0%%lst%% 
-where 1 represents an obstacle ]^[ 0 represents unoccupied 
-space ]^[ a human is assumed to be situated in the middle of 
-the obstacle map%%per%%]$~ ~$[The threads will sweep through the obstacle 
-map at each map coordinate ]^[ steps in the direction of the 
-human located at the center to determine whether there is an 
-obstacle between the beginning location ]^[ the human%%per%%]$~ ~$[If 
-there is%%lst%% %%cmp%% that coordinate location is ]n[ within the line of 
-sight of the human ]^[ thus will be marked as 0 on the output 
-map%%lst%% otherwise it will be marked 1%%per%%]$~ ~$[This benchmark is input 
-dependent ]^[ is ]n[ intuitive in terms of which partitioning 
-scheme is the most optimal%%per%% 
-0b 
-c8 
-1b 2 
-c8 
-8 
-1b 
-8 
-The evaluation of array partitioning on circuit performance%%lst%% as well as the accuracy of the memory simulator 
-were performed using 8 multi%%dsh%%threaded benchmarks%%cln%% matrixadd%%lst%% histogram%%lst%% matrixmult%%lst%% matrixmult (cyclic)%%lst%% matrixtrans%%lst%% 
-matrixtrans (block cyclic)%%lst%% substring%%lst%% ]^[ los%%per%% 
-16 
-1b 
-4 
-A%%per%%]$~ ~$[Benchmark Description 
-First%%lst%% we present the execution cycles reduction results in 
-Table II%%per%%]$~ ~$[The second column shows the cycle count ]f[ the 
-baseline unpartitioned case ]f[ the parallel kernel region only 
-(not including error checking)%%scn%% the third column shows the 
-cycle count of the partitioned cases leading to the lowest cycle 
-count also ]f[ the parallel kernel region%%scn%% the fourth column 
-shows the cycle of the last memory access to the arrays 
-under partitioning%%lst%% which will be useful ]f[ comparison in 
-Section VI%%dsh%%D%%scn%% the ﬁfth column shows the cycle count speedup 
-of the partitioned over the unpartitioned case%%scn%% ]^[ column 
-six shows the partitioning scheme(s) that lead to the best 
-cycle count%%per%%]$~ ~$[In matrixmult%%lst%% matrixmult (cyclic)%%lst%% matrixtrans%%lst%% 
-]^[ matrixtrans (block cyclic) the benchmarks each contain 2 
-matrices%%lst%% ]^[ both can be partitioned%%per%%]$~ ~$[The results presented 
-show the partitioning schemes leading to the best cycle execution ]f[ the matrix matrixA in matrixmult ]^[ matrixmult 
-(cyclic)%%lst%% ]^[ ]f[ the matrix input_array in matrixtrans 
-]^[ matrixtrans (block cyclic)%%per%%]$~ ~$[Since the access patterns ]f[ 
-the 2 matrices in these 4 benchmarks are transposed of each 
-other%%lst%% i%%per%%e%%per%% ]f[ matrixmult matrixA is accessed row by row 
-while matrixB is accessed column by column%%lst%% the partition 
-scheme which leads to the best cycles execution in one matrix 
-can simply be applied to the other matrix in the opposite 
-dimension%%per%%]$~ ~$[This means%%lst%% the partitioning scheme leading to 
-one of the lowest cycle count ]f[ matrixadd is 0b16 ]f[ 
-matrixA ]^[ 1b16 ]f[ matrixB%%per%%]$~ ~$[The geomean speedup of 
-all 8 benchmarks is 2%%per%%21×%%per%% 
-1b 
-c4 
-E XPERIMENTAL R ESULTS 
-Normalized Performance ]^[ Area 
-VI%%per%%]$~ 
-~$[Fig%%per%% 3%%cln%% Area ]^[ wall%%dsh%%clock time variations among “best” 
-performing matrixadd partitions%%per%%]$~ 
-~$[Fig%%per%% 3 shows the relative wall%%dsh%%clock time%%lst%% Fmax%%lst%% ALMs 
-]^[ RAM usage%%lst%% ]^[ area%%dsh%%delay products of the 9 partitioning 
-schemes leading to the best cycle count found through ModelSim simulation%%per%%]$~ ~$[All values are normalized to the unpartitioned 
-design results%%per%%]$~ ~$[The area%%dsh%%delay product is calculated using the 
-relative area%%dsh%%scaling factors presented in [14]%%per%%]$~ ~$[The scaling 
-benchmark 
-matrixadd 
-histogram 
-matrixmult 
-matrixmult (cyclic) 
-matrixtrans 
-matrixtrans (blockcyclic) 
-parallel region cycles 
-16396 
-4157 
-33077 
-24013 
-32839 
-16799 
-32837 
-16794 
-16395 
-6423 
-16482 
-6348 
-substring 
-los 
-16396 
-83217 
-last memory cycle 
-4163 
-23987 
-16793 
-16789 
-6419 
-6344 
-speedup 
-3%%per%%94 
-1%%per%%38 
-1%%per%%95 
-1%%per%%95 
-2%%per%%55 
-2%%per%%60 
-4117 
-79537 
-3%%per%%98 
-1%%per%%05 
-4120 
-79543 
-partition schemes 
-1b4%%lst%% 1b8%%lst%% 1b16%%lst%% 0c16%%lst%% 0bc8 2%%lst%% 0bc16 2%%lst%% 1bc4 16%%lst%% 1bc8 8%%lst%% 1bc16 4 
-0b8%%lst%% 0b16 
-0b16%%lst%% 1b4%%lst%% 1b8%%lst%% 1b16%%lst%% 0c8%%lst%% 0c16%%lst%% 1c16%%lst%% 0bc4 2%%lst%% 0bc8 2%%lst%% 1bc4 4%%lst%% 1bc8 2 
-0b16%%lst%% 1b16%%lst%% 0c8%%lst%% 0c16%%lst%% 1c4%%lst%% 1c8%%lst%% 1c16%%lst%% 0bc4 2%%lst%% 0bc8 2%%lst%% 1bc4 2%%lst%% 1bc8 2 
-0b4%%lst%% 0b8%%lst%% 0b16%%lst%% 0c8%%lst%% 0c16%%lst%% 0bc4 2%%lst%% 0bc8 2%%lst%% 0bc8 4%%lst%% 0bc8 8%%lst%% 0bc16 2%%lst%% 0bc16 4 
-0c8%%lst%% 0c16%%lst%% 1c16%%lst%% 1b16%%lst%% 0bc4 2%%lst%% 0bc8 2%%lst%% 0bc16 2%%lst%% 1bc4 4%%lst%% 1bc4 8%%lst%% 1bc8 2%%lst%% 
-1bc8 4%%lst%% 1bc8 8%%lst%% 1bc16 2%%lst%% 1bc16 4 
-0c4%%lst%% 0c8%%lst%% 0c16%%lst%% 0b8%%lst%% 0b16%%lst%% 0bc8 2%%lst%% 0bc8 1024%%lst%% 0bc16 2%%lst%% 0bc16 512 
-1bc16 2 
-TABLE II%%cln%% Baseline unpartitioned versus best partition scheme(s) execution cycles%%per%% 
-matrixadd performance 
-however%%lst%% the clock frequency reduces between 8 partitions to 
-16 partitions from 90%%per%%39 MHz to 78%%per%%55 MHz%%lst%% while the ALM%%lst%% 
-register%%lst%% ]^[ RAM usage all increase as we expect%%per%% 
-183%%per%%26 
-16,376 
-cycles 
-16,396 14,720 
-contentions 
-Wall%%dsh%%clock Time[μs] 
-89%%per%%48 
-D%%per%%]$~ ~$[Evaluation of the Memory Simulator 
-·104 
-7,681 
-55%%per%%97 
-5,119 
-1 2 
-4 
-52%%per%%92 
-45%%per%%99 
-4,157 
-1%%per%%5 
-4,157 
-0 
-8 
-number of partitions 
-16 
-0 
-(a) Performance result comparing total execution cycles of benchmark 
-as well as the number of resulting contentions ]^[ wall%%dsh%%clock time 
-computed using the Fmax achieved%%per%%]$~ 
-~$[Predicted cycle 
-8,214 
-1 
-0%%per%%5 
-0%%per%%5 
-matrixadd area 
-68 68 
-1 2 
-1%%per%%5 
-5,253 
-3,821 
-ALMs 
-registers 
-RAMs 
-Fmax[MHz] 
-4 
-·104 
-·104 
-78%%per%%55 
-4,918 
-2,845 
-2,689 
-1%%per%%5 
-(a) matrixadd benchmark 
-8,478 
-60 
-90%%per%%39 
-6,127 
-8 
-number of partitions 
-16 
-(b) Area result comparing total number of ALMs%%lst%% registers%%lst%% block 
-RAMs%%lst%% as well as the Fmax achieved after static timing analysis%%per%%]$~ 
-~$[Fig%%per%% 4%%cln%% Performance ]^[ area comparison ]f[ matrixadd benchmark with block cyclic partitioning across different numbers 
-of partitions with block size 2%%per%% 
-factor ]f[ the ALUT (half%%dsh%%ALM) is presented as 0%%per%%05 in [14]%%lst%% 
-which we multiply by 2 to estimate the area of a full ALM%%per%%]$~ ~$[The 
-scaling factor ]f[ an M9K RAM block is given as 2%%per%%87 in [14]%%lst%% 
-which we multiply by 1%%per%%1 to estimate the area of an M10K 
-RAM%%per%%]$~ ~$[Notice that even among these “optimal” partitionings%%lst%% 
-the normalized area%%dsh%%delay product ﬂuctuates between 0%%per%%31 to 
-0%%per%%63%%per%%]$~ ~$[The main cause of this is due to the high area cost of 
-partitioning in some of these schemes%%per%%]$~ 
-~$[It is also important to observe that partitioning leads to 
-diminishing returns in terms of cycle count%%lst%% ]b[ may incur 
-signiﬁcant area costs%%per%%]$~ ~$[Fig%%per%% 4a ]^[ Fig%%per%% 4b show the performance 
-]^[ area of the matrixadd benchmark respectively under blockcyclic partitioning in the column dimension (0) ]f[ various 
-numbers of partitions ]^[ a block size of 2%%per%%]$~ ~$[Observe that the 
-execution cycles reaches a minimum ]f[ 8 ]^[ 16 partitions%%lst%% 
-Predicted cycle 
-4,325 
-4,029 
-4 
-8,442 
-68 
-68 
-91%%per%%8 91%%per%%46 
-89%%per%%47 
-1 
-Actual cycle 
-1 
-0%%per%%5 
-0%%per%%5 
-1 
-Actual cycle 
-1%%per%%5 
-·104 
-(b) substring benchmark 
-Fig%%per%% 5%%cln%% Memory simulator predicted versus actual cycle of last 
-memory access%%per%%]$~ 
-~$[The goal of the memory simulator is to accurately predict 
-the schedule of memory accesses of the circuit under various 
-partitioning schemes from a memory access trace gathered 
-from an unpartitioned implementation of the circuit under 
-a representative input%%per%%]$~ ~$[The size of the exploration space is 
-described in Section V%%dsh%%D%%per%%]$~ ~$[In this evaluation%%lst%% we perform a 
-prediction of the execution cycle count under all possible 
-partition schemes where the number of partitions does ]n[ 
-exceed 16 ]^[ %%cmp%% the results to the results from Table II 
-in Section VI%%dsh%%B to see %%cmp%% i) the optimal partitioning schemes 
-were detected ]^[ %%cmp%% ii) the predicted cycle of last memory 
-access reported by the memory simulator matches the actual 
-cycle from ModelSim simulation%%per%%]$~ 
-~$[Table III shows the predicted ]^[ actual cycle of last 
-memory access of the partitioned arrays%%lst%% the absolute percent%%dsh%% 
-benchmark 
-actual cycle of last 
-memory access 
-4163 
-23987 
-16799 
-16789 
-6419 
-6344 
-% error 
-matrixadd 
-histogram 
-matrixmult 
-matrixmult (cyclic) 
-matrixtrans 
-matrixtrans (blockcyclic) 
-predicted cycle of 
-last memory access 
-4163 
-23987 
-16793 
-16789 
-6420 
-6345 
-substring 
-los 
-4117 
-79537 
-4117 
-79537 
-16%%per%%52 
-0 
-0 
-0%%per%%004 
-0%%per%%03 
-0%%per%%16 
-0%%per%%01 
-0%%per%%01 
-partitioning schemes 
-1b4%%lst%% 1b8%%lst%% 1b16%%lst%% 0c16%%lst%% 0bc8 2%%lst%% 0bc16 2%%lst%% 1bc4 16%%lst%% 1bc8 8%%lst%% 1bc16 4 
-0b8%%lst%% 0b16 
-0b16%%lst%% 1b4%%lst%% 1b8%%lst%% 1b16%%lst%% 0c8%%lst%% 0c16%%lst%% 1c16%%lst%% 0bc4 2%%lst%% 0bc8 2%%lst%% 1bc4 4%%lst%% 1bc8 2 
-0b16%%lst%% 1b16%%lst%% 0c8%%lst%% 0c16%%lst%% 1c4%%lst%% 1c8%%lst%% 1c16%%lst%% 0bc4 2%%lst%% 0bc8 2%%lst%% 1bc4 2%%lst%% 1bc8 2 
-0b4%%lst%% 0b8%%lst%% 0b16%%lst%% 0c8%%lst%% 0c16%%lst%% 0bc4 2%%lst%% 0bc8 2%%lst%% 0bc8 4%%lst%% 0bc8 8%%lst%% 0bc16 2%%lst%% 0bc16 4 
-0c8%%lst%% 0c16%%lst%% 1c16%%lst%% 1b16%%lst%% 0bc4 2%%lst%% 0bc8 2%%lst%% 0bc16 2%%lst%% 1bc4 4%%lst%% 1bc4 8%%lst%% 1bc8 2%%lst%% 
-1bc8 4%%lst%% 1bc8 8%%lst%% 1bc16 2%%lst%% 1bc16 4 
-0c8%%lst%% 0c16%%lst%% 0b8%%lst%% 0b16%%lst%% 0bc8 2%%lst%% 0bc8 1024%%lst%% 0bc16 2%%lst%% 0bc16 512 (missing%%cln%% 0c4) 
-1bc16 2 
-TABLE III%%cln%% Memory simulator evaluation ]f[ 16 partitions ]^[ under%%per%% 
-age error ]f[ all cases of partitioning%%lst%% where the number of 
-partitions is equal ]v[ less %%cmp%% 16%%lst%% as well as the partition 
-schemes predicted by the memory simulator to have the lowest 
-last cycle of memory access%%per%%]$~ ~$[Fig%%per%% 5a shows the accuracy of 
-the memory simulator ]f[ the matrixadd benchmark%%lst%% where 
-the horizontal axis plots the actual cycle of the last memory 
-access to the arrays of interest ]^[ the vertical axis plots the 
-predicted cycle of last memory access%%per%%]$~ ~$[The closer to the red 
-line the data falls%%lst%% the more accurate the prediction%%per%%]$~ ~$[Fig%%per%% 5b 
-shows the accuracy of the memory simulator ]f[ the substring 
-benchmark%%per%%]$~ ~$[The absolute percentage error ]f[ the substring 
-benchmark is 16%%per%%52%%%per%%]$~ ~$[The source of error was determined to 
-be differences in scheduling due to different port bindings ]f[ 
-memory accesses between the original unpartitioned case%%lst%% from 
-which we extract the memory access chain%%lst%% ]^[ the memory 
-port binding during the HLS of the partitioned case%%per%%]$~ 
-~$[For 7 of the 8 test cases%%lst%% the memory simulator was able to 
-accurately predict the partitioning schemes which lead to the 
-lowest execution cycles%%per%%]$~ ~$[In the case of substring%%lst%% the memory 
-simulator missed 1 of the 9 best partitioning schemes%%per%%]$~ ~$[These 
-results are encouraging since looking from the variety of best 
-partitioning schemes%%lst%% we see that many of these schemes are 
-non%%dsh%%intuitive%%per%%]$~ ~$[This means that it is hard ]f[ a designer to 
-realize that the partitioning scheme 1bc4 16 ]f[ the benchmark 
-matrixadd leads to one of the best solutions%%per%%]$~ ~$[As seen from 
-the area comparison in Fig%%per%% 3%%lst%% this solution actually leads to 
-the lowest normalized area%%dsh%%delay product%%per%%]$~ ~$[This is where the 
-memory simulator%%dsh%%driven automatic memory partitioning tool 
-becomes a useful tool in detecting multiple good solutions to 
-prune the exploration space ]f[ the hardware/software designer%%per%%]$~ 
-~$[VII%%per%%]$~ 
-~$[C ONCLUSION 
-Memory access is often a performance bottleneck in computer hardware%%per%%]$~ ~$[In this paper%%lst%% we considered memory architecture synthesis in the HLS context%%lst%% speciﬁcally in the synthesis 
-of parallel hardware from parallel multi%%dsh%%threaded software%%per%%]$~ ~$[We 
-implemented ﬂexible array partitioning as an LLVM compiler 
-pass within the LegUp HLS framework%%per%%]$~ ~$[The array partitions 
-are implemented as separate logical RAMs (banks) in the 
-hardware%%lst%% with arbiters inserted to manage concurrent accesses 
-among threads%%per%%]$~ ~$[With the banked architecture synthesis%%lst%% the 
-geomean speed up of the parallel execution cycles is 2%%per%%21×%%lst%% 
-across 8 benchmarks%%per%%]$~ 
-~$[As it is onerous ]f[ one to select an array partitioning ]^[ 
-specify it using specialized compiler pragmas%%lst%% we devised an 
-automatic memory partitioning tool that uses a cycle accurate 
-memory simulator%%lst%% which%%lst%% with an accurate model of memory 
-access arbitration can predict with an average absolute percent 
-error of 2%%per%%09% the last memory cycle of access of our 8 
-multi%%dsh%%threaded benchmarks%%per%%]$~ ~$[The simulator can be applied to 
-automatically select the best partitioning ]f[ an array%%per%%]$~ 
-~$[Future work will look at the interdependency of memory 
-bank architecture synthesis ]^[ the memory port binding step 
-of the HLS ﬂow%%lst%% as well as how selective multi%%dsh%%pumping of 
-memories may be combined with the proposed partitioning 
-techniques%%per%%]$~ ~$[The brute%%dsh%%force partitioning scheme enumeration 
-approach can also be swapped ]f[ a smarter pruning approach 
-in order to make programs with multiple arrays tractable in 
-this trace%%dsh%%based solution%%per%%]$~ 
-~$[R EFERENCES 
-[1] 
-[2] 
-[3] 
-[4] 
-[5] 
-[6] 
-[7] 
-[8] 
-[9] 
-[10] 
-[11] 
-[12] 
-[13] 
-[14] 
-[15] 
-[16] 
-A%%per%%]$~ ~$[Canis%%lst%% J%%per%%]$~ ~$[Choi%%lst%% M%%per%%]$~ ~$[Aldham%%lst%% V%%per%%]$~ ~$[Zhang%%lst%% A%%per%%]$~ ~$[Kammoona%%lst%% T%%per%%]$~ ~$[Czajkowski%%lst%% 
-S%%per%%]$~ ~$[D%%per%%]$~ ~$[Brown%%lst%% ]^[ J%%per%%]$~ ~$[H%%per%%]$~ ~$[Anderson%%per%%]$~ ~$[LegUp%%cln%% An open%%dsh%%source high%%dsh%%level 
-synthesis tool ]f[ FPGA%%dsh%%based processor/accelerator systems%%per%%]$~ ~$[ACM 
-Trans%%per%%]$~ ~$[Embed%%per%%]$~ ~$[Comput%%per%%]$~ ~$[Syst%%per%%%%lst%% 13(2)%%lst%% 2013%%per%%]$~ 
-~$[J%%per%%]$~ ~$[Choi%%lst%% J%%per%%]$~ ~$[Anderson%%lst%% ]^[ S%%per%%]$~ ~$[Brown%%per%%]$~ ~$[From software threads to parallel 
-hardware in FPGA high%%dsh%%level synthesis%%per%%]$~ ~$[In IEEE FPT%%lst%% pages 270–279%%lst%% 
-2013%%per%%]$~ 
-~$[J%%per%%]$~ ~$[Choi%%lst%% S%%per%%]$~ ~$[Brown%%lst%% ]^[ J%%per%%]$~ ~$[Anderson%%per%%]$~ ~$[Resource ]^[ memory management 
-techniques ]f[ the high%%dsh%%level synthesis of software threads into parallel 
-FPGA hardware%%per%%]$~ ~$[In IEEE FPT%%lst%% pages 152–159%%lst%% 2015%%per%%]$~ 
-~$[A%%per%%]$~ ~$[Cilardo ]^[ L%%per%%]$~ ~$[Gallo%%per%%]$~ ~$[Improving multibank memory access parallelism with lattice%%dsh%%based partitioning%%per%%]$~ ~$[ACM Trans%%per%%]$~ ~$[Archit%%per%%]$~ ~$[Code Optim%%per%%%%lst%% 
-11(4)%%lst%% Jan%%per%% 2015%%per%%]$~ 
-~$[J%%per%%]$~ ~$[Cong%%lst%% B%%per%%]$~ ~$[Liu%%lst%% S%%per%%]$~ ~$[Neuendorffer%%lst%% J%%per%%]$~ ~$[Noguera%%lst%% K%%per%%]$~ ~$[A%%per%%]$~ ~$[Vissers%%lst%% ]^[ 
-Z%%per%%]$~ ~$[Zhang%%per%%]$~ ~$[High%%dsh%%level synthesis ]f[ fpgas%%cln%% From prototyping to deployment%%per%%]$~ ~$[IEEE Trans%%per%% on CAD%%lst%% 30(4):473–491%%lst%% 2011%%per%%]$~ 
-~$[P%%per%%]$~ ~$[Coussy%%lst%% D%%per%%]$~ ~$[D%%per%%]$~ ~$[Gajski%%lst%% M%%per%%]$~ ~$[Meredith%%lst%% ]^[ A%%per%%]$~ ~$[Takach%%per%%]$~ ~$[An introduction 
-to high%%dsh%%level synthesis%%per%%]$~ ~$[IEEE Design Test of Computers%%lst%% 26(4):8–17%%lst%% 
-2009%%per%%]$~ 
-~$[L%%per%%]$~ ~$[Gallo%%lst%% A%%per%%]$~ ~$[Cilardo%%lst%% D%%per%%]$~ ~$[Thomas%%lst%% S%%per%%]$~ ~$[Bayliss%%lst%% ]^[ G%%per%%]$~ ~$[A%%per%%]$~ ~$[Constantinides%%per%%]$~ 
-~$[Area implications of memory partitioning ]f[ high%%dsh%%level synthesis on 
-FPGAs%%per%%]$~ ~$[In FPL%%lst%% 2014%%per%%]$~ 
-~$[Intel Corp%%per%%]$~ ~$[Intel Corp%%per%%]$~ ~$[Intel FPGA SDK ]f[ OpenCL%%per%% https://www%%per%% 
-altera%%per%%com/products/design%%dsh%%software/embedded%%dsh%%software%%dsh%%developers/ 
-opencl/overview%%per%%html%%per%%]$~ 
-~$[C%%per%%]$~ ~$[Lattner ]^[ V%%per%%]$~ ~$[S%%per%%]$~ ~$[Adve%%per%%]$~ ~$[LLVM%%cln%% A compilation framework ]f[ 
-lifelong program analysis & transformation%%per%%]$~ ~$[In IEEE/ACM CGO%%lst%% pages 
-75–88%%lst%% 2004%%per%%]$~ 
-~$[C%%per%%]$~ ~$[Meng%%lst%% S%%per%%]$~ ~$[Yin%%lst%% P%%per%%]$~ ~$[Ouyang%%lst%% L%%per%%]$~ ~$[Liu%%lst%% ]^[ S%%per%%]$~ ~$[Wei%%per%%]$~ ~$[Efﬁcient memory 
-partitioning ]f[ parallel data access in multidimensional arrays%%per%%]$~ ~$[In 
-IEEE/ACM DAC%%lst%% 2015%%per%%]$~ 
-~$[R%%per%%]$~ ~$[Nane%%lst%% V%%per%%]$~ ~$[M%%per%%]$~ ~$[Sima%%lst%% C%%per%%]$~ ~$[Pilato%%lst%% J%%per%%]$~ ~$[Choi%%lst%% B%%per%%]$~ ~$[Fort%%lst%% A%%per%%]$~ ~$[Canis%%lst%% Y%%per%%]$~ ~$[T%%per%%]$~ ~$[Chen%%lst%% 
-H%%per%%]$~ ~$[Hsiao%%lst%% S%%per%%]$~ ~$[Brown%%lst%% F%%per%%]$~ ~$[Ferrandi%%lst%% J%%per%%]$~ ~$[Anderson%%lst%% ]^[ K%%per%%]$~ ~$[Bertels%%per%%]$~ ~$[A survey 
-]^[ evaluation of FPGA high%%dsh%%level synthesis tools%%per%%]$~ ~$[IEEE Trans%%per%% on 
-CAD%%lst%% 35(10):1591–1604%%lst%% 2016%%per%%]$~ 
-~$[Y%%per%%]$~ ~$[Wang%%lst%% P%%per%%]$~ ~$[Li%%lst%% ]^[ J%%per%%]$~ ~$[Cong%%per%%]$~ ~$[Theory ]^[ algorithm ]f[ generalized 
-memory partitioning in high%%dsh%%level synthesis%%per%%]$~ ~$[In ACM FPGA%%lst%% pages 
-199–208%%lst%% 2014%%per%%]$~ 
-~$[Y%%per%%]$~ ~$[Wang%%lst%% P%%per%%]$~ ~$[Li%%lst%% P%%per%%]$~ ~$[Zhang%%lst%% C%%per%%]$~ ~$[Zhang%%lst%% ]^[ J%%per%%]$~ ~$[Cong%%per%%]$~ ~$[Memory partitioning 
-]f[ multidimensional arrays in high%%dsh%%level synthesis%%per%%]$~ ~$[In ACM/IEEE DAC%%lst%% 
-2013%%per%%]$~ 
-~$[H%%per%%]$~ ~$[Wong%%lst%% V%%per%%]$~ ~$[Betz%%lst%% ]^[ J%%per%%]$~ ~$[Rose%%per%%]$~ ~$[Comparing fpga vs%%per%% custom cmos ]^[ 
-the impact on processor microarchitecture%%per%%]$~ ~$[In Proceedings of the 19th 
-ACM/SIGDA International Symposium on Field Programmable Gate 
-Arrays%%lst%% FPGA ’11%%lst%% pages 5–14%%lst%% New York%%lst%% NY%%lst%% USA%%lst%% 2011%%per%%]$~ ~$[ACM%%per%%]$~ 
-~$[Xilinx Inc%%per%%]$~ ~$[Vivado HLS%%per%% https://www%%per%%xilinx%%per%%com/products/design%%dsh%%tools/ 
-vivado/integration%%per%%html%%lst%% 2017%%per%%]$~ 
-~$[Y%%per%%]$~ ~$[Zhou%%lst%% K%%per%%]$~ ~$[M%%per%%]$~ ~$[Al%%dsh%%Hawaj%%lst%% ]^[ Z%%per%%]$~ ~$[Zhang%%per%%]$~ ~$[A new approach to automatic 
-memory banking using trace%%dsh%%based address mining%%per%%]$~ ~$[In ACM FPGA%%lst%% 
-pages 179–188%%lst%% 2017%%per%% 
+I always believed that I could protect ______ from anything ]v[ anyone%%per%%]$~ ~$[I feel like a 
+failure%%per%%]$~ ~$[I failed him%%per%%]$~ ~$[I should have been watching his back %%cmp%% no one would have been able to 
+shoot him in his back%%per%%]$~ ~$[I could have administered CPR ]^[ helped to breathe in him the breath of 
+life%%per%%]$~ ~$[He would have calmed down ]^[ fought harder %%cmp%% I had been there… Who knew%%qsn%%]$~ ~$[But I failed 
+him ]^[ I don’t have any other chance to make it up to him%%per%%]$~ 
+~$[This world is a cruel world where no one seems to care about anyone outside of their 
+own family… I trust no one outside of the family ]^[ I really am no longer close to my family%%per%%]$~ ~$[I 
+no longer use the word “friend” %%cmp%% it no longer serves a purpose in my life%%per%%]$~ ~$[I feel 
+abandoned by certain people in my family%%per%%]$~ ~$[They are already ready ]f[ me to move on%%per%%]$~ ~$[Isn’t that 
+crazy?%%xcm%%]$~ 
+~$[It may be helpful ]f[ a patient to realize that his relationship with the deceased has 
+changed rather %%cmp%% ended%%per%%]$~ ~$[The patient can still have a relationship with the deceased even 
+though the relationship is ]n[ reciprocal%%per%%]$~ ~$[As part of the Impact Statement on the death of the 
+significant other%%lst%% the patient is asked%%lst%% “How has the event affected your relationship with the 
+deceased?” 
+One of the problems that can occur early in the grieving process (and stall out in some 
+cases) is the tendency to over%%dsh%%idealize the person who has died%%per%%]$~ ~$[It is difficult ]f[ the bereaved 
+person to move on%%lst%% reestablish connections with others%%lst%% ]^[ alter her relationship with the 
+deceased %%cmp%% the person who died is ]n[ the person who lived before%%per%%]$~ ~$[The loved ones may 
+experience more survivor guilt ]v[ hindsight bias %%cmp%% they believe that the person who died was 
+perfect ]v[ that it is bad/wrong to remember any flaws ]v[ foibles%%per%%]$~ ~$[The therapist needs to tread 
+lightly on this topic%%lst%% perhaps pursuing it later in therapy%%lst%% although it can be broached gently at 
+this time%%per%%]$~ ~$[The therapist%%lst%% in hearing an over%%dsh%%idealized description of the deceased can say%%cln%% 
+“He sounds like an angel%%per%%]$~ ~$[I’d like to have a better picture of the whole man that you 
+knew%%per%%]$~ ~$[Tell me a little about his eccentricities ]v[ habits”%%per%%]$~ 
+~$[The goal here is to help the patient to grieve ]f[ the person who really lived with an 
+integrated ]^[ balanced view%%per%%]$~ 
+~$[In some cases%%lst%% over%%dsh%%idealization may be a particular problem %%cmp%% the idealized image 
+of the deceased is embraced by a whole community%%per%%]$~ ~$[In the aftermath of the World Trade Center 
+attack%%lst%% firefighters%%lst%% police%%lst%% ]^[ other rescue workers who died have been rightly hailed as heroes%%per%%]$~ 
+~$[Heroes are people who risk themselves to help others in spite of their fear ]v[ flaws%%lst%% ]n[ %%cmp%% 
+they were fearless ]^[ flawless%%per%%]$~ ~$[It may be particularly difficult ]f[ family members %%cmp%% their 
+memories of the person clash with the public image%%per%%]$~ ~$[If a couple was having marital problems%%lst%% ]v[ 
+the partner was having an extra%%dsh%%marital affair%%lst%% was abusive%%lst%% ]v[ alcoholic%%lst%% the surviving partner 
+would ]n[ know how to reconcile this information with the accolades ]^[ images of the partner 
+as a saint%%per%%]$~ ~$[Even to remember small flaws would seem like a betrayal of the person who died%%per%%]$~ 
+~$[And yet%%lst%% the surviving partner ]^[ family members have these memories as well ]^[ struggle to 
+deal with them%%per%%]$~ ~$[Some people attempt to suppress ]v[ ignore inconsistent information%%per%%]$~ ~$[If they are 
+successful in avoiding%%lst%% there is a greater likelihood of more prolonged bereavement %%cmp%% ]f[ 
+those who can put the person’s life into an accurate perspective%%per%% 
+20 
+Pertinent to situations like the attack on September 11%%lst%% 2001%%lst%% ]^[ war%%lst%% is the issue in 
+which the body of the deceased is never found%%per%%]$~ ~$[It may be more difficult in these cases ]f[ the 
+surviving family ]^[ friends to accept that the person is actually dead%%per%%]$~ ~$[When there is no concrete 
+proof that the person died%%lst%% assimilation ]^[ denial are more likely%%per%%]$~ ~$[The survivors may have 
+continuing fantasies that there has been some mistake%%lst%% that the loved one has been wandering 
+around with amnesia ]v[ injured ]^[ unable to contact them%%per%%]$~ ~$[They may have extended periods 
+during which acceptance of the reality of the situation is postponed%%per%%]$~ 
+~$[Finally%%lst%% when a group of people experience the same event ]^[ %%cmp%% support each other in 
+the aftermath%%lst%% they can help each other progress through the various stages of grief%%per%%]$~ ~$[However%%lst%% 
+there are two risks%%per%%]$~ ~$[One is that the members of the group will be recovering at different rates%%lst%% 
+leading to misunderstandings ]v[ some people being held back from their natural rate%%per%%]$~ ~$[A worse 
+outcome is that the group becomes stuck together ]^[ stop recovering altogether%%per%%]$~ ~$[They develop 
+an us%%dsh%%against%%dsh%%them mentality in which they come to believe that no one can understand what 
+they have experienced ]^[ that they can never recover%%per%%]$~ ~$[If someone who seeks therapy 

@@ -50,10 +50,17 @@ class garnish:
 
 	def display_progress_check(self, count, columns):
 
-		how_many=int(math.floor(count/1000))	
-		sys.stdout.write('\rProgress: ' + '.'*(how_many%(columns-30))+' '*(columns-how_many-30))
-		sys.stdout.flush()
-
+		try:
+			how_many=int(math.floor(count/1000))	
+			sys.stdout.write('\rProgress: ' + '.'*(how_many%(columns-30))+' '*(columns-(how_many%(columns-30))-30))
+			sys.stdout.flush()
+		except Exception as e:
+			rows, cols = os.popen('stty size', 'r').read().split()
+			columns = int(cols)
+			print("\n")
+			how_many=int(math.floor(count/1000))	
+			sys.stdout.write('\rProgress: ' + '.'*(how_many%(columns-30))+' '*(columns-how_many-30))
+			sys.stdout.flush()			
 		
 
 	def check_quality(self, _ingredients, special_items):
@@ -150,8 +157,8 @@ class garnish:
 				if  _j_label not in seen_labels:
 					b=sentence_vec_map[_j_label]
 				
-					hamming_sim = len(sentence_vec_map[_i_label])-mutils.hamming_distance(a,b)
 
+					hamming_sim = len(sentence_vec_map[_i_label])-mutils.hamming_distance(a,b)
 					sim_i = math.floor(10*(hamming_sim)/len(sentence_vec_map[_i_label]))/10 + math.floor(10*(mutils.get_cosine_sim(a,b)))/10
 
 					if sim_i not in sen_pairs: 

@@ -19,8 +19,12 @@ class delimiters:
 		_ingredients_all[0]="~$["+_ingredients_all[0]
 
 		for _label in _ingredients_all:
-			sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
-			sys.stdout.flush()
+			try: 
+				sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
+				sys.stdout.flush()
+			except Exception as e:
+				pass
+				
 			char = _ingredients_all[_label][len(_ingredients_all[_label])-1]
 			if char == '.' or char == '?' or char == '!':
 				if _label+1 in _ingredients_all:

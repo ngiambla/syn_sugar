@@ -15,8 +15,11 @@ class compare:
 		_ingredient_mapping = _ingredients.get_ingredient_mapping()
 
 		for _label in _ingredients_all:
-			sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
-			sys.stdout.flush()
+			try: 
+				sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
+				sys.stdout.flush()
+			except Exception as e:
+				pass
 
 			if len(_ingredients_all[_label]) >= 2:
 				if 'i' == _ingredients_all[_label][0].lower() and 'f' == _ingredients_all[_label][1].lower():

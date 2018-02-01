@@ -15,8 +15,12 @@ class conjunctions:
 		_ingredient_mapping = _ingredients.get_ingredient_mapping()
 
 		for _label in _ingredients_all:
-			sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
-			sys.stdout.flush()
+			try: 
+				sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
+				sys.stdout.flush()
+			except Exception as e:
+				pass
+				
 			if "and" == _ingredients_all[_label]:
 				_ingredients_all[_label]="]^["
 			if "or" == _ingredients_all[_label]:

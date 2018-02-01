@@ -1,1368 +1,985 @@
-Efficient Software—Based Fault Isolation 
-Robert VVahbe 
-Steven Lucco 
-Thomas E. Anderson 
-Susan L. Graham 
-Computer Science Division 
-University of California 
-Berkeley, CA 94720 
-Abstract 
-One way to provide fault isolation among cooperating 
-software modules is to place each in its own address 
-space. However, ]f[ tightly—coupled modules, this so— 
-lution incurs prohibitive context switch overhead. In 
-this paper, we present a software approach to imple— 
-menting fault isolation within a single address space. 
-Our approach has two parts. First, we load the code 
-]^[ data ]f[ a distrusted module into its own fault do- 
-main, a logically separate portion of the application’s 
-address space. Second, we modify the object code of a 
-distrusted module to prevent it from writing ]v[ jump- 
-ing to an address outside its fault domain. Both these 
-software operations are portable ]^[ programming lan— 
-guage independent. 
-Our approach poses a tradeoff relative to hardware 
-fault isolation: substantially faster communication be— 
-tween fault domains, at a cost of slightly increased 
-execution time ]f[ distrusted modules We demon— 
-strate that ]f[ frequently communicating modules, im~ 
-plementing fault isolation in software rather than hard- 
-ware can substantially improve end-to—end application 
-performance. 
-This work was supported in part by the National Sci— 
-ence Foundation (CDA-8722788), Defense Advanced Research 
-Projects Agency (DARPA) under grant MDA972—92-J-1028 ]^[ 
-contracts DABT63-92'C-0026 ]^[ N00600-93—C—2481, the Digi- 
-tal Equipment Corporation (the Systems Research Center ]^[ 
-the External Research Program), ]^[ the AT&T Foundation. 
-Anderson was also supported by a National Science Foundation 
-Young Investigator Award. The content of the paper does ]n[ 
-necessarily reﬂect the position ]v[ the policy of the Government 
-]^[ no ofﬁcial endorsement should be inferred. 
-Email: {rwahbe , lucco, tea, graham}@cs .berkeley.edu 
-Permission to copy Without fee all ]v[ part of (his material IS 
-granted provided that Hie cvpies are "0‘ made 0! distributed ]f[ 
-direct commercial advantage. the ACM copyright notice ]^[ the 
-mile of the publicaiion ]^[ MS data appear, ]^[ notice IS given 
-that copying is by permissmn of (he Assomalion ]f[ Computing 
-Machinery. To copy otherWise. ]v[ to republish, requires a fee 
-and/or specnfic permissron. 
-SIGOPS '93/12/93/N.C., USA 
-31993 ACM 0-83791-632-8/93/0012...$L50 
-1 Introduction 
-Application programs often achieve extensibility by 
-incorporating independently developed software mod— 
-ules. However, faults in extension code can render a 
-software system unreliable, ]v[ even dangerous, since 
-such faults could corrupt permanent data. To in— 
-crease the reliability of these applications, an operat— 
-ing system can provide services that prevent faults in 
-distrusted modules from corrupting application data. 
-Such fault isolation services also facilitate software de- 
-velopment by helping to identify sources of system fail— 
-ure. 
-For example, the POSTGRES database manager in— 
-cludes an extensible type system [St087]. Using this 
-facility, POSTGRES queries can refer to general—purpose 
-code that deﬁnes constructors, destructors, ]^[ pred— 
-icates ]f[ user—deﬁned data types such as geometric 
-objects. Without fault isolation, any query that uses 
-extension code could interfere with an unrelated query 
-]v[ corrupt the database. 
-Similarly, recent operating system research has fo— 
-cused on making it easier ]f[ third party vendors 
-to enhance parts of the operating system. An ex 
-ample is micro-kernel design; parts of the operat— 
-ing system are implemented as user—level servers that 
-can be easily modiﬁed ]v[ replaced. More gener— 
-ally, several systems have added extension code into 
-the operating system, ]f[ example, the BSD network 
-packet ﬁlter [MRA87, MJQ3]7 application—speciﬁc vir- 
-tual memory management [HC92]. ]^[ Active Mes— 
-sages [VCGSQQ]. Among industry systems, Microsoft’s 
-Object Linking ]^[ Embedding system [Cla92] can 
-link together independently developed software mod— 
-tiles. Also, the Quark Xprese desktop publishing sys- 
-tem [Dy592] is structured to support incorporation of 
-general—purpose third party code. As with POSTGRES, 
-faults in extension modules can render any of these 
-systems unreliable. . 
-One way to provide fault isolation among cooperat— 
-ing software modules is to place each in its own address 
-space. Using Remote Procedure Call (RFC) [BN84], 
-modules in separate address spaces can call into each 
-other through a normal procedure call interface. Hard- 
-ware page tables prevent the code in one address space 
-from corrupting the contents of another. 
-Unfortunately, there is a high performance cost 
-to providing fault isolation through separate address 
-spaces. Transferring control across protection bound— 
-aries is expensive, ]^[ does ]n[ necessarily scale 
-with improvements in a processor’s integer perforv 
-mance [ALBL91]. A cross—address-space RPC requires 
-at least: a trap into the operating system kernel, copy— 
-ing each argument from the caller to the callee, sav~ 
-ing ]^[ restoring registers, switching hardware ad— 
-dress spaces (on many machines, ﬂushing the transla— 
-tion lookaside buffer), ]^[ a trap back to user level. 
-These operations must be repeated upon RPC re— 
-turn. The execution time overhead of an RPC, even 
-with a highly optimized implementation, will often 
-be two to three orders of magnitude greater than 
-the execution time overhead of a normal procedure 
-call [BALL90, ALBL91]. 
-The goal of our work is to make fault isolation cheap 
-enough that system developers can ignore its perfor— 
-mance effect in choosing which modules to place in 
-separate fault domains. In many cases where fault iso 
-lation would be useful, cross-domain procedure calls 
-are frequent ]y[ involve only a moderate amount of 
-computation per call. In this situation it is imprac- 
-tical to isolate each logically separate module within 
-its own address space, because of the cost of crossing 
-hardware protection boundaries. 
-We propose a. software approach to implementing 
-fault isolation within a single address space. Our ap— 
-proach has two parts. First, we load the code ]^[ data 
-]f[ a. distrusted module into its own fault domain, a 
-logically separate portion of the application’s address 
-space. A fault domain, in addition to comprising a cori— 
-tiguous region of memory within an address space, has 
-a unique identiﬁer which is used to control its access to 
-process resources such as ﬁle descriptors. Second, we 
-modify the object code of a distrusted module to pre— 
-vent it from writing ]v[ jumping to an address outside 
-its fault domain. Program modules isolated in sepa— 
-rate software—enforced fault domains can ]n[ modify 
-each other’s data ]v[ execute each other’s code except 
-through an explicit cross-fault-domain RPC interface. 
-We have identiﬁed several programming-language- 
-independent transformation strategies that can render 
-object code unable to escape its own code ]^[ data 
-segments. In this paper, we concentrate on a sim— 
-204 
-ple transformation technique, called sandboxing, that 
-only slightly increases the execution time of the mod- 
-iﬁed object code. We also investigate techniques that 
-provide more debugging information ]b[ which incur 
-greater execution time overhead. 
-Our approach poses a tradeoff relative to hardware— 
-based fault isolation. Because we eliminate the need to 
-cross hardware boundaries, we can offer substantially 
-lower-cost RPC between fault domains. A safe RPC in 
-our prototype implementation takes roughly 1.1 us on a 
-DECstation 5000/240 ]^[ roughly 0.8,us on a DEC Al- 
-pha 400, more than an order of magnitude faster than 
-any existing RFC system. This reduction in RFC time 
-comes at a cost of slightly increased distrusted module 
-execution time. On a test suite including the the C 
-SPE092 benchmarks, sandboxing incurs an average of 
-4% execution time overhead on both the DECstation 
-]^[ the Alpha. 
-Software—enforced fault isolation may seem to be 
-counter-intuitive: we are slowing down the common 
-case (normal execution) to speed up the uncommon 
-case (crossrdomain communication). But ]f[ fre- 
-quently communicating fault domains, our approach 
-can offer substantially better end—to—end performance. 
-To demonstrate this, we applied software—enforced 
-fault isolation to the POSTGRES database system run- 
-ning the Sequoia 2000 benchmark. The benchmark 
-makes use of the POSTGRES extensible data. type sys— 
-tem to deﬁne geometric operators. For this bench— 
-mark, the software approach reduced fault isolation 
-overhead by more than a factor of three on a DECsta— 
-tion 5000/240. 
-A software approach also provides a tradeoif be 
-tween performance ]^[ level of distrust. If some mod— 
-ules in a. program are trusted while others are dis- 
-trusted (as may be the ease with extension code), only 
-the distrusted modules incur any execution time over- 
-head. Code in trusted domains can run at full speed. 
-Similarly, it is possible to use our techniques to im- 
-plement full security, preventing distrusted code from 
-even reading data outside of its domain, at a cost of 
-higher execution time overhead. We quantify this ef» 
-fect in Section 5. 
-The remainder of the paper is organized as follows. 
-Section 2 provides some examples of systems that re- 
-quire frequent communication between fault domains. 
-Section 3 outlines how we modify object code to pre— 
-vent it from generating illegal addresses. Section 4 
-describes how we implement low latency cross—faultv 
-domain RPC. Section 5 presents performance results 
-]f[ our prototype, ]^[ ﬁnally Section 6 discusses some 
-related work. 
-2 Background 
-In this section, we characterize in more detail the 
-type of application that can beneﬁt from software— 
-enforced fault isolation. We defer further description 
-of the POSTGRES extensible type system until Section 
-5, which gives performance measurements ]f[ this ap— 
-plication. 
-The operating systems community has focused con- 
-siderable attention on supporting kernel extensibil- 
-ity. For example, the UNIX vnode interface is de- 
-signed to make it easy to add a new ﬁle system into 
-UNIX [Kle86]. Unfortunately, it is too expensive to 
-forward every ﬁle system operation to user level, ]s[ 
-typically new ﬁle system implementations are added 
-directly into the kernel. (The Andrew ﬁle system is 
-largely implemented at user level, ]b[ it maintains a 
-kernel cache ]f[ performance [HKM'l'BSH Epoch’s ter— 
-tiary storage ﬁle system [Web93] is one example of op— 
-erating system kernel code developed by a third party 
-vendor. 
-Another example is user—programmable high perfor— 
-mance I/O systems. If data is arriving on an I/O 
-channel at a high enough rate, performance will be 
-degraded substantially if control has to be transferred 
-to user level to manipulate the incoming data [FP93]. 
-Similarly, Active Messages provide high performance 
-message handling in distributed—memory multiproces- 
-sors [VCG8921. Typically, the message handlers are 
-application-speciﬁc, ]b[ unless the network controller 
-can be accessed from user level [Thi92], the message 
-handlers must be compiled into the kernel ]f[ reason— 
-able performance. 
-A user-level example is the Quark Xpress desktop 
-publishing system. One can purchase third party soft- 
-ware that will extend this system to perform func~ 
-tions unforeseen by its original designers [DysQQ]. At 
-the same time, this extensibility has caused Quark a 
-number of problems. Because of the lack of efﬁcient 
-fault domains on the personal computers where Quark 
-Xpress runs, extension modules can corrupt Quark’s 
-internal data structures Hence, bugs in third party 
-code can make the Quark system appear unreliable, 
-because end—users do ]n[ distinguish among sources of 
-system failure. 
-All these examples share two characteristics. First, 
-using hardware fault isolation would result in a signif- 
-icant portion of the overall execution time being spent 
-in operating system context switch code. Second, only 
-a small amount of code is distrusted; most of the exe- 
-cution time is spent in trusted code. In this situation, 
-software fault isolation is likely to be more efﬁcient 
-than hardware fault isolation because it sharply re— 
-duces the time spent crossing fault domain boundaries, 
-while only slightly increasing the time spent executing 
-205 
-the distrusted part of the application. Section 5 quan- 
-tiﬁes this trade-off between domain—crossing overhead 
-]^[ application execution time overhead, ]^[ demon 
-strates that even if domain—crossing overhead repre— 
-sents a modest proportion of the total application ex— 
-ecution time, software—enforced fault isolation is cost 
-effective. 
-3 Software-Enforced Fault Iso- 
-lation 
-In this section, we outline several software encapsula— 
-tion techniques ]f[ transforming a distrusted module 
-]s[ that it can ]n[ escape its fault domain. We ﬁrst 
-describe a technique that allows users to pinpoint the 
-location of faults within a software module. Next, we 
-introduce a technique, called sandboxing, that can iso- 
-late a distrusted module while only slightly increasing 
-its execution time. Section 5 provides a performance 
-analysis of this techinique. Finally, we present a soft- 
-ware encapsulation technique that allows cooperating 
-fault domains to share memory. The remainder of 
-this discussion assumes we are operating on a RISC 
-load /storc architecture, although our techniques could 
-be extended to handle CISCs. Section 4 describes 
-how we implement safe ]^[ efficient cross—fault—domain 
-RPC. 
-We divide an application’s virtual address space into 
-segments, aligned ]s[ that all virtual addresses within 
-a segment share a unique pattern of upper bits, called 
-the segment identiﬁer. A fault domain consists of two 
-segments, one ]f[ a distrusted module’s code, the other 
-]f[ its static data, heap ]^[ stack. The speciﬁc seg- 
-ment addresses are determined at load time. 
-Software encapsulation transforms a distrusted 
-module‘s object code ]s[ that it can jump only to tar- 
-gets in its code segment, ]^[ write only to addresses 
-within its data segment. Hence, all legal jump tar— 
-gets in the distrusted module have the same upper bit 
-pattern (segment identiﬁer); similarly, all legal data 
-addresses generated by the distrusted module share 
-the same segment identiﬁer. Separate code ]^[ data 
-segments are necessary to prevent a module from mod— 
-ifying its code segmentl. It is possible ]f[ an address 
-with the correct segment identiﬁer to be illegal, ]f[ in- 
-stance if it refers to an unmapped page. This is caught 
-by the normal operating system page fault mechanism. 
-3.1 
-An unsafe mstmctzan is any instruction that jumps to 
-]v[ stores to an address that can ]n[ be statically ver— 
-Segment Matching 
-10111" system supports dynamic linking through a special 
-interface. 
-iﬁed to be within the correct segment. Most control 
-transfer instructions, such as program‘counter‘relative 
-branches, can be statically veriﬁed. Stores to static 
-variables often use an immediate addressing mode ]^[ 
-can be statically veriﬁed. However, jumps through reg— 
-isters, most commonly used to implement procedure 
-returns, ]^[ stores that use a register to hold their 
-target address, can ]n[ be statically veriﬁed. 
-A straightforward approach to preventing the use of 
-illegal addresses is to insert checking code before eve 
-ery unsafe instruction. The checking code determines 
-whether the unsafe instruction’s target address has the 
-correct segment identiﬁer. If the check fails, the in- 
-serted code will trap to a system error routine outside 
-the distrusted module’s fault domain. We call this 
-software encapsulation technique segment matching. 
-On typical RISC architectures, segment matching 
-requires four instructions. Figure 1 lists a pseudo—code 
-fragment ]f[ segment matching. The ﬁrst instruction 
-in this fragment moves the store target address into 
-a dedzcated register. Dedicated registers are used only 
-by inserted code ]^[ are never modiﬁed by code in 
-the distrusted module. They are necessary because 
-code elsewhere in the distrusted module may arrange 
-to jump directly to the unsafe store instruction, by- 
-passing the inserted check. Hence, we transform all 
-unsafe store ]^[ jump instructions to use a dedicated 
-register. 
-All the software encapsulation techniques presented 
-in this paper require dedicated registersz. Segment 
-matching requires four dedicated registers: one to hold 
-addresses in the code segment, one to hold addresses 
-in the data segment, one to hold the segment shift 
-amount, ]^[ one to hold the segment identiﬁer. 
-Using dedicated registers may have an impact on 
-the execution time of the distrusted module. However, 
-since most modern RISC architectures, including the 
-MIPS ]^[ Alpha, have at least 32 registers, we can 
-retarget the compiler to use a smaller register set with 
-minimal performance impact. For example7 Section 5 
-shows that, on the DECstation 5000/240, reducing by 
-ﬁve registers the register set available to a C compiler 
-(gee) did ]n[ have a signiﬁcant effect on the average 
-execution time of the SPEC92 benchmarks. 
-3.2 Address Sandboxing 
-The segment matching technique has the advantage 
-that it can pinpoint the offending instruction. This 
-capability is useful during software development. We 
-can reduce runtime overhead still further, at the cost 
-of providing no information about the source of faults. 
-2 For architectures with lenitccl register sets, such as the 
-80386 [Int86], it is possible to encapsulate a module using no re- 
-served registers by restricting control ﬂow within a fault domain. 
-206 
-dedicated—reg <2 target address 
-lilove target address into dedicated register. 
-scratch-reg <= (dedicated—reg>>shift~reg) 
-Right—shift address to get segment identiﬁer. 
-scratch—reg is ]n[ a dedicated register. 
-shift-reg is a dedicated register. 
-compare scratch—reg ]^[ segment—reg 
-segment-reg is a dedicated register. 
-trap if ]n[ equal 
-Trap if store address is outside of segment. 
-store instruction uses dedicated-reg 
-Figure 1: Assembly pseudo code ]f[ segment matching. 
-dedicated—reg c target-reghand—mask—reg 
-Use dedicated register and—mask-reg 
-to clear segment identiﬁer bits. 
-dedicated—reg <2 dedicated-regl segment—reg 
-Use dedicated register segment-reg 
-to set segment identiﬁer bits. 
-store instruction uses dedicated-reg 
-Figure 2: Assembly pseudo code to sandbox address 
-in target—reg. 
-Before each unsafe instruction we simply insert code 
-that sets the upper bits of the target address to the 
-correct segment identifier. We call this sandborzn g the 
-address. Sandboxing does ]n[ catch illegal addresses; 
-it merely prevents them from affecting any fault do— 
-main other than the one generating the address. 
-Address sandboxing requires insertion of two arith- 
-metic instructions before each unsafe store ]v[ jump 
-instruction. The ﬁrst inserted instruction clears the 
-segment identifier bits ]^[ stores the result in a ded— 
-icated register. The second instruction sets the seg— 
-ment identiﬁer to the correct value. Figure 2 lists the 
-pseudo‘code to perform this operation. As with seg- 
-ment matching, we modify the unsafe store ]v[ jump 
-instruction to use the dedicated register. Since we are 
-using a dedicated register, the distrusted module code 
-can ]n[ produce an illegal address even by jumping 
-to the second instruction in the sandboxing sequence; 
-since the upper bits of the dedicated register will al— 
-ready contain the correct segment identiﬁer, this sec- 
-ond instruction will have no effect. Section 3.6 presents 
-a simple algorithm that can verify that an object code 
-module has been correctly sandboxed. 
-Address sandboxing requires ﬁve dedicated registers. 
-One register is used to hold the segment mask, two 
-registers are used to hold the code ]^[ data segment 
-<——reg+oﬂ'sel j 
-«— reg 
-Guard Zones S eg ment 
-Figure 3: A segment with guard zones. The size of 
-the guard zones covers the range of possible immediate 
-offsets in register—plus-offset addressing modes. 
-identiﬁers, ]^[ two are used to hold the sandboxed 
-code ]^[ data addresses. 
-3.3 Optimizations 
-The overhead of software encapsulation can be re- 
-duced by using conventional compiler optimizations. 
-Our current prototype applies loop invariant code mo— 
-tion ]^[ instruction scheduling optimizations [ASU86, 
-ACD74]. In addition to these conventional techniques, 
-we employ a number of optimizations specialized to 
-software encapsulation. 
-We can reduce the overhead of software encapsulae 
-tion mechanisms by avoiding arithmetic that computes 
-target addresses. For example, many RISC architec— 
-tures include a register-plus—oﬁset instruction mode, 
-where the offset is an immediate constant in some lim— 
-ited range. On the MIPS architecture such offsets are 
-limited to the range -64K to +64K. Consider the 
-store instruction store value,oﬁset(reg), whose 
-address offset (reg) uses the register—plus—olfsct ad~ 
-dressing mode. Sandboxing this instruction requires 
-three inserted instructions: one to sum reg+oﬁset 
-into the dedicated register, ]^[ two sandboxing in— 
-structions to set the segment identiﬁer of the dedicated 
-register. 
-Our prototype optimizes this case by sandboxing 
-only the register reg, rather than the actual target ad— 
-dress reg+oﬁset, thereby saving an instruction. To 
-support this optimization, the prototype establishes 
-guard zones at the top ]^[ bottom of each segment. 
-To create the guard zones, virtual memory pages ad— 
-jacent to the segment are unmapped (see Figure 3), 
-We also reduce runtime overhead by treating the 
-MIPS stack pointer as a dedicated register. We avoid 
-sandboxing the uses of the stack pointer by sandboxing 
-207 
-this register whenever it is set. Since uses of the stack 
-pointer to form addresses are much more plentiful than 
-changes to it, this optimization signiﬁcantly improves 
-performance. 
-Further, we can avoid sandboxing the stack pointer 
-after it is modiﬁed by a small constant offset as long as 
-the modiﬁed stack pointer is used as part of a load ]v[ 
-store address before the next control transfer instruc» 
-tion. If the modiﬁed stack pointer has moved into a 
-guard zone, the load ]v[ store instruction using it will 
-cause a hardware address fault. On the DEC Alpha 
-processor, we apply these optimizations to both the 
-frame pointer ]^[ the stack pointer. 
-There are a number of further optimizations that 
-could reduce sandboxing overhead. For example, 
-the transformation tool could remove sandboxing se— 
-quences from loops, in cases where a store target ad- 
-dress changes by only a small constant oifset during 
-each loop iteration. Our prototype does ]n[ ]y[ imple— 
-ment these optimizations. 
-3.4 Process Resources 
-Because multiple fault domains share the same virtual 
-address space, the fault domain implementation must 
-prevent distrusted modules from corrupting resources 
-that are allocated on a per—addressspace basis. For 
-example, if a fault domain is allowed to make system 
-calls, it can close ]v[ delete ﬁles needed by other code 
-executing in the address space, potentially causing the 
-application as a whole to crash. 
-One solution is to modify the operating system to 
-know about fault domains. On a system call ]v[ page 
-fault, the kernel can use the program counter to deter- 
-mine the currently executing fault domain, ]^[ restrict 
-resources accordingly. 
-To keep our prototype portable, we implemented 
-an alternative approach. In addition to placing each 
-distrusted module in a separate fault domain, we re— 
-quire distrusted modules to access system resources 
-only through cross-fault-domain RPC. We reserve a 
-fault domain to hold trusted arbitration code that de— 
-termines whether a particular system call performed 
-by some other fault domain is safe. If a distrusted 
-module’s object code performs a direct system call, we 
-transform this call into the appropriate RPC call. In 
-the case of an extensible application, the trusted por- 
-tion of the. application can make system calls directly 
-]^[ shares a fault domain with the arbitration code. 
-3.5 Data Sharing 
-Hardware fault isolation mechanisms can support data 
-sharing among virtual address spaces by manipulate 
-ing page table entries. Fault domains share an ad— 
-dress space, ]^[ hence a set of page table entries, 
-]s[ they can ]n[ use a standard shared memory im— 
-plementation. Read-only sharing is straightforward; 
-since our software encapsulation techniques do ]n[ al- 
-ter load instructions, fault domains can read any mem— 
-ory mapped in the application’s address space 3. 
-If the object code in a particular distrusted mod— 
-ule has been sandboxed, then it can share read-write 
-memory with other fault domains through a technique 
-we call lazy pointer swizzling. Lazy pointer swizzling 
-provides a mechanism ]f[ fault domains to share ar— 
-bitrarily many read‘write memory regions with no ad- 
-ditional runtirne overhead. To support this technique, 
-we modify the hardware page tables to map the shared 
-memory region into every address space segment that 
-needs access; the region is mapped at the same offset 
-in each segment. In other words, we alias the shared 
-region into multiple locations in the virtual address 
-space, ]b[ each aliased location has exactly the same 
-low order address bits. As with hardware shared mem- 
-ory schemes, each shared region must have a different 
-segment offset. 
-To avoid incorrect shared pointer comparisons in 
-sandboxed code, the shared memory creation inter— 
-face must ensure that each shared object is given a 
-unique address. As the distrusted object code ac- 
-cesses shared memory, the sandboxing code automati- 
-cally translates shared addresses into the correspond 
-ing addresses within the fault domain’s data segment. 
-This translation works exactly like hardware transla~ 
-tion; the low bits of the address remain the same, ]^[ 
-the high bits are set to the data segment identiﬁer. 
-Under operating systems that do ]n[ allow virtual 
-address aliasing, we can implement shared regions by 
-introducing a new software encapsulation technique: 
-shared segment matching. To implement sharing, we 
-use a dedicated register to hold a bitmap. The bitmap 
-indicates which segments the fault domain can access. 
-For each unsafe instruction checked, shared segment 
-matching requires one more. instruction than segment 
-matching. 
-3.6 Implementation ]^[ Veriﬁcation 
-We have identiﬁed two strategies ]f[ implementing 
-software encapsulation. One approach uses a compiler 
-to emit encapsulated object code ]f[ a distrusted mod- 
-ule; the integrity of this code is then veriﬁed when the 
-module is loaded into a fault domain. Alternatively, 
-the system can encapsulate the distrusted module by 
-directly modifying its object code at load time. 
-a\«Ve have implemented versions of these techniques that per 
-form general protection by encapsulating load instructions as 
-well as store ]^[ jump instructions. We discuss the performance 
-of these variants in Section 5. 
-Our current prototype uses the first approach. We 
-modiﬁed a version of the gcc compiler to perform soft— 
-ware encapsulation. Note that While our current imple- 
-mentation is language dependent, our techniques are 
-language independent. 
-We built a veriﬁer ]f[ the MIPS instruction set 
-that works ]f[ both sandboxing ]^[ segment match- 
-ing. The main challenge in veriﬁcation is that, in the 
-presence of indirect jumps, execution may begin on 
-any instruction in the code segment. To address this 
-situation, the veriﬁer uses a property of our software 
-encapsulation techniques: all unsafe stores ]^[ jumps 
-use a dedicated register to form their target address. 
-The veriﬁer divides the program into sequences of in— 
-structions called unsafe regions. An unsafe store re- 
-gion begins with any modiﬁcation to a dedicated store 
-register. An unsafe jump region begins with any mod- 
-iﬁcation to a dedicated jump register. If the ﬁrst in— 
-struction in a unsafe store ]v[ jump region is executed, 
-all subsequent instructions are guaranteed to be exe- 
-cuted. An unsafe store region ends when one of the 
-following hold: the next instruction is a store which 
-uses a dedicated register to form its target address, 
-the next instruction is a control transfer instruction, 
-the next instruction is ]n[ guaranteed to be executed, 
-]v[ there are no more instructions in the code segment. 
-A similar deﬁnition is used ]f[ unsafe jump regions. 
-The veriﬁer analyzes each unsafe store ]v[ jump re: 
-gion to insure that any dedicated register modiﬁed in 
-the region is valid upon exit of the region. For ex— 
-ample, a load to a dedicated register begins an unsafe 
-region. If the region appropriately sandboxes the ded— 
-icated register, the unsafe region is deemed safe. if an 
-unsafe region can ]n[ be veriﬁed, the code is rejected. 
-By incorporating software encapsulation into an ex— 
-isting compiler, we are able to take advantage of com— 
-piler infrastructure ]f[ code optimization. However, 
-this approach has two disadvantages. First, most mod- 
-iﬁed compilers will support only one programming lan— 
-guage (gcc supports C, C++, ]^[ Pascal). Second, the 
-compiler ]^[ veriﬁer must be synchronized with re— 
-spect to the particular encapsulation technique being 
-employed. 
-An alternative, called bmary patchzng, alleviates 
-these problems. When the fault domain is loaded, the 
-system can encapsulate the module by directly modi- 
-fying the object code. Unfortunately, practical ]^[ r07 
-bust binary patching, resulting in efﬁcient code, is ]n[ 
-currently possible [LB92]. Tools which translate one 
-binary format to another have been built, ]b[ these 
-tools rely on compiler—speciﬁc idioms to distinguish 
-code from data ]^[ use processor emulation to han- 
-dle unknown indirect jumps[SCK”93]. For software 
-encapsulation, the main challenge is to transform the 
-code ]s[ that it uses a subset of the registers, leav— 
-208 
-Trusted 
-Caller Domain 
-Unlru sted 
-Calico Domain 
-call Add 
-Jump Table 
-Figure 4: Major components of a crossefault—domain 
-RFC. 
-ing registers available ]f[ dedicated use. To solve this 
-problem, we are working on a binary patching proto- 
-type that uses simple extensions to current object ﬁle 
-formats. The extensions store control ﬂow ]^[ register 
-usage information that is sufﬁcient to support software 
-encapsulation. 
-4 Low Latency Cross Fault Do— 
-main Communication 
-The purpose of this work is to reduce the cost of fault 
-isolation ]f[ cooperating ]b[ distrustful software mod— 
-ules. In the last section, we presented one half of our 
-solution: efficient software encapsulation. In this sec- 
-tion, we describe the other half: fast communication 
-across fault domains. 
-Figure 4 illustrates the major components ofa cross— 
-fault~domain RFC between a trusted ]^[ distrusted 
-fault domain. This section concentrates on three as— 
-pects of fault domain crossing. First, we describe 
-a simple mechanism which allows a fault domain to 
-safely call a trusted stub routine outside its domain; 
-that stub routine then safely calls into the destination 
-domain. Second, we discuss how arguments are effi— 
-ciently passed among fault domains. Third, we detail 
-how registers ]^[ other machine state are managed on 
-cross—fault—domain RPCs to insure fault isolation. The 
-protocol ]f[ exporting ]^[ naming procedures among 
-fault domains is independent of our techniques. 
-The only way ]f[ control to escape a. fault domain 
-is via a jump table. Each jump table entry is a con— 
-trol transfer instruction whose target address is a legal 
-entry point outside the domain. By using instructions 
-whose target address is an immediate encoded in the 
-instruction, the jump table does ]n[ rely on the use of 
-a dedicated register. Because the table is kept in the 
-(readvonly) code segment, it can only be modified by 
-a trusted module. 
-For each pair of fault domains a customized call ]^[ 
-return stub is created ]f[ each exported procedure. 
-Currently, the stubs are generated by hand rather than 
-using a stub generator [JRTSS]. The stubs run unpro— 
-tected outside of both the caller ]^[ callee domain. 
-The stubs are responsible ]f[ copying cross-domain 
-arguments between domains ]^[ managing machine 
-state. 
-Because the stubs are trusted, we are able to copy 
-call arguments directly to the target domain. Tra— 
-ditional RPC implementations across address spaces 
-typically perform three copies to transfer data. The 
-arguments are marshalled into a message, the kernel 
-copies the message to the target address space, ]^[ 
-ﬁnally the callee must de-marshall the arguments. By 
-having the caller ]^[ callee communicate via a shared 
-buffer, LRPC also uses only a single copy to pass data 
-between domains [BALLQI]. 
-The stubs are also responsible ]f[ managing machine 
-state. On each cross—domain call any registers that are 
-both used in the future by the caller ]^[ potentially 
-modiﬁed by the callee must be protected. Only regis— 
-ters that are designated by architectural convention to 
-bc preserved across procedure calls are saved. As an 
-optimization, if the callee domain contains no instruc— 
-tions that modify a preserved register we can avoid 
-saving it. Karger uses a trusted linker to perform this 
-kind of optimization between address spaces [KarSQ]. 
-In addition to saving ]^[ restoring registers, the stubs 
-must switch the execution stack, establish the correct 
-register context ]f[ the software encapsulation tech- 
-nique being used, ]^[ validate all dedicated registers. 
-Our system must also be robust in the presence of 
-fatal errors, ]f[ example, an addressing violation7 while 
-executing in a fault domain. Our current implementa— 
-tion uses the UNIX signal facility to catch these errors; 
-it then terminates the outstanding call ]^[ notiﬁes the 
-caller’s fault domain. If the application uses the same 
-operating system thread ]f[ all fault domains, there 
-must be a way to terminate a call that is taking too 
-long, ]f[ example, because of an inﬁnite loop. Trusted 
-modules may use a timer facility to interrupt execu— 
-tion periodically ]^[ determine if a call needs to be 
-terminated. 
-5 Performance Results 
-To evaluate the performance of software-enforced fault. 
-domains, we implemented ]^[ measured a prototype 
-of our system on a 40MHz DECstation 5000/240 (DEC— 
-MIPS) ]^[ a lﬁONIliz Alpha 400 (DEC—ALPHA). 
-We consider three questions. First, how much over 
-209 
-head does software encapsulation incur? Second, how 
-fast is a crossrfault—domain RFC? Third, what is the 
-performance impact of using software enforced fault 
-isolation on an end-user application? We discuss each 
-of these questions in turn. 
-5.1 Encapsulation Overhead 
-We measured the execution time overhead of sand- 
-boxing a wide range of C programs, including the C 
-SPE092 benchmarks ]^[ several of the Splash bench- 
-marks [AssQl, SWGQl]. We treated each benchmark 
-as if it were a distrusted module, sandboxing all of 
-its code. Column 1 of Table 1 reports overhead on 
-the DEC—MIPS, column 6 reports overhead on the DEC— 
-ALPHA. Columns 2 ]^[ 7 report the overhead of using 
-our technique to provide general protection by sand« 
-boxing load instructions as well as store ]^[ jump 
-instructions“. As detailed in Section 3, sandboxing 
-requires 5 dedicated registers. Column 3 reports the 
-overhead of removing these registers from possible use 
-by the compiler. All overheads are computed as the 
-additional execution time divided by the original pro~ 
-gram‘s execution time. 
-On the DECeMiPS, we used the program measure— 
-ment tools pixie ]^[ qpt to calculate the number 
-of additional instructions executed due to sandbox~ 
-ing [Dig, BL92]. Column 4 of Table 1 reports this 
-data as a percentage of original program instruction 
-counts. 
-The data in Table 1 appears to contain a num— 
-ber of anomalies For some. of the benchmark pro- 
-grams, ]f[ example, 056.ear 011 the DECAMIPS ]^[ 
-026 . compress on the DEC—ALPHA, sandboxing reduced 
-execution time. in a number of cases the overhead is 
-surprisingly low. 
-To identify the source of these variations we de~ 
-veloped an analytical model ]f[ execution overhead. 
-The model predicts overhead based on the number 
-of additional instructions executed due to sandbox 
-ing (s—znstructzons), ]^[ the number of saved ﬂoat~ 
-ing point interlock cycles (interlocks). Sandboxing in» 
-creases the available instructionlevel parallelism, aL 
-lowing the number of ﬂoating—point interlocks to be 
-substantially reduced The integer pipeline does ]n[ 
-provide interlocking; instead, delay slots are explicitly 
-ﬁlled with nop instructions by the compiler ]v[ assem~ 
-bler. Hence, scheduling ell'ects among integer instruc~ 
-tions will be accurately reﬂected by the count of in~ 
-structions added (s—mstructzons). The expected overs 
-head is computed as: 
-(s—msz‘mchons — interlacksﬂcycles—per—sccond 
-original-erecutwn- lune-seconds 
-4Loads in the libraries, such as the standard C library, were 
-]n[ sandboxed. 
-The model provides an effective way to separate known 
-sources of overhead from second order effects. Col- 
-umn 5 of Table 1 are the predicted overheads. 
-As can be seen from Table 1, the model is, on aver 
-age, eﬁective at predicting sandboxing overhead. The 
-differences between measured ]^[ expected overheads 
-are normally distributed with mean 0.7% ]^[ standard 
-deviation of 2.6%. The difference between the means 
-Ofthe measured ]^[ expected overheads is ]n[ statisti- 
-cally signiﬁcant. This experiment demonstrates that, 
-by combining instruction count overhead ]^[ ﬂoating 
-point interlock measurements, we can accurately pres 
-dict average execution time overhead. If we assume 
-that the model is also accurate at predicting the over— 
-head of individual benchmarks, we can conclude that 
-there is a second order effect creating the observed 
-anomalies in measured overhead, 
-We can discount eﬁective instruction cache size ]^[ 
-virtual memory paging as sources ]f[ the observed ex~ 
-ecution time variance. Because sandboxing adds in- 
-structions, the effective size of the instruction cache is 
-reduced. While this might account ]f[ measured over- 
-heads higher than predicted, it does ]n[ account ]f[ 
-the opposite effect. Because all of our benchmarks are 
-compute bound, it is unlikely that the variations are 
-due to virtual memory paging. 
-The DEC<MIPS has a physically indexed, physically 
-tagged, direct mapped data cache. In our experiments 
-sandboxing did ]n[ affect the size, contents, ]v[ starting 
-Virtual address of the data segment. For both original 
-]^[ sandboxed versions of the benchmark programs, 
-successive runs showed insigniﬁcant variation. Though 
-difﬁcult to quantify, we do ]n[ believe that data cache 
-alignment was an important source of variation in our 
-experiments. 
-\Ve conjecture that the observed variations are 
-caused by instruction cache mappzng conﬂicts. Soft— 
-ware encapsulation changes the mapping of instruc~ 
-tions to cache lines, hence changing the number of in— 
-struction cache conﬂicts. A number of researchers have 
-investigated minimizing instruction cache conﬂicts to 
-reduce execution time [McF89, PHQO, Sam88]. One 
-researcher reported a 20% performance gain by sim— 
-ply ehanging the order in which the object ﬁles were. 
-linked [PHQO]. Samples ]^[ Hilﬁnger report signif— 
-icantly improved instruction cache miss rates by re— 
-arranging only 3% to 8% of an application’s basic 
-blocks [SarnSS]. 
-Beyond this effect, there were statistically signiﬁcant 
-differences among programs. On average, programs 
-which contained a signiﬁcant percentage of ﬂoating 
-point operations incurred less overhead. On the DEC— 
-MIPS the mean overhead ]f[ ﬂoating point intensive 
-benchmarks is 2.5%, compared to a mean of 5.6% ]f[ 
-the remaining benchmarks. All of our benchmarks are 
-210 
-DEC-MIPS DEC-ALPHA 
-Fault Protection Reserved Instruction Fault Fault Protection 
-Benchmark Isolation Overhead Register Count Isolation Isolation Overhead 
-Overhead Overhead Overhead Overhead Overhead 
-(predicted) 
-052. alvinn FP 1.4% 33.4% —0.3% 19.4% 0.2% 8.1% 35.5% 
-bps FP 5.6% 15.5% -0.1% 8.9% 5.7% 4.7% 20.3% 
-cholesky FP 0.0% 22.7% 0.5% 6.5% 4.5% 0.0% 9.3% 
-026 . compress INT 3.3% 13.3% 0.0% 10.9% 4.4% 4.3% 0.0% 
-056.ear FP —1.2% 19.1% 0.2% 12.4% 2.2% 3.7% 18.3% 
-023 . eqntott INT 2.9% 34.4% 1.0% 2.7% 2.2% 2.3% 17.4% 
-008 . espresso INT 12.4% 27.0% —1.6% 11.8% 10.5% 13.3% 33.6% 
-001 .gcc1.35 INT 3.1% 18.7% -9.4% 17.0% 8.9% NA NA 
-022.11 INT 5.1% 23.4% 0.3% 14.9% 11.4% 5.4% 16.2% 
-locus INT 8.7% 30.4% 4.3% 10.3% 8.6% 4.3% 8.7% 
-mp3d FP 10.7% 10.7% 0.0% 13.3% 8.7% 0.0% 6.7% 
-psgrind INT 10.4% 19.5% 1.3% 12.1% 9.9% 8.0% 36.0% 
-ch PF 05% 27.0% 2.0% 8.8% 1.2% -0.8% 12.1% 
-072 . sc INT 5.6% 11.2% 7.0% 8.0% 3.8% NA NA 
-tracker INT -0.8% 10.5% 0.4% 3.9% 2.1% 10.9% 19.9% 
-water FP 0.7% 7.4% 0.3% 6.7% 1.5% 4.3% 12.3% 
-| Average I 4.3% | 21.8% | 0.4% | 10.5% | 5.0% I 4.3% | 17.6% ‘I 
-Table 1: Sandboxing overheads ]f[ DEC—MIPS ]^[ DEC—ALPHA platforms. The benchmarks 001.gcc1.35 ]^[ 
-072.sc are dependent on a pointer size of 32 bits ]^[ do ]n[ compile on the DEC-ALPHA. The predicted fault 
-isolation overhead ]f[ cholesky is negative due to conservative interlocking on the MIPS ﬂoatingvpoint unit. 
-compute intensive. Programs that perform signiﬁcant 
-amounts of I/O will incur less overhead. 
-5.2 Fault Domain Crossing 
-We now turn to the cost of cross—fault—domain RPC. 
-Our RPC mechanism spends most of its time saving 
-]^[ restoring registers. As detailed in Section 4, only 
-registers that are designated by the architecture to be 
-preserved across procedure calls need to be saved. In 
-addition, if no instructions in the callee fault domain 
-modify a preserved register then it does ]n[ need to be 
-saved. Table 2 reports the times ]f[ three versions of 
-a NULL cross—fault—domain RPC. Column 1 lists the 
-crossing times when all data registers are caller saved. 
-Column 2 lists the crossing times when the preserved 
-integer registers are saved. Finally, the times listed in 
-Column 3 include saving all preserved ﬂoating point 
-registers. In many cases crossing times could be further 
-reduced by statically partitioning the registers between 
-domains. 
-For comparison, we measured two other calling 
-mechanisms. First, we measured the time to perform a 
-C procedure call that takes no arguments ]^[ returns 
-no value. Second, we sent a single byte between two 
-address spaces using the pipe abstraction provided by 
-211 
-the native operating system ]^[ measured the round- 
-trip time. These times are reported in the last two 
-columns of Table 2. On these platforms, the cost 
-of cross—address—space calls is roughly three orders of 
-magnitude more expensive than local procedure calls. 
-Operating systems with highly optimized RPC im— 
-plementations have reduced the cost of cross-address- 
-space RPC to within roughly two orders of magni— 
-tude of local procedure calls. On Mach 3.0, cross— 
-address-space RPC on a 25Mhz DECstation 5000/200 
-is 314 times more expensive than a local procedure 
-call [BerQBl. The Spring operating system, running on 
-a 40Mhz SPARCstationQ, delivers cross—address—space 
-RPC that is 73 times more expensive than a local leaf 
-procedure call [HK93]. Software enforced fault isola« 
-tion is able to reduce the relative cost of cross-fault- 
-domain RPC by an order of magnitude over these sys- 
-tems. 
-5.3 Using Fault Domains in POSTGRES 
-To capture the effect of our system on application 
-performance, we added software enforced fault do 
-mains to the POSTGRES database management system, 
-]^[ measured POSTGRES running the Sequoia 2000 
-benchmark [SFGMQ3]. The Sequoia '2000 benchmark 
-Cross FaultADomain RFC 
-Platform Caller Save Save C Pipes 
-Save Integer Integer+Float Procedure 
-Registers Registers Registers Call 
-DEC~MIPS 1.11ps 1.81ps 2.83m 0.10/4s 204.72ns 
-DEC—ALPHA 0175/15 1.35/5 lSOns 0.06ps 227.88ps 
-Table ‘2: Cross-faultrdomain crossing times. 
-Sequoia 2000 Untrusted Software—Enforced Number DEC—MIPS—PIPE 
-Query Function Manager Fault Isolation Cross—Domain Overhead 
-Overhead Overhead Calls (predicted) 
-Query 6 1.4% 1.7% 60989 18.6% 
-Query 7 5.0% 1.8% 121986 386% 
-Query 8 9.0% 2.7% 121978 312% 
-Query 10 9.6% 5.7% 1427024 31.9% 
-Table 3: Fault isolation overhead ]f[ POSTGRES running Sequoia 2000 benchmark. 
-contains queries typical of those used by earth scien— 
-tists in studying the climate. To support these kinds 
-of non~traditional queries, POSTGRES provides a. user 
-extensible type system. Currently, userrdeﬁned types 
-are written in conventional programming languages, 
-such as C, ]^[ dynamically loaded into the database 
-manager. This has long been recognized to be a serious 
-safety problem[St088]. 
-Four of the eleven queries in the Sequoia 2000 bench- 
-mark make use of user—deﬁned polygon data types. We 
-measured these four queries using both unprotected 
-dynamic linking ]^[ software—enforced fault isolation. 
-Since the POSTGRES code is trusted, we only sand— 
-boxed the dynamically loaded user code. For this 
-experiment, our cross-fault—domain RFC mechanism 
-saved the preserved integer registers (the variant cor- 
-responding to Column 2 in Table 2). In addition, we 
-instrumented the code to count the number of cross- 
-fault-domain RFCs ]s[ that we could estimate the per 
-formance of fault isolation based on separate address 
-spaces. 
-Table 3 presents the results, Untrusted user—deﬁned 
-functions in POSTGRES use a separate calling mecha- 
-nism from built—in functions. Column 1 lists the over— 
-head of the untrustcd function manager Without soft- 
-ware enforced fault domains. All reported overheads in 
-Table 3 are relative to original POSTGRES using the un— 
-trusted function manager. Column 2 reports the mea~ 
-sured overhead of software enforced fault domains. Us— 
-ing the number of cross—domain calls listed in Column 3 
-]^[ tho DEC*MIPS—I‘IPE time reported in Table 2, Col— 
-umn 4 lists the estimated overhead using conventional 
-hardware address spaces. 
-212 
-5.4 Analysis 
-For the POSTGRES experiment software encapsulation 
-provided substantial savings over using native operat- 
-ing system services ]^[ hardware address spaces. In 
-general, the savings provided by our techniques over 
-hardware—based mechanisms is a function of the per— 
-centage of time spent in distrusted code (Q), the per- 
-centage of time spent crossing among fault domains 
-(2‘6), the overhead of encapsulation (h), ]^[ the ratio, 
-r, of our fault domain crossing time to the crossing 
-time of the competing hardware-based RPC mecha— 
-nism. 
-savings = (1 — 7°)t‘C -— htd 
-Figure 5 graphically depicts these trade—offs. The X 
-axis gives the percentage of time an application spends 
-crossing among fault domains. The Y axis reports the 
-relative cost of software enforced fault-domain cross— 
-ing over hardware address spaces. Assuming that the 
-execution time overhead of encapsulated code is 4.3%, 
-the shaded region illustrates when software enforced 
-fault isolation is the better performance alternative. 
-Softwarevenforccd fault isolation becomes increas— 
-ingly attractive as applications achieve higher degrees 
-of fault isolation (see Figure 5). For example, if an ap- 
-plication spends 30% of its time crossing fault domains, 
-our RPC mechanism need only perform 10% better 
-than its competitor, Applications that currently spend 
-as little as 10% of their time crossing require only a 
-39% improvement in fault domain crossing time As 
-reported in Section 52, our crossing time ]f[ the DEC- 
-MIPS is Hons ]^[ ]f[ the DEC—ALPHA UTE/is. Hence, 
-Crossing Time Relative to 
-Existing RFC 
-:9 HP :9 e9 
-ementage of Execution Time Spent Crossing 
-Figure 5: The shaded region represents when soft~ 
-ware enforced fault isolation provides the better per— 
-formance alternative. The X axis represents per 
-centage of time spent crossing among fault domains 
-(16). The Y axis represents the relative RPC crossing 
-speed (7‘). The curve represents the break even point: 
-(1—7')t,; = htd. In this graph, h = 0.043 (encapsulation 
-overhead on the DEC~MIPS ]^[ DEC-ALPHA). 
-]f[ this latter example, a hardware address space cross— 
-ing time of 1.80m on the DEC—MIPS ]^[ 1.23/15 on the 
-DEC~ALPHA would provide better performance than 
-software fault domains. As far as we know, no pro— 
-duction ]v[ experimental system currently provides this 
-level of performance. 
-Further, Figure 5 assumes that the entire applica- 
-tion was encapsulated. For many applications, such as 
-POSTGRES, this assumption is conservative. Figure 6 
-transforms the previous ﬁgure, assuming that 50% of 
-total execution is spent in distrusted extension code. 
-Figures 5 ]^[ 6 illustrate that software enforced 
-fault isolation is the best choice whenever crossing 
-overhead is a significant proportion of an applica- 
-tion’s execution time. Figure 7 demonstrates that 
-overhead due to software enforced fault isolation re— 
-mains small regardless of application behavior. Fig— 
-ure 7 plots overhead as a function of crossing behavior 
-]^[ crossing cost. Crossing times typical of vendor- 
-supplied ]^[ highly optimized hardware—based RPC 
-mechanisms are shown. The graph illustrates the rel— 
-ative performance stability of the software solution. 
-This stability" allows system developers to ignore the 
-performance effect of fault isolation in choosing which 
-modules to place in separate fault domains. 
-6 Related Work 
-Many systems have considered ways of optimizing 
-RPC performance [vaT88, TASS, Bla90. SB90, HK93, 
-BALL90, BALL91]. Traditional RFC systems based 
-100% 
-90% 
-80% 
-70% 
-60% 
-40% 
-Crossing Time Relative 10 
-Existing RPC 
-u. 
-§ 
-Percentage of Execution Time Spent Crossing 
-Figure 6: The shaded region represents when soft~ 
-ware enforced fault isolation provides the better per- 
-formance alternative. The X axis represents per- 
-centage of time spent crossing among fault domains 
-(136). The Y axis represents the relative RPC crossing 
-speed ('r'). The curve represents the break even point: 
-(l—r)tc = htd. In this graph, h = 0.043 (encapsulation 
-overhead on the DEC—MIPS ]^[ DEC—ALPHA). 
-100% . 
-a" Ultrix 4.2 Context Switch 
-8 
-d3 80% — _ 
-E 
-a. 
-U} 
+High-Level Synthesis of FPGA Circuits with 
+Multiple Clock Domains 
+Author names removed ]f[ blind review. 
+Abstract—We consider the high-level synthesis of circuits with 
+multiple clock domains in a bid to raise circuit performance. 
+A profiling-based approach is used to select time-intensive subcircuits within a larger circuit to operate on separate clock 
+domains. This isolates the critical paths of the sub-circuits from 
+the larger circuit, allowing the sub-circuits to be clocked at 
+the highest-possible speed. The open-source LegUp high-level 
+synthesis tool (HLS) [1] is modified to automatically insert 
+clock-domain-crossing circuitry ]f[ signals crossing between two 
+domains. The scheduling ]^[ binding phases of HLS were 
+changed to reflect the impact of multiple clock domains on 
+memory. Namely, the block RAMs in FPGAs are dual-port, 
+where each port can operate on a different domain, implying 
+that sub-circuits on different domains can access shared memory 
+provided the domains of the memory ports are consistent with 
+the sub-circuit domains. In an experimental study, apply multiclock domain HLS to the CHStone benchmark suite [2] ]^[ 
+demonstrate average wall-clock time improvements of 33%. 
+To understand how performance may be impacted through 
+the use of multiple clock domains, consider a larger circuit 
+having two sub-circuits: one ]f[ performing the computational 
+work, ]^[ a second ]f[ other tasks, such as setup, I/O, etc. 
+Assume that 90% of the execution cycles are consumed by the 
+first sub-circuit, ]^[ during that time, the second sub-circuit 
+lies idle. In such a scenario, to minimize overall wall-clock 
+time, it is desirable to make the clock period of the first subcircuit (where the majority of cycles are spent) as short as 
+possible. In a single-clock design, the critical path of the overall 
+circuit may reside in the second sub-circuit, thereby slowing 
+down everything. However, by clocking the two sub-circuits 
+on independent domains, we are assured that the speed of the 
+first sub-circuit is optimized in isolation; that is, its speed is 
+]n[ defined by the critical path in the second sub-circuit. 
+I. I NTRODUCTION 
+Deployment of multiple clock domains does ]n[ come 
+without a cost. Clock-domain-crossing circuitry must be 
+incorporated when different domains “talk” to one another 
+to avoid metastability (i.e. when a register output oscillates 
+between the high ]^[ low states ]f[ a certain period of 
+time), ]^[ such circuitry imposes latency overheads ]f[ such 
+communication, as well as an area overhead. Moreover, the use 
+of multiple domains complicates CAD tasks, particularly static 
+timing analysis. However, despite these costs, it is important 
+to note that in the FPGA context, modern devices already 
+contain sophisticated circuitry ]f[ the generation, ]^[ lowskew distribution/routing of multiple different clocks within a 
+single user design. This work leverages the presence of such 
+already-existing circuitry from the HLS perspective. 
+High-level synthesis (HLS) allows software design methodologies to be applied ]f[ hardware design, lowering nonrecurring engineering (NRE) costs ]^[ reducing the time-tomarket ]f[ the production of electronic products. For hardware 
+engineers, HLS allows design ]^[ verification to proceed more 
+rapidly, at a higher level of abstraction than traditional RTL. For 
+software engineers, HLS enables the speed ]^[ energy benefits 
+of hardware to be accessed by those without hardware-design 
+skills. The difficulty of traditional approaches to hardware 
+design, as well as a labor market where software engineers 
+outnumber hardware engineers by a 10-to-1 margin [3], are key 
+drivers ]f[ the emphasis on HLS by the largest FPGA vendors. 
+Despite its rising popularity, however, a long-standing weakness 
+of HLS is that in certain cases, the quality (performance, power, 
+We modified the open-source LegUp HLS tool [1] from the 
+area) of the circuit produced are inferior to manual hardware University of Toronto to generate multi-clock domain circuits. 
+design. In this paper, we improve the performance of HLS- In our new flow, the user specifies, in a Tcl configuration 
+generated circuits by borrowing ]^[ incorporating into HLS a file, which functions are to be clocked on specific domains. 
+technique from traditional sequential circuit design – the use The scheduling ]^[ binding steps of HLS were modified 
+of multiple clock domains. 
+to recognize clock domain restrictions on memory ports – 
+Multiple-clock domain design refers to the use of multiple memories in FPGAs are dual port, where each port may be 
+clocks of different frequencies within a single larger design. clocked independently. In the binding context, ]f[ example, this 
+For example, one of two sub-circuits within a larger circuit restriction implies that circuitry operating at a specific frequency 
+may be clocked at 100MHz, ]^[ the second sub-circuit clocked must access memory through a port operating at that same 
+at 200MHz. The use of multiple clocks offers two potential frequency. The Verilog generation step of LegUp was altered to 
+benefits: 1) improved performance, ]^[ 2) reduced power. We automatically insert clock-domain-crossing logic ]^[ FSM stall 
+focus on the former benefit in this paper; however, prior work logic. In an experimental study, we demonstrate performance 
+has focused on the latter benefit [4], with power saved by benefits over single clock designs using the CHStone HLS 
+reducing the total clock routing capacitance toggling at a single benchmark suite [2]. To the authors’ knowledge, this work is 
+(high) frequency, ]^[ the ability to independently gate clock the first application of automated multiple-clock-domain circuit 
+domains ]f[ idle sub-circuits. 
+generation in HLS ]f[ FPGAs. 
+the scope of this paper. However, in our work, we make use of 
+two of the circuits from [10], called a two flip-flop synchronizer 
+]^[ an enable-based synchronizer. We elaborate on these in 
+detail in Section III. 
+Top Module 
+Global Memory 
+Port A 
+Port B 
+start 
+start 
+Arguments[i] 
+Arguments[i] 
+Module A 
+Module C 
+return value 
+return value 
+finish 
+finish 
+A. LegUp HLS 
+LegUp is an HLS tool that converts a C program into a 
+hardware circuit specified in Verilog RTL. The tool is built 
+within the open-source LLVM compiler [11]. After program 
+Module B 
+Module D 
+parsing, conversion to the compiler’s internal representation, 
+]^[ compiler optimization passes, LegUp HLS commences. 
+Local shared 
+Local shared 
+The typical HLS steps are allocation, scheduling, binding, 
+memory 
+memory 
+]^[ finally, generation of the RTL. Allocation pertains to the 
+constraints on the design: the amount of hardware resources of 
+Fig. 1. Top-level circuit structure of LegUp-generated circuit. 
+each type that are permitted ]f[ use in the synthesized circuit, as 
+well as the desired performance ]^[ other criteria. Scheduling 
+assigns the computations in the software program into time 
+II. BACKGROUND AND R ELATED W ORK 
+steps, each corresponding to states of a finite-state machine 
+(FSM). Thus, scheduling plays the key role of deciding which 
+Multiple clock architectures, as implemented on FPGAs, computation executes at what time, thereby defining the control 
+have been studied over the past two decades. Prior work FSM. Binding selects, ]f[ each computation in the software, 
+includes multiple-clock architectures within Globally Asyn- the specific hardware resource on which the computation will 
+chronous ]^[ Locally Synchronous (GALS) systems proposed be performed. Finally, the in-memory synthesized circuit is 
+in [5]. GALS systems consist of multiple local synchronous written out in Verilog. For this research, changes were necessary 
+modules that communicate asynchronously via a 4-phase throughout the LegUp flow, as described below. 
+handshake protocol. The 4-phase handshake protocol introduces 
+In the most-recent version of LegUp HLS, the generated 
+considerable delays to transfer data between synchronous 
+circuit has a “flat” topology, as described in [12], an illustration 
+modules. A study by Jiang et al. [6] proposed a computational 
+of which appears in Fig. 1. Observe that all modules, memories 
+model, called a GAS BLOCK, to facilitate the design of GALS(global ]^[ shared local), as well as the interconnect reside 
+based embedded systems. 
+at a single level of the hierarchy. The rationale ]f[ this 
+Another direction is that of latency-insensitive systems flat implementation is to permit the sharing of resources 
+(LIS) [7] ]f[ the implementation of multiple-clock designs. LIS- among the computational modules, e.g. memories ]v[ large 
+based systems wrap circuit sub-modules within synchronizing computational blocks, such as floating-point units ]v[ dividers. 
+wrappers that impose an area overhead. The synchronizing The flat hierarchy has implications ]f[ multi-clock HLS in this 
+wrappers are used to both insulate individual sub-modules research, particularly insertion of the CDC circuits between 
+from one another ]^[ also, to permit communication between communicating modules on different clock domains. 
+modules. An extension of LIS, combined with GALS-based 
+design, was proposed by Singh et al. [8] to support multi-clock 
+III. M ULTIPLE C LOCK -D OMAIN HLS 
+architectures. Agiwal ]^[ Singh [9] applies LIS concepts to 
+multi-clock design, with handling ]f[ metastability ]^[ data A. Overview 
+incoherency. Regarding multi-clock-domain HLS ]f[ FPGAs, 
+At a high level, the high-level synthesis of circuits with 
+there appears to be little prior work aside from [4], which multiple clock domains works as follows: the user designates 
+focused on power benefits rather than performance. 
+which C functions are to be placed on separate clock domains in 
+A key element in the design of digital circuits with multiple LegUp’s Tcl configuration file. LegUp HLS synthesizes each C 
+clock domains is clock-domain crossing (CDC) circuitry – function into a separate Verilog module. In scenarios where a 
+special circuit structures that provide communication between function calls another function, ]^[ the two functions reside on 
+two different clock domains. The purpose of such circuitry is to different clock domains, clock-domain-crossing (CDC) circuitry 
+ensure the integrity of the data transmitted between the domains. must be inserted between the corresponding generated Verilog 
+When data from a first clock domain is transmitted, e.g. from modules. We modified the Verilog generation step of LegUp 
+a flip-flop Q output, to a flip-flop clocked by a second domain, HLS to automatically insert the CDC circuits in the appropriate 
+the potential exists ]f[ metastability in the receiving flip-flop, locations, as well as to insert necessary stall logic to mitigate 
+depending on the timing relationship between the two clocks. metastability (elaborated upon below). The Verilog generation 
+The CDC circuitry eliminates the chance of metastability, was also modified to automatically instantiate PLLs ]f[ clock 
+providing clean data transfer between domains. A paper by generation: one PLL ]f[ each domain. In this study, we target 
+Luo et al. [10] surveys the design ]^[ verification of a variety the Altera/Intel Cyclone V 45nm FPGA; the PLLs instantiated 
+of CDC circuits. A complete review of CDC circuits is beyond are specific to Cyclone V. 
+Interconnect 
+start 
+start 
+Arguments[i] 
+Arguments[i] 
+return value 
+return value 
+finish 
+finish 
+Port A 
+Port B 
+Port A 
+Port B 
+Clock Domain 1 
+Stall 
+Clock Domain 2 
+Start C 
+Stall 
+Module B 
+B 
+Module 
+Module 
+ModuleAB 
+Return value C 
+Stall 
+Start C 
+Stall 
+Finish C 
+Arguments C[j] 
+Finish C 
+Arguments C[j] 
+Stall 
+logic 
+2 
+1 
+Return value C 
+4 
+3 
+Enable 
+Finish 
+Start 
+Stall 
+Module 
+Module C 
+C 
+Clock Domain 3 
+Arguments[j] 
+Return value 
+Fig. 2. Clock-domain-crossing circuitry ]f[ start ]^[ finish signals. Arguments/return value are showed as abstract bold lines. 
+In addition, changes to the scheduling ]^[ binding steps of 
+LegUp HLS were required to support multiple domains. Such 
+changes are required ]f[ cases in which sub-circuits on separate 
+clock domains access a shared resource, such as a block RAM. 
+We elaborate on the CDC circuitry ]^[ the scheduling/binding 
+changes in the subsections below. 
+B. Clock-Domain-Crossing (CDC) Circuitry 
+To support the synthesis of multiple clocks, we modify 
+LegUp’s existing communication interface between modules. 
+The communication interface in a LegUp-generated circuit 
+contains two main interfaces, a master interface ]^[ a slave 
+interface. The master interface initiates a transfer by setting 
+the arguments to the slave interface ]^[ asserting a start 
+control signal. The slave responds to the transfer, performs 
+its computation, ]^[ after execution, sets a return value ]^[ 
+asserts a finish control signal. Note that a slave interface 
+may have multiple master interfaces connected to it. This 
+situation arises when a function in the original C program 
+has more than one call point. Additionally, a master interface 
+may be connected to multiple slave interfaces – a scenario 
+that arises when one function calls multiple different child 
+functions. The interconnect between the master interfaces ]^[ 
+the slave interfaces is generated in the top-level of the hierarchy, 
+as mentioned above in Section II. We realize the passing of 
+arguments, the return value ]^[ the control signals from one 
+clock domain to another by inserting CDC circuitry in the 
+LegUp RTL generation phase, making use of a two flip-flop 
+synchronizer ]^[ an enable-based synchronizer. 
+The two flip-flop synchronizer is a simple, safe method 
+]f[ passing logic signals between clock domains, ]^[ is the 
+recommended approach ]f[ CDC in Altera FPGAs [13]. The 
+concept behind the two flip-flop synchronizer is that a first 
+register samples the asynchronous input signal ]^[ then waits 
+]f[ a clock cycle to allow any metastable state that could occur 
+to resolve itself. Then, the first register samples the input again 
+]^[ passes it to the second register, with the intent being that 
+the second register is stable ]^[ ready to pass the signal into 
+the receiving clock domain. To realize a reliable two flip-flop 
+synchronizer, the settling window ]f[ metastability T (the time 
+slack available ]f[ a metastable signal to be resolved) should 
+be set to a full clock cycle. The reliability of a two flip-flop 
+synchronizer is often expressed in terms of the mean time 
+before failure (MTBF) [14]: 
+T 
+MT BF = 
+eτ 
+Tw fR fS 
+(1) 
+where τ is the settling time constant of the flip-flop, fR 
+is the receiving clock frequency, ]^[ fS is the sending clock 
+frequency. TW is the time window at which metastability could 
+occur. TW is defined by the setup ]^[ hold-time parameters of 
+a flip-flop. As τ ]^[ Tw are flip-flop parameters, they depend 
+on the FPGA used ]^[ the operating conditions. However, 
+optimization could be carried out on T, as it depends on the 
+design. In our case, achieving a desirable (high) MTBF is 
+straightforward, as T is a full clock cycle, which is lengthy in 
+comparison to the time required ]f[ flip-flop stability after a 
+metastable event. Typical τ values are in the tens of ps [14], 
+]^[ with a clock period in ns (e.g. 200MHz → T = 5ns), the 
+ratio of T /τ ≈ 102 , which implies the numerator in the MTBF 
+2 
+equation ≈ e10 – an enormous quanity. 
+Clock Domain 1 
+Clock Domain 2 
+Start c 
+Start c 
+Arguments c [i] 
+Arguments c [i] 
+en 
+Module A 
+en 
+CDC circuit 
+in Fig. 2 
+Return Value c 
+Finish c 
+en 
+Finish c 
+Finish 
+Return Value 
+Module C 
+Start 
+Clock Domain 3 
+Arguments [i] 
 0 
-g 60% e _ 
-'E—< 
-E 
-g 40% e — 
-é DECstation 5000 
-3 Hardware Minimum 
-00 
-20% — _ 
-t 
-*- Software 
-a? 
-0% l 
-0 1O 20 
-# Crossings/Millcsecond 
-Figure 7: Percentage of time spent in crossing code 
-versus number of fault domain crossings per millisec- 
-ond on the DECeMIPS. The hardware minimum cross— 
-ing number is taken from a crossvarchitectural study 
-of context switch times [ALBL91]. The Ultrix 4.2 con- 
-text switch time is as reported in the last column of 
-Table 2. 
-213 
-on hardware fault isolation are ultimately limited by 
-the minimal hardware cost of taking two kernel traps 
-]^[ two hardware context switches. LRPC was one 
-of the ﬁrst RPC systems to approach this limit, ]^[ 
-our prototype uses a number of the techniques found 
-in LRPC ]^[ later systems: the same thread runs in 
-both the caller ]^[ the callee domain, the stubs are 
-kept as simple as possible, ]^[ the crossing code jumps 
-directly to the called procedure, avoiding a dispatch 
-in the callee domain. Unlike these systems, software— 
-based fault isolation avoids hardware context switches, 
-substantially reducing crossing costs. 
-Address space identiﬁer tags can be used to reduce 
-hardware context switch times. Tags allow more than 
-one address space to share the TLB; otherwise the 
-TLB must be ﬂushed on each context switch. It was 
-estimated that 25% of the cost of an LRPC on the 
-Fireﬂy (which does ]n[ have tags) was due to TLB 
-misses[BALL90]. Address space tags do not, however, 
-reduce the cost of register management ]v[ system calls, 
-operations which are ]n[ scaling with integer perfor- 
-mance[ALBL91]. An important advantage of software— 
-based Jfault isolation is that it does ]n[ rely on specialv 
-ized architectural features such as address space tags. 
-Restrictive programming languages can also be used 
-to provide fault isolation. Pilot requires all kernel, 
-user, ]^[ library code to be written in Mesa, 3 strongly 
-typed language; all code then shares a single address 
-space [RDII+80]. The main disadvantage of relying on 
-strong typing is that it severely restricts the choice 
-of programming languages, ruling out conventional 
-languages like C, C++, ]^[ assembly. Even with 
-strongly—typed languages such as Ada ]^[ Modula—3, 
-programmers often find they need to use loopholes in 
-the type system, undercutting fault isolation. In con— 
-trast, our techniques are language independent. 
-Deutsch ]^[ Grant built a system that allowed 
-user—deﬁned measurement modules to be dynamically 
-loaded into the operating system ]^[ executed directly 
-on the processor [DG71]. The module format was a 
-stylized native object code designed to make it easier 
-to statically verify that the code did ]n[ violate pro— 
-tection boundaries. 
-An interpreter can also provide failure isolation. For 
-example. the BSD UNIX network packet ﬁlter utility 
-deﬁnes a language which is interpreted by the operat- 
-ing system network driver. The interpreter insulates 
-the operating system from possible faults in the cus— 
-tomization code. Our approach allows code written in 
-any programming language to be safely encapsulated 
-(or rejected if it is ]n[ safe), ]^[ then executed at near 
-full speed by the operating system. 
-Anonymous RFC exploits 64-bit address spaces to 
-provide low latency RFC ]^[ probabilistic fault iso— 
-lation [YBA93]. Logically independent domains are 
-214 
-placed at random locations in the same hardware ad» 
-dress spacer Calls between domains are anonymous, 
-that is, they do ]n[ reveal the location of the caller 
-]v[ the callee to either side. This provides probabilis— 
-tic protection , it is unlikely that any domain will 
-be able to discover the location of any other domain 
-by malicious ]v[ accidental memory probes. To pre» 
-serve anonymity, a cross domain call must trap to pro- 
-tected code in the kernel; however, no hardware con~ 
-text switch is needed. 
-7 Summary 
-We have described a software-based mechanism ]f[ 
-portable, programming language independent fault 
-isolation among cooperating software modules. By 
-providing fault isolation within a single address space, 
-this approach delivers crossefaultrdomain communica 
-tion that is more than an order of magnitude faster 
-than any RPC mechanism to date. 
-To prevent distrusted modules from escaping their 
-own fault domain, we use a software encapsulation 
-technique, called sandboxing, that incurs about 4% 
-Despite this overhead in 
-executing distrusted code, software—based fault isola- 
-tion Will often yield the best overall application per- 
-formance. Extensive kernel optimizations can reduce 
-the overhead of hardware-based RPC to within a fac- 
-tor of ten over our software—based alternative. Even 
-in this situation, software—based fault isolation will be 
-the better performance choice whenever the overhead 
-of using hardware—based RPC is greater than 5%. 
-execution time overhead. 
-8 Acknowledgements 
-We thank Brian Bershad, Mike Burrows, John Hen- 
-nessy, Peter Kessler, Butler Lampson, Ed Lazowska, 
-Dave Patterson, John Ousterhout, Oliver Sharp, 
-Richard Sites, Alan Smith ]^[ Mike Stonebraker ]f[ 
-their helpful comments on the paper. Jim Larus pro- 
-vided us with the proﬁling tool qpt. We also thank 
-Mike Olson ]^[ Paul Aoki ]f[ helping us with POST— 
-GRES. 
-References 
-[ACD74] TL. Adam, KM. Chandy, ]^[ JR. Dickson. 
-A comparison of list schedules ]f[ parallel pro- 
-cessing systems. Communications of the ACM, 
-17(12):685—690, December 197/1. 
-[ALBUM] Thomas Anderson, Henry Levy, Brian Ber— 
-shad, ]^[ Edward Lazowska. The Interaction 
-of Architecture ]^[ Operating System Design. 
-[A5591] 
-[ASUSG] 
-[BALLQO] 
-[BALL91] 
-[Ber93] 
-[BL92] 
-[BlaQO] 
-[1m 84] 
-[Cla92] 
-[DG71] 
-[Dis] 
-[Dys92] 
-[FP93] 
-[H092] 
-111 Proceedings of the 4th International Confer- 
-ence on Architectural Supportfor Programming 
-Languages ]^[ Operating Systems, pages 108— 
-120, April 1991. 
-Administrator: National Computer Graphics 
-Association. SPEC Newsletter, 3(4), December 
-1991. 
-Alfred V. Aho, Ravi Sethi, ]^[ Jeffrey D. Ull- 
-man. Compilers, Principles, Techniques, ]^[ 
-Tools. Addison—Wesley Publishing Company, 
-1986. 
-Brian Bershad, Thomas Anderson, Edward La- 
-zowska, ]^[ Henry Levy. Lightweight Remote 
-Procedure Call. ACM Transactions on Com- 
-puter Systems, 8(1), February 1990. 
-Brian Bershad, Thomas Anderson, Edward La~ 
-zowska, ]^[ Henry Levy. User-Level Interpre- 
-cess Communication ]f[ Shared~Memory Mul- 
-tiprocessors. ACM Transactions on Computer 
-Systems, 9(2), May 1991. 
-Brian Bershad, August 1993. Private Commu— 
-nication. 
-Thomas Ball ]^[ James R. Larus. Optimally 
-proﬁling ]^[ tracing. In Proceedings of the 
-Conference on Principles of Programming Lan- 
-guages, pages 59‘70, 1992. 
-David Black. Scheduling Support ]f[ ConcuI~ 
-rency ]^[ Parallelism in the Mach Operating 
-System. IEEE Computer, 23(5):35 43, May 
-1990. 
-Andrew Birrell ]^[ Bruce Nelson. Implement- 
-ing Remote Procedure Calls. ACM Transac- 
-tions on Computer Systems, 2(1):?19‘59, Febru‘ 
-ary 1984. 
-.1.D. Clark. lVindow Programmer’ Guide To 
-OLE/DUE, Prentice—Hall, 1992. 
-L. P. Deutsch ]^[ C. A. Grant. A ﬂexible mea~ 
-surement tool ]f[ software systems. In IFIP 
-Congress, 1971. 
-Digital Equipment Corporation. Ultriz 114.2 
-Pixie Manual Page. 
-Peter Dyson. Xtensions ]f[ Xpress: Modular 
-Software ]f[ Custom Systems. Seybold Report 
-on Desktop Publishing, 6(10):1—‘.’.1, June 1992. 
-Kevin Fall ]^[ Joseph Pasquale. Exploiting in— 
-kernel data paths to improve I/O throughput 
-]^[ CPU 3. vailability. In Proceedings of the 
-1993 Winter USENIX Conference, pages 327— 
-333, January 1993. 
-Keiran Harty ]^[ 
-David Cheriton. Application—controlled physi- 
-cal memory using external page—cache manage— 
-ment. In Proceedings of the 5th International 
-Conference on Architectural Support ]f[ Pro- 
-gramming Languages ]^[ Operating Systems, 
-October 1992. 
-215 
-[11K93] 
-[HKM+88] 
-[Int86] 
-[JRTSS] 
-[K ar89] 
-[K1886] 
-[LB92] 
-[McF89] 
-[MJ93] 
-[M RA87] 
-[P1190] 
-[RDH+ 80] 
-Graham Hamilton ]^[ Panos Kougiouris. The 
-Spring nucleus: A microkernel ]f[ objects. In 
-Proceedings of the Summer USENIX Confer- 
-cncc, pages 1477159, June 1993. 
-J. Howard, M. Kazar, S. Menees, D. Nichols, 
-M. Satyanarayanan, R. Sidebotham, ]^[ 
-M. West. Scale ]^[ Performance in 3. Dis- 
-tributed File System. ACM Transactions on 
-Computer Systems, 6(1):51—82, February 1988. 
-Intel Corporation, California. 
-Intel 80386 Programmer’s Reference Manual, 
-1986. 
-Michael B. Jones, Richard F. Rashid, ]^[ 
-Mary R. Thompson. Matchmaker: An in- 
-terface speciﬁcation language ]f[ distributed 
-processing. In Proceedings of the 12th ACM 
-SIGACT-SIGPLAN Symposium on Principles 
-of Programming Languages, pages 225435, 
-January 1985. 
-Santa Clara, 
-Paul A. Karger. Using Registers to Optimize 
-Cross—Domain Call Performance. In Proceed- 
-ings of the 3rd International Conference on 
-Architectural Support ]f[ Programming Lan- 
-guages ]^[ Operating Systems, pages 1947204. 
-April 3~6 1989. 
-Steven R. Kleiman. Vnodes: An Architecture 
-]f[ Multiple File System Types in SUN UNIX. 
-In Proceedings of the 1986 Summer USENIX 
-Conference, pages 238—247, 1986. 
-James R. Larus ]^[ Thomas Ball. Rewrit- 
-ing executable ﬁles to measure program be— 
-havior. Technical Report 1083, University of 
-Wisconsin-Madison, March 1992. 
-Scott McFarling. Program optimization ]f[ 
-instruction caches. In Proceedings of the In: 
-ternational Conference on Architectural Sup— 
-port ]f[ Programming Languages ]^[ Operat- 
-ing Systems, pages 183—191, April 1989. 
-Steven McCanne ]^[ Van lacobsen. The 
-BSD Packet Filter: A New Architecture ]f[ 
-User—Level Packet Capture. In Proceedings of 
-the 1993 Winter USENIX Conference, January 
-1993. 
-l. C. Mogul, R. F. Rashid, ]^[ M. J. Ac- 
-cetta. The packet ﬁlter: An cﬂicient mecha— 
-nism ]f[ user—level network code. In Proceed- 
-ings of the Symposium on Operating System 
-Principles, pages 39—51, November 1987. 
-Karl Pettis ]^[ Robert C. Hansen. Proﬁle 
-guided code positioning. In Proceedings of 
-the Conference on Programming Language De- 
-sign ]^[ Implementation, pages 16—27, White 
-Plains, New York, June 1990. Appeared as 
-SIGPLAN NOTICES 25(6). 
-David D. Redell, Yogen K. Dalal, Thomas R. 
-Horsley, Hugh C. Lauer, William C. Lynch, 
-[Sam88] 
-[5390] 
-[501693] 
-[SFGMQS] 
-[St087] 
-[St088] 
-[SWG91] 
-[TAss] 
-[Thiﬁz] 
-[VCGSQZ] 
-[VVSTSB] 
-[Web93] 
-[YBA93] 
-Paul R. McJones, Hal G. Murray, ]^[ 
-Stephen C. Purcell. Pilot: An Operating Sys- 
-tem ]f[ a Personal Computer. Communications 
-of the A01”, 23(2):81~92, February 1980. 
-A. Dain Samples. Code reorganization ]f[ in 
-struction caches. Technical Report UCB/CSD 
-88/447. University of California, Berkeley, 0C, 
-tober 1988. 
-Michael Schroeder ]^[ Michael Burrows. Per- 
-formance of Fireﬂy RPC. ACM I‘mnsac» 
-tions on Computer Systems, 8(1):1—17, Febru- 
-ary 1990. 
-Richard L. Sites, Anton Chernoff, Matthew B. 
-Kirk, Maurice P. Marks, ]^[ Scott G. Robin- 
-son. Binary translation. Communications of 
-the ACM, 36(2):69—81, February 1993. 
-M. Stonebral-zer, J. Frew, K. Gardels, ]^[ 
-.I. Meridith. The Sequoia 2000 Benchmark. 
-In Proceedings of the ACM SIGMOD Inter- 
-national Conference on Management of Data, 
-May 1993. 
-Michael Stonebraker. Extensibility in POST~ 
-GRES. IEEE Database Engineering, Septem- 
-ber 1987. 
-Michael Stonebraker. Inclusion of new types in 
-relational data base systems. In Michael Stone- 
-braker, editor, Readings in Database Systems, 
-pages 480—487. Morgan Kaufmann Publishers, 
-Inc., 1988. 
-J. P. Singh, W. Weber, ]^[ A. Gupta. 
-Splash: Stanford parallel applications ]f[ 
-shared—memory. Technical Report CSL—TR—Sl— 
-469, Stanford, 1991. 
-Shin—Yuan Tzou ]^[ David P. Anderson. A 
-Performance Evaluation of the DASH Message- 
-Passing System. Technical Report UCB/CSD 
-88/452, Computer Science Division, University 
-of California, Berkeley, October 1988. 
-Thinking Machines Corporation. CM—5 Net- 
-work Interface Programmer’s Guide, 1992. 
-T. von Eicken, I). Culler, S. Goldstein, ]^[ 
-K. Schauser. Active Messages: A Mechanism 
-]f[ Integrated Communication ]^[ Computa— 
-tion. In Proceedings of the 19th Annual Sym- 
-posium on Computer Architecture, 1992. 
-Robbert van Renesse, Hans van Staveren, ]^[ 
-Andrew S. Tanenbaum. Performance of the 
-World’s Fastest Distributed Operating System. 
-Operating Systemic Review, 22(1):25734, Octo— 
-ber 1988. 
-Neil Webber. Operating System Support ]f[ 
-Portable Filesystem Extensions. In Proceed- 
-ings of the 1993 Winter USENIX Conference, 
-January 1993. 
-Curtis Yarvin. Richard Bnkowski, ]^[ Thomas 
-Anderson. Anonymous RFC: LOW Latency 
-216 
-Protection in a 64—Bit Address Space. In Pro- 
-ceedings of the Summer USENIX Conference, 
-June 1993. 
+en 
+en 
+en 
+Module B 
+Return Value c 
+Fig. 3. CDC ]f[ arguments ]^[ return values. 
+We modified LegUp to instantiate the two flip-flop synchroFig. 2 shows an example of LegUp-synthesized circuitry 
+nizer when passing the control signals start ]^[ finish ]f[ the start ]^[ finish between two master interfaces of 
+between modules in different clock domains. However, issues modules, A ]^[ B, ]^[ a slave interface C. The two flip-flop 
+arose surrounding the cycle latencies required ]f[ transmitting synchronizers are highlighted at labels 1 ]^[ 2 ]f[ the passing of 
+the control signals. The latency ]f[ transmitting the finish the start ]^[ finish control signals, respectively, between 
+signal is ]n[ an issue, as a parent (calling) module assumes the module A master interface ]^[ module C slave interface. Labels 
+slave is busy as long as finish is set to low. This implies 3 ]^[ 4 highlight the synchronizers ]f[ data transmission 
+that a master interface would ]n[ invoke a slave interface between modules B ]^[ C. 
+unless the slave’s finish is set to high. However, the latency 
+As the arguments ]^[ return value of the interfaces are 
+]f[ transmitting the start signal required special attention. 
+Specifically, if a start signal is issued by a master interface ]^[ multiple-bit-wide data, they cannot be crossed by using a 
+the slave’s finish signal is ]n[ set to low on the same clock cycle, simple CDC technique. The individual bits in wide words may 
+another master interface could invoke the same slave while arrive at different times in the receiving clock domain due to 
+the first start signal is partway in transmission from one clock imbalanced circuit delays. Consequently, the potential exists 
+domain to another. To handle the start signal latency issues, ]f[ the individual bits to be sampled at different edges of the 
+FSM stall logic was added to the LegUp-generated hardware. receiving clock. To handle this, we incorporate the enable-based 
+The added FSM logic stalls the entire circuit when start synchronizer concept into our CDC circuit. Specifically, we 
+signal is asserted by a master interface. The stall continues register multi-bit-wide data ]f[ multiple cycles in the sending 
+until the finish signal from the slave is set to low ]^[ passed clock domain until the receiving clock domain is ready to 
+to all the master interfaces of the slave interface. The stall sample it. The receiving clock domain samples the wide data 
+signal remains low until a specific delay has elapsed. The when it receives an enable control signal that has been passed 
+delay is imposed by a chain of flip-flops (a shift register) in from the sending clock domain. 
+the slave clock domain. The length of the chain depends on 
+Since the LegUp master interface passes the arguments along 
+the ratio of the slave clock frequency ]^[ the fastest master 
+clock frequency, as shown in (2), where fm0 , fm1 to fmn refer with the start signal, we used the start signal as an enable 
+to the frequencies of the master interfaces, ]^[ fs represents ]f[ the sampling of the arguments in the slave interface clock 
+the frequency of the slave interface. The multiplication of the domain. As ]f[ the return value, we used the finish control 
+frequency ratio by two in (2) is to accommodate the passing signal as the enable ]f[ the sampling at the master interface. 
+back of the finish signal through the two flip-flops at the master While Fig. 2 pertained to handling of start ]^[ finish 
+interface. The addition of 3 is to apply a delay ]f[ the flip-flops signals, Fig. 3 shows an analogous figure ]f[ CDC of arguments 
+]^[ return values. In the top-left corner of the figure, ]f[ 
+at the slave interface. 
+example, observe that the start driven by module A in clock 
+domain 1 is used as a register enable ]f[ the arguments passed 
+max( fm0 , fm1 , ... fmn ) 
+Number o f FFs = 3 + d 
+e × 2 (2) to module C in clock domain 3. 
+f 
+s 
+Local shared 
+memory Clk 2 
+Clk 1 
+Port A 
+Port B 
+Local Port 
+Module A 
+Clock Domain 1 
+Global Memory 
+Local shared 
+memory Clk 3 
+Clk 2 
+Clk 3 
+Clk 2 
+Port A 
+Port B 
+Port A 
+Local Port Global Port 
+Global Port Local Port 
+Global Port Local Port 
+Module B 
+Module C 
+Module D 
+Clock Domain 2 
+Port B 
+Clock Domain 3 
+Fig. 4. Clock-domain-crossing memory interfacing. 
+relate to how memories are accessed in the presence of multiple 
+We now describe the changes we made to scheduling ]^[ clock domains. Regarding scheduling, the LegUp HLS tool 
+binding, which are tied to how memories are synthesized by schedules the computations in an input C program on a functionby-function basis. In single-domain designs, it is possible to 
+LegUp. 
+When an input C program contains arrays, the arrays are schedule two memory accesses (loads/stores) per cycle to each 
+synthesized by LegUp HLS into memories on the FPGA. memory in the FPGA, thereby leveraging the dual-point RAMs 
+LegUp generates three different types of memory structures in the fabric. In multiple-clock circuits, when two functions, 
+which are: 1) A global memory controller ]^[ memories, 2) on different clock domains, access the same memory, the two 
+shared-local memories, ]^[ 3) local memories. The global ports of the memory must also be on clock domains aligned 
+]^[ shared local memories are instantiated at the top level with the two domains of the accessing functions. With just 
+entity as shown in Fig. 1. Local memories are ]f[ arrays one port on each unique clock domain, the scheduler can no 
+that are accessed by a single function in the input program; longer schedule two accesses per cycle to the memory – at 
+thus, they are instantiated within the function’s corresponding most one access per clock cycle is permitted ]f[ each domain. 
+hardware module. Shared-local memories contain arrays that We altered the scheduler to reflect this constraint. Namely, 
+are accessed by a list of known functions – such memories ]f[ shared-local memories ]v[ global memories (defined above) 
+are accessed by multiple known hardware modules. Global that are accessed by functions on different clock domains, the 
+memory is ]f[ arrays accessed by an unknown list of functions. scheduler permits at most one access per cycle per domain. 
+Note that ]f[ memories accessed by solely one function, ]v[ 
+The designation of arrays into the three categories of memories 
+that 
+are accessed by multiple functions on the same domain, 
+is based on a “points-to” analysis (alias analysis) in the LLVM 
+the 
+single-port 
+restriction is unnecessary. In such cases, two 
+compiler whose results are used by LegUp HLS. Further details 
+accesses 
+per 
+cycle 
+are permitted, which is the default LegUp 
+are in [12]. 
+HLS 
+behavior. 
+Given the possibility that modules from different clock 
+With regard to binding, one of its tasks is to match memory 
+domains may access the same memory, we changed such 
+operations 
+(loads/stores) to memory ports. In LegUp HLS, 
+memories from single-clock dual port to dual-clock dual port. 
+binding 
+is 
+formulated 
+as a weighted-bipartite graph matching 
+This imposes a constraint that at most two modules from 
+problem 
+instance 
+[15], 
+with one of the objectives being 
+different domains may access the same memory. If a user 
+to 
+balance 
+memory 
+accesses 
+among the ports, judiciously 
+specifies three modules as having different domains in the 
+managing 
+the 
+sizes 
+of 
+the 
+input 
+multiplexers feeding the ports. 
+Tcl configuration file, ]^[ those three modules all access the 
+In 
+the 
+multiple-clock 
+case, 
+however, 
+]f[ memories on two clock 
+same memory, the situation is infeasible, ]s[ multi-clock LegUp 
+domains, 
+the 
+binding 
+step 
+must 
+adhere 
+to the specific domain 
+reports an error ]^[ terminates. 
+of 
+each 
+port 
+]^[ 
+the 
+accessing 
+function. 
+That is, ]f[ a function 
+Fig. 4 illustrates global memory ]^[ shared-local memories 
+on 
+a 
+particular 
+domain 
+that 
+accesses 
+a 
+dual-clock memory, 
+being accessed by multiple clock domains. Observe that Module 
+there 
+is 
+no 
+choice 
+when 
+binding 
+ports: 
+memory 
+accesses in the 
+A ]^[ B communicate with one another, ]^[ both access a 
+function 
+must 
+be 
+bound 
+to 
+the 
+port 
+on 
+the 
+same 
+clock domain 
+local shared memory (top left of figure). In this case, port A of 
+as 
+the 
+function. 
+the memory operates at clock domain 1; port B of the memory 
+operates at clock domain 2. In the top-center of the figure, 
+IV. C LOCK D OMAIN A SSIGNMENT AND F REQUENCY 
+we observe that the global memory ports A ]^[ B operate 
+S ELECTION 
+on clock domains 2 ]^[ 3, respectively, ]^[ are accessed by 
+We evaluate the proposed multi-clock-domain HLS using the 
+modules B, C, ]^[ D. 
+To support multiple-clock synthesis, changes were required CHStone HLS benchmark suite [2] ]^[ target the Altera/Intel 
+to both the scheduling ]^[ binding steps of HLS. The changes Cyclone V FPGA. 
+C. Scheduling ]^[ Binding 
+TABLE I 
+P ERFORMANCE RESULTS FOR ONE CLOCK DOMAIN VERSUS TWO CLOCK DOMAINS . 
+Inline Option 
+Inlined 
+Not Inlined 
+Benchmark 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfsin 
+jpeg 
+motion 
+sha 
+Geomean 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfdiv 
+dfmul 
+dfsin 
+gsm 
+jpeg 
+motion 
+sha 
+Geomean 
+One Clock 
+FMax (MHz) 
+Time (µs) 
+103 
+141.8 
+150 
+62.4 
+156 
+1141.5 
+146 
+6.1 
+51 
+1316.3 
+97 
+12699.2 
+114 
+55.6 
+190 
+1280.5 
+304.4 
+121 
+239.4 
+144 
+87.6 
+156 
+1375.9 
+148 
+24.1 
+130 
+28.2 
+158 
+8.9 
+121 
+1103.5 
+137 
+57.0 
+115 
+12125.1 
+158 
+41.4 
+187 
+1360.9 
+182.5 
+FMax (MHz) 
+112, 140 
+143, 189 
+155, 197 
+139, 195 
+120, 197 
+93, 113 
+117, 163 
+202, 205 
+136, 
+160, 
+146, 
+149, 
+146, 
+149, 
+138, 
+136, 
+104, 
+161, 
+180, 
+159 
+169 
+181 
+196 
+152 
+173 
+145 
+223 
+146 
+263 
+205 
+Two Clock 
+Average Time (µs) 
+100.4, 50.3 
+5.2, 51.4 
+785.5, 437.9 
+5.94, 1.18 
+506.38, 74.4 
+2557.6, 8724.2 
+0.63, 38.82 
+114.2, 1103.2 
+198.2, 44.6 
+42.7, 40.9 
+431.9, 72.0 
+17.8, 7.2 
+24.7, 2.46 
+3.0, 7.5 
+635.2, 377.1 
+52.6, 4.4 
+7996.0, 3738.4 
+2.56, 23.38 
+178.4, 1108.9 
+Time (µs) 
+150.4 
+56.6 
+1223.4 
+7.1 
+580.8 
+11281.7 
+39.2 
+1217.6 
+263.4 
+242.8 
+83.6 
+1468.5 
+25.0 
+27.2 
+10.5 
+1012.4 
+57.0 
+11734.4 
+25.9 
+1287.3 
+175.3 
+Ratio 
+Time (µs) 
+1 (0.94) 
+1.10 
+1 (0.93) 
+1 (0.86) 
+2.27 
+1.13 
+1.42 
+1.05 
+1.33 
+1 (0.99) 
+1.05 
+1 (0.94) 
+1 (0.96) 
+1.04 
+1 (0.85) 
+1.09 
+1.00 
+1.03 
+1.60 
+1.06 
+1.13 
+For multi-clock HLS, a natural question that arises is: how HLS commences. To explore this, we synthesized two variants 
+does one decide which functions (and consequent synthesized of each CHStone benchmark: 1) a no-inline version where we 
+circuits) should be on which clock domain? Considering first disabled inlining by the LLVM compiler, 2) using the normal 
+the two-domain case, we took the following approach: ]f[ each inlining that occurs with -O3 compiler optimization. Note -O3 
+benchmark circuit, we first profiled the single-clock-domain optimization was performed in both cases; the only difference 
+version of the circuit, ]^[ extracted the number of clock cycles between the two variants is that inlining is disabled in the first 
+spent in each function. The function consuming the most cycles variant. 
+Table I shows the speed-performance results ]f[ single ]^[ 
+was placed on a first clock domain, with the balance of the 
+circuit on a second clock domain. This simple approach was two-clock domain HLS. The top part of the table shows results 
+used ]f[ the adpcm, aes ]^[ motion CHStone circuits. For ]f[ normal -O3 optimization with inlining enabled; the bottom 
+the other circuits, we observed that this approach produced poor part of the table shows results ]f[ the scenario when inlining 
+performance results, primarily owing to the overheads of cross- is disabled. Column 2 lists the benchmark name. Columns 3 
+domain-crossing. Therefore, ]f[ these circuits, we examined ]^[ 4 give the FMax ]^[ wall-clock time ]f[ the single-clock 
+the call graph of the program, ]^[ placed all child functions of implementation (experimental baseline). Wall-clock time is the 
+the most cycle-consuming parent function on the same clock total time needed ]f[ circuit execution, which is 1/FMax × 
+domain as the parent. We took a similar approach in the three- Cycles in the single-clock case, where Cycles is the total cycle 
+clock-domain case: we put the most compute-intensive function latency. Columns 5, 6 ]^[ 7 pertain to synthesized designs 
+on a first domain, the second most compute-intensive function with two clock domains. Column 5 gives the two Fmax values; 
+column 6 gives the wall-clock time spent in each domain; 
+on a second domain, ]^[ the balance on a third domain. 
+column 7 shows the overall total wall-clock time. Finally, 
+V. E XPERIMENTAL S TUDY 
+column 8 gives the ratio of the single-clock to dual-clock 
+We compare multi-clock designs to single-clock designs, wall-clock time. Ratios larger than 1 indicate a “win” ]f[ 
+]^[ report both circuit performance, as well as the area impact. dual-clock. Numbers in parentheses represent degradations in 
+The CHStone benchmarks used have built-in input vectors, wall-clock time ]f[ the dual-clock case. In such cases, which 
+]^[ golden output vectors, ]^[ incorporate “self-checking” ]f[ are mentioned further below, one would simply opt ]f[ the 
+correctness. We verified the multi-domain circuits functioned single-clock design, ]^[ hence, we use 1 as the ratio ]f[ these 
+correctly in two ways: 1) using ModelSim simulation ]^[ 2) in the mean-ratio calculations. 
+by execution in hardware using the Cyclone V FPGA on the 
+Looking first at the top-half of Table I, we see that 5 of 
+DE1-SoC board. 
+the 8 benchmarks benefit from two clock domains, with the 
+As mentioned above, our multi-clock approach operates at average improvement being 33% (right-most column). The 
+the function level of granularity – the synthesized hardware ]f[ largest improvement was observed ]f[ dfsin, which suffered 
+an entire C function must operate on a single unique domain. from a long inter-module critical path in the single-clock case, 
+Consequently, our approach is sensitive to which functions that was broken in the two-clock case by the instantiated CDC 
+remain “intact” (i.e. functions that were ]n[ inlined) at the time circuitry. Modest performance degradations are observed ]f[ 
+TABLE II 
+A REA RESULTS FOR ONE CLOCK DOMAIN VERSUS TWO CLOCK DOMAINS . 
+Inline Option 
+Inlined 
+Not Inlined 
+Benchmark 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfsin 
+jpeg 
+motion 
+sha 
+Geomean 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfdiv 
+dfmul 
+dfsin 
+gsm 
+jpeg 
+motion 
+sha 
+Geomean 
+One Clock 
+Logic utilization 
+Total registers 
+6,079 
+11,094 
+4,028 
+6,864 
+2,635 
+5,336 
+3,378 
+3,993 
+10,385 
+16,674 
+13,007 
+18,102 
+6,136 
+9,764 
+1,413 
+2,444 
+4,741 
+7,646 
+7,117 
+11,333 
+3,448 
+5,705 
+2,887 
+5,850 
+4,824 
+9,078 
+7,395 
+13,644 
+3,283 
+5,954 
+12,806 
+24,247 
+4,058 
+6,963 
+7,918 
+11,313 
+1,600 
+2,406 
+2,253 
+3,880 
+4,411 
+7,612 
+three of the benchmarks. The degradations are a result of 
+the cycle-count overhead of clock-domain-crossing, which is 
+particularly onerous in cases where a module on one domain 
+is repeatedly invoked by a module on the second domain, ]^[ 
+where each invocation of the first module consumes relatively 
+few clock cycles. Degradations are also caused by lengthier 
+schedules in the two-clock case resulting from reduced memoryaccess parallelism in which shared/global memories, accessed 
+by two domains, have solely a single port ]f[ each domain. 
+The bottom half of the table gives results ]f[ the case of 
+inlining disabled. The improvements in performance here are 
+more modest, as the functions are smaller (no inlining) ]^[ 
+each executes ]f[ fewer clock cycles. This implies that the 
+fraction of total time required ]f[ clock-domain-crossing is 
+larger than in the inlined case, increasing CDC overheads ]^[ 
+reducing the benefit of multi-clock synthesis. The average wallclock time improvement in this case is 13%. Note that with the 
+inlined case (top-half of the table), there are fewer benchmarks 
+listed, owing to inlining reducing the eliminated benchmarks 
+to a single function (and hence a single domain). 
+We also considered three-clock-domain implementations (not 
+shown here ]f[ brevity), ]^[ found that aside from the jpeg 
+benchmark, no additional improvements were achieved above 
+the two-clock case. jpeg is the largest circuit in the suite, ]^[ 
+we found it contained large enough sub-circuits to benefit from 
+additional clocks. We expect that larger benchmarks, containing 
+significant number of large sub-modules, would stand to benefit 
+from three (or more) domains. 
+Table II shows the impact on circuit area, including logic 
+utilization (Cyclone V ALMs), as well as register count. CDC 
+causes no area impact on other block types (DSP blocks, block 
+RAMs). Looking at the two right-most columns, we see the area 
+impact on ALMs to range from 0-6%, on average, depending 
+on whether inlining is used. In some cases, circuit area actually 
+Two Clock 
+Logic utilization 
+Total registers 
+6,310 
+11,456 
+4,245 
+7,547 
+2,791 
+5,636 
+3,539 
+4,610 
+9,234 
+17,979 
+13,393 
+19,452 
+6,235 
+10,060 
+1,345 
+2,671 
+4,789 
+8,211 
+7,483 
+12,137 
+3,629 
+6,830 
+3,554 
+6,939 
+5,409 
+10,304 
+8,806 
+17,062 
+4,307 
+7,987 
+14,134 
+27,001 
+4,096 
+6,926 
+8,228 
+11,837 
+1,693 
+2,645 
+2,373 
+4,118 
+4,886 
+8,618 
+Ratio 
+Logic utilization 
+Total registers 
+1 (0.96) 
+1 (0.97) 
+0.95 
+0.91 
+1 (0.94) 
+1 (0.95) 
+1 (0.95) 
+1 (0.87) 
+1.12 
+0.93 
+0.97 
+0.93 
+0.98 
+0.97 
+1.05 
+0.92 
+1.00 
+0.93 
+1 (0.95) 
+1 (0.93) 
+0.95 
+0.84 
+1 (0.81) 
+1 (0.84) 
+1 (0.89) 
+1 (0.88) 
+0.84 
+0.80 
+1 (0.76) 
+1 (0.75) 
+0.91 
+0.90 
+0.99 
+1.01 
+0.96 
+0.96 
+0.95 
+0.91 
+0.95 
+0.94 
+0.94 
+0.91 
+reduced (ratios > 1), which we attribute to the heuristic nature 
+of the synthesis, placement ]^[ routing tools. Register-count 
+overhead ranges from 7-9%, on average. We believe the area 
+overheads shown will be acceptable to users interested in the 
+highest-possible performance ]f[ their designs. 
+Overall, we consider the performance results (up to 33% 
+wall-clock time improvement, on average) to be encouraging 
+]f[ several reasons: 1) the CHStone benchmarks were ]n[ 
+designed with multi-clock domain synthesis in mind, ]^[ 2) 
+we used the existing function boundaries in the benchmarks 
+]f[ clock-domain assignment, rather than altering the programs 
+to isolate their critical paths in separate functions on unique 
+domains. We leave the latter ]f[ future work. 
+VI. C ONCLUSIONS AND F UTURE W ORK 
+We considered the high-level synthesis of circuits with 
+multiple clock domains with the objective of improving 
+performance. The open-source LegUp HLS tool was modified 
+to accept user constraints designating C functions onto specific 
+clock domains. Changes were made to the scheduling ]^[ 
+binding steps of HLS, to ensure proper handling of hardware 
+resources accessed by sub-circuits on different domains. As 
+well, the Verilog generation step of LegUp was changed 
+to automatically insert clock-domain-crossing circuitry, as 
+appropriate, ]^[ instantiate PLLs ]f[ clock synthesis. On the 
+CHStone benchmark suite, average performance gains of 13% 
+]^[ 33% were observed, depending on the approach applied 
+]f[ function inlining. 
+As this is a first study on multi-clock HLS ]f[ FPGAs, there 
+are ample avenues ]f[ future research. An important one is 
+to evaluate the power consequences of using multiple clocks. 
+While each individual clock may switch less capacitance, we 
+believe that overall, cumulative power consumption will be 
+worse in multi-domain designs. On the power front, it may also 
+be fruitful to consider the gating of clocks on a domain-bydomain basis to reduce power consumption. A second direction, 
+at the compiler level, relates to inlining ]^[ exlining in a bid 
+to achieve higher performance gains with multiple domains. 
+Specifically, we would like to examine the idea of exlining 
+the time-critical loops in programs into separate functions, to 
+be placed on independent domains, as well as develop more 
+intelligent decision making around which functions to inline 
+to minimize CDC overheads. 
+R EFERENCES 
+[1] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. Anderson, 
+S. Brown, ]^[ T. Czajkowski, “LegUp: high-level synthesis ]f[ FPGAbased processor/accelerator systems,” in ACM FPGA, 2011, pp. 33–36. 
+[2] Y. Hara, H. Tomiyama, S. Honda, ]^[ H. Takada, “Proposal ]^[ 
+quantitative analysis of the chstone benchmark program suite ]f[ practical 
+c-based high-level synthesis,” J. Information Processing, vol. 17, pp. 242– 
+254, 2009. 
+[3] “United States bureau of labor statistics,” https://www.bls.gov/. 
+[4] G. Lhairech-Lebreton, P. Coussy, ]^[ E. Martin, “Hierarchical ]^[ 
+multiple-clock domain high-level synthesis ]f[ low-power design on 
+FPGA,” in FPL, 2010, pp. 464–468. 
+[5] D. M. Chapiro, “Globally-asynchronous locally-synchronous systems.” 
+STANFORD UNIV CA DEPT OF COMPUTER SCIENCE, Tech. Rep., 
+1984. 
+[6] Y. Jiang, H. Zhang, H. Zhang, H. Liu, X. Song, M. Gu, ]^[ J. Sun, 
+“Design of mixed synchronous/asynchronous systems with multiple 
+clocks,” IEEE Transactions on Parallel ]^[ Distributed Systems, vol. 26, 
+no. 8, pp. 2220–2232, 2015. 
+[7] L. P. Carloni, K. L. McMillan, ]^[ A. L. Sangiovanni-Vincentelli, “Theory 
+of latency-insensitive design,” IEEE Transactions on computer-aided 
+design of integrated circuits ]^[ systems, vol. 20, no. 9, pp. 1059–1076, 
+2001. 
+[8] M. Singh ]^[ M. Theobald, “Generalized latency-insensitive systems ]f[ 
+single-clock ]^[ multi-clock architectures,” in IEEE/ACM DATE, vol. 2, 
+2004, pp. 1008–1013. 
+[9] A. Agiwal ]^[ M. Singh, “Multi-clock latency-insensitive architecture ]^[ 
+wrapper synthesis,” Electronic Notes in Theoretical Computer Science, 
+vol. 146, no. 2, pp. 5–28, 2006. 
+[10] L. Luo, H. He, Q. Dou, ]^[ W. Xu, “Design ]^[ verification of multiclock domain synchronizers,” in IEEE Int’l Conf. on Intelligent System 
+Design ]^[ Engineering Application (ISDEA), vol. 1, 2010, pp. 544–547. 
+[11] C. Lattner ]^[ V. S. Adve, “LLVM: A compilation framework ]f[ lifelong 
+program analysis & transformation,” in IEEE/ACM SGO, 2004, pp. 75– 
+88. 
+[12] J. Choi, S. Brown, ]^[ J. Anderson, “Resource ]^[ memory management 
+techniques ]f[ the high-level synthesis of software threads into parallel 
+FPGA hardware,” in IEEE FPT, 2015, pp. 152–159. 
+[13] “Understanding metastability in Altera FPGAs,” https://www.altera.com/ 
+en US/pdfs/literature/wp/wp-01082-quartus-ii-metastability.pdf. 
+[14] C. Dike ]^[ E. Burton, “Miller ]^[ noise effects in a synchronizing flipflop,” IEEE Journal of Solid-State Circuits, vol. 34, no. 6, pp. 849–855, 
+1999. 
+[15] C.-Y. Huang, Y.-S. Chen, Y.-L. Lin, ]^[ Y.-C. Hsu, “Data path allocation 
+based on bipartite weighted matching,” in IEEE/ACM DAC, 1991, pp. 
+499–504. 

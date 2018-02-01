@@ -1,1368 +1,985 @@
-~$[efficient software—based fault isolation 
-robert vvahbe 
-steven lucco 
-thomas e%%per%%]$~ ~$[anderson 
-susan l%%per%%]$~ ~$[graham 
-computer science division 
-university %%#%% california 
-berkeley%%lst%% ca 94720 
-abstract 
-%%#%% %%#%% %%#%% provide fault isolation %%#%% cooperating 
-software modules %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% own address 
-space%%per%%]$~ ~$[however%%lst%% ]f[ tightly—coupled modules%%lst%% %%#%% so— 
-lution incurs prohibitive context switch overhead%%per%%]$~ ~$[in 
-%%#%% paper%%lst%% %%#%% %%#%% %%#%% software approach %%#%% imple— 
-menting fault isolation %%#%% %%#%% single address space%%per%%]$~ 
-~$[our approach %%#%% %%#%% parts%%per%%]$~ ~$[first%%lst%% %%#%% load %%#%% code 
-]^[ data ]f[ %%#%% distrusted module %%#%% %%#%% own fault do%%dsh%% 
-main%%lst%% %%#%% logically separate portion %%#%% %%#%% application’s 
-address space%%per%%]$~ ~$[second%%lst%% %%#%% modify %%#%% object code %%#%% %%#%% 
-distrusted module %%#%% prevent %%#%% %%#%% writing ]v[ jump%%dsh%% 
-ing %%#%% %%#%% address outside %%#%% fault domain%%per%%]$~ ~$[both %%#%% 
-software operations %%#%% portable ]^[ programming lan— 
-guage independent%%per%%]$~ 
-~$[our approach poses %%#%% tradeoff relative %%#%% hardware 
-fault isolation%%cln%% substantially faster communication be— 
-tween fault domains%%lst%% %%#%% %%#%% cost %%#%% slightly increased 
-execution time ]f[ distrusted modules %%#%% demon— 
-strate %%#%% ]f[ frequently communicating modules%%lst%% im~ 
-plementing fault isolation %%#%% software %%#%% %%cmp%% hard%%dsh%% 
-ware %%#%% substantially improve end%%dsh%%to—end application 
-performance%%per%%]$~ 
-~$[this %%#%% %%#%% supported %%#%% %%#%% %%#%% %%#%% national sci— 
-ence foundation (cda%%dsh%%8722788)%%lst%% defense advanced research 
-projects agency (darpa) %%#%% grant mda972—92%%dsh%%j%%dsh%%1028 ]^[ 
-contracts dabt63%%dsh%%92%%sqt%%c%%dsh%%0026 ]^[ n00600%%dsh%%93—c—2481%%lst%% %%#%% digi%%dsh%% 
-tal equipment corporation (the systems research center ]^[ 
-%%#%% external research program)%%lst%% ]^[ %%#%% at&t foundation%%per%%]$~ 
-~$[anderson %%#%% %%#%% supported %%#%% %%#%% national science foundation 
-%%#%% investigator award%%per%%]$~ ~$[the content %%#%% %%#%% paper %%#%% ]n[ 
-necessarily reﬂect %%#%% position ]v[ %%#%% policy %%#%% %%#%% government 
-]^[ %%#%% ofﬁcial endorsement %%#%% %%#%% inferred%%per%%]$~ 
-~$[email%%cln%% {rwahbe %%lst%% lucco%%lst%% tea%%lst%% graham}@cs %%per%%berkeley%%per%%edu 
-permission %%#%% copy %%#%% fee %%#%% ]v[ %%#%% %%#%% (his material %%#%% 
-granted provided %%#%% hie cvpies %%#%% %%dqt%%0‘ %%#%% 0! distributed ]f[ 
-direct commercial advantage%%per%% %%#%% acm copyright notice ]^[ %%#%% 
-mile %%#%% %%#%% publicaiion ]^[ ms data appear%%lst%% ]^[ notice %%#%% %%#%% 
-%%#%% copying %%#%% %%#%% permissmn %%#%% (he assomalion ]f[ computing 
-machinery%%per%%]$~ ~$[to copy otherwise%%per%% ]v[ %%#%% republish%%lst%% requires %%#%% fee 
-and/or specnfic permissron%%per%%]$~ 
-~$[sigops %%sqt%%93/12/93/n%%per%%c%%per%%%%lst%% usa 
-31993 acm 0%%dsh%%83791%%dsh%%632%%dsh%%8/93/0012%%per%%%%per%%%%per%%$l50 
-1 introduction 
-application programs %%#%% achieve extensibility %%#%% 
-incorporating independently developed software mod— 
-ules%%per%%]$~ ~$[however%%lst%% faults %%#%% extension code %%#%% render %%#%% 
-software system unreliable%%lst%% ]v[ %%#%% dangerous%%lst%% %%#%% 
-%%#%% faults %%#%% corrupt permanent data%%per%%]$~ ~$[to in— 
-crease %%#%% reliability %%#%% %%#%% applications%%lst%% %%#%% operat— 
-ing system %%#%% provide services %%#%% prevent faults %%#%% 
-distrusted modules %%#%% corrupting application data%%per%%]$~ 
-~$[such fault isolation services %%#%% facilitate software de%%dsh%% 
-velopment %%#%% helping %%#%% identify sources %%#%% system fail— 
-ure%%per%%]$~ 
-~$[for example%%lst%% %%#%% postgres database manager in— 
-cludes %%#%% extensible type system [st087]%%per%%]$~ ~$[using %%#%% 
-facility%%lst%% postgres queries %%#%% refer %%#%% general—purpose 
-code %%#%% deﬁnes constructors%%lst%% destructors%%lst%% ]^[ pred— 
-icates ]f[ user—deﬁned data types %%#%% %%#%% geometric 
-objects%%per%%]$~ ~$[without fault isolation%%lst%% %%#%% query %%#%% %%#%% 
-extension code %%#%% interfere %%#%% %%#%% unrelated query 
-]v[ corrupt %%#%% database%%per%%]$~ 
-~$[similarly%%lst%% recent operating system research %%#%% fo— 
-cused %%#%% %%#%% %%#%% easier ]f[ third party vendors 
-%%#%% enhance %%#%% %%#%% %%#%% operating system%%per%%]$~ ~$[an ex 
-ample %%#%% micro%%dsh%%kernel design%%scn%% %%#%% %%#%% %%#%% operat— 
-ing system %%#%% implemented %%#%% user—level servers %%#%% 
-%%#%% %%#%% easily modiﬁed ]v[ replaced%%per%%]$~ ~$[more gener— 
-ally%%lst%% %%#%% systems %%#%% added extension code %%#%% 
-%%#%% operating system%%lst%% ]f[ example%%lst%% %%#%% bsd network 
-packet ﬁlter [mra87%%lst%% mjq3]7 application—speciﬁc vir%%dsh%% 
-tual memory management [hc92]%%per%% ]^[ active mes— 
-sages [vcgsqq]%%per%%]$~ ~$[among industry systems%%lst%% microsoft’s 
-object linking ]^[ embedding system [cla92] %%#%% 
-link %%#%% independently developed software mod— 
-tiles%%per%%]$~ ~$[also%%lst%% %%#%% quark xprese desktop publishing sys%%dsh%% 
-tem [dy592] %%#%% structured %%#%% support incorporation %%#%% 
-general—purpose third party code%%per%%]$~ ~$[as %%#%% postgres%%lst%% 
-faults %%#%% extension modules %%#%% render %%#%% %%#%% %%#%% 
-systems unreliable%%per%% %%per%%]$~ 
-~$[one %%#%% %%#%% provide fault isolation %%#%% cooperat— 
-ing software modules %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% own address 
-space%%per%%]$~ ~$[using remote procedure call (rfc) [bn84]%%lst%% 
-modules %%#%% separate address spaces %%#%% call %%#%% %%#%% 
-%%#%% %%#%% %%#%% normal procedure call interface%%per%%]$~ ~$[hard%%dsh%% 
-ware page tables prevent %%#%% code %%#%% %%#%% address space 
-%%#%% corrupting %%#%% contents %%#%% another%%per%%]$~ 
-~$[unfortunately%%lst%% %%#%% %%#%% %%#%% %%#%% performance cost 
-%%#%% providing fault isolation %%#%% separate address 
-spaces%%per%%]$~ ~$[transferring control %%#%% protection bound— 
-aries %%#%% expensive%%lst%% ]^[ %%#%% ]n[ necessarily scale 
-%%#%% improvements %%#%% %%#%% processor’s integer perforv 
-mance [albl91]%%per%%]$~ ~$[a cross—address%%dsh%%space rpc requires 
-%%#%% least%%cln%% %%#%% trap %%#%% %%#%% operating system kernel%%lst%% copy— 
-ing %%#%% argument %%#%% %%#%% caller %%#%% %%#%% callee%%lst%% sav~ 
-ing ]^[ restoring registers%%lst%% switching hardware ad— 
-dress spaces (on %%#%% machines%%lst%% ﬂushing %%#%% transla— 
-tion lookaside buffer)%%lst%% ]^[ %%#%% trap %%#%% %%#%% user level%%per%%]$~ 
-~$[these operations %%#%% %%#%% repeated %%#%% rpc re— 
-turn%%per%%]$~ ~$[the execution time overhead %%#%% %%#%% rpc%%lst%% %%#%% 
-%%#%% %%#%% highly optimized implementation%%lst%% %%#%% %%#%% 
-%%#%% %%#%% %%#%% %%#%% orders %%#%% magnitude %%#%% %%cmp%% 
-%%#%% execution time overhead %%#%% %%#%% normal procedure 
-call [ball90%%lst%% albl91]%%per%%]$~ 
-~$[the goal %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% fault isolation cheap 
-%%#%% %%#%% system developers %%#%% ignore %%#%% perfor— 
-mance effect %%#%% choosing %%#%% modules %%#%% %%#%% %%#%% 
-separate fault domains%%per%%]$~ ~$[in %%#%% %%#%% %%#%% fault iso 
-lation %%#%% %%#%% useful%%lst%% cross%%dsh%%domain procedure calls 
-%%#%% frequent ]y[ involve %%#%% %%#%% moderate amount %%#%% 
-computation %%#%% call%%per%%]$~ ~$[in %%#%% situation %%#%% %%#%% imprac%%dsh%% 
-tical %%#%% isolate %%#%% logically separate module %%#%% 
-%%#%% own address space%%lst%% %%cmp%% %%#%% %%#%% cost %%#%% crossing 
-hardware protection boundaries%%per%%]$~ 
-~$[we propose a%%per%% software approach %%#%% implementing 
-fault isolation %%#%% %%#%% single address space%%per%%]$~ ~$[our ap— 
-proach %%#%% %%#%% parts%%per%%]$~ ~$[first%%lst%% %%#%% load %%#%% code ]^[ data 
-]f[ a%%per%% distrusted module %%#%% %%#%% own fault domain%%lst%% %%#%% 
-logically separate portion %%#%% %%#%% application’s address 
-space%%per%%]$~ ~$[a fault domain%%lst%% %%#%% addition %%#%% comprising %%#%% cori— 
-tiguous region %%#%% memory %%#%% %%#%% address space%%lst%% %%#%% 
-%%#%% unique identiﬁer %%#%% %%#%% %%#%% %%#%% control %%#%% access %%#%% 
-process resources %%#%% %%#%% ﬁle descriptors%%per%%]$~ ~$[second%%lst%% %%#%% 
-modify %%#%% object code %%#%% %%#%% distrusted module %%#%% pre— 
-vent %%#%% %%#%% writing ]v[ jumping %%#%% %%#%% address outside 
-%%#%% fault domain%%per%%]$~ ~$[program modules isolated %%#%% sepa— 
-rate software—enforced fault domains %%#%% ]n[ modify 
-%%#%% other’s data ]v[ execute %%#%% other’s code except 
-%%#%% %%#%% explicit cross%%dsh%%fault%%dsh%%domain rpc interface%%per%%]$~ 
-~$[we %%#%% identiﬁed %%#%% programming%%dsh%%language%%dsh%% 
-independent transformation strategies %%#%% %%#%% render 
-object code unable %%#%% escape %%#%% own code ]^[ data 
-segments%%per%%]$~ ~$[in %%#%% paper%%lst%% %%#%% concentrate %%#%% %%#%% sim— 
-204 
-ple transformation technique%%lst%% called sandboxing%%lst%% %%#%% 
-%%#%% slightly increases %%#%% execution time %%#%% %%#%% mod%%dsh%% 
-iﬁed object code%%per%%]$~ ~$[we %%#%% investigate techniques %%#%% 
-provide %%#%% debugging information ]b[ %%#%% incur 
-%%#%% execution time overhead%%per%%]$~ 
-~$[our approach poses %%#%% tradeoff relative %%#%% hardware— 
-based fault isolation%%per%%]$~ ~$[because %%#%% eliminate %%#%% %%#%% %%#%% 
-cross hardware boundaries%%lst%% %%#%% %%#%% offer substantially 
-lower%%dsh%%cost rpc %%#%% fault domains%%per%%]$~ ~$[a safe rpc %%#%% 
-%%#%% prototype implementation takes roughly 1%%per%%1 %%#%% %%#%% %%#%% 
-decstation 5000/240 ]^[ roughly 0%%per%%8,us %%#%% %%#%% dec al%%dsh%% 
-pha 400%%lst%% %%#%% %%cmp%% %%#%% order %%#%% magnitude faster %%cmp%% 
-%%#%% existing rfc system%%per%%]$~ ~$[this reduction %%#%% rfc time 
-comes %%#%% %%#%% cost %%#%% slightly increased distrusted module 
-execution time%%per%%]$~ ~$[on %%#%% test suite including %%#%% %%#%% %%#%% 
-spe092 benchmarks%%lst%% sandboxing incurs %%#%% average %%#%% 
-4% execution time overhead %%#%% %%#%% %%#%% decstation 
-]^[ %%#%% alpha%%per%%]$~ 
-~$[software—enforced fault isolation %%#%% %%#%% %%#%% %%#%% 
-counter%%dsh%%intuitive%%cln%% %%#%% %%#%% slowing %%#%% %%#%% common 
-%%#%% (normal execution) %%#%% speed %%#%% %%#%% uncommon 
-%%#%% (crossrdomain communication)%%per%%]$~ ~$[but ]f[ fre%%dsh%% 
-quently communicating fault domains%%lst%% %%#%% approach 
-%%#%% offer substantially %%#%% end—to—end performance%%per%%]$~ 
-~$[to demonstrate this%%lst%% %%#%% applied software—enforced 
-fault isolation %%#%% %%#%% postgres database system run%%dsh%% 
-ning %%#%% sequoia 2000 benchmark%%per%%]$~ ~$[the benchmark 
-makes %%#%% %%#%% %%#%% postgres extensible data%%per%% type sys— 
-tem %%#%% deﬁne geometric operators%%per%%]$~ ~$[for %%#%% bench— 
-mark%%lst%% %%#%% software approach reduced fault isolation 
-overhead %%#%% %%#%% %%cmp%% %%#%% factor %%#%% %%#%% %%#%% %%#%% decsta— 
-tion 5000/240%%per%%]$~ 
-~$[a software approach %%#%% provides %%#%% tradeoif %%#%% 
-tween performance ]^[ level %%#%% distrust%%per%%]$~ ~$[if %%#%% mod— 
-ules %%#%% a%%per%% program %%#%% trusted %%#%% %%#%% %%#%% dis%%dsh%% 
-trusted (as %%#%% %%#%% %%#%% ease %%#%% extension code)%%lst%% %%#%% 
-%%#%% distrusted modules incur %%#%% execution time over%%dsh%% 
-head%%per%%]$~ ~$[code %%#%% trusted domains %%#%% run %%#%% %%#%% speed%%per%%]$~ 
-~$[similarly%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% techniques %%#%% im%%dsh%% 
-plement %%#%% security%%lst%% preventing distrusted code %%#%% 
-%%#%% reading data outside %%#%% %%#%% domain%%lst%% %%#%% %%#%% cost %%#%% 
-%%#%% execution time overhead%%per%%]$~ ~$[we quantify %%#%% ef» 
-fect %%#%% section 5%%per%%]$~ 
-~$[the remainder %%#%% %%#%% paper %%#%% organized %%#%% follows%%per%%]$~ 
-~$[section 2 provides %%#%% examples %%#%% systems %%#%% re%%dsh%% 
-quire frequent communication %%#%% fault domains%%per%%]$~ 
-~$[section 3 outlines %%#%% %%#%% modify object code %%#%% pre— 
-vent %%#%% %%#%% generating illegal addresses%%per%%]$~ ~$[section 4 
-describes %%#%% %%#%% implement low latency cross—faultv 
-domain rpc%%per%%]$~ ~$[section 5 %%#%% performance results 
-]f[ %%#%% prototype%%lst%% ]^[ ﬁnally section 6 discusses %%#%% 
-related work%%per%% 
-2 background 
-%%#%% %%#%% section%%lst%% %%#%% characterize %%#%% %%#%% detail %%#%% 
-type %%#%% application %%#%% %%#%% beneﬁt %%#%% software— 
-enforced fault isolation%%per%%]$~ ~$[we defer %%#%% description 
-%%#%% %%#%% postgres extensible type system %%#%% section 
-5%%lst%% %%#%% %%#%% performance measurements ]f[ %%#%% ap— 
-plication%%per%%]$~ 
-~$[the operating systems community %%#%% focused con%%dsh%% 
-siderable attention %%#%% supporting kernel extensibil%%dsh%% 
-ity%%per%%]$~ ~$[for example%%lst%% %%#%% unix vnode interface %%#%% de%%dsh%% 
-signed %%#%% %%#%% %%#%% easy %%#%% add %%#%% %%#%% ﬁle system %%#%% 
-unix [kle86]%%per%%]$~ ~$[unfortunately%%lst%% %%#%% %%#%% %%#%% expensive %%#%% 
-forward %%#%% ﬁle system operation %%#%% user level%%lst%% ]s[ 
-typically %%#%% ﬁle system implementations %%#%% added 
-directly %%#%% %%#%% kernel%%per%% (the andrew ﬁle system %%#%% 
-largely implemented %%#%% user level%%lst%% ]b[ %%#%% maintains %%#%% 
-kernel cache ]f[ performance [hkm%%sqt%%l%%sqt%%bsh epoch’s ter— 
-tiary storage ﬁle system [web93] %%#%% %%#%% example %%#%% op— 
-erating system kernel code developed %%#%% %%#%% third party 
-vendor%%per%%]$~ 
-~$[another example %%#%% user—programmable %%#%% perfor— 
-mance i/o systems%%per%%]$~ ~$[if data %%#%% arriving %%#%% %%#%% i/o 
-channel %%#%% %%#%% %%#%% %%#%% rate%%lst%% performance %%#%% %%#%% 
-degraded substantially %%cmp%% control %%#%% %%#%% %%#%% transferred 
-%%#%% user level %%#%% manipulate %%#%% incoming data [fp93]%%per%%]$~ 
-~$[similarly%%lst%% active messages provide %%#%% performance 
-message handling %%#%% distributed—memory multiproces%%dsh%% 
-sors [vcg8921%%per%%]$~ ~$[typically%%lst%% %%#%% message handlers %%#%% 
-application%%dsh%%speciﬁc%%lst%% ]b[ unless %%#%% network controller 
-%%#%% %%#%% accessed %%#%% user level [thi92]%%lst%% %%#%% message 
-handlers %%#%% %%#%% compiled %%#%% %%#%% kernel ]f[ reason— 
-able performance%%per%%]$~ 
-~$[a user%%dsh%%level example %%#%% %%#%% quark xpress desktop 
-publishing system%%per%%]$~ ~$[one %%#%% purchase third party soft%%dsh%% 
-ware %%#%% %%#%% extend %%#%% system %%#%% perform func~ 
-tions unforeseen %%#%% %%#%% original designers [dysqq]%%per%%]$~ ~$[at 
-%%#%% %%#%% time%%lst%% %%#%% extensibility %%#%% caused quark %%#%% 
-number %%#%% problems%%per%%]$~ ~$[because %%#%% %%#%% lack %%#%% efﬁcient 
-fault domains %%#%% %%#%% personal computers %%#%% quark 
-xpress runs%%lst%% extension modules %%#%% corrupt quark’s 
-internal data structures hence%%lst%% bugs %%#%% third party 
-code %%#%% %%#%% %%#%% quark system appear unreliable%%lst%% 
-%%cmp%% end—users %%#%% ]n[ distinguish %%#%% sources %%#%% 
-system failure%%per%%]$~ 
-~$[all %%#%% examples share %%#%% characteristics%%per%%]$~ ~$[first%%lst%% 
-using hardware fault isolation %%#%% result %%#%% %%#%% signif%%dsh%% 
-icant portion %%#%% %%#%% overall execution time %%#%% spent 
-%%#%% operating system context switch code%%per%%]$~ ~$[second%%lst%% %%#%% 
-%%#%% %%#%% amount %%#%% code %%#%% distrusted%%scn%% %%#%% %%#%% %%#%% exe%%dsh%% 
-cution time %%#%% spent %%#%% trusted code%%per%%]$~ ~$[in %%#%% situation%%lst%% 
-software fault isolation %%#%% %%#%% %%#%% %%#%% %%#%% efﬁcient 
-%%cmp%% hardware fault isolation %%cmp%% %%#%% sharply re— 
-duces %%#%% time spent crossing fault domain boundaries%%lst%% 
-%%#%% %%#%% slightly increasing %%#%% time spent executing 
-205 
-%%#%% distrusted %%#%% %%#%% %%#%% application%%per%%]$~ ~$[section 5 quan%%dsh%% 
-tiﬁes %%#%% trade%%dsh%%off %%#%% domain—crossing overhead 
-]^[ application execution time overhead%%lst%% ]^[ demon 
-strates %%#%% %%#%% %%cmp%% domain—crossing overhead repre— 
-sents %%#%% modest proportion %%#%% %%#%% total application ex— 
-ecution time%%lst%% software—enforced fault isolation %%#%% cost 
-effective%%per%% 
-3 software%%dsh%%enforced fault iso%%dsh%% 
-lation 
-%%#%% %%#%% section%%lst%% %%#%% outline %%#%% software encapsula— 
-tion techniques ]f[ transforming %%#%% distrusted module 
-]s[ %%#%% %%#%% %%#%% ]n[ escape %%#%% fault domain%%per%%]$~ ~$[we ﬁrst 
-describe %%#%% technique %%#%% allows users %%#%% pinpoint %%#%% 
-location %%#%% faults %%#%% %%#%% software module%%per%%]$~ ~$[next%%lst%% %%#%% 
-introduce %%#%% technique%%lst%% called sandboxing%%lst%% %%#%% %%#%% iso%%dsh%% 
-late %%#%% distrusted module %%#%% %%#%% slightly increasing 
-%%#%% execution time%%per%%]$~ ~$[section 5 provides %%#%% performance 
-analysis %%#%% %%#%% techinique%%per%%]$~ ~$[finally%%lst%% %%#%% %%#%% %%#%% soft%%dsh%% 
-ware encapsulation technique %%#%% allows cooperating 
-fault domains %%#%% share memory%%per%%]$~ ~$[the remainder %%#%% 
-%%#%% discussion assumes %%#%% %%#%% operating %%#%% %%#%% risc 
-load /storc architecture%%lst%% %%#%% %%#%% techniques %%#%% 
-%%#%% extended %%#%% handle ciscs%%per%%]$~ ~$[section 4 describes 
-%%#%% %%#%% implement safe ]^[ efficient cross—fault—domain 
-rpc%%per%%]$~ 
-~$[we divide %%#%% application’s virtual address space %%#%% 
-segments%%lst%% aligned ]s[ %%#%% %%#%% virtual addresses %%#%% 
-%%#%% segment share %%#%% unique pattern %%#%% upper bits%%lst%% called 
-%%#%% segment identiﬁer%%per%%]$~ ~$[a fault domain consists %%#%% %%#%% 
-segments%%lst%% %%#%% ]f[ %%#%% distrusted module’s code%%lst%% %%#%% %%#%% 
-]f[ %%#%% static data%%lst%% heap ]^[ stack%%per%%]$~ ~$[the speciﬁc seg%%dsh%% 
-ment addresses %%#%% determined %%#%% load time%%per%%]$~ 
-~$[software encapsulation transforms %%#%% distrusted 
-module‘s object code ]s[ %%#%% %%#%% %%#%% jump %%#%% %%#%% tar%%dsh%% 
-%%#%% %%#%% %%#%% code segment%%lst%% ]^[ write %%#%% %%#%% addresses 
-%%#%% %%#%% data segment%%per%%]$~ ~$[hence%%lst%% %%#%% legal jump tar— 
-%%#%% %%#%% %%#%% distrusted module %%#%% %%#%% %%#%% upper bit 
-pattern (segment identiﬁer)%%scn%% similarly%%lst%% %%#%% legal data 
-addresses generated %%#%% %%#%% distrusted module share 
-%%#%% %%#%% segment identiﬁer%%per%%]$~ ~$[separate code ]^[ data 
-segments %%#%% necessary %%#%% prevent %%#%% module %%#%% mod— 
-%%cmp%%ying %%#%% code segmentl%%per%%]$~ ~$[it %%#%% %%#%% ]f[ %%#%% address 
-%%#%% %%#%% correct segment identiﬁer %%#%% %%#%% illegal%%lst%% ]f[ in%%dsh%% 
-stance %%cmp%% %%#%% refers %%#%% %%#%% unmapped page%%per%%]$~ ~$[this %%#%% caught 
-%%#%% %%#%% normal operating system page fault mechanism%%per%% 
-3%%per%%1 
-%%#%% unsafe mstmctzan %%#%% %%#%% instruction %%#%% jumps %%#%% 
-]v[ stores %%#%% %%#%% address %%#%% %%#%% ]n[ %%#%% statically ver— 
-segment matching 
-10111%%dqt%% system supports dynamic linking %%#%% %%#%% special 
-interface%%per%% 
-iﬁed %%#%% %%#%% %%#%% %%#%% correct segment%%per%%]$~ ~$[most control 
-transfer instructions%%lst%% %%#%% %%#%% program‘counter‘relative 
-branches%%lst%% %%#%% %%#%% statically veriﬁed%%per%%]$~ ~$[stores %%#%% static 
-variables %%#%% %%#%% %%#%% immediate addressing mode ]^[ 
-%%#%% %%#%% statically veriﬁed%%per%%]$~ ~$[however%%lst%% jumps %%#%% reg— 
-isters%%lst%% %%#%% commonly %%#%% %%#%% implement procedure 
-returns%%lst%% ]^[ stores %%#%% %%#%% %%#%% register %%#%% hold %%#%% 
-target address%%lst%% %%#%% ]n[ %%#%% statically veriﬁed%%per%%]$~ 
-~$[a straightforward approach %%#%% preventing %%#%% %%#%% %%#%% 
-illegal addresses %%#%% %%#%% insert checking code %%#%% eve 
-ery unsafe instruction%%per%%]$~ ~$[the checking code determines 
-%%#%% %%#%% unsafe instruction’s target address %%#%% %%#%% 
-correct segment identiﬁer%%per%%]$~ ~$[if %%#%% check fails%%lst%% %%#%% in%%dsh%% 
-serted code %%#%% trap %%#%% %%#%% system error routine outside 
-%%#%% distrusted module’s fault domain%%per%%]$~ ~$[we call %%#%% 
-software encapsulation technique segment matching%%per%%]$~ 
-~$[on typical risc architectures%%lst%% segment matching 
-requires %%#%% instructions%%per%%]$~ ~$[figure 1 lists %%#%% pseudo—code 
-fragment ]f[ segment matching%%per%%]$~ ~$[the ﬁrst instruction 
-%%#%% %%#%% fragment moves %%#%% store target address %%#%% 
-%%#%% dedzcated register%%per%%]$~ ~$[dedicated registers %%#%% %%#%% %%#%% 
-%%#%% inserted code ]^[ %%#%% %%#%% modiﬁed %%#%% code %%#%% 
-%%#%% distrusted module%%per%%]$~ ~$[they %%#%% necessary %%cmp%% 
-code %%cmp%%where %%#%% %%#%% distrusted module %%#%% arrange 
-%%#%% jump directly %%#%% %%#%% unsafe store instruction%%lst%% by%%dsh%% 
-passing %%#%% inserted check%%per%%]$~ ~$[hence%%lst%% %%#%% transform %%#%% 
-unsafe store ]^[ jump instructions %%#%% %%#%% %%#%% dedicated 
-register%%per%%]$~ 
-~$[all %%#%% software encapsulation techniques %%#%% 
-%%#%% %%#%% paper require dedicated registersz%%per%%]$~ ~$[segment 
-matching requires %%#%% dedicated registers%%cln%% %%#%% %%#%% hold 
-addresses %%#%% %%#%% code segment%%lst%% %%#%% %%#%% hold addresses 
-%%#%% %%#%% data segment%%lst%% %%#%% %%#%% hold %%#%% segment shift 
-amount%%lst%% ]^[ %%#%% %%#%% hold %%#%% segment identiﬁer%%per%%]$~ 
-~$[using dedicated registers %%#%% %%#%% %%#%% impact %%#%% 
-%%#%% execution time %%#%% %%#%% distrusted module%%per%%]$~ ~$[however%%lst%% 
-%%#%% %%#%% modern risc architectures%%lst%% including %%#%% 
-mips ]^[ alpha%%lst%% %%#%% %%#%% least 32 registers%%lst%% %%#%% %%#%% 
-retarget %%#%% compiler %%#%% %%#%% %%#%% %%#%% register set %%#%% 
-minimal performance impact%%per%%]$~ ~$[for example7 section 5 
-%%#%% that%%lst%% %%#%% %%#%% decstation 5000/240%%lst%% reducing %%#%% 
-ﬁve registers %%#%% register set available %%#%% %%#%% %%#%% compiler 
-(gee) %%#%% ]n[ %%#%% %%#%% signiﬁcant effect %%#%% %%#%% average 
-execution time %%#%% %%#%% spec92 benchmarks%%per%% 
-3%%per%%2 address sandboxing 
-%%#%% segment matching technique %%#%% %%#%% advantage 
-%%#%% %%#%% %%#%% pinpoint %%#%% offending instruction%%per%%]$~ ~$[this 
-capability %%#%% useful %%#%% software development%%per%%]$~ ~$[we 
-%%#%% reduce runtime overhead %%#%% further%%lst%% %%#%% %%#%% cost 
-%%#%% providing %%#%% information %%#%% %%#%% source %%#%% faults%%per%% 
-2 %%#%% architectures %%#%% lenitccl register sets%%lst%% %%#%% %%#%% %%#%% 
-80386 [int86]%%lst%% %%#%% %%#%% %%#%% %%#%% encapsulate %%#%% module using %%#%% re%%dsh%% 
-served registers %%#%% restricting control ﬂow %%#%% %%#%% fault domain%%per%% 
-206 
-dedicated—reg <2 target address 
-lilove target address %%#%% dedicated register%%per%% 
-scratch%%dsh%%reg <= (dedicated—reg>>shift~reg) 
-right—shift address %%#%% %%#%% segment identiﬁer%%per%% 
-scratch—reg %%#%% ]n[ %%#%% dedicated register%%per%% 
-shift%%dsh%%reg %%#%% %%#%% dedicated register%%per%% 
-%%cmp%% scratch—reg ]^[ segment—reg 
-segment%%dsh%%reg %%#%% %%#%% dedicated register%%per%% 
-trap %%cmp%% ]n[ equal 
-trap %%cmp%% store address %%#%% outside %%#%% segment%%per%% 
-store instruction %%#%% dedicated%%dsh%%reg 
-figure 1%%cln%% assembly pseudo code ]f[ segment matching%%per%% 
-dedicated—reg %%#%% target%%dsh%%reghand—mask—reg 
-%%#%% dedicated register and—mask%%dsh%%reg 
-%%#%% %%#%% segment identiﬁer bits%%per%% 
-dedicated—reg <2 dedicated%%dsh%%regl segment—reg 
-%%#%% dedicated register segment%%dsh%%reg 
-%%#%% set segment identiﬁer bits%%per%% 
-store instruction %%#%% dedicated%%dsh%%reg 
-figure 2%%cln%% assembly pseudo code %%#%% sandbox address 
-%%#%% target—reg%%per%%]$~ 
-~$[before %%#%% unsafe instruction %%#%% simply insert code 
-%%#%% sets %%#%% upper bits %%#%% %%#%% target address %%#%% %%#%% 
-correct segment identifier%%per%%]$~ ~$[we call %%#%% sandborzn %%#%% %%#%% 
-address%%per%%]$~ ~$[sandboxing %%#%% ]n[ catch illegal addresses%%scn%% 
-%%#%% merely prevents %%#%% %%#%% affecting %%#%% fault do— 
-main %%#%% %%cmp%% %%#%% %%#%% generating %%#%% address%%per%%]$~ 
-~$[address sandboxing requires insertion %%#%% %%#%% arith%%dsh%% 
-metic instructions %%#%% %%#%% unsafe store ]v[ jump 
-instruction%%per%%]$~ ~$[the ﬁrst inserted instruction clears %%#%% 
-segment identifier bits ]^[ stores %%#%% result %%#%% %%#%% ded— 
-icated register%%per%%]$~ ~$[the %%#%% instruction sets %%#%% seg— 
-ment identiﬁer %%#%% %%#%% correct value%%per%%]$~ ~$[figure 2 lists %%#%% 
-pseudo‘code %%#%% perform %%#%% operation%%per%%]$~ ~$[as %%#%% seg%%dsh%% 
-ment matching%%lst%% %%#%% modify %%#%% unsafe store ]v[ jump 
-instruction %%#%% %%#%% %%#%% dedicated register%%per%%]$~ ~$[since %%#%% %%#%% 
-using %%#%% dedicated register%%lst%% %%#%% distrusted module code 
-%%#%% ]n[ produce %%#%% illegal address %%#%% %%#%% jumping 
-%%#%% %%#%% %%#%% instruction %%#%% %%#%% sandboxing sequence%%scn%% 
-%%#%% %%#%% upper bits %%#%% %%#%% dedicated register %%#%% al— 
-ready contain %%#%% correct segment identiﬁer%%lst%% %%#%% sec%%dsh%% 
-ond instruction %%#%% %%#%% %%#%% effect%%per%%]$~ ~$[section 3%%per%%6 %%#%% 
-%%#%% simple algorithm %%#%% %%#%% verify %%#%% %%#%% object code 
-module %%#%% %%#%% correctly sandboxed%%per%%]$~ 
-~$[address sandboxing requires ﬁve dedicated registers%%per%%]$~ 
-~$[one register %%#%% %%#%% %%#%% hold %%#%% segment mask%%lst%% %%#%% 
-registers %%#%% %%#%% %%#%% hold %%#%% code ]^[ data segment 
-<——reg+oﬂ%%sqt%%sel %%#%% 
-«— reg 
-guard zones %%#%% eg ment 
-figure 3%%cln%% %%#%% segment %%#%% guard zones%%per%%]$~ ~$[the size %%#%% 
-%%#%% guard zones covers %%#%% range %%#%% %%#%% immediate 
-offsets %%#%% register—plus%%dsh%%offset addressing modes%%per%% 
-identiﬁers%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% hold %%#%% sandboxed 
-code ]^[ data addresses%%per%% 
-3%%per%%3 optimizations 
-%%#%% overhead %%#%% software encapsulation %%#%% %%#%% re%%dsh%% 
-duced %%#%% using conventional compiler optimizations%%per%%]$~ 
-~$[our current prototype applies loop invariant code mo— 
-tion ]^[ instruction scheduling optimizations [asu86%%lst%% 
-acd74]%%per%%]$~ ~$[in addition %%#%% %%#%% conventional techniques%%lst%% 
-%%#%% employ %%#%% number %%#%% optimizations specialized %%#%% 
-software encapsulation%%per%%]$~ 
-~$[we %%#%% reduce %%#%% overhead %%#%% software encapsulae 
-tion mechanisms %%#%% avoiding arithmetic %%#%% computes 
-target addresses%%per%%]$~ ~$[for example%%lst%% %%#%% risc architec— 
-tures include %%#%% register%%dsh%%plus—oﬁset instruction mode%%lst%% 
-%%#%% %%#%% offset %%#%% %%#%% immediate constant %%#%% %%#%% lim— 
-ited range%%per%%]$~ ~$[on %%#%% mips architecture %%#%% offsets %%#%% 
-limited %%#%% %%#%% range %%dsh%%64k %%#%% +64k%%per%%]$~ ~$[consider %%#%% 
-store instruction store value,oﬁset(reg)%%lst%% %%#%% 
-address offset (reg) %%#%% %%#%% register—plus—olfsct ad~ 
-dressing mode%%per%%]$~ ~$[sandboxing %%#%% instruction requires 
-%%#%% inserted instructions%%cln%% %%#%% %%#%% sum reg+oﬁset 
-%%#%% %%#%% dedicated register%%lst%% ]^[ %%#%% sandboxing in— 
-structions %%#%% set %%#%% segment identiﬁer %%#%% %%#%% dedicated 
-register%%per%%]$~ 
-~$[our prototype optimizes %%#%% %%#%% %%#%% sandboxing 
-%%#%% %%#%% register reg%%lst%% %%#%% %%cmp%% %%#%% actual target ad— 
-dress reg+oﬁset%%lst%% thereby saving %%#%% instruction%%per%%]$~ ~$[to 
-support %%#%% optimization%%lst%% %%#%% prototype establishes 
-guard zones %%#%% %%#%% top ]^[ bottom %%#%% %%#%% segment%%per%%]$~ 
-~$[to create %%#%% guard zones%%lst%% virtual memory pages ad— 
-jacent %%#%% %%#%% segment %%#%% unmapped (see figure 3)%%lst%% 
-%%#%% %%#%% reduce runtime overhead %%#%% treating %%#%% 
-mips stack pointer %%#%% %%#%% dedicated register%%per%%]$~ ~$[we avoid 
-sandboxing %%#%% %%#%% %%#%% %%#%% stack pointer %%#%% sandboxing 
-207 
-%%#%% register whenever %%#%% %%#%% set%%per%%]$~ ~$[since %%#%% %%#%% %%#%% stack 
-pointer %%#%% form addresses %%#%% %%#%% %%#%% plentiful %%cmp%% 
-changes %%#%% it%%lst%% %%#%% optimization signiﬁcantly improves 
-performance%%per%%]$~ 
-~$[further%%lst%% %%#%% %%#%% avoid sandboxing %%#%% stack pointer 
-%%#%% %%#%% %%#%% modiﬁed %%#%% %%#%% %%#%% constant offset %%#%% %%#%% %%#%% 
-%%#%% modiﬁed stack pointer %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% load ]v[ 
-store address %%#%% %%#%% %%#%% control transfer instruc» 
-tion%%per%%]$~ ~$[if %%#%% modiﬁed stack pointer %%#%% moved %%#%% %%#%% 
-guard zone%%lst%% %%#%% load ]v[ store instruction using %%#%% %%#%% 
-cause %%#%% hardware address fault%%per%%]$~ ~$[on %%#%% dec alpha 
-processor%%lst%% %%#%% apply %%#%% optimizations %%#%% %%#%% %%#%% 
-frame pointer ]^[ %%#%% stack pointer%%per%%]$~ 
-~$[there %%#%% %%#%% number %%#%% %%#%% optimizations %%#%% 
-%%#%% reduce sandboxing overhead%%per%%]$~ ~$[for example%%lst%% 
-%%#%% transformation tool %%#%% remove sandboxing se— 
-quences %%#%% loops%%lst%% %%#%% %%#%% %%#%% %%#%% store target ad%%dsh%% 
-dress changes %%#%% %%#%% %%#%% %%#%% constant oifset %%#%% 
-%%#%% loop iteration%%per%%]$~ ~$[our prototype %%#%% ]n[ ]y[ imple— 
-ment %%#%% optimizations%%per%% 
-3%%per%%4 process resources 
-%%#%% multiple fault domains share %%#%% %%#%% virtual 
-address space%%lst%% %%#%% fault domain implementation %%#%% 
-prevent distrusted modules %%#%% corrupting resources 
-%%#%% %%#%% allocated %%#%% %%#%% per—addressspace basis%%per%%]$~ ~$[for 
-example%%lst%% %%cmp%% %%#%% fault domain %%#%% allowed %%#%% %%#%% system 
-calls%%lst%% %%#%% %%#%% close ]v[ delete ﬁles %%#%% %%#%% %%#%% code 
-executing %%#%% %%#%% address space%%lst%% potentially causing %%#%% 
-application %%#%% %%#%% %%#%% %%#%% crash%%per%%]$~ 
-~$[one solution %%#%% %%#%% modify %%#%% operating system %%#%% 
-know %%#%% fault domains%%per%%]$~ ~$[on %%#%% system call ]v[ page 
-fault%%lst%% %%#%% kernel %%#%% %%#%% %%#%% program counter %%#%% deter%%dsh%% 
-mine %%#%% currently executing fault domain%%lst%% ]^[ restrict 
-resources accordingly%%per%%]$~ 
-~$[to %%#%% %%#%% prototype portable%%lst%% %%#%% implemented 
-%%#%% alternative approach%%per%%]$~ ~$[in addition %%#%% placing %%#%% 
-distrusted module %%#%% %%#%% separate fault domain%%lst%% %%#%% re— 
-quire distrusted modules %%#%% access system resources 
-%%#%% %%#%% cross%%dsh%%fault%%dsh%%domain rpc%%per%%]$~ ~$[we reserve %%#%% 
-fault domain %%#%% hold trusted arbitration code %%#%% de— 
-termines %%#%% %%#%% particular system call performed 
-%%#%% %%#%% %%#%% fault domain %%#%% safe%%per%%]$~ ~$[if %%#%% distrusted 
-module’s object code performs %%#%% direct system call%%lst%% %%#%% 
-transform %%#%% call %%#%% %%#%% appropriate rpc call%%per%%]$~ ~$[in 
-%%#%% %%#%% %%#%% %%#%% extensible application%%lst%% %%#%% trusted por%%dsh%% 
-tion %%#%% the%%per%% application %%#%% %%#%% system calls directly 
-]^[ shares %%#%% fault domain %%#%% %%#%% arbitration code%%per%% 
-3%%per%%5 data sharing 
-hardware fault isolation mechanisms %%#%% support data 
-sharing %%#%% virtual address spaces %%#%% manipulate 
-ing page table entries%%per%%]$~ ~$[fault domains share %%#%% ad— 
-dress space%%lst%% ]^[ %%cmp%% %%#%% set %%#%% page table entries%%lst%% 
-]s[ %%#%% %%#%% ]n[ %%#%% %%#%% standard shared memory im— 
-plementation%%per%%]$~ ~$[read%%dsh%%only sharing %%#%% straightforward%%scn%% 
-%%#%% %%#%% software encapsulation techniques %%#%% ]n[ al%%dsh%% 
-ter load instructions%%lst%% fault domains %%#%% read %%#%% mem— 
-ory mapped %%#%% %%#%% application’s address space 3%%per%%]$~ 
-~$[if %%#%% object code %%#%% %%#%% particular distrusted mod— 
-ule %%#%% %%#%% sandboxed%%lst%% %%cmp%% %%#%% %%#%% share read%%dsh%%write 
-memory %%#%% %%#%% fault domains %%#%% %%#%% technique 
-%%#%% call lazy pointer swizzling%%per%%]$~ ~$[lazy pointer swizzling 
-provides %%#%% mechanism ]f[ fault domains %%#%% share ar— 
-bitrarily %%#%% read‘write memory regions %%#%% %%#%% ad%%dsh%% 
-ditional runtirne overhead%%per%%]$~ ~$[to support %%#%% technique%%lst%% 
-%%#%% modify %%#%% hardware page tables %%#%% map %%#%% shared 
-memory region %%#%% %%#%% address space segment %%#%% 
-%%#%% access%%scn%% %%#%% region %%#%% mapped %%#%% %%#%% %%#%% offset 
-%%#%% %%#%% segment%%per%%]$~ ~$[in %%#%% words%%lst%% %%#%% alias %%#%% shared 
-region %%#%% multiple locations %%#%% %%#%% virtual address 
-space%%lst%% ]b[ %%#%% aliased location %%#%% exactly %%#%% %%#%% 
-low order address bits%%per%%]$~ ~$[as %%#%% hardware shared mem%%dsh%% 
-ory schemes%%lst%% %%#%% shared region %%#%% %%#%% %%#%% %%#%% 
-segment offset%%per%%]$~ 
-~$[to avoid incorrect shared pointer comparisons %%#%% 
-sandboxed code%%lst%% %%#%% shared memory creation inter— 
-%%#%% %%#%% ensure %%#%% %%#%% shared object %%#%% %%#%% %%#%% 
-unique address%%per%%]$~ ~$[as %%#%% distrusted object code ac%%dsh%% 
-cesses shared memory%%lst%% %%#%% sandboxing code automati%%dsh%% 
-cally translates shared addresses %%#%% %%#%% correspond 
-ing addresses %%#%% %%#%% fault domain’s data segment%%per%%]$~ 
-~$[this translation %%#%% exactly %%#%% hardware transla~ 
-tion%%scn%% %%#%% low bits %%#%% %%#%% address remain %%#%% same%%lst%% ]^[ 
-%%#%% %%#%% bits %%#%% set %%#%% %%#%% data segment identiﬁer%%per%%]$~ 
-~$[under operating systems %%#%% %%#%% ]n[ allow virtual 
-address aliasing%%lst%% %%#%% %%#%% implement shared regions %%#%% 
-introducing %%#%% %%#%% software encapsulation technique%%cln%% 
-shared segment matching%%per%%]$~ ~$[to implement sharing%%lst%% %%#%% 
-%%#%% %%#%% dedicated register %%#%% hold %%#%% bitmap%%per%%]$~ ~$[the bitmap 
-indicates %%#%% segments %%#%% fault domain %%#%% access%%per%%]$~ 
-~$[for %%#%% unsafe instruction checked%%lst%% shared segment 
-matching requires %%#%% more%%per%% instruction %%cmp%% segment 
-matching%%per%% 
-3%%per%%6 implementation ]^[ veriﬁcation 
-%%#%% %%#%% identiﬁed %%#%% strategies ]f[ implementing 
-software encapsulation%%per%%]$~ ~$[one approach %%#%% %%#%% compiler 
-%%#%% emit encapsulated object code ]f[ %%#%% distrusted mod%%dsh%% 
-ule%%scn%% %%#%% integrity %%#%% %%#%% code %%#%% %%cmp%% veriﬁed %%#%% %%#%% 
-module %%#%% loaded %%#%% %%#%% fault domain%%per%%]$~ ~$[alternatively%%lst%% 
-%%#%% system %%#%% encapsulate %%#%% distrusted module %%#%% 
-directly modifying %%#%% object code %%#%% load time%%per%% 
-a\«ve %%#%% implemented versions %%#%% %%#%% techniques %%#%% %%#%% 
-form %%#%% protection %%#%% encapsulating load instructions %%#%% 
-%%#%% %%#%% store ]^[ jump instructions%%per%%]$~ ~$[we discuss %%#%% performance 
-%%#%% %%#%% variants %%#%% section 5%%per%%]$~ 
-~$[our current prototype %%#%% %%#%% %%#%% approach%%per%%]$~ ~$[we 
-modiﬁed %%#%% version %%#%% %%#%% gcc compiler %%#%% perform soft— 
-ware encapsulation%%per%%]$~ ~$[note %%#%% %%#%% %%#%% current imple%%dsh%% 
-mentation %%#%% language dependent%%lst%% %%#%% techniques %%#%% 
-language independent%%per%%]$~ 
-~$[we built %%#%% veriﬁer ]f[ %%#%% mips instruction set 
-%%#%% %%#%% ]f[ %%#%% sandboxing ]^[ segment match%%dsh%% 
-ing%%per%%]$~ ~$[the main challenge %%#%% veriﬁcation %%#%% that%%lst%% %%#%% %%#%% 
-presence %%#%% indirect jumps%%lst%% execution %%#%% begin %%#%% 
-%%#%% instruction %%#%% %%#%% code segment%%per%%]$~ ~$[to address %%#%% 
-situation%%lst%% %%#%% veriﬁer %%#%% %%#%% property %%#%% %%#%% software 
-encapsulation techniques%%cln%% %%#%% unsafe stores ]^[ jumps 
-%%#%% %%#%% dedicated register %%#%% form %%#%% target address%%per%%]$~ 
-~$[the veriﬁer divides %%#%% program %%#%% sequences %%#%% in— 
-structions called unsafe regions%%per%%]$~ ~$[an unsafe store re%%dsh%% 
-gion begins %%#%% %%#%% modiﬁcation %%#%% %%#%% dedicated store 
-register%%per%%]$~ ~$[an unsafe jump region begins %%#%% %%#%% mod%%dsh%% 
-iﬁcation %%#%% %%#%% dedicated jump register%%per%%]$~ ~$[if %%#%% ﬁrst in— 
-struction %%#%% %%#%% unsafe store ]v[ jump region %%#%% executed%%lst%% 
-%%#%% subsequent instructions %%#%% guaranteed %%#%% %%#%% exe%%dsh%% 
-cuted%%per%%]$~ ~$[an unsafe store region %%#%% %%#%% %%#%% %%#%% %%#%% 
-following hold%%cln%% %%#%% %%#%% instruction %%#%% %%#%% store %%#%% 
-%%#%% %%#%% dedicated register %%#%% form %%#%% target address%%lst%% 
-%%#%% %%#%% instruction %%#%% %%#%% control transfer instruction%%lst%% 
-%%#%% %%#%% instruction %%#%% ]n[ guaranteed %%#%% %%#%% executed%%lst%% 
-]v[ %%#%% %%#%% %%#%% %%#%% instructions %%#%% %%#%% code segment%%per%%]$~ 
-~$[a similar deﬁnition %%#%% %%#%% ]f[ unsafe jump regions%%per%%]$~ 
-~$[the veriﬁer analyzes %%#%% unsafe store ]v[ jump re%%cln%% 
-gion %%#%% insure %%#%% %%#%% dedicated register modiﬁed %%#%% 
-%%#%% region %%#%% valid %%#%% exit %%#%% %%#%% region%%per%%]$~ ~$[for ex— 
-ample%%lst%% %%#%% load %%#%% %%#%% dedicated register begins %%#%% unsafe 
-region%%per%%]$~ ~$[if %%#%% region appropriately sandboxes %%#%% ded— 
-icated register%%lst%% %%#%% unsafe region %%#%% deemed safe%%per%% %%cmp%% %%#%% 
-unsafe region %%#%% ]n[ %%#%% veriﬁed%%lst%% %%#%% code %%#%% rejected%%per%%]$~ 
-~$[by incorporating software encapsulation %%#%% %%#%% ex— 
-isting compiler%%lst%% %%#%% %%#%% able %%#%% %%#%% advantage %%#%% com— 
-piler infrastructure ]f[ code optimization%%per%%]$~ ~$[however%%lst%% 
-%%#%% approach %%#%% %%#%% disadvantages%%per%%]$~ ~$[first%%lst%% %%#%% mod%%dsh%% 
-iﬁed compilers %%#%% support %%#%% %%#%% programming lan— 
-guage (gcc supports c%%lst%% c++%%lst%% ]^[ pascal)%%per%%]$~ ~$[second%%lst%% %%#%% 
-compiler ]^[ veriﬁer %%#%% %%#%% synchronized %%#%% re— 
-spect %%#%% %%#%% particular encapsulation technique %%#%% 
-employed%%per%%]$~ 
-~$[an alternative%%lst%% called bmary patchzng%%lst%% alleviates 
-%%#%% problems%%per%%]$~ ~$[when %%#%% fault domain %%#%% loaded%%lst%% %%#%% 
-system %%#%% encapsulate %%#%% module %%#%% directly modi%%dsh%% 
-fying %%#%% object code%%per%%]$~ ~$[unfortunately%%lst%% practical ]^[ r07 
-bust binary patching%%lst%% resulting %%#%% efﬁcient code%%lst%% %%#%% ]n[ 
-currently %%#%% [lb92]%%per%%]$~ ~$[tools %%#%% translate %%#%% 
-binary format %%#%% %%#%% %%#%% %%#%% built%%lst%% ]b[ %%#%% 
-tools rely %%#%% compiler—speciﬁc idioms %%#%% distinguish 
-code %%#%% data ]^[ %%#%% processor emulation %%#%% han%%dsh%% 
-dle unknown indirect jumps[sck”93]%%per%%]$~ ~$[for software 
-encapsulation%%lst%% %%#%% main challenge %%#%% %%#%% transform %%#%% 
-code ]s[ %%#%% %%#%% %%#%% %%#%% subset %%#%% %%#%% registers%%lst%% leav— 
-208 
-trusted 
-caller domain 
-unlru sted 
-calico domain 
-call add 
-jump table 
-figure 4%%cln%% major components %%#%% %%#%% crossefault—domain 
-rfc%%per%% 
-ing registers available ]f[ dedicated use%%per%%]$~ ~$[to solve %%#%% 
-problem%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% binary patching proto%%dsh%% 
-type %%#%% %%#%% simple extensions %%#%% current object ﬁle 
-formats%%per%%]$~ ~$[the extensions store control ﬂow ]^[ register 
-usage information %%#%% %%#%% sufﬁcient %%#%% support software 
-encapsulation%%per%% 
-4 low latency cross fault do— 
-main communication 
-%%#%% purpose %%#%% %%#%% %%#%% %%#%% %%#%% reduce %%#%% cost %%#%% fault 
-isolation ]f[ cooperating ]b[ distrustful software mod— 
-ules%%per%%]$~ ~$[in %%#%% last section%%lst%% %%#%% %%#%% %%#%% half %%#%% %%#%% 
-solution%%cln%% efficient software encapsulation%%per%%]$~ ~$[in %%#%% sec%%dsh%% 
-tion%%lst%% %%#%% describe %%#%% %%#%% half%%cln%% fast communication 
-%%#%% fault domains%%per%%]$~ 
-~$[figure 4 illustrates %%#%% major components ofa cross— 
-fault~domain rfc %%#%% %%#%% trusted ]^[ distrusted 
-fault domain%%per%%]$~ ~$[this section concentrates %%#%% %%#%% as— 
-pects %%#%% fault domain crossing%%per%%]$~ ~$[first%%lst%% %%#%% describe 
-%%#%% simple mechanism %%#%% allows %%#%% fault domain %%#%% 
-safely call %%#%% trusted stub routine outside %%#%% domain%%scn%% 
-%%#%% stub routine %%cmp%% safely calls %%#%% %%#%% destination 
-domain%%per%%]$~ ~$[second%%lst%% %%#%% discuss %%#%% arguments %%#%% effi— 
-ciently passed %%#%% fault domains%%per%%]$~ ~$[third%%lst%% %%#%% detail 
-%%#%% registers ]^[ %%#%% machine state %%#%% managed %%#%% 
-cross—fault—domain rpcs %%#%% insure fault isolation%%per%%]$~ ~$[the 
-protocol ]f[ exporting ]^[ naming procedures %%#%% 
-fault domains %%#%% independent %%#%% %%#%% techniques%%per%%]$~ 
-~$[the %%#%% %%#%% ]f[ control %%#%% escape a%%per%% fault domain 
-%%#%% via %%#%% jump table%%per%%]$~ ~$[each jump table entry %%#%% %%#%% con— 
-trol transfer instruction %%#%% target address %%#%% %%#%% legal 
-entry %%#%% outside %%#%% domain%%per%%]$~ ~$[by using instructions 
-%%#%% target address %%#%% %%#%% immediate encoded %%#%% %%#%% 
-instruction%%lst%% %%#%% jump table %%#%% ]n[ rely %%#%% %%#%% %%#%% %%#%% 
-%%#%% dedicated register%%per%%]$~ ~$[because %%#%% table %%#%% kept %%#%% %%#%% 
-(readvonly) code segment%%lst%% %%#%% %%#%% %%#%% %%#%% modified %%#%% 
-%%#%% trusted module%%per%%]$~ 
-~$[for %%#%% pair %%#%% fault domains %%#%% customized call ]^[ 
-return stub %%#%% created ]f[ %%#%% exported procedure%%per%%]$~ 
-~$[currently%%lst%% %%#%% stubs %%#%% generated %%#%% hand %%#%% %%cmp%% 
-using %%#%% stub generator [jrtss]%%per%%]$~ ~$[the stubs run unpro— 
-tected outside %%#%% %%#%% %%#%% caller ]^[ callee domain%%per%%]$~ 
-~$[the stubs %%#%% responsible ]f[ copying cross%%dsh%%domain 
-arguments %%#%% domains ]^[ managing machine 
-state%%per%%]$~ 
-~$[because %%#%% stubs %%#%% trusted%%lst%% %%#%% %%#%% able %%#%% copy 
-call arguments directly %%#%% %%#%% target domain%%per%%]$~ ~$[tra— 
-ditional rpc implementations %%#%% address spaces 
-typically perform %%#%% copies %%#%% transfer data%%per%%]$~ ~$[the 
-arguments %%#%% marshalled %%#%% %%#%% message%%lst%% %%#%% kernel 
-copies %%#%% message %%#%% %%#%% target address space%%lst%% ]^[ 
-ﬁnally %%#%% callee %%#%% de%%dsh%%marshall %%#%% arguments%%per%%]$~ ~$[by 
-%%#%% %%#%% caller ]^[ callee communicate via %%#%% shared 
-buffer%%lst%% lrpc %%#%% %%#%% %%#%% %%#%% single copy %%#%% pass data 
-%%#%% domains [ballqi]%%per%%]$~ 
-~$[the stubs %%#%% %%#%% responsible ]f[ managing machine 
-state%%per%%]$~ ~$[on %%#%% cross—domain call %%#%% registers %%#%% %%#%% 
-%%#%% %%#%% %%#%% %%#%% future %%#%% %%#%% caller ]^[ potentially 
-modiﬁed %%#%% %%#%% callee %%#%% %%#%% protected%%per%%]$~ ~$[only regis— 
-ters %%#%% %%#%% designated %%#%% architectural convention %%#%% 
-bc preserved %%#%% procedure calls %%#%% saved%%per%%]$~ ~$[as %%#%% 
-optimization%%lst%% %%cmp%% %%#%% callee domain contains %%#%% instruc— 
-tions %%#%% modify %%#%% preserved register %%#%% %%#%% avoid 
-saving it%%per%%]$~ ~$[karger %%#%% %%#%% trusted linker %%#%% perform %%#%% 
-kind %%#%% optimization %%#%% address spaces [karsq]%%per%%]$~ 
-~$[in addition %%#%% saving ]^[ restoring registers%%lst%% %%#%% stubs 
-%%#%% switch %%#%% execution stack%%lst%% establish %%#%% correct 
-register context ]f[ %%#%% software encapsulation tech%%dsh%% 
-nique %%#%% used%%lst%% ]^[ validate %%#%% dedicated registers%%per%%]$~ 
-~$[our system %%#%% %%#%% %%#%% robust %%#%% %%#%% presence %%#%% 
-fatal errors%%lst%% ]f[ example%%lst%% %%#%% addressing violation7 %%#%% 
-executing %%#%% %%#%% fault domain%%per%%]$~ ~$[our current implementa— 
-tion %%#%% %%#%% unix signal facility %%#%% catch %%#%% errors%%scn%% 
-%%#%% %%cmp%% terminates %%#%% outstanding call ]^[ notiﬁes %%#%% 
-caller’s fault domain%%per%%]$~ ~$[if %%#%% application %%#%% %%#%% %%#%% 
-operating system thread ]f[ %%#%% fault domains%%lst%% %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% terminate %%#%% call %%#%% %%#%% taking %%#%% 
-long%%lst%% ]f[ example%%lst%% %%cmp%% %%#%% %%#%% inﬁnite loop%%per%%]$~ ~$[trusted 
-modules %%#%% %%#%% %%#%% timer facility %%#%% interrupt execu— 
-tion periodically ]^[ determine %%cmp%% %%#%% call %%#%% %%#%% %%#%% 
-terminated%%per%% 
-5 performance results 
-%%#%% evaluate %%#%% performance %%#%% software%%dsh%%enforced fault%%per%% 
-domains%%lst%% %%#%% implemented ]^[ measured %%#%% prototype 
-%%#%% %%#%% system %%#%% %%#%% 40mhz decstation 5000/240 (dec— 
-mips) ]^[ %%#%% lﬁoniliz alpha 400 (dec—alpha)%%per%%]$~ 
-~$[we consider %%#%% questions%%per%%]$~ ~$[first%%lst%% %%#%% %%#%% %%#%% 
-209 
-head %%#%% software encapsulation incur%%qsn%%]$~ ~$[second%%lst%% %%#%% 
-fast %%#%% %%#%% crossrfault—domain rfc%%qsn%%]$~ ~$[third%%lst%% %%#%% %%#%% %%#%% 
-performance impact %%#%% using software enforced fault 
-isolation %%#%% %%#%% end%%dsh%%user application%%qsn%%]$~ ~$[we discuss %%#%% 
-%%#%% %%#%% questions %%#%% turn%%per%% 
-5%%per%%1 encapsulation overhead 
-%%#%% measured %%#%% execution time overhead %%#%% sand%%dsh%% 
-boxing %%#%% wide range %%#%% %%#%% programs%%lst%% including %%#%% %%#%% 
-spe092 benchmarks ]^[ %%#%% %%#%% %%#%% splash bench%%dsh%% 
-marks [assql%%lst%% swgql]%%per%%]$~ ~$[we treated %%#%% benchmark 
-%%#%% %%cmp%% %%#%% %%#%% %%#%% distrusted module%%lst%% sandboxing %%#%% %%#%% 
-%%#%% code%%per%%]$~ ~$[column 1 %%#%% table 1 reports overhead %%#%% 
-%%#%% dec—mips%%lst%% column 6 reports overhead %%#%% %%#%% dec— 
-alpha%%per%%]$~ ~$[columns 2 ]^[ 7 report %%#%% overhead %%#%% using 
-%%#%% technique %%#%% provide %%#%% protection %%#%% sand« 
-boxing load instructions %%#%% %%#%% %%#%% store ]^[ jump 
-instructions“%%per%%]$~ ~$[as detailed %%#%% section 3%%lst%% sandboxing 
-requires 5 dedicated registers%%per%%]$~ ~$[column 3 reports %%#%% 
-overhead %%#%% removing %%#%% registers %%#%% %%#%% %%#%% 
-%%#%% %%#%% compiler%%per%%]$~ ~$[all overheads %%#%% computed %%#%% %%#%% 
-additional execution time divided %%#%% %%#%% original pro~ 
-gram‘s execution time%%per%%]$~ 
-~$[on %%#%% decemips%%lst%% %%#%% %%#%% %%#%% program measure— 
-ment tools pixie ]^[ qpt %%#%% calculate %%#%% number 
-%%#%% additional instructions executed due %%#%% sandbox~ 
-ing [dig%%lst%% bl92]%%per%%]$~ ~$[column 4 %%#%% table 1 reports %%#%% 
-data %%#%% %%#%% percentage %%#%% original program instruction 
-counts%%per%%]$~ 
-~$[the data %%#%% table 1 appears %%#%% contain %%#%% num— 
-ber %%#%% anomalies %%#%% some%%per%% %%#%% %%#%% benchmark pro%%dsh%% 
-grams%%lst%% ]f[ example%%lst%% 056%%per%%ear 011 %%#%% decamips ]^[ 
-026 %%per%% compress %%#%% %%#%% dec—alpha%%lst%% sandboxing reduced 
-execution time%%per%% %%#%% %%#%% number %%#%% %%#%% %%#%% overhead %%#%% 
-surprisingly low%%per%%]$~ 
-~$[to identify %%#%% source %%#%% %%#%% variations %%#%% de~ 
-veloped %%#%% analytical model ]f[ execution overhead%%per%%]$~ 
-~$[the model predicts overhead based %%#%% %%#%% number 
-%%#%% additional instructions executed due %%#%% sandbox 
-ing (s—znstructzons)%%lst%% ]^[ %%#%% number %%#%% saved ﬂoat~ 
-ing %%#%% interlock cycles (interlocks)%%per%%]$~ ~$[sandboxing in» 
-creases %%#%% available instructionlevel parallelism%%lst%% al 
-lowing %%#%% number %%#%% ﬂoating—point interlocks %%#%% %%#%% 
-substantially reduced %%#%% integer pipeline %%#%% ]n[ 
-provide interlocking%%scn%% instead%%lst%% delay slots %%#%% explicitly 
-ﬁlled %%#%% nop instructions %%#%% %%#%% compiler ]v[ assem~ 
-bler%%per%%]$~ ~$[hence%%lst%% scheduling ell%%sqt%%ects %%#%% integer instruc~ 
-tions %%#%% %%#%% accurately reﬂected %%#%% %%#%% count %%#%% in~ 
-structions added (s—mstructzons)%%per%%]$~ ~$[the expected overs 
-head %%#%% computed as%%cln%% 
-(s—msz‘mchons — interlacksﬂcycles—per—sccond 
-original%%dsh%%erecutwn%%dsh%% lune%%dsh%%seconds 
-4loads %%#%% %%#%% libraries%%lst%% %%#%% %%#%% %%#%% standard %%#%% library%%lst%% %%#%% 
-]n[ sandboxed%%per%%]$~ 
-~$[the model provides %%#%% effective %%#%% %%#%% separate known 
-sources %%#%% overhead %%#%% %%#%% order effects%%per%%]$~ ~$[col%%dsh%% 
-umn 5 %%#%% table 1 %%#%% %%#%% predicted overheads%%per%%]$~ 
-~$[as %%#%% %%#%% seen %%#%% table 1%%lst%% %%#%% model is%%lst%% %%#%% aver 
-age%%lst%% eﬁective %%#%% predicting sandboxing overhead%%per%%]$~ ~$[the 
-differences %%#%% measured ]^[ expected overheads 
-%%#%% normally distributed %%#%% mean 0%%per%%7% ]^[ standard 
-deviation %%#%% 2%%per%%6%%%per%%]$~ ~$[the difference %%#%% %%#%% means 
-ofthe measured ]^[ expected overheads %%#%% ]n[ statisti%%dsh%% 
-cally signiﬁcant%%per%%]$~ ~$[this experiment demonstrates that%%lst%% 
-%%#%% combining instruction count overhead ]^[ ﬂoating 
-%%#%% interlock measurements%%lst%% %%#%% %%#%% accurately pres 
-dict average execution time overhead%%per%%]$~ ~$[if %%#%% assume 
-%%#%% %%#%% model %%#%% %%#%% accurate %%#%% predicting %%#%% over— 
-head %%#%% individual benchmarks%%lst%% %%#%% %%#%% conclude %%#%% 
-%%#%% %%#%% %%#%% %%#%% order effect creating %%#%% observed 
-anomalies %%#%% measured overhead%%lst%% 
-%%#%% %%#%% discount eﬁective instruction cache size ]^[ 
-virtual memory paging %%#%% sources ]f[ %%#%% observed ex~ 
-ecution time variance%%per%%]$~ ~$[because sandboxing adds in%%dsh%% 
-structions%%lst%% %%#%% effective size %%#%% %%#%% instruction cache %%#%% 
-reduced%%per%%]$~ ~$[while %%#%% %%#%% account ]f[ measured over%%dsh%% 
-heads %%#%% %%cmp%% predicted%%lst%% %%#%% %%#%% ]n[ account ]f[ 
-%%#%% opposite effect%%per%%]$~ ~$[because %%#%% %%#%% %%#%% benchmarks %%#%% 
-compute bound%%lst%% %%#%% %%#%% unlikely %%#%% %%#%% variations %%#%% 
-due %%#%% virtual memory paging%%per%%]$~ 
-~$[the dec<mips %%#%% %%#%% physically indexed%%lst%% physically 
-tagged%%lst%% direct mapped data cache%%per%%]$~ ~$[in %%#%% experiments 
-sandboxing %%#%% ]n[ affect %%#%% size%%lst%% contents%%lst%% ]v[ starting 
-virtual address %%#%% %%#%% data segment%%per%%]$~ ~$[for %%#%% original 
-]^[ sandboxed versions %%#%% %%#%% benchmark programs%%lst%% 
-successive runs %%#%% insigniﬁcant variation%%per%%]$~ ~$[though 
-difﬁcult %%#%% quantify%%lst%% %%#%% %%#%% ]n[ believe %%#%% data cache 
-alignment %%#%% %%#%% %%#%% source %%#%% variation %%#%% %%#%% 
-experiments%%per%% 
-\ve conjecture %%#%% %%#%% observed variations %%#%% 
-caused %%#%% instruction cache mappzng conﬂicts%%per%%]$~ ~$[soft— 
-ware encapsulation changes %%#%% mapping %%#%% instruc~ 
-tions %%#%% cache lines%%lst%% %%cmp%% changing %%#%% number %%#%% in— 
-struction cache conﬂicts%%per%%]$~ ~$[a number %%#%% researchers %%#%% 
-investigated minimizing instruction cache conﬂicts %%#%% 
-reduce execution time [mcf89%%lst%% phqo%%lst%% sam88]%%per%%]$~ ~$[one 
-researcher reported %%#%% 20% performance gain %%#%% sim— 
-ply ehanging %%#%% order %%#%% %%#%% %%#%% object ﬁles were%%per%% 
-linked [phqo]%%per%%]$~ ~$[samples ]^[ hilﬁnger report signif— 
-icantly improved instruction cache miss rates %%#%% re— 
-arranging %%#%% 3% %%#%% 8% %%#%% %%#%% application’s basic 
-blocks [sarnss]%%per%%]$~ 
-~$[beyond %%#%% effect%%lst%% %%#%% %%#%% statistically signiﬁcant 
-differences %%#%% programs%%per%%]$~ ~$[on average%%lst%% programs 
-%%#%% contained %%#%% signiﬁcant percentage %%#%% ﬂoating 
-%%#%% operations incurred less overhead%%per%%]$~ ~$[on %%#%% dec— 
-mips %%#%% mean overhead ]f[ ﬂoating %%#%% intensive 
-benchmarks %%#%% 2%%per%%5%%%lst%% %%cmp%%d %%#%% %%#%% mean %%#%% 5%%per%%6% ]f[ 
-%%#%% remaining benchmarks%%per%%]$~ ~$[all %%#%% %%#%% benchmarks %%#%% 
-210 
-dec%%dsh%%mips dec%%dsh%%alpha 
-fault protection reserved instruction fault fault protection 
-benchmark isolation overhead register count isolation isolation overhead 
-overhead overhead overhead overhead overhead 
-(predicted) 
-052%%per%% alvinn fp 1%%per%%4% 33%%per%%4% —0%%per%%3% 19%%per%%4% 0%%per%%2% 8%%per%%1% 35%%per%%5% 
-bps fp 5%%per%%6% 15%%per%%5% %%dsh%%0%%per%%1% 8%%per%%9% 5%%per%%7% 4%%per%%7% 20%%per%%3% 
-cholesky fp 0%%per%%0% 22%%per%%7% 0%%per%%5% 6%%per%%5% 4%%per%%5% 0%%per%%0% 9%%per%%3% 
-026 %%per%% compress int 3%%per%%3% 13%%per%%3% 0%%per%%0% 10%%per%%9% 4%%per%%4% 4%%per%%3% 0%%per%%0% 
-056%%per%%ear fp —1%%per%%2% 19%%per%%1% 0%%per%%2% 12%%per%%4% 2%%per%%2% 3%%per%%7% 18%%per%%3% 
-023 %%per%% eqntott int 2%%per%%9% 34%%per%%4% 1%%per%%0% 2%%per%%7% 2%%per%%2% 2%%per%%3% 17%%per%%4% 
-008 %%per%% espresso int 12%%per%%4% 27%%per%%0% —1%%per%%6% 11%%per%%8% 10%%per%%5% 13%%per%%3% 33%%per%%6% 
-001 %%per%%gcc1%%per%%35 int 3%%per%%1% 18%%per%%7% %%dsh%%9%%per%%4% 17%%per%%0% 8%%per%%9% na na 
-022%%per%%11 int 5%%per%%1% 23%%per%%4% 0%%per%%3% 14%%per%%9% 11%%per%%4% 5%%per%%4% 16%%per%%2% 
-locus int 8%%per%%7% 30%%per%%4% 4%%per%%3% 10%%per%%3% 8%%per%%6% 4%%per%%3% 8%%per%%7% 
-mp3d fp 10%%per%%7% 10%%per%%7% 0%%per%%0% 13%%per%%3% 8%%per%%7% 0%%per%%0% 6%%per%%7% 
-psgrind int 10%%per%%4% 19%%per%%5% 1%%per%%3% 12%%per%%1% 9%%per%%9% 8%%per%%0% 36%%per%%0% 
-ch pf 05% 27%%per%%0% 2%%per%%0% 8%%per%%8% 1%%per%%2% %%dsh%%0%%per%%8% 12%%per%%1% 
-072 %%per%% sc int 5%%per%%6% 11%%per%%2% 7%%per%%0% 8%%per%%0% 3%%per%%8% na na 
-tracker int %%dsh%%0%%per%%8% 10%%per%%5% 0%%per%%4% 3%%per%%9% 2%%per%%1% 10%%per%%9% 19%%per%%9% 
-water fp 0%%per%%7% 7%%per%%4% 0%%per%%3% 6%%per%%7% 1%%per%%5% 4%%per%%3% 12%%per%%3% 
-| average %%#%% 4%%per%%3% | 21%%per%%8% | 0%%per%%4% | 10%%per%%5% | 5%%per%%0% %%#%% 4%%per%%3% | 17%%per%%6% ‘i 
-table 1%%cln%% sandboxing overheads ]f[ dec—mips ]^[ dec—alpha platforms%%per%%]$~ ~$[the benchmarks 001%%per%%gcc1%%per%%35 ]^[ 
-072%%per%%sc %%#%% dependent %%#%% %%#%% pointer size %%#%% 32 bits ]^[ %%#%% ]n[ compile %%#%% %%#%% dec%%dsh%%alpha%%per%%]$~ ~$[the predicted fault 
-isolation overhead ]f[ cholesky %%#%% negative due %%#%% conservative interlocking %%#%% %%#%% mips ﬂoatingvpoint unit%%per%% 
-compute intensive%%per%%]$~ ~$[programs %%#%% perform signiﬁcant 
-amounts %%#%% i/o %%#%% incur less overhead%%per%% 
-5%%per%%2 fault domain crossing 
-%%#%% %%#%% %%#%% %%#%% %%#%% cost %%#%% cross—fault—domain rpc%%per%%]$~ 
-~$[our rpc mechanism spends %%#%% %%#%% %%#%% time saving 
-]^[ restoring registers%%per%%]$~ ~$[as detailed %%#%% section 4%%lst%% %%#%% 
-registers %%#%% %%#%% designated %%#%% %%#%% architecture %%#%% %%#%% 
-preserved %%#%% procedure calls %%#%% %%#%% %%#%% saved%%per%%]$~ ~$[in 
-addition%%lst%% %%cmp%% %%#%% instructions %%#%% %%#%% callee fault domain 
-modify %%#%% preserved register %%cmp%% %%#%% %%#%% ]n[ %%#%% %%#%% %%#%% 
-saved%%per%%]$~ ~$[table 2 reports %%#%% times ]f[ %%#%% versions %%#%% 
-%%#%% null cross—fault—domain rpc%%per%%]$~ ~$[column 1 lists %%#%% 
-crossing times %%#%% %%#%% data registers %%#%% caller saved%%per%%]$~ 
-~$[column 2 lists %%#%% crossing times %%#%% %%#%% preserved 
-integer registers %%#%% saved%%per%%]$~ ~$[finally%%lst%% %%#%% times listed %%#%% 
-column 3 include saving %%#%% preserved ﬂoating %%#%% 
-registers%%per%%]$~ ~$[in %%#%% %%#%% crossing times %%#%% %%#%% %%#%% 
-reduced %%#%% statically partitioning %%#%% registers %%#%% 
-domains%%per%%]$~ 
-~$[for comparison%%lst%% %%#%% measured %%#%% %%#%% calling 
-mechanisms%%per%%]$~ ~$[first%%lst%% %%#%% measured %%#%% time %%#%% perform %%#%% 
-%%#%% procedure call %%#%% takes %%#%% arguments ]^[ returns 
-%%#%% value%%per%%]$~ ~$[second%%lst%% %%#%% sent %%#%% single byte %%#%% %%#%% 
-address spaces using %%#%% pipe abstraction provided %%#%% 
-211 
-%%#%% native operating system ]^[ measured %%#%% round%%dsh%% 
-trip time%%per%%]$~ ~$[these times %%#%% reported %%#%% %%#%% last %%#%% 
-columns %%#%% table 2%%per%%]$~ ~$[on %%#%% platforms%%lst%% %%#%% cost 
-%%#%% cross—address—space calls %%#%% roughly %%#%% orders %%#%% 
-magnitude %%#%% expensive %%cmp%% local procedure calls%%per%%]$~ 
-~$[operating systems %%#%% highly optimized rpc im— 
-plementations %%#%% reduced %%#%% cost %%#%% cross%%dsh%%address%%dsh%% 
-space rpc %%#%% %%#%% roughly %%#%% orders %%#%% magni— 
-tude %%#%% local procedure calls%%per%%]$~ ~$[on mach 3%%per%%0%%lst%% cross— 
-address%%dsh%%space rpc %%#%% %%#%% 25mhz decstation 5000/200 
-%%#%% 314 times %%#%% expensive %%cmp%% %%#%% local procedure 
-call [berqbl%%per%%]$~ ~$[the spring operating system%%lst%% running %%#%% 
-%%#%% 40mhz sparcstationq%%lst%% delivers cross—address—space 
-rpc %%#%% %%#%% 73 times %%#%% expensive %%cmp%% %%#%% local leaf 
-procedure call [hk93]%%per%%]$~ ~$[software enforced fault isola« 
-tion %%#%% able %%#%% reduce %%#%% relative cost %%#%% cross%%dsh%%fault%%dsh%% 
-domain rpc %%#%% %%#%% order %%#%% magnitude %%#%% %%#%% sys%%dsh%% 
-tems%%per%% 
-5%%per%%3 using fault domains %%#%% postgres 
-%%#%% capture %%#%% effect %%#%% %%#%% system %%#%% application 
-performance%%lst%% %%#%% added software enforced fault %%#%% 
-mains %%#%% %%#%% postgres database management system%%lst%% 
-]^[ measured postgres running %%#%% sequoia 2000 
-benchmark [sfgmq3]%%per%%]$~ ~$[the sequoia %%sqt%%2000 benchmark 
-cross faultadomain rfc 
-platform caller save save %%#%% pipes 
-save integer integer+float procedure 
-registers registers registers call 
-dec~mips 1%%per%%11ps 1%%per%%81ps 2%%per%%83m 0%%per%%10/4s 204%%per%%72ns 
-dec—alpha 0175/15 1%%per%%35/5 lsons 0%%per%%06ps 227%%per%%88ps 
-table ‘2%%cln%% cross%%dsh%%faultrdomain crossing times%%per%%]$~ 
-~$[sequoia 2000 untrusted software—enforced number dec—mips—pipe 
-query function manager fault isolation cross—domain overhead 
-overhead overhead calls (predicted) 
-query 6 1%%per%%4% 1%%per%%7% 60989 18%%per%%6% 
-query 7 5%%per%%0% 1%%per%%8% 121986 386% 
-query 8 9%%per%%0% 2%%per%%7% 121978 312% 
-query 10 9%%per%%6% 5%%per%%7% 1427024 31%%per%%9% 
-table 3%%cln%% fault isolation overhead ]f[ postgres running sequoia 2000 benchmark%%per%% 
-contains queries typical %%#%% %%#%% %%#%% %%#%% earth scien— 
-tists %%#%% studying %%#%% climate%%per%%]$~ ~$[to support %%#%% kinds 
-%%#%% non~traditional queries%%lst%% postgres provides a%%per%% user 
-extensible type system%%per%%]$~ ~$[currently%%lst%% userrdeﬁned types 
-%%#%% written %%#%% conventional programming languages%%lst%% 
-%%#%% %%#%% c%%lst%% ]^[ dynamically loaded %%#%% %%#%% database 
-manager%%per%%]$~ ~$[this %%#%% %%#%% %%#%% recognized %%#%% %%#%% %%#%% serious 
-safety problem[st088]%%per%%]$~ 
-~$[four %%#%% %%#%% eleven queries %%#%% %%#%% sequoia 2000 bench%%dsh%% 
-mark %%#%% %%#%% %%#%% user—deﬁned polygon data types%%per%%]$~ ~$[we 
-measured %%#%% %%#%% queries using %%#%% unprotected 
-dynamic linking ]^[ software—enforced fault isolation%%per%%]$~ 
-~$[since %%#%% postgres code %%#%% trusted%%lst%% %%#%% %%#%% sand— 
-boxed %%#%% dynamically loaded user code%%per%%]$~ ~$[for %%#%% 
-experiment%%lst%% %%#%% cross%%dsh%%fault—domain rfc mechanism 
-saved %%#%% preserved integer registers (the variant cor%%dsh%% 
-responding %%#%% column 2 %%#%% table 2)%%per%%]$~ ~$[in addition%%lst%% %%#%% 
-instrumented %%#%% code %%#%% count %%#%% number %%#%% cross%%dsh%% 
-fault%%dsh%%domain rfcs ]s[ %%#%% %%#%% %%#%% estimate %%#%% %%#%% 
-formance %%#%% fault isolation based %%#%% separate address 
-spaces%%per%%]$~ 
-~$[table 3 %%#%% %%#%% results%%lst%% untrusted user—deﬁned 
-functions %%#%% postgres %%#%% %%#%% separate calling mecha%%dsh%% 
-nism %%#%% built—in functions%%per%%]$~ ~$[column 1 lists %%#%% over— 
-head %%#%% %%#%% untrustcd function manager %%#%% soft%%dsh%% 
-ware enforced fault domains%%per%%]$~ ~$[all reported overheads %%#%% 
-table 3 %%#%% relative %%#%% original postgres using %%#%% un— 
-trusted function manager%%per%%]$~ ~$[column 2 reports %%#%% mea~ 
-sured overhead %%#%% software enforced fault domains%%per%%]$~ ~$[us— 
-ing %%#%% number %%#%% cross—domain calls listed %%#%% column 3 
-]^[ tho dec*mips—i‘ipe time reported %%#%% table 2%%lst%% col— 
-umn 4 lists %%#%% estimated overhead using conventional 
-hardware address spaces%%per%% 
-212 
-5%%per%%4 analysis 
-%%#%% %%#%% postgres experiment software encapsulation 
-provided substantial savings %%#%% using native operat%%dsh%% 
-ing system services ]^[ hardware address spaces%%per%%]$~ ~$[in 
-general%%lst%% %%#%% savings provided %%#%% %%#%% techniques %%#%% 
-hardware—based mechanisms %%#%% %%#%% function %%#%% %%#%% per— 
-centage %%#%% time spent %%#%% distrusted code (q)%%lst%% %%#%% per%%dsh%% 
-centage %%#%% time spent crossing %%#%% fault domains 
-(2‘6)%%lst%% %%#%% overhead %%#%% encapsulation (h)%%lst%% ]^[ %%#%% ratio%%lst%% 
-r%%lst%% %%#%% %%#%% fault domain crossing time %%#%% %%#%% crossing 
-time %%#%% %%#%% competing hardware%%dsh%%based rpc mecha— 
-nism%%per%% 
-savings = (1 — 7°)t‘c %%dsh%%— htd 
-figure 5 graphically depicts %%#%% trade—offs%%per%%]$~ ~$[the %%#%% 
-axis %%#%% %%#%% percentage %%#%% time %%#%% application spends 
-crossing %%#%% fault domains%%per%%]$~ ~$[the %%#%% axis reports %%#%% 
-relative cost %%#%% software enforced fault%%dsh%%domain cross— 
-ing %%#%% hardware address spaces%%per%%]$~ ~$[assuming %%#%% %%#%% 
-execution time overhead %%#%% encapsulated code %%#%% 4%%per%%3%%%lst%% 
-%%#%% shaded region illustrates %%#%% software enforced 
-fault isolation %%#%% %%#%% %%#%% performance alternative%%per%%]$~ 
-~$[softwarevenforccd fault isolation %%#%% increas— 
-ingly attractive %%#%% applications achieve %%#%% degrees 
-%%#%% fault isolation (see figure 5)%%per%%]$~ ~$[for example%%lst%% %%cmp%% %%#%% ap%%dsh%% 
-plication spends 30% %%#%% %%#%% time crossing fault domains%%lst%% 
-%%#%% rpc mechanism %%#%% %%#%% perform 10% %%#%% 
-%%cmp%% %%#%% competitor%%lst%% applications %%#%% currently spend 
-%%#%% little %%#%% 10% %%#%% %%#%% time crossing require %%#%% %%#%% 
-39% improvement %%#%% fault domain crossing time %%#%% 
-reported %%#%% section 52%%lst%% %%#%% crossing time ]f[ %%#%% dec%%dsh%% 
-mips %%#%% hons ]^[ ]f[ %%#%% dec—alpha ute/is%%per%%]$~ ~$[hence%%lst%% 
-crossing time relative %%#%% 
-existing rfc 
-:9 hp :9 e9 
-ementage %%#%% execution time spent crossing 
-figure 5%%cln%% %%#%% shaded region represents %%#%% soft~ 
-ware enforced fault isolation provides %%#%% %%#%% per— 
-formance alternative%%per%%]$~ ~$[the %%#%% axis represents %%#%% 
-centage %%#%% time spent crossing %%#%% fault domains 
-(16)%%per%%]$~ ~$[the %%#%% axis represents %%#%% relative rpc crossing 
-speed (7‘)%%per%%]$~ ~$[the curve represents %%#%% break %%#%% point%%cln%% 
-(1—7%%sqt%%)t,%%scn%% = htd%%per%%]$~ ~$[in %%#%% graph%%lst%% %%#%% = 0%%per%%043 (encapsulation 
-overhead %%#%% %%#%% dec~mips ]^[ dec%%dsh%%alpha)%%per%% 
-]f[ %%#%% latter example%%lst%% %%#%% hardware address space cross— 
-ing time %%#%% 1%%per%%80m %%#%% %%#%% dec—mips ]^[ 1%%per%%23/15 %%#%% %%#%% 
-dec~alpha %%#%% provide %%#%% performance %%cmp%% 
-software fault domains%%per%%]$~ ~$[as %%#%% %%#%% %%#%% know%%lst%% %%#%% pro— 
-duction ]v[ experimental system currently provides %%#%% 
-level %%#%% performance%%per%%]$~ 
-~$[further%%lst%% figure 5 assumes %%#%% %%#%% entire applica%%dsh%% 
-tion %%#%% encapsulated%%per%%]$~ ~$[for %%#%% applications%%lst%% %%#%% %%#%% 
-postgres%%lst%% %%#%% assumption %%#%% conservative%%per%%]$~ ~$[figure 6 
-transforms %%#%% previous ﬁgure%%lst%% assuming %%#%% 50% %%#%% 
-total execution %%#%% spent %%#%% distrusted extension code%%per%%]$~ 
-~$[figures 5 ]^[ 6 illustrate %%#%% software enforced 
-fault isolation %%#%% %%#%% %%#%% choice whenever crossing 
-overhead %%#%% %%#%% significant proportion %%#%% %%#%% applica%%dsh%% 
-tion’s execution time%%per%%]$~ ~$[figure 7 demonstrates %%#%% 
-overhead due %%#%% software enforced fault isolation re— 
-mains %%#%% regardless %%#%% application behavior%%per%%]$~ ~$[fig— 
-ure 7 plots overhead %%#%% %%#%% function %%#%% crossing behavior 
-]^[ crossing cost%%per%%]$~ ~$[crossing times typical %%#%% vendor%%dsh%% 
-supplied ]^[ highly optimized hardware—based rpc 
-mechanisms %%#%% shown%%per%%]$~ ~$[the graph illustrates %%#%% rel— 
-ative performance stability %%#%% %%#%% software solution%%per%%]$~ 
-~$[this stability%%dqt%% allows system developers %%#%% ignore %%#%% 
-performance effect %%#%% fault isolation %%#%% choosing %%#%% 
-modules %%#%% %%#%% %%#%% separate fault domains%%per%% 
-6 related %%#%% 
-%%#%% systems %%#%% considered %%#%% %%#%% optimizing 
-rpc performance [vat88%%lst%% tass%%lst%% bla90%%per%%]$~ ~$[sb90%%lst%% hk93%%lst%% 
-ball90%%lst%% ball91]%%per%%]$~ ~$[traditional rfc systems based 
-100% 
-90% 
-80% 
-70% 
-60% 
-40% 
-crossing time relative 10 
-existing rpc 
-u%%per%% 
-§ 
-percentage %%#%% execution time spent crossing 
-figure 6%%cln%% %%#%% shaded region represents %%#%% soft~ 
-ware enforced fault isolation provides %%#%% %%#%% per%%dsh%% 
-formance alternative%%per%%]$~ ~$[the %%#%% axis represents per%%dsh%% 
-centage %%#%% time spent crossing %%#%% fault domains 
-(136)%%per%%]$~ ~$[the %%#%% axis represents %%#%% relative rpc crossing 
-speed (%%sqt%%r%%sqt%%)%%per%%]$~ ~$[the curve represents %%#%% break %%#%% point%%cln%% 
-(l—r)tc = htd%%per%%]$~ ~$[in %%#%% graph%%lst%% %%#%% = 0%%per%%043 (encapsulation 
-overhead %%#%% %%#%% dec—mips ]^[ dec—alpha)%%per%% 
-100% %%per%% 
-a%%dqt%% ultrix 4%%per%%2 context switch 
-8 
-d3 80% — _ 
+~$[high%%dsh%%level synthesis %%#%% fpga circuits %%#%% 
+multiple clock domains 
+author names removed ]f[ blind review%%per%%]$~ 
+~$[abstract—we consider %%#%% high%%dsh%%level synthesis %%#%% circuits %%#%% 
+multiple clock domains %%#%% %%#%% bid %%#%% raise circuit performance%%per%%]$~ 
+~$[a profiling%%dsh%%based approach %%#%% %%#%% %%#%% select time%%dsh%%intensive subcircuits %%#%% %%#%% larger circuit %%#%% operate %%#%% separate clock 
+domains%%per%%]$~ ~$[this isolates %%#%% critical paths %%#%% %%#%% sub%%dsh%%circuits %%#%% 
+%%#%% larger circuit%%lst%% allowing %%#%% sub%%dsh%%circuits %%#%% %%#%% clocked %%#%% 
+%%#%% highest%%dsh%%possible speed%%per%%]$~ ~$[the open%%dsh%%source legup high%%dsh%%level 
+synthesis tool (hls) [1] %%#%% modified %%#%% automatically insert 
+clock%%dsh%%domain%%dsh%%crossing circuitry ]f[ signals crossing %%#%% %%#%% 
+domains%%per%%]$~ ~$[the scheduling ]^[ binding phases %%#%% hls %%#%% 
+changed %%#%% reflect %%#%% impact %%#%% multiple clock domains %%#%% 
+memory%%per%%]$~ ~$[namely%%lst%% %%#%% block rams %%#%% fpgas %%#%% dual%%dsh%%port%%lst%% 
+%%#%% %%#%% port %%#%% operate %%#%% %%#%% %%#%% domain%%lst%% implying 
+%%#%% sub%%dsh%%circuits %%#%% %%#%% domains %%#%% access shared memory 
+provided %%#%% domains %%#%% %%#%% memory ports %%#%% consistent %%#%% 
+%%#%% sub%%dsh%%circuit domains%%per%%]$~ ~$[in %%#%% experimental study%%lst%% apply multiclock domain hls %%#%% %%#%% chstone benchmark suite [2] ]^[ 
+demonstrate average wall%%dsh%%clock time improvements %%#%% 33%%%per%%]$~ 
+~$[to understand %%#%% performance %%#%% %%#%% impacted %%#%% 
+%%#%% %%#%% %%#%% multiple clock domains%%lst%% consider %%#%% larger circuit 
+%%#%% %%#%% sub%%dsh%%circuits%%cln%% %%#%% ]f[ performing %%#%% computational 
+work%%lst%% ]^[ %%#%% %%#%% ]f[ %%#%% tasks%%lst%% %%#%% %%#%% setup%%lst%% i/o%%lst%% etc%%per%%]$~ 
+~$[assume %%#%% 90% %%#%% %%#%% execution cycles %%#%% consumed %%#%% %%#%% 
+%%#%% sub%%dsh%%circuit%%lst%% ]^[ %%#%% %%#%% time%%lst%% %%#%% %%#%% sub%%dsh%%circuit 
+lies idle%%per%%]$~ ~$[in %%#%% %%#%% scenario%%lst%% %%#%% minimize overall wall%%dsh%%clock 
+time%%lst%% %%#%% %%#%% desirable %%#%% %%#%% %%#%% clock period %%#%% %%#%% %%#%% subcircuit (where %%#%% majority %%#%% cycles %%#%% spent) %%#%% short %%#%% 
+possible%%per%%]$~ ~$[in %%#%% single%%dsh%%clock design%%lst%% %%#%% critical path %%#%% %%#%% overall 
+circuit %%#%% reside %%#%% %%#%% %%#%% sub%%dsh%%circuit%%lst%% thereby slowing 
+%%#%% everything%%per%%]$~ ~$[however%%lst%% %%#%% clocking %%#%% %%#%% sub%%dsh%%circuits 
+%%#%% independent domains%%lst%% %%#%% %%#%% assured %%#%% %%#%% speed %%#%% %%#%% 
+%%#%% sub%%dsh%%circuit %%#%% optimized %%#%% isolation%%scn%% %%#%% is%%lst%% %%#%% speed %%#%% 
+]n[ defined %%#%% %%#%% critical path %%#%% %%#%% %%#%% sub%%dsh%%circuit%%per%%]$~ 
+~$[i%%per%%]$~ ~$[i ntroduction 
+deployment %%#%% multiple clock domains %%#%% ]n[ %%#%% 
+%%#%% %%#%% cost%%per%%]$~ ~$[clock%%dsh%%domain%%dsh%%crossing circuitry %%#%% %%#%% 
+incorporated %%#%% %%#%% domains “talk” %%#%% %%#%% %%#%% 
+%%#%% avoid metastability (i%%per%%e%%per%% %%#%% %%#%% register output oscillates 
+%%#%% %%#%% %%#%% ]^[ low states ]f[ %%#%% %%#%% period %%#%% 
+time)%%lst%% ]^[ %%#%% circuitry imposes latency overheads ]f[ %%#%% 
+communication%%lst%% %%#%% %%#%% %%#%% %%#%% area overhead%%per%%]$~ ~$[moreover%%lst%% %%#%% %%#%% 
+%%#%% multiple domains complicates cad tasks%%lst%% particularly static 
+timing analysis%%per%%]$~ ~$[however%%lst%% despite %%#%% costs%%lst%% %%#%% %%#%% %%#%% 
+%%#%% note %%#%% %%#%% %%#%% fpga context%%lst%% modern devices %%#%% 
+contain sophisticated circuitry ]f[ %%#%% generation%%lst%% ]^[ lowskew distribution/routing %%#%% multiple %%#%% clocks %%#%% %%#%% 
+single user design%%per%%]$~ ~$[this %%#%% leverages %%#%% presence %%#%% %%#%% 
+already%%dsh%%existing circuitry %%#%% %%#%% hls perspective%%per%%]$~ 
+~$[high%%dsh%%level synthesis (hls) allows software design methodologies %%#%% %%#%% applied ]f[ hardware design%%lst%% lowering nonrecurring engineering (nre) costs ]^[ reducing %%#%% time%%dsh%%tomarket ]f[ %%#%% production %%#%% electronic products%%per%%]$~ ~$[for hardware 
+engineers%%lst%% hls allows design ]^[ verification %%#%% proceed %%#%% 
+rapidly%%lst%% %%#%% %%#%% %%#%% level %%#%% abstraction %%cmp%% traditional rtl%%per%%]$~ ~$[for 
+software engineers%%lst%% hls enables %%#%% speed ]^[ energy benefits 
+%%#%% hardware %%#%% %%#%% accessed %%#%% %%#%% %%#%% hardware%%dsh%%design 
+skills%%per%%]$~ ~$[the difficulty %%#%% traditional approaches %%#%% hardware 
+design%%lst%% %%#%% %%#%% %%#%% %%#%% labor market %%#%% software engineers 
+outnumber hardware engineers %%#%% %%#%% 10%%dsh%%to%%dsh%%1 margin [3]%%lst%% %%#%% key 
+drivers ]f[ %%#%% emphasis %%#%% hls %%#%% %%#%% largest fpga vendors%%per%%]$~ 
+~$[despite %%#%% rising popularity%%lst%% however%%lst%% %%#%% long%%dsh%%standing weakness 
+%%#%% hls %%#%% %%#%% %%#%% %%#%% cases%%lst%% %%#%% quality (performance%%lst%% power%%lst%% 
+%%#%% modified %%#%% open%%dsh%%source legup hls tool [1] %%#%% %%#%% 
+area) %%#%% %%#%% circuit produced %%#%% inferior %%#%% manual hardware university %%#%% toronto %%#%% generate multi%%dsh%%clock domain circuits%%per%% 
+design%%per%%]$~ ~$[in %%#%% paper%%lst%% %%#%% improve %%#%% performance %%#%% hls%%dsh%% %%#%% %%#%% %%#%% flow%%lst%% %%#%% user specifies%%lst%% %%#%% %%#%% tcl configuration 
+generated circuits %%#%% borrowing ]^[ incorporating %%#%% hls %%#%% file%%lst%% %%#%% functions %%#%% %%#%% %%#%% clocked %%#%% specific domains%%per%% 
+technique %%#%% traditional sequential circuit design – %%#%% %%#%% %%#%% scheduling ]^[ binding steps %%#%% hls %%#%% modified 
+%%#%% multiple clock domains%%per%% 
+%%#%% recognize clock domain restrictions %%#%% memory ports – 
+multiple%%dsh%%clock domain design refers %%#%% %%#%% %%#%% %%#%% multiple memories %%#%% fpgas %%#%% dual port%%lst%% %%#%% %%#%% port %%#%% %%#%% 
+clocks %%#%% %%#%% frequencies %%#%% %%#%% single larger design%%per%% clocked independently%%per%%]$~ ~$[in %%#%% binding context%%lst%% ]f[ example%%lst%% %%#%% 
+%%#%% example%%lst%% %%#%% %%#%% %%#%% sub%%dsh%%circuits %%#%% %%#%% larger circuit restriction implies %%#%% circuitry operating %%#%% %%#%% specific frequency 
+%%#%% %%#%% clocked %%#%% 100mhz%%lst%% ]^[ %%#%% %%#%% sub%%dsh%%circuit clocked %%#%% access memory %%#%% %%#%% port operating %%#%% %%#%% %%#%% 
+%%#%% 200mhz%%per%%]$~ ~$[the %%#%% %%#%% multiple clocks offers %%#%% potential frequency%%per%%]$~ ~$[the verilog generation step %%#%% legup %%#%% altered %%#%% 
+benefits%%cln%% 1) improved performance%%lst%% ]^[ 2) reduced power%%per%%]$~ ~$[we automatically insert clock%%dsh%%domain%%dsh%%crossing logic ]^[ fsm stall 
+focus %%#%% %%#%% former benefit %%#%% %%#%% paper%%scn%% however%%lst%% prior %%#%% logic%%per%%]$~ ~$[in %%#%% experimental study%%lst%% %%#%% demonstrate performance 
+%%#%% focused %%#%% %%#%% latter benefit [4]%%lst%% %%#%% power saved %%#%% benefits %%#%% single clock designs using %%#%% chstone hls 
+reducing %%#%% total clock routing capacitance toggling %%#%% %%#%% single benchmark suite [2]%%per%%]$~ ~$[to %%#%% authors’ knowledge%%lst%% %%#%% %%#%% %%#%% 
+(high) frequency%%lst%% ]^[ %%#%% ability %%#%% independently gate clock %%#%% %%#%% application %%#%% automated multiple%%dsh%%clock%%dsh%%domain circuit 
+domains ]f[ idle sub%%dsh%%circuits%%per%% 
+generation %%#%% hls ]f[ fpgas%%per%% 
+%%#%% scope %%#%% %%#%% paper%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% work%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% circuits %%#%% [10]%%lst%% called %%#%% %%#%% flip%%dsh%%flop synchronizer 
+]^[ %%#%% enable%%dsh%%based synchronizer%%per%%]$~ ~$[we elaborate %%#%% %%#%% %%#%% 
+detail %%#%% section iii%%per%%]$~ 
+~$[top module 
+global memory 
+port %%#%% 
+port %%#%% 
+start 
+start 
+arguments[i] 
+arguments[i] 
+module %%#%% 
+module %%#%% 
+return value 
+return value 
+finish 
+finish 
+a%%per%%]$~ ~$[legup hls 
+legup %%#%% %%#%% hls tool %%#%% converts %%#%% %%#%% program %%#%% %%#%% 
+hardware circuit specified %%#%% verilog rtl%%per%%]$~ ~$[the tool %%#%% built 
+%%#%% %%#%% open%%dsh%%source llvm compiler [11]%%per%%]$~ ~$[after program 
+module %%#%% 
+module %%#%% 
+parsing%%lst%% conversion %%#%% %%#%% compiler’s internal representation%%lst%% 
+]^[ compiler optimization passes%%lst%% legup hls commences%%per%%]$~ 
+~$[local shared 
+local shared 
+%%#%% typical hls steps %%#%% allocation%%lst%% scheduling%%lst%% binding%%lst%% 
+memory 
+memory 
+]^[ finally%%lst%% generation %%#%% %%#%% rtl%%per%%]$~ ~$[allocation pertains %%#%% %%#%% 
+constraints %%#%% %%#%% design%%cln%% %%#%% amount %%#%% hardware resources %%#%% 
+fig%%per%% 1%%per%%]$~ ~$[top%%dsh%%level circuit structure %%#%% legup%%dsh%%generated circuit%%per%% 
+%%#%% type %%#%% %%#%% permitted ]f[ %%#%% %%#%% %%#%% synthesized circuit%%lst%% %%#%% 
+%%#%% %%#%% %%#%% desired performance ]^[ %%#%% criteria%%per%%]$~ ~$[scheduling 
+assigns %%#%% computations %%#%% %%#%% software program %%#%% time 
+ii%%per%%]$~ ~$[background and %%#%% elated %%#%% ork 
+steps%%lst%% %%#%% corresponding %%#%% states %%#%% %%#%% finite%%dsh%%state machine 
+(fsm)%%per%%]$~ ~$[thus%%lst%% scheduling plays %%#%% key role %%#%% deciding %%#%% 
+multiple clock architectures%%lst%% %%#%% implemented %%#%% fpgas%%lst%% computation executes %%#%% %%#%% time%%lst%% thereby defining %%#%% control 
+%%#%% %%#%% studied %%#%% %%#%% past %%#%% decades%%per%%]$~ ~$[prior %%#%% fsm%%per%%]$~ ~$[binding selects%%lst%% ]f[ %%#%% computation %%#%% %%#%% software%%lst%% 
+includes multiple%%dsh%%clock architectures %%#%% globally asyn%%dsh%% %%#%% specific hardware resource %%#%% %%#%% %%#%% computation %%#%% 
+chronous ]^[ locally synchronous (gals) systems proposed %%#%% performed%%per%%]$~ ~$[finally%%lst%% %%#%% in%%dsh%%memory synthesized circuit %%#%% 
+%%#%% [5]%%per%%]$~ ~$[gals systems consist %%#%% multiple local synchronous written %%#%% %%#%% verilog%%per%%]$~ ~$[for %%#%% research%%lst%% changes %%#%% necessary 
+modules %%#%% communicate asynchronously via %%#%% 4%%dsh%%phase throughout %%#%% legup flow%%lst%% %%#%% described below%%per%% 
+handshake protocol%%per%%]$~ ~$[the 4%%dsh%%phase handshake protocol introduces 
+%%#%% %%#%% most%%dsh%%recent version %%#%% legup hls%%lst%% %%#%% generated 
+considerable delays %%#%% transfer data %%#%% synchronous 
+circuit %%#%% %%#%% “flat” topology%%lst%% %%#%% described %%#%% [12]%%lst%% %%#%% illustration 
+modules%%per%%]$~ ~$[a study %%#%% jiang et al%%per%% [6] proposed %%#%% computational 
+%%#%% %%#%% appears %%#%% fig%%per%% 1%%per%%]$~ ~$[observe %%#%% %%#%% modules%%lst%% memories 
+model%%lst%% called %%#%% gas block%%lst%% %%#%% facilitate %%#%% design %%#%% gals(global ]^[ shared local)%%lst%% %%#%% %%#%% %%#%% %%#%% interconnect reside 
+based embedded systems%%per%% 
+%%#%% %%#%% single level %%#%% %%#%% hierarchy%%per%%]$~ ~$[the rationale ]f[ %%#%% 
+%%#%% direction %%#%% %%#%% %%#%% latency%%dsh%%insensitive systems flat implementation %%#%% %%#%% permit %%#%% sharing %%#%% resources 
+(lis) [7] ]f[ %%#%% implementation %%#%% multiple%%dsh%%clock designs%%per%%]$~ ~$[lis%%dsh%% %%#%% %%#%% computational modules%%lst%% e%%per%%g%%per%% memories ]v[ large 
+based systems wrap circuit sub%%dsh%%modules %%#%% synchronizing computational blocks%%lst%% %%#%% %%#%% floating%%dsh%%point units ]v[ dividers%%per%% 
+wrappers %%#%% impose %%#%% area overhead%%per%%]$~ ~$[the synchronizing %%#%% flat hierarchy %%#%% implications ]f[ multi%%dsh%%clock hls %%#%% %%#%% 
+wrappers %%#%% %%#%% %%#%% %%#%% insulate individual sub%%dsh%%modules research%%lst%% particularly insertion %%#%% %%#%% cdc circuits %%#%% 
+%%#%% %%#%% %%#%% ]^[ also%%lst%% %%#%% permit communication %%#%% communicating modules %%#%% %%#%% clock domains%%per%% 
+modules%%per%%]$~ ~$[an extension %%#%% lis%%lst%% combined %%#%% gals%%dsh%%based 
+design%%lst%% %%#%% proposed %%#%% singh et al%%per%% [8] %%#%% support multi%%dsh%%clock 
+iii%%per%%]$~ ~$[m ultiple %%#%% lock %%dsh%%d omain hls 
+architectures%%per%%]$~ ~$[agiwal ]^[ singh [9] applies lis concepts %%#%% 
+multi%%dsh%%clock design%%lst%% %%#%% handling ]f[ metastability ]^[ data a%%per%%]$~ ~$[overview 
+incoherency%%per%%]$~ ~$[regarding multi%%dsh%%clock%%dsh%%domain hls ]f[ fpgas%%lst%% 
+%%#%% %%#%% %%#%% level%%lst%% %%#%% high%%dsh%%level synthesis %%#%% circuits %%#%% 
+%%#%% appears %%#%% %%#%% little prior %%#%% aside %%#%% [4]%%lst%% %%#%% multiple clock domains %%#%% %%#%% follows%%cln%% %%#%% user designates 
+focused %%#%% power benefits %%#%% %%cmp%% performance%%per%% 
+%%#%% %%#%% functions %%#%% %%#%% %%#%% placed %%#%% separate clock domains %%#%% 
+%%#%% key element %%#%% %%#%% design %%#%% digital circuits %%#%% multiple legup’s tcl configuration file%%per%%]$~ ~$[legup hls synthesizes %%#%% %%#%% 
+clock domains %%#%% clock%%dsh%%domain crossing (cdc) circuitry – function %%#%% %%#%% separate verilog module%%per%%]$~ ~$[in scenarios %%#%% %%#%% 
+special circuit structures %%#%% provide communication %%#%% function calls %%#%% function%%lst%% ]^[ %%#%% %%#%% functions reside %%#%% 
+%%#%% %%#%% clock domains%%per%%]$~ ~$[the purpose %%#%% %%#%% circuitry %%#%% %%#%% %%#%% clock domains%%lst%% clock%%dsh%%domain%%dsh%%crossing (cdc) circuitry 
+ensure %%#%% integrity %%#%% %%#%% data transmitted %%#%% %%#%% domains%%per%% %%#%% %%#%% inserted %%#%% %%#%% corresponding generated verilog 
+%%#%% data %%#%% %%#%% %%#%% clock domain %%#%% transmitted%%lst%% e%%per%%g%%per%% %%#%% modules%%per%%]$~ ~$[we modified %%#%% verilog generation step %%#%% legup 
+%%#%% flip%%dsh%%flop %%#%% output%%lst%% %%#%% %%#%% flip%%dsh%%flop clocked %%#%% %%#%% %%#%% domain%%lst%% hls %%#%% automatically insert %%#%% cdc circuits %%#%% %%#%% appropriate 
+%%#%% potential exists ]f[ metastability %%#%% %%#%% receiving flip%%dsh%%flop%%lst%% locations%%lst%% %%#%% %%#%% %%#%% %%#%% insert necessary stall logic %%#%% mitigate 
+depending %%#%% %%#%% timing relationship %%#%% %%#%% %%#%% clocks%%per%% metastability (elaborated %%#%% below)%%per%%]$~ ~$[the verilog generation 
+%%#%% cdc circuitry eliminates %%#%% chance %%#%% metastability%%lst%% %%#%% %%#%% modified %%#%% automatically instantiate plls ]f[ clock 
+providing clean data transfer %%#%% domains%%per%%]$~ ~$[a paper %%#%% generation%%cln%% %%#%% pll ]f[ %%#%% domain%%per%%]$~ ~$[in %%#%% study%%lst%% %%#%% target 
+luo et al%%per%% [10] surveys %%#%% design ]^[ verification %%#%% %%#%% variety %%#%% altera/intel cyclone %%#%% 45nm fpga%%scn%% %%#%% plls instantiated 
+%%#%% cdc circuits%%per%%]$~ ~$[a complete review %%#%% cdc circuits %%#%% beyond %%#%% specific %%#%% cyclone v%%per%%]$~ 
+~$[interconnect 
+start 
+start 
+arguments[i] 
+arguments[i] 
+return value 
+return value 
+finish 
+finish 
+port %%#%% 
+port %%#%% 
+port %%#%% 
+port %%#%% 
+clock domain 1 
+stall 
+clock domain 2 
+start %%#%% 
+stall 
+module %%#%% 
 %%#%% 
-a%%per%%]$~ 
-~$[u} 
+module 
+module 
+moduleab 
+return value %%#%% 
+stall 
+start %%#%% 
+stall 
+finish %%#%% 
+arguments c[j] 
+finish %%#%% 
+arguments c[j] 
+stall 
+logic 
+2 
+1 
+return value %%#%% 
+4 
+3 
+enable 
+finish 
+start 
+stall 
+module 
+module %%#%% 
+%%#%% 
+clock domain 3 
+arguments[j] 
+return value 
+fig%%per%% 2%%per%%]$~ ~$[clock%%dsh%%domain%%dsh%%crossing circuitry ]f[ start ]^[ finish signals%%per%%]$~ ~$[arguments/return value %%#%% %%#%% %%#%% abstract bold lines%%per%%]$~ 
+~$[in addition%%lst%% changes %%#%% %%#%% scheduling ]^[ binding steps %%#%% 
+legup hls %%#%% required %%#%% support multiple domains%%per%%]$~ ~$[such 
+changes %%#%% required ]f[ %%#%% %%#%% %%#%% sub%%dsh%%circuits %%#%% separate 
+clock domains access %%#%% shared resource%%lst%% %%#%% %%#%% %%#%% block ram%%per%%]$~ 
+~$[we elaborate %%#%% %%#%% cdc circuitry ]^[ %%#%% scheduling/binding 
+changes %%#%% %%#%% subsections below%%per%%]$~ 
+~$[b%%per%%]$~ ~$[clock%%dsh%%domain%%dsh%%crossing (cdc) circuitry 
+%%#%% support %%#%% synthesis %%#%% multiple clocks%%lst%% %%#%% modify 
+legup’s existing communication interface %%#%% modules%%per%%]$~ 
+~$[the communication interface %%#%% %%#%% legup%%dsh%%generated circuit 
+contains %%#%% main interfaces%%lst%% %%#%% master interface ]^[ %%#%% slave 
+interface%%per%%]$~ ~$[the master interface initiates %%#%% transfer %%#%% setting 
+%%#%% arguments %%#%% %%#%% slave interface ]^[ asserting %%#%% start 
+control signal%%per%%]$~ ~$[the slave responds %%#%% %%#%% transfer%%lst%% performs 
+%%#%% computation%%lst%% ]^[ %%#%% execution%%lst%% sets %%#%% return value ]^[ 
+asserts %%#%% finish control signal%%per%%]$~ ~$[note %%#%% %%#%% slave interface 
+%%#%% %%#%% multiple master interfaces connected %%#%% it%%per%%]$~ ~$[this 
+situation arises %%#%% %%#%% function %%#%% %%#%% original %%#%% program 
+%%#%% %%#%% %%cmp%% %%#%% call point%%per%%]$~ ~$[additionally%%lst%% %%#%% master interface 
+%%#%% %%#%% connected %%#%% multiple slave interfaces – %%#%% scenario 
+%%#%% arises %%#%% %%#%% function calls multiple %%#%% child 
+functions%%per%%]$~ ~$[the interconnect %%#%% %%#%% master interfaces ]^[ 
+%%#%% slave interfaces %%#%% generated %%#%% %%#%% top%%dsh%%level %%#%% %%#%% hierarchy%%lst%% 
+%%#%% mentioned %%#%% %%#%% section ii%%per%%]$~ ~$[we realize %%#%% passing %%#%% 
+arguments%%lst%% %%#%% return value ]^[ %%#%% control signals %%#%% %%#%% 
+clock domain %%#%% %%#%% %%#%% inserting cdc circuitry %%#%% %%#%% 
+legup rtl generation phase%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% flip%%dsh%%flop 
+synchronizer ]^[ %%#%% enable%%dsh%%based synchronizer%%per%%]$~ 
+~$[the %%#%% flip%%dsh%%flop synchronizer %%#%% %%#%% simple%%lst%% safe method 
+]f[ passing logic signals %%#%% clock domains%%lst%% ]^[ %%#%% %%#%% 
+recommended approach ]f[ cdc %%#%% altera fpgas [13]%%per%%]$~ ~$[the 
+concept %%#%% %%#%% %%#%% flip%%dsh%%flop synchronizer %%#%% %%#%% %%#%% %%#%% 
+register samples %%#%% asynchronous input signal ]^[ %%cmp%% waits 
+]f[ %%#%% clock cycle %%#%% allow %%#%% metastable state %%#%% %%#%% occur 
+%%#%% resolve itself%%per%%]$~ ~$[then%%lst%% %%#%% %%#%% register samples %%#%% input %%#%% 
+]^[ passes %%#%% %%#%% %%#%% %%#%% register%%lst%% %%#%% %%#%% intent %%#%% %%#%% 
+%%#%% %%#%% register %%#%% stable ]^[ ready %%#%% pass %%#%% signal %%#%% 
+%%#%% receiving clock domain%%per%%]$~ ~$[to realize %%#%% reliable %%#%% flip%%dsh%%flop 
+synchronizer%%lst%% %%#%% settling window ]f[ metastability %%#%% (the time 
+slack available ]f[ %%#%% metastable signal %%#%% %%#%% resolved) %%#%% 
+%%#%% set %%#%% %%#%% %%#%% clock cycle%%per%%]$~ ~$[the reliability %%#%% %%#%% %%#%% flip%%dsh%%flop 
+synchronizer %%#%% %%#%% expressed %%#%% terms %%#%% %%#%% mean time 
+%%#%% failure (mtbf) [14]%%cln%% 
+%%#%% 
+mt bf = 
+eτ 
+tw fr fs 
+(1) 
+%%#%% τ %%#%% %%#%% settling time constant %%#%% %%#%% flip%%dsh%%flop%%lst%% fr 
+%%#%% %%#%% receiving clock frequency%%lst%% ]^[ fs %%#%% %%#%% sending clock 
+frequency%%per%%]$~ ~$[tw %%#%% %%#%% time window %%#%% %%#%% metastability %%#%% 
+occur%%per%%]$~ ~$[tw %%#%% defined %%#%% %%#%% setup ]^[ hold%%dsh%%time parameters %%#%% 
+%%#%% flip%%dsh%%flop%%per%%]$~ ~$[as τ ]^[ tw %%#%% flip%%dsh%%flop parameters%%lst%% %%#%% depend 
+%%#%% %%#%% fpga %%#%% ]^[ %%#%% operating conditions%%per%%]$~ ~$[however%%lst%% 
+optimization %%#%% %%#%% carried %%#%% %%#%% t%%lst%% %%#%% %%#%% depends %%#%% %%#%% 
+design%%per%%]$~ ~$[in %%#%% case%%lst%% achieving %%#%% desirable (high) mtbf %%#%% 
+straightforward%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% clock cycle%%lst%% %%#%% %%#%% lengthy %%#%% 
+comparison %%#%% %%#%% time required ]f[ flip%%dsh%%flop stability %%#%% %%#%% 
+metastable event%%per%%]$~ ~$[typical τ values %%#%% %%#%% %%#%% tens %%#%% ps [14]%%lst%% 
+]^[ %%#%% %%#%% clock period %%#%% ns (e%%per%%g%%per%% 200mhz → %%#%% = 5ns)%%lst%% %%#%% 
+ratio %%#%% %%#%% /τ ≈ 102 %%lst%% %%#%% implies %%#%% numerator %%#%% %%#%% mtbf 
+2 
+equation ≈ e10 – %%#%% enormous quanity%%per%%]$~ 
+~$[clock domain 1 
+clock domain 2 
+start %%#%% 
+start %%#%% 
+arguments %%#%% [i] 
+arguments %%#%% [i] 
+en 
+module %%#%% 
+en 
+cdc circuit 
+%%#%% fig%%per%% 2 
+return value %%#%% 
+finish %%#%% 
+en 
+finish %%#%% 
+finish 
+return value 
+module %%#%% 
+start 
+clock domain 3 
+arguments [i] 
 0 
-%%#%% 60% %%#%% _ 
-%%sqt%%e—< 
+en 
+en 
+en 
+module %%#%% 
+return value %%#%% 
+fig%%per%% 3%%per%%]$~ ~$[cdc ]f[ arguments ]^[ return values%%per%%]$~ 
+~$[we modified legup %%#%% instantiate %%#%% %%#%% flip%%dsh%%flop synchrofig%%per%% 2 %%#%% %%#%% example %%#%% legup%%dsh%%synthesized circuitry 
+nizer %%#%% passing %%#%% control signals start ]^[ finish ]f[ %%#%% start ]^[ finish %%#%% %%#%% master interfaces %%#%% 
+%%#%% modules %%#%% %%#%% clock domains%%per%%]$~ ~$[however%%lst%% issues modules%%lst%% %%#%% ]^[ b%%lst%% ]^[ %%#%% slave interface c%%per%%]$~ ~$[the %%#%% flip%%dsh%%flop 
+arose surrounding %%#%% cycle latencies required ]f[ transmitting synchronizers %%#%% highlighted %%#%% labels 1 ]^[ 2 ]f[ %%#%% passing %%#%% 
+%%#%% control signals%%per%%]$~ ~$[the latency ]f[ transmitting %%#%% finish %%#%% start ]^[ finish control signals%%lst%% respectively%%lst%% %%#%% 
+signal %%#%% ]n[ %%#%% issue%%lst%% %%#%% %%#%% parent (calling) module assumes %%#%% module %%#%% master interface ]^[ module %%#%% slave interface%%per%%]$~ ~$[labels 
+slave %%#%% busy %%#%% %%#%% %%#%% finish %%#%% set %%#%% low%%per%%]$~ ~$[this implies 3 ]^[ 4 highlight %%#%% synchronizers ]f[ data transmission 
+%%#%% %%#%% master interface %%#%% ]n[ invoke %%#%% slave interface %%#%% modules %%#%% ]^[ c%%per%% 
+unless %%#%% slave’s finish %%#%% set %%#%% high%%per%%]$~ ~$[however%%lst%% %%#%% latency 
+%%#%% %%#%% arguments ]^[ return value %%#%% %%#%% interfaces %%#%% 
+]f[ transmitting %%#%% start signal required special attention%%per%%]$~ 
+~$[specifically%%lst%% %%cmp%% %%#%% start signal %%#%% issued %%#%% %%#%% master interface ]^[ multiple%%dsh%%bit%%dsh%%wide data%%lst%% %%#%% %%#%% %%#%% crossed %%#%% using %%#%% 
+%%#%% slave’s finish signal %%#%% ]n[ set %%#%% low %%#%% %%#%% %%#%% clock cycle%%lst%% simple cdc technique%%per%%]$~ ~$[the individual bits %%#%% wide words %%#%% 
+%%#%% master interface %%#%% invoke %%#%% %%#%% slave %%#%% arrive %%#%% %%#%% times %%#%% %%#%% receiving clock domain due %%#%% 
+%%#%% %%#%% start signal %%#%% partway %%#%% transmission %%#%% %%#%% clock imbalanced circuit delays%%per%%]$~ ~$[consequently%%lst%% %%#%% potential exists 
+domain %%#%% another%%per%%]$~ ~$[to handle %%#%% start signal latency issues%%lst%% ]f[ %%#%% individual bits %%#%% %%#%% sampled %%#%% %%#%% edges %%#%% %%#%% 
+fsm stall logic %%#%% added %%#%% %%#%% legup%%dsh%%generated hardware%%per%% receiving clock%%per%%]$~ ~$[to handle this%%lst%% %%#%% incorporate %%#%% enable%%dsh%%based 
+%%#%% added fsm logic stalls %%#%% entire circuit %%#%% start synchronizer concept %%#%% %%#%% cdc circuit%%per%%]$~ ~$[specifically%%lst%% %%#%% 
+signal %%#%% asserted %%#%% %%#%% master interface%%per%%]$~ ~$[the stall continues register multi%%dsh%%bit%%dsh%%wide data ]f[ multiple cycles %%#%% %%#%% sending 
+%%#%% %%#%% finish signal %%#%% %%#%% slave %%#%% set %%#%% low ]^[ passed clock domain %%#%% %%#%% receiving clock domain %%#%% ready %%#%% 
+%%#%% %%#%% %%#%% master interfaces %%#%% %%#%% slave interface%%per%%]$~ ~$[the stall sample it%%per%%]$~ ~$[the receiving clock domain samples %%#%% wide data 
+signal remains low %%#%% %%#%% specific delay %%#%% elapsed%%per%%]$~ ~$[the %%#%% %%#%% receives %%#%% enable control signal %%#%% %%#%% %%#%% passed 
+delay %%#%% imposed %%#%% %%#%% chain %%#%% flip%%dsh%%flops (a shift register) %%#%% %%#%% %%#%% sending clock domain%%per%% 
+%%#%% slave clock domain%%per%%]$~ ~$[the length %%#%% %%#%% chain depends %%#%% 
+%%#%% %%#%% legup master interface passes %%#%% arguments %%#%% 
+%%#%% ratio %%#%% %%#%% slave clock frequency ]^[ %%#%% fastest master 
+clock frequency%%lst%% %%#%% shown %%#%% (2)%%lst%% %%#%% fm0 %%lst%% fm1 %%#%% fmn refer %%#%% %%#%% start signal%%lst%% %%#%% %%#%% %%#%% start signal %%#%% %%#%% enable 
+%%#%% %%#%% frequencies %%#%% %%#%% master interfaces%%lst%% ]^[ fs represents ]f[ %%#%% sampling %%#%% %%#%% arguments %%#%% %%#%% slave interface clock 
+%%#%% frequency %%#%% %%#%% slave interface%%per%%]$~ ~$[the multiplication %%#%% %%#%% domain%%per%%]$~ ~$[as ]f[ %%#%% return value%%lst%% %%#%% %%#%% %%#%% finish control 
+frequency ratio %%#%% %%#%% %%#%% (2) %%#%% %%#%% accommodate %%#%% passing signal %%#%% %%#%% enable ]f[ %%#%% sampling %%#%% %%#%% master interface%%per%% 
+%%#%% %%#%% %%#%% finish signal %%#%% %%#%% %%#%% flip%%dsh%%flops %%#%% %%#%% master %%#%% fig%%per%% 2 pertained %%#%% handling %%#%% start ]^[ finish 
+interface%%per%%]$~ ~$[the addition %%#%% 3 %%#%% %%#%% apply %%#%% delay ]f[ %%#%% flip%%dsh%%flops signals%%lst%% fig%%per%% 3 %%#%% %%#%% analogous figure ]f[ cdc %%#%% arguments 
+]^[ return values%%per%%]$~ ~$[in %%#%% top%%dsh%%left corner %%#%% %%#%% figure%%lst%% ]f[ 
+%%#%% %%#%% slave interface%%per%% 
+example%%lst%% observe %%#%% %%#%% start driven %%#%% module %%#%% %%#%% clock 
+domain 1 %%#%% %%#%% %%#%% %%#%% register enable ]f[ %%#%% arguments passed 
+max( fm0 %%lst%% fm1 %%lst%% %%per%%%%per%%%%per%% fmn ) 
+number %%#%% %%#%% ffs = 3 + %%#%% 
+%%#%% × 2 (2) %%#%% module %%#%% %%#%% clock domain 3%%per%% 
 %%#%% 
-%%#%% 40% %%#%% — 
-é decstation 5000 
-3 hardware minimum 
-00 
-20% — _ 
 %%#%% 
-*%%dsh%% software 
-a? 
-0% l 
-0 1o 20 
-# crossings/millcsecond 
-figure 7%%cln%% percentage %%#%% time spent %%#%% crossing code 
-versus number %%#%% fault domain crossings %%#%% millisec%%dsh%% 
-ond %%#%% %%#%% decemips%%per%%]$~ ~$[the hardware minimum cross— 
-ing number %%#%% %%#%% %%#%% %%#%% crossvarchitectural study 
-%%#%% context switch times [albl91]%%per%%]$~ ~$[the ultrix 4%%per%%2 con%%dsh%% 
-text switch time %%#%% %%#%% reported %%#%% %%#%% last column %%#%% 
-table 2%%per%% 
-213 
-%%#%% hardware fault isolation %%#%% ultimately limited %%#%% 
-%%#%% minimal hardware cost %%#%% taking %%#%% kernel traps 
-]^[ %%#%% hardware context switches%%per%%]$~ ~$[lrpc %%#%% %%#%% 
-%%#%% %%#%% ﬁrst rpc systems %%#%% approach %%#%% limit%%lst%% ]^[ 
-%%#%% prototype %%#%% %%#%% number %%#%% %%#%% techniques found 
-%%#%% lrpc ]^[ later systems%%cln%% %%#%% %%#%% thread runs %%#%% 
-%%#%% %%#%% caller ]^[ %%#%% callee domain%%lst%% %%#%% stubs %%#%% 
-kept %%#%% simple %%#%% possible%%lst%% ]^[ %%#%% crossing code jumps 
-directly %%#%% %%#%% called procedure%%lst%% avoiding %%#%% dispatch 
-%%#%% %%#%% callee domain%%per%%]$~ ~$[unlike %%#%% systems%%lst%% software— 
-based fault isolation avoids hardware context switches%%lst%% 
-substantially reducing crossing costs%%per%%]$~ 
-~$[address space identiﬁer tags %%#%% %%#%% %%#%% %%#%% reduce 
-hardware context switch times%%per%%]$~ ~$[tags allow %%#%% %%cmp%% 
-%%#%% address space %%#%% share %%#%% tlb%%scn%% otherwise %%#%% 
-tlb %%#%% %%#%% ﬂushed %%#%% %%#%% context switch%%per%%]$~ ~$[it %%#%% 
-estimated %%#%% 25% %%#%% %%#%% cost %%#%% %%#%% lrpc %%#%% %%#%% 
-fireﬂy (which %%#%% ]n[ %%#%% tags) %%#%% due %%#%% tlb 
-misses[ball90]%%per%%]$~ ~$[address space tags %%#%% not%%lst%% however%%lst%% 
-reduce %%#%% cost %%#%% register management ]v[ system calls%%lst%% 
-operations %%#%% %%#%% ]n[ scaling %%#%% integer perfor%%dsh%% 
-mance[albl91]%%per%%]$~ ~$[an %%#%% advantage %%#%% software— 
-based jfault isolation %%#%% %%#%% %%#%% %%#%% ]n[ rely %%#%% specialv 
-ized architectural features %%#%% %%#%% address space tags%%per%%]$~ 
-~$[restrictive programming languages %%#%% %%#%% %%#%% %%#%% 
-%%#%% provide fault isolation%%per%%]$~ ~$[pilot requires %%#%% kernel%%lst%% 
-user%%lst%% ]^[ library code %%#%% %%#%% written %%#%% mesa%%lst%% 3 strongly 
-typed language%%scn%% %%#%% code %%cmp%% shares %%#%% single address 
-space [rdii+80]%%per%%]$~ ~$[the main disadvantage %%#%% relying %%#%% 
-strong typing %%#%% %%#%% %%#%% severely restricts %%#%% choice 
-%%#%% programming languages%%lst%% ruling %%#%% conventional 
-languages %%#%% c%%lst%% c++%%lst%% ]^[ assembly%%per%%]$~ ~$[even %%#%% 
-strongly—typed languages %%#%% %%#%% ada ]^[ modula—3%%lst%% 
-programmers %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% loopholes %%#%% 
-%%#%% type system%%lst%% undercutting fault isolation%%per%%]$~ ~$[in con— 
-trast%%lst%% %%#%% techniques %%#%% language independent%%per%%]$~ 
-~$[deutsch ]^[ grant built %%#%% system %%#%% allowed 
-user—deﬁned measurement modules %%#%% %%#%% dynamically 
-loaded %%#%% %%#%% operating system ]^[ executed directly 
-%%#%% %%#%% processor [dg71]%%per%%]$~ ~$[the module format %%#%% %%#%% 
-stylized native object code designed %%#%% %%#%% %%#%% easier 
-%%#%% statically verify %%#%% %%#%% code %%#%% ]n[ violate pro— 
-tection boundaries%%per%%]$~ 
-~$[an interpreter %%#%% %%#%% provide failure isolation%%per%%]$~ ~$[for 
-example%%per%% %%#%% bsd unix network packet ﬁlter utility 
-deﬁnes %%#%% language %%#%% %%#%% interpreted %%#%% %%#%% operat%%dsh%% 
-ing system network driver%%per%%]$~ ~$[the interpreter insulates 
-%%#%% operating system %%#%% %%#%% faults %%#%% %%#%% cus— 
-tomization code%%per%%]$~ ~$[our approach allows code written %%#%% 
-%%#%% programming language %%#%% %%#%% safely encapsulated 
-(or rejected %%cmp%% %%#%% %%#%% ]n[ safe)%%lst%% ]^[ %%cmp%% executed %%#%% near 
-%%#%% speed %%#%% %%#%% operating system%%per%%]$~ 
-~$[anonymous rfc exploits 64%%dsh%%bit address spaces %%#%% 
-provide low latency rfc ]^[ probabilistic fault iso— 
-lation [yba93]%%per%%]$~ ~$[logically independent domains %%#%% 
-214 
-placed %%#%% random locations %%#%% %%#%% %%#%% hardware ad» 
-dress spacer calls %%#%% domains %%#%% anonymous%%lst%% 
-%%#%% is%%lst%% %%#%% %%#%% ]n[ reveal %%#%% location %%#%% %%#%% caller 
-]v[ %%#%% callee %%#%% %%#%% side%%per%%]$~ ~$[this provides probabilis— 
-tic protection %%lst%% %%#%% %%#%% unlikely %%#%% %%#%% domain %%#%% 
-%%#%% able %%#%% discover %%#%% location %%#%% %%#%% %%#%% domain 
-%%#%% malicious ]v[ accidental memory probes%%per%%]$~ ~$[to pre» 
-serve anonymity%%lst%% %%#%% cross domain call %%#%% trap %%#%% pro%%dsh%% 
-tected code %%#%% %%#%% kernel%%scn%% however%%lst%% %%#%% hardware con~ 
-text switch %%#%% needed%%per%% 
-7 summary 
-%%#%% %%#%% described %%#%% software%%dsh%%based mechanism ]f[ 
-portable%%lst%% programming language independent fault 
-isolation %%#%% cooperating software modules%%per%%]$~ ~$[by 
-providing fault isolation %%#%% %%#%% single address space%%lst%% 
-%%#%% approach delivers crossefaultrdomain communica 
-tion %%#%% %%#%% %%#%% %%cmp%% %%#%% order %%#%% magnitude faster 
-%%cmp%% %%#%% rpc mechanism %%#%% date%%per%%]$~ 
-~$[to prevent distrusted modules %%#%% escaping %%#%% 
-own fault domain%%lst%% %%#%% %%#%% %%#%% software encapsulation 
-technique%%lst%% called sandboxing%%lst%% %%#%% incurs %%#%% 4% 
-despite %%#%% overhead %%#%% 
-executing distrusted code%%lst%% software—based fault isola%%dsh%% 
-tion %%#%% %%#%% yield %%#%% %%#%% overall application per%%dsh%% 
-formance%%per%%]$~ ~$[extensive kernel optimizations %%#%% reduce 
-%%#%% overhead %%#%% hardware%%dsh%%based rpc %%#%% %%#%% %%#%% fac%%dsh%% 
-tor %%#%% ten %%#%% %%#%% software—based alternative%%per%%]$~ ~$[even 
-%%#%% %%#%% situation%%lst%% software—based fault isolation %%#%% %%#%% 
-%%#%% %%#%% performance choice whenever %%#%% overhead 
-%%#%% using hardware—based rpc %%#%% %%#%% %%cmp%% 5%%%per%% 
-execution time overhead%%per%% 
-8 acknowledgements 
-%%#%% %%cmp%%k brian bershad%%lst%% mike burrows%%lst%% john hen%%dsh%% 
-nessy%%lst%% peter kessler%%lst%% butler lampson%%lst%% ed lazowska%%lst%% 
-dave patterson%%lst%% john ousterhout%%lst%% oliver sharp%%lst%% 
-richard sites%%lst%% alan smith ]^[ mike stonebraker ]f[ 
-%%#%% helpful comments %%#%% %%#%% paper%%per%%]$~ ~$[jim larus pro%%dsh%% 
-vided %%#%% %%#%% %%#%% proﬁling tool qpt%%per%%]$~ ~$[we %%#%% %%cmp%%k 
-mike olson ]^[ paul aoki ]f[ helping %%#%% %%#%% post— 
-gres%%per%%]$~ 
-~$[references 
-[acd74] tl%%per%%]$~ ~$[adam%%lst%% km%%per%%]$~ ~$[chandy%%lst%% ]^[ jr%%per%%]$~ ~$[dickson%%per%%]$~ 
-~$[a comparison %%#%% list schedules ]f[ parallel pro%%dsh%% 
-cessing systems%%per%%]$~ ~$[communications %%#%% %%#%% acm%%lst%% 
-17(12):685—690%%lst%% december 197/1%%per%% 
-[album] thomas anderson%%lst%% henry levy%%lst%% brian ber— 
-shad%%lst%% ]^[ edward lazowska%%per%%]$~ ~$[the interaction 
-%%#%% architecture ]^[ operating system design%%per%% 
-[a5591] 
-[asusg] 
-[ballqo] 
-[ball91] 
-[ber93] 
-[bl92] 
-[blaqo] 
-[1m 84] 
-[cla92] 
-[dg71] 
-[dis] 
-[dys92] 
-[fp93] 
-[h092] 
-111 proceedings %%#%% %%#%% 4th international confer%%dsh%% 
-ence %%#%% architectural supportfor programming 
-languages ]^[ operating systems%%lst%% pages 108— 
-120%%lst%% april 1991%%per%%]$~ 
-~$[administrator%%cln%% national computer graphics 
-association%%per%%]$~ ~$[spec newsletter%%lst%% 3(4)%%lst%% december 
-1991%%per%%]$~ 
-~$[alfred v%%per%%]$~ ~$[aho%%lst%% ravi sethi%%lst%% ]^[ jeffrey d%%per%%]$~ ~$[ull%%dsh%% 
-man%%per%%]$~ ~$[compilers%%lst%% principles%%lst%% techniques%%lst%% ]^[ 
-tools%%per%%]$~ ~$[addison—wesley publishing company%%lst%% 
-1986%%per%%]$~ 
-~$[brian bershad%%lst%% thomas anderson%%lst%% edward la%%dsh%% 
-zowska%%lst%% ]^[ henry levy%%per%%]$~ ~$[lightweight remote 
-procedure call%%per%%]$~ ~$[acm transactions %%#%% com%%dsh%% 
-puter systems%%lst%% 8(1)%%lst%% february 1990%%per%%]$~ 
-~$[brian bershad%%lst%% thomas anderson%%lst%% edward la~ 
-zowska%%lst%% ]^[ henry levy%%per%%]$~ ~$[user%%dsh%%level interpre%%dsh%% 
-cess communication ]f[ shared~memory mul%%dsh%% 
-tiprocessors%%per%%]$~ ~$[acm transactions %%#%% computer 
-systems%%lst%% 9(2)%%lst%% %%#%% 1991%%per%%]$~ 
-~$[brian bershad%%lst%% august 1993%%per%%]$~ ~$[private commu— 
-nication%%per%%]$~ 
-~$[thomas ball ]^[ james r%%per%%]$~ ~$[larus%%per%%]$~ ~$[optimally 
-proﬁling ]^[ tracing%%per%%]$~ ~$[in proceedings %%#%% %%#%% 
-conference %%#%% principles %%#%% programming lan%%dsh%% 
-guages%%lst%% pages 59‘70%%lst%% 1992%%per%%]$~ 
-~$[david black%%per%%]$~ ~$[scheduling support ]f[ concui~ 
-rency ]^[ parallelism %%#%% %%#%% mach operating 
-system%%per%%]$~ ~$[ieee computer%%lst%% 23(5):35 43%%lst%% %%#%% 
-1990%%per%%]$~ 
-~$[andrew birrell ]^[ bruce nelson%%per%%]$~ ~$[implement%%dsh%% 
-ing remote procedure calls%%per%%]$~ ~$[acm transac%%dsh%% 
-tions %%#%% computer systems%%lst%% 2(1):?19‘59%%lst%% febru‘ 
-ary 1984%%per%% 
-%%per%%1%%per%%d%%per%%]$~ ~$[clark%%per%% lvindow programmer’ guide %%#%% 
-ole/due%%lst%% prentice—hall%%lst%% 1992%%per%%]$~ 
-~$[l%%per%%]$~ ~$[p%%per%%]$~ ~$[deutsch ]^[ c%%per%%]$~ ~$[a%%per%%]$~ ~$[grant%%per%%]$~ ~$[a ﬂexible mea~ 
-surement tool ]f[ software systems%%per%%]$~ ~$[in ifip 
-congress%%lst%% 1971%%per%%]$~ 
-~$[digital equipment corporation%%per%%]$~ ~$[ultriz 114%%per%%2 
-pixie manual page%%per%%]$~ 
-~$[peter dyson%%per%%]$~ ~$[xtensions ]f[ xpress%%cln%% modular 
-software ]f[ custom systems%%per%%]$~ ~$[seybold report 
-%%#%% desktop publishing%%lst%% 6(10):1—‘%%per%%’%%per%%1%%lst%% june 1992%%per%%]$~ 
-~$[kevin fall ]^[ joseph pasquale%%per%%]$~ ~$[exploiting in— 
-kernel data paths %%#%% improve i/o throughput 
-]^[ cpu 3%%per%% vailability%%per%%]$~ ~$[in proceedings %%#%% %%#%% 
-1993 winter usenix conference%%lst%% pages 327— 
-333%%lst%% january 1993%%per%%]$~ 
-~$[keiran harty ]^[ 
-david cheriton%%per%%]$~ ~$[application—controlled physi%%dsh%% 
-cal memory using external page—cache manage— 
-ment%%per%%]$~ ~$[in proceedings %%#%% %%#%% 5th international 
-conference %%#%% architectural support ]f[ pro%%dsh%% 
-gramming languages ]^[ operating systems%%lst%% 
-october 1992%%per%% 
-215 
-[11k93] 
-[hkm+88] 
-[int86] 
-[jrtss] 
-[k ar89] 
-[k1886] 
-[lb92] 
-[mcf89] 
-[mj93] 
-[m ra87] 
-[p1190] 
-[rdh+ 80] 
-graham hamilton ]^[ panos kougiouris%%per%%]$~ ~$[the 
-spring nucleus%%cln%% %%#%% microkernel ]f[ objects%%per%%]$~ ~$[in 
-proceedings %%#%% %%#%% summer usenix confer%%dsh%% 
-cncc%%lst%% pages 1477159%%lst%% june 1993%%per%%]$~ 
-~$[j%%per%%]$~ ~$[howard%%lst%% m%%per%%]$~ ~$[kazar%%lst%% s%%per%%]$~ ~$[menees%%lst%% d%%per%%]$~ ~$[nichols%%lst%% 
-m%%per%%]$~ ~$[satyanarayanan%%lst%% r%%per%%]$~ ~$[sidebotham%%lst%% ]^[ 
-m%%per%%]$~ ~$[west%%per%%]$~ ~$[scale ]^[ performance %%#%% 3%%per%%]$~ ~$[dis%%dsh%% 
-tributed file system%%per%%]$~ ~$[acm transactions %%#%% 
-computer systems%%lst%% 6(1):51—82%%lst%% february 1988%%per%%]$~ 
-~$[intel corporation%%lst%% california%%per%%]$~ 
-~$[intel 80386 programmer’s reference manual%%lst%% 
-1986%%per%%]$~ 
-~$[michael b%%per%%]$~ ~$[jones%%lst%% richard f%%per%%]$~ ~$[rashid%%lst%% ]^[ 
-mary r%%per%%]$~ ~$[thompson%%per%%]$~ ~$[matchmaker%%cln%% %%#%% in%%dsh%% 
-terface speciﬁcation language ]f[ distributed 
-processing%%per%%]$~ ~$[in proceedings %%#%% %%#%% 12th acm 
-sigact%%dsh%%sigplan symposium %%#%% principles 
-%%#%% programming languages%%lst%% pages 225435%%lst%% 
-january 1985%%per%%]$~ 
-~$[santa clara%%lst%% 
-paul a%%per%%]$~ ~$[karger%%per%%]$~ ~$[using registers %%#%% optimize 
-cross—domain call performance%%per%%]$~ ~$[in proceed%%dsh%% 
-ings %%#%% %%#%% 3rd international conference %%#%% 
-architectural support ]f[ programming lan%%dsh%% 
-guages ]^[ operating systems%%lst%% pages 1947204%%per%%]$~ 
-~$[april 3~6 1989%%per%%]$~ 
-~$[steven r%%per%%]$~ ~$[kleiman%%per%%]$~ ~$[vnodes%%cln%% %%#%% architecture 
-]f[ multiple file system types %%#%% sun unix%%per%%]$~ 
-~$[in proceedings %%#%% %%#%% 1986 summer usenix 
-conference%%lst%% pages 238—247%%lst%% 1986%%per%%]$~ 
-~$[james r%%per%%]$~ ~$[larus ]^[ thomas ball%%per%%]$~ ~$[rewrit%%dsh%% 
-ing executable ﬁles %%#%% measure program be— 
-havior%%per%%]$~ ~$[technical report 1083%%lst%% university %%#%% 
-wisconsin%%dsh%%madison%%lst%% march 1992%%per%%]$~ 
-~$[scott mcfarling%%per%%]$~ ~$[program optimization ]f[ 
-instruction caches%%per%%]$~ ~$[in proceedings %%#%% %%#%% in%%cln%% 
-ternational conference %%#%% architectural sup— 
-port ]f[ programming languages ]^[ operat%%dsh%% 
-ing systems%%lst%% pages 183—191%%lst%% april 1989%%per%%]$~ 
-~$[steven mccanne ]^[ van lacobsen%%per%%]$~ ~$[the 
-bsd packet filter%%cln%% %%#%% %%#%% architecture ]f[ 
-user—level packet capture%%per%%]$~ ~$[in proceedings %%#%% 
-%%#%% 1993 winter usenix conference%%lst%% january 
-1993%%per%% 
-l%%per%%]$~ ~$[c%%per%%]$~ ~$[mogul%%lst%% r%%per%%]$~ ~$[f%%per%%]$~ ~$[rashid%%lst%% ]^[ m%%per%%]$~ ~$[j%%per%%]$~ ~$[ac%%dsh%% 
-cetta%%per%%]$~ ~$[the packet ﬁlter%%cln%% %%#%% cﬂicient mecha— 
-nism ]f[ user—level network code%%per%%]$~ ~$[in proceed%%dsh%% 
-ings %%#%% %%#%% symposium %%#%% operating system 
-principles%%lst%% pages 39—51%%lst%% november 1987%%per%%]$~ 
-~$[karl pettis ]^[ robert c%%per%%]$~ ~$[hansen%%per%%]$~ ~$[proﬁle 
-guided code positioning%%per%%]$~ ~$[in proceedings %%#%% 
-%%#%% conference %%#%% programming language de%%dsh%% 
-sign ]^[ implementation%%lst%% pages 16—27%%lst%% white 
-plains%%lst%% %%#%% york%%lst%% june 1990%%per%%]$~ ~$[appeared %%#%% 
-sigplan notices 25(6)%%per%%]$~ 
-~$[david d%%per%%]$~ ~$[redell%%lst%% yogen k%%per%%]$~ ~$[dalal%%lst%% thomas r%%per%%]$~ 
-~$[horsley%%lst%% hugh c%%per%%]$~ ~$[lauer%%lst%% william c%%per%%]$~ ~$[lynch%%lst%% 
-[sam88] 
-[5390] 
-[501693] 
-[sfgmqs] 
-[st087] 
-[st088] 
-[swg91] 
-[tass] 
-[thiﬁz] 
-[vcgsqz] 
-[vvstsb] 
-[web93] 
-[yba93] 
-paul r%%per%%]$~ ~$[mcjones%%lst%% hal g%%per%%]$~ ~$[murray%%lst%% ]^[ 
-stephen c%%per%%]$~ ~$[purcell%%per%%]$~ ~$[pilot%%cln%% %%#%% operating sys%%dsh%% 
-tem ]f[ %%#%% personal computer%%per%%]$~ ~$[communications 
-%%#%% %%#%% a01”%%lst%% 23(2):81~92%%lst%% february 1980%%per%%]$~ 
-~$[a%%per%%]$~ ~$[dain samples%%per%%]$~ ~$[code reorganization ]f[ %%#%% 
-struction caches%%per%%]$~ ~$[technical report ucb/csd 
-88/447%%per%%]$~ ~$[university %%#%% california%%lst%% berkeley%%lst%% 0c%%lst%% 
-tober 1988%%per%%]$~ 
-~$[michael schroeder ]^[ michael burrows%%per%%]$~ ~$[per%%dsh%% 
-formance %%#%% fireﬂy rpc%%per%%]$~ ~$[acm i‘mnsac» 
-tions %%#%% computer systems%%lst%% 8(1):1—17%%lst%% febru%%dsh%% 
-ary 1990%%per%%]$~ 
-~$[richard l%%per%%]$~ ~$[sites%%lst%% anton chernoff%%lst%% matthew b%%per%%]$~ 
-~$[kirk%%lst%% maurice p%%per%%]$~ ~$[marks%%lst%% ]^[ scott g%%per%%]$~ ~$[robin%%dsh%% 
-son%%per%%]$~ ~$[binary translation%%per%%]$~ ~$[communications %%#%% 
-%%#%% acm%%lst%% 36(2):69—81%%lst%% february 1993%%per%%]$~ 
-~$[m%%per%%]$~ ~$[stonebral%%dsh%%zer%%lst%% j%%per%%]$~ ~$[frew%%lst%% k%%per%%]$~ ~$[gardels%%lst%% ]^[ 
-%%per%%i%%per%%]$~ ~$[meridith%%per%%]$~ ~$[the sequoia 2000 benchmark%%per%%]$~ 
-~$[in proceedings %%#%% %%#%% acm sigmod inter%%dsh%% 
-national conference %%#%% management %%#%% data%%lst%% 
-%%#%% 1993%%per%%]$~ 
-~$[michael stonebraker%%per%%]$~ ~$[extensibility %%#%% post~ 
-gres%%per%%]$~ ~$[ieee database engineering%%lst%% septem%%dsh%% 
-ber 1987%%per%%]$~ 
-~$[michael stonebraker%%per%%]$~ ~$[inclusion %%#%% %%#%% types %%#%% 
-relational data base systems%%per%%]$~ ~$[in michael stone%%dsh%% 
-braker%%lst%% editor%%lst%% readings %%#%% database systems%%lst%% 
-pages 480—487%%per%%]$~ ~$[morgan kaufmann publishers%%lst%% 
-inc%%per%%%%lst%% 1988%%per%%]$~ 
-~$[j%%per%%]$~ ~$[p%%per%%]$~ ~$[singh%%lst%% w%%per%%]$~ ~$[weber%%lst%% ]^[ a%%per%%]$~ ~$[gupta%%per%%]$~ 
-~$[splash%%cln%% stanford parallel applications ]f[ 
-shared—memory%%per%%]$~ ~$[technical report csl—tr—sl— 
-469%%lst%% stanford%%lst%% 1991%%per%%]$~ 
-~$[shin—yuan tzou ]^[ david p%%per%%]$~ ~$[anderson%%per%%]$~ ~$[a 
-performance evaluation %%#%% %%#%% dash message%%dsh%% 
-passing system%%per%%]$~ ~$[technical report ucb/csd 
-88/452%%lst%% computer science division%%lst%% university 
-%%#%% california%%lst%% berkeley%%lst%% october 1988%%per%%]$~ 
-~$[thinking machines corporation%%per%%]$~ ~$[cm—5 net%%dsh%% 
-%%#%% interface programmer’s guide%%lst%% 1992%%per%%]$~ 
-~$[t%%per%% von eicken%%lst%% i)%%per%%]$~ ~$[culler%%lst%% s%%per%%]$~ ~$[goldstein%%lst%% ]^[ 
-k%%per%%]$~ ~$[schauser%%per%%]$~ ~$[active messages%%cln%% %%#%% mechanism 
-]f[ integrated communication ]^[ computa— 
-tion%%per%%]$~ ~$[in proceedings %%#%% %%#%% 19th annual sym%%dsh%% 
-posium %%#%% computer architecture%%lst%% 1992%%per%%]$~ 
-~$[robbert van renesse%%lst%% hans van staveren%%lst%% ]^[ 
-andrew s%%per%%]$~ ~$[tanenbaum%%per%%]$~ ~$[performance %%#%% %%#%% 
-world’s fastest distributed operating system%%per%%]$~ 
-~$[operating systemic review%%lst%% 22(1):25734%%lst%% octo— 
-ber 1988%%per%%]$~ 
-~$[neil webber%%per%%]$~ ~$[operating system support ]f[ 
-portable filesystem extensions%%per%%]$~ ~$[in proceed%%dsh%% 
-ings %%#%% %%#%% 1993 winter usenix conference%%lst%% 
-january 1993%%per%%]$~ 
-~$[curtis yarvin%%per%%]$~ ~$[richard bnkowski%%lst%% ]^[ thomas 
-anderson%%per%%]$~ ~$[anonymous rfc%%cln%% low latency 
-216 
-protection %%#%% %%#%% 64—bit address space%%per%%]$~ ~$[in pro%%dsh%% 
-ceedings %%#%% %%#%% summer usenix conference%%lst%% 
-june 1993%%per%% 
+local shared 
+memory clk 2 
+clk 1 
+port %%#%% 
+port %%#%% 
+local port 
+module %%#%% 
+clock domain 1 
+global memory 
+local shared 
+memory clk 3 
+clk 2 
+clk 3 
+clk 2 
+port %%#%% 
+port %%#%% 
+port %%#%% 
+local port global port 
+global port local port 
+global port local port 
+module %%#%% 
+module %%#%% 
+module %%#%% 
+clock domain 2 
+port %%#%% 
+clock domain 3 
+fig%%per%% 4%%per%%]$~ ~$[clock%%dsh%%domain%%dsh%%crossing memory interfacing%%per%% 
+relate %%#%% %%#%% memories %%#%% accessed %%#%% %%#%% presence %%#%% multiple 
+%%#%% %%#%% describe %%#%% changes %%#%% %%#%% %%#%% scheduling ]^[ clock domains%%per%%]$~ ~$[regarding scheduling%%lst%% %%#%% legup hls tool 
+binding%%lst%% %%#%% %%#%% tied %%#%% %%#%% memories %%#%% synthesized %%#%% schedules %%#%% computations %%#%% %%#%% input %%#%% program %%#%% %%#%% functionby%%dsh%%function basis%%per%%]$~ ~$[in single%%dsh%%domain designs%%lst%% %%#%% %%#%% %%#%% %%#%% 
+legup%%per%%]$~ 
+~$[when %%#%% input %%#%% program contains arrays%%lst%% %%#%% arrays %%#%% schedule %%#%% memory accesses (loads/stores) %%#%% cycle %%#%% %%#%% 
+synthesized %%#%% legup hls %%#%% memories %%#%% %%#%% fpga%%per%% memory %%#%% %%#%% fpga%%lst%% thereby leveraging %%#%% dual%%dsh%%point rams 
+legup generates %%#%% %%#%% types %%#%% memory structures %%#%% %%#%% fabric%%per%%]$~ ~$[in multiple%%dsh%%clock circuits%%lst%% %%#%% %%#%% functions%%lst%% 
+%%#%% are%%cln%% 1) %%#%% global memory controller ]^[ memories%%lst%% 2) %%#%% %%#%% clock domains%%lst%% access %%#%% %%#%% memory%%lst%% %%#%% %%#%% 
+shared%%dsh%%local memories%%lst%% ]^[ 3) local memories%%per%%]$~ ~$[the global ports %%#%% %%#%% memory %%#%% %%#%% %%#%% %%#%% clock domains aligned 
+]^[ shared local memories %%#%% instantiated %%#%% %%#%% top level %%#%% %%#%% %%#%% domains %%#%% %%#%% accessing functions%%per%%]$~ ~$[with %%#%% 
+entity %%#%% shown %%#%% fig%%per%% 1%%per%%]$~ ~$[local memories %%#%% ]f[ arrays %%#%% port %%#%% %%#%% unique clock domain%%lst%% %%#%% scheduler %%#%% %%#%% 
+%%#%% %%#%% accessed %%#%% %%#%% single function %%#%% %%#%% input program%%scn%% %%#%% schedule %%#%% accesses %%#%% cycle %%#%% %%#%% memory – %%#%% 
+thus%%lst%% %%#%% %%#%% instantiated %%#%% %%#%% function’s corresponding %%#%% %%#%% access %%#%% clock cycle %%#%% permitted ]f[ %%#%% domain%%per%% 
+hardware module%%per%%]$~ ~$[shared%%dsh%%local memories contain arrays %%#%% %%#%% altered %%#%% scheduler %%#%% reflect %%#%% constraint%%per%%]$~ ~$[namely%%lst%% 
+%%#%% accessed %%#%% %%#%% list %%#%% known functions – %%#%% memories ]f[ shared%%dsh%%local memories ]v[ global memories (defined above) 
+%%#%% accessed %%#%% multiple known hardware modules%%per%%]$~ ~$[global %%#%% %%#%% accessed %%#%% functions %%#%% %%#%% clock domains%%lst%% %%#%% 
+memory %%#%% ]f[ arrays accessed %%#%% %%#%% unknown list %%#%% functions%%per%% scheduler permits %%#%% %%#%% %%#%% access %%#%% cycle %%#%% domain%%per%%]$~ 
+~$[note %%#%% ]f[ memories accessed %%#%% solely %%#%% function%%lst%% ]v[ 
+%%#%% designation %%#%% arrays %%#%% %%#%% %%#%% categories %%#%% memories 
+%%#%% 
+%%#%% accessed %%#%% multiple functions %%#%% %%#%% %%#%% domain%%lst%% 
+%%#%% based %%#%% %%#%% “points%%dsh%%to” analysis (alias analysis) %%#%% %%#%% llvm 
+%%#%% 
+single%%dsh%%port 
+restriction %%#%% unnecessary%%per%%]$~ ~$[in %%#%% cases%%lst%% %%#%% 
+compiler %%#%% results %%#%% %%#%% %%#%% legup hls%%per%%]$~ ~$[further details 
+accesses 
+%%#%% 
+cycle 
+%%#%% permitted%%lst%% %%#%% %%#%% %%#%% default legup 
+%%#%% %%#%% [12]%%per%%]$~ 
+~$[hls 
+behavior%%per%%]$~ 
+~$[given %%#%% possibility %%#%% modules %%#%% %%#%% clock 
+%%#%% regard %%#%% binding%%lst%% %%#%% %%#%% %%#%% tasks %%#%% %%#%% match memory 
+domains %%#%% access %%#%% %%#%% memory%%lst%% %%#%% changed %%#%% 
+operations 
+(loads/stores) %%#%% memory ports%%per%%]$~ ~$[in legup hls%%lst%% 
+memories %%#%% single%%dsh%%clock dual port %%#%% dual%%dsh%%clock dual port%%per%% 
+binding 
+%%#%% 
+formulated 
+%%#%% %%#%% weighted%%dsh%%bipartite graph matching 
+%%#%% imposes %%#%% constraint %%#%% %%#%% %%#%% %%#%% modules %%#%% 
+problem 
+instance 
+[15]%%lst%% 
+%%#%% %%#%% %%#%% %%#%% objectives %%#%% 
+%%#%% domains %%#%% access %%#%% %%#%% memory%%per%%]$~ ~$[if %%#%% user 
+%%#%% 
+balance 
+memory 
+accesses 
+%%#%% %%#%% ports%%lst%% judiciously 
+specifies %%#%% modules %%#%% %%#%% %%#%% domains %%#%% %%#%% 
+managing 
+%%#%% 
+sizes 
+%%#%% 
+%%#%% 
+input 
+multiplexers feeding %%#%% ports%%per%%]$~ 
+~$[tcl configuration file%%lst%% ]^[ %%#%% %%#%% modules %%#%% access %%#%% 
+%%#%% 
+%%#%% 
+multiple%%dsh%%clock 
+case%%lst%% 
+however%%lst%% 
+]f[ memories %%#%% %%#%% clock 
+%%#%% memory%%lst%% %%#%% situation %%#%% infeasible%%lst%% ]s[ multi%%dsh%%clock legup 
+domains%%lst%% 
+%%#%% 
+binding 
+step 
+%%#%% 
+adhere 
+%%#%% %%#%% specific domain 
+reports %%#%% error ]^[ terminates%%per%% 
+%%#%% 
+%%#%% 
+port 
+]^[ 
+%%#%% 
+accessing 
+function%%per%%]$~ 
+~$[that is%%lst%% ]f[ %%#%% function 
+fig%%per%% 4 illustrates global memory ]^[ shared%%dsh%%local memories 
+%%#%% 
+%%#%% 
+particular 
+domain 
+%%#%% 
+accesses 
+%%#%% 
+dual%%dsh%%clock memory%%lst%% 
+%%#%% accessed %%#%% multiple clock domains%%per%%]$~ ~$[observe %%#%% module 
+%%#%% 
+%%#%% 
+%%#%% 
+choice 
+%%#%% 
+binding 
+ports%%cln%% 
+memory 
+accesses %%#%% %%#%% 
+%%#%% ]^[ %%#%% communicate %%#%% %%#%% another%%lst%% ]^[ %%#%% access %%#%% 
+function 
+%%#%% 
+%%#%% 
+bound 
+%%#%% 
+%%#%% 
+port 
+%%#%% 
+%%#%% 
+%%#%% 
+clock domain 
+local shared memory (top left %%#%% figure)%%per%%]$~ ~$[in %%#%% case%%lst%% port %%#%% %%#%% 
+%%#%% 
+%%#%% 
+function%%per%% 
+%%#%% memory operates %%#%% clock domain 1%%scn%% port %%#%% %%#%% %%#%% memory 
+operates %%#%% clock domain 2%%per%%]$~ ~$[in %%#%% top%%dsh%%center %%#%% %%#%% figure%%lst%% 
+iv%%per%%]$~ ~$[c lock %%#%% omain %%#%% ssignment and %%#%% requency 
+%%#%% observe %%#%% %%#%% global memory ports %%#%% ]^[ %%#%% operate 
+%%#%% election 
+%%#%% clock domains 2 ]^[ 3%%lst%% respectively%%lst%% ]^[ %%#%% accessed %%#%% 
+%%#%% evaluate %%#%% proposed multi%%dsh%%clock%%dsh%%domain hls using %%#%% 
+modules b%%lst%% c%%lst%% ]^[ d%%per%%]$~ 
+~$[to support multiple%%dsh%%clock synthesis%%lst%% changes %%#%% required chstone hls benchmark suite [2] ]^[ target %%#%% altera/intel 
+%%#%% %%#%% %%#%% scheduling ]^[ binding steps %%#%% hls%%per%%]$~ ~$[the changes cyclone %%#%% fpga%%per%%]$~ 
+~$[c%%per%%]$~ ~$[scheduling ]^[ binding 
+table %%#%% 
+%%#%% erformance results %%#%% %%#%% clock domain versus %%#%% clock domains %%per%%]$~ 
+~$[inline option 
+inlined 
+%%#%% inlined 
+benchmark 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfsin 
+jpeg 
+motion 
+sha 
+geomean 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfdiv 
+dfmul 
+dfsin 
+gsm 
+jpeg 
+motion 
+sha 
+geomean 
+%%#%% clock 
+fmax (mhz) 
+time (µs) 
+103 
+141%%per%%8 
+150 
+62%%per%%4 
+156 
+1141%%per%%5 
+146 
+6%%per%%1 
+51 
+1316%%per%%3 
+97 
+12699%%per%%2 
+114 
+55%%per%%6 
+190 
+1280%%per%%5 
+304%%per%%4 
+121 
+239%%per%%4 
+144 
+87%%per%%6 
+156 
+1375%%per%%9 
+148 
+24%%per%%1 
+130 
+28%%per%%2 
+158 
+8%%per%%9 
+121 
+1103%%per%%5 
+137 
+57%%per%%0 
+115 
+12125%%per%%1 
+158 
+41%%per%%4 
+187 
+1360%%per%%9 
+182%%per%%5 
+fmax (mhz) 
+112%%lst%% 140 
+143%%lst%% 189 
+155%%lst%% 197 
+139%%lst%% 195 
+120%%lst%% 197 
+93%%lst%% 113 
+117%%lst%% 163 
+202%%lst%% 205 
+136%%lst%% 
+160%%lst%% 
+146%%lst%% 
+149%%lst%% 
+146%%lst%% 
+149%%lst%% 
+138%%lst%% 
+136%%lst%% 
+104%%lst%% 
+161%%lst%% 
+180%%lst%% 
+159 
+169 
+181 
+196 
+152 
+173 
+145 
+223 
+146 
+263 
+205 
+%%#%% clock 
+average time (µs) 
+100%%per%%4%%lst%% 50%%per%%3 
+5%%per%%2%%lst%% 51%%per%%4 
+785%%per%%5%%lst%% 437%%per%%9 
+5%%per%%94%%lst%% 1%%per%%18 
+506%%per%%38%%lst%% 74%%per%%4 
+2557%%per%%6%%lst%% 8724%%per%%2 
+0%%per%%63%%lst%% 38%%per%%82 
+114%%per%%2%%lst%% 1103%%per%%2 
+198%%per%%2%%lst%% 44%%per%%6 
+42%%per%%7%%lst%% 40%%per%%9 
+431%%per%%9%%lst%% 72%%per%%0 
+17%%per%%8%%lst%% 7%%per%%2 
+24%%per%%7%%lst%% 2%%per%%46 
+3%%per%%0%%lst%% 7%%per%%5 
+635%%per%%2%%lst%% 377%%per%%1 
+52%%per%%6%%lst%% 4%%per%%4 
+7996%%per%%0%%lst%% 3738%%per%%4 
+2%%per%%56%%lst%% 23%%per%%38 
+178%%per%%4%%lst%% 1108%%per%%9 
+time (µs) 
+150%%per%%4 
+56%%per%%6 
+1223%%per%%4 
+7%%per%%1 
+580%%per%%8 
+11281%%per%%7 
+39%%per%%2 
+1217%%per%%6 
+263%%per%%4 
+242%%per%%8 
+83%%per%%6 
+1468%%per%%5 
+25%%per%%0 
+27%%per%%2 
+10%%per%%5 
+1012%%per%%4 
+57%%per%%0 
+11734%%per%%4 
+25%%per%%9 
+1287%%per%%3 
+175%%per%%3 
+ratio 
+time (µs) 
+1 (0%%per%%94) 
+1%%per%%10 
+1 (0%%per%%93) 
+1 (0%%per%%86) 
+2%%per%%27 
+1%%per%%13 
+1%%per%%42 
+1%%per%%05 
+1%%per%%33 
+1 (0%%per%%99) 
+1%%per%%05 
+1 (0%%per%%94) 
+1 (0%%per%%96) 
+1%%per%%04 
+1 (0%%per%%85) 
+1%%per%%09 
+1%%per%%00 
+1%%per%%03 
+1%%per%%60 
+1%%per%%06 
+1%%per%%13 
+%%#%% multi%%dsh%%clock hls%%lst%% %%#%% natural question %%#%% arises is%%cln%% %%#%% hls commences%%per%%]$~ ~$[to explore this%%lst%% %%#%% synthesized %%#%% variants 
+%%#%% %%#%% decide %%#%% functions (and consequent synthesized %%#%% %%#%% chstone benchmark%%cln%% 1) %%#%% no%%dsh%%inline version %%#%% %%#%% 
+circuits) %%#%% %%#%% %%#%% %%#%% clock domain%%qsn%%]$~ ~$[considering %%#%% disabled inlining %%#%% %%#%% llvm compiler%%lst%% 2) using %%#%% normal 
+%%#%% two%%dsh%%domain case%%lst%% %%#%% %%#%% %%#%% following approach%%cln%% ]f[ %%#%% inlining %%#%% occurs %%#%% %%dsh%%o3 compiler optimization%%per%%]$~ ~$[note %%dsh%%o3 
+benchmark circuit%%lst%% %%#%% %%#%% profiled %%#%% single%%dsh%%clock%%dsh%%domain optimization %%#%% performed %%#%% %%#%% cases%%scn%% %%#%% %%#%% difference 
+version %%#%% %%#%% circuit%%lst%% ]^[ extracted %%#%% number %%#%% clock cycles %%#%% %%#%% %%#%% variants %%#%% %%#%% inlining %%#%% disabled %%#%% %%#%% %%#%% 
+spent %%#%% %%#%% function%%per%%]$~ ~$[the function consuming %%#%% %%#%% cycles variant%%per%%]$~ 
+~$[table %%#%% %%#%% %%#%% speed%%dsh%%performance results ]f[ single ]^[ 
+%%#%% placed %%#%% %%#%% %%#%% clock domain%%lst%% %%#%% %%#%% balance %%#%% %%#%% 
+circuit %%#%% %%#%% %%#%% clock domain%%per%%]$~ ~$[this simple approach %%#%% two%%dsh%%clock domain hls%%per%%]$~ ~$[the top %%#%% %%#%% %%#%% table %%#%% results 
+%%#%% ]f[ %%#%% adpcm%%lst%% aes ]^[ motion chstone circuits%%per%%]$~ ~$[for ]f[ normal %%dsh%%o3 optimization %%#%% inlining enabled%%scn%% %%#%% bottom 
+%%#%% %%#%% circuits%%lst%% %%#%% observed %%#%% %%#%% approach produced poor %%#%% %%#%% %%#%% table %%#%% results ]f[ %%#%% scenario %%#%% inlining 
+performance results%%lst%% primarily owing %%#%% %%#%% overheads %%#%% cross%%dsh%% %%#%% disabled%%per%%]$~ ~$[column 2 lists %%#%% benchmark name%%per%%]$~ ~$[columns 3 
+domain%%dsh%%crossing%%per%%]$~ ~$[therefore%%lst%% ]f[ %%#%% circuits%%lst%% %%#%% examined ]^[ 4 %%#%% %%#%% fmax ]^[ wall%%dsh%%clock time ]f[ %%#%% single%%dsh%%clock 
+%%#%% call graph %%#%% %%#%% program%%lst%% ]^[ placed %%#%% child functions %%#%% implementation (experimental baseline)%%per%%]$~ ~$[wall%%dsh%%clock time %%#%% %%#%% 
+%%#%% %%#%% cycle%%dsh%%consuming parent function %%#%% %%#%% %%#%% clock total time %%#%% ]f[ circuit execution%%lst%% %%#%% %%#%% 1/fmax × 
+domain %%#%% %%#%% parent%%per%%]$~ ~$[we %%#%% %%#%% similar approach %%#%% %%#%% three%%dsh%% cycles %%#%% %%#%% single%%dsh%%clock case%%lst%% %%#%% cycles %%#%% %%#%% total cycle 
+clock%%dsh%%domain case%%cln%% %%#%% %%#%% %%#%% %%#%% compute%%dsh%%intensive function latency%%per%%]$~ ~$[columns 5%%lst%% 6 ]^[ 7 pertain %%#%% synthesized designs 
+%%#%% %%#%% %%#%% domain%%lst%% %%#%% %%#%% %%#%% compute%%dsh%%intensive function %%#%% %%#%% clock domains%%per%%]$~ ~$[column 5 %%#%% %%#%% %%#%% fmax values%%scn%% 
+column 6 %%#%% %%#%% wall%%dsh%%clock time spent %%#%% %%#%% domain%%scn%% 
+%%#%% %%#%% %%#%% domain%%lst%% ]^[ %%#%% balance %%#%% %%#%% third domain%%per%% 
+column 7 %%#%% %%#%% overall total wall%%dsh%%clock time%%per%%]$~ ~$[finally%%lst%% 
+v%%per%%]$~ ~$[e xperimental %%#%% tudy 
+column 8 %%#%% %%#%% ratio %%#%% %%#%% single%%dsh%%clock %%#%% dual%%dsh%%clock 
+%%#%% %%cmp%% multi%%dsh%%clock designs %%#%% single%%dsh%%clock designs%%lst%% wall%%dsh%%clock time%%per%%]$~ ~$[ratios larger %%cmp%% 1 indicate %%#%% “win” ]f[ 
+]^[ report %%#%% circuit performance%%lst%% %%#%% %%#%% %%#%% %%#%% area impact%%per%% dual%%dsh%%clock%%per%%]$~ ~$[numbers %%#%% parentheses represent degradations %%#%% 
+%%#%% chstone benchmarks %%#%% %%#%% built%%dsh%%in input vectors%%lst%% wall%%dsh%%clock time ]f[ %%#%% dual%%dsh%%clock case%%per%%]$~ ~$[in %%#%% cases%%lst%% %%#%% 
+]^[ golden output vectors%%lst%% ]^[ incorporate “self%%dsh%%checking” ]f[ %%#%% mentioned %%#%% below%%lst%% %%#%% %%#%% simply opt ]f[ %%#%% 
+correctness%%per%%]$~ ~$[we verified %%#%% multi%%dsh%%domain circuits functioned single%%dsh%%clock design%%lst%% ]^[ %%cmp%%%%lst%% %%#%% %%#%% 1 %%#%% %%#%% ratio ]f[ %%#%% 
+correctly %%#%% %%#%% ways%%cln%% 1) using modelsim simulation ]^[ 2) %%#%% %%#%% mean%%dsh%%ratio calculations%%per%% 
+%%#%% execution %%#%% hardware using %%#%% cyclone %%#%% fpga %%#%% %%#%% 
+looking %%#%% %%#%% %%#%% top%%dsh%%half %%#%% table i%%lst%% %%#%% %%#%% %%#%% 5 %%#%% 
+de1%%dsh%%soc board%%per%% 
+%%#%% 8 benchmarks benefit %%#%% %%#%% clock domains%%lst%% %%#%% %%#%% 
+%%#%% mentioned above%%lst%% %%#%% multi%%dsh%%clock approach operates %%#%% average improvement %%#%% 33% (right%%dsh%%most column)%%per%%]$~ ~$[the 
+%%#%% function level %%#%% granularity – %%#%% synthesized hardware ]f[ largest improvement %%#%% observed ]f[ dfsin%%lst%% %%#%% suffered 
+%%#%% entire %%#%% function %%#%% operate %%#%% %%#%% single unique domain%%per%% %%#%% %%#%% %%#%% inter%%dsh%%module critical path %%#%% %%#%% single%%dsh%%clock case%%lst%% 
+consequently%%lst%% %%#%% approach %%#%% sensitive %%#%% %%#%% functions %%#%% %%#%% broken %%#%% %%#%% two%%dsh%%clock %%#%% %%#%% %%#%% instantiated cdc 
+remain “intact” (i%%per%%e%%per%% functions %%#%% %%#%% ]n[ inlined) %%#%% %%#%% time circuitry%%per%%]$~ ~$[modest performance degradations %%#%% observed ]f[ 
+table ii 
+%%#%% rea results %%#%% %%#%% clock domain versus %%#%% clock domains %%per%%]$~ 
+~$[inline option 
+inlined 
+%%#%% inlined 
+benchmark 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfsin 
+jpeg 
+motion 
+sha 
+geomean 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfdiv 
+dfmul 
+dfsin 
+gsm 
+jpeg 
+motion 
+sha 
+geomean 
+%%#%% clock 
+logic utilization 
+total registers 
+6,079 
+11,094 
+4,028 
+6,864 
+2,635 
+5,336 
+3,378 
+3,993 
+10,385 
+16,674 
+13,007 
+18,102 
+6,136 
+9,764 
+1,413 
+2,444 
+4,741 
+7,646 
+7,117 
+11,333 
+3,448 
+5,705 
+2,887 
+5,850 
+4,824 
+9,078 
+7,395 
+13,644 
+3,283 
+5,954 
+12,806 
+24,247 
+4,058 
+6,963 
+7,918 
+11,313 
+1,600 
+2,406 
+2,253 
+3,880 
+4,411 
+7,612 
+%%#%% %%#%% %%#%% benchmarks%%per%%]$~ ~$[the degradations %%#%% %%#%% result %%#%% 
+%%#%% cycle%%dsh%%count overhead %%#%% clock%%dsh%%domain%%dsh%%crossing%%lst%% %%#%% %%#%% 
+particularly onerous %%#%% %%#%% %%#%% %%#%% module %%#%% %%#%% domain 
+%%#%% repeatedly invoked %%#%% %%#%% module %%#%% %%#%% %%#%% domain%%lst%% ]^[ 
+%%#%% %%#%% invocation %%#%% %%#%% %%#%% module consumes relatively 
+%%#%% clock cycles%%per%%]$~ ~$[degradations %%#%% %%#%% caused %%#%% lengthier 
+schedules %%#%% %%#%% two%%dsh%%clock %%#%% resulting %%#%% reduced memoryaccess parallelism %%#%% %%#%% shared/global memories%%lst%% accessed 
+%%#%% %%#%% domains%%lst%% %%#%% solely %%#%% single port ]f[ %%#%% domain%%per%%]$~ 
+~$[the bottom half %%#%% %%#%% table %%#%% results ]f[ %%#%% %%#%% %%#%% 
+inlining disabled%%per%%]$~ ~$[the improvements %%#%% performance %%#%% %%#%% 
+%%#%% modest%%lst%% %%#%% %%#%% functions %%#%% %%#%% (no inlining) ]^[ 
+%%#%% executes ]f[ fewer clock cycles%%per%%]$~ ~$[this implies %%#%% %%#%% 
+fraction %%#%% total time required ]f[ clock%%dsh%%domain%%dsh%%crossing %%#%% 
+larger %%cmp%% %%#%% %%#%% inlined case%%lst%% increasing cdc overheads ]^[ 
+reducing %%#%% benefit %%#%% multi%%dsh%%clock synthesis%%per%%]$~ ~$[the average wallclock time improvement %%#%% %%#%% %%#%% %%#%% 13%%%per%%]$~ ~$[note %%#%% %%#%% %%#%% 
+inlined %%#%% (top%%dsh%%half %%#%% %%#%% table)%%lst%% %%#%% %%#%% fewer benchmarks 
+listed%%lst%% owing %%#%% inlining reducing %%#%% eliminated benchmarks 
+%%#%% %%#%% single function (and %%cmp%% %%#%% single domain)%%per%%]$~ 
+~$[we %%#%% considered three%%dsh%%clock%%dsh%%domain implementations (not 
+shown %%#%% ]f[ brevity)%%lst%% ]^[ found %%#%% aside %%#%% %%#%% jpeg 
+benchmark%%lst%% %%#%% additional improvements %%#%% achieved %%#%% 
+%%#%% two%%dsh%%clock case%%per%% jpeg %%#%% %%#%% largest circuit %%#%% %%#%% suite%%lst%% ]^[ 
+%%#%% found %%#%% contained large %%#%% sub%%dsh%%circuits %%#%% benefit %%#%% 
+additional clocks%%per%%]$~ ~$[we expect %%#%% larger benchmarks%%lst%% containing 
+significant number %%#%% large sub%%dsh%%modules%%lst%% %%#%% stand %%#%% benefit 
+%%#%% %%#%% (or more) domains%%per%%]$~ 
+~$[table ii %%#%% %%#%% impact %%#%% circuit area%%lst%% including logic 
+utilization (cyclone %%#%% alms)%%lst%% %%#%% %%#%% %%#%% register count%%per%%]$~ ~$[cdc 
+causes %%#%% area impact %%#%% %%#%% block types (dsp blocks%%lst%% block 
+rams)%%per%%]$~ ~$[looking %%#%% %%#%% %%#%% right%%dsh%%most columns%%lst%% %%#%% %%#%% %%#%% area 
+impact %%#%% alms %%#%% range %%#%% 0%%dsh%%6%%%lst%% %%#%% average%%lst%% depending 
+%%#%% %%#%% inlining %%#%% used%%per%%]$~ ~$[in %%#%% cases%%lst%% circuit area actually 
+%%#%% clock 
+logic utilization 
+total registers 
+6,310 
+11,456 
+4,245 
+7,547 
+2,791 
+5,636 
+3,539 
+4,610 
+9,234 
+17,979 
+13,393 
+19,452 
+6,235 
+10,060 
+1,345 
+2,671 
+4,789 
+8,211 
+7,483 
+12,137 
+3,629 
+6,830 
+3,554 
+6,939 
+5,409 
+10,304 
+8,806 
+17,062 
+4,307 
+7,987 
+14,134 
+27,001 
+4,096 
+6,926 
+8,228 
+11,837 
+1,693 
+2,645 
+2,373 
+4,118 
+4,886 
+8,618 
+ratio 
+logic utilization 
+total registers 
+1 (0%%per%%96) 
+1 (0%%per%%97) 
+0%%per%%95 
+0%%per%%91 
+1 (0%%per%%94) 
+1 (0%%per%%95) 
+1 (0%%per%%95) 
+1 (0%%per%%87) 
+1%%per%%12 
+0%%per%%93 
+0%%per%%97 
+0%%per%%93 
+0%%per%%98 
+0%%per%%97 
+1%%per%%05 
+0%%per%%92 
+1%%per%%00 
+0%%per%%93 
+1 (0%%per%%95) 
+1 (0%%per%%93) 
+0%%per%%95 
+0%%per%%84 
+1 (0%%per%%81) 
+1 (0%%per%%84) 
+1 (0%%per%%89) 
+1 (0%%per%%88) 
+0%%per%%84 
+0%%per%%80 
+1 (0%%per%%76) 
+1 (0%%per%%75) 
+0%%per%%91 
+0%%per%%90 
+0%%per%%99 
+1%%per%%01 
+0%%per%%96 
+0%%per%%96 
+0%%per%%95 
+0%%per%%91 
+0%%per%%95 
+0%%per%%94 
+0%%per%%94 
+0%%per%%91 
+reduced (ratios > 1)%%lst%% %%#%% %%#%% attribute %%#%% %%#%% heuristic nature 
+%%#%% %%#%% synthesis%%lst%% placement ]^[ routing tools%%per%%]$~ ~$[register%%dsh%%count 
+overhead ranges %%#%% 7%%dsh%%9%%%lst%% %%#%% average%%per%%]$~ ~$[we believe %%#%% area 
+overheads shown %%#%% %%#%% acceptable %%#%% users %%#%% %%#%% %%#%% 
+highest%%dsh%%possible performance ]f[ %%#%% designs%%per%%]$~ 
+~$[overall%%lst%% %%#%% consider %%#%% performance results (up %%#%% 33% 
+wall%%dsh%%clock time improvement%%lst%% %%#%% average) %%#%% %%#%% encouraging 
+]f[ %%#%% reasons%%cln%% 1) %%#%% chstone benchmarks %%#%% ]n[ 
+designed %%#%% multi%%dsh%%clock domain synthesis %%#%% mind%%lst%% ]^[ 2) 
+%%#%% %%#%% %%#%% existing function boundaries %%#%% %%#%% benchmarks 
+]f[ clock%%dsh%%domain assignment%%lst%% %%#%% %%cmp%% altering %%#%% programs 
+%%#%% isolate %%#%% critical paths %%#%% separate functions %%#%% unique 
+domains%%per%%]$~ ~$[we leave %%#%% latter ]f[ future work%%per%%]$~ 
+~$[vi%%per%%]$~ ~$[c onclusions and %%#%% uture %%#%% ork 
+%%#%% considered %%#%% high%%dsh%%level synthesis %%#%% circuits %%#%% 
+multiple clock domains %%#%% %%#%% objective %%#%% improving 
+performance%%per%%]$~ ~$[the open%%dsh%%source legup hls tool %%#%% modified 
+%%#%% accept user constraints designating %%#%% functions onto specific 
+clock domains%%per%%]$~ ~$[changes %%#%% %%#%% %%#%% %%#%% scheduling ]^[ 
+binding steps %%#%% hls%%lst%% %%#%% ensure proper handling %%#%% hardware 
+resources accessed %%#%% sub%%dsh%%circuits %%#%% %%#%% domains%%per%%]$~ ~$[as 
+well%%lst%% %%#%% verilog generation step %%#%% legup %%#%% changed 
+%%#%% automatically insert clock%%dsh%%domain%%dsh%%crossing circuitry%%lst%% %%#%% 
+appropriate%%lst%% ]^[ instantiate plls ]f[ clock synthesis%%per%%]$~ ~$[on %%#%% 
+chstone benchmark suite%%lst%% average performance gains %%#%% 13% 
+]^[ 33% %%#%% observed%%lst%% depending %%#%% %%#%% approach applied 
+]f[ function inlining%%per%%]$~ 
+~$[as %%#%% %%#%% %%#%% %%#%% study %%#%% multi%%dsh%%clock hls ]f[ fpgas%%lst%% %%#%% 
+%%#%% ample avenues ]f[ future research%%per%%]$~ ~$[an %%#%% %%#%% %%#%% 
+%%#%% evaluate %%#%% power consequences %%#%% using multiple clocks%%per%%]$~ 
+~$[while %%#%% individual clock %%#%% switch less capacitance%%lst%% %%#%% 
+believe %%#%% overall%%lst%% cumulative power consumption %%#%% %%#%% 
+worse %%#%% multi%%dsh%%domain designs%%per%%]$~ ~$[on %%#%% power front%%lst%% %%#%% %%#%% %%#%% 
+%%#%% fruitful %%#%% consider %%#%% gating %%#%% clocks %%#%% %%#%% domain%%dsh%%bydomain basis %%#%% reduce power consumption%%per%%]$~ ~$[a %%#%% direction%%lst%% 
+%%#%% %%#%% compiler level%%lst%% relates %%#%% inlining ]^[ exlining %%#%% %%#%% bid 
+%%#%% achieve %%#%% performance gains %%#%% multiple domains%%per%%]$~ 
+~$[specifically%%lst%% %%#%% %%#%% %%#%% %%#%% examine %%#%% idea %%#%% exlining 
+%%#%% time%%dsh%%critical loops %%#%% programs %%#%% separate functions%%lst%% %%#%% 
+%%#%% placed %%#%% independent domains%%lst%% %%#%% %%#%% %%#%% develop %%#%% 
+intelligent decision %%#%% %%#%% %%#%% functions %%#%% inline 
+%%#%% minimize cdc overheads%%per%%]$~ 
+~$[r eferences 
+[1] a%%per%%]$~ ~$[canis%%lst%% j%%per%%]$~ ~$[choi%%lst%% m%%per%%]$~ ~$[aldham%%lst%% v%%per%%]$~ ~$[zhang%%lst%% a%%per%%]$~ ~$[kammoona%%lst%% j%%per%%]$~ ~$[h%%per%%]$~ ~$[anderson%%lst%% 
+s%%per%%]$~ ~$[brown%%lst%% ]^[ t%%per%%]$~ ~$[czajkowski%%lst%% “legup%%cln%% high%%dsh%%level synthesis ]f[ fpgabased processor/accelerator systems,” %%#%% acm fpga%%lst%% 2011%%lst%% pp%%per%% 33–36%%per%% 
+[2] y%%per%%]$~ ~$[hara%%lst%% h%%per%%]$~ ~$[tomiyama%%lst%% s%%per%%]$~ ~$[honda%%lst%% ]^[ h%%per%%]$~ ~$[takada%%lst%% “proposal ]^[ 
+quantitative analysis %%#%% %%#%% chstone benchmark program suite ]f[ practical 
+c%%dsh%%based high%%dsh%%level synthesis,” j%%per%%]$~ ~$[information processing%%lst%% vol%%per%% 17%%lst%% pp%%per%% 242– 
+254%%lst%% 2009%%per%% 
+[3] “united states bureau %%#%% labor statistics,” https://www%%per%%bls%%per%%gov/%%per%% 
+[4] g%%per%%]$~ ~$[lhairech%%dsh%%lebreton%%lst%% p%%per%%]$~ ~$[coussy%%lst%% ]^[ e%%per%%]$~ ~$[martin%%lst%% “hierarchical ]^[ 
+multiple%%dsh%%clock domain high%%dsh%%level synthesis ]f[ low%%dsh%%power design %%#%% 
+fpga,” %%#%% fpl%%lst%% 2010%%lst%% pp%%per%% 464–468%%per%% 
+[5] d%%per%%]$~ ~$[m%%per%%]$~ ~$[chapiro%%lst%% “globally%%dsh%%asynchronous locally%%dsh%%synchronous systems%%per%%” 
+stanford univ ca dept %%#%% computer science%%lst%% tech%%per%%]$~ ~$[rep%%per%%%%lst%% 
+1984%%per%% 
+[6] y%%per%%]$~ ~$[jiang%%lst%% h%%per%%]$~ ~$[zhang%%lst%% h%%per%%]$~ ~$[zhang%%lst%% h%%per%%]$~ ~$[liu%%lst%% x%%per%%]$~ ~$[song%%lst%% m%%per%%]$~ ~$[gu%%lst%% ]^[ j%%per%%]$~ ~$[sun%%lst%% 
+“design %%#%% mixed synchronous/asynchronous systems %%#%% multiple 
+clocks,” ieee transactions %%#%% parallel ]^[ distributed systems%%lst%% vol%%per%% 26%%lst%% 
+no%%per%% 8%%lst%% pp%%per%% 2220–2232%%lst%% 2015%%per%% 
+[7] l%%per%%]$~ ~$[p%%per%%]$~ ~$[carloni%%lst%% k%%per%%]$~ ~$[l%%per%%]$~ ~$[mcmillan%%lst%% ]^[ a%%per%%]$~ ~$[l%%per%%]$~ ~$[sangiovanni%%dsh%%vincentelli%%lst%% “theory 
+%%#%% latency%%dsh%%insensitive design,” ieee transactions %%#%% computer%%dsh%%aided 
+design %%#%% integrated circuits ]^[ systems%%lst%% vol%%per%% 20%%lst%% no%%per%% 9%%lst%% pp%%per%% 1059–1076%%lst%% 
+2001%%per%% 
+[8] m%%per%%]$~ ~$[singh ]^[ m%%per%%]$~ ~$[theobald%%lst%% “generalized latency%%dsh%%insensitive systems ]f[ 
+single%%dsh%%clock ]^[ multi%%dsh%%clock architectures,” %%#%% ieee/acm date%%lst%% vol%%per%% 2%%lst%% 
+2004%%lst%% pp%%per%% 1008–1013%%per%% 
+[9] a%%per%%]$~ ~$[agiwal ]^[ m%%per%%]$~ ~$[singh%%lst%% “multi%%dsh%%clock latency%%dsh%%insensitive architecture ]^[ 
+wrapper synthesis,” electronic notes %%#%% theoretical computer science%%lst%% 
+vol%%per%% 146%%lst%% no%%per%% 2%%lst%% pp%%per%% 5–28%%lst%% 2006%%per%% 
+[10] l%%per%%]$~ ~$[luo%%lst%% h%%per%%]$~ ~$[he%%lst%% q%%per%%]$~ ~$[dou%%lst%% ]^[ w%%per%%]$~ ~$[xu%%lst%% “design ]^[ verification %%#%% multiclock domain synchronizers,” %%#%% ieee int’l conf%%per%% %%#%% intelligent system 
+design ]^[ engineering application (isdea)%%lst%% vol%%per%% 1%%lst%% 2010%%lst%% pp%%per%% 544–547%%per%% 
+[11] c%%per%%]$~ ~$[lattner ]^[ v%%per%%]$~ ~$[s%%per%%]$~ ~$[adve%%lst%% “llvm%%cln%% %%#%% compilation framework ]f[ lifelong 
+program analysis & transformation,” %%#%% ieee/acm sgo%%lst%% 2004%%lst%% pp%%per%% 75– 
+88%%per%% 
+[12] j%%per%%]$~ ~$[choi%%lst%% s%%per%%]$~ ~$[brown%%lst%% ]^[ j%%per%%]$~ ~$[anderson%%lst%% “resource ]^[ memory management 
+techniques ]f[ %%#%% high%%dsh%%level synthesis %%#%% software threads %%#%% parallel 
+fpga hardware,” %%#%% ieee fpt%%lst%% 2015%%lst%% pp%%per%% 152–159%%per%% 
+[13] “understanding metastability %%#%% altera fpgas,” https://www%%per%%altera%%per%%com/ 
+en us/pdfs/literature/wp/wp%%dsh%%01082%%dsh%%quartus%%dsh%%ii%%dsh%%metastability%%per%%pdf%%per%% 
+[14] c%%per%%]$~ ~$[dike ]^[ e%%per%%]$~ ~$[burton%%lst%% “miller ]^[ noise effects %%#%% %%#%% synchronizing flipflop,” ieee journal %%#%% solid%%dsh%%state circuits%%lst%% vol%%per%% 34%%lst%% no%%per%% 6%%lst%% pp%%per%% 849–855%%lst%% 
+1999%%per%% 
+[15] c%%per%%%%dsh%%y%%per%%]$~ ~$[huang%%lst%% y%%per%%%%dsh%%s%%per%%]$~ ~$[chen%%lst%% y%%per%%%%dsh%%l%%per%%]$~ ~$[lin%%lst%% ]^[ y%%per%%%%dsh%%c%%per%%]$~ ~$[hsu%%lst%% “data path allocation 
+based %%#%% bipartite weighted matching,” %%#%% ieee/acm dac%%lst%% 1991%%lst%% pp%%per%% 
+499–504%%per%% 

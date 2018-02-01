@@ -232,7 +232,7 @@ class garnish:
 						else:
 							miss_count=miss_count+1
 							if miss_count == int(len(sen_pairs[_bin])/2):
-								ent_lim = ent_lim*0.95
+								ent_lim = (ent_lim*0.95)
 								miss_count = 0
 
 
@@ -259,28 +259,6 @@ class garnish:
 		print(bcolors.OKGREEN + s1 + bcolors.ENDC)
 
 		return s1
-			# ans=raw_input("~ ")
-			# if ans == "c":
-			# 	break
-
-
-		# for _bin in sorted(sen_pairs.iterkeys(), reverse=True):
-		# 	if len(sorted_bins[_bin]) > 0:
-		# 		print(bcolors.OKGREEN+"[Similarity] : "+str(_bin)+bcolors.ENDC)
-		# 		for sim_j in sorted(sorted_bins[_bin].iterkeys(), reverse=True):
-		# 			print(bcolors.FAIL + " +[Distance] : "+str(sim_j)+bcolors.ENDC)
-		# 			s1=""
-		# 			for label in sorted(sorted_bins[_bin][sim_j].iterkeys(), reverse=True):
-		# 				s1=s1+"  +[Entropy: "+str(sen_pairs[_bin][label])+"]\n   "	
-		# 				for i in range(label, sentence_length_map[label]+label):
-		# 					s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
-		# 				s1=s1+"\n\n"
-		# 			print(s1)
-					
-		# 		print(bcolors.GREENBACK + "Press [c] to exit. [return] contiues. " +bcolors.ENDC)
-		# 		ans=raw_input("~ ")
-		# 		if ans == "c":
-		# 			break
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

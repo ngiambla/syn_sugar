@@ -146,8 +146,9 @@ class garnish:
 			sentence_vec_map[_label]=vec
 
 		avg_entropy = avg_entropy/len(sentence_vec_map)
-
+		scalar = math.floor((avg_entropy/min_entropy)/4)
 		print(bcolors.FAIL+ "MAX Entropy: " + str(max_entropy) + bcolors.ENDC)
+		print(bcolors.FAIL+ "MIN Entropy: " + str(min_entropy) + bcolors.ENDC)
 		print(bcolors.FAIL+ "AVG Entropy: " + str(avg_entropy) + bcolors.ENDC)
 
 		seen_labels		=	{}
@@ -158,10 +159,10 @@ class garnish:
 			a=sentence_vec_map[_i_label]
 			seen_labels[_i_label]=0
 			
-			if sentence_entropy_map[_i_label] > 2*min_entropy: 	# filter out sentences with low entropy.
+			if sentence_entropy_map[_i_label] > min_entropy*scalar: 	# filter out sentences with low entropy.
 
 				for _j_label in sentence_vec_map:
-					if sentence_entropy_map[_j_label] > 2*min_entropy: 
+					if sentence_entropy_map[_j_label] > min_entropy*scalar: 
 
 						if  _j_label not in seen_labels:
 							b=sentence_vec_map[_j_label]
@@ -248,13 +249,16 @@ class garnish:
 						else:
 							summary_map[label] = summary_map[label] + 1
 		s_summary_map = sorted(summary_map.items(), key=operator.itemgetter(0))
+		s1=""
 		for _label in s_summary_map:
 			label=_label[0]
-			s1=bcolors.OKGREEN+"[+"+str(label)+"]  "
+			s1=s1 + "[+"+str(label)+"]  "
 			for i in range (label, sentence_length_map[label]+label):
 				s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
-			s1=s1+ bcolors.FAIL + "["+str(_label[1]) +"]"+ bcolors.ENDC +"\n"
-			print(s1)
+			s1=s1 + "["+str(_label[1]) +"]" +"\n"
+		print(bcolors.OKGREEN + s1 + bcolors.ENDC)
+
+		return s1
 			# ans=raw_input("~ ")
 			# if ans == "c":
 			# 	break
@@ -280,16 +284,19 @@ class garnish:
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)
-		self.check_quality(_ingredients, special_items)
+		summary = self.check_quality(_ingredients, special_items)
 
 
 		_ingredients_all		=	_ingredients.get_ingredients()
 		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
 
 		with open("post_bakes/result.baked", "w+") as f:
-			title="~$[ Syntatic Sugar ]$~"\
-				  "\nLast Post Baked: "
+			title="~$[ Syntactic Sugar ]$~"\
+				  "\n** Results **: \n\n"
+
 			f.write(title)
+			f.write(summary)
+			f.write("\n Baked Goods: \n\n")
 			line 	= 	0
 			out 	= 	""
 			for _label in _ingredients_all:

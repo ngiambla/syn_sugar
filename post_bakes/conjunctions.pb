@@ -1,985 +1,1759 @@
-High-Level Synthesis of FPGA Circuits with 
-Multiple Clock Domains 
-Author names removed ]f[ blind review. 
-Abstract—We consider the high-level synthesis of circuits with 
-multiple clock domains in a bid to raise circuit performance. 
-A profiling-based approach is used to select time-intensive subcircuits within a larger circuit to operate on separate clock 
-domains. This isolates the critical paths of the sub-circuits from 
-the larger circuit, allowing the sub-circuits to be clocked at 
-the highest-possible speed. The open-source LegUp high-level 
-synthesis tool (HLS) [1] is modified to automatically insert 
-clock-domain-crossing circuitry ]f[ signals crossing between two 
-domains. The scheduling ]^[ binding phases of HLS were 
-changed to reflect the impact of multiple clock domains on 
-memory. Namely, the block RAMs in FPGAs are dual-port, 
-where each port can operate on a different domain, implying 
-that sub-circuits on different domains can access shared memory 
-provided the domains of the memory ports are consistent with 
-the sub-circuit domains. In an experimental study, apply multiclock domain HLS to the CHStone benchmark suite [2] ]^[ 
-demonstrate average wall-clock time improvements of 33%. 
-To understand how performance may be impacted through 
-the use of multiple clock domains, consider a larger circuit 
-having two sub-circuits: one ]f[ performing the computational 
-work, ]^[ a second ]f[ other tasks, such as setup, I/O, etc. 
-Assume that 90% of the execution cycles are consumed by the 
-first sub-circuit, ]^[ during that time, the second sub-circuit 
-lies idle. In such a scenario, to minimize overall wall-clock 
-time, it is desirable to make the clock period of the first subcircuit (where the majority of cycles are spent) as short as 
-possible. In a single-clock design, the critical path of the overall 
-circuit may reside in the second sub-circuit, thereby slowing 
-down everything. However, by clocking the two sub-circuits 
-on independent domains, we are assured that the speed of the 
-first sub-circuit is optimized in isolation; that is, its speed is 
-]n[ defined by the critical path in the second sub-circuit. 
-I. I NTRODUCTION 
-Deployment of multiple clock domains does ]n[ come 
-without a cost. Clock-domain-crossing circuitry must be 
-incorporated when different domains “talk” to one another 
-to avoid metastability (i.e. when a register output oscillates 
-between the high ]^[ low states ]f[ a certain period of 
-time), ]^[ such circuitry imposes latency overheads ]f[ such 
-communication, as well as an area overhead. Moreover, the use 
-of multiple domains complicates CAD tasks, particularly static 
-timing analysis. However, despite these costs, it is important 
-to note that in the FPGA context, modern devices already 
-contain sophisticated circuitry ]f[ the generation, ]^[ lowskew distribution/routing of multiple different clocks within a 
-single user design. This work leverages the presence of such 
-already-existing circuitry from the HLS perspective. 
-High-level synthesis (HLS) allows software design methodologies to be applied ]f[ hardware design, lowering nonrecurring engineering (NRE) costs ]^[ reducing the time-tomarket ]f[ the production of electronic products. For hardware 
-engineers, HLS allows design ]^[ verification to proceed more 
-rapidly, at a higher level of abstraction than traditional RTL. For 
-software engineers, HLS enables the speed ]^[ energy benefits 
-of hardware to be accessed by those without hardware-design 
-skills. The difficulty of traditional approaches to hardware 
-design, as well as a labor market where software engineers 
-outnumber hardware engineers by a 10-to-1 margin [3], are key 
-drivers ]f[ the emphasis on HLS by the largest FPGA vendors. 
-Despite its rising popularity, however, a long-standing weakness 
-of HLS is that in certain cases, the quality (performance, power, 
-We modified the open-source LegUp HLS tool [1] from the 
-area) of the circuit produced are inferior to manual hardware University of Toronto to generate multi-clock domain circuits. 
-design. In this paper, we improve the performance of HLS- In our new flow, the user specifies, in a Tcl configuration 
-generated circuits by borrowing ]^[ incorporating into HLS a file, which functions are to be clocked on specific domains. 
-technique from traditional sequential circuit design – the use The scheduling ]^[ binding steps of HLS were modified 
-of multiple clock domains. 
-to recognize clock domain restrictions on memory ports – 
-Multiple-clock domain design refers to the use of multiple memories in FPGAs are dual port, where each port may be 
-clocks of different frequencies within a single larger design. clocked independently. In the binding context, ]f[ example, this 
-For example, one of two sub-circuits within a larger circuit restriction implies that circuitry operating at a specific frequency 
-may be clocked at 100MHz, ]^[ the second sub-circuit clocked must access memory through a port operating at that same 
-at 200MHz. The use of multiple clocks offers two potential frequency. The Verilog generation step of LegUp was altered to 
-benefits: 1) improved performance, ]^[ 2) reduced power. We automatically insert clock-domain-crossing logic ]^[ FSM stall 
-focus on the former benefit in this paper; however, prior work logic. In an experimental study, we demonstrate performance 
-has focused on the latter benefit [4], with power saved by benefits over single clock designs using the CHStone HLS 
-reducing the total clock routing capacitance toggling at a single benchmark suite [2]. To the authors’ knowledge, this work is 
-(high) frequency, ]^[ the ability to independently gate clock the first application of automated multiple-clock-domain circuit 
-domains ]f[ idle sub-circuits. 
-generation in HLS ]f[ FPGAs. 
-the scope of this paper. However, in our work, we make use of 
-two of the circuits from [10], called a two flip-flop synchronizer 
-]^[ an enable-based synchronizer. We elaborate on these in 
-detail in Section III. 
-Top Module 
-Global Memory 
-Port A 
-Port B 
-start 
-start 
-Arguments[i] 
-Arguments[i] 
-Module A 
-Module C 
-return value 
-return value 
-finish 
-finish 
-A. LegUp HLS 
-LegUp is an HLS tool that converts a C program into a 
-hardware circuit specified in Verilog RTL. The tool is built 
-within the open-source LLVM compiler [11]. After program 
-Module B 
-Module D 
-parsing, conversion to the compiler’s internal representation, 
-]^[ compiler optimization passes, LegUp HLS commences. 
-Local shared 
-Local shared 
-The typical HLS steps are allocation, scheduling, binding, 
-memory 
-memory 
-]^[ finally, generation of the RTL. Allocation pertains to the 
-constraints on the design: the amount of hardware resources of 
-Fig. 1. Top-level circuit structure of LegUp-generated circuit. 
-each type that are permitted ]f[ use in the synthesized circuit, as 
-well as the desired performance ]^[ other criteria. Scheduling 
-assigns the computations in the software program into time 
-II. BACKGROUND AND R ELATED W ORK 
-steps, each corresponding to states of a finite-state machine 
-(FSM). Thus, scheduling plays the key role of deciding which 
-Multiple clock architectures, as implemented on FPGAs, computation executes at what time, thereby defining the control 
-have been studied over the past two decades. Prior work FSM. Binding selects, ]f[ each computation in the software, 
-includes multiple-clock architectures within Globally Asyn- the specific hardware resource on which the computation will 
-chronous ]^[ Locally Synchronous (GALS) systems proposed be performed. Finally, the in-memory synthesized circuit is 
-in [5]. GALS systems consist of multiple local synchronous written out in Verilog. For this research, changes were necessary 
-modules that communicate asynchronously via a 4-phase throughout the LegUp flow, as described below. 
-handshake protocol. The 4-phase handshake protocol introduces 
-In the most-recent version of LegUp HLS, the generated 
-considerable delays to transfer data between synchronous 
-circuit has a “flat” topology, as described in [12], an illustration 
-modules. A study by Jiang et al. [6] proposed a computational 
-of which appears in Fig. 1. Observe that all modules, memories 
-model, called a GAS BLOCK, to facilitate the design of GALS(global ]^[ shared local), as well as the interconnect reside 
-based embedded systems. 
-at a single level of the hierarchy. The rationale ]f[ this 
-Another direction is that of latency-insensitive systems flat implementation is to permit the sharing of resources 
-(LIS) [7] ]f[ the implementation of multiple-clock designs. LIS- among the computational modules, e.g. memories ]v[ large 
-based systems wrap circuit sub-modules within synchronizing computational blocks, such as floating-point units ]v[ dividers. 
-wrappers that impose an area overhead. The synchronizing The flat hierarchy has implications ]f[ multi-clock HLS in this 
-wrappers are used to both insulate individual sub-modules research, particularly insertion of the CDC circuits between 
-from one another ]^[ also, to permit communication between communicating modules on different clock domains. 
-modules. An extension of LIS, combined with GALS-based 
-design, was proposed by Singh et al. [8] to support multi-clock 
-III. M ULTIPLE C LOCK -D OMAIN HLS 
-architectures. Agiwal ]^[ Singh [9] applies LIS concepts to 
-multi-clock design, with handling ]f[ metastability ]^[ data A. Overview 
-incoherency. Regarding multi-clock-domain HLS ]f[ FPGAs, 
-At a high level, the high-level synthesis of circuits with 
-there appears to be little prior work aside from [4], which multiple clock domains works as follows: the user designates 
-focused on power benefits rather than performance. 
-which C functions are to be placed on separate clock domains in 
-A key element in the design of digital circuits with multiple LegUp’s Tcl configuration file. LegUp HLS synthesizes each C 
-clock domains is clock-domain crossing (CDC) circuitry – function into a separate Verilog module. In scenarios where a 
-special circuit structures that provide communication between function calls another function, ]^[ the two functions reside on 
-two different clock domains. The purpose of such circuitry is to different clock domains, clock-domain-crossing (CDC) circuitry 
-ensure the integrity of the data transmitted between the domains. must be inserted between the corresponding generated Verilog 
-When data from a first clock domain is transmitted, e.g. from modules. We modified the Verilog generation step of LegUp 
-a flip-flop Q output, to a flip-flop clocked by a second domain, HLS to automatically insert the CDC circuits in the appropriate 
-the potential exists ]f[ metastability in the receiving flip-flop, locations, as well as to insert necessary stall logic to mitigate 
-depending on the timing relationship between the two clocks. metastability (elaborated upon below). The Verilog generation 
-The CDC circuitry eliminates the chance of metastability, was also modified to automatically instantiate PLLs ]f[ clock 
-providing clean data transfer between domains. A paper by generation: one PLL ]f[ each domain. In this study, we target 
-Luo et al. [10] surveys the design ]^[ verification of a variety the Altera/Intel Cyclone V 45nm FPGA; the PLLs instantiated 
-of CDC circuits. A complete review of CDC circuits is beyond are specific to Cyclone V. 
-Interconnect 
-start 
-start 
-Arguments[i] 
-Arguments[i] 
-return value 
-return value 
-finish 
-finish 
-Port A 
-Port B 
-Port A 
-Port B 
-Clock Domain 1 
-Stall 
-Clock Domain 2 
-Start C 
-Stall 
-Module B 
-B 
-Module 
-Module 
-ModuleAB 
-Return value C 
-Stall 
-Start C 
-Stall 
-Finish C 
-Arguments C[j] 
-Finish C 
-Arguments C[j] 
-Stall 
-logic 
-2 
+See discussions, stats, ]^[ author profiles ]f[ this publication at: https://www.researchgate.net/publication/260609038 
+The influence of financial incentives ]^[ other 
+socio-economic factors on electric vehicle 
+adoption 
+Article in Energy Policy · May 2014 
+DOI: 10.1016/j.enpol.2014.01.043 
+CITATIONS 
+READS 
+133 
+750 
+4 authors, including: 
+Will Sierzchula 
+Sjoerd Bakker 
+Navigant Consulting 
+Sjoerd Bakker Research & Consultancy 
+10 PUBLICATIONS 297 CITATIONS 
+33 PUBLICATIONS 673 CITATIONS 
+SEE PROFILE 
+SEE PROFILE 
+Kees Maat 
+Delft University of Technology 
+64 PUBLICATIONS 1,716 CITATIONS 
+SEE PROFILE 
+Some of the authors of this publication are also working on these related projects: 
+Development ]^[ Early Adoption of Electric Vehicles View project 
+Activity based research View project 
+All content following this page was uploaded by Will Sierzchula on 15 April 2014. 
+The user has requested enhancement of the downloaded file. 
+This article appeared in a journal published by Elsevier. The attached 
+copy is furnished to the author ]f[ internal non-commercial research 
+]^[ education use, including ]f[ instruction at the authors institution 
+]^[ sharing with colleagues. 
+Other uses, including reproduction ]^[ distribution, ]v[ selling ]v[ 
+licensing copies, ]v[ posting to personal, institutional ]v[ third party 
+websites are prohibited. 
+In most cases authors are permitted to post their version of the 
+article (e.g. in Word ]v[ Tex form) to their personal website ]v[ 
+institutional repository. Authors requiring further information 
+regarding Elsevier’s archiving ]^[ manuscript policies are 
+encouraged to visit: 
+http://www.elsevier.com/authorsrights 
+Author's personal copy 
+Energy Policy 68 (2014) 183–194 
+Contents lists available at ScienceDirect 
+Energy Policy 
+journal homepage: www.elsevier.com/locate/enpol 
+The inﬂuence of ﬁnancial incentives ]^[ other socio-economic factors 
+on electric vehicle adoption 
+William Sierzchula a,n, Sjoerd Bakker b, Kees Maat a,b, Bert van Wee a 
+a 
+b 
+Delft University of Technology, Faculty of Technology, Policy, ]^[ Management, The Netherlands 
+Delft University of Technology, Faculty of Architecture ]^[ the Built Environment, The Netherlands 
+H I G H L I G H T S 
+ 
+ 
+ 
+ 
+This research analyzes electric vehicle adoption of 30 countries in 2012. 
+Financial incentives ]^[ charging infrastructure were statistically signiﬁcant factors. 
+Country-speciﬁc factors help to explain diversity in national adoption rates. 
+Socio-demographic variables e.g., income ]^[ education level were ]n[ signiﬁcant. 
+art ic l e i nf o 
+a b s t r a c t 
+Article history: 
+Received 5 November 2013 
+Received in revised form 
+24 January 2014 
+Accepted 25 January 2014 
+Available online 16 February 2014 
+Electric vehicles represent an innovation with the potential to lower greenhouse gas emissions ]^[ help 
+mitigate the causes of climate change. However, externalities including the appropriability of knowledge 
+]^[ pollution abatement result in societal/economic beneﬁts that are ]n[ incorporated in electric vehicle 
+prices. In order to address resulting market failures, governments have employed a number of policies. 
+We seek to determine the relationship of one such policy instrument (consumer ﬁnancial incentives) to 
+electric vehicle adoption. Based on existing literature, we identiﬁed several additional socio-economic 
+factors that are expected to be inﬂuential in determining electric vehicle adoption rates. Using multiple 
+linear regression analysis, we examined the relationship between those variables ]^[ 30 national electric 
+vehicle market shares ]f[ the year 2012. The model found ﬁnancial incentives, charging infrastructure, 
+]^[ local presence of production facilities to be signiﬁcant ]^[ positively correlated to a country's electric 
+vehicle market share. Results suggest that of those factors, charging infrastructure was most strongly 
+related to electric vehicle adoption. However, descriptive analysis suggests that neither ﬁnancial 
+incentives nor charging infrastructure ensure high electric vehicle adoption rates. 
+& 2014 Elsevier Ltd. All rights reserved. 
+Keywords: 
+Public policy 
+Technology adoption 
+Electric vehicles 
+Eco-innovation 
+1. Introduction 
+The IPCC (2012) noted that climate change caused by rising 
+levels of greenhouse gases (GHGs) poses a serious threat to the 
+physical ]^[ economic livelihoods of individuals around the globe 
+]^[ could negatively affect ecosystems by putting 20–30% of plant 
+]^[ animal species at an increasingly high risk of extinction.1 
+GHGs such as CO2 ]^[ N2O primarily come from the burning of 
+fossil fuels during activities including electricity production ]^[ 
+operating internal combustion engines. In 2010, the transport 
+n 
+Corresponding author. Tel.: þ 31 6 150 88735. 
+E-mail address: w.s.sierzchula@tudelft.nl (W. Sierzchula). 
 1 
-Return value C 
-4 
-3 
-Enable 
-Finish 
-Start 
-Stall 
-Module 
-Module C 
-C 
-Clock Domain 3 
-Arguments[j] 
-Return value 
-Fig. 2. Clock-domain-crossing circuitry ]f[ start ]^[ finish signals. Arguments/return value are showed as abstract bold lines. 
-In addition, changes to the scheduling ]^[ binding steps of 
-LegUp HLS were required to support multiple domains. Such 
-changes are required ]f[ cases in which sub-circuits on separate 
-clock domains access a shared resource, such as a block RAM. 
-We elaborate on the CDC circuitry ]^[ the scheduling/binding 
-changes in the subsections below. 
-B. Clock-Domain-Crossing (CDC) Circuitry 
-To support the synthesis of multiple clocks, we modify 
-LegUp’s existing communication interface between modules. 
-The communication interface in a LegUp-generated circuit 
-contains two main interfaces, a master interface ]^[ a slave 
-interface. The master interface initiates a transfer by setting 
-the arguments to the slave interface ]^[ asserting a start 
-control signal. The slave responds to the transfer, performs 
-its computation, ]^[ after execution, sets a return value ]^[ 
-asserts a finish control signal. Note that a slave interface 
-may have multiple master interfaces connected to it. This 
-situation arises when a function in the original C program 
-has more than one call point. Additionally, a master interface 
-may be connected to multiple slave interfaces – a scenario 
-that arises when one function calls multiple different child 
-functions. The interconnect between the master interfaces ]^[ 
-the slave interfaces is generated in the top-level of the hierarchy, 
-as mentioned above in Section II. We realize the passing of 
-arguments, the return value ]^[ the control signals from one 
-clock domain to another by inserting CDC circuitry in the 
-LegUp RTL generation phase, making use of a two flip-flop 
-synchronizer ]^[ an enable-based synchronizer. 
-The two flip-flop synchronizer is a simple, safe method 
-]f[ passing logic signals between clock domains, ]^[ is the 
-recommended approach ]f[ CDC in Altera FPGAs [13]. The 
-concept behind the two flip-flop synchronizer is that a first 
-register samples the asynchronous input signal ]^[ then waits 
-]f[ a clock cycle to allow any metastable state that could occur 
-to resolve itself. Then, the first register samples the input again 
-]^[ passes it to the second register, with the intent being that 
-the second register is stable ]^[ ready to pass the signal into 
-the receiving clock domain. To realize a reliable two flip-flop 
-synchronizer, the settling window ]f[ metastability T (the time 
-slack available ]f[ a metastable signal to be resolved) should 
-be set to a full clock cycle. The reliability of a two flip-flop 
-synchronizer is often expressed in terms of the mean time 
-before failure (MTBF) [14]: 
-T 
-MT BF = 
-eτ 
-Tw fR fS 
-(1) 
-where τ is the settling time constant of the flip-flop, fR 
-is the receiving clock frequency, ]^[ fS is the sending clock 
-frequency. TW is the time window at which metastability could 
-occur. TW is defined by the setup ]^[ hold-time parameters of 
-a flip-flop. As τ ]^[ Tw are flip-flop parameters, they depend 
-on the FPGA used ]^[ the operating conditions. However, 
-optimization could be carried out on T, as it depends on the 
-design. In our case, achieving a desirable (high) MTBF is 
-straightforward, as T is a full clock cycle, which is lengthy in 
-comparison to the time required ]f[ flip-flop stability after a 
-metastable event. Typical τ values are in the tens of ps [14], 
-]^[ with a clock period in ns (e.g. 200MHz → T = 5ns), the 
-ratio of T /τ ≈ 102 , which implies the numerator in the MTBF 
+This is posed by the IPCC with “medium conﬁdence” under a situation where 
+global temperatures are 2–3 1C above pre-industrial levels. 
+http://dx.doi.org/10.1016/j.enpol.2014.01.043 
+0301-4215 & 2014 Elsevier Ltd. All rights reserved. 
+sector accounted ]f[ 6.7 Gt of emitted CO2 ]v[ 22% of the world's 
+total (IEA, 2012a). Furthermore, global fuel demand ]f[ transportation is projected to grow approximately 40% by 2035 (IEA, 
+2012b). The IPCC noted the need to reduce GHG emissions 
+(particularly in the energy ]^[ transport sectors) in order to avoid 
+a 2.4–6.4 1C increase in 2090 temperatures relative to those from 
+1990 (IPCC, 2012). 
+Electric vehicles (EVs) are one possible innovation to help 
+address the environmental concerns identiﬁed above. However, 
+EV adoption is seen as being very limited without stimulation 
+from external factors such as stringent emissions regulations, 
+rising fuel prices, ]v[ ﬁnancial incentives (Eppstein et al., 2011; 
+Shaﬁei et al., 2012; IEA, 2013). Of those factors, consumer subsidies 
+are speciﬁcally identiﬁed as being necessary ]f[ EVs to reach a 
+mass market (Hidrue et al., 2011; Eppstein et al., 2011). Part of the 
+Author's personal copy 
+184 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+reason that diffusion is expected to be ]s[ slow is that pollution 
+abatement ]^[ knowledge appropriability2 externalities reduce EV 
+development ]^[ consumer adoption, leading to an inefﬁcient 
+allocation of goods ]^[ services known as a market failure 
+(Rennings, 2000; Jaffe et al., 2005; Struben ]^[ Sterman, 2008). 
+In the case of EVs, market failures distort their prices relative to 
+ICEVs, which results in fewer electric automobiles being built by 
+ﬁrms ]v[ bought by consumers. Consequently, the potential to 
+address climate change through EV development ]^[ use is 
+limited by externalities; neo-classical economics indicates that 
+government policy should be employed to help correct ]f[ such 
+situations (Rennings, 2000). Of these policy measures, demand 
+side instruments such as consumer subsidies are viewed as being 
+particularly important during the early commercialization period 
+(IEA, 2013). However, based on previous studies, there are reasons 
+to question how effective such ﬁnancial incentives would be in 
+encouraging EV adoption. 
+Firstly, the literature has presented conﬂicting results regarding 
+the effect of consumer subsidies on hybrid-electric vehicle (HEV) 
+adoption. While some studies have shown ﬁnancial incentives to 
+be positively correlated to HEV sales (Beresteanu ]^[ Li, 2011; 
+Gallagher ]^[ Muehlegger, 2011), Diamond (2009) found that 
+higher fuel prices, ]n[ consumer subsidies, were related to 
+increased adoption. In addition, Zhang et al. (2013) identiﬁed only 
+a very weak relationship between purchase subsidies ]^[ consumer willingness to buy EVs. Thus, factors other than ﬁnancial 
+incentives could be the primary drivers of EV adoption. 
+Secondly, due to the nature of radical innovation development 
+(Tushman ]^[ Anderson, 1986), there may be reasons to suspect 
+that consumers may ]n[ behave in the same fashion toward HEVs 
+as they do toward EVs. Innovations that are further away technologically from the dominant design are associated with greater 
+levels of uncertainty (Anderson ]^[ Tushman, 1990). Consequently, since EVs represent a more radical technological departure from ICEVs than do HEVs (Sierzchula et al., 2012), they result 
+in increased levels of uncertainty, speciﬁcally among consumers 
+(Sovacool ]^[ Hirsh, 2009). This uncertainty affects a broad array 
+of industrial dynamics including future proﬁtability of a technology, government involvement, ]^[ willingness to pay (Arrow, 
+1966; Nelson ]^[ Winter, 1977; Jaffe et al., 2005); the more an 
+innovation differs from the conventional technology, the less 
+consumers are willing to pay ]f[ it. Thus, higher consumer 
+uncertainty regarding EVs decreases the amount that individuals 
+are willing to pay relative to HEVs, in effect reducing the utility of 
+ﬁnancial incentives relative to EV adoption. This makes it difﬁcult 
+to estimate the impacts of ﬁnancial incentives on the adoption of a 
+radical innovation with signiﬁcantly different performance characteristics relative to the conventional technology, as is the case 
+with EVs. Therefore, earlier studies analyzing HEV adoption may 
+under-represent the impact that ﬁnancial incentives have on EV 
+purchases. 
+In addition, consumer subsidies may have little effect on EV 
+sales uptake if buyers are uncomfortable with the technology 
+(Egbue ]^[ Long, 2012), ]v[ do ]n[ see enough EVs in the ﬂeet 
+around them (a threshold effect) (Eppstein et al., 2011). Our paper 
+aims to contribute to the literature by examining if ]^[ to what 
+extent ﬁnancial incentives ]^[ other socio-economic factors 
+explain EV adoption. 
 2 
-equation ≈ e10 – an enormous quanity. 
-Clock Domain 1 
-Clock Domain 2 
-Start c 
-Start c 
-Arguments c [i] 
-Arguments c [i] 
-en 
-Module A 
-en 
-CDC circuit 
-in Fig. 2 
-Return Value c 
-Finish c 
-en 
-Finish c 
-Finish 
-Return Value 
-Module C 
-Start 
-Clock Domain 3 
-Arguments [i] 
-0 
-en 
-en 
-en 
-Module B 
-Return Value c 
-Fig. 3. CDC ]f[ arguments ]^[ return values. 
-We modified LegUp to instantiate the two flip-flop synchroFig. 2 shows an example of LegUp-synthesized circuitry 
-nizer when passing the control signals start ]^[ finish ]f[ the start ]^[ finish between two master interfaces of 
-between modules in different clock domains. However, issues modules, A ]^[ B, ]^[ a slave interface C. The two flip-flop 
-arose surrounding the cycle latencies required ]f[ transmitting synchronizers are highlighted at labels 1 ]^[ 2 ]f[ the passing of 
-the control signals. The latency ]f[ transmitting the finish the start ]^[ finish control signals, respectively, between 
-signal is ]n[ an issue, as a parent (calling) module assumes the module A master interface ]^[ module C slave interface. Labels 
-slave is busy as long as finish is set to low. This implies 3 ]^[ 4 highlight the synchronizers ]f[ data transmission 
-that a master interface would ]n[ invoke a slave interface between modules B ]^[ C. 
-unless the slave’s finish is set to high. However, the latency 
-As the arguments ]^[ return value of the interfaces are 
-]f[ transmitting the start signal required special attention. 
-Specifically, if a start signal is issued by a master interface ]^[ multiple-bit-wide data, they cannot be crossed by using a 
-the slave’s finish signal is ]n[ set to low on the same clock cycle, simple CDC technique. The individual bits in wide words may 
-another master interface could invoke the same slave while arrive at different times in the receiving clock domain due to 
-the first start signal is partway in transmission from one clock imbalanced circuit delays. Consequently, the potential exists 
-domain to another. To handle the start signal latency issues, ]f[ the individual bits to be sampled at different edges of the 
-FSM stall logic was added to the LegUp-generated hardware. receiving clock. To handle this, we incorporate the enable-based 
-The added FSM logic stalls the entire circuit when start synchronizer concept into our CDC circuit. Specifically, we 
-signal is asserted by a master interface. The stall continues register multi-bit-wide data ]f[ multiple cycles in the sending 
-until the finish signal from the slave is set to low ]^[ passed clock domain until the receiving clock domain is ready to 
-to all the master interfaces of the slave interface. The stall sample it. The receiving clock domain samples the wide data 
-signal remains low until a specific delay has elapsed. The when it receives an enable control signal that has been passed 
-delay is imposed by a chain of flip-flops (a shift register) in from the sending clock domain. 
-the slave clock domain. The length of the chain depends on 
-Since the LegUp master interface passes the arguments along 
-the ratio of the slave clock frequency ]^[ the fastest master 
-clock frequency, as shown in (2), where fm0 , fm1 to fmn refer with the start signal, we used the start signal as an enable 
-to the frequencies of the master interfaces, ]^[ fs represents ]f[ the sampling of the arguments in the slave interface clock 
-the frequency of the slave interface. The multiplication of the domain. As ]f[ the return value, we used the finish control 
-frequency ratio by two in (2) is to accommodate the passing signal as the enable ]f[ the sampling at the master interface. 
-back of the finish signal through the two flip-flops at the master While Fig. 2 pertained to handling of start ]^[ finish 
-interface. The addition of 3 is to apply a delay ]f[ the flip-flops signals, Fig. 3 shows an analogous figure ]f[ CDC of arguments 
-]^[ return values. In the top-left corner of the figure, ]f[ 
-at the slave interface. 
-example, observe that the start driven by module A in clock 
-domain 1 is used as a register enable ]f[ the arguments passed 
-max( fm0 , fm1 , ... fmn ) 
-Number o f FFs = 3 + d 
-e × 2 (2) to module C in clock domain 3. 
+Knowledge appropriability ]v[ “knowledge spillover” relates to the ability of a 
+ﬁrm to beneﬁt from technologies ]v[ expertise that it develops as opposed to other 
+companies gaining from those advances without investing in the necessary R&D, e. 
+g., reverse engineering a developed product. Knowledge spillover results in lower 
+rates of innovation. 
+2. Barriers limiting innovation 
+The literature has identiﬁed several obstacles which limit the 
+diffusion of new technologies such as EVs. For example, knowledge spillover applies broadly to all innovations while pollution 
+abatement ]^[ bounded rationality3 are typically associated with 
+limiting the development ]^[ adoption of environmental technologies (eco-innovations) (Jaffe et al., 2005; Rennings, 2000). These 
+barriers, which limit EV diffusion by inﬂuencing both the manufacturers that produce the automobiles ]^[ the consumers that 
+buy them, are described more comprehensively below. 
+2.1. General barriers 
+In studying the development of innovations, Arrow (1962) 
+determined that in a capitalist system, ﬁrms will underinvest in 
+research ]^[ development of new technologies. This is primarily 
+due to uncertainty, ]b[ also because an innovation's public beneﬁt 
+(for which businesses receive little ﬁnancial compensation) often 
+outweighs its private value to the company. The externality, of 
+“positive knowledge spillover”, occurs when innovations provide 
+valuable information to non-consumers (Horbach, 2008). 
+For example, ﬁrms are ]n[ always able to prevent competitors 
+from gaining from their R&D efforts. The degree to which a ﬁrm is 
+able to defend the proﬁts of an innovation from competitor 
+imitation is referred to as its appropriability (Teece, 1986). Because 
+it is ]n[ possible ]f[ a ﬁrm to keep every element of a new 
+technology secret, other companies can gain by learning from ]^[ 
+in some cases stealing the work of the original innovating entity. 
+Thus, due to knowledge spillovers, businesses are less likely to 
+invest in the development of innovations that are easily copied 
+(having low levels of appropriability) because they will ]n[ be able 
+to reap all of the rewards from a successful new technology (Teece, 
+1986). Positive knowledge spillover inﬂuences the industrial landscape such that although ﬁrms do invest in the research ]^[ 
+development of new technologies, they do ]s[ at a lower level than 
+would be expected based on the ﬁnancial beneﬁts that innovations 
+provide. 
+In addition, emerging technologies face further barriers 
+because they often compare poorly to existing dominant designs 
+in important criteria such as price ]^[ performance (Adner, 2002). 
+For that reason, the ﬁrst individuals to adopt an emerging radical 
+innovation are often willing to pay a premium ]v[ cope with subpar performance in order to have the latest technology (Rogers, 
+1995). The larger proportion of the population known as early/late 
+majority adopters are much more risk adverse, ]^[ are ]n[ willing 
+to purchase an innovation ]s[ different from the dominant design 
+(Rogers, 1995). It is vital ]f[ radical technologies to attract a 
+signiﬁcant enough number of early adopters to develop a viable 
+market niche (Geels, 2002). Thereafter, industrial forces such as 
+learning by doing ]^[ scale economies can rapidly lower costs ]^[ 
+improve performance (Foster, 1986; Christensen, 1997). In order 
+]f[ an innovation such as electric vehicles to have a signiﬁcant 
+environmental impact, it needs to be widely adopted (and have 
+dramatically lower emissions levels compared to ICEVs). For that 
+to happen, there must ﬁrst be enough demand within the EV niche 
+market that manufacturers continue to develop ]^[ sell the 
+automobiles. Consequently, governments have employed ﬁnancial 
+incentives to help attract early EV adopters. 
+3 
+The notion that an individual's decision making is inﬂuenced by the 
+information that he/she has. 
+Author's personal copy 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+2.2. Barriers that reduce eco-innovation 
+Eco-innovations differ from other new products ]^[ services in 
+that they provide a lower environmental impact than the conventional technology (Rennings, 2000). Examples range from incremental improvements to existing designs such as turbocharging in 
+automobile engines to more radical technologies, like solar cells 
+]^[ wind turbines. The distinct nature of eco-innovations 
+improves general social utility through lower pollution abatement 
+levels. However, this externality also creates market failure, ]^[ 
+ultimately limits their development ]^[ adoption (Jaffe et al., 
+2005). 
+Investments in eco-innovation are speciﬁcally disincentivized 
+because beneﬁts from lower pollution levels are ]n[ included in a 
+product's price. The externality pollution functions such that that 
+even though many societal members proﬁt from eco-innovations 
+through improved health (however marginally), ﬁrms are ]n[ able to 
+charge those individuals ]f[ their gains. As a result, eco-innovations 
+have lower adoption levels than if societal beneﬁts from decreased 
+pollution were included in product costs (Brown, 2001). 
+An additional barrier that has contributed to lower ecoinnovation diffusion is bounded rationality, which can inﬂuence 
+consumer valuation of a product's purchase price, operating 
+expenses, ]^[ lifetime cost. Instead of using rational choices to 
+maximize an individual's utility, individuals are aware of only a 
+portion of the available options ]^[ thus act on imperfect 
+information (Nelson ]^[ Winter, 1982). Thus, in place of calculating out the total cost of ownership of a product, consumers often 
+rely on heuristics ]v[ rules of thumb to guide their purchasing 
+behavior (Jaffe ]^[ Stavins, 1994; Schleich, 2009). This can lead an 
+individual to place too much emphasis on the purchase price ]^[ 
+]n[ accurately value operating expenses (Levine et al., 1995). 
+Because many eco-innovations have high purchase prices ]^[ 
+low operating expenses, they have often experienced slow diffusion rates (Brown, 2001). Speciﬁcally regarding EVs, consumers 
+looking to purchase alternative fuel vehicles do ]n[ accurately 
+incorporate fuel economy in their vehicle purchase decisions, 
+leading to irrational behavior (Turrentine ]^[ Kurani, 2007). 
+3. Factors inﬂuencing EV adoption 
+Because EVs were introduced to the broader consumer market 
+only recently in 2010 (not including their temporary commercialization in the 1990s), there is little research that uses empirical 
+data to analyze factors which affect adoption rates. Thus, much of 
+our knowledge about such contributing elements comes from 
+stated preference studies. However, because of a phenomenon 
+known as the “attitude–action gap”, there is the concern that 
+information from consumer surveys may have little relation to the 
+purchase of low-emission vehicles (Lane ]^[ Potter, 2007). This 
+raises the value of research that analyzes actual consumer actions 
+(revealed preferences), such as that performed in our paper. 
+HEVs provide a good comparison basis ]f[ EVs (even though 
+they are less of a radical innovation) because they have several of 
+the same key elements including a battery ]^[ electric motor 
+based powertrain ]^[ lower environmental impacts. As HEVs have 
+been commercially available since the late 1990s, there are several 
+studies that used revealed preference data to investigate factors 
+that inﬂuenced consumer uptake ]f[ those automobiles. In the 
+absence of similar research ]f[ EVs, we have incorporated in our 
+model variables that were found to be signiﬁcant drivers of HEV 
+adoption in those articles e.g., education level, fuel price, ]^[ 
+environmentalism (Lane ]^[ Potter, 2007; Diamond, 2009; 
+Gallagher ]^[ Muehlegger, 2011). Based on the ﬁndings in HEV 
+revealed preference research, EV survey studies, ]^[ theoretical 
+185 
+articles, we have collected ]^[ categorized the factors that are 
+assumed to determine the decision of whether ]v[ ]n[ to purchase 
+an electric vehicle as belonging to the technology itself, the 
+consumer, ]v[ the context. 
+The technology category comprises aspects of electric vehicles 
+including battery costs ]^[ performance characteristics (driving 
+range ]^[ charging time). EV purchase prices, which are heavily 
+dependent on battery costs, have been identiﬁed as being the most 
+signiﬁcant obstacle to widespread EV diffusion (Brownstone et al., 
+2000). The IEA (2011) found that the purchase price of an EV with a 
+30 kWh battery (approx. 85 miles4 of driving range at 0.17 kWh/mile) 
+would be $10,000 (all ﬁnancial amounts in this article should be read 
+as US dollars) more than a comparable ICEV. Battery costs also have 
+an impact on the driving range of an EV. An increase in the size of an 
+EV's battery (in kWh) raises both its driving range ]^[ purchase cost. 
+Therefore, although consumers are sensitive to a limited driving 
+range (Lieven et al., 2011) that aspect must be balanced with its 
+relation to vehicle battery costs. An additional factor which inﬂuences consumer adoption is vehicle charging time (Hidrue et al., 
+2011; Neubauer et al., 2012). Whereas most ICEVs are able to refuel in 
+roughly 4 min, EVs require  30 min at a fast charging station ]^[ up 
+to several (410) h ]f[ charging from a 110 ]v[ 220 V outlet, 
+dependent on battery size (Saxton, 2013). Relative to a comparable 
+ICEV, an EV's high purchase price, limited driving range, ]^[ long 
+charge period all have a negative impact on adoption rate. 
+In addition to factors relating to the EV, consumer characteristics 
+also play a role in determining uptake. Studies have identiﬁed levels of 
+education, income, ]^[ environmentalism to all be positively correlated to likelihood to purchase an EV (Hidrue et al., 2011) ]v[ HEV 
+(Gallagher ]^[ Muehlegger, 2011). However, these factors, speciﬁcally 
+environmentalism, are often less important to consumers than vehicle 
+cost ]^[ performance attributes such as those identiﬁed in the 
+paragraph above (Lane ]^[ Potter, 2007; Egbue ]^[ Long, 2012). 
+A third set of elements, which the literature has found to 
+inﬂuence adoption rates ]^[ is external to both the vehicle ]^[ 
+consumer, is categorized as context factors in our research. In several 
+studies, fuel (gasoline ]v[ diesel) prices have been identiﬁed as one of 
+the most powerful predictors of HEV adoption (Diamond, 2009; 
+Beresteanu ]^[ Li, 2011; Gallagher ]^[ Muehlegger, 2011), ]^[ have 
+also been inﬂuential in agent-based models forecasting EV diffusion 
+(Eppstein et al., 2011; Shaﬁei et al., 2012). Related to fuel prices, 
+although less commonly incorporated in analyses, are electricity 
+costs. Those two factors combine to determine a majority of EV 
+operating expenses which in turn have an impact on adoption rates 
+(Zubaryeva et al., 2012; Dijk et al., 2013). Other studies have 
+identiﬁed availability of charging stations as an important determinant in consumer acceptance of alternative fuel vehicles e.g., EVs 
+(Yeh, 2007; Struben ]^[ Sterman, 2008; Egbue ]^[ Long, 2012; Tran 
+et al., 2012). A country's level of urban density could facilitate greater 
+EV adoption as shorter average travel distances might allow ]f[ wider 
+use of the vehicles' limited driving range (IEA, 2011). Finally, there are 
+several factors speciﬁc to EVs that could inﬂuence adoption rates 
+including vehicle diversity i.e., the number of models that consumers 
+can buy (Van den Bergh et al., 2006), local involvement i.e., the 
+presence of a local manufacturing plant (IEA, 2013), ]^[ public 
+visibility i.e., the number of years EVs have been available ]f[ 
+purchase (Eppstein et al., 2011). 
+4. Method 
+This section describes how EV adoption rates across a series of 
+countries were analyzed using a set of socio-economic variables. 
+4 
+136 km. 
+Author's personal copy 
+186 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+Table 1 
+Description of variables ]^[ sources. 
+Variable 
+Data 
+Source 
+MarShr 
+National market share of electric vehicles as a percentage of all car 
+sales 
+Financial incentives that countries provided ]f[ the purchase and/or 
+use of an electric vehicle 
+The number of charging stationsa in a country corrected ]f[ 
+population (the number of charging stations per 100,000 residents) 
+Index that ranks environmental regulation ]^[ performance by 
+country ]^[ is intended to capture national differences in 
+environmentalism 
+The weighted average of national gasoline ]^[ diesel fuel prices. 
+Averages were weighted based on the amount of gasoline ]v[ diesel 
+fuel used in speciﬁc countriesd 
+Dummy variable identifying whether a country had either an EV 
+producer's global headquarters ]v[ production facilities 
+National income per capita as measured in purchasing power parity 
+The number of vehicles per capita in a country 
+The percentage of workforce with at least a tertiary education level 
+2011 Household electricity prices per kWh 
+Number of EV models that were purchased in 2012 
+Year (since 2008) that EVs were ﬁrst sold in a given country 
+The price of purchasing a Mitsubishi MiEV in a given countryf 
+Cumulative population per square mile in urban areas above 
+500,000 residents 
+National automotive statistics websites 
+Incentive 
+ChgInf 
+Envc 
+Fuel 
+HQ 
+Income 
+PerCapvehicles 
+Education 
+Elece 
+Availability 
+Intro 
+EV_Price 
+Urban density 
+(ACEA, 2012a, 2012b); national government agencies 
+(Chargemap, 2013; Lemnet.org, 2013; ASBE, 2013; Gronnbil, 2013); 
+national charging mapsb 
+Yale (2013) 
+IEA (2012a), Reuters (2012), World Bank (2012a, 2012b) 
+Auto manufacturer websites 
+World Bank (2013a) 
+World Bank (2013a) 
+World Bank (2013b) 
+Eurostat (2013), IEA (2012a) 
+Automotive statistics websites 
+Marklines (2013) 
+National Mitsubishi websites 
+Demographia (2013) 
+a 
+A charging station with multiple outlets would be counted as one in these ﬁgures. 
+For many countries, national charging maps were found to provide more comprehensive data than international websites such as www.chargemap.com. 
+There is no concern of reverse causality between EV adoption rate ]^[ the EPI because the low numbers of electric vehicles being driven in countries would have a 
+negligible impact on the indicators which make up the EPI. 
+d 
+For example, if a country used 30% gasoline ]^[ 70% diesel, then their fuel price would reﬂect a greater weight placed on cost ]f[ diesel. 
+e 
+Due to data availability issues, Iceland electricity prices were from 2012. 
 f 
-s 
-Local shared 
-memory Clk 2 
-Clk 1 
-Port A 
-Port B 
-Local Port 
-Module A 
-Clock Domain 1 
-Global Memory 
-Local shared 
-memory Clk 3 
-Clk 2 
-Clk 3 
-Clk 2 
-Port A 
-Port B 
-Port A 
-Local Port Global Port 
-Global Port Local Port 
-Global Port Local Port 
-Module B 
-Module C 
-Module D 
-Clock Domain 2 
-Port B 
-Clock Domain 3 
-Fig. 4. Clock-domain-crossing memory interfacing. 
-relate to how memories are accessed in the presence of multiple 
-We now describe the changes we made to scheduling ]^[ clock domains. Regarding scheduling, the LegUp HLS tool 
-binding, which are tied to how memories are synthesized by schedules the computations in an input C program on a functionby-function basis. In single-domain designs, it is possible to 
-LegUp. 
-When an input C program contains arrays, the arrays are schedule two memory accesses (loads/stores) per cycle to each 
-synthesized by LegUp HLS into memories on the FPGA. memory in the FPGA, thereby leveraging the dual-point RAMs 
-LegUp generates three different types of memory structures in the fabric. In multiple-clock circuits, when two functions, 
-which are: 1) A global memory controller ]^[ memories, 2) on different clock domains, access the same memory, the two 
-shared-local memories, ]^[ 3) local memories. The global ports of the memory must also be on clock domains aligned 
-]^[ shared local memories are instantiated at the top level with the two domains of the accessing functions. With just 
-entity as shown in Fig. 1. Local memories are ]f[ arrays one port on each unique clock domain, the scheduler can no 
-that are accessed by a single function in the input program; longer schedule two accesses per cycle to the memory – at 
-thus, they are instantiated within the function’s corresponding most one access per clock cycle is permitted ]f[ each domain. 
-hardware module. Shared-local memories contain arrays that We altered the scheduler to reflect this constraint. Namely, 
-are accessed by a list of known functions – such memories ]f[ shared-local memories ]v[ global memories (defined above) 
-are accessed by multiple known hardware modules. Global that are accessed by functions on different clock domains, the 
-memory is ]f[ arrays accessed by an unknown list of functions. scheduler permits at most one access per cycle per domain. 
-Note that ]f[ memories accessed by solely one function, ]v[ 
-The designation of arrays into the three categories of memories 
-that 
-are accessed by multiple functions on the same domain, 
-is based on a “points-to” analysis (alias analysis) in the LLVM 
-the 
-single-port 
-restriction is unnecessary. In such cases, two 
-compiler whose results are used by LegUp HLS. Further details 
-accesses 
-per 
-cycle 
-are permitted, which is the default LegUp 
-are in [12]. 
-HLS 
-behavior. 
-Given the possibility that modules from different clock 
-With regard to binding, one of its tasks is to match memory 
-domains may access the same memory, we changed such 
-operations 
-(loads/stores) to memory ports. In LegUp HLS, 
-memories from single-clock dual port to dual-clock dual port. 
-binding 
-is 
-formulated 
-as a weighted-bipartite graph matching 
-This imposes a constraint that at most two modules from 
-problem 
-instance 
-[15], 
-with one of the objectives being 
-different domains may access the same memory. If a user 
-to 
-balance 
-memory 
-accesses 
-among the ports, judiciously 
-specifies three modules as having different domains in the 
-managing 
-the 
-sizes 
-of 
-the 
-input 
-multiplexers feeding the ports. 
-Tcl configuration file, ]^[ those three modules all access the 
-In 
-the 
-multiple-clock 
-case, 
-however, 
-]f[ memories on two clock 
-same memory, the situation is infeasible, ]s[ multi-clock LegUp 
-domains, 
-the 
-binding 
-step 
-must 
-adhere 
-to the specific domain 
-reports an error ]^[ terminates. 
-of 
-each 
-port 
-]^[ 
-the 
-accessing 
-function. 
-That is, ]f[ a function 
-Fig. 4 illustrates global memory ]^[ shared-local memories 
-on 
-a 
-particular 
-domain 
-that 
-accesses 
-a 
-dual-clock memory, 
-being accessed by multiple clock domains. Observe that Module 
-there 
-is 
-no 
-choice 
-when 
-binding 
-ports: 
-memory 
-accesses in the 
-A ]^[ B communicate with one another, ]^[ both access a 
-function 
-must 
-be 
-bound 
-to 
-the 
-port 
-on 
-the 
-same 
-clock domain 
-local shared memory (top left of figure). In this case, port A of 
-as 
-the 
-function. 
-the memory operates at clock domain 1; port B of the memory 
-operates at clock domain 2. In the top-center of the figure, 
-IV. C LOCK D OMAIN A SSIGNMENT AND F REQUENCY 
-we observe that the global memory ports A ]^[ B operate 
-S ELECTION 
-on clock domains 2 ]^[ 3, respectively, ]^[ are accessed by 
-We evaluate the proposed multi-clock-domain HLS using the 
-modules B, C, ]^[ D. 
-To support multiple-clock synthesis, changes were required CHStone HLS benchmark suite [2] ]^[ target the Altera/Intel 
-to both the scheduling ]^[ binding steps of HLS. The changes Cyclone V FPGA. 
-C. Scheduling ]^[ Binding 
-TABLE I 
-P ERFORMANCE RESULTS FOR ONE CLOCK DOMAIN VERSUS TWO CLOCK DOMAINS . 
-Inline Option 
-Inlined 
-Not Inlined 
-Benchmark 
-adpcm 
-aes 
-blowfish 
-dfadd 
-dfsin 
-jpeg 
-motion 
-sha 
-Geomean 
-adpcm 
-aes 
-blowfish 
-dfadd 
-dfdiv 
-dfmul 
-dfsin 
-gsm 
-jpeg 
-motion 
-sha 
-Geomean 
-One Clock 
-FMax (MHz) 
-Time (µs) 
-103 
-141.8 
-150 
-62.4 
-156 
-1141.5 
-146 
-6.1 
-51 
-1316.3 
-97 
-12699.2 
-114 
-55.6 
-190 
-1280.5 
-304.4 
-121 
-239.4 
-144 
-87.6 
-156 
-1375.9 
-148 
-24.1 
-130 
-28.2 
-158 
-8.9 
-121 
-1103.5 
-137 
-57.0 
-115 
-12125.1 
-158 
-41.4 
+In countries where MiEVs were ]n[ available, other EVs were used ]f[ a comparison e.g., the BYD F3DM in China. 
+b 
+c 
+Section 4.1 describes the data that were collected. Section 4.2 
+outlines a more detailed description of how ﬁnancial incentives 
+were operationalized. Section 4.3 provides the ﬁnal model 
+speciﬁcation. 
+4.1. Data collection 
+We collected ]^[ analyzed data from 30 countries ]f[ 2012. The 
+year 2012 was selected as the study date because important 
+information such as charging infrastructure ]^[ EV adoption rates 
+were unavailable in earlier years. Our statistical analysis used data 
+from the following countries: Australia; Austria; Belgium; Canada; 
+China; Croatia; the Czech Republic; Denmark; Estonia; Finland; 
+France; Greece; Germany; Iceland; Ireland; Israel; Italy; Japan; the 
+Netherlands; New Zealand; Norway; Poland; Portugal; Slovenia; 
+Spain; Sweden; Switzerland; Turkey; the United Kingdom, ]^[ the 
+United States. We selected these countries because of the availability of data, speciﬁcally EV adoption ]^[ charging infrastructure 
+ﬁgures. In our study, we deﬁned electric vehicles as including both 
+pure battery electric vehicles, e.g., Nissan LEAF, as well as plug-in 
+hybrid electric vehicles, e.g., Chevy Volt. As this deﬁnition of EVs 
+was based around vehicles with a plug, other HEV models such as 
+the Toyota Prius were ]n[ included in our analysis. 
+Based on the factors identiﬁed in Section 3, we collected data 
+]f[ the following variables ]f[ each country in our study: EV 
+market share, ﬁnancial incentives, urban density, education level, 
+an environmentalism indicator, fuel price, EV price, presence of 
+production facilities, per capita vehicles, model availability, introduction date, charging infrastructure,5 ]^[ electricity price. EV 
+adoption was operationalized as national market shares of electric 
+vehicles. Variable descriptions ]^[ their sources are provided in 
+5 
+Charging stations were identiﬁed such that there could be multiple stations 
+at a location, ]^[ multiple charging points (plugs) per station. 
+Table 1. Notable absences include driving range ]^[ charging time. 
+Those variables were ]n[ added to our model because generally 
+the same electric vehicles were available ]f[ purchase in the 
+countries in our sample. Thus, there is no fundamental difference 
+in the driving range of a Nissan LEAF in China ]v[ a Nissan LEAF in 
+Germany.6 
+4.2. Financial incentives 
+To encourage EV adoption, countries have used ﬁnancial 
+incentives from both technology speciﬁc policies, such as subsidies 
+to EV consumers, ]^[ technology neutral policies, such as 
+emissions-based vehicle taxes. These were applied either at the 
+time of a vehicle's registration ]v[ on its annual circulation fee 
+(license fees in the US). In some cases, countries lowered automobile taxes ]f[ EVs, ]^[ in others they provided subsidies apart 
+from normal registration ]^[ circulation fees, thus presenting a 
+very diverse ﬁnancial incentive landscape. This section of the 
+study describes how such a heterogeneous environment ]f[ 
+subsidies was operationalized to allow ]f[ analysis across 
+countries. 
+In order to compare ﬁnancial incentives that used different 
+emissions ]^[ monetary units, policies were standardized 
+relative to CO2 emissions ]^[ 2012 US dollars. To convert fuel 
+use to CO2 emissions, we used the following formula: 1 l/100 km ¼ 
+23.2 g CO2/km (UNEP, 2012). We converted currencies to US 
+dollars using the averaged quarterly exchange rates from 2012. 
+In some situations, it was necessary to use a vehicle's performance 
+6 
+Differences in temperature would affect driving range. With that in mind, the 
+same vehicle in different countries might have slightly different performance 
+characteristics depending on weather conditions. However, the precise effects of 
+temperature on EV driving radii are still being determined. For that reason driving 
+range as inﬂuenced by temperature was ]n[ included in our model, ]b[ could still 
+contribute to differences in adoption between countries such as Spain ]^[ Sweden. 
+Author's personal copy 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+5. Results ]^[ discussion 
+Table 2 
+ICE vehicle ]^[ electric vehicle used ]f[ policy valuation. 
+Cost 
+Tailpipe emissions 
+Fuel efﬁciencya 
+Weight 
+Engine/battery pack 
 187 
-1360.9 
-182.5 
-FMax (MHz) 
-112, 140 
-143, 189 
-155, 197 
-139, 195 
-120, 197 
-93, 113 
-117, 163 
-202, 205 
-136, 
-160, 
-146, 
-149, 
-146, 
-149, 
-138, 
-136, 
-104, 
-161, 
-180, 
-159 
-169 
-181 
-196 
-152 
-173 
-145 
-223 
-146 
-263 
-205 
-Two Clock 
-Average Time (µs) 
-100.4, 50.3 
-5.2, 51.4 
-785.5, 437.9 
-5.94, 1.18 
-506.38, 74.4 
-2557.6, 8724.2 
-0.63, 38.82 
-114.2, 1103.2 
-198.2, 44.6 
-42.7, 40.9 
-431.9, 72.0 
-17.8, 7.2 
-24.7, 2.46 
-3.0, 7.5 
-635.2, 377.1 
-52.6, 4.4 
-7996.0, 3738.4 
-2.56, 23.38 
-178.4, 1108.9 
-Time (µs) 
-150.4 
-56.6 
-1223.4 
-7.1 
-580.8 
-11281.7 
-39.2 
-1217.6 
-263.4 
-242.8 
-83.6 
-1468.5 
-25.0 
-27.2 
-10.5 
-1012.4 
-57.0 
-11734.4 
-25.9 
-1287.3 
-175.3 
-Ratio 
-Time (µs) 
-1 (0.94) 
-1.10 
-1 (0.93) 
-1 (0.86) 
-2.27 
-1.13 
-1.42 
-1.05 
-1.33 
-1 (0.99) 
-1.05 
-1 (0.94) 
-1 (0.96) 
-1.04 
-1 (0.85) 
-1.09 
-1.00 
-1.03 
-1.60 
-1.06 
-1.13 
-For multi-clock HLS, a natural question that arises is: how HLS commences. To explore this, we synthesized two variants 
-does one decide which functions (and consequent synthesized of each CHStone benchmark: 1) a no-inline version where we 
-circuits) should be on which clock domain? Considering first disabled inlining by the LLVM compiler, 2) using the normal 
-the two-domain case, we took the following approach: ]f[ each inlining that occurs with -O3 compiler optimization. Note -O3 
-benchmark circuit, we first profiled the single-clock-domain optimization was performed in both cases; the only difference 
-version of the circuit, ]^[ extracted the number of clock cycles between the two variants is that inlining is disabled in the first 
-spent in each function. The function consuming the most cycles variant. 
-Table I shows the speed-performance results ]f[ single ]^[ 
-was placed on a first clock domain, with the balance of the 
-circuit on a second clock domain. This simple approach was two-clock domain HLS. The top part of the table shows results 
-used ]f[ the adpcm, aes ]^[ motion CHStone circuits. For ]f[ normal -O3 optimization with inlining enabled; the bottom 
-the other circuits, we observed that this approach produced poor part of the table shows results ]f[ the scenario when inlining 
-performance results, primarily owing to the overheads of cross- is disabled. Column 2 lists the benchmark name. Columns 3 
-domain-crossing. Therefore, ]f[ these circuits, we examined ]^[ 4 give the FMax ]^[ wall-clock time ]f[ the single-clock 
-the call graph of the program, ]^[ placed all child functions of implementation (experimental baseline). Wall-clock time is the 
-the most cycle-consuming parent function on the same clock total time needed ]f[ circuit execution, which is 1/FMax × 
-domain as the parent. We took a similar approach in the three- Cycles in the single-clock case, where Cycles is the total cycle 
-clock-domain case: we put the most compute-intensive function latency. Columns 5, 6 ]^[ 7 pertain to synthesized designs 
-on a first domain, the second most compute-intensive function with two clock domains. Column 5 gives the two Fmax values; 
-column 6 gives the wall-clock time spent in each domain; 
-on a second domain, ]^[ the balance on a third domain. 
-column 7 shows the overall total wall-clock time. Finally, 
-V. E XPERIMENTAL S TUDY 
-column 8 gives the ratio of the single-clock to dual-clock 
-We compare multi-clock designs to single-clock designs, wall-clock time. Ratios larger than 1 indicate a “win” ]f[ 
-]^[ report both circuit performance, as well as the area impact. dual-clock. Numbers in parentheses represent degradations in 
-The CHStone benchmarks used have built-in input vectors, wall-clock time ]f[ the dual-clock case. In such cases, which 
-]^[ golden output vectors, ]^[ incorporate “self-checking” ]f[ are mentioned further below, one would simply opt ]f[ the 
-correctness. We verified the multi-domain circuits functioned single-clock design, ]^[ hence, we use 1 as the ratio ]f[ these 
-correctly in two ways: 1) using ModelSim simulation ]^[ 2) in the mean-ratio calculations. 
-by execution in hardware using the Cyclone V FPGA on the 
-Looking first at the top-half of Table I, we see that 5 of 
-DE1-SoC board. 
-the 8 benchmarks benefit from two clock domains, with the 
-As mentioned above, our multi-clock approach operates at average improvement being 33% (right-most column). The 
-the function level of granularity – the synthesized hardware ]f[ largest improvement was observed ]f[ dfsin, which suffered 
-an entire C function must operate on a single unique domain. from a long inter-module critical path in the single-clock case, 
-Consequently, our approach is sensitive to which functions that was broken in the two-clock case by the instantiated CDC 
-remain “intact” (i.e. functions that were ]n[ inlined) at the time circuitry. Modest performance degradations are observed ]f[ 
-TABLE II 
-A REA RESULTS FOR ONE CLOCK DOMAIN VERSUS TWO CLOCK DOMAINS . 
-Inline Option 
-Inlined 
-Not Inlined 
-Benchmark 
-adpcm 
-aes 
-blowfish 
-dfadd 
-dfsin 
-jpeg 
-motion 
-sha 
-Geomean 
-adpcm 
-aes 
-blowfish 
-dfadd 
-dfdiv 
-dfmul 
-dfsin 
-gsm 
-jpeg 
-motion 
-sha 
-Geomean 
-One Clock 
-Logic utilization 
-Total registers 
-6,079 
-11,094 
-4,028 
-6,864 
-2,635 
-5,336 
-3,378 
-3,993 
-10,385 
-16,674 
-13,007 
-18,102 
-6,136 
-9,764 
-1,413 
-2,444 
-4,741 
-7,646 
-7,117 
-11,333 
-3,448 
-5,705 
-2,887 
-5,850 
-4,824 
-9,078 
-7,395 
-13,644 
-3,283 
-5,954 
-12,806 
-24,247 
-4,058 
-6,963 
-7,918 
-11,313 
-1,600 
-2,406 
-2,253 
-3,880 
-4,411 
-7,612 
-three of the benchmarks. The degradations are a result of 
-the cycle-count overhead of clock-domain-crossing, which is 
-particularly onerous in cases where a module on one domain 
-is repeatedly invoked by a module on the second domain, ]^[ 
-where each invocation of the first module consumes relatively 
-few clock cycles. Degradations are also caused by lengthier 
-schedules in the two-clock case resulting from reduced memoryaccess parallelism in which shared/global memories, accessed 
-by two domains, have solely a single port ]f[ each domain. 
-The bottom half of the table gives results ]f[ the case of 
-inlining disabled. The improvements in performance here are 
-more modest, as the functions are smaller (no inlining) ]^[ 
-each executes ]f[ fewer clock cycles. This implies that the 
-fraction of total time required ]f[ clock-domain-crossing is 
-larger than in the inlined case, increasing CDC overheads ]^[ 
-reducing the benefit of multi-clock synthesis. The average wallclock time improvement in this case is 13%. Note that with the 
-inlined case (top-half of the table), there are fewer benchmarks 
-listed, owing to inlining reducing the eliminated benchmarks 
-to a single function (and hence a single domain). 
-We also considered three-clock-domain implementations (not 
-shown here ]f[ brevity), ]^[ found that aside from the jpeg 
-benchmark, no additional improvements were achieved above 
-the two-clock case. jpeg is the largest circuit in the suite, ]^[ 
-we found it contained large enough sub-circuits to benefit from 
-additional clocks. We expect that larger benchmarks, containing 
-significant number of large sub-modules, would stand to benefit 
-from three (or more) domains. 
-Table II shows the impact on circuit area, including logic 
-utilization (Cyclone V ALMs), as well as register count. CDC 
-causes no area impact on other block types (DSP blocks, block 
-RAMs). Looking at the two right-most columns, we see the area 
-impact on ALMs to range from 0-6%, on average, depending 
-on whether inlining is used. In some cases, circuit area actually 
-Two Clock 
-Logic utilization 
-Total registers 
-6,310 
-11,456 
-4,245 
-7,547 
-2,791 
-5,636 
-3,539 
-4,610 
-9,234 
-17,979 
-13,393 
-19,452 
-6,235 
-10,060 
-1,345 
-2,671 
-4,789 
-8,211 
-7,483 
-12,137 
-3,629 
-6,830 
-3,554 
-6,939 
-5,409 
-10,304 
-8,806 
-17,062 
-4,307 
-7,987 
-14,134 
-27,001 
-4,096 
-6,926 
-8,228 
-11,837 
-1,693 
-2,645 
-2,373 
-4,118 
-4,886 
-8,618 
-Ratio 
-Logic utilization 
-Total registers 
-1 (0.96) 
-1 (0.97) 
-0.95 
-0.91 
-1 (0.94) 
-1 (0.95) 
-1 (0.95) 
-1 (0.87) 
-1.12 
-0.93 
-0.97 
-0.93 
-0.98 
-0.97 
-1.05 
-0.92 
-1.00 
-0.93 
-1 (0.95) 
-1 (0.93) 
-0.95 
-0.84 
-1 (0.81) 
-1 (0.84) 
-1 (0.89) 
-1 (0.88) 
-0.84 
-0.80 
-1 (0.76) 
-1 (0.75) 
-0.91 
-0.90 
-0.99 
-1.01 
-0.96 
-0.96 
-0.95 
-0.91 
-0.95 
-0.94 
-0.94 
-0.91 
-reduced (ratios > 1), which we attribute to the heuristic nature 
-of the synthesis, placement ]^[ routing tools. Register-count 
-overhead ranges from 7-9%, on average. We believe the area 
-overheads shown will be acceptable to users interested in the 
-highest-possible performance ]f[ their designs. 
-Overall, we consider the performance results (up to 33% 
-wall-clock time improvement, on average) to be encouraging 
-]f[ several reasons: 1) the CHStone benchmarks were ]n[ 
-designed with multi-clock domain synthesis in mind, ]^[ 2) 
-we used the existing function boundaries in the benchmarks 
-]f[ clock-domain assignment, rather than altering the programs 
-to isolate their critical paths in separate functions on unique 
-domains. We leave the latter ]f[ future work. 
-VI. C ONCLUSIONS AND F UTURE W ORK 
-We considered the high-level synthesis of circuits with 
-multiple clock domains with the objective of improving 
-performance. The open-source LegUp HLS tool was modified 
-to accept user constraints designating C functions onto specific 
-clock domains. Changes were made to the scheduling ]^[ 
-binding steps of HLS, to ensure proper handling of hardware 
-resources accessed by sub-circuits on different domains. As 
-well, the Verilog generation step of LegUp was changed 
-to automatically insert clock-domain-crossing circuitry, as 
-appropriate, ]^[ instantiate PLLs ]f[ clock synthesis. On the 
-CHStone benchmark suite, average performance gains of 13% 
-]^[ 33% were observed, depending on the approach applied 
-]f[ function inlining. 
-As this is a first study on multi-clock HLS ]f[ FPGAs, there 
-are ample avenues ]f[ future research. An important one is 
-to evaluate the power consequences of using multiple clocks. 
-While each individual clock may switch less capacitance, we 
-believe that overall, cumulative power consumption will be 
-worse in multi-domain designs. On the power front, it may also 
-be fruitful to consider the gating of clocks on a domain-bydomain basis to reduce power consumption. A second direction, 
-at the compiler level, relates to inlining ]^[ exlining in a bid 
-to achieve higher performance gains with multiple domains. 
-Specifically, we would like to examine the idea of exlining 
-the time-critical loops in programs into separate functions, to 
-be placed on independent domains, as well as develop more 
-intelligent decision making around which functions to inline 
-to minimize CDC overheads. 
-R EFERENCES 
-[1] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. Anderson, 
-S. Brown, ]^[ T. Czajkowski, “LegUp: high-level synthesis ]f[ FPGAbased processor/accelerator systems,” in ACM FPGA, 2011, pp. 33–36. 
-[2] Y. Hara, H. Tomiyama, S. Honda, ]^[ H. Takada, “Proposal ]^[ 
-quantitative analysis of the chstone benchmark program suite ]f[ practical 
-c-based high-level synthesis,” J. Information Processing, vol. 17, pp. 242– 
-254, 2009. 
-[3] “United States bureau of labor statistics,” https://www.bls.gov/. 
-[4] G. Lhairech-Lebreton, P. Coussy, ]^[ E. Martin, “Hierarchical ]^[ 
-multiple-clock domain high-level synthesis ]f[ low-power design on 
-FPGA,” in FPL, 2010, pp. 464–468. 
-[5] D. M. Chapiro, “Globally-asynchronous locally-synchronous systems.” 
-STANFORD UNIV CA DEPT OF COMPUTER SCIENCE, Tech. Rep., 
-1984. 
-[6] Y. Jiang, H. Zhang, H. Zhang, H. Liu, X. Song, M. Gu, ]^[ J. Sun, 
-“Design of mixed synchronous/asynchronous systems with multiple 
-clocks,” IEEE Transactions on Parallel ]^[ Distributed Systems, vol. 26, 
-no. 8, pp. 2220–2232, 2015. 
-[7] L. P. Carloni, K. L. McMillan, ]^[ A. L. Sangiovanni-Vincentelli, “Theory 
-of latency-insensitive design,” IEEE Transactions on computer-aided 
-design of integrated circuits ]^[ systems, vol. 20, no. 9, pp. 1059–1076, 
-2001. 
-[8] M. Singh ]^[ M. Theobald, “Generalized latency-insensitive systems ]f[ 
-single-clock ]^[ multi-clock architectures,” in IEEE/ACM DATE, vol. 2, 
-2004, pp. 1008–1013. 
-[9] A. Agiwal ]^[ M. Singh, “Multi-clock latency-insensitive architecture ]^[ 
-wrapper synthesis,” Electronic Notes in Theoretical Computer Science, 
-vol. 146, no. 2, pp. 5–28, 2006. 
-[10] L. Luo, H. He, Q. Dou, ]^[ W. Xu, “Design ]^[ verification of multiclock domain synchronizers,” in IEEE Int’l Conf. on Intelligent System 
-Design ]^[ Engineering Application (ISDEA), vol. 1, 2010, pp. 544–547. 
-[11] C. Lattner ]^[ V. S. Adve, “LLVM: A compilation framework ]f[ lifelong 
-program analysis & transformation,” in IEEE/ACM SGO, 2004, pp. 75– 
-88. 
-[12] J. Choi, S. Brown, ]^[ J. Anderson, “Resource ]^[ memory management 
-techniques ]f[ the high-level synthesis of software threads into parallel 
-FPGA hardware,” in IEEE FPT, 2015, pp. 152–159. 
-[13] “Understanding metastability in Altera FPGAs,” https://www.altera.com/ 
-en US/pdfs/literature/wp/wp-01082-quartus-ii-metastability.pdf. 
-[14] C. Dike ]^[ E. Burton, “Miller ]^[ noise effects in a synchronizing flipflop,” IEEE Journal of Solid-State Circuits, vol. 34, no. 6, pp. 849–855, 
-1999. 
-[15] C.-Y. Huang, Y.-S. Chen, Y.-L. Lin, ]^[ Y.-C. Hsu, “Data path allocation 
-based on bipartite weighted matching,” in IEEE/ACM DAC, 1991, pp. 
-499–504. 
+ICE vehicle 
+Electric vehicle 
+$25,000 
+140 CO2 g/km 
+19 km/l 
+1550 kg 
+2.0 l 
+77 kW 
+$35,000 
+0 g/km 
+45 km/lb 
+1950 kg 
+20 kWh 
+Li-ion 
+This section includes a correlation matrix of variables used in 
+the model, a descriptive analysis of EV-speciﬁc factors, ]^[ results 
+from the statistical model identiﬁed above. Stress tests of the 
+model were employed to determine its general robustness ]^[ the 
+relative impact of speciﬁc variables. Finally, we discuss implications that arise from the results, which provide a notion of how 
+different policy measures such as fuel taxes, consumer subsidies, 
+]^[ installing charging stations could inﬂuence EV adoption. 
+a 
+Based off the US FTP-75 driving cycle. 
+This is a l/km equivalent ﬁgure, ]^[ is common ]f[ estimating fuel economy 
+]f[ EVs. 
+b 
+characteristics, e.g., CO2 emissions7 in order to calculate the 
+ﬁnancial incentives of a particular policy. An example would be 
+an annual circulation fee in which the amount paid was dependent 
+on a vehicle's CO2 emissions levels. However, this does ]n[ give an 
+indication of the savings relative to the purchase of an ICE vehicle 
+(there is no basis ]f[ comparison). In order to calculate the value of 
+such ﬁnancial incentive policies, we used information from an 
+ICEV ]^[ EV (a 2012 Volkswagen Golf ]^[ Nissan Leaf respectively). Table 2 provides a description of the basic characteristics of 
+these vehicles. 
+Some policies, such as registration taxes, were applied on a 
+one-time basis. For other policies that required annual payments 
+e.g., circulation fees, we sought to provide a more realistic notion 
+of their monetary value. We did this by using a 3 year payback 
+period ]^[ consumer discount rate of 30% (based on the work of 
+Greene et al., 2005; Yeh, 2007). For example, a one-time registration subsidy of $1000 maintains that value, ]b[ an annual circulation subsidy of $50 provided a ﬁnancial incentive of $90.81 in our 
+analysis. 
+For the countries studied in our sample, ﬁnancial incentives did 
+]n[ change considerably in 2011 ]^[ 2012. In absolute terms 
+during those 2 years, Portugal saw a $5500 decrease in ﬁnancial 
+incentives offered to EV adopters while Finland saw a $4600 
+increase. Otherwise, national ﬁnancial incentive levels have 
+remained constant over that time period. 
+4.3. OLS regression 
+The variables from Table 1 were incorporated into an ordinary 
+least squares (OLS) regression with a logit transformation of the 
+dependent variable to normalize distributions of EV market share. 
+This transformation is appropriate when data are skewed, ]v[ 
+bounded such as with a proportion (Lesaffre et al., 2007). 
+A histogram of the EV market share was skewed to the right, 
+]^[ the variable was a proportion. After the logit transformation, a 
+second histogram showed EV market share to be normally 
+distributed, validating this approach. The ﬁnal model speciﬁcation 
+is given as 
+log _MarShri ¼ α þ β 1 Incentivei þ β 2 Urban densityi 
+5.1. Correlation analysis of model variables 
+Looking at relationships between individual variables can help 
+to highlight dynamics that are ]n[ evident in linear regression 
+models. Appendix A provides a Pearson's correlation coefﬁcient 
+]^[ statistical signiﬁcance between the variables used in the base 
+model speciﬁcation. One of the patterns that appears when 
+analyzing this matrix is that many of the EV-speciﬁc variables 
+are strongly correlated (price, year of introduction, availability, 
+market share, ﬁnancial incentives, ]^[ charging infrastructure), 
+indicating that industrial dynamics can become interwoven during 
+the early commercialization of a radical innovation. Another 
+observation is that the EV price variable has a negative correlation 
+to a country's market share. Mitsubishi MiEVs were most expensive in countries where adoption rates were low e.g., Turkey, 
+China, ]^[ New Zealand, ]^[ they were cheaper in the US, 
+Norway, ]^[ Japan, countries with relatively high EV market 
+shares. Sometimes this difference was dramatic as with Australia 
+($53,126) ]^[ Switzerland ($26,925). And while it is difﬁcult to 
+draw any conclusive results from such correlations, they do 
+provide a good basis ]f[ further analysis. 
+An additional correlation that was ]n[ included in Appendix A 
+was between charging infrastructure ]^[ the type of EV (plug-in 
+hybrid ]v[ purely battery electric). Potentially, a country with a 
+higher proportion of plug-in hybrid-electric vehicles (PHEVs) 
+would have less dependence on charging stations, which could 
+weaken the relationship between a country's EV adoption ]^[ its 
+charging infrastructure. However, preliminary model estimations 
+identify that percent of PHEVs did ]n[ have a statistically signiﬁcant relationship to either charging infrastructure ]v[ EV market 
+share. This suggests that the proportion of a country's EVs with an 
+internal combustion engine does ]n[ signiﬁcantly relate to its 
+charging infrastructure ]v[ adoption rate. 
+5.2. Descriptive analysis of EV-speciﬁc variables 
+In addition to socio-demographic factors such as income ]^[ 
+education level, our model also incorporated several EV-speciﬁc 
+variables including ﬁnancial incentives, charging infrastructure, 
+model availability, ]^[ presence of a local manufacturing facility. 
+The descriptive analysis of these variables provided below identiﬁes how signiﬁcant correlations found in Appendix A can actually 
+involve a great deal of heterogeneity ]^[ diversity, indicating the 
+existence of other inﬂuential factors. 
+þ β 3 Educationi þ β4 Envi þ β 5 Fueli þ β6 ChgInf i 
+þ β 7 Elec þ β8 PerCapVehicles þ β9 EV_Price 
+þ β 10 Availability þ β11 Introduction þ β 12 HQ þ εi 
+where the subscript i denotes the country, ]^[ 
+ε is an error term. 
+7 
+For the policies analyzed in our study, CO2 emissions were calculated from a 
+vehicle's tailpipe, based on standard driving cycles e.g., NEDC ]^[ FTP-75. 
+5.2.1. Financial incentives 
+Financial incentives ]^[ EV adoption in Fig. 1 display a positive 
+]^[ signiﬁcant relationship (P-value of.01). Even so, there is 
+substantial variation among the data points. In addition, there 
+appears to be two groups of countries. The ﬁrst is constituted by 
+approximately the bottom half of our study sample (14 countries) 
+as represented by nations with ﬁnancial incentives less than 
+$2000. They exhibited lower EV market shares with the exceptions 
+of Sweden (0.30%) ]^[ Switzerland (0.23%), ]^[ to a lesser extent 
+Author's personal copy 
+3.5% 
+$30 
+3.0% 
+$25 
+2.5% 
+$20 
+2.0% 
+$15 
+1.5% 
+$10 
+1.0% 
+$5 
+0.5% 
+$- 
+0.0% 
+Denmark 
+Estonia 
+Israel 
+Norway 
+Belgium 
+Ireland 
+Japan 
+Netherlands 
+United Kingdom 
+China 
+Iceland 
+United States 
+France 
+Finland 
+Greece 
+Austria 
+New Zealand 
+Italy 
+Portugal 
+Slovenia 
+Switzerland 
+Spain 
+Sweden 
+Germany 
+Croatia 
+Czech republic 
+Poland 
+Australia 
+Turkey 
+Canada 
+$35 
+EV market share (% of annual car sales) 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+Financial incentives in 000's US dollars 
+188 
+Financial incentives 
+EV Market Share % 
+Fig. 1. Financial incentives by country ]^[ corresponding EV market share ]f[ 2012. 
+$35,000 
+$30,000 
+Total EV subsidy 
+$25,000 
+$20,000 
+$15,000 
+$10,000 
+$5,000 
+Denmark 
+Estonia 
+Israel 
+Norway 
+Belgium 
+Ireland 
+Japan 
+Netherlands 
+United Kingdom 
+China 
+Iceland 
+United States 
+France 
+Finland 
+Greece 
+Austria 
+New Zealand 
+Italy 
+Portugal 
+Slovenia 
+Switzerland 
+Spain 
+Sweden 
+Germany 
+Croatia 
+Czech republic 
+Australia 
+Canada 
+Poland 
+Turkey 
+$- 
+Circulation subisidies 
+Registration subsidies 
+Fig. 2. Breakdown of ﬁnancial subsidies types offered by countries. 
+Germany (0.12%), ]^[ Canada (0.13%). Consequently, 10 countries 
+showed little EV activity as measured by either ﬁnancial incentives 
+]v[ EV adoption. 
+The other group in Fig. 1 is distinguished by the countries with 
+higher levels of ﬁnancial incentives ]^[ greater variation in their 
+EV market shares. Some countries such as Norway ]^[ Estonia 
+matched high ﬁnancial incentives with increased EV adoption. 
+However, this relationship was ]n[ uniform as other countries, 
+including Denmark ]^[ Belgium, offered high ﬁnancial incentives 
+]b[ had relatively low levels of adoption. Fig. 1 suggests that there 
+are factors other than ﬁnancial incentives that drive EV adoption. 
+In addition to variables captured by the model, there are likely to 
+be country-speciﬁc factors that inﬂuenced national EV market shares. 
+For instance, consumers in Estonia adopted 55 EVs in 2011 (Mnt.ee, 
+2013), ]b[ the federal government decided to purchase approximately 500 MiEVs in 2012 (Estonia, 2011). That single act largely 
+explains why it had such a high market share in 2012. Conversely, 
+Norway installed extensive charging infrastructure in 2009, ]^[ has 
+experienced a more gradual increase in EV adoption rates since 2010, 
+predominantly through household consumers (SAGPA, 2012). An 
+additional factor which is ]n[ captured by the ﬁnancial incentive 
+variable is the subsidy's recipient. Through their purchase of a 
+majority of EVs through 2012, ﬂeet managers were identiﬁed as 
+being very important early adopters (IEA, 2013). However Belgium's 
+ﬁnancial incentives were directed speciﬁcally toward households, ]s[ 
+they may have largely missed engaging the ﬂeet market, hurting the 
+country's adoption ﬁgures. These country speciﬁc factors provide 
+insight into factors ]n[ included in the model that had the potential 
+to greatly inﬂuence national EV adoption levels. 
+As identiﬁed in Section 4, countries employed several different 
+types of ﬁnancial incentives based on the vehicle's tonnage, 
+company car status, emissions, ]^[ powertrain, which can be 
+broadly categorized as either registration ]v[ circulation subsidies. 
+Fig. 2 identiﬁes how countries approached ﬁnancial incentives 
+according those policy categories. 
+Fig. 2 notes that most available EV ﬁnancial incentives (78%) 
+came in the form of registration as opposed to circulation 
+subsidies. The difference between the two is that registration 
+funds were offered the year that the EV was purchased while those 
+based on a vehicle's annual circulation provided beneﬁts over a 
+multiple year time span. Perhaps one reason why registration 
+subsidies were the dominant form of ﬁnancial incentives is due to 
+consumer high discount rates ]f[ circulation subsidies, effectively 
+lowering their perceived value. A correlation test between EV 
+Author's personal copy 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+5.2.3. Number of models available ]^[ local EV production 
+As identiﬁed in the correlation matrix, many of the EV-speciﬁc 
+variables displayed strong correlations. In order to better understand 
+30.00 
+3.5% 
+25.00 
+3.0% 
+2.5% 
+20.00 
+2.0% 
+15.00 
+1.5% 
+10.00 
+1.0% 
+5.00 
+0.5% 
+0.00 
+0.0% 
+Norway 
+Netherlands 
+Estonia 
+Austria 
+Israel 
+Switzerland 
+Ireland 
+Denmark 
+Japan 
+Portugal 
+Sweden 
+Slovenia 
+Belgium 
+France 
+Germany 
+United Kingdom 
+Czech republic 
+United States 
+Spain 
+Canada 
+Iceland 
+Finland 
+Italy 
+Australia 
+Poland 
+New Zealand 
+Turkey 
+Greece 
+China 
+Croatia 
+Charging stations per 100,000 residents 
+5.2.2. Charging infrastructure 
+Fig. 3 exhibits a positive ]^[ signiﬁcant relationship (P-value 
+of.000) between charging stations (adjusted ]f[ population) ]^[ 
+EV adoption rates. Despite an overall positive correlation, there 
+were examples of wide discrepancies in the data as evidenced by 
+Estonia ]^[ Israel. Both countries had similar proportions of 
+charging stations, ]b[ Estonia had an EV adoption level 11 times 
+higher than that of Israel. There also appears to be seven countries 
+with very low levels of both charging stations ]^[ EV adoption. 
+Not as much information is available about national charging 
+infrastructure as ﬁnancial incentives, perhaps because in many 
+countries they are largely installed by local municipalities (Bakker 
+]^[ Trip, 2013). Among the countries in our sample, there have 
+been several different approaches to building charging infrastructure from federal mandate (Estonia) to auto manufacturer led 
+(Japan) to local government initiative (Belgium) to public–private 
+partnerships (Norway) (Estonia, 2011; SAGPA, 2012; ASBE, 2013; 
+Nobil, 2012). This variety in approach to charging infrastructure 
+development likely relates to other factors that inﬂuence EV 
+adoption e.g., local involvement. 
+Analyzing Figs. 1 ]^[ 3, ﬁve (out of the 30) countries showed 
+very little activity during the introductory phase of EVs, as 
+measured by ﬁnancial incentives, adoption, ]v[ charging infrastructure installation. Thus, countries in our study could be divided into 
+two groups with divergent attitudes toward EV adoption as 
+reﬂected by government policy ]^[ consumer purchase behavior. 
+One set of countries seemed to be actively engaged in the EV 
+introductory market while the other appeared to show very little 
+interest. However, the discrepancy between the two groups will 
+likely have little effect on the overall success ]v[ failure of EVs as 
+the countries invested in their adoption represent a substantial 
+majority of global GDP based on national purchasing power parity 
+(World Bank, 2013c). 
+EV market share (%of annual car sales) 
+market share ]^[ registration/circulation subsidies did ]n[ return 
+a signiﬁcant value suggesting that it was the total ﬁnancial 
+incentive value ]^[ ]n[ the speciﬁc policy type that was relevant 
+]f[ adoption rates. 
+189 
+Charging Stations 
+EV Market Share % 
+16 
+3.0 
+14 
+2.5 
+12 
+10 
+2.0 
+8 
+1.5 
+6 
+1.0 
+4 
+0.5 
+2 
+0.0 
+0 
+# of Models 
+EV Market Share % 
+Fig. 4. Number of EV models available ]f[ purchase, production facilities, ]^[ national market shares. 
+EV market share (% of annual car sales) 
+3.5 
+18 
+Norway 
+Estonia 
+Japan 
+Netherlands 
+France 
+United States 
+Austria 
+Sweden 
+Israel 
+Spain 
+Switzerland 
+Denmark 
+Portugal 
+Italy 
+Belgium 
+United Kingdom 
+Canada 
+Greece 
+Germany 
+Iceland 
+China 
+Finland 
+Czech republic 
+Slovenia 
+New Zealand 
+Ireland 
+Turkey 
+Australia 
+Croatia 
+Poland 
+Number of EV models available ]f[ purchase 
+Fig. 3. National charging infrastructure by country ]^[ corresponding EV market share ]f[ 2012. 
+Author's personal copy 
+190 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+how these factors interact, Fig. 4 looks at three such variables: the 
+number of models available ]f[ purchase; whether a country produced 
+EVs locally (bolded columns); ]^[ adoption rates. 
+In total, 45 different types of EVs were purchased in 2012 
+although a small number of models such as the Nissan Leaf, Chevy 
+Volt/Opel Ampera, ]^[ Toyota Plug-in Prius accounted ]f[ the 
+lion's share (62%) of those sales. The Mitsubishi MiEV was the 
+most widely available, being adopted in 26 of the countries in our 
+sample. There was a positive correlation between a country's EV 
+adoption rate ]^[ the number of models that were available ]f[ 
+purchase. In many instances, manufacturers sold a limited number 
+of several different EV models in their native country e.g., Ford in 
+the US ]^[ Mercedes in Germany. In those instances, manufacturers were likely experimenting with a limited production of 
+speciﬁc EV models before expanding their sales efforts. 
+Countries where native manufacturers heavily invested in EVs 
+e.g., Japan, France, ]^[ the US, had some of the highest EV market 
+shares. Other countries with EV production facilities ]b[ low 
+adoption rates including Germany ]^[ Italy did ]n[ have EVs 
+made by native manufacturers broadly available. This suggests a 
+strong relationship between consumer adoption of EVs ]^[ their 
+being manufactured by native ﬁrms. Several of the larger countries 
+were much more prone to adopt native models, speciﬁcally China 
+]^[ Japan where only EVs from native manufacturers were 
+purchased. Of those two countries, China stands out because very 
+few EVs made by Chinese auto makers were sold outside the 
+country. Many manufacturers e.g., Ford, Audi ]^[ Mia Electric, 
+were nation-speciﬁc with sales only ]v[ primarily occurring in the 
+country where their production facilities were located. The relationship between the variables in Fig. 4 suggests a complex 
+relationship between consumers, manufacturers, ]^[ national 
+attitude regarding EVs. 
+5.3. OLS model results ]^[ implications 
+Table 3 shows regression results from the 30 countries in our 
+study ]f[ 2012. We regressed the log of EV market share on 
+ﬁnancial incentives, urban density, education level, an environmentalism indicator, fuel price, EV price, the presence of production facilities, per capita vehicles, model availability, introduction 
+Table 3 
+Regression results ]f[ 2012 electric vehicle adoption. 
+Unstandardized 
+B (Std. err.) 
+Standardized 
+Beta 
+(Constant) 
+Incentive 
+Charging infrastructure 
+Environment 
+Fuel 
+HQ 
+Income 
+Per capita vehicles 
+Education 
+Electricity 
+Availability 
+EV introduction 
+EV price 
+Urban density 
+ 5.703 (2.858) 
+0.006 (0.003)n 
+0.131 (0.039)nn 
+0.020 (0.037) 
+ 0.141 (0.827) 
+0.926 (0.492) þ 
+ 0.046 (0.036) 
+0.003 (0.002) 
+0.030 (0.003) 
+ 0.221 (0.282) 
+0.049 (0.056) 
+0.122 (0.232) 
+0.008 (0.029) 
+0.018 (0.077) 
+0.357 
+0.599 
+0.106 
+ 0.031 
+0.312 
+ 0.336 
+0.319 
+0.190 
+ 0.115 
+0.178 
+0.106 
+0.046 
+0.056 
+N 
+R2 
+Adjusted R2 
+30 
+0.792 
+0.623 
+n 
+Po 0.05. 
+Po 0.01. 
+þ 
+P o 0.1. 
+nn 
+date, charging infrastructure, ]^[ electricity price. We used graphical 
+]^[ numerical analyses to ensure that the data met expectations 
+of linearity, normality, ]^[ homoskedasticity. We used ANOVA 
+tests ]^[ histograms to test ]f[ linearity, Shapiro–Wilk tests ]f[ 
+normality, ]^[ visual analysis of scatter plots ]f[ heteroskedasticity. 
+The model's adjusted R2 was 0.628 which means that almost 2/ 
+3 of the variation in national EV market shares was explained by 
+the tested variables. The coefﬁcients ]f[ ﬁnancial incentives ]^[ 
+charging infrastructure were positive ]^[ statistically signiﬁcant 
+with P-values of 0.039 ]^[ 0.004 respectively. Of those two 
+variables, charging infrastructure had higher Beta values (both 
+standardized ]^[ unstandardized), indicating that it was stronger 
+at estimating adoption levels. Thus, adding a charging station (per 
+100,000 residents) had a greater impact on predicting EV market 
+share than did increasing ﬁnancial incentives by $1000. The 
+presence of a local EV manufacturing facility was also a signiﬁcant 
+variable, although to a lesser extent with a P-value of 0.079. 
+From the information in Table 3, it is possible to extrapolate the 
+relationship of both ﬁnancial incentives ]^[ charging infrastructure to EV market share. Holding all other factors constant, each 
+$1000 increase in ﬁnancial incentives would cause a country's EV 
+market share to increase by 0.06%. For example, a country with an 
+EV market share of 0.22% that increased its ﬁnancial incentives to 
+consumers by $2000 would see its adoption rate go up to 0.34% 
+(0.22% þ0.06% þ0.06%). For charging infrastructure, holding all 
+other factors constant, each additional station per 100,000 residents that a country added would increase its EV market share by 
+0.12%. This suggests that each charging station (per 100,000 
+residents) could have twice the impact on a country's EV market 
+share than $1000 in consumer ﬁnancial incentives, albeit with 
+different bearings on a nation's budget. 
+However, as a note of caution, while our model did identify that 
+ﬁnancial incentives ]^[ charging infrastructure were positively 
+correlated to national EV adoption levels, there is no guarantee 
+that these relationships hold ]f[ all countries, as evidenced in 
+Figs. 1 ]^[ 3. For example, in Fig. 1 Belgium ]^[ Denmark had very 
+high ﬁnancial incentives, ]b[ relatively low rates of adoption. 
+Conversely, Switzerland ]^[ Sweden exhibited the opposite 
+dynamic with low consumer subsidies ]b[ high EV uptake levels. 
+Fig. 3 displayed the same sort of mixed relationship between 
+charging infrastructure ]^[ EV market share. Thus, ﬁnancial 
+incentives ]^[ charging infrastructure should be seen as being 
+likely ]b[ ]n[ certain to predict a country's EV adoption rate. 
+The empirical results provide a useful comparison with stated 
+preference surveys. While charging infrastructure ]^[ ﬁnancial 
+incentives were (as expected) signiﬁcant in predicting EV adoption, this was ]n[ the case with broader socio-demographic 
+variables e.g., income, education, environmentalism, ]^[ urban 
+density that the literature had anticipated to be inﬂuential (Lane 
+]^[ Potter, 2007; Gallagher ]^[ Muehlegger, 2011; Egbue ]^[ 
+Long, 2012). In addition, despite its strong ]^[ positive correlation 
+to HEV adoption in earlier studies (Diamond, 2009; Beresteanu 
+]^[ Li, 2011; Gallagher ]^[ Muehlegger, 2011), fuel price was ]n[ 
+signiﬁcant in predicting a country's EV market share. However, 
+there are fundamental differences in those papers ]^[ our study 
+that could help explain these conﬂicting results. Firstly, the HEV 
+studies examined a single nation over several years whereas our 
+study looked at several countries ]f[ a single year. Secondly, fuel 
+prices in those earlier studies exhibited much greater variation 
+than was found in our data. Conversely, it could be that differences 
+such as the complexity of total ownership cost calculation ]^[ the 
+role of charging infrastructure result in fuel prices ]n[ having the 
+same impact on EV purchases that they do with HEVs. More 
+research is necessary to identify the relationship between fuel 
+price ]^[ EV adoption, speciﬁcally studies that span multiple years 
+]^[ look at a single country. 
+Author's personal copy 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+5.3.1. Sensitivity tests 
+In addition to econometric results found in Table 3, we also 
+performed several estimations to test the sensitivity of different 
+variables (speciﬁcally ﬁnancial incentives ]^[ charging infrastructure) ]^[ the base model's overall robustness. These are described 
+below in Tables 4 ]^[ 5 ]^[ are referred to as Models 1–5 
+respectively. The individual variable(s) explored through sensitivity 
+analysis is identiﬁed below the Model's number e.g., charging 
+infrastructure in Model 1. 
+In Model 1, normalizing charging infrastructure ]f[ urban 
+density did ]n[ drastically affect results with the variables ﬁnancial incentives, production facilities, ]^[ charging infrastructure 
+remaining signiﬁcant while the adjusted R2 (0.613) was also 
+similar to that of the base estimation. As such, the base model 
+Table 4 
+Model sensitivity analyses 1 ]^[ 2. 
+(1) 
+ChgInf 
+(2) 
+Incentive 
+(Constant) 
+Financial incentive 
+Charging infrastructure 
+Environment 
+Fuel 
+HQ 
+Income 
+Per capita vehicles 
+Education 
+Electricity 
+Availability 
+EV Introduction 
+EV price 
+Urban density 
+ 5.368 (2.893) 
+0.006 (0.003)n 
+0.164 (0.05)nn 
+0.019 (0.038) þ 
+ 0.182 (0.841) 
+0.847 (0.492) 
+ 0.047 (0.037) 
+0.003 (0.002) 
+0.025 (0.03) 
+ 0.236 (0.285) 
+0.053 (0.057) 
+0.145 (0.233) 
+0.009 (0.029) 
+0.012 (0.078) 
+ 5.380 (2.791) 
+0.066 (0.029)n 
+0.122 (0.040)nn 
+0.021 (0.037) 
+ 0.137 (0.819) 
+1.007 (0.490) þ 
+ 0.039 (0.036) 
+0.002 (0.002) 
+0.027 (0.030) 
+ 0.216 (0.279) 
+0.045 (0.055) 
+0.077 (0.234) 
+0.006 (0.028) 
+0.009 (0.075) 
+N 
+R2 
+Adjusted R2 
+30 
+0.787 
+0.613 
+30 
+0.795 
+0.628 
+nn 
+n 
+þ 
+Po 0.01. 
+Po 0.05. 
+Po 0.1. 
+Table 5 
+Model sensitivity analyses 3–5. 
+(Constant) 
+(3) 
+Incentive 
+(4) 
+ChgInf 
+ 3.692 
+(3.021) 
+ 5.519 (3.629)  2.756 (3.842) 
+0.008 (0.004)nn 
+Financial incentive 
+Charging 
+infrastructure 
+Environment 
+Fuel 
+HQ 
+Income 
+Per capita vehicles 
+Education 
+Electricity 
+Availability 
+EV introduction 
+EV price 
+0.000 (0.040) 
+0.337 (0.889) 
+0.908 (0.547) 
+ 056 (0.040) 
+0.002 (0.002) 
+0.047 (0.032) 
+ 044 (0.302) 
+0.024 (0.061) 
+0.222 (0.253) 
+ 007 (0.031) 
+Urban density 
+N 
+R2 
+Adjusted R2 
+nn 
+Po 0.01. 
+(5) 
+Incentive ]^[ ChgInf 
+0.149 (0.042)nn 
+ 007 (0.052) 
+1.321 (1.078) 
+0.301 (0.663) 
+ 021 (0.049) 
+ 002 (0.002) 
+0.062 (0.041) 
+ 261 (0.377) 
+0.065 (0.077) 
+0.527 (0.304) 
+ 028 (0.039) 
+ 043 (0.080) 
+0.020 (0.048) 
+0.548 (1.018) 
+0.418 (0.595) 
+ 0.013 (0.044) 
+0.069 (0.002) 
+0.037 (0.038) 
+ 0.458 (0.347) 
+0.092 (0.069) 
+0.349 (0.282) 
+ 0.005 
+(0.036) 
+ 0.017 (0.097) 
+30 
+0.726 
+0.533 
+30 
+0.643 
+0.391 
+30 
+0.527 
+0.238 
+ 105 (0.100) 
+191 
+remains robust to this sensitivity test. Model 2 explored the 
+sensitivity of EV adoption to ﬁnancial incentives with different 
+discount rates ]^[ payback periods. While the US Energy Information National Energy Modeling System uses a 3 year payback 
+period ]^[ discount rate of 30%, other studies have found that 
+consumers, speciﬁcally businesses ]^[ government agencies, may 
+more accurately calculate the total lifetime costs of an innovation 
+(Nesbitt ]^[ Sperling, 1998; Menanteau ]^[ Lefebvre, 2000). As 
+such, we ran a sensitivity test ]f[ a lower discount rate (1.25%) ]^[ 
+longer payback period (8 years, which is the warranty period ]f[ a 
+Nissan Leaf ]v[ Chevy Volt). This approach resulted in $25,000 
+more in available ﬁnancial incentives from $180,000 in the base 
+model. This sensitivity test did ]n[ substantially change the 
+signiﬁcant variables (ﬁnancial incentives, charging infrastructure, 
+]^[ EV manufacturer location) ]v[ the models adjusted R2, (0.628) 
+suggesting that differences in discount value ]^[ payback period 
+have a relatively weak inﬂuence on national EV adoption rates, 
+although that could be due to the small number of multi-year 
+consumer subsidies i.e., those that address circulation taxes. 
+Sensitivity analyses 3–5 show how the model's explanatory 
+power changed with the removal of ﬁnancial incentives ]^[ 
+charging infrastructure variables. Removing the ﬁnancial incentives variable in Model 3 resulted in the adjusted R2 decreasing 
+from 0.623 in the base analysis to 0.533. Taking out charging 
+infrastructure in Model 4 caused a more drastic reduction in 
+adjusted R2 to 0.391. Removal of both factors in Model 5 caused 
+the model to lose most of its explanatory power; it had no 
+signiﬁcant variables ]^[ an adjusted R2 of 0.238. From these 
+sensitivity tests this it is possible to conclude that in our model, 
+charging infrastructure was considerably stronger than ﬁnancial 
+incentives in explaining EV adoption rates. 
+There were several limitations in our models which had the 
+potential to produce misleading results. During the introduction of 
+new technologies, there are often discrepancies in supply among 
+locales. Differences in EV availability by locality may have contributed 
+to variation in national adoption numbers. In addition, our study 
+analyzed ﬁnancial incentives from national governments. There are 
+undoubtedly monetary beneﬁts, such as free parking ]v[ toll exemptions provided by regions ]^[ cities that were ]n[ included in this 
+study ]^[ were likely to have been inﬂuential. The small number of 
+observations per year is also cause ]f[ caution when interpreting the 
+results. Furthermore, by only studying 1 year, the data does ]n[ allow 
+]f[ analysis of the relationship between important variables e.g., 
+ﬁnancial incentives ]^[ charging infrastructure. 
+6. Conclusions 
+The purpose of this research was to explore the relationship 
+between ﬁnancial incentives ]^[ other socio-economic factors to 
+electric vehicle adoption across several countries. We found that 
+ﬁnancial incentives, the number of charging stations (corrected ]f[ 
+population), ]^[ the presence of a local EV manufacturing facility 
+were positive ]^[ signiﬁcant in predicting EV adoption rates ]f[ the 
+countries in our study. Of those variables, charging infrastructure was 
+the best predictor of a country's EV market share. However, descriptive analyses indicated how country-speciﬁc factors such as government procurement plans ]v[ the target recipient of subsidies could 
+dramatically affect a nation's adoption rate. On the whole this analysis 
+provides tentative endorsement of ﬁnancial incentives ]^[ charging 
+infrastructure as a way to encourage EV adoption. 
+A second conclusion is that EV-speciﬁc factors were discovered 
+to be signiﬁcant while broader socio-demographic variables such 
+as income, education level, ]^[ environmentalism were ]n[ good 
+predictors of adoption levels. This could be because national EV 
+markets were ]s[ small relative to overall automobile sales. Thus, 
+Author's personal copy 
+192 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+while many EV consumers may have high levels of education ]^[ 
+be passionate about the environment, within the perspective of a 
+country such individuals still represent a tiny portion of the overall 
+population. Therefore, socio-demographic variables may ]n[ provide a good indicator of adoption levels when comparing countries. If EVs emerge from a niche market, then socio-demographic 
+data might be more accurately used to predict adoption levels at 
+the national scale. Until then, EV-speciﬁc factors such as amount of 
+charging infrastructure, level of consumer ﬁnancial incentives, ]^[ 
+number of locations that sell the automobiles are likely to be more 
+correct ]f[ estimating a country's market share. 
+6.1. Policy implications 
+Based on our results, a sensible policy approach ]f[ addressing 
+EV market failures arising from pollution abatement ]^[ knowledge spillover would be ]f[ governments to provide consumer 
+subsidies and/or increase their number of charging stations. Due 
+to the importance of consumer adoption during the commercial 
+introduction of a radical innovation (Nemet ]^[ Baker, 2009), such 
+supportive measures could make a wide difference in the level of 
+EV diffusion in the coming decades. As the charging station 
+variable was the strongest predictor of EV adoption based on Beta 
+values stress tests, their installation may be more effective than 
+ﬁnancial incentives. However, since these two factors are likely to 
+be complimentary, supporting both measures could be expected to 
+lead to higher market shares than focusing on either ﬁnancial 
+incentives ]v[ charging infrastructure alone. 
+However, this study also provides three notes of caution to 
+countries that expect that they can achieve high EV adoption rates 
+by increasing their levels of ﬁnancial incentives ]v[ charging 
+infrastructure. Firstly, the descriptive analysis identiﬁed several 
+countries that displayed a relatively weak relationship between 
+the two factors ]^[ EV market share. Secondly, it is possible that 
+ﬁnancial incentives ]v[ charging infrastructure mask other 
+dynamics which are signiﬁcant in driving EV adoption. Consequently, building policy only around those two factors may ]n[ 
+support important underlying elements. Thirdly, due to the constantly evolving environment during the emergence of a radical 
+innovation, industrial dynamics may change from year to year. 
+Therefore, while this study does show that ﬁnancial incentives ]^[ 
+charging infrastructure are positively correlated to national EV 
+market shares, it is deﬁnitely ]n[ evidence of a causal relationship 
+]^[ should be treated with prudence. 
+While national governments have been primarily responsible 
+]f[ consumer ﬁnancial incentives, installing charging points has 
+largely been left to local public bodies such as cities (IEA, 2013). 
+However, the IEA (2013) found that “infrastructure spending has 
+been relatively sparse” (pp. 16), which suggests that local ]^[ 
+national levels of government should strengthen coordination in 
+order to better encourage EV adoption, supporting earlier research 
+by Bakker ]^[ Trip (2013). 
+Now that we have identiﬁed policies that could be effective in 
+encouraging EV adoption, a next question is whether they are 
+actually efﬁcient in a societal ]^[ economical sense. To answer this 
+question, an elaborate ex-ante Cost Effectiveness Analysis (CEA) ]v[ 
+Cost Beneﬁt Analysis (CBA) would be needed. However, given the 
+dynamic nature of radical innovations, one should be careful when 
+applying these methods to the EV case. That is to say, EVs may ]n[ 
+signiﬁcantly reduce GHG emissions in the short term, ]b[ they 
+have the potential to cause dramatic decarbonization post 2020 
+(IEA, 2012c), assuming a dramatic increase of the share of renewables in the electricity mix. In that respect, ﬁnancial incentives 
+today may be important ]f[ stimulating broader EV adoption in 
+the future, ]^[ consequently may provide beneﬁts outside those 
+typically included in a status quo based CBA. Such additional 
+beneﬁts may be reason to implement these policies even if the 
+results from a traditional CBA were ]n[ very favorable. 
+Furthermore, it is difﬁcult to compare the costs of ﬁnancial 
+incentives ]f[ EVs with at least some competing policy options to 
+reduce CO2 emissions. Financial incentives to increase the sales of 
+EVs on a temporary basis may be needed in the early stages of EVs 
+because they cannot compete ]y[ with internal combustion engine 
+vehicles. If, in a few decades, EVs would become a success, 
+ﬁnancial incentive policies could prove to have contributed to this 
+success. In other words, there may be a snowball effect of current 
+ﬁnancial incentives which are fundamentally difﬁcult to grasp in a 
+conventional CEA ]v[ CBA. We therefore suggest that these analyses 
+can be used to support decision making, ]b[ that their outcomes 
+should be treated with caution ]^[ that decision makers should 
+always take a long term perspective when interpreting these. 
+6.2. Suggestions ]f[ future research 
+This study looked at a country's total charging infrastructure, 
+]n[ taking into account how a heterogeneous distribution of 
+charging stations (many in one city, few elsewhere) might inﬂuence EV adoption. Speciﬁcally because of the important role 
+played by local municipalities in installing charging infrastructure, 
+Table A1 
+Correlations between model variables. 
+Mar share 
+Incentive 
+Env 
+Fuel 
+Chg infra 
+HQ 
+Income 
+Per cap 
+veh 
+Ed 
+Elec 
+Avail 
+EV intro 
+EV Price 
+Urb Den 
+n 
+Market 
+share 
+Incentive Env 
+Fuel 
+Chg 
+infra 
+HQ 
+Income 
+Per cap 
+vehicles 
+Ed 
+Elec 
+Avail 
+EV intro EV price Urban 
+density 
+1 
+0.498nn 
+0.258 
+ 0.091 
+0.697nn 
+0.400n 
+0.443n 
+0.142 
+0.498nn 
+1 
+ 0.115 
+ 0.015 
+0.380n 
+ 0.058 
+0.135 
+ 0.111 
+0.258 
+ 0.115 
+1 
+0.182 
+0.260 
+0.048 
+0.586nn 
+0.565nn 
+ 0.091 
+ 0.015 
+0.182 
+1 
+0.107 
+ 0.183 
+ 0.081 
+ 0.141 
+0.697nn 
+0.380n 
+0.260 
+0.107 
+1 
+0.011 
+0.455n 
+ 049 
+0.400n 
+ 058 
+0.048 
+ 0.183 
+0.011 
+1 
+0.163 
+0.036 
+0.443n 
+0.135 
+0.586nn 
+ 0.081 
+0.455n 
+0.163 
+1 
+0.647nn 
+0.142 
+ 0.111 
+0.565nn 
+ 0.141 
+ 0.049 
+0.036 
+0.647nn 
+1 
+0.347 
+0.366n 
+0.048 
+ 0.263 
+0.213 
+0.042 
+0.514nn 
+0.320 
+0.089 
+0.112 
+0.304 
+0.082 
+0.065 
+0.085 
+0.313 
+0.241 
+0.375n 
+ 0.141 
+0.423n 
+ 0.136 
+0.259 
+0.524nn 
+0.403n 
+0.174 
+0.553nn 
+0.130 
+0.375n 
+ 0.159 
+0.447n 
+0.492nn 
+0.559nn 
+0.250 
+ 0.448n 
+ 0.311 
+ 0.380n 
+0.282 
+ 0.361 
+ 0.133 
+ 0.461n 
+ 0.336 
+ 0.277 
+ 0.139 
+ 0.477nn 
+0.433n 
+ 0.135 
+ 0.043 
+ 0.622nn 
+ 0.739nn 
+0.347 
+0.089 
+0.375n 
+0.553nn 
+ 0.448n 
+ 0.277 
+0.366n 
+0.112 
+ 0.141 
+0.130 
+ 0.311 
+ 0.139 
+0.048 
+0.304 
+0.423n 
+0.375n 
+ 0.380n 
+ 0.477nn 
+ 0.263 
+0.082 
+ 0.136 
+ 0.159 
+0.282 
+0.433n 
+0.213 
+0.065 
+0.259 
+0.447n 
+ 0.361 
+ 0.135 
+0.042 
+0.085 
+0.524nn 
+0.492nn 
+ 0.133 
+ 0.043 
+0.514nn 
+0.313 
+0.403n 
+0.559nn 
+ 0.461n 
+ 0.622nn 
+0.320 
+0.241 
+0.174 
+0.250 
+ 0.336 
+ 0.739nn 
+1 
+0.002 
+ 0.117 
+0.053 
+ 0.419n 
+ 0.392n 
+0.002 
+1 
+0.463nn 
+0.274 
+ 0.065 
+ 0.200 
+ 0.117 
+0.463nn 
+1 
+0.542nn 
+ 0.201 
+ 0.235 
+0.053 
+0.274 
+0.542nn 
+1 
+ 0.391n 
+ 0.247 
+ 0.419n 
+ 0.065 
+ 0.201 
+ 0.391n 
+1 
+0.448n 
+ 0.392n 
+ 0.200 
+ 0.235 
+ 0.247 
+0.448n 
+1 
+Signiﬁcant at the 0.05 level (2-tailed). 
+Signiﬁcant at the 0.01 level (2-tailed). 
+nn 
+Author's personal copy 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+their allocation could have an important affect on a country's 
+EV adoption rate (Bakker ]^[ Trip, 2013). Therefore, we suggest 
+that future research focus on the relationship between the 
+distribution of charging infrastructure within a country ]^[ its 
+EV adoption rate. 
+In addition, our model found charging infrastructure ]^[ 
+ﬁnancial incentives to be powerful predictors of EV adoption rates 
+]f[ the countries in our sample. However, it is possible that the 
+variables concealed other important factors. Therefore, further 
+analysis is necessary to unpack the importance of charging 
+infrastructure ]^[ ﬁnancial incentives to determine whether they 
+are on their own good predictors of EV adoption, ]v[ if there are 
+other elements that also need to be present ]b[ were ]n[ included 
+in our model. For instance, fuel price volatility may provide insight 
+into EV adoption that is ]n[ captured through absolute fuel prices. 
+Acknowledgments 
+This paper is appreciative of the contributions from Eric Molin 
+]^[ James Dunn. Support was provided by the Netherlands 
+Organization ]f[ Scientiﬁc Research ]^[ the University of 
+Wisconsin-Madison Center ]f[ Sustainability ]^[ the Global 
+Environment. 
+Appendix A 
+See Table A1. 
+References 
+ACEA, 2012a. Overview of CO2 Based Motor Vehicle Taxes in the EU. Brussels, 
+Belgium. 
+ACEA, 2012b. Overview of Tax Incentives ]f[ Electric Vehicles in the EU. Brussels, 
+Belgium. 
+Adner, R., 2002. When are technologies disruptive? A demand-based view of the 
+emergence of competition. Strateg. Manag. J. 23, 667–688. 
+Anderson, P., Tushman, M., 1990. Technological discontinuities ]^[ dominant 
+designs: a cyclical model of technological change. Adm. Sci. Q. 35, 604–633. 
+Arrow, K., 1962. The economic implications of learning by doing. Rev. Econ. Stud. 29 
+(3), 155–173. 
+Arrow, K., 1966. Exposition of the theory of choice under uncertainty. Synthese 16 
+(3–4), 253–269. 
+ASBE, 2013. Charging Locations. 〈http://www.asbe.be/en/locations〉 (accessed 
+03.04.13). 
+Bakker, S., Trip, J., 2013. Policy options to support the adoption of electric vehicles 
+in the urban environment. Transp. Res. Part D 25, 18–23. 
+Beresteanu, A., Li, S., 2011. Gasoline prices, government support, ]^[ the demand 
+]f[ hybrid vehicles in the United States. Int. Econ. Rev. 52 (1), 161–182. 
+Brown, M., 2001. Market failures ]^[ barriers as a basis ]f[ clean energy policies. 
+Energy Policy 29, 1197–1207. 
+Brownstone, D., Bunch, D.S., Train, K., 2000. Joint mixed logit models of stated ]^[ 
+revealed preferences ]f[ alternative-fuel vehicles. Transp. Res. Part B 34, 
+315–338. 
+Chargemap, 2013. 〈http://chargemap.com〉 (accessed 03.04.13). 
+Christensen, C., 1997. The Innovator's Dilemma. Harvard Business School Press, 
+Boston, MA. 
+Demographia, 2013. Demographia World Urban Areas 9th Annual Edition. 
+Diamond, D., 2009. The impact of government incentives ]f[ hybrid-electric 
+vehicles: evidence from US states. Energy Policy 37, 972–983. 
+Dijk, M., Orsato, R., Kemp, R., 2013. The emergence of an electric mobility trajectory. 
+Energy Policy 52, 135–145. 
+Egbue, O., Long, S., 2012. Barriers to widespread adoption of electric vehicles: an 
+analysis of consumer attitudes ]^[ perceptions. Energy Policy 48, 717–729. 
+Eppstein, M., Grover, D., Marshall, J., Rizzo, D., 2011. An agent-based model to study 
+market penetration of plug-in hybrid electric vehicles. Energy Policy 39, 
+3789–3802. 
+Estonia, 2011. Estonia Will Promote the Use of Electric Cars Under a Green 
+Investment Scheme. Government Communication Unit, 03 March 2011. 
+Eurostat, 2013. Electricity Households. 〈http://www.energy.eu/#domestic〉 
+(accessed 28.08.13). 
+Foster, R., 1986. Innovation: The Attacker's Advantage. Macmillan, London. 
+Gallagher, K., Muehlegger, E., 2011. Giving green to get green? Incentives ]^[ 
+consumer adoption of hybrid vehicle technology. J. Environ. Econ. Manag. 61 
+(1), 1–15. 
+193 
+Geels, F., 2002. Technological transitions as evolutionary reconﬁguration processes: 
+a multi-level perspective ]^[ a case-study. Res. Policy 31 (8–9), 1257–1274. 
+Greene, D., Patterson, P., Singh, M., Li, J., 2005. Feebates, rebates ]^[ gas-guzzler taxes: a 
+study of incentives ]f[ increased fuel economy. Energy Policy 33, 757–775. 
+Gronnbil, 2013. 〈http://www.gronnbil.no〉 (accessed 13.07.13). 
+Hidrue, M., Parsons, G., Kempton, W., Gardner, M., 2011. Willingness to pay ]f[ 
+electric vehicles ]^[ their attributes. Resour. Energy Econ. 33, 686–705. 
+Horbach, J., 2008. Determinants of environmental innovation—new evidence from 
+German panel data sources. Res. Policy 37, 163–173. 
+IEA, 2011. Technology Roadmap Electric ]^[ Plug-in Hybrid Electric Vehicles. OECD/ 
+IEA, Paris. 
+IEA, 2012a. Key World Energy Statistics 2012. OECD/IEA, Paris. 
+IEA, 2012b. World Energy Outlook 2012. OECD/IEA, Paris. 
+IEA, 2012c. Tracking Clean Energy Progress: Energy Technology Perspectives 2012 
+Excerpt as IEA Input to the Clean Energy Ministerial. 
+IEA, 2013. Global EV Outlook: Understanding the Electric Vehicle Landscape to 
+2020. OECD/IEA, Paris. 
+IPCC, 2012. Renewable Energy Sources ]^[ Climate Change Mitigation: Special 
+Report of the Intergovernmental Panel on Climate Change. Cambridge University Press, New York, NY. 
+Jaffe, A., Stavins, R., 1994. The energy-efﬁciency gap: what does it mean? Energy 
+Policy 22, 804–810. 
+Jaffe, A., Newell, R., Stavins, R., 2005. A tale of two market failures: technology ]^[ 
+environmental policy. Ecol. Econ. 54, 164–174. 
+Lane, B., Potter, S., 2007. The adoption of cleaner vehicles in the UK: exploring the 
+consumer attitude-action gap. J. Clean. Prod. 15, 1085–1092. 
+Lemnet.org, 2013. 〈http://lemnet.org〉 (accessed 03.04.13). 
+Lesaffre, E., Rizopoulos, D., Tsonaka, R., 2007. The logistic transform ]f[ bounded 
+outcome scores. Biostatistics 8 (1), 72–85. 
+Levine, M., Koomey, J., McMahon, J., Sanstad, A., Hirst, E., 1995. Energy efﬁciency 
+policy ]^[ market failures. Annu. Rev. Energy Environ. 20, 535–555. 
+Lieven, T., Muhlmeier, S., Henkel, S., Walker, J., 2011. Who will buy electric cars? An 
+empirical study in Germany. Transp. Res. Part D 16 (3), 236–243. 
+Marklines, 2013. Statistics—Sales Database Search. 〈http://www.marklines.com/en/ 
+vehicle_sales/search_model〉 (accessed 15.12.13). 
+Menanteau, P., Lefebvre, H., 2000. Competing technologies ]^[ the diffusion of 
+innovations: the emergence of energy-efﬁcient lamps in the residential sector. 
+Res. Policy 29, 375–389. 
+Mnt.ee, 2013. 2012 Estonian Vehicle Registrations by Motor Type. 〈www.mnt.ee〉 
+(accessed 15.12.13). 
+Nelson, R., Winter, S., 1977. In search of a useful theory of innovation. Res. Policy 6, 
+136–176. 
+Nelson, R., Winter, S., 1982. An Evolutionary Theory of Economic Change. Harvard 
+University Press, Cambridge, MA. 
+Nemet, G., Baker, E., 2009. Demand subsidies versus R&D: comparing the uncertain 
+impacts of policy on a pre-commercial low-carbon energy technology. Energy J. 
+30 (4), 49–80. 
+Nesbitt, K., Sperling, D., 1998. Myths regarding alternative fuel vehicle demand by 
+light-duty vehicle ﬂeets. Transp. Res. Part D 3 (4), 259–269. 
+Neubauer, J., Brooker, A., Wood, E., 2012. Sensitivity of battery electric vehicle 
+economics to drive patterns, vehicle range, ]^[ charge strategies. J. Power 
+Sources 209, 269–277. 
+Nobil, 2012. The Norwegian Charging Station Database ]f[ Electromobility. Oslo, 
+Norway. 
+Rennings, K., 2000. Redeﬁning innovation—eco-innovation research ]^[ the contribution from ecological economics. Ecol. Econ. 32, 319–332. 
+Reuters, 2012. TABLE—China Retail Gasoline, Diesel Prices Since 2003. 〈http://af.reuters. 
+com/article/energyOilNews/idAFL4E8D75DN20120207〉 (accessed 10.07.12). 
+Rogers, E., 1995. Diffusion of Innovations, 4th edition The Free press, New York, NY 
+SAGPA, 2012. Re-charged ]f[ Success. The Hird Wave of Electric Vehicle Promotion 
+in Japan. Östersund, Sweden. 
+Saxton, T., 2013. Understanding Electric Vehicle Charging. Plug in America. 〈http:// 
+www.pluginamerica.org/drivers-seat/understanding-electric-vehicle-charging〉 
+(accessed 27.08.13). 
+Schleich, J., 2009. Barriers to energy efﬁciency: a comparison across the German 
+commercial ]^[ services sector. Ecol. Econ. 68 (7), 2150–2159. 
+Shaﬁei, E., Thorkelsson, H., Ásgeirsson, E., Davidsdottir, B., Raberto, M., Stefansson, 
+H., 2012. An agent-based modeling approach to predict the evolution of market 
+share of electric vehicles: a case study from Iceland. Technol. Forecast. Soc. 
+Change 79 (9), 1638–1653. 
+Sierzchula, W., Bakker, S., Maat, K., van Wee, B., 2012. Technological diversity of 
+emerging eco-innovations: a case study of the automobile industry. J. Clean. 
+Prod. 37, 211–220. 
+Sovacool, B., Hirsh, R., 2009. Beyond batteries: an examination of the beneﬁts ]^[ 
+barriers to plug-in hybrid electric vehicles (PHEVs) ]^[ a vehicle-to-grid (V2G) 
+transition. Energy Policy 37 (3), 1095–1103. 
+Struben, J., Sterman, J., 2008. Transition challenges ]f[ alternative fuel vehicle ]^[ 
+transportation systems. Environ. Plan. B: Plan. Des. 35, 1070–1097. 
+Teece, D., 1986. Proﬁting from technological innovation: implications ]f[ integration, collaboration, licensing ]^[ public policy. Res. Policy 15, 285–305. 
+Tran, M., Banister, D., Bishop, J., McCulloch, M., 2012. Realizing the electric-vehicle 
+revolution. Nat. Clim. change 2, 328–333. 
+Turrentine, T., Kurani, K., 2007. Car buyers ]^[ fuel economy? Energy Policy 35, 
+1213–1223. 
+Tushman, M., Anderson, P., 1986. Technological discontinuities ]^[ organizational 
+environments. Adm. Sci. Q. 31, 439–465. 
+Author's personal copy 
+194 
+W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
+UNEP, 2012. The European Union Automotive Fuel Economy Policy. 〈http://www. 
+unep.org/transport/gfei/autotool/case_studies/europe/cs_eu_0.asp〉 (accessed 
+28.06.12). 
+Van den Bergh, J., Faber, A., Idenbrug, A., Oosterhuis, F., 2006. Survival of the 
+greenest: evolutionary economics ]^[ policies ]f[ energy innovation. Environ. 
+Sci. 3 (1), 57–71. 
+World Bank, 2012a. Road Sector Gasoline Fuel Consumption (kt of oil equivalent). 
+World Bank, 2012b. Road Sector Diesel Fuel Consumption (kt of oil equivalent). 
+World Bank, 2013a. GNI per Capita (PPP). 
+World Bank, 2013b. Percent of Labor Force with Tertiary Education. 
+View publication stats 
+World Bank, 2013c. GDP Ranking, PPP Based. 
+Yale, 2013. Environmental Performance Index 2012. 〈http://epi.yale.edu/epi2012/ 
+rankings〉 (accessed 11.06.13). 
+Yeh, S., 2007. An empirical analysis on the adoption of alternative fuel vehicles: the 
+case of natural gas vehicles. Energy Policy 35, 5865–5875. 
+Zhang, X., Wang, K., Hao, Y., Fan, J., Wei, Y., 2013. The impact of government policy 
+on preference ]f[ NEVs: the evidence from China. Energy Policy 61, 382–393. 
+Zubaryeva, A., Thiel, C., Barbone, E., Mercier, A., 2012. Assessing factors ]f[ the 
+identiﬁcation of potential lead markets ]f[ electriﬁed vehicles in Europe: expert 
+opinion elicitation. Technol. Forecast. Soc. Change 79, 1622–1637. 

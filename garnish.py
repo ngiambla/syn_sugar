@@ -145,12 +145,19 @@ class garnish:
 			vec=vec + [sentence_length_map[_label], sentence_entropy_map[_label]]
 			sentence_vec_map[_label]=vec
 
-		avg_entropy = avg_entropy/len(sentence_vec_map)
-		scalar = math.floor((avg_entropy/min_entropy)/4)
-		print(bcolors.FAIL+ "MAX Entropy: " + str(max_entropy) + bcolors.ENDC)
-		print(bcolors.FAIL+ "MIN Entropy: " + str(min_entropy) + bcolors.ENDC)
-		print(bcolors.FAIL+ "AVG Entropy: " + str(avg_entropy) + bcolors.ENDC)
 
+
+		avg_entropy = avg_entropy/len(sentence_vec_map)
+		avg_wrd_snt = (_number_of_ingredients/len(sentence_vec_map))
+		_scalar 	= ((avg_entropy)/min_entropy)**0.3
+
+		print(bcolors.OKGREEN+ "\n\n> Stats" + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> MAX Entropy: " + str(max_entropy) + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> MIN Entropy: " + str(min_entropy) + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> AVG Entropy: " + str(avg_entropy) + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> AVG WRD/SNT: " + str(avg_wrd_snt) + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> AVG _scalar: " + str(_scalar)     + bcolors.ENDC)
+		print("\n")
 		seen_labels		=	{}
 		sen_pairs 		=	{}
 		count=0
@@ -159,10 +166,10 @@ class garnish:
 			a=sentence_vec_map[_i_label]
 			seen_labels[_i_label]=0
 			
-			if sentence_entropy_map[_i_label] > min_entropy*scalar: 	# filter out sentences with low entropy.
+			if sentence_entropy_map[_i_label] > _scalar*min_entropy: 	# filter out sentences with low entropy.
 
 				for _j_label in sentence_vec_map:
-					if sentence_entropy_map[_j_label] > min_entropy*scalar: 
+					if sentence_entropy_map[_j_label] > _scalar*min_entropy: 
 
 						if  _j_label not in seen_labels:
 							b=sentence_vec_map[_j_label]
@@ -220,7 +227,8 @@ class garnish:
 										b.append(0)										
 									wb.append(ingredient_free_map[i].lower())
 
-								ent_lim = ent_lim + ent_lim*0.10
+								if ent_lim <= avg_entropy:
+									ent_lim = ent_lim + ent_lim*(1/(5*avg_wrd_snt))
 
 								sim_j  = math.floor(10*(mutils.get_cosine_sim(a,b))) + math.floor(10*(mutils.jaccard_index(wa,wb)))
 
@@ -232,8 +240,9 @@ class garnish:
 						else:
 							miss_count=miss_count+1
 							if miss_count == int(len(sen_pairs[_bin])/2):
-								ent_lim = (ent_lim*0.95)
+								ent_lim = (ent_lim*0.20)
 								miss_count = 0
+
 
 
 		print("\n")
@@ -248,7 +257,19 @@ class garnish:
 							summary_map[label] = 1
 						else:
 							summary_map[label] = summary_map[label] + 1
-		s_summary_map = sorted(summary_map.items(), key=operator.itemgetter(0))
+		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
+
+
+		l_summary_map = {}
+
+		for _label in k_summary_map:
+			if len(l_summary_map) < 20:
+				l_summary_map[_label[0]]=_label[1]
+			else:
+				break
+
+		s_summary_map = sorted(l_summary_map.items(), key=operator.itemgetter(0))			
+		
 		s1=""
 		for _label in s_summary_map:
 			label=_label[0]

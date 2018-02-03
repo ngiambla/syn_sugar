@@ -171,6 +171,8 @@ def main():
 		command=raw_input("$ ").lower()
 		if command in commands:
 			commands[command]()
+		elif command != "":
+			print(bcolors.FAIL+ "Unknown Command: "+str(command) + bcolors.ENDC)
 		
 
 if __name__ == "__main__":

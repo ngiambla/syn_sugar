@@ -1,1759 +1,1368 @@
-See discussions, stats, ]^[ author profiles ]f[ this publication at: https://www.researchgate.net/publication/260609038 
-The influence of financial incentives ]^[ other 
-socio-economic factors on electric vehicle 
-adoption 
-Article in Energy Policy · May 2014 
-DOI: 10.1016/j.enpol.2014.01.043 
-CITATIONS 
-READS 
-133 
-750 
-4 authors, including: 
-Will Sierzchula 
-Sjoerd Bakker 
-Navigant Consulting 
-Sjoerd Bakker Research & Consultancy 
-10 PUBLICATIONS 297 CITATIONS 
-33 PUBLICATIONS 673 CITATIONS 
-SEE PROFILE 
-SEE PROFILE 
-Kees Maat 
-Delft University of Technology 
-64 PUBLICATIONS 1,716 CITATIONS 
-SEE PROFILE 
-Some of the authors of this publication are also working on these related projects: 
-Development ]^[ Early Adoption of Electric Vehicles View project 
-Activity based research View project 
-All content following this page was uploaded by Will Sierzchula on 15 April 2014. 
-The user has requested enhancement of the downloaded file. 
-This article appeared in a journal published by Elsevier. The attached 
-copy is furnished to the author ]f[ internal non-commercial research 
-]^[ education use, including ]f[ instruction at the authors institution 
-]^[ sharing with colleagues. 
-Other uses, including reproduction ]^[ distribution, ]v[ selling ]v[ 
-licensing copies, ]v[ posting to personal, institutional ]v[ third party 
-websites are prohibited. 
-In most cases authors are permitted to post their version of the 
-article (e.g. in Word ]v[ Tex form) to their personal website ]v[ 
-institutional repository. Authors requiring further information 
-regarding Elsevier’s archiving ]^[ manuscript policies are 
-encouraged to visit: 
-http://www.elsevier.com/authorsrights 
-Author's personal copy 
-Energy Policy 68 (2014) 183–194 
-Contents lists available at ScienceDirect 
-Energy Policy 
-journal homepage: www.elsevier.com/locate/enpol 
-The inﬂuence of ﬁnancial incentives ]^[ other socio-economic factors 
-on electric vehicle adoption 
-William Sierzchula a,n, Sjoerd Bakker b, Kees Maat a,b, Bert van Wee a 
-a 
-b 
-Delft University of Technology, Faculty of Technology, Policy, ]^[ Management, The Netherlands 
-Delft University of Technology, Faculty of Architecture ]^[ the Built Environment, The Netherlands 
-H I G H L I G H T S 
- 
- 
- 
- 
-This research analyzes electric vehicle adoption of 30 countries in 2012. 
-Financial incentives ]^[ charging infrastructure were statistically signiﬁcant factors. 
-Country-speciﬁc factors help to explain diversity in national adoption rates. 
-Socio-demographic variables e.g., income ]^[ education level were ]n[ signiﬁcant. 
-art ic l e i nf o 
-a b s t r a c t 
-Article history: 
-Received 5 November 2013 
-Received in revised form 
-24 January 2014 
-Accepted 25 January 2014 
-Available online 16 February 2014 
-Electric vehicles represent an innovation with the potential to lower greenhouse gas emissions ]^[ help 
-mitigate the causes of climate change. However, externalities including the appropriability of knowledge 
-]^[ pollution abatement result in societal/economic beneﬁts that are ]n[ incorporated in electric vehicle 
-prices. In order to address resulting market failures, governments have employed a number of policies. 
-We seek to determine the relationship of one such policy instrument (consumer ﬁnancial incentives) to 
-electric vehicle adoption. Based on existing literature, we identiﬁed several additional socio-economic 
-factors that are expected to be inﬂuential in determining electric vehicle adoption rates. Using multiple 
-linear regression analysis, we examined the relationship between those variables ]^[ 30 national electric 
-vehicle market shares ]f[ the year 2012. The model found ﬁnancial incentives, charging infrastructure, 
-]^[ local presence of production facilities to be signiﬁcant ]^[ positively correlated to a country's electric 
-vehicle market share. Results suggest that of those factors, charging infrastructure was most strongly 
-related to electric vehicle adoption. However, descriptive analysis suggests that neither ﬁnancial 
-incentives nor charging infrastructure ensure high electric vehicle adoption rates. 
-& 2014 Elsevier Ltd. All rights reserved. 
-Keywords: 
-Public policy 
-Technology adoption 
-Electric vehicles 
-Eco-innovation 
-1. Introduction 
-The IPCC (2012) noted that climate change caused by rising 
-levels of greenhouse gases (GHGs) poses a serious threat to the 
-physical ]^[ economic livelihoods of individuals around the globe 
-]^[ could negatively affect ecosystems by putting 20–30% of plant 
-]^[ animal species at an increasingly high risk of extinction.1 
-GHGs such as CO2 ]^[ N2O primarily come from the burning of 
-fossil fuels during activities including electricity production ]^[ 
-operating internal combustion engines. In 2010, the transport 
-n 
-Corresponding author. Tel.: þ 31 6 150 88735. 
-E-mail address: w.s.sierzchula@tudelft.nl (W. Sierzchula). 
-1 
-This is posed by the IPCC with “medium conﬁdence” under a situation where 
-global temperatures are 2–3 1C above pre-industrial levels. 
-http://dx.doi.org/10.1016/j.enpol.2014.01.043 
-0301-4215 & 2014 Elsevier Ltd. All rights reserved. 
-sector accounted ]f[ 6.7 Gt of emitted CO2 ]v[ 22% of the world's 
-total (IEA, 2012a). Furthermore, global fuel demand ]f[ transportation is projected to grow approximately 40% by 2035 (IEA, 
-2012b). The IPCC noted the need to reduce GHG emissions 
-(particularly in the energy ]^[ transport sectors) in order to avoid 
-a 2.4–6.4 1C increase in 2090 temperatures relative to those from 
-1990 (IPCC, 2012). 
-Electric vehicles (EVs) are one possible innovation to help 
-address the environmental concerns identiﬁed above. However, 
-EV adoption is seen as being very limited without stimulation 
-from external factors such as stringent emissions regulations, 
-rising fuel prices, ]v[ ﬁnancial incentives (Eppstein et al., 2011; 
-Shaﬁei et al., 2012; IEA, 2013). Of those factors, consumer subsidies 
-are speciﬁcally identiﬁed as being necessary ]f[ EVs to reach a 
-mass market (Hidrue et al., 2011; Eppstein et al., 2011). Part of the 
-Author's personal copy 
-184 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-reason that diffusion is expected to be ]s[ slow is that pollution 
-abatement ]^[ knowledge appropriability2 externalities reduce EV 
-development ]^[ consumer adoption, leading to an inefﬁcient 
-allocation of goods ]^[ services known as a market failure 
-(Rennings, 2000; Jaffe et al., 2005; Struben ]^[ Sterman, 2008). 
-In the case of EVs, market failures distort their prices relative to 
-ICEVs, which results in fewer electric automobiles being built by 
-ﬁrms ]v[ bought by consumers. Consequently, the potential to 
-address climate change through EV development ]^[ use is 
-limited by externalities; neo-classical economics indicates that 
-government policy should be employed to help correct ]f[ such 
-situations (Rennings, 2000). Of these policy measures, demand 
-side instruments such as consumer subsidies are viewed as being 
-particularly important during the early commercialization period 
-(IEA, 2013). However, based on previous studies, there are reasons 
-to question how effective such ﬁnancial incentives would be in 
-encouraging EV adoption. 
-Firstly, the literature has presented conﬂicting results regarding 
-the effect of consumer subsidies on hybrid-electric vehicle (HEV) 
-adoption. While some studies have shown ﬁnancial incentives to 
-be positively correlated to HEV sales (Beresteanu ]^[ Li, 2011; 
-Gallagher ]^[ Muehlegger, 2011), Diamond (2009) found that 
-higher fuel prices, ]n[ consumer subsidies, were related to 
-increased adoption. In addition, Zhang et al. (2013) identiﬁed only 
-a very weak relationship between purchase subsidies ]^[ consumer willingness to buy EVs. Thus, factors other than ﬁnancial 
-incentives could be the primary drivers of EV adoption. 
-Secondly, due to the nature of radical innovation development 
-(Tushman ]^[ Anderson, 1986), there may be reasons to suspect 
-that consumers may ]n[ behave in the same fashion toward HEVs 
-as they do toward EVs. Innovations that are further away technologically from the dominant design are associated with greater 
-levels of uncertainty (Anderson ]^[ Tushman, 1990). Consequently, since EVs represent a more radical technological departure from ICEVs than do HEVs (Sierzchula et al., 2012), they result 
-in increased levels of uncertainty, speciﬁcally among consumers 
-(Sovacool ]^[ Hirsh, 2009). This uncertainty affects a broad array 
-of industrial dynamics including future proﬁtability of a technology, government involvement, ]^[ willingness to pay (Arrow, 
-1966; Nelson ]^[ Winter, 1977; Jaffe et al., 2005); the more an 
-innovation differs from the conventional technology, the less 
-consumers are willing to pay ]f[ it. Thus, higher consumer 
-uncertainty regarding EVs decreases the amount that individuals 
-are willing to pay relative to HEVs, in effect reducing the utility of 
-ﬁnancial incentives relative to EV adoption. This makes it difﬁcult 
-to estimate the impacts of ﬁnancial incentives on the adoption of a 
-radical innovation with signiﬁcantly different performance characteristics relative to the conventional technology, as is the case 
-with EVs. Therefore, earlier studies analyzing HEV adoption may 
-under-represent the impact that ﬁnancial incentives have on EV 
-purchases. 
-In addition, consumer subsidies may have little effect on EV 
-sales uptake if buyers are uncomfortable with the technology 
-(Egbue ]^[ Long, 2012), ]v[ do ]n[ see enough EVs in the ﬂeet 
-around them (a threshold effect) (Eppstein et al., 2011). Our paper 
-aims to contribute to the literature by examining if ]^[ to what 
-extent ﬁnancial incentives ]^[ other socio-economic factors 
-explain EV adoption. 
-2 
-Knowledge appropriability ]v[ “knowledge spillover” relates to the ability of a 
-ﬁrm to beneﬁt from technologies ]v[ expertise that it develops as opposed to other 
-companies gaining from those advances without investing in the necessary R&D, e. 
-g., reverse engineering a developed product. Knowledge spillover results in lower 
-rates of innovation. 
-2. Barriers limiting innovation 
-The literature has identiﬁed several obstacles which limit the 
-diffusion of new technologies such as EVs. For example, knowledge spillover applies broadly to all innovations while pollution 
-abatement ]^[ bounded rationality3 are typically associated with 
-limiting the development ]^[ adoption of environmental technologies (eco-innovations) (Jaffe et al., 2005; Rennings, 2000). These 
-barriers, which limit EV diffusion by inﬂuencing both the manufacturers that produce the automobiles ]^[ the consumers that 
-buy them, are described more comprehensively below. 
-2.1. General barriers 
-In studying the development of innovations, Arrow (1962) 
-determined that in a capitalist system, ﬁrms will underinvest in 
-research ]^[ development of new technologies. This is primarily 
-due to uncertainty, ]b[ also because an innovation's public beneﬁt 
-(for which businesses receive little ﬁnancial compensation) often 
-outweighs its private value to the company. The externality, of 
-“positive knowledge spillover”, occurs when innovations provide 
-valuable information to non-consumers (Horbach, 2008). 
-For example, ﬁrms are ]n[ always able to prevent competitors 
-from gaining from their R&D efforts. The degree to which a ﬁrm is 
-able to defend the proﬁts of an innovation from competitor 
-imitation is referred to as its appropriability (Teece, 1986). Because 
-it is ]n[ possible ]f[ a ﬁrm to keep every element of a new 
-technology secret, other companies can gain by learning from ]^[ 
-in some cases stealing the work of the original innovating entity. 
-Thus, due to knowledge spillovers, businesses are less likely to 
-invest in the development of innovations that are easily copied 
-(having low levels of appropriability) because they will ]n[ be able 
-to reap all of the rewards from a successful new technology (Teece, 
-1986). Positive knowledge spillover inﬂuences the industrial landscape such that although ﬁrms do invest in the research ]^[ 
-development of new technologies, they do ]s[ at a lower level than 
-would be expected based on the ﬁnancial beneﬁts that innovations 
-provide. 
-In addition, emerging technologies face further barriers 
-because they often compare poorly to existing dominant designs 
-in important criteria such as price ]^[ performance (Adner, 2002). 
-For that reason, the ﬁrst individuals to adopt an emerging radical 
-innovation are often willing to pay a premium ]v[ cope with subpar performance in order to have the latest technology (Rogers, 
-1995). The larger proportion of the population known as early/late 
-majority adopters are much more risk adverse, ]^[ are ]n[ willing 
-to purchase an innovation ]s[ different from the dominant design 
-(Rogers, 1995). It is vital ]f[ radical technologies to attract a 
-signiﬁcant enough number of early adopters to develop a viable 
-market niche (Geels, 2002). Thereafter, industrial forces such as 
-learning by doing ]^[ scale economies can rapidly lower costs ]^[ 
-improve performance (Foster, 1986; Christensen, 1997). In order 
-]f[ an innovation such as electric vehicles to have a signiﬁcant 
-environmental impact, it needs to be widely adopted (and have 
-dramatically lower emissions levels compared to ICEVs). For that 
-to happen, there must ﬁrst be enough demand within the EV niche 
-market that manufacturers continue to develop ]^[ sell the 
-automobiles. Consequently, governments have employed ﬁnancial 
-incentives to help attract early EV adopters. 
-3 
-The notion that an individual's decision making is inﬂuenced by the 
-information that he/she has. 
-Author's personal copy 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-2.2. Barriers that reduce eco-innovation 
-Eco-innovations differ from other new products ]^[ services in 
-that they provide a lower environmental impact than the conventional technology (Rennings, 2000). Examples range from incremental improvements to existing designs such as turbocharging in 
-automobile engines to more radical technologies, like solar cells 
-]^[ wind turbines. The distinct nature of eco-innovations 
-improves general social utility through lower pollution abatement 
-levels. However, this externality also creates market failure, ]^[ 
-ultimately limits their development ]^[ adoption (Jaffe et al., 
-2005). 
-Investments in eco-innovation are speciﬁcally disincentivized 
-because beneﬁts from lower pollution levels are ]n[ included in a 
-product's price. The externality pollution functions such that that 
-even though many societal members proﬁt from eco-innovations 
-through improved health (however marginally), ﬁrms are ]n[ able to 
-charge those individuals ]f[ their gains. As a result, eco-innovations 
-have lower adoption levels than if societal beneﬁts from decreased 
-pollution were included in product costs (Brown, 2001). 
-An additional barrier that has contributed to lower ecoinnovation diffusion is bounded rationality, which can inﬂuence 
-consumer valuation of a product's purchase price, operating 
-expenses, ]^[ lifetime cost. Instead of using rational choices to 
-maximize an individual's utility, individuals are aware of only a 
-portion of the available options ]^[ thus act on imperfect 
-information (Nelson ]^[ Winter, 1982). Thus, in place of calculating out the total cost of ownership of a product, consumers often 
-rely on heuristics ]v[ rules of thumb to guide their purchasing 
-behavior (Jaffe ]^[ Stavins, 1994; Schleich, 2009). This can lead an 
-individual to place too much emphasis on the purchase price ]^[ 
-]n[ accurately value operating expenses (Levine et al., 1995). 
-Because many eco-innovations have high purchase prices ]^[ 
-low operating expenses, they have often experienced slow diffusion rates (Brown, 2001). Speciﬁcally regarding EVs, consumers 
-looking to purchase alternative fuel vehicles do ]n[ accurately 
-incorporate fuel economy in their vehicle purchase decisions, 
-leading to irrational behavior (Turrentine ]^[ Kurani, 2007). 
-3. Factors inﬂuencing EV adoption 
-Because EVs were introduced to the broader consumer market 
-only recently in 2010 (not including their temporary commercialization in the 1990s), there is little research that uses empirical 
-data to analyze factors which affect adoption rates. Thus, much of 
-our knowledge about such contributing elements comes from 
-stated preference studies. However, because of a phenomenon 
-known as the “attitude–action gap”, there is the concern that 
-information from consumer surveys may have little relation to the 
-purchase of low-emission vehicles (Lane ]^[ Potter, 2007). This 
-raises the value of research that analyzes actual consumer actions 
-(revealed preferences), such as that performed in our paper. 
-HEVs provide a good comparison basis ]f[ EVs (even though 
-they are less of a radical innovation) because they have several of 
-the same key elements including a battery ]^[ electric motor 
-based powertrain ]^[ lower environmental impacts. As HEVs have 
-been commercially available since the late 1990s, there are several 
-studies that used revealed preference data to investigate factors 
-that inﬂuenced consumer uptake ]f[ those automobiles. In the 
-absence of similar research ]f[ EVs, we have incorporated in our 
-model variables that were found to be signiﬁcant drivers of HEV 
-adoption in those articles e.g., education level, fuel price, ]^[ 
-environmentalism (Lane ]^[ Potter, 2007; Diamond, 2009; 
-Gallagher ]^[ Muehlegger, 2011). Based on the ﬁndings in HEV 
-revealed preference research, EV survey studies, ]^[ theoretical 
-185 
-articles, we have collected ]^[ categorized the factors that are 
-assumed to determine the decision of whether ]v[ ]n[ to purchase 
-an electric vehicle as belonging to the technology itself, the 
-consumer, ]v[ the context. 
-The technology category comprises aspects of electric vehicles 
-including battery costs ]^[ performance characteristics (driving 
-range ]^[ charging time). EV purchase prices, which are heavily 
-dependent on battery costs, have been identiﬁed as being the most 
-signiﬁcant obstacle to widespread EV diffusion (Brownstone et al., 
-2000). The IEA (2011) found that the purchase price of an EV with a 
-30 kWh battery (approx. 85 miles4 of driving range at 0.17 kWh/mile) 
-would be $10,000 (all ﬁnancial amounts in this article should be read 
-as US dollars) more than a comparable ICEV. Battery costs also have 
-an impact on the driving range of an EV. An increase in the size of an 
-EV's battery (in kWh) raises both its driving range ]^[ purchase cost. 
-Therefore, although consumers are sensitive to a limited driving 
-range (Lieven et al., 2011) that aspect must be balanced with its 
-relation to vehicle battery costs. An additional factor which inﬂuences consumer adoption is vehicle charging time (Hidrue et al., 
-2011; Neubauer et al., 2012). Whereas most ICEVs are able to refuel in 
-roughly 4 min, EVs require  30 min at a fast charging station ]^[ up 
-to several (410) h ]f[ charging from a 110 ]v[ 220 V outlet, 
-dependent on battery size (Saxton, 2013). Relative to a comparable 
-ICEV, an EV's high purchase price, limited driving range, ]^[ long 
-charge period all have a negative impact on adoption rate. 
-In addition to factors relating to the EV, consumer characteristics 
-also play a role in determining uptake. Studies have identiﬁed levels of 
-education, income, ]^[ environmentalism to all be positively correlated to likelihood to purchase an EV (Hidrue et al., 2011) ]v[ HEV 
-(Gallagher ]^[ Muehlegger, 2011). However, these factors, speciﬁcally 
-environmentalism, are often less important to consumers than vehicle 
-cost ]^[ performance attributes such as those identiﬁed in the 
-paragraph above (Lane ]^[ Potter, 2007; Egbue ]^[ Long, 2012). 
-A third set of elements, which the literature has found to 
-inﬂuence adoption rates ]^[ is external to both the vehicle ]^[ 
-consumer, is categorized as context factors in our research. In several 
-studies, fuel (gasoline ]v[ diesel) prices have been identiﬁed as one of 
-the most powerful predictors of HEV adoption (Diamond, 2009; 
-Beresteanu ]^[ Li, 2011; Gallagher ]^[ Muehlegger, 2011), ]^[ have 
-also been inﬂuential in agent-based models forecasting EV diffusion 
-(Eppstein et al., 2011; Shaﬁei et al., 2012). Related to fuel prices, 
-although less commonly incorporated in analyses, are electricity 
-costs. Those two factors combine to determine a majority of EV 
-operating expenses which in turn have an impact on adoption rates 
-(Zubaryeva et al., 2012; Dijk et al., 2013). Other studies have 
-identiﬁed availability of charging stations as an important determinant in consumer acceptance of alternative fuel vehicles e.g., EVs 
-(Yeh, 2007; Struben ]^[ Sterman, 2008; Egbue ]^[ Long, 2012; Tran 
-et al., 2012). A country's level of urban density could facilitate greater 
-EV adoption as shorter average travel distances might allow ]f[ wider 
-use of the vehicles' limited driving range (IEA, 2011). Finally, there are 
-several factors speciﬁc to EVs that could inﬂuence adoption rates 
-including vehicle diversity i.e., the number of models that consumers 
-can buy (Van den Bergh et al., 2006), local involvement i.e., the 
-presence of a local manufacturing plant (IEA, 2013), ]^[ public 
-visibility i.e., the number of years EVs have been available ]f[ 
-purchase (Eppstein et al., 2011). 
-4. Method 
-This section describes how EV adoption rates across a series of 
-countries were analyzed using a set of socio-economic variables. 
-4 
-136 km. 
-Author's personal copy 
-186 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-Table 1 
-Description of variables ]^[ sources. 
-Variable 
-Data 
-Source 
-MarShr 
-National market share of electric vehicles as a percentage of all car 
-sales 
-Financial incentives that countries provided ]f[ the purchase and/or 
-use of an electric vehicle 
-The number of charging stationsa in a country corrected ]f[ 
-population (the number of charging stations per 100,000 residents) 
-Index that ranks environmental regulation ]^[ performance by 
-country ]^[ is intended to capture national differences in 
-environmentalism 
-The weighted average of national gasoline ]^[ diesel fuel prices. 
-Averages were weighted based on the amount of gasoline ]v[ diesel 
-fuel used in speciﬁc countriesd 
-Dummy variable identifying whether a country had either an EV 
-producer's global headquarters ]v[ production facilities 
-National income per capita as measured in purchasing power parity 
-The number of vehicles per capita in a country 
-The percentage of workforce with at least a tertiary education level 
-2011 Household electricity prices per kWh 
-Number of EV models that were purchased in 2012 
-Year (since 2008) that EVs were ﬁrst sold in a given country 
-The price of purchasing a Mitsubishi MiEV in a given countryf 
-Cumulative population per square mile in urban areas above 
-500,000 residents 
-National automotive statistics websites 
-Incentive 
-ChgInf 
-Envc 
-Fuel 
-HQ 
-Income 
-PerCapvehicles 
-Education 
-Elece 
-Availability 
-Intro 
-EV_Price 
-Urban density 
-(ACEA, 2012a, 2012b); national government agencies 
-(Chargemap, 2013; Lemnet.org, 2013; ASBE, 2013; Gronnbil, 2013); 
-national charging mapsb 
-Yale (2013) 
-IEA (2012a), Reuters (2012), World Bank (2012a, 2012b) 
-Auto manufacturer websites 
-World Bank (2013a) 
-World Bank (2013a) 
-World Bank (2013b) 
-Eurostat (2013), IEA (2012a) 
-Automotive statistics websites 
-Marklines (2013) 
-National Mitsubishi websites 
-Demographia (2013) 
-a 
-A charging station with multiple outlets would be counted as one in these ﬁgures. 
-For many countries, national charging maps were found to provide more comprehensive data than international websites such as www.chargemap.com. 
-There is no concern of reverse causality between EV adoption rate ]^[ the EPI because the low numbers of electric vehicles being driven in countries would have a 
-negligible impact on the indicators which make up the EPI. 
-d 
-For example, if a country used 30% gasoline ]^[ 70% diesel, then their fuel price would reﬂect a greater weight placed on cost ]f[ diesel. 
-e 
-Due to data availability issues, Iceland electricity prices were from 2012. 
-f 
-In countries where MiEVs were ]n[ available, other EVs were used ]f[ a comparison e.g., the BYD F3DM in China. 
-b 
-c 
-Section 4.1 describes the data that were collected. Section 4.2 
-outlines a more detailed description of how ﬁnancial incentives 
-were operationalized. Section 4.3 provides the ﬁnal model 
-speciﬁcation. 
-4.1. Data collection 
-We collected ]^[ analyzed data from 30 countries ]f[ 2012. The 
-year 2012 was selected as the study date because important 
-information such as charging infrastructure ]^[ EV adoption rates 
-were unavailable in earlier years. Our statistical analysis used data 
-from the following countries: Australia; Austria; Belgium; Canada; 
-China; Croatia; the Czech Republic; Denmark; Estonia; Finland; 
-France; Greece; Germany; Iceland; Ireland; Israel; Italy; Japan; the 
-Netherlands; New Zealand; Norway; Poland; Portugal; Slovenia; 
-Spain; Sweden; Switzerland; Turkey; the United Kingdom, ]^[ the 
-United States. We selected these countries because of the availability of data, speciﬁcally EV adoption ]^[ charging infrastructure 
-ﬁgures. In our study, we deﬁned electric vehicles as including both 
-pure battery electric vehicles, e.g., Nissan LEAF, as well as plug-in 
-hybrid electric vehicles, e.g., Chevy Volt. As this deﬁnition of EVs 
-was based around vehicles with a plug, other HEV models such as 
-the Toyota Prius were ]n[ included in our analysis. 
-Based on the factors identiﬁed in Section 3, we collected data 
-]f[ the following variables ]f[ each country in our study: EV 
-market share, ﬁnancial incentives, urban density, education level, 
-an environmentalism indicator, fuel price, EV price, presence of 
-production facilities, per capita vehicles, model availability, introduction date, charging infrastructure,5 ]^[ electricity price. EV 
-adoption was operationalized as national market shares of electric 
-vehicles. Variable descriptions ]^[ their sources are provided in 
-5 
-Charging stations were identiﬁed such that there could be multiple stations 
-at a location, ]^[ multiple charging points (plugs) per station. 
-Table 1. Notable absences include driving range ]^[ charging time. 
-Those variables were ]n[ added to our model because generally 
-the same electric vehicles were available ]f[ purchase in the 
-countries in our sample. Thus, there is no fundamental difference 
-in the driving range of a Nissan LEAF in China ]v[ a Nissan LEAF in 
-Germany.6 
-4.2. Financial incentives 
-To encourage EV adoption, countries have used ﬁnancial 
-incentives from both technology speciﬁc policies, such as subsidies 
-to EV consumers, ]^[ technology neutral policies, such as 
-emissions-based vehicle taxes. These were applied either at the 
-time of a vehicle's registration ]v[ on its annual circulation fee 
-(license fees in the US). In some cases, countries lowered automobile taxes ]f[ EVs, ]^[ in others they provided subsidies apart 
-from normal registration ]^[ circulation fees, thus presenting a 
-very diverse ﬁnancial incentive landscape. This section of the 
-study describes how such a heterogeneous environment ]f[ 
-subsidies was operationalized to allow ]f[ analysis across 
-countries. 
-In order to compare ﬁnancial incentives that used different 
-emissions ]^[ monetary units, policies were standardized 
-relative to CO2 emissions ]^[ 2012 US dollars. To convert fuel 
-use to CO2 emissions, we used the following formula: 1 l/100 km ¼ 
-23.2 g CO2/km (UNEP, 2012). We converted currencies to US 
-dollars using the averaged quarterly exchange rates from 2012. 
-In some situations, it was necessary to use a vehicle's performance 
-6 
-Differences in temperature would affect driving range. With that in mind, the 
-same vehicle in different countries might have slightly different performance 
-characteristics depending on weather conditions. However, the precise effects of 
-temperature on EV driving radii are still being determined. For that reason driving 
-range as inﬂuenced by temperature was ]n[ included in our model, ]b[ could still 
-contribute to differences in adoption between countries such as Spain ]^[ Sweden. 
-Author's personal copy 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-5. Results ]^[ discussion 
-Table 2 
-ICE vehicle ]^[ electric vehicle used ]f[ policy valuation. 
-Cost 
-Tailpipe emissions 
-Fuel efﬁciencya 
-Weight 
-Engine/battery pack 
-187 
-ICE vehicle 
-Electric vehicle 
-$25,000 
-140 CO2 g/km 
-19 km/l 
-1550 kg 
-2.0 l 
-77 kW 
-$35,000 
-0 g/km 
-45 km/lb 
-1950 kg 
-20 kWh 
-Li-ion 
-This section includes a correlation matrix of variables used in 
-the model, a descriptive analysis of EV-speciﬁc factors, ]^[ results 
-from the statistical model identiﬁed above. Stress tests of the 
-model were employed to determine its general robustness ]^[ the 
-relative impact of speciﬁc variables. Finally, we discuss implications that arise from the results, which provide a notion of how 
-different policy measures such as fuel taxes, consumer subsidies, 
-]^[ installing charging stations could inﬂuence EV adoption. 
-a 
-Based off the US FTP-75 driving cycle. 
-This is a l/km equivalent ﬁgure, ]^[ is common ]f[ estimating fuel economy 
-]f[ EVs. 
-b 
-characteristics, e.g., CO2 emissions7 in order to calculate the 
-ﬁnancial incentives of a particular policy. An example would be 
-an annual circulation fee in which the amount paid was dependent 
-on a vehicle's CO2 emissions levels. However, this does ]n[ give an 
-indication of the savings relative to the purchase of an ICE vehicle 
-(there is no basis ]f[ comparison). In order to calculate the value of 
-such ﬁnancial incentive policies, we used information from an 
-ICEV ]^[ EV (a 2012 Volkswagen Golf ]^[ Nissan Leaf respectively). Table 2 provides a description of the basic characteristics of 
-these vehicles. 
-Some policies, such as registration taxes, were applied on a 
-one-time basis. For other policies that required annual payments 
-e.g., circulation fees, we sought to provide a more realistic notion 
-of their monetary value. We did this by using a 3 year payback 
-period ]^[ consumer discount rate of 30% (based on the work of 
-Greene et al., 2005; Yeh, 2007). For example, a one-time registration subsidy of $1000 maintains that value, ]b[ an annual circulation subsidy of $50 provided a ﬁnancial incentive of $90.81 in our 
-analysis. 
-For the countries studied in our sample, ﬁnancial incentives did 
-]n[ change considerably in 2011 ]^[ 2012. In absolute terms 
-during those 2 years, Portugal saw a $5500 decrease in ﬁnancial 
-incentives offered to EV adopters while Finland saw a $4600 
-increase. Otherwise, national ﬁnancial incentive levels have 
-remained constant over that time period. 
-4.3. OLS regression 
-The variables from Table 1 were incorporated into an ordinary 
-least squares (OLS) regression with a logit transformation of the 
-dependent variable to normalize distributions of EV market share. 
-This transformation is appropriate when data are skewed, ]v[ 
-bounded such as with a proportion (Lesaffre et al., 2007). 
-A histogram of the EV market share was skewed to the right, 
-]^[ the variable was a proportion. After the logit transformation, a 
-second histogram showed EV market share to be normally 
-distributed, validating this approach. The ﬁnal model speciﬁcation 
-is given as 
-log _MarShri ¼ α þ β 1 Incentivei þ β 2 Urban densityi 
-5.1. Correlation analysis of model variables 
-Looking at relationships between individual variables can help 
-to highlight dynamics that are ]n[ evident in linear regression 
-models. Appendix A provides a Pearson's correlation coefﬁcient 
-]^[ statistical signiﬁcance between the variables used in the base 
-model speciﬁcation. One of the patterns that appears when 
-analyzing this matrix is that many of the EV-speciﬁc variables 
-are strongly correlated (price, year of introduction, availability, 
-market share, ﬁnancial incentives, ]^[ charging infrastructure), 
-indicating that industrial dynamics can become interwoven during 
-the early commercialization of a radical innovation. Another 
-observation is that the EV price variable has a negative correlation 
-to a country's market share. Mitsubishi MiEVs were most expensive in countries where adoption rates were low e.g., Turkey, 
-China, ]^[ New Zealand, ]^[ they were cheaper in the US, 
-Norway, ]^[ Japan, countries with relatively high EV market 
-shares. Sometimes this difference was dramatic as with Australia 
-($53,126) ]^[ Switzerland ($26,925). And while it is difﬁcult to 
-draw any conclusive results from such correlations, they do 
-provide a good basis ]f[ further analysis. 
-An additional correlation that was ]n[ included in Appendix A 
-was between charging infrastructure ]^[ the type of EV (plug-in 
-hybrid ]v[ purely battery electric). Potentially, a country with a 
-higher proportion of plug-in hybrid-electric vehicles (PHEVs) 
-would have less dependence on charging stations, which could 
-weaken the relationship between a country's EV adoption ]^[ its 
-charging infrastructure. However, preliminary model estimations 
-identify that percent of PHEVs did ]n[ have a statistically signiﬁcant relationship to either charging infrastructure ]v[ EV market 
-share. This suggests that the proportion of a country's EVs with an 
-internal combustion engine does ]n[ signiﬁcantly relate to its 
-charging infrastructure ]v[ adoption rate. 
-5.2. Descriptive analysis of EV-speciﬁc variables 
-In addition to socio-demographic factors such as income ]^[ 
-education level, our model also incorporated several EV-speciﬁc 
-variables including ﬁnancial incentives, charging infrastructure, 
-model availability, ]^[ presence of a local manufacturing facility. 
-The descriptive analysis of these variables provided below identiﬁes how signiﬁcant correlations found in Appendix A can actually 
-involve a great deal of heterogeneity ]^[ diversity, indicating the 
-existence of other inﬂuential factors. 
-þ β 3 Educationi þ β4 Envi þ β 5 Fueli þ β6 ChgInf i 
-þ β 7 Elec þ β8 PerCapVehicles þ β9 EV_Price 
-þ β 10 Availability þ β11 Introduction þ β 12 HQ þ εi 
-where the subscript i denotes the country, ]^[ 
-ε is an error term. 
-7 
-For the policies analyzed in our study, CO2 emissions were calculated from a 
-vehicle's tailpipe, based on standard driving cycles e.g., NEDC ]^[ FTP-75. 
-5.2.1. Financial incentives 
-Financial incentives ]^[ EV adoption in Fig. 1 display a positive 
-]^[ signiﬁcant relationship (P-value of.01). Even so, there is 
-substantial variation among the data points. In addition, there 
-appears to be two groups of countries. The ﬁrst is constituted by 
-approximately the bottom half of our study sample (14 countries) 
-as represented by nations with ﬁnancial incentives less than 
-$2000. They exhibited lower EV market shares with the exceptions 
-of Sweden (0.30%) ]^[ Switzerland (0.23%), ]^[ to a lesser extent 
-Author's personal copy 
-3.5% 
-$30 
-3.0% 
-$25 
-2.5% 
-$20 
-2.0% 
-$15 
-1.5% 
-$10 
-1.0% 
-$5 
-0.5% 
-$- 
-0.0% 
-Denmark 
-Estonia 
-Israel 
-Norway 
-Belgium 
-Ireland 
-Japan 
-Netherlands 
-United Kingdom 
-China 
-Iceland 
-United States 
-France 
-Finland 
-Greece 
-Austria 
-New Zealand 
-Italy 
-Portugal 
-Slovenia 
-Switzerland 
-Spain 
-Sweden 
-Germany 
-Croatia 
-Czech republic 
-Poland 
-Australia 
-Turkey 
-Canada 
-$35 
-EV market share (% of annual car sales) 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-Financial incentives in 000's US dollars 
-188 
-Financial incentives 
-EV Market Share % 
-Fig. 1. Financial incentives by country ]^[ corresponding EV market share ]f[ 2012. 
-$35,000 
-$30,000 
-Total EV subsidy 
-$25,000 
-$20,000 
-$15,000 
-$10,000 
-$5,000 
-Denmark 
-Estonia 
-Israel 
-Norway 
-Belgium 
-Ireland 
-Japan 
-Netherlands 
-United Kingdom 
-China 
-Iceland 
-United States 
-France 
-Finland 
-Greece 
-Austria 
-New Zealand 
-Italy 
-Portugal 
-Slovenia 
-Switzerland 
-Spain 
-Sweden 
-Germany 
-Croatia 
-Czech republic 
-Australia 
-Canada 
-Poland 
-Turkey 
-$- 
-Circulation subisidies 
-Registration subsidies 
-Fig. 2. Breakdown of ﬁnancial subsidies types offered by countries. 
-Germany (0.12%), ]^[ Canada (0.13%). Consequently, 10 countries 
-showed little EV activity as measured by either ﬁnancial incentives 
-]v[ EV adoption. 
-The other group in Fig. 1 is distinguished by the countries with 
-higher levels of ﬁnancial incentives ]^[ greater variation in their 
-EV market shares. Some countries such as Norway ]^[ Estonia 
-matched high ﬁnancial incentives with increased EV adoption. 
-However, this relationship was ]n[ uniform as other countries, 
-including Denmark ]^[ Belgium, offered high ﬁnancial incentives 
-]b[ had relatively low levels of adoption. Fig. 1 suggests that there 
-are factors other than ﬁnancial incentives that drive EV adoption. 
-In addition to variables captured by the model, there are likely to 
-be country-speciﬁc factors that inﬂuenced national EV market shares. 
-For instance, consumers in Estonia adopted 55 EVs in 2011 (Mnt.ee, 
-2013), ]b[ the federal government decided to purchase approximately 500 MiEVs in 2012 (Estonia, 2011). That single act largely 
-explains why it had such a high market share in 2012. Conversely, 
-Norway installed extensive charging infrastructure in 2009, ]^[ has 
-experienced a more gradual increase in EV adoption rates since 2010, 
-predominantly through household consumers (SAGPA, 2012). An 
-additional factor which is ]n[ captured by the ﬁnancial incentive 
-variable is the subsidy's recipient. Through their purchase of a 
-majority of EVs through 2012, ﬂeet managers were identiﬁed as 
-being very important early adopters (IEA, 2013). However Belgium's 
-ﬁnancial incentives were directed speciﬁcally toward households, ]s[ 
-they may have largely missed engaging the ﬂeet market, hurting the 
-country's adoption ﬁgures. These country speciﬁc factors provide 
-insight into factors ]n[ included in the model that had the potential 
-to greatly inﬂuence national EV adoption levels. 
-As identiﬁed in Section 4, countries employed several different 
-types of ﬁnancial incentives based on the vehicle's tonnage, 
-company car status, emissions, ]^[ powertrain, which can be 
-broadly categorized as either registration ]v[ circulation subsidies. 
-Fig. 2 identiﬁes how countries approached ﬁnancial incentives 
-according those policy categories. 
-Fig. 2 notes that most available EV ﬁnancial incentives (78%) 
-came in the form of registration as opposed to circulation 
-subsidies. The difference between the two is that registration 
-funds were offered the year that the EV was purchased while those 
-based on a vehicle's annual circulation provided beneﬁts over a 
-multiple year time span. Perhaps one reason why registration 
-subsidies were the dominant form of ﬁnancial incentives is due to 
-consumer high discount rates ]f[ circulation subsidies, effectively 
-lowering their perceived value. A correlation test between EV 
-Author's personal copy 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-5.2.3. Number of models available ]^[ local EV production 
-As identiﬁed in the correlation matrix, many of the EV-speciﬁc 
-variables displayed strong correlations. In order to better understand 
-30.00 
-3.5% 
-25.00 
-3.0% 
-2.5% 
-20.00 
-2.0% 
-15.00 
-1.5% 
-10.00 
-1.0% 
-5.00 
-0.5% 
-0.00 
-0.0% 
-Norway 
-Netherlands 
-Estonia 
-Austria 
-Israel 
-Switzerland 
-Ireland 
-Denmark 
-Japan 
-Portugal 
-Sweden 
-Slovenia 
-Belgium 
-France 
-Germany 
-United Kingdom 
-Czech republic 
-United States 
-Spain 
-Canada 
-Iceland 
-Finland 
-Italy 
-Australia 
-Poland 
-New Zealand 
-Turkey 
-Greece 
-China 
-Croatia 
-Charging stations per 100,000 residents 
-5.2.2. Charging infrastructure 
-Fig. 3 exhibits a positive ]^[ signiﬁcant relationship (P-value 
-of.000) between charging stations (adjusted ]f[ population) ]^[ 
-EV adoption rates. Despite an overall positive correlation, there 
-were examples of wide discrepancies in the data as evidenced by 
-Estonia ]^[ Israel. Both countries had similar proportions of 
-charging stations, ]b[ Estonia had an EV adoption level 11 times 
-higher than that of Israel. There also appears to be seven countries 
-with very low levels of both charging stations ]^[ EV adoption. 
-Not as much information is available about national charging 
-infrastructure as ﬁnancial incentives, perhaps because in many 
-countries they are largely installed by local municipalities (Bakker 
-]^[ Trip, 2013). Among the countries in our sample, there have 
-been several different approaches to building charging infrastructure from federal mandate (Estonia) to auto manufacturer led 
-(Japan) to local government initiative (Belgium) to public–private 
-partnerships (Norway) (Estonia, 2011; SAGPA, 2012; ASBE, 2013; 
-Nobil, 2012). This variety in approach to charging infrastructure 
-development likely relates to other factors that inﬂuence EV 
-adoption e.g., local involvement. 
-Analyzing Figs. 1 ]^[ 3, ﬁve (out of the 30) countries showed 
-very little activity during the introductory phase of EVs, as 
-measured by ﬁnancial incentives, adoption, ]v[ charging infrastructure installation. Thus, countries in our study could be divided into 
-two groups with divergent attitudes toward EV adoption as 
-reﬂected by government policy ]^[ consumer purchase behavior. 
-One set of countries seemed to be actively engaged in the EV 
-introductory market while the other appeared to show very little 
-interest. However, the discrepancy between the two groups will 
-likely have little effect on the overall success ]v[ failure of EVs as 
-the countries invested in their adoption represent a substantial 
-majority of global GDP based on national purchasing power parity 
-(World Bank, 2013c). 
-EV market share (%of annual car sales) 
-market share ]^[ registration/circulation subsidies did ]n[ return 
-a signiﬁcant value suggesting that it was the total ﬁnancial 
-incentive value ]^[ ]n[ the speciﬁc policy type that was relevant 
-]f[ adoption rates. 
-189 
-Charging Stations 
-EV Market Share % 
-16 
-3.0 
-14 
-2.5 
-12 
-10 
-2.0 
+Efficient Software—Based Fault Isolation 
+Robert VVahbe 
+Steven Lucco 
+Thomas E. Anderson 
+Susan L. Graham 
+Computer Science Division 
+University of California 
+Berkeley, CA 94720 
+Abstract 
+One way to provide fault isolation among cooperating 
+software modules is to place each in its own address 
+space. However, ]f[ tightly—coupled modules, this so— 
+lution incurs prohibitive context switch overhead. In 
+this paper, we present a software approach to imple— 
+menting fault isolation within a single address space. 
+Our approach has two parts. First, we load the code 
+]^[ data ]f[ a distrusted module into its own fault do- 
+main, a logically separate portion of the application’s 
+address space. Second, we modify the object code of a 
+distrusted module to prevent it from writing ]v[ jump- 
+ing to an address outside its fault domain. Both these 
+software operations are portable ]^[ programming lan— 
+guage independent. 
+Our approach poses a tradeoff relative to hardware 
+fault isolation: substantially faster communication be— 
+tween fault domains, at a cost of slightly increased 
+execution time ]f[ distrusted modules We demon— 
+strate that ]f[ frequently communicating modules, im~ 
+plementing fault isolation in software rather than hard- 
+ware can substantially improve end-to—end application 
+performance. 
+This work was supported in part by the National Sci— 
+ence Foundation (CDA-8722788), Defense Advanced Research 
+Projects Agency (DARPA) under grant MDA972—92-J-1028 ]^[ 
+contracts DABT63-92'C-0026 ]^[ N00600-93—C—2481, the Digi- 
+tal Equipment Corporation (the Systems Research Center ]^[ 
+the External Research Program), ]^[ the AT&T Foundation. 
+Anderson was also supported by a National Science Foundation 
+Young Investigator Award. The content of the paper does ]n[ 
+necessarily reﬂect the position ]v[ the policy of the Government 
+]^[ no ofﬁcial endorsement should be inferred. 
+Email: {rwahbe , lucco, tea, graham}@cs .berkeley.edu 
+Permission to copy Without fee all ]v[ part of (his material IS 
+granted provided that Hie cvpies are "0‘ made 0! distributed ]f[ 
+direct commercial advantage. the ACM copyright notice ]^[ the 
+mile of the publicaiion ]^[ MS data appear, ]^[ notice IS given 
+that copying is by permissmn of (he Assomalion ]f[ Computing 
+Machinery. To copy otherWise. ]v[ to republish, requires a fee 
+and/or specnfic permissron. 
+SIGOPS '93/12/93/N.C., USA 
+31993 ACM 0-83791-632-8/93/0012...$L50 
+1 Introduction 
+Application programs often achieve extensibility by 
+incorporating independently developed software mod— 
+ules. However, faults in extension code can render a 
+software system unreliable, ]v[ even dangerous, since 
+such faults could corrupt permanent data. To in— 
+crease the reliability of these applications, an operat— 
+ing system can provide services that prevent faults in 
+distrusted modules from corrupting application data. 
+Such fault isolation services also facilitate software de- 
+velopment by helping to identify sources of system fail— 
+ure. 
+For example, the POSTGRES database manager in— 
+cludes an extensible type system [St087]. Using this 
+facility, POSTGRES queries can refer to general—purpose 
+code that deﬁnes constructors, destructors, ]^[ pred— 
+icates ]f[ user—deﬁned data types such as geometric 
+objects. Without fault isolation, any query that uses 
+extension code could interfere with an unrelated query 
+]v[ corrupt the database. 
+Similarly, recent operating system research has fo— 
+cused on making it easier ]f[ third party vendors 
+to enhance parts of the operating system. An ex 
+ample is micro-kernel design; parts of the operat— 
+ing system are implemented as user—level servers that 
+can be easily modiﬁed ]v[ replaced. More gener— 
+ally, several systems have added extension code into 
+the operating system, ]f[ example, the BSD network 
+packet ﬁlter [MRA87, MJQ3]7 application—speciﬁc vir- 
+tual memory management [HC92]. ]^[ Active Mes— 
+sages [VCGSQQ]. Among industry systems, Microsoft’s 
+Object Linking ]^[ Embedding system [Cla92] can 
+link together independently developed software mod— 
+tiles. Also, the Quark Xprese desktop publishing sys- 
+tem [Dy592] is structured to support incorporation of 
+general—purpose third party code. As with POSTGRES, 
+faults in extension modules can render any of these 
+systems unreliable. . 
+One way to provide fault isolation among cooperat— 
+ing software modules is to place each in its own address 
+space. Using Remote Procedure Call (RFC) [BN84], 
+modules in separate address spaces can call into each 
+other through a normal procedure call interface. Hard- 
+ware page tables prevent the code in one address space 
+from corrupting the contents of another. 
+Unfortunately, there is a high performance cost 
+to providing fault isolation through separate address 
+spaces. Transferring control across protection bound— 
+aries is expensive, ]^[ does ]n[ necessarily scale 
+with improvements in a processor’s integer perforv 
+mance [ALBL91]. A cross—address-space RPC requires 
+at least: a trap into the operating system kernel, copy— 
+ing each argument from the caller to the callee, sav~ 
+ing ]^[ restoring registers, switching hardware ad— 
+dress spaces (on many machines, ﬂushing the transla— 
+tion lookaside buffer), ]^[ a trap back to user level. 
+These operations must be repeated upon RPC re— 
+turn. The execution time overhead of an RPC, even 
+with a highly optimized implementation, will often 
+be two to three orders of magnitude greater than 
+the execution time overhead of a normal procedure 
+call [BALL90, ALBL91]. 
+The goal of our work is to make fault isolation cheap 
+enough that system developers can ignore its perfor— 
+mance effect in choosing which modules to place in 
+separate fault domains. In many cases where fault iso 
+lation would be useful, cross-domain procedure calls 
+are frequent ]y[ involve only a moderate amount of 
+computation per call. In this situation it is imprac- 
+tical to isolate each logically separate module within 
+its own address space, because of the cost of crossing 
+hardware protection boundaries. 
+We propose a. software approach to implementing 
+fault isolation within a single address space. Our ap— 
+proach has two parts. First, we load the code ]^[ data 
+]f[ a. distrusted module into its own fault domain, a 
+logically separate portion of the application’s address 
+space. A fault domain, in addition to comprising a cori— 
+tiguous region of memory within an address space, has 
+a unique identiﬁer which is used to control its access to 
+process resources such as ﬁle descriptors. Second, we 
+modify the object code of a distrusted module to pre— 
+vent it from writing ]v[ jumping to an address outside 
+its fault domain. Program modules isolated in sepa— 
+rate software—enforced fault domains can ]n[ modify 
+each other’s data ]v[ execute each other’s code except 
+through an explicit cross-fault-domain RPC interface. 
+We have identiﬁed several programming-language- 
+independent transformation strategies that can render 
+object code unable to escape its own code ]^[ data 
+segments. In this paper, we concentrate on a sim— 
+204 
+ple transformation technique, called sandboxing, that 
+only slightly increases the execution time of the mod- 
+iﬁed object code. We also investigate techniques that 
+provide more debugging information ]b[ which incur 
+greater execution time overhead. 
+Our approach poses a tradeoff relative to hardware— 
+based fault isolation. Because we eliminate the need to 
+cross hardware boundaries, we can offer substantially 
+lower-cost RPC between fault domains. A safe RPC in 
+our prototype implementation takes roughly 1.1 us on a 
+DECstation 5000/240 ]^[ roughly 0.8,us on a DEC Al- 
+pha 400, more than an order of magnitude faster than 
+any existing RFC system. This reduction in RFC time 
+comes at a cost of slightly increased distrusted module 
+execution time. On a test suite including the the C 
+SPE092 benchmarks, sandboxing incurs an average of 
+4% execution time overhead on both the DECstation 
+]^[ the Alpha. 
+Software—enforced fault isolation may seem to be 
+counter-intuitive: we are slowing down the common 
+case (normal execution) to speed up the uncommon 
+case (crossrdomain communication). But ]f[ fre- 
+quently communicating fault domains, our approach 
+can offer substantially better end—to—end performance. 
+To demonstrate this, we applied software—enforced 
+fault isolation to the POSTGRES database system run- 
+ning the Sequoia 2000 benchmark. The benchmark 
+makes use of the POSTGRES extensible data. type sys— 
+tem to deﬁne geometric operators. For this bench— 
+mark, the software approach reduced fault isolation 
+overhead by more than a factor of three on a DECsta— 
+tion 5000/240. 
+A software approach also provides a tradeoif be 
+tween performance ]^[ level of distrust. If some mod— 
+ules in a. program are trusted while others are dis- 
+trusted (as may be the ease with extension code), only 
+the distrusted modules incur any execution time over- 
+head. Code in trusted domains can run at full speed. 
+Similarly, it is possible to use our techniques to im- 
+plement full security, preventing distrusted code from 
+even reading data outside of its domain, at a cost of 
+higher execution time overhead. We quantify this ef» 
+fect in Section 5. 
+The remainder of the paper is organized as follows. 
+Section 2 provides some examples of systems that re- 
+quire frequent communication between fault domains. 
+Section 3 outlines how we modify object code to pre— 
+vent it from generating illegal addresses. Section 4 
+describes how we implement low latency cross—faultv 
+domain RPC. Section 5 presents performance results 
+]f[ our prototype, ]^[ ﬁnally Section 6 discusses some 
+related work. 
+2 Background 
+In this section, we characterize in more detail the 
+type of application that can beneﬁt from software— 
+enforced fault isolation. We defer further description 
+of the POSTGRES extensible type system until Section 
+5, which gives performance measurements ]f[ this ap— 
+plication. 
+The operating systems community has focused con- 
+siderable attention on supporting kernel extensibil- 
+ity. For example, the UNIX vnode interface is de- 
+signed to make it easy to add a new ﬁle system into 
+UNIX [Kle86]. Unfortunately, it is too expensive to 
+forward every ﬁle system operation to user level, ]s[ 
+typically new ﬁle system implementations are added 
+directly into the kernel. (The Andrew ﬁle system is 
+largely implemented at user level, ]b[ it maintains a 
+kernel cache ]f[ performance [HKM'l'BSH Epoch’s ter— 
+tiary storage ﬁle system [Web93] is one example of op— 
+erating system kernel code developed by a third party 
+vendor. 
+Another example is user—programmable high perfor— 
+mance I/O systems. If data is arriving on an I/O 
+channel at a high enough rate, performance will be 
+degraded substantially if control has to be transferred 
+to user level to manipulate the incoming data [FP93]. 
+Similarly, Active Messages provide high performance 
+message handling in distributed—memory multiproces- 
+sors [VCG8921. Typically, the message handlers are 
+application-speciﬁc, ]b[ unless the network controller 
+can be accessed from user level [Thi92], the message 
+handlers must be compiled into the kernel ]f[ reason— 
+able performance. 
+A user-level example is the Quark Xpress desktop 
+publishing system. One can purchase third party soft- 
+ware that will extend this system to perform func~ 
+tions unforeseen by its original designers [DysQQ]. At 
+the same time, this extensibility has caused Quark a 
+number of problems. Because of the lack of efﬁcient 
+fault domains on the personal computers where Quark 
+Xpress runs, extension modules can corrupt Quark’s 
+internal data structures Hence, bugs in third party 
+code can make the Quark system appear unreliable, 
+because end—users do ]n[ distinguish among sources of 
+system failure. 
+All these examples share two characteristics. First, 
+using hardware fault isolation would result in a signif- 
+icant portion of the overall execution time being spent 
+in operating system context switch code. Second, only 
+a small amount of code is distrusted; most of the exe- 
+cution time is spent in trusted code. In this situation, 
+software fault isolation is likely to be more efﬁcient 
+than hardware fault isolation because it sharply re— 
+duces the time spent crossing fault domain boundaries, 
+while only slightly increasing the time spent executing 
+205 
+the distrusted part of the application. Section 5 quan- 
+tiﬁes this trade-off between domain—crossing overhead 
+]^[ application execution time overhead, ]^[ demon 
+strates that even if domain—crossing overhead repre— 
+sents a modest proportion of the total application ex— 
+ecution time, software—enforced fault isolation is cost 
+effective. 
+3 Software-Enforced Fault Iso- 
+lation 
+In this section, we outline several software encapsula— 
+tion techniques ]f[ transforming a distrusted module 
+]s[ that it can ]n[ escape its fault domain. We ﬁrst 
+describe a technique that allows users to pinpoint the 
+location of faults within a software module. Next, we 
+introduce a technique, called sandboxing, that can iso- 
+late a distrusted module while only slightly increasing 
+its execution time. Section 5 provides a performance 
+analysis of this techinique. Finally, we present a soft- 
+ware encapsulation technique that allows cooperating 
+fault domains to share memory. The remainder of 
+this discussion assumes we are operating on a RISC 
+load /storc architecture, although our techniques could 
+be extended to handle CISCs. Section 4 describes 
+how we implement safe ]^[ efficient cross—fault—domain 
+RPC. 
+We divide an application’s virtual address space into 
+segments, aligned ]s[ that all virtual addresses within 
+a segment share a unique pattern of upper bits, called 
+the segment identiﬁer. A fault domain consists of two 
+segments, one ]f[ a distrusted module’s code, the other 
+]f[ its static data, heap ]^[ stack. The speciﬁc seg- 
+ment addresses are determined at load time. 
+Software encapsulation transforms a distrusted 
+module‘s object code ]s[ that it can jump only to tar- 
+gets in its code segment, ]^[ write only to addresses 
+within its data segment. Hence, all legal jump tar— 
+gets in the distrusted module have the same upper bit 
+pattern (segment identiﬁer); similarly, all legal data 
+addresses generated by the distrusted module share 
+the same segment identiﬁer. Separate code ]^[ data 
+segments are necessary to prevent a module from mod— 
+ifying its code segmentl. It is possible ]f[ an address 
+with the correct segment identiﬁer to be illegal, ]f[ in- 
+stance if it refers to an unmapped page. This is caught 
+by the normal operating system page fault mechanism. 
+3.1 
+An unsafe mstmctzan is any instruction that jumps to 
+]v[ stores to an address that can ]n[ be statically ver— 
+Segment Matching 
+10111" system supports dynamic linking through a special 
+interface. 
+iﬁed to be within the correct segment. Most control 
+transfer instructions, such as program‘counter‘relative 
+branches, can be statically veriﬁed. Stores to static 
+variables often use an immediate addressing mode ]^[ 
+can be statically veriﬁed. However, jumps through reg— 
+isters, most commonly used to implement procedure 
+returns, ]^[ stores that use a register to hold their 
+target address, can ]n[ be statically veriﬁed. 
+A straightforward approach to preventing the use of 
+illegal addresses is to insert checking code before eve 
+ery unsafe instruction. The checking code determines 
+whether the unsafe instruction’s target address has the 
+correct segment identiﬁer. If the check fails, the in- 
+serted code will trap to a system error routine outside 
+the distrusted module’s fault domain. We call this 
+software encapsulation technique segment matching. 
+On typical RISC architectures, segment matching 
+requires four instructions. Figure 1 lists a pseudo—code 
+fragment ]f[ segment matching. The ﬁrst instruction 
+in this fragment moves the store target address into 
+a dedzcated register. Dedicated registers are used only 
+by inserted code ]^[ are never modiﬁed by code in 
+the distrusted module. They are necessary because 
+code elsewhere in the distrusted module may arrange 
+to jump directly to the unsafe store instruction, by- 
+passing the inserted check. Hence, we transform all 
+unsafe store ]^[ jump instructions to use a dedicated 
+register. 
+All the software encapsulation techniques presented 
+in this paper require dedicated registersz. Segment 
+matching requires four dedicated registers: one to hold 
+addresses in the code segment, one to hold addresses 
+in the data segment, one to hold the segment shift 
+amount, ]^[ one to hold the segment identiﬁer. 
+Using dedicated registers may have an impact on 
+the execution time of the distrusted module. However, 
+since most modern RISC architectures, including the 
+MIPS ]^[ Alpha, have at least 32 registers, we can 
+retarget the compiler to use a smaller register set with 
+minimal performance impact. For example7 Section 5 
+shows that, on the DECstation 5000/240, reducing by 
+ﬁve registers the register set available to a C compiler 
+(gee) did ]n[ have a signiﬁcant effect on the average 
+execution time of the SPEC92 benchmarks. 
+3.2 Address Sandboxing 
+The segment matching technique has the advantage 
+that it can pinpoint the offending instruction. This 
+capability is useful during software development. We 
+can reduce runtime overhead still further, at the cost 
+of providing no information about the source of faults. 
+2 For architectures with lenitccl register sets, such as the 
+80386 [Int86], it is possible to encapsulate a module using no re- 
+served registers by restricting control ﬂow within a fault domain. 
+206 
+dedicated—reg <2 target address 
+lilove target address into dedicated register. 
+scratch-reg <= (dedicated—reg>>shift~reg) 
+Right—shift address to get segment identiﬁer. 
+scratch—reg is ]n[ a dedicated register. 
+shift-reg is a dedicated register. 
+compare scratch—reg ]^[ segment—reg 
+segment-reg is a dedicated register. 
+trap if ]n[ equal 
+Trap if store address is outside of segment. 
+store instruction uses dedicated-reg 
+Figure 1: Assembly pseudo code ]f[ segment matching. 
+dedicated—reg c target-reghand—mask—reg 
+Use dedicated register and—mask-reg 
+to clear segment identiﬁer bits. 
+dedicated—reg <2 dedicated-regl segment—reg 
+Use dedicated register segment-reg 
+to set segment identiﬁer bits. 
+store instruction uses dedicated-reg 
+Figure 2: Assembly pseudo code to sandbox address 
+in target—reg. 
+Before each unsafe instruction we simply insert code 
+that sets the upper bits of the target address to the 
+correct segment identifier. We call this sandborzn g the 
+address. Sandboxing does ]n[ catch illegal addresses; 
+it merely prevents them from affecting any fault do— 
+main other than the one generating the address. 
+Address sandboxing requires insertion of two arith- 
+metic instructions before each unsafe store ]v[ jump 
+instruction. The ﬁrst inserted instruction clears the 
+segment identifier bits ]^[ stores the result in a ded— 
+icated register. The second instruction sets the seg— 
+ment identiﬁer to the correct value. Figure 2 lists the 
+pseudo‘code to perform this operation. As with seg- 
+ment matching, we modify the unsafe store ]v[ jump 
+instruction to use the dedicated register. Since we are 
+using a dedicated register, the distrusted module code 
+can ]n[ produce an illegal address even by jumping 
+to the second instruction in the sandboxing sequence; 
+since the upper bits of the dedicated register will al— 
+ready contain the correct segment identiﬁer, this sec- 
+ond instruction will have no effect. Section 3.6 presents 
+a simple algorithm that can verify that an object code 
+module has been correctly sandboxed. 
+Address sandboxing requires ﬁve dedicated registers. 
+One register is used to hold the segment mask, two 
+registers are used to hold the code ]^[ data segment 
+<——reg+oﬂ'sel j 
+«— reg 
+Guard Zones S eg ment 
+Figure 3: A segment with guard zones. The size of 
+the guard zones covers the range of possible immediate 
+offsets in register—plus-offset addressing modes. 
+identiﬁers, ]^[ two are used to hold the sandboxed 
+code ]^[ data addresses. 
+3.3 Optimizations 
+The overhead of software encapsulation can be re- 
+duced by using conventional compiler optimizations. 
+Our current prototype applies loop invariant code mo— 
+tion ]^[ instruction scheduling optimizations [ASU86, 
+ACD74]. In addition to these conventional techniques, 
+we employ a number of optimizations specialized to 
+software encapsulation. 
+We can reduce the overhead of software encapsulae 
+tion mechanisms by avoiding arithmetic that computes 
+target addresses. For example, many RISC architec— 
+tures include a register-plus—oﬁset instruction mode, 
+where the offset is an immediate constant in some lim— 
+ited range. On the MIPS architecture such offsets are 
+limited to the range -64K to +64K. Consider the 
+store instruction store value,oﬁset(reg), whose 
+address offset (reg) uses the register—plus—olfsct ad~ 
+dressing mode. Sandboxing this instruction requires 
+three inserted instructions: one to sum reg+oﬁset 
+into the dedicated register, ]^[ two sandboxing in— 
+structions to set the segment identiﬁer of the dedicated 
+register. 
+Our prototype optimizes this case by sandboxing 
+only the register reg, rather than the actual target ad— 
+dress reg+oﬁset, thereby saving an instruction. To 
+support this optimization, the prototype establishes 
+guard zones at the top ]^[ bottom of each segment. 
+To create the guard zones, virtual memory pages ad— 
+jacent to the segment are unmapped (see Figure 3), 
+We also reduce runtime overhead by treating the 
+MIPS stack pointer as a dedicated register. We avoid 
+sandboxing the uses of the stack pointer by sandboxing 
+207 
+this register whenever it is set. Since uses of the stack 
+pointer to form addresses are much more plentiful than 
+changes to it, this optimization signiﬁcantly improves 
+performance. 
+Further, we can avoid sandboxing the stack pointer 
+after it is modiﬁed by a small constant offset as long as 
+the modiﬁed stack pointer is used as part of a load ]v[ 
+store address before the next control transfer instruc» 
+tion. If the modiﬁed stack pointer has moved into a 
+guard zone, the load ]v[ store instruction using it will 
+cause a hardware address fault. On the DEC Alpha 
+processor, we apply these optimizations to both the 
+frame pointer ]^[ the stack pointer. 
+There are a number of further optimizations that 
+could reduce sandboxing overhead. For example, 
+the transformation tool could remove sandboxing se— 
+quences from loops, in cases where a store target ad- 
+dress changes by only a small constant oifset during 
+each loop iteration. Our prototype does ]n[ ]y[ imple— 
+ment these optimizations. 
+3.4 Process Resources 
+Because multiple fault domains share the same virtual 
+address space, the fault domain implementation must 
+prevent distrusted modules from corrupting resources 
+that are allocated on a per—addressspace basis. For 
+example, if a fault domain is allowed to make system 
+calls, it can close ]v[ delete ﬁles needed by other code 
+executing in the address space, potentially causing the 
+application as a whole to crash. 
+One solution is to modify the operating system to 
+know about fault domains. On a system call ]v[ page 
+fault, the kernel can use the program counter to deter- 
+mine the currently executing fault domain, ]^[ restrict 
+resources accordingly. 
+To keep our prototype portable, we implemented 
+an alternative approach. In addition to placing each 
+distrusted module in a separate fault domain, we re— 
+quire distrusted modules to access system resources 
+only through cross-fault-domain RPC. We reserve a 
+fault domain to hold trusted arbitration code that de— 
+termines whether a particular system call performed 
+by some other fault domain is safe. If a distrusted 
+module’s object code performs a direct system call, we 
+transform this call into the appropriate RPC call. In 
+the case of an extensible application, the trusted por- 
+tion of the. application can make system calls directly 
+]^[ shares a fault domain with the arbitration code. 
+3.5 Data Sharing 
+Hardware fault isolation mechanisms can support data 
+sharing among virtual address spaces by manipulate 
+ing page table entries. Fault domains share an ad— 
+dress space, ]^[ hence a set of page table entries, 
+]s[ they can ]n[ use a standard shared memory im— 
+plementation. Read-only sharing is straightforward; 
+since our software encapsulation techniques do ]n[ al- 
+ter load instructions, fault domains can read any mem— 
+ory mapped in the application’s address space 3. 
+If the object code in a particular distrusted mod— 
+ule has been sandboxed, then it can share read-write 
+memory with other fault domains through a technique 
+we call lazy pointer swizzling. Lazy pointer swizzling 
+provides a mechanism ]f[ fault domains to share ar— 
+bitrarily many read‘write memory regions with no ad- 
+ditional runtirne overhead. To support this technique, 
+we modify the hardware page tables to map the shared 
+memory region into every address space segment that 
+needs access; the region is mapped at the same offset 
+in each segment. In other words, we alias the shared 
+region into multiple locations in the virtual address 
+space, ]b[ each aliased location has exactly the same 
+low order address bits. As with hardware shared mem- 
+ory schemes, each shared region must have a different 
+segment offset. 
+To avoid incorrect shared pointer comparisons in 
+sandboxed code, the shared memory creation inter— 
+face must ensure that each shared object is given a 
+unique address. As the distrusted object code ac- 
+cesses shared memory, the sandboxing code automati- 
+cally translates shared addresses into the correspond 
+ing addresses within the fault domain’s data segment. 
+This translation works exactly like hardware transla~ 
+tion; the low bits of the address remain the same, ]^[ 
+the high bits are set to the data segment identiﬁer. 
+Under operating systems that do ]n[ allow virtual 
+address aliasing, we can implement shared regions by 
+introducing a new software encapsulation technique: 
+shared segment matching. To implement sharing, we 
+use a dedicated register to hold a bitmap. The bitmap 
+indicates which segments the fault domain can access. 
+For each unsafe instruction checked, shared segment 
+matching requires one more. instruction than segment 
+matching. 
+3.6 Implementation ]^[ Veriﬁcation 
+We have identiﬁed two strategies ]f[ implementing 
+software encapsulation. One approach uses a compiler 
+to emit encapsulated object code ]f[ a distrusted mod- 
+ule; the integrity of this code is then veriﬁed when the 
+module is loaded into a fault domain. Alternatively, 
+the system can encapsulate the distrusted module by 
+directly modifying its object code at load time. 
+a\«Ve have implemented versions of these techniques that per 
+form general protection by encapsulating load instructions as 
+well as store ]^[ jump instructions. We discuss the performance 
+of these variants in Section 5. 
+Our current prototype uses the first approach. We 
+modiﬁed a version of the gcc compiler to perform soft— 
+ware encapsulation. Note that While our current imple- 
+mentation is language dependent, our techniques are 
+language independent. 
+We built a veriﬁer ]f[ the MIPS instruction set 
+that works ]f[ both sandboxing ]^[ segment match- 
+ing. The main challenge in veriﬁcation is that, in the 
+presence of indirect jumps, execution may begin on 
+any instruction in the code segment. To address this 
+situation, the veriﬁer uses a property of our software 
+encapsulation techniques: all unsafe stores ]^[ jumps 
+use a dedicated register to form their target address. 
+The veriﬁer divides the program into sequences of in— 
+structions called unsafe regions. An unsafe store re- 
+gion begins with any modiﬁcation to a dedicated store 
+register. An unsafe jump region begins with any mod- 
+iﬁcation to a dedicated jump register. If the ﬁrst in— 
+struction in a unsafe store ]v[ jump region is executed, 
+all subsequent instructions are guaranteed to be exe- 
+cuted. An unsafe store region ends when one of the 
+following hold: the next instruction is a store which 
+uses a dedicated register to form its target address, 
+the next instruction is a control transfer instruction, 
+the next instruction is ]n[ guaranteed to be executed, 
+]v[ there are no more instructions in the code segment. 
+A similar deﬁnition is used ]f[ unsafe jump regions. 
+The veriﬁer analyzes each unsafe store ]v[ jump re: 
+gion to insure that any dedicated register modiﬁed in 
+the region is valid upon exit of the region. For ex— 
+ample, a load to a dedicated register begins an unsafe 
+region. If the region appropriately sandboxes the ded— 
+icated register, the unsafe region is deemed safe. if an 
+unsafe region can ]n[ be veriﬁed, the code is rejected. 
+By incorporating software encapsulation into an ex— 
+isting compiler, we are able to take advantage of com— 
+piler infrastructure ]f[ code optimization. However, 
+this approach has two disadvantages. First, most mod- 
+iﬁed compilers will support only one programming lan— 
+guage (gcc supports C, C++, ]^[ Pascal). Second, the 
+compiler ]^[ veriﬁer must be synchronized with re— 
+spect to the particular encapsulation technique being 
+employed. 
+An alternative, called bmary patchzng, alleviates 
+these problems. When the fault domain is loaded, the 
+system can encapsulate the module by directly modi- 
+fying the object code. Unfortunately, practical ]^[ r07 
+bust binary patching, resulting in efﬁcient code, is ]n[ 
+currently possible [LB92]. Tools which translate one 
+binary format to another have been built, ]b[ these 
+tools rely on compiler—speciﬁc idioms to distinguish 
+code from data ]^[ use processor emulation to han- 
+dle unknown indirect jumps[SCK”93]. For software 
+encapsulation, the main challenge is to transform the 
+code ]s[ that it uses a subset of the registers, leav— 
+208 
+Trusted 
+Caller Domain 
+Unlru sted 
+Calico Domain 
+call Add 
+Jump Table 
+Figure 4: Major components of a crossefault—domain 
+RFC. 
+ing registers available ]f[ dedicated use. To solve this 
+problem, we are working on a binary patching proto- 
+type that uses simple extensions to current object ﬁle 
+formats. The extensions store control ﬂow ]^[ register 
+usage information that is sufﬁcient to support software 
+encapsulation. 
+4 Low Latency Cross Fault Do— 
+main Communication 
+The purpose of this work is to reduce the cost of fault 
+isolation ]f[ cooperating ]b[ distrustful software mod— 
+ules. In the last section, we presented one half of our 
+solution: efficient software encapsulation. In this sec- 
+tion, we describe the other half: fast communication 
+across fault domains. 
+Figure 4 illustrates the major components ofa cross— 
+fault~domain RFC between a trusted ]^[ distrusted 
+fault domain. This section concentrates on three as— 
+pects of fault domain crossing. First, we describe 
+a simple mechanism which allows a fault domain to 
+safely call a trusted stub routine outside its domain; 
+that stub routine then safely calls into the destination 
+domain. Second, we discuss how arguments are effi— 
+ciently passed among fault domains. Third, we detail 
+how registers ]^[ other machine state are managed on 
+cross—fault—domain RPCs to insure fault isolation. The 
+protocol ]f[ exporting ]^[ naming procedures among 
+fault domains is independent of our techniques. 
+The only way ]f[ control to escape a. fault domain 
+is via a jump table. Each jump table entry is a con— 
+trol transfer instruction whose target address is a legal 
+entry point outside the domain. By using instructions 
+whose target address is an immediate encoded in the 
+instruction, the jump table does ]n[ rely on the use of 
+a dedicated register. Because the table is kept in the 
+(readvonly) code segment, it can only be modified by 
+a trusted module. 
+For each pair of fault domains a customized call ]^[ 
+return stub is created ]f[ each exported procedure. 
+Currently, the stubs are generated by hand rather than 
+using a stub generator [JRTSS]. The stubs run unpro— 
+tected outside of both the caller ]^[ callee domain. 
+The stubs are responsible ]f[ copying cross-domain 
+arguments between domains ]^[ managing machine 
+state. 
+Because the stubs are trusted, we are able to copy 
+call arguments directly to the target domain. Tra— 
+ditional RPC implementations across address spaces 
+typically perform three copies to transfer data. The 
+arguments are marshalled into a message, the kernel 
+copies the message to the target address space, ]^[ 
+ﬁnally the callee must de-marshall the arguments. By 
+having the caller ]^[ callee communicate via a shared 
+buffer, LRPC also uses only a single copy to pass data 
+between domains [BALLQI]. 
+The stubs are also responsible ]f[ managing machine 
+state. On each cross—domain call any registers that are 
+both used in the future by the caller ]^[ potentially 
+modiﬁed by the callee must be protected. Only regis— 
+ters that are designated by architectural convention to 
+bc preserved across procedure calls are saved. As an 
+optimization, if the callee domain contains no instruc— 
+tions that modify a preserved register we can avoid 
+saving it. Karger uses a trusted linker to perform this 
+kind of optimization between address spaces [KarSQ]. 
+In addition to saving ]^[ restoring registers, the stubs 
+must switch the execution stack, establish the correct 
+register context ]f[ the software encapsulation tech- 
+nique being used, ]^[ validate all dedicated registers. 
+Our system must also be robust in the presence of 
+fatal errors, ]f[ example, an addressing violation7 while 
+executing in a fault domain. Our current implementa— 
+tion uses the UNIX signal facility to catch these errors; 
+it then terminates the outstanding call ]^[ notiﬁes the 
+caller’s fault domain. If the application uses the same 
+operating system thread ]f[ all fault domains, there 
+must be a way to terminate a call that is taking too 
+long, ]f[ example, because of an inﬁnite loop. Trusted 
+modules may use a timer facility to interrupt execu— 
+tion periodically ]^[ determine if a call needs to be 
+terminated. 
+5 Performance Results 
+To evaluate the performance of software-enforced fault. 
+domains, we implemented ]^[ measured a prototype 
+of our system on a 40MHz DECstation 5000/240 (DEC— 
+MIPS) ]^[ a lﬁONIliz Alpha 400 (DEC—ALPHA). 
+We consider three questions. First, how much over 
+209 
+head does software encapsulation incur? Second, how 
+fast is a crossrfault—domain RFC? Third, what is the 
+performance impact of using software enforced fault 
+isolation on an end-user application? We discuss each 
+of these questions in turn. 
+5.1 Encapsulation Overhead 
+We measured the execution time overhead of sand- 
+boxing a wide range of C programs, including the C 
+SPE092 benchmarks ]^[ several of the Splash bench- 
+marks [AssQl, SWGQl]. We treated each benchmark 
+as if it were a distrusted module, sandboxing all of 
+its code. Column 1 of Table 1 reports overhead on 
+the DEC—MIPS, column 6 reports overhead on the DEC— 
+ALPHA. Columns 2 ]^[ 7 report the overhead of using 
+our technique to provide general protection by sand« 
+boxing load instructions as well as store ]^[ jump 
+instructions“. As detailed in Section 3, sandboxing 
+requires 5 dedicated registers. Column 3 reports the 
+overhead of removing these registers from possible use 
+by the compiler. All overheads are computed as the 
+additional execution time divided by the original pro~ 
+gram‘s execution time. 
+On the DECeMiPS, we used the program measure— 
+ment tools pixie ]^[ qpt to calculate the number 
+of additional instructions executed due to sandbox~ 
+ing [Dig, BL92]. Column 4 of Table 1 reports this 
+data as a percentage of original program instruction 
+counts. 
+The data in Table 1 appears to contain a num— 
+ber of anomalies For some. of the benchmark pro- 
+grams, ]f[ example, 056.ear 011 the DECAMIPS ]^[ 
+026 . compress on the DEC—ALPHA, sandboxing reduced 
+execution time. in a number of cases the overhead is 
+surprisingly low. 
+To identify the source of these variations we de~ 
+veloped an analytical model ]f[ execution overhead. 
+The model predicts overhead based on the number 
+of additional instructions executed due to sandbox 
+ing (s—znstructzons), ]^[ the number of saved ﬂoat~ 
+ing point interlock cycles (interlocks). Sandboxing in» 
+creases the available instructionlevel parallelism, aL 
+lowing the number of ﬂoating—point interlocks to be 
+substantially reduced The integer pipeline does ]n[ 
+provide interlocking; instead, delay slots are explicitly 
+ﬁlled with nop instructions by the compiler ]v[ assem~ 
+bler. Hence, scheduling ell'ects among integer instruc~ 
+tions will be accurately reﬂected by the count of in~ 
+structions added (s—mstructzons). The expected overs 
+head is computed as: 
+(s—msz‘mchons — interlacksﬂcycles—per—sccond 
+original-erecutwn- lune-seconds 
+4Loads in the libraries, such as the standard C library, were 
+]n[ sandboxed. 
+The model provides an effective way to separate known 
+sources of overhead from second order effects. Col- 
+umn 5 of Table 1 are the predicted overheads. 
+As can be seen from Table 1, the model is, on aver 
+age, eﬁective at predicting sandboxing overhead. The 
+differences between measured ]^[ expected overheads 
+are normally distributed with mean 0.7% ]^[ standard 
+deviation of 2.6%. The difference between the means 
+Ofthe measured ]^[ expected overheads is ]n[ statisti- 
+cally signiﬁcant. This experiment demonstrates that, 
+by combining instruction count overhead ]^[ ﬂoating 
+point interlock measurements, we can accurately pres 
+dict average execution time overhead. If we assume 
+that the model is also accurate at predicting the over— 
+head of individual benchmarks, we can conclude that 
+there is a second order effect creating the observed 
+anomalies in measured overhead, 
+We can discount eﬁective instruction cache size ]^[ 
+virtual memory paging as sources ]f[ the observed ex~ 
+ecution time variance. Because sandboxing adds in- 
+structions, the effective size of the instruction cache is 
+reduced. While this might account ]f[ measured over- 
+heads higher than predicted, it does ]n[ account ]f[ 
+the opposite effect. Because all of our benchmarks are 
+compute bound, it is unlikely that the variations are 
+due to virtual memory paging. 
+The DEC<MIPS has a physically indexed, physically 
+tagged, direct mapped data cache. In our experiments 
+sandboxing did ]n[ affect the size, contents, ]v[ starting 
+Virtual address of the data segment. For both original 
+]^[ sandboxed versions of the benchmark programs, 
+successive runs showed insigniﬁcant variation. Though 
+difﬁcult to quantify, we do ]n[ believe that data cache 
+alignment was an important source of variation in our 
+experiments. 
+\Ve conjecture that the observed variations are 
+caused by instruction cache mappzng conﬂicts. Soft— 
+ware encapsulation changes the mapping of instruc~ 
+tions to cache lines, hence changing the number of in— 
+struction cache conﬂicts. A number of researchers have 
+investigated minimizing instruction cache conﬂicts to 
+reduce execution time [McF89, PHQO, Sam88]. One 
+researcher reported a 20% performance gain by sim— 
+ply ehanging the order in which the object ﬁles were. 
+linked [PHQO]. Samples ]^[ Hilﬁnger report signif— 
+icantly improved instruction cache miss rates by re— 
+arranging only 3% to 8% of an application’s basic 
+blocks [SarnSS]. 
+Beyond this effect, there were statistically signiﬁcant 
+differences among programs. On average, programs 
+which contained a signiﬁcant percentage of ﬂoating 
+point operations incurred less overhead. On the DEC— 
+MIPS the mean overhead ]f[ ﬂoating point intensive 
+benchmarks is 2.5%, compared to a mean of 5.6% ]f[ 
+the remaining benchmarks. All of our benchmarks are 
+210 
+DEC-MIPS DEC-ALPHA 
+Fault Protection Reserved Instruction Fault Fault Protection 
+Benchmark Isolation Overhead Register Count Isolation Isolation Overhead 
+Overhead Overhead Overhead Overhead Overhead 
+(predicted) 
+052. alvinn FP 1.4% 33.4% —0.3% 19.4% 0.2% 8.1% 35.5% 
+bps FP 5.6% 15.5% -0.1% 8.9% 5.7% 4.7% 20.3% 
+cholesky FP 0.0% 22.7% 0.5% 6.5% 4.5% 0.0% 9.3% 
+026 . compress INT 3.3% 13.3% 0.0% 10.9% 4.4% 4.3% 0.0% 
+056.ear FP —1.2% 19.1% 0.2% 12.4% 2.2% 3.7% 18.3% 
+023 . eqntott INT 2.9% 34.4% 1.0% 2.7% 2.2% 2.3% 17.4% 
+008 . espresso INT 12.4% 27.0% —1.6% 11.8% 10.5% 13.3% 33.6% 
+001 .gcc1.35 INT 3.1% 18.7% -9.4% 17.0% 8.9% NA NA 
+022.11 INT 5.1% 23.4% 0.3% 14.9% 11.4% 5.4% 16.2% 
+locus INT 8.7% 30.4% 4.3% 10.3% 8.6% 4.3% 8.7% 
+mp3d FP 10.7% 10.7% 0.0% 13.3% 8.7% 0.0% 6.7% 
+psgrind INT 10.4% 19.5% 1.3% 12.1% 9.9% 8.0% 36.0% 
+ch PF 05% 27.0% 2.0% 8.8% 1.2% -0.8% 12.1% 
+072 . sc INT 5.6% 11.2% 7.0% 8.0% 3.8% NA NA 
+tracker INT -0.8% 10.5% 0.4% 3.9% 2.1% 10.9% 19.9% 
+water FP 0.7% 7.4% 0.3% 6.7% 1.5% 4.3% 12.3% 
+| Average I 4.3% | 21.8% | 0.4% | 10.5% | 5.0% I 4.3% | 17.6% ‘I 
+Table 1: Sandboxing overheads ]f[ DEC—MIPS ]^[ DEC—ALPHA platforms. The benchmarks 001.gcc1.35 ]^[ 
+072.sc are dependent on a pointer size of 32 bits ]^[ do ]n[ compile on the DEC-ALPHA. The predicted fault 
+isolation overhead ]f[ cholesky is negative due to conservative interlocking on the MIPS ﬂoatingvpoint unit. 
+compute intensive. Programs that perform signiﬁcant 
+amounts of I/O will incur less overhead. 
+5.2 Fault Domain Crossing 
+We now turn to the cost of cross—fault—domain RPC. 
+Our RPC mechanism spends most of its time saving 
+]^[ restoring registers. As detailed in Section 4, only 
+registers that are designated by the architecture to be 
+preserved across procedure calls need to be saved. In 
+addition, if no instructions in the callee fault domain 
+modify a preserved register then it does ]n[ need to be 
+saved. Table 2 reports the times ]f[ three versions of 
+a NULL cross—fault—domain RPC. Column 1 lists the 
+crossing times when all data registers are caller saved. 
+Column 2 lists the crossing times when the preserved 
+integer registers are saved. Finally, the times listed in 
+Column 3 include saving all preserved ﬂoating point 
+registers. In many cases crossing times could be further 
+reduced by statically partitioning the registers between 
+domains. 
+For comparison, we measured two other calling 
+mechanisms. First, we measured the time to perform a 
+C procedure call that takes no arguments ]^[ returns 
+no value. Second, we sent a single byte between two 
+address spaces using the pipe abstraction provided by 
+211 
+the native operating system ]^[ measured the round- 
+trip time. These times are reported in the last two 
+columns of Table 2. On these platforms, the cost 
+of cross—address—space calls is roughly three orders of 
+magnitude more expensive than local procedure calls. 
+Operating systems with highly optimized RPC im— 
+plementations have reduced the cost of cross-address- 
+space RPC to within roughly two orders of magni— 
+tude of local procedure calls. On Mach 3.0, cross— 
+address-space RPC on a 25Mhz DECstation 5000/200 
+is 314 times more expensive than a local procedure 
+call [BerQBl. The Spring operating system, running on 
+a 40Mhz SPARCstationQ, delivers cross—address—space 
+RPC that is 73 times more expensive than a local leaf 
+procedure call [HK93]. Software enforced fault isola« 
+tion is able to reduce the relative cost of cross-fault- 
+domain RPC by an order of magnitude over these sys- 
+tems. 
+5.3 Using Fault Domains in POSTGRES 
+To capture the effect of our system on application 
+performance, we added software enforced fault do 
+mains to the POSTGRES database management system, 
+]^[ measured POSTGRES running the Sequoia 2000 
+benchmark [SFGMQ3]. The Sequoia '2000 benchmark 
+Cross FaultADomain RFC 
+Platform Caller Save Save C Pipes 
+Save Integer Integer+Float Procedure 
+Registers Registers Registers Call 
+DEC~MIPS 1.11ps 1.81ps 2.83m 0.10/4s 204.72ns 
+DEC—ALPHA 0175/15 1.35/5 lSOns 0.06ps 227.88ps 
+Table ‘2: Cross-faultrdomain crossing times. 
+Sequoia 2000 Untrusted Software—Enforced Number DEC—MIPS—PIPE 
+Query Function Manager Fault Isolation Cross—Domain Overhead 
+Overhead Overhead Calls (predicted) 
+Query 6 1.4% 1.7% 60989 18.6% 
+Query 7 5.0% 1.8% 121986 386% 
+Query 8 9.0% 2.7% 121978 312% 
+Query 10 9.6% 5.7% 1427024 31.9% 
+Table 3: Fault isolation overhead ]f[ POSTGRES running Sequoia 2000 benchmark. 
+contains queries typical of those used by earth scien— 
+tists in studying the climate. To support these kinds 
+of non~traditional queries, POSTGRES provides a. user 
+extensible type system. Currently, userrdeﬁned types 
+are written in conventional programming languages, 
+such as C, ]^[ dynamically loaded into the database 
+manager. This has long been recognized to be a serious 
+safety problem[St088]. 
+Four of the eleven queries in the Sequoia 2000 bench- 
+mark make use of user—deﬁned polygon data types. We 
+measured these four queries using both unprotected 
+dynamic linking ]^[ software—enforced fault isolation. 
+Since the POSTGRES code is trusted, we only sand— 
+boxed the dynamically loaded user code. For this 
+experiment, our cross-fault—domain RFC mechanism 
+saved the preserved integer registers (the variant cor- 
+responding to Column 2 in Table 2). In addition, we 
+instrumented the code to count the number of cross- 
+fault-domain RFCs ]s[ that we could estimate the per 
+formance of fault isolation based on separate address 
+spaces. 
+Table 3 presents the results, Untrusted user—deﬁned 
+functions in POSTGRES use a separate calling mecha- 
+nism from built—in functions. Column 1 lists the over— 
+head of the untrustcd function manager Without soft- 
+ware enforced fault domains. All reported overheads in 
+Table 3 are relative to original POSTGRES using the un— 
+trusted function manager. Column 2 reports the mea~ 
+sured overhead of software enforced fault domains. Us— 
+ing the number of cross—domain calls listed in Column 3 
+]^[ tho DEC*MIPS—I‘IPE time reported in Table 2, Col— 
+umn 4 lists the estimated overhead using conventional 
+hardware address spaces. 
+212 
+5.4 Analysis 
+For the POSTGRES experiment software encapsulation 
+provided substantial savings over using native operat- 
+ing system services ]^[ hardware address spaces. In 
+general, the savings provided by our techniques over 
+hardware—based mechanisms is a function of the per— 
+centage of time spent in distrusted code (Q), the per- 
+centage of time spent crossing among fault domains 
+(2‘6), the overhead of encapsulation (h), ]^[ the ratio, 
+r, of our fault domain crossing time to the crossing 
+time of the competing hardware-based RPC mecha— 
+nism. 
+savings = (1 — 7°)t‘C -— htd 
+Figure 5 graphically depicts these trade—offs. The X 
+axis gives the percentage of time an application spends 
+crossing among fault domains. The Y axis reports the 
+relative cost of software enforced fault-domain cross— 
+ing over hardware address spaces. Assuming that the 
+execution time overhead of encapsulated code is 4.3%, 
+the shaded region illustrates when software enforced 
+fault isolation is the better performance alternative. 
+Softwarevenforccd fault isolation becomes increas— 
+ingly attractive as applications achieve higher degrees 
+of fault isolation (see Figure 5). For example, if an ap- 
+plication spends 30% of its time crossing fault domains, 
+our RPC mechanism need only perform 10% better 
+than its competitor, Applications that currently spend 
+as little as 10% of their time crossing require only a 
+39% improvement in fault domain crossing time As 
+reported in Section 52, our crossing time ]f[ the DEC- 
+MIPS is Hons ]^[ ]f[ the DEC—ALPHA UTE/is. Hence, 
+Crossing Time Relative to 
+Existing RFC 
+:9 HP :9 e9 
+ementage of Execution Time Spent Crossing 
+Figure 5: The shaded region represents when soft~ 
+ware enforced fault isolation provides the better per— 
+formance alternative. The X axis represents per 
+centage of time spent crossing among fault domains 
+(16). The Y axis represents the relative RPC crossing 
+speed (7‘). The curve represents the break even point: 
+(1—7')t,; = htd. In this graph, h = 0.043 (encapsulation 
+overhead on the DEC~MIPS ]^[ DEC-ALPHA). 
+]f[ this latter example, a hardware address space cross— 
+ing time of 1.80m on the DEC—MIPS ]^[ 1.23/15 on the 
+DEC~ALPHA would provide better performance than 
+software fault domains. As far as we know, no pro— 
+duction ]v[ experimental system currently provides this 
+level of performance. 
+Further, Figure 5 assumes that the entire applica- 
+tion was encapsulated. For many applications, such as 
+POSTGRES, this assumption is conservative. Figure 6 
+transforms the previous ﬁgure, assuming that 50% of 
+total execution is spent in distrusted extension code. 
+Figures 5 ]^[ 6 illustrate that software enforced 
+fault isolation is the best choice whenever crossing 
+overhead is a significant proportion of an applica- 
+tion’s execution time. Figure 7 demonstrates that 
+overhead due to software enforced fault isolation re— 
+mains small regardless of application behavior. Fig— 
+ure 7 plots overhead as a function of crossing behavior 
+]^[ crossing cost. Crossing times typical of vendor- 
+supplied ]^[ highly optimized hardware—based RPC 
+mechanisms are shown. The graph illustrates the rel— 
+ative performance stability of the software solution. 
+This stability" allows system developers to ignore the 
+performance effect of fault isolation in choosing which 
+modules to place in separate fault domains. 
+6 Related Work 
+Many systems have considered ways of optimizing 
+RPC performance [vaT88, TASS, Bla90. SB90, HK93, 
+BALL90, BALL91]. Traditional RFC systems based 
+100% 
+90% 
+80% 
+70% 
+60% 
+40% 
+Crossing Time Relative 10 
+Existing RPC 
+u. 
+§ 
+Percentage of Execution Time Spent Crossing 
+Figure 6: The shaded region represents when soft~ 
+ware enforced fault isolation provides the better per- 
+formance alternative. The X axis represents per- 
+centage of time spent crossing among fault domains 
+(136). The Y axis represents the relative RPC crossing 
+speed ('r'). The curve represents the break even point: 
+(l—r)tc = htd. In this graph, h = 0.043 (encapsulation 
+overhead on the DEC—MIPS ]^[ DEC—ALPHA). 
+100% . 
+a" Ultrix 4.2 Context Switch 
 8 
-1.5 
-6 
-1.0 
-4 
-0.5 
-2 
-0.0 
+d3 80% — _ 
+E 
+a. 
+U} 
 0 
-# of Models 
-EV Market Share % 
-Fig. 4. Number of EV models available ]f[ purchase, production facilities, ]^[ national market shares. 
-EV market share (% of annual car sales) 
-3.5 
-18 
-Norway 
-Estonia 
-Japan 
-Netherlands 
-France 
-United States 
-Austria 
-Sweden 
-Israel 
-Spain 
-Switzerland 
-Denmark 
-Portugal 
-Italy 
-Belgium 
-United Kingdom 
-Canada 
-Greece 
-Germany 
-Iceland 
-China 
-Finland 
-Czech republic 
-Slovenia 
-New Zealand 
-Ireland 
-Turkey 
-Australia 
-Croatia 
-Poland 
-Number of EV models available ]f[ purchase 
-Fig. 3. National charging infrastructure by country ]^[ corresponding EV market share ]f[ 2012. 
-Author's personal copy 
-190 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-how these factors interact, Fig. 4 looks at three such variables: the 
-number of models available ]f[ purchase; whether a country produced 
-EVs locally (bolded columns); ]^[ adoption rates. 
-In total, 45 different types of EVs were purchased in 2012 
-although a small number of models such as the Nissan Leaf, Chevy 
-Volt/Opel Ampera, ]^[ Toyota Plug-in Prius accounted ]f[ the 
-lion's share (62%) of those sales. The Mitsubishi MiEV was the 
-most widely available, being adopted in 26 of the countries in our 
-sample. There was a positive correlation between a country's EV 
-adoption rate ]^[ the number of models that were available ]f[ 
-purchase. In many instances, manufacturers sold a limited number 
-of several different EV models in their native country e.g., Ford in 
-the US ]^[ Mercedes in Germany. In those instances, manufacturers were likely experimenting with a limited production of 
-speciﬁc EV models before expanding their sales efforts. 
-Countries where native manufacturers heavily invested in EVs 
-e.g., Japan, France, ]^[ the US, had some of the highest EV market 
-shares. Other countries with EV production facilities ]b[ low 
-adoption rates including Germany ]^[ Italy did ]n[ have EVs 
-made by native manufacturers broadly available. This suggests a 
-strong relationship between consumer adoption of EVs ]^[ their 
-being manufactured by native ﬁrms. Several of the larger countries 
-were much more prone to adopt native models, speciﬁcally China 
-]^[ Japan where only EVs from native manufacturers were 
-purchased. Of those two countries, China stands out because very 
-few EVs made by Chinese auto makers were sold outside the 
-country. Many manufacturers e.g., Ford, Audi ]^[ Mia Electric, 
-were nation-speciﬁc with sales only ]v[ primarily occurring in the 
-country where their production facilities were located. The relationship between the variables in Fig. 4 suggests a complex 
-relationship between consumers, manufacturers, ]^[ national 
-attitude regarding EVs. 
-5.3. OLS model results ]^[ implications 
-Table 3 shows regression results from the 30 countries in our 
-study ]f[ 2012. We regressed the log of EV market share on 
-ﬁnancial incentives, urban density, education level, an environmentalism indicator, fuel price, EV price, the presence of production facilities, per capita vehicles, model availability, introduction 
-Table 3 
-Regression results ]f[ 2012 electric vehicle adoption. 
-Unstandardized 
-B (Std. err.) 
-Standardized 
-Beta 
-(Constant) 
-Incentive 
-Charging infrastructure 
-Environment 
-Fuel 
-HQ 
-Income 
-Per capita vehicles 
-Education 
-Electricity 
-Availability 
-EV introduction 
-EV price 
-Urban density 
- 5.703 (2.858) 
-0.006 (0.003)n 
-0.131 (0.039)nn 
-0.020 (0.037) 
- 0.141 (0.827) 
-0.926 (0.492) þ 
- 0.046 (0.036) 
-0.003 (0.002) 
-0.030 (0.003) 
- 0.221 (0.282) 
-0.049 (0.056) 
-0.122 (0.232) 
-0.008 (0.029) 
-0.018 (0.077) 
-0.357 
-0.599 
-0.106 
- 0.031 
-0.312 
- 0.336 
-0.319 
-0.190 
- 0.115 
-0.178 
-0.106 
-0.046 
-0.056 
-N 
-R2 
-Adjusted R2 
-30 
-0.792 
-0.623 
-n 
-Po 0.05. 
-Po 0.01. 
-þ 
-P o 0.1. 
-nn 
-date, charging infrastructure, ]^[ electricity price. We used graphical 
-]^[ numerical analyses to ensure that the data met expectations 
-of linearity, normality, ]^[ homoskedasticity. We used ANOVA 
-tests ]^[ histograms to test ]f[ linearity, Shapiro–Wilk tests ]f[ 
-normality, ]^[ visual analysis of scatter plots ]f[ heteroskedasticity. 
-The model's adjusted R2 was 0.628 which means that almost 2/ 
-3 of the variation in national EV market shares was explained by 
-the tested variables. The coefﬁcients ]f[ ﬁnancial incentives ]^[ 
-charging infrastructure were positive ]^[ statistically signiﬁcant 
-with P-values of 0.039 ]^[ 0.004 respectively. Of those two 
-variables, charging infrastructure had higher Beta values (both 
-standardized ]^[ unstandardized), indicating that it was stronger 
-at estimating adoption levels. Thus, adding a charging station (per 
-100,000 residents) had a greater impact on predicting EV market 
-share than did increasing ﬁnancial incentives by $1000. The 
-presence of a local EV manufacturing facility was also a signiﬁcant 
-variable, although to a lesser extent with a P-value of 0.079. 
-From the information in Table 3, it is possible to extrapolate the 
-relationship of both ﬁnancial incentives ]^[ charging infrastructure to EV market share. Holding all other factors constant, each 
-$1000 increase in ﬁnancial incentives would cause a country's EV 
-market share to increase by 0.06%. For example, a country with an 
-EV market share of 0.22% that increased its ﬁnancial incentives to 
-consumers by $2000 would see its adoption rate go up to 0.34% 
-(0.22% þ0.06% þ0.06%). For charging infrastructure, holding all 
-other factors constant, each additional station per 100,000 residents that a country added would increase its EV market share by 
-0.12%. This suggests that each charging station (per 100,000 
-residents) could have twice the impact on a country's EV market 
-share than $1000 in consumer ﬁnancial incentives, albeit with 
-different bearings on a nation's budget. 
-However, as a note of caution, while our model did identify that 
-ﬁnancial incentives ]^[ charging infrastructure were positively 
-correlated to national EV adoption levels, there is no guarantee 
-that these relationships hold ]f[ all countries, as evidenced in 
-Figs. 1 ]^[ 3. For example, in Fig. 1 Belgium ]^[ Denmark had very 
-high ﬁnancial incentives, ]b[ relatively low rates of adoption. 
-Conversely, Switzerland ]^[ Sweden exhibited the opposite 
-dynamic with low consumer subsidies ]b[ high EV uptake levels. 
-Fig. 3 displayed the same sort of mixed relationship between 
-charging infrastructure ]^[ EV market share. Thus, ﬁnancial 
-incentives ]^[ charging infrastructure should be seen as being 
-likely ]b[ ]n[ certain to predict a country's EV adoption rate. 
-The empirical results provide a useful comparison with stated 
-preference surveys. While charging infrastructure ]^[ ﬁnancial 
-incentives were (as expected) signiﬁcant in predicting EV adoption, this was ]n[ the case with broader socio-demographic 
-variables e.g., income, education, environmentalism, ]^[ urban 
-density that the literature had anticipated to be inﬂuential (Lane 
-]^[ Potter, 2007; Gallagher ]^[ Muehlegger, 2011; Egbue ]^[ 
-Long, 2012). In addition, despite its strong ]^[ positive correlation 
-to HEV adoption in earlier studies (Diamond, 2009; Beresteanu 
-]^[ Li, 2011; Gallagher ]^[ Muehlegger, 2011), fuel price was ]n[ 
-signiﬁcant in predicting a country's EV market share. However, 
-there are fundamental differences in those papers ]^[ our study 
-that could help explain these conﬂicting results. Firstly, the HEV 
-studies examined a single nation over several years whereas our 
-study looked at several countries ]f[ a single year. Secondly, fuel 
-prices in those earlier studies exhibited much greater variation 
-than was found in our data. Conversely, it could be that differences 
-such as the complexity of total ownership cost calculation ]^[ the 
-role of charging infrastructure result in fuel prices ]n[ having the 
-same impact on EV purchases that they do with HEVs. More 
-research is necessary to identify the relationship between fuel 
-price ]^[ EV adoption, speciﬁcally studies that span multiple years 
-]^[ look at a single country. 
-Author's personal copy 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-5.3.1. Sensitivity tests 
-In addition to econometric results found in Table 3, we also 
-performed several estimations to test the sensitivity of different 
-variables (speciﬁcally ﬁnancial incentives ]^[ charging infrastructure) ]^[ the base model's overall robustness. These are described 
-below in Tables 4 ]^[ 5 ]^[ are referred to as Models 1–5 
-respectively. The individual variable(s) explored through sensitivity 
-analysis is identiﬁed below the Model's number e.g., charging 
-infrastructure in Model 1. 
-In Model 1, normalizing charging infrastructure ]f[ urban 
-density did ]n[ drastically affect results with the variables ﬁnancial incentives, production facilities, ]^[ charging infrastructure 
-remaining signiﬁcant while the adjusted R2 (0.613) was also 
-similar to that of the base estimation. As such, the base model 
-Table 4 
-Model sensitivity analyses 1 ]^[ 2. 
-(1) 
-ChgInf 
-(2) 
-Incentive 
-(Constant) 
-Financial incentive 
-Charging infrastructure 
-Environment 
-Fuel 
-HQ 
-Income 
-Per capita vehicles 
-Education 
-Electricity 
-Availability 
-EV Introduction 
-EV price 
-Urban density 
- 5.368 (2.893) 
-0.006 (0.003)n 
-0.164 (0.05)nn 
-0.019 (0.038) þ 
- 0.182 (0.841) 
-0.847 (0.492) 
- 0.047 (0.037) 
-0.003 (0.002) 
-0.025 (0.03) 
- 0.236 (0.285) 
-0.053 (0.057) 
-0.145 (0.233) 
-0.009 (0.029) 
-0.012 (0.078) 
- 5.380 (2.791) 
-0.066 (0.029)n 
-0.122 (0.040)nn 
-0.021 (0.037) 
- 0.137 (0.819) 
-1.007 (0.490) þ 
- 0.039 (0.036) 
-0.002 (0.002) 
-0.027 (0.030) 
- 0.216 (0.279) 
-0.045 (0.055) 
-0.077 (0.234) 
-0.006 (0.028) 
-0.009 (0.075) 
-N 
-R2 
-Adjusted R2 
-30 
-0.787 
-0.613 
-30 
-0.795 
-0.628 
-nn 
-n 
-þ 
-Po 0.01. 
-Po 0.05. 
-Po 0.1. 
-Table 5 
-Model sensitivity analyses 3–5. 
-(Constant) 
-(3) 
-Incentive 
-(4) 
-ChgInf 
- 3.692 
-(3.021) 
- 5.519 (3.629)  2.756 (3.842) 
-0.008 (0.004)nn 
-Financial incentive 
-Charging 
-infrastructure 
-Environment 
-Fuel 
-HQ 
-Income 
-Per capita vehicles 
-Education 
-Electricity 
-Availability 
-EV introduction 
-EV price 
-0.000 (0.040) 
-0.337 (0.889) 
-0.908 (0.547) 
- 056 (0.040) 
-0.002 (0.002) 
-0.047 (0.032) 
- 044 (0.302) 
-0.024 (0.061) 
-0.222 (0.253) 
- 007 (0.031) 
-Urban density 
-N 
-R2 
-Adjusted R2 
-nn 
-Po 0.01. 
-(5) 
-Incentive ]^[ ChgInf 
-0.149 (0.042)nn 
- 007 (0.052) 
-1.321 (1.078) 
-0.301 (0.663) 
- 021 (0.049) 
- 002 (0.002) 
-0.062 (0.041) 
- 261 (0.377) 
-0.065 (0.077) 
-0.527 (0.304) 
- 028 (0.039) 
- 043 (0.080) 
-0.020 (0.048) 
-0.548 (1.018) 
-0.418 (0.595) 
- 0.013 (0.044) 
-0.069 (0.002) 
-0.037 (0.038) 
- 0.458 (0.347) 
-0.092 (0.069) 
-0.349 (0.282) 
- 0.005 
-(0.036) 
- 0.017 (0.097) 
-30 
-0.726 
-0.533 
-30 
-0.643 
-0.391 
-30 
-0.527 
-0.238 
- 105 (0.100) 
-191 
-remains robust to this sensitivity test. Model 2 explored the 
-sensitivity of EV adoption to ﬁnancial incentives with different 
-discount rates ]^[ payback periods. While the US Energy Information National Energy Modeling System uses a 3 year payback 
-period ]^[ discount rate of 30%, other studies have found that 
-consumers, speciﬁcally businesses ]^[ government agencies, may 
-more accurately calculate the total lifetime costs of an innovation 
-(Nesbitt ]^[ Sperling, 1998; Menanteau ]^[ Lefebvre, 2000). As 
-such, we ran a sensitivity test ]f[ a lower discount rate (1.25%) ]^[ 
-longer payback period (8 years, which is the warranty period ]f[ a 
-Nissan Leaf ]v[ Chevy Volt). This approach resulted in $25,000 
-more in available ﬁnancial incentives from $180,000 in the base 
-model. This sensitivity test did ]n[ substantially change the 
-signiﬁcant variables (ﬁnancial incentives, charging infrastructure, 
-]^[ EV manufacturer location) ]v[ the models adjusted R2, (0.628) 
-suggesting that differences in discount value ]^[ payback period 
-have a relatively weak inﬂuence on national EV adoption rates, 
-although that could be due to the small number of multi-year 
-consumer subsidies i.e., those that address circulation taxes. 
-Sensitivity analyses 3–5 show how the model's explanatory 
-power changed with the removal of ﬁnancial incentives ]^[ 
-charging infrastructure variables. Removing the ﬁnancial incentives variable in Model 3 resulted in the adjusted R2 decreasing 
-from 0.623 in the base analysis to 0.533. Taking out charging 
-infrastructure in Model 4 caused a more drastic reduction in 
-adjusted R2 to 0.391. Removal of both factors in Model 5 caused 
-the model to lose most of its explanatory power; it had no 
-signiﬁcant variables ]^[ an adjusted R2 of 0.238. From these 
-sensitivity tests this it is possible to conclude that in our model, 
-charging infrastructure was considerably stronger than ﬁnancial 
-incentives in explaining EV adoption rates. 
-There were several limitations in our models which had the 
-potential to produce misleading results. During the introduction of 
-new technologies, there are often discrepancies in supply among 
-locales. Differences in EV availability by locality may have contributed 
-to variation in national adoption numbers. In addition, our study 
-analyzed ﬁnancial incentives from national governments. There are 
-undoubtedly monetary beneﬁts, such as free parking ]v[ toll exemptions provided by regions ]^[ cities that were ]n[ included in this 
-study ]^[ were likely to have been inﬂuential. The small number of 
-observations per year is also cause ]f[ caution when interpreting the 
-results. Furthermore, by only studying 1 year, the data does ]n[ allow 
-]f[ analysis of the relationship between important variables e.g., 
-ﬁnancial incentives ]^[ charging infrastructure. 
-6. Conclusions 
-The purpose of this research was to explore the relationship 
-between ﬁnancial incentives ]^[ other socio-economic factors to 
-electric vehicle adoption across several countries. We found that 
-ﬁnancial incentives, the number of charging stations (corrected ]f[ 
-population), ]^[ the presence of a local EV manufacturing facility 
-were positive ]^[ signiﬁcant in predicting EV adoption rates ]f[ the 
-countries in our study. Of those variables, charging infrastructure was 
-the best predictor of a country's EV market share. However, descriptive analyses indicated how country-speciﬁc factors such as government procurement plans ]v[ the target recipient of subsidies could 
-dramatically affect a nation's adoption rate. On the whole this analysis 
-provides tentative endorsement of ﬁnancial incentives ]^[ charging 
-infrastructure as a way to encourage EV adoption. 
-A second conclusion is that EV-speciﬁc factors were discovered 
-to be signiﬁcant while broader socio-demographic variables such 
-as income, education level, ]^[ environmentalism were ]n[ good 
-predictors of adoption levels. This could be because national EV 
-markets were ]s[ small relative to overall automobile sales. Thus, 
-Author's personal copy 
-192 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-while many EV consumers may have high levels of education ]^[ 
-be passionate about the environment, within the perspective of a 
-country such individuals still represent a tiny portion of the overall 
-population. Therefore, socio-demographic variables may ]n[ provide a good indicator of adoption levels when comparing countries. If EVs emerge from a niche market, then socio-demographic 
-data might be more accurately used to predict adoption levels at 
-the national scale. Until then, EV-speciﬁc factors such as amount of 
-charging infrastructure, level of consumer ﬁnancial incentives, ]^[ 
-number of locations that sell the automobiles are likely to be more 
-correct ]f[ estimating a country's market share. 
-6.1. Policy implications 
-Based on our results, a sensible policy approach ]f[ addressing 
-EV market failures arising from pollution abatement ]^[ knowledge spillover would be ]f[ governments to provide consumer 
-subsidies and/or increase their number of charging stations. Due 
-to the importance of consumer adoption during the commercial 
-introduction of a radical innovation (Nemet ]^[ Baker, 2009), such 
-supportive measures could make a wide difference in the level of 
-EV diffusion in the coming decades. As the charging station 
-variable was the strongest predictor of EV adoption based on Beta 
-values stress tests, their installation may be more effective than 
-ﬁnancial incentives. However, since these two factors are likely to 
-be complimentary, supporting both measures could be expected to 
-lead to higher market shares than focusing on either ﬁnancial 
-incentives ]v[ charging infrastructure alone. 
-However, this study also provides three notes of caution to 
-countries that expect that they can achieve high EV adoption rates 
-by increasing their levels of ﬁnancial incentives ]v[ charging 
-infrastructure. Firstly, the descriptive analysis identiﬁed several 
-countries that displayed a relatively weak relationship between 
-the two factors ]^[ EV market share. Secondly, it is possible that 
-ﬁnancial incentives ]v[ charging infrastructure mask other 
-dynamics which are signiﬁcant in driving EV adoption. Consequently, building policy only around those two factors may ]n[ 
-support important underlying elements. Thirdly, due to the constantly evolving environment during the emergence of a radical 
-innovation, industrial dynamics may change from year to year. 
-Therefore, while this study does show that ﬁnancial incentives ]^[ 
-charging infrastructure are positively correlated to national EV 
-market shares, it is deﬁnitely ]n[ evidence of a causal relationship 
-]^[ should be treated with prudence. 
-While national governments have been primarily responsible 
-]f[ consumer ﬁnancial incentives, installing charging points has 
-largely been left to local public bodies such as cities (IEA, 2013). 
-However, the IEA (2013) found that “infrastructure spending has 
-been relatively sparse” (pp. 16), which suggests that local ]^[ 
-national levels of government should strengthen coordination in 
-order to better encourage EV adoption, supporting earlier research 
-by Bakker ]^[ Trip (2013). 
-Now that we have identiﬁed policies that could be effective in 
-encouraging EV adoption, a next question is whether they are 
-actually efﬁcient in a societal ]^[ economical sense. To answer this 
-question, an elaborate ex-ante Cost Effectiveness Analysis (CEA) ]v[ 
-Cost Beneﬁt Analysis (CBA) would be needed. However, given the 
-dynamic nature of radical innovations, one should be careful when 
-applying these methods to the EV case. That is to say, EVs may ]n[ 
-signiﬁcantly reduce GHG emissions in the short term, ]b[ they 
-have the potential to cause dramatic decarbonization post 2020 
-(IEA, 2012c), assuming a dramatic increase of the share of renewables in the electricity mix. In that respect, ﬁnancial incentives 
-today may be important ]f[ stimulating broader EV adoption in 
-the future, ]^[ consequently may provide beneﬁts outside those 
-typically included in a status quo based CBA. Such additional 
-beneﬁts may be reason to implement these policies even if the 
-results from a traditional CBA were ]n[ very favorable. 
-Furthermore, it is difﬁcult to compare the costs of ﬁnancial 
-incentives ]f[ EVs with at least some competing policy options to 
-reduce CO2 emissions. Financial incentives to increase the sales of 
-EVs on a temporary basis may be needed in the early stages of EVs 
-because they cannot compete ]y[ with internal combustion engine 
-vehicles. If, in a few decades, EVs would become a success, 
-ﬁnancial incentive policies could prove to have contributed to this 
-success. In other words, there may be a snowball effect of current 
-ﬁnancial incentives which are fundamentally difﬁcult to grasp in a 
-conventional CEA ]v[ CBA. We therefore suggest that these analyses 
-can be used to support decision making, ]b[ that their outcomes 
-should be treated with caution ]^[ that decision makers should 
-always take a long term perspective when interpreting these. 
-6.2. Suggestions ]f[ future research 
-This study looked at a country's total charging infrastructure, 
-]n[ taking into account how a heterogeneous distribution of 
-charging stations (many in one city, few elsewhere) might inﬂuence EV adoption. Speciﬁcally because of the important role 
-played by local municipalities in installing charging infrastructure, 
-Table A1 
-Correlations between model variables. 
-Mar share 
-Incentive 
-Env 
-Fuel 
-Chg infra 
-HQ 
-Income 
-Per cap 
-veh 
-Ed 
-Elec 
-Avail 
-EV intro 
-EV Price 
-Urb Den 
-n 
-Market 
-share 
-Incentive Env 
-Fuel 
-Chg 
-infra 
-HQ 
-Income 
-Per cap 
-vehicles 
-Ed 
-Elec 
-Avail 
-EV intro EV price Urban 
-density 
-1 
-0.498nn 
-0.258 
- 0.091 
-0.697nn 
-0.400n 
-0.443n 
-0.142 
-0.498nn 
-1 
- 0.115 
- 0.015 
-0.380n 
- 0.058 
-0.135 
- 0.111 
-0.258 
- 0.115 
-1 
-0.182 
-0.260 
-0.048 
-0.586nn 
-0.565nn 
- 0.091 
- 0.015 
-0.182 
-1 
-0.107 
- 0.183 
- 0.081 
- 0.141 
-0.697nn 
-0.380n 
-0.260 
-0.107 
-1 
-0.011 
-0.455n 
- 049 
-0.400n 
- 058 
-0.048 
- 0.183 
-0.011 
-1 
-0.163 
-0.036 
-0.443n 
-0.135 
-0.586nn 
- 0.081 
-0.455n 
-0.163 
-1 
-0.647nn 
-0.142 
- 0.111 
-0.565nn 
- 0.141 
- 0.049 
-0.036 
-0.647nn 
-1 
-0.347 
-0.366n 
-0.048 
- 0.263 
-0.213 
-0.042 
-0.514nn 
-0.320 
-0.089 
-0.112 
-0.304 
-0.082 
-0.065 
-0.085 
-0.313 
-0.241 
-0.375n 
- 0.141 
-0.423n 
- 0.136 
-0.259 
-0.524nn 
-0.403n 
-0.174 
-0.553nn 
-0.130 
-0.375n 
- 0.159 
-0.447n 
-0.492nn 
-0.559nn 
-0.250 
- 0.448n 
- 0.311 
- 0.380n 
-0.282 
- 0.361 
- 0.133 
- 0.461n 
- 0.336 
- 0.277 
- 0.139 
- 0.477nn 
-0.433n 
- 0.135 
- 0.043 
- 0.622nn 
- 0.739nn 
-0.347 
-0.089 
-0.375n 
-0.553nn 
- 0.448n 
- 0.277 
-0.366n 
-0.112 
- 0.141 
-0.130 
- 0.311 
- 0.139 
-0.048 
-0.304 
-0.423n 
-0.375n 
- 0.380n 
- 0.477nn 
- 0.263 
-0.082 
- 0.136 
- 0.159 
-0.282 
-0.433n 
-0.213 
-0.065 
-0.259 
-0.447n 
- 0.361 
- 0.135 
-0.042 
-0.085 
-0.524nn 
-0.492nn 
- 0.133 
- 0.043 
-0.514nn 
-0.313 
-0.403n 
-0.559nn 
- 0.461n 
- 0.622nn 
-0.320 
-0.241 
-0.174 
-0.250 
- 0.336 
- 0.739nn 
-1 
-0.002 
- 0.117 
-0.053 
- 0.419n 
- 0.392n 
-0.002 
-1 
-0.463nn 
-0.274 
- 0.065 
- 0.200 
- 0.117 
-0.463nn 
-1 
-0.542nn 
- 0.201 
- 0.235 
-0.053 
-0.274 
-0.542nn 
-1 
- 0.391n 
- 0.247 
- 0.419n 
- 0.065 
- 0.201 
- 0.391n 
-1 
-0.448n 
- 0.392n 
- 0.200 
- 0.235 
- 0.247 
-0.448n 
-1 
-Signiﬁcant at the 0.05 level (2-tailed). 
-Signiﬁcant at the 0.01 level (2-tailed). 
-nn 
-Author's personal copy 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-their allocation could have an important affect on a country's 
-EV adoption rate (Bakker ]^[ Trip, 2013). Therefore, we suggest 
-that future research focus on the relationship between the 
-distribution of charging infrastructure within a country ]^[ its 
-EV adoption rate. 
-In addition, our model found charging infrastructure ]^[ 
-ﬁnancial incentives to be powerful predictors of EV adoption rates 
-]f[ the countries in our sample. However, it is possible that the 
-variables concealed other important factors. Therefore, further 
-analysis is necessary to unpack the importance of charging 
-infrastructure ]^[ ﬁnancial incentives to determine whether they 
-are on their own good predictors of EV adoption, ]v[ if there are 
-other elements that also need to be present ]b[ were ]n[ included 
-in our model. For instance, fuel price volatility may provide insight 
-into EV adoption that is ]n[ captured through absolute fuel prices. 
-Acknowledgments 
-This paper is appreciative of the contributions from Eric Molin 
-]^[ James Dunn. Support was provided by the Netherlands 
-Organization ]f[ Scientiﬁc Research ]^[ the University of 
-Wisconsin-Madison Center ]f[ Sustainability ]^[ the Global 
-Environment. 
-Appendix A 
-See Table A1. 
+g 60% e _ 
+'E—< 
+E 
+g 40% e — 
+é DECstation 5000 
+3 Hardware Minimum 
+00 
+20% — _ 
+t 
+*- Software 
+a? 
+0% l 
+0 1O 20 
+# Crossings/Millcsecond 
+Figure 7: Percentage of time spent in crossing code 
+versus number of fault domain crossings per millisec- 
+ond on the DECeMIPS. The hardware minimum cross— 
+ing number is taken from a crossvarchitectural study 
+of context switch times [ALBL91]. The Ultrix 4.2 con- 
+text switch time is as reported in the last column of 
+Table 2. 
+213 
+on hardware fault isolation are ultimately limited by 
+the minimal hardware cost of taking two kernel traps 
+]^[ two hardware context switches. LRPC was one 
+of the ﬁrst RPC systems to approach this limit, ]^[ 
+our prototype uses a number of the techniques found 
+in LRPC ]^[ later systems: the same thread runs in 
+both the caller ]^[ the callee domain, the stubs are 
+kept as simple as possible, ]^[ the crossing code jumps 
+directly to the called procedure, avoiding a dispatch 
+in the callee domain. Unlike these systems, software— 
+based fault isolation avoids hardware context switches, 
+substantially reducing crossing costs. 
+Address space identiﬁer tags can be used to reduce 
+hardware context switch times. Tags allow more than 
+one address space to share the TLB; otherwise the 
+TLB must be ﬂushed on each context switch. It was 
+estimated that 25% of the cost of an LRPC on the 
+Fireﬂy (which does ]n[ have tags) was due to TLB 
+misses[BALL90]. Address space tags do not, however, 
+reduce the cost of register management ]v[ system calls, 
+operations which are ]n[ scaling with integer perfor- 
+mance[ALBL91]. An important advantage of software— 
+based Jfault isolation is that it does ]n[ rely on specialv 
+ized architectural features such as address space tags. 
+Restrictive programming languages can also be used 
+to provide fault isolation. Pilot requires all kernel, 
+user, ]^[ library code to be written in Mesa, 3 strongly 
+typed language; all code then shares a single address 
+space [RDII+80]. The main disadvantage of relying on 
+strong typing is that it severely restricts the choice 
+of programming languages, ruling out conventional 
+languages like C, C++, ]^[ assembly. Even with 
+strongly—typed languages such as Ada ]^[ Modula—3, 
+programmers often find they need to use loopholes in 
+the type system, undercutting fault isolation. In con— 
+trast, our techniques are language independent. 
+Deutsch ]^[ Grant built a system that allowed 
+user—deﬁned measurement modules to be dynamically 
+loaded into the operating system ]^[ executed directly 
+on the processor [DG71]. The module format was a 
+stylized native object code designed to make it easier 
+to statically verify that the code did ]n[ violate pro— 
+tection boundaries. 
+An interpreter can also provide failure isolation. For 
+example. the BSD UNIX network packet ﬁlter utility 
+deﬁnes a language which is interpreted by the operat- 
+ing system network driver. The interpreter insulates 
+the operating system from possible faults in the cus— 
+tomization code. Our approach allows code written in 
+any programming language to be safely encapsulated 
+(or rejected if it is ]n[ safe), ]^[ then executed at near 
+full speed by the operating system. 
+Anonymous RFC exploits 64-bit address spaces to 
+provide low latency RFC ]^[ probabilistic fault iso— 
+lation [YBA93]. Logically independent domains are 
+214 
+placed at random locations in the same hardware ad» 
+dress spacer Calls between domains are anonymous, 
+that is, they do ]n[ reveal the location of the caller 
+]v[ the callee to either side. This provides probabilis— 
+tic protection , it is unlikely that any domain will 
+be able to discover the location of any other domain 
+by malicious ]v[ accidental memory probes. To pre» 
+serve anonymity, a cross domain call must trap to pro- 
+tected code in the kernel; however, no hardware con~ 
+text switch is needed. 
+7 Summary 
+We have described a software-based mechanism ]f[ 
+portable, programming language independent fault 
+isolation among cooperating software modules. By 
+providing fault isolation within a single address space, 
+this approach delivers crossefaultrdomain communica 
+tion that is more than an order of magnitude faster 
+than any RPC mechanism to date. 
+To prevent distrusted modules from escaping their 
+own fault domain, we use a software encapsulation 
+technique, called sandboxing, that incurs about 4% 
+Despite this overhead in 
+executing distrusted code, software—based fault isola- 
+tion Will often yield the best overall application per- 
+formance. Extensive kernel optimizations can reduce 
+the overhead of hardware-based RPC to within a fac- 
+tor of ten over our software—based alternative. Even 
+in this situation, software—based fault isolation will be 
+the better performance choice whenever the overhead 
+of using hardware—based RPC is greater than 5%. 
+execution time overhead. 
+8 Acknowledgements 
+We thank Brian Bershad, Mike Burrows, John Hen- 
+nessy, Peter Kessler, Butler Lampson, Ed Lazowska, 
+Dave Patterson, John Ousterhout, Oliver Sharp, 
+Richard Sites, Alan Smith ]^[ Mike Stonebraker ]f[ 
+their helpful comments on the paper. Jim Larus pro- 
+vided us with the proﬁling tool qpt. We also thank 
+Mike Olson ]^[ Paul Aoki ]f[ helping us with POST— 
+GRES. 
 References 
-ACEA, 2012a. Overview of CO2 Based Motor Vehicle Taxes in the EU. Brussels, 
-Belgium. 
-ACEA, 2012b. Overview of Tax Incentives ]f[ Electric Vehicles in the EU. Brussels, 
-Belgium. 
-Adner, R., 2002. When are technologies disruptive? A demand-based view of the 
-emergence of competition. Strateg. Manag. J. 23, 667–688. 
-Anderson, P., Tushman, M., 1990. Technological discontinuities ]^[ dominant 
-designs: a cyclical model of technological change. Adm. Sci. Q. 35, 604–633. 
-Arrow, K., 1962. The economic implications of learning by doing. Rev. Econ. Stud. 29 
-(3), 155–173. 
-Arrow, K., 1966. Exposition of the theory of choice under uncertainty. Synthese 16 
-(3–4), 253–269. 
-ASBE, 2013. Charging Locations. 〈http://www.asbe.be/en/locations〉 (accessed 
-03.04.13). 
-Bakker, S., Trip, J., 2013. Policy options to support the adoption of electric vehicles 
-in the urban environment. Transp. Res. Part D 25, 18–23. 
-Beresteanu, A., Li, S., 2011. Gasoline prices, government support, ]^[ the demand 
-]f[ hybrid vehicles in the United States. Int. Econ. Rev. 52 (1), 161–182. 
-Brown, M., 2001. Market failures ]^[ barriers as a basis ]f[ clean energy policies. 
-Energy Policy 29, 1197–1207. 
-Brownstone, D., Bunch, D.S., Train, K., 2000. Joint mixed logit models of stated ]^[ 
-revealed preferences ]f[ alternative-fuel vehicles. Transp. Res. Part B 34, 
-315–338. 
-Chargemap, 2013. 〈http://chargemap.com〉 (accessed 03.04.13). 
-Christensen, C., 1997. The Innovator's Dilemma. Harvard Business School Press, 
-Boston, MA. 
-Demographia, 2013. Demographia World Urban Areas 9th Annual Edition. 
-Diamond, D., 2009. The impact of government incentives ]f[ hybrid-electric 
-vehicles: evidence from US states. Energy Policy 37, 972–983. 
-Dijk, M., Orsato, R., Kemp, R., 2013. The emergence of an electric mobility trajectory. 
-Energy Policy 52, 135–145. 
-Egbue, O., Long, S., 2012. Barriers to widespread adoption of electric vehicles: an 
-analysis of consumer attitudes ]^[ perceptions. Energy Policy 48, 717–729. 
-Eppstein, M., Grover, D., Marshall, J., Rizzo, D., 2011. An agent-based model to study 
-market penetration of plug-in hybrid electric vehicles. Energy Policy 39, 
-3789–3802. 
-Estonia, 2011. Estonia Will Promote the Use of Electric Cars Under a Green 
-Investment Scheme. Government Communication Unit, 03 March 2011. 
-Eurostat, 2013. Electricity Households. 〈http://www.energy.eu/#domestic〉 
-(accessed 28.08.13). 
-Foster, R., 1986. Innovation: The Attacker's Advantage. Macmillan, London. 
-Gallagher, K., Muehlegger, E., 2011. Giving green to get green? Incentives ]^[ 
-consumer adoption of hybrid vehicle technology. J. Environ. Econ. Manag. 61 
-(1), 1–15. 
-193 
-Geels, F., 2002. Technological transitions as evolutionary reconﬁguration processes: 
-a multi-level perspective ]^[ a case-study. Res. Policy 31 (8–9), 1257–1274. 
-Greene, D., Patterson, P., Singh, M., Li, J., 2005. Feebates, rebates ]^[ gas-guzzler taxes: a 
-study of incentives ]f[ increased fuel economy. Energy Policy 33, 757–775. 
-Gronnbil, 2013. 〈http://www.gronnbil.no〉 (accessed 13.07.13). 
-Hidrue, M., Parsons, G., Kempton, W., Gardner, M., 2011. Willingness to pay ]f[ 
-electric vehicles ]^[ their attributes. Resour. Energy Econ. 33, 686–705. 
-Horbach, J., 2008. Determinants of environmental innovation—new evidence from 
-German panel data sources. Res. Policy 37, 163–173. 
-IEA, 2011. Technology Roadmap Electric ]^[ Plug-in Hybrid Electric Vehicles. OECD/ 
-IEA, Paris. 
-IEA, 2012a. Key World Energy Statistics 2012. OECD/IEA, Paris. 
-IEA, 2012b. World Energy Outlook 2012. OECD/IEA, Paris. 
-IEA, 2012c. Tracking Clean Energy Progress: Energy Technology Perspectives 2012 
-Excerpt as IEA Input to the Clean Energy Ministerial. 
-IEA, 2013. Global EV Outlook: Understanding the Electric Vehicle Landscape to 
-2020. OECD/IEA, Paris. 
-IPCC, 2012. Renewable Energy Sources ]^[ Climate Change Mitigation: Special 
-Report of the Intergovernmental Panel on Climate Change. Cambridge University Press, New York, NY. 
-Jaffe, A., Stavins, R., 1994. The energy-efﬁciency gap: what does it mean? Energy 
-Policy 22, 804–810. 
-Jaffe, A., Newell, R., Stavins, R., 2005. A tale of two market failures: technology ]^[ 
-environmental policy. Ecol. Econ. 54, 164–174. 
-Lane, B., Potter, S., 2007. The adoption of cleaner vehicles in the UK: exploring the 
-consumer attitude-action gap. J. Clean. Prod. 15, 1085–1092. 
-Lemnet.org, 2013. 〈http://lemnet.org〉 (accessed 03.04.13). 
-Lesaffre, E., Rizopoulos, D., Tsonaka, R., 2007. The logistic transform ]f[ bounded 
-outcome scores. Biostatistics 8 (1), 72–85. 
-Levine, M., Koomey, J., McMahon, J., Sanstad, A., Hirst, E., 1995. Energy efﬁciency 
-policy ]^[ market failures. Annu. Rev. Energy Environ. 20, 535–555. 
-Lieven, T., Muhlmeier, S., Henkel, S., Walker, J., 2011. Who will buy electric cars? An 
-empirical study in Germany. Transp. Res. Part D 16 (3), 236–243. 
-Marklines, 2013. Statistics—Sales Database Search. 〈http://www.marklines.com/en/ 
-vehicle_sales/search_model〉 (accessed 15.12.13). 
-Menanteau, P., Lefebvre, H., 2000. Competing technologies ]^[ the diffusion of 
-innovations: the emergence of energy-efﬁcient lamps in the residential sector. 
-Res. Policy 29, 375–389. 
-Mnt.ee, 2013. 2012 Estonian Vehicle Registrations by Motor Type. 〈www.mnt.ee〉 
-(accessed 15.12.13). 
-Nelson, R., Winter, S., 1977. In search of a useful theory of innovation. Res. Policy 6, 
-136–176. 
-Nelson, R., Winter, S., 1982. An Evolutionary Theory of Economic Change. Harvard 
-University Press, Cambridge, MA. 
-Nemet, G., Baker, E., 2009. Demand subsidies versus R&D: comparing the uncertain 
-impacts of policy on a pre-commercial low-carbon energy technology. Energy J. 
-30 (4), 49–80. 
-Nesbitt, K., Sperling, D., 1998. Myths regarding alternative fuel vehicle demand by 
-light-duty vehicle ﬂeets. Transp. Res. Part D 3 (4), 259–269. 
-Neubauer, J., Brooker, A., Wood, E., 2012. Sensitivity of battery electric vehicle 
-economics to drive patterns, vehicle range, ]^[ charge strategies. J. Power 
-Sources 209, 269–277. 
-Nobil, 2012. The Norwegian Charging Station Database ]f[ Electromobility. Oslo, 
-Norway. 
-Rennings, K., 2000. Redeﬁning innovation—eco-innovation research ]^[ the contribution from ecological economics. Ecol. Econ. 32, 319–332. 
-Reuters, 2012. TABLE—China Retail Gasoline, Diesel Prices Since 2003. 〈http://af.reuters. 
-com/article/energyOilNews/idAFL4E8D75DN20120207〉 (accessed 10.07.12). 
-Rogers, E., 1995. Diffusion of Innovations, 4th edition The Free press, New York, NY 
-SAGPA, 2012. Re-charged ]f[ Success. The Hird Wave of Electric Vehicle Promotion 
-in Japan. Östersund, Sweden. 
-Saxton, T., 2013. Understanding Electric Vehicle Charging. Plug in America. 〈http:// 
-www.pluginamerica.org/drivers-seat/understanding-electric-vehicle-charging〉 
-(accessed 27.08.13). 
-Schleich, J., 2009. Barriers to energy efﬁciency: a comparison across the German 
-commercial ]^[ services sector. Ecol. Econ. 68 (7), 2150–2159. 
-Shaﬁei, E., Thorkelsson, H., Ásgeirsson, E., Davidsdottir, B., Raberto, M., Stefansson, 
-H., 2012. An agent-based modeling approach to predict the evolution of market 
-share of electric vehicles: a case study from Iceland. Technol. Forecast. Soc. 
-Change 79 (9), 1638–1653. 
-Sierzchula, W., Bakker, S., Maat, K., van Wee, B., 2012. Technological diversity of 
-emerging eco-innovations: a case study of the automobile industry. J. Clean. 
-Prod. 37, 211–220. 
-Sovacool, B., Hirsh, R., 2009. Beyond batteries: an examination of the beneﬁts ]^[ 
-barriers to plug-in hybrid electric vehicles (PHEVs) ]^[ a vehicle-to-grid (V2G) 
-transition. Energy Policy 37 (3), 1095–1103. 
-Struben, J., Sterman, J., 2008. Transition challenges ]f[ alternative fuel vehicle ]^[ 
-transportation systems. Environ. Plan. B: Plan. Des. 35, 1070–1097. 
-Teece, D., 1986. Proﬁting from technological innovation: implications ]f[ integration, collaboration, licensing ]^[ public policy. Res. Policy 15, 285–305. 
-Tran, M., Banister, D., Bishop, J., McCulloch, M., 2012. Realizing the electric-vehicle 
-revolution. Nat. Clim. change 2, 328–333. 
-Turrentine, T., Kurani, K., 2007. Car buyers ]^[ fuel economy? Energy Policy 35, 
-1213–1223. 
-Tushman, M., Anderson, P., 1986. Technological discontinuities ]^[ organizational 
-environments. Adm. Sci. Q. 31, 439–465. 
-Author's personal copy 
-194 
-W. Sierzchula et al. / Energy Policy 68 (2014) 183–194 
-UNEP, 2012. The European Union Automotive Fuel Economy Policy. 〈http://www. 
-unep.org/transport/gfei/autotool/case_studies/europe/cs_eu_0.asp〉 (accessed 
-28.06.12). 
-Van den Bergh, J., Faber, A., Idenbrug, A., Oosterhuis, F., 2006. Survival of the 
-greenest: evolutionary economics ]^[ policies ]f[ energy innovation. Environ. 
-Sci. 3 (1), 57–71. 
-World Bank, 2012a. Road Sector Gasoline Fuel Consumption (kt of oil equivalent). 
-World Bank, 2012b. Road Sector Diesel Fuel Consumption (kt of oil equivalent). 
-World Bank, 2013a. GNI per Capita (PPP). 
-World Bank, 2013b. Percent of Labor Force with Tertiary Education. 
-View publication stats 
-World Bank, 2013c. GDP Ranking, PPP Based. 
-Yale, 2013. Environmental Performance Index 2012. 〈http://epi.yale.edu/epi2012/ 
-rankings〉 (accessed 11.06.13). 
-Yeh, S., 2007. An empirical analysis on the adoption of alternative fuel vehicles: the 
-case of natural gas vehicles. Energy Policy 35, 5865–5875. 
-Zhang, X., Wang, K., Hao, Y., Fan, J., Wei, Y., 2013. The impact of government policy 
-on preference ]f[ NEVs: the evidence from China. Energy Policy 61, 382–393. 
-Zubaryeva, A., Thiel, C., Barbone, E., Mercier, A., 2012. Assessing factors ]f[ the 
-identiﬁcation of potential lead markets ]f[ electriﬁed vehicles in Europe: expert 
-opinion elicitation. Technol. Forecast. Soc. Change 79, 1622–1637. 
+[ACD74] TL. Adam, KM. Chandy, ]^[ JR. Dickson. 
+A comparison of list schedules ]f[ parallel pro- 
+cessing systems. Communications of the ACM, 
+17(12):685—690, December 197/1. 
+[ALBUM] Thomas Anderson, Henry Levy, Brian Ber— 
+shad, ]^[ Edward Lazowska. The Interaction 
+of Architecture ]^[ Operating System Design. 
+[A5591] 
+[ASUSG] 
+[BALLQO] 
+[BALL91] 
+[Ber93] 
+[BL92] 
+[BlaQO] 
+[1m 84] 
+[Cla92] 
+[DG71] 
+[Dis] 
+[Dys92] 
+[FP93] 
+[H092] 
+111 Proceedings of the 4th International Confer- 
+ence on Architectural Supportfor Programming 
+Languages ]^[ Operating Systems, pages 108— 
+120, April 1991. 
+Administrator: National Computer Graphics 
+Association. SPEC Newsletter, 3(4), December 
+1991. 
+Alfred V. Aho, Ravi Sethi, ]^[ Jeffrey D. Ull- 
+man. Compilers, Principles, Techniques, ]^[ 
+Tools. Addison—Wesley Publishing Company, 
+1986. 
+Brian Bershad, Thomas Anderson, Edward La- 
+zowska, ]^[ Henry Levy. Lightweight Remote 
+Procedure Call. ACM Transactions on Com- 
+puter Systems, 8(1), February 1990. 
+Brian Bershad, Thomas Anderson, Edward La~ 
+zowska, ]^[ Henry Levy. User-Level Interpre- 
+cess Communication ]f[ Shared~Memory Mul- 
+tiprocessors. ACM Transactions on Computer 
+Systems, 9(2), May 1991. 
+Brian Bershad, August 1993. Private Commu— 
+nication. 
+Thomas Ball ]^[ James R. Larus. Optimally 
+proﬁling ]^[ tracing. In Proceedings of the 
+Conference on Principles of Programming Lan- 
+guages, pages 59‘70, 1992. 
+David Black. Scheduling Support ]f[ ConcuI~ 
+rency ]^[ Parallelism in the Mach Operating 
+System. IEEE Computer, 23(5):35 43, May 
+1990. 
+Andrew Birrell ]^[ Bruce Nelson. Implement- 
+ing Remote Procedure Calls. ACM Transac- 
+tions on Computer Systems, 2(1):?19‘59, Febru‘ 
+ary 1984. 
+.1.D. Clark. lVindow Programmer’ Guide To 
+OLE/DUE, Prentice—Hall, 1992. 
+L. P. Deutsch ]^[ C. A. Grant. A ﬂexible mea~ 
+surement tool ]f[ software systems. In IFIP 
+Congress, 1971. 
+Digital Equipment Corporation. Ultriz 114.2 
+Pixie Manual Page. 
+Peter Dyson. Xtensions ]f[ Xpress: Modular 
+Software ]f[ Custom Systems. Seybold Report 
+on Desktop Publishing, 6(10):1—‘.’.1, June 1992. 
+Kevin Fall ]^[ Joseph Pasquale. Exploiting in— 
+kernel data paths to improve I/O throughput 
+]^[ CPU 3. vailability. In Proceedings of the 
+1993 Winter USENIX Conference, pages 327— 
+333, January 1993. 
+Keiran Harty ]^[ 
+David Cheriton. Application—controlled physi- 
+cal memory using external page—cache manage— 
+ment. In Proceedings of the 5th International 
+Conference on Architectural Support ]f[ Pro- 
+gramming Languages ]^[ Operating Systems, 
+October 1992. 
+215 
+[11K93] 
+[HKM+88] 
+[Int86] 
+[JRTSS] 
+[K ar89] 
+[K1886] 
+[LB92] 
+[McF89] 
+[MJ93] 
+[M RA87] 
+[P1190] 
+[RDH+ 80] 
+Graham Hamilton ]^[ Panos Kougiouris. The 
+Spring nucleus: A microkernel ]f[ objects. In 
+Proceedings of the Summer USENIX Confer- 
+cncc, pages 1477159, June 1993. 
+J. Howard, M. Kazar, S. Menees, D. Nichols, 
+M. Satyanarayanan, R. Sidebotham, ]^[ 
+M. West. Scale ]^[ Performance in 3. Dis- 
+tributed File System. ACM Transactions on 
+Computer Systems, 6(1):51—82, February 1988. 
+Intel Corporation, California. 
+Intel 80386 Programmer’s Reference Manual, 
+1986. 
+Michael B. Jones, Richard F. Rashid, ]^[ 
+Mary R. Thompson. Matchmaker: An in- 
+terface speciﬁcation language ]f[ distributed 
+processing. In Proceedings of the 12th ACM 
+SIGACT-SIGPLAN Symposium on Principles 
+of Programming Languages, pages 225435, 
+January 1985. 
+Santa Clara, 
+Paul A. Karger. Using Registers to Optimize 
+Cross—Domain Call Performance. In Proceed- 
+ings of the 3rd International Conference on 
+Architectural Support ]f[ Programming Lan- 
+guages ]^[ Operating Systems, pages 1947204. 
+April 3~6 1989. 
+Steven R. Kleiman. Vnodes: An Architecture 
+]f[ Multiple File System Types in SUN UNIX. 
+In Proceedings of the 1986 Summer USENIX 
+Conference, pages 238—247, 1986. 
+James R. Larus ]^[ Thomas Ball. Rewrit- 
+ing executable ﬁles to measure program be— 
+havior. Technical Report 1083, University of 
+Wisconsin-Madison, March 1992. 
+Scott McFarling. Program optimization ]f[ 
+instruction caches. In Proceedings of the In: 
+ternational Conference on Architectural Sup— 
+port ]f[ Programming Languages ]^[ Operat- 
+ing Systems, pages 183—191, April 1989. 
+Steven McCanne ]^[ Van lacobsen. The 
+BSD Packet Filter: A New Architecture ]f[ 
+User—Level Packet Capture. In Proceedings of 
+the 1993 Winter USENIX Conference, January 
+1993. 
+l. C. Mogul, R. F. Rashid, ]^[ M. J. Ac- 
+cetta. The packet ﬁlter: An cﬂicient mecha— 
+nism ]f[ user—level network code. In Proceed- 
+ings of the Symposium on Operating System 
+Principles, pages 39—51, November 1987. 
+Karl Pettis ]^[ Robert C. Hansen. Proﬁle 
+guided code positioning. In Proceedings of 
+the Conference on Programming Language De- 
+sign ]^[ Implementation, pages 16—27, White 
+Plains, New York, June 1990. Appeared as 
+SIGPLAN NOTICES 25(6). 
+David D. Redell, Yogen K. Dalal, Thomas R. 
+Horsley, Hugh C. Lauer, William C. Lynch, 
+[Sam88] 
+[5390] 
+[501693] 
+[SFGMQS] 
+[St087] 
+[St088] 
+[SWG91] 
+[TAss] 
+[Thiﬁz] 
+[VCGSQZ] 
+[VVSTSB] 
+[Web93] 
+[YBA93] 
+Paul R. McJones, Hal G. Murray, ]^[ 
+Stephen C. Purcell. Pilot: An Operating Sys- 
+tem ]f[ a Personal Computer. Communications 
+of the A01”, 23(2):81~92, February 1980. 
+A. Dain Samples. Code reorganization ]f[ in 
+struction caches. Technical Report UCB/CSD 
+88/447. University of California, Berkeley, 0C, 
+tober 1988. 
+Michael Schroeder ]^[ Michael Burrows. Per- 
+formance of Fireﬂy RPC. ACM I‘mnsac» 
+tions on Computer Systems, 8(1):1—17, Febru- 
+ary 1990. 
+Richard L. Sites, Anton Chernoff, Matthew B. 
+Kirk, Maurice P. Marks, ]^[ Scott G. Robin- 
+son. Binary translation. Communications of 
+the ACM, 36(2):69—81, February 1993. 
+M. Stonebral-zer, J. Frew, K. Gardels, ]^[ 
+.I. Meridith. The Sequoia 2000 Benchmark. 
+In Proceedings of the ACM SIGMOD Inter- 
+national Conference on Management of Data, 
+May 1993. 
+Michael Stonebraker. Extensibility in POST~ 
+GRES. IEEE Database Engineering, Septem- 
+ber 1987. 
+Michael Stonebraker. Inclusion of new types in 
+relational data base systems. In Michael Stone- 
+braker, editor, Readings in Database Systems, 
+pages 480—487. Morgan Kaufmann Publishers, 
+Inc., 1988. 
+J. P. Singh, W. Weber, ]^[ A. Gupta. 
+Splash: Stanford parallel applications ]f[ 
+shared—memory. Technical Report CSL—TR—Sl— 
+469, Stanford, 1991. 
+Shin—Yuan Tzou ]^[ David P. Anderson. A 
+Performance Evaluation of the DASH Message- 
+Passing System. Technical Report UCB/CSD 
+88/452, Computer Science Division, University 
+of California, Berkeley, October 1988. 
+Thinking Machines Corporation. CM—5 Net- 
+work Interface Programmer’s Guide, 1992. 
+T. von Eicken, I). Culler, S. Goldstein, ]^[ 
+K. Schauser. Active Messages: A Mechanism 
+]f[ Integrated Communication ]^[ Computa— 
+tion. In Proceedings of the 19th Annual Sym- 
+posium on Computer Architecture, 1992. 
+Robbert van Renesse, Hans van Staveren, ]^[ 
+Andrew S. Tanenbaum. Performance of the 
+World’s Fastest Distributed Operating System. 
+Operating Systemic Review, 22(1):25734, Octo— 
+ber 1988. 
+Neil Webber. Operating System Support ]f[ 
+Portable Filesystem Extensions. In Proceed- 
+ings of the 1993 Winter USENIX Conference, 
+January 1993. 
+Curtis Yarvin. Richard Bnkowski, ]^[ Thomas 
+Anderson. Anonymous RFC: LOW Latency 
+216 
+Protection in a 64—Bit Address Space. In Pro- 
+ceedings of the Summer USENIX Conference, 
+June 1993. 

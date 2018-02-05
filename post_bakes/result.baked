@@ -1,1785 +1,1394 @@
 ~$[ Syntactic Sugar ]$~
 ** Results **: 
 
-[+135]   The attached copy is furnished to the author for internal non-commercial research and education use, including for instruction at the authors institution and sharing with colleagues.[57]
-[+407]   However, externalities including the appropriability of knowledge and pollution abatement result in societal/economic beneﬁts that are not incorporated in electric vehicle prices.[56]
-[+461]   Based on existing literature, we identiﬁed several additional socio-economic factors that are expected to be inﬂuential in determining electric vehicle adoption rates.[56]
-[+483]   Using multiple linear regression analysis, we examined the relationship between those variables and 30 national electric vehicle market shares for the year 2012.[60]
-[+572]   Keywords: Public policy Technology adoption Electric vehicles Eco-innovation 1.[64]
-[+737]   The IPCC noted the need to reduce GHG emissions (particularly in the energy and transport sectors) in order to avoid a 2.4–6.4 1C increase in 2090 temperatures relative to those from 1990 (IPCC, 2012).[59]
-[+938]   Consequently, the potential to address climate change through EV development and use is limited by externalities; neo-classical economics indicates that government policy should be employed to help correct for such situations (Rennings, 2000).[69]
-[+1016]   Firstly, the literature has presented conﬂicting results regarding the effect of consumer subsidies on hybrid-electric vehicle (HEV) adoption.[59]
-[+1092]   Thus, factors other than ﬁnancial incentives could be the primary drivers of EV adoption.[62]
-[+1495]   These barriers, which limit EV diffusion by inﬂuencing both the manufacturers that produce the automobiles and the consumers that buy them, are described more comprehensively below. 2.1.[56]
-[+1714]   Positive knowledge spillover inﬂuences the industrial landscape such that although ﬁrms do invest in the research and development of new technologies, they do so at a lower level than would be expected based on the ﬁnancial beneﬁts that innovations provide.[64]
-[+1813]   The larger proportion of the population known as early/late majority adopters are much more risk adverse, and are not willing to purchase an innovation so different from the dominant design (Rogers, 1995).[67]
-[+1890]   In order for an innovation such as electric vehicles to have a signiﬁcant environmental impact, it needs to be widely adopted (and have dramatically lower emissions levels compared to ICEVs).[67]
-[+1920]   For that to happen, there must ﬁrst be enough demand within the EV niche market that manufacturers continue to develop and sell the automobiles.[57]
-[+1976]   Sierzchula et al. / Energy Policy 68 (2014) 183–194 2.2.[65]
-[+1986]   Barriers that reduce eco-innovation Eco-innovations differ from other new products and services in that they provide a lower environmental impact than the conventional technology (Rennings, 2000).[59]
-[+2168]   Instead of using rational choices to maximize an individual's utility, individuals are aware of only a portion of the available options and thus act on imperfect information (Nelson and Winter, 1982).[57]
-[+2680]   An increase in the size of an EV's battery (in kWh) raises both its driving range and purchase cost.[61]
-[+3619]   The year 2012 was selected as the study date because important information such as charging infrastructure and EV adoption rates were unavailable in earlier years.[63]
-[+5848]   Charging infrastructure Fig. 3 exhibits a positive and signiﬁcant relationship (P-value of.000) between charging stations (adjusted for population) and EV adoption rates.[57]
+[+13]   Graham Computer Science Division University of California Berkeley, CA 94720 Abstract One way to provide fault isolation among cooperating software modules is to place each in its own address space.[48]
+[+55]   In this paper, we present a software approach to imple— menting fault isolation within a single address space.[59]
+[+104]   Second, we modify the object code of a distrusted module to prevent it from writing or jump- ing to an address outside its fault domain.[80]
+[+388]   To in— crease the reliability of these applications, an operat— ing system can provide services that prevent faults in distrusted modules from corrupting application data.[63]
+[+413]   Such fault isolation services also facilitate software de- velopment by helping to identify sources of system fail— ure.[47]
+[+620]   One way to provide fault isolation among cooperat— ing software modules is to place each in its own address space.[48]
+[+679]   Unfortunately, there is a high performance cost to providing fault isolation through separate address spaces.[50]
+[+774]   The execution time overhead of an RPC, even with a highly optimized implementation, will often be two to three orders of magnitude greater than the execution time overhead of a normal procedure call [BALL90, ALBL91].[50]
+[+809]   The goal of our work is to make fault isolation cheap enough that system developers can ignore its perfor— mance effect in choosing which modules to place in separate fault domains.[45]
+[+865]   In this situation it is imprac- tical to isolate each logically separate module within its own address space, because of the cost of crossing hardware protection boundaries.[49]
+[+912]   First, we load the code and data for a. distrusted module into its own fault domain, a logically separate portion of the application’s address space.[64]
+[+937]   A fault domain, in addition to comprising a cori— tiguous region of memory within an address space, has a unique identiﬁer which is used to control its access to process resources such as ﬁle descriptors.[49]
+[+972]   Second, we modify the object code of a distrusted module to pre— vent it from writing or jumping to an address outside its fault domain.[74]
+[+1154]   This reduction in RFC time comes at a cost of slightly increased distrusted module execution time.[45]
+[+1236]   To demonstrate this, we applied software—enforced fault isolation to the POSTGRES database system run- ning the Sequoia 2000 benchmark.[46]
+[+1349]   Similarly, it is possible to use our techniques to im- plement full security, preventing distrusted code from even reading data outside of its domain, at a cost of higher execution time overhead.[49]
+[+1440]   Section 5 presents performance results for our prototype, and ﬁnally Section 6 discusses some related work. 2 Background In this section, we characterize in more detail the type of application that can beneﬁt from software— enforced fault isolation.[46]
+[+1831]   In this situation, software fault isolation is likely to be more efﬁcient than hardware fault isolation because it sharply re— duces the time spent crossing fault domain boundaries, while only slightly increasing the time spent executing 205 the distrusted part of the application.[46]
+[+2103]   Software encapsulation transforms a distrusted module‘s object code so that it can jump only to tar- gets in its code segment, and write only to addresses within its data segment.[56]
+[+2901]   Since we are using a dedicated register, the distrusted module code can not produce an illegal address even by jumping to the second instruction in the sandboxing sequence; since the upper bits of the dedicated register will al— ready contain the correct segment identiﬁer, this sec- ond instruction will have no effect.[53]
 
  Baked Goods: 
 
-~$[see discussions%%lst%% stats%%lst%% ]^[ author profiles ]f[ %%#%% publication at%%cln%% https://www%%per%%researchgate%%per%%net/publication/260609038 
-%%#%% influence %%#%% financial incentives ]^[ %%#%% 
-socio%%dsh%%economic factors %%#%% electric vehicle 
-adoption 
-article %%#%% energy policy · %%#%% 2014 
-doi%%cln%% 10%%per%%1016/j%%per%%enpol%%per%%2014%%per%%01%%per%%043 
-citations 
-reads 
-133 
-750 
-4 authors%%lst%% including%%cln%% 
-%%#%% sierzchula 
-sjoerd bakker 
-navigant consulting 
-sjoerd bakker research & consultancy 
-10 publications 297 citations 
-33 publications 673 citations 
-%%#%% profile 
-%%#%% profile 
-kees maat 
-delft university %%#%% technology 
-64 publications 1,716 citations 
-%%#%% profile 
-%%#%% %%#%% %%#%% authors %%#%% %%#%% publication %%#%% %%#%% %%#%% %%#%% %%#%% related projects%%cln%% 
-development ]^[ %%#%% adoption %%#%% electric vehicles view project 
-activity based research view project 
-%%#%% content following %%#%% page %%#%% uploaded %%#%% %%#%% sierzchula %%#%% 15 april 2014%%per%%]$~ 
-~$[the user %%#%% requested enhancement %%#%% %%#%% downloaded file%%per%%]$~ 
-~$[this article appeared %%#%% %%#%% journal published %%#%% elsevier%%per%%]$~ ~$[the attached 
-copy %%#%% furnished %%#%% %%#%% author ]f[ internal non%%dsh%%commercial research 
-]^[ education use%%lst%% including ]f[ instruction %%#%% %%#%% authors institution 
-]^[ sharing %%#%% colleagues%%per%%]$~ 
-~$[other uses%%lst%% including reproduction ]^[ distribution%%lst%% ]v[ selling ]v[ 
-licensing copies%%lst%% ]v[ posting %%#%% personal%%lst%% institutional ]v[ third party 
-websites %%#%% prohibited%%per%%]$~ 
-~$[in %%#%% %%#%% authors %%#%% permitted %%#%% post %%#%% version %%#%% %%#%% 
-article (e%%per%%g%%per%% %%#%% word ]v[ tex form) %%#%% %%#%% personal website ]v[ 
-institutional repository%%per%%]$~ ~$[authors requiring %%#%% information 
-regarding elsevier’s archiving ]^[ manuscript policies %%#%% 
-encouraged %%#%% visit%%cln%% 
-http://www%%per%%%%cmp%%vier%%per%%com/authorsrights 
-author%%sqt%%s personal copy 
-energy policy 68 (2014) 183–194 
-contents lists available %%#%% sciencedirect 
-energy policy 
-journal homepage%%cln%% www%%per%%%%cmp%%vier%%per%%com/locate/enpol 
-%%#%% inﬂuence %%#%% ﬁnancial incentives ]^[ %%#%% socio%%dsh%%economic factors 
-%%#%% electric vehicle adoption 
-william sierzchula a,n%%lst%% sjoerd bakker b%%lst%% kees maat a,b%%lst%% bert van wee %%#%% 
-%%#%% 
-%%#%% 
-delft university %%#%% technology%%lst%% faculty %%#%% technology%%lst%% policy%%lst%% ]^[ management%%lst%% %%#%% netherlands 
-delft university %%#%% technology%%lst%% faculty %%#%% architecture ]^[ %%#%% built environment%%lst%% %%#%% netherlands 
-%%#%% %%#%% %%#%% %%#%% l %%#%% %%#%% %%#%% %%#%% %%#%% 
- 
- 
- 
- 
-%%#%% research analyzes electric vehicle adoption %%#%% 30 countries %%#%% 2012%%per%%]$~ 
-~$[financial incentives ]^[ charging infrastructure %%#%% statistically signiﬁcant factors%%per%%]$~ 
-~$[country%%dsh%%speciﬁc factors help %%#%% explain diversity %%#%% national adoption rates%%per%%]$~ 
-~$[socio%%dsh%%demographic variables e%%per%%g%%per%%%%lst%% income ]^[ education level %%#%% ]n[ signiﬁcant%%per%% 
-art ic l %%#%% %%#%% nf %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-article history%%cln%% 
-received 5 november 2013 
-received %%#%% revised form 
-24 january 2014 
-accepted 25 january 2014 
-available online 16 february 2014 
-electric vehicles represent %%#%% innovation %%#%% %%#%% potential %%#%% lower greenhouse gas emissions ]^[ help 
-mitigate %%#%% causes %%#%% climate change%%per%%]$~ ~$[however%%lst%% externalities including %%#%% appropriability %%#%% knowledge 
-]^[ pollution abatement result %%#%% societal/economic beneﬁts %%#%% %%#%% ]n[ incorporated %%#%% electric vehicle 
-prices%%per%%]$~ ~$[in order %%#%% address resulting market failures%%lst%% governments %%#%% employed %%#%% number %%#%% policies%%per%%]$~ 
-~$[we seek %%#%% determine %%#%% relationship %%#%% %%#%% %%#%% policy instrument (consumer ﬁnancial incentives) %%#%% 
-electric vehicle adoption%%per%%]$~ ~$[based %%#%% existing literature%%lst%% %%#%% identiﬁed %%#%% additional socio%%dsh%%economic 
-factors %%#%% %%#%% expected %%#%% %%#%% inﬂuential %%#%% determining electric vehicle adoption rates%%per%%]$~ ~$[using multiple 
-linear regression analysis%%lst%% %%#%% examined %%#%% relationship %%#%% %%#%% variables ]^[ 30 national electric 
-vehicle market shares ]f[ %%#%% %%#%% 2012%%per%%]$~ ~$[the model found ﬁnancial incentives%%lst%% charging infrastructure%%lst%% 
-]^[ local presence %%#%% production facilities %%#%% %%#%% signiﬁcant ]^[ positively correlated %%#%% %%#%% country%%sqt%%s electric 
-vehicle market share%%per%%]$~ ~$[results suggest %%#%% %%#%% %%#%% factors%%lst%% charging infrastructure %%#%% %%#%% strongly 
-related %%#%% electric vehicle adoption%%per%%]$~ ~$[however%%lst%% descriptive analysis suggests %%#%% neither ﬁnancial 
-incentives nor charging infrastructure ensure %%#%% electric vehicle adoption rates%%per%% 
-& 2014 elsevier ltd%%per%%]$~ ~$[all rights reserved%%per%%]$~ 
-~$[keywords%%cln%% 
-public policy 
-technology adoption 
-electric vehicles 
-eco%%dsh%%innovation 
-1%%per%%]$~ ~$[introduction 
-%%#%% ipcc (2012) noted %%#%% climate change caused %%#%% rising 
-levels %%#%% greenhouse gases (ghgs) poses %%#%% serious threat %%#%% %%#%% 
-physical ]^[ economic livelihoods %%#%% individuals %%#%% %%#%% globe 
-]^[ %%#%% negatively affect ecosystems %%#%% putting 20–30% %%#%% plant 
-]^[ animal species %%#%% %%#%% increasingly %%#%% risk %%#%% extinction%%per%%1 
-ghgs %%#%% %%#%% co2 ]^[ n2o primarily %%#%% %%#%% %%#%% burning %%#%% 
-fossil fuels %%#%% activities including electricity production ]^[ 
-operating internal combustion engines%%per%%]$~ ~$[in 2010%%lst%% %%#%% transport 
-%%#%% 
-corresponding author%%per%%]$~ ~$[tel%%per%%%%cln%% þ 31 6 150 88735%%per%%]$~ 
-~$[e%%dsh%%mail address%%cln%% w%%per%%s%%per%%sierzchula@tudelft%%per%%nl (w%%per%%]$~ ~$[sierzchula)%%per%% 
-1 
-%%#%% %%#%% posed %%#%% %%#%% ipcc %%#%% “medium conﬁdence” %%#%% %%#%% situation %%#%% 
-global temperatures %%#%% 2–3 1c %%#%% pre%%dsh%%industrial levels%%per%% 
-http://dx%%per%%doi%%per%%org/10%%per%%1016/j%%per%%enpol%%per%%2014%%per%%01%%per%%043 
-0301%%dsh%%4215 & 2014 elsevier ltd%%per%%]$~ ~$[all rights reserved%%per%% 
-sector accounted ]f[ 6%%per%%7 gt %%#%% emitted co2 ]v[ 22% %%#%% %%#%% world%%sqt%%s 
-total (iea%%lst%% 2012a)%%per%%]$~ ~$[furthermore%%lst%% global fuel demand ]f[ transportation %%#%% projected %%#%% grow approximately 40% %%#%% 2035 (iea%%lst%% 
-2012b)%%per%%]$~ ~$[the ipcc noted %%#%% %%#%% %%#%% reduce ghg emissions 
-(particularly %%#%% %%#%% energy ]^[ transport sectors) %%#%% order %%#%% avoid 
-%%#%% 2%%per%%4–6%%per%%4 1c increase %%#%% 2090 temperatures relative %%#%% %%#%% %%#%% 
-1990 (ipcc%%lst%% 2012)%%per%%]$~ 
-~$[electric vehicles (evs) %%#%% %%#%% %%#%% innovation %%#%% help 
-address %%#%% environmental concerns identiﬁed above%%per%%]$~ ~$[however%%lst%% 
-ev adoption %%#%% seen %%#%% %%#%% %%#%% limited %%#%% stimulation 
-%%#%% external factors %%#%% %%#%% stringent emissions regulations%%lst%% 
-rising fuel prices%%lst%% ]v[ ﬁnancial incentives (eppstein et al%%per%%%%lst%% 2011%%scn%% 
-shaﬁei et al%%per%%%%lst%% 2012%%scn%% iea%%lst%% 2013)%%per%%]$~ ~$[of %%#%% factors%%lst%% consumer subsidies 
-%%#%% speciﬁcally identiﬁed %%#%% %%#%% necessary ]f[ evs %%#%% reach %%#%% 
-mass market (hidrue et al%%per%%%%lst%% 2011%%scn%% eppstein et al%%per%%%%lst%% 2011)%%per%%]$~ ~$[part %%#%% %%#%% 
-author%%sqt%%s personal copy 
-184 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-reason %%#%% diffusion %%#%% expected %%#%% %%#%% ]s[ slow %%#%% %%#%% pollution 
-abatement ]^[ knowledge appropriability2 externalities reduce ev 
-development ]^[ consumer adoption%%lst%% leading %%#%% %%#%% inefﬁcient 
-allocation %%#%% %%#%% ]^[ services known %%#%% %%#%% market failure 
-(rennings%%lst%% 2000%%scn%% jaffe et al%%per%%%%lst%% 2005%%scn%% struben ]^[ sterman%%lst%% 2008)%%per%%]$~ 
-~$[in %%#%% %%#%% %%#%% evs%%lst%% market failures distort %%#%% prices relative %%#%% 
-icevs%%lst%% %%#%% results %%#%% fewer electric automobiles %%#%% built %%#%% 
-ﬁrms ]v[ bought %%#%% consumers%%per%%]$~ ~$[consequently%%lst%% %%#%% potential %%#%% 
-address climate change %%#%% ev development ]^[ %%#%% %%#%% 
-limited %%#%% externalities%%scn%% neo%%dsh%%classical economics indicates %%#%% 
-government policy %%#%% %%#%% employed %%#%% help correct ]f[ %%#%% 
-situations (rennings%%lst%% 2000)%%per%%]$~ ~$[of %%#%% policy measures%%lst%% demand 
-%%#%% instruments %%#%% %%#%% consumer subsidies %%#%% viewed %%#%% %%#%% 
-particularly %%#%% %%#%% %%#%% %%#%% commercialization period 
-(iea%%lst%% 2013)%%per%%]$~ ~$[however%%lst%% based %%#%% previous studies%%lst%% %%#%% %%#%% reasons 
-%%#%% question %%#%% effective %%#%% ﬁnancial incentives %%#%% %%#%% %%#%% 
-encouraging ev adoption%%per%%]$~ 
-~$[firstly%%lst%% %%#%% literature %%#%% %%#%% conﬂicting results regarding 
-%%#%% effect %%#%% consumer subsidies %%#%% hybrid%%dsh%%electric vehicle (hev) 
-adoption%%per%%]$~ ~$[while %%#%% studies %%#%% shown ﬁnancial incentives %%#%% 
-%%#%% positively correlated %%#%% hev sales (beresteanu ]^[ li%%lst%% 2011%%scn%% 
-gallagher ]^[ muehlegger%%lst%% 2011)%%lst%% diamond (2009) found %%#%% 
-%%#%% fuel prices%%lst%% ]n[ consumer subsidies%%lst%% %%#%% related %%#%% 
-increased adoption%%per%%]$~ ~$[in addition%%lst%% zhang et al%%per%% (2013) identiﬁed %%#%% 
-%%#%% %%#%% weak relationship %%#%% purchase subsidies ]^[ consumer willingness %%#%% buy evs%%per%%]$~ ~$[thus%%lst%% factors %%#%% %%cmp%% ﬁnancial 
-incentives %%#%% %%#%% %%#%% primary drivers %%#%% ev adoption%%per%%]$~ 
-~$[secondly%%lst%% due %%#%% %%#%% nature %%#%% radical innovation development 
-(tushman ]^[ anderson%%lst%% 1986)%%lst%% %%#%% %%#%% %%#%% reasons %%#%% suspect 
-%%#%% consumers %%#%% ]n[ behave %%#%% %%#%% %%#%% fashion %%#%% hevs 
-%%#%% %%#%% %%#%% %%#%% evs%%per%%]$~ ~$[innovations %%#%% %%#%% %%#%% %%#%% technologically %%#%% %%#%% dominant design %%#%% associated %%#%% %%#%% 
-levels %%#%% uncertainty (anderson ]^[ tushman%%lst%% 1990)%%per%%]$~ ~$[consequently%%lst%% %%#%% evs represent %%#%% %%#%% radical technological departure %%#%% icevs %%cmp%% %%#%% hevs (sierzchula et al%%per%%%%lst%% 2012)%%lst%% %%#%% result 
-%%#%% increased levels %%#%% uncertainty%%lst%% speciﬁcally %%#%% consumers 
-(sovacool ]^[ hirsh%%lst%% 2009)%%per%%]$~ ~$[this uncertainty affects %%#%% broad array 
-%%#%% industrial dynamics including future proﬁtability %%#%% %%#%% technology%%lst%% government involvement%%lst%% ]^[ willingness %%#%% pay (arrow%%lst%% 
-1966%%scn%% nelson ]^[ winter%%lst%% 1977%%scn%% jaffe et al%%per%%%%lst%% 2005)%%scn%% %%#%% %%#%% %%#%% 
-innovation differs %%#%% %%#%% conventional technology%%lst%% %%#%% less 
-consumers %%#%% willing %%#%% pay ]f[ it%%per%%]$~ ~$[thus%%lst%% %%#%% consumer 
-uncertainty regarding evs decreases %%#%% amount %%#%% individuals 
-%%#%% willing %%#%% pay relative %%#%% hevs%%lst%% %%#%% effect reducing %%#%% utility %%#%% 
-ﬁnancial incentives relative %%#%% ev adoption%%per%%]$~ ~$[this makes %%#%% difﬁcult 
-%%#%% estimate %%#%% impacts %%#%% ﬁnancial incentives %%#%% %%#%% adoption %%#%% %%#%% 
-radical innovation %%#%% signiﬁcantly %%#%% performance characteristics relative %%#%% %%#%% conventional technology%%lst%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% evs%%per%%]$~ ~$[therefore%%lst%% earlier studies analyzing hev adoption %%#%% 
-under%%dsh%%represent %%#%% impact %%#%% ﬁnancial incentives %%#%% %%#%% ev 
-purchases%%per%%]$~ 
-~$[in addition%%lst%% consumer subsidies %%#%% %%#%% little effect %%#%% ev 
-sales uptake %%cmp%% buyers %%#%% uncomfortable %%#%% %%#%% technology 
-(egbue ]^[ long%%lst%% 2012)%%lst%% ]v[ %%#%% ]n[ %%#%% %%#%% evs %%#%% %%#%% ﬂeet 
-%%#%% %%#%% (a threshold effect) (eppstein et al%%per%%%%lst%% 2011)%%per%%]$~ ~$[our paper 
-aims %%#%% contribute %%#%% %%#%% literature %%#%% examining %%cmp%% ]^[ %%#%% %%#%% 
-extent ﬁnancial incentives ]^[ %%#%% socio%%dsh%%economic factors 
-explain ev adoption%%per%% 
-2 
-knowledge appropriability ]v[ “knowledge spillover” relates %%#%% %%#%% ability %%#%% %%#%% 
-ﬁrm %%#%% beneﬁt %%#%% technologies ]v[ expertise %%#%% %%#%% develops %%#%% opposed %%#%% %%#%% 
-companies gaining %%#%% %%#%% advances %%#%% investing %%#%% %%#%% necessary r&d%%lst%% e%%per%% 
-g%%per%%%%lst%% reverse engineering %%#%% developed product%%per%%]$~ ~$[knowledge spillover results %%#%% lower 
-rates %%#%% innovation%%per%% 
-2%%per%%]$~ ~$[barriers limiting innovation 
-%%#%% literature %%#%% identiﬁed %%#%% obstacles %%#%% limit %%#%% 
-diffusion %%#%% %%#%% technologies %%#%% %%#%% evs%%per%%]$~ ~$[for example%%lst%% knowledge spillover applies broadly %%#%% %%#%% innovations %%#%% pollution 
-abatement ]^[ bounded rationality3 %%#%% typically associated %%#%% 
-limiting %%#%% development ]^[ adoption %%#%% environmental technologies (eco%%dsh%%innovations) (jaffe et al%%per%%%%lst%% 2005%%scn%% rennings%%lst%% 2000)%%per%%]$~ ~$[these 
-barriers%%lst%% %%#%% limit ev diffusion %%#%% inﬂuencing %%#%% %%#%% manufacturers %%#%% produce %%#%% automobiles ]^[ %%#%% consumers %%#%% 
-buy them%%lst%% %%#%% described %%#%% comprehensively below%%per%% 
-2%%per%%1%%per%%]$~ ~$[general barriers 
-%%#%% studying %%#%% development %%#%% innovations%%lst%% arrow (1962) 
-determined %%#%% %%#%% %%#%% capitalist system%%lst%% ﬁrms %%#%% underinvest %%#%% 
-research ]^[ development %%#%% %%#%% technologies%%per%%]$~ ~$[this %%#%% primarily 
-due %%#%% uncertainty%%lst%% ]b[ %%#%% %%cmp%% %%#%% innovation%%sqt%%s public beneﬁt 
-(for %%#%% businesses receive little ﬁnancial compensation) %%#%% 
-outweighs %%#%% private value %%#%% %%#%% company%%per%%]$~ ~$[the externality%%lst%% %%#%% 
-“positive knowledge spillover”%%lst%% occurs %%#%% innovations provide 
-valuable information %%#%% non%%dsh%%consumers (horbach%%lst%% 2008)%%per%%]$~ 
-~$[for example%%lst%% ﬁrms %%#%% ]n[ %%#%% able %%#%% prevent competitors 
-%%#%% gaining %%#%% %%#%% r&d efforts%%per%%]$~ ~$[the degree %%#%% %%#%% %%#%% ﬁrm %%#%% 
-able %%#%% defend %%#%% proﬁts %%#%% %%#%% innovation %%#%% competitor 
-imitation %%#%% referred %%#%% %%#%% %%#%% appropriability (teece%%lst%% 1986)%%per%%]$~ ~$[because 
-%%#%% %%#%% ]n[ %%#%% ]f[ %%#%% ﬁrm %%#%% %%#%% %%#%% element %%#%% %%#%% %%#%% 
-technology secret%%lst%% %%#%% companies %%#%% gain %%#%% learning %%#%% ]^[ 
-%%#%% %%#%% %%#%% stealing %%#%% %%#%% %%#%% %%#%% original innovating entity%%per%%]$~ 
-~$[thus%%lst%% due %%#%% knowledge spillovers%%lst%% businesses %%#%% less %%#%% %%#%% 
-invest %%#%% %%#%% development %%#%% innovations %%#%% %%#%% easily copied 
-(having low levels %%#%% appropriability) %%cmp%% %%#%% %%#%% ]n[ %%#%% able 
-%%#%% reap %%#%% %%#%% %%#%% rewards %%#%% %%#%% successful %%#%% technology (teece%%lst%% 
-1986)%%per%%]$~ ~$[positive knowledge spillover inﬂuences %%#%% industrial landscape %%#%% %%#%% %%#%% ﬁrms %%#%% invest %%#%% %%#%% research ]^[ 
-development %%#%% %%#%% technologies%%lst%% %%#%% %%#%% ]s[ %%#%% %%#%% lower level %%cmp%% 
-%%#%% %%#%% expected based %%#%% %%#%% ﬁnancial beneﬁts %%#%% innovations 
-provide%%per%%]$~ 
-~$[in addition%%lst%% emerging technologies %%#%% %%#%% barriers 
-%%cmp%% %%#%% %%#%% %%cmp%% poorly %%#%% existing dominant designs 
-%%#%% %%#%% criteria %%#%% %%#%% price ]^[ performance (adner%%lst%% 2002)%%per%%]$~ 
-~$[for %%#%% reason%%lst%% %%#%% ﬁrst individuals %%#%% adopt %%#%% emerging radical 
-innovation %%#%% %%#%% willing %%#%% pay %%#%% premium ]v[ cope %%#%% subpar performance %%#%% order %%#%% %%#%% %%#%% latest technology (rogers%%lst%% 
-1995)%%per%%]$~ ~$[the larger proportion %%#%% %%#%% population known %%#%% early/late 
-majority adopters %%#%% %%#%% %%#%% risk adverse%%lst%% ]^[ %%#%% ]n[ willing 
-%%#%% purchase %%#%% innovation ]s[ %%#%% %%#%% %%#%% dominant design 
-(rogers%%lst%% 1995)%%per%%]$~ ~$[it %%#%% vital ]f[ radical technologies %%#%% attract %%#%% 
-signiﬁcant %%#%% number %%#%% %%#%% adopters %%#%% develop %%#%% viable 
-market niche (geels%%lst%% 2002)%%per%%]$~ ~$[thereafter%%lst%% industrial forces %%#%% %%#%% 
-learning %%#%% doing ]^[ scale economies %%#%% rapidly lower costs ]^[ 
-improve performance (foster%%lst%% 1986%%scn%% christensen%%lst%% 1997)%%per%%]$~ ~$[in order 
-]f[ %%#%% innovation %%#%% %%#%% electric vehicles %%#%% %%#%% %%#%% signiﬁcant 
-environmental impact%%lst%% %%#%% %%#%% %%#%% %%#%% widely adopted (and %%#%% 
-dramatically lower emissions levels %%cmp%%d %%#%% icevs)%%per%%]$~ ~$[for %%#%% 
-%%#%% happen%%lst%% %%#%% %%#%% ﬁrst %%#%% %%#%% demand %%#%% %%#%% ev niche 
-market %%#%% manufacturers continue %%#%% develop ]^[ sell %%#%% 
-automobiles%%per%%]$~ ~$[consequently%%lst%% governments %%#%% employed ﬁnancial 
-incentives %%#%% help attract %%#%% ev adopters%%per%% 
-3 
-%%#%% notion %%#%% %%#%% individual%%sqt%%s decision %%#%% %%#%% inﬂuenced %%#%% %%#%% 
-information %%#%% he/she has%%per%%]$~ 
-~$[author%%sqt%%s personal copy 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-2%%per%%2%%per%%]$~ ~$[barriers %%#%% reduce eco%%dsh%%innovation 
-eco%%dsh%%innovations %%#%% %%#%% %%#%% %%#%% products ]^[ services %%#%% 
-%%#%% %%#%% provide %%#%% lower environmental impact %%cmp%% %%#%% conventional technology (rennings%%lst%% 2000)%%per%%]$~ ~$[examples range %%#%% incremental improvements %%#%% existing designs %%#%% %%#%% turbocharging %%#%% 
-automobile engines %%#%% %%#%% radical technologies%%lst%% %%#%% solar cells 
-]^[ wind turbines%%per%%]$~ ~$[the distinct nature %%#%% eco%%dsh%%innovations 
-improves %%#%% social utility %%#%% lower pollution abatement 
-levels%%per%%]$~ ~$[however%%lst%% %%#%% externality %%#%% creates market failure%%lst%% ]^[ 
-ultimately limits %%#%% development ]^[ adoption (jaffe et al%%per%%%%lst%% 
-2005)%%per%%]$~ 
-~$[investments %%#%% eco%%dsh%%innovation %%#%% speciﬁcally disincentivized 
-%%cmp%% beneﬁts %%#%% lower pollution levels %%#%% ]n[ included %%#%% %%#%% 
-product%%sqt%%s price%%per%%]$~ ~$[the externality pollution functions %%#%% %%#%% %%#%% 
-%%#%% %%#%% %%#%% societal %%#%% proﬁt %%#%% eco%%dsh%%innovations 
-%%#%% improved health (however marginally)%%lst%% ﬁrms %%#%% ]n[ able %%#%% 
-charge %%#%% individuals ]f[ %%#%% gains%%per%%]$~ ~$[as %%#%% result%%lst%% eco%%dsh%%innovations 
-%%#%% lower adoption levels %%cmp%% %%cmp%% societal beneﬁts %%#%% decreased 
-pollution %%#%% included %%#%% product costs (brown%%lst%% 2001)%%per%%]$~ 
-~$[an additional barrier %%#%% %%#%% contributed %%#%% lower ecoinnovation diffusion %%#%% bounded rationality%%lst%% %%#%% %%#%% inﬂuence 
-consumer valuation %%#%% %%#%% product%%sqt%%s purchase price%%lst%% operating 
-expenses%%lst%% ]^[ lifetime cost%%per%%]$~ ~$[instead %%#%% using rational choices %%#%% 
-maximize %%#%% individual%%sqt%%s utility%%lst%% individuals %%#%% aware %%#%% %%#%% %%#%% 
-portion %%#%% %%#%% available options ]^[ %%#%% act %%#%% imperfect 
-information (nelson ]^[ winter%%lst%% 1982)%%per%%]$~ ~$[thus%%lst%% %%#%% %%#%% %%#%% calculating %%#%% %%#%% total cost %%#%% ownership %%#%% %%#%% product%%lst%% consumers %%#%% 
-rely %%#%% heuristics ]v[ rules %%#%% thumb %%#%% guide %%#%% purchasing 
-behavior (jaffe ]^[ stavins%%lst%% 1994%%scn%% schleich%%lst%% 2009)%%per%%]$~ ~$[this %%#%% lead %%#%% 
-individual %%#%% %%#%% %%#%% %%#%% emphasis %%#%% %%#%% purchase price ]^[ 
-]n[ accurately value operating expenses (levine et al%%per%%%%lst%% 1995)%%per%%]$~ 
-~$[because %%#%% eco%%dsh%%innovations %%#%% %%#%% purchase prices ]^[ 
-low operating expenses%%lst%% %%#%% %%#%% %%#%% experienced slow diffusion rates (brown%%lst%% 2001)%%per%%]$~ ~$[speciﬁcally regarding evs%%lst%% consumers 
-looking %%#%% purchase alternative fuel vehicles %%#%% ]n[ accurately 
-incorporate fuel economy %%#%% %%#%% vehicle purchase decisions%%lst%% 
-leading %%#%% irrational behavior (turrentine ]^[ kurani%%lst%% 2007)%%per%% 
-3%%per%%]$~ ~$[factors inﬂuencing ev adoption 
-%%#%% evs %%#%% introduced %%#%% %%#%% broader consumer market 
-%%#%% recently %%#%% 2010 (not including %%#%% temporary commercialization %%#%% %%#%% 1990s)%%lst%% %%#%% %%#%% little research %%#%% %%#%% empirical 
-data %%#%% analyze factors %%#%% affect adoption rates%%per%%]$~ ~$[thus%%lst%% %%#%% %%#%% 
-%%#%% knowledge %%#%% %%#%% contributing elements comes %%#%% 
-stated preference studies%%per%%]$~ ~$[however%%lst%% %%cmp%% %%#%% %%#%% phenomenon 
-known %%#%% %%#%% “attitude–action gap”%%lst%% %%#%% %%#%% %%#%% concern %%#%% 
-information %%#%% consumer surveys %%#%% %%#%% little relation %%#%% %%#%% 
-purchase %%#%% low%%dsh%%emission vehicles (lane ]^[ potter%%lst%% 2007)%%per%%]$~ ~$[this 
-raises %%#%% value %%#%% research %%#%% analyzes actual consumer actions 
-(revealed preferences)%%lst%% %%#%% %%#%% %%#%% performed %%#%% %%#%% paper%%per%%]$~ 
-~$[hevs provide %%#%% %%#%% comparison basis ]f[ evs (even %%#%% 
-%%#%% %%#%% less %%#%% %%#%% radical innovation) %%cmp%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% %%#%% key elements including %%#%% battery ]^[ electric motor 
-based powertrain ]^[ lower environmental impacts%%per%%]$~ ~$[as hevs %%#%% 
-%%#%% commercially available %%#%% %%#%% late 1990s%%lst%% %%#%% %%#%% %%#%% 
-studies %%#%% %%#%% revealed preference data %%#%% investigate factors 
-%%#%% inﬂuenced consumer uptake ]f[ %%#%% automobiles%%per%%]$~ ~$[in %%#%% 
-absence %%#%% similar research ]f[ evs%%lst%% %%#%% %%#%% incorporated %%#%% %%#%% 
-model variables %%#%% %%#%% found %%#%% %%#%% signiﬁcant drivers %%#%% hev 
-adoption %%#%% %%#%% articles e%%per%%g%%per%%%%lst%% education level%%lst%% fuel price%%lst%% ]^[ 
-environmentalism (lane ]^[ potter%%lst%% 2007%%scn%% diamond%%lst%% 2009%%scn%% 
-gallagher ]^[ muehlegger%%lst%% 2011)%%per%%]$~ ~$[based %%#%% %%#%% ﬁndings %%#%% hev 
-revealed preference research%%lst%% ev survey studies%%lst%% ]^[ theoretical 
-185 
-articles%%lst%% %%#%% %%#%% collected ]^[ categorized %%#%% factors %%#%% %%#%% 
-assumed %%#%% determine %%#%% decision %%#%% %%#%% ]v[ ]n[ %%#%% purchase 
-%%#%% electric vehicle %%#%% belonging %%#%% %%#%% technology itself%%lst%% %%#%% 
-consumer%%lst%% ]v[ %%#%% context%%per%%]$~ 
-~$[the technology category comprises aspects %%#%% electric vehicles 
-including battery costs ]^[ performance characteristics (driving 
-range ]^[ charging time)%%per%%]$~ ~$[ev purchase prices%%lst%% %%#%% %%#%% heavily 
-dependent %%#%% battery costs%%lst%% %%#%% %%#%% identiﬁed %%#%% %%#%% %%#%% %%#%% 
-signiﬁcant obstacle %%#%% widespread ev diffusion (brownstone et al%%per%%%%lst%% 
-2000)%%per%%]$~ ~$[the iea (2011) found %%#%% %%#%% purchase price %%#%% %%#%% ev %%#%% %%#%% 
-30 kwh battery (approx%%per%% 85 miles4 %%#%% driving range %%#%% 0%%per%%17 kwh/mile) 
-%%#%% %%#%% $10,000 (all ﬁnancial amounts %%#%% %%#%% article %%#%% %%#%% read 
-%%#%% %%#%% dollars) %%#%% %%cmp%% %%#%% comparable icev%%per%%]$~ ~$[battery costs %%#%% %%#%% 
-%%#%% impact %%#%% %%#%% driving range %%#%% %%#%% ev%%per%%]$~ ~$[an increase %%#%% %%#%% size %%#%% %%#%% 
-ev%%sqt%%s battery (in kwh) raises %%#%% %%#%% driving range ]^[ purchase cost%%per%%]$~ 
-~$[therefore%%lst%% %%#%% consumers %%#%% sensitive %%#%% %%#%% limited driving 
-range (lieven et al%%per%%%%lst%% 2011) %%#%% aspect %%#%% %%#%% balanced %%#%% %%#%% 
-relation %%#%% vehicle battery costs%%per%%]$~ ~$[an additional factor %%#%% inﬂuences consumer adoption %%#%% vehicle charging time (hidrue et al%%per%%%%lst%% 
-2011%%scn%% neubauer et al%%per%%%%lst%% 2012)%%per%%]$~ ~$[whereas %%#%% icevs %%#%% able %%#%% refuel %%#%% 
-roughly 4 min%%lst%% evs require  30 min %%#%% %%#%% fast charging station ]^[ %%#%% 
-%%#%% %%#%% (410) %%#%% ]f[ charging %%#%% %%#%% 110 ]v[ 220 %%#%% outlet%%lst%% 
-dependent %%#%% battery size (saxton%%lst%% 2013)%%per%%]$~ ~$[relative %%#%% %%#%% comparable 
-icev%%lst%% %%#%% ev%%sqt%%s %%#%% purchase price%%lst%% limited driving range%%lst%% ]^[ %%#%% 
-charge period %%#%% %%#%% %%#%% negative impact %%#%% adoption rate%%per%%]$~ 
-~$[in addition %%#%% factors relating %%#%% %%#%% ev%%lst%% consumer characteristics 
-%%#%% play %%#%% role %%#%% determining uptake%%per%%]$~ ~$[studies %%#%% identiﬁed levels %%#%% 
-education%%lst%% income%%lst%% ]^[ environmentalism %%#%% %%#%% %%#%% positively correlated %%#%% likelihood %%#%% purchase %%#%% ev (hidrue et al%%per%%%%lst%% 2011) ]v[ hev 
-(gallagher ]^[ muehlegger%%lst%% 2011)%%per%%]$~ ~$[however%%lst%% %%#%% factors%%lst%% speciﬁcally 
-environmentalism%%lst%% %%#%% %%#%% less %%#%% %%#%% consumers %%cmp%% vehicle 
-cost ]^[ performance attributes %%#%% %%#%% %%#%% identiﬁed %%#%% %%#%% 
-paragraph %%#%% (lane ]^[ potter%%lst%% 2007%%scn%% egbue ]^[ long%%lst%% 2012)%%per%%]$~ 
-~$[a third set %%#%% elements%%lst%% %%#%% %%#%% literature %%#%% found %%#%% 
-inﬂuence adoption rates ]^[ %%#%% external %%#%% %%#%% %%#%% vehicle ]^[ 
-consumer%%lst%% %%#%% categorized %%#%% context factors %%#%% %%#%% research%%per%%]$~ ~$[in %%#%% 
-studies%%lst%% fuel (gasoline ]v[ diesel) prices %%#%% %%#%% identiﬁed %%#%% %%#%% %%#%% 
-%%#%% %%#%% powerful predictors %%#%% hev adoption (diamond%%lst%% 2009%%scn%% 
-beresteanu ]^[ li%%lst%% 2011%%scn%% gallagher ]^[ muehlegger%%lst%% 2011)%%lst%% ]^[ %%#%% 
-%%#%% %%#%% inﬂuential %%#%% agent%%dsh%%based models forecasting ev diffusion 
-(eppstein et al%%per%%%%lst%% 2011%%scn%% shaﬁei et al%%per%%%%lst%% 2012)%%per%%]$~ ~$[related %%#%% fuel prices%%lst%% 
-%%#%% less commonly incorporated %%#%% analyses%%lst%% %%#%% electricity 
-costs%%per%%]$~ ~$[those %%#%% factors combine %%#%% determine %%#%% majority %%#%% ev 
-operating expenses %%#%% %%#%% %%#%% %%#%% %%#%% impact %%#%% adoption rates 
-(zubaryeva et al%%per%%%%lst%% 2012%%scn%% dijk et al%%per%%%%lst%% 2013)%%per%%]$~ ~$[other studies %%#%% 
-identiﬁed availability %%#%% charging stations %%#%% %%#%% %%#%% determinant %%#%% consumer acceptance %%#%% alternative fuel vehicles e%%per%%g%%per%%%%lst%% evs 
-(yeh%%lst%% 2007%%scn%% struben ]^[ sterman%%lst%% 2008%%scn%% egbue ]^[ long%%lst%% 2012%%scn%% tran 
-et al%%per%%%%lst%% 2012)%%per%%]$~ ~$[a country%%sqt%%s level %%#%% urban density %%#%% facilitate %%#%% 
-ev adoption %%#%% shorter average travel distances %%#%% allow ]f[ wider 
-%%#%% %%#%% %%#%% vehicles%%sqt%% limited driving range (iea%%lst%% 2011)%%per%%]$~ ~$[finally%%lst%% %%#%% %%#%% 
-%%#%% factors speciﬁc %%#%% evs %%#%% %%#%% inﬂuence adoption rates 
-including vehicle diversity i%%per%%e%%per%%%%lst%% %%#%% number %%#%% models %%#%% consumers 
-%%#%% buy (van den bergh et al%%per%%%%lst%% 2006)%%lst%% local involvement i%%per%%e%%per%%%%lst%% %%#%% 
-presence %%#%% %%#%% local manufacturing plant (iea%%lst%% 2013)%%lst%% ]^[ public 
-visibility i%%per%%e%%per%%%%lst%% %%#%% number %%#%% %%#%% evs %%#%% %%#%% available ]f[ 
-purchase (eppstein et al%%per%%%%lst%% 2011)%%per%% 
-4%%per%%]$~ ~$[method 
-%%#%% section describes %%#%% ev adoption rates %%#%% %%#%% series %%#%% 
-countries %%#%% analyzed using %%#%% set %%#%% socio%%dsh%%economic variables%%per%% 
-4 
-136 km%%per%%]$~ 
-~$[author%%sqt%%s personal copy 
-186 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-table 1 
-description %%#%% variables ]^[ sources%%per%%]$~ 
-~$[variable 
-data 
-source 
-marshr 
-national market share %%#%% electric vehicles %%#%% %%#%% percentage %%#%% %%#%% car 
-sales 
-financial incentives %%#%% countries provided ]f[ %%#%% purchase and/or 
-%%#%% %%#%% %%#%% electric vehicle 
-%%#%% number %%#%% charging stationsa %%#%% %%#%% country corrected ]f[ 
-population (the number %%#%% charging stations %%#%% 100,000 residents) 
-index %%#%% ranks environmental regulation ]^[ performance %%#%% 
-country ]^[ %%#%% intended %%#%% capture national differences %%#%% 
-environmentalism 
-%%#%% weighted average %%#%% national gasoline ]^[ diesel fuel prices%%per%%]$~ 
-~$[averages %%#%% weighted based %%#%% %%#%% amount %%#%% gasoline ]v[ diesel 
-fuel %%#%% %%#%% speciﬁc countriesd 
-dummy variable identifying %%#%% %%#%% country %%#%% %%#%% %%#%% ev 
-producer%%sqt%%s global headquarters ]v[ production facilities 
-national income %%#%% capita %%#%% measured %%#%% purchasing power parity 
-%%#%% number %%#%% vehicles %%#%% capita %%#%% %%#%% country 
-%%#%% percentage %%#%% workforce %%#%% %%#%% least %%#%% tertiary education level 
-2011 household electricity prices %%#%% kwh 
-number %%#%% ev models %%#%% %%#%% purchased %%#%% 2012 
-%%#%% (since 2008) %%#%% evs %%#%% ﬁrst sold %%#%% %%#%% %%#%% country 
-%%#%% price %%#%% purchasing %%#%% mitsubishi miev %%#%% %%#%% %%#%% countryf 
-cumulative population %%#%% square mile %%#%% urban areas %%#%% 
-500,000 residents 
-national automotive statistics websites 
-incentive 
-chginf 
-envc 
-fuel 
-hq 
-income 
-percapvehicles 
-education 
-elece 
-availability 
-intro 
-ev_price 
-urban density 
-(acea%%lst%% 2012a%%lst%% 2012b)%%scn%% national government agencies 
-(chargemap%%lst%% 2013%%scn%% lemnet%%per%%org%%lst%% 2013%%scn%% asbe%%lst%% 2013%%scn%% gronnbil%%lst%% 2013)%%scn%% 
-national charging mapsb 
-yale (2013) 
-iea (2012a)%%lst%% reuters (2012)%%lst%% world bank (2012a%%lst%% 2012b) 
-auto manufacturer websites 
-world bank (2013a) 
-world bank (2013a) 
-world bank (2013b) 
-eurostat (2013)%%lst%% iea (2012a) 
-automotive statistics websites 
-marklines (2013) 
-national mitsubishi websites 
-demographia (2013) 
-%%#%% 
-%%#%% charging station %%#%% multiple outlets %%#%% %%#%% counted %%#%% %%#%% %%#%% %%#%% ﬁgures%%per%%]$~ 
-~$[for %%#%% countries%%lst%% national charging maps %%#%% found %%#%% provide %%#%% comprehensive data %%cmp%% international websites %%#%% %%#%% www%%per%%chargemap%%per%%com%%per%%]$~ 
-~$[there %%#%% %%#%% concern %%#%% reverse causality %%#%% ev adoption rate ]^[ %%#%% epi %%cmp%% %%#%% low numbers %%#%% electric vehicles %%#%% driven %%#%% countries %%#%% %%#%% %%#%% 
-negligible impact %%#%% %%#%% indicators %%#%% %%#%% %%#%% %%#%% epi%%per%% 
-%%#%% 
-%%#%% example%%lst%% %%cmp%% %%#%% country %%#%% 30% gasoline ]^[ 70% diesel%%lst%% %%cmp%% %%#%% fuel price %%#%% reﬂect %%#%% %%#%% weight placed %%#%% cost ]f[ diesel%%per%% 
-%%#%% 
-due %%#%% data availability issues%%lst%% iceland electricity prices %%#%% %%#%% 2012%%per%% 
-%%#%% 
-%%#%% countries %%#%% mievs %%#%% ]n[ available%%lst%% %%#%% evs %%#%% %%#%% ]f[ %%#%% comparison e%%per%%g%%per%%%%lst%% %%#%% byd f3dm %%#%% china%%per%% 
-%%#%% 
-%%#%% 
-section 4%%per%%1 describes %%#%% data %%#%% %%#%% collected%%per%%]$~ ~$[section 4%%per%%2 
-outlines %%#%% %%#%% detailed description %%#%% %%#%% ﬁnancial incentives 
-%%#%% operationalized%%per%%]$~ ~$[section 4%%per%%3 provides %%#%% ﬁnal model 
-speciﬁcation%%per%% 
-4%%per%%1%%per%%]$~ ~$[data collection 
-%%#%% collected ]^[ analyzed data %%#%% 30 countries ]f[ 2012%%per%%]$~ ~$[the 
-%%#%% 2012 %%#%% selected %%#%% %%#%% study date %%cmp%% %%#%% 
-information %%#%% %%#%% charging infrastructure ]^[ ev adoption rates 
-%%#%% unavailable %%#%% earlier years%%per%%]$~ ~$[our statistical analysis %%#%% data 
-%%#%% %%#%% following countries%%cln%% australia%%scn%% austria%%scn%% belgium%%scn%% canada%%scn%% 
-china%%scn%% croatia%%scn%% %%#%% czech republic%%scn%% denmark%%scn%% estonia%%scn%% finland%%scn%% 
-france%%scn%% greece%%scn%% germany%%scn%% iceland%%scn%% ireland%%scn%% israel%%scn%% italy%%scn%% japan%%scn%% %%#%% 
-netherlands%%scn%% %%#%% zealand%%scn%% norway%%scn%% poland%%scn%% portugal%%scn%% slovenia%%scn%% 
-spain%%scn%% sweden%%scn%% switzerland%%scn%% turkey%%scn%% %%#%% united kingdom%%lst%% ]^[ %%#%% 
-united states%%per%%]$~ ~$[we selected %%#%% countries %%cmp%% %%#%% %%#%% availability %%#%% data%%lst%% speciﬁcally ev adoption ]^[ charging infrastructure 
-ﬁgures%%per%%]$~ ~$[in %%#%% study%%lst%% %%#%% deﬁned electric vehicles %%#%% including %%#%% 
-pure battery electric vehicles%%lst%% e%%per%%g%%per%%%%lst%% nissan leaf%%lst%% %%#%% %%#%% %%#%% plug%%dsh%%in 
-hybrid electric vehicles%%lst%% e%%per%%g%%per%%%%lst%% chevy volt%%per%%]$~ ~$[as %%#%% deﬁnition %%#%% evs 
-%%#%% based %%#%% vehicles %%#%% %%#%% plug%%lst%% %%#%% hev models %%#%% %%#%% 
-%%#%% toyota prius %%#%% ]n[ included %%#%% %%#%% analysis%%per%%]$~ 
-~$[based %%#%% %%#%% factors identiﬁed %%#%% section 3%%lst%% %%#%% collected data 
-]f[ %%#%% following variables ]f[ %%#%% country %%#%% %%#%% study%%cln%% ev 
-market share%%lst%% ﬁnancial incentives%%lst%% urban density%%lst%% education level%%lst%% 
-%%#%% environmentalism indicator%%lst%% fuel price%%lst%% ev price%%lst%% presence %%#%% 
-production facilities%%lst%% %%#%% capita vehicles%%lst%% model availability%%lst%% introduction date%%lst%% charging infrastructure,5 ]^[ electricity price%%per%%]$~ ~$[ev 
-adoption %%#%% operationalized %%#%% national market shares %%#%% electric 
-vehicles%%per%%]$~ ~$[variable descriptions ]^[ %%#%% sources %%#%% provided %%#%% 
-5 
-charging stations %%#%% identiﬁed %%#%% %%#%% %%#%% %%#%% %%#%% multiple stations 
-%%#%% %%#%% location%%lst%% ]^[ multiple charging %%#%% (plugs) %%#%% station%%per%%]$~ 
-~$[table 1%%per%%]$~ ~$[notable absences include driving range ]^[ charging time%%per%%]$~ 
-~$[those variables %%#%% ]n[ added %%#%% %%#%% model %%cmp%% %%#%% 
-%%#%% %%#%% electric vehicles %%#%% available ]f[ purchase %%#%% %%#%% 
-countries %%#%% %%#%% sample%%per%%]$~ ~$[thus%%lst%% %%#%% %%#%% %%#%% fundamental difference 
-%%#%% %%#%% driving range %%#%% %%#%% nissan leaf %%#%% china ]v[ %%#%% nissan leaf %%#%% 
-germany%%per%%6 
-4%%per%%2%%per%%]$~ ~$[financial incentives 
-%%#%% encourage ev adoption%%lst%% countries %%#%% %%#%% ﬁnancial 
-incentives %%#%% %%#%% technology speciﬁc policies%%lst%% %%#%% %%#%% subsidies 
-%%#%% ev consumers%%lst%% ]^[ technology neutral policies%%lst%% %%#%% %%#%% 
-emissions%%dsh%%based vehicle taxes%%per%%]$~ ~$[these %%#%% applied %%#%% %%#%% %%#%% 
-time %%#%% %%#%% vehicle%%sqt%%s registration ]v[ %%#%% %%#%% annual circulation fee 
-(license fees %%#%% %%#%% us)%%per%%]$~ ~$[in %%#%% cases%%lst%% countries lowered automobile taxes ]f[ evs%%lst%% ]^[ %%#%% %%#%% %%#%% provided subsidies apart 
-%%#%% normal registration ]^[ circulation fees%%lst%% %%#%% %%#%% %%#%% 
-%%#%% diverse ﬁnancial incentive landscape%%per%%]$~ ~$[this section %%#%% %%#%% 
-study describes %%#%% %%#%% %%#%% heterogeneous environment ]f[ 
-subsidies %%#%% operationalized %%#%% allow ]f[ analysis %%#%% 
-countries%%per%%]$~ 
-~$[in order %%#%% %%cmp%% ﬁnancial incentives %%#%% %%#%% %%#%% 
-emissions ]^[ monetary units%%lst%% policies %%#%% standardized 
-relative %%#%% co2 emissions ]^[ 2012 %%#%% dollars%%per%%]$~ ~$[to convert fuel 
-%%#%% %%#%% co2 emissions%%lst%% %%#%% %%#%% %%#%% following formula%%cln%% 1 l/100 km ¼ 
-23%%per%%2 %%#%% co2/km (unep%%lst%% 2012)%%per%%]$~ ~$[we converted currencies %%#%% %%#%% 
-dollars using %%#%% averaged quarterly exchange rates %%#%% 2012%%per%%]$~ 
-~$[in %%#%% situations%%lst%% %%#%% %%#%% necessary %%#%% %%#%% %%#%% vehicle%%sqt%%s performance 
-6 
-differences %%#%% temperature %%#%% affect driving range%%per%%]$~ ~$[with %%#%% %%#%% mind%%lst%% %%#%% 
-%%#%% vehicle %%#%% %%#%% countries %%#%% %%#%% slightly %%#%% performance 
-characteristics depending %%#%% weather conditions%%per%%]$~ ~$[however%%lst%% %%#%% precise effects %%#%% 
-temperature %%#%% ev driving radii %%#%% %%#%% %%#%% determined%%per%%]$~ ~$[for %%#%% reason driving 
-range %%#%% inﬂuenced %%#%% temperature %%#%% ]n[ included %%#%% %%#%% model%%lst%% ]b[ %%#%% %%#%% 
-contribute %%#%% differences %%#%% adoption %%#%% countries %%#%% %%#%% spain ]^[ sweden%%per%%]$~ 
-~$[author%%sqt%%s personal copy 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-5%%per%%]$~ ~$[results ]^[ discussion 
-table 2 
-ice vehicle ]^[ electric vehicle %%#%% ]f[ policy valuation%%per%%]$~ 
-~$[cost 
-tailpipe emissions 
-fuel efﬁciencya 
-weight 
-engine/battery pack 
-187 
-ice vehicle 
-electric vehicle 
-$25,000 
-140 co2 g/km 
-19 km/l 
-1550 kg 
-2%%per%%0 l 
-77 kw 
-$35,000 
-0 g/km 
-45 km/lb 
-1950 kg 
-20 kwh 
-li%%dsh%%ion 
-%%#%% section includes %%#%% correlation matrix %%#%% variables %%#%% %%#%% 
-%%#%% model%%lst%% %%#%% descriptive analysis %%#%% ev%%dsh%%speciﬁc factors%%lst%% ]^[ results 
-%%#%% %%#%% statistical model identiﬁed above%%per%%]$~ ~$[stress tests %%#%% %%#%% 
-model %%#%% employed %%#%% determine %%#%% %%#%% robustness ]^[ %%#%% 
-relative impact %%#%% speciﬁc variables%%per%%]$~ ~$[finally%%lst%% %%#%% discuss implications %%#%% arise %%#%% %%#%% results%%lst%% %%#%% provide %%#%% notion %%#%% %%#%% 
-%%#%% policy measures %%#%% %%#%% fuel taxes%%lst%% consumer subsidies%%lst%% 
-]^[ installing charging stations %%#%% inﬂuence ev adoption%%per%% 
-%%#%% 
-based %%#%% %%#%% %%#%% ftp%%dsh%%75 driving cycle%%per%%]$~ 
-~$[this %%#%% %%#%% l/km equivalent ﬁgure%%lst%% ]^[ %%#%% common ]f[ estimating fuel economy 
-]f[ evs%%per%% 
-%%#%% 
-characteristics%%lst%% e%%per%%g%%per%%%%lst%% co2 emissions7 %%#%% order %%#%% calculate %%#%% 
-ﬁnancial incentives %%#%% %%#%% particular policy%%per%%]$~ ~$[an example %%#%% %%#%% 
-%%#%% annual circulation fee %%#%% %%#%% %%#%% amount paid %%#%% dependent 
-%%#%% %%#%% vehicle%%sqt%%s co2 emissions levels%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% ]n[ %%#%% %%#%% 
-indication %%#%% %%#%% savings relative %%#%% %%#%% purchase %%#%% %%#%% ice vehicle 
-(there %%#%% %%#%% basis ]f[ comparison)%%per%%]$~ ~$[in order %%#%% calculate %%#%% value %%#%% 
-%%#%% ﬁnancial incentive policies%%lst%% %%#%% %%#%% information %%#%% %%#%% 
-icev ]^[ ev (a 2012 volkswagen golf ]^[ nissan leaf respectively)%%per%%]$~ ~$[table 2 provides %%#%% description %%#%% %%#%% basic characteristics %%#%% 
-%%#%% vehicles%%per%%]$~ 
-~$[some policies%%lst%% %%#%% %%#%% registration taxes%%lst%% %%#%% applied %%#%% %%#%% 
-one%%dsh%%time basis%%per%%]$~ ~$[for %%#%% policies %%#%% required annual payments 
-e%%per%%g%%per%%%%lst%% circulation fees%%lst%% %%#%% sought %%#%% provide %%#%% %%#%% realistic notion 
-%%#%% %%#%% monetary value%%per%%]$~ ~$[we %%#%% %%#%% %%#%% using %%#%% 3 %%#%% payback 
-period ]^[ consumer discount rate %%#%% 30% (based %%#%% %%#%% %%#%% %%#%% 
-greene et al%%per%%%%lst%% 2005%%scn%% yeh%%lst%% 2007)%%per%%]$~ ~$[for example%%lst%% %%#%% one%%dsh%%time registration subsidy %%#%% $1000 maintains %%#%% value%%lst%% ]b[ %%#%% annual circulation subsidy %%#%% $50 provided %%#%% ﬁnancial incentive %%#%% $90%%per%%81 %%#%% %%#%% 
-analysis%%per%%]$~ 
-~$[for %%#%% countries studied %%#%% %%#%% sample%%lst%% ﬁnancial incentives %%#%% 
-]n[ change considerably %%#%% 2011 ]^[ 2012%%per%%]$~ ~$[in absolute terms 
-%%#%% %%#%% 2 years%%lst%% portugal %%#%% %%#%% $5500 decrease %%#%% ﬁnancial 
-incentives offered %%#%% ev adopters %%#%% finland %%#%% %%#%% $4600 
-increase%%per%%]$~ ~$[otherwise%%lst%% national ﬁnancial incentive levels %%#%% 
-remained constant %%#%% %%#%% time period%%per%% 
-4%%per%%3%%per%%]$~ ~$[ols regression 
-%%#%% variables %%#%% table 1 %%#%% incorporated %%#%% %%#%% ordinary 
-least squares (ols) regression %%#%% %%#%% logit transformation %%#%% %%#%% 
-dependent variable %%#%% normalize distributions %%#%% ev market share%%per%%]$~ 
-~$[this transformation %%#%% appropriate %%#%% data %%#%% skewed%%lst%% ]v[ 
-bounded %%#%% %%#%% %%#%% %%#%% proportion (lesaffre et al%%per%%%%lst%% 2007)%%per%%]$~ 
-~$[a histogram %%#%% %%#%% ev market share %%#%% skewed %%#%% %%#%% right%%lst%% 
-]^[ %%#%% variable %%#%% %%#%% proportion%%per%%]$~ ~$[after %%#%% logit transformation%%lst%% %%#%% 
-%%#%% histogram %%#%% ev market share %%#%% %%#%% normally 
-distributed%%lst%% validating %%#%% approach%%per%%]$~ ~$[the ﬁnal model speciﬁcation 
-%%#%% %%#%% %%#%% 
-log _marshri ¼ α þ β 1 incentivei þ β 2 urban densityi 
-5%%per%%1%%per%%]$~ ~$[correlation analysis %%#%% model variables 
-looking %%#%% relationships %%#%% individual variables %%#%% help 
-%%#%% highlight dynamics %%#%% %%#%% ]n[ evident %%#%% linear regression 
-models%%per%%]$~ ~$[appendix %%#%% provides %%#%% pearson%%sqt%%s correlation coefﬁcient 
-]^[ statistical signiﬁcance %%#%% %%#%% variables %%#%% %%#%% %%#%% base 
-model speciﬁcation%%per%%]$~ ~$[one %%#%% %%#%% patterns %%#%% appears %%#%% 
-analyzing %%#%% matrix %%#%% %%#%% %%#%% %%#%% %%#%% ev%%dsh%%speciﬁc variables 
-%%#%% strongly correlated (price%%lst%% %%#%% %%#%% introduction%%lst%% availability%%lst%% 
-market share%%lst%% ﬁnancial incentives%%lst%% ]^[ charging infrastructure)%%lst%% 
-indicating %%#%% industrial dynamics %%#%% %%#%% interwoven %%#%% 
-%%#%% %%#%% commercialization %%#%% %%#%% radical innovation%%per%%]$~ ~$[another 
-observation %%#%% %%#%% %%#%% ev price variable %%#%% %%#%% negative correlation 
-%%#%% %%#%% country%%sqt%%s market share%%per%%]$~ ~$[mitsubishi mievs %%#%% %%#%% expensive %%#%% countries %%#%% adoption rates %%#%% low e%%per%%g%%per%%%%lst%% turkey%%lst%% 
-china%%lst%% ]^[ %%#%% zealand%%lst%% ]^[ %%#%% %%#%% cheaper %%#%% %%#%% us%%lst%% 
-norway%%lst%% ]^[ japan%%lst%% countries %%#%% relatively %%#%% ev market 
-shares%%per%%]$~ ~$[sometimes %%#%% difference %%#%% dramatic %%#%% %%#%% australia 
-($53,126) ]^[ switzerland ($26,925)%%per%%]$~ ~$[and %%#%% %%#%% %%#%% difﬁcult %%#%% 
-draw %%#%% conclusive results %%#%% %%#%% correlations%%lst%% %%#%% %%#%% 
-provide %%#%% %%#%% basis ]f[ %%#%% analysis%%per%%]$~ 
-~$[an additional correlation %%#%% %%#%% ]n[ included %%#%% appendix %%#%% 
-%%#%% %%#%% charging infrastructure ]^[ %%#%% type %%#%% ev (plug%%dsh%%in 
-hybrid ]v[ purely battery electric)%%per%%]$~ ~$[potentially%%lst%% %%#%% country %%#%% %%#%% 
-%%#%% proportion %%#%% plug%%dsh%%in hybrid%%dsh%%electric vehicles (phevs) 
-%%#%% %%#%% less dependence %%#%% charging stations%%lst%% %%#%% %%#%% 
-weaken %%#%% relationship %%#%% %%#%% country%%sqt%%s ev adoption ]^[ %%#%% 
-charging infrastructure%%per%%]$~ ~$[however%%lst%% preliminary model estimations 
-identify %%#%% percent %%#%% phevs %%#%% ]n[ %%#%% %%#%% statistically signiﬁcant relationship %%#%% %%#%% charging infrastructure ]v[ ev market 
-share%%per%%]$~ ~$[this suggests %%#%% %%#%% proportion %%#%% %%#%% country%%sqt%%s evs %%#%% %%#%% 
-internal combustion engine %%#%% ]n[ signiﬁcantly relate %%#%% %%#%% 
-charging infrastructure ]v[ adoption rate%%per%% 
-5%%per%%2%%per%%]$~ ~$[descriptive analysis %%#%% ev%%dsh%%speciﬁc variables 
-%%#%% addition %%#%% socio%%dsh%%demographic factors %%#%% %%#%% income ]^[ 
-education level%%lst%% %%#%% model %%#%% incorporated %%#%% ev%%dsh%%speciﬁc 
-variables including ﬁnancial incentives%%lst%% charging infrastructure%%lst%% 
-model availability%%lst%% ]^[ presence %%#%% %%#%% local manufacturing facility%%per%%]$~ 
-~$[the descriptive analysis %%#%% %%#%% variables provided below identiﬁes %%#%% signiﬁcant correlations found %%#%% appendix %%#%% %%#%% actually 
-involve %%#%% %%#%% deal %%#%% heterogeneity ]^[ diversity%%lst%% indicating %%#%% 
-existence %%#%% %%#%% inﬂuential factors%%per%% 
-þ β 3 educationi þ β4 envi þ β 5 fueli þ β6 chginf %%#%% 
-þ β 7 elec þ β8 percapvehicles þ β9 ev_price 
-þ β 10 availability þ β11 introduction þ β 12 hq þ εi 
-%%#%% %%#%% subscript %%#%% denotes %%#%% country%%lst%% ]^[ 
-ε %%#%% %%#%% error term%%per%% 
-7 
-%%#%% %%#%% policies analyzed %%#%% %%#%% study%%lst%% co2 emissions %%#%% calculated %%#%% %%#%% 
-vehicle%%sqt%%s tailpipe%%lst%% based %%#%% standard driving cycles e%%per%%g%%per%%%%lst%% nedc ]^[ ftp%%dsh%%75%%per%% 
-5%%per%%2%%per%%1%%per%%]$~ ~$[financial incentives 
-financial incentives ]^[ ev adoption %%#%% fig%%per%% 1 display %%#%% positive 
-]^[ signiﬁcant relationship (p%%dsh%%value of%%per%%01)%%per%%]$~ ~$[even so%%lst%% %%#%% %%#%% 
-substantial variation %%#%% %%#%% data points%%per%%]$~ ~$[in addition%%lst%% %%#%% 
-appears %%#%% %%#%% %%#%% %%#%% %%#%% countries%%per%%]$~ ~$[the ﬁrst %%#%% constituted %%#%% 
-approximately %%#%% bottom half %%#%% %%#%% study sample (14 countries) 
-%%#%% represented %%#%% nations %%#%% ﬁnancial incentives less %%cmp%% 
-$2000%%per%%]$~ ~$[they exhibited lower ev market shares %%#%% %%#%% exceptions 
-%%#%% sweden (0%%per%%30%) ]^[ switzerland (0%%per%%23%)%%lst%% ]^[ %%#%% %%#%% lesser extent 
-author%%sqt%%s personal copy 
-3%%per%%5% 
-$30 
-3%%per%%0% 
-$25 
-2%%per%%5% 
-$20 
-2%%per%%0% 
-$15 
-1%%per%%5% 
-$10 
-1%%per%%0% 
-$5 
-0%%per%%5% 
-$%%dsh%% 
-0%%per%%0% 
-denmark 
-estonia 
-israel 
-norway 
-belgium 
-ireland 
-japan 
-netherlands 
-united kingdom 
-china 
-iceland 
-united states 
-france 
-finland 
-greece 
-austria 
-%%#%% zealand 
-italy 
-portugal 
-slovenia 
-switzerland 
-spain 
-sweden 
-germany 
-croatia 
-czech republic 
-poland 
-australia 
-turkey 
-canada 
-$35 
-ev market share (% %%#%% annual car sales) 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-financial incentives %%#%% 000%%sqt%%s %%#%% dollars 
-188 
-financial incentives 
-ev market share % 
-fig%%per%% 1%%per%%]$~ ~$[financial incentives %%#%% country ]^[ corresponding ev market share ]f[ 2012%%per%% 
-$35,000 
-$30,000 
-total ev subsidy 
-$25,000 
-$20,000 
-$15,000 
-$10,000 
-$5,000 
-denmark 
-estonia 
-israel 
-norway 
-belgium 
-ireland 
-japan 
-netherlands 
-united kingdom 
-china 
-iceland 
-united states 
-france 
-finland 
-greece 
-austria 
-%%#%% zealand 
-italy 
-portugal 
-slovenia 
-switzerland 
-spain 
-sweden 
-germany 
-croatia 
-czech republic 
-australia 
-canada 
-poland 
-turkey 
-$%%dsh%% 
-circulation subisidies 
-registration subsidies 
-fig%%per%% 2%%per%%]$~ ~$[breakdown %%#%% ﬁnancial subsidies types offered %%#%% countries%%per%%]$~ 
-~$[germany (0%%per%%12%)%%lst%% ]^[ canada (0%%per%%13%)%%per%%]$~ ~$[consequently%%lst%% 10 countries 
-%%#%% little ev activity %%#%% measured %%#%% %%#%% ﬁnancial incentives 
-]v[ ev adoption%%per%%]$~ 
-~$[the %%#%% %%#%% %%#%% fig%%per%% 1 %%#%% distinguished %%#%% %%#%% countries %%#%% 
-%%#%% levels %%#%% ﬁnancial incentives ]^[ %%#%% variation %%#%% %%#%% 
-ev market shares%%per%%]$~ ~$[some countries %%#%% %%#%% norway ]^[ estonia 
-matched %%#%% ﬁnancial incentives %%#%% increased ev adoption%%per%%]$~ 
-~$[however%%lst%% %%#%% relationship %%#%% ]n[ uniform %%#%% %%#%% countries%%lst%% 
-including denmark ]^[ belgium%%lst%% offered %%#%% ﬁnancial incentives 
-]b[ %%#%% relatively low levels %%#%% adoption%%per%%]$~ ~$[fig%%per%% 1 suggests %%#%% %%#%% 
-%%#%% factors %%#%% %%cmp%% ﬁnancial incentives %%#%% drive ev adoption%%per%%]$~ 
-~$[in addition %%#%% variables captured %%#%% %%#%% model%%lst%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% country%%dsh%%speciﬁc factors %%#%% inﬂuenced national ev market shares%%per%%]$~ 
-~$[for instance%%lst%% consumers %%#%% estonia adopted 55 evs %%#%% 2011 (mnt%%per%%ee%%lst%% 
-2013)%%lst%% ]b[ %%#%% federal government decided %%#%% purchase approximately 500 mievs %%#%% 2012 (estonia%%lst%% 2011)%%per%%]$~ ~$[that single act largely 
-explains %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% market share %%#%% 2012%%per%%]$~ ~$[conversely%%lst%% 
-norway installed extensive charging infrastructure %%#%% 2009%%lst%% ]^[ %%#%% 
-experienced %%#%% %%#%% gradual increase %%#%% ev adoption rates %%#%% 2010%%lst%% 
-predominantly %%#%% household consumers (sagpa%%lst%% 2012)%%per%%]$~ ~$[an 
-additional factor %%#%% %%#%% ]n[ captured %%#%% %%#%% ﬁnancial incentive 
-variable %%#%% %%#%% subsidy%%sqt%%s recipient%%per%%]$~ ~$[through %%#%% purchase %%#%% %%#%% 
-majority %%#%% evs %%#%% 2012%%lst%% ﬂeet managers %%#%% identiﬁed %%#%% 
-%%#%% %%#%% %%#%% %%#%% adopters (iea%%lst%% 2013)%%per%%]$~ ~$[however belgium%%sqt%%s 
-ﬁnancial incentives %%#%% directed speciﬁcally %%#%% households%%lst%% ]s[ 
-%%#%% %%#%% %%#%% largely missed engaging %%#%% ﬂeet market%%lst%% hurting %%#%% 
-country%%sqt%%s adoption ﬁgures%%per%%]$~ ~$[these country speciﬁc factors provide 
-insight %%#%% factors ]n[ included %%#%% %%#%% model %%#%% %%#%% %%#%% potential 
-%%#%% greatly inﬂuence national ev adoption levels%%per%%]$~ 
-~$[as identiﬁed %%#%% section 4%%lst%% countries employed %%#%% %%#%% 
-types %%#%% ﬁnancial incentives based %%#%% %%#%% vehicle%%sqt%%s tonnage%%lst%% 
-company car status%%lst%% emissions%%lst%% ]^[ powertrain%%lst%% %%#%% %%#%% %%#%% 
-broadly categorized %%#%% %%#%% registration ]v[ circulation subsidies%%per%%]$~ 
-~$[fig%%per%% 2 identiﬁes %%#%% countries approached ﬁnancial incentives 
-according %%#%% policy categories%%per%%]$~ 
-~$[fig%%per%% 2 notes %%#%% %%#%% available ev ﬁnancial incentives (78%) 
-%%#%% %%#%% %%#%% form %%#%% registration %%#%% opposed %%#%% circulation 
-subsidies%%per%%]$~ ~$[the difference %%#%% %%#%% %%#%% %%#%% %%#%% registration 
-funds %%#%% offered %%#%% %%#%% %%#%% %%#%% ev %%#%% purchased %%#%% %%#%% 
-based %%#%% %%#%% vehicle%%sqt%%s annual circulation provided beneﬁts %%#%% %%#%% 
-multiple %%#%% time span%%per%%]$~ ~$[perhaps %%#%% reason %%#%% registration 
-subsidies %%#%% %%#%% dominant form %%#%% ﬁnancial incentives %%#%% due %%#%% 
-consumer %%#%% discount rates ]f[ circulation subsidies%%lst%% effectively 
-lowering %%#%% perceived value%%per%%]$~ ~$[a correlation test %%#%% ev 
-author%%sqt%%s personal copy 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-5%%per%%2%%per%%3%%per%%]$~ ~$[number %%#%% models available ]^[ local ev production 
-%%#%% identiﬁed %%#%% %%#%% correlation matrix%%lst%% %%#%% %%#%% %%#%% ev%%dsh%%speciﬁc 
-variables displayed strong correlations%%per%%]$~ ~$[in order %%#%% %%#%% understand 
-30%%per%%00 
-3%%per%%5% 
-25%%per%%00 
-3%%per%%0% 
-2%%per%%5% 
-20%%per%%00 
-2%%per%%0% 
-15%%per%%00 
-1%%per%%5% 
-10%%per%%00 
-1%%per%%0% 
-5%%per%%00 
-0%%per%%5% 
-0%%per%%00 
-0%%per%%0% 
-norway 
-netherlands 
-estonia 
-austria 
-israel 
-switzerland 
-ireland 
-denmark 
-japan 
-portugal 
-sweden 
-slovenia 
-belgium 
-france 
-germany 
-united kingdom 
-czech republic 
-united states 
-spain 
-canada 
-iceland 
-finland 
-italy 
-australia 
-poland 
-%%#%% zealand 
-turkey 
-greece 
-china 
-croatia 
-charging stations %%#%% 100,000 residents 
-5%%per%%2%%per%%2%%per%%]$~ ~$[charging infrastructure 
-fig%%per%% 3 exhibits %%#%% positive ]^[ signiﬁcant relationship (p%%dsh%%value 
-of%%per%%000) %%#%% charging stations (adjusted ]f[ population) ]^[ 
-ev adoption rates%%per%%]$~ ~$[despite %%#%% overall positive correlation%%lst%% %%#%% 
-%%#%% examples %%#%% wide discrepancies %%#%% %%#%% data %%#%% evidenced %%#%% 
-estonia ]^[ israel%%per%%]$~ ~$[both countries %%#%% similar proportions %%#%% 
-charging stations%%lst%% ]b[ estonia %%#%% %%#%% ev adoption level 11 times 
-%%#%% %%cmp%% %%#%% %%#%% israel%%per%%]$~ ~$[there %%#%% appears %%#%% %%#%% seven countries 
-%%#%% %%#%% low levels %%#%% %%#%% charging stations ]^[ ev adoption%%per%%]$~ 
-~$[not %%#%% %%#%% information %%#%% available %%#%% national charging 
-infrastructure %%#%% ﬁnancial incentives%%lst%% %%#%% %%cmp%% %%#%% %%#%% 
-countries %%#%% %%#%% largely installed %%#%% local municipalities (bakker 
-]^[ trip%%lst%% 2013)%%per%%]$~ ~$[among %%#%% countries %%#%% %%#%% sample%%lst%% %%#%% %%#%% 
-%%#%% %%#%% %%#%% approaches %%#%% building charging infrastructure %%#%% federal mandate (estonia) %%#%% auto manufacturer led 
-(japan) %%#%% local government initiative (belgium) %%#%% public–private 
-partnerships (norway) (estonia%%lst%% 2011%%scn%% sagpa%%lst%% 2012%%scn%% asbe%%lst%% 2013%%scn%% 
-nobil%%lst%% 2012)%%per%%]$~ ~$[this variety %%#%% approach %%#%% charging infrastructure 
-development %%#%% relates %%#%% %%#%% factors %%#%% inﬂuence ev 
-adoption e%%per%%g%%per%%%%lst%% local involvement%%per%%]$~ 
-~$[analyzing figs%%per%% 1 ]^[ 3%%lst%% ﬁve (out %%#%% %%#%% 30) countries %%#%% 
-%%#%% little activity %%#%% %%#%% introductory phase %%#%% evs%%lst%% %%#%% 
-measured %%#%% ﬁnancial incentives%%lst%% adoption%%lst%% ]v[ charging infrastructure installation%%per%%]$~ ~$[thus%%lst%% countries %%#%% %%#%% study %%#%% %%#%% divided %%#%% 
-%%#%% %%#%% %%#%% divergent attitudes %%#%% ev adoption %%#%% 
-reﬂected %%#%% government policy ]^[ consumer purchase behavior%%per%%]$~ 
-~$[one set %%#%% countries %%#%% %%#%% %%#%% actively engaged %%#%% %%#%% ev 
-introductory market %%#%% %%#%% %%#%% appeared %%#%% %%#%% %%#%% little 
-interest%%per%%]$~ ~$[however%%lst%% %%#%% discrepancy %%#%% %%#%% %%#%% %%#%% %%#%% 
-%%#%% %%#%% little effect %%#%% %%#%% overall success ]v[ failure %%#%% evs %%#%% 
-%%#%% countries invested %%#%% %%#%% adoption represent %%#%% substantial 
-majority %%#%% global gdp based %%#%% national purchasing power parity 
-(world bank%%lst%% 2013c)%%per%%]$~ 
-~$[ev market share (%of annual car sales) 
-market share ]^[ registration/circulation subsidies %%#%% ]n[ return 
-%%#%% signiﬁcant value suggesting %%#%% %%#%% %%#%% %%#%% total ﬁnancial 
-incentive value ]^[ ]n[ %%#%% speciﬁc policy type %%#%% %%#%% relevant 
-]f[ adoption rates%%per%% 
-189 
-charging stations 
-ev market share % 
-16 
-3%%per%%0 
-14 
-2%%per%%5 
-12 
-10 
-2%%per%%0 
+~$[efficient software—based fault isolation 
+robert vvahbe 
+steven lucco 
+thomas e%%per%%]$~ ~$[anderson 
+susan l%%per%%]$~ ~$[graham 
+computer science division 
+university %%#%% california 
+berkeley%%lst%% ca 94720 
+abstract 
+%%#%% %%#%% %%#%% provide fault isolation %%#%% cooperating 
+software modules %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% own address 
+space%%per%%]$~ ~$[however%%lst%% ]f[ tightly—coupled modules%%lst%% %%#%% so— 
+lution incurs prohibitive context switch overhead%%per%%]$~ ~$[in 
+%%#%% paper%%lst%% %%#%% %%#%% %%#%% software approach %%#%% imple— 
+menting fault isolation %%#%% %%#%% single address space%%per%%]$~ 
+~$[our approach %%#%% %%#%% parts%%per%%]$~ ~$[first%%lst%% %%#%% load %%#%% code 
+]^[ data ]f[ %%#%% distrusted module %%#%% %%#%% own fault do%%dsh%% 
+main%%lst%% %%#%% logically separate portion %%#%% %%#%% application’s 
+address space%%per%%]$~ ~$[second%%lst%% %%#%% modify %%#%% object code %%#%% %%#%% 
+distrusted module %%#%% prevent %%#%% %%#%% writing ]v[ jump%%dsh%% 
+ing %%#%% %%#%% address outside %%#%% fault domain%%per%%]$~ ~$[both %%#%% 
+software operations %%#%% portable ]^[ programming lan— 
+guage independent%%per%%]$~ 
+~$[our approach poses %%#%% tradeoff relative %%#%% hardware 
+fault isolation%%cln%% substantially faster communication be— 
+tween fault domains%%lst%% %%#%% %%#%% cost %%#%% slightly increased 
+execution time ]f[ distrusted modules %%#%% demon— 
+strate %%#%% ]f[ frequently communicating modules%%lst%% im~ 
+plementing fault isolation %%#%% software %%#%% %%cmp%% hard%%dsh%% 
+ware %%#%% substantially improve end%%dsh%%to—end application 
+performance%%per%%]$~ 
+~$[this %%#%% %%#%% supported %%#%% %%#%% %%#%% %%#%% national sci— 
+ence foundation (cda%%dsh%%8722788)%%lst%% defense advanced research 
+projects agency (darpa) %%#%% grant mda972—92%%dsh%%j%%dsh%%1028 ]^[ 
+contracts dabt63%%dsh%%92%%sqt%%c%%dsh%%0026 ]^[ n00600%%dsh%%93—c—2481%%lst%% %%#%% digi%%dsh%% 
+tal equipment corporation (the systems research center ]^[ 
+%%#%% external research program)%%lst%% ]^[ %%#%% at&t foundation%%per%%]$~ 
+~$[anderson %%#%% %%#%% supported %%#%% %%#%% national science foundation 
+%%#%% investigator award%%per%%]$~ ~$[the content %%#%% %%#%% paper %%#%% ]n[ 
+necessarily reﬂect %%#%% position ]v[ %%#%% policy %%#%% %%#%% government 
+]^[ %%#%% ofﬁcial endorsement %%#%% %%#%% inferred%%per%%]$~ 
+~$[email%%cln%% {rwahbe %%lst%% lucco%%lst%% tea%%lst%% graham}@cs %%per%%berkeley%%per%%edu 
+permission %%#%% copy %%#%% fee %%#%% ]v[ %%#%% %%#%% (his material %%#%% 
+granted provided %%#%% hie cvpies %%#%% %%dqt%%0‘ %%#%% 0! distributed ]f[ 
+direct commercial advantage%%per%% %%#%% acm copyright notice ]^[ %%#%% 
+mile %%#%% %%#%% publicaiion ]^[ ms data appear%%lst%% ]^[ notice %%#%% %%#%% 
+%%#%% copying %%#%% %%#%% permissmn %%#%% (he assomalion ]f[ computing 
+machinery%%per%%]$~ ~$[to copy otherwise%%per%% ]v[ %%#%% republish%%lst%% requires %%#%% fee 
+and/or specnfic permissron%%per%%]$~ 
+~$[sigops %%sqt%%93/12/93/n%%per%%c%%per%%%%lst%% usa 
+31993 acm 0%%dsh%%83791%%dsh%%632%%dsh%%8/93/0012%%per%%%%per%%%%per%%$l50 
+1 introduction 
+application programs %%#%% achieve extensibility %%#%% 
+incorporating independently developed software mod— 
+ules%%per%%]$~ ~$[however%%lst%% faults %%#%% extension code %%#%% render %%#%% 
+software system unreliable%%lst%% ]v[ %%#%% dangerous%%lst%% %%#%% 
+%%#%% faults %%#%% corrupt permanent data%%per%%]$~ ~$[to in— 
+crease %%#%% reliability %%#%% %%#%% applications%%lst%% %%#%% operat— 
+ing system %%#%% provide services %%#%% prevent faults %%#%% 
+distrusted modules %%#%% corrupting application data%%per%%]$~ 
+~$[such fault isolation services %%#%% facilitate software de%%dsh%% 
+velopment %%#%% helping %%#%% identify sources %%#%% system fail— 
+ure%%per%%]$~ 
+~$[for example%%lst%% %%#%% postgres database manager in— 
+cludes %%#%% extensible type system [st087]%%per%%]$~ ~$[using %%#%% 
+facility%%lst%% postgres queries %%#%% refer %%#%% general—purpose 
+code %%#%% deﬁnes constructors%%lst%% destructors%%lst%% ]^[ pred— 
+icates ]f[ user—deﬁned data types %%#%% %%#%% geometric 
+objects%%per%%]$~ ~$[without fault isolation%%lst%% %%#%% query %%#%% %%#%% 
+extension code %%#%% interfere %%#%% %%#%% unrelated query 
+]v[ corrupt %%#%% database%%per%%]$~ 
+~$[similarly%%lst%% recent operating system research %%#%% fo— 
+cused %%#%% %%#%% %%#%% easier ]f[ third party vendors 
+%%#%% enhance %%#%% %%#%% %%#%% operating system%%per%%]$~ ~$[an ex 
+ample %%#%% micro%%dsh%%kernel design%%scn%% %%#%% %%#%% %%#%% operat— 
+ing system %%#%% implemented %%#%% user—level servers %%#%% 
+%%#%% %%#%% easily modiﬁed ]v[ replaced%%per%%]$~ ~$[more gener— 
+ally%%lst%% %%#%% systems %%#%% added extension code %%#%% 
+%%#%% operating system%%lst%% ]f[ example%%lst%% %%#%% bsd network 
+packet ﬁlter [mra87%%lst%% mjq3]7 application—speciﬁc vir%%dsh%% 
+tual memory management [hc92]%%per%% ]^[ active mes— 
+sages [vcgsqq]%%per%%]$~ ~$[among industry systems%%lst%% microsoft’s 
+object linking ]^[ embedding system [cla92] %%#%% 
+link %%#%% independently developed software mod— 
+tiles%%per%%]$~ ~$[also%%lst%% %%#%% quark xprese desktop publishing sys%%dsh%% 
+tem [dy592] %%#%% structured %%#%% support incorporation %%#%% 
+general—purpose third party code%%per%%]$~ ~$[as %%#%% postgres%%lst%% 
+faults %%#%% extension modules %%#%% render %%#%% %%#%% %%#%% 
+systems unreliable%%per%% %%per%%]$~ 
+~$[one %%#%% %%#%% provide fault isolation %%#%% cooperat— 
+ing software modules %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% own address 
+space%%per%%]$~ ~$[using remote procedure call (rfc) [bn84]%%lst%% 
+modules %%#%% separate address spaces %%#%% call %%#%% %%#%% 
+%%#%% %%#%% %%#%% normal procedure call interface%%per%%]$~ ~$[hard%%dsh%% 
+ware page tables prevent %%#%% code %%#%% %%#%% address space 
+%%#%% corrupting %%#%% contents %%#%% another%%per%%]$~ 
+~$[unfortunately%%lst%% %%#%% %%#%% %%#%% %%#%% performance cost 
+%%#%% providing fault isolation %%#%% separate address 
+spaces%%per%%]$~ ~$[transferring control %%#%% protection bound— 
+aries %%#%% expensive%%lst%% ]^[ %%#%% ]n[ necessarily scale 
+%%#%% improvements %%#%% %%#%% processor’s integer perforv 
+mance [albl91]%%per%%]$~ ~$[a cross—address%%dsh%%space rpc requires 
+%%#%% least%%cln%% %%#%% trap %%#%% %%#%% operating system kernel%%lst%% copy— 
+ing %%#%% argument %%#%% %%#%% caller %%#%% %%#%% callee%%lst%% sav~ 
+ing ]^[ restoring registers%%lst%% switching hardware ad— 
+dress spaces (on %%#%% machines%%lst%% ﬂushing %%#%% transla— 
+tion lookaside buffer)%%lst%% ]^[ %%#%% trap %%#%% %%#%% user level%%per%%]$~ 
+~$[these operations %%#%% %%#%% repeated %%#%% rpc re— 
+turn%%per%%]$~ ~$[the execution time overhead %%#%% %%#%% rpc%%lst%% %%#%% 
+%%#%% %%#%% highly optimized implementation%%lst%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% orders %%#%% magnitude %%#%% %%cmp%% 
+%%#%% execution time overhead %%#%% %%#%% normal procedure 
+call [ball90%%lst%% albl91]%%per%%]$~ 
+~$[the goal %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% fault isolation cheap 
+%%#%% %%#%% system developers %%#%% ignore %%#%% perfor— 
+mance effect %%#%% choosing %%#%% modules %%#%% %%#%% %%#%% 
+separate fault domains%%per%%]$~ ~$[in %%#%% %%#%% %%#%% fault iso 
+lation %%#%% %%#%% useful%%lst%% cross%%dsh%%domain procedure calls 
+%%#%% frequent ]y[ involve %%#%% %%#%% moderate amount %%#%% 
+computation %%#%% call%%per%%]$~ ~$[in %%#%% situation %%#%% %%#%% imprac%%dsh%% 
+tical %%#%% isolate %%#%% logically separate module %%#%% 
+%%#%% own address space%%lst%% %%cmp%% %%#%% %%#%% cost %%#%% crossing 
+hardware protection boundaries%%per%%]$~ 
+~$[we propose a%%per%% software approach %%#%% implementing 
+fault isolation %%#%% %%#%% single address space%%per%%]$~ ~$[our ap— 
+proach %%#%% %%#%% parts%%per%%]$~ ~$[first%%lst%% %%#%% load %%#%% code ]^[ data 
+]f[ a%%per%% distrusted module %%#%% %%#%% own fault domain%%lst%% %%#%% 
+logically separate portion %%#%% %%#%% application’s address 
+space%%per%%]$~ ~$[a fault domain%%lst%% %%#%% addition %%#%% comprising %%#%% cori— 
+tiguous region %%#%% memory %%#%% %%#%% address space%%lst%% %%#%% 
+%%#%% unique identiﬁer %%#%% %%#%% %%#%% %%#%% control %%#%% access %%#%% 
+process resources %%#%% %%#%% ﬁle descriptors%%per%%]$~ ~$[second%%lst%% %%#%% 
+modify %%#%% object code %%#%% %%#%% distrusted module %%#%% pre— 
+vent %%#%% %%#%% writing ]v[ jumping %%#%% %%#%% address outside 
+%%#%% fault domain%%per%%]$~ ~$[program modules isolated %%#%% sepa— 
+rate software—enforced fault domains %%#%% ]n[ modify 
+%%#%% other’s data ]v[ execute %%#%% other’s code except 
+%%#%% %%#%% explicit cross%%dsh%%fault%%dsh%%domain rpc interface%%per%%]$~ 
+~$[we %%#%% identiﬁed %%#%% programming%%dsh%%language%%dsh%% 
+independent transformation strategies %%#%% %%#%% render 
+object code unable %%#%% escape %%#%% own code ]^[ data 
+segments%%per%%]$~ ~$[in %%#%% paper%%lst%% %%#%% concentrate %%#%% %%#%% sim— 
+204 
+ple transformation technique%%lst%% called sandboxing%%lst%% %%#%% 
+%%#%% slightly increases %%#%% execution time %%#%% %%#%% mod%%dsh%% 
+iﬁed object code%%per%%]$~ ~$[we %%#%% investigate techniques %%#%% 
+provide %%#%% debugging information ]b[ %%#%% incur 
+%%#%% execution time overhead%%per%%]$~ 
+~$[our approach poses %%#%% tradeoff relative %%#%% hardware— 
+based fault isolation%%per%%]$~ ~$[because %%#%% eliminate %%#%% %%#%% %%#%% 
+cross hardware boundaries%%lst%% %%#%% %%#%% offer substantially 
+lower%%dsh%%cost rpc %%#%% fault domains%%per%%]$~ ~$[a safe rpc %%#%% 
+%%#%% prototype implementation takes roughly 1%%per%%1 %%#%% %%#%% %%#%% 
+decstation 5000/240 ]^[ roughly 0%%per%%8,us %%#%% %%#%% dec al%%dsh%% 
+pha 400%%lst%% %%#%% %%cmp%% %%#%% order %%#%% magnitude faster %%cmp%% 
+%%#%% existing rfc system%%per%%]$~ ~$[this reduction %%#%% rfc time 
+comes %%#%% %%#%% cost %%#%% slightly increased distrusted module 
+execution time%%per%%]$~ ~$[on %%#%% test suite including %%#%% %%#%% %%#%% 
+spe092 benchmarks%%lst%% sandboxing incurs %%#%% average %%#%% 
+4% execution time overhead %%#%% %%#%% %%#%% decstation 
+]^[ %%#%% alpha%%per%%]$~ 
+~$[software—enforced fault isolation %%#%% %%#%% %%#%% %%#%% 
+counter%%dsh%%intuitive%%cln%% %%#%% %%#%% slowing %%#%% %%#%% common 
+%%#%% (normal execution) %%#%% speed %%#%% %%#%% uncommon 
+%%#%% (crossrdomain communication)%%per%%]$~ ~$[but ]f[ fre%%dsh%% 
+quently communicating fault domains%%lst%% %%#%% approach 
+%%#%% offer substantially %%#%% end—to—end performance%%per%%]$~ 
+~$[to demonstrate this%%lst%% %%#%% applied software—enforced 
+fault isolation %%#%% %%#%% postgres database system run%%dsh%% 
+ning %%#%% sequoia 2000 benchmark%%per%%]$~ ~$[the benchmark 
+makes %%#%% %%#%% %%#%% postgres extensible data%%per%% type sys— 
+tem %%#%% deﬁne geometric operators%%per%%]$~ ~$[for %%#%% bench— 
+mark%%lst%% %%#%% software approach reduced fault isolation 
+overhead %%#%% %%#%% %%cmp%% %%#%% factor %%#%% %%#%% %%#%% %%#%% decsta— 
+tion 5000/240%%per%%]$~ 
+~$[a software approach %%#%% provides %%#%% tradeoif %%#%% 
+tween performance ]^[ level %%#%% distrust%%per%%]$~ ~$[if %%#%% mod— 
+ules %%#%% a%%per%% program %%#%% trusted %%#%% %%#%% %%#%% dis%%dsh%% 
+trusted (as %%#%% %%#%% %%#%% ease %%#%% extension code)%%lst%% %%#%% 
+%%#%% distrusted modules incur %%#%% execution time over%%dsh%% 
+head%%per%%]$~ ~$[code %%#%% trusted domains %%#%% run %%#%% %%#%% speed%%per%%]$~ 
+~$[similarly%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% techniques %%#%% im%%dsh%% 
+plement %%#%% security%%lst%% preventing distrusted code %%#%% 
+%%#%% reading data outside %%#%% %%#%% domain%%lst%% %%#%% %%#%% cost %%#%% 
+%%#%% execution time overhead%%per%%]$~ ~$[we quantify %%#%% ef» 
+fect %%#%% section 5%%per%%]$~ 
+~$[the remainder %%#%% %%#%% paper %%#%% organized %%#%% follows%%per%%]$~ 
+~$[section 2 provides %%#%% examples %%#%% systems %%#%% re%%dsh%% 
+quire frequent communication %%#%% fault domains%%per%%]$~ 
+~$[section 3 outlines %%#%% %%#%% modify object code %%#%% pre— 
+vent %%#%% %%#%% generating illegal addresses%%per%%]$~ ~$[section 4 
+describes %%#%% %%#%% implement low latency cross—faultv 
+domain rpc%%per%%]$~ ~$[section 5 %%#%% performance results 
+]f[ %%#%% prototype%%lst%% ]^[ ﬁnally section 6 discusses %%#%% 
+related work%%per%% 
+2 background 
+%%#%% %%#%% section%%lst%% %%#%% characterize %%#%% %%#%% detail %%#%% 
+type %%#%% application %%#%% %%#%% beneﬁt %%#%% software— 
+enforced fault isolation%%per%%]$~ ~$[we defer %%#%% description 
+%%#%% %%#%% postgres extensible type system %%#%% section 
+5%%lst%% %%#%% %%#%% performance measurements ]f[ %%#%% ap— 
+plication%%per%%]$~ 
+~$[the operating systems community %%#%% focused con%%dsh%% 
+siderable attention %%#%% supporting kernel extensibil%%dsh%% 
+ity%%per%%]$~ ~$[for example%%lst%% %%#%% unix vnode interface %%#%% de%%dsh%% 
+signed %%#%% %%#%% %%#%% easy %%#%% add %%#%% %%#%% ﬁle system %%#%% 
+unix [kle86]%%per%%]$~ ~$[unfortunately%%lst%% %%#%% %%#%% %%#%% expensive %%#%% 
+forward %%#%% ﬁle system operation %%#%% user level%%lst%% ]s[ 
+typically %%#%% ﬁle system implementations %%#%% added 
+directly %%#%% %%#%% kernel%%per%% (the andrew ﬁle system %%#%% 
+largely implemented %%#%% user level%%lst%% ]b[ %%#%% maintains %%#%% 
+kernel cache ]f[ performance [hkm%%sqt%%l%%sqt%%bsh epoch’s ter— 
+tiary storage ﬁle system [web93] %%#%% %%#%% example %%#%% op— 
+erating system kernel code developed %%#%% %%#%% third party 
+vendor%%per%%]$~ 
+~$[another example %%#%% user—programmable %%#%% perfor— 
+mance i/o systems%%per%%]$~ ~$[if data %%#%% arriving %%#%% %%#%% i/o 
+channel %%#%% %%#%% %%#%% %%#%% rate%%lst%% performance %%#%% %%#%% 
+degraded substantially %%cmp%% control %%#%% %%#%% %%#%% transferred 
+%%#%% user level %%#%% manipulate %%#%% incoming data [fp93]%%per%%]$~ 
+~$[similarly%%lst%% active messages provide %%#%% performance 
+message handling %%#%% distributed—memory multiproces%%dsh%% 
+sors [vcg8921%%per%%]$~ ~$[typically%%lst%% %%#%% message handlers %%#%% 
+application%%dsh%%speciﬁc%%lst%% ]b[ unless %%#%% network controller 
+%%#%% %%#%% accessed %%#%% user level [thi92]%%lst%% %%#%% message 
+handlers %%#%% %%#%% compiled %%#%% %%#%% kernel ]f[ reason— 
+able performance%%per%%]$~ 
+~$[a user%%dsh%%level example %%#%% %%#%% quark xpress desktop 
+publishing system%%per%%]$~ ~$[one %%#%% purchase third party soft%%dsh%% 
+ware %%#%% %%#%% extend %%#%% system %%#%% perform func~ 
+tions unforeseen %%#%% %%#%% original designers [dysqq]%%per%%]$~ ~$[at 
+%%#%% %%#%% time%%lst%% %%#%% extensibility %%#%% caused quark %%#%% 
+number %%#%% problems%%per%%]$~ ~$[because %%#%% %%#%% lack %%#%% efﬁcient 
+fault domains %%#%% %%#%% personal computers %%#%% quark 
+xpress runs%%lst%% extension modules %%#%% corrupt quark’s 
+internal data structures hence%%lst%% bugs %%#%% third party 
+code %%#%% %%#%% %%#%% quark system appear unreliable%%lst%% 
+%%cmp%% end—users %%#%% ]n[ distinguish %%#%% sources %%#%% 
+system failure%%per%%]$~ 
+~$[all %%#%% examples share %%#%% characteristics%%per%%]$~ ~$[first%%lst%% 
+using hardware fault isolation %%#%% result %%#%% %%#%% signif%%dsh%% 
+icant portion %%#%% %%#%% overall execution time %%#%% spent 
+%%#%% operating system context switch code%%per%%]$~ ~$[second%%lst%% %%#%% 
+%%#%% %%#%% amount %%#%% code %%#%% distrusted%%scn%% %%#%% %%#%% %%#%% exe%%dsh%% 
+cution time %%#%% spent %%#%% trusted code%%per%%]$~ ~$[in %%#%% situation%%lst%% 
+software fault isolation %%#%% %%#%% %%#%% %%#%% %%#%% efﬁcient 
+%%cmp%% hardware fault isolation %%cmp%% %%#%% sharply re— 
+duces %%#%% time spent crossing fault domain boundaries%%lst%% 
+%%#%% %%#%% slightly increasing %%#%% time spent executing 
+205 
+%%#%% distrusted %%#%% %%#%% %%#%% application%%per%%]$~ ~$[section 5 quan%%dsh%% 
+tiﬁes %%#%% trade%%dsh%%off %%#%% domain—crossing overhead 
+]^[ application execution time overhead%%lst%% ]^[ demon 
+strates %%#%% %%#%% %%cmp%% domain—crossing overhead repre— 
+sents %%#%% modest proportion %%#%% %%#%% total application ex— 
+ecution time%%lst%% software—enforced fault isolation %%#%% cost 
+effective%%per%% 
+3 software%%dsh%%enforced fault iso%%dsh%% 
+lation 
+%%#%% %%#%% section%%lst%% %%#%% outline %%#%% software encapsula— 
+tion techniques ]f[ transforming %%#%% distrusted module 
+]s[ %%#%% %%#%% %%#%% ]n[ escape %%#%% fault domain%%per%%]$~ ~$[we ﬁrst 
+describe %%#%% technique %%#%% allows users %%#%% pinpoint %%#%% 
+location %%#%% faults %%#%% %%#%% software module%%per%%]$~ ~$[next%%lst%% %%#%% 
+introduce %%#%% technique%%lst%% called sandboxing%%lst%% %%#%% %%#%% iso%%dsh%% 
+late %%#%% distrusted module %%#%% %%#%% slightly increasing 
+%%#%% execution time%%per%%]$~ ~$[section 5 provides %%#%% performance 
+analysis %%#%% %%#%% techinique%%per%%]$~ ~$[finally%%lst%% %%#%% %%#%% %%#%% soft%%dsh%% 
+ware encapsulation technique %%#%% allows cooperating 
+fault domains %%#%% share memory%%per%%]$~ ~$[the remainder %%#%% 
+%%#%% discussion assumes %%#%% %%#%% operating %%#%% %%#%% risc 
+load /storc architecture%%lst%% %%#%% %%#%% techniques %%#%% 
+%%#%% extended %%#%% handle ciscs%%per%%]$~ ~$[section 4 describes 
+%%#%% %%#%% implement safe ]^[ efficient cross—fault—domain 
+rpc%%per%%]$~ 
+~$[we divide %%#%% application’s virtual address space %%#%% 
+segments%%lst%% aligned ]s[ %%#%% %%#%% virtual addresses %%#%% 
+%%#%% segment share %%#%% unique pattern %%#%% upper bits%%lst%% called 
+%%#%% segment identiﬁer%%per%%]$~ ~$[a fault domain consists %%#%% %%#%% 
+segments%%lst%% %%#%% ]f[ %%#%% distrusted module’s code%%lst%% %%#%% %%#%% 
+]f[ %%#%% static data%%lst%% heap ]^[ stack%%per%%]$~ ~$[the speciﬁc seg%%dsh%% 
+ment addresses %%#%% determined %%#%% load time%%per%%]$~ 
+~$[software encapsulation transforms %%#%% distrusted 
+module‘s object code ]s[ %%#%% %%#%% %%#%% jump %%#%% %%#%% tar%%dsh%% 
+%%#%% %%#%% %%#%% code segment%%lst%% ]^[ write %%#%% %%#%% addresses 
+%%#%% %%#%% data segment%%per%%]$~ ~$[hence%%lst%% %%#%% legal jump tar— 
+%%#%% %%#%% %%#%% distrusted module %%#%% %%#%% %%#%% upper bit 
+pattern (segment identiﬁer)%%scn%% similarly%%lst%% %%#%% legal data 
+addresses generated %%#%% %%#%% distrusted module share 
+%%#%% %%#%% segment identiﬁer%%per%%]$~ ~$[separate code ]^[ data 
+segments %%#%% necessary %%#%% prevent %%#%% module %%#%% mod— 
+%%cmp%%ying %%#%% code segmentl%%per%%]$~ ~$[it %%#%% %%#%% ]f[ %%#%% address 
+%%#%% %%#%% correct segment identiﬁer %%#%% %%#%% illegal%%lst%% ]f[ in%%dsh%% 
+stance %%cmp%% %%#%% refers %%#%% %%#%% unmapped page%%per%%]$~ ~$[this %%#%% caught 
+%%#%% %%#%% normal operating system page fault mechanism%%per%% 
+3%%per%%1 
+%%#%% unsafe mstmctzan %%#%% %%#%% instruction %%#%% jumps %%#%% 
+]v[ stores %%#%% %%#%% address %%#%% %%#%% ]n[ %%#%% statically ver— 
+segment matching 
+10111%%dqt%% system supports dynamic linking %%#%% %%#%% special 
+interface%%per%% 
+iﬁed %%#%% %%#%% %%#%% %%#%% correct segment%%per%%]$~ ~$[most control 
+transfer instructions%%lst%% %%#%% %%#%% program‘counter‘relative 
+branches%%lst%% %%#%% %%#%% statically veriﬁed%%per%%]$~ ~$[stores %%#%% static 
+variables %%#%% %%#%% %%#%% immediate addressing mode ]^[ 
+%%#%% %%#%% statically veriﬁed%%per%%]$~ ~$[however%%lst%% jumps %%#%% reg— 
+isters%%lst%% %%#%% commonly %%#%% %%#%% implement procedure 
+returns%%lst%% ]^[ stores %%#%% %%#%% %%#%% register %%#%% hold %%#%% 
+target address%%lst%% %%#%% ]n[ %%#%% statically veriﬁed%%per%%]$~ 
+~$[a straightforward approach %%#%% preventing %%#%% %%#%% %%#%% 
+illegal addresses %%#%% %%#%% insert checking code %%#%% eve 
+ery unsafe instruction%%per%%]$~ ~$[the checking code determines 
+%%#%% %%#%% unsafe instruction’s target address %%#%% %%#%% 
+correct segment identiﬁer%%per%%]$~ ~$[if %%#%% check fails%%lst%% %%#%% in%%dsh%% 
+serted code %%#%% trap %%#%% %%#%% system error routine outside 
+%%#%% distrusted module’s fault domain%%per%%]$~ ~$[we call %%#%% 
+software encapsulation technique segment matching%%per%%]$~ 
+~$[on typical risc architectures%%lst%% segment matching 
+requires %%#%% instructions%%per%%]$~ ~$[figure 1 lists %%#%% pseudo—code 
+fragment ]f[ segment matching%%per%%]$~ ~$[the ﬁrst instruction 
+%%#%% %%#%% fragment moves %%#%% store target address %%#%% 
+%%#%% dedzcated register%%per%%]$~ ~$[dedicated registers %%#%% %%#%% %%#%% 
+%%#%% inserted code ]^[ %%#%% %%#%% modiﬁed %%#%% code %%#%% 
+%%#%% distrusted module%%per%%]$~ ~$[they %%#%% necessary %%cmp%% 
+code %%cmp%%where %%#%% %%#%% distrusted module %%#%% arrange 
+%%#%% jump directly %%#%% %%#%% unsafe store instruction%%lst%% by%%dsh%% 
+passing %%#%% inserted check%%per%%]$~ ~$[hence%%lst%% %%#%% transform %%#%% 
+unsafe store ]^[ jump instructions %%#%% %%#%% %%#%% dedicated 
+register%%per%%]$~ 
+~$[all %%#%% software encapsulation techniques %%#%% 
+%%#%% %%#%% paper require dedicated registersz%%per%%]$~ ~$[segment 
+matching requires %%#%% dedicated registers%%cln%% %%#%% %%#%% hold 
+addresses %%#%% %%#%% code segment%%lst%% %%#%% %%#%% hold addresses 
+%%#%% %%#%% data segment%%lst%% %%#%% %%#%% hold %%#%% segment shift 
+amount%%lst%% ]^[ %%#%% %%#%% hold %%#%% segment identiﬁer%%per%%]$~ 
+~$[using dedicated registers %%#%% %%#%% %%#%% impact %%#%% 
+%%#%% execution time %%#%% %%#%% distrusted module%%per%%]$~ ~$[however%%lst%% 
+%%#%% %%#%% modern risc architectures%%lst%% including %%#%% 
+mips ]^[ alpha%%lst%% %%#%% %%#%% least 32 registers%%lst%% %%#%% %%#%% 
+retarget %%#%% compiler %%#%% %%#%% %%#%% %%#%% register set %%#%% 
+minimal performance impact%%per%%]$~ ~$[for example7 section 5 
+%%#%% that%%lst%% %%#%% %%#%% decstation 5000/240%%lst%% reducing %%#%% 
+ﬁve registers %%#%% register set available %%#%% %%#%% %%#%% compiler 
+(gee) %%#%% ]n[ %%#%% %%#%% signiﬁcant effect %%#%% %%#%% average 
+execution time %%#%% %%#%% spec92 benchmarks%%per%% 
+3%%per%%2 address sandboxing 
+%%#%% segment matching technique %%#%% %%#%% advantage 
+%%#%% %%#%% %%#%% pinpoint %%#%% offending instruction%%per%%]$~ ~$[this 
+capability %%#%% useful %%#%% software development%%per%%]$~ ~$[we 
+%%#%% reduce runtime overhead %%#%% further%%lst%% %%#%% %%#%% cost 
+%%#%% providing %%#%% information %%#%% %%#%% source %%#%% faults%%per%% 
+2 %%#%% architectures %%#%% lenitccl register sets%%lst%% %%#%% %%#%% %%#%% 
+80386 [int86]%%lst%% %%#%% %%#%% %%#%% %%#%% encapsulate %%#%% module using %%#%% re%%dsh%% 
+served registers %%#%% restricting control ﬂow %%#%% %%#%% fault domain%%per%% 
+206 
+dedicated—reg <2 target address 
+lilove target address %%#%% dedicated register%%per%% 
+scratch%%dsh%%reg <= (dedicated—reg>>shift~reg) 
+right—shift address %%#%% %%#%% segment identiﬁer%%per%% 
+scratch—reg %%#%% ]n[ %%#%% dedicated register%%per%% 
+shift%%dsh%%reg %%#%% %%#%% dedicated register%%per%% 
+%%cmp%% scratch—reg ]^[ segment—reg 
+segment%%dsh%%reg %%#%% %%#%% dedicated register%%per%% 
+trap %%cmp%% ]n[ equal 
+trap %%cmp%% store address %%#%% outside %%#%% segment%%per%% 
+store instruction %%#%% dedicated%%dsh%%reg 
+figure 1%%cln%% assembly pseudo code ]f[ segment matching%%per%% 
+dedicated—reg %%#%% target%%dsh%%reghand—mask—reg 
+%%#%% dedicated register and—mask%%dsh%%reg 
+%%#%% %%#%% segment identiﬁer bits%%per%% 
+dedicated—reg <2 dedicated%%dsh%%regl segment—reg 
+%%#%% dedicated register segment%%dsh%%reg 
+%%#%% set segment identiﬁer bits%%per%% 
+store instruction %%#%% dedicated%%dsh%%reg 
+figure 2%%cln%% assembly pseudo code %%#%% sandbox address 
+%%#%% target—reg%%per%%]$~ 
+~$[before %%#%% unsafe instruction %%#%% simply insert code 
+%%#%% sets %%#%% upper bits %%#%% %%#%% target address %%#%% %%#%% 
+correct segment identifier%%per%%]$~ ~$[we call %%#%% sandborzn %%#%% %%#%% 
+address%%per%%]$~ ~$[sandboxing %%#%% ]n[ catch illegal addresses%%scn%% 
+%%#%% merely prevents %%#%% %%#%% affecting %%#%% fault do— 
+main %%#%% %%cmp%% %%#%% %%#%% generating %%#%% address%%per%%]$~ 
+~$[address sandboxing requires insertion %%#%% %%#%% arith%%dsh%% 
+metic instructions %%#%% %%#%% unsafe store ]v[ jump 
+instruction%%per%%]$~ ~$[the ﬁrst inserted instruction clears %%#%% 
+segment identifier bits ]^[ stores %%#%% result %%#%% %%#%% ded— 
+icated register%%per%%]$~ ~$[the %%#%% instruction sets %%#%% seg— 
+ment identiﬁer %%#%% %%#%% correct value%%per%%]$~ ~$[figure 2 lists %%#%% 
+pseudo‘code %%#%% perform %%#%% operation%%per%%]$~ ~$[as %%#%% seg%%dsh%% 
+ment matching%%lst%% %%#%% modify %%#%% unsafe store ]v[ jump 
+instruction %%#%% %%#%% %%#%% dedicated register%%per%%]$~ ~$[since %%#%% %%#%% 
+using %%#%% dedicated register%%lst%% %%#%% distrusted module code 
+%%#%% ]n[ produce %%#%% illegal address %%#%% %%#%% jumping 
+%%#%% %%#%% %%#%% instruction %%#%% %%#%% sandboxing sequence%%scn%% 
+%%#%% %%#%% upper bits %%#%% %%#%% dedicated register %%#%% al— 
+ready contain %%#%% correct segment identiﬁer%%lst%% %%#%% sec%%dsh%% 
+ond instruction %%#%% %%#%% %%#%% effect%%per%%]$~ ~$[section 3%%per%%6 %%#%% 
+%%#%% simple algorithm %%#%% %%#%% verify %%#%% %%#%% object code 
+module %%#%% %%#%% correctly sandboxed%%per%%]$~ 
+~$[address sandboxing requires ﬁve dedicated registers%%per%%]$~ 
+~$[one register %%#%% %%#%% %%#%% hold %%#%% segment mask%%lst%% %%#%% 
+registers %%#%% %%#%% %%#%% hold %%#%% code ]^[ data segment 
+<——reg+oﬂ%%sqt%%sel %%#%% 
+«— reg 
+guard zones %%#%% eg ment 
+figure 3%%cln%% %%#%% segment %%#%% guard zones%%per%%]$~ ~$[the size %%#%% 
+%%#%% guard zones covers %%#%% range %%#%% %%#%% immediate 
+offsets %%#%% register—plus%%dsh%%offset addressing modes%%per%% 
+identiﬁers%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% hold %%#%% sandboxed 
+code ]^[ data addresses%%per%% 
+3%%per%%3 optimizations 
+%%#%% overhead %%#%% software encapsulation %%#%% %%#%% re%%dsh%% 
+duced %%#%% using conventional compiler optimizations%%per%%]$~ 
+~$[our current prototype applies loop invariant code mo— 
+tion ]^[ instruction scheduling optimizations [asu86%%lst%% 
+acd74]%%per%%]$~ ~$[in addition %%#%% %%#%% conventional techniques%%lst%% 
+%%#%% employ %%#%% number %%#%% optimizations specialized %%#%% 
+software encapsulation%%per%%]$~ 
+~$[we %%#%% reduce %%#%% overhead %%#%% software encapsulae 
+tion mechanisms %%#%% avoiding arithmetic %%#%% computes 
+target addresses%%per%%]$~ ~$[for example%%lst%% %%#%% risc architec— 
+tures include %%#%% register%%dsh%%plus—oﬁset instruction mode%%lst%% 
+%%#%% %%#%% offset %%#%% %%#%% immediate constant %%#%% %%#%% lim— 
+ited range%%per%%]$~ ~$[on %%#%% mips architecture %%#%% offsets %%#%% 
+limited %%#%% %%#%% range %%dsh%%64k %%#%% +64k%%per%%]$~ ~$[consider %%#%% 
+store instruction store value,oﬁset(reg)%%lst%% %%#%% 
+address offset (reg) %%#%% %%#%% register—plus—olfsct ad~ 
+dressing mode%%per%%]$~ ~$[sandboxing %%#%% instruction requires 
+%%#%% inserted instructions%%cln%% %%#%% %%#%% sum reg+oﬁset 
+%%#%% %%#%% dedicated register%%lst%% ]^[ %%#%% sandboxing in— 
+structions %%#%% set %%#%% segment identiﬁer %%#%% %%#%% dedicated 
+register%%per%%]$~ 
+~$[our prototype optimizes %%#%% %%#%% %%#%% sandboxing 
+%%#%% %%#%% register reg%%lst%% %%#%% %%cmp%% %%#%% actual target ad— 
+dress reg+oﬁset%%lst%% thereby saving %%#%% instruction%%per%%]$~ ~$[to 
+support %%#%% optimization%%lst%% %%#%% prototype establishes 
+guard zones %%#%% %%#%% top ]^[ bottom %%#%% %%#%% segment%%per%%]$~ 
+~$[to create %%#%% guard zones%%lst%% virtual memory pages ad— 
+jacent %%#%% %%#%% segment %%#%% unmapped (see figure 3)%%lst%% 
+%%#%% %%#%% reduce runtime overhead %%#%% treating %%#%% 
+mips stack pointer %%#%% %%#%% dedicated register%%per%%]$~ ~$[we avoid 
+sandboxing %%#%% %%#%% %%#%% %%#%% stack pointer %%#%% sandboxing 
+207 
+%%#%% register whenever %%#%% %%#%% set%%per%%]$~ ~$[since %%#%% %%#%% %%#%% stack 
+pointer %%#%% form addresses %%#%% %%#%% %%#%% plentiful %%cmp%% 
+changes %%#%% it%%lst%% %%#%% optimization signiﬁcantly improves 
+performance%%per%%]$~ 
+~$[further%%lst%% %%#%% %%#%% avoid sandboxing %%#%% stack pointer 
+%%#%% %%#%% %%#%% modiﬁed %%#%% %%#%% %%#%% constant offset %%#%% %%#%% %%#%% 
+%%#%% modiﬁed stack pointer %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% load ]v[ 
+store address %%#%% %%#%% %%#%% control transfer instruc» 
+tion%%per%%]$~ ~$[if %%#%% modiﬁed stack pointer %%#%% moved %%#%% %%#%% 
+guard zone%%lst%% %%#%% load ]v[ store instruction using %%#%% %%#%% 
+cause %%#%% hardware address fault%%per%%]$~ ~$[on %%#%% dec alpha 
+processor%%lst%% %%#%% apply %%#%% optimizations %%#%% %%#%% %%#%% 
+frame pointer ]^[ %%#%% stack pointer%%per%%]$~ 
+~$[there %%#%% %%#%% number %%#%% %%#%% optimizations %%#%% 
+%%#%% reduce sandboxing overhead%%per%%]$~ ~$[for example%%lst%% 
+%%#%% transformation tool %%#%% remove sandboxing se— 
+quences %%#%% loops%%lst%% %%#%% %%#%% %%#%% %%#%% store target ad%%dsh%% 
+dress changes %%#%% %%#%% %%#%% %%#%% constant oifset %%#%% 
+%%#%% loop iteration%%per%%]$~ ~$[our prototype %%#%% ]n[ ]y[ imple— 
+ment %%#%% optimizations%%per%% 
+3%%per%%4 process resources 
+%%#%% multiple fault domains share %%#%% %%#%% virtual 
+address space%%lst%% %%#%% fault domain implementation %%#%% 
+prevent distrusted modules %%#%% corrupting resources 
+%%#%% %%#%% allocated %%#%% %%#%% per—addressspace basis%%per%%]$~ ~$[for 
+example%%lst%% %%cmp%% %%#%% fault domain %%#%% allowed %%#%% %%#%% system 
+calls%%lst%% %%#%% %%#%% close ]v[ delete ﬁles %%#%% %%#%% %%#%% code 
+executing %%#%% %%#%% address space%%lst%% potentially causing %%#%% 
+application %%#%% %%#%% %%#%% %%#%% crash%%per%%]$~ 
+~$[one solution %%#%% %%#%% modify %%#%% operating system %%#%% 
+know %%#%% fault domains%%per%%]$~ ~$[on %%#%% system call ]v[ page 
+fault%%lst%% %%#%% kernel %%#%% %%#%% %%#%% program counter %%#%% deter%%dsh%% 
+mine %%#%% currently executing fault domain%%lst%% ]^[ restrict 
+resources accordingly%%per%%]$~ 
+~$[to %%#%% %%#%% prototype portable%%lst%% %%#%% implemented 
+%%#%% alternative approach%%per%%]$~ ~$[in addition %%#%% placing %%#%% 
+distrusted module %%#%% %%#%% separate fault domain%%lst%% %%#%% re— 
+quire distrusted modules %%#%% access system resources 
+%%#%% %%#%% cross%%dsh%%fault%%dsh%%domain rpc%%per%%]$~ ~$[we reserve %%#%% 
+fault domain %%#%% hold trusted arbitration code %%#%% de— 
+termines %%#%% %%#%% particular system call performed 
+%%#%% %%#%% %%#%% fault domain %%#%% safe%%per%%]$~ ~$[if %%#%% distrusted 
+module’s object code performs %%#%% direct system call%%lst%% %%#%% 
+transform %%#%% call %%#%% %%#%% appropriate rpc call%%per%%]$~ ~$[in 
+%%#%% %%#%% %%#%% %%#%% extensible application%%lst%% %%#%% trusted por%%dsh%% 
+tion %%#%% the%%per%% application %%#%% %%#%% system calls directly 
+]^[ shares %%#%% fault domain %%#%% %%#%% arbitration code%%per%% 
+3%%per%%5 data sharing 
+hardware fault isolation mechanisms %%#%% support data 
+sharing %%#%% virtual address spaces %%#%% manipulate 
+ing page table entries%%per%%]$~ ~$[fault domains share %%#%% ad— 
+dress space%%lst%% ]^[ %%cmp%% %%#%% set %%#%% page table entries%%lst%% 
+]s[ %%#%% %%#%% ]n[ %%#%% %%#%% standard shared memory im— 
+plementation%%per%%]$~ ~$[read%%dsh%%only sharing %%#%% straightforward%%scn%% 
+%%#%% %%#%% software encapsulation techniques %%#%% ]n[ al%%dsh%% 
+ter load instructions%%lst%% fault domains %%#%% read %%#%% mem— 
+ory mapped %%#%% %%#%% application’s address space 3%%per%%]$~ 
+~$[if %%#%% object code %%#%% %%#%% particular distrusted mod— 
+ule %%#%% %%#%% sandboxed%%lst%% %%cmp%% %%#%% %%#%% share read%%dsh%%write 
+memory %%#%% %%#%% fault domains %%#%% %%#%% technique 
+%%#%% call lazy pointer swizzling%%per%%]$~ ~$[lazy pointer swizzling 
+provides %%#%% mechanism ]f[ fault domains %%#%% share ar— 
+bitrarily %%#%% read‘write memory regions %%#%% %%#%% ad%%dsh%% 
+ditional runtirne overhead%%per%%]$~ ~$[to support %%#%% technique%%lst%% 
+%%#%% modify %%#%% hardware page tables %%#%% map %%#%% shared 
+memory region %%#%% %%#%% address space segment %%#%% 
+%%#%% access%%scn%% %%#%% region %%#%% mapped %%#%% %%#%% %%#%% offset 
+%%#%% %%#%% segment%%per%%]$~ ~$[in %%#%% words%%lst%% %%#%% alias %%#%% shared 
+region %%#%% multiple locations %%#%% %%#%% virtual address 
+space%%lst%% ]b[ %%#%% aliased location %%#%% exactly %%#%% %%#%% 
+low order address bits%%per%%]$~ ~$[as %%#%% hardware shared mem%%dsh%% 
+ory schemes%%lst%% %%#%% shared region %%#%% %%#%% %%#%% %%#%% 
+segment offset%%per%%]$~ 
+~$[to avoid incorrect shared pointer comparisons %%#%% 
+sandboxed code%%lst%% %%#%% shared memory creation inter— 
+%%#%% %%#%% ensure %%#%% %%#%% shared object %%#%% %%#%% %%#%% 
+unique address%%per%%]$~ ~$[as %%#%% distrusted object code ac%%dsh%% 
+cesses shared memory%%lst%% %%#%% sandboxing code automati%%dsh%% 
+cally translates shared addresses %%#%% %%#%% correspond 
+ing addresses %%#%% %%#%% fault domain’s data segment%%per%%]$~ 
+~$[this translation %%#%% exactly %%#%% hardware transla~ 
+tion%%scn%% %%#%% low bits %%#%% %%#%% address remain %%#%% same%%lst%% ]^[ 
+%%#%% %%#%% bits %%#%% set %%#%% %%#%% data segment identiﬁer%%per%%]$~ 
+~$[under operating systems %%#%% %%#%% ]n[ allow virtual 
+address aliasing%%lst%% %%#%% %%#%% implement shared regions %%#%% 
+introducing %%#%% %%#%% software encapsulation technique%%cln%% 
+shared segment matching%%per%%]$~ ~$[to implement sharing%%lst%% %%#%% 
+%%#%% %%#%% dedicated register %%#%% hold %%#%% bitmap%%per%%]$~ ~$[the bitmap 
+indicates %%#%% segments %%#%% fault domain %%#%% access%%per%%]$~ 
+~$[for %%#%% unsafe instruction checked%%lst%% shared segment 
+matching requires %%#%% more%%per%% instruction %%cmp%% segment 
+matching%%per%% 
+3%%per%%6 implementation ]^[ veriﬁcation 
+%%#%% %%#%% identiﬁed %%#%% strategies ]f[ implementing 
+software encapsulation%%per%%]$~ ~$[one approach %%#%% %%#%% compiler 
+%%#%% emit encapsulated object code ]f[ %%#%% distrusted mod%%dsh%% 
+ule%%scn%% %%#%% integrity %%#%% %%#%% code %%#%% %%cmp%% veriﬁed %%#%% %%#%% 
+module %%#%% loaded %%#%% %%#%% fault domain%%per%%]$~ ~$[alternatively%%lst%% 
+%%#%% system %%#%% encapsulate %%#%% distrusted module %%#%% 
+directly modifying %%#%% object code %%#%% load time%%per%% 
+a\«ve %%#%% implemented versions %%#%% %%#%% techniques %%#%% %%#%% 
+form %%#%% protection %%#%% encapsulating load instructions %%#%% 
+%%#%% %%#%% store ]^[ jump instructions%%per%%]$~ ~$[we discuss %%#%% performance 
+%%#%% %%#%% variants %%#%% section 5%%per%%]$~ 
+~$[our current prototype %%#%% %%#%% %%#%% approach%%per%%]$~ ~$[we 
+modiﬁed %%#%% version %%#%% %%#%% gcc compiler %%#%% perform soft— 
+ware encapsulation%%per%%]$~ ~$[note %%#%% %%#%% %%#%% current imple%%dsh%% 
+mentation %%#%% language dependent%%lst%% %%#%% techniques %%#%% 
+language independent%%per%%]$~ 
+~$[we built %%#%% veriﬁer ]f[ %%#%% mips instruction set 
+%%#%% %%#%% ]f[ %%#%% sandboxing ]^[ segment match%%dsh%% 
+ing%%per%%]$~ ~$[the main challenge %%#%% veriﬁcation %%#%% that%%lst%% %%#%% %%#%% 
+presence %%#%% indirect jumps%%lst%% execution %%#%% begin %%#%% 
+%%#%% instruction %%#%% %%#%% code segment%%per%%]$~ ~$[to address %%#%% 
+situation%%lst%% %%#%% veriﬁer %%#%% %%#%% property %%#%% %%#%% software 
+encapsulation techniques%%cln%% %%#%% unsafe stores ]^[ jumps 
+%%#%% %%#%% dedicated register %%#%% form %%#%% target address%%per%%]$~ 
+~$[the veriﬁer divides %%#%% program %%#%% sequences %%#%% in— 
+structions called unsafe regions%%per%%]$~ ~$[an unsafe store re%%dsh%% 
+gion begins %%#%% %%#%% modiﬁcation %%#%% %%#%% dedicated store 
+register%%per%%]$~ ~$[an unsafe jump region begins %%#%% %%#%% mod%%dsh%% 
+iﬁcation %%#%% %%#%% dedicated jump register%%per%%]$~ ~$[if %%#%% ﬁrst in— 
+struction %%#%% %%#%% unsafe store ]v[ jump region %%#%% executed%%lst%% 
+%%#%% subsequent instructions %%#%% guaranteed %%#%% %%#%% exe%%dsh%% 
+cuted%%per%%]$~ ~$[an unsafe store region %%#%% %%#%% %%#%% %%#%% %%#%% 
+following hold%%cln%% %%#%% %%#%% instruction %%#%% %%#%% store %%#%% 
+%%#%% %%#%% dedicated register %%#%% form %%#%% target address%%lst%% 
+%%#%% %%#%% instruction %%#%% %%#%% control transfer instruction%%lst%% 
+%%#%% %%#%% instruction %%#%% ]n[ guaranteed %%#%% %%#%% executed%%lst%% 
+]v[ %%#%% %%#%% %%#%% %%#%% instructions %%#%% %%#%% code segment%%per%%]$~ 
+~$[a similar deﬁnition %%#%% %%#%% ]f[ unsafe jump regions%%per%%]$~ 
+~$[the veriﬁer analyzes %%#%% unsafe store ]v[ jump re%%cln%% 
+gion %%#%% insure %%#%% %%#%% dedicated register modiﬁed %%#%% 
+%%#%% region %%#%% valid %%#%% exit %%#%% %%#%% region%%per%%]$~ ~$[for ex— 
+ample%%lst%% %%#%% load %%#%% %%#%% dedicated register begins %%#%% unsafe 
+region%%per%%]$~ ~$[if %%#%% region appropriately sandboxes %%#%% ded— 
+icated register%%lst%% %%#%% unsafe region %%#%% deemed safe%%per%% %%cmp%% %%#%% 
+unsafe region %%#%% ]n[ %%#%% veriﬁed%%lst%% %%#%% code %%#%% rejected%%per%%]$~ 
+~$[by incorporating software encapsulation %%#%% %%#%% ex— 
+isting compiler%%lst%% %%#%% %%#%% able %%#%% %%#%% advantage %%#%% com— 
+piler infrastructure ]f[ code optimization%%per%%]$~ ~$[however%%lst%% 
+%%#%% approach %%#%% %%#%% disadvantages%%per%%]$~ ~$[first%%lst%% %%#%% mod%%dsh%% 
+iﬁed compilers %%#%% support %%#%% %%#%% programming lan— 
+guage (gcc supports c%%lst%% c++%%lst%% ]^[ pascal)%%per%%]$~ ~$[second%%lst%% %%#%% 
+compiler ]^[ veriﬁer %%#%% %%#%% synchronized %%#%% re— 
+spect %%#%% %%#%% particular encapsulation technique %%#%% 
+employed%%per%%]$~ 
+~$[an alternative%%lst%% called bmary patchzng%%lst%% alleviates 
+%%#%% problems%%per%%]$~ ~$[when %%#%% fault domain %%#%% loaded%%lst%% %%#%% 
+system %%#%% encapsulate %%#%% module %%#%% directly modi%%dsh%% 
+fying %%#%% object code%%per%%]$~ ~$[unfortunately%%lst%% practical ]^[ r07 
+bust binary patching%%lst%% resulting %%#%% efﬁcient code%%lst%% %%#%% ]n[ 
+currently %%#%% [lb92]%%per%%]$~ ~$[tools %%#%% translate %%#%% 
+binary format %%#%% %%#%% %%#%% %%#%% built%%lst%% ]b[ %%#%% 
+tools rely %%#%% compiler—speciﬁc idioms %%#%% distinguish 
+code %%#%% data ]^[ %%#%% processor emulation %%#%% han%%dsh%% 
+dle unknown indirect jumps[sck”93]%%per%%]$~ ~$[for software 
+encapsulation%%lst%% %%#%% main challenge %%#%% %%#%% transform %%#%% 
+code ]s[ %%#%% %%#%% %%#%% %%#%% subset %%#%% %%#%% registers%%lst%% leav— 
+208 
+trusted 
+caller domain 
+unlru sted 
+calico domain 
+call add 
+jump table 
+figure 4%%cln%% major components %%#%% %%#%% crossefault—domain 
+rfc%%per%% 
+ing registers available ]f[ dedicated use%%per%%]$~ ~$[to solve %%#%% 
+problem%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% binary patching proto%%dsh%% 
+type %%#%% %%#%% simple extensions %%#%% current object ﬁle 
+formats%%per%%]$~ ~$[the extensions store control ﬂow ]^[ register 
+usage information %%#%% %%#%% sufﬁcient %%#%% support software 
+encapsulation%%per%% 
+4 low latency cross fault do— 
+main communication 
+%%#%% purpose %%#%% %%#%% %%#%% %%#%% %%#%% reduce %%#%% cost %%#%% fault 
+isolation ]f[ cooperating ]b[ distrustful software mod— 
+ules%%per%%]$~ ~$[in %%#%% last section%%lst%% %%#%% %%#%% %%#%% half %%#%% %%#%% 
+solution%%cln%% efficient software encapsulation%%per%%]$~ ~$[in %%#%% sec%%dsh%% 
+tion%%lst%% %%#%% describe %%#%% %%#%% half%%cln%% fast communication 
+%%#%% fault domains%%per%%]$~ 
+~$[figure 4 illustrates %%#%% major components ofa cross— 
+fault~domain rfc %%#%% %%#%% trusted ]^[ distrusted 
+fault domain%%per%%]$~ ~$[this section concentrates %%#%% %%#%% as— 
+pects %%#%% fault domain crossing%%per%%]$~ ~$[first%%lst%% %%#%% describe 
+%%#%% simple mechanism %%#%% allows %%#%% fault domain %%#%% 
+safely call %%#%% trusted stub routine outside %%#%% domain%%scn%% 
+%%#%% stub routine %%cmp%% safely calls %%#%% %%#%% destination 
+domain%%per%%]$~ ~$[second%%lst%% %%#%% discuss %%#%% arguments %%#%% effi— 
+ciently passed %%#%% fault domains%%per%%]$~ ~$[third%%lst%% %%#%% detail 
+%%#%% registers ]^[ %%#%% machine state %%#%% managed %%#%% 
+cross—fault—domain rpcs %%#%% insure fault isolation%%per%%]$~ ~$[the 
+protocol ]f[ exporting ]^[ naming procedures %%#%% 
+fault domains %%#%% independent %%#%% %%#%% techniques%%per%%]$~ 
+~$[the %%#%% %%#%% ]f[ control %%#%% escape a%%per%% fault domain 
+%%#%% via %%#%% jump table%%per%%]$~ ~$[each jump table entry %%#%% %%#%% con— 
+trol transfer instruction %%#%% target address %%#%% %%#%% legal 
+entry %%#%% outside %%#%% domain%%per%%]$~ ~$[by using instructions 
+%%#%% target address %%#%% %%#%% immediate encoded %%#%% %%#%% 
+instruction%%lst%% %%#%% jump table %%#%% ]n[ rely %%#%% %%#%% %%#%% %%#%% 
+%%#%% dedicated register%%per%%]$~ ~$[because %%#%% table %%#%% kept %%#%% %%#%% 
+(readvonly) code segment%%lst%% %%#%% %%#%% %%#%% %%#%% modified %%#%% 
+%%#%% trusted module%%per%%]$~ 
+~$[for %%#%% pair %%#%% fault domains %%#%% customized call ]^[ 
+return stub %%#%% created ]f[ %%#%% exported procedure%%per%%]$~ 
+~$[currently%%lst%% %%#%% stubs %%#%% generated %%#%% hand %%#%% %%cmp%% 
+using %%#%% stub generator [jrtss]%%per%%]$~ ~$[the stubs run unpro— 
+tected outside %%#%% %%#%% %%#%% caller ]^[ callee domain%%per%%]$~ 
+~$[the stubs %%#%% responsible ]f[ copying cross%%dsh%%domain 
+arguments %%#%% domains ]^[ managing machine 
+state%%per%%]$~ 
+~$[because %%#%% stubs %%#%% trusted%%lst%% %%#%% %%#%% able %%#%% copy 
+call arguments directly %%#%% %%#%% target domain%%per%%]$~ ~$[tra— 
+ditional rpc implementations %%#%% address spaces 
+typically perform %%#%% copies %%#%% transfer data%%per%%]$~ ~$[the 
+arguments %%#%% marshalled %%#%% %%#%% message%%lst%% %%#%% kernel 
+copies %%#%% message %%#%% %%#%% target address space%%lst%% ]^[ 
+ﬁnally %%#%% callee %%#%% de%%dsh%%marshall %%#%% arguments%%per%%]$~ ~$[by 
+%%#%% %%#%% caller ]^[ callee communicate via %%#%% shared 
+buffer%%lst%% lrpc %%#%% %%#%% %%#%% %%#%% single copy %%#%% pass data 
+%%#%% domains [ballqi]%%per%%]$~ 
+~$[the stubs %%#%% %%#%% responsible ]f[ managing machine 
+state%%per%%]$~ ~$[on %%#%% cross—domain call %%#%% registers %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% future %%#%% %%#%% caller ]^[ potentially 
+modiﬁed %%#%% %%#%% callee %%#%% %%#%% protected%%per%%]$~ ~$[only regis— 
+ters %%#%% %%#%% designated %%#%% architectural convention %%#%% 
+bc preserved %%#%% procedure calls %%#%% saved%%per%%]$~ ~$[as %%#%% 
+optimization%%lst%% %%cmp%% %%#%% callee domain contains %%#%% instruc— 
+tions %%#%% modify %%#%% preserved register %%#%% %%#%% avoid 
+saving it%%per%%]$~ ~$[karger %%#%% %%#%% trusted linker %%#%% perform %%#%% 
+kind %%#%% optimization %%#%% address spaces [karsq]%%per%%]$~ 
+~$[in addition %%#%% saving ]^[ restoring registers%%lst%% %%#%% stubs 
+%%#%% switch %%#%% execution stack%%lst%% establish %%#%% correct 
+register context ]f[ %%#%% software encapsulation tech%%dsh%% 
+nique %%#%% used%%lst%% ]^[ validate %%#%% dedicated registers%%per%%]$~ 
+~$[our system %%#%% %%#%% %%#%% robust %%#%% %%#%% presence %%#%% 
+fatal errors%%lst%% ]f[ example%%lst%% %%#%% addressing violation7 %%#%% 
+executing %%#%% %%#%% fault domain%%per%%]$~ ~$[our current implementa— 
+tion %%#%% %%#%% unix signal facility %%#%% catch %%#%% errors%%scn%% 
+%%#%% %%cmp%% terminates %%#%% outstanding call ]^[ notiﬁes %%#%% 
+caller’s fault domain%%per%%]$~ ~$[if %%#%% application %%#%% %%#%% %%#%% 
+operating system thread ]f[ %%#%% fault domains%%lst%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% terminate %%#%% call %%#%% %%#%% taking %%#%% 
+long%%lst%% ]f[ example%%lst%% %%cmp%% %%#%% %%#%% inﬁnite loop%%per%%]$~ ~$[trusted 
+modules %%#%% %%#%% %%#%% timer facility %%#%% interrupt execu— 
+tion periodically ]^[ determine %%cmp%% %%#%% call %%#%% %%#%% %%#%% 
+terminated%%per%% 
+5 performance results 
+%%#%% evaluate %%#%% performance %%#%% software%%dsh%%enforced fault%%per%% 
+domains%%lst%% %%#%% implemented ]^[ measured %%#%% prototype 
+%%#%% %%#%% system %%#%% %%#%% 40mhz decstation 5000/240 (dec— 
+mips) ]^[ %%#%% lﬁoniliz alpha 400 (dec—alpha)%%per%%]$~ 
+~$[we consider %%#%% questions%%per%%]$~ ~$[first%%lst%% %%#%% %%#%% %%#%% 
+209 
+head %%#%% software encapsulation incur%%qsn%%]$~ ~$[second%%lst%% %%#%% 
+fast %%#%% %%#%% crossrfault—domain rfc%%qsn%%]$~ ~$[third%%lst%% %%#%% %%#%% %%#%% 
+performance impact %%#%% using software enforced fault 
+isolation %%#%% %%#%% end%%dsh%%user application%%qsn%%]$~ ~$[we discuss %%#%% 
+%%#%% %%#%% questions %%#%% turn%%per%% 
+5%%per%%1 encapsulation overhead 
+%%#%% measured %%#%% execution time overhead %%#%% sand%%dsh%% 
+boxing %%#%% wide range %%#%% %%#%% programs%%lst%% including %%#%% %%#%% 
+spe092 benchmarks ]^[ %%#%% %%#%% %%#%% splash bench%%dsh%% 
+marks [assql%%lst%% swgql]%%per%%]$~ ~$[we treated %%#%% benchmark 
+%%#%% %%cmp%% %%#%% %%#%% %%#%% distrusted module%%lst%% sandboxing %%#%% %%#%% 
+%%#%% code%%per%%]$~ ~$[column 1 %%#%% table 1 reports overhead %%#%% 
+%%#%% dec—mips%%lst%% column 6 reports overhead %%#%% %%#%% dec— 
+alpha%%per%%]$~ ~$[columns 2 ]^[ 7 report %%#%% overhead %%#%% using 
+%%#%% technique %%#%% provide %%#%% protection %%#%% sand« 
+boxing load instructions %%#%% %%#%% %%#%% store ]^[ jump 
+instructions“%%per%%]$~ ~$[as detailed %%#%% section 3%%lst%% sandboxing 
+requires 5 dedicated registers%%per%%]$~ ~$[column 3 reports %%#%% 
+overhead %%#%% removing %%#%% registers %%#%% %%#%% %%#%% 
+%%#%% %%#%% compiler%%per%%]$~ ~$[all overheads %%#%% computed %%#%% %%#%% 
+additional execution time divided %%#%% %%#%% original pro~ 
+gram‘s execution time%%per%%]$~ 
+~$[on %%#%% decemips%%lst%% %%#%% %%#%% %%#%% program measure— 
+ment tools pixie ]^[ qpt %%#%% calculate %%#%% number 
+%%#%% additional instructions executed due %%#%% sandbox~ 
+ing [dig%%lst%% bl92]%%per%%]$~ ~$[column 4 %%#%% table 1 reports %%#%% 
+data %%#%% %%#%% percentage %%#%% original program instruction 
+counts%%per%%]$~ 
+~$[the data %%#%% table 1 appears %%#%% contain %%#%% num— 
+ber %%#%% anomalies %%#%% some%%per%% %%#%% %%#%% benchmark pro%%dsh%% 
+grams%%lst%% ]f[ example%%lst%% 056%%per%%ear 011 %%#%% decamips ]^[ 
+026 %%per%% compress %%#%% %%#%% dec—alpha%%lst%% sandboxing reduced 
+execution time%%per%% %%#%% %%#%% number %%#%% %%#%% %%#%% overhead %%#%% 
+surprisingly low%%per%%]$~ 
+~$[to identify %%#%% source %%#%% %%#%% variations %%#%% de~ 
+veloped %%#%% analytical model ]f[ execution overhead%%per%%]$~ 
+~$[the model predicts overhead based %%#%% %%#%% number 
+%%#%% additional instructions executed due %%#%% sandbox 
+ing (s—znstructzons)%%lst%% ]^[ %%#%% number %%#%% saved ﬂoat~ 
+ing %%#%% interlock cycles (interlocks)%%per%%]$~ ~$[sandboxing in» 
+creases %%#%% available instructionlevel parallelism%%lst%% al 
+lowing %%#%% number %%#%% ﬂoating—point interlocks %%#%% %%#%% 
+substantially reduced %%#%% integer pipeline %%#%% ]n[ 
+provide interlocking%%scn%% instead%%lst%% delay slots %%#%% explicitly 
+ﬁlled %%#%% nop instructions %%#%% %%#%% compiler ]v[ assem~ 
+bler%%per%%]$~ ~$[hence%%lst%% scheduling ell%%sqt%%ects %%#%% integer instruc~ 
+tions %%#%% %%#%% accurately reﬂected %%#%% %%#%% count %%#%% in~ 
+structions added (s—mstructzons)%%per%%]$~ ~$[the expected overs 
+head %%#%% computed as%%cln%% 
+(s—msz‘mchons — interlacksﬂcycles—per—sccond 
+original%%dsh%%erecutwn%%dsh%% lune%%dsh%%seconds 
+4loads %%#%% %%#%% libraries%%lst%% %%#%% %%#%% %%#%% standard %%#%% library%%lst%% %%#%% 
+]n[ sandboxed%%per%%]$~ 
+~$[the model provides %%#%% effective %%#%% %%#%% separate known 
+sources %%#%% overhead %%#%% %%#%% order effects%%per%%]$~ ~$[col%%dsh%% 
+umn 5 %%#%% table 1 %%#%% %%#%% predicted overheads%%per%%]$~ 
+~$[as %%#%% %%#%% seen %%#%% table 1%%lst%% %%#%% model is%%lst%% %%#%% aver 
+age%%lst%% eﬁective %%#%% predicting sandboxing overhead%%per%%]$~ ~$[the 
+differences %%#%% measured ]^[ expected overheads 
+%%#%% normally distributed %%#%% mean 0%%per%%7% ]^[ standard 
+deviation %%#%% 2%%per%%6%%%per%%]$~ ~$[the difference %%#%% %%#%% means 
+ofthe measured ]^[ expected overheads %%#%% ]n[ statisti%%dsh%% 
+cally signiﬁcant%%per%%]$~ ~$[this experiment demonstrates that%%lst%% 
+%%#%% combining instruction count overhead ]^[ ﬂoating 
+%%#%% interlock measurements%%lst%% %%#%% %%#%% accurately pres 
+dict average execution time overhead%%per%%]$~ ~$[if %%#%% assume 
+%%#%% %%#%% model %%#%% %%#%% accurate %%#%% predicting %%#%% over— 
+head %%#%% individual benchmarks%%lst%% %%#%% %%#%% conclude %%#%% 
+%%#%% %%#%% %%#%% %%#%% order effect creating %%#%% observed 
+anomalies %%#%% measured overhead%%lst%% 
+%%#%% %%#%% discount eﬁective instruction cache size ]^[ 
+virtual memory paging %%#%% sources ]f[ %%#%% observed ex~ 
+ecution time variance%%per%%]$~ ~$[because sandboxing adds in%%dsh%% 
+structions%%lst%% %%#%% effective size %%#%% %%#%% instruction cache %%#%% 
+reduced%%per%%]$~ ~$[while %%#%% %%#%% account ]f[ measured over%%dsh%% 
+heads %%#%% %%cmp%% predicted%%lst%% %%#%% %%#%% ]n[ account ]f[ 
+%%#%% opposite effect%%per%%]$~ ~$[because %%#%% %%#%% %%#%% benchmarks %%#%% 
+compute bound%%lst%% %%#%% %%#%% unlikely %%#%% %%#%% variations %%#%% 
+due %%#%% virtual memory paging%%per%%]$~ 
+~$[the dec<mips %%#%% %%#%% physically indexed%%lst%% physically 
+tagged%%lst%% direct mapped data cache%%per%%]$~ ~$[in %%#%% experiments 
+sandboxing %%#%% ]n[ affect %%#%% size%%lst%% contents%%lst%% ]v[ starting 
+virtual address %%#%% %%#%% data segment%%per%%]$~ ~$[for %%#%% original 
+]^[ sandboxed versions %%#%% %%#%% benchmark programs%%lst%% 
+successive runs %%#%% insigniﬁcant variation%%per%%]$~ ~$[though 
+difﬁcult %%#%% quantify%%lst%% %%#%% %%#%% ]n[ believe %%#%% data cache 
+alignment %%#%% %%#%% %%#%% source %%#%% variation %%#%% %%#%% 
+experiments%%per%% 
+\ve conjecture %%#%% %%#%% observed variations %%#%% 
+caused %%#%% instruction cache mappzng conﬂicts%%per%%]$~ ~$[soft— 
+ware encapsulation changes %%#%% mapping %%#%% instruc~ 
+tions %%#%% cache lines%%lst%% %%cmp%% changing %%#%% number %%#%% in— 
+struction cache conﬂicts%%per%%]$~ ~$[a number %%#%% researchers %%#%% 
+investigated minimizing instruction cache conﬂicts %%#%% 
+reduce execution time [mcf89%%lst%% phqo%%lst%% sam88]%%per%%]$~ ~$[one 
+researcher reported %%#%% 20% performance gain %%#%% sim— 
+ply ehanging %%#%% order %%#%% %%#%% %%#%% object ﬁles were%%per%% 
+linked [phqo]%%per%%]$~ ~$[samples ]^[ hilﬁnger report signif— 
+icantly improved instruction cache miss rates %%#%% re— 
+arranging %%#%% 3% %%#%% 8% %%#%% %%#%% application’s basic 
+blocks [sarnss]%%per%%]$~ 
+~$[beyond %%#%% effect%%lst%% %%#%% %%#%% statistically signiﬁcant 
+differences %%#%% programs%%per%%]$~ ~$[on average%%lst%% programs 
+%%#%% contained %%#%% signiﬁcant percentage %%#%% ﬂoating 
+%%#%% operations incurred less overhead%%per%%]$~ ~$[on %%#%% dec— 
+mips %%#%% mean overhead ]f[ ﬂoating %%#%% intensive 
+benchmarks %%#%% 2%%per%%5%%%lst%% %%cmp%%d %%#%% %%#%% mean %%#%% 5%%per%%6% ]f[ 
+%%#%% remaining benchmarks%%per%%]$~ ~$[all %%#%% %%#%% benchmarks %%#%% 
+210 
+dec%%dsh%%mips dec%%dsh%%alpha 
+fault protection reserved instruction fault fault protection 
+benchmark isolation overhead register count isolation isolation overhead 
+overhead overhead overhead overhead overhead 
+(predicted) 
+052%%per%% alvinn fp 1%%per%%4% 33%%per%%4% —0%%per%%3% 19%%per%%4% 0%%per%%2% 8%%per%%1% 35%%per%%5% 
+bps fp 5%%per%%6% 15%%per%%5% %%dsh%%0%%per%%1% 8%%per%%9% 5%%per%%7% 4%%per%%7% 20%%per%%3% 
+cholesky fp 0%%per%%0% 22%%per%%7% 0%%per%%5% 6%%per%%5% 4%%per%%5% 0%%per%%0% 9%%per%%3% 
+026 %%per%% compress int 3%%per%%3% 13%%per%%3% 0%%per%%0% 10%%per%%9% 4%%per%%4% 4%%per%%3% 0%%per%%0% 
+056%%per%%ear fp —1%%per%%2% 19%%per%%1% 0%%per%%2% 12%%per%%4% 2%%per%%2% 3%%per%%7% 18%%per%%3% 
+023 %%per%% eqntott int 2%%per%%9% 34%%per%%4% 1%%per%%0% 2%%per%%7% 2%%per%%2% 2%%per%%3% 17%%per%%4% 
+008 %%per%% espresso int 12%%per%%4% 27%%per%%0% —1%%per%%6% 11%%per%%8% 10%%per%%5% 13%%per%%3% 33%%per%%6% 
+001 %%per%%gcc1%%per%%35 int 3%%per%%1% 18%%per%%7% %%dsh%%9%%per%%4% 17%%per%%0% 8%%per%%9% na na 
+022%%per%%11 int 5%%per%%1% 23%%per%%4% 0%%per%%3% 14%%per%%9% 11%%per%%4% 5%%per%%4% 16%%per%%2% 
+locus int 8%%per%%7% 30%%per%%4% 4%%per%%3% 10%%per%%3% 8%%per%%6% 4%%per%%3% 8%%per%%7% 
+mp3d fp 10%%per%%7% 10%%per%%7% 0%%per%%0% 13%%per%%3% 8%%per%%7% 0%%per%%0% 6%%per%%7% 
+psgrind int 10%%per%%4% 19%%per%%5% 1%%per%%3% 12%%per%%1% 9%%per%%9% 8%%per%%0% 36%%per%%0% 
+ch pf 05% 27%%per%%0% 2%%per%%0% 8%%per%%8% 1%%per%%2% %%dsh%%0%%per%%8% 12%%per%%1% 
+072 %%per%% sc int 5%%per%%6% 11%%per%%2% 7%%per%%0% 8%%per%%0% 3%%per%%8% na na 
+tracker int %%dsh%%0%%per%%8% 10%%per%%5% 0%%per%%4% 3%%per%%9% 2%%per%%1% 10%%per%%9% 19%%per%%9% 
+water fp 0%%per%%7% 7%%per%%4% 0%%per%%3% 6%%per%%7% 1%%per%%5% 4%%per%%3% 12%%per%%3% 
+| average %%#%% 4%%per%%3% | 21%%per%%8% | 0%%per%%4% | 10%%per%%5% | 5%%per%%0% %%#%% 4%%per%%3% | 17%%per%%6% ‘i 
+table 1%%cln%% sandboxing overheads ]f[ dec—mips ]^[ dec—alpha platforms%%per%%]$~ ~$[the benchmarks 001%%per%%gcc1%%per%%35 ]^[ 
+072%%per%%sc %%#%% dependent %%#%% %%#%% pointer size %%#%% 32 bits ]^[ %%#%% ]n[ compile %%#%% %%#%% dec%%dsh%%alpha%%per%%]$~ ~$[the predicted fault 
+isolation overhead ]f[ cholesky %%#%% negative due %%#%% conservative interlocking %%#%% %%#%% mips ﬂoatingvpoint unit%%per%% 
+compute intensive%%per%%]$~ ~$[programs %%#%% perform signiﬁcant 
+amounts %%#%% i/o %%#%% incur less overhead%%per%% 
+5%%per%%2 fault domain crossing 
+%%#%% %%#%% %%#%% %%#%% %%#%% cost %%#%% cross—fault—domain rpc%%per%%]$~ 
+~$[our rpc mechanism spends %%#%% %%#%% %%#%% time saving 
+]^[ restoring registers%%per%%]$~ ~$[as detailed %%#%% section 4%%lst%% %%#%% 
+registers %%#%% %%#%% designated %%#%% %%#%% architecture %%#%% %%#%% 
+preserved %%#%% procedure calls %%#%% %%#%% %%#%% saved%%per%%]$~ ~$[in 
+addition%%lst%% %%cmp%% %%#%% instructions %%#%% %%#%% callee fault domain 
+modify %%#%% preserved register %%cmp%% %%#%% %%#%% ]n[ %%#%% %%#%% %%#%% 
+saved%%per%%]$~ ~$[table 2 reports %%#%% times ]f[ %%#%% versions %%#%% 
+%%#%% null cross—fault—domain rpc%%per%%]$~ ~$[column 1 lists %%#%% 
+crossing times %%#%% %%#%% data registers %%#%% caller saved%%per%%]$~ 
+~$[column 2 lists %%#%% crossing times %%#%% %%#%% preserved 
+integer registers %%#%% saved%%per%%]$~ ~$[finally%%lst%% %%#%% times listed %%#%% 
+column 3 include saving %%#%% preserved ﬂoating %%#%% 
+registers%%per%%]$~ ~$[in %%#%% %%#%% crossing times %%#%% %%#%% %%#%% 
+reduced %%#%% statically partitioning %%#%% registers %%#%% 
+domains%%per%%]$~ 
+~$[for comparison%%lst%% %%#%% measured %%#%% %%#%% calling 
+mechanisms%%per%%]$~ ~$[first%%lst%% %%#%% measured %%#%% time %%#%% perform %%#%% 
+%%#%% procedure call %%#%% takes %%#%% arguments ]^[ returns 
+%%#%% value%%per%%]$~ ~$[second%%lst%% %%#%% sent %%#%% single byte %%#%% %%#%% 
+address spaces using %%#%% pipe abstraction provided %%#%% 
+211 
+%%#%% native operating system ]^[ measured %%#%% round%%dsh%% 
+trip time%%per%%]$~ ~$[these times %%#%% reported %%#%% %%#%% last %%#%% 
+columns %%#%% table 2%%per%%]$~ ~$[on %%#%% platforms%%lst%% %%#%% cost 
+%%#%% cross—address—space calls %%#%% roughly %%#%% orders %%#%% 
+magnitude %%#%% expensive %%cmp%% local procedure calls%%per%%]$~ 
+~$[operating systems %%#%% highly optimized rpc im— 
+plementations %%#%% reduced %%#%% cost %%#%% cross%%dsh%%address%%dsh%% 
+space rpc %%#%% %%#%% roughly %%#%% orders %%#%% magni— 
+tude %%#%% local procedure calls%%per%%]$~ ~$[on mach 3%%per%%0%%lst%% cross— 
+address%%dsh%%space rpc %%#%% %%#%% 25mhz decstation 5000/200 
+%%#%% 314 times %%#%% expensive %%cmp%% %%#%% local procedure 
+call [berqbl%%per%%]$~ ~$[the spring operating system%%lst%% running %%#%% 
+%%#%% 40mhz sparcstationq%%lst%% delivers cross—address—space 
+rpc %%#%% %%#%% 73 times %%#%% expensive %%cmp%% %%#%% local leaf 
+procedure call [hk93]%%per%%]$~ ~$[software enforced fault isola« 
+tion %%#%% able %%#%% reduce %%#%% relative cost %%#%% cross%%dsh%%fault%%dsh%% 
+domain rpc %%#%% %%#%% order %%#%% magnitude %%#%% %%#%% sys%%dsh%% 
+tems%%per%% 
+5%%per%%3 using fault domains %%#%% postgres 
+%%#%% capture %%#%% effect %%#%% %%#%% system %%#%% application 
+performance%%lst%% %%#%% added software enforced fault %%#%% 
+mains %%#%% %%#%% postgres database management system%%lst%% 
+]^[ measured postgres running %%#%% sequoia 2000 
+benchmark [sfgmq3]%%per%%]$~ ~$[the sequoia %%sqt%%2000 benchmark 
+cross faultadomain rfc 
+platform caller save save %%#%% pipes 
+save integer integer+float procedure 
+registers registers registers call 
+dec~mips 1%%per%%11ps 1%%per%%81ps 2%%per%%83m 0%%per%%10/4s 204%%per%%72ns 
+dec—alpha 0175/15 1%%per%%35/5 lsons 0%%per%%06ps 227%%per%%88ps 
+table ‘2%%cln%% cross%%dsh%%faultrdomain crossing times%%per%%]$~ 
+~$[sequoia 2000 untrusted software—enforced number dec—mips—pipe 
+query function manager fault isolation cross—domain overhead 
+overhead overhead calls (predicted) 
+query 6 1%%per%%4% 1%%per%%7% 60989 18%%per%%6% 
+query 7 5%%per%%0% 1%%per%%8% 121986 386% 
+query 8 9%%per%%0% 2%%per%%7% 121978 312% 
+query 10 9%%per%%6% 5%%per%%7% 1427024 31%%per%%9% 
+table 3%%cln%% fault isolation overhead ]f[ postgres running sequoia 2000 benchmark%%per%% 
+contains queries typical %%#%% %%#%% %%#%% %%#%% earth scien— 
+tists %%#%% studying %%#%% climate%%per%%]$~ ~$[to support %%#%% kinds 
+%%#%% non~traditional queries%%lst%% postgres provides a%%per%% user 
+extensible type system%%per%%]$~ ~$[currently%%lst%% userrdeﬁned types 
+%%#%% written %%#%% conventional programming languages%%lst%% 
+%%#%% %%#%% c%%lst%% ]^[ dynamically loaded %%#%% %%#%% database 
+manager%%per%%]$~ ~$[this %%#%% %%#%% %%#%% recognized %%#%% %%#%% %%#%% serious 
+safety problem[st088]%%per%%]$~ 
+~$[four %%#%% %%#%% eleven queries %%#%% %%#%% sequoia 2000 bench%%dsh%% 
+mark %%#%% %%#%% %%#%% user—deﬁned polygon data types%%per%%]$~ ~$[we 
+measured %%#%% %%#%% queries using %%#%% unprotected 
+dynamic linking ]^[ software—enforced fault isolation%%per%%]$~ 
+~$[since %%#%% postgres code %%#%% trusted%%lst%% %%#%% %%#%% sand— 
+boxed %%#%% dynamically loaded user code%%per%%]$~ ~$[for %%#%% 
+experiment%%lst%% %%#%% cross%%dsh%%fault—domain rfc mechanism 
+saved %%#%% preserved integer registers (the variant cor%%dsh%% 
+responding %%#%% column 2 %%#%% table 2)%%per%%]$~ ~$[in addition%%lst%% %%#%% 
+instrumented %%#%% code %%#%% count %%#%% number %%#%% cross%%dsh%% 
+fault%%dsh%%domain rfcs ]s[ %%#%% %%#%% %%#%% estimate %%#%% %%#%% 
+formance %%#%% fault isolation based %%#%% separate address 
+spaces%%per%%]$~ 
+~$[table 3 %%#%% %%#%% results%%lst%% untrusted user—deﬁned 
+functions %%#%% postgres %%#%% %%#%% separate calling mecha%%dsh%% 
+nism %%#%% built—in functions%%per%%]$~ ~$[column 1 lists %%#%% over— 
+head %%#%% %%#%% untrustcd function manager %%#%% soft%%dsh%% 
+ware enforced fault domains%%per%%]$~ ~$[all reported overheads %%#%% 
+table 3 %%#%% relative %%#%% original postgres using %%#%% un— 
+trusted function manager%%per%%]$~ ~$[column 2 reports %%#%% mea~ 
+sured overhead %%#%% software enforced fault domains%%per%%]$~ ~$[us— 
+ing %%#%% number %%#%% cross—domain calls listed %%#%% column 3 
+]^[ tho dec*mips—i‘ipe time reported %%#%% table 2%%lst%% col— 
+umn 4 lists %%#%% estimated overhead using conventional 
+hardware address spaces%%per%% 
+212 
+5%%per%%4 analysis 
+%%#%% %%#%% postgres experiment software encapsulation 
+provided substantial savings %%#%% using native operat%%dsh%% 
+ing system services ]^[ hardware address spaces%%per%%]$~ ~$[in 
+general%%lst%% %%#%% savings provided %%#%% %%#%% techniques %%#%% 
+hardware—based mechanisms %%#%% %%#%% function %%#%% %%#%% per— 
+centage %%#%% time spent %%#%% distrusted code (q)%%lst%% %%#%% per%%dsh%% 
+centage %%#%% time spent crossing %%#%% fault domains 
+(2‘6)%%lst%% %%#%% overhead %%#%% encapsulation (h)%%lst%% ]^[ %%#%% ratio%%lst%% 
+r%%lst%% %%#%% %%#%% fault domain crossing time %%#%% %%#%% crossing 
+time %%#%% %%#%% competing hardware%%dsh%%based rpc mecha— 
+nism%%per%% 
+savings = (1 — 7°)t‘c %%dsh%%— htd 
+figure 5 graphically depicts %%#%% trade—offs%%per%%]$~ ~$[the %%#%% 
+axis %%#%% %%#%% percentage %%#%% time %%#%% application spends 
+crossing %%#%% fault domains%%per%%]$~ ~$[the %%#%% axis reports %%#%% 
+relative cost %%#%% software enforced fault%%dsh%%domain cross— 
+ing %%#%% hardware address spaces%%per%%]$~ ~$[assuming %%#%% %%#%% 
+execution time overhead %%#%% encapsulated code %%#%% 4%%per%%3%%%lst%% 
+%%#%% shaded region illustrates %%#%% software enforced 
+fault isolation %%#%% %%#%% %%#%% performance alternative%%per%%]$~ 
+~$[softwarevenforccd fault isolation %%#%% increas— 
+ingly attractive %%#%% applications achieve %%#%% degrees 
+%%#%% fault isolation (see figure 5)%%per%%]$~ ~$[for example%%lst%% %%cmp%% %%#%% ap%%dsh%% 
+plication spends 30% %%#%% %%#%% time crossing fault domains%%lst%% 
+%%#%% rpc mechanism %%#%% %%#%% perform 10% %%#%% 
+%%cmp%% %%#%% competitor%%lst%% applications %%#%% currently spend 
+%%#%% little %%#%% 10% %%#%% %%#%% time crossing require %%#%% %%#%% 
+39% improvement %%#%% fault domain crossing time %%#%% 
+reported %%#%% section 52%%lst%% %%#%% crossing time ]f[ %%#%% dec%%dsh%% 
+mips %%#%% hons ]^[ ]f[ %%#%% dec—alpha ute/is%%per%%]$~ ~$[hence%%lst%% 
+crossing time relative %%#%% 
+existing rfc 
+:9 hp :9 e9 
+ementage %%#%% execution time spent crossing 
+figure 5%%cln%% %%#%% shaded region represents %%#%% soft~ 
+ware enforced fault isolation provides %%#%% %%#%% per— 
+formance alternative%%per%%]$~ ~$[the %%#%% axis represents %%#%% 
+centage %%#%% time spent crossing %%#%% fault domains 
+(16)%%per%%]$~ ~$[the %%#%% axis represents %%#%% relative rpc crossing 
+speed (7‘)%%per%%]$~ ~$[the curve represents %%#%% break %%#%% point%%cln%% 
+(1—7%%sqt%%)t,%%scn%% = htd%%per%%]$~ ~$[in %%#%% graph%%lst%% %%#%% = 0%%per%%043 (encapsulation 
+overhead %%#%% %%#%% dec~mips ]^[ dec%%dsh%%alpha)%%per%% 
+]f[ %%#%% latter example%%lst%% %%#%% hardware address space cross— 
+ing time %%#%% 1%%per%%80m %%#%% %%#%% dec—mips ]^[ 1%%per%%23/15 %%#%% %%#%% 
+dec~alpha %%#%% provide %%#%% performance %%cmp%% 
+software fault domains%%per%%]$~ ~$[as %%#%% %%#%% %%#%% know%%lst%% %%#%% pro— 
+duction ]v[ experimental system currently provides %%#%% 
+level %%#%% performance%%per%%]$~ 
+~$[further%%lst%% figure 5 assumes %%#%% %%#%% entire applica%%dsh%% 
+tion %%#%% encapsulated%%per%%]$~ ~$[for %%#%% applications%%lst%% %%#%% %%#%% 
+postgres%%lst%% %%#%% assumption %%#%% conservative%%per%%]$~ ~$[figure 6 
+transforms %%#%% previous ﬁgure%%lst%% assuming %%#%% 50% %%#%% 
+total execution %%#%% spent %%#%% distrusted extension code%%per%%]$~ 
+~$[figures 5 ]^[ 6 illustrate %%#%% software enforced 
+fault isolation %%#%% %%#%% %%#%% choice whenever crossing 
+overhead %%#%% %%#%% significant proportion %%#%% %%#%% applica%%dsh%% 
+tion’s execution time%%per%%]$~ ~$[figure 7 demonstrates %%#%% 
+overhead due %%#%% software enforced fault isolation re— 
+mains %%#%% regardless %%#%% application behavior%%per%%]$~ ~$[fig— 
+ure 7 plots overhead %%#%% %%#%% function %%#%% crossing behavior 
+]^[ crossing cost%%per%%]$~ ~$[crossing times typical %%#%% vendor%%dsh%% 
+supplied ]^[ highly optimized hardware—based rpc 
+mechanisms %%#%% shown%%per%%]$~ ~$[the graph illustrates %%#%% rel— 
+ative performance stability %%#%% %%#%% software solution%%per%%]$~ 
+~$[this stability%%dqt%% allows system developers %%#%% ignore %%#%% 
+performance effect %%#%% fault isolation %%#%% choosing %%#%% 
+modules %%#%% %%#%% %%#%% separate fault domains%%per%% 
+6 related %%#%% 
+%%#%% systems %%#%% considered %%#%% %%#%% optimizing 
+rpc performance [vat88%%lst%% tass%%lst%% bla90%%per%%]$~ ~$[sb90%%lst%% hk93%%lst%% 
+ball90%%lst%% ball91]%%per%%]$~ ~$[traditional rfc systems based 
+100% 
+90% 
+80% 
+70% 
+60% 
+40% 
+crossing time relative 10 
+existing rpc 
+u%%per%% 
+§ 
+percentage %%#%% execution time spent crossing 
+figure 6%%cln%% %%#%% shaded region represents %%#%% soft~ 
+ware enforced fault isolation provides %%#%% %%#%% per%%dsh%% 
+formance alternative%%per%%]$~ ~$[the %%#%% axis represents per%%dsh%% 
+centage %%#%% time spent crossing %%#%% fault domains 
+(136)%%per%%]$~ ~$[the %%#%% axis represents %%#%% relative rpc crossing 
+speed (%%sqt%%r%%sqt%%)%%per%%]$~ ~$[the curve represents %%#%% break %%#%% point%%cln%% 
+(l—r)tc = htd%%per%%]$~ ~$[in %%#%% graph%%lst%% %%#%% = 0%%per%%043 (encapsulation 
+overhead %%#%% %%#%% dec—mips ]^[ dec—alpha)%%per%% 
+100% %%per%% 
+a%%dqt%% ultrix 4%%per%%2 context switch 
 8 
-1%%per%%5 
-6 
-1%%per%%0 
-4 
-0%%per%%5 
-2 
-0%%per%%0 
+d3 80% — _ 
+%%#%% 
+a%%per%%]$~ 
+~$[u} 
 0 
-# %%#%% models 
-ev market share % 
-fig%%per%% 4%%per%%]$~ ~$[number %%#%% ev models available ]f[ purchase%%lst%% production facilities%%lst%% ]^[ national market shares%%per%%]$~ 
-~$[ev market share (% %%#%% annual car sales) 
-3%%per%%5 
-18 
-norway 
-estonia 
-japan 
-netherlands 
-france 
-united states 
-austria 
-sweden 
-israel 
-spain 
-switzerland 
-denmark 
-portugal 
-italy 
-belgium 
-united kingdom 
-canada 
-greece 
-germany 
-iceland 
-china 
-finland 
-czech republic 
-slovenia 
-%%#%% zealand 
-ireland 
-turkey 
-australia 
-croatia 
-poland 
-number %%#%% ev models available ]f[ purchase 
-fig%%per%% 3%%per%%]$~ ~$[national charging infrastructure %%#%% country ]^[ corresponding ev market share ]f[ 2012%%per%%]$~ 
-~$[author%%sqt%%s personal copy 
-190 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-%%#%% %%#%% factors interact%%lst%% fig%%per%% 4 looks %%#%% %%#%% %%#%% variables%%cln%% %%#%% 
-number %%#%% models available ]f[ purchase%%scn%% %%#%% %%#%% country produced 
-evs locally (bolded columns)%%scn%% ]^[ adoption rates%%per%%]$~ 
-~$[in total%%lst%% 45 %%#%% types %%#%% evs %%#%% purchased %%#%% 2012 
-%%#%% %%#%% %%#%% number %%#%% models %%#%% %%#%% %%#%% nissan leaf%%lst%% chevy 
-volt/opel ampera%%lst%% ]^[ toyota plug%%dsh%%in prius accounted ]f[ %%#%% 
-lion%%sqt%%s share (62%) %%#%% %%#%% sales%%per%%]$~ ~$[the mitsubishi miev %%#%% %%#%% 
-%%#%% widely available%%lst%% %%#%% adopted %%#%% 26 %%#%% %%#%% countries %%#%% %%#%% 
-sample%%per%%]$~ ~$[there %%#%% %%#%% positive correlation %%#%% %%#%% country%%sqt%%s ev 
-adoption rate ]^[ %%#%% number %%#%% models %%#%% %%#%% available ]f[ 
-purchase%%per%%]$~ ~$[in %%#%% instances%%lst%% manufacturers sold %%#%% limited number 
-%%#%% %%#%% %%#%% ev models %%#%% %%#%% native country e%%per%%g%%per%%%%lst%% ford %%#%% 
-%%#%% %%#%% ]^[ mercedes %%#%% germany%%per%%]$~ ~$[in %%#%% instances%%lst%% manufacturers %%#%% %%#%% experimenting %%#%% %%#%% limited production %%#%% 
-speciﬁc ev models %%#%% expanding %%#%% sales efforts%%per%%]$~ 
-~$[countries %%#%% native manufacturers heavily invested %%#%% evs 
-e%%per%%g%%per%%%%lst%% japan%%lst%% france%%lst%% ]^[ %%#%% us%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% ev market 
-shares%%per%%]$~ ~$[other countries %%#%% ev production facilities ]b[ low 
-adoption rates including germany ]^[ italy %%#%% ]n[ %%#%% evs 
-%%#%% %%#%% native manufacturers broadly available%%per%%]$~ ~$[this suggests %%#%% 
-strong relationship %%#%% consumer adoption %%#%% evs ]^[ %%#%% 
-%%#%% manufactured %%#%% native ﬁrms%%per%%]$~ ~$[several %%#%% %%#%% larger countries 
-%%#%% %%#%% %%#%% prone %%#%% adopt native models%%lst%% speciﬁcally china 
-]^[ japan %%#%% %%#%% evs %%#%% native manufacturers %%#%% 
-purchased%%per%%]$~ ~$[of %%#%% %%#%% countries%%lst%% china stands %%#%% %%cmp%% %%#%% 
-%%#%% evs %%#%% %%#%% chinese auto makers %%#%% sold outside %%#%% 
-country%%per%%]$~ ~$[many manufacturers e%%per%%g%%per%%%%lst%% ford%%lst%% audi ]^[ mia electric%%lst%% 
-%%#%% nation%%dsh%%speciﬁc %%#%% sales %%#%% ]v[ primarily occurring %%#%% %%#%% 
-country %%#%% %%#%% production facilities %%#%% located%%per%%]$~ ~$[the relationship %%#%% %%#%% variables %%#%% fig%%per%% 4 suggests %%#%% complex 
-relationship %%#%% consumers%%lst%% manufacturers%%lst%% ]^[ national 
-attitude regarding evs%%per%% 
-5%%per%%3%%per%%]$~ ~$[ols model results ]^[ implications 
-table 3 %%#%% regression results %%#%% %%#%% 30 countries %%#%% %%#%% 
-study ]f[ 2012%%per%%]$~ ~$[we regressed %%#%% log %%#%% ev market share %%#%% 
-ﬁnancial incentives%%lst%% urban density%%lst%% education level%%lst%% %%#%% environmentalism indicator%%lst%% fuel price%%lst%% ev price%%lst%% %%#%% presence %%#%% production facilities%%lst%% %%#%% capita vehicles%%lst%% model availability%%lst%% introduction 
-table 3 
-regression results ]f[ 2012 electric vehicle adoption%%per%%]$~ 
-~$[unstandardized 
-%%#%% (std%%per%% err%%per%%) 
-standardized 
-beta 
-(constant) 
-incentive 
-charging infrastructure 
-environment 
-fuel 
-hq 
-income 
-%%#%% capita vehicles 
-education 
-electricity 
-availability 
-ev introduction 
-ev price 
-urban density 
- 5%%per%%703 (2%%per%%858) 
-0%%per%%006 (0%%per%%003)n 
-0%%per%%131 (0%%per%%039)nn 
-0%%per%%020 (0%%per%%037) 
- 0%%per%%141 (0%%per%%827) 
-0%%per%%926 (0%%per%%492) þ 
- 0%%per%%046 (0%%per%%036) 
-0%%per%%003 (0%%per%%002) 
-0%%per%%030 (0%%per%%003) 
- 0%%per%%221 (0%%per%%282) 
-0%%per%%049 (0%%per%%056) 
-0%%per%%122 (0%%per%%232) 
-0%%per%%008 (0%%per%%029) 
-0%%per%%018 (0%%per%%077) 
-0%%per%%357 
-0%%per%%599 
-0%%per%%106 
- 0%%per%%031 
-0%%per%%312 
- 0%%per%%336 
-0%%per%%319 
-0%%per%%190 
- 0%%per%%115 
-0%%per%%178 
-0%%per%%106 
-0%%per%%046 
-0%%per%%056 
+%%#%% 60% %%#%% _ 
+%%sqt%%e—< 
 %%#%% 
-r2 
-adjusted r2 
-30 
-0%%per%%792 
-0%%per%%623 
+%%#%% 40% %%#%% — 
+é decstation 5000 
+3 hardware minimum 
+00 
+20% — _ 
 %%#%% 
-po 0%%per%%05%%per%%]$~ 
-~$[po 0%%per%%01%%per%% 
-þ 
-%%#%% %%#%% 0%%per%%1%%per%% 
-nn 
-date%%lst%% charging infrastructure%%lst%% ]^[ electricity price%%per%%]$~ ~$[we %%#%% graphical 
-]^[ numerical analyses %%#%% ensure %%#%% %%#%% data met expectations 
-%%#%% linearity%%lst%% normality%%lst%% ]^[ homoskedasticity%%per%%]$~ ~$[we %%#%% anova 
-tests ]^[ histograms %%#%% test ]f[ linearity%%lst%% shapiro–wilk tests ]f[ 
-normality%%lst%% ]^[ visual analysis %%#%% scatter plots ]f[ heteroskedasticity%%per%%]$~ 
-~$[the model%%sqt%%s adjusted r2 %%#%% 0%%per%%628 %%#%% means %%#%% %%#%% 2/ 
-3 %%#%% %%#%% variation %%#%% national ev market shares %%#%% explained %%#%% 
-%%#%% tested variables%%per%%]$~ ~$[the coefﬁcients ]f[ ﬁnancial incentives ]^[ 
-charging infrastructure %%#%% positive ]^[ statistically signiﬁcant 
-%%#%% p%%dsh%%values %%#%% 0%%per%%039 ]^[ 0%%per%%004 respectively%%per%%]$~ ~$[of %%#%% %%#%% 
-variables%%lst%% charging infrastructure %%#%% %%#%% beta values (both 
-standardized ]^[ unstandardized)%%lst%% indicating %%#%% %%#%% %%#%% stronger 
-%%#%% estimating adoption levels%%per%%]$~ ~$[thus%%lst%% adding %%#%% charging station (per 
-100,000 residents) %%#%% %%#%% %%#%% impact %%#%% predicting ev market 
-share %%cmp%% %%#%% increasing ﬁnancial incentives %%#%% $1000%%per%%]$~ ~$[the 
-presence %%#%% %%#%% local ev manufacturing facility %%#%% %%#%% %%#%% signiﬁcant 
-variable%%lst%% %%#%% %%#%% %%#%% lesser extent %%#%% %%#%% p%%dsh%%value %%#%% 0%%per%%079%%per%%]$~ 
-~$[from %%#%% information %%#%% table 3%%lst%% %%#%% %%#%% %%#%% %%#%% extrapolate %%#%% 
-relationship %%#%% %%#%% ﬁnancial incentives ]^[ charging infrastructure %%#%% ev market share%%per%%]$~ ~$[holding %%#%% %%#%% factors constant%%lst%% %%#%% 
-$1000 increase %%#%% ﬁnancial incentives %%#%% cause %%#%% country%%sqt%%s ev 
-market share %%#%% increase %%#%% 0%%per%%06%%%per%%]$~ ~$[for example%%lst%% %%#%% country %%#%% %%#%% 
-ev market share %%#%% 0%%per%%22% %%#%% increased %%#%% ﬁnancial incentives %%#%% 
-consumers %%#%% $2000 %%#%% %%#%% %%#%% adoption rate %%#%% %%#%% %%#%% 0%%per%%34% 
-(0%%per%%22% þ0%%per%%06% þ0%%per%%06%)%%per%%]$~ ~$[for charging infrastructure%%lst%% holding %%#%% 
-%%#%% factors constant%%lst%% %%#%% additional station %%#%% 100,000 residents %%#%% %%#%% country added %%#%% increase %%#%% ev market share %%#%% 
-0%%per%%12%%%per%%]$~ ~$[this suggests %%#%% %%#%% charging station (per 100,000 
-residents) %%#%% %%#%% twice %%#%% impact %%#%% %%#%% country%%sqt%%s ev market 
-share %%cmp%% $1000 %%#%% consumer ﬁnancial incentives%%lst%% albeit %%#%% 
-%%#%% bearings %%#%% %%#%% nation%%sqt%%s budget%%per%%]$~ 
-~$[however%%lst%% %%#%% %%#%% note %%#%% caution%%lst%% %%#%% %%#%% model %%#%% identify %%#%% 
-ﬁnancial incentives ]^[ charging infrastructure %%#%% positively 
-correlated %%#%% national ev adoption levels%%lst%% %%#%% %%#%% %%#%% guarantee 
-%%#%% %%#%% relationships hold ]f[ %%#%% countries%%lst%% %%#%% evidenced %%#%% 
-figs%%per%% 1 ]^[ 3%%per%%]$~ ~$[for example%%lst%% %%#%% fig%%per%% 1 belgium ]^[ denmark %%#%% %%#%% 
-%%#%% ﬁnancial incentives%%lst%% ]b[ relatively low rates %%#%% adoption%%per%%]$~ 
-~$[conversely%%lst%% switzerland ]^[ sweden exhibited %%#%% opposite 
-dynamic %%#%% low consumer subsidies ]b[ %%#%% ev uptake levels%%per%%]$~ 
-~$[fig%%per%% 3 displayed %%#%% %%#%% sort %%#%% mixed relationship %%#%% 
-charging infrastructure ]^[ ev market share%%per%%]$~ ~$[thus%%lst%% ﬁnancial 
-incentives ]^[ charging infrastructure %%#%% %%#%% seen %%#%% %%#%% 
-%%#%% ]b[ ]n[ %%#%% %%#%% predict %%#%% country%%sqt%%s ev adoption rate%%per%%]$~ 
-~$[the empirical results provide %%#%% useful comparison %%#%% stated 
-preference surveys%%per%%]$~ ~$[while charging infrastructure ]^[ ﬁnancial 
-incentives %%#%% (as expected) signiﬁcant %%#%% predicting ev adoption%%lst%% %%#%% %%#%% ]n[ %%#%% %%#%% %%#%% broader socio%%dsh%%demographic 
-variables e%%per%%g%%per%%%%lst%% income%%lst%% education%%lst%% environmentalism%%lst%% ]^[ urban 
-density %%#%% %%#%% literature %%#%% anticipated %%#%% %%#%% inﬂuential (lane 
-]^[ potter%%lst%% 2007%%scn%% gallagher ]^[ muehlegger%%lst%% 2011%%scn%% egbue ]^[ 
-long%%lst%% 2012)%%per%%]$~ ~$[in addition%%lst%% despite %%#%% strong ]^[ positive correlation 
-%%#%% hev adoption %%#%% earlier studies (diamond%%lst%% 2009%%scn%% beresteanu 
-]^[ li%%lst%% 2011%%scn%% gallagher ]^[ muehlegger%%lst%% 2011)%%lst%% fuel price %%#%% ]n[ 
-signiﬁcant %%#%% predicting %%#%% country%%sqt%%s ev market share%%per%%]$~ ~$[however%%lst%% 
-%%#%% %%#%% fundamental differences %%#%% %%#%% papers ]^[ %%#%% study 
-%%#%% %%#%% help explain %%#%% conﬂicting results%%per%%]$~ ~$[firstly%%lst%% %%#%% hev 
-studies examined %%#%% single nation %%#%% %%#%% %%#%% whereas %%#%% 
-study looked %%#%% %%#%% countries ]f[ %%#%% single year%%per%%]$~ ~$[secondly%%lst%% fuel 
-prices %%#%% %%#%% earlier studies exhibited %%#%% %%#%% variation 
-%%cmp%% %%#%% found %%#%% %%#%% data%%per%%]$~ ~$[conversely%%lst%% %%#%% %%#%% %%#%% %%#%% differences 
-%%#%% %%#%% %%#%% complexity %%#%% total ownership cost calculation ]^[ %%#%% 
-role %%#%% charging infrastructure result %%#%% fuel prices ]n[ %%#%% %%#%% 
-%%#%% impact %%#%% ev purchases %%#%% %%#%% %%#%% %%#%% hevs%%per%%]$~ ~$[more 
-research %%#%% necessary %%#%% identify %%#%% relationship %%#%% fuel 
-price ]^[ ev adoption%%lst%% speciﬁcally studies %%#%% span multiple %%#%% 
-]^[ look %%#%% %%#%% single country%%per%%]$~ 
-~$[author%%sqt%%s personal copy 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-5%%per%%3%%per%%1%%per%%]$~ ~$[sensitivity tests 
-%%#%% addition %%#%% econometric results found %%#%% table 3%%lst%% %%#%% %%#%% 
-performed %%#%% estimations %%#%% test %%#%% sensitivity %%#%% %%#%% 
-variables (speciﬁcally ﬁnancial incentives ]^[ charging infrastructure) ]^[ %%#%% base model%%sqt%%s overall robustness%%per%%]$~ ~$[these %%#%% described 
-below %%#%% tables 4 ]^[ 5 ]^[ %%#%% referred %%#%% %%#%% models 1–5 
-respectively%%per%%]$~ ~$[the individual variable(s) explored %%#%% sensitivity 
-analysis %%#%% identiﬁed below %%#%% model%%sqt%%s number e%%per%%g%%per%%%%lst%% charging 
-infrastructure %%#%% model 1%%per%%]$~ 
-~$[in model 1%%lst%% normalizing charging infrastructure ]f[ urban 
-density %%#%% ]n[ drastically affect results %%#%% %%#%% variables ﬁnancial incentives%%lst%% production facilities%%lst%% ]^[ charging infrastructure 
-remaining signiﬁcant %%#%% %%#%% adjusted r2 (0%%per%%613) %%#%% %%#%% 
-similar %%#%% %%#%% %%#%% %%#%% base estimation%%per%%]$~ ~$[as such%%lst%% %%#%% base model 
-table 4 
-model sensitivity analyses 1 ]^[ 2%%per%% 
-(1) 
-chginf 
-(2) 
-incentive 
-(constant) 
-financial incentive 
-charging infrastructure 
-environment 
-fuel 
-hq 
-income 
-%%#%% capita vehicles 
-education 
-electricity 
-availability 
-ev introduction 
-ev price 
-urban density 
- 5%%per%%368 (2%%per%%893) 
-0%%per%%006 (0%%per%%003)n 
-0%%per%%164 (0%%per%%05)nn 
-0%%per%%019 (0%%per%%038) þ 
- 0%%per%%182 (0%%per%%841) 
-0%%per%%847 (0%%per%%492) 
- 0%%per%%047 (0%%per%%037) 
-0%%per%%003 (0%%per%%002) 
-0%%per%%025 (0%%per%%03) 
- 0%%per%%236 (0%%per%%285) 
-0%%per%%053 (0%%per%%057) 
-0%%per%%145 (0%%per%%233) 
-0%%per%%009 (0%%per%%029) 
-0%%per%%012 (0%%per%%078) 
- 5%%per%%380 (2%%per%%791) 
-0%%per%%066 (0%%per%%029)n 
-0%%per%%122 (0%%per%%040)nn 
-0%%per%%021 (0%%per%%037) 
- 0%%per%%137 (0%%per%%819) 
-1%%per%%007 (0%%per%%490) þ 
- 0%%per%%039 (0%%per%%036) 
-0%%per%%002 (0%%per%%002) 
-0%%per%%027 (0%%per%%030) 
- 0%%per%%216 (0%%per%%279) 
-0%%per%%045 (0%%per%%055) 
-0%%per%%077 (0%%per%%234) 
-0%%per%%006 (0%%per%%028) 
-0%%per%%009 (0%%per%%075) 
-%%#%% 
-r2 
-adjusted r2 
-30 
-0%%per%%787 
-0%%per%%613 
-30 
-0%%per%%795 
-0%%per%%628 
-nn 
-%%#%% 
-þ 
-po 0%%per%%01%%per%%]$~ 
-~$[po 0%%per%%05%%per%%]$~ 
-~$[po 0%%per%%1%%per%%]$~ 
-~$[table 5 
-model sensitivity analyses 3–5%%per%% 
-(constant) 
-(3) 
-incentive 
-(4) 
-chginf 
- 3%%per%%692 
-(3%%per%%021) 
- 5%%per%%519 (3%%per%%629)  2%%per%%756 (3%%per%%842) 
-0%%per%%008 (0%%per%%004)nn 
-financial incentive 
-charging 
-infrastructure 
-environment 
-fuel 
-hq 
-income 
-%%#%% capita vehicles 
-education 
-electricity 
-availability 
-ev introduction 
-ev price 
-0%%per%%000 (0%%per%%040) 
-0%%per%%337 (0%%per%%889) 
-0%%per%%908 (0%%per%%547) 
- 056 (0%%per%%040) 
-0%%per%%002 (0%%per%%002) 
-0%%per%%047 (0%%per%%032) 
- 044 (0%%per%%302) 
-0%%per%%024 (0%%per%%061) 
-0%%per%%222 (0%%per%%253) 
- 007 (0%%per%%031) 
-urban density 
-%%#%% 
-r2 
-adjusted r2 
-nn 
-po 0%%per%%01%%per%% 
-(5) 
-incentive ]^[ chginf 
-0%%per%%149 (0%%per%%042)nn 
- 007 (0%%per%%052) 
-1%%per%%321 (1%%per%%078) 
-0%%per%%301 (0%%per%%663) 
- 021 (0%%per%%049) 
- 002 (0%%per%%002) 
-0%%per%%062 (0%%per%%041) 
- 261 (0%%per%%377) 
-0%%per%%065 (0%%per%%077) 
-0%%per%%527 (0%%per%%304) 
- 028 (0%%per%%039) 
- 043 (0%%per%%080) 
-0%%per%%020 (0%%per%%048) 
-0%%per%%548 (1%%per%%018) 
-0%%per%%418 (0%%per%%595) 
- 0%%per%%013 (0%%per%%044) 
-0%%per%%069 (0%%per%%002) 
-0%%per%%037 (0%%per%%038) 
- 0%%per%%458 (0%%per%%347) 
-0%%per%%092 (0%%per%%069) 
-0%%per%%349 (0%%per%%282) 
- 0%%per%%005 
-(0%%per%%036) 
- 0%%per%%017 (0%%per%%097) 
-30 
-0%%per%%726 
-0%%per%%533 
-30 
-0%%per%%643 
-0%%per%%391 
-30 
-0%%per%%527 
-0%%per%%238 
- 105 (0%%per%%100) 
-191 
-remains robust %%#%% %%#%% sensitivity test%%per%%]$~ ~$[model 2 explored %%#%% 
-sensitivity %%#%% ev adoption %%#%% ﬁnancial incentives %%#%% %%#%% 
-discount rates ]^[ payback periods%%per%%]$~ ~$[while %%#%% %%#%% energy information national energy modeling system %%#%% %%#%% 3 %%#%% payback 
-period ]^[ discount rate %%#%% 30%%%lst%% %%#%% studies %%#%% found %%#%% 
-consumers%%lst%% speciﬁcally businesses ]^[ government agencies%%lst%% %%#%% 
-%%#%% accurately calculate %%#%% total lifetime costs %%#%% %%#%% innovation 
-(nesbitt ]^[ sperling%%lst%% 1998%%scn%% menanteau ]^[ lefebvre%%lst%% 2000)%%per%%]$~ ~$[as 
-such%%lst%% %%#%% ran %%#%% sensitivity test ]f[ %%#%% lower discount rate (1%%per%%25%) ]^[ 
-%%#%% payback period (8 years%%lst%% %%#%% %%#%% %%#%% warranty period ]f[ %%#%% 
-nissan leaf ]v[ chevy volt)%%per%%]$~ ~$[this approach resulted %%#%% $25,000 
-%%#%% %%#%% available ﬁnancial incentives %%#%% $180,000 %%#%% %%#%% base 
-model%%per%%]$~ ~$[this sensitivity test %%#%% ]n[ substantially change %%#%% 
-signiﬁcant variables (ﬁnancial incentives%%lst%% charging infrastructure%%lst%% 
-]^[ ev manufacturer location) ]v[ %%#%% models adjusted r2%%lst%% (0%%per%%628) 
-suggesting %%#%% differences %%#%% discount value ]^[ payback period 
-%%#%% %%#%% relatively weak inﬂuence %%#%% national ev adoption rates%%lst%% 
-%%#%% %%#%% %%#%% %%#%% due %%#%% %%#%% %%#%% number %%#%% multi%%dsh%%year 
-consumer subsidies i%%per%%e%%per%%%%lst%% %%#%% %%#%% address circulation taxes%%per%%]$~ 
-~$[sensitivity analyses 3–5 %%#%% %%#%% %%#%% model%%sqt%%s explanatory 
-power changed %%#%% %%#%% removal %%#%% ﬁnancial incentives ]^[ 
-charging infrastructure variables%%per%%]$~ ~$[removing %%#%% ﬁnancial incentives variable %%#%% model 3 resulted %%#%% %%#%% adjusted r2 decreasing 
-%%#%% 0%%per%%623 %%#%% %%#%% base analysis %%#%% 0%%per%%533%%per%%]$~ ~$[taking %%#%% charging 
-infrastructure %%#%% model 4 caused %%#%% %%#%% drastic reduction %%#%% 
-adjusted r2 %%#%% 0%%per%%391%%per%%]$~ ~$[removal %%#%% %%#%% factors %%#%% model 5 caused 
-%%#%% model %%#%% lose %%#%% %%#%% %%#%% explanatory power%%scn%% %%#%% %%#%% %%#%% 
-signiﬁcant variables ]^[ %%#%% adjusted r2 %%#%% 0%%per%%238%%per%%]$~ ~$[from %%#%% 
-sensitivity tests %%#%% %%#%% %%#%% %%#%% %%#%% conclude %%#%% %%#%% %%#%% model%%lst%% 
-charging infrastructure %%#%% considerably stronger %%cmp%% ﬁnancial 
-incentives %%#%% explaining ev adoption rates%%per%%]$~ 
-~$[there %%#%% %%#%% limitations %%#%% %%#%% models %%#%% %%#%% %%#%% 
-potential %%#%% produce misleading results%%per%%]$~ ~$[during %%#%% introduction %%#%% 
-%%#%% technologies%%lst%% %%#%% %%#%% %%#%% discrepancies %%#%% supply %%#%% 
-locales%%per%%]$~ ~$[differences %%#%% ev availability %%#%% locality %%#%% %%#%% contributed 
-%%#%% variation %%#%% national adoption numbers%%per%%]$~ ~$[in addition%%lst%% %%#%% study 
-analyzed ﬁnancial incentives %%#%% national governments%%per%%]$~ ~$[there %%#%% 
-undoubtedly monetary beneﬁts%%lst%% %%#%% %%#%% free parking ]v[ toll exemptions provided %%#%% regions ]^[ cities %%#%% %%#%% ]n[ included %%#%% %%#%% 
-study ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% inﬂuential%%per%%]$~ ~$[the %%#%% number %%#%% 
-observations %%#%% %%#%% %%#%% %%#%% cause ]f[ caution %%#%% interpreting %%#%% 
-results%%per%%]$~ ~$[furthermore%%lst%% %%#%% %%#%% studying 1 year%%lst%% %%#%% data %%#%% ]n[ allow 
-]f[ analysis %%#%% %%#%% relationship %%#%% %%#%% variables e%%per%%g%%per%%%%lst%% 
-ﬁnancial incentives ]^[ charging infrastructure%%per%% 
-6%%per%%]$~ ~$[conclusions 
-%%#%% purpose %%#%% %%#%% research %%#%% %%#%% explore %%#%% relationship 
-%%#%% ﬁnancial incentives ]^[ %%#%% socio%%dsh%%economic factors %%#%% 
-electric vehicle adoption %%#%% %%#%% countries%%per%%]$~ ~$[we found %%#%% 
-ﬁnancial incentives%%lst%% %%#%% number %%#%% charging stations (corrected ]f[ 
-population)%%lst%% ]^[ %%#%% presence %%#%% %%#%% local ev manufacturing facility 
-%%#%% positive ]^[ signiﬁcant %%#%% predicting ev adoption rates ]f[ %%#%% 
-countries %%#%% %%#%% study%%per%%]$~ ~$[of %%#%% variables%%lst%% charging infrastructure %%#%% 
-%%#%% %%#%% predictor %%#%% %%#%% country%%sqt%%s ev market share%%per%%]$~ ~$[however%%lst%% descriptive analyses indicated %%#%% country%%dsh%%speciﬁc factors %%#%% %%#%% government procurement plans ]v[ %%#%% target recipient %%#%% subsidies %%#%% 
-dramatically affect %%#%% nation%%sqt%%s adoption rate%%per%%]$~ ~$[on %%#%% %%#%% %%#%% analysis 
-provides tentative endorsement %%#%% ﬁnancial incentives ]^[ charging 
-infrastructure %%#%% %%#%% %%#%% %%#%% encourage ev adoption%%per%%]$~ 
-~$[a %%#%% conclusion %%#%% %%#%% ev%%dsh%%speciﬁc factors %%#%% discovered 
-%%#%% %%#%% signiﬁcant %%#%% broader socio%%dsh%%demographic variables %%#%% 
-%%#%% income%%lst%% education level%%lst%% ]^[ environmentalism %%#%% ]n[ %%#%% 
-predictors %%#%% adoption levels%%per%%]$~ ~$[this %%#%% %%#%% %%cmp%% national ev 
-markets %%#%% ]s[ %%#%% relative %%#%% overall automobile sales%%per%%]$~ ~$[thus%%lst%% 
-author%%sqt%%s personal copy 
-192 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-%%#%% %%#%% ev consumers %%#%% %%#%% %%#%% levels %%#%% education ]^[ 
-%%#%% passionate %%#%% %%#%% environment%%lst%% %%#%% %%#%% perspective %%#%% %%#%% 
-country %%#%% individuals %%#%% represent %%#%% tiny portion %%#%% %%#%% overall 
-population%%per%%]$~ ~$[therefore%%lst%% socio%%dsh%%demographic variables %%#%% ]n[ provide %%#%% %%#%% indicator %%#%% adoption levels %%#%% comparing countries%%per%%]$~ ~$[if evs emerge %%#%% %%#%% niche market%%lst%% %%cmp%% socio%%dsh%%demographic 
-data %%#%% %%#%% %%#%% accurately %%#%% %%#%% predict adoption levels %%#%% 
-%%#%% national scale%%per%%]$~ ~$[until %%cmp%%%%lst%% ev%%dsh%%speciﬁc factors %%#%% %%#%% amount %%#%% 
-charging infrastructure%%lst%% level %%#%% consumer ﬁnancial incentives%%lst%% ]^[ 
-number %%#%% locations %%#%% sell %%#%% automobiles %%#%% %%#%% %%#%% %%#%% %%#%% 
-correct ]f[ estimating %%#%% country%%sqt%%s market share%%per%% 
-6%%per%%1%%per%%]$~ ~$[policy implications 
-based %%#%% %%#%% results%%lst%% %%#%% sensible policy approach ]f[ addressing 
-ev market failures arising %%#%% pollution abatement ]^[ knowledge spillover %%#%% %%#%% ]f[ governments %%#%% provide consumer 
-subsidies and/or increase %%#%% number %%#%% charging stations%%per%%]$~ ~$[due 
-%%#%% %%#%% importance %%#%% consumer adoption %%#%% %%#%% commercial 
-introduction %%#%% %%#%% radical innovation (nemet ]^[ baker%%lst%% 2009)%%lst%% %%#%% 
-supportive measures %%#%% %%#%% %%#%% wide difference %%#%% %%#%% level %%#%% 
-ev diffusion %%#%% %%#%% coming decades%%per%%]$~ ~$[as %%#%% charging station 
-variable %%#%% %%#%% strongest predictor %%#%% ev adoption based %%#%% beta 
-values stress tests%%lst%% %%#%% installation %%#%% %%#%% %%#%% effective %%cmp%% 
-ﬁnancial incentives%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% %%#%% factors %%#%% %%#%% %%#%% 
-%%#%% complimentary%%lst%% supporting %%#%% measures %%#%% %%#%% expected %%#%% 
-lead %%#%% %%#%% market shares %%cmp%% focusing %%#%% %%#%% ﬁnancial 
-incentives ]v[ charging infrastructure alone%%per%%]$~ 
-~$[however%%lst%% %%#%% study %%#%% provides %%#%% notes %%#%% caution %%#%% 
-countries %%#%% expect %%#%% %%#%% %%#%% achieve %%#%% ev adoption rates 
-%%#%% increasing %%#%% levels %%#%% ﬁnancial incentives ]v[ charging 
-infrastructure%%per%%]$~ ~$[firstly%%lst%% %%#%% descriptive analysis identiﬁed %%#%% 
-countries %%#%% displayed %%#%% relatively weak relationship %%#%% 
-%%#%% %%#%% factors ]^[ ev market share%%per%%]$~ ~$[secondly%%lst%% %%#%% %%#%% %%#%% %%#%% 
-ﬁnancial incentives ]v[ charging infrastructure mask %%#%% 
-dynamics %%#%% %%#%% signiﬁcant %%#%% driving ev adoption%%per%%]$~ ~$[consequently%%lst%% building policy %%#%% %%#%% %%#%% %%#%% factors %%#%% ]n[ 
-support %%#%% underlying elements%%per%%]$~ ~$[thirdly%%lst%% due %%#%% %%#%% constantly evolving environment %%#%% %%#%% emergence %%#%% %%#%% radical 
-innovation%%lst%% industrial dynamics %%#%% change %%#%% %%#%% %%#%% year%%per%%]$~ 
-~$[therefore%%lst%% %%#%% %%#%% study %%#%% %%#%% %%#%% ﬁnancial incentives ]^[ 
-charging infrastructure %%#%% positively correlated %%#%% national ev 
-market shares%%lst%% %%#%% %%#%% deﬁnitely ]n[ evidence %%#%% %%#%% causal relationship 
-]^[ %%#%% %%#%% treated %%#%% prudence%%per%%]$~ 
-~$[while national governments %%#%% %%#%% primarily responsible 
-]f[ consumer ﬁnancial incentives%%lst%% installing charging %%#%% %%#%% 
-largely %%#%% left %%#%% local public bodies %%#%% %%#%% cities (iea%%lst%% 2013)%%per%%]$~ 
-~$[however%%lst%% %%#%% iea (2013) found %%#%% “infrastructure spending %%#%% 
-%%#%% relatively sparse” (pp%%per%% 16)%%lst%% %%#%% suggests %%#%% local ]^[ 
-national levels %%#%% government %%#%% streng%%cmp%% coordination %%#%% 
-order %%#%% %%#%% encourage ev adoption%%lst%% supporting earlier research 
-%%#%% bakker ]^[ trip (2013)%%per%%]$~ 
-~$[now %%#%% %%#%% %%#%% identiﬁed policies %%#%% %%#%% %%#%% effective %%#%% 
-encouraging ev adoption%%lst%% %%#%% %%#%% question %%#%% %%#%% %%#%% %%#%% 
-actually efﬁcient %%#%% %%#%% societal ]^[ economical sense%%per%%]$~ ~$[to answer %%#%% 
-question%%lst%% %%#%% elaborate ex%%dsh%%ante cost effectiveness analysis (cea) ]v[ 
-cost beneﬁt analysis (cba) %%#%% %%#%% needed%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% 
-dynamic nature %%#%% radical innovations%%lst%% %%#%% %%#%% %%#%% careful %%#%% 
-applying %%#%% methods %%#%% %%#%% ev case%%per%%]$~ ~$[that %%#%% %%#%% say%%lst%% evs %%#%% ]n[ 
-signiﬁcantly reduce ghg emissions %%#%% %%#%% short term%%lst%% ]b[ %%#%% 
-%%#%% %%#%% potential %%#%% cause dramatic decarbonization post 2020 
-(iea%%lst%% 2012c)%%lst%% assuming %%#%% dramatic increase %%#%% %%#%% share %%#%% renewables %%#%% %%#%% electricity mix%%per%%]$~ ~$[in %%#%% respect%%lst%% ﬁnancial incentives 
-%%#%% %%#%% %%#%% %%#%% ]f[ stimulating broader ev adoption %%#%% 
-%%#%% future%%lst%% ]^[ consequently %%#%% provide beneﬁts outside %%#%% 
-typically included %%#%% %%#%% status quo based cba%%per%%]$~ ~$[such additional 
-beneﬁts %%#%% %%#%% reason %%#%% implement %%#%% policies %%#%% %%cmp%% %%#%% 
-results %%#%% %%#%% traditional cba %%#%% ]n[ %%#%% favorable%%per%%]$~ 
-~$[furthermore%%lst%% %%#%% %%#%% difﬁcult %%#%% %%cmp%% %%#%% costs %%#%% ﬁnancial 
-incentives ]f[ evs %%#%% %%#%% least %%#%% competing policy options %%#%% 
-reduce co2 emissions%%per%%]$~ ~$[financial incentives %%#%% increase %%#%% sales %%#%% 
-evs %%#%% %%#%% temporary basis %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% stages %%#%% evs 
-%%cmp%% %%#%% %%#%% compete ]y[ %%#%% internal combustion engine 
-vehicles%%per%%]$~ ~$[if%%lst%% %%#%% %%#%% %%#%% decades%%lst%% evs %%#%% %%#%% %%#%% success%%lst%% 
-ﬁnancial incentive policies %%#%% prove %%#%% %%#%% contributed %%#%% %%#%% 
-success%%per%%]$~ ~$[in %%#%% words%%lst%% %%#%% %%#%% %%#%% %%#%% snowball effect %%#%% current 
-ﬁnancial incentives %%#%% %%#%% fundamentally difﬁcult %%#%% grasp %%#%% %%#%% 
-conventional cea ]v[ cba%%per%%]$~ ~$[we %%cmp%% suggest %%#%% %%#%% analyses 
-%%#%% %%#%% %%#%% %%#%% support decision making%%lst%% ]b[ %%#%% %%#%% outcomes 
-%%#%% %%#%% treated %%#%% caution ]^[ %%#%% decision makers %%#%% 
-%%#%% %%#%% %%#%% %%#%% term perspective %%#%% interpreting these%%per%% 
-6%%per%%2%%per%%]$~ ~$[suggestions ]f[ future research 
-%%#%% study looked %%#%% %%#%% country%%sqt%%s total charging infrastructure%%lst%% 
-]n[ taking %%#%% account %%#%% %%#%% heterogeneous distribution %%#%% 
-charging stations (many %%#%% %%#%% city%%lst%% %%#%% %%cmp%%where) %%#%% inﬂuence ev adoption%%per%%]$~ ~$[speciﬁcally %%cmp%% %%#%% %%#%% %%#%% role 
-played %%#%% local municipalities %%#%% installing charging infrastructure%%lst%% 
-table a1 
-correlations %%#%% model variables%%per%%]$~ 
-~$[mar share 
-incentive 
-env 
-fuel 
-chg infra 
-hq 
-income 
-%%#%% cap 
-veh 
-ed 
-elec 
-avail 
-ev intro 
-ev price 
-urb den 
-%%#%% 
-market 
-share 
-incentive env 
-fuel 
-chg 
-infra 
-hq 
-income 
-%%#%% cap 
-vehicles 
-ed 
-elec 
-avail 
-ev intro ev price urban 
-density 
-1 
-0%%per%%498nn 
-0%%per%%258 
- 0%%per%%091 
-0%%per%%697nn 
-0%%per%%400n 
-0%%per%%443n 
-0%%per%%142 
-0%%per%%498nn 
-1 
- 0%%per%%115 
- 0%%per%%015 
-0%%per%%380n 
- 0%%per%%058 
-0%%per%%135 
- 0%%per%%111 
-0%%per%%258 
- 0%%per%%115 
-1 
-0%%per%%182 
-0%%per%%260 
-0%%per%%048 
-0%%per%%586nn 
-0%%per%%565nn 
- 0%%per%%091 
- 0%%per%%015 
-0%%per%%182 
-1 
-0%%per%%107 
- 0%%per%%183 
- 0%%per%%081 
- 0%%per%%141 
-0%%per%%697nn 
-0%%per%%380n 
-0%%per%%260 
-0%%per%%107 
-1 
-0%%per%%011 
-0%%per%%455n 
- 049 
-0%%per%%400n 
- 058 
-0%%per%%048 
- 0%%per%%183 
-0%%per%%011 
-1 
-0%%per%%163 
-0%%per%%036 
-0%%per%%443n 
-0%%per%%135 
-0%%per%%586nn 
- 0%%per%%081 
-0%%per%%455n 
-0%%per%%163 
-1 
-0%%per%%647nn 
-0%%per%%142 
- 0%%per%%111 
-0%%per%%565nn 
- 0%%per%%141 
- 0%%per%%049 
-0%%per%%036 
-0%%per%%647nn 
-1 
-0%%per%%347 
-0%%per%%366n 
-0%%per%%048 
- 0%%per%%263 
-0%%per%%213 
-0%%per%%042 
-0%%per%%514nn 
-0%%per%%320 
-0%%per%%089 
-0%%per%%112 
-0%%per%%304 
-0%%per%%082 
-0%%per%%065 
-0%%per%%085 
-0%%per%%313 
-0%%per%%241 
-0%%per%%375n 
- 0%%per%%141 
-0%%per%%423n 
- 0%%per%%136 
-0%%per%%259 
-0%%per%%524nn 
-0%%per%%403n 
-0%%per%%174 
-0%%per%%553nn 
-0%%per%%130 
-0%%per%%375n 
- 0%%per%%159 
-0%%per%%447n 
-0%%per%%492nn 
-0%%per%%559nn 
-0%%per%%250 
- 0%%per%%448n 
- 0%%per%%311 
- 0%%per%%380n 
-0%%per%%282 
- 0%%per%%361 
- 0%%per%%133 
- 0%%per%%461n 
- 0%%per%%336 
- 0%%per%%277 
- 0%%per%%139 
- 0%%per%%477nn 
-0%%per%%433n 
- 0%%per%%135 
- 0%%per%%043 
- 0%%per%%622nn 
- 0%%per%%739nn 
-0%%per%%347 
-0%%per%%089 
-0%%per%%375n 
-0%%per%%553nn 
- 0%%per%%448n 
- 0%%per%%277 
-0%%per%%366n 
-0%%per%%112 
- 0%%per%%141 
-0%%per%%130 
- 0%%per%%311 
- 0%%per%%139 
-0%%per%%048 
-0%%per%%304 
-0%%per%%423n 
-0%%per%%375n 
- 0%%per%%380n 
- 0%%per%%477nn 
- 0%%per%%263 
-0%%per%%082 
- 0%%per%%136 
- 0%%per%%159 
-0%%per%%282 
-0%%per%%433n 
-0%%per%%213 
-0%%per%%065 
-0%%per%%259 
-0%%per%%447n 
- 0%%per%%361 
- 0%%per%%135 
-0%%per%%042 
-0%%per%%085 
-0%%per%%524nn 
-0%%per%%492nn 
- 0%%per%%133 
- 0%%per%%043 
-0%%per%%514nn 
-0%%per%%313 
-0%%per%%403n 
-0%%per%%559nn 
- 0%%per%%461n 
- 0%%per%%622nn 
-0%%per%%320 
-0%%per%%241 
-0%%per%%174 
-0%%per%%250 
- 0%%per%%336 
- 0%%per%%739nn 
-1 
-0%%per%%002 
- 0%%per%%117 
-0%%per%%053 
- 0%%per%%419n 
- 0%%per%%392n 
-0%%per%%002 
-1 
-0%%per%%463nn 
-0%%per%%274 
- 0%%per%%065 
- 0%%per%%200 
- 0%%per%%117 
-0%%per%%463nn 
-1 
-0%%per%%542nn 
- 0%%per%%201 
- 0%%per%%235 
-0%%per%%053 
-0%%per%%274 
-0%%per%%542nn 
-1 
- 0%%per%%391n 
- 0%%per%%247 
- 0%%per%%419n 
- 0%%per%%065 
- 0%%per%%201 
- 0%%per%%391n 
-1 
-0%%per%%448n 
- 0%%per%%392n 
- 0%%per%%200 
- 0%%per%%235 
- 0%%per%%247 
-0%%per%%448n 
-1 
-signiﬁcant %%#%% %%#%% 0%%per%%05 level (2%%dsh%%tailed)%%per%%]$~ 
-~$[signiﬁcant %%#%% %%#%% 0%%per%%01 level (2%%dsh%%tailed)%%per%% 
-nn 
-author%%sqt%%s personal copy 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-%%#%% allocation %%#%% %%#%% %%#%% %%#%% affect %%#%% %%#%% country%%sqt%%s 
-ev adoption rate (bakker ]^[ trip%%lst%% 2013)%%per%%]$~ ~$[therefore%%lst%% %%#%% suggest 
-%%#%% future research focus %%#%% %%#%% relationship %%#%% %%#%% 
-distribution %%#%% charging infrastructure %%#%% %%#%% country ]^[ %%#%% 
-ev adoption rate%%per%%]$~ 
-~$[in addition%%lst%% %%#%% model found charging infrastructure ]^[ 
-ﬁnancial incentives %%#%% %%#%% powerful predictors %%#%% ev adoption rates 
-]f[ %%#%% countries %%#%% %%#%% sample%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-variables concealed %%#%% %%#%% factors%%per%%]$~ ~$[therefore%%lst%% %%#%% 
-analysis %%#%% necessary %%#%% unpack %%#%% importance %%#%% charging 
-infrastructure ]^[ ﬁnancial incentives %%#%% determine %%#%% %%#%% 
-%%#%% %%#%% %%#%% own %%#%% predictors %%#%% ev adoption%%lst%% ]v[ %%cmp%% %%#%% %%#%% 
-%%#%% elements %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% ]b[ %%#%% ]n[ included 
-%%#%% %%#%% model%%per%%]$~ ~$[for instance%%lst%% fuel price volatility %%#%% provide insight 
-%%#%% ev adoption %%#%% %%#%% ]n[ captured %%#%% absolute fuel prices%%per%%]$~ 
-~$[acknowledgments 
-%%#%% paper %%#%% appreciative %%#%% %%#%% contributions %%#%% eric molin 
-]^[ james dunn%%per%%]$~ ~$[support %%#%% provided %%#%% %%#%% netherlands 
-organization ]f[ scientiﬁc research ]^[ %%#%% university %%#%% 
-wisconsin%%dsh%%madison center ]f[ sustainability ]^[ %%#%% global 
-environment%%per%%]$~ 
-~$[appendix %%#%% 
-%%#%% table a1%%per%%]$~ 
+*%%dsh%% software 
+a? 
+0% l 
+0 1o 20 
+# crossings/millcsecond 
+figure 7%%cln%% percentage %%#%% time spent %%#%% crossing code 
+versus number %%#%% fault domain crossings %%#%% millisec%%dsh%% 
+ond %%#%% %%#%% decemips%%per%%]$~ ~$[the hardware minimum cross— 
+ing number %%#%% %%#%% %%#%% %%#%% crossvarchitectural study 
+%%#%% context switch times [albl91]%%per%%]$~ ~$[the ultrix 4%%per%%2 con%%dsh%% 
+text switch time %%#%% %%#%% reported %%#%% %%#%% last column %%#%% 
+table 2%%per%% 
+213 
+%%#%% hardware fault isolation %%#%% ultimately limited %%#%% 
+%%#%% minimal hardware cost %%#%% taking %%#%% kernel traps 
+]^[ %%#%% hardware context switches%%per%%]$~ ~$[lrpc %%#%% %%#%% 
+%%#%% %%#%% ﬁrst rpc systems %%#%% approach %%#%% limit%%lst%% ]^[ 
+%%#%% prototype %%#%% %%#%% number %%#%% %%#%% techniques found 
+%%#%% lrpc ]^[ later systems%%cln%% %%#%% %%#%% thread runs %%#%% 
+%%#%% %%#%% caller ]^[ %%#%% callee domain%%lst%% %%#%% stubs %%#%% 
+kept %%#%% simple %%#%% possible%%lst%% ]^[ %%#%% crossing code jumps 
+directly %%#%% %%#%% called procedure%%lst%% avoiding %%#%% dispatch 
+%%#%% %%#%% callee domain%%per%%]$~ ~$[unlike %%#%% systems%%lst%% software— 
+based fault isolation avoids hardware context switches%%lst%% 
+substantially reducing crossing costs%%per%%]$~ 
+~$[address space identiﬁer tags %%#%% %%#%% %%#%% %%#%% reduce 
+hardware context switch times%%per%%]$~ ~$[tags allow %%#%% %%cmp%% 
+%%#%% address space %%#%% share %%#%% tlb%%scn%% otherwise %%#%% 
+tlb %%#%% %%#%% ﬂushed %%#%% %%#%% context switch%%per%%]$~ ~$[it %%#%% 
+estimated %%#%% 25% %%#%% %%#%% cost %%#%% %%#%% lrpc %%#%% %%#%% 
+fireﬂy (which %%#%% ]n[ %%#%% tags) %%#%% due %%#%% tlb 
+misses[ball90]%%per%%]$~ ~$[address space tags %%#%% not%%lst%% however%%lst%% 
+reduce %%#%% cost %%#%% register management ]v[ system calls%%lst%% 
+operations %%#%% %%#%% ]n[ scaling %%#%% integer perfor%%dsh%% 
+mance[albl91]%%per%%]$~ ~$[an %%#%% advantage %%#%% software— 
+based jfault isolation %%#%% %%#%% %%#%% %%#%% ]n[ rely %%#%% specialv 
+ized architectural features %%#%% %%#%% address space tags%%per%%]$~ 
+~$[restrictive programming languages %%#%% %%#%% %%#%% %%#%% 
+%%#%% provide fault isolation%%per%%]$~ ~$[pilot requires %%#%% kernel%%lst%% 
+user%%lst%% ]^[ library code %%#%% %%#%% written %%#%% mesa%%lst%% 3 strongly 
+typed language%%scn%% %%#%% code %%cmp%% shares %%#%% single address 
+space [rdii+80]%%per%%]$~ ~$[the main disadvantage %%#%% relying %%#%% 
+strong typing %%#%% %%#%% %%#%% severely restricts %%#%% choice 
+%%#%% programming languages%%lst%% ruling %%#%% conventional 
+languages %%#%% c%%lst%% c++%%lst%% ]^[ assembly%%per%%]$~ ~$[even %%#%% 
+strongly—typed languages %%#%% %%#%% ada ]^[ modula—3%%lst%% 
+programmers %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% loopholes %%#%% 
+%%#%% type system%%lst%% undercutting fault isolation%%per%%]$~ ~$[in con— 
+trast%%lst%% %%#%% techniques %%#%% language independent%%per%%]$~ 
+~$[deutsch ]^[ grant built %%#%% system %%#%% allowed 
+user—deﬁned measurement modules %%#%% %%#%% dynamically 
+loaded %%#%% %%#%% operating system ]^[ executed directly 
+%%#%% %%#%% processor [dg71]%%per%%]$~ ~$[the module format %%#%% %%#%% 
+stylized native object code designed %%#%% %%#%% %%#%% easier 
+%%#%% statically verify %%#%% %%#%% code %%#%% ]n[ violate pro— 
+tection boundaries%%per%%]$~ 
+~$[an interpreter %%#%% %%#%% provide failure isolation%%per%%]$~ ~$[for 
+example%%per%% %%#%% bsd unix network packet ﬁlter utility 
+deﬁnes %%#%% language %%#%% %%#%% interpreted %%#%% %%#%% operat%%dsh%% 
+ing system network driver%%per%%]$~ ~$[the interpreter insulates 
+%%#%% operating system %%#%% %%#%% faults %%#%% %%#%% cus— 
+tomization code%%per%%]$~ ~$[our approach allows code written %%#%% 
+%%#%% programming language %%#%% %%#%% safely encapsulated 
+(or rejected %%cmp%% %%#%% %%#%% ]n[ safe)%%lst%% ]^[ %%cmp%% executed %%#%% near 
+%%#%% speed %%#%% %%#%% operating system%%per%%]$~ 
+~$[anonymous rfc exploits 64%%dsh%%bit address spaces %%#%% 
+provide low latency rfc ]^[ probabilistic fault iso— 
+lation [yba93]%%per%%]$~ ~$[logically independent domains %%#%% 
+214 
+placed %%#%% random locations %%#%% %%#%% %%#%% hardware ad» 
+dress spacer calls %%#%% domains %%#%% anonymous%%lst%% 
+%%#%% is%%lst%% %%#%% %%#%% ]n[ reveal %%#%% location %%#%% %%#%% caller 
+]v[ %%#%% callee %%#%% %%#%% side%%per%%]$~ ~$[this provides probabilis— 
+tic protection %%lst%% %%#%% %%#%% unlikely %%#%% %%#%% domain %%#%% 
+%%#%% able %%#%% discover %%#%% location %%#%% %%#%% %%#%% domain 
+%%#%% malicious ]v[ accidental memory probes%%per%%]$~ ~$[to pre» 
+serve anonymity%%lst%% %%#%% cross domain call %%#%% trap %%#%% pro%%dsh%% 
+tected code %%#%% %%#%% kernel%%scn%% however%%lst%% %%#%% hardware con~ 
+text switch %%#%% needed%%per%% 
+7 summary 
+%%#%% %%#%% described %%#%% software%%dsh%%based mechanism ]f[ 
+portable%%lst%% programming language independent fault 
+isolation %%#%% cooperating software modules%%per%%]$~ ~$[by 
+providing fault isolation %%#%% %%#%% single address space%%lst%% 
+%%#%% approach delivers crossefaultrdomain communica 
+tion %%#%% %%#%% %%#%% %%cmp%% %%#%% order %%#%% magnitude faster 
+%%cmp%% %%#%% rpc mechanism %%#%% date%%per%%]$~ 
+~$[to prevent distrusted modules %%#%% escaping %%#%% 
+own fault domain%%lst%% %%#%% %%#%% %%#%% software encapsulation 
+technique%%lst%% called sandboxing%%lst%% %%#%% incurs %%#%% 4% 
+despite %%#%% overhead %%#%% 
+executing distrusted code%%lst%% software—based fault isola%%dsh%% 
+tion %%#%% %%#%% yield %%#%% %%#%% overall application per%%dsh%% 
+formance%%per%%]$~ ~$[extensive kernel optimizations %%#%% reduce 
+%%#%% overhead %%#%% hardware%%dsh%%based rpc %%#%% %%#%% %%#%% fac%%dsh%% 
+tor %%#%% ten %%#%% %%#%% software—based alternative%%per%%]$~ ~$[even 
+%%#%% %%#%% situation%%lst%% software—based fault isolation %%#%% %%#%% 
+%%#%% %%#%% performance choice whenever %%#%% overhead 
+%%#%% using hardware—based rpc %%#%% %%#%% %%cmp%% 5%%%per%% 
+execution time overhead%%per%% 
+8 acknowledgements 
+%%#%% %%cmp%%k brian bershad%%lst%% mike burrows%%lst%% john hen%%dsh%% 
+nessy%%lst%% peter kessler%%lst%% butler lampson%%lst%% ed lazowska%%lst%% 
+dave patterson%%lst%% john ousterhout%%lst%% oliver sharp%%lst%% 
+richard sites%%lst%% alan smith ]^[ mike stonebraker ]f[ 
+%%#%% helpful comments %%#%% %%#%% paper%%per%%]$~ ~$[jim larus pro%%dsh%% 
+vided %%#%% %%#%% %%#%% proﬁling tool qpt%%per%%]$~ ~$[we %%#%% %%cmp%%k 
+mike olson ]^[ paul aoki ]f[ helping %%#%% %%#%% post— 
+gres%%per%%]$~ 
 ~$[references 
-acea%%lst%% 2012a%%per%%]$~ ~$[overview %%#%% co2 based motor vehicle taxes %%#%% %%#%% eu%%per%%]$~ ~$[brussels%%lst%% 
-belgium%%per%%]$~ 
-~$[acea%%lst%% 2012b%%per%%]$~ ~$[overview %%#%% tax incentives ]f[ electric vehicles %%#%% %%#%% eu%%per%%]$~ ~$[brussels%%lst%% 
-belgium%%per%%]$~ 
-~$[adner%%lst%% r%%per%%%%lst%% 2002%%per%%]$~ ~$[when %%#%% technologies disruptive%%qsn%%]$~ ~$[a demand%%dsh%%based view %%#%% %%#%% 
-emergence %%#%% competition%%per%%]$~ ~$[strateg%%per%%]$~ ~$[manag%%per%%]$~ ~$[j%%per%% 23%%lst%% 667–688%%per%%]$~ 
-~$[anderson%%lst%% p%%per%%%%lst%% tushman%%lst%% m%%per%%%%lst%% 1990%%per%%]$~ ~$[technological discontinuities ]^[ dominant 
-designs%%cln%% %%#%% cyclical model %%#%% technological change%%per%%]$~ ~$[adm%%per%%]$~ ~$[sci%%per%%]$~ ~$[q%%per%% 35%%lst%% 604–633%%per%%]$~ 
-~$[arrow%%lst%% k%%per%%%%lst%% 1962%%per%%]$~ ~$[the economic implications %%#%% learning %%#%% doing%%per%%]$~ ~$[rev%%per%%]$~ ~$[econ%%per%%]$~ ~$[stud%%per%% 29 
-(3)%%lst%% 155–173%%per%%]$~ 
-~$[arrow%%lst%% k%%per%%%%lst%% 1966%%per%%]$~ ~$[exposition %%#%% %%#%% theory %%#%% choice %%#%% uncertainty%%per%%]$~ ~$[synthese 16 
-(3–4)%%lst%% 253–269%%per%%]$~ 
-~$[asbe%%lst%% 2013%%per%%]$~ ~$[charging locations%%per%% 〈http://www%%per%%asbe%%per%%be/en/locations〉 (accessed 
-03%%per%%04%%per%%13)%%per%%]$~ 
-~$[bakker%%lst%% s%%per%%%%lst%% trip%%lst%% j%%per%%%%lst%% 2013%%per%%]$~ ~$[policy options %%#%% support %%#%% adoption %%#%% electric vehicles 
-%%#%% %%#%% urban environment%%per%%]$~ ~$[transp%%per%%]$~ ~$[res%%per%%]$~ ~$[part %%#%% 25%%lst%% 18–23%%per%%]$~ 
-~$[beresteanu%%lst%% a%%per%%%%lst%% li%%lst%% s%%per%%%%lst%% 2011%%per%%]$~ ~$[gasoline prices%%lst%% government support%%lst%% ]^[ %%#%% demand 
-]f[ hybrid vehicles %%#%% %%#%% united states%%per%%]$~ ~$[int%%per%%]$~ ~$[econ%%per%%]$~ ~$[rev%%per%% 52 (1)%%lst%% 161–182%%per%%]$~ 
-~$[brown%%lst%% m%%per%%%%lst%% 2001%%per%%]$~ ~$[market failures ]^[ barriers %%#%% %%#%% basis ]f[ clean energy policies%%per%%]$~ 
-~$[energy policy 29%%lst%% 1197–1207%%per%%]$~ 
-~$[brownstone%%lst%% d%%per%%%%lst%% bunch%%lst%% d%%per%%s%%per%%%%lst%% train%%lst%% k%%per%%%%lst%% 2000%%per%%]$~ ~$[joint mixed logit models %%#%% stated ]^[ 
-revealed preferences ]f[ alternative%%dsh%%fuel vehicles%%per%%]$~ ~$[transp%%per%%]$~ ~$[res%%per%%]$~ ~$[part %%#%% 34%%lst%% 
-315–338%%per%%]$~ 
-~$[chargemap%%lst%% 2013%%per%% 〈http://chargemap%%per%%com〉 (accessed 03%%per%%04%%per%%13)%%per%%]$~ 
-~$[christensen%%lst%% c%%per%%%%lst%% 1997%%per%%]$~ ~$[the innovator%%sqt%%s dilemma%%per%%]$~ ~$[harvard business school press%%lst%% 
-boston%%lst%% ma%%per%%]$~ 
-~$[demographia%%lst%% 2013%%per%%]$~ ~$[demographia world urban areas 9th annual edition%%per%%]$~ 
-~$[diamond%%lst%% d%%per%%%%lst%% 2009%%per%%]$~ ~$[the impact %%#%% government incentives ]f[ hybrid%%dsh%%electric 
-vehicles%%cln%% evidence %%#%% %%#%% states%%per%%]$~ ~$[energy policy 37%%lst%% 972–983%%per%%]$~ 
-~$[dijk%%lst%% m%%per%%%%lst%% orsato%%lst%% r%%per%%%%lst%% kemp%%lst%% r%%per%%%%lst%% 2013%%per%%]$~ ~$[the emergence %%#%% %%#%% electric mobility trajectory%%per%%]$~ 
-~$[energy policy 52%%lst%% 135–145%%per%%]$~ 
-~$[egbue%%lst%% o%%per%%%%lst%% long%%lst%% s%%per%%%%lst%% 2012%%per%%]$~ ~$[barriers %%#%% widespread adoption %%#%% electric vehicles%%cln%% %%#%% 
-analysis %%#%% consumer attitudes ]^[ perceptions%%per%%]$~ ~$[energy policy 48%%lst%% 717–729%%per%%]$~ 
-~$[eppstein%%lst%% m%%per%%%%lst%% grover%%lst%% d%%per%%%%lst%% marshall%%lst%% j%%per%%%%lst%% rizzo%%lst%% d%%per%%%%lst%% 2011%%per%%]$~ ~$[an agent%%dsh%%based model %%#%% study 
-market penetration %%#%% plug%%dsh%%in hybrid electric vehicles%%per%%]$~ ~$[energy policy 39%%lst%% 
-3789–3802%%per%%]$~ 
-~$[estonia%%lst%% 2011%%per%%]$~ ~$[estonia %%#%% promote %%#%% %%#%% %%#%% electric cars %%#%% %%#%% green 
-investment scheme%%per%%]$~ ~$[government communication unit%%lst%% 03 march 2011%%per%%]$~ 
-~$[eurostat%%lst%% 2013%%per%%]$~ ~$[electricity households%%per%% 〈http://www%%per%%energy%%per%%eu/#domestic〉 
-(accessed 28%%per%%08%%per%%13)%%per%%]$~ 
-~$[foster%%lst%% r%%per%%%%lst%% 1986%%per%%]$~ ~$[innovation%%cln%% %%#%% attacker%%sqt%%s advantage%%per%%]$~ ~$[macmillan%%lst%% london%%per%%]$~ 
-~$[gallagher%%lst%% k%%per%%%%lst%% muehlegger%%lst%% e%%per%%%%lst%% 2011%%per%%]$~ ~$[giving green %%#%% %%#%% green%%qsn%%]$~ ~$[incentives ]^[ 
-consumer adoption %%#%% hybrid vehicle technology%%per%%]$~ ~$[j%%per%%]$~ ~$[environ%%per%%]$~ ~$[econ%%per%%]$~ ~$[manag%%per%% 61 
-(1)%%lst%% 1–15%%per%% 
-193 
-geels%%lst%% f%%per%%%%lst%% 2002%%per%%]$~ ~$[technological transitions %%#%% evolutionary reconﬁguration processes%%cln%% 
-%%#%% multi%%dsh%%level perspective ]^[ %%#%% case%%dsh%%study%%per%%]$~ ~$[res%%per%%]$~ ~$[policy 31 (8–9)%%lst%% 1257–1274%%per%%]$~ 
-~$[greene%%lst%% d%%per%%%%lst%% patterson%%lst%% p%%per%%%%lst%% singh%%lst%% m%%per%%%%lst%% li%%lst%% j%%per%%%%lst%% 2005%%per%%]$~ ~$[feebates%%lst%% rebates ]^[ gas%%dsh%%guzzler taxes%%cln%% %%#%% 
-study %%#%% incentives ]f[ increased fuel economy%%per%%]$~ ~$[energy policy 33%%lst%% 757–775%%per%%]$~ 
-~$[gronnbil%%lst%% 2013%%per%% 〈http://www%%per%%gronnbil%%per%%no〉 (accessed 13%%per%%07%%per%%13)%%per%%]$~ 
-~$[hidrue%%lst%% m%%per%%%%lst%% parsons%%lst%% g%%per%%%%lst%% kempton%%lst%% w%%per%%%%lst%% gardner%%lst%% m%%per%%%%lst%% 2011%%per%%]$~ ~$[willingness %%#%% pay ]f[ 
-electric vehicles ]^[ %%#%% attributes%%per%%]$~ ~$[resour%%per%%]$~ ~$[energy econ%%per%% 33%%lst%% 686–705%%per%%]$~ 
-~$[horbach%%lst%% j%%per%%%%lst%% 2008%%per%%]$~ ~$[determinants %%#%% environmental innovation—new evidence %%#%% 
-german panel data sources%%per%%]$~ ~$[res%%per%%]$~ ~$[policy 37%%lst%% 163–173%%per%%]$~ 
-~$[iea%%lst%% 2011%%per%%]$~ ~$[technology roadmap electric ]^[ plug%%dsh%%in hybrid electric vehicles%%per%%]$~ ~$[oecd/ 
-iea%%lst%% paris%%per%%]$~ 
-~$[iea%%lst%% 2012a%%per%%]$~ ~$[key world energy statistics 2012%%per%%]$~ ~$[oecd/iea%%lst%% paris%%per%%]$~ 
-~$[iea%%lst%% 2012b%%per%%]$~ ~$[world energy outlook 2012%%per%%]$~ ~$[oecd/iea%%lst%% paris%%per%%]$~ 
-~$[iea%%lst%% 2012c%%per%%]$~ ~$[tracking clean energy progress%%cln%% energy technology perspectives 2012 
-excerpt %%#%% iea input %%#%% %%#%% clean energy ministerial%%per%%]$~ 
-~$[iea%%lst%% 2013%%per%%]$~ ~$[global ev outlook%%cln%% understanding %%#%% electric vehicle landscape %%#%% 
-2020%%per%%]$~ ~$[oecd/iea%%lst%% paris%%per%%]$~ 
-~$[ipcc%%lst%% 2012%%per%%]$~ ~$[renewable energy sources ]^[ climate change mitigation%%cln%% special 
-report %%#%% %%#%% intergovernmental panel %%#%% climate change%%per%%]$~ ~$[cambridge university press%%lst%% %%#%% york%%lst%% ny%%per%%]$~ 
-~$[jaffe%%lst%% a%%per%%%%lst%% stavins%%lst%% r%%per%%%%lst%% 1994%%per%%]$~ ~$[the energy%%dsh%%efﬁciency gap%%cln%% %%#%% %%#%% %%#%% mean%%qsn%%]$~ ~$[energy 
-policy 22%%lst%% 804–810%%per%%]$~ 
-~$[jaffe%%lst%% a%%per%%%%lst%% newell%%lst%% r%%per%%%%lst%% stavins%%lst%% r%%per%%%%lst%% 2005%%per%%]$~ ~$[a tale %%#%% %%#%% market failures%%cln%% technology ]^[ 
-environmental policy%%per%%]$~ ~$[ecol%%per%%]$~ ~$[econ%%per%% 54%%lst%% 164–174%%per%%]$~ 
-~$[lane%%lst%% b%%per%%%%lst%% potter%%lst%% s%%per%%%%lst%% 2007%%per%%]$~ ~$[the adoption %%#%% cleaner vehicles %%#%% %%#%% uk%%cln%% exploring %%#%% 
-consumer attitude%%dsh%%action gap%%per%%]$~ ~$[j%%per%%]$~ ~$[clean%%per%%]$~ ~$[prod%%per%% 15%%lst%% 1085–1092%%per%%]$~ 
-~$[lemnet%%per%%org%%lst%% 2013%%per%% 〈http://lemnet%%per%%org〉 (accessed 03%%per%%04%%per%%13)%%per%%]$~ 
-~$[lesaffre%%lst%% e%%per%%%%lst%% rizopoulos%%lst%% d%%per%%%%lst%% tsonaka%%lst%% r%%per%%%%lst%% 2007%%per%%]$~ ~$[the logistic transform ]f[ bounded 
-outcome scores%%per%%]$~ ~$[biostatistics 8 (1)%%lst%% 72–85%%per%%]$~ 
-~$[levine%%lst%% m%%per%%%%lst%% koomey%%lst%% j%%per%%%%lst%% mcmahon%%lst%% j%%per%%%%lst%% sanstad%%lst%% a%%per%%%%lst%% hirst%%lst%% e%%per%%%%lst%% 1995%%per%%]$~ ~$[energy efﬁciency 
-policy ]^[ market failures%%per%%]$~ ~$[annu%%per%%]$~ ~$[rev%%per%%]$~ ~$[energy environ%%per%% 20%%lst%% 535–555%%per%%]$~ 
-~$[lieven%%lst%% t%%per%%%%lst%% muhlmeier%%lst%% s%%per%%%%lst%% henkel%%lst%% s%%per%%%%lst%% walker%%lst%% j%%per%%%%lst%% 2011%%per%%]$~ ~$[who %%#%% buy electric cars%%qsn%%]$~ ~$[an 
-empirical study %%#%% germany%%per%%]$~ ~$[transp%%per%%]$~ ~$[res%%per%%]$~ ~$[part %%#%% 16 (3)%%lst%% 236–243%%per%%]$~ 
-~$[marklines%%lst%% 2013%%per%%]$~ ~$[statistics—sales database search%%per%% 〈http://www%%per%%marklines%%per%%com/en/ 
-vehicle_sales/search_model〉 (accessed 15%%per%%12%%per%%13)%%per%%]$~ 
-~$[menanteau%%lst%% p%%per%%%%lst%% lefebvre%%lst%% h%%per%%%%lst%% 2000%%per%%]$~ ~$[competing technologies ]^[ %%#%% diffusion %%#%% 
-innovations%%cln%% %%#%% emergence %%#%% energy%%dsh%%efﬁcient lamps %%#%% %%#%% residential sector%%per%%]$~ 
-~$[res%%per%%]$~ ~$[policy 29%%lst%% 375–389%%per%%]$~ 
-~$[mnt%%per%%ee%%lst%% 2013%%per%% 2012 estonian vehicle registrations %%#%% motor type%%per%% 〈www%%per%%mnt%%per%%ee〉 
-(accessed 15%%per%%12%%per%%13)%%per%%]$~ 
-~$[nelson%%lst%% r%%per%%%%lst%% winter%%lst%% s%%per%%%%lst%% 1977%%per%%]$~ ~$[in search %%#%% %%#%% useful theory %%#%% innovation%%per%%]$~ ~$[res%%per%%]$~ ~$[policy 6%%lst%% 
-136–176%%per%%]$~ 
-~$[nelson%%lst%% r%%per%%%%lst%% winter%%lst%% s%%per%%%%lst%% 1982%%per%%]$~ ~$[an evolutionary theory %%#%% economic change%%per%%]$~ ~$[harvard 
-university press%%lst%% cambridge%%lst%% ma%%per%%]$~ 
-~$[nemet%%lst%% g%%per%%%%lst%% baker%%lst%% e%%per%%%%lst%% 2009%%per%%]$~ ~$[demand subsidies versus r&d%%cln%% comparing %%#%% uncertain 
-impacts %%#%% policy %%#%% %%#%% pre%%dsh%%commercial low%%dsh%%carbon energy technology%%per%%]$~ ~$[energy j%%per%% 
-30 (4)%%lst%% 49–80%%per%%]$~ 
-~$[nesbitt%%lst%% k%%per%%%%lst%% sperling%%lst%% d%%per%%%%lst%% 1998%%per%%]$~ ~$[myths regarding alternative fuel vehicle demand %%#%% 
-light%%dsh%%duty vehicle ﬂeets%%per%%]$~ ~$[transp%%per%%]$~ ~$[res%%per%%]$~ ~$[part %%#%% 3 (4)%%lst%% 259–269%%per%%]$~ 
-~$[neubauer%%lst%% j%%per%%%%lst%% brooker%%lst%% a%%per%%%%lst%% wood%%lst%% e%%per%%%%lst%% 2012%%per%%]$~ ~$[sensitivity %%#%% battery electric vehicle 
-economics %%#%% drive patterns%%lst%% vehicle range%%lst%% ]^[ charge strategies%%per%%]$~ ~$[j%%per%%]$~ ~$[power 
-sources 209%%lst%% 269–277%%per%%]$~ 
-~$[nobil%%lst%% 2012%%per%%]$~ ~$[the norwegian charging station database ]f[ electromobility%%per%%]$~ ~$[oslo%%lst%% 
-norway%%per%%]$~ 
-~$[rennings%%lst%% k%%per%%%%lst%% 2000%%per%%]$~ ~$[redeﬁning innovation—eco%%dsh%%innovation research ]^[ %%#%% contribution %%#%% ecological economics%%per%%]$~ ~$[ecol%%per%%]$~ ~$[econ%%per%% 32%%lst%% 319–332%%per%%]$~ 
-~$[reuters%%lst%% 2012%%per%%]$~ ~$[table—china retail gasoline%%lst%% diesel prices %%#%% 2003%%per%% 〈http://af%%per%%reuters%%per%% 
-com/article/energyoilnews/idafl4e8d75dn20120207〉 (accessed 10%%per%%07%%per%%12)%%per%%]$~ 
-~$[rogers%%lst%% e%%per%%%%lst%% 1995%%per%%]$~ ~$[diffusion %%#%% innovations%%lst%% 4th edition %%#%% free press%%lst%% %%#%% york%%lst%% ny 
-sagpa%%lst%% 2012%%per%%]$~ ~$[re%%dsh%%charged ]f[ success%%per%%]$~ ~$[the hird wave %%#%% electric vehicle promotion 
-%%#%% japan%%per%% Östersund%%lst%% sweden%%per%%]$~ 
-~$[saxton%%lst%% t%%per%%%%lst%% 2013%%per%%]$~ ~$[understanding electric vehicle charging%%per%%]$~ ~$[plug %%#%% america%%per%% 〈http:// 
-www%%per%%pluginamerica%%per%%org/drivers%%dsh%%seat/understanding%%dsh%%electric%%dsh%%vehicle%%dsh%%charging〉 
-(accessed 27%%per%%08%%per%%13)%%per%%]$~ 
-~$[schleich%%lst%% j%%per%%%%lst%% 2009%%per%%]$~ ~$[barriers %%#%% energy efﬁciency%%cln%% %%#%% comparison %%#%% %%#%% german 
-commercial ]^[ services sector%%per%%]$~ ~$[ecol%%per%%]$~ ~$[econ%%per%% 68 (7)%%lst%% 2150–2159%%per%%]$~ 
-~$[shaﬁei%%lst%% e%%per%%%%lst%% thorkelsson%%lst%% h%%per%%%%lst%% Ásgeirsson%%lst%% e%%per%%%%lst%% davidsdottir%%lst%% b%%per%%%%lst%% raberto%%lst%% m%%per%%%%lst%% stefansson%%lst%% 
-h%%per%%%%lst%% 2012%%per%%]$~ ~$[an agent%%dsh%%based modeling approach %%#%% predict %%#%% evolution %%#%% market 
-share %%#%% electric vehicles%%cln%% %%#%% %%#%% study %%#%% iceland%%per%%]$~ ~$[technol%%per%%]$~ ~$[forecast%%per%%]$~ ~$[soc%%per%%]$~ 
-~$[change 79 (9)%%lst%% 1638–1653%%per%%]$~ 
-~$[sierzchula%%lst%% w%%per%%%%lst%% bakker%%lst%% s%%per%%%%lst%% maat%%lst%% k%%per%%%%lst%% van wee%%lst%% b%%per%%%%lst%% 2012%%per%%]$~ ~$[technological diversity %%#%% 
-emerging eco%%dsh%%innovations%%cln%% %%#%% %%#%% study %%#%% %%#%% automobile industry%%per%%]$~ ~$[j%%per%%]$~ ~$[clean%%per%%]$~ 
-~$[prod%%per%% 37%%lst%% 211–220%%per%%]$~ 
-~$[sovacool%%lst%% b%%per%%%%lst%% hirsh%%lst%% r%%per%%%%lst%% 2009%%per%%]$~ ~$[beyond batteries%%cln%% %%#%% examination %%#%% %%#%% beneﬁts ]^[ 
-barriers %%#%% plug%%dsh%%in hybrid electric vehicles (phevs) ]^[ %%#%% vehicle%%dsh%%to%%dsh%%grid (v2g) 
-transition%%per%%]$~ ~$[energy policy 37 (3)%%lst%% 1095–1103%%per%%]$~ 
-~$[struben%%lst%% j%%per%%%%lst%% sterman%%lst%% j%%per%%%%lst%% 2008%%per%%]$~ ~$[transition challenges ]f[ alternative fuel vehicle ]^[ 
-transportation systems%%per%%]$~ ~$[environ%%per%%]$~ ~$[plan%%per%%]$~ ~$[b%%cln%% plan%%per%%]$~ ~$[des%%per%% 35%%lst%% 1070–1097%%per%%]$~ 
-~$[teece%%lst%% d%%per%%%%lst%% 1986%%per%%]$~ ~$[proﬁting %%#%% technological innovation%%cln%% implications ]f[ integration%%lst%% collaboration%%lst%% licensing ]^[ public policy%%per%%]$~ ~$[res%%per%%]$~ ~$[policy 15%%lst%% 285–305%%per%%]$~ 
-~$[tran%%lst%% m%%per%%%%lst%% banister%%lst%% d%%per%%%%lst%% bishop%%lst%% j%%per%%%%lst%% mcculloch%%lst%% m%%per%%%%lst%% 2012%%per%%]$~ ~$[realizing %%#%% electric%%dsh%%vehicle 
-revolution%%per%%]$~ ~$[nat%%per%%]$~ ~$[clim%%per%% change 2%%lst%% 328–333%%per%%]$~ 
-~$[turrentine%%lst%% t%%per%%%%lst%% kurani%%lst%% k%%per%%%%lst%% 2007%%per%%]$~ ~$[car buyers ]^[ fuel economy%%qsn%%]$~ ~$[energy policy 35%%lst%% 
-1213–1223%%per%%]$~ 
-~$[tushman%%lst%% m%%per%%%%lst%% anderson%%lst%% p%%per%%%%lst%% 1986%%per%%]$~ ~$[technological discontinuities ]^[ organizational 
-environments%%per%%]$~ ~$[adm%%per%%]$~ ~$[sci%%per%%]$~ ~$[q%%per%% 31%%lst%% 439–465%%per%%]$~ 
-~$[author%%sqt%%s personal copy 
-194 
-w%%per%%]$~ ~$[sierzchula et al%%per%% / energy policy 68 (2014) 183–194 
-unep%%lst%% 2012%%per%%]$~ ~$[the european union automotive fuel economy policy%%per%% 〈http://www%%per%% 
-unep%%per%%org/transport/gfei/autotool/case_studies/europe/cs_eu_0%%per%%asp〉 (accessed 
-28%%per%%06%%per%%12)%%per%%]$~ 
-~$[van den bergh%%lst%% j%%per%%%%lst%% faber%%lst%% a%%per%%%%lst%% idenbrug%%lst%% a%%per%%%%lst%% oosterhuis%%lst%% f%%per%%%%lst%% 2006%%per%%]$~ ~$[survival %%#%% %%#%% 
-greenest%%cln%% evolutionary economics ]^[ policies ]f[ energy innovation%%per%%]$~ ~$[environ%%per%%]$~ 
-~$[sci%%per%% 3 (1)%%lst%% 57–71%%per%%]$~ 
-~$[world bank%%lst%% 2012a%%per%%]$~ ~$[road sector gasoline fuel consumption (kt %%#%% oil equivalent)%%per%%]$~ 
-~$[world bank%%lst%% 2012b%%per%%]$~ ~$[road sector diesel fuel consumption (kt %%#%% oil equivalent)%%per%%]$~ 
-~$[world bank%%lst%% 2013a%%per%%]$~ ~$[gni %%#%% capita (ppp)%%per%%]$~ 
-~$[world bank%%lst%% 2013b%%per%%]$~ ~$[percent %%#%% labor force %%#%% tertiary education%%per%%]$~ 
-~$[view publication stats 
-world bank%%lst%% 2013c%%per%%]$~ ~$[gdp ranking%%lst%% ppp based%%per%%]$~ 
-~$[yale%%lst%% 2013%%per%%]$~ ~$[environmental performance index 2012%%per%% 〈http://epi%%per%%yale%%per%%edu/epi2012/ 
-rankings〉 (accessed 11%%per%%06%%per%%13)%%per%%]$~ 
-~$[yeh%%lst%% s%%per%%%%lst%% 2007%%per%%]$~ ~$[an empirical analysis %%#%% %%#%% adoption %%#%% alternative fuel vehicles%%cln%% %%#%% 
-%%#%% %%#%% natural gas vehicles%%per%%]$~ ~$[energy policy 35%%lst%% 5865–5875%%per%%]$~ 
-~$[zhang%%lst%% x%%per%%%%lst%% wang%%lst%% k%%per%%%%lst%% hao%%lst%% y%%per%%%%lst%% fan%%lst%% j%%per%%%%lst%% wei%%lst%% y%%per%%%%lst%% 2013%%per%%]$~ ~$[the impact %%#%% government policy 
-%%#%% preference ]f[ nevs%%cln%% %%#%% evidence %%#%% china%%per%%]$~ ~$[energy policy 61%%lst%% 382–393%%per%%]$~ 
-~$[zubaryeva%%lst%% a%%per%%%%lst%% thiel%%lst%% c%%per%%%%lst%% barbone%%lst%% e%%per%%%%lst%% mercier%%lst%% a%%per%%%%lst%% 2012%%per%%]$~ ~$[assessing factors ]f[ %%#%% 
-identiﬁcation %%#%% potential lead markets ]f[ electriﬁed vehicles %%#%% europe%%cln%% expert 
-opinion elicitation%%per%%]$~ ~$[technol%%per%%]$~ ~$[forecast%%per%%]$~ ~$[soc%%per%%]$~ ~$[change 79%%lst%% 1622–1637%%per%% 
+[acd74] tl%%per%%]$~ ~$[adam%%lst%% km%%per%%]$~ ~$[chandy%%lst%% ]^[ jr%%per%%]$~ ~$[dickson%%per%%]$~ 
+~$[a comparison %%#%% list schedules ]f[ parallel pro%%dsh%% 
+cessing systems%%per%%]$~ ~$[communications %%#%% %%#%% acm%%lst%% 
+17(12):685—690%%lst%% december 197/1%%per%% 
+[album] thomas anderson%%lst%% henry levy%%lst%% brian ber— 
+shad%%lst%% ]^[ edward lazowska%%per%%]$~ ~$[the interaction 
+%%#%% architecture ]^[ operating system design%%per%% 
+[a5591] 
+[asusg] 
+[ballqo] 
+[ball91] 
+[ber93] 
+[bl92] 
+[blaqo] 
+[1m 84] 
+[cla92] 
+[dg71] 
+[dis] 
+[dys92] 
+[fp93] 
+[h092] 
+111 proceedings %%#%% %%#%% 4th international confer%%dsh%% 
+ence %%#%% architectural supportfor programming 
+languages ]^[ operating systems%%lst%% pages 108— 
+120%%lst%% april 1991%%per%%]$~ 
+~$[administrator%%cln%% national computer graphics 
+association%%per%%]$~ ~$[spec newsletter%%lst%% 3(4)%%lst%% december 
+1991%%per%%]$~ 
+~$[alfred v%%per%%]$~ ~$[aho%%lst%% ravi sethi%%lst%% ]^[ jeffrey d%%per%%]$~ ~$[ull%%dsh%% 
+man%%per%%]$~ ~$[compilers%%lst%% principles%%lst%% techniques%%lst%% ]^[ 
+tools%%per%%]$~ ~$[addison—wesley publishing company%%lst%% 
+1986%%per%%]$~ 
+~$[brian bershad%%lst%% thomas anderson%%lst%% edward la%%dsh%% 
+zowska%%lst%% ]^[ henry levy%%per%%]$~ ~$[lightweight remote 
+procedure call%%per%%]$~ ~$[acm transactions %%#%% com%%dsh%% 
+puter systems%%lst%% 8(1)%%lst%% february 1990%%per%%]$~ 
+~$[brian bershad%%lst%% thomas anderson%%lst%% edward la~ 
+zowska%%lst%% ]^[ henry levy%%per%%]$~ ~$[user%%dsh%%level interpre%%dsh%% 
+cess communication ]f[ shared~memory mul%%dsh%% 
+tiprocessors%%per%%]$~ ~$[acm transactions %%#%% computer 
+systems%%lst%% 9(2)%%lst%% %%#%% 1991%%per%%]$~ 
+~$[brian bershad%%lst%% august 1993%%per%%]$~ ~$[private commu— 
+nication%%per%%]$~ 
+~$[thomas ball ]^[ james r%%per%%]$~ ~$[larus%%per%%]$~ ~$[optimally 
+proﬁling ]^[ tracing%%per%%]$~ ~$[in proceedings %%#%% %%#%% 
+conference %%#%% principles %%#%% programming lan%%dsh%% 
+guages%%lst%% pages 59‘70%%lst%% 1992%%per%%]$~ 
+~$[david black%%per%%]$~ ~$[scheduling support ]f[ concui~ 
+rency ]^[ parallelism %%#%% %%#%% mach operating 
+system%%per%%]$~ ~$[ieee computer%%lst%% 23(5):35 43%%lst%% %%#%% 
+1990%%per%%]$~ 
+~$[andrew birrell ]^[ bruce nelson%%per%%]$~ ~$[implement%%dsh%% 
+ing remote procedure calls%%per%%]$~ ~$[acm transac%%dsh%% 
+tions %%#%% computer systems%%lst%% 2(1):?19‘59%%lst%% febru‘ 
+ary 1984%%per%% 
+%%per%%1%%per%%d%%per%%]$~ ~$[clark%%per%% lvindow programmer’ guide %%#%% 
+ole/due%%lst%% prentice—hall%%lst%% 1992%%per%%]$~ 
+~$[l%%per%%]$~ ~$[p%%per%%]$~ ~$[deutsch ]^[ c%%per%%]$~ ~$[a%%per%%]$~ ~$[grant%%per%%]$~ ~$[a ﬂexible mea~ 
+surement tool ]f[ software systems%%per%%]$~ ~$[in ifip 
+congress%%lst%% 1971%%per%%]$~ 
+~$[digital equipment corporation%%per%%]$~ ~$[ultriz 114%%per%%2 
+pixie manual page%%per%%]$~ 
+~$[peter dyson%%per%%]$~ ~$[xtensions ]f[ xpress%%cln%% modular 
+software ]f[ custom systems%%per%%]$~ ~$[seybold report 
+%%#%% desktop publishing%%lst%% 6(10):1—‘%%per%%’%%per%%1%%lst%% june 1992%%per%%]$~ 
+~$[kevin fall ]^[ joseph pasquale%%per%%]$~ ~$[exploiting in— 
+kernel data paths %%#%% improve i/o throughput 
+]^[ cpu 3%%per%% vailability%%per%%]$~ ~$[in proceedings %%#%% %%#%% 
+1993 winter usenix conference%%lst%% pages 327— 
+333%%lst%% january 1993%%per%%]$~ 
+~$[keiran harty ]^[ 
+david cheriton%%per%%]$~ ~$[application—controlled physi%%dsh%% 
+cal memory using external page—cache manage— 
+ment%%per%%]$~ ~$[in proceedings %%#%% %%#%% 5th international 
+conference %%#%% architectural support ]f[ pro%%dsh%% 
+gramming languages ]^[ operating systems%%lst%% 
+october 1992%%per%% 
+215 
+[11k93] 
+[hkm+88] 
+[int86] 
+[jrtss] 
+[k ar89] 
+[k1886] 
+[lb92] 
+[mcf89] 
+[mj93] 
+[m ra87] 
+[p1190] 
+[rdh+ 80] 
+graham hamilton ]^[ panos kougiouris%%per%%]$~ ~$[the 
+spring nucleus%%cln%% %%#%% microkernel ]f[ objects%%per%%]$~ ~$[in 
+proceedings %%#%% %%#%% summer usenix confer%%dsh%% 
+cncc%%lst%% pages 1477159%%lst%% june 1993%%per%%]$~ 
+~$[j%%per%%]$~ ~$[howard%%lst%% m%%per%%]$~ ~$[kazar%%lst%% s%%per%%]$~ ~$[menees%%lst%% d%%per%%]$~ ~$[nichols%%lst%% 
+m%%per%%]$~ ~$[satyanarayanan%%lst%% r%%per%%]$~ ~$[sidebotham%%lst%% ]^[ 
+m%%per%%]$~ ~$[west%%per%%]$~ ~$[scale ]^[ performance %%#%% 3%%per%%]$~ ~$[dis%%dsh%% 
+tributed file system%%per%%]$~ ~$[acm transactions %%#%% 
+computer systems%%lst%% 6(1):51—82%%lst%% february 1988%%per%%]$~ 
+~$[intel corporation%%lst%% california%%per%%]$~ 
+~$[intel 80386 programmer’s reference manual%%lst%% 
+1986%%per%%]$~ 
+~$[michael b%%per%%]$~ ~$[jones%%lst%% richard f%%per%%]$~ ~$[rashid%%lst%% ]^[ 
+mary r%%per%%]$~ ~$[thompson%%per%%]$~ ~$[matchmaker%%cln%% %%#%% in%%dsh%% 
+terface speciﬁcation language ]f[ distributed 
+processing%%per%%]$~ ~$[in proceedings %%#%% %%#%% 12th acm 
+sigact%%dsh%%sigplan symposium %%#%% principles 
+%%#%% programming languages%%lst%% pages 225435%%lst%% 
+january 1985%%per%%]$~ 
+~$[santa clara%%lst%% 
+paul a%%per%%]$~ ~$[karger%%per%%]$~ ~$[using registers %%#%% optimize 
+cross—domain call performance%%per%%]$~ ~$[in proceed%%dsh%% 
+ings %%#%% %%#%% 3rd international conference %%#%% 
+architectural support ]f[ programming lan%%dsh%% 
+guages ]^[ operating systems%%lst%% pages 1947204%%per%%]$~ 
+~$[april 3~6 1989%%per%%]$~ 
+~$[steven r%%per%%]$~ ~$[kleiman%%per%%]$~ ~$[vnodes%%cln%% %%#%% architecture 
+]f[ multiple file system types %%#%% sun unix%%per%%]$~ 
+~$[in proceedings %%#%% %%#%% 1986 summer usenix 
+conference%%lst%% pages 238—247%%lst%% 1986%%per%%]$~ 
+~$[james r%%per%%]$~ ~$[larus ]^[ thomas ball%%per%%]$~ ~$[rewrit%%dsh%% 
+ing executable ﬁles %%#%% measure program be— 
+havior%%per%%]$~ ~$[technical report 1083%%lst%% university %%#%% 
+wisconsin%%dsh%%madison%%lst%% march 1992%%per%%]$~ 
+~$[scott mcfarling%%per%%]$~ ~$[program optimization ]f[ 
+instruction caches%%per%%]$~ ~$[in proceedings %%#%% %%#%% in%%cln%% 
+ternational conference %%#%% architectural sup— 
+port ]f[ programming languages ]^[ operat%%dsh%% 
+ing systems%%lst%% pages 183—191%%lst%% april 1989%%per%%]$~ 
+~$[steven mccanne ]^[ van lacobsen%%per%%]$~ ~$[the 
+bsd packet filter%%cln%% %%#%% %%#%% architecture ]f[ 
+user—level packet capture%%per%%]$~ ~$[in proceedings %%#%% 
+%%#%% 1993 winter usenix conference%%lst%% january 
+1993%%per%% 
+l%%per%%]$~ ~$[c%%per%%]$~ ~$[mogul%%lst%% r%%per%%]$~ ~$[f%%per%%]$~ ~$[rashid%%lst%% ]^[ m%%per%%]$~ ~$[j%%per%%]$~ ~$[ac%%dsh%% 
+cetta%%per%%]$~ ~$[the packet ﬁlter%%cln%% %%#%% cﬂicient mecha— 
+nism ]f[ user—level network code%%per%%]$~ ~$[in proceed%%dsh%% 
+ings %%#%% %%#%% symposium %%#%% operating system 
+principles%%lst%% pages 39—51%%lst%% november 1987%%per%%]$~ 
+~$[karl pettis ]^[ robert c%%per%%]$~ ~$[hansen%%per%%]$~ ~$[proﬁle 
+guided code positioning%%per%%]$~ ~$[in proceedings %%#%% 
+%%#%% conference %%#%% programming language de%%dsh%% 
+sign ]^[ implementation%%lst%% pages 16—27%%lst%% white 
+plains%%lst%% %%#%% york%%lst%% june 1990%%per%%]$~ ~$[appeared %%#%% 
+sigplan notices 25(6)%%per%%]$~ 
+~$[david d%%per%%]$~ ~$[redell%%lst%% yogen k%%per%%]$~ ~$[dalal%%lst%% thomas r%%per%%]$~ 
+~$[horsley%%lst%% hugh c%%per%%]$~ ~$[lauer%%lst%% william c%%per%%]$~ ~$[lynch%%lst%% 
+[sam88] 
+[5390] 
+[501693] 
+[sfgmqs] 
+[st087] 
+[st088] 
+[swg91] 
+[tass] 
+[thiﬁz] 
+[vcgsqz] 
+[vvstsb] 
+[web93] 
+[yba93] 
+paul r%%per%%]$~ ~$[mcjones%%lst%% hal g%%per%%]$~ ~$[murray%%lst%% ]^[ 
+stephen c%%per%%]$~ ~$[purcell%%per%%]$~ ~$[pilot%%cln%% %%#%% operating sys%%dsh%% 
+tem ]f[ %%#%% personal computer%%per%%]$~ ~$[communications 
+%%#%% %%#%% a01”%%lst%% 23(2):81~92%%lst%% february 1980%%per%%]$~ 
+~$[a%%per%%]$~ ~$[dain samples%%per%%]$~ ~$[code reorganization ]f[ %%#%% 
+struction caches%%per%%]$~ ~$[technical report ucb/csd 
+88/447%%per%%]$~ ~$[university %%#%% california%%lst%% berkeley%%lst%% 0c%%lst%% 
+tober 1988%%per%%]$~ 
+~$[michael schroeder ]^[ michael burrows%%per%%]$~ ~$[per%%dsh%% 
+formance %%#%% fireﬂy rpc%%per%%]$~ ~$[acm i‘mnsac» 
+tions %%#%% computer systems%%lst%% 8(1):1—17%%lst%% febru%%dsh%% 
+ary 1990%%per%%]$~ 
+~$[richard l%%per%%]$~ ~$[sites%%lst%% anton chernoff%%lst%% matthew b%%per%%]$~ 
+~$[kirk%%lst%% maurice p%%per%%]$~ ~$[marks%%lst%% ]^[ scott g%%per%%]$~ ~$[robin%%dsh%% 
+son%%per%%]$~ ~$[binary translation%%per%%]$~ ~$[communications %%#%% 
+%%#%% acm%%lst%% 36(2):69—81%%lst%% february 1993%%per%%]$~ 
+~$[m%%per%%]$~ ~$[stonebral%%dsh%%zer%%lst%% j%%per%%]$~ ~$[frew%%lst%% k%%per%%]$~ ~$[gardels%%lst%% ]^[ 
+%%per%%i%%per%%]$~ ~$[meridith%%per%%]$~ ~$[the sequoia 2000 benchmark%%per%%]$~ 
+~$[in proceedings %%#%% %%#%% acm sigmod inter%%dsh%% 
+national conference %%#%% management %%#%% data%%lst%% 
+%%#%% 1993%%per%%]$~ 
+~$[michael stonebraker%%per%%]$~ ~$[extensibility %%#%% post~ 
+gres%%per%%]$~ ~$[ieee database engineering%%lst%% septem%%dsh%% 
+ber 1987%%per%%]$~ 
+~$[michael stonebraker%%per%%]$~ ~$[inclusion %%#%% %%#%% types %%#%% 
+relational data base systems%%per%%]$~ ~$[in michael stone%%dsh%% 
+braker%%lst%% editor%%lst%% readings %%#%% database systems%%lst%% 
+pages 480—487%%per%%]$~ ~$[morgan kaufmann publishers%%lst%% 
+inc%%per%%%%lst%% 1988%%per%%]$~ 
+~$[j%%per%%]$~ ~$[p%%per%%]$~ ~$[singh%%lst%% w%%per%%]$~ ~$[weber%%lst%% ]^[ a%%per%%]$~ ~$[gupta%%per%%]$~ 
+~$[splash%%cln%% stanford parallel applications ]f[ 
+shared—memory%%per%%]$~ ~$[technical report csl—tr—sl— 
+469%%lst%% stanford%%lst%% 1991%%per%%]$~ 
+~$[shin—yuan tzou ]^[ david p%%per%%]$~ ~$[anderson%%per%%]$~ ~$[a 
+performance evaluation %%#%% %%#%% dash message%%dsh%% 
+passing system%%per%%]$~ ~$[technical report ucb/csd 
+88/452%%lst%% computer science division%%lst%% university 
+%%#%% california%%lst%% berkeley%%lst%% october 1988%%per%%]$~ 
+~$[thinking machines corporation%%per%%]$~ ~$[cm—5 net%%dsh%% 
+%%#%% interface programmer’s guide%%lst%% 1992%%per%%]$~ 
+~$[t%%per%% von eicken%%lst%% i)%%per%%]$~ ~$[culler%%lst%% s%%per%%]$~ ~$[goldstein%%lst%% ]^[ 
+k%%per%%]$~ ~$[schauser%%per%%]$~ ~$[active messages%%cln%% %%#%% mechanism 
+]f[ integrated communication ]^[ computa— 
+tion%%per%%]$~ ~$[in proceedings %%#%% %%#%% 19th annual sym%%dsh%% 
+posium %%#%% computer architecture%%lst%% 1992%%per%%]$~ 
+~$[robbert van renesse%%lst%% hans van staveren%%lst%% ]^[ 
+andrew s%%per%%]$~ ~$[tanenbaum%%per%%]$~ ~$[performance %%#%% %%#%% 
+world’s fastest distributed operating system%%per%%]$~ 
+~$[operating systemic review%%lst%% 22(1):25734%%lst%% octo— 
+ber 1988%%per%%]$~ 
+~$[neil webber%%per%%]$~ ~$[operating system support ]f[ 
+portable filesystem extensions%%per%%]$~ ~$[in proceed%%dsh%% 
+ings %%#%% %%#%% 1993 winter usenix conference%%lst%% 
+january 1993%%per%%]$~ 
+~$[curtis yarvin%%per%%]$~ ~$[richard bnkowski%%lst%% ]^[ thomas 
+anderson%%per%%]$~ ~$[anonymous rfc%%cln%% low latency 
+216 
+protection %%#%% %%#%% 64—bit address space%%per%%]$~ ~$[in pro%%dsh%% 
+ceedings %%#%% %%#%% summer usenix conference%%lst%% 
+june 1993%%per%% 

@@ -1,5 +1,6 @@
 import os
 import sys
+import tempfile
 import atexit
 import readline
 import inspect
@@ -8,6 +9,7 @@ import importlib
 import time
 
 from time import localtime, strftime
+from subprocess import call
 from bcolors import bcolors
 from parser import parser
 from garnish import garnish
@@ -21,7 +23,7 @@ startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n"\
 help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "| 'bake' | 'b' --> extract information from text.\n"\
 		 "| 'help' | 'h' --> displays this. \n"\
-		 "| 'info' | 'i' --> does nothing. \n"\
+		 "| 'info' | 'i' --> inspects a data file "+ bcolors.OKCYAN +"[opens vim]."+ bcolors.ENDC +"\n"\
 		 "| 'ls'   | 'l' --> lists all text files.\n"\
 		 "| 'quit' | 'q' --> quits this.\n"\
 		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"\
@@ -29,7 +31,7 @@ help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "| 'clean' = cleans post baked items.\n"\
 		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
-
+EDITOR = os.environ.get('EDITOR','vim') #that easy!
 
 
 def load_modules_from_path(path):
@@ -120,7 +122,26 @@ def bake():
 	print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 
 def info():
-	print("--")
+
+	print("~ What would you like to inspect?")
+
+	ls()
+
+	os.chdir("data/")
+	what_to_cook = raw_input("$ ")
+	what_to_cook = what_to_cook.replace("../", "")
+	os.chdir("../")
+
+	if what_to_cook != "":
+		with open("data/"+what_to_cook, "r") as tf:
+
+			call([EDITOR, tf.name])
+
+			tf.seek(0)
+			edited_message = tf.read()
+	else:
+		print(bcolors.FAIL+ "Aborting." + bcolors.ENDC)
+
 
 def ls():
 

@@ -189,7 +189,7 @@ class garnish:
 						
 
 							hamming_sim = len(sentence_vec_map[_i_label])-mutils.hamming_distance(a,b)
-							sim_i = int(math.floor(10*(hamming_sim)/len(sentence_vec_map[_i_label])) * math.floor(10*(mutils.get_cosine_sim(a,b))))
+							sim_i = int(math.floor(10*(hamming_sim)/len(sentence_vec_map[_i_label])) + math.floor(10*(mutils.get_cosine_sim(a,b))))
 
 							if sim_i not in sen_pairs: 
 								sen_pairs[sim_i] = {}

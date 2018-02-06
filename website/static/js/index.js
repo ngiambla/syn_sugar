@@ -1,5 +1,27 @@
+/* Generating a Visualization */
 
 
+
+
+/* Load Document */
+function load_document(filename) {
+
+}
+
+/*reset the view */
+function reset() {
+
+}
+
+/* get relations between sentences */
+function get_relationship() {
+	var relationships = $("#relationships").val()
+}
+
+/* draw out document */
+function draw_document() {
+	
+}
 
 //drawing the characters
 function draw(cnvs, ctx, font_size, text_decode, drops) {

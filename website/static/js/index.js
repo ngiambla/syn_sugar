@@ -97,13 +97,14 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 
 		case 1:
 			//looping over drops
-			ctx.fillStyle = "#0F0";
+			ctx.fillStyle = "#F00";
 			status_q = " Querying ["+$("#search").val()+"]...";
 			status_q = status_q.split("");
 			for(var qi = 0; qi < status_q.length; ++ qi) {
 				t=status_q[qi];
 				ctx.fillText(t, qi*font_size, 1*font_size);
 			}
+			ctx.fillStyle = "#0F0";
 			for(var i = 0; i < drops.length; i++) {
 				if(Math.random() > 0.98) {
 					ctx.fillText("*", 0, i*font_size);
@@ -131,23 +132,22 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 			ctx.font = font_size + "px monospace";
 			xoffset = font_size*window.innerWidth*0.04;
 			yoffset = font_size*10;
-			ctx.fillStyle = "rgba(0, 0, 0, 0.01)";
-			ctx.fillRect(0, yoffset-1*font_size, font_size, font_size*summary.length);
 			if(rotation == 29) {
 				ctx.fillStyle = "#FFF";
-				ctx.fillRect(0, yoffset-1*font_size, font_size, font_size*summary.length);
-			}			
-			for(var i=0; i < summary.length; ++i) {
+				ctx.fillText(">>",xoffset-2*font_size, yoffset);
+		
+				for(var i=0; i < summary.length; ++i) {
 
 
-				for(var j=0; j < summary[i].length; ++j) {
-					
-					var text = summary[i][j];
-					ctx.fillStyle = "#FF0";
-					ctx.fillText(text, j*font_size+xoffset, i*font_size+yoffset);
+					for(var j=0; j < summary[i].length; ++j) {
+						
+						var text = summary[i][j];
+						ctx.fillStyle = "#FF0";
+						ctx.fillText(text, j*font_size+xoffset, i*font_size+yoffset);
+					}
+
+
 				}
-
-
 			}
 			rotation = rotation +1;
 			rotation = rotation % 30;

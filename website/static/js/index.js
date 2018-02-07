@@ -14,35 +14,47 @@ var columns;
 
 //an array of drops - one per column
 var drops = [];
+
+// states: 0 = rand, 1 = query, 2 = results, 3 = loading (may not even occur.)
 var draw_state = 0;
 
 var rotation = 29;
 var which_line =0;
 
 
-/* Load Document */
-function load_document(filename) {
+function open_upload_modal() {
+	$("#file_modal").fadeIn('slow', function() {
 
+	});
 }
+
+function close_upload_modal() {
+	$("#file_modal").fadeOut('fast', function() {
+
+	});
+}
+
 
 /*reset the view */
 function reset() {
 
 }
 
-/* get relations between sentences */
-function get_relationship() {
-	var relationships = $("#relationships").val()
-}
-
-/* draw out document */
-function draw_document() {
-	
-}
 
 function send_query(query) {
 	var status = 1;
-	draw_state = 2;
+
+	draw_state = 3;
+	$.post("/queries", {name: ""}, function( data ) {
+	console.log(data)
+	  if(data) {
+	  	console.log(data)
+	  	draw_state = 2;
+	  } else {
+	  	draw_state = 0;
+	  }
+	});	
+
 	return status;
 }
 
@@ -52,16 +64,16 @@ function get_search_contents() {
 			if(draw_state == 0) {
 				draw_state = 	1;
 			}
+			search_query 	=	$("#search").val();
+			if(e.which == 13 && $("#search").val()) {
+	        	send_query(search_query);
+	    	}
+			search_query 	= 	search_query.split("");
 		} else {
 			if(draw_state == 1 || draw_state == 2) {
 				draw_state = 	0;
 			}			
 		}
-		search_query 	=	$("#search").val();
-		if(e.which == 13 && $("#search").val()) {
-        	send_query(search_query);
-    	}
-		search_query 	= 	search_query.split("");
 	});
 }
 
@@ -70,7 +82,6 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 
 	//Black BG for the canvas
 	//translucent BG to show trail
-
 	ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
 	ctx.fillRect(0, 0, cnvs.width, cnvs.height);
 	
@@ -118,7 +129,6 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 						
 						if(drops[i]*font_size > cnvs.width && Math.random() > 0.975)
 							drops[i] = 0;
-						
 						//incrementing X coordinate
 						drops[i]++;
 					}
@@ -149,16 +159,50 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 			rotation = rotation +1;
 			rotation = rotation % 30;
 			break;
+
+		case 3:
+			//looping over drops
+			ctx.fillStyle = "#0F0";
+			status_q = " Loading ...";
+			status_q = status_q.split("");
+			for(var qi = 0; qi < status_q.length; ++ qi) {
+				t=status_q[qi];
+				ctx.fillText(t, qi*font_size,2*font_size);
+			}
+			for(var i = 0; i < drops.length; i++) {
+				if(Math.random() > 0.98) {
+					ctx.fillText("%", 0, i*font_size);
+					for(var where = 0; where < status_q.length; ++where) {
+						var text = status_q[where];
+						ctx.fillText(text, drops[i]*font_size, i*font_size);
+						
+						if(drops[i]*font_size > cnvs.width && Math.random() > 0.975){
+							drops[i] = 0;
+						}
+						drops[i]++;
+					}
+				}
+			}
+			break;
 	}
 }
 
 
-function draw_summary() {
-
-}
-
-
 $(function() {
+
+	$("#cleanup_btn").on("click", function(e) {
+		reset();
+	});
+
+	$("#upload_btn").on("click", function(e) {
+		open_upload_modal();
+	});
+
+	$("#modal_close").on("click", function(e) {
+		close_upload_modal();
+	})
+
+
 	cnvs = document.getElementById("cnvs");
 	ctx = cnvs.getContext("2d");
 
@@ -181,6 +225,7 @@ $(function() {
 
 	setInterval(function() {rand_draw(cnvs, ctx, font_size, text_decode, drops)}, 33);
 	get_search_contents()
+
 });
 
 

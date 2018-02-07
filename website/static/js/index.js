@@ -16,7 +16,8 @@ var columns;
 var drops = [];
 var draw_state = 0;
 
-var rotation = 0;
+var rotation = 29;
+var which_line =0;
 
 
 /* Load Document */
@@ -47,7 +48,7 @@ function send_query(query) {
 
 function get_search_contents() {
 	$("#search").on("change keyup paste",function(e) {
-		if($("#search").val()) {
+		if($("#search").val() || $("#search").val() != search_query) {
 			if(draw_state == 0) {
 				draw_state = 	1;
 			}
@@ -102,15 +103,12 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 			status_q = status_q.split("");
 			for(var qi = 0; qi < status_q.length; ++ qi) {
 				t=status_q[qi];
-				ctx.fillText(t, qi*font_size, 1*font_size);
+				ctx.fillText(t, qi*font_size,2*font_size);
 			}
 			ctx.fillStyle = "#0F0";
 			for(var i = 0; i < drops.length; i++) {
 				if(Math.random() > 0.98) {
 					ctx.fillText("*", 0, i*font_size);
-
-					
-
 					for(var where = 0; where < search_query.length; ++where) {
 
 						var text = search_query[where];
@@ -135,20 +133,19 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 			if(rotation == 29) {
 				ctx.fillStyle = "#FFF";
 				ctx.fillText(">>",xoffset-2*font_size, yoffset);
-		
-				for(var i=0; i < summary.length; ++i) {
-
-
-					for(var j=0; j < summary[i].length; ++j) {
-						
-						var text = summary[i][j];
-						ctx.fillStyle = "#FF0";
-						ctx.fillText(text, j*font_size+xoffset, i*font_size+yoffset);
-					}
-
-
-				}
 			}
+
+			i=which_line
+
+			for(var j=0; j < summary[i].length; ++j) {
+				
+				var text = summary[i][j];
+				ctx.fillStyle = "#FF0";
+				ctx.fillText(text, j*font_size+xoffset, i*font_size+yoffset);
+			}
+
+			which_line = which_line + 1
+			which_line = which_line % summary.length
 			rotation = rotation +1;
 			rotation = rotation % 30;
 			break;
@@ -182,7 +179,7 @@ $(function() {
 		drops[x] = (Math.random()*1000)%columns; 
 	}
 
-	setInterval(function() {rand_draw(cnvs, ctx, font_size, text_decode, drops)}, 35);
+	setInterval(function() {rand_draw(cnvs, ctx, font_size, text_decode, drops)}, 33);
 	get_search_contents()
 });
 

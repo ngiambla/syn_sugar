@@ -1,6 +1,11 @@
 import os
+import sys
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
+
+import syn_sugar
+
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -25,7 +30,9 @@ def uploads():
 	if file and allowed_file(file.filename) and file.filename != "":
 		try:
 			filename = secure_filename(file.filename)
-			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], "__1_"+filename))
+			syn_sugar.bake()
+			os.rename("uploads/__1_"+filename, "uploads/__old_"+filename)
 			return "0"
 		except Exception as e:
 			print(e)

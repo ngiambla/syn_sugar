@@ -1,0 +1,2896 @@
+Machine To Machine Technology: Security
+
+Considerations
+
+Ryerson University, Cellular Mobile Communications, W2017
+
+Authors: Nicholas Dimitrakopoulos, Nicholas Giamblanco
+
+February 7, 2018
+
+Contents
+
+1 Abstract
+
+2 Introduction
+
+3 Machine-to-Machine Communication
+
+3.1 The Architecture of M2M Networks . . . . . . . . . . . . . . .
+
+3.2 M2M: Eﬃciency . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+2
+
+3
+
+5
+
+6
+
+8
+
+3.3 M2M Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+
+4 Security Considerations
+
+13
+
+4.1 DoS, and DDoS . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+
+4.2 Software Deﬁned DDoS Protection . . . . . . . . . . . . . . . 18
+
+4.3 DDoS Detection in M2M Networks
+
+. . . . . . . . . . . . . . . 20
+
+4.4 Man In The Middle Attack . . . . . . . . . . . . . . . . . . . . 21
+
+4.5 Authentication . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+
+5 Conclusion
+
+6 Appendix
+
+30
+
+31
+
+6.1 Makefile . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+
+6.2 ue.c . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+
+6.3 enodeb.c . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+
+6.4 include.h . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+
+6.5 milenage.c . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+
+6.6 milenage.h . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
+
+1
+
+1 Abstract
+
+With the rapid advancement of communication technology, inter-device com-
+
+munication has become feasible and easily implementable. It is becoming a
+
+standardized aspect of electronic systems. Speciﬁcally, devices such as mobile
+
+electronics, household appliances, vehicles, and other electronic devices are
+
+gaining the capability to uniformly communicate with one another. However,
+
+communication can only take place over a network. This network of electronic
+
+devices can be considered as an Ad-Hoc network, where all participants form
+
+a complete graph, with no central point of access. This technology is known
+
+as Machine to Machine (M2M) communication and will be included in the
+
+5th Generation of Mobile Networks (5G Networks). However, any commu-
+
+nication system which deals with information must be analyzed for security
+
+considerations. Since an Ad-Hoc network does not have a hierarchal layout,
+
+authentication and authorization may present underlying threats to M2M
+
+technology. That is, it is interesting to understand how mobile devices dis-
+
+cover and initiate conversation with another device, or base station (BS).
+
+Speciﬁcally in the case of LTE, it is interesting to view how the UE (mo-
+
+bile device) initiates communication with an eNodeB (base station). The
+
+objective of our project is to investigate the security of the emerging M2M
+
+technology, and LTE technology.
+
+2
+
+2
+
+Introduction
+
+Since the introduction of wireless communication systems, the quality of
+
+life for the average individual has increased. From being able to call to
+
+virtually any place on earth, to checking e-mails on the go, to added safety
+
+beneﬁts- wireless communication systems are shaping the way of the future,
+
+for humans and technology. A wireless communication system should support
+
+the following: [16]
+
+- Human to Human Communication
+
+- Human to Device Communication
+
+- Device to Human Communication
+
+- Device to Device Communication
+
+The most interesting communication path is device to device. Several bene-
+
+ﬁts exist through this emerging technology. The cheap manufacturing cost of
+
+CPU’s and their decreasing product size have allowed for household devices,
+
+cellular devices, and various other machines to gain incredible processing
+
+power. This allows machines to process communication between users, and
+
+devices. Since this is only becoming possible in recent times, we will be focus-
+
+ing our eﬀorts on Device to Device (or Machine to Machine communication).
+
+In order to understand the fundamentals of Machine to Machine commu-
+
+nication, let us examine an example:
+
+Example 2.1. Suppose that you have an autonomous car, and this car is
+
+driving you to work. Now, suppose that other individuals driving to work also
+
+3
+
+have autonomous cars. If your car was behind another autonomous car, what
+
+would happen if the car in front of you had to break? Would your vehicle be
+
+able to detect this? What if there were several vehicles behind yours? Would
+
+they be informed of the upcoming braking action taken by your vehicle? In
+
+fact, this can be taken care of with device to device communication. That
+
+is, these vehicles could communicate with each other to execute the braking
+
+command safely.
+
+The scope of our research will be within 4G/LTE/5G networks and asso-
+
+ciated technology. We will be investigating the integration of M2M or D2D
+
+technology within the proposed 5G network architecture, and preexisting
+
+protocols for communication with LTE networks. With M2M technology, we
+
+are concerned with the idea and implementation of security, and how it is
+
+being approached. If we think back to our example, if a hacker had been
+
+able to modify/withhold the contents of the D2D communication, would the
+
+two autonomous vehicles still be able to safely brake?
+
+With LTE networks, we are interested in how a mobile device establishes
+
+authentication between both the base station, and the LTE capable device
+
+(UE). Take the following example:
+
+Example 2.2. Jennifer, (the mobile device) has just been woken from a nap.
+
+Jennifer, (who is blind) requires the assistance of her good friend Greg (the
+
+base station). Immediately, Jennifer signals to Greg for help, as she adjusts
+
+to the tides of life.
+
+Should Jennifer ’blindly’ trust Greg? How did Jennifer know that Greg
+
+4
+
+was actually Greg? And what help should Greg provide to Jennifer? These
+
+ideas are covered by Authentication protocols. The protocols involved in
+
+this procedure will be investigated and implemented, to explore the provided
+
+security, and to see a practical application of this.
+
+3 Machine-to-Machine Communication
+
+Machine to Machine communication has become a base for terms such as IoT
+
+(Internet of Things) and LTE-A, and 5G technology. Machine to Machine
+
+communication allows each device to have a notion of connection between
+
+other electronic devices, and to distribute information on these connections.
+
+However the structuring of these connections and devices form a graph G
+
+with V number of devices (nodes) and E number of connections between
+
+these nodes. This network is the basis for the M2M communication system.
+
+This communication system takes the form of an ad-hoc network, where
+
+no single point of access controls the ﬂow of information. Generally, most
+
+networks with computational systems have a hierarchy of access and control.
+
+This is to provide security to the rest of the connected network.
+
+Figure 1: Example of an Ad-Hoc Network [1]
+
+As noted by the ﬁgure above, no central point of access exists. Therefore,
+
+5
+
+what would happen to this network if a malicious devices becomes a node Vm
+
+of the graph? In order to answer this question and investigate the security
+
+of M2M networks, an exploration of the architecture of M2M networks is
+
+required.
+
+3.1 The Architecture of M2M Networks
+
+The architecture of an M2M network can be broken down into three cate-
+
+gories:
+
+• Device Domain
+
+• Network Domain
+
+• Application Domain
+
+The device domain provides the capabilities of integrating and using sensors
+
+within mobile devices in order to gather data for QoS, or data transmission.
+
+The data collected within this domain will be analyzed/used by the network
+
+domain. In the network domain, the mobile devices are enabled to access the
+
+application domain with various types of networks (i.e. WLAN). Finally, the
+
+application domain is where all of the data is made available to other devices
+
+and users collected by servers [6] . However, the provided explanation of M2M
+
+architecture does not accurately depict actual operation of the network as a
+
+whole. For example, LTE-A networks have the ability to use machine type
+
+communication (MTC). MTC is still not completely viable, but research is
+
+6
+
+being conducted to improve its eﬃciency. There are two ways to incorporate
+
+MTC devices into an LTE-A network [12]:
+
+• Communication between MTC device and MTC server with the use of
+
+a base station (BS)
+
+• Direct communication between MTC devices
+
+This second communication option is simply what we regard as machine-
+
+to-machine communication.
+
+It has been increasing in popularity recently
+
+for wireless mobile networks as it exploits the high channel quality of short
+
+range links as well as improving the throughput and delay of the signals
+
+being transmitted and received. Most importantly, these high quality chan-
+
+nel transmissions occur with reduced power consumption. This reduces the
+
+amount of energy required for communication. The network required for
+
+LTE-A device-to-device (D2D) communication can be described as a multi-
+
+hop network (in reference to computer networks), where there are a large
+
+number of end users and a base station to facilitate communication to the
+
+MTC server. Since this report aims to look at M2M communication with-
+
+out the use of the BS for connection distribution, we must consider M2M
+
+viability with regards to energy consumption, power, outage probability, and
+
+various other standards that allow this form of communication to stand on its
+
+own as a reputable and reliable source for user communication. These prac-
+
+tical considerations have been exploited in other communication systems to
+
+gain unauthorized device level privileges and access. The ﬁrst topic to be
+
+explored will be the eﬃciency, and how power is distributed through M2M
+
+7
+
+communication. Each node of the M2M network can be considered as it’s
+
+own base station, providing coverage to neighbouring nodes of any pertinent
+
+information. The division of each ‘Base Station’ can be modeled with the
+
+following chart as an example, where the BS is shown as a triangle and the
+
+nearest M2M devices connect to the closest BS:
+
+Figure 2: Typical Structure of M2M Network used in Eﬃciency Analysis [7]
+
+This particular setup is prone to security risks.
+
+If a malicious device
+
+transmits information at high power, it is possible to induce target devices to
+
+accept the incoming data transmission. This particular situation is known to
+
+aﬀect certain mobile networks in current times, such as 2G, 3G and 4G/LTE
+
+systems [10].
+
+3.2 M2M: Eﬃciency
+
+M2M communication is known to consume much more power between de-
+
+vices than most wireless communication systems. This impedes on practical
+
+considerations using M2M networks. Nevertheless, current research is being
+
+8
+
+conducted within M2M communication systems, in order to identify solutions
+
+with low power consumption solutions. A possible solution is to incorporate
+
+a wake-up method into the M2M devices that allows the devices to enter
+
+a sleep mode whenever there is no data being transmitted [7]. During the
+
+sleep mode of the device, it is able to accept incoming data from other de-
+
+vices in the network.
+
+If the sleeping device accepts data from any other
+
+device in the network, it is awoken. During sleep mode, a constant search for
+
+incoming traﬃc is removed. The device is simply woken up when it receives
+
+another RF signal telling it that data is ready to be transmitted. The wake-
+
+up method proposed in [7] mitigates any unnecessary power consumption
+
+by the device and creates a viable means of eﬃcient M2M communication.
+
+Although the research we gathered in this report is more privacy orientated,
+
+power consumption is an important aspect of this. Suppose the following
+
+situation: a device d is ‘asleep’, and a malicious device e sends data to d,
+
+what would occur? Would a low power mode cause the underlying security
+
+protocols to misbehave? As noted previously, it may be possible to exploit
+
+this behaviour if the sleep methods are ‘attracted’ to high power signals. A
+
+rigorous exploration of mathematics is required to understand how power
+
+physically propagates. The power law propagation model can categorize the
+
+path loss eﬀects of M2M communications and the received power Pr at a
+
+distance r is outlined as:
+
+Pr = Pthr−a
+
+(1)
+
+9
+
+Figure 3: Eﬃcient Sleep Cycle for M2M Devices [7]
+
+Where a is the Path Loss coeﬃcient, and Pt is the transmitted power. There
+
+are various models which describe the received and transmitted power. [12]
+
+The transmitting power in an MTC network can be described with the fol-
+
+lowing model:
+
+Pt =
+
+raη
+
+Pm,
+
+if raη < Pm
+
+otherwise
+
+(2)
+
+[7] In this model, the variable α represents the path loss exponent and 
+
+represents the proportionality coeﬃcient. It is important to note here that
+
+the transmission power of the MTC device is thresholded by the maximum
+
+transmit power and is solely a function based on the distance from the base
+
+station, r. This does not reﬂect the path loss model of a true M2M connec-
+
+tion, as it relies on the BS to be coherent and meaningful. For a more general
+
+case for a device within an M2M network surrounded by other devices in a
+
+channel, such as an Ad-HOC network or cell, the received power of such a
+
+10
+
+(cid:88)
+
+x∈φ
+
+Pr = a
+
+device is deﬁned as:
+
+3.3 M2M Model
+
+(exP hx||x||−a)
+
+(3)
+
+M2M communication systems experience outage probabilities similar to that
+
+of any cellular coverage presented by a base station. The current research
+
+on wake-up methods presents a mathematical model that deals with these
+
+outage probabilities. These models also provide probabilities of a successful
+
+device wake-up for M2M transmission through a channel. All that needs to
+
+be done is to threshold the received power at a certain level that denotes a
+
+wake-up signal. To improve the eﬃciency of an M2M network, the power
+
+must be below the threshold for the device to remain in sleep mode. This
+
+creates a greater level of viability for M2M communication since it improves
+
+the power consumption and therefore the eﬃciency. When the power received
+
+by the device moves above the threshold, the device wakes up and can begin
+
+transmitting data to other machines. If the threshold is set to be represented
+
+by the variable T and the received power to be Pr, then the following equality
+
+represents when sleep mode and wake-up mode are enabled [7]:
+
+Ps(T, λ, α, a) (cid:44) P (Pr > T )
+
+(4)
+
+The current research being conducted on the feasibility of implementing an
+
+M2M network involves having each device set to this threshold to control
+
+when each device is in sleep mode or when it is woken up to begin trans-
+
+11
+
+mitting the data. The threshold can be determined empirically, much like
+
+how path loss exponents for cellular networks have been determined empir-
+
+ically in metropolitan and rural areas. This method, however, still relies on
+
+the probability of a successful transmission for wake-up signals being sent to
+
+each machine in the connected network. The current model represents the
+
+fraction of these M2M devices within the MTC network that achieve a re-
+
+ceived power above the threshold T . This is what is known probabilistically
+
+as the Complimentary Cumulative Distribution Function (CCDF). This is
+
+modeled by a Laplacian transform of the received power of the device in the
+
+network. By using the relational power that is Mathematics, a manipulation
+
+is possible using both the Laplace transform and its inverse to the received
+
+power, which extracts the following model based on the Q-function and can
+
+be expressed as [7]:
+
+P (Pr ≥ T ) = 1 − 2Q(
+
+(cid:115)
+
+√
+π2
+2λ
+4
+
+aP
+µT
+
+)
+
+Where Q(x) is deﬁned as:
+
+(cid:90) ∞
+
+x
+
+−t2
+2 dt
+
+e
+
+Q(x) =
+
+1√
+2π
+
+(5)
+
+(6)
+
+Although these formulae provide a good model to reduce power consump-
+
+tion in M2M networks, further research into wake-up signals and sleep mode
+
+options for mobile devices can drastically improve the reliability and eﬃ-
+
+ciency of M2M communications. This provides background knowledge into
+
+12
+
+how M2M networks could operate in practice. However this paper concerns
+
+itself with security measures and M2M communication systems. That is, all
+
+proposals to the operation of M2M communication systems can have a pos-
+
+sible security exploit. As noted through a basic description of M2M systems,
+
+several known exploits already exists. These issues should be investigated
+
+since M2M is going to be integrated with the upcoming ﬁfth generation mo-
+
+bile network technology [8].
+
+4 Security Considerations
+
+With any communication system, it is important to investigate how the ﬂow
+
+of information is controlled. Speciﬁcally in M2M, there is no central point of
+
+control, which could cause issues with the integrity of data transmission, etc.
+
+With M2M technology, we have identiﬁed the following issues which could
+
+aﬀect the availability, authenticity, and integrity of M2M communication
+
+systems: DoS and DDoS (Denial of Service, Distributed Denial of Service),
+
+Malicious Devices & Man in the Middle (MitM) attacks, and Authentication
+
+Procedures.
+
+4.1 DoS, and DDoS
+
+A Distributed Denial of Service (DDoS) attack, can be described as a mali-
+
+cious attack on a network that ﬂoods the targeted network with information,
+
+halting all communication within the network. A denial of service attack on
+
+a network would appear as the following:
+
+13
+
+Example 4.1. Suppose that Bill is an employee in a post oﬃce. His job is
+
+to process incoming mail, and sort the mail out for correct delivery to the
+
+outlined recipients. On the average day, he receives around 1000 letters from
+
+the local area, and processes these letters. However, an adversary discovers
+
+that Bill cannot handle loads beyond 2000 letters. Therefore, he ﬂoods the
+
+post oﬃce with an extra 1000 letters, all of which have no proper outgoing
+
+address. This means Bill will be required to not only process 1000 extra
+
+letters, but also redirect the letters to a faulty address. Hence, Bill will waste
+
+even more processing. He will not be able to meet the physical demand, and
+
+processing will have to halt until he has ﬁnished.
+
+In this example, we see how an adversary (a computer capable of perform-
+
+ing a DoS attack) can ﬂood a server system (in our case, the post oﬃce is
+
+the target system for the attack), and render the system useless. By sending
+
+an excessive quantity of letters (information-less packets), to Bill (our target
+
+systems packet handler), Bill has to handle these malformed/useless packets.
+
+The excessive amount of packets sent causes Bill’s standard processing job
+
+to take a hit, and he halts the post oﬃce from sending or receiving letters.
+
+However, was it possible to detect this attack?
+
+A practical DoS attack against computers exploits the Transport Control
+
+Protocol, otherwise known as TCP. Generally a client C and server S need
+
+to perform a handshake allowing the client to send data to the server. The
+
+handshake is outlined below:
+
+14
+
+Client
+
+Server
+
+SYN
+
+S Y N - A C K
+
+ACK
+
+Figure 4: TCP Handshake from Client to Server.
+
+Where SYN indicates synchronization, SYN-ACK indicates synchronization-
+
+acknowledgement, and ACK indicates acknowledgement.
+
+If an Adversary
+
+sends SYN to a server, with an IP address that does not exist or did not send
+
+the SYN, the server must still comply to the protocol. Hence this procedure
+
+wastes valuable processing power of the server. Supposing the adversary in
+
+this example starts to ‘ﬂood’ the server with these requests, the server will
+
+eventually not be able handle the requests and become un-usable. This par-
+
+ticular DoS attack is named ‘SYN-Flooding’. Since M2M devices may use
+
+existing transport control protocols, this attack may be possible.
+
+These are other exploits possible with TCP, which were not covered in this
+
+report (sending out of sequence ACK’s with no previous SYN-ACK setup).
+
+15
+
+Adversary
+
+Target System Unknown User
+
+SYN with Unknown User IP
+
+SYN
+
+SYN-ACK
+
+Unexpected TCP SYN-ACK
+
+Figure 5: Sequence of SYN Flooding.
+
+It is important to keep in mind that this attack was with one adversary,
+
+and one target system.
+
+It is possible to have a distributed attack, where
+
+many systems are considered as one adversary. This team of systems ﬂood
+
+the target system(s) with an enormous amount of information. This is known
+
+as a Distributed Denial of Service (DDoS).
+
+Figure 6: Example of a DDoS attack [2].
+
+16
+
+This is a large scale version of a regular DoS attack which aims to dis-
+
+rupt a service providers ability to allow its users to communicate with one
+
+another. This is quite obviously a serious problem for service providers and
+
+their networks as this kind of attack can result in a large amount of service
+
+outages for long periods of time, as well as ﬁnancial losses and customer
+
+displeasure and ultimately a loss of subscriptions. A DDoS attack can be
+
+described as a constant stream of illegitimate requests to a victim within a
+
+network, known as High-Rate Flooding (HRF). This can pose a problem for
+
+M2M communication because ﬂooding an Ad-Hoc network with this kind of
+
+information will stop all communications between devices for an indeﬁnite
+
+amount of time.
+
+However malicious a DDoS attack can be, there are also many ways to
+
+detect the attacks and prevent them from doing a maximum amount of dam-
+
+age by stopping them before they get too mischievous. Detection methods
+
+for DDoS attacks can be broken down into three categories: signature-based
+
+detection, anomaly-based detection, and hybrid (which combines the two de-
+
+tection methods together). This is explained in current research with the
+
+following description: Signature-based techniques use a pre-deﬁned set of
+
+rules and known signatures in a knowledge database to determine the packet
+
+class from the observed network traﬃc, while anomaly-based techniques em-
+
+ploy a normal traﬃc proﬁle obtained over a period of time. [9]. After the
+
+analysis of the security protocols in place in M2M networks, an investigation
+
+will take place to see if these methods can be applied to M2M communication
+
+within an Ad-Hoc network. If so, the proposed method in this paper could
+
+17
+
+be of substantial value to the security of M2M communication, making the
+
+communication between machines much more viable and user-ready.
+
+The following ﬂow chart explains how a regular DDoS attack will compare
+
+to a DDoS attack targeted at a cloud-based system. It is important to note
+
+that a DDoS attack may aﬀect diﬀerent systems with unknown results. This
+
+highlights the importances of researching how to defend an M2M network
+
+from a DDoS attack as the results and eﬀects may currently be misunderstood
+
+or unknown.
+
+Figure 7: Typical DDoS Flow Diagram [11]
+
+4.2 Software Deﬁned DDoS Protection
+
+Software-deﬁned networking (SDN) is an emerging technology for wireless
+
+communications and applying its principles to machine-to-machine commu-
+
+nication can be beneﬁcial to the cause of making M2M networks viable and
+
+eﬀective for real-world use. Currently, there is research being conducted to
+
+protect these software-deﬁned networks from DDoS attacks. If these same
+
+detection and protection methods can be applied to M2M, then the DDoS
+
+attack will not be as eﬀective against an M2M network, thus allowing com-
+
+18
+
+munication to be conducted without interruption and QoS disruptions. To
+
+get some background on software-deﬁned DDoS protection, it can be ob-
+
+served that the SDN is currently vulnerable to a DDoS attack due to its
+
+centralized control system. However, M2M operates without a centralized
+
+control unit. Although it is implied M2M will not be as susceptible to DDoS
+
+attacks, it cannot be ruled out. In a recent publication, it was stated that:
+
+Based on the processing characteristics of SDN OpenFlow-enabled switches,
+
+the attacker can distinguish the SDN network from the traditional network
+
+[2]. Launching DDoS attacks towards the SDN network can produce a large
+
+amount of attack traﬃc in a short period of time. The unmatched ﬂows
+
+will be sent to the SDN controller causing the legitimate ﬂow request not
+
+be handled in time. [15] The DDoS detection for a software-deﬁned network
+
+proposed in this recent publication involves a detection module that can ﬁnd
+
+which switches are being aﬀected by the DDoS attack with varying inten-
+
+sities and scores the attack comprehensively to decide which switches need
+
+to be turned oﬀ to mitigate the damage of the attack. Since the requests
+
+are typically stored in a physical queue, the DDoS attack is hard to prevent.
+
+In this scenario, however, the requests are stored in a logical queue which is
+
+polled when there are no DDoS attacks. The system can then identify when
+
+it is under attack and when it is not and automatically direct the traﬃc
+
+accordingly to prevent any loss of service or slow processing times
+
+19
+
+4.3 DDoS Detection in M2M Networks
+
+Detecting a DDoS attack in an M2M network is similar to what was previ-
+
+ously outlined in the SDN. The steps for attack detection have been outlined
+
+in a recent publication in the following way:
+
+1. Send a request to the URL, which is accessed to request the collection
+
+of data information.
+
+2. Record the results of traﬃc anomalies and extract the suspicious traﬃc.
+
+3. Obtain and analyze the suspicious traﬃc, then access the relevant static
+
+resources.
+
+4. Analyze the behaviour of the attackers and track their attack path.
+
+5. Intercept and record the information on the attackers. [13]
+
+A DDoS attack directed at an M2M network can cause many problems for
+
+the Quality of Service (QoS) of users and suppliers alike. This is because
+
+the DDoS attack contained within the M2M network has the ability to trun-
+
+cate the back-end service system of any machine within the network. The
+
+targeted machines are unable to send conduct data transmission to the front-
+
+end services and sensors, or to other machines. This renders M2M technology
+
+useless. Several solutions may exists for the detection of DDoS attacks on
+
+the M2M network. By using previously highlighted methods, M2M can be-
+
+come resilient to DDoS. This makes the technology serviceable in practice,
+
+improving the feasibility and viability of the network as a whole. With this
+
+20
+
+detection module and further research on these methods, M2M communica-
+
+tion technology can emerge and be a standardized aspect in future wireless
+
+communication systems. Protecting the user from DDoS attacks and other
+
+malicious activities will improve the reliability of the system and allow the
+
+network to increase in popularity for the communications industry.
+
+4.4 Man In The Middle Attack
+
+In order to understand a man in the middle attack, we will utilize an example:
+
+Example 4.2. Suppose that there are three people in a certain room. These
+
+three people in the room are Bob, Alice, and Roger. However, Bob and
+
+Alice are blind and are unaware of Roger’s presence. Bob and Alice are to
+
+exchange private information with each other in this room. Roger knows
+
+about this private exchange, and enters the room. Bob and Alice however
+
+are intelligent enough to not just talk out loud, as they have heard rumours
+
+about people listening in on private conversations (sniﬃng and snooping).
+
+Therefore, Bob and Alice agree on a way to initiate an encrypted message
+
+exchange. However, their method of completing this action is not fool-proof.
+
+In fact, Roger is much smarter than them, and knows about this protocol.
+
+Roger ﬁgures out a way to pretend to be Alice when Bob is communicating,
+
+forcing communication to proceed through him. And he also knows how to
+
+pretend to be Bob, so that Alice will also exchange information with him.
+
+And Alice and Bob are in fact not knowing that Roger is even in the room,
+
+and suspect that the Bob and Alice are in fact talking to each other.
+
+21
+
+This is known as a Man in the Middle attack (abbreviated as MitM). Gen-
+
+erally, this attack is used during Authentication phases of encryption to fool
+
+two parties into chatting with the adversary. Hence the following sections
+
+will place emphasis on the rigorous explortation of MiTM attacks, and sev-
+
+eral Authentication procedures pertinent to Cellular Mobile Communication
+
+systems.
+
+To summarize, a MitM attack includes an attacker or a threat that ac-
+
+cesses data being exchanged between two machines by placing his/her own
+
+machine in between the line of communication.
+
+Figure 8: Typical setup of a MitM Attack. [3]
+
+A man in the middle attack can take place at any point of communication
+
+between two parties, but is most eﬀective when used during authentication
+
+between two parties.
+
+22
+
+4.5 Authentication
+
+The idea of Authentication is simple, two parties can verify each other (if
+
+required). It is best envisioned by an example:
+
+Example 4.3. Suppose there are two individuals, Laura and Nick. Laura
+
+and Nick are in separate but adjacent rooms, but wish to communicate with
+
+each other. The wall that connects these two rooms has an opening that
+
+can only accept a letter. In either room, there is paper suitable for letter
+
+writing, and a writing utensil. Although it appears that Laura and Nick are
+
+aware that they are in adjacent rooms, they are actually unaware. Hence,
+
+they must Authenticate themselves. That is, Nick must provide information
+
+to Laura which she will Authenticate Nick is who he says he says. Laura will
+
+do the same.
+
+Many procedures exist for Authentication. We will now convert the Au-
+
+thentication example to a legitimate case, where the two parties involved in
+
+the authentication procedure will be known as users R, F where both users
+
+can send messages mR, and mF , respectively. Both users are capable of form-
+
+ing some sort of encryption, of which a message mt will become et where the
+
+transformation process occurs with et = E(kt, [mt]), which requires a secret
+
+key kt. Upon message reception, a user is capable of transforming et to mt
+
+with use of a decryption method mt = D(kp, [et]) with use of a secret key
+
+kp such that kt may be equal to kp. If kp = kt, this is known as symmetric
+encryption. If kp (cid:54)= kt, it is required that kt and kp be related in some way.
+This relationship forms the basis of public key cryptography. That is, if a
+
+23
+
+message mt is encrypted using kt, the message can only be decrypted using
+
+kp. Conversely so, if mt is encrypted with kp, the message can be recovered
+
+by using kt in the decryption process. During the discussion of Authentica-
+
+tion, we will only cover Symmetric Key authentication methods, which are
+
+relevant to mobile networks.
+
+If there is a device D which needs gain access to another device U , Au-
+
+thentication should occur. As noted previously, it is not safe to have trust
+
+in all users. A possible Authentication procedure can occur
+
+1. D sends U an encrypted message e with a shared key, Ks. The message
+
+md contains the ID of D, IDD,
+
+2. U decrypts e with the shared key Ks, and discovers that D has sent
+
+the data, from the inspection of the message md. U authenticates D.
+
+Although this allowed U to identify the sender of the data (which was D).
+
+It is possible to exploit this protocol using MitM.
+
+Supposed the following:
+
+1. D sends U an encrypted message e with a shared key, Ks. The message
+
+md contains the ID of D, IDD
+
+2. An adversary A stands between D and U . A records the encrypted
+
+message send from D and forwards it to U
+
+3. U decrypts e with the shared key Ks, and discovers that D has sent
+
+the data, from the inspection of the message md. U authenticates D.
+
+24
+
+4. At a later time, A forwards this same message to U , tricking U into re-
+
+authenticating D. If at some point A can identify the key that was used
+
+to encrypt the information, it can intercept and/or redirect information
+
+between D and U .
+
+To combat this MitM attack (also known as a Replay Attack), a crypto-
+
+graphic tool (known as a Nonce) is used. A nonce is a random-number which
+
+can be used only once. By attaching a nonce to each message the chance of
+
+authentication compromising is reduced. The improved protocol is below:
+
+1. D sends U an encrypted message e with a shared key, Ks. The message
+
+md contains the ID of D, IDD and a nonce ND
+
+2. U decrypts e with the shared key Ks, and discovers that D has sent
+
+the data, from the inspection of the message md. It checks the Nonce
+
+ND from the message to ensure it has never seen this nonce before. If
+
+it has, U discards this information, otherwise, U authenticates D.
+
+Although this discussion on Authentication was lengthy, it is required as
+
+M2M networks may ﬁnd themselves compromised if these protocols are not
+
+taken seriously.
+
+To understand the importance of the issue, we will investigate wireless
+
+communication technology and the overview of their respective authentica-
+
+tion procedures.
+
+In 2G Networks, Authentication was performed by the
+
+Network on the mobile device requesting for access. Without mutual authen-
+
+tication, the mobile device may be connecting to a malicious network. Hence,
+
+in 3G and 4G/LTE networks, mutual authentication occurs.
+
+25
+
+To test the mutual authentication protocol in 4G/LTE, our group im-
+
+plemented this within the C programming language and used socket pro-
+
+gramming to simulate behaviours of a UE (User Equipment) and an eNodeB
+
+(equivalent of a base station).
+
+According to the 3GPP Standard [4], the following procedure has to take
+
+place for Authentication
+
+1. The UE performs an attach request to the network. This message
+
+contains the network identiﬁer of the UE (particularly known as the
+
+IMSI or International Mobile Subscriber Identity).
+
+Internally in the
+
+network, this request is interpreted as an Authentication Request.
+
+2. The network responds back with an authorization request containing
+
+an encrypted message AUTN (Authentication Vector from the Network),
+
+and a random number RAND.
+
+3. The UE accepts this message and attempts to generate AUTN from RAND.
+
+4. If the UE generated a matching AUTN, the UE can Authenticate the
+
+network. If the UE authenticates the network, it generates a response
+
+RES to which it sends back to the network.
+
+5. Upon reception of this message, the Network generates it’s own re-
+
+sponse XRES. If XRES = RES, the UE is authenticated by the network.
+
+This means data exchange can begin.
+
+This protocol is resilient to MitM attacks (if implemented exactly as
+
+speciﬁed). [4]
+
+26
+
+Figure 9: Simulation of the 3GPP Authentication procedure using Milenage
+
+Attached below is a simulation of this Authentication timeline.
+
+Each step of the 3GPP Authentication procedure using Milenage was im-
+
+plemented with C. For example, this procedure was simulated using socket
+
+programming with C, using UDP (User Datagram Protocol) (which accu-
+
+rately represents a wireless network). Attached are some examples of the
+
+implementation methods:
+
+27
+
+...
+/* Type for PDU for UE <--> E-NodeB Authentication */
+
+//ID: Defines packet type for identity Sending
+#define ID ’I’
+
+//AUTH: Defines packet type for authentication
+#define AUTH ’A’
+
+//RESP: Defines packet type for authentication response
+#define RESP ’R’
+
+... //
+
+Figure 10: PDU types for the 3GPP Authentication procedure
+
+Although this discussion did not directly involve M2M, the topics dis-
+
+cussed have complete relations with M2M. That is, M2M should invoke such
+
+procedures when performing authentication with devices participating in the
+
+Ad-Hoc environment. [14]
+
+In addition to MitM attacks to authentication procedures, other MiTM
+
+attacks are possible. One such way is known as ARP Poisoning, and is
+
+explained as follows:
+
+– “...exploit the Address Resolution Protocol (ARP) to propagate wrong
+
+mapping between the Internet Protocol (IP) address and Media Access
+
+Control (MAC) address of the target machine.” (Dawood Al Abri, De-
+
+tection of MitM Attack in LAN Environment using Payload Matching)
+
+ARP, or the Address Resolution Protocol is what maps a physical address
+
+in a network, to an associated address in a network. That is, the MAC
+
+28
+
+(Medium Access Control) address is mapped to an IP address (usually deﬁned
+
+by a DHCP server). If one were to follow the above procedure, it would be
+
+possible to then fool a MAC to IP mapping, and perhaps interject a MitM
+
+attack.
+
+Other methods include DNS Poisoning, ICMP Redirecting, and setting
+
+up a bogus DHCP Server. This is extremely relevant to M2M communica-
+
+tion systems because they can be susceptible to any of these kinds of attacks.
+
+However, it can be worth investigating security measures for M2M commu-
+
+nications against these malicious activities because a successful deﬂection of
+
+these attacks can make M2M communication much more viable as it has a
+
+wide range of applications in the future of IoT (Internet of Things) [7].
+
+There have already been studies conducted and research completed to
+
+solve some of the MitM issues, each with their own variation of methods.
+
+For example, one way to detect malicious activity in a LAN is to setup a
+
+reference or normal network, that way any spikes in activity can be viewed
+
+as an attack. This is just an example of one Intrusion Detection System (IDS)
+
+[5]. It is important to note that these methods have not yet been applied to
+
+M2M communication networks, mainly because malicious attackers can be
+
+placed throughout a network and can prove diﬃcult to simultaneously detect
+
+using these methods. It is also interesting to note that M2M communication
+
+takes the form of an ad-hoc network, with no hierarchy of operation. It would
+
+be of interest to research these methods further to gain an understanding
+
+on how to defend M2M communications against these attacks to increase
+
+viability of this communication system.
+
+29
+
+5 Conclusion
+
+From the information gathered from this project, it was wise to investigate an
+
+emerging communication technology for security considerations. Speciﬁcally,
+
+we found that DDoS attacks, and MitM (man in the middle) attacks are a
+
+signiﬁcant threat to M2M communication technology.
+
+From our extensive research within this domain, we were able to speculate
+
+on issues surrounding an emerging wireless communication technology, and
+
+had enough information to implement a relevant wireless communication pro-
+
+tocol. Speciﬁcally, we discovered some security issues present within M2M
+
+technology, and the listed attacks (which aﬀect almost all communication
+
+systems). As well, we were able to simulate and implement an Authentica-
+
+tion procedure that takes place between a UE and eNodeB (part of an LTE
+
+network).
+
+30
+
+6 Appendix
+
+This section provides the a simulation for the Authentication procedure out-
+
+lined in the 3GPP Standard, used by LTE Network technology. This simu-
+
+lation was implemented with the C programming language.
+
+6.1 Makefile
+
+all: ue enodeb
+
+ue: ue.o milenage.o
+
+gcc -o ue ue.o milenage.o
+
+enodeb: enodeb.o milenage.o
+
+gcc -o enodeb enodeb.o milenage.o
+
+enodeb.o: enodeb.c
+
+gcc -c enodeb.c
+
+ue.o: ue.c
+
+gcc -c ue.c
+
+milenage.o: milenage.c
+
+gcc -c milenage.c
+
+6.2 ue.c
+
+/*****************************************
+File: ue.c
+Description: User Equipment
+Authors: N. Giamblanco, N. Dimitrakopoulos
+******************************************/
+#include "include.h"
+#include "milenage.h"
+
+/* Global Variable Definitions */
+int sockfd;
+struct sockaddr_in servaddr;
+
+//; Socket Descriptor (1)
+// Reconfigurable Address.
+
+int SEQ=0;
+int rSEQ=0;
+
+// UE sequence number
+// eNodeB sequence number
+
+31
+
+char IMSI[]="302220309512288";
+unsigned char KEY[16]="DCACJK34^!DFYH"; // Pre-shared Key between
+
+// Owner of the Pre shared key.
+
+UE and eNodeB
+
+unsigned char RAND[16], SQN[6]="26WEDF",AMF[2]="QA",MAC_A[8],AK[6],
+
+AUTH_VEC[17], AUTN[17];
+
+unsigned char RES[9],CK[16],IK[16];
+
+/************************************************
+function: generateAuthParams()
+description: generates paramters for UE auth.
+************************************************/
+void generateAuthParams(){
+
+int i=0,conv=0;
+char tmp[6];
+printf("[AUTH] -- Initializing\n");
+f1(KEY,RAND,SQN,AMF,MAC_A);
+f2345(KEY,RAND,RES,CK,IK,AK);
+printf("[AUTH] --Generated\n");
+for(i=0;i<6;++i){
+
+tmp[i]=SQN[i]^AK[i];
+
+}
+bzero(AUTH_VEC,18);
+strcat((char *)AUTH_VEC,tmp);
+strcat((char *)AUTH_VEC,(char *)AMF);
+strcat((char *)AUTH_VEC,(char *)MAC_A);
+for(i=0;i<16;++i){
+
+conv=(int)AUTH_VEC[i];
+if(conv<33 || conv>126){
+
+AUTH_VEC[i]=(char)(conv%93+33);
+
+}
+
+}
+AUTH_VEC[16]=’\0’;
+printf("[AUTH] --Done.\n");
+printf("--[GENERATING RESPONSE]\n");
+for(i=0;i<8;++i){
+
+conv=(int)RES[i];
+if(conv<33 || conv>126){
+
+RES[i]=(char)(conv%93+33);
+
+}
+
+32
+
+}
+RES[8]=’\0’;
+printf("[RESP] - Generated.\n");
+
+}
+
+/***********************************************************************
+
+function: send_packets()
+description: will provide messages to the network topology.
+*************************************************************************/
+
+void send_packets(){
+
+int nbytes, running=0;
+struct hostent *hp;
+pdu_t pdu_in,pdu_out;
+
+bzero(pdu_out.data,110);
+bzero(pdu_in.data,110);
+pdu_out.type=ID;
+
+PDU
+
+strcpy(pdu_out.data,IMSI);
+pdu_out.seq=SEQ;
+
+/*Clearing Data */
+/*Clearing Data */
+//** Constructing Data
+
+//** Inserting IMSI
+
+nbytes=sendto(sockfd, (void*)&pdu_out, sizeof(pdu_t), 0,(
+struct sockaddr *)&servaddr, sizeof(struct sockaddr));
+
+while(running==0){
+
+recvfrom(sockfd,(void*)&pdu_in,sizeof(pdu_t),0, NULL,
+
+NULL);
+
+switch(pdu_in.type){
+
+case AUTH:
+
+printf("[ue] Received AUTH Request.
+About to authorize network.\n");
+
+printf("[ue] SEQ=[%d] with RAND=[%s]\n
+
+",pdu_in.seq,pdu_in.data);
+
+strncpy((char *)RAND,pdu_in.data,16);
+
+Storing RAND from eNodeB
+
+rSEQ=pdu_in.seq;
+
+//
+
+33
+
+//Storing SEQ
+
+++rSEQ;
+
+bzero(pdu_in.data,110);
+
+//Expecting new SEQ
+
+recvfrom(sockfd,(void*)&pdu_in,sizeof(
+
+pdu_t),0, NULL, NULL);
+Waiting for eNodeB AUTN (
+Authenticate Network Vector)
+
+//
+
+if(rSEQ==pdu_in.seq){
+
+printf("[ue] SEQ=[%d] with AUTN
+=[%s]\n",pdu_in.seq,pdu_in.
+data);
+
+++rSEQ;
+
+strncpy((char *)AUTN,pdu_in.
+
+data,16);
+
+//Storing
+
+AUTN (Authenticate Network
+Vector)
+
+printf("[ue] AUTH_VEC is
+
+extracted. About to check.\n
+");
+
+generateAuthParams();
+
+//Checking
+
+AUTN
+
+printf("AUTH_VEC=[%s] and AUTN
+=[%s]\n\n",AUTH_VEC,AUTN);
+
+if(strcmp((char *)AUTH_VEC,(
+
+char *)AUTN)==0){
+
+printf("[ue] Network has
+authenticated itself
+
+.\n");
+
+pdu_out.type=RESP;
+++SEQ;
+pdu_out.seq=SEQ;
+strcpy(pdu_out.data,(
+
+char *)RES);
+
+nbytes=sendto(sockfd, (
+
+34
+
+}else{
+
+void*)&pdu_out,
+sizeof(pdu_t), 0,(
+struct sockaddr *)&
+servaddr, sizeof(
+struct sockaddr));
+
+pdu_out.type=FAIL;
+pdu_out.seq=0;
+strcpy(pdu_out.data,(
+
+char *)RES);
+
+nbytes=sendto(sockfd, (
+
+void*)&pdu_out,
+sizeof(pdu_t), 0,(
+struct sockaddr *)&
+servaddr, sizeof(
+struct sockaddr));
+
+}
+
+}
+break;
+
+case ERROR:
+
+printf("[ue] error message received
+
+from eNodeB <<%s>>\n",pdu_in.data);
+
+exit(-2);
+break;
+
+case SUCC:
+
+if(rSEQ==pdu_in.seq){
+
+printf("[ue] eNodeB says: %s",
+
+pdu_in.data);
+
+printf("-- successful
+
+authentication. Ending
+process.\n");
+
+exit(1);
+
+}else{
+
+printf("[ue] out of sequence
+
+packet from eNodeB. Ending
+process immediately.\n");
+
+exit(-2);
+
+35
+
+}
+break;
+
+case FAIL:
+
+printf("Unsuccessful Authentication.
+
+eNodeB says: <<%s>>\n",pdu_in.data)
+;
+
+exit(-2);
+break;
+
+}
+
+}
+
+}
+
+/********************************************
+Main() of ue.c
+*********************************************/
+
+int main()
+{
+
+int nbytes,n,test=0;
+struct hostent *hp2;
+int connfd,len,recv=1;
+
+sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+
+// Socket
+
+Creation (UDP)
+
+if(sockfd==-1){
+
+printf("Socket Not Created. Error.\n");
+exit(-1);
+
+}
+else{
+
+printf("Socket Created.\n");
+
+}
+bzero(&servaddr, sizeof(servaddr));
+
+servaddr.sin_family = AF_INET;
+servaddr.sin_addr.s_addr = INADDR_ANY; // ANY address or use
+
+specific address
+
+servaddr.sin_port = htons(7802); // Port address
+send_packets();
+
+// Going to
+
+Sending Mechanism.
+
+36
+
+return(0);
+
+}
+
+6.3 enodeb.c
+
+/*************************************************
+File: enodeb.c
+Description: ENodeB with HSS and MSS capabilities.
+Authors: N. Giamblanco, N. Dimitrakopoulos
+**************************************************/
+#include "include.h"
+#include "milenage.h"
+
+#define PORT 7802
+#define BUFLEN 512
+
+/* well-known port */
+/* buffer length */
+
+int SEQ=0;
+int rSEQ=0;
+char IMSI[]="302220309512288"; // Owner of the Pre shared key.
+unsigned char KEY[16]="DCACJK34^!DFYH"; // Pre-shared Key between
+
+UE and eNodeB
+
+unsigned char RAND[16], SQN[6]="26WEDF",AMF[2]="QA",MAC_A[8],AK[6],
+
+AUTH_VEC[17];
+
+unsigned char RES[9],XRES[9],CK[16],IK[16];
+
+/************************************************
+function: generateAuthParams()
+description: generates paramters for UE auth.
+************************************************/
+void generateAuthParams(){
+
+int i=0,conv=0;
+char tmp[6];
+printf("[AUTH] -- Initializing\n");
+for(i=0;i<15;++i){
+
+RAND[i]=rand()%93+33;
+
+}
+RAND[i]=’\0’;
+
+37
+
+printf("[AUTH]{INFO} --RAND Generated: [%s]\n",RAND);
+f1(KEY,RAND,SQN,AMF,MAC_A);
+f2345(KEY,RAND,XRES,CK,IK,AK);
+printf("[AUTH] --Generated\n");
+for(i=0;i<6;++i){
+
+tmp[i]=SQN[i]^AK[i];
+
+}
+bzero(AUTH_VEC,18);
+strcat((char *)AUTH_VEC,tmp);
+strcat((char *)AUTH_VEC,(char *)AMF);
+strcat((char *)AUTH_VEC,(char *)MAC_A);
+for(i=0;i<16;++i){
+
+conv=(int)AUTH_VEC[i];
+if(conv<33 || conv>126){
+
+AUTH_VEC[i]=(char)(conv%93+33);
+
+}
+
+}
+AUTH_VEC[16]=’\0’;
+printf("[AUTH] --Done.\n");
+printf("--[generating expected RES]\n");
+for(i=0;i<8;++i){
+
+conv=(int)XRES[i];
+if(conv<33 || conv>126){
+
+XRES[i]=(char)(conv%93+33);
+
+}
+
+}
+XRES[8]=’\0’;
+printf("[XRES] - Generated.\n");
+
+}
+
+/************************************************
+function: packet_decode()
+description: decodes the current session
+
+for handling messages.
+
+************************************************/
+int packet_decode(int sd, struct sockaddr_in cliaddr, int len)
+{
+
+pdu_t pdu_in, pdu_out;
+struct sockaddr_in outgoing;
+char
+
+*bp, buf[BUFLEN];
+
+38
+
+char
+int
+
+*response;
+nbytes, i=0, length=0;
+
+while(1) {
+
+bzero(pdu_out.data,110);
+bzero(pdu_in.data,110);
+
+nbytes=recvfrom(sd,(void*)&pdu_in,sizeof(pdu_t),0,(
+
+struct sockaddr *)&cliaddr, &len);
+
+switch(pdu_in.type){
+
+case ID:
+
+printf("[eNodeB] Received Identity
+
+Response from IMSI=[%s]\n",pdu_in.
+data);
+
+if(strcmp(pdu_in.data,IMSI)==0){
+
+generateAuthParams(); //Used to
+
+generate authentication
+
+parameters needed for the UE
+
+and eNodeB;
+
+pdu_out.type=AUTH;
+++SEQ;
+pdu_out.seq=SEQ;
+strcpy(pdu_out.data,(char *)
+
+RAND);
+
+nbytes=sendto(sd,(void*)&
+
+pdu_out,sizeof(pdu_t),0,(
+struct sockaddr *)&cliaddr,
+sizeof(struct sockaddr_in));
+
+bzero(pdu_out.data,110);
+pdu_out.type=AUTH;
+++SEQ;
+pdu_out.seq=SEQ;
+strcpy(pdu_out.data,(char *)
+
+AUTH_VEC);
+
+printf("AUTH_VEC [%s]\n",
+
+39
+
+AUTH_VEC);
+
+nbytes=sendto(sd,(void*)&
+
+pdu_out,sizeof(pdu_t),0,(
+struct sockaddr *)&cliaddr,
+sizeof(struct sockaddr_in));
+
+}else{
+
+pdu_out.seq=-1;
+
+//Indicate mo more
+
+tranmissions to come.
+
+pdu_out.type=FAIL;
+
+// Type of Packet (
+
+Failure)
+
+strcpy(pdu_out.data,"Unknown UE
+
+with IMSI"); //Cause of
+
+failure
+
+nbytes=sendto(sd,(void*)&
+
+pdu_out,sizeof(pdu_t),0,(
+struct sockaddr *)&cliaddr,
+sizeof(struct sockaddr_in));
+
+exit(-2);
+
+}
+break;
+
+case RESP:
+
+printf("[eNodeB] Received
+
+Authentication Response RES=[%s]\n
+",pdu_in.data);
+
+strcpy((char *)RES,pdu_in.data);
+printf("[eNodeB] Comparing XRES with
+
+RES\n");
+
+printf("[eNodeB] XRES=[%s]\n",XRES);
+if(strcmp((char *)XRES,(char *)RES)==0)
+
+printf("UE is Authenticated.
+
+Okay to Send. Exiting
+Authentication Process.\n");
+
+pdu_out.type=SUCC;
+
+{
+
+40
+
+++SEQ;
+pdu_out.seq=SEQ;
+strcpy(pdu_out.data,"OKAY");
+nbytes=sendto(sd,(void*)&
+
+pdu_out,sizeof(pdu_t),0,(
+struct sockaddr *)&cliaddr,
+sizeof(struct sockaddr_in));
+
+exit(1);
+
+}else{
+
+printf("Cannot authenticate UE.
+
+Exiting Authentication
+
+Process.\n");
+
+pdu_out.type=FAIL;
+++SEQ;
+pdu_out.seq=SEQ;
+strcpy(pdu_out.data,"RES !=
+
+XRES");
+
+nbytes=sendto(sd,(void*)&
+
+pdu_out,sizeof(pdu_t),0,(
+struct sockaddr *)&cliaddr,
+sizeof(struct sockaddr_in));
+
+exit(1);
+
+}
+break;
+
+case ERROR:
+
+printf("[eNodeB] Error Detected.
+
+Shutting Down");
+
+exit(-1);
+break;
+
+case AUTH:
+
+printf("[eNodeB] Not Handling AUTH’s");
+exit(-2);
+break;
+
+}
+
+}
+close(sd);
+return(0);
+
+}
+
+41
+
+int main(int argc, char **argv)
+{
+
+int
+struct sockaddr_in server, client;
+
+sd, new_sd, client_len, port;
+
+/* Create a UDP socket */
+if ((sd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) {
+
+fprintf(stderr, "Can’t create a socket\n");
+exit(-1);
+
+}else{
+
+}
+
+printf("Socket Created.\n");
+
+/* Bind an address to the socket
+bzero((char *)&server, sizeof(struct sockaddr_in));
+
+*/
+
+server.sin_family = AF_INET;
+server.sin_port = htons(PORT);
+server.sin_addr.s_addr = htonl(INADDR_ANY);
+
+if (bind(sd, (struct sockaddr *)&server, sizeof(server)) ==
+
+-1){
+
+fprintf(stderr, "Can’t bind name to socket\n");
+exit(1);
+
+}
+
+client_len=sizeof(client);
+packet_decode(sd, client,client_len);
+
+}
+
+6.4 include.h
+
+#include <stdio.h>
+#include <errno.h>
+#include <sys/socket.h>
+#include <resolv.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+
+42
+
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <time.h>
+#include <string.h>
+
+/* Type for PDU for UE <--> E-NodeB Authentication */
+
+//ID: Defines packet type for identity Sending
+#define ID ’I’
+
+//AUTH: Defines packet type for authentication
+#define AUTH ’A’
+
+//RESP: Defines packet type for authentication response
+#define RESP ’R’
+
+//SUCC: Defines packet type successful authentication
+#define SUCC ’S’
+
+//ERROR: Defines packet type for an error
+#define ERROR ’E’
+
+//FAIL: Defines packet type for an unsuccessful authentication
+#define FAIL ’F’
+
+typedef struct pdu{
+
+char type;
+int seq;
+char data[110];
+
+}pdu_t;
+
+6.5 milenage.c
+
+/*-------------------------------------------------------------------
+
+43
+
+* Example algorithms f1, f1*, f2, f3, f4, f5, f5*
+*-------------------------------------------------------------------
+
+*
+* A sample implementation of the example 3GPP authentication and
+* key agreement functions f1, f1*, f2, f3, f4, f5 and f5*. This is
+* a byte-oriented implementation of the functions, and of the block
+* cipher kernel function Rijndael.
+*
+* This has been coded for clarity, not necessarily for efficiency.
+*
+* The functions f2, f3, f4 and f5 share the same inputs and have
+* been coded together as a single function. f1, f1* and f5* are
+* all coded separately.
+*
+*-----------------------------------------------------------------*/
+
+#include "milenage.h" //Include for standard input out, and
+
+standard lib.
+
+typedef unsigned char u8;
+/*--------- Operator Variant Algorithm Configuration Field
+
+--------*/
+
+u8 OP[16] = {0x63, 0xbf, 0xa5, 0x0e, 0xe6, 0x52, 0x33, 0x65, 0xff,
+
+/*------- Insert your value of OP here -------*/
+
+0x14, 0xc1, 0xf4, 0x5f, 0x88, 0x73, 0x7d};
+
+/*------- Insert your value of OP here -------*/
+
+/*--------------------------- prototypes
+
+--------------------------*/
+
+void f1 ( u8 k[16], u8 rand[16], u8 sqn[6], u8 amf[2],u8 mac_a[8] )
+
+;
+
+void f2345 ( u8 k[16], u8 rand[16],
+u8 res[8], u8 ck[16], u8 ik[16], u8 ak[6] );
+void f1star( u8 k[16], u8 rand[16], u8 sqn[6], u8 amf[2],u8 mac_s
+
+[8] );
+
+void f5star( u8 k[16], u8 rand[16],u8 ak[6] );
+void ComputeOPc( u8 op_c[16] );
+
+44
+
+void RijndaelKeySchedule( u8 key[16] );
+void RijndaelEncrypt( u8 input[16], u8 output[16] );
+
+/*-------------------------------------------------------------------
+
+* Algorithm f1
+*-------------------------------------------------------------------
+
+*
+* Computes network authentication code MAC-A from key K, random
+* challenge RAND, sequence number SQN and authentication management
+* field AMF.
+*
+*-----------------------------------------------------------------*/
+
+void f1 ( u8 k[16], u8 rand[16], u8 sqn[6], u8 amf[2], u8 mac_a[8]
+
+){
+
+u8 op_c[16];
+u8 temp[16];
+u8 in1[16];
+u8 out1[16];
+u8 rijndaelInput[16];
+u8 i;
+RijndaelKeySchedule( k );
+ComputeOPc( op_c );
+for (i=0; i<16; i++)
+
+rijndaelInput[i] = rand[i] ^ op_c[i];
+
+RijndaelEncrypt( rijndaelInput, temp );
+
+for (i=0; i<6; i++){
+
+in1[i] = sqn[i];
+in1[i+8] = sqn[i];
+
+}
+for (i=0; i<2; i++){
+
+in1[i+6] = amf[i];
+in1[i+14] = amf[i];
+
+}
+/* XOR op_c and in1, rotate by r1=64, and XOR *
+* on the constant c1 (which is all zeroes) */
+for (i=0; i<16; i++)
+
+45
+
+rijndaelInput[(i+8) % 16] = in1[i] ^ op_c[i];
+
+/* XOR on the value temp computed before */
+for (i=0; i<16; i++)
+
+rijndaelInput[i] ^= temp[i];
+
+RijndaelEncrypt( rijndaelInput, out1 );
+for (i=0; i<16; i++)
+
+out1[i] ^= op_c[i];
+
+for (i=0; i<8; i++)
+
+mac_a[i] = out1[i];
+
+return;
+
+} /* end of function f1 */
+
+/*-------------------------------------------------------------------
+
+* Algorithms f2-f5
+*-------------------------------------------------------------------
+
+*
+* Takes key K and random challenge RAND, and returns response RES,
+* confidentiality key CK, integrity key IK and anonymity key AK.
+*
+*-----------------------------------------------------------------*/
+
+void f2345 ( u8 k[16], u8 rand[16],u8 res[8], u8 ck[16], u8 ik[16],
+
+u8 ak[6] ){
+
+u8 op_c[16];
+u8 temp[16];
+u8 out[16];
+u8 rijndaelInput[16];
+u8 i;
+
+RijndaelKeySchedule( k );
+ComputeOPc( op_c );
+for (i=0; i<16; i++)
+
+rijndaelInput[i] = rand[i] ^ op_c[i];
+
+RijndaelEncrypt( rijndaelInput, temp );
+/* To obtain output block OUT2: XOR OPc and TEMP, *
+* rotate by r2=0, and XOR on the constant c2 (which *
+* is all zeroes except that the last bit is 1). */
+
+46
+
+for (i=0; i<16; i++)
+
+rijndaelInput[i] = temp[i] ^ op_c[i];
+
+rijndaelInput[15] ^= 1;
+RijndaelEncrypt( rijndaelInput, out );
+for (i=0; i<16; i++)
+
+out[i] ^= op_c[i];
+
+for (i=0; i<8; i++)
+
+res[i] = out[i+8];
+
+for (i=0; i<6; i++)
+
+ak[i] = out[i];
+
+/* To obtain output block OUT3: XOR OPc and TEMP, *
+* rotate by r3=32, and XOR on the constant c3 (which *
+* is all zeroes except that the next to last bit is 1). */
+for (i=0; i<16; i++)
+
+rijndaelInput[(i+12) % 16] = temp[i] ^ op_c[i];
+
+rijndaelInput[15] ^= 2;
+RijndaelEncrypt( rijndaelInput, out );
+for (i=0; i<16; i++)
+
+out[i] ^= op_c[i];
+
+for (i=0; i<16; i++)
+
+ck[i] = out[i];
+
+/* To obtain output block OUT4: XOR OPc and TEMP, *
+* rotate by r4=64, and XOR on the constant c4 (which *
+* is all zeroes except that the 2nd from last bit is 1). */
+for (i=0; i<16; i++)
+
+rijndaelInput[(i+8) % 16] = temp[i] ^ op_c[i];
+
+rijndaelInput[15] ^= 4;
+RijndaelEncrypt( rijndaelInput, out );
+for (i=0; i<16; i++)
+
+out[i] ^= op_c[i];
+
+for (i=0; i<16; i++)
+
+ik[i] = out[i];
+
+return;
+
+} /* end of function f2345 */
+
+/*-------------------------------------------------------------------
+
+* Algorithm f1*
+*-------------------------------------------------------------------
+
+47
+
+*
+* Computes resynch authentication code MAC-S from key K, random
+* challenge RAND, sequence number SQN and authentication management
+* field AMF.
+*
+*-----------------------------------------------------------------*/
+
+void f1star( u8 k[16], u8 rand[16], u8 sqn[6], u8 amf[2],u8 mac_s
+
+[8] ){
+
+u8 op_c[16];
+u8 temp[16];
+u8 in1[16];
+u8 out1[16];
+u8 rijndaelInput[16];
+u8 i;
+RijndaelKeySchedule( k );
+ComputeOPc( op_c );
+for (i=0; i<16; i++)
+
+rijndaelInput[i] = rand[i] ^ op_c[i];
+
+RijndaelEncrypt( rijndaelInput, temp );
+for (i=0; i<6; i++){
+
+in1[i] = sqn[i];
+in1[i+8] = sqn[i];
+
+}
+for (i=0; i<2; i++){
+
+in1[i+6] = amf[i];
+in1[i+14] = amf[i];
+
+}
+/* XOR op_c and in1, rotate by r1=64, and XOR *
+* on the constant c1 (which is all zeroes) */
+for (i=0; i<16; i++)
+
+rijndaelInput[(i+8) % 16] = in1[i] ^ op_c[i];
+
+/* XOR on the value temp computed before */
+for (i=0; i<16; i++)
+
+rijndaelInput[i] ^= temp[i];
+
+RijndaelEncrypt( rijndaelInput, out1 );
+for (i=0; i<16; i++)
+
+out1[i] ^= op_c[i];
+
+48
+
+for (i=0; i<8; i++)
+
+mac_s[i] = out1[i+8];
+
+return;
+
+} /* end of function f1star */
+
+/*-------------------------------------------------------------------
+
+* Algorithm f5*
+*-------------------------------------------------------------------
+
+*
+* Takes key K and random challenge RAND, and returns resynch
+* anonymity key AK.
+*
+*-----------------------------------------------------------------*/
+
+void f5star( u8 k[16], u8 rand[16],u8 ak[6] ){
+
+u8 op_c[16];
+u8 temp[16];
+u8 out[16];
+u8 rijndaelInput[16];
+u8 i;
+RijndaelKeySchedule( k );
+ComputeOPc( op_c );
+for (i=0; i<16; i++)
+
+rijndaelInput[i] = rand[i] ^ op_c[i];
+
+RijndaelEncrypt( rijndaelInput, temp );
+/* To obtain output block OUT5: XOR OPc and TEMP, *
+* rotate by r5=96, and XOR on the constant c5 (which *
+* is all zeroes except that the 3rd from last bit is 1). */
+for (i=0; i<16; i++)
+
+rijndaelInput[(i+4) % 16] = temp[i] ^ op_c[i];
+
+rijndaelInput[15] ^= 8;
+RijndaelEncrypt( rijndaelInput, out );
+for (i=0; i<16; i++)
+
+out[i] ^= op_c[i];
+
+for (i=0; i<6; i++)
+
+ak[i] = out[i];
+
+49
+
+return;
+
+} /* end of function f5star */
+
+/*-------------------------------------------------------------------
+
+* Function to compute OPc from OP and K. Assumes key schedule has
+already been performed.
+*-----------------------------------------------------------------*/
+
+void ComputeOPc( u8 op_c[16] ){
+
+u8 i;
+RijndaelEncrypt( OP, op_c );
+for (i=0; i<16; i++)
+
+op_c[i] ^= OP[i];
+
+return;
+
+} /* end of function ComputeOPc */
+
+/*-------------------- Rijndael round subkeys
+
+---------------------*/
+
+u8 roundKeys[11][4][4];
+
+/*--------------------- Rijndael S box table
+
+----------------------*/
+
+u8 S[256] = {
+
+99,124,119,123,242,107,111,197, 48, 1,103,
+
+43,254,215,171,118,
+
+202,130,201,125,250, 89,
+
+71,240,173,212,162,175,156,164,114,192,
+
+183,253,147, 38, 54, 63,247,204,
+
+52,165,229,241,113,216, 49, 21,
+
+4,199, 35,195, 24,150, 5,154, 7, 18,128,226,235,
+
+39,178,117,
+
+9,131, 44, 26, 27,110, 90,160, 82, 59,214,179,
+
+41,227, 47,132,
+
+83,209, 0,237, 32,252,177, 91,106,203,190, 57, 74,
+
+76, 88,207,
+
+208,239,170,251, 67, 77, 51,133, 69,249, 2,127, 80,
+
+60,159,168,
+
+81,163, 64,143,146,157, 56,245,188,182,218, 33,
+
+50
+
+16,255,243,210,
+
+205, 12, 19,236, 95,151, 68, 23,196,167,126, 61,100,
+
+93, 25,115,
+
+96,129, 79,220, 34, 42,144,136, 70,238,184, 20,222,
+
+94, 11,219,
+
+224, 50, 58, 10, 73, 6, 36, 92,194,211,172,
+
+98,145,149,228,121,
+
+231,200, 55,109,141,213, 78,169,108,
+
+86,244,234,101,122,174, 8,
+
+186,120, 37, 46, 28,166,180,198,232,221,116, 31,
+
+75,189,139,138,
+
+112, 62,181,102, 72, 3,246, 14, 97, 53,
+
+87,185,134,193, 29,158,
+
+225,248,152, 17,105,217,142,148,155, 30,135,233,206,
+
+85, 40,223,
+
+140,161,137, 13,191,230, 66,104, 65,153, 45, 15,176,
+
+84,187, 22,
+
+};
+
+/*------- This array does the multiplication by x in GF(2^8)
+
+------*/
+
+u8 Xtime[256] = {
+
+0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26,
+
+28, 30,
+
+32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56,
+
+58, 60, 62,
+
+64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88,
+
+90, 92, 94,
+
+96,
+
+98,100,102,104,106,108,110,112,114,116,118,120,122,124,126,
+
+128,130,132,134,136,138,140,142,144,146,148,150,152,154,156,158,
+
+160,162,164,166,168,170,172,174,176,178,180,182,184,186,188,190,
+
+192,194,196,198,200,202,204,206,208,210,212,214,216,218,220,222,
+
+224,226,228,230,232,234,236,238,240,242,244,246,248,250,252,254,
+
+27, 25, 31, 29, 19, 17, 23, 21, 11, 9, 15, 13, 3, 1,
+
+7, 5,
+
+51
+
+59, 57, 63, 61, 51, 49, 55, 53, 43, 41, 47, 45, 35,
+
+33, 39, 37,
+
+91, 89, 95, 93, 83, 81, 87, 85, 75, 73, 79, 77, 67,
+
+65, 71, 69,
+
+123,121,127,125,115,113,119,117,107,105,111,109, 99,
+
+97,103,101,
+
+155,153,159,157,147,145,151,149,139,137,143,141,131,129,135,133,
+
+187,185,191,189,179,177,183,181,171,169,175,173,163,161,167,165,
+
+219,217,223,221,211,209,215,213,203,201,207,205,195,193,199,197,
+
+251,249,255,253,243,241,247,245,235,233,239,237,227,225,231,229
+
+};
+
+/*-------------------------------------------------------------------
+
+* Rijndael key schedule function. Takes 16-byte key and creates
+* all Rijndael’s internal subkeys ready for encryption.
+*-----------------------------------------------------------------*/
+
+void RijndaelKeySchedule(u8 key[16]){
+
+u8 roundConst;
+int i, j;
+/* first round key equals key */
+for (i=0; i<16; i++)
+
+roundKeys[0][i & 0x03][i>>2] = key[i];
+
+roundConst = 1;
+/* now calculate round keys */
+for (i=1; i<11; i++){
+
+roundKeys[i][0][0] = S[roundKeys[i-1][1][3]]^
+
+roundKeys[i-1][0][0]^roundConst;
+
+roundKeys[i][1][0] = S[roundKeys[i-1][2][3]]^
+
+roundKeys[i-1][1][0];
+
+roundKeys[i][2][0] = S[roundKeys[i-1][3][3]]^
+
+roundKeys[i-1][2][0];
+
+roundKeys[i][3][0] = S[roundKeys[i-1][0][3]]^
+
+roundKeys[i-1][3][0];
+
+52
+
+for (j=0; j<4; j++){
+
+roundKeys[i][j][1] = roundKeys[i-1][j][1] ^
+
+roundKeys[i][j][0];
+
+roundKeys[i][j][2] = roundKeys[i-1][j][2] ^
+
+roundKeys[i][j][1];
+
+roundKeys[i][j][3] = roundKeys[i-1][j][3] ^
+
+roundKeys[i][j][2];
+
+}
+/* update round constant */
+roundConst = Xtime[roundConst];
+
+}
+return;
+
+} /* end of function RijndaelKeySchedule */
+
+/* Round key addition function */
+void KeyAdd(u8 state[4][4], u8 roundKeys[11][4][4], int round){
+
+int i, j;
+for (i=0; i<4; i++)
+
+for (j=0; j<4; j++)
+
+state[i][j] ^= roundKeys[round][i][j];
+
+return;
+
+}
+
+/* Byte substitution transformation */
+int ByteSub(u8 state[4][4]){
+
+int i, j;
+for (i=0; i<4; i++)
+
+for (j=0; j<4; j++)
+
+state[i][j] = S[state[i][j]];
+
+return 0;
+
+}
+
+/* Row shift transformation */
+void ShiftRow(u8 state[4][4]){
+
+u8 temp;
+
+/* left rotate row 1 by 1 */
+temp = state[1][0];
+state[1][0] = state[1][1];
+state[1][1] = state[1][2];
+
+53
+
+state[1][2] = state[1][3];
+state[1][3] = temp;
+
+/* left rotate row 2 by 2 */
+temp = state[2][0];
+state[2][0] = state[2][2];
+state[2][2] = temp;
+temp = state[2][1];
+state[2][1] = state[2][3];
+state[2][3] = temp;
+
+/* left rotate row 3 by 3 */
+temp = state[3][0];
+state[3][0] = state[3][3];
+state[3][3] = state[3][2];
+state[3][2] = state[3][1];
+state[3][1] = temp;
+return;
+
+}
+
+/* MixColumn transformation*/
+void MixColumn(u8 state[4][4]){
+
+u8 temp, tmp, tmp0;
+int i;
+/* do one column at a time */
+for (i=0; i<4;i++){
+
+temp = state[0][i] ^ state[1][i] ^ state[2][i] ^
+
+state[3][i];
+
+tmp0 = state[0][i];
+
+/* Xtime array does multiply by x in GF2^8 */
+tmp = Xtime[state[0][i] ^ state[1][i]];
+state[0][i] ^= temp ^ tmp;
+tmp = Xtime[state[1][i] ^ state[2][i]];
+state[1][i] ^= temp ^ tmp;
+tmp = Xtime[state[2][i] ^ state[3][i]];
+state[2][i] ^= temp ^ tmp;
+tmp = Xtime[state[3][i] ^ tmp0];
+state[3][i] ^= temp ^ tmp;
+
+}
+
+54
+
+return;
+}
+
+/*-------------------------------------------------------------------
+
+* Rijndael encryption function. Takes 16-byte input and creates
+* 16-byte output (using round keys already derived from 16-byte
+* key).
+*-----------------------------------------------------------------*/
+
+void RijndaelEncrypt( u8 input[16], u8 output[16] ){
+
+u8 state[4][4];
+int i, r;
+/* initialise state array from input byte string */
+for (i=0; i<16; i++)
+
+state[i & 0x3][i>>2] = input[i];
+
+/* add first round_key */
+KeyAdd(state, roundKeys, 0);
+/* do lots of full rounds */
+for (r=1; r<=9; r++){
+
+ByteSub(state);
+ShiftRow(state);
+MixColumn(state);
+KeyAdd(state, roundKeys, r);
+
+}
+/* final round */
+ByteSub(state);
+ShiftRow(state);
+KeyAdd(state, roundKeys, r);
+/* produce output byte string from state array */
+for (i=0; i<16; i++){
+
+output[i] = state[i & 0x3][i>>2];
+
+}
+return;
+
+} /* end of function RijndaelEncrypt */
+
+6.6 milenage.h
+
+typedef unsigned char u8;
+
+55
+
+void f1 ( u8 k[16], u8 rand[16], u8 sqn[6], u8 amf[2],u8 mac_a[8] )
+
+;
+
+void f2345 ( u8 k[16], u8 rand[16],u8 res[8], u8 ck[16], u8 ik[16],
+
+u8 ak[6] );
+
+void f1star( u8 k[16], u8 rand[16], u8 sqn[6], u8 amf[2],u8 mac_s
+
+[8] );
+
+void f5star( u8 k[16], u8 rand[16],u8 ak[6] );
+void ComputeOPc( u8 op_c[16] );
+void RijndaelKeySchedule( u8 key[16] );
+void RijndaelEncrypt( u8 input[16], u8 output[16] );
+
+56
+
+References
+
+[1] In Ad-Hoc Networks - Seminar - WiSe 2010/11 - Systems Architecture
+
+Group - CS @ Humboldt University Berlin.
+
+[2] In About DDoS Attack. Genius Guard.
+
+[3] Man in the middel attack, 2017.
+
+[4] 3GPP. 3G Security; Report on the design and evaluation of the MILE-
+
+NAGE algorithm set; Deliverable 5: An example algorithm for the 3GPP
+
+authentication and key generation functions. TR 33.909, 3rd Generation
+
+Partnership Project (3GPP), July 2001.
+
+[5] D. Al Abri. Detection of mitm attack in lan environment using pay-
+
+load matching.
+
+In 2015 IEEE International Conference on Industrial
+
+Technology (ICIT), pages 1857–1862, March 2015.
+
+[6] A. Barki, A. Bouabdallah, S. Gharout, and J. Traor. M2m security:
+
+Challenges and solutions.
+
+IEEE Communications Surveys Tutorials,
+
+18(2):1241–1254, Secondquarter 2016.
+
+[7] N. Kouzayha, Z. Dawy, and J. G. Andrews. Analysis of a power eﬃcient
+
+wake-up solution for m2m over cellular using stochastic geometry. In
+
+2016 IEEE Global Communications Conference (GLOBECOM), pages
+
+1–7, Dec 2016.
+
+57
+
+[8] X. Liu and F. Eﬀenberger. Emerging optical access network technologies
+
+for 5g wireless [invited]. IEEE/OSA Journal of Optical Communications
+
+and Networking, 8(12):B70–B79, December 2016.
+
+[9] O. Osanaiye, K. K. R. Choo, and M. Dlodlo. Change-point cloud ddos
+
+detection using packet inter-arrival time. In 2016 8th Computer Science
+
+and Electronic Engineering (CEEC), pages 204–209, Sept 2016.
+
+[10] Altaf Shaik, Ravishankar Borgaonkar, N Asokan, Valtteri Niemi, and
+
+Jean-Pierre Seifert. Practical attacks against privacy and availability in
+
+4g/lte mobile communication systems. arXiv preprint arXiv:1510.07563,
+
+2015.
+
+[11] G. Somani, M. S. Gaur, D. Sanghi, M. Conti, M. Rajarajan, and
+
+R. Buyya. Combating ddos attacks in the cloud: Requirements, trends,
+
+and future directions. IEEE Cloud Computing, 4(1):22–32, Jan 2017.
+
+[12] S. N. Swain, R. Thakur, and S. R. Murthy Chebiyyam. Coverage and
+
+rate analysis for facilitating machine-to-machine communication in lte-a
+
+networks using device-to-device communication. IEEE Transactions on
+
+Mobile Computing, PP(99):1–1, 2017.
+
+[13] K. Wang, M. Du, Y. Sun, A. Vinel, and Y. Zhang. Attack detection and
+
+distributed forensics in machine-to-machine networks. IEEE Network,
+
+30(6):49–55, November 2016.
+
+58
+
+[14] Geng Wu, Shilpa Talwar, Kerstin Johnsson, Nageen Himayat, and
+
+Kevin D Johnson. M2m: From mobile to embedded internet. IEEE
+
+Communications Magazine, 49(4), 2011.
+
+[15] Q. Yan, Q. Gong, and F. R. Yu. Eﬀective software-deﬁned network-
+
+ing controller scheduling method to mitigate ddos attacks. Electronics
+
+Letters, 53(7):469–471, 2017.
+
+[16] Curtis Yarvin, Richard Bukowski, and Thomas Anderson. Anonymous
+
+rpc: Low-latency protection in a 64-bit address space.
+
+In USENIX
+
+Summer, pages 175–186, 1993.
+
+59
+
+

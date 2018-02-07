@@ -58,5 +58,6 @@ class delimiters:
 
 
 		print("")
+		_ingredients.update(_ingredients_all, _ingredient_mapping)
 
 		return ["%%per%%", "%%qsn%%", "%%xcm%%", "%%lst%%", "%%cln%%", "%%dqt%%", "%%sqt%%", "%%dsh%%"]

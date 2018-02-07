@@ -1,1368 +1,1289 @@
-Efficient Software—Based Fault Isolation 
-Robert VVahbe 
-Steven Lucco 
-Thomas E. Anderson 
-Susan L. Graham 
-Computer Science Division 
-University of California 
-Berkeley, CA 94720 
+SynFull: Synthetic Trafﬁc Models Capturing Cache Coherent Behaviour 
+Edward S. Rogers Sr. Department of Electrical ]^[ Computer Engineering 
+Mario Badr, Natalie Enright Jerger 
+University of Toronto 
+mario.badr@mail.utoronto.ca, enright@ece.utoronto.ca 
 Abstract 
-One way to provide fault isolation among cooperating 
-software modules is to place each in its own address 
-space. However, ]f[ tightly—coupled modules, this so— 
-lution incurs prohibitive context switch overhead. In 
-this paper, we present a software approach to imple— 
-menting fault isolation within a single address space. 
-Our approach has two parts. First, we load the code 
-]^[ data ]f[ a distrusted module into its own fault do- 
-main, a logically separate portion of the application’s 
-address space. Second, we modify the object code of a 
-distrusted module to prevent it from writing ]v[ jump- 
-ing to an address outside its fault domain. Both these 
-software operations are portable ]^[ programming lan— 
-guage independent. 
-Our approach poses a tradeoff relative to hardware 
-fault isolation: substantially faster communication be— 
-tween fault domains, at a cost of slightly increased 
-execution time ]f[ distrusted modules We demon— 
-strate that ]f[ frequently communicating modules, im~ 
-plementing fault isolation in software rather than hard- 
-ware can substantially improve end-to—end application 
-performance. 
-This work was supported in part by the National Sci— 
-ence Foundation (CDA-8722788), Defense Advanced Research 
-Projects Agency (DARPA) under grant MDA972—92-J-1028 ]^[ 
-contracts DABT63-92'C-0026 ]^[ N00600-93—C—2481, the Digi- 
-tal Equipment Corporation (the Systems Research Center ]^[ 
-the External Research Program), ]^[ the AT&T Foundation. 
-Anderson was also supported by a National Science Foundation 
-Young Investigator Award. The content of the paper does ]n[ 
-necessarily reﬂect the position ]v[ the policy of the Government 
-]^[ no ofﬁcial endorsement should be inferred. 
-Email: {rwahbe , lucco, tea, graham}@cs .berkeley.edu 
-Permission to copy Without fee all ]v[ part of (his material IS 
-granted provided that Hie cvpies are "0‘ made 0! distributed ]f[ 
-direct commercial advantage. the ACM copyright notice ]^[ the 
-mile of the publicaiion ]^[ MS data appear, ]^[ notice IS given 
-that copying is by permissmn of (he Assomalion ]f[ Computing 
-Machinery. To copy otherWise. ]v[ to republish, requires a fee 
-and/or specnfic permissron. 
-SIGOPS '93/12/93/N.C., USA 
-31993 ACM 0-83791-632-8/93/0012...$L50 
-1 Introduction 
-Application programs often achieve extensibility by 
-incorporating independently developed software mod— 
-ules. However, faults in extension code can render a 
-software system unreliable, ]v[ even dangerous, since 
-such faults could corrupt permanent data. To in— 
-crease the reliability of these applications, an operat— 
-ing system can provide services that prevent faults in 
-distrusted modules from corrupting application data. 
-Such fault isolation services also facilitate software de- 
-velopment by helping to identify sources of system fail— 
-ure. 
-For example, the POSTGRES database manager in— 
-cludes an extensible type system [St087]. Using this 
-facility, POSTGRES queries can refer to general—purpose 
-code that deﬁnes constructors, destructors, ]^[ pred— 
-icates ]f[ user—deﬁned data types such as geometric 
-objects. Without fault isolation, any query that uses 
-extension code could interfere with an unrelated query 
-]v[ corrupt the database. 
-Similarly, recent operating system research has fo— 
-cused on making it easier ]f[ third party vendors 
-to enhance parts of the operating system. An ex 
-ample is micro-kernel design; parts of the operat— 
-ing system are implemented as user—level servers that 
-can be easily modiﬁed ]v[ replaced. More gener— 
-ally, several systems have added extension code into 
-the operating system, ]f[ example, the BSD network 
-packet ﬁlter [MRA87, MJQ3]7 application—speciﬁc vir- 
-tual memory management [HC92]. ]^[ Active Mes— 
-sages [VCGSQQ]. Among industry systems, Microsoft’s 
-Object Linking ]^[ Embedding system [Cla92] can 
-link together independently developed software mod— 
-tiles. Also, the Quark Xprese desktop publishing sys- 
-tem [Dy592] is structured to support incorporation of 
-general—purpose third party code. As with POSTGRES, 
-faults in extension modules can render any of these 
-systems unreliable. . 
-One way to provide fault isolation among cooperat— 
-ing software modules is to place each in its own address 
-space. Using Remote Procedure Call (RFC) [BN84], 
-modules in separate address spaces can call into each 
-other through a normal procedure call interface. Hard- 
-ware page tables prevent the code in one address space 
-from corrupting the contents of another. 
-Unfortunately, there is a high performance cost 
-to providing fault isolation through separate address 
-spaces. Transferring control across protection bound— 
-aries is expensive, ]^[ does ]n[ necessarily scale 
-with improvements in a processor’s integer perforv 
-mance [ALBL91]. A cross—address-space RPC requires 
-at least: a trap into the operating system kernel, copy— 
-ing each argument from the caller to the callee, sav~ 
-ing ]^[ restoring registers, switching hardware ad— 
-dress spaces (on many machines, ﬂushing the transla— 
-tion lookaside buffer), ]^[ a trap back to user level. 
-These operations must be repeated upon RPC re— 
-turn. The execution time overhead of an RPC, even 
-with a highly optimized implementation, will often 
-be two to three orders of magnitude greater than 
-the execution time overhead of a normal procedure 
-call [BALL90, ALBL91]. 
-The goal of our work is to make fault isolation cheap 
-enough that system developers can ignore its perfor— 
-mance effect in choosing which modules to place in 
-separate fault domains. In many cases where fault iso 
-lation would be useful, cross-domain procedure calls 
-are frequent ]y[ involve only a moderate amount of 
-computation per call. In this situation it is imprac- 
-tical to isolate each logically separate module within 
-its own address space, because of the cost of crossing 
-hardware protection boundaries. 
-We propose a. software approach to implementing 
-fault isolation within a single address space. Our ap— 
-proach has two parts. First, we load the code ]^[ data 
-]f[ a. distrusted module into its own fault domain, a 
-logically separate portion of the application’s address 
-space. A fault domain, in addition to comprising a cori— 
-tiguous region of memory within an address space, has 
-a unique identiﬁer which is used to control its access to 
-process resources such as ﬁle descriptors. Second, we 
-modify the object code of a distrusted module to pre— 
-vent it from writing ]v[ jumping to an address outside 
-its fault domain. Program modules isolated in sepa— 
-rate software—enforced fault domains can ]n[ modify 
-each other’s data ]v[ execute each other’s code except 
-through an explicit cross-fault-domain RPC interface. 
-We have identiﬁed several programming-language- 
-independent transformation strategies that can render 
-object code unable to escape its own code ]^[ data 
-segments. In this paper, we concentrate on a sim— 
-204 
-ple transformation technique, called sandboxing, that 
-only slightly increases the execution time of the mod- 
-iﬁed object code. We also investigate techniques that 
-provide more debugging information ]b[ which incur 
-greater execution time overhead. 
-Our approach poses a tradeoff relative to hardware— 
-based fault isolation. Because we eliminate the need to 
-cross hardware boundaries, we can offer substantially 
-lower-cost RPC between fault domains. A safe RPC in 
-our prototype implementation takes roughly 1.1 us on a 
-DECstation 5000/240 ]^[ roughly 0.8,us on a DEC Al- 
-pha 400, more than an order of magnitude faster than 
-any existing RFC system. This reduction in RFC time 
-comes at a cost of slightly increased distrusted module 
-execution time. On a test suite including the the C 
-SPE092 benchmarks, sandboxing incurs an average of 
-4% execution time overhead on both the DECstation 
-]^[ the Alpha. 
-Software—enforced fault isolation may seem to be 
-counter-intuitive: we are slowing down the common 
-case (normal execution) to speed up the uncommon 
-case (crossrdomain communication). But ]f[ fre- 
-quently communicating fault domains, our approach 
-can offer substantially better end—to—end performance. 
-To demonstrate this, we applied software—enforced 
-fault isolation to the POSTGRES database system run- 
-ning the Sequoia 2000 benchmark. The benchmark 
-makes use of the POSTGRES extensible data. type sys— 
-tem to deﬁne geometric operators. For this bench— 
-mark, the software approach reduced fault isolation 
-overhead by more than a factor of three on a DECsta— 
-tion 5000/240. 
-A software approach also provides a tradeoif be 
-tween performance ]^[ level of distrust. If some mod— 
-ules in a. program are trusted while others are dis- 
-trusted (as may be the ease with extension code), only 
-the distrusted modules incur any execution time over- 
-head. Code in trusted domains can run at full speed. 
-Similarly, it is possible to use our techniques to im- 
-plement full security, preventing distrusted code from 
-even reading data outside of its domain, at a cost of 
-higher execution time overhead. We quantify this ef» 
-fect in Section 5. 
-The remainder of the paper is organized as follows. 
-Section 2 provides some examples of systems that re- 
-quire frequent communication between fault domains. 
-Section 3 outlines how we modify object code to pre— 
-vent it from generating illegal addresses. Section 4 
-describes how we implement low latency cross—faultv 
-domain RPC. Section 5 presents performance results 
-]f[ our prototype, ]^[ ﬁnally Section 6 discusses some 
-related work. 
-2 Background 
-In this section, we characterize in more detail the 
-type of application that can beneﬁt from software— 
-enforced fault isolation. We defer further description 
-of the POSTGRES extensible type system until Section 
-5, which gives performance measurements ]f[ this ap— 
-plication. 
-The operating systems community has focused con- 
-siderable attention on supporting kernel extensibil- 
-ity. For example, the UNIX vnode interface is de- 
-signed to make it easy to add a new ﬁle system into 
-UNIX [Kle86]. Unfortunately, it is too expensive to 
-forward every ﬁle system operation to user level, ]s[ 
-typically new ﬁle system implementations are added 
-directly into the kernel. (The Andrew ﬁle system is 
-largely implemented at user level, ]b[ it maintains a 
-kernel cache ]f[ performance [HKM'l'BSH Epoch’s ter— 
-tiary storage ﬁle system [Web93] is one example of op— 
-erating system kernel code developed by a third party 
-vendor. 
-Another example is user—programmable high perfor— 
-mance I/O systems. If data is arriving on an I/O 
-channel at a high enough rate, performance will be 
-degraded substantially if control has to be transferred 
-to user level to manipulate the incoming data [FP93]. 
-Similarly, Active Messages provide high performance 
-message handling in distributed—memory multiproces- 
-sors [VCG8921. Typically, the message handlers are 
-application-speciﬁc, ]b[ unless the network controller 
-can be accessed from user level [Thi92], the message 
-handlers must be compiled into the kernel ]f[ reason— 
-able performance. 
-A user-level example is the Quark Xpress desktop 
-publishing system. One can purchase third party soft- 
-ware that will extend this system to perform func~ 
-tions unforeseen by its original designers [DysQQ]. At 
-the same time, this extensibility has caused Quark a 
-number of problems. Because of the lack of efﬁcient 
-fault domains on the personal computers where Quark 
-Xpress runs, extension modules can corrupt Quark’s 
-internal data structures Hence, bugs in third party 
-code can make the Quark system appear unreliable, 
-because end—users do ]n[ distinguish among sources of 
-system failure. 
-All these examples share two characteristics. First, 
-using hardware fault isolation would result in a signif- 
-icant portion of the overall execution time being spent 
-in operating system context switch code. Second, only 
-a small amount of code is distrusted; most of the exe- 
-cution time is spent in trusted code. In this situation, 
-software fault isolation is likely to be more efﬁcient 
-than hardware fault isolation because it sharply re— 
-duces the time spent crossing fault domain boundaries, 
-while only slightly increasing the time spent executing 
-205 
-the distrusted part of the application. Section 5 quan- 
-tiﬁes this trade-off between domain—crossing overhead 
-]^[ application execution time overhead, ]^[ demon 
-strates that even if domain—crossing overhead repre— 
-sents a modest proportion of the total application ex— 
-ecution time, software—enforced fault isolation is cost 
-effective. 
-3 Software-Enforced Fault Iso- 
-lation 
-In this section, we outline several software encapsula— 
-tion techniques ]f[ transforming a distrusted module 
-]s[ that it can ]n[ escape its fault domain. We ﬁrst 
-describe a technique that allows users to pinpoint the 
-location of faults within a software module. Next, we 
-introduce a technique, called sandboxing, that can iso- 
-late a distrusted module while only slightly increasing 
-its execution time. Section 5 provides a performance 
-analysis of this techinique. Finally, we present a soft- 
-ware encapsulation technique that allows cooperating 
-fault domains to share memory. The remainder of 
-this discussion assumes we are operating on a RISC 
-load /storc architecture, although our techniques could 
-be extended to handle CISCs. Section 4 describes 
-how we implement safe ]^[ efficient cross—fault—domain 
-RPC. 
-We divide an application’s virtual address space into 
-segments, aligned ]s[ that all virtual addresses within 
-a segment share a unique pattern of upper bits, called 
-the segment identiﬁer. A fault domain consists of two 
-segments, one ]f[ a distrusted module’s code, the other 
-]f[ its static data, heap ]^[ stack. The speciﬁc seg- 
-ment addresses are determined at load time. 
-Software encapsulation transforms a distrusted 
-module‘s object code ]s[ that it can jump only to tar- 
-gets in its code segment, ]^[ write only to addresses 
-within its data segment. Hence, all legal jump tar— 
-gets in the distrusted module have the same upper bit 
-pattern (segment identiﬁer); similarly, all legal data 
-addresses generated by the distrusted module share 
-the same segment identiﬁer. Separate code ]^[ data 
-segments are necessary to prevent a module from mod— 
-ifying its code segmentl. It is possible ]f[ an address 
-with the correct segment identiﬁer to be illegal, ]f[ in- 
-stance if it refers to an unmapped page. This is caught 
-by the normal operating system page fault mechanism. 
-3.1 
-An unsafe mstmctzan is any instruction that jumps to 
-]v[ stores to an address that can ]n[ be statically ver— 
-Segment Matching 
-10111" system supports dynamic linking through a special 
-interface. 
-iﬁed to be within the correct segment. Most control 
-transfer instructions, such as program‘counter‘relative 
-branches, can be statically veriﬁed. Stores to static 
-variables often use an immediate addressing mode ]^[ 
-can be statically veriﬁed. However, jumps through reg— 
-isters, most commonly used to implement procedure 
-returns, ]^[ stores that use a register to hold their 
-target address, can ]n[ be statically veriﬁed. 
-A straightforward approach to preventing the use of 
-illegal addresses is to insert checking code before eve 
-ery unsafe instruction. The checking code determines 
-whether the unsafe instruction’s target address has the 
-correct segment identiﬁer. If the check fails, the in- 
-serted code will trap to a system error routine outside 
-the distrusted module’s fault domain. We call this 
-software encapsulation technique segment matching. 
-On typical RISC architectures, segment matching 
-requires four instructions. Figure 1 lists a pseudo—code 
-fragment ]f[ segment matching. The ﬁrst instruction 
-in this fragment moves the store target address into 
-a dedzcated register. Dedicated registers are used only 
-by inserted code ]^[ are never modiﬁed by code in 
-the distrusted module. They are necessary because 
-code elsewhere in the distrusted module may arrange 
-to jump directly to the unsafe store instruction, by- 
-passing the inserted check. Hence, we transform all 
-unsafe store ]^[ jump instructions to use a dedicated 
-register. 
-All the software encapsulation techniques presented 
-in this paper require dedicated registersz. Segment 
-matching requires four dedicated registers: one to hold 
-addresses in the code segment, one to hold addresses 
-in the data segment, one to hold the segment shift 
-amount, ]^[ one to hold the segment identiﬁer. 
-Using dedicated registers may have an impact on 
-the execution time of the distrusted module. However, 
-since most modern RISC architectures, including the 
-MIPS ]^[ Alpha, have at least 32 registers, we can 
-retarget the compiler to use a smaller register set with 
-minimal performance impact. For example7 Section 5 
-shows that, on the DECstation 5000/240, reducing by 
-ﬁve registers the register set available to a C compiler 
-(gee) did ]n[ have a signiﬁcant effect on the average 
-execution time of the SPEC92 benchmarks. 
-3.2 Address Sandboxing 
-The segment matching technique has the advantage 
-that it can pinpoint the offending instruction. This 
-capability is useful during software development. We 
-can reduce runtime overhead still further, at the cost 
-of providing no information about the source of faults. 
-2 For architectures with lenitccl register sets, such as the 
-80386 [Int86], it is possible to encapsulate a module using no re- 
-served registers by restricting control ﬂow within a fault domain. 
-206 
-dedicated—reg <2 target address 
-lilove target address into dedicated register. 
-scratch-reg <= (dedicated—reg>>shift~reg) 
-Right—shift address to get segment identiﬁer. 
-scratch—reg is ]n[ a dedicated register. 
-shift-reg is a dedicated register. 
-compare scratch—reg ]^[ segment—reg 
-segment-reg is a dedicated register. 
-trap if ]n[ equal 
-Trap if store address is outside of segment. 
-store instruction uses dedicated-reg 
-Figure 1: Assembly pseudo code ]f[ segment matching. 
-dedicated—reg c target-reghand—mask—reg 
-Use dedicated register and—mask-reg 
-to clear segment identiﬁer bits. 
-dedicated—reg <2 dedicated-regl segment—reg 
-Use dedicated register segment-reg 
-to set segment identiﬁer bits. 
-store instruction uses dedicated-reg 
-Figure 2: Assembly pseudo code to sandbox address 
-in target—reg. 
-Before each unsafe instruction we simply insert code 
-that sets the upper bits of the target address to the 
-correct segment identifier. We call this sandborzn g the 
-address. Sandboxing does ]n[ catch illegal addresses; 
-it merely prevents them from affecting any fault do— 
-main other than the one generating the address. 
-Address sandboxing requires insertion of two arith- 
-metic instructions before each unsafe store ]v[ jump 
-instruction. The ﬁrst inserted instruction clears the 
-segment identifier bits ]^[ stores the result in a ded— 
-icated register. The second instruction sets the seg— 
-ment identiﬁer to the correct value. Figure 2 lists the 
-pseudo‘code to perform this operation. As with seg- 
-ment matching, we modify the unsafe store ]v[ jump 
-instruction to use the dedicated register. Since we are 
-using a dedicated register, the distrusted module code 
-can ]n[ produce an illegal address even by jumping 
-to the second instruction in the sandboxing sequence; 
-since the upper bits of the dedicated register will al— 
-ready contain the correct segment identiﬁer, this sec- 
-ond instruction will have no effect. Section 3.6 presents 
-a simple algorithm that can verify that an object code 
-module has been correctly sandboxed. 
-Address sandboxing requires ﬁve dedicated registers. 
-One register is used to hold the segment mask, two 
-registers are used to hold the code ]^[ data segment 
-<——reg+oﬂ'sel j 
-«— reg 
-Guard Zones S eg ment 
-Figure 3: A segment with guard zones. The size of 
-the guard zones covers the range of possible immediate 
-offsets in register—plus-offset addressing modes. 
-identiﬁers, ]^[ two are used to hold the sandboxed 
-code ]^[ data addresses. 
-3.3 Optimizations 
-The overhead of software encapsulation can be re- 
-duced by using conventional compiler optimizations. 
-Our current prototype applies loop invariant code mo— 
-tion ]^[ instruction scheduling optimizations [ASU86, 
-ACD74]. In addition to these conventional techniques, 
-we employ a number of optimizations specialized to 
-software encapsulation. 
-We can reduce the overhead of software encapsulae 
-tion mechanisms by avoiding arithmetic that computes 
-target addresses. For example, many RISC architec— 
-tures include a register-plus—oﬁset instruction mode, 
-where the offset is an immediate constant in some lim— 
-ited range. On the MIPS architecture such offsets are 
-limited to the range -64K to +64K. Consider the 
-store instruction store value,oﬁset(reg), whose 
-address offset (reg) uses the register—plus—olfsct ad~ 
-dressing mode. Sandboxing this instruction requires 
-three inserted instructions: one to sum reg+oﬁset 
-into the dedicated register, ]^[ two sandboxing in— 
-structions to set the segment identiﬁer of the dedicated 
-register. 
-Our prototype optimizes this case by sandboxing 
-only the register reg, rather than the actual target ad— 
-dress reg+oﬁset, thereby saving an instruction. To 
-support this optimization, the prototype establishes 
-guard zones at the top ]^[ bottom of each segment. 
-To create the guard zones, virtual memory pages ad— 
-jacent to the segment are unmapped (see Figure 3), 
-We also reduce runtime overhead by treating the 
-MIPS stack pointer as a dedicated register. We avoid 
-sandboxing the uses of the stack pointer by sandboxing 
-207 
-this register whenever it is set. Since uses of the stack 
-pointer to form addresses are much more plentiful than 
-changes to it, this optimization signiﬁcantly improves 
-performance. 
-Further, we can avoid sandboxing the stack pointer 
-after it is modiﬁed by a small constant offset as long as 
-the modiﬁed stack pointer is used as part of a load ]v[ 
-store address before the next control transfer instruc» 
-tion. If the modiﬁed stack pointer has moved into a 
-guard zone, the load ]v[ store instruction using it will 
-cause a hardware address fault. On the DEC Alpha 
-processor, we apply these optimizations to both the 
-frame pointer ]^[ the stack pointer. 
-There are a number of further optimizations that 
-could reduce sandboxing overhead. For example, 
-the transformation tool could remove sandboxing se— 
-quences from loops, in cases where a store target ad- 
-dress changes by only a small constant oifset during 
-each loop iteration. Our prototype does ]n[ ]y[ imple— 
-ment these optimizations. 
-3.4 Process Resources 
-Because multiple fault domains share the same virtual 
-address space, the fault domain implementation must 
-prevent distrusted modules from corrupting resources 
-that are allocated on a per—addressspace basis. For 
-example, if a fault domain is allowed to make system 
-calls, it can close ]v[ delete ﬁles needed by other code 
-executing in the address space, potentially causing the 
-application as a whole to crash. 
-One solution is to modify the operating system to 
-know about fault domains. On a system call ]v[ page 
-fault, the kernel can use the program counter to deter- 
-mine the currently executing fault domain, ]^[ restrict 
-resources accordingly. 
-To keep our prototype portable, we implemented 
-an alternative approach. In addition to placing each 
-distrusted module in a separate fault domain, we re— 
-quire distrusted modules to access system resources 
-only through cross-fault-domain RPC. We reserve a 
-fault domain to hold trusted arbitration code that de— 
-termines whether a particular system call performed 
-by some other fault domain is safe. If a distrusted 
-module’s object code performs a direct system call, we 
-transform this call into the appropriate RPC call. In 
-the case of an extensible application, the trusted por- 
-tion of the. application can make system calls directly 
-]^[ shares a fault domain with the arbitration code. 
-3.5 Data Sharing 
-Hardware fault isolation mechanisms can support data 
-sharing among virtual address spaces by manipulate 
-ing page table entries. Fault domains share an ad— 
-dress space, ]^[ hence a set of page table entries, 
-]s[ they can ]n[ use a standard shared memory im— 
-plementation. Read-only sharing is straightforward; 
-since our software encapsulation techniques do ]n[ al- 
-ter load instructions, fault domains can read any mem— 
-ory mapped in the application’s address space 3. 
-If the object code in a particular distrusted mod— 
-ule has been sandboxed, then it can share read-write 
-memory with other fault domains through a technique 
-we call lazy pointer swizzling. Lazy pointer swizzling 
-provides a mechanism ]f[ fault domains to share ar— 
-bitrarily many read‘write memory regions with no ad- 
-ditional runtirne overhead. To support this technique, 
-we modify the hardware page tables to map the shared 
-memory region into every address space segment that 
-needs access; the region is mapped at the same offset 
-in each segment. In other words, we alias the shared 
-region into multiple locations in the virtual address 
-space, ]b[ each aliased location has exactly the same 
-low order address bits. As with hardware shared mem- 
-ory schemes, each shared region must have a different 
-segment offset. 
-To avoid incorrect shared pointer comparisons in 
-sandboxed code, the shared memory creation inter— 
-face must ensure that each shared object is given a 
-unique address. As the distrusted object code ac- 
-cesses shared memory, the sandboxing code automati- 
-cally translates shared addresses into the correspond 
-ing addresses within the fault domain’s data segment. 
-This translation works exactly like hardware transla~ 
-tion; the low bits of the address remain the same, ]^[ 
-the high bits are set to the data segment identiﬁer. 
-Under operating systems that do ]n[ allow virtual 
-address aliasing, we can implement shared regions by 
-introducing a new software encapsulation technique: 
-shared segment matching. To implement sharing, we 
-use a dedicated register to hold a bitmap. The bitmap 
-indicates which segments the fault domain can access. 
-For each unsafe instruction checked, shared segment 
-matching requires one more. instruction than segment 
-matching. 
-3.6 Implementation ]^[ Veriﬁcation 
-We have identiﬁed two strategies ]f[ implementing 
-software encapsulation. One approach uses a compiler 
-to emit encapsulated object code ]f[ a distrusted mod- 
-ule; the integrity of this code is then veriﬁed when the 
-module is loaded into a fault domain. Alternatively, 
-the system can encapsulate the distrusted module by 
-directly modifying its object code at load time. 
-a\«Ve have implemented versions of these techniques that per 
-form general protection by encapsulating load instructions as 
-well as store ]^[ jump instructions. We discuss the performance 
-of these variants in Section 5. 
-Our current prototype uses the first approach. We 
-modiﬁed a version of the gcc compiler to perform soft— 
-ware encapsulation. Note that While our current imple- 
-mentation is language dependent, our techniques are 
-language independent. 
-We built a veriﬁer ]f[ the MIPS instruction set 
-that works ]f[ both sandboxing ]^[ segment match- 
-ing. The main challenge in veriﬁcation is that, in the 
-presence of indirect jumps, execution may begin on 
-any instruction in the code segment. To address this 
-situation, the veriﬁer uses a property of our software 
-encapsulation techniques: all unsafe stores ]^[ jumps 
-use a dedicated register to form their target address. 
-The veriﬁer divides the program into sequences of in— 
-structions called unsafe regions. An unsafe store re- 
-gion begins with any modiﬁcation to a dedicated store 
-register. An unsafe jump region begins with any mod- 
-iﬁcation to a dedicated jump register. If the ﬁrst in— 
-struction in a unsafe store ]v[ jump region is executed, 
-all subsequent instructions are guaranteed to be exe- 
-cuted. An unsafe store region ends when one of the 
-following hold: the next instruction is a store which 
-uses a dedicated register to form its target address, 
-the next instruction is a control transfer instruction, 
-the next instruction is ]n[ guaranteed to be executed, 
-]v[ there are no more instructions in the code segment. 
-A similar deﬁnition is used ]f[ unsafe jump regions. 
-The veriﬁer analyzes each unsafe store ]v[ jump re: 
-gion to insure that any dedicated register modiﬁed in 
-the region is valid upon exit of the region. For ex— 
-ample, a load to a dedicated register begins an unsafe 
-region. If the region appropriately sandboxes the ded— 
-icated register, the unsafe region is deemed safe. if an 
-unsafe region can ]n[ be veriﬁed, the code is rejected. 
-By incorporating software encapsulation into an ex— 
-isting compiler, we are able to take advantage of com— 
-piler infrastructure ]f[ code optimization. However, 
-this approach has two disadvantages. First, most mod- 
-iﬁed compilers will support only one programming lan— 
-guage (gcc supports C, C++, ]^[ Pascal). Second, the 
-compiler ]^[ veriﬁer must be synchronized with re— 
-spect to the particular encapsulation technique being 
-employed. 
-An alternative, called bmary patchzng, alleviates 
-these problems. When the fault domain is loaded, the 
-system can encapsulate the module by directly modi- 
-fying the object code. Unfortunately, practical ]^[ r07 
-bust binary patching, resulting in efﬁcient code, is ]n[ 
-currently possible [LB92]. Tools which translate one 
-binary format to another have been built, ]b[ these 
-tools rely on compiler—speciﬁc idioms to distinguish 
-code from data ]^[ use processor emulation to han- 
-dle unknown indirect jumps[SCK”93]. For software 
-encapsulation, the main challenge is to transform the 
-code ]s[ that it uses a subset of the registers, leav— 
-208 
-Trusted 
-Caller Domain 
-Unlru sted 
-Calico Domain 
-call Add 
-Jump Table 
-Figure 4: Major components of a crossefault—domain 
-RFC. 
-ing registers available ]f[ dedicated use. To solve this 
-problem, we are working on a binary patching proto- 
-type that uses simple extensions to current object ﬁle 
-formats. The extensions store control ﬂow ]^[ register 
-usage information that is sufﬁcient to support software 
-encapsulation. 
-4 Low Latency Cross Fault Do— 
-main Communication 
-The purpose of this work is to reduce the cost of fault 
-isolation ]f[ cooperating ]b[ distrustful software mod— 
-ules. In the last section, we presented one half of our 
-solution: efficient software encapsulation. In this sec- 
-tion, we describe the other half: fast communication 
-across fault domains. 
-Figure 4 illustrates the major components ofa cross— 
-fault~domain RFC between a trusted ]^[ distrusted 
-fault domain. This section concentrates on three as— 
-pects of fault domain crossing. First, we describe 
-a simple mechanism which allows a fault domain to 
-safely call a trusted stub routine outside its domain; 
-that stub routine then safely calls into the destination 
-domain. Second, we discuss how arguments are effi— 
-ciently passed among fault domains. Third, we detail 
-how registers ]^[ other machine state are managed on 
-cross—fault—domain RPCs to insure fault isolation. The 
-protocol ]f[ exporting ]^[ naming procedures among 
-fault domains is independent of our techniques. 
-The only way ]f[ control to escape a. fault domain 
-is via a jump table. Each jump table entry is a con— 
-trol transfer instruction whose target address is a legal 
-entry point outside the domain. By using instructions 
-whose target address is an immediate encoded in the 
-instruction, the jump table does ]n[ rely on the use of 
-a dedicated register. Because the table is kept in the 
-(readvonly) code segment, it can only be modified by 
-a trusted module. 
-For each pair of fault domains a customized call ]^[ 
-return stub is created ]f[ each exported procedure. 
-Currently, the stubs are generated by hand rather than 
-using a stub generator [JRTSS]. The stubs run unpro— 
-tected outside of both the caller ]^[ callee domain. 
-The stubs are responsible ]f[ copying cross-domain 
-arguments between domains ]^[ managing machine 
-state. 
-Because the stubs are trusted, we are able to copy 
-call arguments directly to the target domain. Tra— 
-ditional RPC implementations across address spaces 
-typically perform three copies to transfer data. The 
-arguments are marshalled into a message, the kernel 
-copies the message to the target address space, ]^[ 
-ﬁnally the callee must de-marshall the arguments. By 
-having the caller ]^[ callee communicate via a shared 
-buffer, LRPC also uses only a single copy to pass data 
-between domains [BALLQI]. 
-The stubs are also responsible ]f[ managing machine 
-state. On each cross—domain call any registers that are 
-both used in the future by the caller ]^[ potentially 
-modiﬁed by the callee must be protected. Only regis— 
-ters that are designated by architectural convention to 
-bc preserved across procedure calls are saved. As an 
-optimization, if the callee domain contains no instruc— 
-tions that modify a preserved register we can avoid 
-saving it. Karger uses a trusted linker to perform this 
-kind of optimization between address spaces [KarSQ]. 
-In addition to saving ]^[ restoring registers, the stubs 
-must switch the execution stack, establish the correct 
-register context ]f[ the software encapsulation tech- 
-nique being used, ]^[ validate all dedicated registers. 
-Our system must also be robust in the presence of 
-fatal errors, ]f[ example, an addressing violation7 while 
-executing in a fault domain. Our current implementa— 
-tion uses the UNIX signal facility to catch these errors; 
-it then terminates the outstanding call ]^[ notiﬁes the 
-caller’s fault domain. If the application uses the same 
-operating system thread ]f[ all fault domains, there 
-must be a way to terminate a call that is taking too 
-long, ]f[ example, because of an inﬁnite loop. Trusted 
-modules may use a timer facility to interrupt execu— 
-tion periodically ]^[ determine if a call needs to be 
-terminated. 
-5 Performance Results 
-To evaluate the performance of software-enforced fault. 
-domains, we implemented ]^[ measured a prototype 
-of our system on a 40MHz DECstation 5000/240 (DEC— 
-MIPS) ]^[ a lﬁONIliz Alpha 400 (DEC—ALPHA). 
-We consider three questions. First, how much over 
-209 
-head does software encapsulation incur? Second, how 
-fast is a crossrfault—domain RFC? Third, what is the 
-performance impact of using software enforced fault 
-isolation on an end-user application? We discuss each 
-of these questions in turn. 
-5.1 Encapsulation Overhead 
-We measured the execution time overhead of sand- 
-boxing a wide range of C programs, including the C 
-SPE092 benchmarks ]^[ several of the Splash bench- 
-marks [AssQl, SWGQl]. We treated each benchmark 
-as if it were a distrusted module, sandboxing all of 
-its code. Column 1 of Table 1 reports overhead on 
-the DEC—MIPS, column 6 reports overhead on the DEC— 
-ALPHA. Columns 2 ]^[ 7 report the overhead of using 
-our technique to provide general protection by sand« 
-boxing load instructions as well as store ]^[ jump 
-instructions“. As detailed in Section 3, sandboxing 
-requires 5 dedicated registers. Column 3 reports the 
-overhead of removing these registers from possible use 
-by the compiler. All overheads are computed as the 
-additional execution time divided by the original pro~ 
-gram‘s execution time. 
-On the DECeMiPS, we used the program measure— 
-ment tools pixie ]^[ qpt to calculate the number 
-of additional instructions executed due to sandbox~ 
-ing [Dig, BL92]. Column 4 of Table 1 reports this 
-data as a percentage of original program instruction 
-counts. 
-The data in Table 1 appears to contain a num— 
-ber of anomalies For some. of the benchmark pro- 
-grams, ]f[ example, 056.ear 011 the DECAMIPS ]^[ 
-026 . compress on the DEC—ALPHA, sandboxing reduced 
-execution time. in a number of cases the overhead is 
-surprisingly low. 
-To identify the source of these variations we de~ 
-veloped an analytical model ]f[ execution overhead. 
-The model predicts overhead based on the number 
-of additional instructions executed due to sandbox 
-ing (s—znstructzons), ]^[ the number of saved ﬂoat~ 
-ing point interlock cycles (interlocks). Sandboxing in» 
-creases the available instructionlevel parallelism, aL 
-lowing the number of ﬂoating—point interlocks to be 
-substantially reduced The integer pipeline does ]n[ 
-provide interlocking; instead, delay slots are explicitly 
-ﬁlled with nop instructions by the compiler ]v[ assem~ 
-bler. Hence, scheduling ell'ects among integer instruc~ 
-tions will be accurately reﬂected by the count of in~ 
-structions added (s—mstructzons). The expected overs 
-head is computed as: 
-(s—msz‘mchons — interlacksﬂcycles—per—sccond 
-original-erecutwn- lune-seconds 
-4Loads in the libraries, such as the standard C library, were 
-]n[ sandboxed. 
-The model provides an effective way to separate known 
-sources of overhead from second order effects. Col- 
-umn 5 of Table 1 are the predicted overheads. 
-As can be seen from Table 1, the model is, on aver 
-age, eﬁective at predicting sandboxing overhead. The 
-differences between measured ]^[ expected overheads 
-are normally distributed with mean 0.7% ]^[ standard 
-deviation of 2.6%. The difference between the means 
-Ofthe measured ]^[ expected overheads is ]n[ statisti- 
-cally signiﬁcant. This experiment demonstrates that, 
-by combining instruction count overhead ]^[ ﬂoating 
-point interlock measurements, we can accurately pres 
-dict average execution time overhead. If we assume 
-that the model is also accurate at predicting the over— 
-head of individual benchmarks, we can conclude that 
-there is a second order effect creating the observed 
-anomalies in measured overhead, 
-We can discount eﬁective instruction cache size ]^[ 
-virtual memory paging as sources ]f[ the observed ex~ 
-ecution time variance. Because sandboxing adds in- 
-structions, the effective size of the instruction cache is 
-reduced. While this might account ]f[ measured over- 
-heads higher than predicted, it does ]n[ account ]f[ 
-the opposite effect. Because all of our benchmarks are 
-compute bound, it is unlikely that the variations are 
-due to virtual memory paging. 
-The DEC<MIPS has a physically indexed, physically 
-tagged, direct mapped data cache. In our experiments 
-sandboxing did ]n[ affect the size, contents, ]v[ starting 
-Virtual address of the data segment. For both original 
-]^[ sandboxed versions of the benchmark programs, 
-successive runs showed insigniﬁcant variation. Though 
-difﬁcult to quantify, we do ]n[ believe that data cache 
-alignment was an important source of variation in our 
-experiments. 
-\Ve conjecture that the observed variations are 
-caused by instruction cache mappzng conﬂicts. Soft— 
-ware encapsulation changes the mapping of instruc~ 
-tions to cache lines, hence changing the number of in— 
-struction cache conﬂicts. A number of researchers have 
-investigated minimizing instruction cache conﬂicts to 
-reduce execution time [McF89, PHQO, Sam88]. One 
-researcher reported a 20% performance gain by sim— 
-ply ehanging the order in which the object ﬁles were. 
-linked [PHQO]. Samples ]^[ Hilﬁnger report signif— 
-icantly improved instruction cache miss rates by re— 
-arranging only 3% to 8% of an application’s basic 
-blocks [SarnSS]. 
-Beyond this effect, there were statistically signiﬁcant 
-differences among programs. On average, programs 
-which contained a signiﬁcant percentage of ﬂoating 
-point operations incurred less overhead. On the DEC— 
-MIPS the mean overhead ]f[ ﬂoating point intensive 
-benchmarks is 2.5%, compared to a mean of 5.6% ]f[ 
-the remaining benchmarks. All of our benchmarks are 
-210 
-DEC-MIPS DEC-ALPHA 
-Fault Protection Reserved Instruction Fault Fault Protection 
-Benchmark Isolation Overhead Register Count Isolation Isolation Overhead 
-Overhead Overhead Overhead Overhead Overhead 
-(predicted) 
-052. alvinn FP 1.4% 33.4% —0.3% 19.4% 0.2% 8.1% 35.5% 
-bps FP 5.6% 15.5% -0.1% 8.9% 5.7% 4.7% 20.3% 
-cholesky FP 0.0% 22.7% 0.5% 6.5% 4.5% 0.0% 9.3% 
-026 . compress INT 3.3% 13.3% 0.0% 10.9% 4.4% 4.3% 0.0% 
-056.ear FP —1.2% 19.1% 0.2% 12.4% 2.2% 3.7% 18.3% 
-023 . eqntott INT 2.9% 34.4% 1.0% 2.7% 2.2% 2.3% 17.4% 
-008 . espresso INT 12.4% 27.0% —1.6% 11.8% 10.5% 13.3% 33.6% 
-001 .gcc1.35 INT 3.1% 18.7% -9.4% 17.0% 8.9% NA NA 
-022.11 INT 5.1% 23.4% 0.3% 14.9% 11.4% 5.4% 16.2% 
-locus INT 8.7% 30.4% 4.3% 10.3% 8.6% 4.3% 8.7% 
-mp3d FP 10.7% 10.7% 0.0% 13.3% 8.7% 0.0% 6.7% 
-psgrind INT 10.4% 19.5% 1.3% 12.1% 9.9% 8.0% 36.0% 
-ch PF 05% 27.0% 2.0% 8.8% 1.2% -0.8% 12.1% 
-072 . sc INT 5.6% 11.2% 7.0% 8.0% 3.8% NA NA 
-tracker INT -0.8% 10.5% 0.4% 3.9% 2.1% 10.9% 19.9% 
-water FP 0.7% 7.4% 0.3% 6.7% 1.5% 4.3% 12.3% 
-| Average I 4.3% | 21.8% | 0.4% | 10.5% | 5.0% I 4.3% | 17.6% ‘I 
-Table 1: Sandboxing overheads ]f[ DEC—MIPS ]^[ DEC—ALPHA platforms. The benchmarks 001.gcc1.35 ]^[ 
-072.sc are dependent on a pointer size of 32 bits ]^[ do ]n[ compile on the DEC-ALPHA. The predicted fault 
-isolation overhead ]f[ cholesky is negative due to conservative interlocking on the MIPS ﬂoatingvpoint unit. 
-compute intensive. Programs that perform signiﬁcant 
-amounts of I/O will incur less overhead. 
-5.2 Fault Domain Crossing 
-We now turn to the cost of cross—fault—domain RPC. 
-Our RPC mechanism spends most of its time saving 
-]^[ restoring registers. As detailed in Section 4, only 
-registers that are designated by the architecture to be 
-preserved across procedure calls need to be saved. In 
-addition, if no instructions in the callee fault domain 
-modify a preserved register then it does ]n[ need to be 
-saved. Table 2 reports the times ]f[ three versions of 
-a NULL cross—fault—domain RPC. Column 1 lists the 
-crossing times when all data registers are caller saved. 
-Column 2 lists the crossing times when the preserved 
-integer registers are saved. Finally, the times listed in 
-Column 3 include saving all preserved ﬂoating point 
-registers. In many cases crossing times could be further 
-reduced by statically partitioning the registers between 
-domains. 
-For comparison, we measured two other calling 
-mechanisms. First, we measured the time to perform a 
-C procedure call that takes no arguments ]^[ returns 
-no value. Second, we sent a single byte between two 
-address spaces using the pipe abstraction provided by 
-211 
-the native operating system ]^[ measured the round- 
-trip time. These times are reported in the last two 
-columns of Table 2. On these platforms, the cost 
-of cross—address—space calls is roughly three orders of 
-magnitude more expensive than local procedure calls. 
-Operating systems with highly optimized RPC im— 
-plementations have reduced the cost of cross-address- 
-space RPC to within roughly two orders of magni— 
-tude of local procedure calls. On Mach 3.0, cross— 
-address-space RPC on a 25Mhz DECstation 5000/200 
-is 314 times more expensive than a local procedure 
-call [BerQBl. The Spring operating system, running on 
-a 40Mhz SPARCstationQ, delivers cross—address—space 
-RPC that is 73 times more expensive than a local leaf 
-procedure call [HK93]. Software enforced fault isola« 
-tion is able to reduce the relative cost of cross-fault- 
-domain RPC by an order of magnitude over these sys- 
-tems. 
-5.3 Using Fault Domains in POSTGRES 
-To capture the effect of our system on application 
-performance, we added software enforced fault do 
-mains to the POSTGRES database management system, 
-]^[ measured POSTGRES running the Sequoia 2000 
-benchmark [SFGMQ3]. The Sequoia '2000 benchmark 
-Cross FaultADomain RFC 
-Platform Caller Save Save C Pipes 
-Save Integer Integer+Float Procedure 
-Registers Registers Registers Call 
-DEC~MIPS 1.11ps 1.81ps 2.83m 0.10/4s 204.72ns 
-DEC—ALPHA 0175/15 1.35/5 lSOns 0.06ps 227.88ps 
-Table ‘2: Cross-faultrdomain crossing times. 
-Sequoia 2000 Untrusted Software—Enforced Number DEC—MIPS—PIPE 
-Query Function Manager Fault Isolation Cross—Domain Overhead 
-Overhead Overhead Calls (predicted) 
-Query 6 1.4% 1.7% 60989 18.6% 
-Query 7 5.0% 1.8% 121986 386% 
-Query 8 9.0% 2.7% 121978 312% 
-Query 10 9.6% 5.7% 1427024 31.9% 
-Table 3: Fault isolation overhead ]f[ POSTGRES running Sequoia 2000 benchmark. 
-contains queries typical of those used by earth scien— 
-tists in studying the climate. To support these kinds 
-of non~traditional queries, POSTGRES provides a. user 
-extensible type system. Currently, userrdeﬁned types 
-are written in conventional programming languages, 
-such as C, ]^[ dynamically loaded into the database 
-manager. This has long been recognized to be a serious 
-safety problem[St088]. 
-Four of the eleven queries in the Sequoia 2000 bench- 
-mark make use of user—deﬁned polygon data types. We 
-measured these four queries using both unprotected 
-dynamic linking ]^[ software—enforced fault isolation. 
-Since the POSTGRES code is trusted, we only sand— 
-boxed the dynamically loaded user code. For this 
-experiment, our cross-fault—domain RFC mechanism 
-saved the preserved integer registers (the variant cor- 
-responding to Column 2 in Table 2). In addition, we 
-instrumented the code to count the number of cross- 
-fault-domain RFCs ]s[ that we could estimate the per 
-formance of fault isolation based on separate address 
-spaces. 
-Table 3 presents the results, Untrusted user—deﬁned 
-functions in POSTGRES use a separate calling mecha- 
-nism from built—in functions. Column 1 lists the over— 
-head of the untrustcd function manager Without soft- 
-ware enforced fault domains. All reported overheads in 
-Table 3 are relative to original POSTGRES using the un— 
-trusted function manager. Column 2 reports the mea~ 
-sured overhead of software enforced fault domains. Us— 
-ing the number of cross—domain calls listed in Column 3 
-]^[ tho DEC*MIPS—I‘IPE time reported in Table 2, Col— 
-umn 4 lists the estimated overhead using conventional 
-hardware address spaces. 
-212 
-5.4 Analysis 
-For the POSTGRES experiment software encapsulation 
-provided substantial savings over using native operat- 
-ing system services ]^[ hardware address spaces. In 
-general, the savings provided by our techniques over 
-hardware—based mechanisms is a function of the per— 
-centage of time spent in distrusted code (Q), the per- 
-centage of time spent crossing among fault domains 
-(2‘6), the overhead of encapsulation (h), ]^[ the ratio, 
-r, of our fault domain crossing time to the crossing 
-time of the competing hardware-based RPC mecha— 
-nism. 
-savings = (1 — 7°)t‘C -— htd 
-Figure 5 graphically depicts these trade—offs. The X 
-axis gives the percentage of time an application spends 
-crossing among fault domains. The Y axis reports the 
-relative cost of software enforced fault-domain cross— 
-ing over hardware address spaces. Assuming that the 
-execution time overhead of encapsulated code is 4.3%, 
-the shaded region illustrates when software enforced 
-fault isolation is the better performance alternative. 
-Softwarevenforccd fault isolation becomes increas— 
-ingly attractive as applications achieve higher degrees 
-of fault isolation (see Figure 5). For example, if an ap- 
-plication spends 30% of its time crossing fault domains, 
-our RPC mechanism need only perform 10% better 
-than its competitor, Applications that currently spend 
-as little as 10% of their time crossing require only a 
-39% improvement in fault domain crossing time As 
-reported in Section 52, our crossing time ]f[ the DEC- 
-MIPS is Hons ]^[ ]f[ the DEC—ALPHA UTE/is. Hence, 
-Crossing Time Relative to 
-Existing RFC 
-:9 HP :9 e9 
-ementage of Execution Time Spent Crossing 
-Figure 5: The shaded region represents when soft~ 
-ware enforced fault isolation provides the better per— 
-formance alternative. The X axis represents per 
-centage of time spent crossing among fault domains 
-(16). The Y axis represents the relative RPC crossing 
-speed (7‘). The curve represents the break even point: 
-(1—7')t,; = htd. In this graph, h = 0.043 (encapsulation 
-overhead on the DEC~MIPS ]^[ DEC-ALPHA). 
-]f[ this latter example, a hardware address space cross— 
-ing time of 1.80m on the DEC—MIPS ]^[ 1.23/15 on the 
-DEC~ALPHA would provide better performance than 
-software fault domains. As far as we know, no pro— 
-duction ]v[ experimental system currently provides this 
-level of performance. 
-Further, Figure 5 assumes that the entire applica- 
-tion was encapsulated. For many applications, such as 
-POSTGRES, this assumption is conservative. Figure 6 
-transforms the previous ﬁgure, assuming that 50% of 
-total execution is spent in distrusted extension code. 
-Figures 5 ]^[ 6 illustrate that software enforced 
-fault isolation is the best choice whenever crossing 
-overhead is a significant proportion of an applica- 
-tion’s execution time. Figure 7 demonstrates that 
-overhead due to software enforced fault isolation re— 
-mains small regardless of application behavior. Fig— 
-ure 7 plots overhead as a function of crossing behavior 
-]^[ crossing cost. Crossing times typical of vendor- 
-supplied ]^[ highly optimized hardware—based RPC 
-mechanisms are shown. The graph illustrates the rel— 
-ative performance stability of the software solution. 
-This stability" allows system developers to ignore the 
-performance effect of fault isolation in choosing which 
-modules to place in separate fault domains. 
-6 Related Work 
-Many systems have considered ways of optimizing 
-RPC performance [vaT88, TASS, Bla90. SB90, HK93, 
-BALL90, BALL91]. Traditional RFC systems based 
-100% 
-90% 
-80% 
-70% 
-60% 
-40% 
-Crossing Time Relative 10 
-Existing RPC 
-u. 
-§ 
-Percentage of Execution Time Spent Crossing 
-Figure 6: The shaded region represents when soft~ 
-ware enforced fault isolation provides the better per- 
-formance alternative. The X axis represents per- 
-centage of time spent crossing among fault domains 
-(136). The Y axis represents the relative RPC crossing 
-speed ('r'). The curve represents the break even point: 
-(l—r)tc = htd. In this graph, h = 0.043 (encapsulation 
-overhead on the DEC—MIPS ]^[ DEC—ALPHA). 
-100% . 
-a" Ultrix 4.2 Context Switch 
+Modern ]^[ future many-core systems represent complex ar- 
+chitectures. The communication fabrics of these large systems 
+heavily inﬂuence their performance ]^[ power consumption. 
+Current simulation methodologies ]f[ evaluating networks- 
+on-chip (NoCs) are ]n[ keeping pace with the increased com- 
+plexity of our systems; architects often want to explore many 
+different design knobs quickly. Methodologies that capture 
+workload trends with faster simulation times are highly ben- 
+eﬁcial at early stages of architectural exploration. We pro- 
+pose SynFull, a synthetic trafﬁc generation methodology that 
+captures both application ]^[ cache coherence behaviour to 
+rapidly evaluate NoCs. SynFull allows designers to quickly 
+indulge in detailed performance simulations without the cost 
+of long-running full-system simulation. By capturing a full 
+range of application ]^[ coherence behaviour, architects can 
+avoid the over ]v[ underdesign of the network as may occur 
+when using traditional synthetic trafﬁc patterns such as uni- 
+form random. SynFull has errors as low as 0.3% ]^[ provides 
+50× speedup on average over full-system simulation. 
+1. Introduction 
+With the shift to multi- ]^[ many-core processors, architects 
+now face a larger design space ]^[ more complex trade-offs 
+in processor design. The design of the network as a potential 
+power ]^[ performance bottleneck is becoming a critical con- 
+cern. In the power-constrained many-core landscape, NoCs 
+must be carefully designed to meet communication bandwidth 
+requirements, deliver packets with low latency, ]^[ ﬁt within 
+tight power envelopes that are shared across cores, caches ]^[ 
+interconnects. To do this well, the designer must understand 
+the trafﬁc patterns ]^[ temporal behaviour of applications the 
+NoC must support. There are a large number of parameters 
+in the NoC design space that can be tuned to deliver the re- 
+quired performance within a given cost/power envelope, such 
+as topology, routing algorithm, ﬂow control ]^[ router mi- 
+croarchitecture. These knobs are most commonly explored 
+through software simulation. 
+There are a number of simulation methodologies available 
+to NoC designers, however each comes with speed/ﬁdelity 
+tradeoffs [18]. Full-system simulators model each hardware 
+component of the overall system ]^[ can run full applications 
+]^[ operating systems. As a result, these simulators provide 
+the highest degree of accuracy, ]b[ at the expense of long 
+simulation times. In contrast, a designer can use traditional 
+978-1-4799-4394-4/14/$31.00 c(cid:13) 2014 IEEE 
+Figure 1: High level view of SynFull 
+synthetic trafﬁc patterns to quickly stress their NoC design 
+]^[ reveal bottlenecks. However, these trafﬁc patterns do ]n[ 
+realistically represent the application space ]s[ the results are 
+unlikely to be representative of real workloads. Therefore, they 
+are unlikely to produce a properly provisioned network. In 
+this work, we introduce a new approach that strikes a balance 
+between these tradeoffs, providing a fast, realistic simulation 
+methodology ]f[ NoC designers. 
+Realistic trafﬁc patterns will increase the accuracy of NoC 
+simulations. Beyond that, realistic trafﬁc also provides opti- 
+mization opportunities that do ]n[ exist in traditional synthetic 
+trafﬁc patterns. Many recent NoC proposals have exploited 
+particular application [13, 30] ]v[ coherence behaviour [25, 26] 
+to provide a more efﬁcient, higher-performing NoC design. As 
+research continues to push the scalability of cache coherence 
+protocols [15, 28, 50], shared memory CMPs continue to be 
+widespread. As a result, we focus on this class of systems. 
+SynFull Overview ]^[ Contributions. SynFull provides a 
+novel technique ]f[ modelling real application trafﬁc without 
+the need ]f[ expensive, detailed simulation of all levels of the 
+system. We abstract away cores ]^[ caches to focus on the net- 
+work, ]^[ provide application-level insight to NoC designers, 
+who in turn can produce more optimized designs. Through our 
+analysis, we determine the key trafﬁc attributes that a cache- 
+coherent application-driven trafﬁc model must capture includ- 
+ing coherence-based message dependences (Sec. 4), applica- 
+tion phase behaviour (Sec. 5) ]^[ injection process (Sec. 6). 
+Fig. 1 shows a high-level overview of our approach. We ob- 
+serve long running (macro-)phases within applications as well 
+as ﬁne-grained variation within macro-phases (micro-phases), 
+]^[ group them through clustering. Within these clusters, we 
+Number 
+ of 
+ Injected 
+ Packets 
+ Time 
+ (millions 
+ of 
+ cycles) 
+ Macro-­‐Level 
+ Phase 
+ Clustering 
+ Time 
+ (hundreds 
+ of 
+ cycles) 
+ Micro-­‐Level 
+ Phase 
+ Clustering 
+ Read 
+ Write 
+ Replace 
+ Inv 
+ • Cluster 
+ based 
+ on: 
+  
+ • Message 
+ Types 
+ • SpaDal 
+ paEern 
+ (src-­‐dst 
+ ﬂows) 
+  
+ Micro-­‐Level 
+ Markov 
+ Chain 
+ Macro-­‐Level 
+  
+ Markov 
+ Chain 
+  examine the break down of message types dictated by the co- 
+herence protocol. These two steps drive a hierarchical Markov 
+Chain that is used to reproduce the trafﬁc behaviour. Our 
+proposed model is independent of the network conﬁguration 
+]^[ can be applied to a wide range of NoC conﬁgurations to 
+enable rapid, accurate design space exploration. 
+To demonstrate the accuracy ]^[ utility of our model, we ap- 
+ply our methodology to a variety of PARSEC [5] ]^[ SPLASH- 
+2 [48] benchmarks. A single full-system simulation run of 
+each benchmark is required to create the model. We then 
+use our models to synthetically generate trafﬁc ]^[ com- 
+pare NoC performance to full-system simulation. Finally, 
+we demonstrate signiﬁcant speedup ]f[ our methodology over 
+full-system simulation; this allows ]f[ rapid NoC design space 
+exploration. In essence, SynFull strives to replace full sys- 
+tem simulation ]f[ fast, ]y[ accurate NoC evaluation through 
+richer synthetic trafﬁc patterns. 
+2. The Case ]f[ Coherence Trafﬁc 
+Before describing SynFull in detail, we motivate the need ]f[ 
+a new class of synthetic trafﬁc patterns. Trafﬁc patterns such 
+as uniform random, permutation, tornado, etc. are widely used 
+in NoC research. Many of these are based on the communica- 
+tion pattern of speciﬁc applications. For example, transpose 
+trafﬁc is based on a matrix transpose application, ]^[ the 
+shufﬂe permutation is derived from Fast-Fourier Transforms 
+(FFTs) [2, 12]. However, these synthetic trafﬁc patterns are 
+]n[ representative of the wide range of applications that run on 
+current ]^[ future CMPs. Even if these trafﬁc patterns were 
+representative, the conﬁguration of a cache-coherent system 
+can mask ]v[ destroy the inherent communication pattern of the 
+original algorithm due to indirections ]^[ control messages. 
+The arrangement of cores, caches, directories, ]^[ memory 
+controllers directly inﬂuences the ﬂow of communication ]f[ 
+an application. Compare a synthetic shufﬂe pattern with the 
+FFT benchmark from SPLASH-2 [48]. The shufﬂe pattern 
+is a bit permutation where the destination bits are calculated 
+via the function di = si−1 mod b where b is the number of bits 
+required to represent the nodes of the network [12]. FFT is run 
+in full-system simulation1 while shufﬂe is run in network-only 
+simulation. Fig. 2 shows the number of packets sent from a 
+source to a destination2. In Fig. 2b, we see notable destination 
+hot spots at nodes 0, 2, ]^[ 5 ]^[ source hot spots at nodes 
+0 ]^[ 5. However, Fig. 2a shows hot spots only ]f[ speciﬁc 
+source-destination pairs. 
+The best NoC design ]f[ the trafﬁc in Fig. 2a is unlikely to 
+be the best NoC ]f[ the trafﬁc in Fig. 2b. For example, we 
+can design a ring network ]f[ Fig. 2a, ]^[ map the nodes to 
+minimize hop count of shufﬂe on the network. The average 
+injection rate of FFT is used ]f[ shufﬂe. Doing ]s[ yields 
+∼10% improvement in average packet latency over a mesh 
+1Conﬁguration details can be found in Sec. 7. 
+2The absolute number of packets in each ﬁgure is unimportant in this 
+comparison as we focus on source-destination trafﬁc pairs. 
+(a) Shufﬂe Trafﬁc Pattern 
+(b) FFT Application 
+Figure 2: Spatial behaviour ]f[ synthetic vs application trafﬁc 
+(Network A in Sec. 7) with the naive mapping (baseline) in 
+Fig. 2a. However, using the same ring network in a full- 
+system simulation of the FFT benchmark results in an average 
+packet latency that is over three times worse than the baseline. 
+Clearly, synthetic trafﬁc patterns are ]n[ representative of 
+the spatial behaviour exhibited by applications on a shared 
+memory architecture. 
+The sharp contrast in Fig. 2 is due to coherence transactions 
+needing to visit several nodes in a shared memory architecture 
+before completing. For example, a write request ﬁrst visits a 
+directory to receive ownership of a cache line. The directory 
+forwards requests to the core caching the data, ]^[ also in- 
+validates caches who are sharing the data. Invalidated caches 
+must send acknowledgements – this domino effect can signiﬁ- 
+cantly change an application’s spatial behaviour ]^[ should 
+be correctly modelled ]f[ realistic trafﬁc generation. 
+Differentiating between the types of packets visiting nodes 
+is important when generating realistic trafﬁc. Most synthetic 
+workloads split trafﬁc into two categories: small control pack- 
+ets (requests) ]^[ large data packets (responses). However, 
+there are many different packet types in a coherence protocol 
+]f[ both requests ]^[ responses. By lumping these packets 
+into two categories, designers cannot explore methods that 
+exploit cache coherence ]f[ better performance. For example, 
+techniques exist to reduce trafﬁc caused by acknowledgement 
+packets [27]. Similar research insight is only possible when 
+detailed packet information is available in simulation. 
+Finally, the trafﬁc imposed by an application is time-varying. 
+Applications exhibit phase behaviour [38]; spatial patterns are 
+likely to change over time. Static trafﬁc patterns ]^[ injection 
+rates are ]n[ an adequate representation of real application 
+trafﬁc. The behaviour of cache coherence trafﬁc changes with 
+time ]^[ can have varying effects on NoC performance. For 
+example, phases that exhibit high data exchange will likely 
+result in several invalidation packets being broadcast into the 
+NoC. It is important to capture these variations in trafﬁc to 
+reveal whether ]v[ ]n[ an NoC has been correctly provisioned. 
+3. SynFull Trafﬁc Modelling Overview 
+Our methodology focuses only on the design of the NoC which 
+has become a ﬁrst-class component of many-core architectures. 
+Thus, we abstract away the cores, caches, directories ]^[ mem- 
+ory controllers. Essentially, the performance characteristics of 
+SourceDestination01234567891011121314150123456789101112131415020406080100120140SourceDestination012345678910111213141501234567891011121314155000055000600006500070000 these elements are ﬁxed ]f[ the purposes of our study. How- 
+ever, SynFull can be combined with analytical ]^[ abstract 
+models [10, 22] of these components to explore an even richer 
+design space with fast-turnaround time. Developing the net- 
+work models is a critical ﬁrst step; combining our model with 
+other models is left as future work. To model application 
+trafﬁc, we focus on answering four key questions: 
+When to send a packet? In shared memory systems, packets 
+are injected from the application side on a cache miss. This 
+packet initiates a coherence transaction to retrieve its data. 
+However, some packets are injected reactively. For example, 
+a data packet would only be sent in response to a request. 
+Who is sending the packet? Not all nodes inject trafﬁc 
+uniformly ]s[ we must determine which node should inject that 
+packet. For reactive packets, the answer is clear; the node 
+reacting to the request is the source. However, ]f[ initiating 
+packets, a model is required. 
+Why are they sending the packet? Traditional synthetic 
+workloads do ]n[ concern themselves with why. For a cache 
+coherence trafﬁc generator, the question is very important. The 
+why helps determine the type of packet being sent, ]^[ allows 
+us to classify packets according to the coherence protocol. 
+Where is the packet going? 
+The packet’s destination is 
+a function of both its source ]^[ the type of packet being 
+injected (the answers to the previous two questions). Each 
+source node may exhibit different sharing patterns with other 
+nodes, ]^[ those sharing patterns may be different depending 
+on the coherence message being sent. 
+These 4 questions are answered in Sec. 4. However, be- 
+cause applications exhibit phase behaviour [38], we must also 
+capture how the answers change over time. We handle this 
+by dividing application trafﬁc into time intervals, ]^[ group- 
+ing together time intervals that behave similarly. Then, we 
+determine answers ]f[ the When, Who, Why ]^[ Where ques- 
+tions ]f[ each group (phase). We discuss our methodology 
+]f[ grouping intervals in Sec. 5. To complete our SynFull 
+methodology we need a way to transition between phases. For 
+this we use a Markov Chain, where we can determine the prob- 
+ability of transitioning from one phase to another based on the 
+phase we are currently in. The Markov Chain model, along 
+with answers to the above 4 questions, allow us to recreate the 
+injection process associated with an application (Sec. 6). 
+4. Modelling Cache Coherence Trafﬁc 
+Focusing on the network only ]^[ ]n[ modelling application 
+behaviour at the instruction level has the benefit of keeping 
+our methodology generic ]^[ simple – we can apply SynFull 
+to any application’s traffic data in a straightforward manner. 
+Although we abstract away other system components, ]n[ all 
+network messages are equal ]s[ it is important to capture differ- 
+ent message types injected by the coherence protocol. Message 
+types are a function of the cache coherence protocol, ]b[ most 
+protocols are conceptually similar in how they behave. A cache 
+Table 1: 1-to-1 Request-Response mappings. $ signifies cache. 
+Message Received 
+Cache Replacement 
+Forwarded Request 
+Invalidation 
+Data 
+Source 
+Cache 
+Directory 
+Directory 
+Cache 
+Reaction 
+Writeback Ack. 
+Data 
+Ack. 
+Unblock 
+Destination 
+Original Requestor ($) 
+Original Requestor ($) 
+Original Requestor ($) 
+Directory 
+miss invokes a coherence transaction from the local coherence 
+controller in the form of a read ]v[ write which then results 
+in a series of requests ]^[ responses [40]. In this section, we 
+explore modelling packets that initiate a coherence transaction 
+separately from packets that react to received messages. 
+4.1. Initiating Packets 
+To model when to send initiating messages, we collect the 
+number of packets (P) injected into the network ]f[ a given 
+interval spanning C cycles. Then, when generating synthetic 
+trafﬁc, we simply inject P packets uniformly over C cycles3. 
+To answer who injects a packet, we observe the distribution 
+of packets injected across all network nodes. This distribution 
+gives us the probability a particular node will inject a packet 
+]^[ can capture spatial behaviour of applications [41, 44]. The 
+answer to where a packet is going can be modelled using a 
+similar method with relative probabilities. Given the source 
+(S) of the packet, we determine its destination (D) using: 
+P(D | S) = 
+Number o f packets sent to D f rom S 
+Number o f packets sent by S 
+(1) 
+Finally, to answer why a packet is injected we split P into 
+Pr (total number of reads) ]^[ Pw (total number of writes). 
+The distinction between reads ]^[ writes is necessary because 
+they result in different reactions – writes lead to invalidations 
+that are broadcast into the NoC; these can signiﬁcantly impact 
+NoC performance. 
+4.2. Reactive Packets 
+Most responses that maintain cache coherence have a simple 
+one-to-one mapping with requests, such as an acknowledge- 
+ment responding to an invalidation request. Upon receiving a 
+particular message, the protocol reacts with a predetermined 
+response. Table 1 shows a simplified view of the reactive as- 
+pect of cache coherence. Most reactions are straightforward ]b[ 
+some requests lead to multiple different responses, particularly: 
+Forwarded Requests: If the data is already cached on chip, 
+the coherence protocol forwards the request to the cache contain- 
+ing the data. Otherwise, the request goes off chip to memory. 
+Invalidates: When a write request arrives ]f[ a cache block 
+shared by multiple readers, those readers must be invalidated. 
+Next, we explore these two situations ]^[ how to model them 
+]s[ that we may realistically generate cache coherence trafﬁc. 
+4.2.1. Forwarding vs. Off-Chip When a read ]v[ write request 
+arrives at a directory, the requested block may be present in 
+another core’s cache. In this case, the request is forwarded to 
+3We also explored injecting packets using bernoulli ]^[ exponential distri- 
+butions. However, the differences in performance are negligible. 
+Figure 3: The probability a read ]v[ write request is forwarded 
+the cache holding the data. Otherwise, an off-chip memory 
+request occurs. Fig. 3 shows the fraction of forwarded read 
+]^[ write requests broken down by directory ]f[ SPLASH-2’s 
+FFT benchmark4. The probability of forwarding a read ]v[ 
+write changes according to which directory is being requested. 
+Therefore, we model the distribution of forwarding probabili- 
+ties on a per-directory basis. In Sec. 4.2.2, we show that this 
+has an affect on invalidations, ]^[ different directories may 
+act as hot spots in certain applications. We also note that the 
+probabilities of forwarding a read ]v[ a write request are ]n[ 
+equal. This distinction is critical as write requests will trigger 
+invalidations to sharers which can represent a substantial burst 
+of network trafﬁc ]f[ widely-shared data. 
+4.2.2. Invalidates On a write miss, there is a chance that the 
+cache block being requested has multiple sharers; the number 
+of sharers determines the number of invalidates that will be 
+multicast into the NoC. Fig. 4 shows the per-directory prob- 
+ability of sending 0 to 15 invalidates in a 16-node network 
+]f[ FFT. Some directories (1, 3, 11, ]^[ 12) exhibit bimodal 
+behaviour; they invalidate 0 ]v[ n− 1 sharers. Referring back 
+to Fig. 3, we can see that these directories behave similarly in 
+their forwarding probabilities. Other directories resemble an 
+exponential distribution, with 0 invalidates having the highest 
+probability. Invalidates can signiﬁcantly impact network per- 
+formance; applications that share ]^[ exchange data at a high 
+rate will ﬂood the network with many invalidates ]^[ strain 
+its resources. We model the distribution of the number of 
+invalidates on a per-directory basis to ensure our synthetically 
+generated trafﬁc has similar affects on NoC performance. 
+4.3. Summary 
+This section showed how we model cache coherence trafﬁc by 
+reacting to messages injected into the NoC. Read ]^[ write 
+requests are forwarded with some probability to other nodes in 
+the NoC, ]^[ invalidates can be sent out with some probability 
+given the directory a write request has arrived at. To react to 
+messages, read ]^[ write requests must ﬁrst be injected into 
+the NoC. Static injection rates are ]n[ sufﬁcient to achieve high 
+accuracy – we must also consider application phase behaviour. 
+4Our system conﬁguration assumes 1 slice of the directory is located at 
+each tile in a 16-core CMP. Addresses are interleaved across directories. 
+Figure 4: Number of sharers per write at different directories 
+We explore phase behaviour in Sec. 5 ]^[ propose a model 
+that captures ]^[ applies phases to generated network trafﬁc. 
+5. Trafﬁc Phases 
+Applications are well-known to exhibit phase behaviour [38]. 
+Phases can have a signiﬁcant impact on the instructions 
+per cycle, miss rates, ]^[ prediction rates of various mi- 
+croarchitectures. NoC trafﬁc is also affected by application 
+phases [20, 51]; our methodology needs to capture this phase 
+behaviour if it intends to realistically generate synthetic trafﬁc. 
+We propose examining traffic at two granularities: macro 
+(millions ]v[ billions of cycles) ]^[ micro (thousands to hun- 
+dreds of thousands of cycles). At the macro level, we observe 
+noticeable differences in the behaviour of an application as it 
+moves from one phase to another (perhaps due to a barrier ]v[ 
+the end of an outer-loop). At the micro-level we are more likely 
+to capture short bursts of network activity. Each level is divided 
+into fixed-sized, successive time intervals measured in cycles. 
+Dividing trafﬁc into intervals allows us to analyze network 
+trafﬁc at a ﬁne granularity. Considering the entire application 
+at once captures average behaviour; reproducing the average 
+behaviour will negatively impact the design ]^[ evaluation of 
+NoCs. For example, smoothing out periods of high trafﬁc will 
+result in an NoC that becomes saturated during key application 
+phases. Alternatively, bringing low periods of communication 
+up to an average will cause a designer to miss potential oppor- 
+tunities ]f[ power gating ]v[ DVFS in the NoC. Intervals allow 
+us to capture ﬁne-grain changes in trafﬁc. However, selecting 
+a single (random) interval is ]n[ necessarily characteristic of 
+the entire simulation. Yet considering all intervals will be 
+difﬁcult to model with a Markov Chain (Sec. 6) ]^[ will yield 
+little simulation speedup. Therefore, we group intervals that 
+behave similarly into different trafﬁc phases via clustering. 
+This section explores various alternative approaches to iden- 
+tifying similar behaviour between intervals through feature 
+vectors (Sec. 5.1). Each vector contains elements (features) 
+that measure some aspect of trafﬁc in that interval (e.g., the 
+injection rate). Vectors are then compared by calculating the 
+distance between them; a clustering algorithm creates groups 
+of intervals whose vectors are close together (Sec. 5.2). 
+0.00.20.40.612345678910111213141516DirectoryProbability to Forward a RequestvariableWritesReads 1 2 3 4 5 6 7 8 9101112131415160.000.250.500.751.000.000.250.500.751.000.000.250.500.751.000.000.250.500.751.00051015051015051015051015Number of InvalidatesProbability 5.1. Feature Vector Design 
+Deﬁning similarity between intervals is non-trivial. One has to 
+consider the elements of the feature vector, its dimensionality 
+]^[ scalability. In this section, we present a subset of potential 
+feature vectors that can be used to cluster intervals into trafﬁc 
+phases; this discussion is ]n[ meant to be exhaustive ]b[ rather 
+captures a range of trafﬁc metrics ]^[ feature vector scalability. 
+It may be tempting to use feature vectors with many el- 
+ements. There is a trade-off between capturing a range of 
+communication attributes ]^[ the effectiveness ]^[ ease of 
+clustering. Large feature vectors can suffer from the curse of 
+dimensionality where the data available to populate the vector 
+is insufﬁcient ]f[ the size of the vector [4]. In addition, hav- 
+ing a large number of observations puts additional strain on 
+the clustering algorithm; some clustering algorithms have a 
+complexity of O(cid:0)n3(cid:1) (where n is the number of vectors). We 
+explore two different approaches to construct feature vectors: 
+1. Injection Rate: number of packets injected in an interval 
+2. Injection Flows: number of packets injected between 
+source-destination pairs per interval 
+We also explored feature vectors that consider cache coher- 
+ence message types. In this way, intervals with dominant read 
+and/or write phases are clustered together. However, such an 
+approach does ]n[ capture the spatial injection distribution of 
+packets. As a result, intervals with similar hot spots are ]n[ 
+clustered together. As we show in Sec. 8, this information is 
+crucial if we expect to synthetically generate realistic trafﬁc. 
+5.1.1. Injection Rate Injection rate can be captured in differ- 
+ent ways. Considering the injection rate of all nodes (Total 
+Injection) gives simple, one-dimensional feature vectors that 
+allow us to differentiate between intervals that are experi- 
+encing high, medium ]v[ low levels of communication. The 
+beneﬁt of this vector is that it is easy to create. Calculating 
+the distance between vectors ]^[ applying clustering is fast 
+because it is one-dimensional. Yet Total Injection may be 
+too simple; the total number of packets does ]n[ reveal any 
+spatial characteristics of the trafﬁc. Even when two vectors 
+have similar magnitudes, their respective intervals could ex- 
+hibit different spatial behaviour, such as hot spots. Using the 
+injection rate of individual nodes alleviates some of these is- 
+sues. An N-dimensional vector with per-node injection rates 
+(Node Injection) captures some spatial characteristics of our 
+applications. 
+5.1.2. Injection Flows Node Injection helps identify injecting 
+hotspots – that is, nodes that send a lot of packets. But hot 
+spots can also exist at a destination – that is, nodes that receive 
+a lot of packets. To capture the relationship between sent 
+]^[ received messages, we can use ﬂows [20]. A ﬂow is the 
+injection rate between a source ]^[ a destination. For an N- 
+node network, there are N2 source-destination ﬂow pairs. We 
+construct a feature vector (Per-Node Flow) that captures this 
+information. This vector scales quadratically with the number 
+of nodes. Sufﬁcient data has to be present in the trafﬁc ]v[ else 
+Table 2: Different trafﬁc feature vectors ]f[ an N-node network 
+Feature Vector 
+Total Injection 
+Node Injection 
+Row-Column 
+Flow 
+Per-Node 
+Flows [20] 
+# of Features 
+1 
+N 
+N 
+N2 
+Description 
+Total number of packets injected 
+Packets injected ]f[ each network node 
+Packets injected between rows ]^[ columns 
+of the network 
+Packets 
+destination pair 
+injected between each source- 
+the feature vector falls prey to the curse of dimensionality. 
+We can simplify Per-Node Flow feature vectors by aggregat- 
+ing nodes into rows ]^[ columns (Row-Column Flow). Each 
+element of the vector corresponds to the number of packets 
+sent by a row of nodes to a column of nodes. We use the words 
+row ]^[ column ]f[ simplicity – the actual mapping of nodes 
+in the network does ]n[ have to be grid-like. 
+5.1.3. Summary We introduce four potential feature vectors 
+to classify trafﬁc phases. These are summarized in Table 2. 
+Each vector has its own pros ]^[ cons, ]^[ some vectors are 
+better suited ]f[ either a macro ]v[ micro scale. We explore the 
+impact of different feature vectors in Sec. 8. 
+5.2. Clustering Methods 
+Feature vectors are used to cluster intervals into trafﬁc phases. 
+We calculate the distance between vectors ]^[ then apply 
+a clustering method. Distance calculations are affected by 
+the dimensionality of the vector (i.e. number of features); 
+therefore, feature vectors that scale poorly (Table 2) lead to 
+high overhead ]^[ modelling time. In this section, we look 
+at two clustering approaches: partitional ]^[ hierarchical ]^[ 
+weigh their beneﬁts. Ultimately, we use different approaches 
+at different granularities, as we discuss in Sec. 6. 
+5.2.1. Partitional Clustering Partitional clustering desig- 
+nates a feature vector that is central to each group; we use 
+Euclidean distance as a measure of closeness between vec- 
+tors. Although k-means is the most popular, we use k-medoids 
+(speciﬁcally, Partitioning-Around-Medoids ]v[ PAM). PAM 
+performs a pairwise comparison of the distances between a 
+vector (V ) ]^[ every other vector in the group. Although 
+slower than k-means, PAM is able to provide the central vector 
+(medoid) ]f[ each group. This allows us to select the interval 
+that is most representative of its trafﬁc phase. Partitional clus- 
+tering is an NP-hard problem, however heuristics are available 
+that keep its complexity ]^[ speed low [46]. 
+Partitional clustering requires the number of trafﬁc phases 
+(or clusters k) to be an input to the algorithm. Formal meth- 
+ods exist [34] to determine an optimum k value, though ]n[ 
+all methodologies agree on the same k. Two common meth- 
+ods that estimate an optimal k are Average Silhouette Width 
+(ASW) [35] ]^[ the Calinksi-Harabasz (CH) index [6]. We 
+explore the effects of k using these two methods in Sec. 8.1. 
+5.2.2. Hierarchical Clustering Hierarchical clustering is an 
+efﬁcient, deterministic approach to grouping trafﬁc phases. 
+However, it has a complexity of O(n3) (where n is the number 
+of vectors), making it better suited to clustering smaller data 
+sets. Hierarchical clustering creates a tree (a dendogram) of all 
+feature vectors, linking vectors together based on distance ]^[ 
+a linkage criterion5. The algorithm iteratively combines the 
+two clusters that have the least impact on the sum of squares 
+error. Different levels of the tree indicate which vectors belong 
+to which clusters; the tree can be cut at a user-deﬁned level 
+to provide the desired number of trafﬁc phases. We use the 
+L-method [36] to determine the appropriate number of clusters 
+in hierarchical clustering. 
+6. Injection Process 
+In Sec. 5, we introduce macro- ]^[ micro-level granularities 
+]f[ intervals. Each macro-interval is further broken down into 
+micro-intervals. Then, we group intervals into trafﬁc phases 
+using clustering. Next, we demonstrate how to construct a 
+hierarchical Markov Chain ]f[ the macro- ]^[ micro-levels. 
+Fig. 1 shows an overview of our approach, where macro-scale 
+trafﬁc has been decomposed into micro-scale intervals, ]^[ 
+two Markov Chains govern the transitions between phases. 
+Markov Chains are typically used to model stochastic pro- 
+cesses. A Markov Chain is made up of a number of states, 
+with transition probabilities deﬁned ]f[ moving from one state 
+to another. In our case, states correspond to macro- ]v[ micro- 
+phases, ]^[ transitioning from one phase to another allows 
+us to accurately replicate the time-varying behaviour of an 
+application’s injection process. 
+Macro Scale Given long application runtimes, the number 
+of intervals at the macro level ranges from hundreds to thou- 
+sands. This variability ]^[ the resulting large number of vec- 
+tors means hierarchical clustering is ]n[ a good ﬁt because 
+of its O(n3) complexity; therefore we use PAM at the macro 
+scale. PAM gives us the medoid of each trafﬁc phase – that is, 
+a single macro interval that best represents the macro phase. 
+Having a single macro-interval ]f[ each phase signiﬁcantly re- 
+duces the amount of data modelled. Once we have the medoid 
+]f[ each trafﬁc phase, we pass them to our micro model ]^[ 
+analyze the trafﬁc at a ﬁner granularity. We create a micro 
+model ]f[ each macro-interval selected. 
+Micro Scale The micro scale looks at only a small subset 
+of the overall trafﬁc. Dividing a macro-interval into micro- 
+intervals allows us to capture the injection process at a ﬁner 
+granularity; this is necessary to capture bursty ﬂuctuations in 
+trafﬁc that can greatly inﬂuence network performance. Unlike 
+at the macro-level, we are ]n[ looking ]f[ a single representa- 
+tive interval per trafﬁc phase. A single representative interval 
+does ]n[ contain enough data to form an accurate micro-level 
+model. Since we do ]n[ need a medoid, we use hierarchical 
+clustering at the micro scale. 
+Hierarchy We model multiple Markov Chains ]f[ our hierar- 
+chy of macro- ]^[ micro-levels. One Markov Chain governs 
+transitioning between macro-phases. For each macro-phase 
+we deﬁne another Markov Chain ]f[ its micro-phases. Fig. 1 
+shows the two level hierarchy with two macro-phases ]^[ 
+5We use minimum-variance based on Ward’s method [47]. 
+Processor 
+L1 Caches 
+L2 Caches 
+Coherence Protocol 
+16 Out-of-Order cores, 4-wide, 80-instruction ROB 
+16 Private, 4-way, 32 KB 
+16 Private, 8-way, 512 KB 
+Directory-Based MOESI (blocking) 
+Network 
+Topology 
+Channel Width 
+Virtual Channels 
+Routing Alg. 
+Buffer Depth 
+Router Pipeline 
+A 
+Mesh 
+8 bytes 
+2 per port 
+XY 
+B 
+Mesh 
+4 bytes 
+2 per port 
+Adaptive XY-YX 
+8 ﬂits 
+4 stages 
+Flattened Butterﬂy [23] 
+C 
+4 bytes 
+4 per port 
+UGAL 
+Table 3: Simulation conﬁgurations 
+three micro-phases. An important property of Markov Chains 
+is that they can reach equilibrium (π). That is, after inﬁnite 
+time, the Markov Chain converges to a steady state where the 
+probability of being in a given state is constant. We exploit 
+this property to achieve signiﬁcant speedups over full-system 
+simulation in Sec. 10. 
+7. Methodology 
+We evaluate SynFull using a 16-core CMP with the conﬁgura- 
+tion given in Table 3. Each node contains a core, private L1 
+cache, private L2 cache ]^[ a directory. Data is collected using 
+FeS2, a full-system simulator [31] integrated with Booksim, a 
+cycle-accurate network simulator [19]. We run PARSEC [5] 
+]^[ SPLASH-2 [48] benchmarks with the sim-small input 
+set. All benchmarks are run to completion with the exception 
+of facesim, which was capped at three hundred million cycles. 
+To generate the SynFull models, we collect traces from full- 
+system simulation assuming an ideal fully-connected NoC 
+with a ﬁxed one cycle latency. Using an ideal network ensures 
+that our model does ]n[ contain artifacts of the network, ]^[ 
+therefore cannot be inﬂuenced by a certain topology, routing 
+algorithm, etc. Thus a single model can be used to simulate 
+a wide range of NoC conﬁgurations. We compare NoC per- 
+formance of our synthetically generated network trafﬁc with 
+full-system simulation ]^[ trace-based simulation using state- 
+of-the-art packet dependency tracking based on Netrace [18]. 
+To demonstrate that our methodology is network agnos- 
+tic, we compare against three different NoC conﬁgurations 
+(Table 3). That is, we can apply SynFull to different NoC 
+conﬁgurations ]^[ capture similar behaviour to what would 
+have been exhibited by full-system simulation, regardless of 
+the network’s conﬁguration. 
+8. SynFull Exploration 
+Our proposed SynFull trafﬁc model has a number of parame- 
+ters that can be changed. Initially, it is ]n[ obvious ]v[ intuitive 
+what the values of these parameters should be to accurately 
+model trafﬁc. 
+In this section, we explore these model pa- 
+rameters ]^[ discuss their affects on the generated network 
+trafﬁc, NoC performance ]^[ model accuracy. Speciﬁcally, 
+we: (i) Evaluate how the number of macro phases affect NoC 
+performance; (ii) Demonstrate how to adjust the amount of 
+congestion at the micro level with different feature vectors; 
+Benchmark 
+Lu 
+Raytrace 
+Swaptions 
+ASW NI 
+ASW TI 
+CH NI 
+CH TI 
+2 
+2 
+2 
+2 
+2 
+2 
+2 
 8 
-d3 80% — _ 
-E 
-a. 
-U} 
-0 
-g 60% e _ 
-'E—< 
-E 
-g 40% e — 
-é DECstation 5000 
-3 Hardware Minimum 
-00 
-20% — _ 
-t 
-*- Software 
-a? 
-0% l 
-0 1O 20 
-# Crossings/Millcsecond 
-Figure 7: Percentage of time spent in crossing code 
-versus number of fault domain crossings per millisec- 
-ond on the DECeMIPS. The hardware minimum cross— 
-ing number is taken from a crossvarchitectural study 
-of context switch times [ALBL91]. The Ultrix 4.2 con- 
-text switch time is as reported in the last column of 
-Table 2. 
-213 
-on hardware fault isolation are ultimately limited by 
-the minimal hardware cost of taking two kernel traps 
-]^[ two hardware context switches. LRPC was one 
-of the ﬁrst RPC systems to approach this limit, ]^[ 
-our prototype uses a number of the techniques found 
-in LRPC ]^[ later systems: the same thread runs in 
-both the caller ]^[ the callee domain, the stubs are 
-kept as simple as possible, ]^[ the crossing code jumps 
-directly to the called procedure, avoiding a dispatch 
-in the callee domain. Unlike these systems, software— 
-based fault isolation avoids hardware context switches, 
-substantially reducing crossing costs. 
-Address space identiﬁer tags can be used to reduce 
-hardware context switch times. Tags allow more than 
-one address space to share the TLB; otherwise the 
-TLB must be ﬂushed on each context switch. It was 
-estimated that 25% of the cost of an LRPC on the 
-Fireﬂy (which does ]n[ have tags) was due to TLB 
-misses[BALL90]. Address space tags do not, however, 
-reduce the cost of register management ]v[ system calls, 
-operations which are ]n[ scaling with integer perfor- 
-mance[ALBL91]. An important advantage of software— 
-based Jfault isolation is that it does ]n[ rely on specialv 
-ized architectural features such as address space tags. 
-Restrictive programming languages can also be used 
-to provide fault isolation. Pilot requires all kernel, 
-user, ]^[ library code to be written in Mesa, 3 strongly 
-typed language; all code then shares a single address 
-space [RDII+80]. The main disadvantage of relying on 
-strong typing is that it severely restricts the choice 
-of programming languages, ruling out conventional 
-languages like C, C++, ]^[ assembly. Even with 
-strongly—typed languages such as Ada ]^[ Modula—3, 
-programmers often find they need to use loopholes in 
-the type system, undercutting fault isolation. In con— 
-trast, our techniques are language independent. 
-Deutsch ]^[ Grant built a system that allowed 
-user—deﬁned measurement modules to be dynamically 
-loaded into the operating system ]^[ executed directly 
-on the processor [DG71]. The module format was a 
-stylized native object code designed to make it easier 
-to statically verify that the code did ]n[ violate pro— 
-tection boundaries. 
-An interpreter can also provide failure isolation. For 
-example. the BSD UNIX network packet ﬁlter utility 
-deﬁnes a language which is interpreted by the operat- 
-ing system network driver. The interpreter insulates 
-the operating system from possible faults in the cus— 
-tomization code. Our approach allows code written in 
-any programming language to be safely encapsulated 
-(or rejected if it is ]n[ safe), ]^[ then executed at near 
-full speed by the operating system. 
-Anonymous RFC exploits 64-bit address spaces to 
-provide low latency RFC ]^[ probabilistic fault iso— 
-lation [YBA93]. Logically independent domains are 
-214 
-placed at random locations in the same hardware ad» 
-dress spacer Calls between domains are anonymous, 
-that is, they do ]n[ reveal the location of the caller 
-]v[ the callee to either side. This provides probabilis— 
-tic protection , it is unlikely that any domain will 
-be able to discover the location of any other domain 
-by malicious ]v[ accidental memory probes. To pre» 
-serve anonymity, a cross domain call must trap to pro- 
-tected code in the kernel; however, no hardware con~ 
-text switch is needed. 
-7 Summary 
-We have described a software-based mechanism ]f[ 
-portable, programming language independent fault 
-isolation among cooperating software modules. By 
-providing fault isolation within a single address space, 
-this approach delivers crossefaultrdomain communica 
-tion that is more than an order of magnitude faster 
-than any RPC mechanism to date. 
-To prevent distrusted modules from escaping their 
-own fault domain, we use a software encapsulation 
-technique, called sandboxing, that incurs about 4% 
-Despite this overhead in 
-executing distrusted code, software—based fault isola- 
-tion Will often yield the best overall application per- 
-formance. Extensive kernel optimizations can reduce 
-the overhead of hardware-based RPC to within a fac- 
-tor of ten over our software—based alternative. Even 
-in this situation, software—based fault isolation will be 
-the better performance choice whenever the overhead 
-of using hardware—based RPC is greater than 5%. 
-execution time overhead. 
-8 Acknowledgements 
-We thank Brian Bershad, Mike Burrows, John Hen- 
-nessy, Peter Kessler, Butler Lampson, Ed Lazowska, 
-Dave Patterson, John Ousterhout, Oliver Sharp, 
-Richard Sites, Alan Smith ]^[ Mike Stonebraker ]f[ 
-their helpful comments on the paper. Jim Larus pro- 
-vided us with the proﬁling tool qpt. We also thank 
-Mike Olson ]^[ Paul Aoki ]f[ helping us with POST— 
-GRES. 
-References 
-[ACD74] TL. Adam, KM. Chandy, ]^[ JR. Dickson. 
-A comparison of list schedules ]f[ parallel pro- 
-cessing systems. Communications of the ACM, 
-17(12):685—690, December 197/1. 
-[ALBUM] Thomas Anderson, Henry Levy, Brian Ber— 
-shad, ]^[ Edward Lazowska. The Interaction 
-of Architecture ]^[ Operating System Design. 
-[A5591] 
-[ASUSG] 
-[BALLQO] 
-[BALL91] 
-[Ber93] 
-[BL92] 
-[BlaQO] 
-[1m 84] 
-[Cla92] 
-[DG71] 
-[Dis] 
-[Dys92] 
-[FP93] 
-[H092] 
-111 Proceedings of the 4th International Confer- 
-ence on Architectural Supportfor Programming 
-Languages ]^[ Operating Systems, pages 108— 
-120, April 1991. 
-Administrator: National Computer Graphics 
-Association. SPEC Newsletter, 3(4), December 
-1991. 
-Alfred V. Aho, Ravi Sethi, ]^[ Jeffrey D. Ull- 
-man. Compilers, Principles, Techniques, ]^[ 
-Tools. Addison—Wesley Publishing Company, 
-1986. 
-Brian Bershad, Thomas Anderson, Edward La- 
-zowska, ]^[ Henry Levy. Lightweight Remote 
-Procedure Call. ACM Transactions on Com- 
-puter Systems, 8(1), February 1990. 
-Brian Bershad, Thomas Anderson, Edward La~ 
-zowska, ]^[ Henry Levy. User-Level Interpre- 
-cess Communication ]f[ Shared~Memory Mul- 
-tiprocessors. ACM Transactions on Computer 
-Systems, 9(2), May 1991. 
-Brian Bershad, August 1993. Private Commu— 
-nication. 
-Thomas Ball ]^[ James R. Larus. Optimally 
-proﬁling ]^[ tracing. In Proceedings of the 
-Conference on Principles of Programming Lan- 
-guages, pages 59‘70, 1992. 
-David Black. Scheduling Support ]f[ ConcuI~ 
-rency ]^[ Parallelism in the Mach Operating 
-System. IEEE Computer, 23(5):35 43, May 
-1990. 
-Andrew Birrell ]^[ Bruce Nelson. Implement- 
-ing Remote Procedure Calls. ACM Transac- 
-tions on Computer Systems, 2(1):?19‘59, Febru‘ 
-ary 1984. 
-.1.D. Clark. lVindow Programmer’ Guide To 
-OLE/DUE, Prentice—Hall, 1992. 
-L. P. Deutsch ]^[ C. A. Grant. A ﬂexible mea~ 
-surement tool ]f[ software systems. In IFIP 
-Congress, 1971. 
-Digital Equipment Corporation. Ultriz 114.2 
-Pixie Manual Page. 
-Peter Dyson. Xtensions ]f[ Xpress: Modular 
-Software ]f[ Custom Systems. Seybold Report 
-on Desktop Publishing, 6(10):1—‘.’.1, June 1992. 
-Kevin Fall ]^[ Joseph Pasquale. Exploiting in— 
-kernel data paths to improve I/O throughput 
-]^[ CPU 3. vailability. In Proceedings of the 
-1993 Winter USENIX Conference, pages 327— 
-333, January 1993. 
-Keiran Harty ]^[ 
-David Cheriton. Application—controlled physi- 
-cal memory using external page—cache manage— 
-ment. In Proceedings of the 5th International 
-Conference on Architectural Support ]f[ Pro- 
-gramming Languages ]^[ Operating Systems, 
-October 1992. 
-215 
-[11K93] 
-[HKM+88] 
-[Int86] 
-[JRTSS] 
-[K ar89] 
-[K1886] 
-[LB92] 
-[McF89] 
-[MJ93] 
-[M RA87] 
-[P1190] 
-[RDH+ 80] 
-Graham Hamilton ]^[ Panos Kougiouris. The 
-Spring nucleus: A microkernel ]f[ objects. In 
-Proceedings of the Summer USENIX Confer- 
-cncc, pages 1477159, June 1993. 
-J. Howard, M. Kazar, S. Menees, D. Nichols, 
-M. Satyanarayanan, R. Sidebotham, ]^[ 
-M. West. Scale ]^[ Performance in 3. Dis- 
-tributed File System. ACM Transactions on 
-Computer Systems, 6(1):51—82, February 1988. 
-Intel Corporation, California. 
-Intel 80386 Programmer’s Reference Manual, 
-1986. 
-Michael B. Jones, Richard F. Rashid, ]^[ 
-Mary R. Thompson. Matchmaker: An in- 
-terface speciﬁcation language ]f[ distributed 
-processing. In Proceedings of the 12th ACM 
-SIGACT-SIGPLAN Symposium on Principles 
-of Programming Languages, pages 225435, 
-January 1985. 
-Santa Clara, 
-Paul A. Karger. Using Registers to Optimize 
-Cross—Domain Call Performance. In Proceed- 
-ings of the 3rd International Conference on 
-Architectural Support ]f[ Programming Lan- 
-guages ]^[ Operating Systems, pages 1947204. 
-April 3~6 1989. 
-Steven R. Kleiman. Vnodes: An Architecture 
-]f[ Multiple File System Types in SUN UNIX. 
-In Proceedings of the 1986 Summer USENIX 
-Conference, pages 238—247, 1986. 
-James R. Larus ]^[ Thomas Ball. Rewrit- 
-ing executable ﬁles to measure program be— 
-havior. Technical Report 1083, University of 
-Wisconsin-Madison, March 1992. 
-Scott McFarling. Program optimization ]f[ 
-instruction caches. In Proceedings of the In: 
-ternational Conference on Architectural Sup— 
-port ]f[ Programming Languages ]^[ Operat- 
-ing Systems, pages 183—191, April 1989. 
-Steven McCanne ]^[ Van lacobsen. The 
-BSD Packet Filter: A New Architecture ]f[ 
-User—Level Packet Capture. In Proceedings of 
-the 1993 Winter USENIX Conference, January 
-1993. 
-l. C. Mogul, R. F. Rashid, ]^[ M. J. Ac- 
-cetta. The packet ﬁlter: An cﬂicient mecha— 
-nism ]f[ user—level network code. In Proceed- 
-ings of the Symposium on Operating System 
-Principles, pages 39—51, November 1987. 
-Karl Pettis ]^[ Robert C. Hansen. Proﬁle 
-guided code positioning. In Proceedings of 
-the Conference on Programming Language De- 
-sign ]^[ Implementation, pages 16—27, White 
-Plains, New York, June 1990. Appeared as 
-SIGPLAN NOTICES 25(6). 
-David D. Redell, Yogen K. Dalal, Thomas R. 
-Horsley, Hugh C. Lauer, William C. Lynch, 
-[Sam88] 
-[5390] 
-[501693] 
-[SFGMQS] 
-[St087] 
-[St088] 
-[SWG91] 
-[TAss] 
-[Thiﬁz] 
-[VCGSQZ] 
-[VVSTSB] 
-[Web93] 
-[YBA93] 
-Paul R. McJones, Hal G. Murray, ]^[ 
-Stephen C. Purcell. Pilot: An Operating Sys- 
-tem ]f[ a Personal Computer. Communications 
-of the A01”, 23(2):81~92, February 1980. 
-A. Dain Samples. Code reorganization ]f[ in 
-struction caches. Technical Report UCB/CSD 
-88/447. University of California, Berkeley, 0C, 
-tober 1988. 
-Michael Schroeder ]^[ Michael Burrows. Per- 
-formance of Fireﬂy RPC. ACM I‘mnsac» 
-tions on Computer Systems, 8(1):1—17, Febru- 
-ary 1990. 
-Richard L. Sites, Anton Chernoff, Matthew B. 
-Kirk, Maurice P. Marks, ]^[ Scott G. Robin- 
-son. Binary translation. Communications of 
-the ACM, 36(2):69—81, February 1993. 
-M. Stonebral-zer, J. Frew, K. Gardels, ]^[ 
-.I. Meridith. The Sequoia 2000 Benchmark. 
-In Proceedings of the ACM SIGMOD Inter- 
-national Conference on Management of Data, 
-May 1993. 
-Michael Stonebraker. Extensibility in POST~ 
-GRES. IEEE Database Engineering, Septem- 
-ber 1987. 
-Michael Stonebraker. Inclusion of new types in 
-relational data base systems. In Michael Stone- 
-braker, editor, Readings in Database Systems, 
-pages 480—487. Morgan Kaufmann Publishers, 
-Inc., 1988. 
-J. P. Singh, W. Weber, ]^[ A. Gupta. 
-Splash: Stanford parallel applications ]f[ 
-shared—memory. Technical Report CSL—TR—Sl— 
-469, Stanford, 1991. 
-Shin—Yuan Tzou ]^[ David P. Anderson. A 
-Performance Evaluation of the DASH Message- 
-Passing System. Technical Report UCB/CSD 
-88/452, Computer Science Division, University 
-of California, Berkeley, October 1988. 
-Thinking Machines Corporation. CM—5 Net- 
-work Interface Programmer’s Guide, 1992. 
-T. von Eicken, I). Culler, S. Goldstein, ]^[ 
-K. Schauser. Active Messages: A Mechanism 
-]f[ Integrated Communication ]^[ Computa— 
-tion. In Proceedings of the 19th Annual Sym- 
-posium on Computer Architecture, 1992. 
-Robbert van Renesse, Hans van Staveren, ]^[ 
-Andrew S. Tanenbaum. Performance of the 
-World’s Fastest Distributed Operating System. 
-Operating Systemic Review, 22(1):25734, Octo— 
-ber 1988. 
-Neil Webber. Operating System Support ]f[ 
-Portable Filesystem Extensions. In Proceed- 
-ings of the 1993 Winter USENIX Conference, 
-January 1993. 
-Curtis Yarvin. Richard Bnkowski, ]^[ Thomas 
-Anderson. Anonymous RFC: LOW Latency 
-216 
-Protection in a 64—Bit Address Space. In Pro- 
-ceedings of the Summer USENIX Conference, 
-June 1993. 
+2 
+10 
+7 
+6 
+Table 4: Number of macro phases ]f[ different formal methods 
+]^[ feature vectors 
+]^[ (iii) Explore how the size of time intervals can change 
+trafﬁc generated by SynFull. 
+We look at the effects of different parameters quantitatively 
+on three benchmarks: Lu (contiguous), Raytrace, ]^[ Swap- 
+tions. The domains of these benchmarks are different; Lu is 
+a high-performance computing application that relies heav- 
+ily on barriers as its synchronization primitive, Raytrace is a 
+graphics-based benchmark that relies heavily on locks, ]^[ 
+Swaptions deals with ﬁnancial analysis ]^[ is ]n[ very com- 
+munication intensive. Once we have explored the parameters 
+across these three benchmarks, we make recommendations 
+to achieve NoC performance estimates that are accurate with 
+respect to full-system simulation results. 
+8.1. Macro Phases 
+Macro phases constitute the largest granularity ]f[ our model – 
+a macro interval can be several hundred thousand cycles long. 
+The number of macro phases we need to model is a function of 
+application behaviour. In order to determine this number, we 
+apply formal methods (CH ]^[ ASW) to a particular clustering 
+of macro-intervals. Clustering is also affected by the feature 
+vectors used. The number of macro phases used by SynFull 
+affects the variety of trafﬁc exhibited at the macro granularity. 
+We explore two feature vectors at the macro-level: Total 
+Injection (TI) ]^[ Node Injection (NI). Our goal is to reduce 
+the clustering overhead at the macro level because the number 
+of observations can be quite large ]^[ varies by benchmark – 
+TI ]^[ NI require the least processing time of all the proposed 
+feature vectors. Using these two feature vectors, we apply CH 
+]^[ ASW to the clustering to determine the optimal number of 
+macro-phases. We assume macro-intervals of 500,000 cycles 
+]^[ micro-intervals of 200 cycles, ]^[ the NI feature vector 
+at the micro level. We create our model from full-system 
+simulation with an ideal network, ]^[ then apply the trafﬁc to 
+Network A. We compare the resulting average packet latency 
+to full-system simulation (FSYS); this metric includes the time 
+a node is queued waiting to be injected into the network. 
+Table 4 shows the number of phases suggested by the ASW 
+]^[ CH formal methods ]f[ the NI ]^[ TI feature vectors, ]^[ 
+Fig. 5 shows the results of using those parameters. There is 
+little variation in average packet latency when tweaking macro 
+parameters ]f[ Lu ]^[ Swaptions. Raytrace, however, shows 
+more accuracy using the CH index, which recommends 7 ]v[ 8 
+macro phases with TI ]^[ NI, respectively. Raytrace trafﬁc has 
+several macro intervals that deviate from the norm, likely due 
+to the several thousand locks it uses [48], ]^[ therefore should 
+be modelled with more macro phases. The locking in Raytrace 
+results in an unstructured communication pattern with high 
+Figure 5: Macro-level sweeping of feature vectors & number 
+of phases (Table 4). 
+variation. Too few macro phases would force interval outliers 
+into phases where they do ]n[ belong. 
+The use of barriers in Lu results in distinct periods of low 
+]^[ high communication; when all threads reach a barrier there 
+is a sudden burst of packets into the NoC. This communication 
+pattern maps well to 2 distinct macro phases. CH+TI has 10 
+macro phases which results in the highest error ]f[ SynFull. 
+Too many phases can lead to poor clustering quality because 
+some phases will have very few, ]v[ even a single interval, asso- 
+ciated with them. These phases are superﬂuous ]^[ negatively 
+impact the Markov Chain because they will be rarely visited. 
+The single dimension of TI makes the clustering sensitive 
+to ﬂuctuations between macro intervals; that is, two high- 
+communication macro-intervals may ]n[ be clustered together 
+due to a small difference in total packets. This sensitivity is 
+alleviated by using more dimensions, ]s[ that deviations in one 
+element are neutralized by similarity in others. This helps 
+prevent the case where we have too many phases ]f[ macro 
+intervals; thus, we recommend NI ]f[ macro clustering ]^[ 
+CH ]f[ the number of macro phases. 
+8.2. Congestion at the Micro Level 
+Sec. 8.1 uses Node Injection (NI) as the feature vector at 
+the micro level. NI clusters micro intervals according to the 
+distribution of injected packets across nodes. While this will 
+cluster hot spots at source nodes, there are situations where hot 
+spots exist between source-destination pairs. For example, a 
+many-to-one communication pattern is ]n[ accurately captured 
+by the NI vector. The Row-Column Flow (RCFlow) ]^[ Per- 
+Node Flow (Flow) feature vectors are better suited to capturing 
+these hot spots, allowing ]f[ the synthetically generated trafﬁc 
+to cause congestion as full-system simulation might. 
+In this section, we use CH+NI at the macro level with 
+interval sizes of 500,000 cycles. We compare the NI feature 
+vector to RCFlow ]^[ Flow with 200-cycle micro intervals. 
+We run our models on Network A ]^[ show average packet 
+latency in Fig. 6. The RCFlow ]^[ Flow vectors are more 
+accurate with respect to full-system simulation ]f[ Raytrace; 
+the locks used by Raytrace result in speciﬁc source-destination 
+sharing that NI does ]n[ capture. Also important is that the two 
+vectors did ]n[ negatively affect the accuracy ]f[ the Lu ]^[ 
+Swaptions; that is, RCFlow ]^[ Flow did ]n[ artiﬁcially create 
+congestion ]f[ benchmarks that do ]n[ exhibit that behaviour. 
+We are ]n[ only interested in average behaviour ]b[ in cap- 
+turing the highs ]^[ lows of network trafﬁc. Looking at packet 
+010203040lu continguousraytraceswaptionsAverage.Packet.LatencySimulationFSYSASW_NIASW_TICH_NICH_TI Figure 6: Micro-level sweep of feature vectors 
+Figure 8: NoC performance ]f[ different interval sizes. 
+Figure 7: Hellinger distance comparing packet latency distribu- 
+tions of synthetic simulations to full system. Lower is better. 
+latency distributions, we can see the number of packets that 
+achieve a wide range of latencies while in the network; this 
+distribution gives insight into the congestion the network has 
+experienced. The Hellinger Distance deﬁnes the similarity 
+between two distributions. The Hellinger Distance is deﬁned 
+in Equation 2, where P ]^[ Q are two discrete distributions (in 
+our case, packet latency distributions), ]^[ pi ]^[ qi are the 
+ith element of P ]^[ Q, respectively. 
+(cid:118)(cid:117)(cid:117)(cid:116) k 
+∑ 
+i=1 
+H(P,Q) = 
+1√ 
+2 
+√ 
+( 
+pi −√ 
+qi)2 
+(2) 
+Fig. 7 shows the Hellinger Distance ]f[ our synthetic trafﬁc 
+latency distributions compared to full-system simulation. The 
+lower the distance, the more similar the latency distributions 
+are. We can see that, although the error in average packet 
+latency is less ]f[ Raytrace with the Flow vector (Fig. 7), the 
+distribution of packet latencies is ]n[ as close to full system 
+as RCFlow. This is because the Flow vector causes more high 
+latency packets than full-system simulation, driving up the av- 
+erage packet latency with more congestion than necessary. In 
+all cases, RCFlow is more similar to the desired packet latency 
+distribution exhibited by full-system simulation, ]^[ its error 
+in average packet latency is comparable to Flow. Therefore, 
+we recommend RCFlow ]f[ micro clustering. 
+8.3. Time Interval Size 
+So far we have used 500,000 cycles per macro interval ]^[ 
+200 cycles per micro interval. This results in 500,000/200 = 
+2,500 micro intervals (observations) per macro interval, which 
+is low enough to keep hierarchical clustering time reasonable. 
+Now, we sweep the macro ]^[ micro interval sizes together ]s[ 
+that they always result in 2,500 observations. We use CH+NI 
+at the macro level, ]^[ compare the RCFlow ]^[ Flow feature 
+vectors at the micro level with various interval sizes. 
+Fig. 8 shows the average packet latency ]f[ SynFull trafﬁc 
+with different interval sizes. There is ]n[ a clear cut interval 
+size that is best ]f[ every application. RCFlow works best with 
+Feature Vector 
+Cluster Algorithm 
+Formal Method 
+Interval Size 
+Macro-Level Model 
+Node Injection 
+PAM 
+CH Index 
+500,000 
+Micro-Level Model 
+RCFlow 
+Hierarchical 
+L-Method 
+200 
+Table 5: Final SynFull Conﬁguration 
+a micro-interval size of 100 cycles ]f[ Raytrace, ]b[ performs 
+worse ]f[ Lu. Applications may exhibit different periodic 
+behaviour at the micro level depending on their algorithm ]v[ 
+an application may ]n[ have periodic behaviour at all. When 
+using large interval sizes of 500 cycles ]v[ more, we risk ]n[ 
+capturing bursty application trafﬁc because deviations in injec- 
+tion rate get averaged out across the interval. For applications 
+without bursty trafﬁc, large interval sizes work well because 
+the standard deviation of packets injected over time is low. 
+Choosing a universal interval size ]f[ all applications may 
+lead to slightly less accurate SynFull results ]f[ a subset of 
+benchmarks. In future work, we will investigate automatically 
+determining the interval size based on application trafﬁc. 
+8.4. Parameter Recommendations 
+Based on the results presented in this section, we make some 
+recommendations regarding model parameters used in SynFull. 
+Changing the feature vector at the macro level does ]n[ have a 
+signiﬁcant effect on network performance. However, in terms 
+of the clustering quality (recall TI vs. NI ]f[ Lu’s barriers), 
+using the NI feature vector with the CH index yields the best 
+results. For feature vectors at the micro level, it is important to 
+select a vector that adequately captures hotspots. Both RCFlow 
+]^[ Flow feature vectors show good results, however RCFlow 
+scales better with the number of nodes being simulated ]^[ 
+takes signiﬁcantly less time to model (typically, an RCFlow 
+model takes a few minutes to generate whereas a Flow model 
+can take over 20). Finally, the interval sizes of the macro 
+]^[ micro levels can greatly inﬂuence trafﬁc generated by 
+SynFull. For the rest of this paper, we will use 200 cycles at 
+the micro-level ]^[ 500,000 cycles at the macro-level. 
+9. Results 
+We evaluate SynFull with PARSEC ]^[ SPLASH-2 bench- 
+marks on the three network conﬁgurations introduced in Ta- 
+ble 3. We compare SynFull against full-system simulation ]^[ 
+trace simulation with packet dependences. For SynFull, we 
+use the recommendations in Sec. 8.4 summarized in Table 5. 
+Initially ]f[ both SynFull ]^[ trace simulations, the number of 
+cycles simulated is equal to the number of cycles required to 
+010203040lu continguousraytraceswaptionsAverage.Packet.LatencySimulationFSYSFlowRCFlowNI0.000.030.060.090.12lu continguousraytraceswaptionsHellinger.DistanceSimulationFlowRCFlowNode01020304050lu continguousraytraceswaptionsAverage.Packet.LatencySimulationFSYSFlow 100 250000Flow 200 500000Flow 500 1250000RCFlow 100 250000RCFlow 200 500000RCFlow 500 1250000 Figure 9: NoC performance. Bars that reach the top of the y-axis (e.g. FFT) are truncated ]s[ that other results may be seen more clearly. 
+Figure 10: Comparing similarity of packet latency distributions with full-system simulation 
+complete a full-system simulation of the benchmark with an 
+ideal network. Later, we explore early simulation termination 
+due to the Markov Chain reaching steady-state. 
+ets, independent packets continue to be injected according to 
+their timestamp. For most applications, especially FFT ]^[ 
+Radix, this has a signiﬁcant impact on NoC performance. 
+Incorporating packet dependences into trace simulation im- 
+proves the ﬁdelity of traditional trace-based simulation on 
+NoCs [18]. Traditionally, packets from a trace are injected 
+into the network with no regard ]f[ when they arrive at their 
+destinations. This is unrealistic due to the reactive nature of 
+some packets, as explained in Sec. 4. Dependence tracking 
+aims to capture the reactive nature of packets, ]^[ only inject 
+them when their requesting packet has arrived; the injection 
+of dependent packets is triggered by another packet’s arrival, 
+rather than the timestamp of the original trace. 
+We compare average packet latency across simulation 
+methodologies (Fig. 9). SynFull does very well on NoCs 
+A ]^[ C, with a geometric mean error of 8.9% ]^[ 9.5% 
+across all benchmarks. NoCs A ]^[ C are reasonably well- 
+provisioned; most applications do ]n[ experience signiﬁcant 
+contention on these networks. SynFull achieves accurate aver- 
+age packet latency both ]f[ applications that do ]n[ stress the 
+network (e.g. Cholesky Radix, Radiosity, Swaptions), ]^[ ap- 
+plications that do stress the network (e.g. Barnes, Bodytrack, 
+Fluidanimate). Network throughput has similar accuracy, with 
+geometric mean errors of 11.78% ]^[ 12.42% ]f[ NoCs A 
+]^[ C. Running an ideal network trace with dependences does 
+]n[ fair as well (geometric mean packet latency error of 18% 
+]^[ 12.8% ]f[ NoCs A ]^[ C) because dependences are ]n[ 
+tracked at the application level. While reactive packets are 
+throttled correctly waiting on the arrival of predecessor pack- 
+NoC B is the least provisioned of the 3 networks. As a 
+result, discrepancies in initiating packet injections are more 
+pronounced ]f[ both SynFull (16.1% packet latency error ]^[ 
+a 16.11% throughput error) ]^[ Traces (30.2% packet latency 
+error). Traces with dependences have signiﬁcant error even ]f[ 
+applications with low communication requirements (e.g. Ra- 
+diosity), while SynFull is capable of reproducing similar NoC 
+performance ]f[ benchmarks of this type. Some applications 
+running on NoC B have signiﬁcant error ]f[ both SynFull ]^[ 
+Traces. In particular, Radix ]^[ FFT (excluded from geoMean 
+calculations) run off the chart. These are special cases where 
+the application has macro-level intervals with very high injec- 
+tion rates that dwarf the injection rate across the rest of the 
+application. For example, running FFT on an ideal network, 
+there is a spike of several macro-intervals during the middle 
+of simulation with an order of magnitude larger injection rate 
+than other intervals. When running FFT in full-system simula- 
+tion on the considerably less provisioned NoC B, the spike is 
+longer ]b[ with a much lower (less than 50%) injection rate. 
+This is due to application-level dependences ]^[ the core’s re- 
+order buffer throttling instruction issue which in turn throttles 
+network injection. However, this is an extreme case ]^[ one 
+]n[ typically found in many of the applications we consider; 
+we are investigating techniques to adapt our model to these 
+scenarios. 
+We discussed the importance of packet latency distributions 
+Network ANetwork BNetwork C050100150BarnesBlackscholesBodytrackCholeskyFacesimFFTFluidanimatelu_contiguouslu_noncontiguousRadiosityRadixRaytraceSwaptionsVolrendWater_nsquaredWater_spatialgeoMeanBarnesBlackscholesBodytrackCholeskyFacesimFFTFluidanimatelu_contiguouslu_noncontiguousRadiosityRadixRaytraceSwaptionsVolrendWater_nsquaredWater_spatialgeoMeanBarnesBlackscholesBodytrackCholeskyFacesimFFTFluidanimatelu_contiguouslu_noncontiguousRadiosityRadixRaytraceSwaptionsVolrendWater_nsquaredWater_spatialgeoMeanAverage.Packet.LatencyFSYSTrace.DependencySynFullNetwork ANetwork BNetwork C0.00.20.40.60.8barnesblackscholesbodytrackcholeskyfacesimfftfluidanimatelu_cblu_ncbradiosityradixraytraceswaptionsvolrendwater_nsquaredwater_spatialbarnesblackscholesbodytrackcholeskyfacesimfftfluidanimatelu_cblu_ncbradiosityradixraytraceswaptionsvolrendwater_nsquaredwater_spatialbarnesblackscholesbodytrackcholeskyfacesimfftfluidanimatelu_cblu_ncbradiosityradixraytraceswaptionsvolrendwater_nsquaredwater_spatialHellinger.DistanceTrace.DependencySynFull Our simulations use 8-byte control packets ]^[ 72-byte data 
+packets. From Fig. 11 (right) we see that there is ]n[ much 
+difference in performance between an 8 ]^[ 16 byte channel 
+width. This is because a 16 byte channel width only improves 
+transmission of data packets, since 8 bytes is all that is needed 
+]f[ a control packet. As the channel width decreases, ]s[ too 
+does performance due to the increased serialization latency of 
+all packets. Buffer depth also affects performance. Smaller 
+buffers increases the latency of packets because ﬂits have to 
+wait until space becomes available before proceeding towards 
+their destination. In this case study, Fig. 11 (left) shows that 
+SynFull captures the relationship almost perfectly. 
+Overall, SynFull is a superior approach to trace dependences 
+in terms of ﬁdelity. SynFull is less prone to error across a va- 
+riety of applications ]^[ stresses an NoC in the same way 
+an application would in full-system simulation. SynFull also 
+captures the same trends found through full-system simulation. 
+High accuracy is an important attribute of SynFull; indepen- 
+dent of its accuracy relative to full-system simulation, SynFull 
+provides a meaningful collection of synthetic trafﬁc models 
+that capture a diverse range of application ]^[ cache coher- 
+ence behaviour making SynFull an invaluable tool in a NoC 
+designer’s arsenal. In Sec. 10, we explore the speed of SynFull 
+relative to full-system simulation, ]^[ how it can be further 
+accelerated using a special property of Markov Chains. 
+10. Exploiting Markov Chains ]f[ Speedup 
+Simply running SynFull ]f[ the same number of cycles as 
+full-system simulation results in signiﬁcant speed up – this 
+is because SynFull itself does ]n[ require much processing 
+time. The NoC simulator is the limiting factor, ]b[ is still sub- 
+stantially faster than a full-system simulator. We can further 
+improve the simulation time of SynFull by exploiting the sta- 
+tionary distribution of Markov Chains. An important property 
+of Markov Chains is that they can reach equilibrium. That is, 
+after inﬁnite time, the Markov Chain converges to a steady 
+state where the probability of being in a given state is constant. 
+In SynFull, when the macro-level Markov Chain has con- 
+verged to its equilibrium, we exit the simulation prematurely. 
+This implies that all trafﬁc phases have been simulated ]f[ an 
+adequate time, ]^[ our simulation has reached its steady state. 
+We cannot apply the same methodology to trace-based simu- 
+lation because it follows the same progression as full-system 
+simulation. If we exit a trace prematurely, we may miss out on 
+a large period of bursty communication ]v[ low communication, 
+both of which would give very different overall NoC perfor- 
+mance results. For example, if trace simulation of FFT were to 
+exit early, it would ]n[ reach the large spike of macro intervals, 
+leading NoC researchers to draw incorrect conclusions. 
+Fig. 12 shows the average speedup of traces, SynFull, ]^[ 
+with SynFull exiting simulation at steady-state (SynFull_SS). 
+The numbers are calculated by averaging the total runtime of 
+simulations across each of the three network conﬁgurations (A, 
+B, ]^[ C) ]f[ each application. Without steady-state, SynFull 
+Figure 11: Two case studies of packet latency trends across 
+all workloads 
+in Sec. 8.2, ]^[ use the Hellinger Distance to compare dis- 
+tributions to full-system simulation. Fig. 10 shows packet 
+latency distribution Hellinger Distance ]f[ SynFull ]^[ Traces 
+compared to full-system simulation. Consistent with the aver- 
+age packet latency error, SynFull modelling FFT (NoC B) has 
+a large Hellinger Distance which indicates that the resulting 
+distribution does ]n[ resemble the latency distribution seen in 
+full-system simulation. Outside of FFT, our technique fares 
+well ]f[ PARSEC ]^[ SPLASH-2 applications. Applications 
+with low communication requirements typically have the low- 
+est Hellinger Distance because both SynFull ]^[ full-system 
+simulation do ]n[ have a large tail in the distribution. For 
+applications with more bursty behaviour, Hellinger Distances 
+are greater ]b[ still comparable. 
+Traces that perform well in average packet latency on NoCs 
+A ]^[ C perform better than SynFull in Hellinger Distance 
+(e.g. Cholesky, Lu, Radiosity). These applications have low 
+communication requirements. As a result, the issue of in- 
+dependent messages ﬂooding the network is minimized on 
+a well-provisioned network, ]^[ the trace faithfully repro- 
+duces application trafﬁc. Due to the randomness associated 
+with Markov Chains, SynFull phases do ]n[ exactly coincide 
+the way a trace would. As a result, we have slightly higher 
+Hellinger Distances, ]b[ the results are still comparable. How- 
+ever, when comparing applications across all domains, SynFull 
+is the clear winner. 
+9.1. Capturing Trends 
+While absolute error values are useful, designers expect a 
+methodology to accurately capture the relationship between 
+networks designs. That is, if one network performs better than 
+another in full-system simulation, then the trend should be the 
+same when using SynFull. Here we demonstrate that the rela- 
+tionship is captured with more intuitive trends. Speciﬁcally, 
+we perform two separate sweeps on channel width ]^[ virtual 
+channel buffer size. In the ﬁrst sweep, we look at networks 
+with 16, 8, 4, ]^[ 2 byte channel widths. In the second sweep, 
+we look at networks with 16, 8, 4, ]^[ 2 ﬂits per buffer. Intu- 
+itively, larger channel widths ]^[ buffer sizes would lead to 
+better performance than smaller ones. Indeed, this is the case 
+as shown in Fig. 11; results are averaged across all workloads. 
+Packets are subdivided into ﬂits based on the channel width. 
+llllllllBuffer SizeChannel Width406080481216481216Number of Flits (Buffer Size) ]v[ Bytes (Channel Width)Average Packet LatencylFSYSSynFull Figure 12: The average speedup over full system simulation 
+]^[ Trace Dependency speed-ups are very similar since they 
+simulate the same number of cycles. The simulation bottleneck 
+here is the NoC itself ]^[ ]n[ the methodology ]f[ driving 
+trafﬁc. With steady state, we achieve substantial speedup; 
+speedup is as high as ∼150× ]^[ over 50× on average. 
+SynFull models two Markov Chains; however, we only exit 
+when steady state is reached at the macro level. We could 
+potentially end a macro-interval early by observing steady 
+state at the micro level. However, this would result in different 
+length macro intervals, which could negatively affect perfor- 
+mance accuracy. For example, imagine a low injection macro 
+interval reaches steady state very early while a high injection 
+macro interval does not. There would be a disproportionate 
+amount of high injection to low injection, negatively impact- 
+ing the accuracy of our model. By only observing steady state 
+at the macro-level Markov Chain, we achieve similar error 
+compared to running SynFull to completion; a full run of Syn- 
+Full has a geometric mean error of 8.9%, 16.1%, ]^[ 9.5% 
+across networks A, B, ]^[ C, while SynFull with steady state 
+yields errors of 10.5%, 17.1%, ]^[ 9.1%. 
+11. Related Work 
+Simulation acceleration. There has been considerable work 
+done to improve simulation time. FPGA-based acceleration 
+has been proposed [11, 43]. FIST implements an FPGA-based 
+network simulator that can simulate mesh networks with signif- 
+icant speed up over software simulation [32]. User-level simu- 
+lators exist as an alternative to full-system simulation ]f[ ex- 
+ploring thousands of cores [7, 29]. ZSim exploits parallel simu- 
+lation with out-of-order core models [37]. Sampling ]f[ micro- 
+architectural simulation has been widely explored [38, 39, 49] 
+]^[ has received renewed attention ]f[ multi-threaded ]^[ 
+multi-core processors [1, 8]. Zhang et al. leverage SimPoints 
+]f[ network trafﬁc ]s[ that they may speed up simulations ]f[ 
+parallel applications [51]. Hornet [33] focuses on parallelizing 
+a NoC simulation. Simulators such as Hornet [33], ZSim [37] 
+]^[ Slacksim [9] are great tools ]b[ designers should still 
+prune the design space to a few candidates prior to using such 
+detailed simulators; SynFull bridges the gap between existing 
+synthetic models ]^[ detailed full-system simulation. 
+Workload modelling. 
+Cloning can mimic workload be- 
+haviour by creating a reduced representation of the code [3, 
+21]. Much of this work focuses on cloning cache behaviour; 
+SynFull can be viewed as creating clones of cache coher- 
+ence behaviour to stimulate the network. Creation of syn- 
+thetic benchmarks ]f[ multi-threaded applications has been 
+explored [17]; this work generates instruction streams that exe- 
+cute in simulation ]v[ on real hardware. Our work differs as we 
+reproduce communication patterns ]^[ coherence behaviour 
+while abstracting away the processor ]^[ instruction execution. 
+MinneSPEC [24] provides reduced input sets that effectively 
+match the reference input ]f[ SPEC2000; rather than focus on 
+input set ]v[ instruction generation, we provide a reduced set 
+of trafﬁc based on the steady state of a Markov Chain. 
+Workload Design ]^[ Synthetic Trafﬁc. Synthetic work- 
+loads have been a focus of research long before NoCs 
+emerged [16, 42]. Statistical proﬁles can be used to gener- 
+ate synthetic traces ]f[ microarchitectural performance anal- 
+ysis [14]. Methods ]f[ synthetic trace generation at the chip 
+level have also been proposed [44, 45]; Soteriou et al. pro- 
+pose a 3-tuple statistical model that leverages self-similarity 
+to create bursty synthetic trafﬁc [41]. To our knowledge, there 
+has been no work done to synthetically generate network traf- 
+ﬁc that includes cache coherence. The beneﬁts of such an 
+approach allows us to remove the necessity ]f[ full-system 
+simulation while still allowing works that exploit coherence 
+trafﬁc. In addition, most statistical models do ]n[ compare 
+generated trafﬁc with full-system simulations, ignoring perfor- 
+mance metrics such as packet latency. 
+12. Conclusion 
+Full-system simulation is a long ]^[ tedious process; as a 
+result, it limits the range of designs that can be explored in a 
+tractable amount of time. We propose a novel methodology 
+to accelerate NoC simulation. SynFull enables the creation 
+of synthetic trafﬁc models that mimic the full range of cache 
+coherence behaviour ]^[ the resulting trafﬁc that is injected 
+into the network. We accurately capture spatial variation in 
+trafﬁc patterns within ]^[ across applications. Furthermore, 
+burstiness is captured in our model. These two attributes 
+lead to a model that produces accurate network trafﬁc. We 
+attain an overall accuracy of 10.5% across 3 conﬁgurations 
+]f[ all benchmarks relative to full-system simulation. Fur- 
+thermore, our technique uses the steady-state behaviour of 
+Markov chains to speedup simulation by up to 150×. SynFull 
+is a powerful ]^[ robust tool that will enable faster exploration 
+of a rich design space in NoCs. SynFull can be downloaded at 
+www.eecg.toronto.edu/~enright/downloads.html 
+Acknowledgements 
+This research was funded by a gift from Intel. Additional sup- 
+port was provided by the Canadian Foundation ]f[ Innovation 
+]^[ the Ontario Research Fund. We thank Mike Kishinevsky 
+]^[ Umit Ogras ]f[ their invaluable feedback ]^[ insight while 
+developing SynFull. We further thank Emily Blem, Andreas 
+Moshovos, Jason Anderson, the members of the Enright Jerger 
+research group ]^[ the anonymous reviewers ]f[ their thought- 
+ful ]^[ detailed feedback on this work. 
+050100150barnesblackscholesbodytrackcholeskyfacesimfftfluidanimatelu_cblu_ncbradiosityradixraytraceswaptionsvolrendwater_nsquaredwater_spatialSpeed UpSyntheticSynthetic_SSTrace.Dependency References 
+[1] E. Ardestani ]^[ J. Renau, “ESESC: A fast multicore simulator using 
+time-based sampling,” in Proc. of Intl. Symposium on High Perfor- 
+mance Computer Architecture, 2013. 
+[2] J. H. Bahn ]^[ N. Bagherzadeh, “A generic trafﬁc model ]f[ on-chip 
+interconnection networks,” Network on Chip Architectures, p. 22, 2008. 
+[3] G. Balakrishnan ]^[ Y. Solihin, “WEST: Cloning data cache behavior 
+using stochastic traces,” in Proc. of Intl. Symposium High Performance 
+Computer Architecture, 2012. 
+[4] R. Bellman, Adaptive Control Processes: A Guided Tour, ser. A Rand 
+Corporation Research Study Series. Princeton University Press, 1961. 
+[5] C. Bienia, “Benchmarking modern multiprocessors,” Ph.D. dissertation, 
+Princeton University, January 2011. 
+[6] T. Cali´nski ]^[ J. Harabasz, “A dendrite method ]f[ cluster analysis,” 
+Comm in Statistics-theory ]^[ Methods, vol. 3, no. 1, pp. 1–27, 1974. 
+[7] T. E. Carlson, W. Heirman, ]^[ L. Eeckhout, “Sniper: exploring the 
+level of abstraction ]f[ scalable ]^[ accurate parallel multi-core simu- 
+lation,” in Proc of Supercomputing (SC), 2011, p. 52. 
+[8] T. E. Carlson, W. Heirman, ]^[ L. Eeckhout, “Sampled simulation of 
+multi-threaded applications,” in Intl. Symp. Performance Analysis of 
+Systems ]^[ Software, Apr. 2013. 
+[9] J. Chen, L. K. Dabbiru, D. Wong, M. Annavaram, ]^[ M. Dubois, 
+“Adaptive ]^[ speculative slack simulations of CMPs on CMPs,” in 
+Proc. of Intl. Symposium on Microarchitecture, 2010. 
+[10] X. E. Chen ]^[ T. M. Aamodt, “Hybrid analytical modeling of pend- 
+ing cache hits, data prefetching ]^[ MSHRs,” ACM Transactions on 
+Architecture ]^[ Code Optimization, vol. 8, no. 3, October 2011. 
+[11] D. Chiou, D. Sunwoo, J. Kim, N. A. Patil, W. Reinhart, D. E. Johnson, 
+J. Keefe, ]^[ H. Angepat, “FPGA-accelerated simulation technologies 
+(fast): Fast, full-system, cycle-accurate simulators,” in Proc of the 
+International Symposium on Microarchitecture, 2007, pp. 249–261. 
+[12] W. J. Dally ]^[ B. P. Towles, Principles ]^[ practices of interconnec- 
+tion networks. Morgan Kaufmann, 2003. 
+[13] R. Das, O. Mutlu, T. Moscibroda, ]^[ C. R. Das, “Aergia: exploting 
+packet latency slack in on-chip networks,” in Proc. of Intl. Symposium 
+on Computer Architecture, 2010. 
+[14] L. Eeckhout, K. De Bosschere, ]^[ H. Neefs, “Performance analy- 
+sis through synthetic trace generation,” in Intl. Symp. Performance 
+Analysis of Systems ]^[ Software, 2000, pp. 1–6. 
+[15] M. Ferdman, P. Lotﬁ-Kamran, K. Balet, ]^[ B. Falsaﬁ, “Cuckoo di- 
+rectory: A scalable directory ]f[ many-core systems,” in Intl Symp on 
+High Performance Computer Architecture, 2011, pp. 169–180. 
+[16] D. Ferrari, On the foundations of artiﬁcial workload design. ACM, 
+1984, vol. 12, no. 3. 
+[17] K. Ganesan ]^[ L. John, “Automatic generation of miniaturized syn- 
+thetic proxies ]f[ target applications to efﬁciently design multicore 
+processors,” IEEE Trans. on Computers, vol. 99, 2013. 
+[18] J. Hestness, B. Grot, ]^[ S. W. Keckler, “Netrace: dependency-driven 
+trace-based network-on-chip simulation,” in Proc. of the 3rd Interna- 
+tional Workshop on Network on Chip Architectures, 2010, pp. 31–36. 
+[19] N. Jiang, D. U. Becker, G. Michelogiannakis, J. Balfour, B. Towles, 
+J. Kim, ]^[ W. J. Dally, “A detailed ]^[ ﬂexible cycle-accurate network- 
+on-chip simulator,” in Intl. Symp. Performance Analysis of Systems ]^[ 
+Software, 2013. 
+[20] Y. Jin, E. J. Kim, ]^[ T. Pinkston, “Communication-aware globally- 
+coordinated on-chip networks,” IEEE Transactions on Parallel ]^[ 
+Distributed Systems, vol. 23, no. 2, pp. 242 –254, Feb. 2012. 
+[21] A. Joshi, L. Eeckhout, R. Bell, ]^[ L. John, “Cloning: A technique 
+]f[ disseminating proprietary applications at benchmarks,” in Proc. of 
+IEEE Intl Symposium Workload Characterization, 2006. 
+[22] T. Karkhanis ]^[ J. E. Smith, “A ﬁrst-order superscalar processor 
+model,” in Proc of the Intl Symp on Computer Architecture, 2004. 
+[23] J. Kim, J. Balfour, ]^[ W. Dally, “Flattened Butterﬂy Topology ]f[ 
+On-Chip Networks,” in Proc of the International Symposium on Mi- 
+croarchitecture, 2007, pp. 172–182. 
+[24] A. KleinOsowski ]^[ D. J. Lilja, “MinneSPEC: A new SPEC bench- 
+mark workload ]f[ simulation-based computer architecture research,” 
+Computer Architecture Letters, vol. 1, June 2002. 
+[25] T. Krishna, L.-S. Peh, B. Beckmann, ]^[ S. K. Reinhardt, “Towards 
+the ideal on-chip fabric ]f[ 1-to-many ]^[ many-to-1 communication,” 
+in Proc. of the International Symposium on Microarchitecture, 2011. 
+[26] M. Lodde, J. Flich, ]^[ M. E. Acacio, “Heterogeneous NoC design ]f[ 
+efﬁcient broadcast-based coherence protocol support,” in International 
+Symposium on Networks on Chip, 2012. 
+[27] S. Ma, N. Enright Jerger, ]^[ Z. Wang, “Supporting efﬁcient collec- 
+tive communication in NoCs,” in Proc of Intl. Symposium on High 
+Performance Computer Architecture, 2012, pp. 165–177. 
+[28] M. Martin, M. Hill, ]^[ D. Sorin, “Why on-chip cache coherence is 
+here to stay,” Comm of the ACM, vol. 55, no. 7, pp. 78–89, 2012. 
+[29] J. Miller, H. Kasture, G. Kurian, C. Gruenwald, N. Beckmann, C. Celio, 
+J. Eastep, ]^[ A. Agarwal, “Graphite: A distributed parallel simulator 
+]f[ multicores,” in Proc. of Intl. Symposium on High Performance 
+Computer Architecture, Jan. 2010, pp. 1 –12. 
+[30] A. Mishra, O. Mutlu, ]^[ C. Das, “A heterogeneous multiple network- 
+on-chip design: An application-aware approach,” in Proc. of the Design 
+Automation Conference, 2013. 
+[31] N. Neelakantam, C. Blundell, J. Devietti, M. M. Martin, ]^[ C. Zilles, 
+“FeS2: A Full-system Execution-driven Simulator ]f[ x86,” Poster 
+presented at ASPLOS, 2008. 
+[32] M. Papamichael, J. Hoe, ]^[ O. Mutlu, “FIST: A fast, lightweight, 
+FPGA-friendly packet latency estimator ]f[ NoC modeling in full- 
+system simulations,” in Intl Symp on Networks on Chip, 2011. 
+[33] P. Ren, M. Lis, M. H. Cho, K. S. Shim, C. W. Fletcher, O. Khan, 
+N. Zheng, ]^[ S. Devadas, “HORNET: A cycle-level multicore simula- 
+tor,” IEEE Trans. Comput-Aided Design Integr. Circuits Syst., vol. 31, 
+no. 6, 2012. 
+[34] A. Reynolds, G. Richards, B. De La Iglesia, ]^[ V. Rayward-Smith, 
+“Clustering rules: a comparison of partitioning ]^[ hierarchical cluster- 
+ing algorithms,” Journal of Mathematical Modelling ]^[ Algorithms, 
+vol. 5, no. 4, pp. 475–504, 2006. 
+[35] P. J. Rousseeuw, “Silhouettes: a graphical aid to the interpretation ]^[ 
+validation of cluster analysis,” Journal of computational ]^[ applied 
+mathematics, vol. 20, pp. 53–65, 1987. 
+[36] S. Salvador ]^[ P. Chan, “Determining the number of clusters/segments 
+in hierarchical clustering/segmentation algorithms,” in Int. Conf. on 
+Tools with Artiﬁcial Intelligence, 2004, pp. 576–584. 
+[37] D. Sanchez ]^[ C. Kozyrakis, “ZSim: Fast ]^[ accurate microarchitec- 
+tural simulation of thousand-core systems,” in Proc. of the International 
+Symposium on Computer Architecture, 2013. 
+[38] T. Sherwood, E. Perelman, ]^[ B. Calder, “Basic block distribution 
+analysis to ﬁnd periodic behavior ]^[ simulation points in applications,” 
+in Parallel Architecture ]^[ Compilation Techniques, 2001, pp. 3–14. 
+[39] T. Sherwood, E. Perelman, G. Hamerly, ]^[ B. Calder, “Automatically 
+characterizing large scale program behavior,” in Proc. of Architecture 
+Support ]f[ Programming Languages ]^[ Operating Systems, 2002, 
+pp. 45–57. 
+[40] D. J. Sorin, M. D. Hill, ]^[ D. A. Wood, “A primer on memory consis- 
+tency ]^[ cache coherence,” Synthesis Lectures on Computer Architec- 
+ture, vol. 6, no. 3, pp. 1–212, 2011. 
+[41] V. Soteriou, H. Wang, ]^[ L.-S. Peh, “A statistical trafﬁc model ]f[ 
+on-chip interconnection networks,” in MASCOTS, 2006, pp. 104–116. 
+[42] K. Sreenivasan ]^[ A. Kleinman, “On the construction of a repre- 
+sentative synthetic workload,” Comm of the ACM, vol. 17, no. 3, pp. 
+127–133, 1974. 
+[43] Z. Tan, A. Waterman, H. Cook, S. Bird, K. Asanovic, ]^[ D. Patterson, 
+“A case ]f[ FAME: FPGA architecture model execution,” in Proc. of 
+Intl Symposium on Computer Architecture, 2010. 
+[44] L. Tedesco, A. Mello, L. Giacomet, N. Calazans, ]^[ F. Moraes, “Ap- 
+plication driven trafﬁc modeling ]f[ NoCs,” in Proc of the 19th Symp 
+on Integrated Circuits ]^[ Systems Design. ACM, 2006, pp. 62–67. 
+[45] G. V. Varatkar ]^[ R. Marculescu, “On-chip trafﬁc modeling ]^[ 
+synthesis ]f[ MPEG-2 video applications,” IEEE Trans on Very Large 
+Scale Integration Systems, vol. 12, no. 1, pp. 108–119, 2004. 
+[46] T. Velmurugan ]^[ T. Santhanam, “Computational complexity between 
+k-means ]^[ k-medoids clustering algorithms ]f[ normal ]^[ uniform 
+distributions of data points,” Journal of Computer Science, vol. 6, no. 3, 
+p. 363, 2010. 
+[47] J. H. Ward Jr, “Hierarchical grouping to optimize an objective function,” 
+J. Amer. Statist. Assoc., vol. 58, no. 301, pp. 236–244, 1963. 
+[48] S. C. Woo, M. Ohara, E. Torrie, J. P. Singh, ]^[ A. Gupta, “The 
+SPLASH-2 programs: Characterization ]^[ methodological considera- 
+tions,” in Intl Symp on Computer Architecture, 1995, pp. 24–36. 
+[49] R. E. Wunderlich, T. F. Wenisch, B. Falsaﬁ, ]^[ J. C. Hoe, “SMARTS: 
+accelerating microarchitecture simulation via rigorous statistical sam- 
+pling,” in Proc. of Intl Symposium on Computer Architecture, 2003. 
+[50] J. Zebchuk, V. Srinivasan, M. K. Qureshi, ]^[ A. Moshovos, “A tagless 
+coherence directory,” in Intl Symp on Microarchitecture, 2009. 
+[51] Y. Zhang, B. Ozisikyilmaz, G. Memik, J. Kim, ]^[ A. Choudhary, 
+“Analyzing the impact of on-chip network trafﬁc on program phases ]f[ 
+CMPs,” in Intl Symp on Performance Analysis of Systems ]^[ Software, 
+2009, pp. 218–226. 

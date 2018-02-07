@@ -47,5 +47,7 @@ class compare:
 				_ingredients_all[_label]=_ingredients_all[_label].replace("compare", "%%cmp%%")
 
 		print("")
+		_ingredients.update(_ingredients_all, _ingredient_mapping)
+
 
 		return ["%%cmp%%"]

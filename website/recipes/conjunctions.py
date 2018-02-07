@@ -37,5 +37,6 @@ class conjunctions:
 				_ingredients_all[_label]="]s["
 
 		print("")	
+		_ingredients.update(_ingredients_all, _ingredient_mapping)
 
 		return ["]^[", "]v[", "]b[", "]f[", "]n[", "]y[", "]s["]

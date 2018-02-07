@@ -6,7 +6,6 @@ Developed by: Nicholas Giamblanco
 function upload_file() {
 
 	var form_data = new FormData($('#upload-file-form')[0]);
-	console.log(form_data)
 	$.ajax({
 	    type: "POST",
 	    url: "/uploads",
@@ -14,9 +13,9 @@ function upload_file() {
         contentType: false,
         cache: false,
         processData: false,
-        async: false,
+        async: true,
 	    success: function(ret) {
-
+	    	console.log(ret["res"])
 	    },
 	    error: function(request, status, err) {
 	        console.log(status);

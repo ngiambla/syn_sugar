@@ -282,8 +282,6 @@ class garnish:
 				s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
 			s1=s1 + "["+str(_label[1]) +"]" +"\n"
 			s2.append(s1)
-		print(bcolors.OKGREEN + s1 + bcolors.ENDC)
-
 		return s2
 
 	def final_touches(self, _ingredients, special_items):

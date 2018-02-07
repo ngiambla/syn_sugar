@@ -1,14 +1,14 @@
 import os
 import sys
 
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from werkzeug.utils import secure_filename
 
 import syn_sugar
-
+import pdf2txt as pdf2txt
 
 UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf'])
 
 app = Flask(__name__)
 app.secret_key = '22GHyyUTThGSDSX'
@@ -31,9 +31,15 @@ def uploads():
 		try:
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], "__1_"+filename))
-			syn_sugar.bake()
-			os.rename("uploads/__1_"+filename, "uploads/__old_"+filename)
-			return "0"
+			if "pdf" == filename.rsplit('.', 1)[1].lower():
+				pdf2txt.convert("uploads/__1_"+filename)
+				print("About to remove...")
+				os.remove("uploads/__1_"+filename)
+				filename="__1_"+filename.rsplit('.', 1)[0]+".txt"
+				print("Filename: " + filename)
+			summary=syn_sugar.bake()
+			os.rename("uploads/"+filename, "uploads/__old_"+filename[3:])
+			return jsonify(res=summary)
 		except Exception as e:
 			print(e)
 			return "3"

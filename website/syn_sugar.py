@@ -75,11 +75,11 @@ def bake():
 	os.chdir("uploads/")
 	what_to_cook=""
 	for file in glob.glob("*"):
-		if "__1_" == file[:3]:
+		if "__1_" == file[:4]:
 			what_to_cook = file
 	if what_to_cook == "":
 		return "ERR"
-
+	print(what_to_cook)
 	os.chdir("../")
 	start = time.time()
 

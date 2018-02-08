@@ -9,7 +9,7 @@ text_decode = text_decode.split("");
 var search_query = "";
 var summary=[]
 
-var font_size = 50;
+var font_size = 45;
 var columns;
 
 //an array of drops - one per column
@@ -31,6 +31,36 @@ function open_upload_modal() {
 function close_upload_modal() {
 	$("#file_modal").fadeOut('fast', function() {
 
+	});
+}
+
+/*
+filedrag.js - Asynchronous File Upload
+Developed by: Nicholas Giamblanco
+*/
+
+function upload_file() {
+
+	var form_data = new FormData($('#upload-file-form')[0]);
+	draw_state = 3;
+	$.ajax({
+	    type: "POST",
+	    url: "/uploads",
+	    data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        async: true,
+	    success: function(ret) {
+	    	console.log(ret["res"])
+	    	summary=ret["res"];
+	    	draw_state = 2;
+	    },
+	    error: function(request, status, err) {
+	        console.log(status);
+	        console.log(err);
+	        draw_state = 0;
+	    }
 	});
 }
 
@@ -138,7 +168,7 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 
 		case 2:
 			ctx.font = font_size + "px monospace";
-			xoffset = font_size*window.innerWidth*0.04;
+			xoffset = font_size*window.innerWidth*0.02;
 			yoffset = font_size*10;
 			if(rotation == 29) {
 				ctx.fillStyle = "#FFF";

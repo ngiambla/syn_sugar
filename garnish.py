@@ -274,23 +274,31 @@ class garnish:
 		s_summary_map = sorted(l_summary_map.items(), key=operator.itemgetter(0))			
 		
 		s1=""
+		s2=""
 		for _label in s_summary_map:
 			label=_label[0]
 			s1=s1 + "[+"+str(label)+"]  "
 			for i in range (label, sentence_length_map[label]+label):
-				s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
+				s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]
+				s2=s2+" "+_ingredients.get_unprepped_ingredients()[i]						
 			s1=s1 + "["+str(_label[1]) +"]" +"\n"
+			s2=s2 +"\n"
 		print(bcolors.OKGREEN + s1 + bcolors.ENDC)
 
-		return s1
+		return [s1, s2]
 
-	def final_touches(self, _ingredients, special_items):
+	def final_touches(self, _ingredients, special_items, file_t=""):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)
-		summary = self.check_quality(_ingredients, special_items)
-
+		summaries = self.check_quality(_ingredients, special_items)
+		summary = summaries[0]
 
 		_ingredients_all		=	_ingredients.get_ingredients()
 		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
+
+		if file_t != "":
+			with open(file_t, "w+") as f2:
+				f2.write(summaries[1])
+
 
 		with open("post_bakes/result.baked", "w+") as f:
 			title="~$[ Syntactic Sugar ]$~"\

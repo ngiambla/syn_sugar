@@ -13,6 +13,7 @@ from subprocess import call
 from bcolors import bcolors
 from parser import parser
 from garnish import garnish
+from pyrouge import Rouge155
 
 
 startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n"\
@@ -22,6 +23,7 @@ startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n"\
 
 help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "| 'bake' | 'b' --> extract information from text.\n"\
+		 "|        +----> [-t] conducts a test. \n"\
 		 "| 'help' | 'h' --> displays this. \n"\
 		 "| 'info' | 'i' --> inspects a data file "+ bcolors.OKCYAN +"[opens vim]."+ bcolors.ENDC +"\n"\
 		 "| 'ls'   | 'l' --> lists all text files.\n"\
@@ -33,6 +35,12 @@ help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 
 EDITOR = os.environ.get('EDITOR','vim') #that easy!
 
+
+# r = Rouge155()
+# r.system_dir = 'data/test/res'
+# r.model_dir = 'data/test/summaries'
+# r.system_filename_pattern = '(\d+)'
+# r.model_filename_pattern = '#ID#'
 
 def load_modules_from_path(path):
 	#Import all modules from the given directory
@@ -82,7 +90,7 @@ def disp_help():
 	print(help_msg)
 
 ### Main Functionality...
-def bake():
+def bake(file_ext=""):
 	print("Getting Recipes: ")
 	classes=import_recipes();
 
@@ -91,35 +99,67 @@ def bake():
 	
 
 	print("\nChecking what we can cook: ")
-	ls()
+	test_ghost=ls(file_ext)
 
-	print("\n"+bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
-	os.chdir("data/")
-	what_to_cook = raw_input("$ ")
-	what_to_cook = what_to_cook.replace("../", "")
-	os.chdir("../")
-	start = time.time()
+	if file_ext == "":
+		print("\n"+bcolors.FAIL+"Select a file to analyze:"+bcolors.ENDC)
+		os.chdir("data/")
+		what_to_cook = raw_input("$ ")
+		what_to_cook = what_to_cook.replace("../", "")
+		what_to_cook = what_to_cook.replace("/", "")
+		os.chdir("../")
+		start = time.time()
 
-	_ingredients=parser().collect_ingredients("data/"+what_to_cook)
+		_ingredients=parser().collect_ingredients("data/"+what_to_cook)
 
-	if _ingredients == -1:
-		return
+		if _ingredients == -1:
+			return
 
-	print(bcolors.BLUEBACK+"~ Baking. Please wait."+bcolors.ENDBACK)
+		print(bcolors.BLUEBACK+"~ Baking. Please wait."+bcolors.ENDBACK)
 
-	special_items=[]
-	for rank in sorted(_classes.iterkeys()):
-		_class=_classes[rank]
-		print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
-		special_items = special_items + _class().bake(_ingredients)		
+		special_items=[]
+		for rank in sorted(_classes.iterkeys()):
+			_class=_classes[rank]
+			print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
+			special_items = special_items + _class().bake(_ingredients)		
 
-	print(bcolors.ENDC)
+		print(bcolors.ENDC)
 
-	garnish().final_touches(_ingredients, special_items)
+		garnish().final_touches(_ingredients, special_items)
 
-	end = time.time()
+		end = time.time()
 
-	print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
+		print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
+
+	else:
+		for ghost in test_ghost:
+
+			start = time.time()
+
+			if ghost != "data/tests/res" and ghost != "data/tests/summaries":
+
+				_ingredients=parser().collect_ingredients(ghost)
+
+				if _ingredients == -1:
+					return
+
+				special_items=[]
+				for rank in sorted(_classes.iterkeys()):
+					_class=_classes[rank]
+					print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
+					special_items = special_items + _class().bake(_ingredients)				
+				
+				garnish().final_touches(_ingredients, special_items, ghost.replace("data/tests/", "data/tests/res/"))
+				
+				end = time.time()
+				print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
+
+
+			# output = r.convert_and_evaluate()
+			# print(output)
+			# output_dict = r.output_to_dict(output)
+			
+			# raw_input("Continue? >>")
 
 def info():
 
@@ -143,10 +183,11 @@ def info():
 		print(bcolors.FAIL+ "Aborting." + bcolors.ENDC)
 
 
-def ls():
+def ls(file_ext=""):
 
-	for file in glob.glob("data/*"):
-		print(bcolors.OKCYAN + "[-] " + file.replace("data/", "",1) +bcolors.ENDC)
+	for file in glob.glob("data/" +file_ext + "*"):
+		print(bcolors.OKCYAN + "[-] " + file.replace("data/"+file_ext, "",1) +bcolors.ENDC)
+	return glob.glob("data/" +file_ext + "*")
 
 def fill_commands():
 	commands={
@@ -190,9 +231,16 @@ def main():
 	commands=fill_commands();
 	while running:
 		command=raw_input("$ ").lower()
-		if command in commands:
-			commands[command]()
-		elif command != "":
+		command=command.split()
+		if command:
+			if command[0] in commands:
+				if len(command) == 1 :
+					commands[command[0]]()
+				if len(command) ==2:
+					if command[1] == "-t":
+						commands[command[0]]("tests/")
+
+		elif command != []:
 			print(bcolors.FAIL+ "Unknown Command: "+str(command) + bcolors.ENDC)
 		
 

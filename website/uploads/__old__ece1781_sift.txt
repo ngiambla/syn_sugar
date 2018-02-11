@@ -16,13 +16,13 @@ ishita.ray@mail.utoronto.ca
 
 I. INTRODUCTION
 
-With today’s heavy reliance on electronic devices, quick
-and efﬁcient performance is desirable. However, the unprece-
+With todays heavy reliance on electronic devices, quick
+and efcient performance is desirable. However, the unprece-
 dented amount of data available today has negatively impacted
 performance. Hence,
 it is worthwhile to investigate accel-
 eration techniques where some proportion of an algorithm
-can be ofﬂoaded to hardware. A common technique is to
+can be ofoaded to hardware. A common technique is to
 utilize High-Level Synthesis (HLS). HLS tools can produce a
 hardware based implementation of an algorithm from a high-
 level description. One such tool is LegUp [1], where a high-
@@ -42,11 +42,11 @@ based correctness.
 
 A. Signatures
 
-Signatures, which are unique identiﬁcation mechanisms,
-permit veriﬁcation of the origin/integrity of some data [2].
+Signatures, which are unique identication mechanisms,
+permit verication of the origin/integrity of some data [2].
 A contrived example would be where one signed-off on a
 document or transaction. The user that signed the document
-cannot repudiate this action as it uniquely identiﬁed them.
+cannot repudiate this action as it uniquely identied them.
 However, signatures need not be limited to individuals or
 computers. It has been demonstrated that signatures can be
 produced for logical descriptions and mathematical functions
@@ -84,8 +84,8 @@ temperature excitations [8] and (2) the hardware may have
 latent logic defects [9]. However, due to the usage of HLS,
 software is transformed into this hardware description. Due
 to this software/hardware co-design, checking for correctness
-of the entire co-design appends complexity. A signiﬁcant
-challenge faced with our method is an efﬁcient implementation
+of the entire co-design appends complexity. A signicant
+challenge faced with our method is an efcient implementation
 of signature based fault tolerance. With any additional logic
 to be synthesized with a hardware description, considerations
 of latency, power, and area in the produced circuit should be
@@ -93,85 +93,85 @@ investigated.
 
 III. EXPECTED STAGES FOR PROJECT DEVELOPMENT
 
-Our team has identiﬁed the following stages to complete
+Our team has identied the following stages to complete
 
 this project:
 
-• Review techniques that can identify correctness within
+ Review techniques that can identify correctness within
 
 High Level Languages (i.e [10])
 
-• Researching different signature-based fault detection sys-
+ Researching different signature-based fault detection sys-
 
-• Identifying signatures of high level descriptions automat-
+ Identifying signatures of high level descriptions automat-
 
 tems
 
 ically
 
-• Adding fault tolerance from discover signatures
-• Researching and providing evaluation techniques for this
+ Adding fault tolerance from discover signatures
+ Researching and providing evaluation techniques for this
 
 novel fault tolerance method
 
-• Perform a review of the LegUp system (i.e. understand
+ Perform a review of the LegUp system (i.e. understand
 
-LLVM’s infrastructure [11])
+LLVMs infrastructure [11])
 
-• Implementation & Evaluation of SiFT with LegUp
+ Implementation & Evaluation of SiFT with LegUp
 
 REFERENCES
 
 [1] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. An-
-derson, S. Brown, and T. Czajkowski, “Legup: high-level synthesis
-for fpga-based processor/accelerator systems,” in Proceedings of the
+derson, S. Brown, and T. Czajkowski, Legup: high-level synthesis
+for fpga-based processor/accelerator systems, in Proceedings of the
 19th ACM/SIGDA international symposium on Field programmable gate
-arrays, pp. 33–36, ACM, 2011.
+arrays, pp. 3336, ACM, 2011.
 
 [2] M. Atreya and B. Hammond, Digital signatures. Osborne/McGraw-Hill,
 
 2002.
 
-[3] J. E. Smith, “Measures of the effectiveness of fault signature analysis,”
+[3] J. E. Smith, Measures of the effectiveness of fault signature analysis,
 
-IEEE Transactions on Computers, vol. 29, no. 6, pp. 510–514, 1980.
+IEEE Transactions on Computers, vol. 29, no. 6, pp. 510514, 1980.
 
-[4] F. Corsi, M. Chiarantoni, R. Lorusso, and C. Marzocca, “A fault
-signature approach to analog devices testing,” in Proceedings ETC 93
-Third European Test Conference, pp. 116–121, Apr 1993.
+[4] F. Corsi, M. Chiarantoni, R. Lorusso, and C. Marzocca, A fault
+signature approach to analog devices testing, in Proceedings ETC 93
+Third European Test Conference, pp. 116121, Apr 1993.
 
-[5] N. Oh, P. P. Shirvani, and E. J. McCluskey, “Control-ﬂow checking by
-software signatures,” IEEE transactions on Reliability, vol. 51, no. 1,
-pp. 111–122, 2002.
+[5] N. Oh, P. P. Shirvani, and E. J. McCluskey, Control-ow checking by
+software signatures, IEEE transactions on Reliability, vol. 51, no. 1,
+pp. 111122, 2002.
 
-[6] S. Tosun, N. Mansouri, E. Arvas, M. Kandemir, and Y. Xie, “Reliability-
-centric high-level synthesis,” in Proceedings of
+[6] S. Tosun, N. Mansouri, E. Arvas, M. Kandemir, and Y. Xie, Reliability-
+centric high-level synthesis, in Proceedings of
 the conference on
-Design, Automation and Test in Europe-Volume 2, pp. 1258–1263, IEEE
+Design, Automation and Test in Europe-Volume 2, pp. 12581263, IEEE
 Computer Society, 2005.
 
-[7] G. Lee, D. Agiakatsikas, T. Wu, E. Cetin, and O. Diessel, “Tlegup: A
-tmr code generation tool for sram-based fpga applications using hls,” in
+[7] G. Lee, D. Agiakatsikas, T. Wu, E. Cetin, and O. Diessel, Tlegup: A
+tmr code generation tool for sram-based fpga applications using hls, in
 Field-Programmable Custom Computing Machines (FCCM), 2017 IEEE
-25th Annual International Symposium on, pp. 129–132, IEEE, 2017.
+25th Annual International Symposium on, pp. 129132, IEEE, 2017.
 
-[8] E. Normand, “Single event upset at ground level,” IEEE transactions on
+[8] E. Normand, Single event upset at ground level, IEEE transactions on
 
-Nuclear Science, vol. 43, no. 6, pp. 2742–2750, 1996.
+Nuclear Science, vol. 43, no. 6, pp. 27422750, 1996.
 
 [9] M. L. Li, P. Ramachandran, S. K. Sahoo, S. V. Adve, V. S. Adve, and
-Y. Zhou, “Trace-based microarchitecture-level diagnosis of permanent
-hardware faults,” in 2008 IEEE International Conference on Dependable
-Systems and Networks With FTCS and DCC (DSN), pp. 22–31, June
+Y. Zhou, Trace-based microarchitecture-level diagnosis of permanent
+hardware faults, in 2008 IEEE International Conference on Dependable
+Systems and Networks With FTCS and DCC (DSN), pp. 2231, June
 2008.
 
-[10] D. Engler, D. Y. Chen, S. Hallem, A. Chou, and B. Chelf, “Bugs as
+[10] D. Engler, D. Y. Chen, S. Hallem, A. Chou, and B. Chelf, Bugs as
 deviant behavior: A general approach to inferring errors in systems
-code,” in ACM SIGOPS Operating Systems Review, vol. 35, pp. 57–
+code, in ACM SIGOPS Operating Systems Review, vol. 35, pp. 57
 72, ACM, 2001.
 
-[11] C. Lattner and V. Adve, “Llvm: A compilation framework for lifelong
-program analysis & transformation,” in Proceedings of the international
+[11] C. Lattner and V. Adve, Llvm: A compilation framework for lifelong
+program analysis & transformation, in Proceedings of the international
 symposium on Code generation and optimization: feedback-directed and
 runtime optimization, p. 75, IEEE Computer Society, 2004.
 

@@ -18,7 +18,7 @@ February 7, 2018
 
 3.1 The Architecture of M2M Networks . . . . . . . . . . . . . . .
 
-3.2 M2M: Eﬃciency . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.2 M2M: Eciency . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 2
 
@@ -38,7 +38,7 @@ February 7, 2018
 
 4.1 DoS, and DDoS . . . . . . . . . . . . . . . . . . . . . . . . . . 13
 
-4.2 Software Deﬁned DDoS Protection . . . . . . . . . . . . . . . 18
+4.2 Software Dened DDoS Protection . . . . . . . . . . . . . . . 18
 
 4.3 DDoS Detection in M2M Networks
 
@@ -76,7 +76,7 @@ With the rapid advancement of communication technology, inter-device com-
 
 munication has become feasible and easily implementable. It is becoming a
 
-standardized aspect of electronic systems. Speciﬁcally, devices such as mobile
+standardized aspect of electronic systems. Specically, devices such as mobile
 
 electronics, household appliances, vehicles, and other electronic devices are
 
@@ -102,7 +102,7 @@ technology. That is, it is interesting to understand how mobile devices dis-
 
 cover and initiate conversation with another device, or base station (BS).
 
-Speciﬁcally in the case of LTE, it is interesting to view how the UE (mo-
+Specically in the case of LTE, it is interesting to view how the UE (mo-
 
 bile device) initiates communication with an eNodeB (base station). The
 
@@ -122,7 +122,7 @@ life for the average individual has increased. From being able to call to
 
 virtually any place on earth, to checking e-mails on the go, to added safety
 
-beneﬁts- wireless communication systems are shaping the way of the future,
+benets- wireless communication systems are shaping the way of the future,
 
 for humans and technology. A wireless communication system should support
 
@@ -138,9 +138,9 @@ the following: [16]
 
 The most interesting communication path is device to device. Several bene-
 
-ﬁts exist through this emerging technology. The cheap manufacturing cost of
+ts exist through this emerging technology. The cheap manufacturing cost of
 
-CPU’s and their decreasing product size have allowed for household devices,
+CPUs and their decreasing product size have allowed for household devices,
 
 cellular devices, and various other machines to gain incredible processing
 
@@ -148,7 +148,7 @@ power. This allows machines to process communication between users, and
 
 devices. Since this is only becoming possible in recent times, we will be focus-
 
-ing our eﬀorts on Device to Device (or Machine to Machine communication).
+ing our eorts on Device to Device (or Machine to Machine communication).
 
 In order to understand the fundamentals of Machine to Machine commu-
 
@@ -204,7 +204,7 @@ base station). Immediately, Jennifer signals to Greg for help, as she adjusts
 
 to the tides of life.
 
-Should Jennifer ’blindly’ trust Greg? How did Jennifer know that Greg
+Should Jennifer blindly trust Greg? How did Jennifer know that Greg
 
 4
 
@@ -234,7 +234,7 @@ these nodes. This network is the basis for the M2M communication system.
 
 This communication system takes the form of an ad-hoc network, where
 
-no single point of access controls the ﬂow of information. Generally, most
+no single point of access controls the ow of information. Generally, most
 
 networks with computational systems have a hierarchy of access and control.
 
@@ -242,7 +242,7 @@ This is to provide security to the rest of the connected network.
 
 Figure 1: Example of an Ad-Hoc Network [1]
 
-As noted by the ﬁgure above, no central point of access exists. Therefore,
+As noted by the gure above, no central point of access exists. Therefore,
 
 5
 
@@ -260,11 +260,11 @@ The architecture of an M2M network can be broken down into three cate-
 
 gories:
 
-• Device Domain
+ Device Domain
 
-• Network Domain
+ Network Domain
 
-• Application Domain
+ Application Domain
 
 The device domain provides the capabilities of integrating and using sensors
 
@@ -288,15 +288,15 @@ communication (MTC). MTC is still not completely viable, but research is
 
 6
 
-being conducted to improve its eﬃciency. There are two ways to incorporate
+being conducted to improve its eciency. There are two ways to incorporate
 
 MTC devices into an LTE-A network [12]:
 
-• Communication between MTC device and MTC server with the use of
+ Communication between MTC device and MTC server with the use of
 
 a base station (BS)
 
-• Direct communication between MTC devices
+ Direct communication between MTC devices
 
 This second communication option is simply what we regard as machine-
 
@@ -332,23 +332,23 @@ own as a reputable and reliable source for user communication. These prac-
 
 tical considerations have been exploited in other communication systems to
 
-gain unauthorized device level privileges and access. The ﬁrst topic to be
+gain unauthorized device level privileges and access. The rst topic to be
 
-explored will be the eﬃciency, and how power is distributed through M2M
+explored will be the eciency, and how power is distributed through M2M
 
 7
 
-communication. Each node of the M2M network can be considered as it’s
+communication. Each node of the M2M network can be considered as its
 
 own base station, providing coverage to neighbouring nodes of any pertinent
 
-information. The division of each ‘Base Station’ can be modeled with the
+information. The division of each Base Station can be modeled with the
 
 following chart as an example, where the BS is shown as a triangle and the
 
 nearest M2M devices connect to the closest BS:
 
-Figure 2: Typical Structure of M2M Network used in Eﬃciency Analysis [7]
+Figure 2: Typical Structure of M2M Network used in Eciency Analysis [7]
 
 This particular setup is prone to security risks.
 
@@ -358,11 +358,11 @@ transmits information at high power, it is possible to induce target devices to
 
 accept the incoming data transmission. This particular situation is known to
 
-aﬀect certain mobile networks in current times, such as 2G, 3G and 4G/LTE
+aect certain mobile networks in current times, such as 2G, 3G and 4G/LTE
 
 systems [10].
 
-3.2 M2M: Eﬃciency
+3.2 M2M: Eciency
 
 M2M communication is known to consume much more power between de-
 
@@ -388,43 +388,43 @@ If the sleeping device accepts data from any other
 
 device in the network, it is awoken. During sleep mode, a constant search for
 
-incoming traﬃc is removed. The device is simply woken up when it receives
+incoming trac is removed. The device is simply woken up when it receives
 
 another RF signal telling it that data is ready to be transmitted. The wake-
 
 up method proposed in [7] mitigates any unnecessary power consumption
 
-by the device and creates a viable means of eﬃcient M2M communication.
+by the device and creates a viable means of ecient M2M communication.
 
 Although the research we gathered in this report is more privacy orientated,
 
 power consumption is an important aspect of this. Suppose the following
 
-situation: a device d is ‘asleep’, and a malicious device e sends data to d,
+situation: a device d is asleep, and a malicious device e sends data to d,
 
 what would occur? Would a low power mode cause the underlying security
 
 protocols to misbehave? As noted previously, it may be possible to exploit
 
-this behaviour if the sleep methods are ‘attracted’ to high power signals. A
+this behaviour if the sleep methods are attracted to high power signals. A
 
 rigorous exploration of mathematics is required to understand how power
 
 physically propagates. The power law propagation model can categorize the
 
-path loss eﬀects of M2M communications and the received power Pr at a
+path loss eects of M2M communications and the received power Pr at a
 
 distance r is outlined as:
 
-Pr = Pthr−a
+Pr = Pthra
 
 (1)
 
 9
 
-Figure 3: Eﬃcient Sleep Cycle for M2M Devices [7]
+Figure 3: Ecient Sleep Cycle for M2M Devices [7]
 
-Where a is the Path Loss coeﬃcient, and Pt is the transmitted power. There
+Where a is the Path Loss coecient, and Pt is the transmitted power. There
 
 are various models which describe the received and transmitted power. [12]
 
@@ -434,25 +434,25 @@ lowing model:
 
 Pt =
 
-raη
+ra
 
 Pm,
 
-if raη < Pm
+if ra < Pm
 
 otherwise
 
 (2)
 
-[7] In this model, the variable α represents the path loss exponent and 
+[7] In this model, the variable  represents the path loss exponent and 
 
-represents the proportionality coeﬃcient. It is important to note here that
+represents the proportionality coecient. It is important to note here that
 
 the transmission power of the MTC device is thresholded by the maximum
 
 transmit power and is solely a function based on the distance from the base
 
-station, r. This does not reﬂect the path loss model of a true M2M connec-
+station, r. This does not reect the path loss model of a true M2M connec-
 
 tion, as it relies on the BS to be coherent and meaningful. For a more general
 
@@ -464,15 +464,15 @@ channel, such as an Ad-HOC network or cell, the received power of such a
 
 (cid:88)
 
-x∈φ
+x
 
 Pr = a
 
-device is deﬁned as:
+device is dened as:
 
 3.3 M2M Model
 
-(exP hx||x||−a)
+(exP hx||x||a)
 
 (3)
 
@@ -488,13 +488,13 @@ device wake-up for M2M transmission through a channel. All that needs to
 
 be done is to threshold the received power at a certain level that denotes a
 
-wake-up signal. To improve the eﬃciency of an M2M network, the power
+wake-up signal. To improve the eciency of an M2M network, the power
 
 must be below the threshold for the device to remain in sleep mode. This
 
 creates a greater level of viability for M2M communication since it improves
 
-the power consumption and therefore the eﬃciency. When the power received
+the power consumption and therefore the eciency. When the power received
 
 by the device moves above the threshold, the device wakes up and can begin
 
@@ -504,7 +504,7 @@ by the variable T and the received power to be Pr, then the following equality
 
 represents when sleep mode and wake-up mode are enabled [7]:
 
-Ps(T, λ, α, a) (cid:44) P (Pr > T )
+Ps(T, , , a) (cid:44) P (Pr > T )
 
 (4)
 
@@ -542,35 +542,35 @@ power, which extracts the following model based on the Q-function and can
 
 be expressed as [7]:
 
-P (Pr ≥ T ) = 1 − 2Q(
+P (Pr  T ) = 1  2Q(
 
 (cid:115)
 
-√
-π2
-2λ
+
+2
+2
 4
 
 aP
-µT
+T
 
 )
 
-Where Q(x) is deﬁned as:
+Where Q(x) is dened as:
 
-(cid:90) ∞
+(cid:90) 
 
 x
 
-−t2
+t2
 2 dt
 
 e
 
 Q(x) =
 
-1√
-2π
+1
+2
 
 (5)
 
@@ -580,7 +580,7 @@ Although these formulae provide a good model to reduce power consump-
 
 tion in M2M networks, further research into wake-up signals and sleep mode
 
-options for mobile devices can drastically improve the reliability and eﬃ-
+options for mobile devices can drastically improve the reliability and e-
 
 ciency of M2M communications. This provides background knowledge into
 
@@ -596,21 +596,21 @@ sible security exploit. As noted through a basic description of M2M systems,
 
 several known exploits already exists. These issues should be investigated
 
-since M2M is going to be integrated with the upcoming ﬁfth generation mo-
+since M2M is going to be integrated with the upcoming fth generation mo-
 
 bile network technology [8].
 
 4 Security Considerations
 
-With any communication system, it is important to investigate how the ﬂow
+With any communication system, it is important to investigate how the ow
 
-of information is controlled. Speciﬁcally in M2M, there is no central point of
+of information is controlled. Specically in M2M, there is no central point of
 
 control, which could cause issues with the integrity of data transmission, etc.
 
-With M2M technology, we have identiﬁed the following issues which could
+With M2M technology, we have identied the following issues which could
 
-aﬀect the availability, authenticity, and integrity of M2M communication
+aect the availability, authenticity, and integrity of M2M communication
 
 systems: DoS and DDoS (Denial of Service, Distributed Denial of Service),
 
@@ -622,7 +622,7 @@ Procedures.
 
 A Distributed Denial of Service (DDoS) attack, can be described as a mali-
 
-cious attack on a network that ﬂoods the targeted network with information,
+cious attack on a network that oods the targeted network with information,
 
 halting all communication within the network. A denial of service attack on
 
@@ -630,7 +630,7 @@ a network would appear as the following:
 
 13
 
-Example 4.1. Suppose that Bill is an employee in a post oﬃce. His job is
+Example 4.1. Suppose that Bill is an employee in a post oce. His job is
 
 to process incoming mail, and sort the mail out for correct delivery to the
 
@@ -638,9 +638,9 @@ outlined recipients. On the average day, he receives around 1000 letters from
 
 the local area, and processes these letters. However, an adversary discovers
 
-that Bill cannot handle loads beyond 2000 letters. Therefore, he ﬂoods the
+that Bill cannot handle loads beyond 2000 letters. Therefore, he oods the
 
-post oﬃce with an extra 1000 letters, all of which have no proper outgoing
+post oce with an extra 1000 letters, all of which have no proper outgoing
 
 address. This means Bill will be required to not only process 1000 extra
 
@@ -648,11 +648,11 @@ letters, but also redirect the letters to a faulty address. Hence, Bill will was
 
 even more processing. He will not be able to meet the physical demand, and
 
-processing will have to halt until he has ﬁnished.
+processing will have to halt until he has nished.
 
 In this example, we see how an adversary (a computer capable of perform-
 
-ing a DoS attack) can ﬂood a server system (in our case, the post oﬃce is
+ing a DoS attack) can ood a server system (in our case, the post oce is
 
 the target system for the attack), and render the system useless. By sending
 
@@ -660,9 +660,9 @@ an excessive quantity of letters (information-less packets), to Bill (our target
 
 systems packet handler), Bill has to handle these malformed/useless packets.
 
-The excessive amount of packets sent causes Bill’s standard processing job
+The excessive amount of packets sent causes Bills standard processing job
 
-to take a hit, and he halts the post oﬃce from sending or receiving letters.
+to take a hit, and he halts the post oce from sending or receiving letters.
 
 However, was it possible to detect this attack?
 
@@ -700,17 +700,17 @@ the SYN, the server must still comply to the protocol. Hence this procedure
 
 wastes valuable processing power of the server. Supposing the adversary in
 
-this example starts to ‘ﬂood’ the server with these requests, the server will
+this example starts to ood the server with these requests, the server will
 
 eventually not be able handle the requests and become un-usable. This par-
 
-ticular DoS attack is named ‘SYN-Flooding’. Since M2M devices may use
+ticular DoS attack is named SYN-Flooding. Since M2M devices may use
 
 existing transport control protocols, this attack may be possible.
 
 These are other exploits possible with TCP, which were not covered in this
 
-report (sending out of sequence ACK’s with no previous SYN-ACK setup).
+report (sending out of sequence ACKs with no previous SYN-ACK setup).
 
 15
 
@@ -734,7 +734,7 @@ and one target system.
 
 It is possible to have a distributed attack, where
 
-many systems are considered as one adversary. This team of systems ﬂood
+many systems are considered as one adversary. This team of systems ood
 
 the target system(s) with an enormous amount of information. This is known
 
@@ -752,7 +752,7 @@ another. This is quite obviously a serious problem for service providers and
 
 their networks as this kind of attack can result in a large amount of service
 
-outages for long periods of time, as well as ﬁnancial losses and customer
+outages for long periods of time, as well as nancial losses and customer
 
 displeasure and ultimately a loss of subscriptions. A DDoS attack can be
 
@@ -760,9 +760,9 @@ described as a constant stream of illegitimate requests to a victim within a
 
 network, known as High-Rate Flooding (HRF). This can pose a problem for
 
-M2M communication because ﬂooding an Ad-Hoc network with this kind of
+M2M communication because ooding an Ad-Hoc network with this kind of
 
-information will stop all communications between devices for an indeﬁnite
+information will stop all communications between devices for an indenite
 
 amount of time.
 
@@ -778,13 +778,13 @@ detection, anomaly-based detection, and hybrid (which combines the two de-
 
 tection methods together). This is explained in current research with the
 
-following description: Signature-based techniques use a pre-deﬁned set of
+following description: Signature-based techniques use a pre-dened set of
 
 rules and known signatures in a knowledge database to determine the packet
 
-class from the observed network traﬃc, while anomaly-based techniques em-
+class from the observed network trac, while anomaly-based techniques em-
 
-ploy a normal traﬃc proﬁle obtained over a period of time. [9]. After the
+ploy a normal trac prole obtained over a period of time. [9]. After the
 
 analysis of the security protocols in place in M2M networks, an investigation
 
@@ -798,41 +798,41 @@ within an Ad-Hoc network. If so, the proposed method in this paper could
 
 communication between machines much more viable and user-ready.
 
-The following ﬂow chart explains how a regular DDoS attack will compare
+The following ow chart explains how a regular DDoS attack will compare
 
 to a DDoS attack targeted at a cloud-based system. It is important to note
 
-that a DDoS attack may aﬀect diﬀerent systems with unknown results. This
+that a DDoS attack may aect dierent systems with unknown results. This
 
 highlights the importances of researching how to defend an M2M network
 
-from a DDoS attack as the results and eﬀects may currently be misunderstood
+from a DDoS attack as the results and eects may currently be misunderstood
 
 or unknown.
 
 Figure 7: Typical DDoS Flow Diagram [11]
 
-4.2 Software Deﬁned DDoS Protection
+4.2 Software Dened DDoS Protection
 
-Software-deﬁned networking (SDN) is an emerging technology for wireless
+Software-dened networking (SDN) is an emerging technology for wireless
 
 communications and applying its principles to machine-to-machine commu-
 
-nication can be beneﬁcial to the cause of making M2M networks viable and
+nication can be benecial to the cause of making M2M networks viable and
 
-eﬀective for real-world use. Currently, there is research being conducted to
+eective for real-world use. Currently, there is research being conducted to
 
-protect these software-deﬁned networks from DDoS attacks. If these same
+protect these software-dened networks from DDoS attacks. If these same
 
 detection and protection methods can be applied to M2M, then the DDoS
 
-attack will not be as eﬀective against an M2M network, thus allowing com-
+attack will not be as eective against an M2M network, thus allowing com-
 
 18
 
 munication to be conducted without interruption and QoS disruptions. To
 
-get some background on software-deﬁned DDoS protection, it can be ob-
+get some background on software-dened DDoS protection, it can be ob-
 
 served that the SDN is currently vulnerable to a DDoS attack due to its
 
@@ -848,19 +848,19 @@ the attacker can distinguish the SDN network from the traditional network
 
 [2]. Launching DDoS attacks towards the SDN network can produce a large
 
-amount of attack traﬃc in a short period of time. The unmatched ﬂows
+amount of attack trac in a short period of time. The unmatched ows
 
-will be sent to the SDN controller causing the legitimate ﬂow request not
+will be sent to the SDN controller causing the legitimate ow request not
 
-be handled in time. [15] The DDoS detection for a software-deﬁned network
+be handled in time. [15] The DDoS detection for a software-dened network
 
-proposed in this recent publication involves a detection module that can ﬁnd
+proposed in this recent publication involves a detection module that can nd
 
-which switches are being aﬀected by the DDoS attack with varying inten-
+which switches are being aected by the DDoS attack with varying inten-
 
 sities and scores the attack comprehensively to decide which switches need
 
-to be turned oﬀ to mitigate the damage of the attack. Since the requests
+to be turned o to mitigate the damage of the attack. Since the requests
 
 are typically stored in a physical queue, the DDoS attack is hard to prevent.
 
@@ -868,7 +868,7 @@ In this scenario, however, the requests are stored in a logical queue which is
 
 polled when there are no DDoS attacks. The system can then identify when
 
-it is under attack and when it is not and automatically direct the traﬃc
+it is under attack and when it is not and automatically direct the trac
 
 accordingly to prevent any loss of service or slow processing times
 
@@ -886,9 +886,9 @@ in a recent publication in the following way:
 
 of data information.
 
-2. Record the results of traﬃc anomalies and extract the suspicious traﬃc.
+2. Record the results of trac anomalies and extract the suspicious trac.
 
-3. Obtain and analyze the suspicious traﬃc, then access the relevant static
+3. Obtain and analyze the suspicious trac, then access the relevant static
 
 resources.
 
@@ -936,7 +936,7 @@ Example 4.2. Suppose that there are three people in a certain room. These
 
 three people in the room are Bob, Alice, and Roger. However, Bob and
 
-Alice are blind and are unaware of Roger’s presence. Bob and Alice are to
+Alice are blind and are unaware of Rogers presence. Bob and Alice are to
 
 exchange private information with each other in this room. Roger knows
 
@@ -944,7 +944,7 @@ about this private exchange, and enters the room. Bob and Alice however
 
 are intelligent enough to not just talk out loud, as they have heard rumours
 
-about people listening in on private conversations (sniﬃng and snooping).
+about people listening in on private conversations (sning and snooping).
 
 Therefore, Bob and Alice agree on a way to initiate an encrypted message
 
@@ -952,7 +952,7 @@ exchange. However, their method of completing this action is not fool-proof.
 
 In fact, Roger is much smarter than them, and knows about this protocol.
 
-Roger ﬁgures out a way to pretend to be Alice when Bob is communicating,
+Roger gures out a way to pretend to be Alice when Bob is communicating,
 
 forcing communication to proceed through him. And he also knows how to
 
@@ -986,7 +986,7 @@ Figure 8: Typical setup of a MitM Attack. [3]
 
 A man in the middle attack can take place at any point of communication
 
-between two parties, but is most eﬀective when used during authentication
+between two parties, but is most eective when used during authentication
 
 between two parties.
 
@@ -1112,7 +1112,7 @@ it has, U discards this information, otherwise, U authenticates D.
 
 Although this discussion on Authentication was lengthy, it is required as
 
-M2M networks may ﬁnd themselves compromised if these protocols are not
+M2M networks may nd themselves compromised if these protocols are not
 
 taken seriously.
 
@@ -1146,7 +1146,7 @@ place for Authentication
 
 1. The UE performs an attach request to the network. This message
 
-contains the network identiﬁer of the UE (particularly known as the
+contains the network identier of the UE (particularly known as the
 
 IMSI or International Mobile Subscriber Identity).
 
@@ -1168,7 +1168,7 @@ network. If the UE authenticates the network, it generates a response
 
 RES to which it sends back to the network.
 
-5. Upon reception of this message, the Network generates it’s own re-
+5. Upon reception of this message, the Network generates its own re-
 
 sponse XRES. If XRES = RES, the UE is authenticated by the network.
 
@@ -1176,7 +1176,7 @@ This means data exchange can begin.
 
 This protocol is resilient to MitM attacks (if implemented exactly as
 
-speciﬁed). [4]
+specied). [4]
 
 26
 
@@ -1200,13 +1200,13 @@ implementation methods:
 /* Type for PDU for UE <--> E-NodeB Authentication */
 
 //ID: Defines packet type for identity Sending
-#define ID ’I’
+#define ID I
 
 //AUTH: Defines packet type for authentication
-#define AUTH ’A’
+#define AUTH A
 
 //RESP: Defines packet type for authentication response
-#define RESP ’R’
+#define RESP R
 
 ... //
 
@@ -1226,11 +1226,11 @@ attacks are possible. One such way is known as ARP Poisoning, and is
 
 explained as follows:
 
-– “...exploit the Address Resolution Protocol (ARP) to propagate wrong
+ ...exploit the Address Resolution Protocol (ARP) to propagate wrong
 
 mapping between the Internet Protocol (IP) address and Media Access
 
-Control (MAC) address of the target machine.” (Dawood Al Abri, De-
+Control (MAC) address of the target machine. (Dawood Al Abri, De-
 
 tection of MitM Attack in LAN Environment using Payload Matching)
 
@@ -1240,7 +1240,7 @@ in a network, to an associated address in a network. That is, the MAC
 
 28
 
-(Medium Access Control) address is mapped to an IP address (usually deﬁned
+(Medium Access Control) address is mapped to an IP address (usually dened
 
 by a DHCP server). If one were to follow the above procedure, it would be
 
@@ -1256,7 +1256,7 @@ tion systems because they can be susceptible to any of these kinds of attacks.
 
 However, it can be worth investigating security measures for M2M commu-
 
-nications against these malicious activities because a successful deﬂection of
+nications against these malicious activities because a successful deection of
 
 these attacks can make M2M communication much more viable as it has a
 
@@ -1276,7 +1276,7 @@ as an attack. This is just an example of one Intrusion Detection System (IDS)
 
 M2M communication networks, mainly because malicious attackers can be
 
-placed throughout a network and can prove diﬃcult to simultaneously detect
+placed throughout a network and can prove dicult to simultaneously detect
 
 using these methods. It is also interesting to note that M2M communication
 
@@ -1294,11 +1294,11 @@ viability of this communication system.
 
 From the information gathered from this project, it was wise to investigate an
 
-emerging communication technology for security considerations. Speciﬁcally,
+emerging communication technology for security considerations. Specically,
 
 we found that DDoS attacks, and MitM (man in the middle) attacks are a
 
-signiﬁcant threat to M2M communication technology.
+signicant threat to M2M communication technology.
 
 From our extensive research within this domain, we were able to speculate
 
@@ -1306,9 +1306,9 @@ on issues surrounding an emerging wireless communication technology, and
 
 had enough information to implement a relevant wireless communication pro-
 
-tocol. Speciﬁcally, we discovered some security issues present within M2M
+tocol. Specically, we discovered some security issues present within M2M
 
-technology, and the listed attacks (which aﬀect almost all communication
+technology, and the listed attacks (which aect almost all communication
 
 systems). As well, we were able to simulate and implement an Authentica-
 
@@ -1419,7 +1419,7 @@ AUTH_VEC[i]=(char)(conv%93+33);
 }
 
 }
-AUTH_VEC[16]=’\0’;
+AUTH_VEC[16]=\0;
 printf("[AUTH] --Done.\n");
 printf("--[GENERATING RESPONSE]\n");
 for(i=0;i<8;++i){
@@ -1434,7 +1434,7 @@ RES[i]=(char)(conv%93+33);
 32
 
 }
-RES[8]=’\0’;
+RES[8]=\0;
 printf("[RESP] - Generated.\n");
 
 }
@@ -1735,7 +1735,7 @@ for(i=0;i<15;++i){
 RAND[i]=rand()%93+33;
 
 }
-RAND[i]=’\0’;
+RAND[i]=\0;
 
 37
 
@@ -1762,7 +1762,7 @@ AUTH_VEC[i]=(char)(conv%93+33);
 }
 
 }
-AUTH_VEC[16]=’\0’;
+AUTH_VEC[16]=\0;
 printf("[AUTH] --Done.\n");
 printf("--[generating expected RES]\n");
 for(i=0;i<8;++i){
@@ -1775,7 +1775,7 @@ XRES[i]=(char)(conv%93+33);
 }
 
 }
-XRES[8]=’\0’;
+XRES[8]=\0;
 printf("[XRES] - Generated.\n");
 
 }
@@ -1970,7 +1970,7 @@ break;
 
 case AUTH:
 
-printf("[eNodeB] Not Handling AUTH’s");
+printf("[eNodeB] Not Handling AUTHs");
 exit(-2);
 break;
 
@@ -1995,7 +1995,7 @@ sd, new_sd, client_len, port;
 /* Create a UDP socket */
 if ((sd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) {
 
-fprintf(stderr, "Can’t create a socket\n");
+fprintf(stderr, "Cant create a socket\n");
 exit(-1);
 
 }else{
@@ -2017,7 +2017,7 @@ if (bind(sd, (struct sockaddr *)&server, sizeof(server)) ==
 
 -1){
 
-fprintf(stderr, "Can’t bind name to socket\n");
+fprintf(stderr, "Cant bind name to socket\n");
 exit(1);
 
 }
@@ -2049,22 +2049,22 @@ packet_decode(sd, client,client_len);
 /* Type for PDU for UE <--> E-NodeB Authentication */
 
 //ID: Defines packet type for identity Sending
-#define ID ’I’
+#define ID I
 
 //AUTH: Defines packet type for authentication
-#define AUTH ’A’
+#define AUTH A
 
 //RESP: Defines packet type for authentication response
-#define RESP ’R’
+#define RESP R
 
 //SUCC: Defines packet type successful authentication
-#define SUCC ’S’
+#define SUCC S
 
 //ERROR: Defines packet type for an error
-#define ERROR ’E’
+#define ERROR E
 
 //FAIL: Defines packet type for an unsuccessful authentication
-#define FAIL ’F’
+#define FAIL F
 
 typedef struct pdu{
 
@@ -2570,7 +2570,7 @@ u8 Xtime[256] = {
 /*-------------------------------------------------------------------
 
 * Rijndael key schedule function. Takes 16-byte key and creates
-* all Rijndael’s internal subkeys ready for encryption.
+* all Rijndaels internal subkeys ready for encryption.
 *-----------------------------------------------------------------*/
 
 void RijndaelKeySchedule(u8 key[16]){
@@ -2809,7 +2809,7 @@ load matching.
 
 In 2015 IEEE International Conference on Industrial
 
-Technology (ICIT), pages 1857–1862, March 2015.
+Technology (ICIT), pages 18571862, March 2015.
 
 [6] A. Barki, A. Bouabdallah, S. Gharout, and J. Traor. M2m security:
 
@@ -2817,29 +2817,29 @@ Challenges and solutions.
 
 IEEE Communications Surveys Tutorials,
 
-18(2):1241–1254, Secondquarter 2016.
+18(2):12411254, Secondquarter 2016.
 
-[7] N. Kouzayha, Z. Dawy, and J. G. Andrews. Analysis of a power eﬃcient
+[7] N. Kouzayha, Z. Dawy, and J. G. Andrews. Analysis of a power ecient
 
 wake-up solution for m2m over cellular using stochastic geometry. In
 
 2016 IEEE Global Communications Conference (GLOBECOM), pages
 
-1–7, Dec 2016.
+17, Dec 2016.
 
 57
 
-[8] X. Liu and F. Eﬀenberger. Emerging optical access network technologies
+[8] X. Liu and F. Eenberger. Emerging optical access network technologies
 
 for 5g wireless [invited]. IEEE/OSA Journal of Optical Communications
 
-and Networking, 8(12):B70–B79, December 2016.
+and Networking, 8(12):B70B79, December 2016.
 
 [9] O. Osanaiye, K. K. R. Choo, and M. Dlodlo. Change-point cloud ddos
 
 detection using packet inter-arrival time. In 2016 8th Computer Science
 
-and Electronic Engineering (CEEC), pages 204–209, Sept 2016.
+and Electronic Engineering (CEEC), pages 204209, Sept 2016.
 
 [10] Altaf Shaik, Ravishankar Borgaonkar, N Asokan, Valtteri Niemi, and
 
@@ -2853,7 +2853,7 @@ Jean-Pierre Seifert. Practical attacks against privacy and availability in
 
 R. Buyya. Combating ddos attacks in the cloud: Requirements, trends,
 
-and future directions. IEEE Cloud Computing, 4(1):22–32, Jan 2017.
+and future directions. IEEE Cloud Computing, 4(1):2232, Jan 2017.
 
 [12] S. N. Swain, R. Thakur, and S. R. Murthy Chebiyyam. Coverage and
 
@@ -2861,13 +2861,13 @@ rate analysis for facilitating machine-to-machine communication in lte-a
 
 networks using device-to-device communication. IEEE Transactions on
 
-Mobile Computing, PP(99):1–1, 2017.
+Mobile Computing, PP(99):11, 2017.
 
 [13] K. Wang, M. Du, Y. Sun, A. Vinel, and Y. Zhang. Attack detection and
 
 distributed forensics in machine-to-machine networks. IEEE Network,
 
-30(6):49–55, November 2016.
+30(6):4955, November 2016.
 
 58
 
@@ -2877,11 +2877,11 @@ Kevin D Johnson. M2m: From mobile to embedded internet. IEEE
 
 Communications Magazine, 49(4), 2011.
 
-[15] Q. Yan, Q. Gong, and F. R. Yu. Eﬀective software-deﬁned network-
+[15] Q. Yan, Q. Gong, and F. R. Yu. Eective software-dened network-
 
 ing controller scheduling method to mitigate ddos attacks. Electronics
 
-Letters, 53(7):469–471, 2017.
+Letters, 53(7):469471, 2017.
 
 [16] Curtis Yarvin, Richard Bukowski, and Thomas Anderson. Anonymous
 
@@ -2889,7 +2889,7 @@ rpc: Low-latency protection in a 64-bit address space.
 
 In USENIX
 
-Summer, pages 175–186, 1993.
+Summer, pages 175186, 1993.
 
 59
 

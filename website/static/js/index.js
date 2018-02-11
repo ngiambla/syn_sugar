@@ -1,4 +1,9 @@
 
+/*
+ * index.js - Nicholas V. Giamblanco.
+ * performs tasks required for the index of this website. 
+ */
+
 /* Global Bars */
 var cnvs;
 var ctx;
@@ -43,6 +48,7 @@ function upload_file() {
 
 	var form_data = new FormData($('#upload-file-form')[0]);
 	draw_state = 3;
+	close_upload_modal()
 	$.ajax({
 	    type: "POST",
 	    url: "/uploads",
@@ -168,7 +174,7 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 
 		case 2:
 			ctx.font = font_size + "px monospace";
-			xoffset = font_size*window.innerWidth*0.02;
+			xoffset = font_size*window.innerWidth*0.001;
 			yoffset = font_size*10;
 			if(rotation == 29) {
 				ctx.fillStyle = "#FFF";

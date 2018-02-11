@@ -1,5 +1,9 @@
 from ingredients import ingredients
 from bcolors import bcolors
+import re
+
+TAG_RE = re.compile(r'<[^>]+>')
+
 
 
 class parser:
@@ -17,6 +21,9 @@ class parser:
 		}
 		return stuffing
 
+	def remove_tags(self, text):
+		return TAG_RE.sub('', text)
+
 	def collect_ingredients(self,filename):
 
 		try:
@@ -29,6 +36,7 @@ class parser:
 
 			with open(filename, 'r') as f:
 				for line in f:
+					line = self.remove_tags(line)
 					words=line.split()
 					for word in words:
 						if word in stuffing:

@@ -13,7 +13,8 @@ from subprocess import call
 from bcolors import bcolors
 from parser import parser
 from garnish import garnish
-from pyrouge import Rouge155
+from rouge import Rouge
+
 
 
 startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n"\
@@ -34,13 +35,7 @@ help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 EDITOR = os.environ.get('EDITOR','vim') #that easy!
-
-
-# r = Rouge155()
-# r.system_dir = 'data/test/res'
-# r.model_dir = 'data/test/summaries'
-# r.system_filename_pattern = '(\d+)'
-# r.model_filename_pattern = '#ID#'
+r = Rouge()
 
 def load_modules_from_path(path):
 	#Import all modules from the given directory
@@ -149,17 +144,26 @@ def bake(file_ext=""):
 					print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
 					special_items = special_items + _class().bake(_ingredients)				
 				
-				garnish().final_touches(_ingredients, special_items, ghost.replace("data/tests/", "data/tests/res/"))
-				
+				sys_summ=garnish().final_touches(_ingredients, special_items, ghost.replace("data/tests/", "data/tests/res/"))
 				end = time.time()
-				print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 
+				ref_summ=""
+				try:
+					with open(ghost.replace("data/tests/", "data/tests/summaries/").lower()+".txt", "r") as f:
+						for line in f:
+							if line != "Abstract:\n":
+								if line == "Introduction:\n":
+									break;
+								ref_summ = ref_summ + line
 
-			# output = r.convert_and_evaluate()
-			# print(output)
-			# output_dict = r.output_to_dict(output)
+					print(ref_summ)
+					scores = r.get_scores(ref_summ, sys_summ)
+					print(scores)
+					print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
+				except Exception as e:
+					print(e)
+
 			
-			# raw_input("Continue? >>")
 
 def info():
 

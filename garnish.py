@@ -318,4 +318,4 @@ class garnish:
 					line=line+1
 			f.write(out+"\n")
 		print(bcolors.OKGREEN+"~ Voila."+bcolors.ENDC)
-
+		return summaries[1]

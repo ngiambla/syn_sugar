@@ -1,0 +1,20 @@
+ Current simulation methodologies for evaluating networks- on-chip (NoCs) are not keeping pace with the increased com- plexity of our systems; architects often want to explore many different design knobs quickly.
+ We pro- pose SynFull, a synthetic trafﬁc generation methodology that captures both application and cache coherence behaviour to rapidly evaluate NoCs.
+ The design of the network as a potential power and performance bottleneck is becoming a critical con- cern.
+ To do this well, the designer must understand the trafﬁc patterns and temporal behaviour of applications the NoC must support.
+ Full-system simulators model each hardware component of the overall system and can run full applications and operating systems.
+ However, these trafﬁc patterns do not realistically represent the application space so the results are unlikely to be representative of real workloads.
+ Beyond that, realistic trafﬁc also provides opti- mization opportunities that do not exist in traditional synthetic trafﬁc patterns.
+ SynFull provides a novel technique for modelling real application trafﬁc without the need for expensive, detailed simulation of all levels of the system.
+ Our proposed model is independent of the network conﬁguration and can be applied to a wide range of NoC conﬁgurations to enable rapid, accurate design space exploration.
+ A single full-system simulation run of each benchmark is required to create the model.
+ We then use our models to synthetically generate trafﬁc and com- pare NoC performance to full-system simulation.
+ In essence, SynFull strives to replace full sys- tem simulation for fast, yet accurate NoC evaluation through richer synthetic trafﬁc patterns. 2.
+ The Case for Coherence Trafﬁc Before describing SynFull in detail, we motivate the need for a new class of synthetic trafﬁc patterns.
+ However, these synthetic trafﬁc patterns are not representative of the wide range of applications that run on current and future CMPs.
+ For example, we can design a ring network for Fig. 2a, and map the nodes to minimize hop count of shufﬂe on the network.
+ However, using the same ring network in a full- system simulation of the FFT benchmark results in an average packet latency that is over three times worse than the baseline.
+ Clearly, synthetic trafﬁc patterns are not representative of the spatial behaviour exhibited by applications on a shared memory architecture.
+ Static trafﬁc patterns and injection rates are not an adequate representation of real application trafﬁc.
+ The behaviour of cache coherence trafﬁc changes with time and can have varying effects on NoC performance.
+ The packet’s destination is a function of both its source and the type of packet being injected (the answers to the previous two questions).

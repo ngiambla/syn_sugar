@@ -7,24 +7,29 @@
 /* Global Bars */
 var cnvs;
 var ctx;
+var list;
+var type;
 
-var text_decode = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:";
-text_decode = text_decode.split("");
 
-var search_query = "";
-var summary=[]
+var text_decode 	= "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:".split("");
+var search_query 	= "";
+var summary 		= [];
+var doc  			= [];
 
-var font_size = 45;
+var summary_h;
+var sentence_len_map;
+var entropy_map;
+
+var font_size 		= 45;
 var columns;
 
 //an array of drops - one per column
-var drops = [];
+var drops 			= [];
 
 // states: 0 = rand, 1 = query, 2 = results, 3 = loading (may not even occur.)
-var draw_state = 0;
-
-var rotation = 29;
-var which_line =0;
+var draw_state 		= 0;
+var rotation 		= 29;
+var which_line 		= 0;
 
 
 function open_upload_modal() {
@@ -39,10 +44,27 @@ function close_upload_modal() {
 	});
 }
 
-/*
-filedrag.js - Asynchronous File Upload
-Developed by: Nicholas Giamblanco
-*/
+
+function updateHeight() {
+	stroll.bind('ul', { live: true } );
+}
+
+function load_doc(doc) {
+	$("ul").fadeOut('fast', function(e) {
+		$("ul").empty();
+		$("ul").fadeIn('fast', function(e) {
+			for(var i=0; i<doc.length; ++i) {
+				item = '<li id="'+ i +'">'+doc[i]+'</li>'
+				$("ul").append(item);
+				// elem=document.getElementById(""+i);
+				// if (elem.offsetHeight < elem.scrollHeight || elem.offsetWidth < elem.scrollWidth) {
+				// 	$("#"+i).addClass("slide");
+				// }
+			}	
+		});
+	});
+}
+
 
 function upload_file() {
 
@@ -59,8 +81,14 @@ function upload_file() {
         async: true,
 	    success: function(ret) {
 	    	console.log(ret["res"])
-	    	summary=ret["res"];
-	    	draw_state = 2;
+	    	summary 			= ret["res"][0];
+	    	doc 				= ret["res"][1];
+	    	summary_h 			= ret["res"][2];
+	    	sentence_len_map 	= ret["res"][3];
+	    	entropy_map			= ret["res"][4];
+
+	    	load_doc(doc);
+	    	draw_state 			= 2;
 	    },
 	    error: function(request, status, err) {
 	        console.log(status);
@@ -223,8 +251,23 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 	}
 }
 
+function start_up_coolness() {
+	var count =0;
+	$("ul").fadeIn('slow', function() {
+		$('ul li').each(function(i) {
+		   $(this).attr('id', ""+count); // This is your rel value
+		   	++count;
+		});
+
+		$("#1").css('background-color', 'yellow');
+		$("#4").css('background-color', 'green');
+	})
+
+}
 
 $(function() {
+
+	start_up_coolness();
 
 	$("#cleanup_btn").on("click", function(e) {
 		reset();
@@ -238,6 +281,10 @@ $(function() {
 		close_upload_modal();
 	})
 
+
+	window.addEventListener( 'resize', updateHeight, false );
+
+	updateHeight();
 
 	cnvs = document.getElementById("cnvs");
 	ctx = cnvs.getContext("2d");

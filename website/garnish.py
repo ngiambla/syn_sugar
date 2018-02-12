@@ -233,7 +233,7 @@ class garnish:
 									ent_lim = ent_lim + ent_lim*(1/(2*avg_wrd_snt))
 								else:
 									miss_count = 0
-								sim_j  = math.floor(10*(mutils.get_cosine_sim(a,b))) * math.floor(10*(mutils.jaccard_index(wa,wb)))
+								sim_j  = math.floor(100*(mutils.get_cosine_sim(a,b))) * math.floor(100*(mutils.jaccard_index(wa,wb)))
 
 								if sim_j not in sorted_bins[_bin]:
 									sorted_bins[_bin][sim_j]={}
@@ -282,7 +282,16 @@ class garnish:
 				s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]						
 			s1=s1 + "["+str(_label[1]) +"]" +"\n"
 			s2.append(s1)
-		return s2
+
+		s1=""
+		s3=[]
+		for _label in sentence_length_map:
+			s1=""
+			for i in range(_label, sentence_length_map[_label]+_label):
+				s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]
+			s1=s1 + "\n"
+			s3.append(s1)
+		return [s2, s3, s_summary_map, sentence_length_map, sentence_entropy_map] 
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

@@ -1,0 +1,115 @@
+Accelerating Inference for Convolutional and Fully
+
+Connected Neural Networks
+
+Nicholas V. Giamblanco
+Department of Electrical and
+
+Computer Engineering
+University of Toronto
+
+Toronto, Canada
+
+Email: nicholas.giamblanco@mail.utoronto.ca
+
+AbstractAdvances in technology within the past decade have
+enabled many algorithms from the machine learning community
+to gain practical value as assistive technologies. Of these machine
+learning algorithms, Neural Networks have been making strides
+towards assistive and predictive uses, due to their precedented
+accuracy. However, the many different styles available with
+Neural Networks, and their heavy-demand on the underlying
+computational infrastructure pose concerns with performance,
+device utilization, and power consumption. In this paper, we re-
+view several proposals which aim to accelerate a neural networks
+inference with High-Level Synthesis and FPGAs, with additional
+hopes of area and power minimization. We also investigate our
+own implementation of a Convolutional and Fully-Connected
+Neural Network with the use of High-Level Synthesis. Our
+implementation is to be minimal in terms of latency, and hence
+we utilize several algorithmic extensions and variable numerical
+precision in high-level synthesis to achieve this goal.
+
+I. INTRODUCTION
+
+Neural networks are an abstraction on how the human brain
+is able to learn. Specically, neural networks (or commonly
+referred to as neural nets) contain a network of simulated
+neurons which can take many inputs and produces an output.
+The objective of this model aims to identify patterns based
+from some input [1]. These virtual neurons are then connected
+in layers and transform inputs based on some processing
+mechanism. In more detail, these articial neurons accept n
+inputs, x, and produce k outputs, y, where each yk output
+is synonymous. Neurons will only produce an output if it is
+part of some trained pattern. Hence, there is some activation
+function on k, if some number of the n inputs are active.
+Mathematically put:
+
+n(cid:88)
+
+yl = ((
+
+xiwi,l) + bl)
+
+(1)
+
+i
+
+where each kth output of layer l is a weighted sum of the
+n inputs, with the addition of some bias b at this particular
+neuron. It is important to highlight that this relationship estab-
+lishes that each kl, n, b  IR+. The neuron will only activate
+if some threshold is met, based from the thresholding function
+. The learning takes place by modifying the weights for each
+particular neuron on a training pass of the neuron. Equation 1
+takes the form of many Fully Connected neural networks.
+However, neural networks comes in many avours (such as
+
+Convolutional or Fully Connected), and pose additional issues
+on the underlying computational devices. Neural Networks
+require many multiplications and/or convolutional operations
+which are expensive1 for the underlying substrate.
+
+In the following sections, we investigate acceleration tech-
+niques for various neural networks. We restrict ourselves to
+accelerating the inference portion of a neural network in which
+We then provide an optimized implementations of convolu-
+tional and fully-connected neural nets performing inference.
+
+II. NEURAL NETWORKS
+
+A. Convolutional Neural Networks
+B. Fully Connected Neural Networks
+
+III. RELATED WORK
+
+A. Optimizing FPGA-Based Accelerator Design for Deep
+Convolutional Neural Networks
+B. Accelerating Binarized Convolutional Neural Networks
+with Software-Programmable FPGAs
+C. DLAU: A Scalable Deep Learning Accelerator Unit on
+FPGA
+IV. EXPERIMENTS ON NEURAL NETWORK ACCELERATION
+
+WITH HIGH-LEVEL SYNTHESIS
+
+A. Convolutional Neural Networks
+B. Fully-Connected Neural Networks
+
+V. CONCLUSION
+
+In this paper, we review and highlight several acceleration
+techniques for inference with two specic neural network
+designs. Specically, we reviewed acceleration techniques
+with
+
+REFERENCES
+
+[1] Y. LeCun, Y. Bengio, and G. Hinton, Deep learning, nature, vol. 521,
+
+no. 7553, p. 436, 2015.
+
+1Expensive refers to the time-consumption required for each operation.
+
+

@@ -1,0 +1,593 @@
+IEEE TRANSACTIONS ON COMPUTER-AIDED DESIGN OF INTEGRATED CIRCUITS AND SYSTEMS, VOL. 36, NO. 3, MARCH 2017
+
+513
+
+DLAU: A Scalable Deep Learning Accelerator Unit on FPGA
+
+Chao Wang, Member, IEEE, Lei Gong, Qi Yu, Xi Li, Member, IEEE,
+
+Yuan Xie, Fellow, IEEE, and Xuehai Zhou, Member, IEEE
+
+AbstractAs the emerging eld of machine learning, deep learning
+shows excellent ability in solving complex learning problems. However,
+the size of the networks becomes increasingly large scale due to the
+demands of the practical applications, which poses signicant chal-
+lenge to construct a high performance implementations of deep learning
+neural networks. In order to improve the performance as well as to
+maintain the low power cost, in this paper we design deep learning
+accelerator unit (DLAU), which is a scalable accelerator architecture
+for large-scale deep learning networks using eld-programmable gate
+array (FPGA) as the hardware prototype. The DLAU accelerator employs
+three pipelined processing units to improve the throughput and uti-
+lizes tile techniques to explore locality for deep learning applications.
+Experimental results on the state-of-the-art Xilinx FPGA board demon-
+strate that the DLAU accelerator is able to achieve up to 36.1 speedup
+comparing to the Intel Core2 processors, with the power consumption at
+234 mW.
+
+Index
+
+TermsDeep
+
+learning,
+
+eld-programmable
+
+gate
+
+array (FPGA), hardware accelerator, neural network.
+
+I. INTRODUCTION
+
+In the past few years, machine learning has become pervasive in
+various research elds and commercial applications, and achieved
+satisfactory products. The emergence of deep learning speeded up
+the development of machine learning and articial
+intelligence.
+Consequently, deep learning has become a research hot spot
+in
+research organizations [1]. In general, deep learning uses a multilayer
+neural network model to extract high-level features which are a com-
+bination of low-level abstractions to nd the distributed data features,
+in order to solve complex problems in machine learning. Currently,
+the most widely used neural models of deep learning are deep neural
+networks (DNNs) [2] and convolution neural networks (CNNs) [3],
+which have been proved to have excellent capability in solving picture
+recognition, voice recognition, and other complex machine learning
+tasks.
+
+However, with the increasing accuracy requirements and complex-
+ity for the practical applications, the size of the neural networks
+becomes explosively large scale, such as the Baidu Brain with
+100 billion neuronal connections, and the Google cat-recognizing
+
+Manuscript received January 9, 2016; revised April 28, 2016; accepted
+June 13, 2016. Date of publication July 7, 2016; date of current ver-
+sion February 16, 2017. This work was supported in part by the NSFC
+under Grant 61379040 and Grant 61272131, in part by the Jiangsu Anhui
+Provincial Natural Science Foundation under Grant BK2012194, in part by
+the Anhui Provincial Natural Science Foundation under Grant 1608085QF12,
+in part by the CCF-Tencent Open Research Fund,
+in part by the CSC
+Fellowship, in part by the Open Project of State Key Laboratory of Computer
+ArchitectureICT-CAS, and in part by the Fundamental Research Funds
+for the Central Universities under Grant WK2150110003. This paper was
+recommended by Associate Editor D. Chen.
+
+C. Wang, L. Gong, Q. Yu, X. Li, and X. Zhou are with the University
+of Science and Technology of China, Hefei 230027, China (e-mail:
+cswang@ustc.edu.cn;
+sa514002@mail.ustc.edu.cn; yuiq@mail.ustc.edu.cn;
+llxx@ustc.edu.cn; xhzhou@ustc.edu.cn).
+
+Y. Xie is with the University of California at Santa Barbara, Santa Barbara,
+
+CA 93106 USA (e-mail: yuanxie@ece.ucsb.edu).
+
+Color versions of one or more of the gures in this paper are available
+
+online at http://ieeexplore.ieee.org.
+
+Digital Object Identier 10.1109/TCAD.2016.2587683
+
+0278-0070 c(cid:2) 2016 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+
+See http://www.ieee.org/publications_standards/publications/rights/index.html for more information.
+
+system with one billion neuronal connections. The explosive vol-
+ume of data makes the data centers quite power consuming. In
+particular, the electricity consumption of data centers in U.S. are
+projected to increase to roughly 140 billion kilowatt-hours annually
+by 2020 [4]. Therefore, it poses signicant challenges to implement
+high performance deep learning networks with low power cost, espe-
+cially for large-scale deep learning neural network models. So far,
+the state-of-the-art means for accelerating deep learning algorithms
+are eld-programmable gate array (FPGA), application specic inte-
+grated circuit (ASIC), and graphic processing unit (GPU). Compared
+with GPU acceleration, hardware accelerators like FPGA and ASIC
+can achieve at least moderate performance with lower power con-
+sumption. However, both FPGA and ASIC have relatively limited
+computing resources, memory, and I/O bandwidths, therefore it is
+challenging to develop complex and massive DNNs using hard-
+ware accelerators. For ASIC,
+it has a longer development cycle
+and the exibility is not satisfying. Chen et al. [6] presented a
+ubiquitous machine-learning hardware accelerator called DianNao,
+which initiated the eld of deep learning processor. It opens a new
+paradigm to machine learning hardware accelerators focusing on neu-
+ral networks. But DianNao is not implemented using recongurable
+hardware like FPGA, therefore it cannot adapt to different appli-
+cation demands. Currently, around FPGA acceleration researches,
+Ly and Chow [5] designed FPGA-based solutions to accelerate the
+restricted Boltzmann machine (RBM). They created dedicated hard-
+ware processing cores which are optimized for the RBM algorithm.
+Similarly, Kim et al. [7] also developed an FPGA-based accelerator
+for the RBM. They use multiple RBM processing modules in parallel,
+with each module responsible for a relatively small number of nodes.
+Other similar works also present FPGA-based neural network accel-
+erators [9]. Yu et al. [8] presented an FPGA-based accelerator, but
+it cannot accommodate changing network size and network topolo-
+gies. To sum up, these studies focus on implementing a particular
+deep learning algorithm efciently, but how to increase the size of
+the neural networks with scalable and exible hardware architecture
+has not been properly solved.
+
+To tackle these problems, we present a scalable deep learning
+accelerator unit named DLAU to speed up the kernel computational
+parts of deep learning algorithms. In particular, we utilize the tile
+techniques, FIFO buffers, and pipelines to minimize memory transfer
+operations, and reuse the computing units to implement the large-
+size neural networks. This approach distinguishes itself from previous
+literatures with following contributions.
+
+1) In order to explore the locality of the deep learning application,
+we employ tile techniques to partition the large scale input data.
+The DLAU architecture can be congured to operate different
+sizes of tile data to leverage the tradeoffs between speedup
+and hardware costs. Consequently, the FPGA-based accelerator
+is more scalable to accommodate different machine learning
+applications.
+
+2) The DLAU accelerator is composed of three fully pipelined
+processing
+tiled matrix multiplication
+unit (TMMU), part sum accumulation unit (PSAU), and acti-
+vation function acceleration unit (AFAU). Different network
+
+including
+
+units,
+
+514
+
+IEEE TRANSACTIONS ON COMPUTER-AIDED DESIGN OF INTEGRATED CIRCUITS AND SYSTEMS, VOL. 36, NO. 3, MARCH 2017
+
+TABLE I
+
+PROFILING OF HOT SPOTS OF DNN
+
+Fig. 1. DLAU accelerator architecture.
+
+topologies such as CNN, DNN, or even emerging neu-
+ral networks can be composed from these basic modules.
+Consequently,
+the scalability of FPGA-based accelerator is
+higher than ASIC-based accelerator.
+
+II. TILE TECHNIQUES AND HOT SPOT PROFILING
+
+RBMs have been widely used to efciently train each layer of a
+deep network. Normally, a DNN is composed of one input layer,
+several hidden layers and one classier layer. The units in adja-
+cent layers are all-to-all weighted connected. The prediction process
+contains feedforward computation from given input neurons to the
+output neurons with the current network congurations. Training pro-
+cess includes pretraining which locally tune the connection weights
+between the units in adjacent
+training which
+globally tune the connection weights with back propagation (BP)
+process.
+
+layers and global
+
+The large-scale DNNs include iterative computations which have
+few conditional branch operations, therefore, they are suitable for
+parallel optimization in hardware. In this paper, we rst explore the
+hot spot using the proler. Results in Fig. 1 illustrates the percentage
+of running time including matrix multiplication (MM), activation,
+and vector operations. For the representative three key operations:
+1) feed forward; 2) RBM; and 3) BP, MM play a signicant role
+of the overall execution. In particular, it takes 98.6%, 98.2%, and
+99.1% of the feed forward, RBM, and BP operations. In comparison,
+the activation function only takes 1.40%, 1.48%, and 0.42% of the
+three operations. Experimental results on proling demonstrate that
+the design and implementation of MM accelerators is able to improve
+the overall speedup of the system signicantly.
+
+However,
+
+considerable memory bandwidth and computing
+resources are needed to support the parallel processing, consequently
+it poses a signicant challenge to FPGA implementations compared
+with GPU and CPU optimization measures. In order to tackle the
+problem, in this paper we employ tile techniques to partition the
+massive input data set into tiled subsets. Each designed hardware
+accelerator is able to buffer the tiled subset of data for processing. In
+order to support the large-scale neural networks, the accelerator archi-
+tecture are reused. Moreover, the data access for each tiled subset can
+run in parallel to the computation of the hardware accelerators.
+
+In particular, for each iteration, output neurons are reused as the
+input neurons in next iteration. To generate the output neurons for
+each iteration, we need to multiply the input neurons by each col-
+umn in weights matrix. As illustrated in Algorithm 1, the input data
+are partitioned into tiles and then multiplied by the corresponding
+
+Algorithm 1 Pseudocode Code of the Tiled Inputs
+Require:
+
+Ni: the number of the input neurons
+No: the number of the output neurons
+Tile_Size: the tile size of the input data
+batchsize: the batch size of the input data
+for n = 0; n < batchsize; n + + do
+for k = 0; k < Ni; k+ = Tile_Size do
+for j = 0; j < No; j + + do
+y[n][ j] = 0;
+for i = k; i < k + Tile_Size&&i < Ni; i + + do
+y[n][ j]+ = w[i][ j]  x[n][i]
+if i == Ni  1 then
+y[n][ j] = f (y[n][ j]);
+end if
+end for
+
+end for
+
+end for
+
+end for
+
+weights. Thereafter the calculated part sum are accumulated to get
+the result. Besides the input/output neurons, we also divided the
+weight matrix into tiles corresponding to the tile size. As a con-
+sequence, the hardware cost of the accelerator only depends on the
+tile size, which saves signicant number of hardware resources. The
+tiled technique is able to solve the problem by implementing large
+networks with limited hardware. Moreover, the pipelined hardware
+implementation is another advantage of FPGA technology compared
+to GPU architecture, which uses massive parallel SIMD architectures
+to improve the overall performance and throughput. According to the
+proling results depicted in Table I, during the prediction process
+and the training process in deep learning algorithms, the common
+but important computational parts are MM and activation functions,
+consequently in this paper we implement the specialized accelerator
+to speed up the MM and activation functions.
+
+III. DLAU ARCHITECTURE AND EXECUTION MODEL
+
+Fig. 1 describes the DLAU system architecture which contains an
+embedded processor, a DDR3 memory controller, a DMA module,
+and the DLAU accelerator. The embedded processor is responsible
+for providing programming interface to the users and communicat-
+ing with DLAU via JTAG-UART. In particular it transfers the input
+data and the weight matrix to internal BRAM blocks, activates the
+DLAU accelerator, and returns the results to the user after execution.
+The DLAU is integrated as a standalone unit which is exible and
+adaptive to accommodate different applications with congurations.
+The DLAU consists of three processing units organized in a pipeline
+manner: 1) TMMU; 2) PSAU; and 3) AFAU. For execution, DLAU
+reads the tiled data from the memory by DMA, computes with all
+the three processing units in turn, and then writes the results back to
+the memory.
+
+In particular, the DLAU accelerator architecture has the following
+
+key features.
+
+IEEE TRANSACTIONS ON COMPUTER-AIDED DESIGN OF INTEGRATED CIRCUITS AND SYSTEMS, VOL. 36, NO. 3, MARCH 2017
+
+515
+
+Fig. 2. TMMU schematic.
+
+FIFO Buffer: Each processing unit in DLAU has an input buffer
+and an output buffer to receive or send the data in FIFO. These buffers
+are employed to prevent the data loss caused by the inconsistent
+throughput between each processing unit.
+
+Tiled Techniques: Different machine learning applications may
+require specic neural network sizes. The tile technique is employed
+to divide the large volume of data into small
+tiles that can be
+cached on chip, therefore the accelerator can be adopted to dif-
+ferent neural network size. Consequently, the FPGA-based accel-
+erator is more scalable to accommodate different machine learning
+applications.
+
+Pipeline Accelerator: We use stream-like data passing mechanism
+(e.g., AXI-Stream for demonstration) to transfer data between the
+adjacent processing units, therefore, TMMU, PSAU, and AFAU can
+compute in streaming-like manner. Of these three computational mod-
+ules, TMMU is the primary computational unit, which reads the total
+weights and tiled nodes data through DMA, performs the calculations,
+and then transfers the intermediate part sum results to PSAU. PSAU
+collects part sums and performs accumulation. When the accumula-
+tion is completed, results will be passed to AFAU. AFAU performs
+the activation function using piecewise linear interpolation methods.
+In the rest of this section, we will detail the implementation of these
+three processing units, respectively.
+
+A. TMMU Architecture
+
+TMMU is in charge of multiplication and accumulation opera-
+tions. TMMU is specially designed to exploit the data locality of
+the weights and is responsible for calculating the part sums. TMMU
+employs an input FIFO buffer which receives the data transferred
+from DMA and an output FIFO buffer to send part sums to PSAU.
+Fig. 2 illustrates the TMMU schematic diagram, in which we set tile
+size = 32 as an example. TMMU rst reads the weight matrix data
+from input buffer into different BRAMs in 32 by the row number of
+the weight matrix (n = i%32 where n refers to the number of BRAM,
+and i is the row number of weight matrix). Then, TMMU begins to
+buffer the tiled node data. In the rst time, TMMU reads the tiled
+32 values to registers Reg_a and starts execution. In parallel to the
+computation at every cycle, TMMU reads the next node from input
+buffer and saves to the registers Reg_b. Consequently, the registers
+Reg_a and Reg_b can be used alternately.
+
+For the calculation, we use pipelined binary adder tree structure
+to optimize the performance. As depicted in Fig. 2, the weight data
+and the node data are saved in BRAMs and registers. The pipeline
+takes advantage of time-sharing the coarse-grained accelerators. As a
+consequence, this implementation enables the TMMU unit to produce
+a part sum result every clock cycle.
+
+Fig. 3. PSAU schematic.
+
+B. PSAU Architecture
+
+PSAU is responsible for the accumulation operation. Fig. 3 presents
+the PSAU architecture, which accumulates the part sum produced
+by TMMU. If the part sum is the nal result, PSAU will write the
+value to output buffer and send results to AFAU in a pipeline manner.
+PSAU can accumulate one part sum every clock cycle, therefore the
+throughput of PSAU accumulation matches the generation of the part
+sum in TMMU.
+
+C. AFAU Architecture
+
+Finally, AFAU implements the activation function using piecewise
+
+linear interpolation (y = ai  x + bi, x  [x1, xi+1]). This method has
+been widely applied to implement activation functions with negligible
+accuracy loss when the interval between xi and xi+1 is insigni-
+cant. Equation (1) shows the implementation of sigmoid function. For
+x > 8 and x  8, the results are sufciently close to the bounds of
+1 and 0, respectively. For the cases in 8 < x  0 and 0 < x  8,
+different functions are congured. In total, we divide the sigmoid
+function into four segments
+
+f (x) =
+
+
+
+
+
+
+0
+1 + a
+(cid:10)(cid:11) x
+a
+k
+1
+
+(cid:6)(cid:7)x
+k
+
+x  b
+
+(cid:12)(cid:13)
+
+(cid:8)(cid:9)
+
+(cid:6)(cid:7)x
+k
+x + (cid:10)(cid:11) x
+
+(cid:12)(cid:13)
+
+k
+
+(cid:8)(cid:9)
+
+if x  8
+if 8 < x  0
+if 0 < x  8
+if x > 8.
+
+(1)
+
+Similar to PSAU, AFAU also has both input buffer and output
+buffer to maintain the throughput with other processing units. In par-
+ticular, we use two separate BRAMs to store the values of a and
+b. The computation of AFAU is pipelined to operate sigmoid func-
+tion every clock cycle. As a consequence, all the three processing
+units are fully pipelined to ensure the peak throughput of the DLAU
+accelerator architecture.
+
+IV. EXPERIMENTS AND DATA ANALYSIS
+
+In order to evaluate the performance and cost of the DLAU accel-
+erator, we have implemented the hardware prototype on the Xilinx
+Zynq Zedboard development board, which equips ARM Cortex-A9
+processors clocked at 667 MHz and programmable fabrics. For bench-
+marks, we use the Mnist data set to train the 784MN10 DNNs
+in MATLAB, and use MN layers weights and nodes value for the
+input data of DLAU. For comparison, we use Intel Core2 processor
+clocked at 2.3 GHz as the baseline.
+In the experiment we use tile size = 32 considering the hardware
+resources integrated in the Zedboard development board. The DLAU
+computes 32 hardware neurons with 32 weights every cycle. The
+clock of DLAU is 200 MHz (one cycle takes 5 ns). Three network
+sizes6464, 128128, and 256256 are tested.
+
+516
+
+IEEE TRANSACTIONS ON COMPUTER-AIDED DESIGN OF INTEGRATED CIRCUITS AND SYSTEMS, VOL. 36, NO. 3, MARCH 2017
+
+COMPARISONS BETWEEN SIMILAR APPROACHES
+
+RESOURCE COMPARISONS BETWEEN SIMILAR APPROACHES
+
+TABLE II
+
+TABLE IV
+
+TABLE V
+
+POWER CONSUMPTION OF THE UNITS
+
+Fig. 4. Speedup at different network sizes and tile sizes.
+
+RESOURCE UTILIZATION OF DLAU AT 3232 TILE SIZE
+
+TABLE III
+
+A. Speedup Analysis
+
+We present the speedup of DLAU and some other similar imple-
+mentations of the deep learning algorithms in Table II. Experimental
+results demonstrate that the DLAU is able to achieve up to 36.1
+speedup at 256256 network size. In comparison, Ly and Chow [5]
+and Kim et al. [7] presented the work only on RBM algorithms,
+while the DLAU is much more scalable and exible. DianNao [6]
+reaches up to 117.87 speedup due to its high working frequency
+at 0.98 GHz. Moreover, as DianNao is hardwired instead of imple-
+mented on an FPGA platform, therefore it cannot efciently adapt to
+different neural network sizes.
+Fig. 4 illustrates the speedup of DLAU at different network sizes-
+6464, 128128, and 256256, respectively. Experimental results
+demonstrate a reasonable ascendant speedup with the growth of neu-
+ral networks sizes. In particular, the speedup increases from 19.2
+in 6464 network size to 36.1 at the 256256 network size. The
+right part of Fig. 4 illustrates how the tile size has an impact on the
+performance of the DLAU. It can be acknowledged that bigger tile
+size means more number of neurons to be computed concurrently.
+At the network size of 128128, the speedup is 9.2 when the tile
+size is 8. When the tile size increases to 32, the speedup reaches
+30.5. Experimental results demonstrate that the DLAU framework
+is congurable and scalable with different tile sizes. The speedup can
+be leveraged with hardware cost to achieve satisfying tradeoffs.
+
+B. Resource Utilization and Power
+Table III summarizes the resource utilization of DLAU in 3232
+tile size including the BRAM resources, DSPs, FFs, and LUTs.
+
+Fig. 5. Power and energy comparison between FPGA and GPU.
+
+TMMU is much more complex than the rest two hardware modules
+therefore it consumes most hardware resources. Taking the limited
+number of hardware logic resources provided by Xilinx XC7Z020
+FPGA chip, the overall utilization is reasonable. The DLAU utilizes
+167 DSP blocks due to the use of the Floating-point addition and the
+Floating-point multiplication operations.
+
+Table IV compares the resource utilization of DLAU with other
+two FPGA-based literatures. Experimental results depict that our
+DLAU accelerator occupies similar number of FFs and LUTs to
+Ly and Chows work [5], while it only consumes 35/257 = 13.6% on
+the BRAMs. Comparing to the Kim et al.s work [7], the BRAM uti-
+lization of DLAU is insignicant. This is due to the tile techniques so
+that large scale neural networks can be divided into small tiles, there-
+fore, the scalability and exibility of the architecture is signicantly
+improved.
+
+In order to evaluate the power consumption of accelerator, we
+use Xilinx Vivado tool set to achieve power cost of each process-
+ing unit in DLAU and the DMA module. The results in Table V
+depict that the total power of DLAU is only 234 mW, which is
+much lower than that of DianNao (485 mW). The results demon-
+strate that the DLAU is quite energy efcient as well as highly
+scalable compared to other accelerating techniques. To compare the
+energy and power between FPGA-based accelerator and GPU-based
+accelerators, we also implement a prototype using the state-of-the-
+art NVIDIA Tesla K40c as the baseline. K40c has 2880 stream cores
+working at peak frequency 875 MHz, and the max memory band-
+width is 288 (GB/s). In comparison, we only employ one DLAU
+on the FPGA board working at 100 MHz. In order to evaluate the
+speedup of the accelerators in a real deep learning applications,
+we use DNN to model three benchmarks, including Caltech101,
+Cifar-10, and MNIST, respectively. Fig. 5 illustrates the comparison
+between FPGA-based GPU+cuBLAS implementations. It reveals that
+the power consumption of GPU-based accelerator is 364 times higher
+
+IEEE TRANSACTIONS ON COMPUTER-AIDED DESIGN OF INTEGRATED CIRCUITS AND SYSTEMS, VOL. 36, NO. 3, MARCH 2017
+
+517
+
+includes three pipelined processing units, which can be reused for
+large scale neural networks. DLAU uses tile techniques to parti-
+tion the input node data into smaller sets and compute repeatedly
+by time-sharing the arithmetic logic. Experimental results on Xilinx
+FPGA prototype show that DLAU can achieve 36.1 speedup with
+reasonable hardware cost and low power utilization.
+
+REFERENCES
+
+[1] Y. LeCun, Y. Bengio, and G. Hinton, Deep learning, Nature, vol. 521,
+
+no. 7553, pp. 436444, 2015.
+
+[2] J. Hauswald et al., DjiNN and Tonic: DNN as a service and its impli-
+cations for future warehouse scale computers, in Proc. ISCA, Portland,
+OR, USA, 2015, pp. 2740.
+
+[3] C. Zhang et al., Optimizing FPGA-based accelerator design for deep
+convolutional neural networks, in Proc. FPGA, Monterey, CA, USA,
+2015, pp. 161170.
+
+[4] P. Thibodeau. Data Centers are the New Polluters. Accessed on
+[Online]. Available: http://www.computerworld.com/
+
+Apr. 4, 2016.
+article/2598562/data-center/data-centers-are-the-new-polluters.html
+
+[5] D. L. Ly and P. Chow, A high-performance FPGA architecture for
+restricted Boltzmann machines, in Proc. FPGA, Monterey, CA, USA,
+2009, pp. 7382.
+
+[6] T. Chen et al., DianNao: A small-footprint high-throughput accelerator
+for ubiquitous machine-learning, in Proc. ASPLOS, Salt Lake City, UT,
+USA, 2014, pp. 269284.
+
+[7] S. K. Kim, L. C. McAfee, P. L. McMahon, and K. Olukotun, A highly
+scalable restricted Boltzmann machine FPGA implementation, in Proc.
+FPL, Prague, Czech Republic, 2009, pp. 367372.
+
+[8] Q. Yu, C. Wang, X. Ma, X. Li, and X. Zhou, A deep learning prediction
+process accelerator based FPGA, in Proc. CCGRID, Shenzhen, China,
+2015, pp. 11591162.
+
+[9] J. Qiu et al., Going deeper with embedded FPGA platform for con-
+volutional neural network, in Proc. FPGA, Monterey, CA, USA, 2016,
+pp. 2635.
+
+Fig. 6. Floorplan of the FPGA chip.
+
+than FPGA-based accelerators. Regarding the total energy consump-
+tion, the FPGA-based accelerator is 10 more energy efcient than
+GPU, and 4.2 than GPU+cuBLAS optimizations.
+Finally, Fig. 6 illustrates the oorplan of the FPGA chip. The left
+corner depicts the ARM processor which is hardwired in the FPGA
+chip. Other modules, including different components of the DLAU
+accelerator, the DMA, and memory interconnect, are presented in
+different colors. Regarding the programming logic devices, TMMU
+takes most of the areas as it utilizes a signicant number of LUTs
+and FFs.
+
+V. CONCLUSION
+
+In this paper, we have presented DLAU, which is a scalable
+and exible deep learning accelerator based on FPGA. The DLAU
+
+

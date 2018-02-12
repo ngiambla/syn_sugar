@@ -51,7 +51,7 @@ def queries():
 	query_data="PICKLE_MAN"
 	q=1
 	for i in range(0, 1000):
-		for j in range (0, 300):
+		for j in range (0, 200):
 			q=q+1*q
 
 	return query_data

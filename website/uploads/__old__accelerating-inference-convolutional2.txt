@@ -1,0 +1,282 @@
+Accelerating Inference for Convolutional and Fully
+
+Connected Neural Networks
+
+Nicholas V. Giamblanco
+Department of Electrical and
+
+Computer Engineering
+University of Toronto
+
+Toronto, Canada
+
+Email: nicholas.giamblanco@mail.utoronto.ca
+
+AbstractAdvances in technology within the past decade have
+enabled many algorithms from the machine learning community
+to gain practical value as assistive technologies. Of these machine
+learning algorithms, Neural Networks have been making strides
+towards assistive and predictive uses, due to their precedented
+accuracy. However, the many different styles available with
+Neural Networks, and their heavy-demand on the underlying
+computational infrastructure pose concerns with performance,
+device utilization, and power consumption. In this paper, we re-
+view several proposals which aim to accelerate a neural networks
+inference with High-Level Synthesis and FPGAs, with additional
+hopes of area and power minimization. We also investigate our
+own implementation of a Convolutional and Fully-Connected
+Neural Network with the use of High-Level Synthesis. Our
+implementation is to be minimal in terms of latency, and hence
+we utilize several algorithmic extensions and variable numerical
+precision in high-level synthesis to achieve this goal.
+
+I. INTRODUCTION
+
+Neural networks are an abstraction on how the human brain
+is able to learn. Specically, neural networks (or commonly
+referred to as neural nets) contain a network of simulated
+neurons which can take many inputs and produces an output. A
+neural network is an approach to general classication through
+supervised initiatives. The objective of this model aims to
+identify patterns based from some input [1]. These virtual
+neurons are then connected in layers and transform inputs
+based on some processing mechanism. In more detail, these
+articial neurons accept n inputs, x, and produce k outputs,
+y, where each yk output is synonymous. Neurons will only
+produce an output if it is part of some trained pattern. Hence,
+there is some activation function on k, if some number of the
+n inputs are active. Mathematically put:
+
+n(cid:88)
+
+yq = ((
+
+xiwi,l) + bq)
+
+(1)
+
+i
+
+to highlight
+
+that
+
+is important
+
+where each kth output of node q is a weighted sum of the
+n inputs, with the addition of some bias b at this particular
+neuron. It
+this relationship
+establishes that each kl, n, b  IR+. Additionally each node q
+belongs to some layer. This is a n-to-1 mapping, where some
+number of nodes only map to one particular layer. The neuron
+will only activate if some threshold is met, based from the
+thresholding function . The learning takes place by modifying
+
+the weights for each particular neuron on a training pass of
+the neuron.
+A. Fully Connected Neural Networks
+
+Equation 1 takes the form of the neurons within a Fully
+Connected neural networks. To gain further appreciation, we
+examine a fully connected neural network (FCNN) in higher
+detail. An FCNN has several layers of articial neurons, where
+each layer l has some unique number of nl neurons. The
+fully connected nature of this network is that each node in a
+preceding layer maintains one connection to each proceeding
+layer [2]. We also can see that in general, for some layer l,
+the number of nodes nl1 is greater than nl
+
+nl1 >= nl
+
+(2)
+
+B. Convolutional Neural Networks
+
+Convolutional Neural Networks (CNNs) have a different
+structure than an FCNN. Within a CNN, inputs exist in IRn.
+These inputs are commonly images (data is in IR3) and are
+gradually transformed per layer through a convolutional pro-
+cess. That is, at each layer in a CNN, either some feature map
+(which is some intermediate state from a previous layer) is
+convolved with some lter (with at least one dimension as the
+depth of the data), pooled against some maxima lter, or feed
+into a fully connected layer. The pooling layer down samples
+the feature map. This gradually reduces the dimensionality,
+until it appears at. This sort of behaviour correlates with
+Equation 2. A typical CNN can be visualized as in Figure 1.
+However, neural networks comes in many avours, and pose
+additional issues on the underlying computational devices.
+Neural Networks require many multiplications and/or convo-
+lutional operations which are expensive1 for the underlying
+substrate.
+
+In the following sections, we investigate acceleration tech-
+niques for these two neural networks, CNNs and FCNNs.
+We restrict ourselves to accelerating the inference portion of
+a neural network. This paper then highlights previous work
+in neural network acceleration with specialized hardware.
+Lastly, we provide accelerated and optimized implementations
+of convolutional and fully-connected neural nets performing
+inference.
+
+1Expensive refers to the time-consumption required for each operation.
+
+factor typically used in an articial neuron is generally less
+than 1, and hence remove the bias. They also note that the
+batch norm calculation (a layer within a BNN) is a linear
+transformation. Therefore, they provide the relationship in the
+form of y = mx+w. This optimization on the network reduced
+number of operations performed and scales the number of
+stored parameters to two. In addition to this linear transfor-
+mation, the parameters m and w could be precision reduced
+while achieving relatively similar accuracy. Hence, the authors
+reduced the precision of these parameters to 16-bits. These
+optimizations increased the test error by a marginal amount,
+0.87% (implementation in C++) up from the baseline 11.40%.
+Utilizing these optimizations, the authors proposed an ac-
+celeration architecture depicted in Figure 3. This accelerator
+was comprised of three computational units, data, and weight
+buffers, a direct memory access system (DMA) (utilized for off
+chip memory access), and a Finite State Machine controller.
+The three computational layers performed actions required
+for each of the BNNs layers: (1) FP-Conv unit operates on
+the rst convolutional layer, (2) Bin-Conv implements the
+computation required for the ve binary convolutional layers,
+(3) Bin-FC computes for the three binary fully-connected
+layers. Only the Bin-Conv and Bin-FC units handle variable
+sized input, and hence the authors have necessitated special
+hardware considerations.
+
+Fig. 3. Zhao et al.s BNN acceleration architecture
+
+Interestingly,
+
+the usage of BNN permits the storage of
+feature maps (FMaps) on-chip, due to their size reduction.
+This allowed for in-out data buffers A and B to allow for
+alternating read/writes between layers (i.e Layer 1 reads from
+A, writes to B, Layer 2 reads from B and write to A, etc.).
+Unfortunately, the weights required per layer are too large and
+required off chip memory for storage.
+
+For each computational unit, special considerations were
+applied during design. (1) the FP-Conv unit was parallelized
+with respect to three input channels (images are commonly the
+input to CNNs), (2) Bin-Conv implemented a variable width
+line buffer as this was crucial for operation with variable sized
+inputs, and (3) Bin-FC was simplied due to the binary nature
+of the data. It was implemented as an XORing of the data, and
+popcounting the results.
+
+Implementation of Bin-Conv presented the most complica-
+tions, due to the variable-sized input. Recall that 5 layers of
+Bin-Conv were utilized in this BNN, and hence maximum
+
+Fig. 1. A visualization of a convolutional neural network, taken from [3]
+
+II. RELATED WORK
+
+A. Optimizing FPGA-Based Accelerator Design for Deep
+Convolutional Neural Networks
+B. Accelerating Binarized Convolutional Neural Networks
+with Software-Programmable FPGAs
+
+Zhao et al. propose a novel acceleration technique which
+is applied to a BinaryNet architecture/model. This neural
+net architecture, taken from [4] binarizes2 the weights and
+outputs of both the convolutional and fully connected layers
+of a traditional convolutional neural net. This binary neural
+network (BNN) is featured in Figure 2.
+
+Fig. 2. Typical network behaviour of a BNN, taken from [5]
+
+Before proposing any hardware acceleration, the authors
+the bias
+
+modify BinaryNet for efciency. They note that
+
+2This is not truly binary, as values of the convolutional layer outputs could
+
+take -1, 0 or 1.
+
+[1] Y. LeCun, Y. Bengio, and G. Hinton, Deep learning, nature, vol. 521,
+
+REFERENCES
+
+no. 7553, p. 436, 2015.
+
+[2] Z. Zhang, Articial neural network, in Multivariate Time Series Analysis
+
+in Climate and Environmental Research, pp. 135, Springer, 2018.
+
+[3] Painting like van gogh with convolutional neural networks.
+[4] M. Courbariaux, I. Hubara, D. Soudry, R. El-Yaniv, and Y. Bengio,
+Binarized neural networks: Training deep neural networks with weights
+and activations constrained to+ 1 or-1, arXiv preprint arXiv:1602.02830,
+2016.
+
+[5] R. Zhao, W. Song, W. Zhang, T. Xing, J.-H. Lin, M. Srivastava, R. Gupta,
+and Z. Zhang, Accelerating binarized convolutional neural networks with
+software-programmable fpgas, in Proceedings of the 2017 ACM/SIGDA
+International Symposium on Field-Programmable Gate Arrays, pp. 15
+24, ACM, 2017.
+
+[6] C. Wang, L. Gong, Q. Yu, X. Li, Y. Xie, and X. Zhou, Dlau: A scalable
+deep learning accelerator unit on fpga, IEEE Transactions on Computer-
+Aided Design of Integrated Circuits and Systems, vol. 36, pp. 513517,
+March 2017.
+
+throughput was desired. Therefore, the authors proposed a
+variable width line buffer which would aid in the Bin-Conv
+process. The resulting architecture is depicted in Figure 4
+
+Fig. 4. Bin-Convs Variable Width Line Buffer
+
+There implementation was written in a high-level language
+and was then put through Xilinxs SDSoC high-level synthesis
+system. TO COMPLETE LATER
+
+C. DLAU: A Scalable Deep Learning Accelerator Unit on
+FPGA
+
+Wang et al. [6] propose a novel framework that permits
+acceleration of many deep learning algorithms by targeting
+the commonalities between many neural network implemen-
+tations. Their framework, known as Deep Learning Acceler-
+ation Unit targets 3 commonly required functions: (1) matrix
+multiplication, (2) part sum accumulation, and (3) activation
+function. These commonly required functions were chosen to
+be accelerated through a code execution proler, where an
+average 98.63% of execution was spent performing matrix
+multiplication. Additionally, the activation function made up
+an average 1%. Since a majority of program execution is spent
+on matrix multiplication, it would make sense to accelerate this
+particular function. This poses additional constraints however,
+as it requires higher memory bandwidth, which is not currently
+supported with FPGA technology. To combat this, the authors
+utilize tile techniques to partition a large dataset into smaller,
+more FPGA compatible datasets. Hence,
+this enables the
+authors to design an accelerator for matrix multiplication of
+tiles, which they coin the term as Tiled Matrix Multiplier Unit
+(TMMU). They also provide an accelerator unit for both part
+sums, and activations which they name Part Sum Accelerator
+Units (PSAU) and Activations Function Accelerator Units
+(AFAU).
+
+III. EXPERIMENTS ON NEURAL NETWORK
+
+ACCELERATION WITH HIGH-LEVEL SYNTHESIS
+
+A. Convolutional Neural Networks
+B. Fully-Connected Neural Networks
+
+IV. CONCLUSION
+
+In this paper, we review and highlight several acceleration
+techniques for inference with two specic neural network
+designs. Specically, we reviewed acceleration techniques
+with
+
+

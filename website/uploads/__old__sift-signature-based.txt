@@ -16,11 +16,11 @@ ishita.ray@mail.utoronto.ca
 
 I. INTRODUCTION
 
-With today’s heavy reliance on electronic devices, quick
-and efﬁcient performance is desirable. However, the amount
+With todays heavy reliance on electronic devices, quick
+and efcient performance is desirable. However, the amount
 of data available today has negatively impacted performance.
 Hence, it is worthwhile to investigate acceleration techniques
-where some proportion of an algorithm can be ofﬂoaded
+where some proportion of an algorithm can be ofoaded
 to hardware. A common technique is to utilize High-Level
 Synthesis (HLS). HLS tools can produce a hardware based
 implementation of an algorithm from a high-level description.
@@ -39,8 +39,8 @@ to (1) identify latent bugs within an ANSI C description and
 
 A. Signatures
 
-Signatures, which are unique identiﬁcation mechanisms,
-permit veriﬁcation of the origin/integrity of some data [2].
+Signatures, which are unique identication mechanisms,
+permit verication of the origin/integrity of some data [2].
 However, signatures need not be limited to individuals, or
 computers. It has been demonstrated that signatures can be
 produced for logical descriptions and mathematical functions
@@ -57,8 +57,8 @@ Hardware faults differ from their software counterpart in the
 several ways: (1) hardware bugs are usually caused through
 physical disturbances [6] and (2) the hardware may have latent
 logic defects [7]. However, due to the usage of HLS, software
-is transformed into this hardware description. A signiﬁcant
-challenge faced with our method is an efﬁcient implementation
+is transformed into this hardware description. A signicant
+challenge faced with our method is an efcient implementation
 of signature based fault tolerance. With any additional logic
 
 1Signature based Fault Tolerance
@@ -68,72 +68,72 @@ of latency, power, and area in the produced circuit should be
 investigated.
 
 III. EXPECTED STAGES FOR PROJECT DEVELOPMENT
-Our team has identiﬁed the following stages to complete
+Our team has identied the following stages to complete
 
 this project:
 
-• Review techniques that can identify correctness within
+ Review techniques that can identify correctness within
 
 High Level Languages (i.e [8])
 
-• Researching different signature-based fault detection sys-
+ Researching different signature-based fault detection sys-
 
 tems
 
 ically
 
-• Identifying signatures of high level descriptions automat-
+ Identifying signatures of high level descriptions automat-
 
-• Adding fault tolerance from discover signatures
-• Researching and providing evaluation techniques for this
+ Adding fault tolerance from discover signatures
+ Researching and providing evaluation techniques for this
 
 novel fault tolerance method
 
-• Perform a review of the LegUp system (i.e. understand
+ Perform a review of the LegUp system (i.e. understand
 
-LLVM’s infrastructure [9])
+LLVMs infrastructure [9])
 
-• Implementation & Evaluation of SiFT with LegUp
+ Implementation & Evaluation of SiFT with LegUp
 
 REFERENCES
 
 [1] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. Anderson,
-S. Brown, and T. Czajkowski, “Legup: high-level synthesis for fpga-based
-processor/accelerator systems,” in Proceedings of the 19th ACM/SIGDA
-international symposium on Field programmable gate arrays, pp. 33–36,
+S. Brown, and T. Czajkowski, Legup: high-level synthesis for fpga-based
+processor/accelerator systems, in Proceedings of the 19th ACM/SIGDA
+international symposium on Field programmable gate arrays, pp. 3336,
 ACM, 2011.
 
 [2] M. Atreya and B. Hammond, Digital signatures. Osborne/McGraw-Hill,
 
 2002.
 
-[3] J. E. Smith, “Measures of the effectiveness of fault signature analysis,”
+[3] J. E. Smith, Measures of the effectiveness of fault signature analysis,
 
-IEEE Transactions on Computers, vol. 29, no. 6, pp. 510–514, 1980.
+IEEE Transactions on Computers, vol. 29, no. 6, pp. 510514, 1980.
 
-[4] F. Corsi, M. Chiarantoni, R. Lorusso, and C. Marzocca, “A fault signature
-approach to analog devices testing,” in Proceedings ETC 93 Third
-European Test Conference, pp. 116–121, Apr 1993.
+[4] F. Corsi, M. Chiarantoni, R. Lorusso, and C. Marzocca, A fault signature
+approach to analog devices testing, in Proceedings ETC 93 Third
+European Test Conference, pp. 116121, Apr 1993.
 
-[5] N. Oh, P. P. Shirvani, and E. J. McCluskey, “Control-ﬂow checking by
-software signatures,” IEEE transactions on Reliability, vol. 51, no. 1,
-pp. 111–122, 2002.
+[5] N. Oh, P. P. Shirvani, and E. J. McCluskey, Control-ow checking by
+software signatures, IEEE transactions on Reliability, vol. 51, no. 1,
+pp. 111122, 2002.
 
-[6] E. Normand, “Single event upset at ground level,” IEEE transactions on
+[6] E. Normand, Single event upset at ground level, IEEE transactions on
 
-Nuclear Science, vol. 43, no. 6, pp. 2742–2750, 1996.
+Nuclear Science, vol. 43, no. 6, pp. 27422750, 1996.
 
 [7] M. L. Li, P. Ramachandran, S. K. Sahoo, S. V. Adve, V. S. Adve, and
-Y. Zhou, “Trace-based microarchitecture-level diagnosis of permanent
-hardware faults,” in 2008 IEEE International Conference on Dependable
-Systems and Networks With FTCS and DCC (DSN), pp. 22–31, June 2008.
-[8] D. Engler, D. Y. Chen, S. Hallem, A. Chou, and B. Chelf, “Bugs as
-deviant behavior: A general approach to inferring errors in systems code,”
-in ACM SIGOPS Operating Systems Review, vol. 35, pp. 57–72, ACM,
+Y. Zhou, Trace-based microarchitecture-level diagnosis of permanent
+hardware faults, in 2008 IEEE International Conference on Dependable
+Systems and Networks With FTCS and DCC (DSN), pp. 2231, June 2008.
+[8] D. Engler, D. Y. Chen, S. Hallem, A. Chou, and B. Chelf, Bugs as
+deviant behavior: A general approach to inferring errors in systems code,
+in ACM SIGOPS Operating Systems Review, vol. 35, pp. 5772, ACM,
 2001.
 
-[9] C. Lattner and V. Adve, “Llvm: A compilation framework for lifelong
-program analysis & transformation,” in Proceedings of the international
+[9] C. Lattner and V. Adve, Llvm: A compilation framework for lifelong
+program analysis & transformation, in Proceedings of the international
 symposium on Code generation and optimization: feedback-directed and
 runtime optimization, p. 75, IEEE Computer Society, 2004.
 

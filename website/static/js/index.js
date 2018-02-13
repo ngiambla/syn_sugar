@@ -101,7 +101,9 @@ function upload_file() {
 
 /*reset the view */
 function reset() {
-
+	draw_state=1;
+	doc=[];
+	load_doc();
 }
 
 
@@ -306,7 +308,7 @@ $(function() {
 		drops[x] = (Math.random()*1000)%columns; 
 	}
 
-	setInterval(function() {rand_draw(cnvs, ctx, font_size, text_decode, drops)}, 33);
+	setInterval(function() {rand_draw(cnvs, ctx, font_size, text_decode, drops)}, 30);
 	get_search_contents()
 
 });

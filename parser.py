@@ -26,6 +26,8 @@ class parser:
 
 	def collect_ingredients(self,filename):
 
+		invalid = ["<DOC>", "<DOCNO>", "<FILEID>", "<FIRST>", "<SECOND>", "<HEAD>", "<BYLINE>", "<DATELINE>"]
+
 		try:
 			_ingredients 			=	{}
 			_ingredient_mapping 	=	{}
@@ -36,16 +38,18 @@ class parser:
 
 			with open(filename, 'r') as f:
 				for line in f:
-					line = self.remove_tags(line)
-					words=line.split()
-					for word in words:
-						if word in stuffing:
-							word = "~~~"+stuffing[word]
-						_ingredients[_label] = word
-						_ingredient_mapping[_label] = _line_label
-						_label = _label + 1
-					if len(words) > 0:
-						_line_label = _line_label +1
+					#if invalid.any() not in line:
+					if not any(tag in line for tag in invalid):
+						line = self.remove_tags(line)
+						words=line.split()
+						for word in words:
+							if word in stuffing:
+								word = "~~~"+stuffing[word]
+							_ingredients[_label] = word
+							_ingredient_mapping[_label] = _line_label
+							_label = _label + 1
+						if len(words) > 0:
+							_line_label = _line_label +1
 			return ingredients(_ingredients, _ingredient_mapping, filename)
 		except Exception as e:
 			print(bcolors.REDBACK+"Error occured while opening file: "+str(e)+bcolors.ENDC)

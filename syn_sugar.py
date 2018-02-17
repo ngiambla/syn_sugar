@@ -7,6 +7,7 @@ import inspect
 import glob
 import importlib
 import time
+import summ_to_syn as stos
 
 from time import localtime, strftime
 from subprocess import call
@@ -157,7 +158,8 @@ def bake(file_ext=""):
 								ref_summ = ref_summ + line
 
 					print(ref_summ)
-					scores = r.get_scores(ref_summ, sys_summ)
+					scores = stos.eval(ref_summ, sys_summ)
+					#scores = r.get_scores(ref_summ, sys_summ)
 					print(scores)
 					print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 				except Exception as e:

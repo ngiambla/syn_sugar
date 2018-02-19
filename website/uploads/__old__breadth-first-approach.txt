@@ -8,10 +8,10 @@ Branch and Bound
 
 Nicholas V. Giamblanco, 1000324534
 
-Abstract—The idea of
+AbstractThe idea of
 
 logically representing an issue has
-profound impacts in many ﬁelds of science and engineering. These
+profound impacts in many elds of science and engineering. These
 logical representations are typically known as Boolean expres-
 sions. Boolean expressions take the form of a sequence of logical
 ANDs, ORs and negations with regards to some logical claims.
@@ -22,8 +22,8 @@ as a result, the boolean formulation may not be solvable (evaluate
 to a truth). In many cases however, it is desirable to satisfy a
 maximum number of clauses within a boolean expression. In this
 report, we implement and optimize a MAX-SAT solver, which
-utilizes a breadth ﬁrst search in cooperation with a modiﬁed
-branch & bound algorithm. Speciﬁcally, we deﬁne greedy lower
+utilizes a breadth rst search in cooperation with a modied
+branch & bound algorithm. Specically, we dene greedy lower
 bounding function which can reduce the required number of
 nodes traditionally visited with the ability to still retrieve a global
 maximum.
@@ -32,8 +32,8 @@ I. DESIGN AND IMPLEMENTATION
 
 I N this report, we implemented a MAX-SAT solver based
 
-on a breadth-ﬁrst search approach. Through this section
-and it’s subsections, (A) an explanation will be provided on
+on a breadth-rst search approach. Through this section
+and its subsections, (A) an explanation will be provided on
 how we interpreted the problem of MAX-SAT, (B) we will
 describe this implementation in a high-level way, in order to
 encapsulate the major software routines and (C) elaborate on
@@ -43,23 +43,23 @@ A. MAX-SAT Solvers & Evaluating Expressions
 
 MAX-SAT [1] [2] has been an active research area for
 many years. Their motivation can be encapsulated in the
-following manner: in many ﬁelds and applications, sometimes
+following manner: in many elds and applications, sometimes
 a logical argument may not be solvable. But supposing that
 this argument A is made up of sub-arguments, it may be
-optimal to ﬁnd the maximum number of sub-arguments that
-can be satisﬁed. MAX-SAT problems generally have a boolean
+optimal to nd the maximum number of sub-arguments that
+can be satised. MAX-SAT problems generally have a boolean
 expression in Conjective-Normal Form (CNF) [4] which can
 be viewed as this sub-argument approach where if A is logical
 argument with n sub arguments, then:
 
-A = B0 ∧ B1 ∧ ··· ∧ Bn
+A = B0  B1    Bn
 
 (1)
-and more speciﬁcally, each sub-argument has the following
+and more specically, each sub-argument has the following
 
 form:
 
-Bi = bi,0 ∨ bi,1 ∨ ···
+Bi = bi,0  bi,1  
 
 (2)
 Generally, the sub-arguments Bi are denoted as clauses.
@@ -72,14 +72,14 @@ the conditions1 in this clause is true. This is due to the string
 of logical ORs which appear in the ith clause. We use this fact
 to our advantage during implementation.
 
-However, to attempt to ﬁnd a maximum number of clauses
-that are satisﬁable from a boolean expression we may imme-
+However, to attempt to nd a maximum number of clauses
+that are satisable from a boolean expression we may imme-
 diately conclude to try every possible condition assignment.
 Supposing we had 3 conditions, bi,0, bi,1, bi,2, we can search
-the solution space by evaluating over all 23 − 1 possibilities.
+the solution space by evaluating over all 23  1 possibilities.
 This is easily search-able. However, if we had encountered a
 boolean expression with just 15 more conditions, our solution
-space grows to 218 − 1. This is large. Although this number
+space grows to 218  1. This is large. Although this number
 is easily handled with a modern computer, a typical boolean
 expression may contain hundreds of conditions. Recall that
 264 = 18, 446, 744, 073, 709, 551, 616. This is not feasible to
@@ -88,15 +88,15 @@ evaluate.
 Hence we explored the ideas and added value of a Branch
 and Bound algorithm [3]. Branch and Bound algorithm provide
 an optimal solution to a given combinatorics problem through
-the notion of usefulness. Speciﬁcally, a branch and bound
+the notion of usefulness. Specically, a branch and bound
 algorithm attempt to discover suboptimal solutions through an
 enumeration of the solution space. A suboptimal solution will
 not be explored further. This reduces the search complexity
 that may required with a total solution space of 2n. The discov-
 ery of these suboptimal solutions occurs through the notion of
-an upper and lower bound, Φ(ν) and φ(ν) respectively. These
-bounds need to be able to “provably” secure their reasoning
-for remove exploration for a node ν
+an upper and lower bound, () and () respectively. These
+bounds need to be able to provably secure their reasoning
+for remove exploration for a node 
 
 B. High-Level Interpretation
 
@@ -105,7 +105,7 @@ To implement the ideas discussed above, we had the fol-
 lowing high-level requirements:
 
 1) Some notion of an expression, which can be evaluated,
-and a number of either satisﬁed clauses or unsatisﬁed
+and a number of either satised clauses or unsatised
 clauses can be returned.
 
 2) A node, which can have two children nodes, and one
@@ -114,15 +114,15 @@ and right, and will represent the boolean values false
 and true respectively. Each node should contain either
 a partial or complete solution for the given boolean
 expression. Each node should also contain some identity
-in regards to itself, as well as an assignment to it’s
+in regards to itself, as well as an assignment to its
 parents condition. This structure will behave as a binary
 tree.
 
 3) Some system, which can construct a tree based on the
 notion of a branch and bound algorithm, and arrive at
 an optimum solution for a given boolean expression.
-It should use a lower bounding function φ(ν), which
-accepts a Node ν, provides a decision if exploration
+It should use a lower bounding function (), which
+accepts a Node , provides a decision if exploration
 should continue from this node.
 
 ECE1387: CAD FOR CIRCUIT SYNTHESIS AND LAYOUT
@@ -150,18 +150,18 @@ log.h
 
 tests/
 
-The ﬁles expression.∗, node.∗ and ms solver.∗ are the
+The les expression., node. and ms solver. are the
 implementation of the high level requirements, respectively.
 
 C. Routine Flow
 
 To explain the implementation, we will proceed through a
 
-pass of the routine ﬂow.
+pass of the routine ow.
 
 1) Initially, we required to interpret a boolean expres-
-(∗.cnf for-
-sion from a ﬁle in a speciﬁc format
+(.cnf for-
+sion from a le in a specic format
 mat). A function read_in_expression() was
 used to develop an Expression object. This object
 was a vector< vector<int>> which each inner
@@ -169,18 +169,18 @@ vector being a clause, the other vector was the col-
 lection of clauses, or the entire expression. This object
 had two major routines, eval_expression(...)
 and eval_expression_neg(...) which returned
-the number of satisﬁed or unsatisﬁed clauses, respec-
+the number of satised or unsatised clauses, respec-
 tively.
 
 2) Once an Expression was generated, an instance of
 a MAX-SAT solver, MS_Solver was created. After
-initialization of the object’s environment, it proceeds
+initialization of the objects environment, it proceeds
 to execute the routine solve(). This is the main
 routine of this entire software implementation. It begins
-by inspecting the Expression object’s variables. The
+by inspecting the Expression objects variables. The
 variance of the used variables to indicate how this
 boolean expression should be solved. If an expression
-exhibits large variance across it’s variables, it was found
+exhibits large variance across its variables, it was found
 through experimentation that a greedy lower bound may
 produce suboptimal solutions. To counter this issue, a
 high variance expression can brute force exploration up
@@ -192,7 +192,7 @@ uniform view against the initial solution space. This
 routine then decides on a starting variable through the
 routine select_start(). The select_start()
 discovers the variable that when set to either true or
-false provides the least amount of unsatisﬁed clauses.
+false provides the least amount of unsatised clauses.
 This variable is then transformed into a Node object,
 and is denoted as the head of the tree.
 
@@ -200,8 +200,8 @@ and is denoted as the head of the tree.
 solution is required for use as a lower-bound against
 partial solutions. Our algorithm handles an initial solu-
 tion by assuming all conditions are evaluated to true,
-and evaluates how many unsatisﬁed clauses exist. This
-becomes φ(ν). An optimization we performed in this
+and evaluates how many unsatised clauses exist. This
+becomes (). An optimization we performed in this
 algorithm was to only pass the entire initial solution
 in to the head of the tree if and only if the boolean
 expression had low variance. This is due to the idea of
@@ -220,13 +220,13 @@ tree structure, where each inner
 vector<> holds the nodes visited per level, and the
 outer vector<> holds all levels. The initial level con-
 tains only the head node. The routine enters a while
-loop, where each iteration of the loop, a new level χ
+loop, where each iteration of the loop, a new level 
 is created, and the number of potential nodes to be
-inspected are 2χ. Recall that we have an initial burn-
+inspected are 2. Recall that we have an initial burn-
 in period up to a threshold level L or l. All potential
 nodes are created during this period. After burning-in,
 this while loop contains 4 stages of operations: (a)
-Determine the best solution applicable on the level χ,
+Determine the best solution applicable on the level ,
 (b) create children nodes for the parent if and only if
 the solution is at par or better than the given solution,
 (c) continuing adding children if a quota of children
@@ -236,16 +236,16 @@ corresponds to a variable/condition2.
 5) In (a), we do not explicitly visit a node since we
 are calculating a hypothetical lower bound associated
 to choosing a new node. During inspection, the lower
-bound is modiﬁed if and only if the lower bound
-associated with the level χ is better than the previously
+bound is modied if and only if the lower bound
+associated with the level  is better than the previously
 found lower bound. The lower bound is the number
-of unsatisﬁed nodes with the current partial solution.
+of unsatised nodes with the current partial solution.
 This partial solution was passed down from a parent
 of the previous level. If a hypothetical solution better
 than the current lower bound is found, the lower bound
 becomes the hypothetical solution. (a) is synonymous to
-a breadth-ﬁrst search. However, we compute the breadth
-ﬁrst search from right-to-left. Conducting the search
+a breadth-rst search. However, we compute the breadth
+rst search from right-to-left. Conducting the search
 from left-to-right has no effect on the output, it was
 purely a implementation choice to match how we found
 our initial solution.
@@ -255,10 +255,10 @@ criteria are inserted into the level, and their respective
 parents are connected. Hence, we only visit children that
 meet or exceed this criteria. Using this greedy approach
 provides limitations, where an inspection may have lead
-to a lower bound conﬂict. That is, a newly inspected
+to a lower bound conict. That is, a newly inspected
 level may not have changed the previous lower bound,
 
-2The variable do not occur in a particular order, due to the usage of C + +’s
+2The variable do not occur in a particular order, due to the usage of C + +s
 
 unordered map.
 
@@ -293,7 +293,7 @@ unordered map < int, bool > to hold our partial solutions
 for every node. This allowed for a O(1) look-up, and O(1)
 insert. This mapping allowed for
 fast evaluation of our
-expression with the speciﬁed partial solution.
+expression with the specied partial solution.
 
 interesting
 
@@ -305,15 +305,15 @@ note
 
 D. Decisions on a Lower Bound
 
-Two variations of a lower bounding function φ(ν) were
+Two variations of a lower bounding function () were
 
 explored in this implementation:
 
-• Initially, we explored a greedy approach that used the
-number of satisﬁed clauses as a lower bound per partial
+ Initially, we explored a greedy approach that used the
+number of satised clauses as a lower bound per partial
 solution. That
 is, a node with a partial solution that
-produced more satisﬁed clauses compared to either the
+produced more satised clauses compared to either the
 initial lower bound or previous lower bound would then
 be assigned to the lower bound. By using this greedy
 approach, several optimal solutions can be missed, and
@@ -321,21 +321,21 @@ would defeat the objective of MAX-SAT. These missed
 solutions occur when either the level at which the tree
 is being searched contains a less optimal solution. This
 could have been used in tandem with the number of un-
-satisﬁed clauses, making the number of satisﬁed clauses
-an upper bound Φ(ν).
+satised clauses, making the number of satised clauses
+an upper bound ().
 
-• An attempt was made to also provide a depth ﬁrst
+ An attempt was made to also provide a depth rst
 search with a lower bounding function on the number of
-unsatisﬁed clauses. Using a depth ﬁrst search guarantees
+unsatised clauses. Using a depth rst search guarantees
 that an optimal solution will be found, at the cost of
 time. The approach we outline in this report executes in
-a much faster run-time than a depth ﬁrst approach, and
+a much faster run-time than a depth rst approach, and
 still provides the correct variable assignments.
 
 After some analysis, it was determined to use a breadth-
-ﬁrst search with a greedy lower bounding function on the
-number of dissatisﬁed clauses. We reasoned that conducting
-a breadth-ﬁrst search allowed for the algorithm to explore all
+rst search with a greedy lower bounding function on the
+number of dissatised clauses. We reasoned that conducting
+a breadth-rst search allowed for the algorithm to explore all
 variations of a particular variable assignment. However, by
 greedily only selecting the nodes with only the best lower
 bound could provide misleading results. That is, we cannot be
@@ -348,11 +348,11 @@ better lower cost, but will meet the quota once all successful
 
 candidates have been met. This can place a guarantee that we
 will observe the best known solution at any level lk. However,
-as we begin to ﬁll in the unassigned clauses, it is possible for
+as we begin to ll in the unassigned clauses, it is possible for
 us to reduce the quota per level. We only reduce the quota if
 a new best cost if found at some level lx.
 
-We also added an optimization, where we can “bypass” the
+We also added an optimization, where we can bypass the
 quota per level as long as we do not mind that intermediate
 levels do not improve the lower bound. This means that we
 only select the children with cost better than or equal to the
@@ -363,25 +363,25 @@ II. RESULTS
 Attached in this section are the results of the implementation
 of this MAX-SAT algorithm. We tested this implementation
 against four different boolean expressions, all of which are
-non-satisﬁable. We collected the following information during
+non-satisable. We collected the following information during
 each test:
 
-• N: the number of visited nodes required to deduce the
+ N: the number of visited nodes required to deduce the
 
 solution.
 
 sion tree.
 
-• NT : the total number of possible nodes within the deci-
+ NT : the total number of possible nodes within the deci-
 
-• τmedium: the elapsed time (in seconds) required for the
+ medium: the elapsed time (in seconds) required for the
 
-algorithm to complete on the speciﬁed test medium.
+algorithm to complete on the specied test medium.
 
-• S: the maximum number of clauses satisﬁed.
-• ST : the total number of clauses present in the test.
+ S: the maximum number of clauses satised.
+ ST : the total number of clauses present in the test.
 
-RESULTS COLLECTED ACROSS ALL TEST FILES WITH −opt y.
+RESULTS COLLECTED ACROSS ALL TEST FILES WITH opt y.
 
 TABLE I
 
@@ -401,18 +401,18 @@ N
 NT
 8
 
-1.12 × 1015
-1.15 × 1018
-4.72 × 1021
+1.12  1015
+1.15  1018
+4.72  1021
 
-τECF
+ECF
 
 0.00025
 0.662
 0.680
 0.909
 
-τUbuntu
+Ubuntu
 0.0003
 0.652
 0.691
@@ -424,7 +424,7 @@ S/ST
 159/160
 191/192
 
-RESULTS COLLECTED ACROSS ALL TEST FILES WITH −opt n.
+RESULTS COLLECTED ACROSS ALL TEST FILES WITH opt n.
 
 TABLE II
 
@@ -444,18 +444,18 @@ N
 NT
 8
 
-1.12 × 1015
-1.15 × 1018
-4.72 × 1021
+1.12  1015
+1.15  1018
+4.72  1021
 
-τECF
+ECF
 
 0.00025
 18.662
 175.322
 323.98
 
-τUbuntu
+Ubuntu
 0.0003
 18.842
 174.929
@@ -468,22 +468,22 @@ S/ST
 191/192
 
 This implementation (with the optimization) is able to
-quickly deduce the maximum number of satisﬁable clauses
-within a very short time. In ﬁles 1.cnf, 3.cnf and 4.cnf the
+quickly deduce the maximum number of satisable clauses
+within a very short time. In les 1.cnf, 3.cnf and 4.cnf the
 algorithm proceeds in a very similar manner, greedily attaching
-to true conditions. This can be seen in their respective ﬁgures
+to true conditions. This can be seen in their respective gures
 listed in the following subsections. We should also speculate
-on the analysis of the ﬁle 2.cnf. The value of N for this ﬁle is
-greater than all of the other N’s for the other ﬁles. This could
+on the analysis of the le 2.cnf. The value of N for this le is
+greater than all of the other Ns for the other les. This could
 be indicative of a boolean expression which requires more
 exploration for deduction. That is, this expression is greedy
 resilient. Since our implementation is greedy, it is possible
 that less children would have been added during stage (b),
 and required more exploration in stage (c).
 
-Without the optimization, both N and τmedium increased,
+Without the optimization, both N and medium increased,
 since we ensure that we can provably explore better solu-
-tions in subsequent levels, and ﬁnd the MAX-SAT. As noted
+tions in subsequent levels, and nd the MAX-SAT. As noted
 
 ECE1387: CAD FOR CIRCUIT SYNTHESIS AND LAYOUT
 
@@ -492,17 +492,17 @@ tions in subsequent levels, and ﬁnd the MAX-SAT. As noted
 B. 2.cnf
 
 previously, our optimization is not guaranteed to identify the
-MAX-SAT, but will generally ﬁnd it. As concluded from our
+MAX-SAT, but will generally nd it. As concluded from our
 results, both the guaranteed and optimized MAX-SAT deduce
 the same results.
 
 In addition to these values, we also collected the true and
-false values assigned to the maximum satisﬁed solution per
-test ﬁle. These results, as well as their graphical representa-
+false values assigned to the maximum satised solution per
+test le. These results, as well as their graphical representa-
 tions are listed in the subsections 1.cnf to 4.cnf. We included
-the ﬁgures of the implementation with the optimization (as
+the gures of the implementation with the optimization (as
 it provided the same results with less visited nodes). All
-ﬁgures shown in these subsections do not indicate a level
+gures shown in these subsections do not indicate a level
 to variable mapping. This was done to improve the image
 quality of this report. However, this implementation requires
 such a mapping for the highlighted solution to correlate to
@@ -510,7 +510,7 @@ the textual values. By zooming into the tree representation
 (using the provided graphics application), the level to variable
 mapping is highlighted with textual tags as in Figure 1.
 
-Fig. 1. Example of textual tags appearing for 2.cnf’s tree representation. The
+Fig. 1. Example of textual tags appearing for 2.cnfs tree representation. The
 number associated with each level is a variable within the boolean expression.
 
 A. 1.cnf
@@ -731,7 +731,7 @@ III. CONCLUSION
 In conclusion, a MAX-SAT solver was implemented in this
 assignment. To reduce the overall runtime of searching the
 solution space, a Branch and Bound algorithm was introduced
-and modiﬁed to (a) ﬁnd the optimal solution per boolean
+and modied to (a) nd the optimal solution per boolean
 expression, (b) reduce the runtime of searching the solution
 space, (c) reduce the number of nodes required per visit. Our
 results indicate that this implementation has met these criteria.
@@ -743,7 +743,7 @@ REFERENCES
 
 [1] Jens Gramm, Edward A Hirsch, Rolf Niedermeier, and Peter Rossmanith.
 Worst-case upper bounds for max-2-sat with an application to max-cut.
-Discrete Applied Mathematics, 130(2):139–155, 2003.
+Discrete Applied Mathematics, 130(2):139155, 2003.
 
 [2] Steve Joy, John Mitchell, and Brian Borchers. A branch and cut algorithm
 In SATISFIABILITY PROBLEM:
@@ -754,10 +754,10 @@ SCIENCE. Citeseer, 1997.
 
 [3] Eugene L Lawler and David E Wood. Branch-and-bound methods: A
 
-survey. Operations research, 14(4):699–719, 1966.
+survey. Operations research, 14(4):699719, 1966.
 
 [4] Raymond J Nelson. Simplest normal truth functions. The Journal of
 
-Symbolic Logic, 20(2):105–108, 1955.
+Symbolic Logic, 20(2):105108, 1955.
 
 

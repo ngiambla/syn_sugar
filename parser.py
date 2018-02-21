@@ -24,9 +24,7 @@ class parser:
 	def remove_tags(self, text):
 		return TAG_RE.sub('', text)
 
-	def collect_ingredients(self,filename):
-
-		invalid = ["<DOC>", "<DOCNO>", "<FILEID>", "<FIRST>", "<SECOND>", "<HEAD>", "<BYLINE>", "<DATELINE>"]
+	def collect_ingredients(self,filename, testing=False):
 
 		try:
 			_ingredients 			=	{}
@@ -36,10 +34,16 @@ class parser:
 
 			stuffing=self.prepare_stuffing()
 
+			continue_read = False
+
 			with open(filename, 'r') as f:
 				for line in f:
-					#if invalid.any() not in line:
-					if not any(tag in line for tag in invalid):
+					if line == "Introduction:\n" and testing:
+						continue_read = True
+						line = ""
+					elif not testing:
+						continue_read = True
+					if continue_read:
 						line = self.remove_tags(line)
 						words=line.split()
 						for word in words:
@@ -50,7 +54,11 @@ class parser:
 							_label = _label + 1
 						if len(words) > 0:
 							_line_label = _line_label +1
-			return ingredients(_ingredients, _ingredient_mapping, filename)
+
+			if len(_ingredients) < 5:
+				return -1
+			else:
+				return ingredients(_ingredients, _ingredient_mapping, filename)
 		except Exception as e:
 			print(bcolors.REDBACK+"Error occured while opening file: "+str(e)+bcolors.ENDC)
 			return -1

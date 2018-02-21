@@ -1,0 +1,178 @@
+SiFT: Signature Based Fault Tolerance for High
+
+Level Synthesis
+
+Nicholas V. Giamblanco
+
+Lino Carrillo
+
+Ishita Ray
+
+nicholas.giamblanco@mail.utoronto.ca
+
+lino.carrillo@mail.utoronto.ca
+
+ishita.ray@mail.utoronto.ca
+
+I. INTRODUCTION
+
+With todays heavy reliance on electronic devices, quick
+and efcient performance is desirable. However, the unprece-
+dented amount of data available today has negatively impacted
+performance. Hence,
+it is worthwhile to investigate accel-
+eration techniques where some proportion of an algorithm
+can be ofoaded to hardware. A common technique is to
+utilize High-Level Synthesis (HLS). HLS tools can produce a
+hardware based implementation of an algorithm from a high-
+level description. One such tool is LegUp [1], where a high-
+level description written in C code is translated to Verilog
+(a hardware description language). There is concern with the
+input to any HLS tool. HLS systems imply that the high-
+level description to be translated was checked for correctness
+against implementation and logical bugs. Other assumptions
+are against correct circuit behaviour. However, there is limited
+prevention of faults due to physical disturbances upon the
+circuit. Additionally, there lacks a correctness-checking mech-
+anism for the synthesized hardware description. Herein lies the
+motivation for this project; an automated fault tolerance tool,
+SiFT1, which aims to (1) identify latent bugs within an ANSI
+C description and (2) insert fault tolerance through signature
+based correctness.
+
+A. Signatures
+
+Signatures, which are unique identication mechanisms,
+permit verication of the origin/integrity of some data [2].
+A contrived example would be where one signed-off on a
+document or transaction. The user that signed the document
+cannot be repudiate this action as it uniquely identied them.
+However, signatures need not be limited to individuals or
+computers. It has been demonstrated that signatures can be
+produced for logical descriptions and mathematical functions
+([3], [4], [5]). Utilizing signatures as a method of correctness
+may entail the following: suppose that we have some function
+f (x) = x2. By quickly inspecting this relationship, we can see
+that f (x) shall always be positive. Hence this is a signature for
+this particular function. We will extrapolate on this ideology
+to produce signatures for high-level descriptions.
+
+B. Fault Tolerance Explorations
+
+In the realm of HLS, several fault tolerance design method-
+ologies have been suggested ([6], [7]). These suggestions
+
+1Signature based Fault Tolerance
+
+generally following some n-Modular Redundancy approach to
+provide Fault Tolerance. Although these modular-redundancy
+approaches do provide some reliability, they consume more
+power, area, and increase latency in the resulting circuit.
+More importantly they neglect inspection of the logic being
+synthesized. Hence, we aim to (1) identify areas of the high
+level description where latent structural and logical bugs exist
+and (2) provide fault tolerance through the insertion of logic
+which can check against signatures of functions within the
+high level description.
+
+II. PROBLEMS & CHALLENGES
+
+Hardware faults differ from their software counterpart in the
+several ways: (1) hardware bugs are usually caused through
+physical disturbances such as Single Event Upsets (SEUs),
+temperature excitations [8] and (2) the hardware may have
+latent logic defects [9]. However, due to the usage of HLS,
+software is transformed into this hardware description. Due
+to this software/hardware co-design, checking for correctness
+of the entire co-design appends complexity. A signicant
+challenge faced with our method is an efcient implementation
+of signature based fault tolerance. With any additional logic
+to be synthesized with a hardware description, considerations
+of latency, power, and area in the produced circuit should be
+investigated.
+
+III. EXPECTED STAGES FOR PROJECT DEVELOPMENT
+
+Our team has identied the following stages to complete
+
+this project:
+
+ Review techniques that can identify correctness within
+
+High Level Languages (i.e [10])
+
+ Researching different signature-based fault detection sys-
+
+ Identifying signatures of high level descriptions automat-
+
+tems
+
+ically
+
+ Adding fault tolerance from discover signatures
+ Researching and providing evaluation techniques for this
+
+novel fault tolerance method
+
+ Perform a review of the LegUp system (i.e. understand
+
+LLVMs infrastructure [11])
+
+ Implementation & Evaluation of SiFT with LegUp
+
+REFERENCES
+
+[1] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. An-
+derson, S. Brown, and T. Czajkowski, Legup: high-level synthesis
+for fpga-based processor/accelerator systems, in Proceedings of the
+19th ACM/SIGDA international symposium on Field programmable gate
+arrays, pp. 3336, ACM, 2011.
+
+[2] M. Atreya and B. Hammond, Digital signatures. Osborne/McGraw-Hill,
+
+2002.
+
+[3] J. E. Smith, Measures of the effectiveness of fault signature analysis,
+
+IEEE Transactions on Computers, vol. 29, no. 6, pp. 510514, 1980.
+
+[4] F. Corsi, M. Chiarantoni, R. Lorusso, and C. Marzocca, A fault
+signature approach to analog devices testing, in Proceedings ETC 93
+Third European Test Conference, pp. 116121, Apr 1993.
+
+[5] N. Oh, P. P. Shirvani, and E. J. McCluskey, Control-ow checking by
+software signatures, IEEE transactions on Reliability, vol. 51, no. 1,
+pp. 111122, 2002.
+
+[6] S. Tosun, N. Mansouri, E. Arvas, M. Kandemir, and Y. Xie, Reliability-
+centric high-level synthesis, in Proceedings of
+the conference on
+Design, Automation and Test in Europe-Volume 2, pp. 12581263, IEEE
+Computer Society, 2005.
+
+[7] G. Lee, D. Agiakatsikas, T. Wu, E. Cetin, and O. Diessel, Tlegup: A
+tmr code generation tool for sram-based fpga applications using hls, in
+Field-Programmable Custom Computing Machines (FCCM), 2017 IEEE
+25th Annual International Symposium on, pp. 129132, IEEE, 2017.
+
+[8] E. Normand, Single event upset at ground level, IEEE transactions on
+
+Nuclear Science, vol. 43, no. 6, pp. 27422750, 1996.
+
+[9] M. L. Li, P. Ramachandran, S. K. Sahoo, S. V. Adve, V. S. Adve, and
+Y. Zhou, Trace-based microarchitecture-level diagnosis of permanent
+hardware faults, in 2008 IEEE International Conference on Dependable
+Systems and Networks With FTCS and DCC (DSN), pp. 2231, June
+2008.
+
+[10] D. Engler, D. Y. Chen, S. Hallem, A. Chou, and B. Chelf, Bugs as
+deviant behavior: A general approach to inferring errors in systems
+code, in ACM SIGOPS Operating Systems Review, vol. 35, pp. 57
+72, ACM, 2001.
+
+[11] C. Lattner and V. Adve, Llvm: A compilation framework for lifelong
+program analysis & transformation, in Proceedings of the international
+symposium on Code generation and optimization: feedback-directed and
+runtime optimization, p. 75, IEEE Computer Society, 2004.
+
+

@@ -128,42 +128,47 @@ def bake(file_ext=""):
 		print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 
 	else:
+		f1_avg 		= 	0
+		test_cases 	= 	0
+		
 		for ghost in test_ghost:
 
 			start = time.time()
 
-			if ghost != "data/tests/res" and ghost != "data/tests/summaries":
+			if ghost != "data/tests/res" and ghost != "data/tests/summaries" and "MEM_ARCH" not in ghost:
 
-				_ingredients=parser().collect_ingredients(ghost)
+				_ingredients=parser().collect_ingredients(ghost.replace("data/tests/", "data/tests/summaries/").lower()+".txt", True)
+				if _ingredients != -1:
+					special_items=[]
+					for rank in sorted(_classes.iterkeys()):
+						_class=_classes[rank]
+						print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
+						special_items = special_items + _class().bake(_ingredients)				
+					sys_summ=garnish().final_touches(_ingredients, special_items, ghost.replace("data/tests/", "data/tests/res/"))
+					end = time.time()
 
-				if _ingredients == -1:
-					return
+					ref_summ=""
+					if len(sys_summ) > 0:
 
-				special_items=[]
-				for rank in sorted(_classes.iterkeys()):
-					_class=_classes[rank]
-					print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
-					special_items = special_items + _class().bake(_ingredients)				
-				
-				sys_summ=garnish().final_touches(_ingredients, special_items, ghost.replace("data/tests/", "data/tests/res/"))
-				end = time.time()
+						try:
+							with open(ghost.replace("data/tests/", "data/tests/summaries/").lower()+".txt", "r") as f:
+								for line in f:
+									if line != "Abstract:\n":
+										if line == "Introduction:\n":
+											break;
+										ref_summ = ref_summ + line
+							if len(ref_summ) > 0:
+								print(ref_summ)
+								scores 		= stos.eval(ref_summ, sys_summ)
+								print(scores)
 
-				ref_summ=""
-				try:
-					with open(ghost.replace("data/tests/", "data/tests/summaries/").lower()+".txt", "r") as f:
-						for line in f:
-							if line != "Abstract:\n":
-								if line == "Introduction:\n":
-									break;
-								ref_summ = ref_summ + line
-
-					print(ref_summ)
-					scores = stos.eval(ref_summ, sys_summ)
-					#scores = r.get_scores(ref_summ, sys_summ)
-					print(scores)
-					print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
-				except Exception as e:
-					print(e)
+								f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
+								test_cases 	= test_cases+1
+								
+								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
+						except Exception as e:
+							print(e)
+		print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
 
 			
 

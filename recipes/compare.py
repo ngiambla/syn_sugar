@@ -23,25 +23,25 @@ class compare:
 
 			if len(_ingredients_all[_label]) >= 2:
 				if 'i' == _ingredients_all[_label][0].lower() and 'f' == _ingredients_all[_label][1].lower():
-					_ingredients_all[_label]=_ingredients_all[_label].replace("if", "%%cmp%%")
+					_ingredients_all[_label]=_ingredients_all[_label].replace("if", "%%cmp_if%%")
 
 			if "therefore" in _ingredients_all[_label].lower():
-				_ingredients_all[_label]=_ingredients_all[_label].replace("therefore", "%%cmp%%")
+				_ingredients_all[_label]=_ingredients_all[_label].replace("therefore", "%%cmp_tf%%")
 
 			if "because" in _ingredients_all[_label].lower():
-				_ingredients_all[_label]=_ingredients_all[_label].replace("because", "%%cmp%%")
+				_ingredients_all[_label]=_ingredients_all[_label].replace("because", "%%cmp_b%%")
 
 			if "hence" in _ingredients_all[_label].lower():
-				_ingredients_all[_label]=_ingredients_all[_label].replace("hence", "%%cmp%%")
+				_ingredients_all[_label]=_ingredients_all[_label].replace("hence", "%%cmp_h%%")
 
 			if "else" in _ingredients_all[_label].lower():
-				_ingredients_all[_label]=_ingredients_all[_label].replace("else", "%%cmp%%")
+				_ingredients_all[_label]=_ingredients_all[_label].replace("else", "%%cmp_e%%")
 
 			if "then" in _ingredients_all[_label].lower():
-				_ingredients_all[_label]=_ingredients_all[_label].replace("then", "%%cmp%%")
+				_ingredients_all[_label]=_ingredients_all[_label].replace("then", "%%cmp_t%%")
 
 			if "than" in _ingredients_all[_label].lower():
-				_ingredients_all[_label]=_ingredients_all[_label].replace("than", "%%cmp%%")
+				_ingredients_all[_label]=_ingredients_all[_label].replace("than", "%%cmp_ta%%")
 
 			if "compare" in _ingredients_all[_label].lower():
 				_ingredients_all[_label]=_ingredients_all[_label].replace("compare", "%%cmp%%")
@@ -61,4 +61,4 @@ class compare:
 		_ingredients.update(_ingredients_all, _ingredient_mapping)
 		print("")
 
-		return ["%%cmp%%"]
+		return ["%%cmp_if%%","%%cmp_tf%%","%%cmp_b%%","%%cmp_h%%","%%cmp_e%%","%%cmp_t%%","%%cmp_ta%%","%%cmp%%"]

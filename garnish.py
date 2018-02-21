@@ -190,7 +190,6 @@ class garnish:
 
 							hamming_sim = len(sentence_vec_map[_i_label])-mutils.hamming_distance(a,b)
 							sim_i = int(math.floor(100*(hamming_sim)/len(sentence_vec_map[_i_label])) + math.floor(100*(mutils.get_cosine_sim(a,b))))
-
 							if sim_i not in sen_pairs: 
 								sen_pairs[sim_i] = {}
 
@@ -230,10 +229,12 @@ class garnish:
 								wb = sentence_low_map[jl]
 
 								if ent_lim <= 1.2*avg_entropy:
-									ent_lim = ent_lim + ent_lim*(1/(2*avg_wrd_snt))
+									ent_lim = ent_lim + ent_lim*(2/(avg_wrd_snt))
+
 								else:
 									miss_count = 0
-								sim_j  = math.floor(100*(mutils.get_cosine_sim(a,b))) * math.floor(100*(mutils.jaccard_index(wa,wb)))
+								sim_j	= math.floor(100*(mutils.get_cosine_sim(a,b))) + math.floor(100*(mutils.jaccard_index(wa,wb)))
+								sim_j  	= int(sim_j)
 
 								if sim_j not in sorted_bins[_bin]:
 									sorted_bins[_bin][sim_j]={}
@@ -243,7 +244,7 @@ class garnish:
 						else:
 							miss_count=miss_count+1
 							if miss_count >= int(0.7*len(sen_pairs[_bin])):
-								ent_lim = (ent_lim*(0.05*avg_wrd_snt))
+								ent_lim = (ent_lim/(0.04*avg_wrd_snt))
 								miss_count = 0
 
 
@@ -257,16 +258,16 @@ class garnish:
 				for sim_j in sorted_bins[_bin]:
 					for label in sorted_bins[_bin][sim_j]:
 						if label not in summary_map:
-							summary_map[label] = 1
+							summary_map[label] = 1*(sentence_length_map[_label]+_label -1)*((_bin + sim_j)/100)
 						else:
-							summary_map[label] = summary_map[label] + 1
+							summary_map[label] = summary_map[label] + 1*(sentence_length_map[_label]+_label -1)*((_bin + sim_j)/100)
 		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
 
 
 		l_summary_map = {}
 
 		for _label in k_summary_map:
-			if len(l_summary_map) < 10:
+			if len(l_summary_map) < 5:
 				l_summary_map[_label[0]]=_label[1]
 			else:
 				break

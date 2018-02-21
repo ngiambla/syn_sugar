@@ -1,48 +1,70 @@
-~$[Suspected communist rebels today 
-killed the police chief of the Philippines%%sqt%% major financial center 
-in an escalation of street violence sweeping the capital area%%lst%% 
-police said%%per%%]$~ 
-~$[Col%%per%%]$~ ~$[Herminio Taylo%%lst%% 54%%lst%% police chief of Makati%%lst%% had just 
-finished jogging ]^[ was buying fruit in a public market when two 
-assassins opened fire with %%per%%45%%dsh%%caliber pistols%%lst%% police said%%per%%]$~ ~$[He died 
-an hour later in a hospital%%per%%]$~ 
-~$[Police Sgt%%per%%]$~ ~$[Lydio Zeta quoted witnesses as saying the gunmen 
-shouted ``We are NPAs,%%sqt%%%%sqt%% referring to the rebel New People%%sqt%%s Army%%lst%% 
-]^[ warned bystanders ]n[ to interfere%%per%%]$~ ~$[They fled in a commandeered 
-passenger jeep after taking Taylo%%sqt%%s pistol%%lst%% Zeta said%%per%%]$~ 
-~$[Makati%%lst%% a twin city of Manila with a population of about 440,000%%lst%% 
-is the country%%sqt%%s major banking ]^[ financial center ]^[ is also the 
-home of numerous foreign embassies%%per%%]$~ 
-~$[Taylo was the 10th soldier ]v[ policeman slain in the Manila area 
-in the last two weeks%%per%%]$~ ~$[The military says communist rebels have 
-killed up to 65 soldiers ]^[ police in the capital region since 
-January%%per%%]$~ 
-~$[The New People%%sqt%%s Army also claimed responsibility ]f[ the April 
-21 assassination of U%%per%%S%%per%%]$~ ~$[Army Col%%per%%]$~ ~$[James ``Nick%%sqt%%%%sqt%% Rowe%%lst%% who was 
-slain on his way to work at the Joint U%%per%%S%%per%%]$~ ~$[Military Assistance Group 
-headquarters in suburban Quezon City%%per%%]$~ 
-~$[Taylo was slain one day after Brig%%per%%]$~ ~$[Gen%%per%%]$~ ~$[Alexander Aguirre%%lst%% 
-Capital Region commander%%lst%% announced formation of a special task 
-force to track down rebel assassins in the capital%%per%%]$~ 
-~$[President Corazon Aquino deplored the latest killing ]b[ said 
-public officials must learn to live with the threat of 
-assassination%%per%%]$~ ~$[She said the government had provided bodyguards to 
-Cabinet members who have requested them ]v[ who have received death 
-threats%%per%% 
-``It is really very unfortunate ]^[ I do sympathize with the 
-family of Col%%per%%]$~ ~$[Taylo,%%sqt%%%%sqt%% said Mrs%%per%%]$~ ~$[Aquino%%lst%% whose husband Benigno was 
-slain in a political assassination in 1983%%per%% ``And I hope that this%%lst%% 
-perhaps%%lst%% could be a reminder to all our people in the military ]^[ 
-police that they should take necessary precautions to ward off these 
-assasination attempts%%per%%%%sqt%%%%sqt%% 
-National Security Adviser Rafael Ileto said the killing of Taylo 
-showed that every soldier ]^[ policeman was a potential target of 
-assassination%%per%% 
-``This is war ]^[ somebody is bound to get hurt in the process,%%sqt%%%%sqt%% 
-Ileto said%%per%% ``I%%sqt%%m sure all the major unit commanders are doing their 
-best ]n[ only to protect their men ]b[ to counter such acts%%per%%%%sqt%%%%sqt%% 
-Despite the escalating violence%%lst%% Mrs%%per%%]$~ ~$[Aquino said she still plans 
-to go ahead with a visit to Western Europe this month%%per%%]$~ 
-~$[Mrs%%per%%]$~ ~$[Aquino leaves Saturday ]f[ an official visit to West 
-Germany%%per%%]$~ ~$[She will also visit France ]^[ Belgium before departing 
-Brussels ]f[ home on July 15%%per%% 
+~$[Opponents of any sort of gun control write passionately%%lst%% 
+but%%lst%% judging from their letters (%%dqt%%Smile When You Say Gun 
+Control,%%dqt%% Jan%%per%% 14)%%lst%% they don%%sqt%%t read well%%per%%]$~ 
+~$[For example%%lst%% one letter writer%%lst%% commenting on my Dec%%per%% 12 
+Counterpoint%%lst%% %%dqt%%Gun Control Is Constitutional,%%dqt%% felt compelled 
+to instruct me that the word militia means %%dqt%%the whole 
+people,%%dqt%% a point I quoted three times ]^[ also paraphrased 
+once in my brief article%%per%%]$~ ~$[He ]^[ the others who dwelt on this 
+point also don%%sqt%%t read the Second Amendment very well%%per%%]$~ ~$[The 
+subject is ]n[ just the militia ]b[ %%dqt%%a well%%dsh%%regulated 
+militia,%%dqt%% people trained%%lst%% disciplined ]^[ armed ]f[ defense 
+of the community under commanding officers%%per%%]$~ 
+~$[That same correspondent accused me of calling ]f[ %%dqt%%removal 
+of all guns from American citizens through the implementation 
+of total regulations%%per%%%%dqt%% I said nothing like that%%per%%]$~ ~$[I said that 
+although the Second Amendment has nothing to do with private 
+uses of arms%%lst%% there is an unenumerated ]b[ undeniable right 
+to own a gun%%per%%]$~ 
+~$[We have many rights ]n[ enumerated in the Constitution%%lst%% 
+such as the right to marry%%lst%% drive a car ]v[ own a dog%%per%%]$~ ~$[These 
+rights are ]n[ denied just because the Constitution doesn%%sqt%%t 
+mention them%%scn%% ]^[ the rights are ]n[ disparaged by the fact 
+that we must obtain a marriage license%%lst%% driver%%sqt%%s license ]v[ a 
+dog license%%per%%]$~ 
+~$[In the same way%%lst%% the right to own a gun is ]n[ disparaged 
+by being licensed ]v[ otherwise regulated ]^[ controlled%%per%%]$~ ~$[One 
+letter writer who also knows something about the 
+Constitution%%lst%% though disagreeing with me on another point%%lst%% 
+agreed on the central issue%%lst%% that regulation of gun ownership 
+]^[ use does ]n[ violate the Constitution%%per%%]$~ 
+~$[All the letters missed entirely my point about requiring 
+gun owners to %%dqt%%sign up%%dqt%% with (not %%dqt%%join%%dqt%%) the National Guard%%per%%]$~ 
+~$[I likened it to the current law requiring 18%%dsh%%year%%dsh%%old men to 
+register with the Selective Service%%per%%]$~ ~$[Registering is very 
+different from enlisting ]f[ active service%%per%%]$~ ~$[Requiring gun 
+owners to register with the National Guard would provide the 
+kind of scrutiny the Brady ]^[ Staggers bills contemplated%%lst%% 
+and%%lst%% if Congress dared%%lst%% could provide an additional measure 
+of control over who owns what kinds of weapons%%per%%]$~ 
+~$[But my main point was to show how far Congress can go in 
+gun%%dsh%%control legislation without exceeding its constitutional 
+powers%%lst%% using as a model the legislation of the Second 
+Congress%%lst%% which included most of the authors of the Second 
+Amendment%%per%%]$~ 
+~$[Another letter writer thinks I have confused the issue by 
+calling the duty to serve in the militia a right to serve%%lst%% 
+]b[ if he will look at the debates in the First Congress he 
+will see that there is no confusion at all%%lst%% that the authors 
+of the Second Amendment were talking about the right to 
+serve%%per%%]$~ ~$[Consistent with all of the Bill of Rights%%lst%% its subject 
+is rights%%lst%% ]n[ duties%%per%%]$~ ~$[Elbridge Gerry opposed James Madison%%sqt%%s 
+clause exempting persons %%dqt%%religiously scrupulous,%%dqt%% because of 
+the danger that it might be abused to discriminate against 
+members of certain sects%%lst%% %%dqt%%to declare who are those who are 
+religiously scrupulous,%%dqt%% ]^[ then keep them out of the 
+militia%%per%%]$~ 
+~$[The real issue is that the Second Amendment addressed a 
+serious public concern%%lst%% to protect the right of citizens to 
+serve as defenders of the community in times of peril%%lst%% ]n[ 
+the personal uses of guns%%per%%]$~ ~$[And since the proliferation of 
+guns in the hands of criminals has become a national 
+calamity%%lst%% as police officials all over the nation attest%%lst%% it 
+is essential that we recapture the true purpose of the Second 
+Amendment%%per%%]$~ ~$[Plain ]^[ simple%%lst%% it is no barrier to sensible gun 
+control%%per%%]$~ 
+~$[Robert A%%per%%]$~ ~$[Goldwin 
+Resident Scholar 
+American Enterprise Institute 
+Washington 
+ 

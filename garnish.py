@@ -244,7 +244,7 @@ class garnish:
 						else:
 							miss_count=miss_count+1
 							if miss_count >= int(0.7*len(sen_pairs[_bin])):
-								ent_lim = (ent_lim/(0.04*avg_wrd_snt))
+								ent_lim = (ent_lim*(0.05*avg_wrd_snt))
 								miss_count = 0
 
 
@@ -258,9 +258,9 @@ class garnish:
 				for sim_j in sorted_bins[_bin]:
 					for label in sorted_bins[_bin][sim_j]:
 						if label not in summary_map:
-							summary_map[label] = 1*(sentence_length_map[_label]+_label -1)*((_bin + sim_j)/100)
+							summary_map[label] = 1
 						else:
-							summary_map[label] = summary_map[label] + 1*(sentence_length_map[_label]+_label -1)*((_bin + sim_j)/100)
+							summary_map[label] = summary_map[label] + 1
 		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
 
 

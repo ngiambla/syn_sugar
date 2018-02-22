@@ -126,30 +126,22 @@ class garnish:
 					if special_item in item:
 						_special_item_dict[special_item]=_special_item_dict[special_item]+1
 
-
 		for _label in sentence_map:
 
 			sfs2 	= 	[]
+			sfs 	= 	[]
 			low_map = 	[]
 			for i in range(_label, sentence_length_map[_label]+_label):
 				low_map.append(ingredient_free_map[i].lower())
 				if _ingredients_all[i] != "%%#%%":
 					sfs2.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
+					sfs.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
 				else:
-					sfs2.append(10**(-10))
+					sfs2.append(0)
 
 			freq_vec_map[_label]  			=  	sfs2
 			sentence_low_map[_label] 		= 	low_map
-			sigmoid_val 					= 	mutils.sigmoid((sentence_length_map[_label]), 20)
-			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs2)*sigmoid_val/(sentence_length_map[_label])
-
-			avg_entropy = avg_entropy + sentence_entropy_map[_label] 
-
-			if sentence_entropy_map[_label] > max_entropy:
-				max_entropy = sentence_entropy_map[_label]				
-
-			if sentence_entropy_map[_label] < min_entropy:
-				min_entropy = sentence_entropy_map[_label]
+			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
 
 			vec=[]
 			for special_item in sentence_map[_label]:
@@ -158,11 +150,24 @@ class garnish:
 			sentence_vec_map[_label]=vec
 
 
-
-		avg_entropy = avg_entropy/len(sentence_vec_map)
+		
 		avg_wrd_snt = (_number_of_ingredients/len(sentence_vec_map))
-		_scalar 	= 0.5
+		_scalar 	= 0
 
+		for item in sentence_length_map:
+			sentence_entropy_map[item]=sentence_entropy_map[item]*mutils.sigmoid((sentence_length_map[item]), avg_wrd_snt)
+
+		for _label in sentence_entropy_map:
+			avg_entropy = avg_entropy + sentence_entropy_map[_label] 
+
+			if sentence_entropy_map[_label] > max_entropy:
+				max_entropy = sentence_entropy_map[_label]				
+
+			if sentence_entropy_map[_label] < min_entropy:
+				min_entropy = sentence_entropy_map[_label]			
+		
+		avg_entropy = avg_entropy/len(sentence_vec_map)
+		
 		print(bcolors.OKGREEN+ "\n\n> Stats" + bcolors.ENDC)
 		print(bcolors.OKGREEN+ ">> MAX Entropy: " + str(max_entropy) + bcolors.ENDC)
 		print(bcolors.OKGREEN+ ">> MIN Entropy: " + str(min_entropy) + bcolors.ENDC)
@@ -170,6 +175,8 @@ class garnish:
 		print(bcolors.OKGREEN+ ">> AVG WRD/SNT: " + str(avg_wrd_snt) + bcolors.ENDC)
 		print(bcolors.OKGREEN+ ">> AVG _scalar: " + str(_scalar)     + bcolors.ENDC)
 		print("\n")
+
+
 		seen_labels		=	{}
 		sen_pairs 		=	{}
 		count=0
@@ -202,8 +209,7 @@ class garnish:
 							if _j_label not in sen_pairs[sim_i]:
 								sen_pairs[sim_i][_j_label]=sentence_entropy_map[_j_label]
 							else:
-								sen_pairs[sim_i][_j_label]=sen_pairs[sim_i][_j_label]*0.85
-
+								sen_pairs[sim_i][_j_label]=sen_pairs[sim_i][_j_label]*0.9
 							count=count+1
 							self.display_progress_check(1, count, cols)
 
@@ -225,7 +231,7 @@ class garnish:
 							fields[il]=fields[il]+field		
 
 		sorted_bins 	= 	{}
-		ent_lim 		= 	avg_entropy
+		ent_lim 		= 	0
 
 		for _bin in sen_pairs:
 
@@ -282,7 +288,7 @@ class garnish:
 		l_summary_map = {}
 
 		for _label in k_summary_map:
-			if len(l_summary_map) < 20:
+			if len(l_summary_map) < 5:
 				l_summary_map[_label[0]]=_label[1]
 			else:
 				break

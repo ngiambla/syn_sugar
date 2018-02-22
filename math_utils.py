@@ -16,7 +16,7 @@ def get_cosine_sim(a, b):
 
 
 def sigmoid(val, shift=0):
-	return ( 1 / (1+math.exp(-1*(val-shift)) ) )
+	return ( 1 / (1+math.exp(-0.5*(val-shift)) ) )
 
 
 def hamming_distance(s1, s2):

@@ -1,81 +1,1011 @@
 ~$[ Syntactic Sugar ]$~
 ** Results **: 
 
-[+0]   Opponents of any sort of gun control write passionately, but, judging from their letters ("Smile When You Say Gun Control," Jan. 14), they don't read well.[1874.88]
-[+26]   For example, one letter writer, commenting on my Dec. 12 Counterpoint, "Gun Control Is Constitutional," felt compelled to instruct me that the word militia means "the whole people," a point I quoted three times and also paraphrased once in my brief article.[1353.24]
-[+68]   He and the others who dwelt on this point also don't read the Second Amendment very well.[1028.16]
-[+85]   The subject is not just the militia but "a well-regulated militia," people trained, disciplined and armed for defense of the community under commanding officers.[1392.12]
-[+184]   These rights are not denied just because the Constitution doesn't mention them; and the rights are not disparaged by the fact that we must obtain a marriage license, driver's license or a dog license.[1461.24]
+[+74]   The open-source LegUp high-level synthesis tool (HLS) [1] is modified to automatically insert clock-domain-crossing circuitry for signals crossing between two domains.[191]
+[+95]   The scheduling and binding phases of HLS were changed to reflect the impact of multiple clock domains on memory.[224]
+[+154]   In an experimental study, apply multiclock domain HLS to the CHStone benchmark suite [2] and demonstrate average wall-clock time improvements of 33%.[215]
+[+763]   The Verilog generation step of LegUp was altered to benefits: 1) improved performance, and 2) reduced power.[227]
+[+982]   Local shared Local shared The typical HLS steps are allocation, scheduling, binding, memory memory and finally, generation of the RTL.[182]
+[+1798]   In addition, changes to the scheduling and binding steps of LegUp HLS were required to support multiple domains.[207]
+[+1871]   The communication interface in a LegUp-generated circuit contains two main interfaces, a master interface and a slave interface.[238]
+[+1889]   The master interface initiates a transfer by setting the arguments to the slave interface and asserting a start control signal.[172]
+[+1909]   The slave responds to the transfer, performs its computation, and after execution, sets a return value and asserts a finish control signal.[166]
+[+2049]   The two flip-flop synchronizer is a simple, safe method for passing logic signals between clock domains, and is the recommended approach for CDC in Altera FPGAs [13].[192]
+[+2476]   The two flip-flop arose surrounding the cycle latencies required for transmitting synchronizers are highlighted at labels 1 and 2 for the passing of the control signals.[181]
+[+3254]   In multiple-clock circuits, when two functions, which are: 1) A global memory controller and memories, 2) on different clock domains, access the same memory, the two shared-local memories, and 3) local memories.[197]
+[+3764]   In this case, port A of as the function. the memory operates at clock domain 1; port B of the memory operates at clock domain 2.[216]
+[+4226]   Table I shows the speed-performance results for single and was placed on a first clock domain, with the balance of the circuit on a second clock domain.[194]
+[+5375]   The open-source LegUp HLS tool was modified to accept user constraints designating C functions onto specific clock domains.[179]
+[+5618]   Brown, and T.[169]
+[+5681]   Coussy, and E.[185]
+[+5684]   Martin, “Hierarchical and multiple-clock domain high-level synthesis for low-power design on FPGA,” in FPL, 2010, pp. 464–468. [5] D.[192]
+[+5793]   Theobald, “Generalized latency-insensitive systems for single-clock and multi-clock architectures,” in IEEE/ACM DATE, vol. 2, 2004, pp. 1008–1013. [9] A.[164]
+[+5934]   Dike and E.[175]
 
  Baked Goods: 
 
-~$[opponents %%#%% %%#%% sort %%#%% gun control write passionately%%lst%% 
-but%%lst%% judging %%#%% %%#%% letters (%%dqt%%smile %%#%% %%#%% %%#%% gun 
-control,%%dqt%% jan%%per%% 14)%%lst%% %%#%% don%%sqt%%t read well%%per%%]$~ 
-~$[for example%%lst%% %%#%% letter writer%%lst%% commenting %%#%% %%#%% dec%%per%% 12 
-counterpoint%%lst%% %%dqt%%gun control %%#%% constitutional,%%dqt%% %%#%% compelled 
-%%#%% instruct %%#%% %%#%% %%#%% word militia means %%dqt%%the %%#%% 
-people,%%dqt%% %%#%% %%#%% %%#%% quoted %%#%% times ]^[ %%#%% paraphrased 
-%%#%% %%#%% %%#%% brief article%%per%%]$~ ~$[he ]^[ %%#%% %%#%% %%#%% dwelt %%#%% %%#%% 
-%%#%% %%#%% don%%sqt%%t read %%#%% %%#%% amendment %%#%% well%%per%%]$~ ~$[the 
-subject %%#%% ]n[ %%#%% %%#%% militia ]b[ %%dqt%%a well%%dsh%%regulated 
-militia,%%dqt%% people trained%%lst%% disciplined ]^[ armed ]f[ defense 
-%%#%% %%#%% community %%#%% commanding officers%%per%%]$~ 
-~$[that %%#%% correspondent accused %%#%% %%#%% calling ]f[ %%dqt%%removal 
-%%#%% %%#%% guns %%#%% american citizens %%#%% %%#%% implementation 
-%%#%% total regulations%%per%%%%dqt%% %%#%% %%#%% %%#%% %%#%% that%%per%%]$~ ~$[i %%#%% %%#%% 
-%%#%% %%#%% %%#%% amendment %%#%% %%#%% %%#%% %%#%% %%#%% private 
-%%#%% %%#%% arms%%lst%% %%#%% %%#%% %%#%% unenumerated ]b[ undeniable %%#%% 
-%%#%% own %%#%% gun%%per%%]$~ 
-~$[we %%#%% %%#%% rights ]n[ enumerated %%#%% %%#%% constitution%%lst%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% marry%%lst%% drive %%#%% car ]v[ own %%#%% dog%%per%%]$~ ~$[these 
-rights %%#%% ]n[ denied %%#%% %%cmp_b%% %%#%% constitution doesn%%sqt%%t 
-mention them%%scn%% ]^[ %%#%% rights %%#%% ]n[ disparaged %%#%% %%#%% %%#%% 
-%%#%% %%#%% %%#%% obtain %%#%% marriage license%%lst%% driver%%sqt%%s license ]v[ %%#%% 
-dog license%%per%%]$~ 
-~$[in %%#%% %%#%% way%%lst%% %%#%% %%#%% %%#%% own %%#%% gun %%#%% ]n[ disparaged 
-%%#%% %%#%% licensed ]v[ otherwise regulated ]^[ controlled%%per%%]$~ ~$[one 
-letter writer %%#%% %%#%% knows %%#%% %%#%% %%#%% 
-constitution%%lst%% %%#%% disagreeing %%#%% %%#%% %%#%% %%#%% point%%lst%% 
-agreed %%#%% %%#%% central issue%%lst%% %%#%% regulation %%#%% gun ownership 
-]^[ %%#%% %%#%% ]n[ violate %%#%% constitution%%per%%]$~ 
-~$[all %%#%% letters missed entirely %%#%% %%#%% %%#%% requiring 
-gun owners %%#%% %%dqt%%sign up%%dqt%% %%#%% (not %%dqt%%join%%dqt%%) %%#%% national guard%%per%%]$~ 
-~$[i likened %%#%% %%#%% %%#%% current law requiring 18%%dsh%%year%%dsh%%old %%#%% %%#%% 
-register %%#%% %%#%% selective service%%per%%]$~ ~$[registering %%#%% %%#%% 
-%%#%% %%#%% enlisting ]f[ active service%%per%%]$~ ~$[requiring gun 
-owners %%#%% register %%#%% %%#%% national guard %%#%% provide %%#%% 
-kind %%#%% scrutiny %%#%% brady ]^[ staggers bills contemplated%%lst%% 
-and%%lst%% %%cmp_if%% congress dared%%lst%% %%#%% provide %%#%% additional measure 
-%%#%% control %%#%% %%#%% owns %%#%% kinds %%#%% weapons%%per%%]$~ 
-~$[but %%#%% main %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% congress %%#%% %%#%% %%#%% 
-gun%%dsh%%control legislation %%#%% exceeding %%#%% constitutional 
-powers%%lst%% using %%#%% %%#%% model %%#%% legislation %%#%% %%#%% %%#%% 
-congress%%lst%% %%#%% included %%#%% %%#%% %%#%% authors %%#%% %%#%% %%#%% 
-amendment%%per%%]$~ 
-~$[another letter writer %%#%% %%#%% %%#%% confused %%#%% issue %%#%% 
-calling %%#%% duty %%#%% serve %%#%% %%#%% militia %%#%% %%#%% %%#%% serve%%lst%% 
-]b[ %%cmp_if%% %%#%% %%#%% look %%#%% %%#%% debates %%#%% %%#%% %%#%% congress %%#%% 
-%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% confusion %%#%% all%%lst%% %%#%% %%#%% authors 
-%%#%% %%#%% %%#%% amendment %%#%% talking %%#%% %%#%% %%#%% %%#%% 
-serve%%per%%]$~ ~$[consistent %%#%% %%#%% %%#%% %%#%% bill %%#%% rights%%lst%% %%#%% subject 
-%%#%% rights%%lst%% ]n[ duties%%per%%]$~ ~$[elbridge gerry opposed james madison%%sqt%%s 
-clause exempting persons %%dqt%%religiously scrupulous,%%dqt%% %%cmp_b%% %%#%% 
-%%#%% danger %%#%% %%#%% %%#%% %%#%% abused %%#%% discriminate %%#%% 
-%%#%% %%#%% %%#%% sects%%lst%% %%dqt%%to declare %%#%% %%#%% %%#%% %%#%% %%#%% 
-religiously scrupulous,%%dqt%% ]^[ %%cmp_t%% %%#%% %%#%% %%#%% %%#%% %%#%% 
-militia%%per%%]$~ 
-~$[the real issue %%#%% %%#%% %%#%% %%#%% amendment addressed %%#%% 
-serious public concern%%lst%% %%#%% protect %%#%% %%#%% %%#%% citizens %%#%% 
-serve %%#%% defenders %%#%% %%#%% community %%#%% times %%#%% peril%%lst%% ]n[ 
-%%#%% personal %%#%% %%#%% guns%%per%%]$~ ~$[and %%#%% %%#%% proliferation %%#%% 
-guns %%#%% %%#%% hands %%#%% criminals %%#%% %%#%% %%#%% national 
-calamity%%lst%% %%#%% police officials %%#%% %%#%% %%#%% nation attest%%lst%% %%#%% 
-%%#%% essential %%#%% %%#%% recapture %%#%% true purpose %%#%% %%#%% %%#%% 
-amendment%%per%%]$~ ~$[plain ]^[ simple%%lst%% %%#%% %%#%% %%#%% barrier %%#%% sensible gun 
-control%%per%%]$~ 
-~$[robert a%%per%%]$~ ~$[goldwin 
-resident scholar 
-american enterprise institute 
-washington 
- 
+~$[high%%dsh%%level synthesis %%#%% fpga circuits %%#%% 
+multiple clock domains 
+author names removed ]f[ blind review%%per%%]$~ 
+~$[abstract—we consider %%#%% high%%dsh%%level synthesis %%#%% circuits %%#%% 
+multiple clock domains %%#%% %%#%% bid %%#%% raise circuit performance%%per%%]$~ 
+~$[a profiling%%dsh%%based approach %%#%% %%#%% %%#%% select time%%dsh%%intensive subcircuits %%#%% %%#%% larger circuit %%#%% operate %%#%% separate clock 
+domains%%per%%]$~ ~$[this isolates %%#%% critical paths %%#%% %%#%% sub%%dsh%%circuits %%#%% 
+%%#%% larger circuit%%lst%% allowing %%#%% sub%%dsh%%circuits %%#%% %%#%% clocked %%#%% 
+%%#%% highest%%dsh%%possible speed%%per%%]$~ ~$[the open%%dsh%%source legup high%%dsh%%level 
+synthesis tool (hls) [1] %%#%% modified %%#%% automatically insert 
+clock%%dsh%%domain%%dsh%%crossing circuitry ]f[ signals crossing %%#%% %%#%% 
+domains%%per%%]$~ ~$[the scheduling ]^[ binding phases %%#%% hls %%#%% 
+changed %%#%% reflect %%#%% impact %%#%% multiple clock domains %%#%% 
+memory%%per%%]$~ ~$[namely%%lst%% %%#%% block rams %%#%% fpgas %%#%% dual%%dsh%%port%%lst%% 
+%%#%% %%#%% port %%#%% operate %%#%% %%#%% %%#%% domain%%lst%% implying 
+%%#%% sub%%dsh%%circuits %%#%% %%#%% domains %%#%% access shared memory 
+provided %%#%% domains %%#%% %%#%% memory ports %%#%% consistent %%#%% 
+%%#%% sub%%dsh%%circuit domains%%per%%]$~ ~$[in %%#%% experimental study%%lst%% apply multiclock domain hls %%#%% %%#%% chstone benchmark suite [2] ]^[ 
+demonstrate average wall%%dsh%%clock time improvements %%#%% 33%%%per%%]$~ 
+~$[to understand %%#%% performance %%#%% %%#%% impacted %%#%% 
+%%#%% %%#%% %%#%% multiple clock domains%%lst%% consider %%#%% larger circuit 
+%%#%% %%#%% sub%%dsh%%circuits%%cln%% %%#%% ]f[ performing %%#%% computational 
+work%%lst%% ]^[ %%#%% %%#%% ]f[ %%#%% tasks%%lst%% %%#%% %%#%% setup%%lst%% i/o%%lst%% etc%%per%%]$~ 
+~$[assume %%#%% 90% %%#%% %%#%% execution cycles %%#%% consumed %%#%% %%#%% 
+%%#%% sub%%dsh%%circuit%%lst%% ]^[ %%#%% %%#%% time%%lst%% %%#%% %%#%% sub%%dsh%%circuit 
+lies idle%%per%%]$~ ~$[in %%#%% %%#%% scenario%%lst%% %%#%% minimize overall wall%%dsh%%clock 
+time%%lst%% %%#%% %%#%% desirable %%#%% %%#%% %%#%% clock period %%#%% %%#%% %%#%% subcircuit (where %%#%% majority %%#%% cycles %%#%% spent) %%#%% short %%#%% 
+possible%%per%%]$~ ~$[in %%#%% single%%dsh%%clock design%%lst%% %%#%% critical path %%#%% %%#%% overall 
+circuit %%#%% reside %%#%% %%#%% %%#%% sub%%dsh%%circuit%%lst%% thereby slowing 
+%%#%% everything%%per%%]$~ ~$[however%%lst%% %%#%% clocking %%#%% %%#%% sub%%dsh%%circuits 
+%%#%% independent domains%%lst%% %%#%% %%#%% assured %%#%% %%#%% speed %%#%% %%#%% 
+%%#%% sub%%dsh%%circuit %%#%% optimized %%#%% isolation%%scn%% %%#%% is%%lst%% %%#%% speed %%#%% 
+]n[ defined %%#%% %%#%% critical path %%#%% %%#%% %%#%% sub%%dsh%%circuit%%per%%]$~ 
+~$[i%%per%%]$~ ~$[i ntroduction 
+deployment %%#%% multiple clock domains %%#%% ]n[ %%#%% 
+%%#%% %%#%% cost%%per%%]$~ ~$[clock%%dsh%%domain%%dsh%%crossing circuitry %%#%% %%#%% 
+incorporated %%#%% %%#%% domains “talk” %%#%% %%#%% %%#%% 
+%%#%% avoid metastability (i%%per%%e%%per%% %%#%% %%#%% register output oscillates 
+%%#%% %%#%% %%#%% ]^[ low states ]f[ %%#%% %%#%% period %%#%% 
+time)%%lst%% ]^[ %%#%% circuitry imposes latency overheads ]f[ %%#%% 
+communication%%lst%% %%#%% %%#%% %%#%% %%#%% area overhead%%per%%]$~ ~$[moreover%%lst%% %%#%% %%#%% 
+%%#%% multiple domains complicates cad tasks%%lst%% particularly static 
+timing analysis%%per%%]$~ ~$[however%%lst%% despite %%#%% costs%%lst%% %%#%% %%#%% %%#%% 
+%%#%% note %%#%% %%#%% %%#%% fpga context%%lst%% modern devices %%#%% 
+contain sophisticated circuitry ]f[ %%#%% generation%%lst%% ]^[ lowskew distribution/routing %%#%% multiple %%#%% clocks %%#%% %%#%% 
+single user design%%per%%]$~ ~$[this %%#%% leverages %%#%% presence %%#%% %%#%% 
+already%%dsh%%existing circuitry %%#%% %%#%% hls perspective%%per%%]$~ 
+~$[high%%dsh%%level synthesis (hls) allows software design methodologies %%#%% %%#%% applied ]f[ hardware design%%lst%% lowering nonrecurring engineering (nre) costs ]^[ reducing %%#%% time%%dsh%%tomarket ]f[ %%#%% production %%#%% electronic products%%per%%]$~ ~$[for hardware 
+engineers%%lst%% hls allows design ]^[ verification %%#%% proceed %%#%% 
+rapidly%%lst%% %%#%% %%#%% %%#%% level %%#%% abstraction %%cmp_ta%% traditional rtl%%per%%]$~ ~$[for 
+software engineers%%lst%% hls enables %%#%% speed ]^[ energy benefits 
+%%#%% hardware %%#%% %%#%% accessed %%#%% %%#%% %%#%% hardware%%dsh%%design 
+skills%%per%%]$~ ~$[the difficulty %%#%% traditional approaches %%#%% hardware 
+design%%lst%% %%#%% %%#%% %%#%% %%#%% labor market %%#%% software engineers 
+outnumber hardware engineers %%#%% %%#%% 10%%dsh%%to%%dsh%%1 margin [3]%%lst%% %%#%% key 
+drivers ]f[ %%#%% emphasis %%#%% hls %%#%% %%#%% largest fpga vendors%%per%%]$~ 
+~$[despite %%#%% rising popularity%%lst%% however%%lst%% %%#%% long%%dsh%%standing weakness 
+%%#%% hls %%#%% %%#%% %%#%% %%#%% cases%%lst%% %%#%% quality (performance%%lst%% power%%lst%% 
+%%#%% modified %%#%% open%%dsh%%source legup hls tool [1] %%#%% %%#%% 
+area) %%#%% %%#%% circuit produced %%#%% inferior %%#%% manual hardware university %%#%% toronto %%#%% generate multi%%dsh%%clock domain circuits%%per%% 
+design%%per%%]$~ ~$[in %%#%% paper%%lst%% %%#%% improve %%#%% performance %%#%% hls%%dsh%% %%#%% %%#%% %%#%% flow%%lst%% %%#%% user specifies%%lst%% %%#%% %%#%% tcl configuration 
+generated circuits %%#%% borrowing ]^[ incorporating %%#%% hls %%#%% file%%lst%% %%#%% functions %%#%% %%#%% %%#%% clocked %%#%% specific domains%%per%% 
+technique %%#%% traditional sequential circuit design – %%#%% %%#%% %%#%% scheduling ]^[ binding steps %%#%% hls %%#%% modified 
+%%#%% multiple clock domains%%per%% 
+%%#%% recognize clock domain restrictions %%#%% memory ports – 
+multiple%%dsh%%clock domain design refers %%#%% %%#%% %%#%% %%#%% multiple memories %%#%% fpgas %%#%% dual port%%lst%% %%#%% %%#%% port %%#%% %%#%% 
+clocks %%#%% %%#%% frequencies %%#%% %%#%% single larger design%%per%% clocked independently%%per%%]$~ ~$[in %%#%% binding context%%lst%% ]f[ example%%lst%% %%#%% 
+%%#%% example%%lst%% %%#%% %%#%% %%#%% sub%%dsh%%circuits %%#%% %%#%% larger circuit restriction implies %%#%% circuitry operating %%#%% %%#%% specific frequency 
+%%#%% %%#%% clocked %%#%% 100mhz%%lst%% ]^[ %%#%% %%#%% sub%%dsh%%circuit clocked %%#%% access memory %%#%% %%#%% port operating %%#%% %%#%% %%#%% 
+%%#%% 200mhz%%per%%]$~ ~$[the %%#%% %%#%% multiple clocks offers %%#%% potential frequency%%per%%]$~ ~$[the verilog generation step %%#%% legup %%#%% altered %%#%% 
+benefits%%cln%% 1) improved performance%%lst%% ]^[ 2) reduced power%%per%%]$~ ~$[we automatically insert clock%%dsh%%domain%%dsh%%crossing logic ]^[ fsm stall 
+focus %%#%% %%#%% former benefit %%#%% %%#%% paper%%scn%% however%%lst%% prior %%#%% logic%%per%%]$~ ~$[in %%#%% experimental study%%lst%% %%#%% demonstrate performance 
+%%#%% focused %%#%% %%#%% latter benefit [4]%%lst%% %%#%% power saved %%#%% benefits %%#%% single clock designs using %%#%% chstone hls 
+reducing %%#%% total clock routing capacitance toggling %%#%% %%#%% single benchmark suite [2]%%per%%]$~ ~$[to %%#%% authors’ knowledge%%lst%% %%#%% %%#%% %%#%% 
+(high) frequency%%lst%% ]^[ %%#%% ability %%#%% independently gate clock %%#%% %%#%% application %%#%% automated multiple%%dsh%%clock%%dsh%%domain circuit 
+domains ]f[ idle sub%%dsh%%circuits%%per%% 
+generation %%#%% hls ]f[ fpgas%%per%% 
+%%#%% scope %%#%% %%#%% paper%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% work%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% circuits %%#%% [10]%%lst%% called %%#%% %%#%% flip%%dsh%%flop synchronizer 
+]^[ %%#%% enable%%dsh%%based synchronizer%%per%%]$~ ~$[we elaborate %%#%% %%#%% %%#%% 
+detail %%#%% section iii%%per%%]$~ 
+~$[top module 
+global memory 
+port %%#%% 
+port %%#%% 
+start 
+start 
+arguments[i] 
+arguments[i] 
+module %%#%% 
+module %%#%% 
+return value 
+return value 
+finish 
+finish 
+a%%per%%]$~ ~$[legup hls 
+legup %%#%% %%#%% hls tool %%#%% converts %%#%% %%#%% program %%#%% %%#%% 
+hardware circuit specified %%#%% verilog rtl%%per%%]$~ ~$[the tool %%#%% built 
+%%#%% %%#%% open%%dsh%%source llvm compiler [11]%%per%%]$~ ~$[after program 
+module %%#%% 
+module %%#%% 
+parsing%%lst%% conversion %%#%% %%#%% compiler’s internal representation%%lst%% 
+]^[ compiler optimization passes%%lst%% legup hls commences%%per%%]$~ 
+~$[local shared 
+local shared 
+%%#%% typical hls steps %%#%% allocation%%lst%% scheduling%%lst%% binding%%lst%% 
+memory 
+memory 
+]^[ finally%%lst%% generation %%#%% %%#%% rtl%%per%%]$~ ~$[allocation pertains %%#%% %%#%% 
+constraints %%#%% %%#%% design%%cln%% %%#%% amount %%#%% hardware resources %%#%% 
+fig%%per%% 1%%per%%]$~ ~$[top%%dsh%%level circuit structure %%#%% legup%%dsh%%generated circuit%%per%% 
+%%#%% type %%#%% %%#%% permitted ]f[ %%#%% %%#%% %%#%% synthesized circuit%%lst%% %%#%% 
+%%#%% %%#%% %%#%% desired performance ]^[ %%#%% criteria%%per%%]$~ ~$[scheduling 
+assigns %%#%% computations %%#%% %%#%% software program %%#%% time 
+ii%%per%%]$~ ~$[background and %%#%% elated %%#%% ork 
+steps%%lst%% %%#%% corresponding %%#%% states %%#%% %%#%% finite%%dsh%%state machine 
+(fsm)%%per%%]$~ ~$[thus%%lst%% scheduling plays %%#%% key role %%#%% deciding %%#%% 
+multiple clock architectures%%lst%% %%#%% implemented %%#%% fpgas%%lst%% computation executes %%#%% %%#%% time%%lst%% thereby defining %%#%% control 
+%%#%% %%#%% studied %%#%% %%#%% past %%#%% decades%%per%%]$~ ~$[prior %%#%% fsm%%per%%]$~ ~$[binding selects%%lst%% ]f[ %%#%% computation %%#%% %%#%% software%%lst%% 
+includes multiple%%dsh%%clock architectures %%#%% globally asyn%%dsh%% %%#%% specific hardware resource %%#%% %%#%% %%#%% computation %%#%% 
+chronous ]^[ locally synchronous (gals) systems proposed %%#%% performed%%per%%]$~ ~$[finally%%lst%% %%#%% in%%dsh%%memory synthesized circuit %%#%% 
+%%#%% [5]%%per%%]$~ ~$[gals systems consist %%#%% multiple local synchronous written %%#%% %%#%% verilog%%per%%]$~ ~$[for %%#%% research%%lst%% changes %%#%% necessary 
+modules %%#%% communicate asynchronously via %%#%% 4%%dsh%%phase throughout %%#%% legup flow%%lst%% %%#%% described below%%per%% 
+handshake protocol%%per%%]$~ ~$[the 4%%dsh%%phase handshake protocol introduces 
+%%#%% %%#%% most%%dsh%%recent version %%#%% legup hls%%lst%% %%#%% generated 
+considerable delays %%#%% transfer data %%#%% synchronous 
+circuit %%#%% %%#%% “flat” topology%%lst%% %%#%% described %%#%% [12]%%lst%% %%#%% illustration 
+modules%%per%%]$~ ~$[a study %%#%% jiang et al%%per%% [6] proposed %%#%% computational 
+%%#%% %%#%% appears %%#%% fig%%per%% 1%%per%%]$~ ~$[observe %%#%% %%#%% modules%%lst%% memories 
+model%%lst%% called %%#%% gas block%%lst%% %%#%% facilitate %%#%% design %%#%% gals(global ]^[ shared local)%%lst%% %%#%% %%#%% %%#%% %%#%% interconnect reside 
+based embedded systems%%per%% 
+%%#%% %%#%% single level %%#%% %%#%% hierarchy%%per%%]$~ ~$[the rationale ]f[ %%#%% 
+%%#%% direction %%#%% %%#%% %%#%% latency%%dsh%%insensitive systems flat implementation %%#%% %%#%% permit %%#%% sharing %%#%% resources 
+(lis) [7] ]f[ %%#%% implementation %%#%% multiple%%dsh%%clock designs%%per%%]$~ ~$[lis%%dsh%% %%#%% %%#%% computational modules%%lst%% e%%per%%g%%per%% memories ]v[ large 
+based systems wrap circuit sub%%dsh%%modules %%#%% synchronizing computational blocks%%lst%% %%#%% %%#%% floating%%dsh%%point units ]v[ dividers%%per%% 
+wrappers %%#%% impose %%#%% area overhead%%per%%]$~ ~$[the synchronizing %%#%% flat hierarchy %%#%% implications ]f[ multi%%dsh%%clock hls %%#%% %%#%% 
+wrappers %%#%% %%#%% %%#%% %%#%% insulate individual sub%%dsh%%modules research%%lst%% particularly insertion %%#%% %%#%% cdc circuits %%#%% 
+%%#%% %%#%% %%#%% ]^[ also%%lst%% %%#%% permit communication %%#%% communicating modules %%#%% %%#%% clock domains%%per%% 
+modules%%per%%]$~ ~$[an extension %%#%% lis%%lst%% combined %%#%% gals%%dsh%%based 
+design%%lst%% %%#%% proposed %%#%% singh et al%%per%% [8] %%#%% support multi%%dsh%%clock 
+iii%%per%%]$~ ~$[m ultiple %%#%% lock %%dsh%%d omain hls 
+architectures%%per%%]$~ ~$[agiwal ]^[ singh [9] applies lis concepts %%#%% 
+multi%%dsh%%clock design%%lst%% %%#%% handling ]f[ metastability ]^[ data a%%per%%]$~ ~$[overview 
+incoherency%%per%%]$~ ~$[regarding multi%%dsh%%clock%%dsh%%domain hls ]f[ fpgas%%lst%% 
+%%#%% %%#%% %%#%% level%%lst%% %%#%% high%%dsh%%level synthesis %%#%% circuits %%#%% 
+%%#%% appears %%#%% %%#%% little prior %%#%% aside %%#%% [4]%%lst%% %%#%% multiple clock domains %%#%% %%#%% follows%%cln%% %%#%% user designates 
+focused %%#%% power benefits %%#%% %%cmp_ta%% performance%%per%% 
+%%#%% %%#%% functions %%#%% %%#%% %%#%% placed %%#%% separate clock domains %%#%% 
+%%#%% key element %%#%% %%#%% design %%#%% digital circuits %%#%% multiple legup’s tcl configuration file%%per%%]$~ ~$[legup hls synthesizes %%#%% %%#%% 
+clock domains %%#%% clock%%dsh%%domain crossing (cdc) circuitry – function %%#%% %%#%% separate verilog module%%per%%]$~ ~$[in scenarios %%#%% %%#%% 
+special circuit structures %%#%% provide communication %%#%% function calls %%#%% function%%lst%% ]^[ %%#%% %%#%% functions reside %%#%% 
+%%#%% %%#%% clock domains%%per%%]$~ ~$[the purpose %%#%% %%#%% circuitry %%#%% %%#%% %%#%% clock domains%%lst%% clock%%dsh%%domain%%dsh%%crossing (cdc) circuitry 
+ensure %%#%% integrity %%#%% %%#%% data transmitted %%#%% %%#%% domains%%per%% %%#%% %%#%% inserted %%#%% %%#%% corresponding generated verilog 
+%%#%% data %%#%% %%#%% %%#%% clock domain %%#%% transmitted%%lst%% e%%per%%g%%per%% %%#%% modules%%per%%]$~ ~$[we modified %%#%% verilog generation step %%#%% legup 
+%%#%% flip%%dsh%%flop %%#%% output%%lst%% %%#%% %%#%% flip%%dsh%%flop clocked %%#%% %%#%% %%#%% domain%%lst%% hls %%#%% automatically insert %%#%% cdc circuits %%#%% %%#%% appropriate 
+%%#%% potential exists ]f[ metastability %%#%% %%#%% receiving flip%%dsh%%flop%%lst%% locations%%lst%% %%#%% %%#%% %%#%% %%#%% insert necessary stall logic %%#%% mitigate 
+depending %%#%% %%#%% timing relationship %%#%% %%#%% %%#%% clocks%%per%% metastability (elaborated %%#%% below)%%per%%]$~ ~$[the verilog generation 
+%%#%% cdc circuitry eliminates %%#%% chance %%#%% metastability%%lst%% %%#%% %%#%% modified %%#%% automatically instantiate plls ]f[ clock 
+providing clean data transfer %%#%% domains%%per%%]$~ ~$[a paper %%#%% generation%%cln%% %%#%% pll ]f[ %%#%% domain%%per%%]$~ ~$[in %%#%% study%%lst%% %%#%% target 
+luo et al%%per%% [10] surveys %%#%% design ]^[ verification %%#%% %%#%% variety %%#%% altera/intel cyclone %%#%% 45nm fpga%%scn%% %%#%% plls instantiated 
+%%#%% cdc circuits%%per%%]$~ ~$[a complete review %%#%% cdc circuits %%#%% beyond %%#%% specific %%#%% cyclone v%%per%%]$~ 
+~$[interconnect 
+start 
+start 
+arguments[i] 
+arguments[i] 
+return value 
+return value 
+finish 
+finish 
+port %%#%% 
+port %%#%% 
+port %%#%% 
+port %%#%% 
+clock domain 1 
+stall 
+clock domain 2 
+start %%#%% 
+stall 
+module %%#%% 
+%%#%% 
+module 
+module 
+moduleab 
+return value %%#%% 
+stall 
+start %%#%% 
+stall 
+finish %%#%% 
+arguments c[j] 
+finish %%#%% 
+arguments c[j] 
+stall 
+logic 
+2 
+1 
+return value %%#%% 
+4 
+3 
+enable 
+finish 
+start 
+stall 
+module 
+module %%#%% 
+%%#%% 
+clock domain 3 
+arguments[j] 
+return value 
+fig%%per%% 2%%per%%]$~ ~$[clock%%dsh%%domain%%dsh%%crossing circuitry ]f[ start ]^[ finish signals%%per%%]$~ ~$[arguments/return value %%#%% %%#%% %%#%% abstract bold lines%%per%%]$~ 
+~$[in addition%%lst%% changes %%#%% %%#%% scheduling ]^[ binding steps %%#%% 
+legup hls %%#%% required %%#%% support multiple domains%%per%%]$~ ~$[such 
+changes %%#%% required ]f[ %%#%% %%#%% %%#%% sub%%dsh%%circuits %%#%% separate 
+clock domains access %%#%% shared resource%%lst%% %%#%% %%#%% %%#%% block ram%%per%%]$~ 
+~$[we elaborate %%#%% %%#%% cdc circuitry ]^[ %%#%% scheduling/binding 
+changes %%#%% %%#%% subsections below%%per%%]$~ 
+~$[b%%per%%]$~ ~$[clock%%dsh%%domain%%dsh%%crossing (cdc) circuitry 
+%%#%% support %%#%% synthesis %%#%% multiple clocks%%lst%% %%#%% modify 
+legup’s existing communication interface %%#%% modules%%per%%]$~ 
+~$[the communication interface %%#%% %%#%% legup%%dsh%%generated circuit 
+contains %%#%% main interfaces%%lst%% %%#%% master interface ]^[ %%#%% slave 
+interface%%per%%]$~ ~$[the master interface initiates %%#%% transfer %%#%% setting 
+%%#%% arguments %%#%% %%#%% slave interface ]^[ asserting %%#%% start 
+control signal%%per%%]$~ ~$[the slave responds %%#%% %%#%% transfer%%lst%% performs 
+%%#%% computation%%lst%% ]^[ %%#%% execution%%lst%% sets %%#%% return value ]^[ 
+asserts %%#%% finish control signal%%per%%]$~ ~$[note %%#%% %%#%% slave interface 
+%%#%% %%#%% multiple master interfaces connected %%#%% it%%per%%]$~ ~$[this 
+situation arises %%#%% %%#%% function %%#%% %%#%% original %%#%% program 
+%%#%% %%#%% %%cmp_ta%% %%#%% call point%%per%%]$~ ~$[additionally%%lst%% %%#%% master interface 
+%%#%% %%#%% connected %%#%% multiple slave interfaces – %%#%% scenario 
+%%#%% arises %%#%% %%#%% function calls multiple %%#%% child 
+functions%%per%%]$~ ~$[the interconnect %%#%% %%#%% master interfaces ]^[ 
+%%#%% slave interfaces %%#%% generated %%#%% %%#%% top%%dsh%%level %%#%% %%#%% hierarchy%%lst%% 
+%%#%% mentioned %%#%% %%#%% section ii%%per%%]$~ ~$[we realize %%#%% passing %%#%% 
+arguments%%lst%% %%#%% return value ]^[ %%#%% control signals %%#%% %%#%% 
+clock domain %%#%% %%#%% %%#%% inserting cdc circuitry %%#%% %%#%% 
+legup rtl generation phase%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% flip%%dsh%%flop 
+synchronizer ]^[ %%#%% enable%%dsh%%based synchronizer%%per%%]$~ 
+~$[the %%#%% flip%%dsh%%flop synchronizer %%#%% %%#%% simple%%lst%% safe method 
+]f[ passing logic signals %%#%% clock domains%%lst%% ]^[ %%#%% %%#%% 
+recommended approach ]f[ cdc %%#%% altera fpgas [13]%%per%%]$~ ~$[the 
+concept %%#%% %%#%% %%#%% flip%%dsh%%flop synchronizer %%#%% %%#%% %%#%% %%#%% 
+register samples %%#%% asynchronous input signal ]^[ %%cmp_t%% waits 
+]f[ %%#%% clock cycle %%#%% allow %%#%% metastable state %%#%% %%#%% occur 
+%%#%% resolve itself%%per%%]$~ ~$[then%%lst%% %%#%% %%#%% register samples %%#%% input %%#%% 
+]^[ passes %%#%% %%#%% %%#%% %%#%% register%%lst%% %%#%% %%#%% intent %%#%% %%#%% 
+%%#%% %%#%% register %%#%% stable ]^[ ready %%#%% pass %%#%% signal %%#%% 
+%%#%% receiving clock domain%%per%%]$~ ~$[to realize %%#%% reliable %%#%% flip%%dsh%%flop 
+synchronizer%%lst%% %%#%% settling window ]f[ metastability %%#%% (the time 
+slack available ]f[ %%#%% metastable signal %%#%% %%#%% resolved) %%#%% 
+%%#%% set %%#%% %%#%% %%#%% clock cycle%%per%%]$~ ~$[the reliability %%#%% %%#%% %%#%% flip%%dsh%%flop 
+synchronizer %%#%% %%#%% expressed %%#%% terms %%#%% %%#%% mean time 
+%%#%% failure (mtbf) [14]%%cln%% 
+%%#%% 
+mt bf = 
+eτ 
+tw fr fs 
+(1) 
+%%#%% τ %%#%% %%#%% settling time constant %%#%% %%#%% flip%%dsh%%flop%%lst%% fr 
+%%#%% %%#%% receiving clock frequency%%lst%% ]^[ fs %%#%% %%#%% sending clock 
+frequency%%per%%]$~ ~$[tw %%#%% %%#%% time window %%#%% %%#%% metastability %%#%% 
+occur%%per%%]$~ ~$[tw %%#%% defined %%#%% %%#%% setup ]^[ hold%%dsh%%time parameters %%#%% 
+%%#%% flip%%dsh%%flop%%per%%]$~ ~$[as τ ]^[ tw %%#%% flip%%dsh%%flop parameters%%lst%% %%#%% depend 
+%%#%% %%#%% fpga %%#%% ]^[ %%#%% operating conditions%%per%%]$~ ~$[however%%lst%% 
+optimization %%#%% %%#%% carried %%#%% %%#%% t%%lst%% %%#%% %%#%% depends %%#%% %%#%% 
+design%%per%%]$~ ~$[in %%#%% case%%lst%% achieving %%#%% desirable (high) mtbf %%#%% 
+straightforward%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% clock cycle%%lst%% %%#%% %%#%% lengthy %%#%% 
+comparison %%#%% %%#%% time required ]f[ flip%%dsh%%flop stability %%#%% %%#%% 
+metastable event%%per%%]$~ ~$[typical τ values %%#%% %%#%% %%#%% tens %%#%% ps [14]%%lst%% 
+]^[ %%#%% %%#%% clock period %%#%% ns (e%%per%%g%%per%% 200mhz → %%#%% = 5ns)%%lst%% %%#%% 
+ratio %%#%% %%#%% /τ ≈ 102 %%lst%% %%#%% implies %%#%% numerator %%#%% %%#%% mtbf 
+2 
+equation ≈ e10 – %%#%% enormous quanity%%per%%]$~ 
+~$[clock domain 1 
+clock domain 2 
+start %%#%% 
+start %%#%% 
+arguments %%#%% [i] 
+arguments %%#%% [i] 
+en 
+module %%#%% 
+en 
+cdc circuit 
+%%#%% fig%%per%% 2 
+return value %%#%% 
+finish %%#%% 
+en 
+finish %%#%% 
+finish 
+return value 
+module %%#%% 
+start 
+clock domain 3 
+arguments [i] 
+0 
+en 
+en 
+en 
+module %%#%% 
+return value %%#%% 
+fig%%per%% 3%%per%%]$~ ~$[cdc ]f[ arguments ]^[ return values%%per%%]$~ 
+~$[we modified legup %%#%% instantiate %%#%% %%#%% flip%%dsh%%flop synchrofig%%per%% 2 %%#%% %%#%% example %%#%% legup%%dsh%%synthesized circuitry 
+nizer %%#%% passing %%#%% control signals start ]^[ finish ]f[ %%#%% start ]^[ finish %%#%% %%#%% master interfaces %%#%% 
+%%#%% modules %%#%% %%#%% clock domains%%per%%]$~ ~$[however%%lst%% issues modules%%lst%% %%#%% ]^[ b%%lst%% ]^[ %%#%% slave interface c%%per%%]$~ ~$[the %%#%% flip%%dsh%%flop 
+arose surrounding %%#%% cycle latencies required ]f[ transmitting synchronizers %%#%% highlighted %%#%% labels 1 ]^[ 2 ]f[ %%#%% passing %%#%% 
+%%#%% control signals%%per%%]$~ ~$[the latency ]f[ transmitting %%#%% finish %%#%% start ]^[ finish control signals%%lst%% respectively%%lst%% %%#%% 
+signal %%#%% ]n[ %%#%% issue%%lst%% %%#%% %%#%% parent (calling) module assumes %%#%% module %%#%% master interface ]^[ module %%#%% slave interface%%per%%]$~ ~$[labels 
+slave %%#%% busy %%#%% %%#%% %%#%% finish %%#%% set %%#%% low%%per%%]$~ ~$[this implies 3 ]^[ 4 highlight %%#%% synchronizers ]f[ data transmission 
+%%#%% %%#%% master interface %%#%% ]n[ invoke %%#%% slave interface %%#%% modules %%#%% ]^[ c%%per%% 
+unless %%#%% slave’s finish %%#%% set %%#%% high%%per%%]$~ ~$[however%%lst%% %%#%% latency 
+%%#%% %%#%% arguments ]^[ return value %%#%% %%#%% interfaces %%#%% 
+]f[ transmitting %%#%% start signal required special attention%%per%%]$~ 
+~$[specifically%%lst%% %%cmp_if%% %%#%% start signal %%#%% issued %%#%% %%#%% master interface ]^[ multiple%%dsh%%bit%%dsh%%wide data%%lst%% %%#%% %%#%% %%#%% crossed %%#%% using %%#%% 
+%%#%% slave’s finish signal %%#%% ]n[ set %%#%% low %%#%% %%#%% %%#%% clock cycle%%lst%% simple cdc technique%%per%%]$~ ~$[the individual bits %%#%% wide words %%#%% 
+%%#%% master interface %%#%% invoke %%#%% %%#%% slave %%#%% arrive %%#%% %%#%% times %%#%% %%#%% receiving clock domain due %%#%% 
+%%#%% %%#%% start signal %%#%% partway %%#%% transmission %%#%% %%#%% clock imbalanced circuit delays%%per%%]$~ ~$[consequently%%lst%% %%#%% potential exists 
+domain %%#%% another%%per%%]$~ ~$[to handle %%#%% start signal latency issues%%lst%% ]f[ %%#%% individual bits %%#%% %%#%% sampled %%#%% %%#%% edges %%#%% %%#%% 
+fsm stall logic %%#%% added %%#%% %%#%% legup%%dsh%%generated hardware%%per%% receiving clock%%per%%]$~ ~$[to handle this%%lst%% %%#%% incorporate %%#%% enable%%dsh%%based 
+%%#%% added fsm logic stalls %%#%% entire circuit %%#%% start synchronizer concept %%#%% %%#%% cdc circuit%%per%%]$~ ~$[specifically%%lst%% %%#%% 
+signal %%#%% asserted %%#%% %%#%% master interface%%per%%]$~ ~$[the stall continues register multi%%dsh%%bit%%dsh%%wide data ]f[ multiple cycles %%#%% %%#%% sending 
+%%#%% %%#%% finish signal %%#%% %%#%% slave %%#%% set %%#%% low ]^[ passed clock domain %%#%% %%#%% receiving clock domain %%#%% ready %%#%% 
+%%#%% %%#%% %%#%% master interfaces %%#%% %%#%% slave interface%%per%%]$~ ~$[the stall sample it%%per%%]$~ ~$[the receiving clock domain samples %%#%% wide data 
+signal remains low %%#%% %%#%% specific delay %%#%% elapsed%%per%%]$~ ~$[the %%#%% %%#%% receives %%#%% enable control signal %%#%% %%#%% %%#%% passed 
+delay %%#%% imposed %%#%% %%#%% chain %%#%% flip%%dsh%%flops (a shift register) %%#%% %%#%% %%#%% sending clock domain%%per%% 
+%%#%% slave clock domain%%per%%]$~ ~$[the length %%#%% %%#%% chain depends %%#%% 
+%%#%% %%#%% legup master interface passes %%#%% arguments %%#%% 
+%%#%% ratio %%#%% %%#%% slave clock frequency ]^[ %%#%% fastest master 
+clock frequency%%lst%% %%#%% shown %%#%% (2)%%lst%% %%#%% fm0 %%lst%% fm1 %%#%% fmn refer %%#%% %%#%% start signal%%lst%% %%#%% %%#%% %%#%% start signal %%#%% %%#%% enable 
+%%#%% %%#%% frequencies %%#%% %%#%% master interfaces%%lst%% ]^[ fs represents ]f[ %%#%% sampling %%#%% %%#%% arguments %%#%% %%#%% slave interface clock 
+%%#%% frequency %%#%% %%#%% slave interface%%per%%]$~ ~$[the multiplication %%#%% %%#%% domain%%per%%]$~ ~$[as ]f[ %%#%% return value%%lst%% %%#%% %%#%% %%#%% finish control 
+frequency ratio %%#%% %%#%% %%#%% (2) %%#%% %%#%% accommodate %%#%% passing signal %%#%% %%#%% enable ]f[ %%#%% sampling %%#%% %%#%% master interface%%per%% 
+%%#%% %%#%% %%#%% finish signal %%#%% %%#%% %%#%% flip%%dsh%%flops %%#%% %%#%% master %%#%% fig%%per%% 2 pertained %%#%% handling %%#%% start ]^[ finish 
+interface%%per%%]$~ ~$[the addition %%#%% 3 %%#%% %%#%% apply %%#%% delay ]f[ %%#%% flip%%dsh%%flops signals%%lst%% fig%%per%% 3 %%#%% %%#%% analogous figure ]f[ cdc %%#%% arguments 
+]^[ return values%%per%%]$~ ~$[in %%#%% top%%dsh%%left corner %%#%% %%#%% figure%%lst%% ]f[ 
+%%#%% %%#%% slave interface%%per%% 
+example%%lst%% observe %%#%% %%#%% start driven %%#%% module %%#%% %%#%% clock 
+domain 1 %%#%% %%#%% %%#%% %%#%% register enable ]f[ %%#%% arguments passed 
+max( fm0 %%lst%% fm1 %%lst%% %%per%%%%per%%%%per%% fmn ) 
+number %%#%% %%#%% ffs = 3 + %%#%% 
+%%#%% × 2 (2) %%#%% module %%#%% %%#%% clock domain 3%%per%% 
+%%#%% 
+%%#%% 
+local shared 
+memory clk 2 
+clk 1 
+port %%#%% 
+port %%#%% 
+local port 
+module %%#%% 
+clock domain 1 
+global memory 
+local shared 
+memory clk 3 
+clk 2 
+clk 3 
+clk 2 
+port %%#%% 
+port %%#%% 
+port %%#%% 
+local port global port 
+global port local port 
+global port local port 
+module %%#%% 
+module %%#%% 
+module %%#%% 
+clock domain 2 
+port %%#%% 
+clock domain 3 
+fig%%per%% 4%%per%%]$~ ~$[clock%%dsh%%domain%%dsh%%crossing memory interfacing%%per%% 
+relate %%#%% %%#%% memories %%#%% accessed %%#%% %%#%% presence %%#%% multiple 
+%%#%% %%#%% describe %%#%% changes %%#%% %%#%% %%#%% scheduling ]^[ clock domains%%per%%]$~ ~$[regarding scheduling%%lst%% %%#%% legup hls tool 
+binding%%lst%% %%#%% %%#%% tied %%#%% %%#%% memories %%#%% synthesized %%#%% schedules %%#%% computations %%#%% %%#%% input %%#%% program %%#%% %%#%% functionby%%dsh%%function basis%%per%%]$~ ~$[in single%%dsh%%domain designs%%lst%% %%#%% %%#%% %%#%% %%#%% 
+legup%%per%%]$~ 
+~$[when %%#%% input %%#%% program contains arrays%%lst%% %%#%% arrays %%#%% schedule %%#%% memory accesses (loads/stores) %%#%% cycle %%#%% %%#%% 
+synthesized %%#%% legup hls %%#%% memories %%#%% %%#%% fpga%%per%% memory %%#%% %%#%% fpga%%lst%% thereby leveraging %%#%% dual%%dsh%%point rams 
+legup generates %%#%% %%#%% types %%#%% memory structures %%#%% %%#%% fabric%%per%%]$~ ~$[in multiple%%dsh%%clock circuits%%lst%% %%#%% %%#%% functions%%lst%% 
+%%#%% are%%cln%% 1) %%#%% global memory controller ]^[ memories%%lst%% 2) %%#%% %%#%% clock domains%%lst%% access %%#%% %%#%% memory%%lst%% %%#%% %%#%% 
+shared%%dsh%%local memories%%lst%% ]^[ 3) local memories%%per%%]$~ ~$[the global ports %%#%% %%#%% memory %%#%% %%#%% %%#%% %%#%% clock domains aligned 
+]^[ shared local memories %%#%% instantiated %%#%% %%#%% top level %%#%% %%#%% %%#%% domains %%#%% %%#%% accessing functions%%per%%]$~ ~$[with %%#%% 
+entity %%#%% shown %%#%% fig%%per%% 1%%per%%]$~ ~$[local memories %%#%% ]f[ arrays %%#%% port %%#%% %%#%% unique clock domain%%lst%% %%#%% scheduler %%#%% %%#%% 
+%%#%% %%#%% accessed %%#%% %%#%% single function %%#%% %%#%% input program%%scn%% %%#%% schedule %%#%% accesses %%#%% cycle %%#%% %%#%% memory – %%#%% 
+thus%%lst%% %%#%% %%#%% instantiated %%#%% %%#%% function’s corresponding %%#%% %%#%% access %%#%% clock cycle %%#%% permitted ]f[ %%#%% domain%%per%% 
+hardware module%%per%%]$~ ~$[shared%%dsh%%local memories contain arrays %%#%% %%#%% altered %%#%% scheduler %%#%% reflect %%#%% constraint%%per%%]$~ ~$[namely%%lst%% 
+%%#%% accessed %%#%% %%#%% list %%#%% known functions – %%#%% memories ]f[ shared%%dsh%%local memories ]v[ global memories (defined above) 
+%%#%% accessed %%#%% multiple known hardware modules%%per%%]$~ ~$[global %%#%% %%#%% accessed %%#%% functions %%#%% %%#%% clock domains%%lst%% %%#%% 
+memory %%#%% ]f[ arrays accessed %%#%% %%#%% unknown list %%#%% functions%%per%% scheduler permits %%#%% %%#%% %%#%% access %%#%% cycle %%#%% domain%%per%%]$~ 
+~$[note %%#%% ]f[ memories accessed %%#%% solely %%#%% function%%lst%% ]v[ 
+%%#%% designation %%#%% arrays %%#%% %%#%% %%#%% categories %%#%% memories 
+%%#%% 
+%%#%% accessed %%#%% multiple functions %%#%% %%#%% %%#%% domain%%lst%% 
+%%#%% based %%#%% %%#%% “points%%dsh%%to” analysis (alias analysis) %%#%% %%#%% llvm 
+%%#%% 
+single%%dsh%%port 
+restriction %%#%% unnecessary%%per%%]$~ ~$[in %%#%% cases%%lst%% %%#%% 
+compiler %%#%% results %%#%% %%#%% %%#%% legup hls%%per%%]$~ ~$[further details 
+accesses 
+%%#%% 
+cycle 
+%%#%% permitted%%lst%% %%#%% %%#%% %%#%% default legup 
+%%#%% %%#%% [12]%%per%%]$~ 
+~$[hls 
+behavior%%per%%]$~ 
+~$[given %%#%% possibility %%#%% modules %%#%% %%#%% clock 
+%%#%% regard %%#%% binding%%lst%% %%#%% %%#%% %%#%% tasks %%#%% %%#%% match memory 
+domains %%#%% access %%#%% %%#%% memory%%lst%% %%#%% changed %%#%% 
+operations 
+(loads/stores) %%#%% memory ports%%per%%]$~ ~$[in legup hls%%lst%% 
+memories %%#%% single%%dsh%%clock dual port %%#%% dual%%dsh%%clock dual port%%per%% 
+binding 
+%%#%% 
+formulated 
+%%#%% %%#%% weighted%%dsh%%bipartite graph matching 
+%%#%% imposes %%#%% constraint %%#%% %%#%% %%#%% %%#%% modules %%#%% 
+problem 
+instance 
+[15]%%lst%% 
+%%#%% %%#%% %%#%% %%#%% objectives %%#%% 
+%%#%% domains %%#%% access %%#%% %%#%% memory%%per%%]$~ ~$[if %%#%% user 
+%%#%% 
+balance 
+memory 
+accesses 
+%%#%% %%#%% ports%%lst%% judiciously 
+specifies %%#%% modules %%#%% %%#%% %%#%% domains %%#%% %%#%% 
+managing 
+%%#%% 
+sizes 
+%%#%% 
+%%#%% 
+input 
+multiplexers feeding %%#%% ports%%per%%]$~ 
+~$[tcl configuration file%%lst%% ]^[ %%#%% %%#%% modules %%#%% access %%#%% 
+%%#%% 
+%%#%% 
+multiple%%dsh%%clock 
+case%%lst%% 
+however%%lst%% 
+]f[ memories %%#%% %%#%% clock 
+%%#%% memory%%lst%% %%#%% situation %%#%% infeasible%%lst%% ]s[ multi%%dsh%%clock legup 
+domains%%lst%% 
+%%#%% 
+binding 
+step 
+%%#%% 
+adhere 
+%%#%% %%#%% specific domain 
+reports %%#%% error ]^[ terminates%%per%% 
+%%#%% 
+%%#%% 
+port 
+]^[ 
+%%#%% 
+accessing 
+function%%per%%]$~ 
+~$[that is%%lst%% ]f[ %%#%% function 
+fig%%per%% 4 illustrates global memory ]^[ shared%%dsh%%local memories 
+%%#%% 
+%%#%% 
+particular 
+domain 
+%%#%% 
+accesses 
+%%#%% 
+dual%%dsh%%clock memory%%lst%% 
+%%#%% accessed %%#%% multiple clock domains%%per%%]$~ ~$[observe %%#%% module 
+%%#%% 
+%%#%% 
+%%#%% 
+choice 
+%%#%% 
+binding 
+ports%%cln%% 
+memory 
+accesses %%#%% %%#%% 
+%%#%% ]^[ %%#%% communicate %%#%% %%#%% another%%lst%% ]^[ %%#%% access %%#%% 
+function 
+%%#%% 
+%%#%% 
+bound 
+%%#%% 
+%%#%% 
+port 
+%%#%% 
+%%#%% 
+%%#%% 
+clock domain 
+local shared memory (top left %%#%% figure)%%per%%]$~ ~$[in %%#%% case%%lst%% port %%#%% %%#%% 
+%%#%% 
+%%#%% 
+function%%per%% 
+%%#%% memory operates %%#%% clock domain 1%%scn%% port %%#%% %%#%% %%#%% memory 
+operates %%#%% clock domain 2%%per%%]$~ ~$[in %%#%% top%%dsh%%center %%#%% %%#%% figure%%lst%% 
+iv%%per%%]$~ ~$[c lock %%#%% omain %%#%% ssignment and %%#%% requency 
+%%#%% observe %%#%% %%#%% global memory ports %%#%% ]^[ %%#%% operate 
+%%#%% election 
+%%#%% clock domains 2 ]^[ 3%%lst%% respectively%%lst%% ]^[ %%#%% accessed %%#%% 
+%%#%% evaluate %%#%% proposed multi%%dsh%%clock%%dsh%%domain hls using %%#%% 
+modules b%%lst%% c%%lst%% ]^[ d%%per%%]$~ 
+~$[to support multiple%%dsh%%clock synthesis%%lst%% changes %%#%% required chstone hls benchmark suite [2] ]^[ target %%#%% altera/intel 
+%%#%% %%#%% %%#%% scheduling ]^[ binding steps %%#%% hls%%per%%]$~ ~$[the changes cyclone %%#%% fpga%%per%%]$~ 
+~$[c%%per%%]$~ ~$[scheduling ]^[ binding 
+table %%#%% 
+%%#%% erformance results %%#%% %%#%% clock domain versus %%#%% clock domains %%per%%]$~ 
+~$[inline option 
+inlined 
+%%#%% inlined 
+benchmark 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfsin 
+jpeg 
+motion 
+sha 
+geomean 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfdiv 
+dfmul 
+dfsin 
+gsm 
+jpeg 
+motion 
+sha 
+geomean 
+%%#%% clock 
+fmax (mhz) 
+time (µs) 
+103 
+141%%per%%8 
+150 
+62%%per%%4 
+156 
+1141%%per%%5 
+146 
+6%%per%%1 
+51 
+1316%%per%%3 
+97 
+12699%%per%%2 
+114 
+55%%per%%6 
+190 
+1280%%per%%5 
+304%%per%%4 
+121 
+239%%per%%4 
+144 
+87%%per%%6 
+156 
+1375%%per%%9 
+148 
+24%%per%%1 
+130 
+28%%per%%2 
+158 
+8%%per%%9 
+121 
+1103%%per%%5 
+137 
+57%%per%%0 
+115 
+12125%%per%%1 
+158 
+41%%per%%4 
+187 
+1360%%per%%9 
+182%%per%%5 
+fmax (mhz) 
+112%%lst%% 140 
+143%%lst%% 189 
+155%%lst%% 197 
+139%%lst%% 195 
+120%%lst%% 197 
+93%%lst%% 113 
+117%%lst%% 163 
+202%%lst%% 205 
+136%%lst%% 
+160%%lst%% 
+146%%lst%% 
+149%%lst%% 
+146%%lst%% 
+149%%lst%% 
+138%%lst%% 
+136%%lst%% 
+104%%lst%% 
+161%%lst%% 
+180%%lst%% 
+159 
+169 
+181 
+196 
+152 
+173 
+145 
+223 
+146 
+263 
+205 
+%%#%% clock 
+average time (µs) 
+100%%per%%4%%lst%% 50%%per%%3 
+5%%per%%2%%lst%% 51%%per%%4 
+785%%per%%5%%lst%% 437%%per%%9 
+5%%per%%94%%lst%% 1%%per%%18 
+506%%per%%38%%lst%% 74%%per%%4 
+2557%%per%%6%%lst%% 8724%%per%%2 
+0%%per%%63%%lst%% 38%%per%%82 
+114%%per%%2%%lst%% 1103%%per%%2 
+198%%per%%2%%lst%% 44%%per%%6 
+42%%per%%7%%lst%% 40%%per%%9 
+431%%per%%9%%lst%% 72%%per%%0 
+17%%per%%8%%lst%% 7%%per%%2 
+24%%per%%7%%lst%% 2%%per%%46 
+3%%per%%0%%lst%% 7%%per%%5 
+635%%per%%2%%lst%% 377%%per%%1 
+52%%per%%6%%lst%% 4%%per%%4 
+7996%%per%%0%%lst%% 3738%%per%%4 
+2%%per%%56%%lst%% 23%%per%%38 
+178%%per%%4%%lst%% 1108%%per%%9 
+time (µs) 
+150%%per%%4 
+56%%per%%6 
+1223%%per%%4 
+7%%per%%1 
+580%%per%%8 
+11281%%per%%7 
+39%%per%%2 
+1217%%per%%6 
+263%%per%%4 
+242%%per%%8 
+83%%per%%6 
+1468%%per%%5 
+25%%per%%0 
+27%%per%%2 
+10%%per%%5 
+1012%%per%%4 
+57%%per%%0 
+11734%%per%%4 
+25%%per%%9 
+1287%%per%%3 
+175%%per%%3 
+ratio 
+time (µs) 
+1 (0%%per%%94) 
+1%%per%%10 
+1 (0%%per%%93) 
+1 (0%%per%%86) 
+2%%per%%27 
+1%%per%%13 
+1%%per%%42 
+1%%per%%05 
+1%%per%%33 
+1 (0%%per%%99) 
+1%%per%%05 
+1 (0%%per%%94) 
+1 (0%%per%%96) 
+1%%per%%04 
+1 (0%%per%%85) 
+1%%per%%09 
+1%%per%%00 
+1%%per%%03 
+1%%per%%60 
+1%%per%%06 
+1%%per%%13 
+%%#%% multi%%dsh%%clock hls%%lst%% %%#%% natural question %%#%% arises is%%cln%% %%#%% hls commences%%per%%]$~ ~$[to explore this%%lst%% %%#%% synthesized %%#%% variants 
+%%#%% %%#%% decide %%#%% functions (and consequent synthesized %%#%% %%#%% chstone benchmark%%cln%% 1) %%#%% no%%dsh%%inline version %%#%% %%#%% 
+circuits) %%#%% %%#%% %%#%% %%#%% clock domain%%qsn%%]$~ ~$[considering %%#%% disabled inlining %%#%% %%#%% llvm compiler%%lst%% 2) using %%#%% normal 
+%%#%% two%%dsh%%domain case%%lst%% %%#%% %%#%% %%#%% following approach%%cln%% ]f[ %%#%% inlining %%#%% occurs %%#%% %%dsh%%o3 compiler optimization%%per%%]$~ ~$[note %%dsh%%o3 
+benchmark circuit%%lst%% %%#%% %%#%% profiled %%#%% single%%dsh%%clock%%dsh%%domain optimization %%#%% performed %%#%% %%#%% cases%%scn%% %%#%% %%#%% difference 
+version %%#%% %%#%% circuit%%lst%% ]^[ extracted %%#%% number %%#%% clock cycles %%#%% %%#%% %%#%% variants %%#%% %%#%% inlining %%#%% disabled %%#%% %%#%% %%#%% 
+spent %%#%% %%#%% function%%per%%]$~ ~$[the function consuming %%#%% %%#%% cycles variant%%per%%]$~ 
+~$[table %%#%% %%#%% %%#%% speed%%dsh%%performance results ]f[ single ]^[ 
+%%#%% placed %%#%% %%#%% %%#%% clock domain%%lst%% %%#%% %%#%% balance %%#%% %%#%% 
+circuit %%#%% %%#%% %%#%% clock domain%%per%%]$~ ~$[this simple approach %%#%% two%%dsh%%clock domain hls%%per%%]$~ ~$[the top %%#%% %%#%% %%#%% table %%#%% results 
+%%#%% ]f[ %%#%% adpcm%%lst%% aes ]^[ motion chstone circuits%%per%%]$~ ~$[for ]f[ normal %%dsh%%o3 optimization %%#%% inlining enabled%%scn%% %%#%% bottom 
+%%#%% %%#%% circuits%%lst%% %%#%% observed %%#%% %%#%% approach produced poor %%#%% %%#%% %%#%% table %%#%% results ]f[ %%#%% scenario %%#%% inlining 
+performance results%%lst%% primarily owing %%#%% %%#%% overheads %%#%% cross%%dsh%% %%#%% disabled%%per%%]$~ ~$[column 2 lists %%#%% benchmark name%%per%%]$~ ~$[columns 3 
+domain%%dsh%%crossing%%per%%]$~ ~$[therefore%%lst%% ]f[ %%#%% circuits%%lst%% %%#%% examined ]^[ 4 %%#%% %%#%% fmax ]^[ wall%%dsh%%clock time ]f[ %%#%% single%%dsh%%clock 
+%%#%% call graph %%#%% %%#%% program%%lst%% ]^[ placed %%#%% child functions %%#%% implementation (experimental baseline)%%per%%]$~ ~$[wall%%dsh%%clock time %%#%% %%#%% 
+%%#%% %%#%% cycle%%dsh%%consuming parent function %%#%% %%#%% %%#%% clock total time %%#%% ]f[ circuit execution%%lst%% %%#%% %%#%% 1/fmax × 
+domain %%#%% %%#%% parent%%per%%]$~ ~$[we %%#%% %%#%% similar approach %%#%% %%#%% three%%dsh%% cycles %%#%% %%#%% single%%dsh%%clock case%%lst%% %%#%% cycles %%#%% %%#%% total cycle 
+clock%%dsh%%domain case%%cln%% %%#%% %%#%% %%#%% %%#%% compute%%dsh%%intensive function latency%%per%%]$~ ~$[columns 5%%lst%% 6 ]^[ 7 pertain %%#%% synthesized designs 
+%%#%% %%#%% %%#%% domain%%lst%% %%#%% %%#%% %%#%% compute%%dsh%%intensive function %%#%% %%#%% clock domains%%per%%]$~ ~$[column 5 %%#%% %%#%% %%#%% fmax values%%scn%% 
+column 6 %%#%% %%#%% wall%%dsh%%clock time spent %%#%% %%#%% domain%%scn%% 
+%%#%% %%#%% %%#%% domain%%lst%% ]^[ %%#%% balance %%#%% %%#%% third domain%%per%% 
+column 7 %%#%% %%#%% overall total wall%%dsh%%clock time%%per%%]$~ ~$[finally%%lst%% 
+v%%per%%]$~ ~$[e xperimental %%#%% tudy 
+column 8 %%#%% %%#%% ratio %%#%% %%#%% single%%dsh%%clock %%#%% dual%%dsh%%clock 
+%%#%% %%cmp%% multi%%dsh%%clock designs %%#%% single%%dsh%%clock designs%%lst%% wall%%dsh%%clock time%%per%%]$~ ~$[ratios larger %%cmp_ta%% 1 indicate %%#%% “win” ]f[ 
+]^[ report %%#%% circuit performance%%lst%% %%#%% %%#%% %%#%% %%#%% area impact%%per%% dual%%dsh%%clock%%per%%]$~ ~$[numbers %%#%% parentheses represent degradations %%#%% 
+%%#%% chstone benchmarks %%#%% %%#%% built%%dsh%%in input vectors%%lst%% wall%%dsh%%clock time ]f[ %%#%% dual%%dsh%%clock case%%per%%]$~ ~$[in %%#%% cases%%lst%% %%#%% 
+]^[ golden output vectors%%lst%% ]^[ incorporate “self%%dsh%%checking” ]f[ %%#%% mentioned %%#%% below%%lst%% %%#%% %%#%% simply opt ]f[ %%#%% 
+correctness%%per%%]$~ ~$[we verified %%#%% multi%%dsh%%domain circuits functioned single%%dsh%%clock design%%lst%% ]^[ %%cmp_h%%%%lst%% %%#%% %%#%% 1 %%#%% %%#%% ratio ]f[ %%#%% 
+correctly %%#%% %%#%% ways%%cln%% 1) using modelsim simulation ]^[ 2) %%#%% %%#%% mean%%dsh%%ratio calculations%%per%% 
+%%#%% execution %%#%% hardware using %%#%% cyclone %%#%% fpga %%#%% %%#%% 
+looking %%#%% %%#%% %%#%% top%%dsh%%half %%#%% table i%%lst%% %%#%% %%#%% %%#%% 5 %%#%% 
+de1%%dsh%%soc board%%per%% 
+%%#%% 8 benchmarks benefit %%#%% %%#%% clock domains%%lst%% %%#%% %%#%% 
+%%#%% mentioned above%%lst%% %%#%% multi%%dsh%%clock approach operates %%#%% average improvement %%#%% 33% (right%%dsh%%most column)%%per%%]$~ ~$[the 
+%%#%% function level %%#%% granularity – %%#%% synthesized hardware ]f[ largest improvement %%#%% observed ]f[ dfsin%%lst%% %%#%% suffered 
+%%#%% entire %%#%% function %%#%% operate %%#%% %%#%% single unique domain%%per%% %%#%% %%#%% %%#%% inter%%dsh%%module critical path %%#%% %%#%% single%%dsh%%clock case%%lst%% 
+consequently%%lst%% %%#%% approach %%#%% sensitive %%#%% %%#%% functions %%#%% %%#%% broken %%#%% %%#%% two%%dsh%%clock %%#%% %%#%% %%#%% instantiated cdc 
+remain “intact” (i%%per%%e%%per%% functions %%#%% %%#%% ]n[ inlined) %%#%% %%#%% time circuitry%%per%%]$~ ~$[modest performance degradations %%#%% observed ]f[ 
+table ii 
+%%#%% rea results %%#%% %%#%% clock domain versus %%#%% clock domains %%per%%]$~ 
+~$[inline option 
+inlined 
+%%#%% inlined 
+benchmark 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfsin 
+jpeg 
+motion 
+sha 
+geomean 
+adpcm 
+aes 
+blowfish 
+dfadd 
+dfdiv 
+dfmul 
+dfsin 
+gsm 
+jpeg 
+motion 
+sha 
+geomean 
+%%#%% clock 
+logic utilization 
+total registers 
+6,079 
+11,094 
+4,028 
+6,864 
+2,635 
+5,336 
+3,378 
+3,993 
+10,385 
+16,674 
+13,007 
+18,102 
+6,136 
+9,764 
+1,413 
+2,444 
+4,741 
+7,646 
+7,117 
+11,333 
+3,448 
+5,705 
+2,887 
+5,850 
+4,824 
+9,078 
+7,395 
+13,644 
+3,283 
+5,954 
+12,806 
+24,247 
+4,058 
+6,963 
+7,918 
+11,313 
+1,600 
+2,406 
+2,253 
+3,880 
+4,411 
+7,612 
+%%#%% %%#%% %%#%% benchmarks%%per%%]$~ ~$[the degradations %%#%% %%#%% result %%#%% 
+%%#%% cycle%%dsh%%count overhead %%#%% clock%%dsh%%domain%%dsh%%crossing%%lst%% %%#%% %%#%% 
+particularly onerous %%#%% %%#%% %%#%% %%#%% module %%#%% %%#%% domain 
+%%#%% repeatedly invoked %%#%% %%#%% module %%#%% %%#%% %%#%% domain%%lst%% ]^[ 
+%%#%% %%#%% invocation %%#%% %%#%% %%#%% module consumes relatively 
+%%#%% clock cycles%%per%%]$~ ~$[degradations %%#%% %%#%% caused %%#%% lengthier 
+schedules %%#%% %%#%% two%%dsh%%clock %%#%% resulting %%#%% reduced memoryaccess parallelism %%#%% %%#%% shared/global memories%%lst%% accessed 
+%%#%% %%#%% domains%%lst%% %%#%% solely %%#%% single port ]f[ %%#%% domain%%per%%]$~ 
+~$[the bottom half %%#%% %%#%% table %%#%% results ]f[ %%#%% %%#%% %%#%% 
+inlining disabled%%per%%]$~ ~$[the improvements %%#%% performance %%#%% %%#%% 
+%%#%% modest%%lst%% %%#%% %%#%% functions %%#%% %%#%% (no inlining) ]^[ 
+%%#%% executes ]f[ fewer clock cycles%%per%%]$~ ~$[this implies %%#%% %%#%% 
+fraction %%#%% total time required ]f[ clock%%dsh%%domain%%dsh%%crossing %%#%% 
+larger %%cmp_ta%% %%#%% %%#%% inlined case%%lst%% increasing cdc overheads ]^[ 
+reducing %%#%% benefit %%#%% multi%%dsh%%clock synthesis%%per%%]$~ ~$[the average wallclock time improvement %%#%% %%#%% %%#%% %%#%% 13%%%per%%]$~ ~$[note %%#%% %%#%% %%#%% 
+inlined %%#%% (top%%dsh%%half %%#%% %%#%% table)%%lst%% %%#%% %%#%% fewer benchmarks 
+listed%%lst%% owing %%#%% inlining reducing %%#%% eliminated benchmarks 
+%%#%% %%#%% single function (and %%cmp_h%% %%#%% single domain)%%per%%]$~ 
+~$[we %%#%% considered three%%dsh%%clock%%dsh%%domain implementations (not 
+shown %%#%% ]f[ brevity)%%lst%% ]^[ found %%#%% aside %%#%% %%#%% jpeg 
+benchmark%%lst%% %%#%% additional improvements %%#%% achieved %%#%% 
+%%#%% two%%dsh%%clock case%%per%% jpeg %%#%% %%#%% largest circuit %%#%% %%#%% suite%%lst%% ]^[ 
+%%#%% found %%#%% contained large %%#%% sub%%dsh%%circuits %%#%% benefit %%#%% 
+additional clocks%%per%%]$~ ~$[we expect %%#%% larger benchmarks%%lst%% containing 
+significant number %%#%% large sub%%dsh%%modules%%lst%% %%#%% stand %%#%% benefit 
+%%#%% %%#%% (or more) domains%%per%%]$~ 
+~$[table ii %%#%% %%#%% impact %%#%% circuit area%%lst%% including logic 
+utilization (cyclone %%#%% alms)%%lst%% %%#%% %%#%% %%#%% register count%%per%%]$~ ~$[cdc 
+causes %%#%% area impact %%#%% %%#%% block types (dsp blocks%%lst%% block 
+rams)%%per%%]$~ ~$[looking %%#%% %%#%% %%#%% right%%dsh%%most columns%%lst%% %%#%% %%#%% %%#%% area 
+impact %%#%% alms %%#%% range %%#%% 0%%dsh%%6%%%lst%% %%#%% average%%lst%% depending 
+%%#%% %%#%% inlining %%#%% used%%per%%]$~ ~$[in %%#%% cases%%lst%% circuit area actually 
+%%#%% clock 
+logic utilization 
+total registers 
+6,310 
+11,456 
+4,245 
+7,547 
+2,791 
+5,636 
+3,539 
+4,610 
+9,234 
+17,979 
+13,393 
+19,452 
+6,235 
+10,060 
+1,345 
+2,671 
+4,789 
+8,211 
+7,483 
+12,137 
+3,629 
+6,830 
+3,554 
+6,939 
+5,409 
+10,304 
+8,806 
+17,062 
+4,307 
+7,987 
+14,134 
+27,001 
+4,096 
+6,926 
+8,228 
+11,837 
+1,693 
+2,645 
+2,373 
+4,118 
+4,886 
+8,618 
+ratio 
+logic utilization 
+total registers 
+1 (0%%per%%96) 
+1 (0%%per%%97) 
+0%%per%%95 
+0%%per%%91 
+1 (0%%per%%94) 
+1 (0%%per%%95) 
+1 (0%%per%%95) 
+1 (0%%per%%87) 
+1%%per%%12 
+0%%per%%93 
+0%%per%%97 
+0%%per%%93 
+0%%per%%98 
+0%%per%%97 
+1%%per%%05 
+0%%per%%92 
+1%%per%%00 
+0%%per%%93 
+1 (0%%per%%95) 
+1 (0%%per%%93) 
+0%%per%%95 
+0%%per%%84 
+1 (0%%per%%81) 
+1 (0%%per%%84) 
+1 (0%%per%%89) 
+1 (0%%per%%88) 
+0%%per%%84 
+0%%per%%80 
+1 (0%%per%%76) 
+1 (0%%per%%75) 
+0%%per%%91 
+0%%per%%90 
+0%%per%%99 
+1%%per%%01 
+0%%per%%96 
+0%%per%%96 
+0%%per%%95 
+0%%per%%91 
+0%%per%%95 
+0%%per%%94 
+0%%per%%94 
+0%%per%%91 
+reduced (ratios > 1)%%lst%% %%#%% %%#%% attribute %%#%% %%#%% heuristic nature 
+%%#%% %%#%% synthesis%%lst%% placement ]^[ routing tools%%per%%]$~ ~$[register%%dsh%%count 
+overhead ranges %%#%% 7%%dsh%%9%%%lst%% %%#%% average%%per%%]$~ ~$[we believe %%#%% area 
+overheads shown %%#%% %%#%% acceptable %%#%% users %%#%% %%#%% %%#%% 
+highest%%dsh%%possible performance ]f[ %%#%% designs%%per%%]$~ 
+~$[overall%%lst%% %%#%% consider %%#%% performance results (up %%#%% 33% 
+wall%%dsh%%clock time improvement%%lst%% %%#%% average) %%#%% %%#%% encouraging 
+]f[ %%#%% reasons%%cln%% 1) %%#%% chstone benchmarks %%#%% ]n[ 
+designed %%#%% multi%%dsh%%clock domain synthesis %%#%% mind%%lst%% ]^[ 2) 
+%%#%% %%#%% %%#%% existing function boundaries %%#%% %%#%% benchmarks 
+]f[ clock%%dsh%%domain assignment%%lst%% %%#%% %%cmp_ta%% altering %%#%% programs 
+%%#%% isolate %%#%% critical paths %%#%% separate functions %%#%% unique 
+domains%%per%%]$~ ~$[we leave %%#%% latter ]f[ future work%%per%%]$~ 
+~$[vi%%per%%]$~ ~$[c onclusions and %%#%% uture %%#%% ork 
+%%#%% considered %%#%% high%%dsh%%level synthesis %%#%% circuits %%#%% 
+multiple clock domains %%#%% %%#%% objective %%#%% improving 
+performance%%per%%]$~ ~$[the open%%dsh%%source legup hls tool %%#%% modified 
+%%#%% accept user constraints designating %%#%% functions onto specific 
+clock domains%%per%%]$~ ~$[changes %%#%% %%#%% %%#%% %%#%% scheduling ]^[ 
+binding steps %%#%% hls%%lst%% %%#%% ensure proper handling %%#%% hardware 
+resources accessed %%#%% sub%%dsh%%circuits %%#%% %%#%% domains%%per%%]$~ ~$[as 
+well%%lst%% %%#%% verilog generation step %%#%% legup %%#%% changed 
+%%#%% automatically insert clock%%dsh%%domain%%dsh%%crossing circuitry%%lst%% %%#%% 
+appropriate%%lst%% ]^[ instantiate plls ]f[ clock synthesis%%per%%]$~ ~$[on %%#%% 
+chstone benchmark suite%%lst%% average performance gains %%#%% 13% 
+]^[ 33% %%#%% observed%%lst%% depending %%#%% %%#%% approach applied 
+]f[ function inlining%%per%%]$~ 
+~$[as %%#%% %%#%% %%#%% %%#%% study %%#%% multi%%dsh%%clock hls ]f[ fpgas%%lst%% %%#%% 
+%%#%% ample avenues ]f[ future research%%per%%]$~ ~$[an %%#%% %%#%% %%#%% 
+%%#%% evaluate %%#%% power consequences %%#%% using multiple clocks%%per%%]$~ 
+~$[while %%#%% individual clock %%#%% switch less capacitance%%lst%% %%#%% 
+believe %%#%% overall%%lst%% cumulative power consumption %%#%% %%#%% 
+worse %%#%% multi%%dsh%%domain designs%%per%%]$~ ~$[on %%#%% power front%%lst%% %%#%% %%#%% %%#%% 
+%%#%% fruitful %%#%% consider %%#%% gating %%#%% clocks %%#%% %%#%% domain%%dsh%%bydomain basis %%#%% reduce power consumption%%per%%]$~ ~$[a %%#%% direction%%lst%% 
+%%#%% %%#%% compiler level%%lst%% relates %%#%% inlining ]^[ exlining %%#%% %%#%% bid 
+%%#%% achieve %%#%% performance gains %%#%% multiple domains%%per%%]$~ 
+~$[specifically%%lst%% %%#%% %%#%% %%#%% %%#%% examine %%#%% idea %%#%% exlining 
+%%#%% time%%dsh%%critical loops %%#%% programs %%#%% separate functions%%lst%% %%#%% 
+%%#%% placed %%#%% independent domains%%lst%% %%#%% %%#%% %%#%% develop %%#%% 
+intelligent decision %%#%% %%#%% %%#%% functions %%#%% inline 
+%%#%% minimize cdc overheads%%per%%]$~ 
+~$[r eferences 
+[1] a%%per%%]$~ ~$[canis%%lst%% j%%per%%]$~ ~$[choi%%lst%% m%%per%%]$~ ~$[aldham%%lst%% v%%per%%]$~ ~$[zhang%%lst%% a%%per%%]$~ ~$[kammoona%%lst%% j%%per%%]$~ ~$[h%%per%%]$~ ~$[anderson%%lst%% 
+s%%per%%]$~ ~$[brown%%lst%% ]^[ t%%per%%]$~ ~$[czajkowski%%lst%% “legup%%cln%% high%%dsh%%level synthesis ]f[ fpgabased processor/accelerator systems,” %%#%% acm fpga%%lst%% 2011%%lst%% pp%%per%% 33–36%%per%% 
+[2] y%%per%%]$~ ~$[hara%%lst%% h%%per%%]$~ ~$[tomiyama%%lst%% s%%per%%]$~ ~$[honda%%lst%% ]^[ h%%per%%]$~ ~$[takada%%lst%% “proposal ]^[ 
+quantitative analysis %%#%% %%#%% chstone benchmark program suite ]f[ practical 
+c%%dsh%%based high%%dsh%%level synthesis,” j%%per%%]$~ ~$[information processing%%lst%% vol%%per%% 17%%lst%% pp%%per%% 242– 
+254%%lst%% 2009%%per%% 
+[3] “united states bureau %%#%% labor statistics,” https://www%%per%%bls%%per%%gov/%%per%% 
+[4] g%%per%%]$~ ~$[lhairech%%dsh%%lebreton%%lst%% p%%per%%]$~ ~$[coussy%%lst%% ]^[ e%%per%%]$~ ~$[martin%%lst%% “hierarchical ]^[ 
+multiple%%dsh%%clock domain high%%dsh%%level synthesis ]f[ low%%dsh%%power design %%#%% 
+fpga,” %%#%% fpl%%lst%% 2010%%lst%% pp%%per%% 464–468%%per%% 
+[5] d%%per%%]$~ ~$[m%%per%%]$~ ~$[chapiro%%lst%% “globally%%dsh%%asynchronous locally%%dsh%%synchronous systems%%per%%” 
+stanford univ ca dept %%#%% computer science%%lst%% tech%%per%%]$~ ~$[rep%%per%%%%lst%% 
+1984%%per%% 
+[6] y%%per%%]$~ ~$[jiang%%lst%% h%%per%%]$~ ~$[zhang%%lst%% h%%per%%]$~ ~$[zhang%%lst%% h%%per%%]$~ ~$[liu%%lst%% x%%per%%]$~ ~$[song%%lst%% m%%per%%]$~ ~$[gu%%lst%% ]^[ j%%per%%]$~ ~$[sun%%lst%% 
+“design %%#%% mixed synchronous/asynchronous systems %%#%% multiple 
+clocks,” ieee transactions %%#%% parallel ]^[ distributed systems%%lst%% vol%%per%% 26%%lst%% 
+no%%per%% 8%%lst%% pp%%per%% 2220–2232%%lst%% 2015%%per%% 
+[7] l%%per%%]$~ ~$[p%%per%%]$~ ~$[carloni%%lst%% k%%per%%]$~ ~$[l%%per%%]$~ ~$[mcmillan%%lst%% ]^[ a%%per%%]$~ ~$[l%%per%%]$~ ~$[sangiovanni%%dsh%%vincentelli%%lst%% “theory 
+%%#%% latency%%dsh%%insensitive design,” ieee transactions %%#%% computer%%dsh%%aided 
+design %%#%% integrated circuits ]^[ systems%%lst%% vol%%per%% 20%%lst%% no%%per%% 9%%lst%% pp%%per%% 1059–1076%%lst%% 
+2001%%per%% 
+[8] m%%per%%]$~ ~$[singh ]^[ m%%per%%]$~ ~$[theobald%%lst%% “generalized latency%%dsh%%insensitive systems ]f[ 
+single%%dsh%%clock ]^[ multi%%dsh%%clock architectures,” %%#%% ieee/acm date%%lst%% vol%%per%% 2%%lst%% 
+2004%%lst%% pp%%per%% 1008–1013%%per%% 
+[9] a%%per%%]$~ ~$[agiwal ]^[ m%%per%%]$~ ~$[singh%%lst%% “multi%%dsh%%clock latency%%dsh%%insensitive architecture ]^[ 
+wrapper synthesis,” electronic notes %%#%% theoretical computer science%%lst%% 
+vol%%per%% 146%%lst%% no%%per%% 2%%lst%% pp%%per%% 5–28%%lst%% 2006%%per%% 
+[10] l%%per%%]$~ ~$[luo%%lst%% h%%per%%]$~ ~$[he%%lst%% q%%per%%]$~ ~$[dou%%lst%% ]^[ w%%per%%]$~ ~$[xu%%lst%% “design ]^[ verification %%#%% multiclock domain synchronizers,” %%#%% ieee int’l conf%%per%% %%#%% intelligent system 
+design ]^[ engineering application (isdea)%%lst%% vol%%per%% 1%%lst%% 2010%%lst%% pp%%per%% 544–547%%per%% 
+[11] c%%per%%]$~ ~$[lattner ]^[ v%%per%%]$~ ~$[s%%per%%]$~ ~$[adve%%lst%% “llvm%%cln%% %%#%% compilation framework ]f[ lifelong 
+program analysis & transformation,” %%#%% ieee/acm sgo%%lst%% 2004%%lst%% pp%%per%% 75– 
+88%%per%% 
+[12] j%%per%%]$~ ~$[choi%%lst%% s%%per%%]$~ ~$[brown%%lst%% ]^[ j%%per%%]$~ ~$[anderson%%lst%% “resource ]^[ memory management 
+techniques ]f[ %%#%% high%%dsh%%level synthesis %%#%% software threads %%#%% parallel 
+fpga hardware,” %%#%% ieee fpt%%lst%% 2015%%lst%% pp%%per%% 152–159%%per%% 
+[13] “understanding metastability %%#%% altera fpgas,” https://www%%per%%altera%%per%%com/ 
+en us/pdfs/literature/wp/wp%%dsh%%01082%%dsh%%quartus%%dsh%%ii%%dsh%%metastability%%per%%pdf%%per%% 
+[14] c%%per%%]$~ ~$[dike ]^[ e%%per%%]$~ ~$[burton%%lst%% “miller ]^[ noise effects %%#%% %%#%% synchronizing flipflop,” ieee journal %%#%% solid%%dsh%%state circuits%%lst%% vol%%per%% 34%%lst%% no%%per%% 6%%lst%% pp%%per%% 849–855%%lst%% 
+1999%%per%% 
+[15] c%%per%%%%dsh%%y%%per%%]$~ ~$[huang%%lst%% y%%per%%%%dsh%%s%%per%%]$~ ~$[chen%%lst%% y%%per%%%%dsh%%l%%per%%]$~ ~$[lin%%lst%% ]^[ y%%per%%%%dsh%%c%%per%%]$~ ~$[hsu%%lst%% “data path allocation 
+based %%#%% bipartite weighted matching,” %%#%% ieee/acm dac%%lst%% 1991%%lst%% pp%%per%% 
+499–504%%per%% 

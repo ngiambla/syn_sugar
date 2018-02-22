@@ -129,20 +129,19 @@ class garnish:
 
 		for _label in sentence_map:
 
-			sfs 	= 	[]
 			sfs2 	= 	[]
 			low_map = 	[]
 			for i in range(_label, sentence_length_map[_label]+_label):
 				low_map.append(ingredient_free_map[i].lower())
 				if _ingredients_all[i] != "%%#%%":
-					sfs.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
 					sfs2.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
 				else:
-					sfs2.append(0)
+					sfs2.append(10**(-10))
 
 			freq_vec_map[_label]  			=  	sfs2
 			sentence_low_map[_label] 		= 	low_map
-			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label]+_label)
+			sigmoid_val 					= 	mutils.sigmoid((sentence_length_map[_label]), 20)
+			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs2)*sigmoid_val/(sentence_length_map[_label])
 
 			avg_entropy = avg_entropy + sentence_entropy_map[_label] 
 
@@ -162,7 +161,7 @@ class garnish:
 
 		avg_entropy = avg_entropy/len(sentence_vec_map)
 		avg_wrd_snt = (_number_of_ingredients/len(sentence_vec_map))
-		_scalar 	= ((avg_entropy)/min_entropy)**0.3
+		_scalar 	= 0.5
 
 		print(bcolors.OKGREEN+ "\n\n> Stats" + bcolors.ENDC)
 		print(bcolors.OKGREEN+ ">> MAX Entropy: " + str(max_entropy) + bcolors.ENDC)
@@ -176,20 +175,24 @@ class garnish:
 		count=0
 
 		for _i_label in sentence_vec_map:
-			a=sentence_vec_map[_i_label]
-			seen_labels[_i_label]=0
-			
-			if sentence_entropy_map[_i_label] > _scalar*min_entropy: 	# filter out sentences with low entropy.
+
+			if sentence_entropy_map[_i_label] > _scalar*avg_entropy:
+				a = freq_vec_map[_i_label]
+				wa = sentence_low_map[_i_label]
+
+				seen_labels[_i_label]=0
 
 				for _j_label in sentence_vec_map:
-					if sentence_entropy_map[_j_label] > _scalar*min_entropy: 
+					if sentence_entropy_map[_j_label] > _scalar*avg_entropy: 
 
 						if  _j_label not in seen_labels:
-							b=sentence_vec_map[_j_label]
-						
 
-							hamming_sim = len(sentence_vec_map[_i_label])-mutils.hamming_distance(a,b)
-							sim_i = int(math.floor(100*(hamming_sim)/len(sentence_vec_map[_i_label])) + math.floor(100*(mutils.get_cosine_sim(a,b))))
+							b = freq_vec_map[_j_label]
+							wb = sentence_low_map[_j_label]
+							
+							sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)*mutils.jaccard_index(wa,wb)))
+							sim_i  	= int(sim_i)
+
 							if sim_i not in sen_pairs: 
 								sen_pairs[sim_i] = {}
 
@@ -198,76 +201,88 @@ class garnish:
 
 							if _j_label not in sen_pairs[sim_i]:
 								sen_pairs[sim_i][_j_label]=sentence_entropy_map[_j_label]
+							else:
+								sen_pairs[sim_i][_j_label]=sen_pairs[sim_i][_j_label]*0.85
+
 							count=count+1
 							self.display_progress_check(1, count, cols)
-					
+
+
+		fields={}
+		for _bin in sen_pairs:
+			
+			seen_again={}
+			
+			for il in sen_pairs[_bin]:
+				seen_again[il]=True
+				for jl in sen_pairs[_bin]:
+					if jl not in seen_again:
+						dist 	= jl-il
+						field	= (100*_bin*sen_pairs[_bin][jl])/((dist)**2)
+						if il not in fields:
+							fields[il]=field
+						else:
+							fields[il]=fields[il]+field		
 
 		sorted_bins 	= 	{}
 		ent_lim 		= 	avg_entropy
-		miss_count 		=  	0
 
 		for _bin in sen_pairs:
+
 			seen_again={}
 
 			for il in sen_pairs[_bin]:
-				if _bin not in sorted_bins:
-					sorted_bins[_bin]={}
-
-				a = freq_vec_map[il]
-				wa = sentence_low_map[il]
-
-				seen_again[il]=0
 				if sen_pairs[_bin][il] >= ent_lim:
+
+					if _bin not in sorted_bins:
+						sorted_bins[_bin]={}
+
+					a = sentence_vec_map[il]
+
+					seen_again[il]=0
+
 					for jl in sen_pairs[_bin]:
-						
-						count=count+1
-						self.display_progress_check(2, count, cols)
 						if sen_pairs[_bin][jl] >= ent_lim:
+							count=count+1
+							self.display_progress_check(2, count, cols)
+
 							if jl not in seen_again:
 
-								b = freq_vec_map[jl]
-								wb = sentence_low_map[jl]
+								b = sentence_vec_map[jl]
 
-								if ent_lim <= 1.2*avg_entropy:
-									ent_lim = ent_lim + ent_lim*(2/(avg_wrd_snt))
-
-								else:
-									miss_count = 0
-								sim_j	= math.floor(100*(mutils.get_cosine_sim(a,b))) + math.floor(100*(mutils.jaccard_index(wa,wb)))
-								sim_j  	= int(sim_j)
+								hamming_sim = len(sentence_vec_map[il])-mutils.hamming_distance(a,b)
+								sim_j = int( math.floor( 100*(hamming_sim)/len(sentence_vec_map[il]) ) )
 
 								if sim_j not in sorted_bins[_bin]:
 									sorted_bins[_bin][sim_j]={}
 
 								sorted_bins[_bin][sim_j][il]=1
 								sorted_bins[_bin][sim_j][jl]=1
-						else:
-							miss_count=miss_count+1
-							if miss_count >= int(0.7*len(sen_pairs[_bin])):
-								ent_lim = (ent_lim*(0.05*avg_wrd_snt))
-								miss_count = 0
 
 
 
 		print("\n")
 
-		summary_map={}
+		summary_map 	= {}
 
 		for _bin in sen_pairs:
-			if len(sorted_bins[_bin]) > 0:
-				for sim_j in sorted_bins[_bin]:
-					for label in sorted_bins[_bin][sim_j]:
-						if label not in summary_map:
-							summary_map[label] = 1
-						else:
-							summary_map[label] = summary_map[label] + 1
-		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
 
+			if _bin in sorted(sorted_bins, reverse=True):
+				if len(sorted_bins[_bin]) > 0:
+					for sim_j in sorted(sorted_bins[_bin], reverse=True):
+						for label in sorted_bins[_bin][sim_j]:
+							if label in fields:
+								if label not in summary_map:
+									summary_map[label] = (_bin*sim_j) * fields[label] 
+								else:
+									summary_map[label] = summary_map[label] + (_bin*sim_j) * fields[label]
+
+		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
 
 		l_summary_map = {}
 
 		for _label in k_summary_map:
-			if len(l_summary_map) < 5:
+			if len(l_summary_map) < 20:
 				l_summary_map[_label[0]]=_label[1]
 			else:
 				break

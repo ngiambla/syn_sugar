@@ -158,9 +158,11 @@ def bake(file_ext=""):
 											break;
 										ref_summ = ref_summ + line
 							if len(ref_summ) > 0:
-								print(ref_summ)
+								#print(ref_summ)
 								scores 		= stos.eval(ref_summ, sys_summ)
-								print(scores)
+								print(scores[0]['rouge-l'])
+								print(scores[0]['rouge-2'])
+								print(scores[0]['rouge-1'])
 
 								f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
 								test_cases 	= test_cases+1

@@ -74,7 +74,10 @@ class garnish:
 		sentence_bad_map 		= 	{}
 		sentence_length_map 	= 	{}
 		sentence_entropy_map 	= 	{}
+		
 		freq_vec_map 			= 	{}
+		freq_vec_map_gb 		= 	{}
+
 		sentence_low_map 		= 	{}
 
 		max_entropy 			= 	0
@@ -113,7 +116,8 @@ class garnish:
 				try:
 					start=sentence_stack.pop()
 					sentence_length_map[start] 	= 	_label+1-start
-					sentence_map[start] 			= 	_special_item_dict.copy()
+					sentence_map[start] 		= 	_special_item_dict.copy()
+
 					for special_item in _special_item_dict:
 						_special_item_dict[special_item] = 0
 
@@ -141,6 +145,7 @@ class garnish:
 					sfs2.append(0)
 
 			freq_vec_map[_label]  			=  	sfs2
+			freq_vec_map_gb[_label] 		= 	sfs
 			sentence_low_map[_label] 		= 	low_map
 			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
 
@@ -155,7 +160,11 @@ class garnish:
 		avg_wrd_snt = (_number_of_ingredients/len(sentence_vec_map))
 
 		for item in sentence_length_map:
-			sentence_entropy_map[item]=sentence_entropy_map[item]*mutils.sigmoid((sentence_length_map[item]), avg_wrd_snt)
+
+			lcompress=min(avg_wrd_snt/sentence_length_map[item], 0.9)
+			rcompress=max((1-len(freq_vec_map_gb[item])/sentence_length_map[item])/100, 0.0001)
+
+			sentence_entropy_map[item]=sentence_entropy_map[item]*mutils.sig_filter((sentence_length_map[item]), lcompress, rcompress, avg_wrd_snt)
 
 		for _label in sentence_entropy_map:
 
@@ -169,7 +178,10 @@ class garnish:
 		
 		avg_entropy = avg_entropy/len(sentence_vec_map)
 
-		_scalar 	= (min_entropy/max_entropy)*(10**5)
+		_scalar 	= (min_entropy/max_entropy)
+
+		while _scalar < 0.1:
+			_scalar=_scalar*10
 		
 		print(bcolors.OKGREEN+ "\n\n> Stats" + bcolors.ENDC)
 		print(bcolors.OKGREEN+ ">> MAX Entropy: " + str(max_entropy) + bcolors.ENDC)
@@ -184,7 +196,7 @@ class garnish:
 		sen_pairs 		=	{}
 		count 			= 	0
 
-		curr_limit 		= 	_scalar*avg_entropy
+		curr_limit 		= 	_scalar
 		miss_count 		= 	0
 
 
@@ -209,7 +221,6 @@ class garnish:
 							
 							sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)*mutils.jaccard_index(wa,wb)))
 							sim_i  	= int(sim_i)
-
 							if sim_i not in sen_pairs: 
 								sen_pairs[sim_i] = {}
 
@@ -218,14 +229,13 @@ class garnish:
 
 							if _j_label not in sen_pairs[sim_i]:
 								sen_pairs[sim_i][_j_label]=sentence_entropy_map[_j_label]
-							else:
-								sen_pairs[sim_i][_j_label]=sen_pairs[sim_i][_j_label]*0.9
+
 							count=count+1
 							self.display_progress_check(1, count, cols)
 					else:
 						miss_count=miss_count+1
-						if miss_count < len(sentence_vec_map)*0.25:
-							curr_limit = curr_limit*0.5
+						if miss_count < len(sentence_vec_map)*0.10:
+							curr_limit = curr_limit*0.05
 							miss_count = 0
 
 
@@ -239,7 +249,7 @@ class garnish:
 				for jl in sen_pairs[_bin]:
 					if jl not in seen_again:
 						dist 	= jl-il
-						field	= (100*_bin*sen_pairs[_bin][jl])/((dist)**2)
+						field	= (_bin*sen_pairs[_bin][jl]*sen_pairs[_bin][il])/((dist)**2)
 						if il not in fields:
 							fields[il]=field
 						else:
@@ -273,6 +283,7 @@ class garnish:
 
 								hamming_sim = len(sentence_vec_map[il])-mutils.hamming_distance(a,b)
 								sim_j = int( math.floor( 100*(hamming_sim)/len(sentence_vec_map[il]) ) )
+								
 								if sim_j not in sorted_bins[_bin]:
 									sorted_bins[_bin][sim_j]={}
 
@@ -293,16 +304,17 @@ class garnish:
 						for label in sorted_bins[_bin][sim_j]:
 							if label in fields:
 								if label not in summary_map:
-									summary_map[label] = (sim_j/(1+_bin))*fields[label]
+									summary_map[label] = ((sim_j*10)/(1+_bin))*fields[label]
 								else:
-									summary_map[label] = summary_map[label] + (sim_j/(1+_bin))*fields[label]
+									summary_map[label] = summary_map[label] + ((sim_j*10)/(1+_bin))*fields[label]
+
 
 		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
 
 		l_summary_map = {}
 
 		for _label in k_summary_map:
-			if len(l_summary_map) < 5:
+			if len(l_summary_map) < 10:
 				l_summary_map[_label[0]]=_label[1]
 			else:
 				break

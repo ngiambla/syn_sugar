@@ -15,8 +15,8 @@ def get_cosine_sim(a, b):
 	return 1 - spatial.distance.cosine(a,b)
 
 
-def sigmoid(val, shift=0):
-	return ( 1 / (1+math.exp(-0.9*(val-shift)) ) )*( 1 / (1+math.exp(0.005*(val-shift)) ) )
+def sig_filter(val, lcompress, rcompress, shift=0):
+	return ( 1 / (1+math.exp(-(lcompress)*(val-shift)) ) )*( 1 / (1+math.exp((rcompress)*(val-shift)) ) )
 
 
 def hamming_distance(s1, s2):

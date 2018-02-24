@@ -1,71 +1,3014 @@
-~$[forecasters preparing ]f[ thursday%%sqt%%s 
-%%#%% %%#%% %%#%% atlantic hurricane season wish %%#%% %%#%% predict 
-%%#%% arrival %%#%% %%#%% technological help %%#%% %%#%% %%#%% %%#%% crucial %%#%% 
-ever%%dsh%%growing coastal populations%%per%%]$~ 
-~$[the air force %%#%% agreed %%#%% fly hurricane reconnaissance flights 
-]f[ %%#%% %%#%% years%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% %%#%% plans %%#%% phase %%#%% %%#%% 
-missions%%per%%]$~ ~$[and %%#%% %%#%% satellite %%#%% available ]f[ tracking 
-hurricanes%%per%% 
-``we %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% lean on,%%sqt%%%%sqt%% %%#%% ken 
-mckinnon%%lst%% %%#%% spokesman ]f[ u%%per%%s%%per%%]$~ ~$[rep%%per%%]$~ ~$[tom lewis %%#%% north palm beach%%lst%% 
-fla%%per%%%%lst%% %%#%% %%#%% introduced %%#%% bill %%#%% congress %%#%% %%#%% hurricane 
-hunters flying %%#%% least %%#%% five years%%per%% ``we%%sqt%%ve %%#%% %%#%% 
-satellite ]^[ they%%sqt%%re telling %%#%% it%%sqt%%ll %%#%% %%#%% job%%per%%]$~ ~$[if %%#%% blinks%%lst%% 
-%%#%% %%#%% %%#%% track weather?%%sqt%%%%sqt%% 
-%%#%% air force doesn%%sqt%%t %%#%% %%#%% %%#%% involved%%per%% ``we %%#%% %%#%% %%#%% last 
-%%#%% %%#%% examined %%#%% %%#%% ]f[ manned weather reconnaissance ]^[ 
-feel there%%sqt%%s %%#%% real compelling military reason,%%sqt%%%%sqt%% %%#%% spokesman 
-lt%%per%%]$~ ~$[col%%per%%]$~ ~$[darrell hayes%%per%% 
-``we%%sqt%%re ]n[ disputing %%#%% %%#%% hurricane center ]^[ %%#%% weather 
-service %%#%% %%#%% data%%per%%]$~ ~$[we%%sqt%%re %%#%% saying %%#%% %%#%% %%#%% %%#%% 
-appropriate agencies %%#%% provide %%#%% information,%%sqt%%%%sqt%% %%#%% said%%lst%% adding 
-%%#%% %%#%% service %%#%% approached %%#%% national oceanic ]^[ 
-atmospheric administration %%#%% taking %%#%% %%#%% flights%%per%%]$~ 
-~$[besides %%#%% flights%%lst%% forecasters depend %%#%% radar ]^[ satellite 
-data%%per%%]$~ 
-~$[the single %%#%% weather satellite wasn%%sqt%%t intended %%#%% %%#%% 
-alone%%per%%]$~ ~$[a %%#%% satellite failed%%lst%% ]^[ %%#%% replacement ]f[ %%#%% failed 
-craft %%#%% blown %%#%% %%#%% %%#%% mishap %%#%% %%#%% launch pad%%lst%% forcing 
-forecasters %%#%% %%#%% do%%per%%]$~ 
-~$[there %%#%% %%#%% satellites %%#%% %%#%% horizon%%lst%% %%#%% bob sheets%%lst%% 
-director %%#%% %%#%% national hurricane center%%per%%]$~ ~$[but they%%sqt%%ve %%#%% due ]f[ 
-%%#%% %%#%% time ]^[ aren%%sqt%%t expected %%#%% late 1990%%per%% 
-``it %%#%% %%#%% major concern ]f[ us,%%sqt%%%%sqt%% sheets said%%per%%]$~ 
-~$[forecasters %%#%% %%#%% worried %%#%% %%#%% shift %%#%% %%#%% pattern %%#%% 
-hurricane activity %%#%% recent years%%per%%]$~ ~$[since 1985%%lst%% sheets said%%lst%% %%#%% 
-%%#%% %%#%% %%#%% %%#%% hurricanes ]^[ they%%sqt%%re %%#%% %%#%% %%#%% hit %%#%% 
-united states%%per%% 
-``we %%#%% %%#%% %%#%% %%#%% upswing,%%sqt%%%%sqt%% %%#%% said%%lst%% ``possibly %%#%% %%#%% %%#%% 
-pattern %%#%% %%#%% %%sqt%%40s%%lst%% %%sqt%%50s ]^[ %%sqt%%60s %%#%% %%#%% %%#%% %%#%% tremendous number 
-%%#%% landfall hurricanes%%per%%%%sqt%%%%sqt%% 
-max mayfield%%lst%% hurricane specialist %%#%% %%#%% national weather 
-service %%#%% miami%%lst%% %%#%% experts don%%sqt%%t known %%#%% ]y[ %%#%% 
-hurricanes %%#%% tell %%cmp_if%% %%#%% %%#%% %%#%% %%#%% peak %%#%% activity%%lst%% ]v[ %%#%% return 
-%%#%% %%#%% 50s ]^[ 60s%%per%% 
-``now %%#%% %%#%% %%#%% past %%#%% antilles %%#%% %%#%% %%#%% atlantic%%lst%% ]^[ 
-%%#%% %%#%% hawaii %%#%% %%#%% west,%%sqt%%%%sqt%% %%#%% forecaster hal gerrish%%per%% 
-``we%%sqt%%d %%#%% %%#%% %%#%% able %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% africa,%%sqt%%%%sqt%% %%#%% %%#%% 
-%%#%% atlantic hurricanes develop%%lst%% %%#%% said%%per%%]$~ 
-~$[the %%#%% ]f[ improved tracking systems %%#%% %%#%% %%cmp_b%% %%#%% 
-]^[ %%#%% people %%#%% moving %%#%% coastal locations %%#%% %%#%% %%#%% 
-affected %%#%% storms%%per%% 
-``i spoke %%#%% %%#%% 5,000 people %%#%% %%#%% west coast %%#%% florida,%%sqt%%%%sqt%% 
-sheets said%%per%% ``ninety%%dsh%%plus percent %%#%% %%#%% %%#%% %%#%% %%#%% midwest ]v[ 
-northeast ]^[ %%#%% %%#%% %%#%% %%#%% florida%%per%%]$~ ~$[they %%#%% %%#%% %%#%% 
-little concept %%#%% %%#%% %%#%% hurricane is%%per%%%%sqt%%%%sqt%% 
-%%#%% %%#%% average atlantic hurricane season%%lst%% %%#%% stretches 
-%%#%% june %%#%% %%#%% %%#%% %%#%% november%%lst%% six tropical storms %%#%% 
-grow %%#%% hurricanes%%lst%% %%#%% heavy rains ]^[ winds %%#%% 74 mph%%per%%]$~ 
-~$[donna%%lst%% %%#%% 1960%%lst%% struck %%#%% florida keys %%#%% marathon%%lst%% %%cmp_t%% raked 
-%%#%% naples ]^[ fort myers %%#%% weakening inland%%per%%]$~ 
-~$[last season%%lst%% 505 people died %%#%% atlantic hurricanes%%lst%% including 
-gilbert ]^[ joan%%per%%]$~ 
-~$[gilbert killed %%#%% %%cmp_ta%% 300 people ]^[ %%#%% heavy damage %%#%% 
-mexico%%lst%% jamaica%%lst%% haiti ]^[ %%#%% dominican republic %%#%% %%#%% blasted 
-%%#%% %%#%% %%#%% western caribbean ]^[ %%#%% %%#%% %%#%% gulf %%#%% mexico _ 
-including %%#%% florida keys%%lst%% %%#%% florida straits ]^[ cuba%%per%%]$~ 
-~$[joan hovered %%#%% %%#%% coast %%#%% central america ]f[ days %%#%% 
-howling %%#%% %%#%% top winds %%#%% 135 mph%%per%%]$~ ~$[the storm caused mudslides%%lst%% 
-floods ]^[ %%#%% damage %%#%% nicaragua%%lst%% costa rica%%lst%% colombia ]^[ 
-panama%%per%% 
- 
+~$[the time machine%%lst%% %%#%% h(erbert) g(eorge) %%#%% [1898] 
+%%#%% time traveller (for ]s[ %%#%% %%#%% %%#%% convenient %%#%% speak %%#%% 
+him) %%#%% expounding %%#%% recondite matter %%#%% us%%per%%]$~ ~$[his grey eyes 
+shone ]^[ twinkled%%lst%% ]^[ %%#%% usually pale %%#%% %%#%% flushed ]^[ 
+animated%%per%%]$~ ~$[the fire burned brightly%%lst%% ]^[ %%#%% soft radiance %%#%% %%#%% 
+incandescent lights %%#%% %%#%% lilies %%#%% silver caught %%#%% bubbles 
+%%#%% flashed ]^[ passed %%#%% %%#%% glasses%%per%%]$~ ~$[our chairs%%lst%% %%#%% %%#%% 
+patents%%lst%% embraced ]^[ caressed %%#%% %%#%% %%cmp_ta%% submitted %%#%% %%#%% sat 
+upon%%lst%% ]^[ %%#%% %%#%% %%#%% luxurious after%%dsh%%dinner atmosphere %%#%% 
+%%#%% roams gracefully free %%#%% %%#%% trammels %%#%% precision%%per%%]$~ ~$[and 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% way%%dsh%%%%dsh%%marking %%#%% %%#%% %%#%% %%#%% lean 
+forefinger%%dsh%%%%dsh%%as %%#%% sat ]^[ lazily admired %%#%% earnestness %%#%% 
+%%#%% %%#%% paradox (as %%#%% %%#%% it:) ]^[ %%#%% fecundity%%per%% 
+`you %%#%% follow %%#%% carefully%%per%%]$~ ~$[i %%#%% %%#%% %%#%% controvert %%#%% 
+]v[ %%#%% ideas %%#%% %%#%% %%#%% universally accepted%%per%%]$~ ~$[the geometry%%lst%% 
+]f[ instance%%lst%% %%#%% taught %%#%% %%#%% school %%#%% founded %%#%% %%#%% 
+misconception%%per%%%%sqt%% 
+`is ]n[ %%#%% %%#%% %%#%% large %%#%% %%#%% expect %%#%% %%#%% begin upon?%%sqt%% 
+%%#%% filby%%lst%% %%#%% argumentative person %%#%% red hair%%per%% 
+`i %%#%% ]n[ mean %%#%% %%#%% %%#%% %%#%% accept %%#%% %%#%% reasonable 
+ground ]f[ it%%per%%]$~ ~$[you %%#%% soon admit %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% you%%per%%]$~ 
+~$[you know %%#%% course %%#%% %%#%% mathematical line%%lst%% %%#%% line %%#%% thickness 
+nil%%lst%% %%#%% %%#%% real existence%%per%%]$~ ~$[they taught %%#%% that%%qsn%%]$~ ~$[neither %%#%% 
+%%#%% mathematical plane%%per%%]$~ ~$[these %%#%% %%#%% mere abstractions%%per%%%%sqt%% 
+`that %%#%% %%#%% right,%%sqt%% %%#%% %%#%% psychologist%%per%% 
+`nor%%lst%% %%#%% %%#%% length%%lst%% breadth%%lst%% ]^[ thickness%%lst%% %%#%% %%#%% cube 
+%%#%% %%#%% real existence%%per%%%%sqt%% 
+`there %%#%% object,%%sqt%% %%#%% filby%%per%% `of course %%#%% solid body %%#%% 
+exist%%per%%]$~ ~$[all real things%%dsh%%%%dsh%%%%sqt%% 
+`so %%#%% people think%%per%%]$~ ~$[but wait %%#%% moment%%per%%]$~ ~$[can %%#%% 
+instantaneous cube exist?%%sqt%% 
+`don%%sqt%%t follow you,%%sqt%% %%#%% filby%%per%% 
+`can %%#%% cube %%#%% %%#%% ]n[ last ]f[ %%#%% time %%#%% all%%lst%% %%#%% %%#%% real 
+existence?%%sqt%% 
+filby %%#%% pensive%%per%% `clearly,%%sqt%% %%#%% time traveller proceeded%%lst%% 
+`any real body %%#%% %%#%% extension %%#%% %%#%% directions%%cln%% %%#%% %%#%% 
+%%#%% length%%lst%% breadth%%lst%% thickness%%lst%% and%%dsh%%%%dsh%%duration%%per%%]$~ ~$[but %%#%% %%#%% 
+natural infirmity %%#%% %%#%% flesh%%lst%% %%#%% %%#%% %%#%% explain %%#%% %%#%% %%#%% %%#%% 
+moment%%lst%% %%#%% incline %%#%% overlook %%#%% fact%%per%%]$~ ~$[there %%#%% %%#%% %%#%% 
+dimensions%%lst%% %%#%% %%#%% %%#%% call %%#%% %%#%% planes %%#%% space%%lst%% ]^[ %%#%% 
+fourth%%lst%% time%%per%%]$~ ~$[there is%%lst%% however%%lst%% %%#%% tendency %%#%% draw %%#%% unreal 
+distinction %%#%% %%#%% former %%#%% dimensions ]^[ %%#%% latter%%lst%% 
+%%cmp_b%% %%#%% happens %%#%% %%#%% consciousness moves intermittently %%#%% 
+%%#%% direction %%#%% %%#%% latter %%#%% %%#%% beginning %%#%% %%#%% %%#%% %%#%% 
+%%#%% lives%%per%%%%sqt%% 
+`that,%%sqt%% %%#%% %%#%% %%#%% %%#%% man%%lst%% %%#%% spasmodic efforts %%#%% 
+relight %%#%% cigar %%#%% %%#%% lamp%%scn%% `that %%per%% %%per%% %%per%% %%#%% %%#%% indeed%%per%%%%sqt%% 
+`now%%lst%% %%#%% %%#%% %%#%% remarkable %%#%% %%#%% %%#%% ]s[ extensively 
+overlooked,%%sqt%% continued %%#%% time traveller%%lst%% %%#%% %%#%% slight 
+accession %%#%% cheerfulness%%per%% `really %%#%% %%#%% %%#%% %%#%% meant %%#%% %%#%% 
+fourth dimension%%lst%% %%#%% %%#%% people %%#%% talk %%#%% %%#%% fourth 
+dimension %%#%% ]n[ know %%#%% mean it%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% %%#%% 
+looking %%#%% time%%per%%]$~ ~$[there %%#%% %%#%% difference %%#%% time and %%#%% %%#%% 
+%%#%% %%#%% dimensions %%#%% space except %%#%% %%#%% consciousness moves 
+%%#%% it%%per%%]$~ ~$[but %%#%% foolish people %%#%% %%#%% hold %%#%% %%#%% wrong 
+%%#%% %%#%% %%#%% idea%%per%%]$~ ~$[you %%#%% %%#%% heard %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% fourth dimension?%%sqt%% 
+`_i_ %%#%% not,%%sqt%% %%#%% %%#%% provincial mayor%%per%% 
+`it %%#%% simply this%%per%%]$~ ~$[that space%%lst%% %%#%% %%#%% mathematicians %%#%% it%%lst%% 
+%%#%% spoken %%#%% %%#%% %%#%% %%#%% dimensions%%lst%% %%#%% %%#%% %%#%% call 
+length%%lst%% breadth%%lst%% ]^[ thickness%%lst%% ]^[ %%#%% %%#%% definable %%#%% 
+reference %%#%% %%#%% planes%%lst%% %%#%% %%#%% %%#%% angles %%#%% %%#%% others%%per%%]$~ 
+~$[but %%#%% philosophical people %%#%% %%#%% %%#%% %%#%% %%#%% 
+dimensions particularly%%dsh%%%%dsh%%why ]n[ %%#%% direction %%#%% %%#%% 
+angles %%#%% %%#%% %%#%% three?%%dsh%%%%dsh%%and %%#%% %%#%% tried %%#%% construct %%#%% 
+four%%dsh%%dimension geometry%%per%%]$~ ~$[professor simon newcomb %%#%% expounding 
+%%#%% %%#%% %%#%% %%#%% york mathematical society %%#%% %%#%% month ]v[ ]s[ ago%%per%%]$~ 
+~$[you know %%#%% %%#%% %%#%% flat surface%%lst%% %%#%% %%#%% %%#%% %%#%% dimensions%%lst%% 
+%%#%% %%#%% represent %%#%% figure %%#%% %%#%% three%%dsh%%dimensional solid%%lst%% ]^[ 
+similarly %%#%% %%#%% %%#%% %%#%% models %%#%% thee dimensions %%#%% %%#%% 
+represent %%#%% %%#%% four%%dsh%%%%dsh%%if %%#%% %%#%% master %%#%% perspective %%#%% 
+%%#%% thing%%per%%]$~ ~$[see?%%sqt%% 
+`i %%#%% so,%%sqt%% murmured %%#%% provincial mayor%%scn%% and%%lst%% knitting %%#%% 
+brows%%lst%% %%#%% lapsed %%#%% %%#%% introspective state%%lst%% %%#%% lips moving %%#%% 
+%%#%% %%#%% repeats mystic words%%per%% `yes%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% now,%%sqt%% %%#%% 
+%%#%% %%#%% %%#%% time%%lst%% brightening %%#%% %%#%% %%#%% transitory manner%%per%% 
+`well%%lst%% %%#%% %%#%% ]n[ mind telling %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+geometry %%#%% %%#%% dimensions ]f[ %%#%% time%%per%%]$~ ~$[some %%#%% %%#%% results 
+%%#%% curious%%per%%]$~ ~$[for instance%%lst%% %%#%% %%#%% %%#%% portrait %%#%% %%#%% %%#%% %%#%% eight 
+%%#%% old%%lst%% %%#%% %%#%% fifteen%%lst%% %%#%% %%#%% seventeen%%lst%% %%#%% %%#%% 
+twenty%%dsh%%three%%lst%% ]^[ ]s[ on%%per%%]$~ ~$[all %%#%% %%#%% evidently sections%%lst%% %%#%% %%#%% 
+were%%lst%% three%%dsh%%dimensional representations %%#%% %%#%% four%%dsh%%dimensioned 
+being%%lst%% %%#%% %%#%% %%#%% fixed ]^[ unalterable thing%%per%% 
+`scientific people,%%sqt%% proceeded %%#%% time traveller%%lst%% %%#%% %%#%% 
+pause required ]f[ %%#%% proper assimilation %%#%% this%%lst%% `know %%#%% 
+%%#%% %%#%% time %%#%% %%#%% %%#%% kind %%#%% space%%per%%]$~ ~$[here %%#%% %%#%% popular 
+scientific diagram%%lst%% %%#%% weather record%%per%%]$~ ~$[this line %%#%% trace %%#%% %%#%% 
+finger %%#%% %%#%% movement %%#%% %%#%% barometer%%per%%]$~ ~$[yesterday %%#%% %%#%% ]s[ 
+high%%lst%% yesterday night %%#%% fell%%lst%% %%cmp_t%% %%#%% morning %%#%% rose again%%lst%% 
+]^[ ]s[ gently upward %%#%% here%%per%%]$~ ~$[surely %%#%% mercury %%#%% ]n[ trace 
+%%#%% line %%#%% %%#%% %%#%% %%#%% dimensions %%#%% space %%#%% recognized%%qsn%%]$~ 
+~$[but %%#%% %%#%% traced %%#%% %%#%% line%%lst%% ]^[ %%#%% line%%lst%% %%cmp_tf%%%%lst%% 
+%%#%% %%#%% conclude %%#%% %%#%% %%#%% time%%dsh%%dimension%%per%%%%sqt%% 
+`but,%%sqt%% %%#%% %%#%% medical man%%lst%% staring hard %%#%% %%#%% coal %%#%% %%#%% 
+fire%%lst%% `if time %%#%% %%#%% %%#%% %%#%% fourth dimension %%#%% space%%lst%% %%#%% %%#%% 
+it%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% been%%lst%% regarded %%#%% %%#%% different%%qsn%%]$~ 
+~$[and %%#%% %%#%% %%#%% move %%#%% time %%#%% %%#%% move %%#%% %%#%% %%#%% %%#%% 
+dimensions %%#%% space?%%sqt%% 
+%%#%% time traveller smiled%%per%% `are %%#%% %%#%% %%#%% %%#%% move freely %%#%% 
+space%%qsn%%]$~ ~$[right ]^[ left %%#%% %%#%% go%%lst%% backward ]^[ forward freely 
+enough%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% so%%per%%]$~ ~$[i admit %%#%% move freely %%#%% 
+%%#%% dimensions%%per%%]$~ ~$[but %%#%% %%#%% %%#%% ]^[ down%%qsn%%]$~ ~$[gravitation limits 
+%%#%% there%%per%%%%sqt%% 
+`not exactly,%%sqt%% %%#%% %%#%% medical man%%per%% `there %%#%% balloons%%per%%%%sqt%% 
+`but %%#%% %%#%% balloons%%lst%% save ]f[ spasmodic jumping ]^[ %%#%% 
+inequalities %%#%% %%#%% surface%%lst%% %%#%% %%#%% %%#%% freedom %%#%% vertical 
+movement%%per%%%%sqt%% `still %%#%% %%#%% move %%#%% little %%#%% ]^[ down,%%sqt%% %%#%% 
+%%#%% medical man%%per%% 
+`easier%%lst%% %%#%% easier %%#%% %%cmp_ta%% up%%per%%%%sqt%% 
+`and %%#%% %%#%% move %%#%% %%#%% %%#%% time%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% moment%%per%%%%sqt%% 
+`my dear sir%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% wrong%%per%%]$~ ~$[that %%#%% %%#%% 
+%%#%% %%#%% %%#%% world %%#%% gone wrong%%per%%]$~ ~$[we %%#%% %%#%% getting %%#%% 
+%%#%% %%#%% %%#%% movement%%per%%]$~ ~$[our mental existences%%lst%% %%#%% %%#%% 
+immaterial ]^[ %%#%% %%#%% dimensions%%lst%% %%#%% passing %%#%% %%#%% 
+time%%dsh%%dimension %%#%% %%#%% uniform velocity %%#%% %%#%% cradle %%#%% %%#%% 
+grave%%per%%]$~ ~$[just %%#%% %%#%% %%#%% travel %%#%% %%cmp_if%% %%#%% %%#%% %%#%% existence 
+fifty miles %%#%% %%#%% earth%%sqt%%s surface%%per%%%%sqt%% 
+`but %%#%% %%#%% difficulty %%#%% this,%%sqt%% interrupted %%#%% 
+psychologist%%per%% `you %%#%% move %%#%% %%#%% %%#%% directions %%#%% space%%lst%% 
+]b[ %%#%% %%#%% move %%#%% %%#%% time%%per%%%%sqt%% 
+`that %%#%% %%#%% germ %%#%% %%#%% %%#%% discovery%%per%%]$~ ~$[but %%#%% %%#%% wrong %%#%% 
+%%#%% %%#%% %%#%% %%#%% move %%#%% %%#%% time%%per%%]$~ ~$[for instance%%lst%% %%cmp_if%% %%#%% am 
+recalling %%#%% incident %%#%% vividly %%#%% %%#%% %%#%% %%#%% %%#%% instant %%#%% 
+%%#%% occurrence%%cln%% %%#%% %%#%% absent%%dsh%%minded%%lst%% %%#%% %%#%% say%%per%%]$~ ~$[i jump %%#%% 
+]f[ %%#%% moment%%per%%]$~ ~$[of course %%#%% %%#%% %%#%% means %%#%% staying %%#%% ]f[ %%#%% 
+length %%#%% time%%lst%% %%#%% %%#%% %%cmp_ta%% %%#%% savage ]v[ %%#%% animal %%#%% %%#%% 
+staying six feet %%#%% %%#%% ground%%per%%]$~ ~$[but %%#%% civilized %%#%% %%#%% %%#%% 
+%%#%% %%cmp_ta%% %%#%% savage %%#%% %%#%% respect%%per%%]$~ ~$[he %%#%% %%#%% %%#%% %%#%% 
+gravitation %%#%% %%#%% balloon%%lst%% ]^[ %%#%% %%#%% %%#%% ]n[ hope %%#%% 
+ultimately %%#%% %%#%% %%#%% able %%#%% stop ]v[ accelerate %%#%% drift %%#%% 
+%%#%% time%%dsh%%dimension%%lst%% ]v[ %%#%% %%#%% %%#%% ]^[ travel %%#%% %%#%% way?%%sqt%% 
+`oh%%lst%% this,%%sqt%% %%#%% filby%%lst%% `is all%%dsh%%%%dsh%%%%sqt%% 
+`why not?%%sqt%% %%#%% %%#%% time traveller%%per%% 
+`it%%sqt%%s %%#%% reason,%%sqt%% %%#%% filby%%per%% 
+`what reason?%%sqt%% %%#%% %%#%% time traveller%%per%% 
+`you %%#%% %%#%% black %%#%% white %%#%% argument,%%sqt%% %%#%% filby%%lst%% `but %%#%% 
+%%#%% %%#%% convince me%%per%%%%sqt%% 
+`possibly not,%%sqt%% %%#%% %%#%% time traveller%%per%% `but %%#%% %%#%% begin %%#%% 
+%%#%% %%#%% object %%#%% %%#%% investigations %%#%% %%#%% geometry %%#%% %%#%% 
+dimensions%%per%%]$~ ~$[long ago %%#%% %%#%% %%#%% vague inkling %%#%% %%#%% machine%%dsh%%%%dsh%%%%sqt%% 
+`to travel %%#%% time!%%sqt%% exclaimed %%#%% %%#%% %%#%% man%%per%% 
+`that %%#%% travel indifferently %%#%% %%#%% direction %%#%% space ]^[ 
+time%%lst%% %%#%% %%#%% driver determines%%per%%%%sqt%% 
+filby contented %%#%% %%#%% laughter%%per%% 
+`but %%#%% %%#%% experimental verification,%%sqt%% %%#%% %%#%% time 
+traveller%%per%% 
+`it %%#%% %%#%% remarkably convenient ]f[ %%#%% historian,%%sqt%% %%#%% 
+psychologist suggested%%per%% `one %%#%% travel %%#%% ]^[ verify %%#%% 
+accepted account %%#%% %%#%% battle %%#%% hastings%%lst%% ]f[ instance!%%sqt%% 
+`don%%sqt%%t %%#%% %%#%% %%#%% %%#%% attract attention?%%sqt%% %%#%% %%#%% medical 
+man%%per%% `our ancestors %%#%% %%#%% %%#%% tolerance ]f[ anachronisms%%per%%%%sqt%% 
+`one %%#%% %%#%% one%%sqt%%s greek %%#%% %%#%% %%#%% lips %%#%% homer ]^[ 
+plato,%%sqt%% %%#%% %%#%% %%#%% %%#%% thought%%per%% 
+`in %%#%% %%#%% %%#%% %%#%% %%#%% plough %%#%% ]f[ %%#%% 
+little%%dsh%%go%%per%%]$~ ~$[the german scholars %%#%% improved greek ]s[ much%%per%%%%sqt%% 
+`then %%#%% %%#%% %%#%% future,%%sqt%% %%#%% %%#%% %%#%% %%#%% man%%per%% `just 
+think%%xcm%%]$~ ~$[one %%#%% invest %%#%% one%%sqt%%s money%%lst%% leave %%#%% %%#%% accumulate 
+%%#%% interest%%lst%% ]^[ hurry %%#%% ahead!%%sqt%% 
+`to discover %%#%% society,%%sqt%% %%#%% i%%lst%% `erected %%#%% %%#%% strictly 
+communistic basis%%per%%%%sqt%% 
+`of %%#%% %%#%% wild extravagant theories!%%sqt%% %%#%% %%#%% psychologist%%per%% 
+`yes%%lst%% ]s[ %%#%% %%#%% %%#%% me%%lst%% ]^[ ]s[ %%#%% %%#%% talked %%#%% %%#%% until%%dsh%%%%dsh%%%%sqt%% 
+`experimental verification!%%sqt%% cried i%%per%% `you %%#%% %%#%% %%#%% verify 
+that?%%sqt%% 
+`the experiment!%%sqt%% cried filby%%lst%% %%#%% %%#%% getting brain%%dsh%%weary%%per%% 
+`let%%sqt%%s %%#%% %%#%% experiment anyhow,%%sqt%% %%#%% %%#%% psychologist%%lst%% 
+`though it%%sqt%%s %%#%% humbug%%lst%% %%#%% know%%per%%%%sqt%% 
+%%#%% time traveller smiled round %%#%% us%%per%%]$~ ~$[then%%lst%% %%#%% smiling 
+faintly%%lst%% ]^[ %%#%% %%#%% hands deep %%#%% %%#%% trousers pockets%%lst%% %%#%% 
+walked slowly %%#%% %%#%% %%#%% room%%lst%% ]^[ %%#%% heard %%#%% slippers 
+shuffling %%#%% %%#%% %%#%% passage %%#%% %%#%% laboratory%%per%%]$~ 
+~$[the psychologist looked %%#%% us%%per%% `i wonder %%#%% he%%sqt%%s got?%%sqt%% 
+`some sleight%%dsh%%of%%dsh%%hand trick ]v[ other,%%sqt%% %%#%% %%#%% medical man%%lst%% 
+]^[ filby tried %%#%% tell %%#%% %%#%% %%#%% conjurer %%#%% %%#%% seen %%#%% 
+burslem%%scn%% ]b[ %%#%% %%#%% %%#%% finished %%#%% preface %%#%% time 
+traveller %%#%% back%%lst%% ]^[ filby%%sqt%%s anecdote collapsed%%per%%]$~ 
+~$[the %%#%% %%#%% time traveller held %%#%% %%#%% hand %%#%% %%#%% glittering 
+metallic framework%%lst%% scarcely larger %%cmp_ta%% %%#%% %%#%% clock%%lst%% ]^[ %%#%% 
+delicately made%%per%%]$~ ~$[there %%#%% ivory %%#%% it%%lst%% ]^[ %%#%% transparent 
+crystalline substance%%per%%]$~ ~$[and %%#%% %%#%% %%#%% %%#%% explicit%%lst%% ]f[ %%#%% %%#%% 
+follows%%dsh%%%%dsh%%unless %%#%% explanation %%#%% %%#%% %%#%% accepted%%dsh%%%%dsh%%is %%#%% 
+absolutely unaccountable thing%%per%%]$~ ~$[he %%#%% %%#%% %%#%% %%#%% %%#%% 
+octagonal tables %%#%% %%#%% scattered %%#%% %%#%% room%%lst%% ]^[ set %%#%% 
+%%#%% front %%#%% %%#%% fire%%lst%% %%#%% %%#%% legs %%#%% %%#%% hearthrug%%per%%]$~ ~$[on %%#%% 
+table %%#%% placed %%#%% mechanism%%per%%]$~ ~$[then %%#%% drew %%#%% %%#%% chair%%lst%% ]^[ sat 
+down%%per%%]$~ ~$[the %%#%% %%#%% object %%#%% %%#%% table %%#%% %%#%% %%#%% shaded 
+lamp%%lst%% %%#%% bright light %%#%% %%#%% fell %%#%% %%#%% model%%per%%]$~ ~$[there %%#%% 
+%%#%% %%#%% %%#%% dozen candles about%%lst%% %%#%% %%#%% brass candlesticks 
+%%#%% %%#%% mantel ]^[ %%#%% %%#%% sconces%%lst%% ]s[ %%#%% %%#%% %%#%% %%#%% 
+brilliantly illuminated%%per%%]$~ ~$[i sat %%#%% %%#%% low arm%%dsh%%chair nearest %%#%% 
+fire%%lst%% ]^[ %%#%% drew %%#%% forward ]s[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% time 
+traveller ]^[ %%#%% fireplace%%per%%]$~ ~$[filby sat %%#%% him%%lst%% looking %%#%% 
+%%#%% shoulder%%per%%]$~ ~$[the medical %%#%% ]^[ %%#%% provincial mayor watched 
+%%#%% %%#%% profile %%#%% %%#%% right%%lst%% %%#%% psychologist %%#%% %%#%% left%%per%%]$~ 
+~$[the %%#%% %%#%% %%#%% stood %%#%% %%#%% psychologist%%per%%]$~ ~$[we %%#%% %%#%% %%#%% 
+%%#%% alert%%per%%]$~ ~$[it appears incredible %%#%% %%#%% %%#%% %%#%% kind %%#%% trick%%lst%% 
+%%#%% subtly conceived ]^[ %%#%% adroitly done%%lst%% %%#%% %%#%% 
+%%#%% played %%#%% %%#%% %%#%% %%#%% conditions%%per%%]$~ 
+~$[the time traveller looked %%#%% us%%lst%% ]^[ %%cmp_t%% %%#%% %%#%% mechanism%%per%% 
+`well?%%sqt%% %%#%% %%#%% psychologist%%per%% 
+`this little affair,%%sqt%% %%#%% %%#%% time traveller%%lst%% resting %%#%% 
+elbows %%#%% %%#%% table ]^[ pressing %%#%% hands %%#%% %%#%% %%#%% 
+apparatus%%lst%% `is %%#%% %%#%% model%%per%%]$~ ~$[it %%#%% %%#%% plan ]f[ %%#%% machine %%#%% 
+travel %%#%% time%%per%%]$~ ~$[you %%#%% notice %%#%% %%#%% looks singularly 
+askew%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% odd twinkling appearance %%#%% %%#%% 
+bar%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% unreal%%per%%%%sqt%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% finger%%per%% `also%%lst%% %%#%% %%#%% %%#%% little white lever%%lst%% ]^[ 
+%%#%% %%#%% another%%per%%%%sqt%% 
+%%#%% medical %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% chair ]^[ peered %%#%% %%#%% 
+thing%%per%% `it%%sqt%%s beautifully made,%%sqt%% %%#%% said%%per%% 
+`it %%#%% %%#%% %%#%% %%#%% make,%%sqt%% retorted %%#%% time traveller%%per%%]$~ 
+~$[then%%lst%% %%#%% %%#%% %%#%% %%#%% imitated %%#%% action %%#%% %%#%% medical man%%lst%% %%#%% 
+said%%cln%% `now %%#%% %%#%% %%#%% %%#%% %%#%% understand %%#%% %%#%% lever%%lst%% 
+%%#%% pressed over%%lst%% sends %%#%% machine gliding %%#%% %%#%% future%%lst%% 
+]^[ %%#%% %%#%% reverses %%#%% motion%%per%%]$~ ~$[this saddle represents %%#%% 
+seat %%#%% %%#%% time traveller%%per%%]$~ ~$[presently %%#%% am %%#%% %%#%% press %%#%% 
+lever%%lst%% ]^[ %%#%% %%#%% machine %%#%% go%%per%%]$~ ~$[it %%#%% vanish%%lst%% pass %%#%% 
+future time%%lst%% ]^[ disappear%%per%%]$~ ~$[have %%#%% %%#%% look %%#%% %%#%% thing%%per%%]$~ ~$[look 
+%%#%% %%#%% table too%%lst%% ]^[ satisfy yourselves %%#%% %%#%% %%#%% trickery%%per%%]$~ ~$[i 
+don%%sqt%%t %%#%% %%#%% waste %%#%% model%%lst%% ]^[ %%cmp_t%% %%#%% told i%%sqt%%m %%#%% quack%%per%%%%sqt%% 
+%%#%% %%#%% %%#%% minute%%sqt%%s pause perhaps%%per%%]$~ ~$[the psychologist %%#%% 
+%%#%% %%#%% speak %%#%% me%%lst%% ]b[ changed %%#%% mind%%per%%]$~ ~$[then %%#%% time 
+traveller %%#%% forth %%#%% finger towards %%#%% lever%%per%% `no,%%sqt%% %%#%% %%#%% 
+suddenly%%per%% `lend %%#%% %%#%% hand%%per%%%%sqt%% and %%#%% %%#%% %%#%% psychologist%%lst%% 
+%%#%% %%#%% %%#%% individual%%sqt%%s hand %%#%% %%#%% own ]^[ told %%#%% %%#%% %%#%% %%#%% 
+%%#%% forefinger%%per%%]$~ ~$[so %%#%% %%#%% %%#%% %%#%% psychologist %%#%% %%#%% sent 
+forth %%#%% model time machine %%#%% %%#%% interminable voyage%%per%%]$~ ~$[we %%#%% 
+%%#%% %%#%% lever turn%%per%%]$~ ~$[i am absolutely %%#%% %%#%% %%#%% %%#%% 
+trickery%%per%%]$~ ~$[there %%#%% %%#%% breath %%#%% wind%%lst%% ]^[ %%#%% lamp flame jumped%%per%%]$~ 
+~$[one %%#%% %%#%% candles %%#%% %%#%% mantel %%#%% blown out%%lst%% ]^[ %%#%% little 
+machine suddenly swung round%%lst%% %%#%% indistinct%%lst%% %%#%% seen %%#%% %%#%% 
+ghost ]f[ %%#%% %%#%% perhaps%%lst%% %%#%% %%#%% eddy %%#%% faintly glittering 
+brass ]^[ ivory%%scn%% ]^[ %%#%% %%#%% gone%%dsh%%%%dsh%%vanished%%xcm%%]$~ ~$[save ]f[ %%#%% lamp 
+%%#%% table %%#%% bare%%per%%]$~ 
+~$[everyone %%#%% silent ]f[ %%#%% minute%%per%%]$~ ~$[then filby %%#%% %%#%% %%#%% 
+damned%%per%%]$~ 
+~$[the psychologist recovered %%#%% %%#%% stupor%%lst%% ]^[ suddenly looked 
+%%#%% %%#%% table%%per%%]$~ ~$[at %%#%% %%#%% time traveller laughed cheerfully%%per%% 
+`well?%%sqt%% %%#%% said%%lst%% %%#%% %%#%% reminiscence %%#%% %%#%% psychologist%%per%%]$~ ~$[then%%lst%% 
+getting up%%lst%% %%#%% %%#%% %%#%% %%#%% tobacco jar %%#%% %%#%% mantel%%lst%% ]^[ %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% fill %%#%% pipe%%per%%]$~ 
+~$[we stared %%#%% %%#%% other%%per%% `look here,%%sqt%% %%#%% %%#%% medical man%%lst%% 
+`are %%#%% %%#%% earnest %%#%% this%%qsn%%]$~ ~$[do %%#%% seriously believe %%#%% 
+%%#%% machine %%#%% travelled %%#%% time?%%sqt%% 
+`certainly,%%sqt%% %%#%% %%#%% time traveller%%lst%% stooping %%#%% light %%#%% spill 
+%%#%% %%#%% fire%%per%%]$~ ~$[then %%#%% turned%%lst%% lighting %%#%% pipe%%lst%% %%#%% look %%#%% %%#%% 
+psychologist%%sqt%%s face%%per%% (the psychologist%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% ]n[ 
+unhinged%%lst%% helped %%#%% %%#%% %%#%% cigar ]^[ tried %%#%% light %%#%% uncut%%per%%) 
+`what %%#%% more%%lst%% %%#%% %%#%% %%#%% %%#%% machine nearly finished %%#%% there%%sqt%%%%dsh%%%%dsh%%he 
+indicated %%#%% laboratory%%dsh%%%%dsh%%`and %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% mean 
+%%#%% %%#%% %%#%% journey %%#%% %%#%% own account%%per%%%%sqt%% 
+`you mean %%#%% %%#%% %%#%% %%#%% machine %%#%% travelled %%#%% %%#%% 
+future?%%sqt%% %%#%% filby%%per%% 
+`into %%#%% future ]v[ %%#%% past%%dsh%%%%dsh%%i don%%sqt%%t%%lst%% ]f[ certain%%lst%% know 
+which%%per%%%%sqt%% 
+%%#%% %%#%% interval %%#%% psychologist %%#%% %%#%% inspiration%%per%% `it 
+%%#%% %%#%% gone %%#%% %%#%% past %%cmp_if%% %%#%% %%#%% gone anywhere,%%sqt%% %%#%% said%%per%% 
+`why?%%sqt%% %%#%% %%#%% time traveller%%per%% 
+`because %%#%% presume %%#%% %%#%% %%#%% ]n[ moved %%#%% space%%lst%% ]^[ %%cmp_if%% %%#%% 
+travelled %%#%% %%#%% future %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% time%%lst%% 
+%%#%% %%#%% %%#%% %%#%% travelled %%#%% %%#%% time%%per%%%%sqt%% 
+`but,%%sqt%% %%#%% said%%lst%% `if %%#%% travelled %%#%% %%#%% past %%#%% %%#%% %%#%% 
+%%#%% visible %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% room%%scn%% ]^[ last thursday 
+%%#%% %%#%% %%#%% here%%scn%% ]^[ %%#%% thursday %%#%% that%%scn%% ]^[ ]s[ forth!%%sqt%% 
+`serious objections,%%sqt%% remarked %%#%% provincial mayor%%lst%% %%#%% %%#%% 
+air %%#%% impartiality%%lst%% %%#%% towards %%#%% time traveller%%per%% 
+`not %%#%% bit,%%sqt%% %%#%% %%#%% time traveller%%lst%% and%%lst%% %%#%% %%#%% psychologist%%cln%% 
+`you think%%per%%]$~ ~$[you %%#%% explain that%%per%%]$~ ~$[it%%sqt%%s presentation below %%#%% 
+threshold%%lst%% %%#%% know%%lst%% diluted presentation%%per%%%%sqt%% 
+`of course,%%sqt%% %%#%% %%#%% psychologist%%lst%% ]^[ reassured us%%per%% `that%%sqt%%s 
+%%#%% simple %%#%% %%#%% psychology%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% it%%per%%]$~ ~$[it%%sqt%%s 
+plain enough%%lst%% ]^[ helps %%#%% paradox delightfully%%per%%]$~ ~$[we %%#%% %%#%% 
+it%%lst%% nor %%#%% %%#%% appreciate %%#%% machine%%lst%% %%#%% %%#%% %%cmp_ta%% %%#%% %%#%% %%#%% 
+spoke %%#%% %%#%% wheel spinning%%lst%% ]v[ %%#%% bullet flying %%#%% %%#%% air%%per%%]$~ 
+~$[if %%#%% %%#%% travelling %%#%% time fifty times ]v[ %%#%% hundred times 
+faster %%cmp_ta%% %%#%% are%%lst%% %%cmp_if%% %%#%% %%#%% %%#%% %%#%% minute %%#%% %%#%% %%#%% 
+%%#%% %%#%% second%%lst%% %%#%% impression %%#%% creates %%#%% %%#%% course %%#%% 
+%%#%% one%%dsh%%fiftieth ]v[ one%%dsh%%hundredth %%#%% %%#%% %%#%% %%#%% %%#%% %%cmp_if%% %%#%% 
+%%#%% ]n[ travelling %%#%% time%%per%%]$~ ~$[that%%sqt%%s plain enough%%per%%%%sqt%% %%#%% passed 
+%%#%% hand %%#%% %%#%% space %%#%% %%#%% %%#%% machine %%#%% been%%per%% `you 
+see?%%sqt%% %%#%% said%%lst%% laughing%%per%%]$~ 
+~$[we sat ]^[ stared %%#%% %%#%% vacant table ]f[ %%#%% minute ]v[ so%%per%%]$~ ~$[then 
+%%#%% time traveller %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% all%%per%% 
+`it sounds plausible %%#%% to%%dsh%%night,%%sqt%% %%#%% %%#%% medical man%%scn%% 
+%%sqt%%but wait %%#%% to%%dsh%%morrow%%per%%]$~ ~$[wait ]f[ %%#%% common sense %%#%% %%#%% 
+morning%%per%%%%sqt%% 
+`would %%#%% %%#%% %%#%% %%#%% %%#%% time machine itself?%%sqt%% %%#%% %%#%% time 
+traveller%%per%%]$~ ~$[and therewith%%lst%% taking %%#%% lamp %%#%% %%#%% hand%%lst%% %%#%% led 
+%%#%% %%#%% %%#%% %%#%% long%%lst%% draughty corridor %%#%% %%#%% laboratory%%per%%]$~ ~$[i 
+remember vividly %%#%% flickering light%%lst%% %%#%% queer%%lst%% broad head %%#%% 
+silhouette%%lst%% %%#%% dance %%#%% %%#%% shadows%%lst%% %%#%% %%#%% %%#%% followed him%%lst%% 
+puzzled ]b[ incredulous%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% laboratory %%#%% 
+beheld %%#%% larger edition %%#%% %%#%% little mechanism %%#%% %%#%% %%#%% seen 
+vanish %%#%% %%#%% %%#%% eyes%%per%%]$~ ~$[parts %%#%% %%#%% nickel%%lst%% %%#%% %%#%% 
+ivory%%lst%% %%#%% %%#%% %%#%% %%#%% filed ]v[ sawn %%#%% %%#%% rock 
+crystal%%per%%]$~ ~$[the %%#%% %%#%% %%#%% complete%%lst%% ]b[ %%#%% twisted 
+crystalline bars lay unfinished %%#%% %%#%% bench beside %%#%% sheets 
+%%#%% drawings%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% ]f[ %%#%% %%#%% look %%#%% it%%per%%]$~ ~$[quartz 
+%%#%% %%#%% %%#%% be%%per%% 
+`look here,%%sqt%% %%#%% %%#%% medical man%%lst%% `are %%#%% perfectly serious%%qsn%%]$~ 
+~$[or %%#%% %%#%% %%#%% trick%%dsh%%%%dsh%%like %%#%% ghost %%#%% %%#%% %%#%% last 
+christmas?%%sqt%% 
+`upon %%#%% machine,%%sqt%% %%#%% %%#%% time traveller%%lst%% holding %%#%% lamp 
+aloft%%lst%% `i intend %%#%% explore time%%per%%]$~ ~$[is %%#%% plain%%qsn%%]$~ ~$[i %%#%% %%#%% 
+%%#%% serious %%#%% %%#%% life%%per%%%%sqt%% 
+none %%#%% %%#%% %%#%% knew %%#%% %%#%% %%#%% it%%per%%]$~ 
+~$[i caught filby%%sqt%%s eye %%#%% %%#%% shoulder %%#%% %%#%% medical man%%lst%% ]^[ 
+%%#%% winked %%#%% %%#%% solemnly%%per%%]$~ 
+~$[ii 
+%%#%% %%#%% %%#%% %%#%% %%#%% time none %%#%% %%#%% %%#%% believed %%#%% %%#%% 
+time machine%%per%%]$~ ~$[the %%#%% is%%lst%% %%#%% time traveller %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% clever %%#%% %%#%% believed%%cln%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% round him%%scn%% %%#%% %%#%% suspected %%#%% subtle reserve%%lst%% %%#%% 
+ingenuity %%#%% ambush%%lst%% %%#%% %%#%% lucid frankness%%per%%]$~ ~$[had filby shown 
+%%#%% model ]^[ explained %%#%% matter %%#%% %%#%% time traveller%%sqt%%s words%%lst%% 
+%%#%% %%#%% %%#%% shown %%#%% %%#%% less scepticism%%per%%]$~ ~$[for %%#%% %%#%% 
+%%#%% perceived %%#%% motives%%scn%% %%#%% pork butcher %%#%% understand 
+filby%%per%%]$~ ~$[but %%#%% time traveller %%#%% %%#%% %%cmp_ta%% %%#%% touch %%#%% whim 
+%%#%% %%#%% elements%%lst%% ]^[ %%#%% distrusted him%%per%%]$~ ~$[things %%#%% %%#%% 
+%%#%% %%#%% %%#%% frame %%#%% %%#%% less clever %%#%% %%#%% tricks %%#%% %%#%% 
+hands%%per%%]$~ ~$[it %%#%% %%#%% mistake %%#%% %%#%% %%#%% %%#%% easily%%per%%]$~ ~$[the serious 
+people %%#%% %%#%% %%#%% seriously %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+deportment%%scn%% %%#%% %%#%% somehow aware %%#%% trusting %%#%% 
+reputations ]f[ judgment %%#%% %%#%% %%#%% %%#%% furnishing %%#%% nursery 
+%%#%% egg%%dsh%%shell china%%per%%]$~ ~$[so %%#%% don%%sqt%%t %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% time travelling %%#%% %%#%% interval %%#%% %%#%% thursday ]^[ 
+%%#%% next%%lst%% %%#%% %%#%% odd potentialities ran%%lst%% %%#%% doubt%%lst%% %%#%% %%#%% %%#%% 
+%%#%% minds%%cln%% %%#%% plausibility%%lst%% %%#%% is%%lst%% %%#%% practical 
+incredibleness%%lst%% %%#%% curious possibilities %%#%% anachronism ]^[ %%#%% 
+utter confusion %%#%% suggested%%per%%]$~ ~$[for %%#%% own part%%lst%% %%#%% %%#%% 
+particularly preoccupied %%#%% %%#%% trick %%#%% %%#%% model%%per%%]$~ ~$[that %%#%% 
+remember discussing %%#%% %%#%% medical man%%lst%% whom %%#%% met %%#%% friday %%#%% 
+%%#%% linnaean%%per%%]$~ ~$[he %%#%% %%#%% %%#%% seen %%#%% similar %%#%% %%#%% 
+tubingen%%lst%% ]^[ laid considerable stress %%#%% %%#%% blowing %%#%% 
+%%#%% %%#%% candle%%per%%]$~ ~$[but %%#%% %%#%% trick %%#%% %%#%% %%#%% %%#%% ]n[ explain%%per%%]$~ 
+~$[the %%#%% thursday %%#%% %%#%% %%#%% %%#%% richmond%%dsh%%%%dsh%%i suppose %%#%% %%#%% 
+%%#%% %%#%% %%#%% time traveller%%sqt%%s %%#%% constant guests%%dsh%%%%dsh%%and%%lst%% arriving 
+late%%lst%% found %%#%% ]v[ five %%#%% %%#%% assembled %%#%% %%#%% 
+drawing%%dsh%%room%%per%%]$~ ~$[the medical %%#%% %%#%% standing %%#%% %%#%% fire %%#%% 
+%%#%% sheet %%#%% paper %%#%% %%#%% hand ]^[ %%#%% watch %%#%% %%#%% other%%per%%]$~ ~$[i 
+looked round ]f[ %%#%% time traveller%%lst%% and%%dsh%%%%dsh%%`it%%sqt%%s half%%dsh%%past seven 
+now,%%sqt%% %%#%% %%#%% medical man%%per%% `i suppose we%%sqt%%d %%#%% %%#%% dinner?%%sqt%% 
+`where%%sqt%%s%%dsh%%%%dsh%%%%dsh%%%%dsh%%?%%sqt%% %%#%% i%%lst%% naming %%#%% host%%per%% 
+`you%%sqt%%ve %%#%% come%%qsn%%]$~ ~$[it%%sqt%%s %%#%% odd%%per%%]$~ ~$[he%%sqt%%s unavoidably 
+detained%%per%%]$~ ~$[he %%#%% %%#%% %%#%% %%#%% note %%#%% lead %%#%% %%#%% dinner %%#%% 
+seven %%cmp_if%% he%%sqt%%s ]n[ back%%per%%]$~ ~$[says he%%sqt%%ll explain %%#%% %%#%% comes%%per%%%%sqt%% 
+`it %%#%% %%#%% pity %%#%% %%#%% %%#%% dinner spoil,%%sqt%% %%#%% %%#%% editor %%#%% 
+%%#%% well%%dsh%%known daily paper%%scn%% ]^[ thereupon %%#%% doctor rang %%#%% bell%%per%%]$~ 
+~$[the psychologist %%#%% %%#%% %%#%% person besides %%#%% doctor ]^[ 
+%%#%% %%#%% %%#%% attended %%#%% previous dinner%%per%%]$~ ~$[the %%#%% %%#%% %%#%% 
+blank%%lst%% %%#%% editor aforementioned%%lst%% %%#%% %%#%% journalist%%lst%% ]^[ 
+another%%dsh%%%%dsh%%a quiet%%lst%% shy %%#%% %%#%% %%#%% beard%%dsh%%%%dsh%%whom %%#%% didn%%sqt%%t know%%lst%% 
+]^[ who%%lst%% %%#%% %%#%% %%#%% %%#%% observation went%%lst%% %%#%% %%#%% %%#%% mouth 
+%%#%% %%#%% evening%%per%%]$~ ~$[there %%#%% %%#%% speculation %%#%% %%#%% dinner%%dsh%%table 
+%%#%% %%#%% time traveller%%sqt%%s absence%%lst%% ]^[ %%#%% suggested time 
+travelling%%lst%% %%#%% %%#%% half%%dsh%%jocular spirit%%per%%]$~ ~$[the editor %%#%% %%#%% 
+explained %%#%% him%%lst%% ]^[ %%#%% psychologist volunteered %%#%% wooden 
+account %%#%% %%#%% `ingenious paradox ]^[ trick%%sqt%% %%#%% %%#%% witnessed 
+%%#%% day week%%per%%]$~ ~$[he %%#%% %%#%% %%#%% midst %%#%% %%#%% exposition %%#%% %%#%% 
+door %%#%% %%#%% corridor %%#%% slowly ]^[ %%#%% noise%%per%%]$~ ~$[i %%#%% 
+facing %%#%% door%%lst%% ]^[ %%#%% %%#%% first%%per%% `hallo!%%sqt%% %%#%% said%%per%% `at last!%%sqt%% 
+and %%#%% door %%#%% wider%%lst%% ]^[ %%#%% time traveller stood %%#%% 
+us%%per%%]$~ ~$[i %%#%% %%#%% cry %%#%% surprise%%per%% `good heavens! man%%lst%% what%%sqt%%s %%#%% 
+matter?%%sqt%% cried %%#%% medical man%%lst%% %%#%% %%#%% %%#%% next%%per%%]$~ ~$[and %%#%% %%#%% 
+tableful %%#%% towards %%#%% door%%per%%]$~ 
+~$[he %%#%% %%#%% %%#%% amazing plight%%per%%]$~ ~$[his coat %%#%% dusty ]^[ dirty%%lst%% 
+]^[ smeared %%#%% green %%#%% %%#%% sleeves%%scn%% %%#%% hair disordered%%lst%% ]^[ 
+%%#%% %%#%% %%#%% %%#%% %%#%% greyer%%dsh%%%%dsh%%either %%#%% dust ]^[ dirt ]v[ %%cmp_b%% 
+%%#%% colour %%#%% actually faded%%per%%]$~ ~$[his %%#%% %%#%% ghastly pale%%scn%% %%#%% 
+chin %%#%% %%#%% brown cut %%#%% it%%dsh%%%%dsh%%a cut half healed%%scn%% %%#%% expression 
+%%#%% haggard ]^[ drawn%%lst%% %%#%% %%#%% intense suffering%%per%%]$~ ~$[for %%#%% moment %%#%% 
+hesitated %%#%% %%#%% doorway%%lst%% %%#%% %%cmp_if%% %%#%% %%#%% %%#%% dazzled %%#%% %%#%% light%%per%%]$~ 
+~$[then %%#%% %%#%% %%#%% %%#%% room%%per%%]$~ ~$[he walked %%#%% %%#%% %%#%% %%#%% limp %%#%% 
+%%#%% %%#%% seen %%#%% footsore tramps%%per%%]$~ ~$[we stared %%#%% %%#%% %%#%% silence%%lst%% 
+expecting %%#%% %%#%% speak%%per%%]$~ 
+~$[he %%#%% ]n[ %%#%% word%%lst%% ]b[ %%#%% painfully %%#%% %%#%% table%%lst%% ]^[ %%#%% 
+%%#%% motion towards %%#%% wine%%per%%]$~ ~$[the editor filled %%#%% glass %%#%% 
+champagne%%lst%% ]^[ pushed %%#%% towards him%%per%%]$~ ~$[he drained it%%lst%% ]^[ %%#%% 
+%%#%% %%#%% %%#%% %%#%% good%%cln%% ]f[ %%#%% looked round %%#%% table%%lst%% ]^[ %%#%% 
+ghost %%#%% %%#%% %%#%% smile flickered %%#%% %%#%% face%%per%% `what %%#%% earth 
+%%#%% %%#%% %%#%% %%#%% to%%lst%% man?%%sqt%% %%#%% %%#%% doctor%%per%%]$~ ~$[the time traveller 
+%%#%% ]n[ %%#%% %%#%% hear%%per%% `don%%sqt%%t %%#%% %%#%% disturb you,%%sqt%% %%#%% said%%lst%% %%#%% 
+%%#%% %%#%% faltering articulation%%per%% `i%%sqt%%m %%#%% right%%per%%%%sqt%% %%#%% stopped%%lst%% 
+held %%#%% %%#%% glass ]f[ more%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% draught%%per%% 
+`that%%sqt%%s good,%%sqt%% %%#%% said%%per%%]$~ ~$[his eyes grew brighter%%lst%% ]^[ %%#%% faint 
+colour %%#%% %%#%% %%#%% cheeks%%per%%]$~ ~$[his glance flickered %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% dull approval%%lst%% ]^[ %%cmp_t%% %%#%% round %%#%% warm ]^[ 
+comfortable room%%per%%]$~ ~$[then %%#%% spoke again%%lst%% %%#%% %%#%% %%#%% %%#%% feeling 
+%%#%% %%#%% %%#%% %%#%% words%%per%% `i%%sqt%%m %%#%% %%#%% wash ]^[ dress%%lst%% ]^[ %%cmp_t%% 
+i%%sqt%%ll %%#%% %%#%% ]^[ explain things%%per%% %%per%% %%per%%]$~ ~$[save %%#%% %%#%% %%#%% %%#%% 
+mutton%%per%%]$~ ~$[i%%sqt%%m starving ]f[ %%#%% bit %%#%% meat%%per%%%%sqt%% 
+%%#%% looked %%#%% %%#%% %%#%% editor%%lst%% %%#%% %%#%% %%#%% rare visitor%%lst%% ]^[ 
+hoped %%#%% %%#%% %%#%% right%%per%%]$~ ~$[the editor %%#%% %%#%% question%%per%% `tell %%#%% 
+presently,%%sqt%% %%#%% %%#%% time traveller%%per%% `i%%sqt%%m%%dsh%%%%dsh%%funny%%xcm%%]$~ ~$[be %%#%% 
+%%#%% %%#%% %%#%% minute%%per%%%%sqt%% 
+%%#%% %%#%% %%#%% %%#%% glass%%lst%% ]^[ walked towards %%#%% staircase door%%per%%]$~ 
+~$[again %%#%% remarked %%#%% lameness ]^[ %%#%% soft padding sound %%#%% %%#%% 
+footfall%%lst%% ]^[ standing %%#%% %%#%% %%#%% place%%lst%% %%#%% %%#%% %%#%% feet %%#%% %%#%% %%#%% 
+out%%per%%]$~ ~$[he %%#%% %%#%% %%#%% %%#%% ]b[ %%#%% pair %%#%% tattered blood%%dsh%%stained 
+socks%%per%%]$~ ~$[then %%#%% door closed %%#%% him%%per%%]$~ ~$[i %%#%% half %%#%% mind %%#%% 
+follow%%lst%% till %%#%% remembered %%#%% %%#%% detested %%#%% fuss %%#%% himself%%per%%]$~ 
+~$[for %%#%% minute%%lst%% perhaps%%lst%% %%#%% mind %%#%% wool%%dsh%%gathering%%per%%]$~ ~$[then%%lst%% 
+%%sqt%%remarkable behaviour %%#%% %%#%% eminent scientist,%%sqt%% %%#%% heard %%#%% 
+editor say%%lst%% thinking (after %%#%% wont) %%#%% headlines%%per%%]$~ ~$[and %%#%% 
+brought %%#%% attention %%#%% %%#%% %%#%% bright dinner%%dsh%%table%%per%% 
+`what%%sqt%%s %%#%% game?%%sqt%% %%#%% %%#%% journalist%%per%% `has %%#%% %%#%% doing 
+%%#%% amateur cadger%%qsn%%]$~ ~$[i don%%sqt%%t follow%%per%%%%sqt%% %%#%% met %%#%% eye %%#%% %%#%% 
+psychologist%%lst%% ]^[ read %%#%% own interpretation %%#%% %%#%% face%%per%%]$~ ~$[i 
+%%#%% %%#%% %%#%% time traveller limping painfully upstairs%%per%%]$~ ~$[i 
+don%%sqt%%t %%#%% %%#%% %%#%% %%cmp_e%% %%#%% noticed %%#%% lameness%%per%%]$~ 
+~$[the %%#%% %%#%% recover completely %%#%% %%#%% surprise %%#%% %%#%% 
+medical man%%lst%% %%#%% rang %%#%% bell%%dsh%%%%dsh%%the time traveller hated %%#%% 
+%%#%% servants waiting %%#%% dinner%%dsh%%%%dsh%%for %%#%% hot plate%%per%%]$~ ~$[at %%#%% %%#%% 
+editor %%#%% %%#%% %%#%% knife ]^[ fork %%#%% %%#%% grunt%%lst%% ]^[ %%#%% silent 
+%%#%% followed suit%%per%%]$~ ~$[the dinner %%#%% resumed%%per%%]$~ ~$[conversation %%#%% 
+exclamatory ]f[ %%#%% little while%%lst%% %%#%% gaps %%#%% wonderment%%scn%% ]^[ %%cmp_t%% 
+%%#%% editor %%#%% fervent %%#%% %%#%% curiosity%%per%% `does %%#%% friend eke 
+%%#%% %%#%% modest income %%#%% %%#%% crossing? ]v[ %%#%% %%#%% %%#%% 
+nebuchadnezzar phases?%%sqt%% %%#%% inquired%%per%% `i feel assured it%%sqt%%s %%#%% 
+business %%#%% %%#%% time machine,%%sqt%% %%#%% said%%lst%% ]^[ %%#%% %%#%% %%#%% 
+psychologist%%sqt%%s account %%#%% %%#%% previous meeting%%per%%]$~ ~$[the %%#%% guests 
+%%#%% frankly incredulous%%per%%]$~ ~$[the editor raised objections%%per%% `what 
+%%#%% %%#%% time travelling%%qsn%%]$~ ~$[a %%#%% couldn%%sqt%%t cover %%#%% %%#%% 
+dust %%#%% rolling %%#%% %%#%% paradox%%lst%% %%#%% he?%%sqt%% and %%cmp_t%%%%lst%% %%#%% %%#%% idea 
+%%#%% home %%#%% him%%lst%% %%#%% resorted %%#%% caricature%%per%%]$~ ~$[hadn%%sqt%%t %%#%% %%#%% 
+clothes%%dsh%%brushes %%#%% %%#%% future%%qsn%%]$~ ~$[the journalist too%%lst%% %%#%% ]n[ 
+believe %%#%% %%#%% price%%lst%% ]^[ joined %%#%% editor %%#%% %%#%% easy %%#%% %%#%% 
+heaping ridicule %%#%% %%#%% %%#%% thing%%per%%]$~ ~$[they %%#%% %%#%% %%#%% %%#%% kind 
+%%#%% journalist%%dsh%%%%dsh%%very joyous%%lst%% irreverent %%#%% men%%per%% `our special 
+correspondent %%#%% %%#%% day %%#%% to%%dsh%%morrow reports,%%sqt%% %%#%% journalist 
+%%#%% saying%%dsh%%%%dsh%%or %%#%% shouting%%dsh%%%%dsh%%when %%#%% time traveller %%#%% 
+back%%per%%]$~ ~$[he %%#%% dressed %%#%% ordinary evening clothes%%lst%% ]^[ %%#%% 
+save %%#%% haggard look remained %%#%% %%#%% change %%#%% %%#%% startled 
+me%%per%% 
+`i say,%%sqt%% %%#%% %%#%% editor hilariously%%lst%% `these chaps %%#%% %%#%% 
+%%#%% %%#%% %%#%% travelling %%#%% %%#%% middle %%#%% %%#%% week%%xcm%%]$~ ~$[tell %%#%% 
+%%#%% %%#%% little rosebery%%lst%% %%#%% you%%qsn%%]$~ ~$[what %%#%% %%#%% %%#%% ]f[ %%#%% 
+lot?%%sqt%% 
+%%#%% time traveller %%#%% %%#%% %%#%% %%#%% reserved ]f[ %%#%% %%#%% 
+%%#%% word%%per%%]$~ ~$[he smiled quietly%%lst%% %%#%% %%#%% %%#%% way%%per%% `where%%sqt%%s %%#%% mutton?%%sqt%% 
+%%#%% said%%per%% `what %%#%% treat %%#%% %%#%% %%#%% stick %%#%% fork %%#%% meat again!%%sqt%% 
+`story!%%sqt%% cried %%#%% editor%%per%% 
+`story %%#%% damned!%%sqt%% %%#%% %%#%% time traveller%%per%% `i %%#%% %%#%% 
+%%#%% eat%%per%%]$~ ~$[i won%%sqt%%t %%#%% %%#%% word %%#%% %%#%% %%#%% %%#%% peptone %%#%% %%#%% 
+arteries%%per%%]$~ ~$[thanks%%per%%]$~ ~$[and %%#%% salt%%per%%%%sqt%% 
+`one word,%%sqt%% %%#%% i%%per%% `have %%#%% %%#%% time travelling?%%sqt%% 
+`yes,%%sqt%% %%#%% %%#%% time traveller%%lst%% %%#%% %%#%% mouth full%%lst%% nodding 
+%%#%% head%%per%% 
+`i%%sqt%%d %%#%% %%#%% shilling %%#%% line ]f[ %%#%% verbatim note,%%sqt%% %%#%% %%#%% 
+editor%%per%%]$~ ~$[the time traveller pushed %%#%% glass towards %%#%% silent 
+%%#%% ]^[ rang %%#%% %%#%% %%#%% fingernail%%scn%% %%#%% %%#%% %%#%% silent man%%lst%% %%#%% 
+%%#%% %%#%% staring %%#%% %%#%% face%%lst%% started convulsively%%lst%% ]^[ poured 
+%%#%% wine%%per%%]$~ ~$[the rest %%#%% %%#%% dinner %%#%% uncomfortable%%per%%]$~ ~$[for %%#%% own 
+part%%lst%% sudden questions kept %%#%% rising %%#%% %%#%% lips%%lst%% ]^[ %%#%% dare %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% others%%per%%]$~ ~$[the journalist tried %%#%% relieve 
+%%#%% tension %%#%% telling anecdotes %%#%% hettie potter%%per%%]$~ ~$[the time 
+traveller devoted %%#%% attention %%#%% %%#%% dinner%%lst%% ]^[ displayed %%#%% 
+appetite %%#%% %%#%% tramp%%per%%]$~ ~$[the medical %%#%% smoked %%#%% cigarette%%lst%% ]^[ 
+watched %%#%% time traveller %%#%% %%#%% eyelashes%%per%%]$~ ~$[the silent %%#%% 
+%%#%% %%#%% %%#%% clumsy %%cmp_ta%% usual%%lst%% ]^[ drank champagne %%#%% 
+regularity ]^[ determination %%#%% %%#%% sheer nervousness%%per%%]$~ ~$[at last 
+%%#%% time traveller pushed %%#%% plate away%%lst%% ]^[ looked round us%%per%% 
+`i suppose %%#%% %%#%% apologize,%%sqt%% %%#%% said%%per%% `i %%#%% simply starving%%per%%]$~ 
+~$[i%%sqt%%ve %%#%% %%#%% %%#%% amazing time%%per%%%%sqt%% %%#%% reached %%#%% %%#%% hand ]f[ %%#%% 
+cigar%%lst%% ]^[ cut %%#%% end%%per%% `but %%#%% %%#%% %%#%% smoking%%dsh%%room%%per%%]$~ ~$[it%%sqt%%s 
+%%#%% %%#%% %%#%% story %%#%% tell %%#%% greasy plates%%per%%%%sqt%% and ringing %%#%% 
+bell %%#%% passing%%lst%% %%#%% led %%#%% %%#%% %%#%% %%#%% adjoining room%%per%% 
+`you %%#%% told blank%%lst%% ]^[ dash%%lst%% ]^[ chose %%#%% %%#%% machine?%%sqt%% 
+%%#%% %%#%% %%#%% me%%lst%% leaning %%#%% %%#%% %%#%% easy%%dsh%%chair ]^[ naming %%#%% 
+%%#%% %%#%% guests%%per%% 
+`but %%#%% thing%%sqt%%s %%#%% mere paradox,%%sqt%% %%#%% %%#%% editor%%per%% 
+`i can%%sqt%%t argue to%%dsh%%night%%per%%]$~ ~$[i don%%sqt%%t mind telling %%#%% %%#%% story%%lst%% 
+]b[ %%#%% can%%sqt%%t argue%%per%%]$~ ~$[i will,%%sqt%% %%#%% %%#%% on%%lst%% `tell %%#%% %%#%% story %%#%% 
+%%#%% %%#%% happened %%#%% me%%lst%% %%cmp_if%% %%#%% like%%lst%% ]b[ %%#%% %%#%% refrain %%#%% 
+interruptions%%per%%]$~ ~$[i %%#%% %%#%% tell it%%per%%]$~ ~$[badly%%per%%]$~ ~$[most %%#%% %%#%% %%#%% sound 
+%%#%% lying%%per%%]$~ ~$[so %%#%% it%%xcm%%]$~ ~$[it%%sqt%%s true%%dsh%%%%dsh%%every word %%#%% it%%lst%% %%#%% %%#%% 
+same%%per%%]$~ ~$[i %%#%% %%#%% %%#%% laboratory %%#%% %%#%% o%%sqt%%clock%%lst%% ]^[ %%#%% %%cmp_t%% %%per%% %%per%% 
+%%per%%]$~ ~$[i%%sqt%%ve lived eight days %%per%% %%per%% %%per%% %%#%% days %%#%% %%#%% human %%#%% %%#%% 
+lived before%%xcm%%]$~ ~$[i%%sqt%%m nearly worn out%%lst%% ]b[ %%#%% shan%%sqt%%t sleep till i%%sqt%%ve 
+told %%#%% %%#%% %%#%% %%#%% you%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% bed%%per%%]$~ ~$[but %%#%% 
+interruptions%%xcm%%]$~ ~$[is %%#%% agreed?%%sqt%% 
+`agreed,%%sqt%% %%#%% %%#%% editor%%lst%% ]^[ %%#%% rest %%#%% %%#%% echoed `agreed%%per%%%%sqt%% 
+and %%#%% %%#%% %%#%% time traveller %%#%% %%#%% story %%#%% %%#%% %%#%% set 
+%%#%% forth%%per%%]$~ ~$[he sat %%#%% %%#%% %%#%% chair %%#%% first%%lst%% ]^[ spoke %%#%% %%#%% 
+weary man%%per%%]$~ ~$[afterwards %%#%% %%#%% %%#%% animated%%per%%]$~ ~$[in writing %%#%% %%#%% 
+%%#%% feel %%#%% %%#%% %%#%% %%#%% keenness %%#%% inadequacy %%#%% pen ]^[ ink 
+%%dsh%%%%dsh%%and%%lst%% %%#%% all%%lst%% %%#%% own inadequacy%%dsh%%%%dsh%%to express %%#%% quality%%per%%]$~ 
+~$[you read%%lst%% %%#%% %%#%% suppose%%lst%% attentively enough%%scn%% ]b[ %%#%% %%#%% %%#%% 
+%%#%% speaker%%sqt%%s white%%lst%% sincere %%#%% %%#%% %%#%% bright circle %%#%% %%#%% 
+little lamp%%lst%% nor hear %%#%% intonation %%#%% %%#%% voice%%per%%]$~ ~$[you %%#%% 
+know %%#%% %%#%% expression followed %%#%% %%#%% %%#%% %%#%% story%%xcm%%]$~ ~$[most %%#%% 
+%%#%% hearers %%#%% %%#%% shadow%%lst%% ]f[ %%#%% candles %%#%% %%#%% smoking%%dsh%%room 
+%%#%% ]n[ %%#%% lighted%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% journalist ]^[ %%#%% 
+legs %%#%% %%#%% silent %%#%% %%#%% %%#%% knees downward %%#%% illuminated%%per%%]$~ 
+~$[at %%#%% %%#%% glanced %%#%% ]^[ %%#%% %%#%% %%#%% other%%per%%]$~ ~$[after %%#%% time %%#%% 
+ceased %%#%% %%#%% that%%lst%% ]^[ looked %%#%% %%#%% %%#%% time traveller%%sqt%%s face%%per%%]$~ 
+~$[iii 
+`i told %%#%% %%#%% %%#%% last thursday %%#%% %%#%% principles %%#%% %%#%% 
+time machine%%lst%% ]^[ %%#%% %%#%% %%#%% actual %%#%% itself%%lst%% incomplete 
+%%#%% %%#%% workshop%%per%%]$~ ~$[there %%#%% %%#%% now%%lst%% %%#%% little travel%%dsh%%worn%%lst%% truly%%scn%% 
+]^[ %%#%% %%#%% %%#%% ivory bars %%#%% cracked%%lst%% ]^[ %%#%% brass rail bent%%scn%% ]b[ 
+%%#%% rest %%#%% it%%sqt%%s sound enough%%per%%]$~ ~$[i expected %%#%% finish %%#%% %%#%% 
+friday%%lst%% ]b[ %%#%% friday%%lst%% %%#%% %%#%% putting %%#%% %%#%% nearly done%%lst%% 
+%%#%% found %%#%% %%#%% %%#%% %%#%% nickel bars %%#%% exactly %%#%% inch %%#%% 
+short%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% remade%%scn%% ]s[ %%#%% %%#%% %%#%% %%#%% ]n[ 
+complete %%#%% %%#%% morning%%per%%]$~ ~$[it %%#%% %%#%% ten o%%sqt%%clock to%%dsh%%day %%#%% 
+%%#%% %%#%% %%#%% %%#%% time machines %%#%% %%#%% career%%per%%]$~ ~$[i %%#%% %%#%% %%#%% 
+last tap%%lst%% tried %%#%% %%#%% screws again%%lst%% %%#%% %%#%% %%#%% drop %%#%% oil %%#%% 
+%%#%% quartz rod%%lst%% ]^[ sat %%#%% %%#%% %%#%% saddle%%per%%]$~ ~$[i suppose %%#%% 
+suicide %%#%% holds %%#%% pistol %%#%% %%#%% skull feels %%#%% %%#%% %%#%% 
+wonder %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%cmp_t%%%%per%%]$~ ~$[i %%#%% %%#%% 
+starting lever %%#%% %%#%% hand ]^[ %%#%% stopping %%#%% %%#%% %%#%% other%%lst%% 
+pressed %%#%% first%%lst%% ]^[ %%#%% immediately %%#%% second%%per%%]$~ ~$[i %%#%% 
+%%#%% reel%%scn%% %%#%% %%#%% %%#%% nightmare sensation %%#%% falling%%scn%% and%%lst%% looking 
+round%%lst%% %%#%% %%#%% %%#%% laboratory exactly %%#%% before%%per%%]$~ ~$[had %%#%% 
+happened%%qsn%%]$~ ~$[for %%#%% moment %%#%% suspected %%#%% %%#%% intellect %%#%% tricked 
+me%%per%%]$~ ~$[then %%#%% noted %%#%% clock%%per%%]$~ ~$[a moment before%%lst%% %%#%% %%#%% seemed%%lst%% %%#%% 
+%%#%% stood %%#%% %%#%% minute ]v[ ]s[ past ten%%scn%% %%#%% %%#%% %%#%% nearly half%%dsh%%past 
+three! 
+`i drew %%#%% breath%%lst%% set %%#%% teeth%%lst%% gripped %%#%% starting lever 
+%%#%% %%#%% hands%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% thud%%per%%]$~ ~$[the laboratory %%#%% 
+hazy ]^[ %%#%% dark%%per%%]$~ ~$[mrs%%per%%]$~ ~$[watchett %%#%% %%#%% ]^[ walked%%lst%% apparently 
+%%#%% seeing me%%lst%% towards %%#%% garden door%%per%%]$~ ~$[i suppose %%#%% %%#%% 
+%%#%% %%#%% minute ]v[ ]s[ %%#%% traverse %%#%% place%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% %%#%% 
+shoot %%#%% %%#%% %%#%% %%#%% %%#%% rocket%%per%%]$~ ~$[i pressed %%#%% lever %%#%% %%#%% 
+%%#%% extreme position%%per%%]$~ ~$[the night %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+lamp%%lst%% ]^[ %%#%% %%#%% moment %%#%% to%%dsh%%morrow%%per%%]$~ ~$[the laboratory grew 
+faint ]^[ hazy%%lst%% %%cmp_t%% fainter ]^[ %%#%% fainter%%per%%]$~ ~$[to%%dsh%%morrow night 
+%%#%% black%%lst%% %%cmp_t%% day again%%lst%% night again%%lst%% day again%%lst%% faster ]^[ 
+faster still%%per%%]$~ ~$[an eddying murmur filled %%#%% ears%%lst%% ]^[ %%#%% strange%%lst%% 
+dumb confusedness descended %%#%% %%#%% mind%%per%% 
+`i am afraid %%#%% %%#%% convey %%#%% peculiar sensations %%#%% time 
+travelling%%per%%]$~ ~$[they %%#%% excessively unpleasant%%per%%]$~ ~$[there %%#%% %%#%% feeling 
+exactly %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% switchback%%dsh%%%%dsh%%of %%#%% helpless 
+headlong motion%%xcm%%]$~ ~$[i %%#%% %%#%% %%#%% horrible anticipation%%lst%% too%%lst%% %%#%% 
+%%#%% imminent smash%%per%%]$~ ~$[as %%#%% %%#%% %%#%% pace%%lst%% night followed day %%#%% %%#%% 
+flapping %%#%% %%#%% black wing%%per%%]$~ ~$[the dim suggestion %%#%% %%#%% laboratory 
+%%#%% presently %%#%% fall %%#%% %%#%% me%%lst%% ]^[ %%#%% %%#%% %%#%% sun hopping 
+swiftly %%#%% %%#%% sky%%lst%% leaping %%#%% %%#%% minute%%lst%% ]^[ %%#%% minute 
+marking %%#%% day%%per%%]$~ ~$[i supposed %%#%% laboratory %%#%% %%#%% destroyed ]^[ 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% air%%per%%]$~ ~$[i %%#%% %%#%% dim impression %%#%% 
+scaffolding%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% %%#%% fast %%#%% %%#%% conscious %%#%% 
+%%#%% moving things%%per%%]$~ ~$[the slowest snail %%#%% %%#%% crawled dashed %%#%% 
+%%#%% fast ]f[ me%%per%%]$~ ~$[the twinkling succession %%#%% darkness ]^[ light 
+%%#%% excessively painful %%#%% %%#%% eye%%per%%]$~ ~$[then%%lst%% %%#%% %%#%% intermittent 
+darknesses%%lst%% %%#%% %%#%% %%#%% moon spinning swiftly %%#%% %%#%% quarters 
+%%#%% %%#%% %%#%% full%%lst%% ]^[ %%#%% %%#%% faint glimpse %%#%% %%#%% circling stars%%per%%]$~ 
+~$[presently%%lst%% %%#%% %%#%% %%#%% on%%lst%% %%#%% gaining velocity%%lst%% %%#%% palpitation 
+%%#%% night ]^[ day merged %%#%% %%#%% continuous greyness%%scn%% %%#%% sky 
+%%#%% %%#%% %%#%% wonderful deepness %%#%% blue%%lst%% %%#%% splendid luminous color 
+%%#%% %%#%% %%#%% %%#%% twilight%%scn%% %%#%% jerking sun %%#%% %%#%% streak %%#%% 
+fire%%lst%% %%#%% brilliant arch%%lst%% %%#%% space%%scn%% %%#%% moon %%#%% fainter fluctuating 
+band%%scn%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% stars%%lst%% save %%#%% ]^[ %%cmp_t%% %%#%% 
+brighter circle flickering %%#%% %%#%% blue%%per%% 
+`the landscape %%#%% misty ]^[ vague%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% 
+hill%%dsh%%side %%#%% %%#%% %%#%% house %%#%% stands%%lst%% ]^[ %%#%% shoulder rose 
+%%#%% %%#%% grey ]^[ dim%%per%%]$~ ~$[i %%#%% trees growing ]^[ changing %%#%% 
+puffs %%#%% vapour%%lst%% %%#%% brown%%lst%% %%#%% green%%scn%% %%#%% grew%%lst%% spread%%lst%% 
+shivered%%lst%% ]^[ passed away%%per%%]$~ ~$[i %%#%% huge buildings rise %%#%% faint 
+]^[ fair%%lst%% ]^[ pass %%#%% dreams%%per%%]$~ ~$[the %%#%% surface %%#%% %%#%% earth 
+%%#%% changed%%dsh%%%%dsh%%melting ]^[ flowing %%#%% %%#%% eyes%%per%%]$~ ~$[the little 
+hands %%#%% %%#%% dials %%#%% registered %%#%% speed raced round faster 
+]^[ faster%%per%%]$~ ~$[presently %%#%% noted %%#%% %%#%% sun belt swayed %%#%% ]^[ 
+down%%lst%% %%#%% solstice %%#%% solstice%%lst%% %%#%% %%#%% minute ]v[ less%%lst%% ]^[ %%#%% 
+consequently %%#%% pace %%#%% %%#%% %%#%% %%#%% %%#%% minute%%scn%% ]^[ minute %%#%% 
+minute %%#%% white snow flashed %%#%% %%#%% world%%lst%% ]^[ vanished%%lst%% ]^[ 
+%%#%% followed %%#%% %%#%% bright%%lst%% brief green %%#%% spring%%per%% 
+`the unpleasant sensations %%#%% %%#%% start %%#%% less poignant 
+now%%per%%]$~ ~$[they merged %%#%% last %%#%% %%#%% kind %%#%% hysterical exhilaration%%per%%]$~ 
+~$[i remarked indeed %%#%% clumsy swaying %%#%% %%#%% machine%%lst%% ]f[ %%#%% %%#%% 
+%%#%% unable %%#%% account%%per%%]$~ ~$[but %%#%% mind %%#%% %%#%% confused %%#%% attend %%#%% 
+it%%lst%% ]s[ %%#%% %%#%% kind %%#%% madness growing %%#%% me%%lst%% %%#%% flung %%#%% 
+%%#%% futurity%%per%%]$~ ~$[at %%#%% %%#%% scarce %%#%% %%#%% stopping%%lst%% scarce 
+%%#%% %%#%% %%#%% ]b[ %%#%% %%#%% sensations%%per%%]$~ ~$[but presently %%#%% 
+fresh series %%#%% impressions grew %%#%% %%#%% %%#%% mind%%dsh%%%%dsh%%a %%#%% 
+curiosity ]^[ therewith %%#%% %%#%% dread%%dsh%%%%dsh%%until %%#%% last %%#%% 
+%%#%% complete possession %%#%% me%%per%%]$~ ~$[what strange developments %%#%% 
+humanity%%lst%% %%#%% wonderful advances %%#%% %%#%% rudimentary 
+civilization%%lst%% %%#%% thought%%lst%% %%#%% ]n[ appear %%#%% %%#%% %%#%% %%#%% look 
+nearly %%#%% %%#%% dim elusive world %%#%% raced ]^[ fluctuated 
+%%#%% %%#%% eyes%%xcm%%]$~ ~$[i %%#%% %%#%% ]^[ splendid architecture rising 
+%%#%% me%%lst%% %%#%% massive %%cmp_ta%% %%#%% buildings %%#%% %%#%% own time%%lst%% ]^[ 
+yet%%lst%% %%#%% %%#%% seemed%%lst%% built %%#%% glimmer ]^[ mist%%per%%]$~ ~$[i %%#%% %%#%% richer 
+green flow %%#%% %%#%% hill%%dsh%%side%%lst%% ]^[ remain there%%lst%% %%#%% %%#%% wintry 
+intermission%%per%%]$~ ~$[even %%#%% %%#%% veil %%#%% %%#%% confusion %%#%% earth 
+%%#%% %%#%% fair%%per%%]$~ ~$[and ]s[ %%#%% mind %%#%% round %%#%% %%#%% business %%#%% 
+stopping%%lst%% 
+`the peculiar risk lay %%#%% %%#%% possibility %%#%% %%#%% finding %%#%% 
+substance %%#%% %%#%% space %%#%% i%%lst%% ]v[ %%#%% machine%%lst%% occupied%%per%%]$~ ~$[so 
+%%#%% %%#%% %%#%% travelled %%#%% %%#%% %%#%% velocity %%#%% time%%lst%% %%#%% 
+scarcely mattered%%scn%% %%#%% was%%lst%% ]s[ %%#%% speak%%lst%% attenuated%%dsh%%%%dsh%%was slipping 
+%%#%% %%#%% vapour %%#%% %%#%% interstices %%#%% intervening substances%%xcm%%]$~ 
+~$[but %%#%% %%#%% %%#%% %%#%% stop involved %%#%% jamming %%#%% myself%%lst%% molecule %%#%% 
+molecule%%lst%% %%#%% whatever lay %%#%% %%#%% way%%scn%% meant bringing %%#%% atoms 
+%%#%% %%#%% intimate contact %%#%% %%#%% %%#%% %%#%% obstacle %%#%% %%#%% 
+profound chemical reaction%%dsh%%%%dsh%%possibly %%#%% far%%dsh%%reaching explosion 
+%%dsh%%%%dsh%%would result%%lst%% ]^[ blow %%#%% ]^[ %%#%% apparatus %%#%% %%#%% %%#%% 
+%%#%% dimensions%%dsh%%%%dsh%%into %%#%% unknown%%per%%]$~ ~$[this possibility %%#%% 
+occurred %%#%% %%#%% %%#%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% machine%%scn%% 
+]b[ %%cmp_t%% %%#%% %%#%% cheerfully accepted %%#%% %%#%% %%#%% unavoidable risk%%dsh%%%%dsh%% 
+%%#%% %%#%% %%#%% risks %%#%% %%#%% %%#%% %%#%% %%#%% take%%xcm%%]$~ ~$[now %%#%% risk %%#%% 
+inevitable%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% cheerful light%%per%%]$~ ~$[the 
+%%#%% %%#%% %%#%% insensibly%%lst%% %%#%% absolute strangeness %%#%% everything%%lst%% 
+%%#%% sickly jarring ]^[ swaying %%#%% %%#%% machine%%lst%% %%#%% all%%lst%% %%#%% 
+feeling %%#%% prolonged falling%%lst%% %%#%% absolutely upset %%#%% nerve%%per%%]$~ ~$[i 
+told %%#%% %%#%% %%#%% %%#%% %%#%% stop%%lst%% ]^[ %%#%% %%#%% gust %%#%% petulance 
+%%#%% resolved %%#%% stop forthwith%%per%%]$~ ~$[like %%#%% impatient fool%%lst%% %%#%% lugged 
+%%#%% %%#%% lever%%lst%% ]^[ incontinently %%#%% %%#%% %%#%% reeling over%%lst%% 
+]^[ %%#%% %%#%% flung headlong %%#%% %%#%% air%%per%% 
+`there %%#%% %%#%% sound %%#%% %%#%% clap %%#%% thunder %%#%% %%#%% ears%%per%%]$~ ~$[i %%#%% 
+%%#%% %%#%% stunned ]f[ %%#%% moment%%per%%]$~ ~$[a pitiless hail %%#%% hissing 
+round me%%lst%% ]^[ %%#%% %%#%% sitting %%#%% soft turf %%#%% front %%#%% %%#%% overset 
+machine%%per%%]$~ ~$[everything %%#%% %%#%% grey%%lst%% ]b[ presently %%#%% remarked 
+%%#%% %%#%% confusion %%#%% %%#%% ears %%#%% gone%%per%%]$~ ~$[i looked round me%%per%%]$~ ~$[i %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% little lawn %%#%% %%#%% garden%%lst%% surrounded %%#%% 
+rhododendron bushes%%lst%% ]^[ %%#%% noticed %%#%% %%#%% mauve ]^[ purple 
+blossoms %%#%% dropping %%#%% %%#%% shower %%#%% %%#%% beating %%#%% %%#%% 
+hail%%dsh%%stones%%per%%]$~ ~$[the rebounding%%lst%% dancing hail hung %%#%% %%#%% cloud %%#%% 
+%%#%% machine%%lst%% ]^[ drove %%#%% %%#%% ground %%#%% smoke%%per%%]$~ ~$[in %%#%% moment 
+%%#%% %%#%% wet %%#%% %%#%% skin%%per%% %%dqt%%fine hospitality,%%dqt%% %%#%% i%%lst%% %%dqt%%to %%#%% %%#%% %%#%% 
+%%#%% travelled innumerable %%#%% %%#%% %%#%% you%%per%%%%dqt%% 
+`presently %%#%% %%#%% %%#%% %%#%% fool %%#%% %%#%% %%#%% %%#%% wet%%per%%]$~ ~$[i stood %%#%% 
+]^[ looked round me%%per%%]$~ ~$[a colossal figure%%lst%% carved apparently %%#%% 
+%%#%% white stone%%lst%% loomed indistinctly beyond %%#%% rhododendrons 
+%%#%% %%#%% hazy downpour%%per%%]$~ ~$[but %%#%% %%cmp_e%% %%#%% %%#%% world %%#%% 
+invisible%%per%% 
+`my sensations %%#%% %%#%% hard %%#%% describe%%per%%]$~ ~$[as %%#%% columns %%#%% 
+hail grew thinner%%lst%% %%#%% %%#%% %%#%% white figure %%#%% distinctly%%per%%]$~ ~$[it 
+%%#%% %%#%% large%%lst%% ]f[ %%#%% silver birch%%dsh%%tree touched %%#%% shoulder%%per%%]$~ ~$[it 
+%%#%% %%#%% white marble%%lst%% %%#%% shape %%#%% %%#%% %%#%% winged sphinx%%lst%% ]b[ 
+%%#%% wings%%lst%% instead %%#%% %%#%% carried vertically %%#%% %%#%% sides%%lst%% %%#%% 
+spread ]s[ %%#%% %%#%% %%#%% %%#%% hover%%per%%]$~ ~$[the pedestal%%lst%% %%#%% appeared %%#%% 
+me%%lst%% %%#%% %%#%% bronze%%lst%% ]^[ %%#%% thick %%#%% verdigris%%per%%]$~ ~$[it chanced %%#%% 
+%%#%% %%#%% %%#%% towards me%%scn%% %%#%% sightless eyes %%#%% %%#%% watch me%%scn%% 
+%%#%% %%#%% %%#%% faint shadow %%#%% %%#%% smile %%#%% %%#%% lips%%per%%]$~ ~$[it %%#%% 
+greatly weather%%dsh%%worn%%lst%% ]^[ %%#%% imparted %%#%% unpleasant suggestion 
+%%#%% disease%%per%%]$~ ~$[i stood looking %%#%% %%#%% ]f[ %%#%% little space%%dsh%%%%dsh%%half %%#%% 
+minute%%lst%% perhaps%%lst%% ]v[ half %%#%% hour%%per%%]$~ ~$[it %%#%% %%#%% advance ]^[ %%#%% 
+recede %%#%% %%#%% hail drove %%#%% %%#%% denser ]v[ thinner%%per%%]$~ ~$[at last %%#%% 
+tore %%#%% eyes %%#%% %%#%% ]f[ %%#%% moment ]^[ %%#%% %%#%% %%#%% hail curtain 
+%%#%% worn threadbare%%lst%% ]^[ %%#%% %%#%% sky %%#%% lightening %%#%% %%#%% 
+promise %%#%% %%#%% sun%%per%% 
+`i looked %%#%% %%#%% %%#%% %%#%% crouching white shape%%lst%% ]^[ %%#%% %%#%% 
+temerity %%#%% %%#%% voyage %%#%% suddenly %%#%% me%%per%%]$~ ~$[what %%#%% appear 
+%%#%% %%#%% hazy curtain %%#%% altogether withdrawn%%qsn%%]$~ ~$[what %%#%% ]n[ 
+%%#%% happened %%#%% men%%qsn%%]$~ ~$[what %%cmp_if%% cruelty %%#%% grown %%#%% %%#%% common 
+passion%%qsn%%]$~ ~$[what %%cmp_if%% %%#%% %%#%% interval %%#%% race %%#%% lost %%#%% 
+manliness ]^[ %%#%% developed %%#%% %%#%% inhuman%%lst%% 
+unsympathetic%%lst%% ]^[ overwhelmingly powerful%%qsn%%]$~ ~$[i %%#%% %%#%% %%#%% 
+old%%dsh%%world savage animal%%lst%% %%#%% %%#%% %%#%% dreadful ]^[ disgusting 
+]f[ %%#%% common likeness%%dsh%%%%dsh%%a foul creature %%#%% %%#%% incontinently 
+slain%%per%% 
+`already %%#%% %%#%% %%#%% vast shapes%%dsh%%%%dsh%%huge buildings %%#%% 
+intricate parapets ]^[ tall columns%%lst%% %%#%% %%#%% wooded hill%%dsh%%side 
+dimly creeping %%#%% %%#%% %%#%% %%#%% %%#%% lessening storm%%per%%]$~ ~$[i %%#%% 
+seized %%#%% %%#%% panic fear%%per%%]$~ ~$[i %%#%% frantically %%#%% %%#%% time 
+machine%%lst%% ]^[ strove hard %%#%% readjust it%%per%%]$~ ~$[as %%#%% %%#%% ]s[ %%#%% shafts 
+%%#%% %%#%% sun smote %%#%% %%#%% thunderstorm%%per%%]$~ ~$[the grey downpour %%#%% 
+swept aside ]^[ vanished %%#%% %%#%% trailing garments %%#%% %%#%% ghost%%per%%]$~ 
+~$[above me%%lst%% %%#%% %%#%% intense blue %%#%% %%#%% summer sky%%lst%% %%#%% faint brown 
+shreds %%#%% cloud whirled %%#%% nothingness%%per%%]$~ ~$[the %%#%% buildings 
+%%#%% %%#%% stood %%#%% %%#%% ]^[ distinct%%lst%% shining %%#%% %%#%% wet %%#%% 
+%%#%% thunderstorm%%lst%% ]^[ picked %%#%% %%#%% white %%#%% %%#%% unmelted 
+hailstones piled %%#%% %%#%% courses%%per%%]$~ ~$[i %%#%% naked %%#%% %%#%% strange 
+world%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% bird %%#%% feel %%#%% %%#%% %%#%% air%%lst%% 
+knowing %%#%% hawk wings %%#%% ]^[ %%#%% swoop%%per%%]$~ ~$[my fear grew %%#%% 
+frenzy%%per%%]$~ ~$[i %%#%% %%#%% breathing space%%lst%% set %%#%% teeth%%lst%% ]^[ %%#%% 
+grappled fiercely%%lst%% wrist ]^[ knee%%lst%% %%#%% %%#%% machine%%per%%]$~ ~$[it %%#%% 
+%%#%% %%#%% desperate onset ]^[ %%#%% over%%per%%]$~ ~$[it struck %%#%% chin 
+violently%%per%%]$~ ~$[one hand %%#%% %%#%% saddle%%lst%% %%#%% %%#%% %%#%% %%#%% lever%%lst%% %%#%% 
+stood panting heavily %%#%% attitude %%#%% mount again%%per%% 
+`but %%#%% %%#%% recovery %%#%% %%#%% prompt retreat %%#%% courage 
+recovered%%per%%]$~ ~$[i looked %%#%% curiously ]^[ less fearfully %%#%% %%#%% 
+world %%#%% %%#%% remote future%%per%%]$~ ~$[in %%#%% circular opening%%lst%% %%#%% %%#%% %%#%% 
+%%#%% wall %%#%% %%#%% nearer house%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% figures clad %%#%% 
+rich soft robes%%per%%]$~ ~$[they %%#%% seen me%%lst%% ]^[ %%#%% %%#%% %%#%% directed 
+towards me%%per%% 
+`then %%#%% heard voices approaching me%%per%%]$~ ~$[coming %%#%% %%#%% 
+bushes %%#%% %%#%% white sphinx %%#%% %%#%% heads ]^[ shoulders %%#%% %%#%% 
+running%%per%%]$~ ~$[one %%#%% %%#%% emerged %%#%% %%#%% pathway leading straight %%#%% 
+%%#%% little lawn %%#%% %%#%% %%#%% stood %%#%% %%#%% machine%%per%%]$~ ~$[he %%#%% %%#%% 
+slight creature%%dsh%%%%dsh%%perhaps %%#%% feet high%%dsh%%%%dsh%%clad %%#%% %%#%% purple 
+tunic%%lst%% girdled %%#%% %%#%% waist %%#%% %%#%% leather belt%%per%%]$~ ~$[sandals ]v[ 
+buskins%%dsh%%%%dsh%%i %%#%% ]n[ %%#%% distinguish which%%dsh%%%%dsh%%were %%#%% %%#%% 
+feet%%scn%% %%#%% legs %%#%% bare %%#%% %%#%% knees%%lst%% ]^[ %%#%% head %%#%% bare%%per%%]$~ 
+~$[noticing that%%lst%% %%#%% noticed ]f[ %%#%% %%#%% time %%#%% warm %%#%% air was%%per%% 
+`he struck %%#%% %%#%% %%#%% %%#%% %%#%% beautiful ]^[ graceful creature%%lst%% 
+]b[ indescribably frail%%per%%]$~ ~$[his flushed %%#%% reminded %%#%% %%#%% %%#%% 
+%%#%% beautiful kind %%#%% consumptive%%dsh%%%%dsh%%that hectic beauty %%#%% %%#%% 
+%%#%% %%#%% %%#%% hear ]s[ much%%per%%]$~ ~$[at %%#%% sight %%#%% %%#%% %%#%% suddenly regained 
+confidence%%per%%]$~ ~$[i %%#%% %%#%% hands %%#%% %%#%% machine%%per%%]$~ 
+~$[iv 
+`in %%#%% moment %%#%% %%#%% standing %%#%% %%#%% face%%lst%% %%#%% ]^[ %%#%% 
+fragile %%#%% %%#%% %%#%% futurity%%per%%]$~ ~$[he %%#%% straight %%#%% %%#%% %%#%% ]^[ 
+laughed %%#%% %%#%% eyes%%per%%]$~ ~$[the absence %%#%% %%#%% bearing %%#%% %%#%% sign 
+%%#%% fear struck %%#%% %%#%% once%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% following %%#%% ]^[ spoke %%#%% %%#%% %%#%% %%#%% strange ]^[ %%#%% sweet 
+]^[ liquid tongue%%per%% 
+`there %%#%% %%#%% coming%%lst%% ]^[ presently %%#%% little %%#%% %%#%% 
+%%#%% eight ]v[ ten %%#%% %%#%% exquisite creatures %%#%% %%#%% me%%per%%]$~ 
+~$[one %%#%% %%#%% addressed me%%per%%]$~ ~$[it %%#%% %%#%% %%#%% head%%lst%% oddly enough%%lst%% 
+%%#%% %%#%% voice %%#%% %%#%% harsh ]^[ deep ]f[ them%%per%%]$~ ~$[so %%#%% shook %%#%% 
+head%%lst%% and%%lst%% %%#%% %%#%% %%#%% ears%%lst%% shook %%#%% again%%per%%]$~ ~$[he %%#%% %%#%% step 
+forward%%lst%% hesitated%%lst%% ]^[ %%cmp_t%% touched %%#%% hand%%per%%]$~ ~$[then %%#%% %%#%% %%#%% 
+soft little tentacles %%#%% %%#%% %%#%% ]^[ shoulders%%per%%]$~ ~$[they %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% real%%per%%]$~ ~$[there %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% alarming%%per%%]$~ 
+~$[indeed%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% pretty little people %%#%% 
+inspired confidence%%dsh%%%%dsh%%a graceful gentleness%%lst%% %%#%% %%#%% childlike 
+ease%%per%%]$~ ~$[and besides%%lst%% %%#%% looked ]s[ frail %%#%% %%#%% %%#%% fancy 
+%%#%% flinging %%#%% %%#%% dozen %%#%% %%#%% %%#%% %%#%% nine%%dsh%%pins%%per%%]$~ 
+~$[but %%#%% %%#%% %%#%% sudden motion %%#%% warn %%#%% %%#%% %%#%% %%#%% %%#%% little 
+pink hands feeling %%#%% %%#%% time machine%%per%%]$~ ~$[happily %%cmp_t%%%%lst%% %%#%% %%#%% 
+%%#%% ]n[ %%#%% late%%lst%% %%#%% %%#%% %%#%% %%#%% danger %%#%% %%#%% hitherto forgotten%%lst%% 
+]^[ reaching %%#%% %%#%% bars %%#%% %%#%% machine %%#%% unscrewed %%#%% little 
+levers %%#%% %%#%% set %%#%% %%#%% motion%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% pocket%%per%%]$~ 
+~$[then %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+communication%%per%% 
+`and %%cmp_t%%%%lst%% looking %%#%% nearly %%#%% %%#%% features%%lst%% %%#%% %%#%% %%#%% 
+%%#%% peculiarities %%#%% %%#%% dresden%%dsh%%china type %%#%% prettiness%%per%%]$~ 
+~$[their hair%%lst%% %%#%% %%#%% uniformly curly%%lst%% %%#%% %%#%% %%#%% sharp %%#%% %%#%% %%#%% 
+neck ]^[ cheek%%scn%% %%#%% %%#%% ]n[ %%#%% faintest suggestion %%#%% %%#%% %%#%% 
+%%#%% face%%lst%% ]^[ %%#%% ears %%#%% singularly minute%%per%%]$~ ~$[the mouths %%#%% 
+small%%lst%% %%#%% bright red%%lst%% %%#%% thin lips%%lst%% ]^[ %%#%% little chins 
+ran %%#%% %%#%% point%%per%%]$~ ~$[the eyes %%#%% large ]^[ mild%%scn%% and%%dsh%%%%dsh%%this %%#%% 
+%%#%% egotism %%#%% %%#%% part%%dsh%%%%dsh%%i fancied %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% lack %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% expected %%#%% them%%per%% 
+`as %%#%% %%#%% %%#%% effort %%#%% communicate %%#%% me%%lst%% ]b[ simply 
+stood round %%#%% smiling ]^[ speaking %%#%% soft cooing notes %%#%% %%#%% 
+other%%lst%% %%#%% %%#%% %%#%% conversation%%per%%]$~ ~$[i %%#%% %%#%% %%#%% time machine 
+]^[ %%#%% myself%%per%%]$~ ~$[then hesitating ]f[ %%#%% moment %%#%% %%#%% express time%%lst%% 
+%%#%% %%#%% %%#%% %%#%% sun%%per%%]$~ ~$[at %%#%% %%#%% quaintly pretty little figure %%#%% 
+chequered purple ]^[ white followed %%#%% gesture%%lst%% ]^[ %%cmp_t%% 
+astonished %%#%% %%#%% imitating %%#%% sound %%#%% thunder%%per%% 
+`for %%#%% moment %%#%% %%#%% staggered%%lst%% %%#%% %%#%% import %%#%% %%#%% 
+gesture %%#%% plain enough%%per%%]$~ ~$[the question %%#%% %%#%% %%#%% %%#%% mind 
+abruptly%%cln%% %%#%% %%#%% creatures fools%%qsn%%]$~ ~$[you %%#%% hardly understand 
+%%#%% %%#%% %%#%% me%%per%%]$~ ~$[you %%#%% %%#%% %%#%% %%#%% anticipated %%#%% %%#%% people 
+%%#%% %%#%% %%#%% eight hundred ]^[ %%#%% thousand odd %%#%% %%#%% 
+incredibly %%#%% front %%#%% %%#%% %%#%% knowledge%%lst%% art%%lst%% everything%%per%%]$~ ~$[then 
+%%#%% %%#%% %%#%% suddenly %%#%% %%#%% %%#%% question %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% intellectual level %%#%% %%#%% %%#%% %%#%% five%%dsh%%year%%dsh%%old children%%dsh%%%%dsh%% 
+%%#%% me%%lst%% %%#%% fact%%lst%% %%cmp_if%% %%#%% %%#%% %%#%% %%#%% %%#%% sun %%#%% %%#%% thunderstorm%%xcm%%]$~ 
+~$[it %%#%% loose %%#%% judgment %%#%% %%#%% suspended %%#%% %%#%% clothes%%lst%% 
+%%#%% frail light limbs%%lst%% ]^[ fragile features%%per%%]$~ ~$[a flow %%#%% 
+disappointment rushed %%#%% %%#%% mind%%per%%]$~ ~$[for %%#%% moment %%#%% %%#%% %%#%% %%#%% 
+%%#%% built %%#%% time machine %%#%% vain%%per%% 
+`i nodded%%lst%% %%#%% %%#%% %%#%% sun%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% vivid 
+rendering %%#%% %%#%% thunderclap %%#%% startled them%%per%%]$~ ~$[they %%#%% withdrew %%#%% 
+pace ]v[ ]s[ ]^[ bowed%%per%%]$~ ~$[then %%#%% %%#%% laughing towards me%%lst%% 
+carrying %%#%% chain %%#%% beautiful flowers altogether %%#%% %%#%% me%%lst%% ]^[ 
+%%#%% %%#%% %%#%% %%#%% neck%%per%%]$~ ~$[the idea %%#%% received %%#%% melodious 
+applause%%scn%% ]^[ presently %%#%% %%#%% %%#%% running %%#%% ]^[ fro ]f[ 
+flowers%%lst%% ]^[ laughingly flinging %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+smothered %%#%% blossom%%per%%]$~ ~$[you %%#%% %%#%% %%#%% seen %%#%% %%#%% %%#%% 
+scarcely imagine %%#%% delicate ]^[ wonderful flowers countless 
+%%#%% %%#%% culture %%#%% created%%per%%]$~ ~$[then %%#%% suggested %%#%% %%#%% 
+plaything %%#%% %%#%% exhibited %%#%% %%#%% nearest building%%lst%% ]^[ ]s[ %%#%% 
+%%#%% led past %%#%% sphinx %%#%% white marble%%lst%% %%#%% %%#%% %%#%% %%#%% 
+watch %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% smile %%#%% %%#%% astonishment%%lst%% towards %%#%% 
+vast grey edifice %%#%% fretted stone%%per%%]$~ ~$[as %%#%% %%#%% %%#%% %%#%% %%#%% 
+memory %%#%% %%#%% confident anticipations %%#%% %%#%% profoundly grave ]^[ 
+intellectual posterity came%%lst%% %%#%% irresistible merriment%%lst%% %%#%% %%#%% 
+mind%%per%% 
+`the building %%#%% %%#%% huge entry%%lst%% ]^[ %%#%% altogether %%#%% colossal 
+dimensions%%per%%]$~ ~$[i %%#%% naturally %%#%% occupied %%#%% %%#%% growing crowd 
+%%#%% little people%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% portals %%#%% yawned 
+%%#%% %%#%% shadowy ]^[ mysterious%%per%%]$~ ~$[my %%#%% impression %%#%% %%#%% 
+world %%#%% %%#%% %%#%% %%#%% heads %%#%% %%#%% tangled waste %%#%% beautiful 
+bushes ]^[ flowers%%lst%% %%#%% %%#%% neglected ]^[ ]y[ weedless garden%%per%%]$~ ~$[i 
+%%#%% %%#%% number %%#%% tall spikes %%#%% strange white flowers%%lst%% measuring %%#%% 
+foot %%#%% %%#%% %%#%% spread %%#%% %%#%% waxen petals%%per%%]$~ ~$[they grew 
+scattered%%lst%% %%#%% %%cmp_if%% wild%%lst%% %%#%% %%#%% variegated shrubs%%lst%% but%%lst%% %%#%% %%#%% 
+say%%lst%% %%#%% %%#%% ]n[ examine %%#%% closely %%#%% %%#%% time%%per%%]$~ ~$[the time 
+machine %%#%% left deserted %%#%% %%#%% turf %%#%% %%#%% rhododendrons%%per%% 
+`the arch %%#%% %%#%% doorway %%#%% richly carved%%lst%% ]b[ naturally %%#%% 
+%%#%% ]n[ observe %%#%% carving %%#%% narrowly%%lst%% %%#%% %%#%% fancied %%#%% %%#%% 
+suggestions %%#%% %%#%% phoenician decorations %%#%% %%#%% passed through%%lst%% 
+]^[ %%#%% struck %%#%% %%#%% %%#%% %%#%% %%#%% badly broken ]^[ weather%%dsh%% 
+worn%%per%%]$~ ~$[several %%#%% brightly clad people met %%#%% %%#%% %%#%% doorway%%lst%% 
+]^[ ]s[ %%#%% entered%%lst%% i%%lst%% dressed %%#%% dingy nineteenth%%dsh%%century 
+garments%%lst%% looking grotesque enough%%lst%% garlanded %%#%% flowers%%lst%% ]^[ 
+surrounded %%#%% %%#%% eddying mass %%#%% bright%%lst%% soft%%dsh%%colored robes ]^[ 
+shining white limbs%%lst%% %%#%% %%#%% melodious whirl %%#%% laughter ]^[ 
+laughing speech%%per%% 
+`the %%#%% doorway %%#%% %%#%% %%#%% proportionately %%#%% hall hung 
+%%#%% brown%%per%%]$~ ~$[the roof %%#%% %%#%% shadow%%lst%% ]^[ %%#%% windows%%lst%% partially 
+glazed %%#%% coloured glass ]^[ partially unglazed%%lst%% admitted %%#%% 
+tempered light%%per%%]$~ ~$[the floor %%#%% %%#%% %%#%% %%#%% huge blocks %%#%% %%#%% 
+%%#%% hard white metal%%lst%% ]n[ plates nor slabs%%dsh%%%%dsh%%blocks%%lst%% ]^[ %%#%% %%#%% 
+]s[ %%#%% worn%%lst%% %%#%% %%#%% judged %%#%% %%#%% %%#%% %%#%% ]^[ fro %%#%% past 
+generations%%lst%% %%#%% %%#%% %%#%% deeply channelled %%#%% %%#%% %%#%% frequented 
+ways%%per%%]$~ ~$[transverse %%#%% %%#%% length %%#%% innumerable tables %%#%% %%#%% 
+slabs %%#%% polished stone%%lst%% raised %%#%% %%#%% foot %%#%% %%#%% floor%%lst%% 
+]^[ %%#%% %%#%% %%#%% heaps %%#%% fruits%%per%%]$~ ~$[some %%#%% recognized %%#%% %%#%% kind 
+%%#%% hypertrophied raspberry ]^[ orange%%lst%% ]b[ ]f[ %%#%% %%#%% %%#%% %%#%% 
+%%#%% strange%%per%% 
+`between %%#%% tables %%#%% scattered %%#%% %%#%% number %%#%% cushions%%per%%]$~ 
+~$[upon %%#%% %%#%% conductors seated themselves%%lst%% signing ]f[ %%#%% %%#%% %%#%% 
+likewise%%per%%]$~ ~$[with %%#%% pretty absence %%#%% ceremony %%#%% %%#%% %%#%% eat 
+%%#%% fruit %%#%% %%#%% hands%%lst%% flinging peel ]^[ stalks%%lst%% ]^[ ]s[ 
+forth%%lst%% %%#%% %%#%% round openings %%#%% %%#%% %%#%% %%#%% %%#%% tables%%per%%]$~ ~$[i %%#%% 
+]n[ loath %%#%% follow %%#%% example%%lst%% ]f[ %%#%% %%#%% thirsty ]^[ hungry%%per%%]$~ 
+~$[as %%#%% %%#%% ]s[ %%#%% surveyed %%#%% hall %%#%% %%#%% leisure%%per%% 
+`and %%#%% %%#%% %%#%% %%#%% struck %%#%% %%#%% %%#%% %%#%% dilapidated 
+look%%per%%]$~ ~$[the stained%%dsh%%glass windows%%lst%% %%#%% displayed %%#%% %%#%% 
+geometrical pattern%%lst%% %%#%% broken %%#%% %%#%% places%%lst%% ]^[ %%#%% curtains 
+%%#%% hung %%#%% %%#%% lower %%#%% %%#%% thick %%#%% dust%%per%%]$~ ~$[and %%#%% 
+caught %%#%% eye %%#%% %%#%% corner %%#%% %%#%% marble table near %%#%% %%#%% 
+fractured%%per%%]$~ ~$[nevertheless%%lst%% %%#%% %%#%% effect %%#%% extremely rich 
+]^[ picturesque%%per%%]$~ ~$[there were%%lst%% perhaps%%lst%% %%#%% couple %%#%% hundred people 
+dining %%#%% %%#%% hall%%lst%% ]^[ %%#%% %%#%% them%%lst%% seated %%#%% near %%#%% %%#%% %%#%% 
+%%#%% %%#%% come%%lst%% %%#%% watching %%#%% %%#%% interest%%lst%% %%#%% little 
+eyes shining %%#%% %%#%% fruit %%#%% %%#%% eating%%per%%]$~ ~$[all %%#%% clad %%#%% 
+%%#%% %%#%% soft ]^[ ]y[ strong%%lst%% silky material%%per%% 
+`fruit%%lst%% %%#%% %%#%% by%%lst%% %%#%% %%#%% %%#%% diet%%per%%]$~ ~$[these people %%#%% %%#%% 
+remote future %%#%% strict vegetarians%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% them%%lst%% 
+%%#%% spite %%#%% %%#%% carnal cravings%%lst%% %%#%% %%#%% %%#%% %%#%% frugivorous also%%per%%]$~ 
+~$[indeed%%lst%% %%#%% found afterwards %%#%% horses%%lst%% cattle%%lst%% sheep%%lst%% dogs%%lst%% %%#%% 
+followed %%#%% ichthyosaurus %%#%% extinction%%per%%]$~ ~$[but %%#%% fruits %%#%% 
+%%#%% delightful%%scn%% one%%lst%% %%#%% particular%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% season 
+%%#%% %%#%% time %%#%% %%#%% there%%dsh%%%%dsh%%a floury %%#%% %%#%% %%#%% three%%dsh%%sided husk 
+%%dsh%%%%dsh%%was especially good%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% staple%%per%%]$~ ~$[at %%#%% %%#%% %%#%% 
+puzzled %%#%% %%#%% %%#%% strange fruits%%lst%% ]^[ %%#%% %%#%% strange flowers %%#%% 
+saw%%lst%% ]b[ later %%#%% %%#%% %%#%% perceive %%#%% import%%per%% 
+`however%%lst%% %%#%% am telling %%#%% %%#%% %%#%% fruit dinner %%#%% %%#%% distant 
+future now%%per%%]$~ ~$[so soon %%#%% %%#%% appetite %%#%% %%#%% little checked%%lst%% %%#%% 
+determined %%#%% %%#%% %%#%% resolute attempt %%#%% learn %%#%% speech %%#%% 
+%%#%% %%#%% %%#%% %%#%% mine%%per%%]$~ ~$[clearly %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% do%%per%%]$~ 
+~$[the fruits %%#%% %%#%% convenient %%#%% %%#%% begin upon%%lst%% ]^[ holding 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% series %%#%% interrogative sounds ]^[ 
+gestures%%per%%]$~ ~$[i %%#%% %%#%% considerable difficulty %%#%% conveying %%#%% 
+meaning%%per%%]$~ ~$[at %%#%% %%#%% efforts met %%#%% %%#%% stare %%#%% surprise ]v[ 
+inextinguishable laughter%%lst%% ]b[ presently %%#%% fair%%dsh%%haired little 
+creature %%#%% %%#%% grasp %%#%% intention ]^[ repeated %%#%% name%%per%%]$~ ~$[they 
+%%#%% %%#%% chatter ]^[ explain %%#%% business %%#%% %%#%% length %%#%% %%#%% 
+other%%lst%% ]^[ %%#%% %%#%% attempts %%#%% %%#%% %%#%% exquisite little sounds 
+%%#%% %%#%% language caused %%#%% immense amount %%#%% amusement%%per%%]$~ 
+~$[however%%lst%% %%#%% %%#%% %%#%% %%#%% schoolmaster amidst children%%lst%% ]^[ 
+persisted%%lst%% ]^[ presently %%#%% %%#%% %%#%% score %%#%% noun substantives %%#%% 
+least %%#%% %%#%% command%%scn%% ]^[ %%cmp_t%% %%#%% %%#%% %%#%% demonstrative pronouns%%lst%% 
+]^[ %%#%% %%#%% verb %%dqt%%to eat%%per%%%%dqt%% but %%#%% %%#%% slow work%%lst%% ]^[ %%#%% little 
+people soon tired ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% interrogations%%lst%% 
+]s[ %%#%% determined%%lst%% %%#%% %%#%% necessity%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+lessons %%#%% little doses %%#%% %%#%% %%#%% inclined%%per%%]$~ ~$[and %%#%% little 
+doses %%#%% found %%#%% %%#%% %%#%% long%%lst%% ]f[ %%#%% %%#%% met people %%#%% 
+indolent ]v[ %%#%% easily fatigued%%per%% 
+`a queer %%#%% %%#%% soon discovered %%#%% %%#%% little hosts%%lst%% ]^[ 
+%%#%% %%#%% %%#%% lack %%#%% interest%%per%%]$~ ~$[they %%#%% %%#%% %%#%% %%#%% %%#%% 
+eager cries %%#%% astonishment%%lst%% %%#%% children%%lst%% ]b[ %%#%% children 
+%%#%% %%#%% soon stop examining %%#%% ]^[ wander %%#%% %%#%% %%#%% 
+%%#%% toy%%per%%]$~ ~$[the dinner ]^[ %%#%% conversational beginnings ended%%lst%% %%#%% 
+noted ]f[ %%#%% %%#%% time %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% surrounded 
+%%#%% %%#%% %%#%% %%#%% gone%%per%%]$~ ~$[it %%#%% odd%%lst%% too%%lst%% %%#%% speedily %%#%% %%#%% %%#%% 
+disregard %%#%% little people%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% portal 
+%%#%% %%#%% sunlit world %%#%% %%#%% soon %%#%% %%#%% hunger %%#%% satisfied%%per%%]$~ 
+~$[i %%#%% continually meeting %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% future%%lst%% %%#%% 
+%%#%% follow %%#%% %%#%% little distance%%lst%% chatter ]^[ laugh %%#%% me%%lst%% 
+and%%lst%% %%#%% smiled ]^[ gesticulated %%#%% %%#%% friendly way%%lst%% leave %%#%% 
+%%#%% %%#%% %%#%% own devices%%per%% 
+`the calm %%#%% evening %%#%% %%#%% %%#%% world %%#%% %%#%% emerged %%#%% %%#%% 
+%%#%% hall%%lst%% ]^[ %%#%% scene %%#%% lit %%#%% %%#%% warm glow %%#%% %%#%% setting 
+sun%%per%%]$~ ~$[at %%#%% %%#%% %%#%% %%#%% confusing%%per%%]$~ ~$[everything %%#%% ]s[ 
+entirely %%#%% %%#%% %%#%% world %%#%% %%#%% known%%dsh%%%%dsh%%even %%#%% 
+flowers%%per%%]$~ ~$[the %%#%% building %%#%% %%#%% left %%#%% situated %%#%% %%#%% slope 
+%%#%% %%#%% broad river valley%%lst%% ]b[ %%#%% thames %%#%% shifted %%#%% %%#%% 
+mile %%#%% %%#%% %%#%% position%%per%%]$~ ~$[i resolved %%#%% mount %%#%% %%#%% 
+summit %%#%% %%#%% crest %%#%% %%#%% mile ]^[ %%#%% half away%%lst%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% wider view %%#%% %%#%% %%#%% planet %%#%% %%#%% %%#%% eight 
+hundred ]^[ %%#%% thousand seven hundred ]^[ %%#%% a%%per%%d%%per%%]$~ ~$[for that%%lst%% %%#%% 
+%%#%% explain%%lst%% %%#%% %%#%% date %%#%% little dials %%#%% %%#%% machine 
+recorded%%per%% 
+`as %%#%% walked %%#%% %%#%% watching ]f[ %%#%% impression %%#%% %%#%% 
+possibly help %%#%% explain %%#%% condition %%#%% ruinous splendour %%#%% 
+%%#%% %%#%% found %%#%% world%%dsh%%%%dsh%%for ruinous %%#%% was%%per%%]$~ ~$[a little %%#%% %%#%% 
+%%#%% hill%%lst%% ]f[ instance%%lst%% %%#%% %%#%% %%#%% heap %%#%% granite%%lst%% bound 
+%%#%% %%#%% masses %%#%% aluminium%%lst%% %%#%% vast labyrinth %%#%% precipitous 
+walls ]^[ crumpled heaps%%lst%% amidst %%#%% %%#%% thick heaps %%#%% %%#%% 
+beautiful pagoda%%dsh%%like plants%%dsh%%%%dsh%%nettles possibly%%dsh%%%%dsh%%but wonderfully 
+tinted %%#%% brown %%#%% %%#%% leaves%%lst%% ]^[ incapable %%#%% stinging%%per%%]$~ 
+~$[it %%#%% evidently %%#%% derelict remains %%#%% %%#%% vast structure%%lst%% %%#%% 
+%%#%% %%#%% built %%#%% %%#%% ]n[ determine%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% %%#%% 
+destined%%lst%% %%#%% %%#%% later date%%lst%% %%#%% %%#%% %%#%% %%#%% strange experience%%dsh%%%%dsh%%the 
+%%#%% intimation %%#%% %%#%% %%#%% stranger discovery%%dsh%%%%dsh%%but %%#%% %%#%% %%#%% 
+%%#%% speak %%#%% %%#%% proper place%%per%% 
+`looking round %%#%% %%#%% sudden thought%%lst%% %%#%% %%#%% terrace %%#%% %%#%% 
+%%#%% rested ]f[ %%#%% while%%lst%% %%#%% realized %%#%% %%#%% %%#%% %%#%% %%#%% houses 
+%%#%% %%#%% seen%%per%%]$~ ~$[apparently %%#%% single house%%lst%% ]^[ possibly %%#%% %%#%% 
+household%%lst%% %%#%% vanished%%per%%]$~ ~$[here ]^[ %%#%% %%#%% %%#%% greenery %%#%% 
+palace%%dsh%%like buildings%%lst%% ]b[ %%#%% house ]^[ %%#%% cottage%%lst%% %%#%% form 
+%%#%% characteristic features %%#%% %%#%% own english landscape%%lst%% %%#%% 
+disappeared%%per%% 
+`%%dqt%%communism,%%dqt%% %%#%% %%#%% %%#%% myself%%per%% 
+`and %%#%% %%#%% heels %%#%% %%#%% %%#%% %%#%% thought%%per%%]$~ ~$[i looked %%#%% 
+%%#%% half%%dsh%%dozen little figures %%#%% %%#%% following me%%per%%]$~ ~$[then%%lst%% %%#%% %%#%% 
+flash%%lst%% %%#%% perceived %%#%% %%#%% %%#%% %%#%% %%#%% form %%#%% costume%%lst%% %%#%% 
+%%#%% soft hairless visage%%lst%% ]^[ %%#%% %%#%% girlish rotundity %%#%% 
+limb%%per%%]$~ ~$[it %%#%% %%#%% strange%%lst%% perhaps%%lst%% %%#%% %%#%% %%#%% ]n[ noticed %%#%% 
+before%%per%%]$~ ~$[but %%#%% %%#%% ]s[ strange%%per%%]$~ ~$[now%%lst%% %%#%% %%#%% %%#%% %%#%% 
+plainly enough%%per%%]$~ ~$[in costume%%lst%% ]^[ %%#%% %%#%% %%#%% differences %%#%% 
+texture ]^[ bearing %%#%% %%#%% mark %%#%% %%#%% sexes %%#%% %%#%% other%%lst%% 
+%%#%% people %%#%% %%#%% future %%#%% alike%%per%%]$~ ~$[and %%#%% children %%#%% 
+%%#%% %%#%% eyes %%#%% %%#%% ]b[ %%#%% miniatures %%#%% %%#%% parents%%per%%]$~ ~$[i judged%%lst%% 
+%%cmp_t%%%%lst%% %%#%% %%#%% children %%#%% %%#%% time %%#%% extremely precocious%%lst%% 
+physically %%#%% least%%lst%% ]^[ %%#%% found afterwards abundant verification 
+%%#%% %%#%% opinion%%per%% 
+`seeing %%#%% ease ]^[ security %%#%% %%#%% %%#%% people %%#%% 
+living%%lst%% %%#%% %%#%% %%#%% %%#%% close resemblance %%#%% %%#%% sexes %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% expect%%scn%% ]f[ %%#%% strength %%#%% %%#%% %%#%% ]^[ %%#%% 
+softness %%#%% %%#%% woman%%lst%% %%#%% institution %%#%% %%#%% family%%lst%% ]^[ %%#%% 
+differentiation %%#%% occupations %%#%% mere militant necessities %%#%% 
+%%#%% age %%#%% physical force%%scn%% %%#%% population %%#%% balanced ]^[ 
+abundant%%lst%% %%#%% childbearing %%#%% %%#%% evil %%#%% %%cmp_ta%% %%#%% 
+blessing %%#%% %%#%% state%%scn%% %%#%% violence comes ]b[ rarely ]^[ 
+off%%dsh%%spring %%#%% secure%%lst%% %%#%% %%#%% less necessity%%dsh%%%%dsh%%indeed %%#%% %%#%% 
+%%#%% necessity%%dsh%%%%dsh%%for %%#%% efficient family%%lst%% ]^[ %%#%% specialization 
+%%#%% %%#%% sexes %%#%% reference %%#%% %%#%% children%%sqt%%s %%#%% disappears%%per%%]$~ 
+~$[we %%#%% %%#%% beginnings %%#%% %%#%% %%#%% %%#%% %%#%% own time%%lst%% ]^[ %%#%% %%#%% 
+future age %%#%% %%#%% complete%%per%%]$~ ~$[this%%lst%% %%#%% %%#%% remind you%%lst%% %%#%% %%#%% 
+speculation %%#%% %%#%% time%%per%%]$~ ~$[later%%lst%% %%#%% %%#%% %%#%% appreciate %%#%% %%#%% %%#%% 
+fell short %%#%% %%#%% reality%%per%% 
+`while %%#%% %%#%% musing %%#%% %%#%% things%%lst%% %%#%% attention %%#%% 
+attracted %%#%% %%#%% pretty little structure%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+cupola%%per%%]$~ ~$[i %%#%% %%#%% %%#%% transitory %%#%% %%#%% %%#%% oddness %%#%% %%#%% 
+%%#%% existing%%lst%% ]^[ %%cmp_t%% resumed %%#%% thread %%#%% %%#%% speculations%%per%%]$~ 
+~$[there %%#%% %%#%% large buildings towards %%#%% top %%#%% %%#%% hill%%lst%% ]^[ %%#%% 
+%%#%% walking powers %%#%% evidently miraculous%%lst%% %%#%% %%#%% presently left 
+%%#%% ]f[ %%#%% %%#%% time%%per%%]$~ ~$[with %%#%% strange sense %%#%% freedom ]^[ 
+adventure %%#%% pushed %%#%% %%#%% %%#%% %%#%% crest%%per%% 
+`there %%#%% found %%#%% seat %%#%% %%#%% yellow metal %%#%% %%#%% %%#%% ]n[ 
+recognize%%lst%% corroded %%#%% %%#%% %%#%% %%#%% kind %%#%% pinkish rust ]^[ 
+half smothered %%#%% soft moss%%lst%% %%#%% arm%%dsh%%rests cast ]^[ filed %%#%% 
+%%#%% resemblance %%#%% griffins%%sqt%% heads%%per%%]$~ ~$[i sat %%#%% %%#%% it%%lst%% ]^[ %%#%% 
+surveyed %%#%% broad view %%#%% %%#%% %%#%% world %%#%% %%#%% sunset %%#%% %%#%% 
+%%#%% day%%per%%]$~ ~$[it %%#%% %%#%% sweet ]^[ fair %%#%% view %%#%% %%#%% %%#%% %%#%% seen%%per%%]$~ 
+~$[the sun %%#%% %%#%% gone below %%#%% horizon ]^[ %%#%% west %%#%% 
+flaming gold%%lst%% touched %%#%% %%#%% horizontal bars %%#%% purple ]^[ 
+crimson%%per%%]$~ ~$[below %%#%% %%#%% valley %%#%% %%#%% thames%%lst%% %%#%% %%#%% %%#%% river 
+lay %%#%% %%#%% band %%#%% burnished steel%%per%%]$~ ~$[i %%#%% %%#%% spoken %%#%% %%#%% 
+%%#%% palaces dotted %%#%% %%#%% %%#%% variegated greenery%%lst%% %%#%% %%#%% 
+ruins ]^[ %%#%% %%#%% occupied%%per%%]$~ ~$[here ]^[ %%#%% rose %%#%% white ]v[ 
+silvery figure %%#%% %%#%% waste garden %%#%% %%#%% earth%%lst%% %%#%% ]^[ %%#%% 
+%%#%% %%#%% sharp vertical line %%#%% %%#%% cupola ]v[ obelisk%%per%%]$~ ~$[there 
+%%#%% %%#%% hedges%%lst%% %%#%% signs %%#%% proprietary rights%%lst%% %%#%% evidences %%#%% 
+agriculture%%scn%% %%#%% %%#%% earth %%#%% %%#%% %%#%% garden%%per%% 
+`so watching%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% interpretation %%#%% %%#%% %%#%% 
+%%#%% %%#%% seen%%lst%% ]^[ %%#%% %%#%% shaped %%#%% %%#%% %%#%% %%#%% evening%%lst%% %%#%% 
+interpretation %%#%% %%#%% %%#%% %%#%% way%%per%% (afterwards %%#%% found %%#%% 
+%%#%% %%#%% %%#%% %%#%% half%%dsh%%truth%%dsh%%%%dsh%%or %%#%% %%#%% glimpse %%#%% %%#%% facet %%#%% 
+%%#%% truth%%per%%) 
+`it %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% happened %%#%% humanity %%#%% %%#%% 
+wane%%per%%]$~ ~$[the ruddy sunset set %%#%% thinking %%#%% %%#%% sunset %%#%% mankind%%per%%]$~ 
+~$[for %%#%% %%#%% time %%#%% %%#%% %%#%% realize %%#%% odd consequence %%#%% %%#%% 
+social effort %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% engaged%%per%%]$~ ~$[and yet%%lst%% %%#%% 
+%%#%% think%%lst%% %%#%% %%#%% %%#%% logical consequence enough%%per%%]$~ ~$[strength %%#%% %%#%% 
+outcome %%#%% need%%scn%% security sets %%#%% premium %%#%% feebleness%%per%%]$~ ~$[the %%#%% 
+%%#%% ameliorating %%#%% conditions %%#%% life%%dsh%%%%dsh%%the true civilizing 
+process %%#%% makes life %%#%% ]^[ %%#%% secure%%dsh%%%%dsh%%had gone steadily 
+%%#%% %%#%% %%#%% climax%%per%%]$~ ~$[one triumph %%#%% %%#%% united humanity %%#%% nature %%#%% 
+followed another%%per%%]$~ ~$[things %%#%% %%#%% %%#%% mere dreams %%#%% %%#%% 
+projects deliberately %%#%% %%#%% hand ]^[ carried forward%%per%%]$~ ~$[and %%#%% 
+harvest %%#%% %%#%% %%#%% saw! 
+`after all%%lst%% %%#%% sanitation ]^[ %%#%% agriculture %%#%% to%%dsh%%day %%#%% 
+%%#%% %%#%% %%#%% rudimentary stage%%per%%]$~ ~$[the science %%#%% %%#%% time %%#%% 
+attacked ]b[ %%#%% little department %%#%% %%#%% field %%#%% human disease%%lst%% 
+]b[ %%#%% so%%lst%% %%#%% spreads %%#%% operations %%#%% steadily ]^[ 
+persistently%%per%%]$~ ~$[our agriculture ]^[ horticulture destroy %%#%% weed 
+%%#%% %%#%% ]^[ %%#%% ]^[ cultivate %%#%% %%#%% score ]v[ ]s[ %%#%% 
+wholesome plants%%lst%% leaving %%#%% %%#%% number %%#%% fight %%#%% %%#%% 
+balance %%#%% %%#%% can%%per%%]$~ ~$[we improve %%#%% favourite plants ]^[ animals 
+%%dsh%%%%dsh%%and %%#%% %%#%% %%#%% are%%dsh%%%%dsh%%gradually %%#%% selective breeding%%scn%% %%#%% %%#%% 
+%%#%% ]^[ %%#%% peach%%lst%% %%#%% %%#%% seedless grape%%lst%% %%#%% %%#%% sweeter ]^[ 
+larger flower%%lst%% %%#%% %%#%% %%#%% convenient breed %%#%% cattle%%per%%]$~ ~$[we improve 
+%%#%% gradually%%lst%% %%cmp_b%% %%#%% ideals %%#%% vague ]^[ tentative%%lst%% ]^[ 
+%%#%% knowledge %%#%% %%#%% limited%%scn%% %%cmp_b%% nature%%lst%% too%%lst%% %%#%% shy ]^[ 
+slow %%#%% %%#%% clumsy hands%%per%%]$~ ~$[some day %%#%% %%#%% %%#%% %%#%% %%#%% 
+organized%%lst%% ]^[ %%#%% better%%per%%]$~ ~$[that %%#%% %%#%% drift %%#%% %%#%% current %%#%% 
+spite %%#%% %%#%% eddies%%per%%]$~ ~$[the %%#%% world %%#%% %%#%% intelligent%%lst%% 
+educated%%lst%% ]^[ co%%dsh%%operating%%scn%% %%#%% %%#%% move faster ]^[ faster 
+towards %%#%% subjugation %%#%% nature%%per%%]$~ ~$[in %%#%% end%%lst%% wisely ]^[ 
+carefully %%#%% %%#%% readjust %%#%% balance %%#%% animal ]^[ vegetable 
+%%#%% %%#%% suit %%#%% human needs%%per%% 
+`this adjustment%%lst%% %%#%% say%%lst%% %%#%% %%#%% %%#%% done%%lst%% ]^[ %%#%% well%%scn%% 
+%%#%% indeed ]f[ %%#%% time%%lst%% %%#%% %%#%% space %%#%% time %%#%% %%#%% %%#%% 
+machine %%#%% leaped%%per%%]$~ ~$[the air %%#%% free %%#%% gnats%%lst%% %%#%% earth %%#%% 
+weeds ]v[ fungi%%scn%% %%#%% %%#%% fruits ]^[ sweet ]^[ delightful 
+flowers%%scn%% brilliant butterflies flew hither ]^[ thither%%per%%]$~ ~$[the 
+ideal %%#%% preventive medicine %%#%% attained%%per%%]$~ ~$[diseases %%#%% %%#%% 
+stamped out%%per%%]$~ ~$[i %%#%% %%#%% evidence %%#%% %%#%% contagious diseases %%#%% 
+%%#%% %%#%% stay%%per%%]$~ ~$[and %%#%% %%#%% %%#%% %%#%% tell %%#%% later %%#%% %%#%% %%#%% 
+processes %%#%% putrefaction ]^[ decay %%#%% %%#%% profoundly affected 
+%%#%% %%#%% changes%%per%% 
+`social triumphs%%lst%% too%%lst%% %%#%% %%#%% effected%%per%%]$~ ~$[i %%#%% mankind 
+housed %%#%% splendid shelters%%lst%% gloriously clothed%%lst%% ]^[ %%#%% ]y[ %%#%% %%#%% 
+found %%#%% engaged %%#%% %%#%% toil%%per%%]$~ ~$[there %%#%% %%#%% signs %%#%% struggle%%lst%% 
+neither social nor economical struggle%%per%%]$~ ~$[the shop%%lst%% %%#%% 
+advertisement%%lst%% traffic%%lst%% %%#%% %%#%% commerce %%#%% constitutes %%#%% 
+body %%#%% %%#%% world%%lst%% %%#%% gone%%per%%]$~ ~$[it %%#%% natural %%#%% %%#%% golden 
+evening %%#%% %%#%% %%#%% jump %%#%% %%#%% idea %%#%% %%#%% social paradise%%per%%]$~ ~$[the 
+difficulty %%#%% increasing population %%#%% %%#%% met%%lst%% %%#%% guessed%%lst%% ]^[ 
+population %%#%% ceased %%#%% increase%%per%% 
+`but %%#%% %%#%% change %%#%% condition comes inevitably 
+adaptations %%#%% %%#%% change%%per%%]$~ ~$[what%%lst%% unless biological science %%#%% %%#%% 
+mass %%#%% errors%%lst%% %%#%% %%#%% cause %%#%% human intelligence ]^[ vigour%%qsn%%]$~ 
+~$[hardship ]^[ freedom%%cln%% conditions %%#%% %%#%% %%#%% active%%lst%% strong%%lst%% 
+]^[ subtle survive ]^[ %%#%% weaker %%#%% %%#%% %%#%% wall%%scn%% conditions %%#%% 
+%%#%% %%#%% premium %%#%% %%#%% loyal alliance %%#%% capable men%%lst%% %%#%% 
+self%%dsh%%restraint%%lst%% patience%%lst%% ]^[ decision%%per%%]$~ ~$[and %%#%% institution %%#%% 
+%%#%% family%%lst%% ]^[ %%#%% emotions %%#%% arise therein%%lst%% %%#%% fierce 
+jealousy%%lst%% %%#%% tenderness ]f[ offspring%%lst%% parental self%%dsh%%devotion%%lst%% 
+%%#%% found %%#%% justification ]^[ support %%#%% %%#%% imminent dangers 
+%%#%% %%#%% young%%per%%]$~ ~$[now%%lst%% %%#%% %%#%% %%#%% imminent dangers%%qsn%%]$~ ~$[there %%#%% 
+%%#%% sentiment arising%%lst%% ]^[ %%#%% %%#%% grow%%lst%% %%#%% connubial 
+jealousy%%lst%% %%#%% fierce maternity%%lst%% %%#%% passion %%#%% %%#%% sorts%%scn%% 
+unnecessary %%#%% now%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% uncomfortable%%lst%% 
+savage survivals%%lst%% discords %%#%% %%#%% refined ]^[ pleasant life%%per%% 
+`i %%#%% %%#%% %%#%% physical slightness %%#%% %%#%% people%%lst%% %%#%% 
+lack %%#%% intelligence%%lst%% ]^[ %%#%% %%#%% abundant ruins%%lst%% ]^[ %%#%% 
+streng%%cmp_t%%ed %%#%% belief %%#%% %%#%% perfect conquest %%#%% nature%%per%%]$~ ~$[for 
+%%#%% %%#%% battle comes quiet%%per%%]$~ ~$[humanity %%#%% %%#%% strong%%lst%% 
+energetic%%lst%% ]^[ intelligent%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% abundant 
+vitality %%#%% alter %%#%% conditions %%#%% %%#%% %%#%% lived%%per%%]$~ ~$[and %%#%% 
+%%#%% %%#%% reaction %%#%% %%#%% altered conditions%%per%% 
+`under %%#%% %%#%% conditions %%#%% perfect comfort ]^[ security%%lst%% 
+%%#%% restless energy%%lst%% %%#%% %%#%% %%#%% %%#%% strength%%lst%% %%#%% %%#%% 
+weakness%%per%%]$~ ~$[even %%#%% %%#%% own time %%#%% tendencies ]^[ desires%%lst%% 
+%%#%% necessary %%#%% survival%%lst%% %%#%% %%#%% constant source %%#%% failure%%per%%]$~ 
+~$[physical courage ]^[ %%#%% love %%#%% battle%%lst%% ]f[ instance%%lst%% %%#%% %%#%% 
+%%#%% help%%dsh%%%%dsh%%may %%#%% %%#%% hindrances%%dsh%%%%dsh%%to %%#%% civilized man%%per%%]$~ ~$[and 
+%%#%% %%#%% state %%#%% physical balance ]^[ security%%lst%% power%%lst%% intellectual 
+%%#%% %%#%% %%#%% physical%%lst%% %%#%% %%#%% %%#%% %%#%% place%%per%%]$~ ~$[for countless %%#%% 
+%%#%% judged %%#%% %%#%% %%#%% %%#%% danger %%#%% war ]v[ solitary violence%%lst%% %%#%% 
+danger %%#%% wild beasts%%lst%% %%#%% wasting disease %%#%% require strength 
+%%#%% constitution%%lst%% %%#%% %%#%% %%#%% toil%%per%%]$~ ~$[for %%#%% %%#%% life%%lst%% %%#%% %%#%% 
+%%#%% call %%#%% weak %%#%% %%#%% %%#%% equipped %%#%% %%#%% strong%%lst%% %%#%% 
+indeed %%#%% %%#%% weak%%per%%]$~ ~$[better equipped indeed %%#%% are%%lst%% ]f[ %%#%% 
+strong %%#%% %%#%% fretted %%#%% %%#%% energy ]f[ %%#%% %%#%% %%#%% %%#%% 
+outlet%%per%%]$~ ~$[no doubt %%#%% exquisite beauty %%#%% %%#%% buildings %%#%% %%#%% %%#%% 
+%%#%% outcome %%#%% %%#%% last surgings %%#%% %%#%% %%#%% purposeless energy %%#%% 
+mankind %%#%% %%#%% settled %%#%% %%#%% perfect harmony %%#%% %%#%% 
+conditions %%#%% %%#%% %%#%% lived%%dsh%%%%dsh%%the flourish %%#%% %%#%% triumph 
+%%#%% %%#%% %%#%% last %%#%% peace%%per%%]$~ ~$[this %%#%% %%#%% %%#%% %%#%% fate %%#%% 
+energy %%#%% security%%scn%% %%#%% takes %%#%% art ]^[ %%#%% eroticism%%lst%% ]^[ %%cmp_t%% 
+%%#%% languor ]^[ decay%%per%% 
+`even %%#%% artistic impetus %%#%% %%#%% last die away%%dsh%%%%dsh%%had 
+%%#%% died %%#%% %%#%% time %%#%% saw%%per%%]$~ ~$[to adorn themselves %%#%% flowers%%lst%% 
+%%#%% dance%%lst%% %%#%% sing %%#%% %%#%% sunlight%%cln%% ]s[ %%#%% %%#%% left %%#%% %%#%% 
+artistic spirit%%lst%% ]^[ %%#%% more%%per%%]$~ ~$[even %%#%% %%#%% fade %%#%% %%#%% %%#%% 
+%%#%% %%#%% contented inactivity%%per%%]$~ ~$[we %%#%% kept keen %%#%% %%#%% grindstone 
+%%#%% pain ]^[ necessity%%lst%% and%%lst%% %%#%% %%#%% %%#%% me%%lst%% %%#%% %%#%% %%#%% %%#%% 
+hateful grindstone broken %%#%% last! 
+`as %%#%% stood %%#%% %%#%% %%#%% gathering dark %%#%% %%#%% %%#%% %%#%% %%#%% 
+simple explanation %%#%% %%#%% mastered %%#%% problem %%#%% %%#%% world%%dsh%%%%dsh%% 
+mastered %%#%% %%#%% secret %%#%% %%#%% delicious people%%per%%]$~ ~$[possibly 
+%%#%% checks %%#%% %%#%% devised ]f[ %%#%% increase %%#%% population %%#%% 
+succeeded %%#%% well%%lst%% ]^[ %%#%% numbers %%#%% %%#%% diminished %%cmp_ta%% 
+kept stationary%%per%%]$~ ~$[that %%#%% account ]f[ %%#%% abandoned ruins%%per%%]$~ 
+~$[very simple %%#%% %%#%% explanation%%lst%% ]^[ plausible enough%%dsh%%%%dsh%%as %%#%% 
+wrong theories are%%xcm%%]$~ 
+~$[v 
+`as %%#%% stood %%#%% musing %%#%% %%#%% %%#%% perfect triumph %%#%% man%%lst%% 
+%%#%% %%#%% moon%%lst%% yellow ]^[ gibbous%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% overflow %%#%% 
+silver light %%#%% %%#%% north%%dsh%%east%%per%%]$~ ~$[the bright little figures ceased 
+%%#%% move %%#%% below%%lst%% %%#%% noiseless owl flitted by%%lst%% ]^[ %%#%% shivered 
+%%#%% %%#%% chill %%#%% %%#%% night%%per%%]$~ ~$[i determined %%#%% descend ]^[ %%#%% 
+%%#%% %%#%% %%#%% sleep%%per%% 
+`i looked ]f[ %%#%% building %%#%% knew%%per%%]$~ ~$[then %%#%% eye travelled 
+%%#%% %%#%% %%#%% figure %%#%% %%#%% white sphinx %%#%% %%#%% pedestal %%#%% 
+bronze%%lst%% growing distinct %%#%% %%#%% light %%#%% %%#%% rising moon grew 
+brighter%%per%%]$~ ~$[i %%#%% %%#%% %%#%% silver birch %%#%% it%%per%%]$~ ~$[there %%#%% 
+%%#%% tangle %%#%% rhododendron bushes%%lst%% black %%#%% %%#%% pale light%%lst%% ]^[ 
+%%#%% %%#%% %%#%% little lawn%%per%%]$~ ~$[i looked %%#%% %%#%% lawn again%%per%%]$~ ~$[a queer 
+doubt chilled %%#%% complacency%%per%% %%dqt%%no,%%dqt%% %%#%% %%#%% stoutly %%#%% myself%%lst%% 
+%%dqt%%that %%#%% ]n[ %%#%% lawn%%per%%%%dqt%% 
+`but %%#%% %%#%% %%#%% lawn%%per%%]$~ ~$[for %%#%% white leprous %%#%% %%#%% %%#%% 
+sphinx %%#%% towards it%%per%%]$~ ~$[can %%#%% imagine %%#%% %%#%% %%#%% %%#%% %%#%% 
+conviction %%#%% home %%#%% me%%qsn%%]$~ ~$[but %%#%% cannot%%per%%]$~ ~$[the time machine 
+%%#%% gone! 
+`at once%%lst%% %%#%% %%#%% lash %%#%% %%#%% face%%lst%% %%#%% %%#%% possibility %%#%% 
+losing %%#%% own age%%lst%% %%#%% %%#%% left helpless %%#%% %%#%% strange %%#%% 
+world%%per%%]$~ ~$[the bare %%#%% %%#%% %%#%% %%#%% %%#%% actual physical sensation%%per%%]$~ 
+~$[i %%#%% feel %%#%% grip %%#%% %%#%% %%#%% throat ]^[ stop %%#%% breathing%%per%%]$~ ~$[in 
+%%#%% moment %%#%% %%#%% %%#%% %%#%% passion %%#%% fear ]^[ running %%#%% %%#%% 
+leaping strides %%#%% %%#%% slope%%per%%]$~ ~$[once %%#%% fell headlong ]^[ cut %%#%% 
+face%%scn%% %%#%% lost %%#%% time %%#%% stanching %%#%% blood%%lst%% ]b[ jumped %%#%% ]^[ 
+ran on%%lst%% %%#%% %%#%% warm trickle %%#%% %%#%% cheek ]^[ chin%%per%%]$~ ~$[all %%#%% time 
+%%#%% ran %%#%% %%#%% saying %%#%% myself%%cln%% %%dqt%%they %%#%% moved %%#%% %%#%% little%%lst%% 
+pushed %%#%% %%#%% %%#%% bushes %%#%% %%#%% %%#%% way%%per%%%%dqt%% nevertheless%%lst%% %%#%% ran 
+%%#%% %%#%% %%#%% might%%per%%]$~ ~$[all %%#%% time%%lst%% %%#%% %%#%% certainty %%#%% 
+sometimes comes %%#%% excessive dread%%lst%% %%#%% knew %%#%% %%#%% assurance 
+%%#%% folly%%lst%% knew instinctively %%#%% %%#%% machine %%#%% removed %%#%% %%#%% 
+%%#%% reach%%per%%]$~ ~$[my breath %%#%% %%#%% pain%%per%%]$~ ~$[i suppose %%#%% covered %%#%% 
+%%#%% distance %%#%% %%#%% hill crest %%#%% %%#%% little lawn%%lst%% %%#%% miles 
+perhaps%%lst%% %%#%% ten minutes%%per%%]$~ ~$[and %%#%% am ]n[ %%#%% %%#%% man%%per%%]$~ ~$[i cursed 
+aloud%%lst%% %%#%% %%#%% ran%%lst%% %%#%% %%#%% confident folly %%#%% leaving %%#%% machine%%lst%% 
+wasting %%#%% breath thereby%%per%%]$~ ~$[i cried aloud%%lst%% ]^[ none answered%%per%%]$~ 
+~$[not %%#%% creature %%#%% %%#%% %%#%% stirring %%#%% %%#%% moonlit world%%per%% 
+`when %%#%% reached %%#%% lawn %%#%% worst fears %%#%% realized%%per%%]$~ ~$[not %%#%% 
+trace %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% seen%%per%%]$~ ~$[i %%#%% faint ]^[ cold %%#%% %%#%% 
+faced %%#%% empty space %%#%% %%#%% black tangle %%#%% bushes%%per%%]$~ ~$[i ran 
+round %%#%% furiously%%lst%% %%#%% %%cmp_if%% %%#%% %%#%% %%#%% %%#%% hidden %%#%% %%#%% corner%%lst%% 
+]^[ %%cmp_t%% stopped abruptly%%lst%% %%#%% %%#%% hands clutching %%#%% hair%%per%%]$~ 
+~$[above %%#%% towered %%#%% sphinx%%lst%% %%#%% %%#%% bronze pedestal%%lst%% white%%lst%% 
+shining%%lst%% leprous%%lst%% %%#%% %%#%% light %%#%% %%#%% rising moon%%per%%]$~ ~$[it %%#%% %%#%% 
+smile %%#%% mockery %%#%% %%#%% dismay%%per%% 
+`i %%#%% %%#%% consoled %%#%% %%#%% imagining %%#%% little people 
+%%#%% %%#%% %%#%% mechanism %%#%% %%#%% shelter ]f[ me%%lst%% %%#%% %%#%% ]n[ %%#%% 
+assured %%#%% %%#%% physical ]^[ intellectual inadequacy%%per%%]$~ ~$[that %%#%% 
+%%#%% dismayed me%%cln%% %%#%% sense %%#%% %%#%% hitherto unsuspected power%%lst%% 
+%%#%% %%#%% intervention %%#%% invention %%#%% vanished%%per%%]$~ ~$[yet%%lst%% ]f[ 
+%%#%% %%#%% %%#%% %%#%% assured%%cln%% unless %%#%% %%#%% age %%#%% produced %%#%% 
+exact duplicate%%lst%% %%#%% machine %%#%% ]n[ %%#%% moved %%#%% time%%per%%]$~ ~$[the 
+attachment %%#%% %%#%% levers%%dsh%%%%dsh%%i %%#%% %%#%% %%#%% %%#%% method later%%dsh%%%%dsh%% 
+prevented %%#%% %%#%% %%#%% tampering %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% removed%%per%%]$~ ~$[it %%#%% moved%%lst%% ]^[ %%#%% hid%%lst%% %%#%% %%#%% space%%per%%]$~ ~$[but 
+%%cmp_t%%%%lst%% %%#%% %%#%% %%#%% be? 
+`i %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% kind %%#%% frenzy%%per%%]$~ ~$[i remember running 
+violently %%#%% ]^[ %%#%% %%#%% %%#%% moonlit bushes %%#%% round %%#%% 
+sphinx%%lst%% ]^[ startling %%#%% white animal that%%lst%% %%#%% %%#%% dim light%%lst%% %%#%% 
+%%#%% ]f[ %%#%% %%#%% deer%%per%%]$~ ~$[i remember%%lst%% too%%lst%% late %%#%% night%%lst%% beating 
+%%#%% bushes %%#%% %%#%% clenched fist %%#%% %%#%% knuckles %%#%% gashed 
+]^[ bleeding %%#%% %%#%% broken twigs%%per%%]$~ ~$[then%%lst%% sobbing ]^[ raving %%#%% 
+%%#%% anguish %%#%% mind%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% building %%#%% stone%%per%%]$~ 
+~$[the %%#%% hall %%#%% dark%%lst%% silent%%lst%% ]^[ deserted%%per%%]$~ ~$[i slipped %%#%% %%#%% 
+uneven floor%%lst%% ]^[ fell %%#%% %%#%% %%#%% %%#%% malachite tables%%lst%% %%#%% 
+breaking %%#%% shin%%per%%]$~ ~$[i lit %%#%% match ]^[ %%#%% %%#%% past %%#%% dusty 
+curtains%%lst%% %%#%% %%#%% %%#%% %%#%% told you%%per%% 
+`there %%#%% found %%#%% %%#%% %%#%% hall covered %%#%% cushions%%lst%% %%#%% 
+which%%lst%% perhaps%%lst%% %%#%% score ]v[ ]s[ %%#%% %%#%% little people %%#%% sleeping%%per%%]$~ 
+~$[i %%#%% %%#%% doubt %%#%% found %%#%% %%#%% appearance strange enough%%lst%% 
+coming suddenly %%#%% %%#%% %%#%% quiet darkness %%#%% inarticulate 
+noises ]^[ %%#%% splutter ]^[ flare %%#%% %%#%% match%%per%%]$~ ~$[for %%#%% %%#%% 
+forgotten %%#%% matches%%per%% %%dqt%%where %%#%% %%#%% time machine?%%dqt%% %%#%% began%%lst%% 
+bawling %%#%% %%#%% angry child%%lst%% laying hands %%#%% %%#%% ]^[ shaking 
+%%#%% %%#%% together%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% queer %%#%% them%%per%%]$~ ~$[some 
+laughed%%lst%% %%#%% %%#%% %%#%% looked sorely frightened%%per%%]$~ ~$[when %%#%% %%#%% %%#%% 
+standing round me%%lst%% %%#%% %%#%% %%#%% %%#%% head %%#%% %%#%% %%#%% doing %%#%% 
+foolish %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% ]f[ %%#%% %%#%% %%#%% %%#%% %%#%% 
+circumstances%%lst%% %%#%% trying %%#%% revive %%#%% sensation %%#%% fear%%per%%]$~ ~$[for%%lst%% 
+reasoning %%#%% %%#%% daylight behaviour%%lst%% %%#%% %%#%% %%#%% fear %%#%% 
+%%#%% forgotten%%per%% 
+`abruptly%%lst%% %%#%% dashed %%#%% %%#%% match%%lst%% and%%lst%% knocking %%#%% %%#%% %%#%% 
+people %%#%% %%#%% %%#%% course%%lst%% %%#%% blundering %%#%% %%#%% %%#%% 
+dining%%dsh%%hall again%%lst%% %%#%% %%#%% %%#%% moonlight%%per%%]$~ ~$[i heard cries %%#%% 
+terror ]^[ %%#%% little feet running ]^[ stumbling %%#%% %%#%% ]^[ 
+that%%per%%]$~ ~$[i %%#%% ]n[ remember %%#%% %%#%% %%#%% %%#%% %%#%% moon crept %%#%% %%#%% sky%%per%%]$~ 
+~$[i suppose %%#%% %%#%% %%#%% unexpected nature %%#%% %%#%% loss %%#%% maddened 
+me%%per%%]$~ ~$[i %%#%% hopelessly cut %%#%% %%#%% %%#%% own kind%%dsh%%%%dsh%%a strange 
+animal %%#%% %%#%% unknown world%%per%%]$~ ~$[i %%#%% %%#%% raved %%#%% ]^[ fro%%lst%% 
+screaming ]^[ crying %%#%% god ]^[ fate%%per%%]$~ ~$[i %%#%% %%#%% memory %%#%% 
+horrible fatigue%%lst%% %%#%% %%#%% %%#%% night %%#%% despair wore away%%scn%% %%#%% 
+looking %%#%% %%#%% impossible %%#%% ]^[ that%%scn%% %%#%% groping %%#%% 
+moon%%dsh%%lit ruins ]^[ touching strange creatures %%#%% %%#%% black 
+shadows%%scn%% %%#%% last%%lst%% %%#%% lying %%#%% %%#%% ground near %%#%% sphinx ]^[ 
+weeping %%#%% absolute wretchedness%%per%%]$~ ~$[i %%#%% %%#%% left ]b[ 
+misery%%per%%]$~ ~$[then %%#%% slept%%lst%% ]^[ %%#%% %%#%% woke %%#%% %%#%% %%#%% %%#%% day%%lst%% ]^[ 
+%%#%% couple %%#%% sparrows %%#%% hopping round %%#%% %%#%% %%#%% turf %%#%% 
+reach %%#%% %%#%% arm%%per%% 
+`i sat %%#%% %%#%% %%#%% freshness %%#%% %%#%% morning%%lst%% trying %%#%% remember 
+%%#%% %%#%% %%#%% %%#%% there%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% profound sense %%#%% 
+desertion ]^[ despair%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% %%#%% mind%%per%%]$~ ~$[with 
+%%#%% plain%%lst%% reasonable daylight%%lst%% %%#%% %%#%% look %%#%% circumstances 
+fairly %%#%% %%#%% face%%per%%]$~ ~$[i %%#%% %%#%% wild folly %%#%% %%#%% frenzy overnight%%lst%% 
+]^[ %%#%% %%#%% reason %%#%% myself%%per%% %%dqt%%suppose %%#%% worst?%%dqt%% %%#%% said%%per%% 
+%%dqt%%suppose %%#%% machine altogether lost%%dsh%%%%dsh%%perhaps destroyed%%qsn%%]$~ ~$[it 
+behooves %%#%% %%#%% %%#%% calm ]^[ patient%%lst%% %%#%% learn %%#%% %%#%% %%#%% %%#%% 
+people%%lst%% %%#%% %%#%% %%#%% %%#%% idea %%#%% %%#%% method %%#%% %%#%% loss%%lst%% ]^[ %%#%% 
+means %%#%% getting materials ]^[ tools%%scn%% ]s[ %%#%% %%#%% %%#%% end%%lst%% 
+perhaps%%lst%% %%#%% %%#%% %%#%% another%%per%%%%dqt%% %%#%% %%#%% %%#%% %%#%% %%#%% hope%%lst%% 
+perhaps%%lst%% ]b[ %%#%% %%cmp_ta%% despair%%per%%]$~ ~$[and%%lst%% %%#%% all%%lst%% %%#%% %%#%% %%#%% 
+beautiful ]^[ curious world%%per%% 
+`but probably%%lst%% %%#%% machine %%#%% %%#%% %%#%% %%#%% away%%per%%]$~ ~$[still%%lst%% %%#%% 
+%%#%% %%#%% calm ]^[ patient%%lst%% %%#%% %%#%% hiding%%dsh%%place%%lst%% ]^[ recover %%#%% 
+%%#%% force ]v[ cunning%%per%%]$~ ~$[and %%#%% %%#%% %%#%% scrambled %%#%% %%#%% feet ]^[ 
+looked %%#%% me%%lst%% wondering %%#%% %%#%% %%#%% bathe%%per%%]$~ ~$[i %%#%% weary%%lst%% 
+stiff%%lst%% ]^[ travel%%dsh%%soiled%%per%%]$~ ~$[the freshness %%#%% %%#%% morning %%#%% %%#%% 
+desire %%#%% equal freshness%%per%%]$~ ~$[i %%#%% exhausted %%#%% emotion%%per%%]$~ ~$[indeed%%lst%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% business%%lst%% %%#%% found %%#%% wondering %%#%% %%#%% 
+intense excitement overnight%%per%%]$~ ~$[i %%#%% %%#%% careful examination %%#%% 
+%%#%% ground %%#%% %%#%% little lawn%%per%%]$~ ~$[i wasted %%#%% time %%#%% futile 
+questionings%%lst%% conveyed%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% able%%lst%% %%#%% %%#%% %%#%% %%#%% 
+little people %%#%% %%#%% by%%per%%]$~ ~$[they %%#%% failed %%#%% understand %%#%% 
+gestures%%scn%% %%#%% %%#%% simply stolid%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% jest ]^[ 
+laughed %%#%% me%%per%%]$~ ~$[i %%#%% %%#%% hardest task %%#%% %%#%% world %%#%% %%#%% %%#%% 
+hands %%#%% %%#%% pretty laughing faces%%per%%]$~ ~$[it %%#%% %%#%% foolish impulse%%lst%% 
+]b[ %%#%% devil begotten %%#%% fear ]^[ blind anger %%#%% ill curbed ]^[ 
+%%#%% eager %%#%% %%#%% advantage %%#%% %%#%% perplexity%%per%%]$~ ~$[the turf %%#%% 
+%%#%% counsel%%per%%]$~ ~$[i found %%#%% groove ripped %%#%% it%%lst%% %%#%% midway 
+%%#%% %%#%% pedestal %%#%% %%#%% sphinx ]^[ %%#%% marks %%#%% %%#%% feet 
+where%%lst%% %%#%% arrival%%lst%% %%#%% %%#%% struggled %%#%% %%#%% overturned machine%%per%%]$~ 
+~$[there %%#%% %%#%% signs %%#%% removal about%%lst%% %%#%% queer narrow 
+footprints %%#%% %%#%% %%#%% %%#%% imagine %%#%% %%#%% %%#%% sloth%%per%%]$~ ~$[this 
+directed %%#%% closer attention %%#%% %%#%% pedestal%%per%%]$~ ~$[it was%%lst%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% said%%lst%% %%#%% bronze%%per%%]$~ ~$[it %%#%% ]n[ %%#%% mere block%%lst%% ]b[ highly 
+decorated %%#%% deep framed panels %%#%% %%#%% side%%per%%]$~ ~$[i %%#%% ]^[ 
+rapped %%#%% these%%per%%]$~ ~$[the pedestal %%#%% hollow%%per%%]$~ ~$[examining %%#%% panels 
+%%#%% care %%#%% found %%#%% discontinuous %%#%% %%#%% frames%%per%%]$~ ~$[there %%#%% 
+%%#%% handles ]v[ keyholes%%lst%% ]b[ possibly %%#%% panels%%lst%% %%cmp_if%% %%#%% %%#%% 
+doors%%lst%% %%#%% %%#%% supposed%%lst%% %%#%% %%#%% within%%per%%]$~ ~$[one %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% mind%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% mental effort %%#%% infer 
+%%#%% %%#%% time machine %%#%% inside %%#%% pedestal%%per%%]$~ ~$[but %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% problem%%per%% 
+`i %%#%% %%#%% heads %%#%% %%#%% orange%%dsh%%clad people coming %%#%% %%#%% 
+bushes ]^[ %%#%% %%#%% blossom%%dsh%%covered apple%%dsh%%trees towards me%%per%%]$~ ~$[i 
+%%#%% smiling %%#%% %%#%% ]^[ beckoned %%#%% %%#%% me%%per%%]$~ ~$[they came%%lst%% ]^[ 
+%%cmp_t%%%%lst%% %%#%% %%#%% %%#%% bronze pedestal%%lst%% %%#%% tried %%#%% intimate %%#%% 
+wish %%#%% %%#%% it%%per%%]$~ ~$[but %%#%% %%#%% %%#%% gesture towards %%#%% %%#%% 
+behaved %%#%% oddly%%per%%]$~ ~$[i don%%sqt%%t know %%#%% %%#%% convey %%#%% expression 
+%%#%% you%%per%%]$~ ~$[suppose %%#%% %%#%% %%#%% %%#%% %%#%% grossly improper gesture %%#%% %%#%% 
+delicate%%dsh%%minded woman%%dsh%%%%dsh%%it %%#%% %%#%% %%#%% %%#%% look%%per%%]$~ ~$[they %%#%% %%#%% 
+%%#%% %%cmp_if%% %%#%% %%#%% received %%#%% last %%#%% insult%%per%%]$~ ~$[i tried %%#%% 
+sweet%%dsh%%looking little chap %%#%% white next%%lst%% %%#%% exactly %%#%% %%#%% 
+result%%per%%]$~ ~$[somehow%%lst%% %%#%% manner %%#%% %%#%% feel ashamed %%#%% myself%%per%%]$~ 
+~$[but%%lst%% %%#%% %%#%% know%%lst%% %%#%% %%#%% %%#%% time machine%%lst%% ]^[ %%#%% tried %%#%% %%#%% 
+more%%per%%]$~ ~$[as %%#%% %%#%% off%%lst%% %%#%% %%#%% others%%lst%% %%#%% temper %%#%% %%#%% 
+%%#%% %%#%% me%%per%%]$~ ~$[in %%#%% strides %%#%% %%#%% %%#%% him%%lst%% %%#%% %%#%% %%#%% %%#%% 
+loose %%#%% %%#%% %%#%% robe round %%#%% neck%%lst%% ]^[ %%#%% dragging %%#%% 
+towards %%#%% sphinx%%per%%]$~ ~$[then %%#%% %%#%% %%#%% horror ]^[ repugnance %%#%% %%#%% 
+face%%lst%% ]^[ %%#%% %%#%% %%#%% sudden %%#%% %%#%% %%#%% go%%per%% 
+`but %%#%% %%#%% ]n[ beaten yet%%per%%]$~ ~$[i banged %%#%% %%#%% fist %%#%% %%#%% 
+bronze panels%%per%%]$~ ~$[i %%#%% %%#%% heard %%#%% stir inside%%dsh%%%%dsh%%to %%#%% 
+explicit%%lst%% %%#%% %%#%% %%#%% heard %%#%% sound %%#%% %%#%% chuckle%%dsh%%%%dsh%%but %%#%% %%#%% 
+%%#%% %%#%% mistaken%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% pebble %%#%% %%#%% river%%lst%% ]^[ 
+%%#%% ]^[ hammered till %%#%% %%#%% flattened %%#%% coil %%#%% %%#%% decorations%%lst%% 
+]^[ %%#%% verdigris %%#%% %%#%% %%#%% powdery flakes%%per%%]$~ ~$[the delicate 
+little people %%#%% %%#%% heard %%#%% hammering %%#%% gusty outbreaks %%#%% 
+mile %%#%% %%#%% %%#%% hand%%lst%% ]b[ %%#%% %%#%% %%#%% it%%per%%]$~ ~$[i %%#%% %%#%% crowd 
+%%#%% %%#%% %%#%% %%#%% slopes%%lst%% looking furtively %%#%% me%%per%%]$~ ~$[at last%%lst%% hot 
+]^[ tired%%lst%% %%#%% sat %%#%% %%#%% watch %%#%% place%%per%%]$~ ~$[but %%#%% %%#%% %%#%% restless 
+%%#%% watch long%%scn%% %%#%% am %%#%% occidental ]f[ %%#%% %%#%% vigil%%per%%]$~ ~$[i %%#%% 
+%%#%% %%#%% %%#%% problem ]f[ years%%lst%% ]b[ %%#%% wait inactive ]f[ twenty%%dsh%%four 
+hours%%dsh%%%%dsh%%that %%#%% %%#%% matter%%per%% 
+`i %%#%% %%#%% %%#%% %%#%% time%%lst%% ]^[ %%#%% walking aimlessly %%#%% 
+%%#%% bushes towards %%#%% hill again%%per%% %%dqt%%patience,%%dqt%% %%#%% %%#%% %%#%% myself%%per%% 
+%%dqt%%if %%#%% %%#%% %%#%% machine %%#%% %%#%% %%#%% leave %%#%% sphinx 
+alone%%per%%]$~ ~$[if %%#%% mean %%#%% %%#%% %%#%% machine away%%lst%% it%%sqt%%s little %%#%% 
+%%#%% wrecking %%#%% bronze panels%%lst%% ]^[ %%cmp_if%% %%#%% don%%sqt%%t%%lst%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% soon %%#%% %%#%% %%#%% %%#%% ]f[ it%%per%%]$~ ~$[to sit %%#%% %%#%% 
+%%#%% unknown %%#%% %%#%% %%#%% puzzle %%#%% %%#%% %%#%% hopeless%%per%%]$~ ~$[that 
+%%#%% lies monomania%%per%%]$~ ~$[face %%#%% world%%per%%]$~ ~$[learn %%#%% ways%%lst%% watch it%%lst%% 
+%%#%% careful %%#%% %%#%% hasty guesses %%#%% %%#%% meaning%%per%%]$~ ~$[in %%#%% %%#%% %%#%% 
+%%#%% %%#%% clues %%#%% %%#%% all%%per%%%%dqt%% %%#%% suddenly %%#%% humour %%#%% %%#%% 
+situation %%#%% %%#%% %%#%% mind%%cln%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% spent 
+%%#%% study ]^[ toil %%#%% %%#%% %%#%% %%#%% future age%%lst%% ]^[ %%#%% %%#%% passion 
+%%#%% anxiety %%#%% %%#%% %%#%% %%#%% it%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% %%#%% 
+complicated ]^[ %%#%% %%#%% hopeless trap %%#%% %%#%% %%#%% %%#%% devised%%per%%]$~ 
+~$[although %%#%% %%#%% %%#%% %%#%% own expense%%lst%% %%#%% %%#%% ]n[ help myself%%per%%]$~ ~$[i 
+laughed aloud%%per%% 
+`going %%#%% %%#%% %%#%% palace%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% little 
+people avoided me%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% fancy%%lst%% ]v[ %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% hammering %%#%% %%#%% gates %%#%% bronze%%per%%]$~ ~$[yet %%#%% 
+%%#%% tolerably %%#%% %%#%% %%#%% avoidance%%per%%]$~ ~$[i %%#%% careful%%lst%% however%%lst%% %%#%% 
+%%#%% %%#%% concern ]^[ %%#%% abstain %%#%% %%#%% pursuit %%#%% them%%lst%% ]^[ %%#%% 
+%%#%% course %%#%% %%#%% day ]v[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% footing%%per%%]$~ ~$[i 
+%%#%% %%#%% progress %%#%% %%#%% %%#%% %%#%% language%%lst%% ]^[ %%#%% addition %%#%% 
+pushed %%#%% explorations %%#%% ]^[ there%%per%%]$~ ~$[either %%#%% missed %%#%% 
+subtle %%#%% ]v[ %%#%% language %%#%% excessively simple%%dsh%%%%dsh%%almost 
+exclusively composed %%#%% concrete substantives ]^[ verbs%%per%%]$~ ~$[there 
+%%#%% %%#%% %%#%% few%%lst%% %%cmp_if%% any%%lst%% abstract terms%%lst%% ]v[ little %%#%% %%#%% 
+figurative language%%per%%]$~ ~$[their sentences %%#%% usually simple ]^[ %%#%% 
+%%#%% words%%lst%% ]^[ %%#%% failed %%#%% convey ]v[ understand %%#%% ]b[ %%#%% 
+simplest propositions%%per%%]$~ ~$[i determined %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+time machine ]^[ %%#%% mystery %%#%% %%#%% bronze doors %%#%% %%#%% sphinx 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% corner %%#%% memory%%lst%% %%#%% %%#%% growing 
+knowledge %%#%% lead %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% natural way%%per%%]$~ ~$[yet %%#%% 
+%%#%% feeling%%lst%% %%#%% %%#%% understand%%lst%% tethered %%#%% %%#%% %%#%% circle %%#%% %%#%% 
+%%#%% miles round %%#%% %%#%% %%#%% %%#%% arrival%%per%% 
+`so %%#%% %%#%% %%#%% %%#%% see%%lst%% %%#%% %%#%% world displayed %%#%% %%#%% 
+exuberant richness %%#%% %%#%% thames valley%%per%%]$~ ~$[from %%#%% hill %%#%% 
+climbed %%#%% %%#%% %%#%% %%#%% abundance %%#%% splendid buildings%%lst%% endlessly 
+varied %%#%% material ]^[ style%%lst%% %%#%% %%#%% clustering thickets %%#%% 
+evergreens%%lst%% %%#%% %%#%% blossom%%dsh%%laden trees ]^[ tree%%dsh%%ferns%%per%%]$~ ~$[here 
+]^[ %%#%% water shone %%#%% silver%%lst%% ]^[ beyond%%lst%% %%#%% land rose %%#%% 
+blue undulating hills%%lst%% ]^[ ]s[ faded %%#%% %%#%% serenity %%#%% %%#%% sky%%per%%]$~ 
+~$[a peculiar feature%%lst%% %%#%% presently attracted %%#%% attention%%lst%% %%#%% 
+%%#%% presence %%#%% %%#%% circular wells%%lst%% several%%lst%% %%#%% %%#%% %%#%% %%#%% 
+me%%lst%% %%#%% %%#%% %%#%% %%#%% depth%%per%%]$~ ~$[one lay %%#%% %%#%% path %%#%% %%#%% hill%%lst%% 
+%%#%% %%#%% %%#%% followed %%#%% %%#%% %%#%% walk%%per%%]$~ ~$[like %%#%% others%%lst%% %%#%% 
+%%#%% rimmed %%#%% bronze%%lst%% curiously wrought%%lst%% ]^[ protected %%#%% %%#%% 
+little cupola %%#%% %%#%% rain%%per%%]$~ ~$[sitting %%#%% %%#%% %%#%% %%#%% %%#%% wells%%lst%% 
+]^[ peering %%#%% %%#%% %%#%% shafted darkness%%lst%% %%#%% %%#%% %%#%% %%#%% gleam 
+%%#%% water%%lst%% nor %%#%% %%#%% start %%#%% reflection %%#%% %%#%% lighted match%%per%%]$~ 
+~$[but %%#%% %%#%% %%#%% %%#%% %%#%% heard %%#%% %%#%% sound%%cln%% %%#%% thud%%dsh%%thud%%dsh%%thud%%lst%% 
+%%#%% %%#%% beating %%#%% %%#%% %%#%% engine%%scn%% ]^[ %%#%% discovered%%lst%% %%#%% %%#%% 
+flaring %%#%% %%#%% matches%%lst%% %%#%% %%#%% steady current %%#%% air set %%#%% %%#%% 
+shafts%%per%%]$~ ~$[further%%lst%% %%#%% threw %%#%% scrap %%#%% paper %%#%% %%#%% throat %%#%% 
+one%%lst%% and%%lst%% instead %%#%% fluttering slowly down%%lst%% %%#%% %%#%% %%#%% %%#%% 
+sucked swiftly %%#%% %%#%% sight%%per%% 
+`after %%#%% time%%lst%% too%%lst%% %%#%% %%#%% %%#%% connect %%#%% %%#%% %%#%% tall 
+towers standing %%#%% ]^[ %%#%% %%#%% %%#%% slopes%%scn%% ]f[ %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% flicker %%#%% %%#%% air %%#%% %%#%% %%#%% %%#%% %%#%% 
+hot day %%#%% %%#%% sun%%dsh%%scorched beach%%per%%]$~ ~$[putting %%#%% together%%lst%% %%#%% 
+reached %%#%% strong suggestion %%#%% %%#%% extensive system %%#%% 
+subterranean ventilation%%lst%% %%#%% true import %%#%% %%#%% difficult %%#%% 
+imagine%%per%%]$~ ~$[i %%#%% %%#%% %%#%% inclined %%#%% associate %%#%% %%#%% %%#%% 
+sanitary apparatus %%#%% %%#%% people%%per%%]$~ ~$[it %%#%% %%#%% obvious 
+conclusion%%lst%% ]b[ %%#%% %%#%% absolutely wrong%%per%% 
+`and %%#%% %%#%% %%#%% admit %%#%% %%#%% learned %%#%% little %%#%% drains 
+]^[ bells ]^[ modes %%#%% conveyance%%lst%% ]^[ %%#%% %%#%% conveniences%%lst%% 
+%%#%% %%#%% time %%#%% %%#%% real future%%per%%]$~ ~$[in %%#%% %%#%% %%#%% visions %%#%% 
+utopias ]^[ coming times %%#%% %%#%% %%#%% read%%lst%% %%#%% %%#%% %%#%% vast 
+amount %%#%% detail %%#%% building%%lst%% ]^[ social arrangements%%lst%% ]^[ ]s[ 
+forth%%per%%]$~ ~$[but %%#%% %%#%% details %%#%% easy %%#%% %%#%% obtain %%#%% %%#%% 
+%%#%% world %%#%% contained %%#%% one%%sqt%%s imagination%%lst%% %%#%% %%#%% 
+altogether inaccessible %%#%% %%#%% real traveller amid %%#%% realities 
+%%#%% %%#%% found here%%per%%]$~ ~$[conceive %%#%% tale %%#%% london %%#%% %%#%% negro%%lst%% 
+fresh %%#%% central africa%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% tribe%%xcm%%]$~ ~$[what 
+%%#%% %%#%% know %%#%% railway companies%%lst%% %%#%% social movements%%lst%% %%#%% 
+telephone ]^[ telegraph wires%%lst%% %%#%% %%#%% parcels delivery company%%lst%% 
+]^[ postal orders ]^[ %%#%% like%%qsn%%]$~ ~$[yet we%%lst%% %%#%% least%%lst%% %%#%% %%#%% 
+willing %%#%% %%#%% explain %%#%% %%#%% %%#%% him%%xcm%%]$~ ~$[and %%#%% %%#%% %%#%% 
+%%#%% knew%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% untravelled friend %%#%% 
+apprehend ]v[ believe%%qsn%%]$~ ~$[then%%lst%% %%#%% %%#%% narrow %%#%% gap %%#%% %%#%% 
+negro ]^[ %%#%% white %%#%% %%#%% %%#%% own times%%lst%% ]^[ %%#%% wide %%#%% interval 
+%%#%% %%#%% ]^[ %%#%% %%#%% %%#%% golden age%%xcm%%]$~ ~$[i %%#%% sensible %%#%% 
+%%#%% %%#%% %%#%% unseen%%lst%% ]^[ %%#%% contributed %%#%% %%#%% comfort%%scn%% ]b[ 
+save ]f[ %%#%% %%#%% impression %%#%% automatic organization%%lst%% %%#%% fear %%#%% 
+%%#%% convey %%#%% little %%#%% %%#%% difference %%#%% %%#%% mind%%per%% 
+`in %%#%% matter %%#%% sepulchre%%lst%% ]f[ instance%%lst%% %%#%% %%#%% %%#%% %%#%% 
+signs %%#%% crematoria nor %%#%% suggestive %%#%% tombs%%per%%]$~ ~$[but %%#%% 
+occurred %%#%% %%#%% that%%lst%% possibly%%lst%% %%#%% %%#%% %%#%% cemeteries (or 
+crematoria) %%#%% beyond %%#%% range %%#%% %%#%% explorings%%per%%]$~ ~$[this%%lst%% 
+again%%lst%% %%#%% %%#%% question %%#%% deliberately %%#%% %%#%% myself%%lst%% ]^[ %%#%% 
+curiosity %%#%% %%#%% %%#%% entirely defeated %%#%% %%#%% point%%per%%]$~ ~$[the 
+%%#%% puzzled me%%lst%% ]^[ %%#%% %%#%% led %%#%% %%#%% %%#%% %%#%% remark%%lst%% %%#%% 
+puzzled %%#%% %%#%% more%%cln%% %%#%% aged ]^[ infirm %%#%% %%#%% people 
+%%#%% %%#%% none%%per%% 
+`i %%#%% confess %%#%% %%#%% satisfaction %%#%% %%#%% %%#%% theories %%#%% 
+%%#%% automatic civilization ]^[ %%#%% decadent humanity %%#%% ]n[ %%#%% 
+endure%%per%%]$~ ~$[yet %%#%% %%#%% %%#%% %%#%% %%#%% other%%per%%]$~ ~$[let %%#%% %%#%% %%#%% 
+difficulties%%per%%]$~ ~$[the %%#%% %%#%% palaces %%#%% %%#%% explored %%#%% mere 
+living places%%lst%% %%#%% dining%%dsh%%halls ]^[ sleeping apartments%%per%%]$~ ~$[i 
+%%#%% %%#%% %%#%% machinery%%lst%% %%#%% appliances %%#%% %%#%% kind%%per%%]$~ ~$[yet %%#%% 
+people %%#%% clothed %%#%% pleasant fabrics %%#%% %%#%% %%#%% times %%#%% 
+renewal%%lst%% ]^[ %%#%% sandals%%lst%% %%#%% undecorated%%lst%% %%#%% fairly 
+complex specimens %%#%% metalwork%%per%%]$~ ~$[somehow %%#%% %%#%% %%#%% %%#%% 
+made%%per%%]$~ ~$[and %%#%% little people displayed %%#%% vestige %%#%% %%#%% creative 
+tendency%%per%%]$~ ~$[there %%#%% %%#%% shops%%lst%% %%#%% workshops%%lst%% %%#%% sign %%#%% 
+importations %%#%% them%%per%%]$~ ~$[they spent %%#%% %%#%% time %%#%% playing 
+gently%%lst%% %%#%% bathing %%#%% %%#%% river%%lst%% %%#%% %%#%% love %%#%% %%#%% half%%dsh%%playful 
+fashion%%lst%% %%#%% eating fruit ]^[ sleeping%%per%%]$~ ~$[i %%#%% ]n[ %%#%% %%#%% 
+%%#%% %%#%% kept going%%per%% 
+`then%%lst%% again%%lst%% %%#%% %%#%% time machine%%cln%% something%%lst%% %%#%% knew ]n[ 
+what%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% hollow pedestal %%#%% %%#%% white sphinx%%per%%]$~ 
+~$[why%%qsn%%]$~ ~$[for %%#%% life %%#%% %%#%% %%#%% %%#%% ]n[ imagine%%per%%]$~ ~$[those waterless 
+wells%%lst%% too%%lst%% %%#%% flickering pillars%%per%%]$~ ~$[i %%#%% %%#%% lacked %%#%% clue%%per%%]$~ ~$[i 
+felt%%dsh%%%%dsh%%how %%#%% %%#%% %%#%% it%%qsn%%]$~ ~$[suppose %%#%% found %%#%% inscription%%lst%% 
+%%#%% sentences %%#%% ]^[ %%#%% %%#%% excellent plain english%%lst%% ]^[ 
+interpolated therewith%%lst%% %%#%% %%#%% %%#%% %%#%% words%%lst%% %%#%% letters even%%lst%% 
+absolutely unknown %%#%% you%%qsn%%]$~ ~$[well%%lst%% %%#%% %%#%% third day %%#%% %%#%% visit%%lst%% 
+%%#%% %%#%% %%#%% %%#%% world %%#%% eight hundred ]^[ %%#%% thousand seven 
+hundred ]^[ %%#%% %%#%% %%#%% %%#%% me! 
+`that day%%lst%% too%%lst%% %%#%% %%#%% %%#%% friend%%dsh%%%%dsh%%of %%#%% sort%%per%%]$~ ~$[it happened 
+that%%lst%% %%#%% %%#%% %%#%% watching %%#%% %%#%% %%#%% little people bathing %%#%% %%#%% 
+shallow%%lst%% %%#%% %%#%% %%#%% %%#%% seized %%#%% cramp ]^[ %%#%% drifting 
+downstream%%per%%]$~ ~$[the main current ran %%#%% swiftly%%lst%% ]b[ ]n[ %%#%% 
+strongly ]f[ %%#%% %%#%% moderate swimmer%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% idea%%lst%% 
+%%cmp_tf%%%%lst%% %%#%% %%#%% strange deficiency %%#%% %%#%% creatures%%lst%% %%#%% %%#%% 
+tell %%#%% %%#%% none %%#%% %%#%% slightest attempt %%#%% rescue %%#%% 
+weakly crying little %%#%% %%#%% %%#%% drowning %%#%% %%#%% eyes%%per%%]$~ 
+~$[when %%#%% realized this%%lst%% %%#%% hurriedly slipped %%#%% %%#%% clothes%%lst%% and%%lst%% 
+wading %%#%% %%#%% %%#%% %%#%% lower down%%lst%% %%#%% caught %%#%% poor mite ]^[ drew 
+%%#%% safe %%#%% land%%per%%]$~ ~$[a little rubbing %%#%% %%#%% limbs soon brought %%#%% 
+round%%lst%% ]^[ %%#%% %%#%% %%#%% satisfaction %%#%% seeing %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% left her%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% %%#%% low estimate %%#%% %%#%% kind 
+%%#%% %%#%% %%#%% ]n[ expect %%#%% gratitude %%#%% her%%per%%]$~ ~$[in that%%lst%% however%%lst%% 
+%%#%% %%#%% wrong%%per%% 
+`this happened %%#%% %%#%% morning%%per%%]$~ ~$[in %%#%% afternoon %%#%% met %%#%% 
+little woman%%lst%% %%#%% %%#%% believe %%#%% was%%lst%% %%#%% %%#%% %%#%% returning towards %%#%% 
+centre %%#%% %%#%% exploration%%lst%% ]^[ %%#%% received %%#%% %%#%% cries %%#%% 
+delight ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% garland %%#%% flowers%%dsh%%%%dsh%% 
+evidently %%#%% ]f[ %%#%% ]^[ %%#%% alone%%per%%]$~ ~$[the %%#%% %%#%% %%#%% 
+imagination%%per%%]$~ ~$[very possibly %%#%% %%#%% %%#%% feeling desolate%%per%%]$~ ~$[at %%#%% 
+rate %%#%% %%#%% %%#%% %%#%% %%#%% display %%#%% appreciation %%#%% %%#%% gift%%per%%]$~ ~$[we 
+%%#%% soon seated %%#%% %%#%% %%#%% little stone arbour%%lst%% engaged %%#%% 
+conversation%%lst%% chiefly %%#%% smiles%%per%%]$~ ~$[the creature%%sqt%%s friendliness 
+affected %%#%% exactly %%#%% %%#%% child%%sqt%%s %%#%% %%#%% done%%per%%]$~ ~$[we passed %%#%% 
+%%#%% flowers%%lst%% ]^[ %%#%% kissed %%#%% hands%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% hers%%per%%]$~ 
+~$[then %%#%% tried talk%%lst%% ]^[ found %%#%% %%#%% name %%#%% weena%%lst%% which%%lst%% 
+%%#%% %%#%% don%%sqt%%t know %%#%% %%#%% meant%%lst%% somehow %%#%% appropriate 
+enough%%per%%]$~ ~$[that %%#%% %%#%% beginning %%#%% %%#%% queer friendship %%#%% 
+lasted %%#%% week%%lst%% ]^[ ended%%dsh%%%%dsh%%as %%#%% %%#%% tell you! 
+`she %%#%% exactly %%#%% %%#%% child%%per%%]$~ ~$[she %%#%% %%#%% %%#%% %%#%% %%#%% 
+always%%per%%]$~ ~$[she tried %%#%% follow %%#%% everywhere%%lst%% ]^[ %%#%% %%#%% %%#%% 
+journey %%#%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% heart %%#%% tire %%#%% down%%lst%% ]^[ 
+leave %%#%% %%#%% last%%lst%% exhausted ]^[ calling %%#%% %%#%% %%#%% 
+plaintively%%per%%]$~ ~$[but %%#%% problems %%#%% %%#%% world %%#%% %%#%% %%#%% mastered%%per%%]$~ 
+~$[i %%#%% not%%lst%% %%#%% %%#%% %%#%% myself%%lst%% %%#%% %%#%% %%#%% future %%#%% carry %%#%% %%#%% 
+miniature flirtation%%per%%]$~ ~$[yet %%#%% distress %%#%% %%#%% left %%#%% %%#%% %%#%% 
+great%%lst%% %%#%% expostulations %%#%% %%#%% %%#%% %%#%% sometimes frantic%%lst%% 
+]^[ %%#%% think%%lst%% altogether%%lst%% %%#%% %%#%% %%#%% %%#%% trouble %%#%% comfort %%#%% 
+%%#%% devotion%%per%%]$~ ~$[nevertheless %%#%% was%%lst%% somehow%%lst%% %%#%% %%#%% %%#%% 
+comfort%%per%%]$~ ~$[i %%#%% %%#%% %%#%% mere childish affection %%#%% %%#%% %%#%% 
+cling %%#%% me%%per%%]$~ ~$[until %%#%% %%#%% %%#%% late%%lst%% %%#%% %%#%% ]n[ %%#%% know %%#%% 
+%%#%% %%#%% inflicted %%#%% %%#%% %%#%% %%#%% left her%%per%%]$~ ~$[nor %%#%% %%#%% %%#%% %%#%% 
+late %%#%% %%#%% %%#%% understand %%#%% %%#%% %%#%% %%#%% me%%per%%]$~ ~$[for%%lst%% %%#%% merely 
+%%#%% fond %%#%% me%%lst%% ]^[ %%#%% %%#%% %%#%% weak%%lst%% futile %%#%% %%#%% %%#%% 
+cared ]f[ me%%lst%% %%#%% little doll %%#%% %%#%% creature presently %%#%% %%#%% 
+return %%#%% %%#%% neighbourhood %%#%% %%#%% white sphinx %%#%% %%#%% 
+feeling %%#%% coming home%%scn%% ]^[ %%#%% %%#%% watch ]f[ %%#%% tiny figure %%#%% 
+white ]^[ gold ]s[ soon %%#%% %%#%% %%#%% %%#%% %%#%% hill%%per%% 
+`it %%#%% %%#%% her%%lst%% too%%lst%% %%#%% %%#%% learned %%#%% fear %%#%% ]n[ ]y[ 
+left %%#%% world%%per%%]$~ ~$[she %%#%% fearless %%#%% %%#%% %%#%% daylight%%lst%% ]^[ %%#%% 
+%%#%% %%#%% oddest confidence %%#%% me%%scn%% ]f[ once%%lst%% %%#%% %%#%% foolish moment%%lst%% %%#%% 
+%%#%% threatening grimaces %%#%% her%%lst%% ]^[ %%#%% simply laughed %%#%% them%%per%%]$~ 
+~$[but %%#%% dreaded %%#%% dark%%lst%% dreaded shadows%%lst%% dreaded black things%%per%%]$~ 
+~$[darkness %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% dreadful%%per%%]$~ ~$[it %%#%% %%#%% singularly 
+passionate emotion%%lst%% ]^[ %%#%% set %%#%% thinking ]^[ observing%%per%%]$~ ~$[i 
+discovered %%cmp_t%%%%lst%% %%#%% %%#%% things%%lst%% %%#%% %%#%% little people 
+gathered %%#%% %%#%% %%#%% houses %%#%% dark%%lst%% ]^[ slept %%#%% droves%%per%%]$~ 
+~$[to enter %%#%% %%#%% %%#%% %%#%% light %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% tumult 
+%%#%% apprehension%%per%%]$~ ~$[i %%#%% found %%#%% %%#%% %%#%% doors%%lst%% ]v[ %%#%% sleeping 
+%%#%% %%#%% doors%%lst%% %%#%% dark%%per%%]$~ ~$[yet %%#%% %%#%% %%#%% %%#%% %%#%% blockhead 
+%%#%% %%#%% missed %%#%% lesson %%#%% %%#%% fear%%lst%% ]^[ %%#%% spite %%#%% weena%%sqt%%s 
+distress %%#%% insisted %%#%% sleeping %%#%% %%#%% %%#%% slumbering 
+multitudes%%per%% 
+`it troubled %%#%% greatly%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% odd affection ]f[ 
+%%#%% triumphed%%lst%% ]^[ ]f[ five %%#%% %%#%% nights %%#%% %%#%% acquaintance%%lst%% 
+including %%#%% last night %%#%% all%%lst%% %%#%% slept %%#%% %%#%% head pillowed 
+%%#%% %%#%% arm%%per%%]$~ ~$[but %%#%% story slips %%#%% %%#%% %%#%% %%#%% %%#%% speak %%#%% her%%per%%]$~ 
+~$[it %%#%% %%#%% %%#%% %%#%% night %%#%% %%#%% rescue %%#%% %%#%% %%#%% awakened 
+%%#%% dawn%%per%%]$~ ~$[i %%#%% %%#%% restless%%lst%% dreaming %%#%% disagreeably %%#%% 
+%%#%% %%#%% drowned%%lst%% ]^[ %%#%% sea anemones %%#%% feeling %%#%% %%#%% %%#%% 
+%%#%% %%#%% soft palps%%per%%]$~ ~$[i woke %%#%% %%#%% start%%lst%% ]^[ %%#%% %%#%% odd 
+fancy %%#%% %%#%% greyish animal %%#%% %%#%% rushed %%#%% %%#%% %%#%% 
+chamber%%per%%]$~ ~$[i tried %%#%% %%#%% %%#%% sleep again%%lst%% ]b[ %%#%% %%#%% restless ]^[ 
+uncomfortable%%per%%]$~ ~$[it %%#%% %%#%% dim grey hour %%#%% %%#%% %%#%% %%#%% 
+creeping %%#%% %%#%% darkness%%lst%% %%#%% %%#%% %%#%% colourless ]^[ %%#%% 
+cut%%lst%% ]^[ ]y[ unreal%%per%%]$~ ~$[i %%#%% up%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% 
+hall%%lst%% ]^[ ]s[ %%#%% %%#%% %%#%% flagstones %%#%% front %%#%% %%#%% palace%%per%%]$~ ~$[i 
+%%#%% %%#%% %%#%% %%#%% %%#%% virtue %%#%% necessity%%lst%% ]^[ %%#%% %%#%% sunrise%%per%% 
+`the moon %%#%% setting%%lst%% ]^[ %%#%% dying moonlight ]^[ %%#%% %%#%% 
+pallor %%#%% dawn %%#%% mingled %%#%% %%#%% ghastly half%%dsh%%light%%per%%]$~ ~$[the bushes 
+%%#%% inky black%%lst%% %%#%% ground %%#%% sombre grey%%lst%% %%#%% sky colourless ]^[ 
+cheerless%%per%%]$~ ~$[and %%#%% %%#%% hill %%#%% %%#%% %%#%% %%#%% %%#%% ghosts%%per%%]$~ ~$[there 
+%%#%% times%%lst%% %%#%% %%#%% scanned %%#%% slope%%lst%% %%#%% %%#%% white figures%%per%%]$~ 
+~$[twice %%#%% fancied %%#%% %%#%% %%#%% solitary white%%lst%% ape%%dsh%%like creature running 
+%%#%% quickly %%#%% %%#%% hill%%lst%% ]^[ %%#%% near %%#%% ruins %%#%% %%#%% %%#%% leash 
+%%#%% %%#%% carrying %%#%% dark body%%per%%]$~ ~$[they moved hastily%%per%%]$~ ~$[i %%#%% ]n[ 
+%%#%% %%#%% %%#%% %%#%% them%%per%%]$~ ~$[it %%#%% %%#%% %%#%% vanished %%#%% %%#%% 
+bushes%%per%%]$~ ~$[the dawn %%#%% %%#%% indistinct%%lst%% %%#%% %%#%% understand%%per%%]$~ ~$[i 
+%%#%% feeling %%#%% chill%%lst%% uncertain%%lst%% early%%dsh%%morning feeling %%#%% %%#%% 
+%%#%% known%%per%%]$~ ~$[i doubted %%#%% eyes%%per%% 
+`as %%#%% eastern sky grew brighter%%lst%% ]^[ %%#%% light %%#%% %%#%% day 
+%%#%% %%#%% ]^[ %%#%% vivid colouring returned %%#%% %%#%% world %%#%% 
+more%%lst%% %%#%% scanned %%#%% view keenly%%per%%]$~ ~$[but %%#%% %%#%% %%#%% vestige %%#%% %%#%% 
+white figures%%per%%]$~ ~$[they %%#%% mere creatures %%#%% %%#%% half light%%per%% 
+%%dqt%%they %%#%% %%#%% %%#%% ghosts,%%dqt%% %%#%% said%%scn%% %%dqt%%i wonder w%%cmp_h%% %%#%% 
+dated%%per%%%%dqt%% %%#%% %%#%% queer notion %%#%% grant allen%%sqt%%s %%#%% %%#%% %%#%% head%%lst%% 
+]^[ amused me%%per%%]$~ ~$[if %%#%% generation die ]^[ leave ghosts%%lst%% %%#%% 
+argued%%lst%% %%#%% world %%#%% last %%#%% %%#%% overcrowded %%#%% them%%per%%]$~ ~$[on 
+%%#%% theory %%#%% %%#%% %%#%% grown innumerable %%#%% eight hundred 
+thousand %%#%% %%cmp_h%%%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% wonder %%#%% %%#%% %%#%% %%#%% 
+once%%per%%]$~ ~$[but %%#%% jest %%#%% unsatisfying%%lst%% ]^[ %%#%% %%#%% thinking %%#%% %%#%% 
+figures %%#%% %%#%% morning%%lst%% %%#%% weena%%sqt%%s rescue drove %%#%% %%#%% %%#%% 
+%%#%% head%%per%%]$~ ~$[i associated %%#%% %%#%% %%#%% indefinite %%#%% %%#%% %%#%% white 
+animal %%#%% %%#%% startled %%#%% %%#%% %%#%% passionate search ]f[ %%#%% time 
+machine%%per%%]$~ ~$[but weena %%#%% %%#%% pleasant substitute%%per%%]$~ ~$[yet %%#%% %%#%% same%%lst%% 
+%%#%% %%#%% soon destined %%#%% %%#%% %%#%% deadlier possession %%#%% %%#%% 
+mind%%per%% 
+`i %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% hotter %%cmp_ta%% %%#%% own %%#%% %%#%% 
+weather %%#%% %%#%% golden age%%per%%]$~ ~$[i %%#%% account ]f[ it%%per%%]$~ ~$[it %%#%% %%#%% 
+%%#%% %%#%% sun %%#%% hotter%%lst%% ]v[ %%#%% earth nearer %%#%% sun%%per%%]$~ ~$[it %%#%% 
+usual %%#%% assume %%#%% %%#%% sun %%#%% %%#%% %%#%% cooling steadily %%#%% %%#%% 
+future%%per%%]$~ ~$[but people%%lst%% unfamiliar %%#%% %%#%% speculations %%#%% %%#%% 
+%%#%% %%#%% %%#%% darwin%%lst%% forget %%#%% %%#%% planets %%#%% ultimately 
+fall %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% parent body%%per%%]$~ ~$[as %%#%% catastrophes 
+occur%%lst%% %%#%% sun %%#%% blaze %%#%% renewed energy%%scn%% ]^[ %%#%% %%#%% %%#%% %%#%% 
+%%#%% inner planet %%#%% suffered %%#%% fate%%per%%]$~ ~$[whatever %%#%% reason%%lst%% 
+%%#%% %%#%% remains %%#%% %%#%% sun %%#%% %%#%% %%#%% hotter %%cmp_ta%% %%#%% know 
+it%%per%% 
+`well%%lst%% %%#%% %%#%% hot morning%%dsh%%%%dsh%%my fourth%%lst%% %%#%% think%%dsh%%%%dsh%%as %%#%% %%#%% 
+seeking shelter %%#%% %%#%% heat ]^[ glare %%#%% %%#%% colossal ruin near 
+%%#%% %%#%% house %%#%% %%#%% slept ]^[ fed%%lst%% %%#%% happened %%#%% 
+strange thing%%cln%% clambering %%#%% %%#%% heaps %%#%% masonry%%lst%% %%#%% found %%#%% 
+narrow gallery%%lst%% %%#%% %%#%% ]^[ %%#%% windows %%#%% blocked %%#%% fallen 
+masses %%#%% stone%%per%%]$~ ~$[by contrast %%#%% %%#%% brilliancy outside%%lst%% %%#%% 
+%%#%% %%#%% %%#%% impenetrably dark %%#%% me%%per%%]$~ ~$[i entered %%#%% groping%%lst%% 
+]f[ %%#%% change %%#%% light %%#%% blackness %%#%% spots %%#%% colour swim 
+%%#%% me%%per%%]$~ ~$[suddenly %%#%% halted spellbound%%per%%]$~ ~$[a pair %%#%% eyes%%lst%% 
+luminous %%#%% reflection %%#%% %%#%% daylight without%%lst%% %%#%% watching 
+%%#%% %%#%% %%#%% %%#%% darkness%%per%% 
+`the %%#%% instinctive dread %%#%% wild beasts %%#%% %%#%% me%%per%%]$~ ~$[i 
+clenched %%#%% hands ]^[ steadfastly looked %%#%% %%#%% glaring 
+eyeballs%%per%%]$~ ~$[i %%#%% afraid %%#%% turn%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% 
+absolute security %%#%% %%#%% humanity appeared %%#%% %%#%% living %%#%% %%#%% 
+%%#%% mind%%per%%]$~ ~$[and %%cmp_t%% %%#%% remembered %%#%% strange terror %%#%% %%#%% dark%%per%%]$~ 
+~$[overcoming %%#%% fear %%#%% %%#%% extent%%lst%% %%#%% advanced %%#%% step ]^[ spoke%%per%%]$~ 
+~$[i %%#%% admit %%#%% %%#%% voice %%#%% harsh ]^[ ill%%dsh%%controlled%%per%%]$~ ~$[i %%#%% 
+%%#%% %%#%% hand ]^[ touched %%#%% soft%%per%%]$~ ~$[at %%#%% %%#%% eyes darted 
+sideways%%lst%% ]^[ %%#%% white ran past me%%per%%]$~ ~$[i %%#%% %%#%% %%#%% 
+heart %%#%% %%#%% mouth%%lst%% ]^[ %%#%% %%#%% queer little ape%%dsh%%like figure%%lst%% %%#%% 
+head held %%#%% %%#%% %%#%% peculiar manner%%lst%% running %%#%% %%#%% sunlit 
+space %%#%% me%%per%%]$~ ~$[it blundered %%#%% %%#%% block %%#%% granite%%lst%% 
+staggered aside%%lst%% ]^[ %%#%% %%#%% moment %%#%% hidden %%#%% %%#%% black shadow 
+beneath %%#%% pile %%#%% ruined masonry%%per%% 
+`my impression %%#%% %%#%% is%%lst%% %%#%% course%%lst%% imperfect%%scn%% ]b[ %%#%% know %%#%% 
+%%#%% %%#%% dull white%%lst%% ]^[ %%#%% strange large greyish%%dsh%%red eyes%%scn%% %%#%% 
+%%#%% %%#%% %%#%% flaxen hair %%#%% %%#%% head ]^[ %%#%% %%#%% back%%per%%]$~ ~$[but%%lst%% 
+%%#%% %%#%% say%%lst%% %%#%% %%#%% %%#%% fast ]f[ %%#%% %%#%% %%#%% distinctly%%per%%]$~ ~$[i %%#%% 
+%%#%% %%#%% %%#%% %%#%% ran %%#%% all%%dsh%%fours%%lst%% ]v[ %%#%% %%#%% %%#%% forearms 
+held %%#%% low%%per%%]$~ ~$[after %%#%% instant%%sqt%%s pause %%#%% followed %%#%% %%#%% %%#%% 
+%%#%% heap %%#%% ruins%%per%%]$~ ~$[i %%#%% ]n[ %%#%% %%#%% %%#%% first%%scn%% but%%lst%% %%#%% %%#%% 
+time %%#%% %%#%% profound obscurity%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% round 
+well%%dsh%%like openings %%#%% %%#%% %%#%% %%#%% told you%%lst%% half closed %%#%% %%#%% 
+fallen pillar%%per%%]$~ ~$[a sudden %%#%% %%#%% %%#%% me%%per%%]$~ ~$[could %%#%% %%#%% 
+%%#%% vanished %%#%% %%#%% shaft%%qsn%%]$~ ~$[i lit %%#%% match%%lst%% and%%lst%% looking down%%lst%% 
+%%#%% %%#%% %%#%% small%%lst%% white%%lst%% moving creature%%lst%% %%#%% large bright eyes 
+%%#%% regarded %%#%% steadfastly %%#%% %%#%% retreated%%per%%]$~ ~$[it %%#%% %%#%% 
+shudder%%per%%]$~ ~$[it %%#%% ]s[ %%#%% %%#%% human spider%%xcm%%]$~ ~$[it %%#%% clambering %%#%% 
+%%#%% wall%%lst%% ]^[ %%#%% %%#%% %%#%% ]f[ %%#%% %%#%% time %%#%% number %%#%% metal foot 
+]^[ hand rests forming %%#%% kind %%#%% ladder %%#%% %%#%% shaft%%per%%]$~ ~$[then %%#%% 
+light burned %%#%% fingers ]^[ fell %%#%% %%#%% %%#%% hand%%lst%% %%#%% %%#%% %%#%% %%#%% 
+dropped%%lst%% ]^[ %%#%% %%#%% %%#%% lit %%#%% %%#%% little monster %%#%% 
+disappeared%%per%% 
+`i %%#%% ]n[ know %%#%% %%#%% %%#%% sat peering %%#%% %%#%% well%%per%%]$~ ~$[it %%#%% 
+]n[ ]f[ %%#%% time %%#%% %%#%% %%#%% succeed %%#%% persuading %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% seen %%#%% human%%per%%]$~ ~$[but%%lst%% gradually%%lst%% %%#%% truth dawned 
+%%#%% me%%cln%% %%#%% %%#%% %%#%% ]n[ remained %%#%% species%%lst%% ]b[ %%#%% 
+differentiated %%#%% %%#%% distinct animals%%cln%% %%#%% %%#%% graceful 
+children %%#%% %%#%% upper%%dsh%%world %%#%% ]n[ %%#%% sole descendants %%#%% %%#%% 
+generation%%lst%% ]b[ %%#%% %%#%% bleached%%lst%% obscene%%lst%% nocturnal thing%%lst%% 
+%%#%% %%#%% flashed %%#%% me%%lst%% %%#%% %%#%% heir %%#%% %%#%% %%#%% ages%%per%% 
+`i %%#%% %%#%% %%#%% flickering pillars ]^[ %%#%% %%#%% theory %%#%% %%#%% 
+underground ventilation%%per%%]$~ ~$[i %%#%% %%#%% suspect %%#%% true import%%per%%]$~ 
+~$[and what%%lst%% %%#%% wondered%%lst%% %%#%% %%#%% lemur doing %%#%% %%#%% scheme %%#%% %%#%% 
+perfectly balanced organization%%qsn%%]$~ ~$[how %%#%% %%#%% related %%#%% %%#%% 
+indolent serenity %%#%% %%#%% beautiful upper%%dsh%%worlders%%qsn%%]$~ ~$[and %%#%% %%#%% 
+hidden %%#%% there%%lst%% %%#%% %%#%% foot %%#%% %%#%% shaft%%qsn%%]$~ ~$[i sat %%#%% %%#%% 
+edge %%#%% %%#%% %%#%% telling %%#%% that%%lst%% %%#%% %%#%% rate%%lst%% %%#%% %%#%% 
+%%#%% %%#%% fear%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% descend ]f[ %%#%% solution 
+%%#%% %%#%% difficulties%%per%%]$~ ~$[and withal %%#%% %%#%% absolutely afraid %%#%% go%%xcm%%]$~ 
+~$[as %%#%% hesitated%%lst%% %%#%% %%#%% %%#%% beautiful upper%%dsh%%world people %%#%% 
+running %%#%% %%#%% amorous sport %%#%% %%#%% daylight %%#%% %%#%% shadow%%per%%]$~ 
+~$[the male pursued %%#%% female%%lst%% flinging flowers %%#%% %%#%% %%#%% %%#%% ran%%per%% 
+`they %%#%% distressed %%#%% %%#%% me%%lst%% %%#%% arm %%#%% %%#%% 
+overturned pillar%%lst%% peering %%#%% %%#%% well%%per%%]$~ ~$[apparently %%#%% %%#%% 
+considered bad form %%#%% remark %%#%% apertures%%scn%% ]f[ %%#%% %%#%% %%#%% 
+%%#%% %%#%% one%%lst%% ]^[ tried %%#%% frame %%#%% question %%#%% %%#%% %%#%% %%#%% 
+tongue%%lst%% %%#%% %%#%% %%#%% %%#%% visibly distressed ]^[ %%#%% away%%per%%]$~ 
+~$[but %%#%% %%#%% %%#%% %%#%% %%#%% matches%%lst%% ]^[ %%#%% struck %%#%% %%#%% 
+amuse them%%per%%]$~ ~$[i tried %%#%% %%#%% %%#%% %%#%% well%%lst%% ]^[ %%#%% %%#%% 
+failed%%per%%]$~ ~$[so presently %%#%% left them%%lst%% meaning %%#%% %%#%% %%#%% %%#%% weena%%lst%% 
+]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% her%%per%%]$~ ~$[but %%#%% mind %%#%% %%#%% %%#%% 
+revolution%%scn%% %%#%% guesses ]^[ impressions %%#%% slipping ]^[ sliding 
+%%#%% %%#%% %%#%% adjustment%%per%%]$~ ~$[i %%#%% %%#%% %%#%% clue %%#%% %%#%% import %%#%% %%#%% 
+wells%%lst%% %%#%% %%#%% ventilating towers%%lst%% %%#%% %%#%% mystery %%#%% %%#%% ghosts%%scn%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% hint %%#%% %%#%% meaning %%#%% %%#%% bronze gates ]^[ 
+%%#%% fate %%#%% %%#%% time machine%%xcm%%]$~ ~$[and %%#%% vaguely %%#%% %%#%% %%#%% 
+suggestion towards %%#%% solution %%#%% %%#%% economic problem %%#%% %%#%% 
+puzzled me%%per%% 
+`here %%#%% %%#%% %%#%% view%%per%%]$~ ~$[plainly%%lst%% %%#%% %%#%% species %%#%% %%#%% 
+%%#%% subterranean%%per%%]$~ ~$[there %%#%% %%#%% circumstances %%#%% particular 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% rare emergence %%#%% ground %%#%% %%#%% 
+outcome %%#%% %%#%% long%%dsh%%continued underground habit%%per%%]$~ ~$[in %%#%% %%#%% 
+place%%lst%% %%#%% %%#%% %%#%% bleached look common %%#%% %%#%% animals %%#%% 
+live largely %%#%% %%#%% dark%%dsh%%%%dsh%%the white fish %%#%% %%#%% kentucky caves%%lst%% 
+]f[ instance%%per%%]$~ ~$[then%%lst%% %%#%% large eyes%%lst%% %%#%% %%#%% capacity ]f[ 
+reflecting light%%lst%% %%#%% common features %%#%% nocturnal things%%dsh%%%%dsh%% 
+witness %%#%% owl ]^[ %%#%% cat%%per%%]$~ ~$[and last %%#%% all%%lst%% %%#%% evident 
+confusion %%#%% %%#%% sunshine%%lst%% %%#%% hasty ]y[ fumbling awkward flight 
+towards dark shadow%%lst%% ]^[ %%#%% peculiar carriage %%#%% %%#%% head %%#%% 
+%%#%% %%#%% light%%dsh%%%%dsh%%all reinforced %%#%% theory %%#%% %%#%% extreme 
+sensitiveness %%#%% %%#%% retina%%per%% 
+`beneath %%#%% feet%%lst%% %%cmp_t%%%%lst%% %%#%% earth %%#%% %%#%% tunnelled 
+enormously%%lst%% ]^[ %%#%% tunnellings %%#%% %%#%% habitat %%#%% %%#%% %%#%% 
+race%%per%%]$~ ~$[the presence %%#%% ventilating shafts ]^[ %%#%% %%#%% %%#%% 
+hill slopes%%dsh%%%%dsh%%everywhere%%lst%% %%#%% %%#%% except %%#%% %%#%% river valley 
+%%dsh%%%%dsh%%showed %%#%% universal %%#%% %%#%% ramifications%%per%%]$~ ~$[what ]s[ natural%%lst%% 
+%%cmp_t%%%%lst%% %%#%% %%#%% assume %%#%% %%#%% %%#%% %%#%% %%#%% artificial underworld %%#%% 
+%%#%% %%#%% %%#%% %%#%% necessary %%#%% %%#%% comfort %%#%% %%#%% daylight race 
+%%#%% done%%qsn%%]$~ ~$[the notion %%#%% ]s[ plausible %%#%% %%#%% %%#%% %%#%% accepted 
+it%%lst%% ]^[ %%#%% %%#%% %%#%% assume %%#%% %%#%% %%#%% %%#%% splitting %%#%% %%#%% human 
+species%%per%%]$~ ~$[i dare %%#%% %%#%% %%#%% anticipate %%#%% shape %%#%% %%#%% theory%%scn%% 
+though%%lst%% ]f[ myself%%lst%% %%#%% %%#%% soon %%#%% %%#%% %%#%% fell %%#%% short %%#%% 
+%%#%% truth%%per%% 
+`at first%%lst%% proceeding %%#%% %%#%% problems %%#%% %%#%% own age%%lst%% %%#%% 
+%%#%% %%#%% %%#%% daylight %%#%% %%#%% %%#%% %%#%% gradual widening %%#%% %%#%% 
+%%#%% merely temporary ]^[ social difference %%#%% %%#%% 
+capitalist ]^[ %%#%% labourer%%lst%% %%#%% %%#%% key %%#%% %%#%% %%#%% position%%per%%]$~ 
+~$[no doubt %%#%% %%#%% %%#%% grotesque %%#%% %%#%% you%%dsh%%%%dsh%%and wildly 
+incredible!%%dsh%%%%dsh%%and ]y[ %%#%% %%#%% %%#%% %%#%% existing circumstances 
+%%#%% %%#%% %%#%% way%%per%%]$~ ~$[there %%#%% %%#%% tendency %%#%% utilize underground 
+space ]f[ %%#%% less ornamental purposes %%#%% civilization%%scn%% %%#%% %%#%% 
+%%#%% metropolitan railway %%#%% london%%lst%% ]f[ instance%%lst%% %%#%% %%#%% %%#%% 
+electric railways%%lst%% %%#%% %%#%% subways%%lst%% %%#%% %%#%% underground 
+workrooms ]^[ restaurants%%lst%% ]^[ %%#%% increase ]^[ multiply%%per%%]$~ 
+~$[evidently%%lst%% %%#%% thought%%lst%% %%#%% tendency %%#%% increased till industry 
+%%#%% gradually lost %%#%% birthright %%#%% %%#%% sky%%per%%]$~ ~$[i mean %%#%% %%#%% %%#%% 
+gone deeper ]^[ deeper %%#%% larger ]^[ %%#%% larger underground 
+factories%%lst%% spending %%#%% still%%dsh%%increasing amount %%#%% %%#%% time 
+therein%%lst%% till%%lst%% %%#%% %%#%% end%%dsh%%%%dsh%%%%xcm%%]$~ ~$[even now%%lst%% %%#%% ]n[ %%#%% east%%dsh%%end 
+worker live %%#%% %%#%% artificial conditions %%#%% practically %%#%% %%#%% 
+cut %%#%% %%#%% %%#%% natural surface %%#%% %%#%% earth? 
+`again%%lst%% %%#%% exclusive tendency %%#%% richer people%%dsh%%%%dsh%%due%%lst%% %%#%% 
+doubt%%lst%% %%#%% %%#%% increasing refinement %%#%% %%#%% education%%lst%% ]^[ %%#%% 
+widening gulf %%#%% %%#%% ]^[ %%#%% rude violence %%#%% %%#%% poor%%dsh%%%%dsh%% 
+%%#%% %%#%% leading %%#%% %%#%% closing%%lst%% %%#%% %%#%% interest%%lst%% %%#%% 
+considerable portions %%#%% %%#%% surface %%#%% %%#%% land%%per%%]$~ ~$[about london%%lst%% 
+]f[ instance%%lst%% %%#%% half %%#%% prettier country %%#%% shut %%#%% 
+%%#%% intrusion%%per%%]$~ ~$[and %%#%% %%#%% widening gulf%%dsh%%%%dsh%%which %%#%% due 
+%%#%% %%#%% length ]^[ expense %%#%% %%#%% %%#%% educational process ]^[ 
+%%#%% increased facilities ]f[ ]^[ temptations towards refined 
+habits %%#%% %%#%% %%#%% %%#%% %%#%% rich%%dsh%%%%dsh%%will %%#%% %%#%% exchange %%#%% 
+class ]^[ class%%lst%% %%#%% promotion %%#%% intermarriage %%#%% %%#%% %%#%% 
+retards %%#%% splitting %%#%% %%#%% species %%#%% lines %%#%% social 
+stratification%%lst%% less ]^[ less frequent%%per%%]$~ ~$[so%%lst%% %%#%% %%#%% end%%lst%% %%#%% 
+ground %%#%% %%#%% %%#%% %%#%% haves%%lst%% pursuing pleasure ]^[ comfort ]^[ 
+beauty%%lst%% ]^[ below ground %%#%% have%%dsh%%nots%%lst%% %%#%% workers getting 
+continually adapted %%#%% %%#%% conditions %%#%% %%#%% labour%%per%%]$~ ~$[once %%#%% 
+%%#%% there%%lst%% %%#%% %%#%% %%#%% doubt %%#%% %%#%% pay rent%%lst%% ]^[ ]n[ %%#%% 
+little %%#%% it%%lst%% ]f[ %%#%% ventilation %%#%% %%#%% caverns%%scn%% ]^[ %%cmp_if%% %%#%% 
+refused%%lst%% %%#%% %%#%% starve ]v[ %%#%% suffocated ]f[ arrears%%per%%]$~ ~$[such %%#%% 
+%%#%% %%#%% %%#%% ]s[ constituted %%#%% %%#%% %%#%% miserable ]^[ rebellious 
+%%#%% die%%scn%% and%%lst%% %%#%% %%#%% end%%lst%% %%#%% balance %%#%% permanent%%lst%% %%#%% 
+survivors %%#%% %%#%% %%#%% %%#%% adapted %%#%% %%#%% conditions %%#%% 
+underground life%%lst%% ]^[ %%#%% happy %%#%% %%#%% way%%lst%% %%#%% %%#%% upper%%dsh%%world 
+people %%#%% %%#%% theirs%%per%%]$~ ~$[as %%#%% %%#%% %%#%% me%%lst%% %%#%% refined beauty 
+]^[ %%#%% etiolated pallor followed naturally enough%%per%% 
+`the %%#%% triumph %%#%% humanity %%#%% %%#%% dreamed %%#%% %%#%% %%#%% 
+%%#%% shape %%#%% %%#%% mind%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% triumph %%#%% moral 
+education ]^[ %%#%% co%%dsh%%operation %%#%% %%#%% %%#%% imagined%%per%%]$~ ~$[instead%%lst%% %%#%% 
+%%#%% %%#%% real aristocracy%%lst%% armed %%#%% %%#%% perfected science ]^[ 
+%%#%% %%#%% %%#%% logical conclusion %%#%% industrial system %%#%% to%%dsh%%day%%per%%]$~ 
+~$[its triumph %%#%% ]n[ %%#%% simply %%#%% triumph %%#%% nature%%lst%% ]b[ %%#%% 
+triumph %%#%% nature ]^[ %%#%% fellow%%dsh%%man%%per%%]$~ ~$[this%%lst%% %%#%% %%#%% warn you%%lst%% 
+%%#%% %%#%% theory %%#%% %%#%% time%%per%%]$~ ~$[i %%#%% %%#%% convenient cicerone %%#%% %%#%% 
+pattern %%#%% %%#%% utopian books%%per%%]$~ ~$[my explanation %%#%% %%#%% absolutely 
+wrong%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% plausible one%%per%%]$~ ~$[but %%#%% %%#%% 
+%%#%% supposition %%#%% balanced civilization %%#%% %%#%% %%#%% last 
+attained %%#%% %%#%% %%#%% %%#%% passed %%#%% zenith%%lst%% ]^[ %%#%% %%#%% %%#%% 
+fallen %%#%% decay%%per%%]$~ ~$[the too%%dsh%%perfect security %%#%% %%#%% 
+upper%%dsh%%worlders %%#%% led %%#%% %%#%% %%#%% slow movement %%#%% degeneration%%lst%% 
+%%#%% %%#%% %%#%% dwindling %%#%% size%%lst%% strength%%lst%% ]^[ intelligence%%per%%]$~ ~$[that 
+%%#%% %%#%% %%#%% %%#%% %%#%% already%%per%%]$~ ~$[what %%#%% happened %%#%% %%#%% 
+under%%dsh%%grounders %%#%% %%#%% ]n[ ]y[ suspect%%scn%% ]b[ %%#%% %%#%% %%#%% %%#%% seen 
+%%#%% %%#%% morlocks%%dsh%%%%dsh%%that%%lst%% %%#%% %%#%% by%%lst%% %%#%% %%#%% name %%#%% %%#%% %%#%% 
+creatures %%#%% called%%dsh%%%%dsh%%i %%#%% imagine %%#%% %%#%% modification %%#%% 
+%%#%% human type %%#%% %%#%% %%#%% %%#%% profound %%cmp_ta%% %%#%% %%#%% %%dqt%%eloi,%%dqt%% 
+%%#%% beautiful race %%#%% %%#%% %%#%% knew%%per%% 
+`then %%#%% troublesome doubts%%per%%]$~ ~$[why %%#%% %%#%% morlocks %%#%% %%#%% 
+time machine%%qsn%%]$~ ~$[for %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% it%%per%%]$~ 
+~$[why%%lst%% too%%lst%% %%cmp_if%% %%#%% eloi %%#%% masters%%lst%% %%#%% %%#%% ]n[ restore %%#%% 
+machine %%#%% me%%qsn%%]$~ ~$[and %%#%% %%#%% %%#%% ]s[ terribly afraid %%#%% %%#%% dark%%qsn%%]$~ 
+~$[i proceeded%%lst%% %%#%% %%#%% %%#%% said%%lst%% %%#%% question weena %%#%% %%#%% 
+under%%dsh%%world%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% disappointed%%per%%]$~ ~$[at %%#%% %%#%% 
+%%#%% ]n[ understand %%#%% questions%%lst%% ]^[ presently %%#%% refused %%#%% 
+answer them%%per%%]$~ ~$[she shivered %%#%% %%#%% %%#%% topic %%#%% unendurable%%per%%]$~ 
+~$[and %%#%% %%#%% pressed her%%lst%% %%#%% %%#%% little harshly%%lst%% %%#%% burst %%#%% 
+tears%%per%%]$~ ~$[they %%#%% %%#%% %%#%% tears%%lst%% except %%#%% own%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% golden age%%per%%]$~ ~$[when %%#%% %%#%% %%#%% %%#%% ceased abruptly %%#%% trouble 
+%%#%% %%#%% morlocks%%lst%% ]^[ %%#%% %%#%% concerned %%#%% banishing %%#%% 
+signs %%#%% %%#%% human inheritance %%#%% weena%%sqt%%s eyes%%per%%]$~ ~$[and %%#%% soon 
+%%#%% %%#%% smiling ]^[ clapping %%#%% hands%%lst%% %%#%% %%#%% solemnly burned %%#%% 
+match%%per%%]$~ 
+~$[vi 
+`it %%#%% %%#%% odd %%#%% you%%lst%% ]b[ %%#%% %%#%% %%#%% days %%#%% %%#%% %%#%% 
+follow %%#%% %%#%% new%%dsh%%found clue %%#%% %%#%% %%#%% manifestly %%#%% proper 
+way%%per%%]$~ ~$[i %%#%% %%#%% peculiar shrinking %%#%% %%#%% pallid bodies%%per%%]$~ ~$[they 
+%%#%% %%#%% %%#%% half%%dsh%%bleached colour %%#%% %%#%% worms ]^[ %%#%% %%#%% 
+%%#%% preserved %%#%% spirit %%#%% %%#%% zoological museum%%per%%]$~ ~$[and %%#%% %%#%% 
+filthily cold %%#%% %%#%% touch%%per%%]$~ ~$[probably %%#%% shrinking %%#%% largely 
+due %%#%% %%#%% sympathetic influence %%#%% %%#%% eloi%%lst%% %%#%% disgust %%#%% 
+%%#%% morlocks %%#%% %%#%% %%#%% %%#%% appreciate%%per%% 
+`the %%#%% night %%#%% %%#%% ]n[ sleep well%%per%%]$~ ~$[probably %%#%% health %%#%% 
+%%#%% little disordered%%per%%]$~ ~$[i %%#%% oppressed %%#%% perplexity ]^[ doubt%%per%%]$~ 
+~$[once ]v[ twice %%#%% %%#%% %%#%% feeling %%#%% intense fear ]f[ %%#%% %%#%% %%#%% 
+perceive %%#%% definite reason%%per%%]$~ ~$[i remember creeping noiselessly 
+%%#%% %%#%% %%#%% hall %%#%% %%#%% little people %%#%% sleeping %%#%% %%#%% 
+moonlight%%dsh%%%%dsh%%that night weena %%#%% %%#%% them%%dsh%%%%dsh%%and feeling 
+reassured %%#%% %%#%% presence%%per%%]$~ ~$[it occurred %%#%% %%#%% %%#%% %%cmp_t%%%%lst%% %%#%% 
+%%#%% %%#%% course %%#%% %%#%% %%#%% days %%#%% moon %%#%% pass %%#%% %%#%% last 
+quarter%%lst%% ]^[ %%#%% nights grow dark%%lst%% %%#%% %%#%% appearances %%#%% %%#%% 
+unpleasant creatures %%#%% below%%lst%% %%#%% whitened lemurs%%lst%% %%#%% %%#%% 
+vermin %%#%% %%#%% replaced %%#%% old%%lst%% %%#%% %%#%% %%#%% abundant%%per%%]$~ ~$[and %%#%% 
+%%#%% %%#%% days %%#%% %%#%% %%#%% restless feeling %%#%% %%#%% %%#%% shirks %%#%% 
+inevitable duty%%per%%]$~ ~$[i %%#%% assured %%#%% %%#%% time machine %%#%% %%#%% 
+%%#%% %%#%% recovered %%#%% boldly penetrating %%#%% underground 
+mysteries%%per%%]$~ ~$[yet %%#%% %%#%% ]n[ %%#%% %%#%% mystery%%per%%]$~ ~$[if %%#%% %%#%% %%#%% %%#%% 
+%%#%% companion %%#%% %%#%% %%#%% %%#%% different%%per%%]$~ ~$[but %%#%% %%#%% ]s[ horribly 
+alone%%lst%% ]^[ %%#%% %%#%% clamber %%#%% %%#%% %%#%% darkness %%#%% %%#%% %%#%% 
+appalled me%%per%%]$~ ~$[i don%%sqt%%t know %%cmp_if%% %%#%% %%#%% understand %%#%% feeling%%lst%% ]b[ 
+%%#%% %%#%% %%#%% %%#%% safe %%#%% %%#%% back%%per%% 
+`it %%#%% %%#%% restlessness%%lst%% %%#%% insecurity%%lst%% perhaps%%lst%% %%#%% 
+drove %%#%% %%#%% ]^[ %%#%% afield %%#%% %%#%% exploring expeditions%%per%%]$~ 
+~$[going %%#%% %%#%% south%%dsh%%westward towards %%#%% rising country %%#%% %%#%% 
+%%#%% called combe wood%%lst%% %%#%% observed %%#%% off%%lst%% %%#%% %%#%% direction %%#%% 
+nineteenth%%dsh%%century banstead%%lst%% %%#%% vast green structure%%lst%% %%#%% %%#%% 
+character %%#%% %%#%% %%#%% %%#%% hitherto seen%%per%%]$~ ~$[it %%#%% larger %%cmp_ta%% %%#%% 
+largest %%#%% %%#%% palaces ]v[ ruins %%#%% knew%%lst%% ]^[ %%#%% facade %%#%% %%#%% 
+oriental look%%cln%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% lustre%%lst%% %%#%% %%#%% %%#%% %%#%% 
+pale%%dsh%%green tint%%lst%% %%#%% kind %%#%% bluish%%dsh%%green%%lst%% %%#%% %%#%% %%#%% type %%#%% 
+chinese porcelain%%per%%]$~ ~$[this difference %%#%% aspect suggested %%#%% 
+difference %%#%% use%%lst%% ]^[ %%#%% %%#%% minded %%#%% push %%#%% ]^[ explore%%per%%]$~ ~$[but 
+%%#%% day %%#%% growing late%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% sight %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% ]^[ tiring circuit%%scn%% ]s[ %%#%% resolved %%#%% hold %%#%% 
+%%#%% adventure ]f[ %%#%% following day%%lst%% ]^[ %%#%% returned %%#%% %%#%% 
+welcome ]^[ %%#%% caresses %%#%% little weena%%per%%]$~ ~$[but %%#%% morning %%#%% 
+perceived %%#%% %%#%% %%#%% %%#%% curiosity regarding %%#%% palace 
+%%#%% green porcelain %%#%% %%#%% piece %%#%% self%%dsh%%deception%%lst%% %%#%% enable %%#%% %%#%% 
+shirk%%lst%% %%#%% %%#%% day%%lst%% %%#%% experience %%#%% dreaded%%per%%]$~ ~$[i resolved %%#%% 
+%%#%% %%#%% %%#%% descent %%#%% %%#%% waste %%#%% time%%lst%% ]^[ started 
+%%#%% %%#%% %%#%% %%#%% morning towards %%#%% %%#%% near %%#%% ruins %%#%% granite 
+]^[ aluminium%%per%% 
+`little weena ran %%#%% me%%per%%]$~ ~$[she danced beside %%#%% %%#%% %%#%% well%%lst%% 
+]b[ %%#%% %%#%% %%#%% %%#%% lean %%#%% %%#%% mouth ]^[ look downward%%lst%% %%#%% 
+%%#%% strangely disconcerted%%per%% %%dqt%%good%%dsh%%bye%%lst%% little weena,%%dqt%% %%#%% said%%lst%% 
+kissing her%%scn%% ]^[ %%cmp_t%% putting %%#%% down%%lst%% %%#%% %%#%% %%#%% feel %%#%% %%#%% 
+parapet ]f[ %%#%% climbing hooks%%per%%]$~ ~$[rather hastily%%lst%% %%#%% %%#%% %%#%% %%#%% 
+confess%%lst%% ]f[ %%#%% feared %%#%% courage %%#%% leak away%%xcm%%]$~ ~$[at %%#%% %%#%% 
+watched %%#%% %%#%% amazement%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% piteous cry%%lst%% ]^[ 
+running %%#%% me%%lst%% %%#%% %%#%% %%#%% pull %%#%% %%#%% %%#%% %%#%% little hands%%per%%]$~ ~$[i 
+%%#%% %%#%% opposition nerved %%#%% %%#%% %%#%% proceed%%per%%]$~ ~$[i shook %%#%% 
+off%%lst%% %%#%% %%#%% little roughly%%lst%% ]^[ %%#%% %%#%% moment %%#%% %%#%% %%#%% %%#%% 
+throat %%#%% %%#%% well%%per%%]$~ ~$[i %%#%% %%#%% agonized %%#%% %%#%% %%#%% parapet%%lst%% 
+]^[ smiled %%#%% reassure her%%per%%]$~ ~$[then %%#%% %%#%% %%#%% look %%#%% %%#%% %%#%% 
+unstable hooks %%#%% %%#%% %%#%% clung%%per%% 
+`i %%#%% %%#%% clamber %%#%% %%#%% shaft %%#%% %%#%% %%#%% hundred yards%%per%%]$~ 
+~$[the descent %%#%% effected %%#%% means %%#%% metallic bars projecting 
+%%#%% %%#%% %%#%% %%#%% %%#%% well%%lst%% ]^[ %%#%% %%#%% adapted %%#%% %%#%% %%#%% 
+%%#%% %%#%% creature %%#%% %%#%% ]^[ lighter %%cmp_ta%% myself%%lst%% %%#%% %%#%% 
+speedily cramped ]^[ fatigued %%#%% %%#%% descent%%per%%]$~ ~$[and ]n[ simply 
+fatigued%%xcm%%]$~ ~$[one %%#%% %%#%% bars bent suddenly %%#%% %%#%% weight%%lst%% ]^[ 
+%%#%% swung %%#%% %%#%% %%#%% %%#%% blackness beneath%%per%%]$~ ~$[for %%#%% moment %%#%% 
+hung %%#%% %%#%% hand%%lst%% ]^[ %%#%% %%#%% experience %%#%% %%#%% ]n[ dare %%#%% 
+rest again%%per%%]$~ ~$[though %%#%% arms ]^[ %%#%% %%#%% presently acutely 
+painful%%lst%% %%#%% %%#%% %%#%% clambering %%#%% %%#%% sheer descent %%#%% %%#%% 
+quick %%#%% motion %%#%% possible%%per%%]$~ ~$[glancing upward%%lst%% %%#%% %%#%% %%#%% aperture%%lst%% 
+%%#%% %%#%% blue disk%%lst%% %%#%% %%#%% %%#%% star %%#%% visible%%lst%% %%#%% little 
+weena%%sqt%%s head %%#%% %%#%% %%#%% round black projection%%per%%]$~ ~$[the thudding 
+sound %%#%% %%#%% machine below grew louder ]^[ %%#%% oppressive%%per%%]$~ 
+~$[everything save %%#%% little disk %%#%% %%#%% profoundly dark%%lst%% ]^[ 
+%%#%% %%#%% looked %%#%% %%#%% weena %%#%% disappeared%%per%% 
+`i %%#%% %%#%% %%#%% agony %%#%% discomfort%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% 
+trying %%#%% %%#%% %%#%% %%#%% shaft again%%lst%% ]^[ leave %%#%% under%%dsh%%world alone%%per%%]$~ 
+~$[but %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% mind %%#%% continued %%#%% 
+descend%%per%%]$~ ~$[at last%%lst%% %%#%% intense relief%%lst%% %%#%% %%#%% dimly coming up%%lst%% %%#%% 
+foot %%#%% %%#%% %%#%% %%#%% me%%lst%% %%#%% slender loophole %%#%% %%#%% wall%%per%%]$~ 
+~$[swinging %%#%% in%%lst%% %%#%% found %%#%% %%#%% %%#%% aperture %%#%% %%#%% narrow 
+horizontal tunnel %%#%% %%#%% %%#%% %%#%% lie %%#%% ]^[ rest%%per%%]$~ ~$[it %%#%% ]n[ 
+%%#%% soon%%per%%]$~ ~$[my arms ached%%lst%% %%#%% %%#%% %%#%% cramped%%lst%% ]^[ %%#%% %%#%% 
+trembling %%#%% %%#%% prolonged terror %%#%% %%#%% fall%%per%%]$~ ~$[besides this%%lst%% %%#%% 
+unbroken darkness %%#%% %%#%% %%#%% distressing effect %%#%% %%#%% eyes%%per%%]$~ ~$[the 
+air %%#%% %%#%% %%#%% %%#%% throb ]^[ hum %%#%% machinery pumping air %%#%% 
+%%#%% shaft%%per%% 
+`i %%#%% ]n[ know %%#%% %%#%% %%#%% lay%%per%%]$~ ~$[i %%#%% roused %%#%% %%#%% soft hand 
+touching %%#%% face%%per%%]$~ ~$[starting %%#%% %%#%% %%#%% darkness %%#%% snatched %%#%% %%#%% 
+matches and%%lst%% hastily striking one%%lst%% %%#%% %%#%% %%#%% stooping white 
+creatures similar %%#%% %%#%% %%#%% %%#%% %%#%% seen %%#%% ground %%#%% %%#%% ruin%%lst%% 
+hastily retreating %%#%% %%#%% light%%per%%]$~ ~$[living%%lst%% %%#%% %%#%% did%%lst%% %%#%% 
+%%#%% appeared %%#%% %%#%% impenetrable darkness%%lst%% %%#%% eyes %%#%% 
+abnormally large ]^[ sensitive%%lst%% %%#%% %%#%% %%#%% %%#%% pupils %%#%% %%#%% 
+abysmal fishes%%lst%% ]^[ %%#%% reflected %%#%% light %%#%% %%#%% %%#%% way%%per%%]$~ ~$[i 
+%%#%% %%#%% doubt %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% rayless obscurity%%lst%% ]^[ 
+%%#%% %%#%% ]n[ %%#%% %%#%% %%#%% %%#%% fear %%#%% %%#%% apart %%#%% %%#%% light%%per%%]$~ 
+~$[but%%lst%% ]s[ soon %%#%% %%#%% struck %%#%% match %%#%% order %%#%% %%#%% them%%lst%% %%#%% fled 
+incontinently%%lst%% vanishing %%#%% dark gutters ]^[ tunnels%%lst%% %%#%% 
+%%#%% %%#%% eyes glared %%#%% %%#%% %%#%% %%#%% strangest fashion%%per%% 
+`i tried %%#%% call %%#%% them%%lst%% ]b[ %%#%% language %%#%% %%#%% %%#%% 
+apparently %%#%% %%#%% %%#%% %%#%% %%#%% over%%dsh%%world people%%scn%% ]s[ %%#%% 
+%%#%% %%#%% %%#%% left %%#%% %%#%% own unaided efforts%%lst%% ]^[ %%#%% %%#%% %%#%% 
+flight %%#%% exploration %%#%% %%#%% %%cmp_t%% %%#%% %%#%% mind%%per%%]$~ ~$[but %%#%% %%#%% 
+%%#%% myself%%lst%% %%dqt%%you %%#%% %%#%% ]f[ %%#%% now,%%dqt%% and%%lst%% feeling %%#%% %%#%% %%#%% %%#%% 
+tunnel%%lst%% %%#%% found %%#%% noise %%#%% machinery grow louder%%per%%]$~ ~$[presently 
+%%#%% walls fell %%#%% %%#%% me%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% large %%#%% space%%lst%% 
+]^[ striking %%#%% match%%lst%% %%#%% %%#%% %%#%% %%#%% entered %%#%% vast arched 
+cavern%%lst%% %%#%% stretched %%#%% utter darkness beyond %%#%% range %%#%% 
+%%#%% light%%per%%]$~ ~$[the view %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% burning %%#%% %%#%% match%%per%% 
+`necessarily %%#%% memory %%#%% vague%%per%%]$~ ~$[great shapes %%#%% %%#%% 
+machines rose %%#%% %%#%% %%#%% dimness%%lst%% ]^[ cast grotesque black 
+shadows%%lst%% %%#%% %%#%% dim spectral morlocks sheltered %%#%% %%#%% glare%%per%%]$~ 
+~$[the place%%lst%% %%#%% %%#%% by%%lst%% %%#%% %%#%% stuffy ]^[ oppressive%%lst%% ]^[ %%#%% 
+faint halitus %%#%% freshly shed blood %%#%% %%#%% %%#%% air%%per%%]$~ ~$[some %%#%% 
+%%#%% %%#%% central vista %%#%% %%#%% little table %%#%% white metal%%lst%% laid 
+%%#%% %%#%% %%#%% %%#%% meal%%per%%]$~ ~$[the morlocks %%#%% %%#%% rate %%#%% 
+carnivorous%%xcm%%]$~ ~$[even %%#%% %%#%% time%%lst%% %%#%% remember wondering %%#%% large 
+animal %%#%% %%#%% survived %%#%% furnish %%#%% red joint %%#%% saw%%per%%]$~ ~$[it 
+%%#%% %%#%% %%#%% indistinct%%cln%% %%#%% heavy smell%%lst%% %%#%% %%#%% unmeaning 
+shapes%%lst%% %%#%% obscene figures lurking %%#%% %%#%% shadows%%lst%% ]^[ %%#%% 
+waiting ]f[ %%#%% darkness %%#%% %%#%% %%#%% %%#%% again%%xcm%%]$~ ~$[then %%#%% match 
+burned down%%lst%% ]^[ stung %%#%% fingers%%lst%% ]^[ fell%%lst%% %%#%% wriggling red spot 
+%%#%% %%#%% blackness%%per%% 
+`i %%#%% %%#%% %%#%% %%#%% particularly ill%%dsh%%equipped %%#%% %%#%% ]f[ 
+%%#%% %%#%% experience%%per%%]$~ ~$[when %%#%% %%#%% started %%#%% %%#%% time machine%%lst%% %%#%% 
+%%#%% started %%#%% %%#%% absurd assumption %%#%% %%#%% %%#%% %%#%% %%#%% future 
+%%#%% %%#%% %%#%% infinitely ahead %%#%% ourselves %%#%% %%#%% %%#%% 
+appliances%%per%%]$~ ~$[i %%#%% %%#%% %%#%% arms%%lst%% %%#%% medicine%%lst%% %%#%% 
+%%#%% %%#%% smoke%%dsh%%%%dsh%%at times %%#%% missed tobacco frightfully%%dsh%%%%dsh%%even 
+%%#%% %%#%% matches%%per%%]$~ ~$[if %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% kodak%%xcm%%]$~ ~$[i 
+%%#%% %%#%% flashed %%#%% glimpse %%#%% %%#%% underworld %%#%% %%#%% second%%lst%% 
+]^[ examined %%#%% %%#%% leisure%%per%%]$~ ~$[but%%lst%% %%#%% %%#%% was%%lst%% %%#%% stood %%#%% %%#%% 
+%%#%% %%#%% weapons ]^[ %%#%% powers %%#%% nature %%#%% endowed %%#%% 
+with%%dsh%%%%dsh%%hands%%lst%% feet%%lst%% ]^[ teeth%%scn%% these%%lst%% ]^[ %%#%% safety%%dsh%%matches %%#%% 
+%%#%% remained %%#%% me%%per%% 
+`i %%#%% afraid %%#%% push %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% machinery %%#%% 
+%%#%% dark%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% last glimpse %%#%% light %%#%% 
+discovered %%#%% %%#%% store %%#%% matches %%#%% run low%%per%%]$~ ~$[it %%#%% %%#%% 
+occurred %%#%% %%#%% %%#%% %%#%% moment %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+economize them%%lst%% ]^[ %%#%% %%#%% wasted %%#%% half %%#%% box %%#%% 
+astonishing %%#%% upper%%dsh%%worlders%%lst%% %%#%% whom fire %%#%% %%#%% novelty%%per%%]$~ ~$[now%%lst%% 
+%%#%% %%#%% say%%lst%% %%#%% %%#%% %%#%% left%%lst%% ]^[ %%#%% %%#%% stood %%#%% %%#%% dark%%lst%% %%#%% hand 
+touched mine%%lst%% lank fingers %%#%% feeling %%#%% %%#%% face%%lst%% ]^[ %%#%% %%#%% 
+sensible %%#%% %%#%% peculiar unpleasant odour%%per%%]$~ ~$[i fancied %%#%% heard %%#%% 
+breathing %%#%% %%#%% crowd %%#%% %%#%% dreadful little %%#%% %%#%% me%%per%%]$~ ~$[i 
+%%#%% %%#%% box %%#%% matches %%#%% %%#%% hand %%#%% gently disengaged%%lst%% ]^[ 
+%%#%% hands %%#%% %%#%% plucking %%#%% %%#%% clothing%%per%%]$~ ~$[the sense %%#%% 
+%%#%% unseen creatures examining %%#%% %%#%% indescribably unpleasant%%per%%]$~ 
+~$[the sudden realization %%#%% %%#%% ignorance %%#%% %%#%% %%#%% %%#%% thinking 
+]^[ doing %%#%% home %%#%% %%#%% %%#%% vividly %%#%% %%#%% darkness%%per%%]$~ ~$[i shouted 
+%%#%% %%#%% %%#%% loudly %%#%% %%#%% could%%per%%]$~ ~$[they started away%%lst%% ]^[ %%cmp_t%% %%#%% 
+%%#%% feel %%#%% approaching %%#%% again%%per%%]$~ ~$[they clutched %%#%% %%#%% %%#%% 
+boldly%%lst%% whispering odd sounds %%#%% %%#%% other%%per%%]$~ ~$[i shivered 
+violently%%lst%% ]^[ shouted %%#%% %%#%% discordantly%%per%%]$~ ~$[this time %%#%% 
+%%#%% ]n[ ]s[ seriously alarmed%%lst%% ]^[ %%#%% %%#%% %%#%% queer laughing 
+noise %%#%% %%#%% %%#%% %%#%% %%#%% me%%per%%]$~ ~$[i %%#%% confess %%#%% %%#%% horribly 
+frightened%%per%%]$~ ~$[i determined %%#%% strike %%#%% match ]^[ escape 
+%%#%% %%#%% protection %%#%% %%#%% glare%%per%%]$~ ~$[i %%#%% so%%lst%% ]^[ eking %%#%% %%#%% 
+flicker %%#%% %%#%% scrap %%#%% paper %%#%% %%#%% pocket%%lst%% %%#%% %%#%% %%#%% %%#%% 
+retreat %%#%% %%#%% narrow tunnel%%per%%]$~ ~$[but %%#%% %%#%% scarce entered %%#%% %%#%% 
+%%#%% light %%#%% blown %%#%% ]^[ %%#%% %%#%% blackness %%#%% %%#%% hear %%#%% 
+morlocks rustling %%#%% wind %%#%% leaves%%lst%% ]^[ pattering %%#%% %%#%% 
+rain%%lst%% %%#%% %%#%% hurried %%#%% me%%per%% 
+`in %%#%% moment %%#%% %%#%% clutched %%#%% %%#%% hands%%lst%% ]^[ %%#%% %%#%% %%#%% 
+mistaking %%#%% %%#%% %%#%% trying %%#%% haul %%#%% back%%per%%]$~ ~$[i struck 
+%%#%% light%%lst%% ]^[ waved %%#%% %%#%% %%#%% dazzled faces%%per%%]$~ ~$[you %%#%% 
+scarce imagine %%#%% nauseatingly inhuman %%#%% looked%%dsh%%%%dsh%%those pale%%lst%% 
+chinless %%#%% ]^[ great%%lst%% lidless%%lst%% pinkish%%dsh%%grey eyes!%%dsh%%%%dsh%%as %%#%% 
+stared %%#%% %%#%% blindness ]^[ bewilderment%%per%%]$~ ~$[but %%#%% %%#%% ]n[ stay %%#%% 
+look%%lst%% %%#%% promise you%%cln%% %%#%% retreated again%%lst%% ]^[ %%#%% %%#%% %%#%% match 
+%%#%% ended%%lst%% %%#%% struck %%#%% third%%per%%]$~ ~$[it %%#%% %%#%% burned %%#%% %%#%% 
+%%#%% reached %%#%% %%#%% %%#%% %%#%% shaft%%per%%]$~ ~$[i lay %%#%% %%#%% %%#%% edge%%lst%% 
+]f[ %%#%% throb %%#%% %%#%% %%#%% pump below %%#%% %%#%% giddy%%per%%]$~ ~$[then %%#%% %%#%% 
+sideways ]f[ %%#%% projecting hooks%%lst%% and%%lst%% %%#%% %%#%% %%#%% so%%lst%% %%#%% feet %%#%% 
+grasped %%#%% behind%%lst%% ]^[ %%#%% %%#%% violently tugged backward%%per%%]$~ ~$[i lit 
+%%#%% last match %%per%% %%per%% %%per%% ]^[ %%#%% incontinently %%#%% out%%per%%]$~ ~$[but %%#%% %%#%% %%#%% 
+hand %%#%% %%#%% climbing bars now%%lst%% and%%lst%% kicking violently%%lst%% %%#%% 
+disengaged %%#%% %%#%% %%#%% clutches %%#%% %%#%% morlocks ]^[ %%#%% 
+speedily clambering %%#%% %%#%% shaft%%lst%% %%#%% %%#%% stayed peering ]^[ 
+blinking %%#%% %%#%% me%%cln%% %%#%% ]b[ %%#%% little wretch %%#%% followed %%#%% ]f[ 
+%%#%% way%%lst%% ]^[ wellnigh secured %%#%% boot %%#%% %%#%% trophy%%per%% 
+`that climb %%#%% interminable %%#%% me%%per%%]$~ ~$[with %%#%% last twenty 
+]v[ thirty feet %%#%% %%#%% %%#%% deadly nausea %%#%% %%#%% me%%per%%]$~ ~$[i %%#%% %%#%% 
+%%#%% difficulty %%#%% keeping %%#%% hold%%per%%]$~ ~$[the last %%#%% yards %%#%% %%#%% 
+frightful struggle %%#%% %%#%% faintness%%per%%]$~ ~$[several times %%#%% head 
+swam%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% sensations %%#%% falling%%per%%]$~ ~$[at last%%lst%% 
+however%%lst%% %%#%% %%#%% %%#%% %%#%% well%%dsh%%mouth somehow%%lst%% ]^[ staggered %%#%% %%#%% 
+%%#%% ruin %%#%% %%#%% blinding sunlight%%per%%]$~ ~$[i fell %%#%% %%#%% face%%per%%]$~ ~$[even 
+%%#%% soil smelt sweet ]^[ clean%%per%%]$~ ~$[then %%#%% remember weena kissing %%#%% 
+hands ]^[ ears%%lst%% ]^[ %%#%% voices %%#%% %%#%% %%#%% %%#%% eloi%%per%%]$~ ~$[then%%lst%% 
+]f[ %%#%% time%%lst%% %%#%% %%#%% insensible%%per%%]$~ 
+~$[vii 
+`now%%lst%% indeed%%lst%% %%#%% %%#%% %%#%% %%#%% worse %%#%% %%cmp_ta%% before%%per%%]$~ ~$[hitherto%%lst%% 
+except %%#%% %%#%% night%%sqt%%s anguish %%#%% %%#%% loss %%#%% %%#%% time machine%%lst%% 
+%%#%% %%#%% %%#%% %%#%% sustaining hope %%#%% ultimate escape%%lst%% ]b[ %%#%% hope 
+%%#%% staggered %%#%% %%#%% %%#%% discoveries%%per%%]$~ ~$[hitherto %%#%% %%#%% merely 
+%%#%% %%#%% impeded %%#%% %%#%% childish simplicity %%#%% %%#%% little 
+people%%lst%% ]^[ %%#%% %%#%% unknown forces %%#%% %%#%% %%#%% %%#%% %%#%% understand 
+%%#%% overcome%%scn%% ]b[ %%#%% %%#%% %%#%% altogether %%#%% element %%#%% %%#%% 
+sickening quality %%#%% %%#%% morlocks%%dsh%%%%dsh%%a %%#%% inhuman ]^[ 
+malign%%per%%]$~ ~$[instinctively %%#%% loathed them%%per%%]$~ ~$[before%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% feel %%#%% %%#%% fallen %%#%% %%#%% pit%%cln%% %%#%% concern %%#%% %%#%% 
+%%#%% pit ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% it%%per%%]$~ ~$[now %%#%% %%#%% %%#%% %%#%% beast %%#%% %%#%% 
+trap%%lst%% %%#%% enemy %%#%% %%#%% %%#%% %%#%% soon%%per%% 
+`the enemy %%#%% dreaded %%#%% surprise you%%per%%]$~ ~$[it %%#%% %%#%% darkness %%#%% 
+%%#%% %%#%% moon%%per%%]$~ ~$[weena %%#%% %%#%% %%#%% %%#%% %%#%% head %%#%% %%#%% %%#%% %%#%% 
+incomprehensible remarks %%#%% %%#%% dark nights%%per%%]$~ ~$[it %%#%% ]n[ %%#%% 
+%%#%% %%#%% %%#%% difficult problem %%#%% guess %%#%% %%#%% coming dark 
+nights %%#%% mean%%per%%]$~ ~$[the moon %%#%% %%#%% %%#%% wane%%cln%% %%#%% night %%#%% 
+%%#%% %%#%% %%#%% interval %%#%% darkness%%per%%]$~ ~$[and %%#%% %%#%% understood %%#%% %%#%% 
+slight degree %%#%% least %%#%% reason %%#%% %%#%% fear %%#%% %%#%% little 
+upper%%dsh%%world people ]f[ %%#%% dark%%per%%]$~ ~$[i wondered vaguely %%#%% foul 
+villainy %%#%% %%#%% %%#%% %%#%% %%#%% morlocks %%#%% %%#%% %%#%% %%#%% moon%%per%%]$~ ~$[i 
+%%#%% pretty %%#%% %%#%% %%#%% %%#%% %%#%% hypothesis %%#%% %%#%% wrong%%per%%]$~ 
+~$[the upper%%dsh%%world people %%#%% %%#%% %%#%% %%#%% %%#%% favoured 
+aristocracy%%lst%% ]^[ %%#%% morlocks %%#%% mechanical servants%%cln%% ]b[ 
+%%#%% %%#%% %%#%% %%#%% passed away%%per%%]$~ ~$[the %%#%% species %%#%% %%#%% 
+resulted %%#%% %%#%% evolution %%#%% %%#%% %%#%% sliding %%#%% towards%%lst%% ]v[ 
+%%#%% %%#%% arrived at%%lst%% %%#%% altogether %%#%% relationship%%per%%]$~ ~$[the eloi%%lst%% 
+%%#%% %%#%% carolingian kings%%lst%% %%#%% decayed %%#%% %%#%% mere beautiful 
+futility%%per%%]$~ ~$[they %%#%% possessed %%#%% earth %%#%% sufferance%%cln%% %%#%% 
+%%#%% morlocks%%lst%% subterranean ]f[ innumerable generations%%lst%% %%#%% %%#%% 
+%%#%% last %%#%% %%#%% %%#%% daylit surface intolerable%%per%%]$~ ~$[and %%#%% morlocks 
+%%#%% %%#%% garments%%lst%% %%#%% inferred%%lst%% ]^[ maintained %%#%% %%#%% %%#%% 
+habitual needs%%lst%% %%#%% %%#%% %%#%% survival %%#%% %%#%% %%#%% habit %%#%% 
+service%%per%%]$~ ~$[they %%#%% %%#%% %%#%% %%#%% standing horse paws %%#%% %%#%% foot%%lst%% ]v[ 
+%%#%% %%#%% %%#%% enjoys killing animals %%#%% sport%%cln%% %%cmp_b%% ancient ]^[ 
+departed necessities %%#%% impressed %%#%% %%#%% %%#%% organism%%per%%]$~ ~$[but%%lst%% 
+clearly%%lst%% %%#%% %%#%% order %%#%% %%#%% %%#%% %%#%% reversed%%per%%]$~ ~$[the nemesis 
+%%#%% %%#%% delicate ones %%#%% creeping %%#%% apace%%per%%]$~ ~$[ages ago%%lst%% thousands 
+%%#%% generations ago%%lst%% %%#%% %%#%% thrust %%#%% brother %%#%% %%#%% %%#%% %%#%% 
+ease ]^[ %%#%% sunshine%%per%%]$~ ~$[and %%#%% %%#%% brother %%#%% coming %%#%% 
+changed%%xcm%%]$~ ~$[already %%#%% eloi %%#%% begun %%#%% learn %%#%% %%#%% lesson 
+anew%%per%%]$~ ~$[they %%#%% becoming reacquainted %%#%% fear%%per%%]$~ ~$[and suddenly 
+%%#%% %%#%% %%#%% %%#%% head %%#%% memory %%#%% %%#%% meat %%#%% %%#%% seen %%#%% %%#%% 
+under%%dsh%%world%%per%%]$~ ~$[it %%#%% odd %%#%% %%#%% floated %%#%% %%#%% mind%%cln%% ]n[ 
+stirred %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% current %%#%% %%#%% meditations%%lst%% ]b[ 
+coming %%#%% %%#%% %%#%% %%#%% question %%#%% outside%%per%%]$~ ~$[i tried %%#%% recall 
+%%#%% form %%#%% it%%per%%]$~ ~$[i %%#%% %%#%% vague sense %%#%% %%#%% familiar%%lst%% ]b[ %%#%% 
+%%#%% ]n[ tell %%#%% %%#%% %%#%% %%#%% %%#%% time%%per%% 
+`still%%lst%% %%#%% helpless %%#%% little people %%#%% %%#%% presence %%#%% 
+%%#%% mysterious fear%%lst%% %%#%% %%#%% %%#%% constituted%%per%%]$~ ~$[i %%#%% %%#%% 
+%%#%% %%#%% age %%#%% ours%%lst%% %%#%% ripe prime %%#%% %%#%% human race%%lst%% %%#%% fear 
+%%#%% ]n[ paralyse ]^[ mystery %%#%% lost %%#%% terrors%%per%%]$~ ~$[i %%#%% least 
+%%#%% defend myself%%per%%]$~ ~$[without %%#%% delay %%#%% determined %%#%% %%#%% 
+%%#%% arms ]^[ %%#%% fastness %%#%% %%#%% %%#%% sleep%%per%%]$~ ~$[with %%#%% refuge 
+%%#%% %%#%% base%%lst%% %%#%% %%#%% %%#%% %%#%% strange world %%#%% %%#%% %%#%% %%#%% 
+confidence %%#%% %%#%% lost %%#%% realizing %%#%% %%#%% creatures night %%#%% 
+night %%#%% lay exposed%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% sleep %%#%% %%#%% %%#%% 
+bed %%#%% secure %%#%% them%%per%%]$~ ~$[i shuddered %%#%% horror %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% examined me%%per%% 
+`i wandered %%#%% %%#%% afternoon %%#%% %%#%% valley %%#%% %%#%% 
+thames%%lst%% ]b[ found %%#%% %%#%% commended %%#%% %%#%% %%#%% mind %%#%% 
+inaccessible%%per%%]$~ ~$[all %%#%% buildings ]^[ trees %%#%% easily 
+practicable %%#%% %%#%% dexterous climbers %%#%% %%#%% morlocks%%lst%% %%#%% judge 
+%%#%% %%#%% wells%%lst%% %%#%% be%%per%%]$~ ~$[then %%#%% tall pinnacles %%#%% %%#%% palace 
+%%#%% green porcelain ]^[ %%#%% polished gleam %%#%% %%#%% walls %%#%% %%#%% 
+%%#%% %%#%% memory%%scn%% ]^[ %%#%% %%#%% evening%%lst%% taking weena %%#%% %%#%% child %%#%% 
+%%#%% shoulder%%lst%% %%#%% %%#%% %%#%% %%#%% hills towards %%#%% south%%dsh%%west%%per%%]$~ ~$[the 
+distance%%lst%% %%#%% %%#%% reckoned%%lst%% %%#%% seven ]v[ eight miles%%lst%% ]b[ %%#%% %%#%% 
+%%#%% %%#%% nearer eighteen%%per%%]$~ ~$[i %%#%% %%#%% seen %%#%% %%#%% %%#%% %%#%% moist 
+afternoon %%#%% distances %%#%% deceptively diminished%%per%%]$~ ~$[in 
+addition%%lst%% %%#%% heel %%#%% %%#%% %%#%% %%#%% shoes %%#%% loose%%lst%% ]^[ %%#%% nail %%#%% 
+%%#%% %%#%% %%#%% sole%%dsh%%%%dsh%%they %%#%% comfortable %%#%% shoes %%#%% wore 
+%%#%% indoors%%dsh%%%%dsh%%so %%#%% %%#%% %%#%% lame%%per%%]$~ ~$[and %%#%% %%#%% %%#%% %%#%% past 
+sunset %%#%% %%#%% %%#%% %%#%% sight %%#%% %%#%% palace%%lst%% silhouetted black 
+%%#%% %%#%% pale yellow %%#%% %%#%% sky%%per%% 
+`weena %%#%% %%#%% hugely delighted %%#%% %%#%% %%#%% %%#%% carry her%%lst%% 
+]b[ %%#%% %%#%% %%#%% %%#%% desired %%#%% %%#%% %%#%% %%#%% down%%lst%% ]^[ ran %%#%% 
+%%#%% %%#%% %%#%% %%#%% me%%lst%% occasionally darting %%#%% %%#%% %%#%% hand %%#%% 
+pick flowers %%#%% stick %%#%% %%#%% pockets%%per%%]$~ ~$[my pockets %%#%% %%#%% 
+puzzled weena%%lst%% ]b[ %%#%% %%#%% last %%#%% %%#%% concluded %%#%% %%#%% %%#%% 
+%%#%% eccentric kind %%#%% vase ]f[ floral decoration%%per%%]$~ ~$[at least %%#%% 
+utilized %%#%% ]f[ %%#%% purpose%%per%%]$~ ~$[and %%#%% reminds me%%xcm%%]$~ ~$[in 
+changing %%#%% jacket %%#%% found %%per%% %%per%% %%per%%%%sqt%% 
+%%#%% time traveller paused%%lst%% %%#%% %%#%% hand %%#%% %%#%% pocket%%lst%% ]^[ 
+silently placed %%#%% withered flowers%%lst%% ]n[ unlike %%#%% large white 
+mallows%%lst%% %%#%% %%#%% little table%%per%%]$~ ~$[then %%#%% resumed %%#%% narrative%%per%% 
+`as %%#%% hush %%#%% evening crept %%#%% %%#%% world ]^[ %%#%% proceeded 
+%%#%% %%#%% hill crest towards wimbledon%%lst%% weena grew tired ]^[ 
+%%#%% %%#%% return %%#%% %%#%% house %%#%% grey stone%%per%%]$~ ~$[but %%#%% %%#%% %%#%% 
+%%#%% distant pinnacles %%#%% %%#%% palace %%#%% green porcelain %%#%% her%%lst%% 
+]^[ contrived %%#%% %%#%% %%#%% understand %%#%% %%#%% %%#%% seeking %%#%% 
+refuge %%#%% %%#%% %%#%% fear%%per%%]$~ ~$[you know %%#%% %%#%% pause %%#%% comes 
+%%#%% %%#%% %%#%% %%#%% dusk%%qsn%%]$~ ~$[even %%#%% breeze stops %%#%% %%#%% trees%%per%%]$~ 
+~$[to %%#%% %%#%% %%#%% %%#%% %%#%% air %%#%% expectation %%#%% %%#%% evening 
+stillness%%per%%]$~ ~$[the sky %%#%% clear%%lst%% remote%%lst%% ]^[ empty save ]f[ %%#%% %%#%% 
+horizontal bars %%#%% %%#%% %%#%% %%#%% sunset%%per%%]$~ ~$[well%%lst%% %%#%% night %%#%% 
+expectation %%#%% %%#%% colour %%#%% %%#%% fears%%per%%]$~ ~$[in %%#%% darkling calm 
+%%#%% senses %%#%% preternaturally sharpened%%per%%]$~ ~$[i fancied %%#%% %%#%% 
+%%#%% feel %%#%% hollowness %%#%% %%#%% ground beneath %%#%% feet%%cln%% could%%lst%% 
+indeed%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% morlocks %%#%% %%#%% ant%%dsh%%hill 
+%%#%% hither ]^[ thither ]^[ waiting ]f[ %%#%% dark%%per%%]$~ ~$[in %%#%% 
+excitement %%#%% fancied %%#%% %%#%% %%#%% receive %%#%% invasion %%#%% %%#%% 
+burrows %%#%% %%#%% declaration %%#%% war%%per%%]$~ ~$[and %%#%% %%#%% %%#%% %%#%% %%#%% time 
+machine? 
+`so %%#%% %%#%% %%#%% %%#%% %%#%% quiet%%lst%% ]^[ %%#%% twilight deepened %%#%% 
+night%%per%%]$~ ~$[the %%#%% blue %%#%% %%#%% distance faded%%lst%% ]^[ %%#%% star %%#%% 
+%%#%% %%#%% out%%per%%]$~ ~$[the ground grew dim ]^[ %%#%% trees black%%per%%]$~ 
+~$[weena%%sqt%%s fears ]^[ %%#%% fatigue grew %%#%% her%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% 
+arms ]^[ talked %%#%% %%#%% ]^[ caressed her%%per%%]$~ ~$[then%%lst%% %%#%% %%#%% darkness 
+grew deeper%%lst%% %%#%% %%#%% %%#%% arms round %%#%% neck%%lst%% and%%lst%% closing %%#%% 
+eyes%%lst%% tightly pressed %%#%% %%#%% %%#%% %%#%% shoulder%%per%%]$~ ~$[so %%#%% %%#%% 
+%%#%% %%#%% %%#%% slope %%#%% %%#%% valley%%lst%% ]^[ %%#%% %%#%% %%#%% dimness %%#%% 
+%%#%% walked %%#%% %%#%% little river%%per%%]$~ ~$[this %%#%% waded%%lst%% ]^[ %%#%% %%#%% %%#%% 
+opposite %%#%% %%#%% %%#%% valley%%lst%% past %%#%% number %%#%% sleeping houses%%lst%% 
+]^[ %%#%% %%#%% statue%%dsh%%%%dsh%%a faun%%lst%% ]v[ %%#%% %%#%% figure%%lst%% minus %%#%% head%%per%%]$~ 
+~$[here %%#%% %%#%% acacias%%per%%]$~ ~$[so %%#%% %%#%% %%#%% seen %%#%% %%#%% %%#%% 
+morlocks%%lst%% ]b[ %%#%% %%#%% ]y[ %%#%% %%#%% %%#%% night%%lst%% ]^[ %%#%% darker hours 
+%%#%% %%#%% %%#%% moon rose %%#%% %%#%% %%#%% come%%per%% 
+`from %%#%% brow %%#%% %%#%% %%#%% hill %%#%% %%#%% %%#%% thick wood spreading 
+wide ]^[ black %%#%% me%%per%%]$~ ~$[i hesitated %%#%% this%%per%%]$~ ~$[i %%#%% %%#%% %%#%% 
+%%#%% %%#%% it%%lst%% %%#%% %%#%% %%#%% %%#%% ]v[ %%#%% left%%per%%]$~ ~$[feeling tired%%dsh%%%%dsh%%my 
+feet%%lst%% %%#%% particular%%lst%% %%#%% %%#%% sore%%dsh%%%%dsh%%i carefully lowered weena 
+%%#%% %%#%% shoulder %%#%% %%#%% halted%%lst%% ]^[ sat %%#%% %%#%% %%#%% turf%%per%%]$~ ~$[i 
+%%#%% %%#%% %%#%% %%#%% %%#%% palace %%#%% green porcelain%%lst%% ]^[ %%#%% %%#%% %%#%% 
+doubt %%#%% %%#%% direction%%per%%]$~ ~$[i looked %%#%% %%#%% thickness %%#%% %%#%% wood 
+]^[ %%#%% %%#%% %%#%% %%#%% %%#%% hide%%per%%]$~ ~$[under %%#%% dense tangle %%#%% 
+branches %%#%% %%#%% %%#%% %%#%% %%#%% sight %%#%% %%#%% stars%%per%%]$~ ~$[even %%#%% %%#%% 
+%%#%% %%#%% lurking danger%%dsh%%%%dsh%%a danger %%#%% %%#%% ]n[ care %%#%% %%#%% %%#%% 
+imagination loose upon%%dsh%%%%dsh%%there %%#%% %%#%% %%#%% %%#%% %%#%% roots %%#%% 
+stumble %%#%% ]^[ %%#%% tree%%dsh%%boles %%#%% strike against%%per%% 
+`i %%#%% %%#%% tired%%lst%% too%%lst%% %%#%% %%#%% excitements %%#%% %%#%% day%%scn%% ]s[ %%#%% 
+decided %%#%% %%#%% %%#%% ]n[ %%#%% it%%lst%% ]b[ %%#%% pass %%#%% night %%#%% 
+%%#%% %%#%% hill%%per%% 
+`weena%%lst%% %%#%% %%#%% glad %%#%% find%%lst%% %%#%% fast asleep%%per%%]$~ ~$[i carefully 
+wrapped %%#%% %%#%% %%#%% jacket%%lst%% ]^[ sat %%#%% beside %%#%% %%#%% wait ]f[ %%#%% 
+moonrise%%per%%]$~ ~$[the hill%%dsh%%side %%#%% quiet ]^[ deserted%%lst%% ]b[ %%#%% %%#%% 
+black %%#%% %%#%% wood %%#%% %%#%% %%#%% ]^[ %%cmp_t%% %%#%% stir %%#%% living 
+things%%per%%]$~ ~$[above %%#%% shone %%#%% stars%%lst%% ]f[ %%#%% night %%#%% %%#%% clear%%per%%]$~ 
+~$[i %%#%% %%#%% %%#%% sense %%#%% friendly comfort %%#%% %%#%% twinkling%%per%%]$~ 
+~$[all %%#%% %%#%% constellations %%#%% gone %%#%% %%#%% sky%%lst%% however%%cln%% %%#%% 
+slow movement %%#%% %%#%% imperceptible %%#%% %%#%% hundred human 
+lifetimes%%lst%% %%#%% %%#%% %%#%% rearranged %%#%% %%#%% unfamiliar 
+groupings%%per%%]$~ ~$[but %%#%% milky way%%lst%% %%#%% %%#%% %%#%% me%%lst%% %%#%% %%#%% %%#%% 
+%%#%% tattered streamer %%#%% star%%dsh%%dust %%#%% %%#%% yore%%per%%]$~ ~$[southward (as %%#%% 
+judged it) %%#%% %%#%% %%#%% bright red star %%#%% %%#%% %%#%% %%#%% me%%scn%% %%#%% %%#%% 
+%%#%% %%#%% splendid %%cmp_ta%% %%#%% own green sirius%%per%%]$~ ~$[and amid %%#%% %%#%% 
+scintillating %%#%% %%#%% light %%#%% bright planet shone kindly ]^[ 
+steadily %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% friend%%per%% 
+`looking %%#%% %%#%% stars suddenly dwarfed %%#%% own troubles ]^[ 
+%%#%% %%#%% gravities %%#%% terrestrial life%%per%%]$~ ~$[i %%#%% %%#%% %%#%% 
+unfathomable distance%%lst%% ]^[ %%#%% slow inevitable drift %%#%% %%#%% 
+movements %%#%% %%#%% %%#%% unknown past %%#%% %%#%% unknown future%%per%%]$~ ~$[i 
+%%#%% %%#%% %%#%% %%#%% precessional cycle %%#%% %%#%% pole %%#%% %%#%% 
+earth describes%%per%%]$~ ~$[only forty times %%#%% %%#%% silent revolution 
+occurred %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% traversed%%per%%]$~ ~$[and %%#%% 
+%%#%% %%#%% revolutions %%#%% %%#%% activity%%lst%% %%#%% %%#%% traditions%%lst%% %%#%% 
+complex organizations%%lst%% %%#%% nations%%lst%% languages%%lst%% literatures%%lst%% 
+aspirations%%lst%% %%#%% %%#%% mere memory %%#%% %%#%% %%#%% %%#%% knew him%%lst%% %%#%% %%#%% 
+swept %%#%% %%#%% existence%%per%%]$~ ~$[instead %%#%% %%#%% frail creatures %%#%% 
+%%#%% forgotten %%#%% %%#%% ancestry%%lst%% ]^[ %%#%% white %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% terror%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% %%#%% fear %%#%% %%#%% 
+%%#%% %%#%% %%#%% species%%lst%% ]^[ ]f[ %%#%% %%#%% time%%lst%% %%#%% %%#%% sudden 
+shiver%%lst%% %%#%% %%#%% %%#%% knowledge %%#%% %%#%% %%#%% meat %%#%% %%#%% seen 
+%%#%% be%%per%%]$~ ~$[yet %%#%% %%#%% %%#%% horrible%%xcm%%]$~ ~$[i looked %%#%% little weena 
+sleeping beside me%%lst%% %%#%% %%#%% white ]^[ starlike %%#%% %%#%% stars%%lst%% 
+]^[ forthwith dismissed %%#%% thought%%per%% 
+`through %%#%% %%#%% night %%#%% held %%#%% mind %%#%% %%#%% morlocks %%#%% 
+%%#%% %%#%% %%#%% could%%lst%% ]^[ whiled %%#%% %%#%% time %%#%% trying %%#%% fancy %%#%% 
+%%#%% %%#%% signs %%#%% %%#%% %%#%% constellations %%#%% %%#%% %%#%% confusion%%per%%]$~ 
+~$[the sky kept %%#%% clear%%lst%% except ]f[ %%#%% hazy cloud ]v[ so%%per%%]$~ ~$[no doubt 
+%%#%% dozed %%#%% times%%per%%]$~ ~$[then%%lst%% %%#%% %%#%% vigil wore on%%lst%% %%#%% %%#%% faintness %%#%% 
+%%#%% eastward sky%%lst%% %%#%% %%#%% reflection %%#%% %%#%% colourless fire%%lst%% 
+]^[ %%#%% %%#%% moon rose%%lst%% thin ]^[ peaked ]^[ white%%per%%]$~ ~$[and close 
+behind%%lst%% ]^[ overtaking it%%lst%% ]^[ overflowing it%%lst%% %%#%% dawn came%%lst%% 
+pale %%#%% first%%lst%% ]^[ %%cmp_t%% growing pink ]^[ warm%%per%%]$~ ~$[no morlocks %%#%% 
+approached us%%per%%]$~ ~$[indeed%%lst%% %%#%% %%#%% seen none %%#%% %%#%% hill %%#%% night%%per%%]$~ 
+~$[and %%#%% %%#%% confidence %%#%% renewed day %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% fear %%#%% %%#%% unreasonable%%per%%]$~ ~$[i stood %%#%% ]^[ found %%#%% foot %%#%% 
+%%#%% loose heel swollen %%#%% %%#%% ankle ]^[ painful %%#%% %%#%% heel%%scn%% 
+]s[ %%#%% sat %%#%% again%%lst%% %%#%% %%#%% %%#%% shoes%%lst%% ]^[ flung %%#%% away%%per%% 
+`i awakened weena%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% wood%%lst%% %%#%% green 
+]^[ pleasant instead %%#%% black ]^[ forbidding%%per%%]$~ ~$[we found %%#%% 
+fruit wherewith %%#%% break %%#%% fast%%per%%]$~ ~$[we soon met %%#%% %%#%% %%#%% 
+dainty ones%%lst%% laughing ]^[ dancing %%#%% %%#%% sunlight %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% nature %%#%% %%#%% night%%per%%]$~ ~$[and %%cmp_t%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% meat %%#%% %%#%% %%#%% seen%%per%%]$~ ~$[i %%#%% assured %%#%% %%#%% 
+%%#%% %%#%% was%%lst%% ]^[ %%#%% %%#%% bottom %%#%% %%#%% heart %%#%% pitied %%#%% last 
+feeble rill %%#%% %%#%% %%#%% flood %%#%% humanity%%per%%]$~ ~$[clearly%%lst%% %%#%% %%#%% 
+time %%#%% %%#%% long%%dsh%%ago %%#%% human decay %%#%% morlocks%%sqt%% food %%#%% run 
+short%%per%%]$~ ~$[possibly %%#%% %%#%% lived %%#%% rats ]^[ such%%dsh%%like vermin%%per%%]$~ 
+~$[even %%#%% %%#%% %%#%% %%#%% less discriminating ]^[ exclusive %%#%% %%#%% food 
+%%cmp_ta%% %%#%% was%%dsh%%%%dsh%%far less %%cmp_ta%% %%#%% monkey%%per%%]$~ ~$[his prejudice %%#%% 
+human flesh %%#%% %%#%% deep%%dsh%%seated instinct%%per%%]$~ ~$[and ]s[ %%#%% inhuman 
+sons %%#%% men%%dsh%%%%dsh%%%%dsh%%%%dsh%%%%xcm%%]$~ ~$[i tried %%#%% look %%#%% %%#%% %%#%% %%#%% %%#%% scientific 
+spirit%%per%%]$~ ~$[after all%%lst%% %%#%% %%#%% less human ]^[ %%#%% remote %%cmp_ta%% %%#%% 
+cannibal ancestors %%#%% %%#%% ]v[ %%#%% thousand %%#%% ago%%per%%]$~ ~$[and %%#%% 
+intelligence %%#%% %%#%% %%#%% %%#%% %%#%% state %%#%% %%#%% %%#%% torment 
+%%#%% gone%%per%%]$~ ~$[why %%#%% %%#%% trouble myself%%qsn%%]$~ ~$[these eloi %%#%% mere 
+fatted cattle%%lst%% %%#%% %%#%% ant%%dsh%%like morlocks preserved ]^[ preyed 
+upon%%dsh%%%%dsh%%probably %%#%% %%#%% %%#%% breeding of%%per%%]$~ ~$[and %%#%% %%#%% weena 
+dancing %%#%% %%#%% side! 
+`then %%#%% tried %%#%% preserve %%#%% %%#%% %%#%% horror %%#%% %%#%% 
+coming %%#%% me%%lst%% %%#%% regarding %%#%% %%#%% %%#%% rigorous punishment %%#%% human 
+selfishness%%per%%]$~ ~$[man %%#%% %%#%% content %%#%% live %%#%% ease ]^[ delight 
+%%#%% %%#%% labours %%#%% %%#%% fellow%%dsh%%man%%lst%% %%#%% %%#%% necessity %%#%% %%#%% 
+watchword ]^[ excuse%%lst%% ]^[ %%#%% %%#%% fullness %%#%% time necessity %%#%% 
+%%#%% home %%#%% him%%per%%]$~ ~$[i %%#%% tried %%#%% carlyle%%dsh%%like scorn %%#%% %%#%% 
+wretched aristocracy %%#%% decay%%per%%]$~ ~$[but %%#%% attitude %%#%% mind %%#%% 
+impossible%%per%%]$~ ~$[however %%#%% %%#%% intellectual degradation%%lst%% %%#%% 
+eloi %%#%% kept %%#%% %%#%% %%#%% %%#%% human form ]n[ %%#%% claim %%#%% 
+sympathy%%lst%% ]^[ %%#%% %%#%% %%#%% perforce %%#%% sharer %%#%% %%#%% degradation 
+]^[ %%#%% fear%%per%% 
+`i %%#%% %%#%% %%#%% time %%#%% vague ideas %%#%% %%#%% %%#%% course %%#%% %%#%% 
+pursue%%per%%]$~ ~$[my %%#%% %%#%% %%#%% secure %%#%% safe %%#%% %%#%% refuge%%lst%% ]^[ %%#%% 
+%%#%% %%#%% %%#%% arms %%#%% metal ]v[ stone %%#%% %%#%% %%#%% contrive%%per%%]$~ 
+~$[that necessity %%#%% immediate%%per%%]$~ ~$[in %%#%% %%#%% place%%lst%% %%#%% hoped %%#%% 
+procure %%#%% means %%#%% fire%%lst%% ]s[ %%#%% %%#%% %%#%% %%#%% %%#%% weapon %%#%% %%#%% 
+torch %%#%% hand%%lst%% ]f[ nothing%%lst%% %%#%% knew%%lst%% %%#%% %%#%% %%#%% efficient 
+%%#%% %%#%% morlocks%%per%%]$~ ~$[then %%#%% %%#%% %%#%% arrange %%#%% 
+contrivance %%#%% break %%#%% %%#%% doors %%#%% bronze %%#%% %%#%% white 
+sphinx%%per%%]$~ ~$[i %%#%% %%#%% mind %%#%% battering ram%%per%%]$~ ~$[i %%#%% %%#%% persuasion %%#%% 
+%%cmp_if%% %%#%% %%#%% enter %%#%% doors ]^[ carry %%#%% blaze %%#%% light %%#%% %%#%% 
+%%#%% %%#%% discover %%#%% time machine ]^[ escape%%per%%]$~ ~$[i %%#%% ]n[ 
+imagine %%#%% morlocks %%#%% strong %%#%% %%#%% move %%#%% %%#%% away%%per%%]$~ 
+~$[weena %%#%% %%#%% resolved %%#%% bring %%#%% %%#%% %%#%% %%#%% own time%%per%%]$~ ~$[and 
+%%#%% %%#%% schemes %%#%% %%#%% %%#%% mind %%#%% pursued %%#%% %%#%% towards 
+%%#%% building %%#%% %%#%% fancy %%#%% chosen %%#%% %%#%% dwelling%%per%%]$~ 
+~$[viii 
+`i found %%#%% palace %%#%% green porcelain%%lst%% %%#%% %%#%% approached %%#%% 
+%%#%% noon%%lst%% deserted ]^[ falling %%#%% ruin%%per%%]$~ ~$[only ragged vestiges 
+%%#%% glass remained %%#%% %%#%% windows%%lst%% ]^[ %%#%% sheets %%#%% %%#%% green 
+facing %%#%% fallen %%#%% %%#%% %%#%% corroded metallic framework%%per%%]$~ ~$[it 
+lay %%#%% %%#%% %%#%% %%#%% turfy down%%lst%% ]^[ looking north%%dsh%%eastward 
+%%#%% %%#%% entered it%%lst%% %%#%% %%#%% surprised %%#%% %%#%% %%#%% large estuary%%lst%% ]v[ 
+%%#%% creek%%lst%% %%#%% %%#%% judged wandsworth ]^[ battersea %%#%% %%#%% 
+%%#%% been%%per%%]$~ ~$[i %%#%% %%cmp_t%%%%dsh%%%%dsh%%though %%#%% %%#%% followed %%#%% %%#%% 
+thought%%dsh%%%%dsh%%of %%#%% %%#%% %%#%% happened%%lst%% ]v[ %%#%% %%#%% happening%%lst%% %%#%% 
+%%#%% living %%#%% %%#%% %%#%% sea%%per%% 
+`the material %%#%% %%#%% palace proved %%#%% examination %%#%% %%#%% indeed 
+porcelain%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% inscription %%#%% %%#%% 
+unknown character%%per%%]$~ ~$[i thought%%lst%% %%#%% foolishly%%lst%% %%#%% weena %%#%% 
+help %%#%% %%#%% interpret this%%lst%% ]b[ %%#%% %%#%% learned %%#%% %%#%% bare idea 
+%%#%% writing %%#%% %%#%% entered %%#%% head%%per%%]$~ ~$[she %%#%% %%#%% %%#%% me%%lst%% 
+%%#%% fancy%%lst%% %%#%% human %%cmp_ta%% %%#%% was%%lst%% %%#%% %%cmp_b%% %%#%% affection 
+%%#%% ]s[ human%%per%% 
+`within %%#%% %%#%% valves %%#%% %%#%% door%%dsh%%%%dsh%%which %%#%% %%#%% ]^[ 
+broken%%dsh%%%%dsh%%we found%%lst%% instead %%#%% %%#%% customary hall%%lst%% %%#%% %%#%% gallery 
+lit %%#%% %%#%% %%#%% windows%%per%%]$~ ~$[at %%#%% %%#%% glance %%#%% %%#%% reminded %%#%% 
+%%#%% museum%%per%%]$~ ~$[the tiled floor %%#%% thick %%#%% dust%%lst%% ]^[ %%#%% remarkable 
+array %%#%% miscellaneous objects %%#%% shrouded %%#%% %%#%% %%#%% grey 
+covering%%per%%]$~ ~$[then %%#%% perceived%%lst%% standing strange ]^[ gaunt %%#%% %%#%% 
+centre %%#%% %%#%% hall%%lst%% %%#%% %%#%% %%#%% %%#%% lower %%#%% %%#%% %%#%% huge 
+skeleton%%per%%]$~ ~$[i recognized %%#%% %%#%% oblique feet %%#%% %%#%% %%#%% %%#%% 
+extinct creature %%#%% %%#%% fashion %%#%% %%#%% megatherium%%per%%]$~ ~$[the skull 
+]^[ %%#%% upper bones lay beside %%#%% %%#%% %%#%% thick dust%%lst%% ]^[ %%#%% %%#%% 
+place%%lst%% %%#%% rain%%dsh%%water %%#%% dropped %%#%% %%#%% leak %%#%% %%#%% roof%%lst%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% worn away%%per%%]$~ ~$[further %%#%% %%#%% gallery %%#%% 
+%%#%% huge skeleton barrel %%#%% %%#%% brontosaurus%%per%%]$~ ~$[my museum hypothesis 
+%%#%% confirmed%%per%%]$~ ~$[going towards %%#%% %%#%% %%#%% found %%#%% appeared %%#%% %%#%% 
+sloping shelves%%lst%% ]^[ clearing %%#%% %%#%% thick dust%%lst%% %%#%% found %%#%% 
+%%#%% familiar glass %%#%% %%#%% %%#%% own time%%per%%]$~ ~$[but %%#%% %%#%% %%#%% 
+%%#%% air%%dsh%%tight %%#%% judge %%#%% %%#%% fair preservation %%#%% %%#%% %%#%% 
+%%#%% contents%%per%% 
+`clearly %%#%% stood %%#%% %%#%% ruins %%#%% %%#%% latter%%dsh%%day south 
+kensington%%xcm%%]$~ ~$[here%%lst%% apparently%%lst%% %%#%% %%#%% palaeontological section%%lst%% 
+]^[ %%#%% %%#%% splendid array %%#%% fossils %%#%% %%#%% %%#%% been%%lst%% %%#%% 
+%%#%% inevitable process %%#%% decay %%#%% %%#%% %%#%% staved %%#%% ]f[ %%#%% 
+time%%lst%% ]^[ had%%lst%% %%#%% %%#%% extinction %%#%% bacteria ]^[ fungi%%lst%% lost 
+ninety%%dsh%%nine hundredths %%#%% %%#%% force%%lst%% %%#%% nevertheless%%lst%% %%#%% 
+extreme sureness %%cmp_if%% %%#%% extreme slowness %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% treasures%%per%%]$~ ~$[here ]^[ %%#%% %%#%% found traces %%#%% %%#%% little 
+people %%#%% %%#%% shape %%#%% rare fossils broken %%#%% pieces ]v[ threaded 
+%%#%% strings %%#%% reeds%%per%%]$~ ~$[and %%#%% %%#%% %%#%% %%#%% %%#%% instances %%#%% 
+bodily removed%%dsh%%%%dsh%%by %%#%% morlocks %%#%% %%#%% judged%%per%%]$~ ~$[the %%#%% %%#%% %%#%% 
+silent%%per%%]$~ ~$[the thick dust deadened %%#%% footsteps%%per%%]$~ ~$[weena%%lst%% %%#%% %%#%% 
+%%#%% rolling %%#%% sea urchin %%#%% %%#%% sloping glass %%#%% %%#%% case%%lst%% 
+presently came%%lst%% %%#%% %%#%% stared %%#%% me%%lst%% ]^[ %%#%% quietly %%#%% %%#%% 
+hand ]^[ stood beside me%%per%% 
+`and %%#%% %%#%% %%#%% %%#%% ]s[ %%#%% surprised %%#%% %%#%% ancient monument 
+%%#%% %%#%% intellectual age%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+possibilities %%#%% presented%%per%%]$~ ~$[even %%#%% preoccupation %%#%% %%#%% time 
+machine receded %%#%% little %%#%% %%#%% mind%%per%% 
+`to judge %%#%% %%#%% size %%#%% %%#%% place%%lst%% %%#%% palace %%#%% green 
+porcelain %%#%% %%#%% %%#%% deal %%#%% %%#%% %%#%% %%cmp_ta%% %%#%% gallery %%#%% 
+palaeontology%%scn%% possibly historical galleries%%scn%% %%#%% %%#%% be%%lst%% %%#%% %%#%% 
+library%%xcm%%]$~ ~$[to me%%lst%% %%#%% least %%#%% %%#%% %%#%% circumstances%%lst%% %%#%% 
+%%#%% %%#%% vastly %%#%% %%#%% %%cmp_ta%% %%#%% spectacle %%#%% oldtime 
+geology %%#%% decay%%per%%]$~ ~$[exploring%%lst%% %%#%% found %%#%% short gallery 
+running transversely %%#%% %%#%% first%%per%%]$~ ~$[this appeared %%#%% %%#%% devoted 
+%%#%% minerals%%lst%% ]^[ %%#%% sight %%#%% %%#%% block %%#%% sulphur set %%#%% mind 
+running %%#%% gunpowder%%per%%]$~ ~$[but %%#%% %%#%% %%#%% %%#%% saltpeter%%scn%% indeed%%lst%% %%#%% 
+nitrates %%#%% %%#%% kind%%per%%]$~ ~$[doubtless %%#%% %%#%% deliquesced ages ago%%per%%]$~ 
+~$[yet %%#%% sulphur hung %%#%% %%#%% mind%%lst%% ]^[ set %%#%% %%#%% train %%#%% thinking%%per%%]$~ 
+~$[as ]f[ %%#%% rest %%#%% %%#%% contents %%#%% %%#%% gallery%%lst%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% preserved %%#%% %%#%% %%#%% saw%%lst%% %%#%% %%#%% little 
+interest%%per%%]$~ ~$[i am %%#%% specialist %%#%% mineralogy%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% ruinous aisle running parallel %%#%% %%#%% %%#%% hall %%#%% %%#%% 
+entered%%per%%]$~ ~$[apparently %%#%% section %%#%% %%#%% devoted %%#%% natural 
+history%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% passed %%#%% %%#%% recognition%%per%%]$~ 
+~$[a %%#%% shrivelled ]^[ blackened vestiges %%#%% %%#%% %%#%% %%#%% %%#%% 
+stuffed animals%%lst%% desiccated mummies %%#%% jars %%#%% %%#%% %%#%% held 
+spirit%%lst%% %%#%% brown dust %%#%% departed plants%%cln%% %%#%% %%#%% all%%xcm%%]$~ ~$[i %%#%% 
+sorry ]f[ that%%lst%% %%cmp_b%% %%#%% %%#%% %%#%% %%#%% glad %%#%% trace %%#%% 
+patent readjustments %%#%% %%#%% %%#%% conquest %%#%% animated nature %%#%% 
+%%#%% attained%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% gallery %%#%% simply colossal 
+proportions%%lst%% ]b[ singularly ill%%dsh%%lit%%lst%% %%#%% floor %%#%% %%#%% running 
+downward %%#%% %%#%% slight angle %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% entered%%per%%]$~ ~$[at 
+intervals white globes hung %%#%% %%#%% ceiling%%dsh%%%%dsh%%many %%#%% %%#%% 
+cracked ]^[ smashed%%dsh%%%%dsh%%which suggested %%#%% originally %%#%% %%#%% 
+%%#%% %%#%% artificially lit%%per%%]$~ ~$[here %%#%% %%#%% %%#%% %%#%% %%#%% element%%lst%% ]f[ 
+rising %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% huge bulks %%#%% %%#%% machines%%lst%% 
+%%#%% greatly corroded ]^[ %%#%% broken down%%lst%% ]b[ %%#%% %%#%% fairly 
+complete%%per%%]$~ ~$[you know %%#%% %%#%% %%#%% %%#%% weakness ]f[ mechanism%%lst%% ]^[ %%#%% 
+%%#%% inclined %%#%% linger %%#%% these%%scn%% %%#%% %%#%% ]s[ %%#%% ]f[ %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% puzzles%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% 
+vaguest guesses %%#%% %%#%% %%#%% %%#%% for%%per%%]$~ ~$[i fancied %%#%% %%cmp_if%% %%#%% %%#%% 
+solve %%#%% puzzles %%#%% %%#%% %%#%% %%#%% %%#%% possession %%#%% powers 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% morlocks%%per%% 
+`suddenly weena %%#%% %%#%% close %%#%% %%#%% side%%per%%]$~ ~$[so suddenly %%#%% 
+%%#%% startled me%%per%%]$~ ~$[had %%#%% ]n[ %%#%% ]f[ %%#%% %%#%% %%#%% ]n[ %%#%% %%#%% %%#%% 
+%%#%% noticed %%#%% %%#%% floor %%#%% %%#%% gallery sloped %%#%% all%%per%% 
+[footnote%%cln%% %%#%% %%#%% be%%lst%% %%#%% course%%lst%% %%#%% %%#%% floor %%#%% ]n[ slope%%lst%% 
+]b[ %%#%% %%#%% museum %%#%% built %%#%% %%#%% %%#%% %%#%% %%#%% hill%%per%%%%dsh%%ed%%per%%] %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% ground%%lst%% ]^[ %%#%% lit %%#%% rare 
+slit%%dsh%%like windows%%per%%]$~ ~$[as %%#%% %%#%% %%#%% %%#%% length%%lst%% %%#%% ground %%#%% 
+%%#%% %%#%% %%#%% windows%%lst%% %%#%% %%#%% last %%#%% %%#%% %%#%% pit %%#%% %%#%% 
+%%dqt%%area%%dqt%% %%#%% %%#%% london house %%#%% each%%lst%% ]^[ %%#%% %%#%% narrow line %%#%% 
+daylight %%#%% %%#%% top%%per%%]$~ ~$[i %%#%% slowly along%%lst%% puzzling %%#%% %%#%% 
+machines%%lst%% ]^[ %%#%% %%#%% %%#%% intent %%#%% %%#%% %%#%% notice %%#%% gradual 
+diminution %%#%% %%#%% light%%lst%% %%#%% weena%%sqt%%s increasing apprehensions 
+drew %%#%% attention%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% gallery ran %%#%% %%#%% last 
+%%#%% %%#%% thick darkness%%per%%]$~ ~$[i hesitated%%lst%% ]^[ %%cmp_t%%%%lst%% %%#%% %%#%% looked round 
+me%%lst%% %%#%% %%#%% %%#%% %%#%% dust %%#%% less abundant ]^[ %%#%% surface less 
+even%%per%%]$~ ~$[further %%#%% towards %%#%% dimness%%lst%% %%#%% appeared %%#%% %%#%% broken 
+%%#%% %%#%% number %%#%% %%#%% narrow footprints%%per%%]$~ ~$[my sense %%#%% %%#%% 
+immediate presence %%#%% %%#%% morlocks revived %%#%% that%%per%%]$~ ~$[i %%#%% %%#%% 
+%%#%% %%#%% wasting %%#%% time %%#%% %%#%% academic examination %%#%% machinery%%per%%]$~ 
+~$[i called %%#%% mind %%#%% %%#%% %%#%% %%#%% %%#%% advanced %%#%% %%#%% 
+afternoon%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% weapon%%lst%% %%#%% refuge%%lst%% ]^[ %%#%% 
+means %%#%% %%#%% %%#%% fire%%per%%]$~ ~$[and %%cmp_t%% %%#%% %%#%% %%#%% remote blackness %%#%% 
+%%#%% gallery %%#%% heard %%#%% peculiar pattering%%lst%% ]^[ %%#%% %%#%% odd noises 
+%%#%% %%#%% heard %%#%% %%#%% well%%per%% 
+`i %%#%% weena%%sqt%%s hand%%per%%]$~ ~$[then%%lst%% struck %%#%% %%#%% sudden idea%%lst%% %%#%% left 
+%%#%% ]^[ %%#%% %%#%% %%#%% machine %%#%% %%#%% projected %%#%% lever ]n[ 
+unlike %%#%% %%#%% %%#%% signal%%dsh%%box%%per%%]$~ ~$[clambering %%#%% %%#%% stand%%lst%% ]^[ 
+grasping %%#%% lever %%#%% %%#%% hands%%lst%% %%#%% %%#%% %%#%% %%#%% weight %%#%% %%#%% 
+sideways%%per%%]$~ ~$[suddenly weena%%lst%% deserted %%#%% %%#%% central aisle%%lst%% %%#%% 
+%%#%% whimper%%per%%]$~ ~$[i %%#%% judged %%#%% strength %%#%% %%#%% lever pretty 
+correctly%%lst%% ]f[ %%#%% snapped %%#%% %%#%% minute%%sqt%%s strain%%lst%% ]^[ %%#%% rejoined 
+%%#%% %%#%% %%#%% mace %%#%% %%#%% hand %%#%% %%cmp_ta%% sufficient%%lst%% %%#%% judged%%lst%% ]f[ 
+%%#%% morlock skull %%#%% %%#%% encounter%%per%%]$~ ~$[and %%#%% longed %%#%% %%#%% %%#%% 
+kill %%#%% morlock ]v[ so%%per%%]$~ ~$[very inhuman%%lst%% %%#%% %%#%% think%%lst%% %%#%% %%#%% %%#%% %%#%% 
+killing one%%sqt%%s own descendants%%xcm%%]$~ ~$[but %%#%% %%#%% impossible%%lst%% somehow%%lst%% 
+%%#%% feel %%#%% humanity %%#%% %%#%% things%%per%%]$~ ~$[only %%#%% disinclination %%#%% 
+leave weena%%lst%% ]^[ %%#%% persuasion %%#%% %%cmp_if%% %%#%% %%#%% %%#%% slake %%#%% thirst 
+]f[ murder %%#%% time machine %%#%% suffer%%lst%% restrained %%#%% %%#%% %%#%% 
+straight %%#%% %%#%% gallery ]^[ killing %%#%% brutes %%#%% heard%%per%% 
+`well%%lst%% mace %%#%% %%#%% hand ]^[ weena %%#%% %%#%% other%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% gallery ]^[ %%#%% %%#%% ]^[ %%#%% larger one%%lst%% %%#%% %%#%% %%#%% 
+%%#%% glance reminded %%#%% %%#%% %%#%% military chapel hung %%#%% tattered 
+flags%%per%%]$~ ~$[the brown ]^[ charred rags %%#%% hung %%#%% %%#%% %%#%% %%#%% 
+it%%lst%% %%#%% presently recognized %%#%% %%#%% decaying vestiges %%#%% books%%per%%]$~ 
+~$[they %%#%% %%#%% %%#%% dropped %%#%% pieces%%lst%% ]^[ %%#%% semblance %%#%% 
+print %%#%% left them%%per%%]$~ ~$[but %%#%% ]^[ %%#%% %%#%% warped boards ]^[ 
+cracked metallic clasps %%#%% told %%#%% tale %%#%% enough%%per%%]$~ ~$[had %%#%% 
+%%#%% %%#%% literary %%#%% %%#%% might%%lst%% perhaps%%lst%% %%#%% moralized %%#%% %%#%% 
+futility %%#%% %%#%% ambition%%per%%]$~ ~$[but %%#%% %%#%% was%%lst%% %%#%% %%#%% %%#%% struck 
+%%#%% %%#%% keenest force %%#%% %%#%% enormous waste %%#%% labour %%#%% %%#%% 
+%%#%% sombre wilderness %%#%% rotting paper testified%%per%%]$~ ~$[at %%#%% time %%#%% 
+%%#%% confess %%#%% %%#%% %%#%% chiefly %%#%% %%#%% philosophical 
+transactions ]^[ %%#%% own seventeen papers %%#%% physical optics%%per%% 
+`then%%lst%% %%#%% %%#%% %%#%% broad staircase%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% gallery %%#%% technical chemistry%%per%%]$~ ~$[and %%#%% %%#%% %%#%% ]n[ %%#%% 
+little hope %%#%% useful discoveries%%per%%]$~ ~$[except %%#%% %%#%% %%#%% %%#%% %%#%% 
+roof %%#%% collapsed%%lst%% %%#%% gallery %%#%% %%#%% preserved%%per%%]$~ ~$[i %%#%% 
+eagerly %%#%% %%#%% unbroken case%%per%%]$~ ~$[and %%#%% last%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% air%%dsh%%tight cases%%lst%% %%#%% found %%#%% box %%#%% matches%%per%%]$~ ~$[very eagerly %%#%% 
+tried them%%per%%]$~ ~$[they %%#%% perfectly good%%per%%]$~ ~$[they %%#%% ]n[ %%#%% damp%%per%%]$~ 
+~$[i %%#%% %%#%% weena%%per%% %%dqt%%dance,%%dqt%% %%#%% cried %%#%% %%#%% %%#%% %%#%% own tongue%%per%%]$~ 
+~$[for %%#%% %%#%% %%#%% %%#%% weapon indeed %%#%% %%#%% horrible creatures %%#%% 
+feared%%per%%]$~ ~$[and so%%lst%% %%#%% %%#%% derelict museum%%lst%% %%#%% %%#%% thick soft 
+carpeting %%#%% dust%%lst%% %%#%% weena%%sqt%%s huge delight%%lst%% %%#%% solemnly performed 
+%%#%% kind %%#%% composite dance%%lst%% whistling %%#%% land %%#%% %%#%% leal %%#%% 
+cheerfully %%#%% %%#%% could%%per%%]$~ ~$[in %%#%% %%#%% %%#%% %%#%% modest cancan%%lst%% %%#%% %%#%% 
+%%#%% step dance%%lst%% %%#%% %%#%% %%#%% skirt%%dsh%%dance (so %%#%% %%#%% %%#%% tail%%dsh%%coat 
+permitted)%%lst%% ]^[ %%#%% %%#%% original%%per%%]$~ ~$[for %%#%% am naturally inventive%%lst%% 
+%%#%% %%#%% know%%per%% 
+`now%%lst%% %%#%% %%#%% %%#%% %%#%% ]f[ %%#%% box %%#%% matches %%#%% %%#%% 
+escaped %%#%% wear %%#%% time ]f[ immemorial %%#%% %%#%% %%#%% %%#%% strange%%lst%% 
+%%#%% ]f[ %%#%% %%#%% %%#%% %%#%% %%#%% fortunate thing%%per%%]$~ ~$[yet%%lst%% oddly enough%%lst%% %%#%% 
+found %%#%% %%#%% unlikelier substance%%lst%% ]^[ %%#%% %%#%% camphor%%per%%]$~ ~$[i found 
+%%#%% %%#%% %%#%% sealed jar%%lst%% %%#%% %%#%% chance%%lst%% %%#%% suppose%%lst%% %%#%% %%#%% %%#%% 
+hermetically sealed%%per%%]$~ ~$[i fancied %%#%% %%#%% %%#%% %%#%% %%#%% paraffin 
+wax%%lst%% ]^[ smashed %%#%% glass accordingly%%per%%]$~ ~$[but %%#%% odour %%#%% camphor 
+%%#%% unmistakable%%per%%]$~ ~$[in %%#%% universal decay %%#%% volatile substance 
+%%#%% chanced %%#%% survive%%lst%% %%#%% %%#%% %%#%% thousands %%#%% 
+centuries%%per%%]$~ ~$[it reminded %%#%% %%#%% %%#%% sepia painting %%#%% %%#%% %%#%% seen 
+%%#%% %%#%% %%#%% ink %%#%% %%#%% fossil belemnite %%#%% %%#%% %%#%% perished 
+]^[ %%#%% fossilized millions %%#%% %%#%% ago%%per%%]$~ ~$[i %%#%% %%#%% %%#%% 
+throw %%#%% away%%lst%% ]b[ %%#%% remembered %%#%% %%#%% %%#%% inflammable ]^[ 
+burned %%#%% %%#%% %%#%% bright flame%%dsh%%%%dsh%%was%%lst%% %%#%% fact%%lst%% %%#%% excellent 
+candle%%dsh%%%%dsh%%and %%#%% %%#%% %%#%% %%#%% %%#%% pocket%%per%%]$~ ~$[i found %%#%% explosives%%lst%% 
+however%%lst%% nor %%#%% means %%#%% breaking %%#%% %%#%% bronze doors%%per%%]$~ ~$[as ]y[ 
+%%#%% iron crowbar %%#%% %%#%% %%#%% helpful %%#%% %%#%% %%#%% chanced upon%%per%%]$~ 
+~$[nevertheless %%#%% left %%#%% gallery greatly elated%%per%% 
+`i %%#%% tell %%#%% %%#%% %%#%% story %%#%% %%#%% %%#%% afternoon%%per%%]$~ ~$[it 
+%%#%% require %%#%% %%#%% effort %%#%% memory %%#%% recall %%#%% explorations 
+%%#%% %%#%% %%#%% %%#%% proper order%%per%%]$~ ~$[i remember %%#%% %%#%% gallery %%#%% rusting 
+stands %%#%% arms%%lst%% ]^[ %%#%% %%#%% hesitated %%#%% %%#%% crowbar ]^[ %%#%% 
+hatchet ]v[ %%#%% sword%%per%%]$~ ~$[i %%#%% ]n[ carry both%%lst%% however%%lst%% ]^[ %%#%% bar 
+%%#%% iron promised %%#%% %%#%% %%#%% bronze gates%%per%%]$~ ~$[there %%#%% 
+numbers %%#%% guns%%lst%% pistols%%lst%% ]^[ rifles%%per%%]$~ ~$[the %%#%% %%#%% masses %%#%% 
+rust%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% %%#%% metal%%lst%% ]^[ %%#%% fairly sound%%per%%]$~ 
+~$[but %%#%% cartridges ]v[ powder %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% rotted 
+%%#%% dust%%per%%]$~ ~$[one corner %%#%% %%#%% %%#%% charred ]^[ shattered%%scn%% perhaps%%lst%% 
+%%#%% thought%%lst%% %%#%% %%#%% explosion %%#%% %%#%% specimens%%per%%]$~ ~$[in %%#%% %%#%% 
+%%#%% %%#%% vast array %%#%% idols%%dsh%%%%dsh%%polynesian%%lst%% mexican%%lst%% grecian%%lst%% 
+phoenician%%lst%% %%#%% country %%#%% earth %%#%% %%#%% think%%per%%]$~ ~$[and here%%lst%% 
+yielding %%#%% %%#%% irresistible impulse%%lst%% %%#%% wrote %%#%% name %%#%% %%#%% 
+nose %%#%% %%#%% steatite monster %%#%% south america %%#%% particularly 
+%%#%% %%#%% fancy%%per%% 
+`as %%#%% evening drew on%%lst%% %%#%% %%#%% waned%%per%%]$~ ~$[i %%#%% %%#%% 
+gallery %%#%% gallery%%lst%% dusty%%lst%% silent%%lst%% %%#%% ruinous%%lst%% %%#%% exhibits 
+sometimes mere heaps %%#%% rust ]^[ lignite%%lst%% sometimes fresher%%per%%]$~ ~$[in 
+%%#%% %%#%% %%#%% suddenly found %%#%% near %%#%% model %%#%% %%#%% tin%%dsh%%mine%%lst%% 
+]^[ %%cmp_t%% %%#%% %%#%% merest accident %%#%% discovered%%lst%% %%#%% %%#%% air%%dsh%%tight 
+case%%lst%% %%#%% dynamite cartridges%%xcm%%]$~ ~$[i shouted %%dqt%%eureka!%%dqt%% ]^[ smashed 
+%%#%% %%#%% %%#%% joy%%per%%]$~ ~$[then %%#%% %%#%% doubt%%per%%]$~ ~$[i hesitated%%per%%]$~ ~$[then%%lst%% 
+selecting %%#%% little %%#%% gallery%%lst%% %%#%% %%#%% %%#%% essay%%per%%]$~ ~$[i %%#%% %%#%% 
+%%#%% %%#%% disappointment %%#%% %%#%% %%#%% %%#%% waiting five%%lst%% ten%%lst%% fifteen 
+minutes ]f[ %%#%% explosion %%#%% %%#%% came%%per%%]$~ ~$[of course %%#%% %%#%% 
+%%#%% dummies%%lst%% %%#%% %%#%% %%#%% %%#%% guessed %%#%% %%#%% presence%%per%%]$~ ~$[i 
+%%#%% believe %%#%% %%#%% %%#%% ]n[ %%#%% so%%lst%% %%#%% %%#%% %%#%% rushed 
+%%#%% incontinently ]^[ blown sphinx%%lst%% bronze doors%%lst%% ]^[ (as %%#%% 
+proved) %%#%% chances %%#%% finding %%#%% time machine%%lst%% %%#%% %%#%% %%#%% 
+nonexistence%%per%% 
+`it %%#%% %%#%% that%%lst%% %%#%% think%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% little %%#%% 
+court %%#%% %%#%% palace%%per%%]$~ ~$[it %%#%% turfed%%lst%% ]^[ %%#%% %%#%% fruit%%dsh%% 
+trees%%per%%]$~ ~$[so %%#%% rested ]^[ refreshed ourselves%%per%%]$~ ~$[towards sunset %%#%% 
+%%#%% %%#%% consider %%#%% position%%per%%]$~ ~$[night %%#%% creeping %%#%% us%%lst%% ]^[ 
+%%#%% inaccessible hiding%%dsh%%place %%#%% %%#%% %%#%% %%#%% found%%per%%]$~ ~$[but %%#%% 
+troubled %%#%% %%#%% little now%%per%%]$~ ~$[i %%#%% %%#%% %%#%% possession %%#%% %%#%% %%#%% 
+was%%lst%% perhaps%%lst%% %%#%% %%#%% %%#%% %%#%% defences %%#%% %%#%% morlocks%%dsh%%%%dsh%%i 
+%%#%% matches%%xcm%%]$~ ~$[i %%#%% %%#%% camphor %%#%% %%#%% pocket%%lst%% too%%lst%% %%cmp_if%% %%#%% blaze 
+%%#%% needed%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% pass %%#%% night %%#%% %%#%% open%%lst%% protected %%#%% %%#%% fire%%per%%]$~ ~$[in 
+%%#%% morning %%#%% %%#%% %%#%% getting %%#%% %%#%% time machine%%per%%]$~ ~$[towards 
+that%%lst%% %%#%% yet%%lst%% %%#%% %%#%% %%#%% %%#%% iron mace%%per%%]$~ ~$[but now%%lst%% %%#%% %%#%% growing 
+knowledge%%lst%% %%#%% %%#%% %%#%% %%#%% towards %%#%% bronze doors%%per%%]$~ 
+~$[up %%#%% this%%lst%% %%#%% %%#%% refrained %%#%% forcing them%%lst%% largely %%cmp_b%% %%#%% 
+%%#%% mystery %%#%% %%#%% %%#%% side%%per%%]$~ ~$[they %%#%% %%#%% impressed %%#%% %%#%% 
+%%#%% %%#%% strong%%lst%% ]^[ %%#%% hoped %%#%% %%#%% %%#%% bar %%#%% iron ]n[ 
+altogether inadequate ]f[ %%#%% work%%per%%]$~ 
+~$[ix 
+`we emerged %%#%% %%#%% palace %%#%% %%#%% sun %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% horizon%%per%%]$~ ~$[i %%#%% determined %%#%% reach %%#%% white sphinx 
+%%#%% %%#%% %%#%% morning%%lst%% ]^[ ere %%#%% dusk %%#%% purposed pushing 
+%%#%% %%#%% woods %%#%% %%#%% stopped %%#%% %%#%% %%#%% previous journey%%per%%]$~ 
+~$[my plan %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% night%%lst%% ]^[ %%cmp_t%%%%lst%% 
+building %%#%% fire%%lst%% %%#%% sleep %%#%% %%#%% protection %%#%% %%#%% glare%%per%%]$~ 
+~$[accordingly%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% gathered %%#%% sticks ]v[ dried 
+grass %%#%% saw%%lst%% ]^[ presently %%#%% %%#%% arms %%#%% %%#%% %%#%% litter%%per%%]$~ ~$[thus 
+loaded%%lst%% %%#%% progress %%#%% slower %%cmp_ta%% %%#%% %%#%% anticipated%%lst%% ]^[ 
+besides weena %%#%% tired%%per%%]$~ ~$[and %%#%% %%#%% %%#%% suffer %%#%% sleepiness 
+too%%scn%% ]s[ %%#%% %%#%% %%#%% %%#%% night %%#%% %%#%% reached %%#%% wood%%per%%]$~ ~$[upon 
+%%#%% shrubby hill %%#%% %%#%% edge weena %%#%% %%#%% stopped%%lst%% fearing 
+%%#%% darkness %%#%% us%%scn%% ]b[ %%#%% singular sense %%#%% impending 
+calamity%%lst%% %%#%% %%#%% indeed %%#%% served %%#%% %%#%% %%#%% warning%%lst%% drove 
+%%#%% onward%%per%%]$~ ~$[i %%#%% %%#%% %%#%% sleep ]f[ %%#%% night ]^[ %%#%% days%%lst%% 
+]^[ %%#%% %%#%% feverish ]^[ irritable%%per%%]$~ ~$[i %%#%% sleep coming %%#%% me%%lst%% 
+]^[ %%#%% morlocks %%#%% it%%per%% 
+`while %%#%% hesitated%%lst%% %%#%% %%#%% black bushes %%#%% us%%lst%% ]^[ dim 
+%%#%% %%#%% blackness%%lst%% %%#%% %%#%% %%#%% crouching figures%%per%%]$~ ~$[there 
+%%#%% scrub ]^[ %%#%% grass %%#%% %%#%% us%%lst%% ]^[ %%#%% %%#%% ]n[ feel safe 
+%%#%% %%#%% insidious approach%%per%%]$~ ~$[the forest%%lst%% %%#%% calculated%%lst%% %%#%% 
+%%#%% less %%cmp_ta%% %%#%% mile across%%per%%]$~ ~$[if %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% bare hill%%dsh%%side%%lst%% there%%lst%% %%#%% %%#%% %%#%% %%#%% me%%lst%% %%#%% %%#%% altogether 
+safer resting%%dsh%%place%%scn%% %%#%% %%#%% %%#%% %%#%% %%#%% matches ]^[ %%#%% 
+camphor %%#%% %%#%% contrive %%#%% %%#%% %%#%% path illuminated %%#%% %%#%% 
+woods%%per%%]$~ ~$[yet %%#%% %%#%% evident %%#%% %%cmp_if%% %%#%% %%#%% %%#%% flourish matches %%#%% 
+%%#%% hands %%#%% %%#%% %%#%% %%#%% abandon %%#%% firewood%%scn%% so%%lst%% %%#%% 
+reluctantly%%lst%% %%#%% %%#%% %%#%% down%%per%%]$~ ~$[and %%cmp_t%% %%#%% %%#%% %%#%% %%#%% head %%#%% %%#%% 
+%%#%% amaze %%#%% friends %%#%% %%#%% lighting it%%per%%]$~ ~$[i %%#%% %%#%% discover 
+%%#%% atrocious folly %%#%% %%#%% proceeding%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% mind %%#%% 
+%%#%% ingenious move ]f[ covering %%#%% retreat%%per%% 
+`i don%%sqt%%t know %%cmp_if%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% rare %%#%% flame 
+%%#%% %%#%% %%#%% %%#%% absence %%#%% %%#%% ]^[ %%#%% %%#%% temperate climate%%per%%]$~ ~$[the 
+sun%%sqt%%s heat %%#%% rarely strong %%#%% %%#%% burn%%lst%% %%#%% %%#%% %%#%% %%#%% 
+focused %%#%% dewdrops%%lst%% %%#%% %%#%% sometimes %%#%% %%#%% %%#%% %%#%% tropical 
+districts%%per%%]$~ ~$[lightning %%#%% blast ]^[ blacken%%lst%% ]b[ %%#%% rarely %%#%% 
+rise %%#%% widespread fire%%per%%]$~ ~$[decaying vegetation %%#%% occasionally 
+smoulder %%#%% %%#%% heat %%#%% %%#%% fermentation%%lst%% ]b[ %%#%% rarely 
+results %%#%% flame%%per%%]$~ ~$[in %%#%% decadence%%lst%% too%%lst%% %%#%% art %%#%% fire%%dsh%%making 
+%%#%% %%#%% forgotten %%#%% %%#%% earth%%per%%]$~ ~$[the red tongues %%#%% %%#%% 
+licking %%#%% %%#%% heap %%#%% wood %%#%% %%#%% altogether %%#%% ]^[ strange 
+%%#%% %%#%% weena%%per%% 
+`she %%#%% %%#%% run %%#%% %%#%% ]^[ play %%#%% it%%per%%]$~ ~$[i believe %%#%% 
+%%#%% %%#%% cast %%#%% %%#%% %%#%% %%#%% %%#%% ]n[ restrained her%%per%%]$~ ~$[but %%#%% 
+caught %%#%% up%%lst%% ]^[ %%#%% spite %%#%% %%#%% struggles%%lst%% plunged boldly 
+%%#%% %%#%% %%#%% %%#%% wood%%per%%]$~ ~$[for %%#%% little %%#%% %%#%% glare %%#%% %%#%% fire 
+lit %%#%% path%%per%%]$~ ~$[looking %%#%% presently%%lst%% %%#%% %%#%% see%%lst%% %%#%% %%#%% 
+crowded stems%%lst%% %%#%% %%#%% %%#%% heap %%#%% sticks %%#%% blaze %%#%% spread 
+%%#%% %%#%% bushes adjacent%%lst%% ]^[ %%#%% curved line %%#%% fire %%#%% creeping 
+%%#%% %%#%% grass %%#%% %%#%% hill%%per%%]$~ ~$[i laughed %%#%% that%%lst%% ]^[ %%#%% %%#%% %%#%% 
+%%#%% dark trees %%#%% me%%per%%]$~ ~$[it %%#%% %%#%% black%%lst%% ]^[ weena clung %%#%% 
+%%#%% convulsively%%lst%% ]b[ %%#%% %%#%% still%%lst%% %%#%% %%#%% eyes grew accustomed 
+%%#%% %%#%% darkness%%lst%% sufficient light ]f[ %%#%% %%#%% avoid %%#%% stems%%per%%]$~ 
+~$[overhead %%#%% %%#%% simply black%%lst%% except %%#%% %%#%% gap %%#%% remote blue 
+sky shone %%#%% %%#%% %%#%% %%#%% ]^[ there%%per%%]$~ ~$[i struck none %%#%% %%#%% 
+matches %%cmp_b%% %%#%% %%#%% %%#%% hand free%%per%%]$~ ~$[upon %%#%% left arm %%#%% carried 
+%%#%% little one%%lst%% %%#%% %%#%% %%#%% hand %%#%% %%#%% %%#%% iron bar%%per%% 
+`for %%#%% %%#%% %%#%% heard %%#%% ]b[ %%#%% crackling twigs %%#%% %%#%% 
+feet%%lst%% %%#%% faint rustle %%#%% %%#%% breeze above%%lst%% ]^[ %%#%% own breathing 
+]^[ %%#%% throb %%#%% %%#%% blood%%dsh%%vessels %%#%% %%#%% ears%%per%%]$~ ~$[then %%#%% %%#%% %%#%% 
+know %%#%% %%#%% pattering %%#%% me%%per%%]$~ ~$[i pushed %%#%% grimly%%per%%]$~ ~$[the pattering 
+grew %%#%% distinct%%lst%% ]^[ %%cmp_t%% %%#%% caught %%#%% %%#%% queer sound ]^[ 
+voices %%#%% %%#%% heard %%#%% %%#%% under%%dsh%%world%%per%%]$~ ~$[there %%#%% evidently 
+%%#%% %%#%% %%#%% morlocks%%lst%% ]^[ %%#%% %%#%% closing %%#%% %%#%% me%%per%%]$~ 
+~$[indeed%%lst%% %%#%% %%#%% minute %%#%% %%#%% %%#%% tug %%#%% %%#%% coat%%lst%% %%cmp_t%% %%#%% 
+%%#%% %%#%% arm%%per%%]$~ ~$[and weena shivered violently%%lst%% ]^[ %%#%% %%#%% still%%per%% 
+`it %%#%% time ]f[ %%#%% match%%per%%]$~ ~$[but %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% down%%per%%]$~ 
+~$[i %%#%% so%%lst%% and%%lst%% %%#%% %%#%% fumbled %%#%% %%#%% pocket%%lst%% %%#%% struggle %%#%% %%#%% 
+%%#%% darkness %%#%% %%#%% knees%%lst%% perfectly silent %%#%% %%#%% %%#%% ]^[ 
+%%#%% %%#%% %%#%% peculiar cooing sounds %%#%% %%#%% morlocks%%per%%]$~ ~$[soft 
+little hands%%lst%% too%%lst%% %%#%% creeping %%#%% %%#%% coat ]^[ back%%lst%% touching 
+%%#%% %%#%% neck%%per%%]$~ ~$[then %%#%% match scratched ]^[ fizzed%%per%%]$~ ~$[i held %%#%% 
+flaring%%lst%% ]^[ %%#%% %%#%% white %%#%% %%#%% %%#%% morlocks %%#%% flight amid 
+%%#%% trees%%per%%]$~ ~$[i hastily %%#%% %%#%% lump %%#%% camphor %%#%% %%#%% pocket%%lst%% ]^[ 
+prepared %%#%% light %%#%% %%#%% soon %%#%% %%#%% match %%#%% wane%%per%%]$~ ~$[then %%#%% 
+looked %%#%% weena%%per%%]$~ ~$[she %%#%% lying clutching %%#%% feet ]^[ %%#%% 
+motionless%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% ground%%per%%]$~ ~$[with %%#%% sudden fright %%#%% 
+stooped %%#%% her%%per%%]$~ ~$[she %%#%% scarcely %%#%% breathe%%per%%]$~ ~$[i lit %%#%% block 
+%%#%% camphor ]^[ flung %%#%% %%#%% %%#%% ground%%lst%% ]^[ %%#%% %%#%% split ]^[ flared 
+%%#%% ]^[ drove %%#%% %%#%% morlocks ]^[ %%#%% shadows%%lst%% %%#%% knelt %%#%% ]^[ 
+lifted her%%per%%]$~ ~$[the wood %%#%% %%#%% %%#%% %%#%% %%#%% stir ]^[ murmur 
+%%#%% %%#%% %%#%% company! 
+`she %%#%% %%#%% %%#%% fainted%%per%%]$~ ~$[i %%#%% %%#%% carefully %%#%% %%#%% 
+shoulder ]^[ rose %%#%% push on%%lst%% ]^[ %%cmp_t%% %%#%% %%#%% %%#%% horrible 
+realization%%per%%]$~ ~$[in manoeuvring %%#%% %%#%% matches ]^[ weena%%lst%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% times%%lst%% ]^[ %%#%% %%#%% %%#%% ]n[ %%#%% faintest 
+idea %%#%% %%#%% direction lay %%#%% path%%per%%]$~ ~$[for %%#%% %%#%% knew%%lst%% %%#%% %%#%% %%#%% 
+facing %%#%% towards %%#%% palace %%#%% green porcelain%%per%%]$~ ~$[i found 
+%%#%% %%#%% %%#%% cold sweat%%per%%]$~ ~$[i %%#%% %%#%% %%#%% rapidly %%#%% %%#%% do%%per%%]$~ ~$[i 
+determined %%#%% build %%#%% fire ]^[ encamp %%#%% %%#%% were%%per%%]$~ ~$[i %%#%% 
+weena%%lst%% %%#%% motionless%%lst%% %%#%% %%#%% %%#%% turfy bole%%lst%% ]^[ %%#%% 
+hastily%%lst%% %%#%% %%#%% %%#%% lump %%#%% camphor waned%%lst%% %%#%% %%#%% collecting 
+sticks ]^[ leaves%%per%%]$~ ~$[here ]^[ %%#%% %%#%% %%#%% %%#%% darkness round %%#%% 
+%%#%% morlocks%%sqt%% eyes shone %%#%% carbuncles%%per%% 
+`the camphor flickered ]^[ %%#%% out%%per%%]$~ ~$[i lit %%#%% match%%lst%% ]^[ %%#%% %%#%% 
+%%#%% so%%lst%% %%#%% white forms %%#%% %%#%% %%#%% approaching weena dashed 
+hastily away%%per%%]$~ ~$[one %%#%% ]s[ blinded %%#%% %%#%% light %%#%% %%#%% %%#%% 
+straight ]f[ me%%lst%% ]^[ %%#%% %%#%% %%#%% bones grind %%#%% %%#%% blow %%#%% %%#%% 
+fist%%per%%]$~ ~$[he %%#%% %%#%% whoop %%#%% dismay%%lst%% staggered %%#%% little way%%lst%% ]^[ 
+fell down%%per%%]$~ ~$[i lit %%#%% piece %%#%% camphor%%lst%% ]^[ %%#%% %%#%% gathering 
+%%#%% bonfire%%per%%]$~ ~$[presently %%#%% noticed %%#%% dry %%#%% %%#%% %%#%% %%#%% foliage 
+%%#%% me%%lst%% ]f[ %%#%% %%#%% arrival %%#%% %%#%% time machine%%lst%% %%#%% matter %%#%% %%#%% 
+week%%lst%% %%#%% rain %%#%% fallen%%per%%]$~ ~$[so%%lst%% instead %%#%% casting %%#%% %%#%% %%#%% 
+trees ]f[ fallen twigs%%lst%% %%#%% %%#%% leaping %%#%% ]^[ dragging %%#%% 
+branches%%per%%]$~ ~$[very soon %%#%% %%#%% %%#%% choking smoky fire %%#%% green wood ]^[ 
+dry sticks%%lst%% ]^[ %%#%% economize %%#%% camphor%%per%%]$~ ~$[then %%#%% %%#%% %%#%% 
+%%#%% weena lay beside %%#%% iron mace%%per%%]$~ ~$[i tried %%#%% %%#%% %%#%% %%#%% 
+revive her%%lst%% ]b[ %%#%% lay %%#%% %%#%% dead%%per%%]$~ ~$[i %%#%% ]n[ %%#%% satisfy 
+%%#%% %%#%% ]v[ ]n[ %%#%% breathed%%per%% 
+`now%%lst%% %%#%% smoke %%#%% %%#%% fire beat %%#%% towards me%%lst%% ]^[ %%#%% %%#%% 
+%%#%% %%#%% %%#%% heavy %%#%% %%#%% sudden%%per%%]$~ ~$[moreover%%lst%% %%#%% vapour %%#%% camphor 
+%%#%% %%#%% %%#%% air%%per%%]$~ ~$[my fire %%#%% ]n[ %%#%% replenishing ]f[ %%#%% hour 
+]v[ so%%per%%]$~ ~$[i %%#%% %%#%% weary %%#%% %%#%% exertion%%lst%% ]^[ sat down%%per%%]$~ ~$[the 
+wood%%lst%% too%%lst%% %%#%% %%#%% %%#%% %%#%% slumbrous murmur %%#%% %%#%% %%#%% ]n[ 
+understand%%per%%]$~ ~$[i %%#%% %%#%% %%#%% nod ]^[ %%#%% %%#%% eyes%%per%%]$~ ~$[but %%#%% %%#%% 
+dark%%lst%% ]^[ %%#%% morlocks %%#%% %%#%% hands %%#%% me%%per%%]$~ ~$[flinging %%#%% 
+%%#%% clinging fingers %%#%% hastily %%#%% %%#%% %%#%% pocket ]f[ %%#%% 
+match%%dsh%%box%%lst%% and%%dsh%%%%dsh%%it %%#%% gone%%xcm%%]$~ ~$[then %%#%% gripped ]^[ closed %%#%% 
+%%#%% again%%per%%]$~ ~$[in %%#%% moment %%#%% knew %%#%% %%#%% happened%%per%%]$~ ~$[i %%#%% slept%%lst%% 
+]^[ %%#%% fire %%#%% gone out%%lst%% ]^[ %%#%% bitterness %%#%% death %%#%% %%#%% 
+%%#%% soul%%per%%]$~ ~$[the forest %%#%% %%#%% %%#%% %%#%% smell %%#%% burning wood%%per%%]$~ ~$[i 
+%%#%% caught %%#%% %%#%% neck%%lst%% %%#%% %%#%% hair%%lst%% %%#%% %%#%% arms%%lst%% ]^[ pulled 
+down%%per%%]$~ ~$[it %%#%% indescribably horrible %%#%% %%#%% darkness %%#%% feel %%#%% 
+%%#%% soft creatures heaped %%#%% me%%per%%]$~ ~$[i %%#%% %%#%% %%cmp_if%% %%#%% %%#%% %%#%% %%#%% 
+monstrous spider%%sqt%%s web%%per%%]$~ ~$[i %%#%% overpowered%%lst%% ]^[ %%#%% down%%per%%]$~ ~$[i 
+%%#%% little teeth nipping %%#%% %%#%% neck%%per%%]$~ ~$[i rolled over%%lst%% ]^[ %%#%% %%#%% 
+%%#%% ]s[ %%#%% hand %%#%% %%#%% %%#%% iron lever%%per%%]$~ ~$[it %%#%% %%#%% strength%%per%%]$~ 
+~$[i struggled up%%lst%% shaking %%#%% human rats %%#%% me%%lst%% and%%lst%% holding %%#%% 
+bar short%%lst%% %%#%% thrust %%#%% %%#%% judged %%#%% %%#%% %%#%% be%%per%%]$~ ~$[i %%#%% 
+feel %%#%% succulent giving %%#%% flesh ]^[ bone %%#%% %%#%% blows%%lst%% ]^[ 
+]f[ %%#%% moment %%#%% %%#%% free%%per%% 
+`the strange exultation %%#%% ]s[ %%#%% %%#%% %%#%% accompany hard 
+fighting %%#%% %%#%% me%%per%%]$~ ~$[i knew %%#%% %%#%% %%#%% ]^[ weena %%#%% lost%%lst%% 
+]b[ %%#%% determined %%#%% %%#%% %%#%% morlocks pay ]f[ %%#%% meat%%per%%]$~ ~$[i 
+stood %%#%% %%#%% %%#%% %%#%% %%#%% tree%%lst%% swinging %%#%% iron bar %%#%% me%%per%%]$~ 
+~$[the %%#%% wood %%#%% %%#%% %%#%% %%#%% stir ]^[ cries %%#%% them%%per%%]$~ ~$[a minute 
+passed%%per%%]$~ ~$[their voices %%#%% %%#%% rise %%#%% %%#%% %%#%% pitch %%#%% 
+excitement%%lst%% ]^[ %%#%% movements grew faster%%per%%]$~ ~$[yet none %%#%% 
+%%#%% reach%%per%%]$~ ~$[i stood glaring %%#%% %%#%% blackness%%per%%]$~ ~$[then suddenly 
+%%#%% hope%%per%%]$~ ~$[what %%cmp_if%% %%#%% morlocks %%#%% afraid%%qsn%%]$~ ~$[and close %%#%% %%#%% 
+heels %%#%% %%#%% %%#%% %%#%% strange thing%%per%%]$~ ~$[the darkness %%#%% %%#%% grow 
+luminous%%per%%]$~ ~$[very dimly %%#%% %%#%% %%#%% %%#%% %%#%% morlocks %%#%% me%%dsh%%%%dsh%%three 
+battered %%#%% %%#%% feet%%dsh%%%%dsh%%and %%cmp_t%% %%#%% recognized%%lst%% %%#%% incredulous 
+surprise%%lst%% %%#%% %%#%% %%#%% %%#%% running%%lst%% %%#%% %%#%% incessant stream%%lst%% 
+%%#%% %%#%% seemed%%lst%% %%#%% %%#%% me%%lst%% ]^[ %%#%% %%#%% %%#%% wood %%#%% front%%per%%]$~ 
+~$[and %%#%% %%#%% %%#%% %%#%% %%#%% white%%lst%% ]b[ reddish%%per%%]$~ ~$[as %%#%% stood 
+agape%%lst%% %%#%% %%#%% %%#%% little red spark %%#%% drifting %%#%% %%#%% gap %%#%% 
+starlight %%#%% %%#%% branches%%lst%% ]^[ vanish%%per%%]$~ ~$[and %%#%% %%#%% %%#%% 
+understood %%#%% smell %%#%% burning wood%%lst%% %%#%% slumbrous murmur %%#%% 
+%%#%% growing %%#%% %%#%% %%#%% gusty roar%%lst%% %%#%% red glow%%lst%% ]^[ %%#%% 
+morlocks%%sqt%% flight%%per%% 
+`stepping %%#%% %%#%% %%#%% %%#%% tree ]^[ looking back%%lst%% %%#%% saw%%lst%% 
+%%#%% %%#%% black pillars %%#%% %%#%% nearer trees%%lst%% %%#%% flames %%#%% %%#%% 
+burning forest%%per%%]$~ ~$[it %%#%% %%#%% %%#%% fire coming %%#%% me%%per%%]$~ ~$[with %%#%% 
+%%#%% looked ]f[ weena%%lst%% ]b[ %%#%% %%#%% gone%%per%%]$~ ~$[the hissing ]^[ crackling 
+%%#%% me%%lst%% %%#%% explosive thud %%#%% %%#%% fresh tree burst %%#%% 
+flame%%lst%% left little time ]f[ reflection%%per%%]$~ ~$[my iron bar %%#%% 
+gripped%%lst%% %%#%% followed %%#%% %%#%% morlocks%%sqt%% path%%per%%]$~ ~$[it %%#%% %%#%% close race%%per%%]$~ 
+~$[once %%#%% flames crept forward ]s[ swiftly %%#%% %%#%% %%#%% %%#%% %%#%% ran 
+%%#%% %%#%% %%#%% outflanked ]^[ %%#%% %%#%% strike %%#%% %%#%% %%#%% left%%per%%]$~ ~$[but %%#%% 
+last %%#%% emerged %%#%% %%#%% %%#%% %%#%% space%%lst%% ]^[ %%#%% %%#%% %%#%% so%%lst%% %%#%% 
+morlock %%#%% blundering towards me%%lst%% ]^[ past me%%lst%% ]^[ %%#%% %%#%% 
+straight %%#%% %%#%% fire! 
+`and %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% weird ]^[ horrible thing%%lst%% %%#%% 
+think%%lst%% %%#%% %%#%% %%#%% %%#%% beheld %%#%% %%#%% future age%%per%%]$~ ~$[this %%#%% space 
+%%#%% %%#%% bright %%#%% day %%#%% %%#%% reflection %%#%% %%#%% fire%%per%%]$~ ~$[in %%#%% 
+centre %%#%% %%#%% hillock ]v[ tumulus%%lst%% surmounted %%#%% %%#%% scorched 
+hawthorn%%per%%]$~ ~$[beyond %%#%% %%#%% %%#%% arm %%#%% %%#%% burning forest%%lst%% 
+%%#%% yellow tongues %%#%% writhing %%#%% it%%lst%% completely 
+encircling %%#%% space %%#%% %%#%% fence %%#%% fire%%per%%]$~ ~$[upon %%#%% hill%%dsh%%side 
+%%#%% %%#%% thirty ]v[ forty morlocks%%lst%% dazzled %%#%% %%#%% light ]^[ 
+heat%%lst%% ]^[ blundering hither ]^[ thither %%#%% %%#%% %%#%% %%#%% 
+%%#%% bewilderment%%per%%]$~ ~$[at %%#%% %%#%% %%#%% ]n[ realize %%#%% blindness%%lst%% 
+]^[ struck furiously %%#%% %%#%% %%#%% %%#%% bar%%lst%% %%#%% %%#%% frenzy %%#%% fear%%lst%% %%#%% 
+%%#%% approached me%%lst%% killing %%#%% ]^[ crippling %%#%% more%%per%%]$~ ~$[but 
+%%#%% %%#%% %%#%% watched %%#%% gestures %%#%% %%#%% %%#%% %%#%% groping %%#%% %%#%% 
+hawthorn %%#%% %%#%% red sky%%lst%% ]^[ heard %%#%% moans%%lst%% %%#%% %%#%% 
+assured %%#%% %%#%% absolute helplessness ]^[ misery %%#%% %%#%% glare%%lst%% 
+]^[ %%#%% struck %%#%% %%#%% %%#%% them%%per%% 
+`yet %%#%% %%#%% ]^[ %%cmp_t%% %%#%% %%#%% %%#%% straight towards me%%lst%% 
+setting loose %%#%% quivering horror %%#%% %%#%% %%#%% quick %%#%% elude him%%per%%]$~ 
+~$[at %%#%% time %%#%% flames died %%#%% somewhat%%lst%% ]^[ %%#%% feared %%#%% foul 
+creatures %%#%% presently %%#%% able %%#%% %%#%% me%%per%%]$~ ~$[i %%#%% thinking %%#%% 
+beginning %%#%% fight %%#%% killing %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+happen%%scn%% ]b[ %%#%% fire burst %%#%% %%#%% brightly%%lst%% ]^[ %%#%% stayed %%#%% 
+hand%%per%%]$~ ~$[i walked %%#%% %%#%% hill %%#%% %%#%% ]^[ avoided them%%lst%% 
+looking ]f[ %%#%% trace %%#%% weena%%per%%]$~ ~$[but weena %%#%% gone%%per%% 
+`at last %%#%% sat %%#%% %%#%% %%#%% summit %%#%% %%#%% hillock%%lst%% ]^[ watched 
+%%#%% strange incredible company %%#%% blind %%#%% groping %%#%% ]^[ 
+fro%%lst%% ]^[ %%#%% uncanny noises %%#%% %%#%% other%%lst%% %%#%% %%#%% glare %%#%% %%#%% 
+fire beat %%#%% them%%per%%]$~ ~$[the coiling uprush %%#%% smoke streamed %%#%% 
+%%#%% sky%%lst%% ]^[ %%#%% %%#%% rare tatters %%#%% %%#%% red canopy%%lst%% remote 
+%%#%% %%#%% %%#%% belonged %%#%% %%#%% universe%%lst%% shone %%#%% little 
+stars%%per%%]$~ ~$[two ]v[ %%#%% morlocks %%#%% blundering %%#%% me%%lst%% ]^[ %%#%% 
+drove %%#%% %%#%% %%#%% blows %%#%% %%#%% fists%%lst%% trembling %%#%% %%#%% %%#%% so%%per%% 
+`for %%#%% %%#%% %%#%% %%#%% %%#%% night %%#%% %%#%% persuaded %%#%% %%#%% %%#%% 
+nightmare%%per%%]$~ ~$[i bit %%#%% ]^[ screamed %%#%% %%#%% passionate desire %%#%% 
+awake%%per%%]$~ ~$[i beat %%#%% ground %%#%% %%#%% hands%%lst%% ]^[ %%#%% %%#%% ]^[ sat %%#%% 
+again%%lst%% ]^[ wandered %%#%% ]^[ there%%lst%% ]^[ %%#%% sat down%%per%%]$~ ~$[then %%#%% 
+%%#%% fall %%#%% rubbing %%#%% eyes ]^[ calling %%#%% god %%#%% %%#%% %%#%% 
+awake%%per%%]$~ ~$[thrice %%#%% %%#%% morlocks %%#%% %%#%% heads %%#%% %%#%% %%#%% kind %%#%% 
+agony ]^[ rush %%#%% %%#%% flames%%per%%]$~ ~$[but%%lst%% %%#%% last%%lst%% %%#%% %%#%% 
+subsiding red %%#%% %%#%% fire%%lst%% %%#%% %%#%% streaming masses %%#%% black 
+smoke ]^[ %%#%% whitening ]^[ blackening tree stumps%%lst%% ]^[ %%#%% 
+diminishing numbers %%#%% %%#%% dim creatures%%lst%% %%#%% %%#%% white light 
+%%#%% %%#%% day%%per%% 
+`i searched %%#%% ]f[ traces %%#%% weena%%lst%% ]b[ %%#%% %%#%% none%%per%%]$~ 
+~$[it %%#%% plain %%#%% %%#%% %%#%% left %%#%% poor little body %%#%% %%#%% 
+forest%%per%%]$~ ~$[i %%#%% describe %%#%% %%#%% relieved %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% escaped %%#%% awful fate %%#%% %%#%% %%#%% %%#%% destined%%per%%]$~ ~$[as %%#%% 
+%%#%% %%#%% that%%lst%% %%#%% %%#%% %%#%% moved %%#%% begin %%#%% massacre %%#%% %%#%% 
+helpless abominations %%#%% me%%lst%% ]b[ %%#%% contained myself%%per%%]$~ ~$[the 
+hillock%%lst%% %%#%% %%#%% %%#%% said%%lst%% %%#%% %%#%% kind %%#%% island %%#%% %%#%% forest%%per%%]$~ 
+~$[from %%#%% summit %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% haze %%#%% smoke %%#%% 
+palace %%#%% green porcelain%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% bearings 
+]f[ %%#%% white sphinx%%per%%]$~ ~$[and so%%lst%% leaving %%#%% remnant %%#%% %%#%% 
+damned souls %%#%% %%#%% hither ]^[ thither ]^[ moaning%%lst%% %%#%% %%#%% 
+day grew clearer%%lst%% %%#%% tied %%#%% grass %%#%% %%#%% feet ]^[ limped %%#%% 
+%%#%% smoking ashes ]^[ %%#%% black stems%%lst%% %%#%% %%#%% pulsated 
+internally %%#%% fire%%lst%% towards %%#%% hiding%%dsh%%place %%#%% %%#%% time 
+machine%%per%%]$~ ~$[i walked slowly%%lst%% ]f[ %%#%% %%#%% %%#%% exhausted%%lst%% %%#%% %%#%% %%#%% 
+lame%%lst%% ]^[ %%#%% %%#%% %%#%% intensest wretchedness ]f[ %%#%% horrible 
+death %%#%% little weena%%per%%]$~ ~$[it %%#%% %%#%% overwhelming calamity%%per%%]$~ ~$[now%%lst%% 
+%%#%% %%#%% %%#%% familiar room%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% sorrow %%#%% %%#%% dream 
+%%cmp_ta%% %%#%% actual loss%%per%%]$~ ~$[but %%#%% morning %%#%% left %%#%% absolutely 
+lonely again%%dsh%%%%dsh%%terribly alone%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% %%#%% house %%#%% 
+mine%%lst%% %%#%% %%#%% fireside%%lst%% %%#%% %%#%% %%#%% you%%lst%% ]^[ %%#%% %%#%% %%#%% 
+%%#%% %%#%% longing %%#%% %%#%% pain%%per%% 
+`but %%#%% %%#%% walked %%#%% %%#%% smoking ashes %%#%% %%#%% bright 
+morning sky%%lst%% %%#%% %%#%% %%#%% discovery%%per%%]$~ ~$[in %%#%% trouser pocket %%#%% %%#%% 
+%%#%% loose matches%%per%%]$~ ~$[the box %%#%% %%#%% leaked %%#%% %%#%% %%#%% lost%%per%%]$~ 
+~$[x 
+`about eight ]v[ nine %%#%% %%#%% morning %%#%% %%#%% %%#%% %%#%% %%#%% seat %%#%% 
+yellow metal %%#%% %%#%% %%#%% %%#%% viewed %%#%% world %%#%% %%#%% evening 
+%%#%% %%#%% arrival%%per%%]$~ ~$[i %%#%% %%#%% %%#%% hasty conclusions %%#%% %%#%% 
+evening ]^[ %%#%% ]n[ refrain %%#%% laughing bitterly %%#%% %%#%% 
+confidence%%per%%]$~ ~$[here %%#%% %%#%% %%#%% beautiful scene%%lst%% %%#%% %%#%% abundant 
+foliage%%lst%% %%#%% %%#%% splendid palaces ]^[ magnificent ruins%%lst%% %%#%% 
+%%#%% silver river running %%#%% %%#%% fertile banks%%per%%]$~ ~$[the gay 
+robes %%#%% %%#%% beautiful people moved hither ]^[ thither %%#%% %%#%% 
+trees%%per%%]$~ ~$[some %%#%% bathing %%#%% exactly %%#%% %%#%% %%#%% %%#%% %%#%% saved 
+weena%%lst%% ]^[ %%#%% suddenly %%#%% %%#%% %%#%% keen stab %%#%% pain%%per%%]$~ ~$[and %%#%% 
+blots %%#%% %%#%% landscape rose %%#%% cupolas %%#%% %%#%% %%#%% %%#%% %%#%% 
+under%%dsh%%world%%per%%]$~ ~$[i understood %%#%% %%#%% %%#%% %%#%% beauty %%#%% %%#%% over%%dsh%% 
+world people covered%%per%%]$~ ~$[very pleasant %%#%% %%#%% day%%lst%% %%#%% pleasant 
+%%#%% %%#%% day %%#%% %%#%% cattle %%#%% %%#%% field%%per%%]$~ ~$[like %%#%% cattle%%lst%% %%#%% 
+knew %%#%% %%#%% enemies ]^[ provided %%#%% %%#%% needs%%per%%]$~ ~$[and %%#%% %%#%% 
+%%#%% %%#%% same%%per%% 
+`i grieved %%#%% %%#%% %%#%% brief %%#%% dream %%#%% %%#%% human intellect 
+%%#%% been%%per%%]$~ ~$[it %%#%% committed suicide%%per%%]$~ ~$[it %%#%% set %%#%% 
+steadfastly towards comfort ]^[ ease%%lst%% %%#%% balanced society %%#%% 
+security ]^[ permanency %%#%% %%#%% watchword%%lst%% %%#%% %%#%% attained %%#%% 
+hopes%%dsh%%%%dsh%%to %%#%% %%#%% %%#%% %%#%% last%%per%%]$~ ~$[once%%lst%% life ]^[ property %%#%% 
+%%#%% reached %%#%% absolute safety%%per%%]$~ ~$[the rich %%#%% %%#%% assured 
+%%#%% %%#%% wealth ]^[ comfort%%lst%% %%#%% toiler assured %%#%% %%#%% life ]^[ 
+work%%per%%]$~ ~$[no doubt %%#%% %%#%% perfect world %%#%% %%#%% %%#%% %%#%% 
+unemployed problem%%lst%% %%#%% social question left unsolved%%per%%]$~ ~$[and %%#%% 
+%%#%% quiet %%#%% followed%%per%% 
+`it %%#%% %%#%% law %%#%% nature %%#%% overlook%%lst%% %%#%% intellectual 
+versatility %%#%% %%#%% compensation ]f[ change%%lst%% danger%%lst%% ]^[ trouble%%per%%]$~ 
+~$[an animal perfectly %%#%% harmony %%#%% %%#%% environment %%#%% %%#%% perfect 
+mechanism%%per%%]$~ ~$[nature %%#%% appeals %%#%% intelligence %%#%% habit ]^[ 
+instinct %%#%% useless%%per%%]$~ ~$[there %%#%% %%#%% intelligence %%#%% %%#%% %%#%% %%#%% 
+change ]^[ %%#%% %%#%% %%#%% change%%per%%]$~ ~$[only %%#%% animals partake %%#%% 
+intelligence %%#%% %%#%% %%#%% meet %%#%% huge variety %%#%% %%#%% ]^[ 
+dangers%%per%% 
+`so%%lst%% %%#%% %%#%% %%#%% it%%lst%% %%#%% upper%%dsh%%world %%#%% %%#%% drifted towards %%#%% 
+feeble prettiness%%lst%% ]^[ %%#%% under%%dsh%%world %%#%% mere mechanical 
+industry%%per%%]$~ ~$[but %%#%% perfect state %%#%% lacked %%#%% %%#%% %%#%% ]f[ 
+mechanical perfection%%dsh%%%%dsh%%absolute permanency%%per%%]$~ ~$[apparently %%#%% time 
+%%#%% on%%lst%% %%#%% feeding %%#%% %%#%% under%%dsh%%world%%lst%% %%#%% %%#%% %%#%% effected%%lst%% 
+%%#%% %%#%% disjointed%%per%%]$~ ~$[mother necessity%%lst%% %%#%% %%#%% %%#%% staved %%#%% 
+]f[ %%#%% %%#%% thousand years%%lst%% %%#%% %%#%% again%%lst%% ]^[ %%#%% %%#%% below%%per%%]$~ 
+~$[the under%%dsh%%world %%#%% %%#%% contact %%#%% machinery%%lst%% which%%lst%% %%#%% 
+perfect%%lst%% %%#%% %%#%% %%#%% little %%#%% outside habit%%lst%% %%#%% 
+probably retained perforce %%#%% %%#%% initiative%%lst%% %%cmp_if%% less %%#%% 
+%%#%% %%#%% human character%%lst%% %%cmp_ta%% %%#%% upper%%per%%]$~ ~$[and %%#%% %%#%% meat 
+failed them%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% habit %%#%% hitherto 
+forbidden%%per%%]$~ ~$[so %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% last view %%#%% %%#%% world %%#%% 
+eight hundred ]^[ %%#%% thousand seven hundred ]^[ one%%per%%]$~ ~$[it %%#%% %%#%% 
+%%#%% wrong %%#%% explanation %%#%% mortal wit %%#%% invent%%per%%]$~ ~$[it %%#%% %%#%% 
+%%#%% %%#%% shaped %%#%% %%#%% me%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% you%%per%% 
+`after %%#%% fatigues%%lst%% excitements%%lst%% ]^[ terrors %%#%% %%#%% past 
+days%%lst%% ]^[ %%#%% spite %%#%% %%#%% grief%%lst%% %%#%% seat ]^[ %%#%% tranquil view 
+]^[ %%#%% warm sunlight %%#%% %%#%% pleasant%%per%%]$~ ~$[i %%#%% %%#%% tired ]^[ 
+sleepy%%lst%% ]^[ soon %%#%% theorizing passed %%#%% dozing%%per%%]$~ ~$[catching 
+%%#%% %%#%% that%%lst%% %%#%% %%#%% %%#%% own hint%%lst%% ]^[ spreading %%#%% %%#%% %%#%% 
+%%#%% turf %%#%% %%#%% %%#%% %%#%% ]^[ refreshing sleep%%per%% 
+`i awoke %%#%% little %%#%% sunsetting%%per%%]$~ ~$[i %%#%% %%#%% safe %%#%% 
+%%#%% caught napping %%#%% %%#%% morlocks%%lst%% and%%lst%% stretching myself%%lst%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% hill towards %%#%% white sphinx%%per%%]$~ ~$[i %%#%% %%#%% crowbar 
+%%#%% %%#%% hand%%lst%% ]^[ %%#%% %%#%% hand played %%#%% %%#%% matches %%#%% %%#%% 
+pocket%%per%% 
+`and %%#%% %%#%% %%#%% %%#%% unexpected thing%%per%%]$~ ~$[as %%#%% approached %%#%% 
+pedestal %%#%% %%#%% sphinx %%#%% found %%#%% bronze valves %%#%% open%%per%%]$~ ~$[they 
+%%#%% slid %%#%% %%#%% grooves%%per%% 
+`at %%#%% %%#%% stopped short %%#%% them%%lst%% hesitating %%#%% enter%%per%% 
+`within %%#%% %%#%% %%#%% apartment%%lst%% ]^[ %%#%% %%#%% raised %%#%% %%#%% %%#%% 
+corner %%#%% %%#%% %%#%% %%#%% time machine%%per%%]$~ ~$[i %%#%% %%#%% %%#%% levers %%#%% 
+%%#%% pocket%%per%%]$~ ~$[so here%%lst%% %%#%% %%#%% %%#%% elaborate preparations ]f[ %%#%% 
+siege %%#%% %%#%% white sphinx%%lst%% %%#%% %%#%% meek surrender%%per%%]$~ ~$[i threw %%#%% iron 
+bar away%%lst%% %%#%% sorry ]n[ %%#%% %%#%% it%%per%% 
+`a sudden %%#%% %%#%% %%#%% %%#%% head %%#%% %%#%% stooped towards %%#%% 
+portal%%per%%]$~ ~$[for once%%lst%% %%#%% least%%lst%% %%#%% grasped %%#%% mental operations %%#%% 
+%%#%% morlocks%%per%%]$~ ~$[suppressing %%#%% strong inclination %%#%% laugh%%lst%% %%#%% 
+stepped %%#%% %%#%% bronze frame ]^[ %%#%% %%#%% %%#%% time machine%%per%%]$~ ~$[i 
+%%#%% surprised %%#%% %%#%% %%#%% %%#%% %%#%% carefully oiled ]^[ cleaned%%per%%]$~ ~$[i 
+%%#%% suspected %%#%% %%#%% %%#%% morlocks %%#%% %%#%% partially %%#%% 
+%%#%% %%#%% pieces %%#%% trying %%#%% %%#%% dim %%#%% %%#%% grasp %%#%% purpose%%per%% 
+`now %%#%% %%#%% stood ]^[ examined it%%lst%% finding %%#%% pleasure %%#%% %%#%% 
+mere touch %%#%% %%#%% contrivance%%lst%% %%#%% %%#%% %%#%% %%#%% expected happened%%per%%]$~ 
+~$[the bronze panels suddenly slid %%#%% ]^[ struck %%#%% frame %%#%% %%#%% 
+clang%%per%%]$~ ~$[i %%#%% %%#%% %%#%% dark%%dsh%%%%dsh%%trapped%%per%%]$~ ~$[so %%#%% morlocks thought%%per%%]$~ ~$[at 
+%%#%% %%#%% chuckled gleefully%%per%% 
+`i %%#%% %%#%% hear %%#%% murmuring laughter %%#%% %%#%% %%#%% 
+towards me%%per%%]$~ ~$[very calmly %%#%% tried %%#%% strike %%#%% match%%per%%]$~ ~$[i %%#%% %%#%% 
+%%#%% fix %%#%% %%#%% levers ]^[ depart %%cmp_t%% %%#%% %%#%% ghost%%per%%]$~ ~$[but %%#%% %%#%% 
+overlooked %%#%% little thing%%per%%]$~ ~$[the matches %%#%% %%#%% %%#%% abominable 
+kind %%#%% light %%#%% %%#%% %%#%% box%%per%% 
+`you %%#%% imagine %%#%% %%#%% %%#%% calm vanished%%per%%]$~ ~$[the little brutes 
+%%#%% close %%#%% me%%per%%]$~ ~$[one touched me%%per%%]$~ ~$[i %%#%% %%#%% sweeping blow %%#%% 
+%%#%% dark %%#%% %%#%% %%#%% %%#%% levers%%lst%% ]^[ %%#%% %%#%% scramble %%#%% %%#%% 
+saddle %%#%% %%#%% machine%%per%%]$~ ~$[then %%#%% %%#%% hand %%#%% %%#%% ]^[ %%cmp_t%% 
+another%%per%%]$~ ~$[then %%#%% %%#%% simply %%#%% fight %%#%% %%#%% persistent 
+fingers ]f[ %%#%% levers%%lst%% ]^[ %%#%% %%#%% %%#%% time feel ]f[ %%#%% studs 
+%%#%% %%#%% %%#%% fitted%%per%%]$~ ~$[one%%lst%% indeed%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+me%%per%%]$~ ~$[as %%#%% slipped %%#%% %%#%% hand%%lst%% %%#%% %%#%% %%#%% butt %%#%% %%#%% dark %%#%% 
+%%#%% head%%dsh%%%%dsh%%i %%#%% hear %%#%% morlock%%sqt%%s skull ring%%dsh%%%%dsh%%to recover it%%per%%]$~ 
+~$[it %%#%% %%#%% nearer %%#%% %%cmp_ta%% %%#%% fight %%#%% %%#%% forest%%lst%% %%#%% think%%lst%% %%#%% 
+last scramble%%per%% 
+`but %%#%% last %%#%% lever %%#%% fitted ]^[ pulled over%%per%%]$~ ~$[the 
+clinging hands slipped %%#%% me%%per%%]$~ ~$[the darkness presently fell %%#%% 
+%%#%% eyes%%per%%]$~ ~$[i found %%#%% %%#%% %%#%% %%#%% grey light ]^[ tumult %%#%% %%#%% 
+%%#%% described%%per%%]$~ 
+~$[xi 
+`i %%#%% %%#%% told %%#%% %%#%% %%#%% sickness ]^[ confusion %%#%% 
+comes %%#%% time travelling%%per%%]$~ ~$[and %%#%% time %%#%% %%#%% ]n[ seated 
+properly %%#%% %%#%% saddle%%lst%% ]b[ sideways ]^[ %%#%% %%#%% unstable fashion%%per%%]$~ 
+~$[for %%#%% indefinite time %%#%% clung %%#%% %%#%% machine %%#%% %%#%% swayed ]^[ 
+vibrated%%lst%% %%#%% unheeding %%#%% %%#%% went%%lst%% ]^[ %%#%% %%#%% brought %%#%% 
+%%#%% look %%#%% %%#%% dials %%#%% %%#%% %%#%% amazed %%#%% %%#%% %%#%% %%#%% %%#%% 
+arrived%%per%%]$~ ~$[one dial records days%%lst%% ]^[ %%#%% thousands %%#%% days%%lst%% 
+%%#%% millions %%#%% days%%lst%% ]^[ %%#%% thousands %%#%% millions%%per%%]$~ 
+~$[now%%lst%% instead %%#%% reversing %%#%% levers%%lst%% %%#%% %%#%% pulled %%#%% %%#%% ]s[ 
+%%#%% %%#%% %%#%% forward %%#%% them%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% look %%#%% %%#%% 
+indicators %%#%% found %%#%% %%#%% thousands hand %%#%% sweeping round %%#%% 
+fast %%#%% %%#%% %%#%% hand %%#%% %%#%% watch%%dsh%%%%dsh%%into futurity%%per%% 
+`as %%#%% drove on%%lst%% %%#%% peculiar change crept %%#%% %%#%% appearance %%#%% 
+things%%per%%]$~ ~$[the palpitating greyness grew darker%%scn%% %%cmp_t%%%%dsh%%%%dsh%%though %%#%% %%#%% 
+%%#%% travelling %%#%% prodigious velocity%%dsh%%%%dsh%%the blinking 
+succession %%#%% day ]^[ night%%lst%% %%#%% %%#%% usually indicative %%#%% %%#%% 
+slower pace%%lst%% returned%%lst%% ]^[ grew %%#%% ]^[ %%#%% marked%%per%%]$~ ~$[this 
+puzzled %%#%% %%#%% %%#%% %%#%% first%%per%%]$~ ~$[the alternations %%#%% night ]^[ day 
+grew slower ]^[ slower%%lst%% ]^[ ]s[ %%#%% %%#%% passage %%#%% %%#%% sun %%#%% 
+%%#%% sky%%lst%% %%#%% %%#%% %%#%% %%#%% stretch %%#%% centuries%%per%%]$~ ~$[at last 
+%%#%% steady twilight brooded %%#%% %%#%% earth%%lst%% %%#%% twilight %%#%% broken 
+%%#%% ]^[ %%cmp_t%% %%#%% %%#%% comet glared %%#%% %%#%% darkling sky%%per%%]$~ ~$[the 
+band %%#%% light %%#%% %%#%% indicated %%#%% sun %%#%% %%#%% %%#%% 
+disappeared%%scn%% ]f[ %%#%% sun %%#%% ceased %%#%% set%%dsh%%%%dsh%%it simply rose ]^[ 
+fell %%#%% %%#%% west%%lst%% ]^[ grew %%#%% broader ]^[ %%#%% red%%per%%]$~ ~$[all trace 
+%%#%% %%#%% moon %%#%% vanished%%per%%]$~ ~$[the circling %%#%% %%#%% stars%%lst%% growing 
+slower ]^[ slower%%lst%% %%#%% %%#%% %%#%% %%#%% creeping %%#%% %%#%% light%%per%%]$~ 
+~$[at last%%lst%% %%#%% time %%#%% %%#%% stopped%%lst%% %%#%% sun%%lst%% red ]^[ %%#%% large%%lst%% 
+halted motionless %%#%% %%#%% horizon%%lst%% %%#%% vast dome glowing %%#%% %%#%% 
+dull heat%%lst%% ]^[ %%#%% ]^[ %%cmp_t%% suffering %%#%% momentary extinction%%per%%]$~ ~$[at 
+%%#%% time %%#%% %%#%% ]f[ %%#%% little %%#%% glowed %%#%% brilliantly again%%lst%% 
+]b[ %%#%% speedily reverted %%#%% %%#%% sullen red heat%%per%%]$~ ~$[i perceived %%#%% 
+%%#%% slowing %%#%% %%#%% %%#%% rising ]^[ setting %%#%% %%#%% %%#%% %%#%% %%#%% 
+tidal drag %%#%% done%%per%%]$~ ~$[the earth %%#%% %%#%% %%#%% rest %%#%% %%#%% %%#%% %%#%% 
+%%#%% sun%%lst%% %%#%% %%#%% %%#%% %%#%% own time %%#%% moon %%#%% %%#%% earth%%per%%]$~ ~$[very 
+cautiously%%lst%% ]f[ %%#%% remembered %%#%% former headlong fall%%lst%% %%#%% %%#%% %%#%% 
+reverse %%#%% motion%%per%%]$~ ~$[slower ]^[ slower %%#%% %%#%% circling hands 
+%%#%% %%#%% thousands %%#%% %%#%% motionless ]^[ %%#%% daily %%#%% %%#%% 
+%%#%% %%#%% %%#%% mere mist %%#%% %%#%% scale%%per%%]$~ ~$[still slower%%lst%% %%#%% %%#%% 
+dim outlines %%#%% %%#%% desolate beach grew visible%%per%% 
+`i stopped %%#%% gently ]^[ sat %%#%% %%#%% time machine%%lst%% looking 
+round%%per%%]$~ ~$[the sky %%#%% %%#%% %%#%% blue%%per%%]$~ ~$[north%%dsh%%eastward %%#%% %%#%% inky 
+black%%lst%% ]^[ %%#%% %%#%% %%#%% blackness shone brightly ]^[ steadily %%#%% 
+pale white stars%%per%%]$~ ~$[overhead %%#%% %%#%% %%#%% deep indian red ]^[ 
+starless%%lst%% ]^[ south%%dsh%%eastward %%#%% grew brighter %%#%% %%#%% glowing 
+scarlet where%%lst%% cut %%#%% %%#%% horizon%%lst%% lay %%#%% huge hull %%#%% %%#%% sun%%lst%% 
+red ]^[ motionless%%per%%]$~ ~$[the rocks %%#%% %%#%% %%#%% %%#%% %%#%% harsh reddish 
+colour%%lst%% ]^[ %%#%% %%#%% trace %%#%% life %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% intensely green vegetation %%#%% covered %%#%% projecting 
+%%#%% %%#%% %%#%% south%%dsh%%eastern face%%per%%]$~ ~$[it %%#%% %%#%% %%#%% rich green 
+%%#%% %%#%% %%#%% %%#%% forest moss ]v[ %%#%% %%#%% lichen %%#%% caves%%cln%% plants 
+%%#%% %%#%% %%#%% grow %%#%% %%#%% perpetual twilight%%per%% 
+`the machine %%#%% standing %%#%% %%#%% sloping beach%%per%%]$~ ~$[the sea 
+stretched %%#%% %%#%% %%#%% south%%dsh%%west%%lst%% %%#%% rise %%#%% %%#%% sharp bright 
+horizon %%#%% %%#%% wan sky%%per%%]$~ ~$[there %%#%% %%#%% breakers ]^[ %%#%% 
+waves%%lst%% ]f[ ]n[ %%#%% breath %%#%% wind %%#%% stirring%%per%%]$~ ~$[only %%#%% slight oily 
+swell rose ]^[ fell %%#%% %%#%% gentle breathing%%lst%% ]^[ %%#%% %%#%% %%#%% 
+eternal sea %%#%% %%#%% moving ]^[ living%%per%%]$~ ~$[and %%#%% %%#%% margin 
+%%#%% %%#%% water sometimes broke %%#%% %%#%% thick incrustation %%#%% 
+salt%%dsh%%%%dsh%%pink %%#%% %%#%% lurid sky%%per%%]$~ ~$[there %%#%% %%#%% sense %%#%% oppression 
+%%#%% %%#%% head%%lst%% ]^[ %%#%% noticed %%#%% %%#%% %%#%% breathing %%#%% fast%%per%%]$~ ~$[the 
+sensation reminded %%#%% %%#%% %%#%% %%#%% experience %%#%% mountaineering%%lst%% 
+]^[ %%#%% %%#%% %%#%% judged %%#%% air %%#%% %%#%% %%#%% rarefied %%cmp_ta%% %%#%% %%#%% 
+now%%per%% 
+`far %%#%% %%#%% %%#%% desolate slope %%#%% heard %%#%% harsh scream%%lst%% ]^[ 
+%%#%% %%#%% %%#%% %%#%% %%#%% huge white butterfly %%#%% slanting ]^[ 
+flittering %%#%% %%#%% %%#%% sky and%%lst%% circling%%lst%% disappear %%#%% %%#%% low 
+hillocks beyond%%per%%]$~ ~$[the sound %%#%% %%#%% voice %%#%% ]s[ dismal %%#%% %%#%% 
+shivered ]^[ seated %%#%% %%#%% firmly %%#%% %%#%% machine%%per%%]$~ ~$[looking 
+round %%#%% again%%lst%% %%#%% %%#%% that%%lst%% %%#%% near%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+reddish mass %%#%% rock %%#%% moving slowly towards me%%per%%]$~ ~$[then %%#%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% monstrous crab%%dsh%%like creature%%per%%]$~ ~$[can %%#%% 
+imagine %%#%% crab %%#%% large %%#%% yonder table%%lst%% %%#%% %%#%% %%#%% legs 
+moving slowly ]^[ uncertainly%%lst%% %%#%% %%#%% claws swaying%%lst%% %%#%% %%#%% 
+antennae%%lst%% %%#%% carters%%sqt%% whips%%lst%% waving ]^[ feeling%%lst%% ]^[ %%#%% 
+stalked eyes gleaming %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% metallic 
+front%%qsn%%]$~ ~$[its %%#%% %%#%% corrugated ]^[ ornamented %%#%% ungainly 
+bosses%%lst%% ]^[ %%#%% greenish incrustation blotched %%#%% %%#%% ]^[ there%%per%%]$~ 
+~$[i %%#%% %%#%% %%#%% %%#%% palps %%#%% %%#%% complicated mouth flickering 
+]^[ feeling %%#%% %%#%% moved%%per%% 
+`as %%#%% stared %%#%% %%#%% sinister apparition crawling towards me%%lst%% 
+%%#%% %%#%% %%#%% tickling %%#%% %%#%% cheek %%#%% %%#%% %%#%% fly %%#%% lighted there%%per%%]$~ 
+~$[i tried %%#%% brush %%#%% %%#%% %%#%% %%#%% hand%%lst%% ]b[ %%#%% %%#%% moment %%#%% 
+returned%%lst%% ]^[ %%#%% immediately %%#%% %%#%% %%#%% %%#%% ear%%per%%]$~ ~$[i 
+struck %%#%% this%%lst%% ]^[ caught %%#%% threadlike%%per%%]$~ ~$[it %%#%% drawn 
+swiftly %%#%% %%#%% %%#%% hand%%per%%]$~ ~$[with %%#%% frightful qualm%%lst%% %%#%% turned%%lst%% ]^[ %%#%% 
+%%#%% %%#%% %%#%% %%#%% grasped %%#%% antenna %%#%% %%#%% monster crab %%#%% 
+stood %%#%% %%#%% me%%per%%]$~ ~$[its evil eyes %%#%% wriggling %%#%% %%#%% 
+stalks%%lst%% %%#%% mouth %%#%% %%#%% alive %%#%% appetite%%lst%% ]^[ %%#%% vast 
+ungainly claws%%lst%% smeared %%#%% %%#%% algal slime%%lst%% %%#%% descending %%#%% 
+me%%per%%]$~ ~$[in %%#%% moment %%#%% hand %%#%% %%#%% %%#%% lever%%lst%% ]^[ %%#%% %%#%% placed %%#%% 
+month %%#%% %%#%% ]^[ %%#%% monsters%%per%%]$~ ~$[but %%#%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% beach%%lst%% ]^[ %%#%% %%#%% %%#%% distinctly %%#%% %%#%% soon %%#%% %%#%% stopped%%per%%]$~ 
+~$[dozens %%#%% %%#%% %%#%% %%#%% %%#%% crawling %%#%% ]^[ there%%lst%% %%#%% %%#%% 
+sombre light%%lst%% %%#%% %%#%% foliated sheets %%#%% intense green%%per%% 
+`i %%#%% convey %%#%% sense %%#%% abominable desolation %%#%% hung 
+%%#%% %%#%% world%%per%%]$~ ~$[the red eastern sky%%lst%% %%#%% northward blackness%%lst%% 
+%%#%% salt dead sea%%lst%% %%#%% stony beach crawling %%#%% %%#%% foul%%lst%% 
+slow%%dsh%%stirring monsters%%lst%% %%#%% uniform poisonous%%dsh%%looking green %%#%% 
+%%#%% lichenous plants%%lst%% %%#%% thin air %%#%% hurts one%%sqt%%s lungs%%cln%% %%#%% 
+contributed %%#%% %%#%% appalling effect%%per%%]$~ ~$[i moved %%#%% %%#%% hundred years%%lst%% 
+]^[ %%#%% %%#%% %%#%% %%#%% red sun%%dsh%%%%dsh%%a little larger%%lst%% %%#%% little 
+duller%%dsh%%%%dsh%%the %%#%% dying sea%%lst%% %%#%% %%#%% chill air%%lst%% ]^[ %%#%% %%#%% 
+crowd %%#%% earthy crustacea creeping %%#%% ]^[ %%#%% %%#%% %%#%% green 
+weed ]^[ %%#%% red rocks%%per%%]$~ ~$[and %%#%% %%#%% westward sky%%lst%% %%#%% %%#%% %%#%% curved 
+pale line %%#%% %%#%% vast %%#%% moon%%per%% 
+`so %%#%% travelled%%lst%% stopping %%#%% ]^[ again%%lst%% %%#%% %%#%% strides %%#%% 
+%%#%% thousand %%#%% ]v[ more%%lst%% drawn %%#%% %%#%% %%#%% mystery %%#%% %%#%% earth%%sqt%%s 
+fate%%lst%% watching %%#%% %%#%% strange fascination %%#%% sun grow larger ]^[ 
+duller %%#%% %%#%% westward sky%%lst%% ]^[ %%#%% life %%#%% %%#%% %%#%% earth ebb 
+away%%per%%]$~ ~$[at last%%lst%% %%#%% %%cmp_ta%% thirty million %%#%% %%cmp_h%%%%lst%% %%#%% huge 
+red%%dsh%%hot dome %%#%% %%#%% sun %%#%% %%#%% %%#%% obscure nearly %%#%% tenth %%#%% 
+%%#%% %%#%% darkling heavens%%per%%]$~ ~$[then %%#%% stopped %%#%% more%%lst%% ]f[ %%#%% 
+crawling multitude %%#%% crabs %%#%% disappeared%%lst%% ]^[ %%#%% red beach%%lst%% 
+save ]f[ %%#%% livid green liverworts ]^[ lichens%%lst%% %%#%% lifeless%%per%%]$~ 
+~$[and %%#%% %%#%% %%#%% flecked %%#%% white%%per%%]$~ ~$[a bitter cold assailed me%%per%%]$~ 
+~$[rare white flakes %%#%% ]^[ %%#%% %%#%% eddying down%%per%%]$~ ~$[to %%#%% 
+north%%dsh%%eastward%%lst%% %%#%% glare %%#%% snow lay %%#%% %%#%% starlight %%#%% %%#%% 
+sable sky ]^[ %%#%% %%#%% %%#%% %%#%% undulating crest %%#%% hillocks pinkish 
+white%%per%%]$~ ~$[there %%#%% fringes %%#%% ice %%#%% %%#%% sea margin%%lst%% %%#%% 
+drifting masses %%#%% out%%scn%% ]b[ %%#%% main expanse %%#%% %%#%% salt 
+ocean%%lst%% %%#%% bloody %%#%% %%#%% eternal sunset%%lst%% %%#%% %%#%% unfrozen%%per%% 
+`i looked %%#%% %%#%% %%#%% %%#%% %%cmp_if%% %%#%% traces %%#%% animal life 
+remained%%per%%]$~ ~$[a %%#%% indefinable apprehension %%#%% kept %%#%% %%#%% 
+%%#%% saddle %%#%% %%#%% machine%%per%%]$~ ~$[but %%#%% %%#%% %%#%% moving%%lst%% %%#%% earth ]v[ 
+sky ]v[ sea%%per%%]$~ ~$[the green slime %%#%% %%#%% rocks %%#%% testified %%#%% 
+life %%#%% ]n[ extinct%%per%%]$~ ~$[a shallow sandbank %%#%% appeared %%#%% %%#%% sea 
+]^[ %%#%% water %%#%% receded %%#%% %%#%% beach%%per%%]$~ ~$[i fancied %%#%% %%#%% %%#%% 
+black object flopping %%#%% %%#%% %%#%% bank%%lst%% ]b[ %%#%% %%#%% 
+motionless %%#%% %%#%% looked %%#%% it%%lst%% ]^[ %%#%% judged %%#%% %%#%% eye %%#%% %%#%% 
+deceived%%lst%% ]^[ %%#%% %%#%% black object %%#%% merely %%#%% rock%%per%%]$~ ~$[the stars 
+%%#%% %%#%% sky %%#%% intensely bright ]^[ %%#%% %%#%% %%#%% %%#%% twinkle %%#%% 
+little%%per%% 
+`suddenly %%#%% noticed %%#%% %%#%% circular westward outline %%#%% %%#%% 
+sun %%#%% changed%%scn%% %%#%% %%#%% concavity%%lst%% %%#%% bay%%lst%% %%#%% appeared %%#%% %%#%% 
+curve%%per%%]$~ ~$[i %%#%% %%#%% grow larger%%per%%]$~ ~$[for %%#%% minute %%#%% %%#%% stared 
+aghast %%#%% %%#%% blackness %%#%% %%#%% creeping %%#%% %%#%% day%%lst%% ]^[ %%cmp_t%% 
+%%#%% realized %%#%% %%#%% eclipse %%#%% beginning%%per%%]$~ ~$[either %%#%% moon ]v[ %%#%% 
+planet mercury %%#%% passing %%#%% %%#%% sun%%sqt%%s disk%%per%%]$~ ~$[naturally%%lst%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% moon%%lst%% ]b[ %%#%% %%#%% %%#%% %%#%% incline %%#%% 
+%%#%% believe %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% transit %%#%% %%#%% inner 
+planet passing %%#%% near %%#%% %%#%% earth%%per%% 
+`the darkness grew apace%%scn%% %%#%% cold wind %%#%% %%#%% blow %%#%% 
+freshening gusts %%#%% %%#%% east%%lst%% ]^[ %%#%% showering white flakes %%#%% 
+%%#%% air increased %%#%% number%%per%%]$~ ~$[from %%#%% edge %%#%% %%#%% sea %%#%% %%#%% 
+ripple ]^[ whisper%%per%%]$~ ~$[beyond %%#%% lifeless sounds %%#%% world %%#%% 
+silent%%per%%]$~ ~$[silent%%qsn%%]$~ ~$[it %%#%% %%#%% hard %%#%% convey %%#%% stillness %%#%% it%%per%%]$~ 
+~$[all %%#%% sounds %%#%% man%%lst%% %%#%% bleating %%#%% sheep%%lst%% %%#%% cries %%#%% 
+birds%%lst%% %%#%% hum %%#%% insects%%lst%% %%#%% stir %%#%% makes %%#%% background %%#%% 
+%%#%% lives%%dsh%%%%dsh%%all %%#%% %%#%% over%%per%%]$~ ~$[as %%#%% darkness thickened%%lst%% %%#%% 
+eddying flakes grew %%#%% abundant%%lst%% dancing %%#%% %%#%% eyes%%scn%% ]^[ 
+%%#%% cold %%#%% %%#%% air %%#%% intense%%per%%]$~ ~$[at last%%lst%% %%#%% %%#%% one%%lst%% swiftly%%lst%% 
+%%#%% %%#%% %%#%% other%%lst%% %%#%% white peaks %%#%% %%#%% distant hills 
+vanished %%#%% blackness%%per%%]$~ ~$[the breeze rose %%#%% %%#%% moaning wind%%per%%]$~ ~$[i 
+%%#%% %%#%% black central shadow %%#%% %%#%% eclipse sweeping towards me%%per%%]$~ 
+~$[in %%#%% moment %%#%% pale stars %%#%% %%#%% visible%%per%%]$~ ~$[all %%cmp_e%% 
+%%#%% rayless obscurity%%per%%]$~ ~$[the sky %%#%% absolutely black%%per%% 
+`a horror %%#%% %%#%% %%#%% darkness %%#%% %%#%% me%%per%%]$~ ~$[the cold%%lst%% %%#%% 
+smote %%#%% %%#%% marrow%%lst%% ]^[ %%#%% pain %%#%% %%#%% %%#%% breathing%%lst%% overcame 
+me%%per%%]$~ ~$[i shivered%%lst%% ]^[ %%#%% deadly nausea seized me%%per%%]$~ ~$[then %%#%% %%#%% 
+red%%dsh%%hot bow %%#%% %%#%% sky appeared %%#%% edge %%#%% %%#%% sun%%per%%]$~ ~$[i %%#%% %%#%% 
+%%#%% machine %%#%% recover myself%%per%%]$~ ~$[i %%#%% giddy ]^[ incapable %%#%% 
+facing %%#%% return journey%%per%%]$~ ~$[as %%#%% stood sick ]^[ confused %%#%% %%#%% 
+%%#%% %%#%% moving %%#%% %%#%% %%#%% shoal%%dsh%%%%dsh%%there %%#%% %%#%% mistake %%#%% 
+%%#%% %%#%% %%#%% %%#%% moving thing%%dsh%%%%dsh%%against %%#%% red water %%#%% %%#%% sea%%per%%]$~ ~$[it 
+%%#%% %%#%% round thing%%lst%% %%#%% size %%#%% %%#%% football perhaps%%lst%% or%%lst%% %%#%% %%#%% be%%lst%% 
+bigger%%lst%% ]^[ tentacles trailed %%#%% %%#%% it%%scn%% %%#%% %%#%% black 
+%%#%% %%#%% weltering blood%%dsh%%red water%%lst%% ]^[ %%#%% %%#%% hopping 
+fitfully about%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% fainting%%per%%]$~ ~$[but %%#%% terrible 
+dread %%#%% lying helpless %%#%% %%#%% remote ]^[ awful twilight 
+sustained %%#%% %%#%% %%#%% clambered %%#%% %%#%% saddle%%per%%]$~ 
+~$[xii 
+`so %%#%% %%#%% back%%per%%]$~ ~$[for %%#%% %%#%% time %%#%% %%#%% %%#%% %%#%% insensible 
+%%#%% %%#%% machine%%per%%]$~ ~$[the blinking succession %%#%% %%#%% days ]^[ nights 
+%%#%% resumed%%lst%% %%#%% sun %%#%% golden again%%lst%% %%#%% sky blue%%per%%]$~ ~$[i breathed 
+%%#%% %%#%% freedom%%per%%]$~ ~$[the fluctuating contours %%#%% %%#%% land ebbed 
+]^[ flowed%%per%%]$~ ~$[the hands spun backward %%#%% %%#%% dials%%per%%]$~ ~$[at last %%#%% 
+%%#%% %%#%% %%#%% dim shadows %%#%% houses%%lst%% %%#%% evidences %%#%% decadent 
+humanity%%per%%]$~ ~$[these%%lst%% too%%lst%% changed ]^[ passed%%lst%% ]^[ %%#%% came%%per%%]$~ 
+~$[presently%%lst%% %%#%% %%#%% million dial %%#%% %%#%% zero%%lst%% %%#%% slackened speed%%per%%]$~ 
+~$[i %%#%% %%#%% recognize %%#%% own petty ]^[ familiar architecture%%lst%% %%#%% 
+thousands hand ran %%#%% %%#%% %%#%% starting%%dsh%%point%%lst%% %%#%% night ]^[ day 
+flapped slower ]^[ slower%%per%%]$~ ~$[then %%#%% %%#%% walls %%#%% %%#%% laboratory 
+%%#%% round me%%per%%]$~ ~$[very gently%%lst%% now%%lst%% %%#%% slowed %%#%% mechanism down%%per%% 
+`i %%#%% %%#%% little %%#%% %%#%% %%#%% odd %%#%% me%%per%%]$~ ~$[i %%#%% %%#%% %%#%% 
+told %%#%% %%#%% %%#%% %%#%% set out%%lst%% %%#%% %%#%% velocity %%#%% %%#%% 
+high%%lst%% mrs%%per%%]$~ ~$[watchett %%#%% walked %%#%% %%#%% room%%lst%% travelling%%lst%% %%#%% 
+%%#%% %%#%% %%#%% me%%lst%% %%#%% %%#%% rocket%%per%%]$~ ~$[as %%#%% returned%%lst%% %%#%% passed %%#%% 
+%%#%% %%#%% minute %%#%% %%#%% traversed %%#%% laboratory%%per%%]$~ ~$[but %%#%% 
+%%#%% %%#%% motion appeared %%#%% %%#%% %%#%% exact inversion %%#%% %%#%% 
+previous ones%%per%%]$~ ~$[the door %%#%% %%#%% lower %%#%% opened%%lst%% ]^[ %%#%% glided 
+quietly %%#%% %%#%% laboratory%%lst%% %%#%% foremost%%lst%% ]^[ disappeared %%#%% 
+%%#%% door %%#%% %%#%% %%#%% %%#%% previously entered%%per%%]$~ ~$[just %%#%% %%#%% %%#%% 
+%%#%% %%#%% %%#%% hillyer ]f[ %%#%% moment%%scn%% ]b[ %%#%% passed %%#%% %%#%% flash%%per%% 
+`then %%#%% stopped %%#%% machine%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+familiar laboratory%%lst%% %%#%% tools%%lst%% %%#%% appliances %%#%% %%#%% %%#%% %%#%% left 
+them%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% %%#%% shaky%%lst%% ]^[ sat %%#%% %%#%% %%#%% 
+bench%%per%%]$~ ~$[for %%#%% minutes %%#%% trembled violently%%per%%]$~ ~$[then %%#%% %%#%% 
+calmer%%per%%]$~ ~$[around %%#%% %%#%% %%#%% %%#%% workshop again%%lst%% exactly %%#%% %%#%% %%#%% 
+been%%per%%]$~ ~$[i %%#%% %%#%% slept there%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% 
+dream%%per%% 
+`and yet%%lst%% ]n[ exactly%%xcm%%]$~ ~$[the %%#%% %%#%% started %%#%% %%#%% 
+south%%dsh%%east corner %%#%% %%#%% laboratory%%per%%]$~ ~$[it %%#%% %%#%% %%#%% rest %%#%% 
+%%#%% %%#%% north%%dsh%%west%%lst%% %%#%% %%#%% wall %%#%% %%#%% %%#%% it%%per%%]$~ ~$[that %%#%% 
+%%#%% %%#%% exact distance %%#%% %%#%% little lawn %%#%% %%#%% pedestal %%#%% %%#%% 
+white sphinx%%lst%% %%#%% %%#%% %%#%% morlocks %%#%% carried %%#%% machine%%per%% 
+`for %%#%% time %%#%% brain %%#%% stagnant%%per%%]$~ ~$[presently %%#%% %%#%% %%#%% ]^[ 
+%%#%% %%#%% %%#%% passage here%%lst%% limping%%lst%% %%cmp_b%% %%#%% heel %%#%% %%#%% 
+painful%%lst%% ]^[ feeling sorely begrimed%%per%%]$~ ~$[i %%#%% %%#%% pall mall 
+gazette %%#%% %%#%% table %%#%% %%#%% door%%per%%]$~ ~$[i found %%#%% date %%#%% indeed 
+to%%dsh%%day%%lst%% ]^[ looking %%#%% %%#%% timepiece%%lst%% %%#%% %%#%% hour %%#%% %%#%% 
+eight o%%sqt%%clock%%per%%]$~ ~$[i heard %%#%% voices ]^[ %%#%% clatter %%#%% plates%%per%%]$~ ~$[i 
+hesitated%%dsh%%%%dsh%%i %%#%% ]s[ sick ]^[ weak%%per%%]$~ ~$[then %%#%% sniffed %%#%% 
+wholesome meat%%lst%% ]^[ %%#%% %%#%% door %%#%% you%%per%%]$~ ~$[you know %%#%% rest%%per%%]$~ 
+~$[i washed%%lst%% ]^[ dined%%lst%% ]^[ %%#%% %%#%% am telling %%#%% %%#%% story%%per%% 
+`i know,%%sqt%% %%#%% said%%lst%% %%#%% %%#%% pause%%lst%% `that %%#%% %%#%% %%#%% %%#%% 
+absolutely incredible %%#%% you%%per%%]$~ ~$[to %%#%% %%#%% %%#%% incredible %%#%% %%#%% 
+%%#%% %%#%% am %%#%% to%%dsh%%night %%#%% %%#%% %%#%% familiar %%#%% looking %%#%% 
+%%#%% friendly %%#%% ]^[ telling %%#%% %%#%% strange adventures%%per%%%%sqt%% 
+%%#%% looked %%#%% %%#%% medical man%%per%% `no%%per%%]$~ ~$[i %%#%% expect %%#%% %%#%% 
+believe it%%per%%]$~ ~$[take %%#%% %%#%% %%#%% lie%%dsh%%%%dsh%%or %%#%% prophecy%%per%%]$~ ~$[say %%#%% dreamed %%#%% 
+%%#%% %%#%% workshop%%per%%]$~ ~$[consider %%#%% %%#%% %%#%% speculating %%#%% %%#%% 
+destinies %%#%% %%#%% race %%#%% %%#%% %%#%% hatched %%#%% fiction%%per%%]$~ ~$[treat 
+%%#%% assertion %%#%% %%#%% truth %%#%% %%#%% mere stroke %%#%% art %%#%% enhance %%#%% 
+interest%%per%%]$~ ~$[and taking %%#%% %%#%% %%#%% story%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% it?%%sqt%% 
+%%#%% %%#%% %%#%% %%#%% pipe%%lst%% ]^[ began%%lst%% %%#%% %%#%% %%#%% accustomed manner%%lst%% 
+%%#%% tap %%#%% %%#%% nervously %%#%% %%#%% bars %%#%% %%#%% grate%%per%%]$~ ~$[there %%#%% %%#%% 
+momentary stillness%%per%%]$~ ~$[then chairs %%#%% %%#%% creak ]^[ shoes %%#%% 
+scrape %%#%% %%#%% carpet%%per%%]$~ ~$[i %%#%% %%#%% eyes %%#%% %%#%% time traveller%%sqt%%s 
+face%%lst%% ]^[ looked round %%#%% %%#%% audience%%per%%]$~ ~$[they %%#%% %%#%% %%#%% dark%%lst%% 
+]^[ little spots %%#%% colour swam %%#%% them%%per%%]$~ ~$[the medical %%#%% 
+%%#%% absorbed %%#%% %%#%% contemplation %%#%% %%#%% host%%per%%]$~ ~$[the editor %%#%% 
+looking hard %%#%% %%#%% %%#%% %%#%% %%#%% cigar%%dsh%%%%dsh%%the sixth%%per%%]$~ ~$[the journalist 
+fumbled ]f[ %%#%% watch%%per%%]$~ ~$[the others%%lst%% %%#%% %%#%% %%#%% %%#%% remember%%lst%% %%#%% 
+motionless%%per%%]$~ 
+~$[the editor stood %%#%% %%#%% %%#%% sigh%%per%% `what %%#%% pity %%#%% %%#%% you%%sqt%%re 
+]n[ %%#%% writer %%#%% stories!%%sqt%% %%#%% said%%lst%% putting %%#%% hand %%#%% %%#%% time 
+traveller%%sqt%%s shoulder%%per%% 
+`you don%%sqt%%t believe it?%%sqt%% 
+`well%%dsh%%%%dsh%%%%dsh%%%%dsh%%%%sqt%% 
+`i %%#%% not%%per%%%%sqt%% 
+%%#%% time traveller %%#%% %%#%% us%%per%% `where %%#%% %%#%% matches?%%sqt%% %%#%% 
+said%%per%%]$~ ~$[he lit %%#%% ]^[ spoke %%#%% %%#%% pipe%%lst%% puffing%%per%% `to tell %%#%% 
+%%#%% truth %%per%% %%per%% %%per%%]$~ ~$[i hardly believe %%#%% myself%%per%% %%per%% %%per%% %%per%%]$~ ~$[and ]y[ %%per%% %%per%% %%per%%%%sqt%% 
+%%#%% eye fell %%#%% %%#%% mute inquiry %%#%% %%#%% withered white 
+flowers %%#%% %%#%% little table%%per%%]$~ ~$[then %%#%% %%#%% %%#%% %%#%% hand 
+holding %%#%% pipe%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% looking %%#%% %%#%% half%%dsh%%healed 
+scars %%#%% %%#%% knuckles%%per%%]$~ 
+~$[the medical %%#%% rose%%lst%% %%#%% %%#%% %%#%% lamp%%lst%% ]^[ examined %%#%% 
+flowers%%per%% `the gynaeceum%%sqt%%s odd,%%sqt%% %%#%% said%%per%%]$~ ~$[the psychologist leant 
+forward %%#%% see%%lst%% holding %%#%% %%#%% hand ]f[ %%#%% specimen%%per%% 
+`i%%sqt%%m hanged %%cmp_if%% %%#%% isn%%sqt%%t %%#%% quarter %%#%% one,%%sqt%% %%#%% %%#%% 
+journalist%%per%% `how %%#%% %%#%% %%#%% home?%%sqt%% 
+`plenty %%#%% cabs %%#%% %%#%% station,%%sqt%% %%#%% %%#%% psychologist%%per%% 
+`it%%sqt%%s %%#%% curious thing,%%sqt%% %%#%% %%#%% medical man%%scn%% `but %%#%% %%#%% 
+don%%sqt%%t know %%#%% natural order %%#%% %%#%% flowers%%per%%]$~ ~$[may %%#%% %%#%% them?%%sqt%% 
+%%#%% time traveller hesitated%%per%%]$~ ~$[then suddenly%%cln%% `certainly not%%per%%%%sqt%% 
+`where %%#%% %%#%% %%#%% %%#%% them?%%sqt%% %%#%% %%#%% medical man%%per%%]$~ 
+~$[the time traveller %%#%% %%#%% hand %%#%% %%#%% head%%per%%]$~ ~$[he spoke %%#%% 
+%%#%% %%#%% %%#%% trying %%#%% %%#%% hold %%#%% %%#%% idea %%#%% eluded him%%per%% 
+%%sqt%%they %%#%% %%#%% %%#%% %%#%% pocket %%#%% weena%%lst%% %%#%% %%#%% travelled %%#%% 
+time%%per%%%%sqt%% %%#%% stared round %%#%% room%%per%% `i%%sqt%%m damned %%cmp_if%% %%#%% isn%%sqt%%t %%#%% 
+going%%per%%]$~ ~$[this %%#%% ]^[ %%#%% ]^[ %%#%% atmosphere %%#%% %%#%% day %%#%% %%#%% 
+%%#%% ]f[ %%#%% memory%%per%%]$~ ~$[did %%#%% %%#%% %%#%% %%#%% time machine%%lst%% ]v[ %%#%% model 
+%%#%% %%#%% time machine%%qsn%%]$~ ~$[or %%#%% %%#%% %%#%% %%#%% %%#%% dream%%qsn%%]$~ ~$[they %%#%% life %%#%% 
+%%#%% dream%%lst%% %%#%% precious poor dream %%#%% times%%dsh%%%%dsh%%but %%#%% can%%sqt%%t stand 
+%%#%% %%#%% won%%sqt%%t fit%%per%%]$~ ~$[it%%sqt%%s madness%%per%%]$~ ~$[and %%#%% %%#%% %%#%% dream 
+%%#%% from? %%per%% %%per%% %%per%%]$~ ~$[i %%#%% look %%#%% %%#%% machine%%per%%]$~ ~$[if %%#%% %%#%% one!%%sqt%% 
+%%#%% caught %%#%% %%#%% lamp swiftly%%lst%% ]^[ carried it%%lst%% flaring red%%lst%% 
+%%#%% %%#%% door %%#%% %%#%% corridor%%per%%]$~ ~$[we followed him%%per%%]$~ ~$[there %%#%% 
+%%#%% flickering light %%#%% %%#%% lamp %%#%% %%#%% machine %%#%% enough%%lst%% 
+squat%%lst%% ugly%%lst%% ]^[ askew%%scn%% %%#%% %%#%% %%#%% brass%%lst%% ebony%%lst%% ivory%%lst%% ]^[ 
+translucent glimmering quartz%%per%%]$~ ~$[solid %%#%% %%#%% touch%%dsh%%%%dsh%%for %%#%% %%#%% 
+%%#%% %%#%% hand ]^[ %%#%% %%#%% rail %%#%% it%%dsh%%%%dsh%%and %%#%% brown spots ]^[ 
+smears %%#%% %%#%% ivory%%lst%% ]^[ bits %%#%% grass ]^[ moss %%#%% %%#%% lower 
+parts%%lst%% ]^[ %%#%% rail bent awry%%per%%]$~ 
+~$[the time traveller %%#%% %%#%% lamp %%#%% %%#%% %%#%% bench%%lst%% ]^[ ran %%#%% 
+hand %%#%% %%#%% damaged rail%%per%% `it%%sqt%%s %%#%% %%#%% now,%%sqt%% %%#%% said%%per%% 
+%%sqt%%the story %%#%% told %%#%% %%#%% true%%per%%]$~ ~$[i%%sqt%%m sorry %%#%% %%#%% brought %%#%% 
+%%#%% %%#%% %%#%% %%#%% cold%%per%%%%sqt%% %%#%% %%#%% %%#%% %%#%% lamp%%lst%% and%%lst%% %%#%% %%#%% absolute 
+silence%%lst%% %%#%% returned %%#%% %%#%% smoking%%dsh%%room%%per%%]$~ 
+~$[he %%#%% %%#%% %%#%% hall %%#%% %%#%% ]^[ helped %%#%% editor %%#%% %%#%% 
+%%#%% coat%%per%%]$~ ~$[the medical %%#%% looked %%#%% %%#%% %%#%% and%%lst%% %%#%% %%#%% 
+%%#%% hesitation%%lst%% told %%#%% %%#%% %%#%% suffering %%#%% overwork%%lst%% %%#%% 
+%%#%% %%#%% laughed hugely%%per%%]$~ ~$[i remember %%#%% standing %%#%% %%#%% %%#%% 
+doorway%%lst%% bawling %%#%% night%%per%%]$~ 
+~$[i shared %%#%% cab %%#%% %%#%% editor%%per%%]$~ ~$[he %%#%% %%#%% tale %%#%% `gaudy 
+lie%%per%%%%sqt%% %%#%% %%#%% own %%#%% %%#%% %%#%% unable %%#%% %%#%% %%#%% %%#%% conclusion%%per%%]$~ ~$[the 
+story %%#%% ]s[ fantastic ]^[ incredible%%lst%% %%#%% telling ]s[ credible 
+]^[ sober%%per%%]$~ ~$[i lay awake %%#%% %%#%% %%#%% night thinking %%#%% it%%per%%]$~ ~$[i 
+determined %%#%% %%#%% %%#%% day ]^[ %%#%% %%#%% time traveller again%%per%%]$~ ~$[i 
+%%#%% told %%#%% %%#%% %%#%% %%#%% laboratory%%lst%% ]^[ %%#%% %%#%% easy terms %%#%% %%#%% 
+house%%lst%% %%#%% %%#%% %%#%% %%#%% him%%per%%]$~ ~$[the laboratory%%lst%% however%%lst%% %%#%% empty%%per%%]$~ ~$[i 
+stared ]f[ %%#%% minute %%#%% %%#%% time machine ]^[ %%#%% %%#%% %%#%% hand ]^[ 
+touched %%#%% lever%%per%%]$~ ~$[at %%#%% %%#%% squat substantial%%dsh%%looking mass 
+swayed %%#%% %%#%% bough shaken %%#%% %%#%% wind%%per%%]$~ ~$[its instability startled 
+%%#%% extremely%%lst%% ]^[ %%#%% %%#%% %%#%% queer reminiscence %%#%% %%#%% childish days 
+%%#%% %%#%% %%#%% %%#%% %%#%% forbidden %%#%% meddle%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% 
+corridor%%per%%]$~ ~$[the time traveller met %%#%% %%#%% %%#%% smoking%%dsh%%room%%per%%]$~ ~$[he %%#%% 
+coming %%#%% %%#%% house%%per%%]$~ ~$[he %%#%% %%#%% %%#%% camera %%#%% %%#%% arm ]^[ %%#%% 
+knapsack %%#%% %%#%% other%%per%%]$~ ~$[he laughed %%#%% %%#%% %%#%% me%%lst%% ]^[ %%#%% %%#%% 
+%%#%% elbow %%#%% shake%%per%% `i%%sqt%%m frightfully busy,%%sqt%% %%#%% he%%lst%% `with %%#%% 
+%%#%% %%#%% there%%per%%%%sqt%% 
+`but %%#%% %%#%% ]n[ %%#%% hoax?%%sqt%% %%#%% said%%per%% `do %%#%% %%#%% travel 
+%%#%% time?%%sqt%% 
+`really ]^[ truly %%#%% do%%per%%%%sqt%% and %%#%% looked frankly %%#%% %%#%% eyes%%per%%]$~ 
+~$[he hesitated%%per%%]$~ ~$[his eye wandered %%#%% %%#%% room%%per%% `i %%#%% %%#%% 
+half %%#%% hour,%%sqt%% %%#%% said%%per%% `i know %%#%% %%#%% came%%lst%% ]^[ it%%sqt%%s awfully 
+%%#%% %%#%% you%%per%%]$~ ~$[there%%sqt%%s %%#%% magazines here%%per%%]$~ ~$[if you%%sqt%%ll stop %%#%% 
+lunch i%%sqt%%ll prove %%#%% %%#%% time travelling %%#%% %%#%% %%#%% hilt%%lst%% 
+specimen ]^[ all%%per%%]$~ ~$[if you%%sqt%%ll forgive %%#%% leaving %%#%% now?%%sqt%% 
+%%#%% consented%%lst%% hardly comprehending %%cmp_t%% %%#%% %%#%% import %%#%% %%#%% 
+words%%lst%% ]^[ %%#%% nodded ]^[ %%#%% %%#%% %%#%% %%#%% corridor%%per%%]$~ ~$[i heard %%#%% 
+door %%#%% %%#%% laboratory slam%%lst%% seated %%#%% %%#%% %%#%% chair%%lst%% ]^[ %%#%% 
+%%#%% %%#%% daily paper%%per%%]$~ ~$[what %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% lunch%%dsh%%time%%qsn%%]$~ 
+~$[then suddenly %%#%% %%#%% reminded %%#%% %%#%% advertisement %%#%% %%#%% %%#%% 
+promised %%#%% meet richardson%%lst%% %%#%% publisher%%lst%% %%#%% two%%per%%]$~ ~$[i looked %%#%% 
+%%#%% watch%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% barely save %%#%% engagement%%per%%]$~ ~$[i 
+%%#%% %%#%% ]^[ %%#%% %%#%% %%#%% passage %%#%% tell %%#%% time traveller%%per%%]$~ 
+~$[as %%#%% %%#%% hold %%#%% %%#%% handle %%#%% %%#%% door %%#%% heard %%#%% 
+exclamation%%lst%% oddly truncated %%#%% %%#%% end%%lst%% ]^[ %%#%% click ]^[ %%#%% thud%%per%%]$~ 
+~$[a gust %%#%% air whirled round %%#%% %%#%% %%#%% %%#%% %%#%% door%%lst%% ]^[ %%#%% 
+%%#%% %%#%% %%#%% sound %%#%% broken glass falling %%#%% %%#%% floor%%per%%]$~ ~$[the 
+time traveller %%#%% ]n[ there%%per%%]$~ ~$[i %%#%% %%#%% %%#%% %%#%% ghostly%%lst%% 
+indistinct figure sitting %%#%% %%#%% whirling mass %%#%% black ]^[ brass 
+]f[ %%#%% moment%%dsh%%%%dsh%%a figure ]s[ transparent %%#%% %%#%% bench %%#%% %%#%% 
+%%#%% sheets %%#%% drawings %%#%% absolutely distinct%%scn%% ]b[ %%#%% phantasm 
+vanished %%#%% %%#%% rubbed %%#%% eyes%%per%%]$~ ~$[the time machine %%#%% gone%%per%%]$~ ~$[save 
+]f[ %%#%% subsiding stir %%#%% dust%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% laboratory 
+%%#%% empty%%per%%]$~ ~$[a pane %%#%% %%#%% skylight had%%lst%% apparently%%lst%% %%#%% %%#%% 
+blown in%%per%%]$~ 
+~$[i %%#%% %%#%% unreasonable amazement%%per%%]$~ ~$[i knew %%#%% %%#%% 
+strange %%#%% happened%%lst%% ]^[ ]f[ %%#%% moment %%#%% ]n[ distinguish 
+%%#%% %%#%% strange %%#%% %%#%% be%%per%%]$~ ~$[as %%#%% stood staring%%lst%% %%#%% door 
+%%#%% %%#%% garden opened%%lst%% ]^[ %%#%% man%%dsh%%servant appeared%%per%%]$~ 
+~$[we looked %%#%% %%#%% other%%per%%]$~ ~$[then ideas %%#%% %%#%% come%%per%% `has mr%%per%% 
+%%dsh%%%%dsh%%%%dsh%%%%dsh%% gone %%#%% %%#%% way?%%sqt%% %%#%% i%%per%% 
+`no%%lst%% sir%%per%%]$~ ~$[no %%#%% %%#%% %%#%% %%#%% %%#%% way%%per%%]$~ ~$[i %%#%% expecting %%#%% 
+%%#%% %%#%% here%%per%%%%sqt%% 
+%%#%% %%#%% %%#%% understood%%per%%]$~ ~$[at %%#%% risk %%#%% disappointing richardson 
+%%#%% stayed on%%lst%% waiting ]f[ %%#%% time traveller%%scn%% waiting ]f[ %%#%% 
+second%%lst%% %%#%% %%#%% stranger story%%lst%% ]^[ %%#%% specimens ]^[ 
+photographs %%#%% %%#%% bring %%#%% him%%per%%]$~ ~$[but %%#%% am beginning %%#%% %%#%% 
+fear %%#%% %%#%% %%#%% wait %%#%% lifetime%%per%%]$~ ~$[the time traveller vanished 
+%%#%% %%#%% ago%%per%%]$~ ~$[and%%lst%% %%#%% %%#%% knows now%%lst%% %%#%% %%#%% %%#%% 
+returned%%per%%]$~ 
+~$[one %%#%% choose ]b[ wonder%%per%%]$~ ~$[will %%#%% %%#%% return%%qsn%%]$~ 
+~$[it %%#%% %%#%% %%#%% %%#%% swept %%#%% %%#%% %%#%% past%%lst%% ]^[ fell %%#%% 
+%%#%% blood%%dsh%%drinking%%lst%% hairy savages %%#%% %%#%% age %%#%% unpolished 
+stone%%scn%% %%#%% %%#%% abysses %%#%% %%#%% cretaceous sea%%scn%% ]v[ %%#%% %%#%% 
+grotesque saurians%%lst%% %%#%% huge reptilian brutes %%#%% %%#%% jurassic 
+times%%per%%]$~ ~$[he %%#%% %%#%% now%%dsh%%%%dsh%%if %%#%% %%#%% %%#%% %%#%% phrase%%dsh%%%%dsh%%be 
+wandering %%#%% %%#%% plesiosaurus%%dsh%%haunted oolitic coral reef%%lst%% 
+]v[ beside %%#%% lonely saline lakes %%#%% %%#%% triassic age%%per%%]$~ ~$[or %%#%% 
+%%#%% %%#%% forward%%lst%% %%#%% %%#%% %%#%% %%#%% nearer ages%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% men%%lst%% ]b[ %%#%% %%#%% riddles %%#%% %%#%% own time answered 
+]^[ %%#%% wearisome problems solved%%qsn%%]$~ ~$[into %%#%% manhood %%#%% %%#%% 
+race%%cln%% ]f[ i%%lst%% ]f[ %%#%% own %%#%% %%#%% %%#%% %%#%% %%#%% latter 
+days %%#%% weak experiment%%lst%% fragmentary theory%%lst%% ]^[ mutual 
+discord %%#%% indeed man%%sqt%%s culminating time%%xcm%%]$~ ~$[i say%%lst%% ]f[ %%#%% own 
+part%%per%%]$~ ~$[he%%lst%% %%#%% know%%dsh%%%%dsh%%for %%#%% question %%#%% %%#%% discussed %%#%% 
+%%#%% %%#%% %%#%% %%#%% time machine %%#%% made%%dsh%%%%dsh%%thought ]b[ 
+cheerlessly %%#%% %%#%% advancement %%#%% mankind%%lst%% ]^[ %%#%% %%#%% %%#%% 
+growing pile %%#%% civilization %%#%% %%#%% foolish heaping %%#%% %%#%% 
+inevitably fall %%#%% %%#%% ]^[ destroy %%#%% makers %%#%% %%#%% end%%per%%]$~ 
+~$[if %%#%% %%#%% so%%lst%% %%#%% remains ]f[ %%#%% %%#%% live %%#%% %%#%% %%#%% %%#%% ]n[ 
+so%%per%%]$~ ~$[but %%#%% %%#%% %%#%% future %%#%% %%#%% black ]^[ blank%%dsh%%%%dsh%%is %%#%% vast 
+ignorance%%lst%% lit %%#%% %%#%% %%#%% casual %%#%% %%#%% %%#%% memory %%#%% %%#%% story%%per%%]$~ 
+~$[and %%#%% %%#%% %%#%% me%%lst%% ]f[ %%#%% comfort%%lst%% %%#%% strange white flowers 
+%%dsh%%%%dsh%%shrivelled now%%lst%% ]^[ brown ]^[ flat ]^[ brittle%%dsh%%%%dsh%%to witness 
+%%#%% %%#%% %%#%% mind ]^[ strength %%#%% gone%%lst%% gratitude ]^[ 
+%%#%% mutual tenderness %%#%% lived %%#%% %%#%% %%#%% heart %%#%% man%%per%%]$~ 
+~$[downloaded %%#%% p%%dsh%%80 international information systems 304%%dsh%%744%%dsh%%2253 

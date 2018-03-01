@@ -4,7 +4,7 @@ Fault Isolation
 
 Hello!
 
-I am Nick Giamblanco
+Im Nick Giamblanco
 
 You can reach me nicholas.giamblanco@mail.utoronto.ca
 
@@ -21,16 +21,17 @@ Isolate the untrusted
 
 among cooperating software 
 modules is to place each in its 
-own address space.
+own address space [1].
 
 44
 
 Issues with Software Dependability & Extensions
 
- User extensions can lead to system crash
+ User extensions can lead to system crashes
  Potential Security Flaw
  Mitigations techniques are costly
-User Extensions should be untrusted.
+
+User Extensions should be untrusted and isolated.
 
 5
 
@@ -40,6 +41,13 @@ Isolation
 Thinking in the sandbox.
 
 6
+
+Efficient Fault Isolation
+
+Typical Approach:
+Remote Procedure Call (RPC)
+
+7
 
 Efficient Fault Isolation
 
@@ -57,43 +65,45 @@ Largely Inefficient
  Network Congestion
  Many Context Switches
 
-7
+8
 
 Efficient Fault Isolation
 
 Other Approaches:
  Address Space Identifier Tags
- Restrictive Programming Languages
- Anonymous RPC
+ Restrictive Programming Languages [2]
+ Anonymous RPC [3]
 
-8
+9
 
  Unfortunately, there is a high 
 
 performance cost to providing 
 fault isolation through separate 
-address spaces
+address spaces [1]
 
-99
+1010
 
 Novel Contributions:
 
 1. Generate a Fault Domain - Logical Separation 
 
 of Address Space
+2.
+(Efficient) Sandboxing
+3. Lazy Pointer Swizzling
+4. Modified Cross-Address RPC
 
-2. Sandboxing
-3. Modified Cross-Address RPC
 Hopes: Efficient Fault Isolation!
 
-10
+11
 
 Fault Domains
 
 Logically Separating a Process Address 
 Space
 
-11
+12
 
 Segment Matching & Sandboxing
 
@@ -107,24 +117,18 @@ different segments
 2. Segments are identified 
 with Segment Identifiers
 
-Seg  = 0x34df & 0x00ff..
-Pseg = Seg | 0x5400..
+SegMask  = 0x5400..
+Seg  
+Pseg 
+
+= 0x34df & 0x00ff..
+= Seg | SegMask
 
 0x34df..
 
 0x54df..
 
 0x44df..
-
-12
-
-Segment Matching & Sandboxing
-
-Software Encapsulation Techniques:
-
-Segment Matching
-
-Sandboxing
 
 13
 
@@ -133,10 +137,40 @@ Sandboxing
 Software Encapsulation Techniques:
 
 Segment Matching
- Can Pinpoint Fault
- More efficient than RPC, but 
 
-still costly.
+Sandboxing
+
+ded_reg <= targ_addr
+   //Move targ_addr into ded_reg
+scrch_reg <= (ded_reg>>shft_reg)
+   //Right shift addr to get 
+sed_id
+   //shft_reg is dedicated
+CMP scrch_reg, seg_reg
+   //seg_reg is dedicated
+trap if NEQ 
+   //Trap if STR not in fault area
+STR ded_reg
+
+ded_reg <= targ_addr&and_mask_reg
+   //clears seg bits
+ded_reg <= ded_reg|seg_id
+   //Force ded_reg to be in fault
+   // area
+STR ded_req
+   //seg_reg is dedicated
+
+14
+
+Segment Matching & Sandboxing
+
+Software Encapsulation Techniques:
+
+Segment Matching
+ Can Pinpoint Fault
+ More efficient than RPC, 
+
+but still costly.
 
 Sandboxing
  Can only identify, no 
@@ -145,14 +179,14 @@ pinpointing
 
  Much More Efficient
 
-14
+15
 
 Efficient 
 Sandboxing
 
 Space-Time Tradeoffs with Segmentations
 
-15
+16
 
 Efficient Sandboxing:
 
@@ -165,13 +199,13 @@ Zone with Segmentation!
 *Their prototype applies loop invariant code motion and 
 instruction scheduling optimizations
 
-16
+17
 
 Data-Sharing 
 
 Lazy Pointer Swizzling
 
-17
+18
 
 Sharing Data between Fault Domains
 
@@ -183,13 +217,13 @@ Fault Domains! Voila!
 
 *Read only accesses are trivial!
 
-18
+19
 
 Low Latency Cross 
 Fault Domain 
 Communication 
 
-19
+20
 
 Low Latency RPC for Fault Domains:
 
@@ -201,11 +235,11 @@ compared to 3)
 
 Works on the principal of trust!
 
-20
+21
 
 Low Latency RPC for Fault Domains:
 
-21
+22
 
 Implementation & Evaluation
 
@@ -216,32 +250,33 @@ Splash.
 
  Evaluated Overheads + Novel RPC method
 Consensus: 
- The encapsulation overhead was demonstrated to have 
+ The encapsulation overhead has minimal impact on 
 
-minimal impact on program execution! 
-
-22
-
-Implementation & Evaluation
+program execution! 
 
 23
 
 Implementation & Evaluation
 
-Consensus: 
- Software enforced fault isolation is able to reduce the 
-relative cost of cross-fault domain RPC by an order of 
-magnitude.
-
 24
 
 Implementation & Evaluation
 
+Consensus: 
+
+ This approach reduces the relative cost of cross-fault 
+
+domain RPC by an order of magnitude.
+
 25
+
+Implementation & Evaluation
+
+26
 
 Questions...
 
-26
+27
 
 Question 1
 What did the authors 
@@ -259,7 +294,7 @@ beyond this, they provide security.
 
 - However they do not provide full 
 
-27
+28
 
 Question 2
 The idea presented here 
@@ -278,7 +313,7 @@ domain.
 from affecting other parts of some 
 system.
 
-28
+29
 
 Question 3
 Do you think that this 
@@ -298,7 +333,7 @@ Zoning
 my present issues when Pointer 
 Swizzling is used.
 
-29
+30
 
 Question 4
 What is Binary Patching? 
@@ -321,7 +356,7 @@ binaries are host dependent.
 
 an IR?
 
-30
+31
 
 Question 5
 Could you apply fault 
@@ -335,7 +370,7 @@ Segmentation Matching, it may be
 possible to identify runtime bugs 
 (upon careful selection)
 
-31
+32
 
 THANKS!
 
@@ -343,6 +378,20 @@ You can find me at
 
 nicholas.giamblanco@mail.utoronto.ca
 
-32
+33
+
+References
+
+[1] R. Wahbe, S. Lucco, T. Anderson and S. Graham, "Efficient software-based fault isolation", ACM SIGOPS 
+Operating Systems Review, vol. 27, no. 5, pp. 203-216, 1993
+
+[2] David D Redell, Yogen K Dalal, Thomas R Horsley, Hugh C Lauer, William C Lynch, Paul R McJones, Hal G 
+Murray, and Stephen C Purcell. Pilot: An operating system for a personal computer. Communications  of the ACM, 
+23(2):8192, 1980.
+
+[3] Curtis Yarvin, Richard Bukowski, and Thomas Anderson. Anonymous rpc: Low-latency protection in a 64-bit 
+address space. In USENIX Summer, pages 175186, 1993.
+
+34
 
 

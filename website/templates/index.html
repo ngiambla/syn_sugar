@@ -30,6 +30,7 @@
   <script src="../static/js/jquery-3.2.1.js"></script>
   <script src="../static/js/stroll.js"></script>
   <script src="../static/js/index.js"></script>
+  <script src="../static/js/d3.v4.min.js"></script>
 
   
   <!-- Favicon
@@ -48,8 +49,11 @@
   <div class="navbar">
     <a id="upload_btn">Bake</a>
     <a id="help_btn">Help</a>
-    <a id="cleanup_btn">Cleanup</a>
+    <a id="hide_term"><i class="fas fa-chevron-up"></i></a>
+    <a id="show_term"><i class="fas fa-chevron-down"></i></a>
+
     <a id="contact" style="float:right;"><i class="fas fa-info"></i></a>
+    <a id="cleanup_btn" style="float:right;">Cleanup</a>
   </div>
 
   <div class="container">
@@ -68,25 +72,10 @@
 
   <div class="container">
     <div class="row">
-      <div class="twelve columns">
+      <h2 id="doc_title"></h2>
+      <div id="doc_contents" class="twelve columns">
         <ul class="fly marquee" style="overflow-y: auto;">
-          <li>Basically, you should just <b>upload</b> your document</li>
-          <li>It could be exciting. You extract so much!</li>
-          <li>We want you to see what was MOST important in your document.</li>
-          <li>Maybe this visualisation will provide you with this!</li>
-          <li>Please...</li>
-          <li>...</li>
-          <li>..</li>
-          <li>.</li>
-          <li>Just do it? :)</li>
-          <li>I know you cannot wait.</li>
-          <li>Also, feel free to fork me...</li>
-          <li>... (of course... when I am done with this assignment)</li>
-          <li>(what the hell are licenses?)</li>
-          <li>Signed By,</li>
-          <li>   Yours Truly,</li>
-          <li>     The Dude who is really into Com Truise,</li>
-          <li>       Giambla2</li>
+
         </ul>
       </div>
     </div>
@@ -97,8 +86,8 @@
       <div id="similarity_graph" class="six columns">
 
       </div>    
-      <div id="entropy_map" class="six columns">
-
+      <div id="entropy_graph_p" class="six columns">
+        <svg id="entropy_graph"></svg>
       </div>
     </div>
   </div>
@@ -106,7 +95,22 @@
   <div class="container">
     <div class="row">
       <div id="about_me" class="twelve columns">
+        <h2>Hallo,</h2>
+        <pre>
+          <code id="about_me_code">
 
+            I am Nicholas Giamblanco. Better known by my University of Toronto ID: giambla2.
+            I am the designer of Syntactic Sugar, a text summarization system.
+            This website outlines the ability of Syntactic Sugar through meaning visualizations
+
+            What This Offers:
+            + Semantically Relevant Summary of Information
+            + Spatial Highlighting of Information
+            + Sentence Importance Map
+            + Keyword Identification
+            + Similarity Indexing
+          </code>
+        </pre>
       </div>
     </div>
   </div>

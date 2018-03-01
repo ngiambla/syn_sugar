@@ -25,7 +25,7 @@ Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 I.I
 Why Use An Embedded System? . . . . . . . . . . . . . . . . . . . . . .
 Previous Work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-I/O with Keil’s MCB1700 . . . . . . . . . . . . . . . . . . . . . . . . . .
+I/O with Keils MCB1700 . . . . . . . . . . . . . . . . . . . . . . . . . .
 II.I
 Hardware Software Interfacing . . . . . . . . . . . . . . . . . . . . . . .
 II.II
@@ -104,18 +104,18 @@ ABSTRACT
 Ryerson University
 
 This report explores the use of an Embedded System to create a Media Center for consumer enjoyment.
-Speciﬁcally a Media Center was successfully implemented with the Keil MCB1700 Board and the NXP
+Specically a Media Center was successfully implemented with the Keil MCB1700 Board and the NXP
 LPC1768 ARM Cortex-M3 Processing Unit and met the following requirements:
 
-• A Photo Gallery
+ A Photo Gallery
 
-• An "mP3 Player"
+ An "mP3 Player"
 
-• Game(s)
+ Game(s)
 
-• Extra Functionality (If Provided)
+ Extra Functionality (If Provided)
 
-The Keil µVision 4 IDE (Integrated Development Environment) was used for the implementation of this
+The Keil Vision 4 IDE (Integrated Development Environment) was used for the implementation of this
 project.
 
 Page 3 of 49
@@ -134,7 +134,7 @@ Many electronic devices that consumers use day-
 to-day are not general purpose units. In fact, many
 of these devices are Embedded Systems. Embed-
 ded systems are usually electronic devices designed
-for speciﬁc purposes, and operate with schedul-
+for specic purposes, and operate with schedul-
 ing desires in mind. Examples of Embedded Sys-
 tems/Devices are: a programmable thermostat, IoT
 Devices, Cellular Devices, etc. Many of these de-
@@ -144,13 +144,13 @@ tion consideration. The hardware and associated
 software are designed in order to meet the special-
 ized need. This report outlines the design and im-
 plementation of a Media Center on an embedded
-system. Speciﬁcally, this lab explores an imple-
+system. Specically, this lab explores an imple-
 mentation of an embedded system that meets the
-following speciﬁcations:
+following specications:
 
-• A Photo Gallery
+ A Photo Gallery
 
-• An mP3 Player (simulated through USB
+ An mP3 Player (simulated through USB
 
 streaming)
 
@@ -165,7 +165,7 @@ I.I Why Use An Embedded Sys-
 tem?
 
 Embedded Systems are systems designed for a spe-
-ciﬁc purpose. Generally, embedded systems are
+cic purpose. Generally, embedded systems are
 required for low power devices, real-time deadlines,
 and portable application. Any Smart Phone is a
 great example and demonstration of this. Smart
@@ -181,28 +181,28 @@ It must sound at the correct time. Smart Phones are
 also portable. The objective of this project was to
 create a Media Center.
 
-• A Command Line Interface (Similar to a
+ A Command Line Interface (Similar to a
 
 II PREVIOUS WORK
 
 UNIX environment)
 
-• A Screen Saver
+ A Screen Saver
 
-• A Game (The Snake Game)
+ A Game (The Snake Game)
 
-• A Password Generator
+ A Password Generator
 
-• Keyboard Compatibility Feature
+ Keyboard Compatibility Feature
 
-• System Settings Feature
+ System Settings Feature
 
 This project was part of the course COE718 - Em-
 bedded Systems Design, where the hardware used
 in this project was explored in several experiments
-during the duration of this course. Speciﬁcally, we
+during the duration of this course. Specically, we
 explored several techniques that are unique to em-
-bedded systems (speciﬁcally ARM devices), and
+bedded systems (specically ARM devices), and
 considerations for optimal operation. These experi-
 ments provided a fundamental base to work with.
 
@@ -214,18 +214,18 @@ Ryerson University
 
 II.I
 
-I/O with Keil’s MCB1700
+I/O with Keils MCB1700
 
 II.II Hardware Software Interfac-
 
 Many of the experiments required in the class
 COE718 provided a method to understand how to
-output data with the MCB1700 Board. Speciﬁcally,
+output data with the MCB1700 Board. Specically,
 the following was investigated:
 
 1. The use of the joystick:
 
-• The source code for the use of the joy-
+ The source code for the use of the joy-
 stick was provided by the many of the
 experiments, and a full understand of
 the API was required. Functions such
@@ -233,17 +233,17 @@ as KBD_Init() and get_button() pro-
 vided the majority of the functionality
 for the joystick.
 
-2. The use of the on board LED’s:
+2. The use of the on board LEDs:
 
-• The source code which interfaced with
-the MCB1700’s on board LED’s pro-
+ The source code which interfaced with
+the MCB1700s on board LEDs pro-
 vided an appropriate API for integration
 of this code. This was not used in this
 project.
 
 3. The use of the LCD Display:
 
-• A in-depth understand of the LCD was
+ A in-depth understand of the LCD was
 required when creating this project,
 as most project components needed
 Functions such
@@ -254,17 +254,17 @@ GLCD_Clear(),
 GLCD_DisplayString(),
 GLCD_SetTextColor(),
 GLCD_Bitmap() were utilized heavily.
-However, COE718’s previous exper-
+However, COE718s previous exper-
 iments provided enough information
-for proper and efﬁcient use of this
+for proper and efcient use of this
 functions.
 
 ing
 
 One unique feature provided with the hardware ex-
 plored in this course was Bit Banding. This feature
-eliminates inefﬁciencies in port communications.
-Speciﬁcally, bit banding provides a unique address
+eliminates inefciencies in port communications.
+Specically, bit banding provides a unique address
 to a target port, which eliminates the use of bit
 masking, be it an AND mask or OR mask. Although
 this feature was not utilized in this project, it is a
@@ -287,13 +287,13 @@ special feature which is handled by the design of the
 embedded system. Picture the following situation:
 a user on their Smart Phone is using an app they
 had downloaded. Picture any application. A few
-seconds later, the user gets notiﬁed of an incoming
+seconds later, the user gets notied of an incoming
 phone call. Their application is now interrupted by
 this call. It turns out to be a very important call, and
 the user accepts the incoming call. The user starts to
 communicate on the call. This examples the use of
 multitasking in embedded systems. Although this
-example does not reﬂect normal embedded system
+example does not reect normal embedded system
 multitasking (which is generally real-time), it does
 provide a general discussion to it. In order for a
 
@@ -323,16 +323,16 @@ III METHODOLOGY
 
 Figure 2: Technical View of Software Design
 
-Efﬁciency, Modularity, Compact-ability, and Perfor-
+Efciency, Modularity, Compact-ability, and Perfor-
 mance are all to be considered when designing any
 system, be it from a software point of view, or to the
 layout of roads, highways, etc. In this project, the
-design of a ﬂexible and efﬁcient software system
-was necessary. This design required the deﬁnition
+design of a exible and efcient software system
+was necessary. This design required the denition
 of the project in terms of objects, functions, and
 logic. All required functionality was implemented
-as individual functions, some of which were deﬁned
-in various ﬁles, (i.e filename.c, filename.h), or
+as individual functions, some of which were dened
+in various les, (i.e filename.c, filename.h), or
 some of which existed in the main program code
 of this project. These functions were linked to the
 main program code, where all functions could be
@@ -341,7 +341,7 @@ state. It is important to note that only one function
 can be executed at a time. Therefore, implementa-
 tion of multitasking was not necessary.
 
-This software design provides ﬂexibility in many
+This software design provides exibility in many
 areas and reduces code complexity. It takes the
 shape of the Simpleton Software Design Pattern.
 
@@ -364,7 +364,7 @@ IV.I The Terminal
 The terminal was constructed from the required
 application requirements. Therefore, for each ap-
 plication, there was a command associated with it.
-This provided the means for ﬂexible ease of access.
+This provided the means for exible ease of access.
 For example, if an application by the name of Foto
 
 Page 6 of 49
@@ -411,12 +411,12 @@ const char menu[] =
 #\n"
 "########################################\n";
 
-Figure 3: Mbed OS’s CLI Option Menu
+Figure 3: Mbed OSs CLI Option Menu
 
 Gallery was available in this software, you could
-perhaps indicate to the user to input ’f’ to execute
+perhaps indicate to the user to input f to execute
 this particular application. This not only provides
-ﬂexibility to both the system designer, and user, but
+exibility to both the system designer, and user, but
 it also provides a familiar feel to UNIX users.
 
 In order to capture any input from the user
@@ -425,14 +425,14 @@ drivers, and source code for interfacing is required.
 Luckily, Keil provided several example projects in
 which a keyboard was interfaced. After exploration
 and "reverse-engineering" of these projects, and
-referencing the MCB1700 speciﬁcation provided
+referencing the MCB1700 specication provided
 by Keil, the integration of the Keyboard was possi-
-ble. Speciﬁcally, the terminal interface was made
+ble. Specically, the terminal interface was made
 possible by several facts:
 
 1. The Keyboard Connection must be established
 
-ﬁrst through use of
+rst through use of
 
 usbh_init(0); /*Initialize USB Host
 /* allow kbd connect detect
@@ -457,14 +457,14 @@ usbh_hid_kbd_getkey(0, 0) returns a value
 
 is required.
 
-of −1. The use of polling is an undesirable
+of 1. The use of polling is an undesirable
 feature, as it wastes CPU time. Interrupt based
 operation would be ideal as it favours CPU uti-
 lization across a software system. However,
 this system required a point of execution, in
 which all applications can be executed from,
 and then return back to this point. Therefore,
-an inﬁnite loop was created in order provide
+an innite loop was created in order provide
 this functionality. Inside this loop, a check for
 user input was completed.
 
@@ -472,8 +472,8 @@ As in most modern day computing systems,
 the redirection from the Keyboard (Standard
 Input) to the Terminal (Standard Out) must
 take place. Therefore, an exploration and mod-
-iﬁcation of this behavior on the MCB1700 is
-a must. In the ﬁle Redirect.c, STDIO deﬁ-
+ication of this behavior on the MCB1700 is
+a must. In the le Redirect.c, STDIO de-
 nitions are created. This allows the function
 getline() to redirect the keys pressed from
 the keyboard to the on-board LCD display (the
@@ -481,7 +481,7 @@ terminal).
 
 IV.II Context Switching
 
-It may be convenient to deﬁne the idea of a context:
+It may be convenient to dene the idea of a context:
 a context is a functional program requirement (an
 application within the software system) a user inter-
 acts with. In order to switch between the required
@@ -511,7 +511,7 @@ device driver and sends a bit stream. This stream
 is then converted at the device receiver into digital
 values, and is then converted to an Analog Wave-
 form. This takes place in the form of an interrupt.
-Speciﬁcally, a buffer is ﬁlled up with the incoming
+Specically, a buffer is lled up with the incoming
 transmission data. This data is then processed with
 an interrupt service return (ISR). In order to execute
 the interrupt service return, a periodic timer is set
@@ -520,7 +520,7 @@ is a concern that must be addressed. In this project,
 an on board potentiometer was used to control this
 feature. Within the ISR, the volume was checked
 against a reference value, and the corresponding
-analog waveform could be ampliﬁed or diminished.
+analog waveform could be amplied or diminished.
 
 /******************************************
 * Timer Counter 0 Interrupt Service Routine
@@ -608,22 +608,22 @@ LPC_TIM0->IR = 1; /* Clear Interrupt Flag */
 
 It is important to note, that a USB connection must
 be set up prior to data streaming. The Keil board
-will be conﬁgured as a device, and the host OS
+will be congured as a device, and the host OS
 (Operating System) as the operating system. This
 is a problem that was experience in this design,
-where the device could not be conﬁgured simul-
+where the device could not be congured simul-
 taneously as Host and Device.
 In order to uti-
 lize the keyboard, the Keil board had to be set
 up to act as a host. And to stream music from
-a host, the project had to be conﬁgured as a de-
+a host, the project had to be congured as a de-
 vice. Therefore, the music player application was
 a standalone application that could run on a de-
-vice conﬁgured board. With this being said, an-
+vice congured board. With this being said, an-
 other issue presented itself. This application entered
-an inﬁnite loop (in order to be in the operational
+an innite loop (in order to be in the operational
 state always), and could not be broken out of origi-
-nally. To patch this ﬂaw (as a user should be able to
+nally. To patch this aw (as a user should be able to
 start/stop streaming music, and connect/disconnect
 from the host system), USB_Connect(TRUE) or
 USB_Connect(FALSE) was called in order to stop
@@ -631,7 +631,7 @@ the streaming service. Then,
 the
 application could reset the system by using the
 NVIC_SystemReset() or by adding a return to the
-ISR, causing the inﬁnite loop to break, and return to
+ISR, causing the innite loop to break, and return to
 the original application. Since this application was
 
 if required,
@@ -646,7 +646,7 @@ standalone, there was no point of execution to return
 to, and therefore neither the NVIC_SystemReset()
 or the return was implemented. This particular im-
 plementation did demonstrate the ability to start and
-stop streaming, and play and ’pause’ music.
+stop streaming, and play and pause music.
 
 suddenly head west, this is not permitted in this
 implementation. Therefore, the user will lose.
@@ -660,7 +660,7 @@ IV.IV Photo gallery: Foto Gallery
 A very important application of the this software
 system was the photo gallery (which was named
 Foto Gallery for creative purposes). By indicating
-the command ’f’, a context switch occurs, and a
+the command f, a context switch occurs, and a
 loop occurs, which displays images. Before the im-
 ages are display-able, the images must be converted
 in a character array, with their color description per
@@ -679,7 +679,7 @@ IV.V Game: Snake
 The game that was implemented on this device was
 snake. Snake has the following objectives:
 
-A snake is in a ﬁeld. In this ﬁeld, food randomly
+A snake is in a eld. In this eld, food randomly
 appears for the snake. The snake is hungry and
 needs to eat the food. By eating the food however,
 the snake grows. The snake must eat as much food
@@ -711,7 +711,7 @@ To understand the program logic of the game,
 a brief description of each listed method in this
 algorithm is required:
 
-– init()
+ init()
 
 This method provides the logic for clearing
 any existing game data (which may exist due
@@ -720,15 +720,15 @@ This also provides the initial randomized lo-
 cation of the snake food, as well as the de-
 terministic initial location of the snake head.
 This also stores the current users name (deter-
-mined from Keyboard Input). A list of ﬁve
+mined from Keyboard Input). A list of ve
 recent users, and their scores are kept as a
 scoreboard for comparison.
 
-– draw()
+ draw()
 
 In order to display the a graphical represen-
 tation of the game, pictures (originally .png
-ﬁles) of the snake body, and the snake food
+les) of the snake body, and the snake food
 were converted into the C code equivalent.
 
 Page 9 of 49
@@ -737,22 +737,22 @@ Page 9 of 49
 
 Ryerson University
 
-The background of the playing ﬁeld was kept
+The background of the playing eld was kept
 black, which was done with purpose. When
 displaying images on the LCD display, a dy-
 namic image (something that changes) does
-not automatically reﬂect with this change. In
+not automatically reect with this change. In
 practice, the old copy of the image is dis-
 played, as well as the changed copy of the
 image. This provides an inaccurate displaying
 mechanism. In order to combat this problem,
-a copy of the image was created and modiﬁed
+a copy of the image was created and modied
 such that the only color in this copy was black.
 Therefore, the logic became as follows: draw
 over the existing images with their black equiv-
 alents at the location prior to location change
 using GLCD_Bitmap(), then update the loca-
-tion, and ﬁnally, redraw the original image
+tion, and nally, redraw the original image
 versions at the new location. This provided
 the illusion that the image was moving.
 
@@ -764,12 +764,12 @@ pieces of the body must also update their rel-
 ative location in relation to the head and user
 input. However, if a snake has a length of size
 n then the i th body piece must replace its loca-
-tion with the body piece located at (i−1). This
+tion with the body piece located at (i1). This
 occurs for all body pieces in snake, excluding
 the head (which accepts the new location input
 by the user).
 
-– detectCollisions() In this game, only two
+ detectCollisions() In this game, only two
 types of collisions are possible: a collision
 with food (which the snake apparently eats),
 and a collision with itself. In either case, these
@@ -791,7 +791,7 @@ obj1.height + obj1.y > obj2.y) {
 
 Clearly, if a collision is detected with itself,
 the end of game ensues, as the user lost the
-game. A ﬂag is set, allowing the game to stop
+game. A ag is set, allowing the game to stop
 execution in safe manner.
 
 If a collision with a food item is detected, the
@@ -802,7 +802,7 @@ piece, and the score is incremented.
 
 Otherwise, this will do nothing.
 
-– updateLocation()
+ updateLocation()
 
 order
 
@@ -825,17 +825,17 @@ is up,
 left, down, and right, respectively.
 A user should not be required to hold the
 keys in order to maintain direction. Instead,
-pressing anyone of these keys sets a ﬂag
+pressing anyone of these keys sets a ag
 which permits continuous movement in the
-speciﬁed direction, until the ﬂag is then again
+specied direction, until the ag is then again
 updated.
 
 This function returns a status in the main loop
-of the game, in which will allow inﬁnite exe-
+of the game, in which will allow innite exe-
 cution, or break the loop if the user has lost
 the game.
 
-– displayHighScore()
+ displayHighScore()
 
 Once the user has lost, the current user score
 is added to a range of 5 user scores and titles,
@@ -856,16 +856,16 @@ Since this system provides a similar appearance to
 a UNIX based system with graphical options, al-
 lowing the user to put the system to sleep seemed
 reasonable, such that a screen saver would be dis-
-played at the sleep time. The command ’s’ would
+played at the sleep time. The command s would
 begin execution of this application. During this
 time, the character $ was displayed at randomized
 location between the bounds of the screen. The
 colour of the this character was also cycled through
 all colours available to this LCD, which provide a
-eye pleasing look. This took place inside an inﬁnite
+eye pleasing look. This took place inside an innite
 loop, based off keyboard polling. Since the key-
 board generates the integer value signal of -1 when
-no key is pressed, the inﬁnite loop will remain run-
+no key is pressed, the innite loop will remain run-
 ning from this fact, and stop otherwise. This means
 the application could be stopped at absolutely any
 time by pressing any key on the keyboard. This
@@ -873,7 +873,7 @@ would return back to the main point of execution.
 
 IV.VII Password Generator
 
-This application had a ﬁnite running time, where
+This application had a nite running time, where
 an eight character long password was generated, in
 hopes of being cryptographically secure. In general,
 the idea of generating a password can be imple-
@@ -897,12 +897,12 @@ vided to modify the background and text colour
 uniquely, and maintain these values for the whole
 session the user is active.
 
-In order to reﬂect these colours within the entire
+In order to reect these colours within the entire
 session, a global variable either had to be set, or
 a private variable had to be set and return from
 external function. The latter was used in this lab,
 where colours where updated to a private variable
-in another C ﬁle, and then called upon during when
+in another C le, and then called upon during when
 clearing the LCD screen or changing text colour.
 The list of colours applicable for each menu option
 were
@@ -932,12 +932,12 @@ and the Simpleton software design, all application
 requirements were completed successfully. That
 being said, several hardship were encountered:
 
-– Since this project utilized keyboard operation,
+ Since this project utilized keyboard operation,
 USB streaming could not take place, and there-
 fore a standalone application solely for audio
 streaming was created.
 
-– Ensuring Game Play was smooth and consist
+ Ensuring Game Play was smooth and consist
 was a major consideration, and therefore much
 time went into planning effective code to re-
 duce complexity and increase performance.
@@ -948,7 +948,7 @@ Page 11 of 49
 
 Ryerson University
 
-– Extra Features were added in order to add a
+ Extra Features were added in order to add a
 familiar UNIX environment feeling, as well
 as typical user request functions that aid in
 productivity, etc.
@@ -1027,11 +1027,11 @@ were created with a main point of execution (the
 Mbed OS Terminal) and were reliable. Finally, this
 project provided practical experience by allowing a
 real world application to be implemented, with an
-item used in today’s ever changing technological
-world. The beneﬁts of Embedded Systems were
-identiﬁed in this project, as well as their disadvan-
+item used in todays ever changing technological
+world. The benets of Embedded Systems were
+identied in this project, as well as their disadvan-
 tages. Technological issues were encountered, and
-through COE718’s course material and experiments,
+through COE718s course material and experiments,
 as well as a robust engineering foundation, these
 
 Page 14 of 49
@@ -2312,38 +2312,38 @@ if(n!=0){
 
 /* input command line */
 
-if (cmdbuf[0] == ’h’) {
+if (cmdbuf[0] == h) {
 printf ("%s",menu);
 }
-if (cmdbuf[0] == ’m’) {
+if (cmdbuf[0] == m) {
 printf ("Going to Musik.\nPlease Ensure You Check Your Computer.\n");
 }
-if (cmdbuf[0]== ’f’) {
+if (cmdbuf[0]== f) {
 printf ("Going to Foto Viewer\n");
 showPhotos();
 clear();
 }
-if (cmdbuf[0]==’c’){
+if (cmdbuf[0]==c){
 clear();
 
 }
-if (cmdbuf[0]==’z’){
+if (cmdbuf[0]==z){
 printf("**Generating a Password** \n\n");
 genPassword(password);
 printf("Password:
 printf("******************************\n");
 }
-if (cmdbuf[0]==’-’){
+if (cmdbuf[0]==-){
 settings();
 
 %s\n\n",password);
 
 }
-if (cmdbuf[0]==’s’){
+if (cmdbuf[0]==s){
 ScreenSaver();
 clear();
 }
-if (cmdbuf[0]== ’p’) {
+if (cmdbuf[0]== p) {
 printf("[return] To End Input.\n\n");
 printf ("Player Title?\n>> ");
 
@@ -2561,7 +2561,7 @@ c = LF;
 cnt--;
 line--;
 sendchar (BACKSPACE);
-sendchar (’ ’);
+sendchar ( );
 sendchar (BACKSPACE);
 
 }
@@ -2633,7 +2633,7 @@ if ((cnt >= n - 1) || (c == LF) || (c == ESC)) {
 
 */
 
-//*line = ’\0’;
+//*line = \0;
 
 *line = 0;
 cnt1
@@ -2686,7 +2686,7 @@ c = LF;
 cnt--;
 line--;
 sendchar (BACKSPACE);
-sendchar (’ ’);
+sendchar ( );
 sendchar (BACKSPACE);
 
 }
@@ -2744,9 +2744,9 @@ Control S = XOFF
 
 *line = c;
 sendchar (BACKSPACE);
-sendchar (’ ’);
+sendchar ( );
 sendchar (BACKSPACE);
-sendchar (’*’);
+sendchar (*);
 line++;
 cnt++;
 
@@ -2769,7 +2769,7 @@ if ((cnt >= n - 1) || (c == LF) || (c == ESC)) {
 
 */
 
-//*line = ’\0’;
+//*line = \0;
 
 *line = 0;
 cnt1
@@ -2886,35 +2886,35 @@ n=getline(col,3);
 while(n!=0){
 switch(col[0]){
 
-case ’1’:
+case 1:
 printf("Black Selected.\n");
 colr= 0;
 break;
 
-case ’2’:
+case 2:
 printf("Navy Selected.\n");
 colr= 1;
 break;
-case ’3’:
+case 3:
 printf("Dark Green Selected.\n");
 colr= 2;
 break;
-case ’4’:
+case 4:
 printf("Dark Cyan Selected.\n");
 colr= 3;
 break;
 
-case ’5’:
+case 5:
 printf("Maroon Selected.\n");
 colr=4;
 break;
 
-case ’6’:
+case 6:
 printf("Purple Selected.\n");
 colr= 5;
 break;
 
-case ’7’:
+case 7:
 
 Page 45 of 49
 
@@ -2926,35 +2926,35 @@ printf("Olive Selected.\n");
 colr= 6;
 break;
 
-case ’8’:
+case 8:
 printf("Dark Grey Selected.\n");
 colr =7;
 break;
 
-case ’9’:
+case 9:
 printf("Blue Selected.\n");
 colr= 8;
 break;
 
-case ’a’:
+case a:
 printf("Green Selected.\n");
 colr= 9;
 break;
 
-case ’b’:
+case b:
 printf("Cyan Selected.\n");
 colr=10;
 break;
 
-case ’c’:
+case c:
 printf("Red Selected.\n");
 colr=11;
 break;
-case ’d’:
+case d:
 printf("Magenta Selected.\n");
 colr=12;
 break;
-case ’e’:
+case e:
 printf("Yellow Selected.\n");
 colr=13;
 break;
@@ -2986,7 +2986,7 @@ GLCD_SetTextColor(Green);
 GLCD_Clear(Black);
 while(getkey()==-1){
 
-GLCD_DisplayChar(rand()%240+1,rand()%380+1,0,’$’);
+GLCD_DisplayChar(rand()%240+1,rand()%380+1,0,$);
 GLCD_SetTextColor(count);
 ++count;
 if(count==65536){
@@ -3033,7 +3033,7 @@ n=getline(cmd,3);
 while(n!=0){
 
 switch(cmd[0]){
-case ’1’:
+case 1:
 //Back Setting...
 back=colours[colourChoose()];
 GLCD_Clear(back);
@@ -3043,7 +3043,7 @@ printf("Background Color Set.\n");
 printf("\n>> ");
 
 break;
-case ’2’:
+case 2:
 text=colours[colourChoose()];
 GLCD_SetTextColor(text);
 

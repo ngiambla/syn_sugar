@@ -10,9 +10,16 @@ import pdf2txt as pdf2txt
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf'])
 
-app = Flask(__name__)
-app.secret_key = '22GHyyUTThGSDSX'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app = Flask(__name__) 				#create app instance.
+app.config.from_object(__name__) # load config from this file , flaskr.py
+
+# Load default config and override config from an environment variable
+app.config.update(dict(
+	UPLOAD_FOLDER=UPLOAD_FOLDER,
+    SECRET_KEY='\xc9\xd2\xb3\x96\x9b\xb8\x1c\x1b\xfe\xe8\xe9\xf3\xbf\x89\\\xa5\xd7\x95\x1d\x8f\xae\xb3\x05\xa1'
+))
+
+app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -46,12 +53,3 @@ def uploads():
 	else:
 		return "2"
 
-@app.route("/queries", methods=['POST'])
-def queries():
-	query_data="PICKLE_MAN"
-	q=1
-	for i in range(0, 1000):
-		for j in range (0, 200):
-			q=q+1*q
-
-	return query_data

@@ -1,0 +1,1108 @@
+High-Level Synthesis of FPGA Circuits with
+
+Multiple Clock Domains
+
+Author names removed for blind review.
+
+AbstractWe consider the high-level synthesis of circuits with
+multiple clock domains in a bid to raise circuit performance.
+A proling-based approach is used to select time-intensive sub-
+circuits within a larger circuit to operate on separate clock
+domains. This isolates the critical paths of the sub-circuits from
+the larger circuit, allowing the sub-circuits to be clocked at
+the highest-possible speed. The open-source LegUp high-level
+synthesis tool (HLS) [1] is modied to automatically insert
+clock-domain-crossing circuitry for signals crossing between two
+domains. The scheduling and binding phases of HLS were
+changed to reect the impact of multiple clock domains on
+memory. Namely, the block RAMs in FPGAs are dual-port,
+where each port can operate on a different domain, implying
+that sub-circuits on different domains can access shared memory
+provided the domains of the memory ports are consistent with
+the sub-circuit domains. In an experimental study, apply multi-
+clock domain HLS to the CHStone benchmark suite [2] and
+demonstrate average wall-clock time improvements of 33%.
+
+I. INTRODUCTION
+
+High-level synthesis (HLS) allows software design method-
+ologies to be applied for hardware design, lowering non-
+recurring engineering (NRE) costs and reducing the time-to-
+market for the production of electronic products. For hardware
+engineers, HLS allows design and verication to proceed more
+rapidly, at a higher level of abstraction than traditional RTL. For
+software engineers, HLS enables the speed and energy benets
+of hardware to be accessed by those without hardware-design
+skills. The difculty of traditional approaches to hardware
+design, as well as a labor market where software engineers
+outnumber hardware engineers by a 10-to-1 margin [3], are key
+drivers for the emphasis on HLS by the largest FPGA vendors.
+Despite its rising popularity, however, a long-standing weakness
+of HLS is that in certain cases, the quality (performance, power,
+area) of the circuit produced are inferior to manual hardware
+design. In this paper, we improve the performance of HLS-
+generated circuits by borrowing and incorporating into HLS a
+technique from traditional sequential circuit design  the use
+of multiple clock domains.
+
+Multiple-clock domain design refers to the use of multiple
+clocks of different frequencies within a single larger design.
+For example, one of two sub-circuits within a larger circuit
+may be clocked at 100MHz, and the second sub-circuit clocked
+at 200MHz. The use of multiple clocks offers two potential
+benets: 1) improved performance, and 2) reduced power. We
+focus on the former benet in this paper; however, prior work
+has focused on the latter benet [4], with power saved by
+reducing the total clock routing capacitance toggling at a single
+(high) frequency, and the ability to independently gate clock
+domains for idle sub-circuits.
+
+To understand how performance may be impacted through
+the use of multiple clock domains, consider a larger circuit
+having two sub-circuits: one for performing the computational
+work, and a second for other tasks, such as setup, I/O, etc.
+Assume that 90% of the execution cycles are consumed by the
+rst sub-circuit, and during that time, the second sub-circuit
+lies idle. In such a scenario, to minimize overall wall-clock
+time, it is desirable to make the clock period of the rst sub-
+circuit (where the majority of cycles are spent) as short as
+possible. In a single-clock design, the critical path of the overall
+circuit may reside in the second sub-circuit, thereby slowing
+down everything. However, by clocking the two sub-circuits
+on independent domains, we are assured that the speed of the
+rst sub-circuit is optimized in isolation; that is, its speed is
+not dened by the critical path in the second sub-circuit.
+
+Deployment of multiple clock domains does not come
+without a cost. Clock-domain-crossing circuitry must be
+incorporated when different domains talk to one another
+to avoid metastability (i.e. when a register output oscillates
+between the high and low states for a certain period of
+time), and such circuitry imposes latency overheads for such
+communication, as well as an area overhead. Moreover, the use
+of multiple domains complicates CAD tasks, particularly static
+timing analysis. However, despite these costs, it is important
+to note that in the FPGA context, modern devices already
+contain sophisticated circuitry for the generation, and low-
+skew distribution/routing of multiple different clocks within a
+single user design. This work leverages the presence of such
+already-existing circuitry from the HLS perspective.
+
+We modied the open-source LegUp HLS tool [1] from the
+University of Toronto to generate multi-clock domain circuits.
+In our new ow, the user species, in a Tcl conguration
+le, which functions are to be clocked on specic domains.
+The scheduling and binding steps of HLS were modied
+to recognize clock domain restrictions on memory ports 
+memories in FPGAs are dual port, where each port may be
+clocked independently. In the binding context, for example, this
+restriction implies that circuitry operating at a specic frequency
+must access memory through a port operating at that same
+frequency. The Verilog generation step of LegUp was altered to
+automatically insert clock-domain-crossing logic and FSM stall
+logic. In an experimental study, we demonstrate performance
+benets over single clock designs using the CHStone HLS
+benchmark suite [2]. To the authors knowledge, this work is
+the rst application of automated multiple-clock-domain circuit
+generation in HLS for FPGAs.
+
+the scope of this paper. However, in our work, we make use of
+two of the circuits from [10], called a two ip-op synchronizer
+and an enable-based synchronizer. We elaborate on these in
+detail in Section III.
+
+A. LegUp HLS
+
+LegUp is an HLS tool that converts a C program into a
+hardware circuit specied in Verilog RTL. The tool is built
+within the open-source LLVM compiler [11]. After program
+parsing, conversion to the compilers internal representation,
+and compiler optimization passes, LegUp HLS commences.
+The typical HLS steps are allocation, scheduling, binding,
+and nally, generation of the RTL. Allocation pertains to the
+constraints on the design: the amount of hardware resources of
+each type that are permitted for use in the synthesized circuit, as
+well as the desired performance and other criteria. Scheduling
+assigns the computations in the software program into time
+steps, each corresponding to states of a nite-state machine
+(FSM). Thus, scheduling plays the key role of deciding which
+computation executes at what time, thereby dening the control
+FSM. Binding selects, for each computation in the software,
+the specic hardware resource on which the computation will
+be performed. Finally, the in-memory synthesized circuit is
+written out in Verilog. For this research, changes were necessary
+throughout the LegUp ow, as described below.
+
+In the most-recent version of LegUp HLS, the generated
+circuit has a at topology, as described in [12], an illustration
+of which appears in Fig. 1. Observe that all modules, memories
+(global and shared local), as well as the interconnect reside
+at a single level of the hierarchy. The rationale for this
+at implementation is to permit the sharing of resources
+among the computational modules, e.g. memories or large
+computational blocks, such as oating-point units or dividers.
+The at hierarchy has implications for multi-clock HLS in this
+research, particularly insertion of the CDC circuits between
+communicating modules on different clock domains.
+
+III. MULTIPLE CLOCK-DOMAIN HLS
+
+A. Overview
+
+At a high level, the high-level synthesis of circuits with
+multiple clock domains works as follows: the user designates
+which C functions are to be placed on separate clock domains in
+LegUps Tcl conguration le. LegUp HLS synthesizes each C
+function into a separate Verilog module. In scenarios where a
+function calls another function, and the two functions reside on
+different clock domains, clock-domain-crossing (CDC) circuitry
+must be inserted between the corresponding generated Verilog
+modules. We modied the Verilog generation step of LegUp
+HLS to automatically insert the CDC circuits in the appropriate
+locations, as well as to insert necessary stall logic to mitigate
+metastability (elaborated upon below). The Verilog generation
+was also modied to automatically instantiate PLLs for clock
+generation: one PLL for each domain. In this study, we target
+the Altera/Intel Cyclone V 45nm FPGA; the PLLs instantiated
+are specic to Cyclone V.
+
+Fig. 1. Top-level circuit structure of LegUp-generated circuit.
+
+II. BACKGROUND AND RELATED WORK
+
+Multiple clock architectures, as implemented on FPGAs,
+have been studied over the past two decades. Prior work
+includes multiple-clock architectures within Globally Asyn-
+chronous and Locally Synchronous (GALS) systems proposed
+in [5]. GALS systems consist of multiple local synchronous
+modules that communicate asynchronously via a 4-phase
+handshake protocol. The 4-phase handshake protocol introduces
+considerable delays to transfer data between synchronous
+modules. A study by Jiang et al. [6] proposed a computational
+model, called a GAS BLOCK, to facilitate the design of GALS-
+based embedded systems.
+
+Another direction is that of latency-insensitive systems
+(LIS) [7] for the implementation of multiple-clock designs. LIS-
+based systems wrap circuit sub-modules within synchronizing
+wrappers that impose an area overhead. The synchronizing
+wrappers are used to both insulate individual sub-modules
+from one another and also, to permit communication between
+modules. An extension of LIS, combined with GALS-based
+design, was proposed by Singh et al. [8] to support multi-clock
+architectures. Agiwal and Singh [9] applies LIS concepts to
+multi-clock design, with handling for metastability and data
+incoherency. Regarding multi-clock-domain HLS for FPGAs,
+there appears to be little prior work aside from [4], which
+focused on power benets rather than performance.
+
+A key element in the design of digital circuits with multiple
+clock domains is clock-domain crossing (CDC) circuitry 
+special circuit structures that provide communication between
+two different clock domains. The purpose of such circuitry is to
+ensure the integrity of the data transmitted between the domains.
+When data from a rst clock domain is transmitted, e.g. from
+a ip-op Q output, to a ip-op clocked by a second domain,
+the potential exists for metastability in the receiving ip-op,
+depending on the timing relationship between the two clocks.
+The CDC circuitry eliminates the chance of metastability,
+providing clean data transfer between domains. A paper by
+Luo et al. [10] surveys the design and verication of a variety
+of CDC circuits. A complete review of CDC circuits is beyond
+
+Interconnect Module AstartArguments[i]return valuefinishModule Bstartreturn valuefinishModule Cstartreturn valuefinishModule Dstartreturn valuefinishArguments[i]Arguments[i]Arguments[i]Top ModuleGlobal MemoryLocal shared memoryPort APort BLocal shared memoryPort APort BPort APort BFig. 2. Clock-domain-crossing circuitry for start and nish signals. Arguments/return value are showed as abstract bold lines.
+
+In addition, changes to the scheduling and binding steps of
+LegUp HLS were required to support multiple domains. Such
+changes are required for cases in which sub-circuits on separate
+clock domains access a shared resource, such as a block RAM.
+We elaborate on the CDC circuitry and the scheduling/binding
+changes in the subsections below.
+
+B. Clock-Domain-Crossing (CDC) Circuitry
+
+To support the synthesis of multiple clocks, we modify
+LegUps existing communication interface between modules.
+The communication interface in a LegUp-generated circuit
+contains two main interfaces, a master interface and a slave
+interface. The master interface initiates a transfer by setting
+the arguments to the slave interface and asserting a start
+control signal. The slave responds to the transfer, performs
+its computation, and after execution, sets a return value and
+asserts a finish control signal. Note that a slave interface
+may have multiple master interfaces connected to it. This
+situation arises when a function in the original C program
+has more than one call point. Additionally, a master interface
+may be connected to multiple slave interfaces  a scenario
+that arises when one function calls multiple different child
+functions. The interconnect between the master interfaces and
+the slave interfaces is generated in the top-level of the hierarchy,
+as mentioned above in Section II. We realize the passing of
+arguments, the return value and the control signals from one
+clock domain to another by inserting CDC circuitry in the
+LegUp RTL generation phase, making use of a two ip-op
+synchronizer and an enable-based synchronizer.
+
+The two ip-op synchronizer is a simple, safe method
+for passing logic signals between clock domains, and is the
+
+recommended approach for CDC in Altera FPGAs [13]. The
+concept behind the two ip-op synchronizer is that a rst
+register samples the asynchronous input signal and then waits
+for a clock cycle to allow any metastable state that could occur
+to resolve itself. Then, the rst register samples the input again
+and passes it to the second register, with the intent being that
+the second register is stable and ready to pass the signal into
+the receiving clock domain. To realize a reliable two ip-op
+synchronizer, the settling window for metastability T (the time
+slack available for a metastable signal to be resolved) should
+be set to a full clock cycle. The reliability of a two ip-op
+synchronizer is often expressed in terms of the mean time
+before failure (MTBF) [14]:
+
+MT BF =
+
+e T
+
+
+Tw fR fS
+
+(1)
+
+where  is the settling time constant of the ip-op,
+
+fR
+is the receiving clock frequency, and fS is the sending clock
+frequency. TW is the time window at which metastability could
+occur. TW is dened by the setup and hold-time parameters of
+a ip-op. As  and Tw are ip-op parameters, they depend
+on the FPGA used and the operating conditions. However,
+optimization could be carried out on T, as it depends on the
+design. In our case, achieving a desirable (high) MTBF is
+straightforward, as T is a full clock cycle, which is lengthy in
+comparison to the time required for ip-op stability after a
+metastable event. Typical  values are in the tens of ps [14],
+and with a clock period in ns (e.g. 200MHz  T = 5ns), the
+ratio of T /  102, which implies the numerator in the MTBF
+equation  e102  an enormous quanity.
+
+Module BStall logicModule CModule CModule BStart CFinish CStartFinishArguments C[j]Return value CModule BModule AStart CFinish CStallStallStallStallStallEnableArguments C[j]Return value CArguments[j]Return value1Clock Domain 2Clock Domain 1Clock Domain 3234Fig. 3. CDC for arguments and return values.
+
+We modied LegUp to instantiate the two ip-op synchro-
+nizer when passing the control signals start and finish
+between modules in different clock domains. However, issues
+arose surrounding the cycle latencies required for transmitting
+the control signals. The latency for transmitting the finish
+signal is not an issue, as a parent (calling) module assumes the
+slave is busy as long as finish is set to low. This implies
+that a master interface would not invoke a slave interface
+unless the slaves finish is set to high. However, the latency
+for transmitting the start signal required special attention.
+Specically, if a start signal is issued by a master interface and
+the slaves nish signal is not set to low on the same clock cycle,
+another master interface could invoke the same slave while
+the rst start signal is partway in transmission from one clock
+domain to another. To handle the start signal latency issues,
+FSM stall logic was added to the LegUp-generated hardware.
+The added FSM logic stalls the entire circuit when start
+signal is asserted by a master interface. The stall continues
+until the nish signal from the slave is set to low and passed
+to all the master interfaces of the slave interface. The stall
+signal remains low until a specic delay has elapsed. The
+delay is imposed by a chain of ip-ops (a shift register) in
+the slave clock domain. The length of the chain depends on
+the ratio of the slave clock frequency and the fastest master
+clock frequency, as shown in (2), where fm0, fm1 to fmn refer
+to the frequencies of the master interfaces, and fs represents
+the frequency of the slave interface. The multiplication of the
+frequency ratio by two in (2) is to accommodate the passing
+back of the nish signal through the two ip-ops at the master
+interface. The addition of 3 is to apply a delay for the ip-ops
+at the slave interface.
+
+Number o f FFs = 3 + (cid:100)max( fm0, fm1, ... fmn)
+
+fs
+
+(cid:101) 2
+
+(2)
+
+Fig. 2 shows an example of LegUp-synthesized circuitry
+for the start and finish between two master interfaces of
+modules, A and B, and a slave interface C. The two ip-op
+synchronizers are highlighted at labels 1 and 2 for the passing of
+the start and finish control signals, respectively, between
+module A master interface and module C slave interface. Labels
+3 and 4 highlight the synchronizers for data transmission
+between modules B and C.
+
+As the arguments and return value of the interfaces are
+multiple-bit-wide data, they cannot be crossed by using a
+simple CDC technique. The individual bits in wide words may
+arrive at different times in the receiving clock domain due to
+imbalanced circuit delays. Consequently, the potential exists
+for the individual bits to be sampled at different edges of the
+receiving clock. To handle this, we incorporate the enable-based
+synchronizer concept into our CDC circuit. Specically, we
+register multi-bit-wide data for multiple cycles in the sending
+clock domain until the receiving clock domain is ready to
+sample it. The receiving clock domain samples the wide data
+when it receives an enable control signal that has been passed
+from the sending clock domain.
+
+Since the LegUp master interface passes the arguments along
+with the start signal, we used the start signal as an enable
+for the sampling of the arguments in the slave interface clock
+domain. As for the return value, we used the finish control
+signal as the enable for the sampling at the master interface.
+While Fig. 2 pertained to handling of start and finish
+signals, Fig. 3 shows an analogous gure for CDC of arguments
+and return values. In the top-left corner of the gure, for
+example, observe that the start driven by module A in clock
+domain 1 is used as a register enable for the arguments passed
+to module C in clock domain 3.
+
+Module AStart cArguments c [i]Finish cReturn Value cModule CStartArguments [i]FinishReturn Valueenen0enenModule BStart cArguments c [i]Finish cReturn Value cenenClock Domain 1Clock Domain 2Clock Domain 3CDC circuit in Fig. 2Fig. 4. Clock-domain-crossing memory interfacing.
+
+C. Scheduling and Binding
+
+We now describe the changes we made to scheduling and
+binding, which are tied to how memories are synthesized by
+LegUp.
+
+When an input C program contains arrays, the arrays are
+synthesized by LegUp HLS into memories on the FPGA.
+LegUp generates three different types of memory structures
+which are: 1) A global memory controller and memories, 2)
+shared-local memories, and 3) local memories. The global
+and shared local memories are instantiated at the top level
+entity as shown in Fig. 1. Local memories are for arrays
+that are accessed by a single function in the input program;
+thus, they are instantiated within the functions corresponding
+hardware module. Shared-local memories contain arrays that
+are accessed by a list of known functions  such memories
+are accessed by multiple known hardware modules. Global
+memory is for arrays accessed by an unknown list of functions.
+The designation of arrays into the three categories of memories
+is based on a points-to analysis (alias analysis) in the LLVM
+compiler whose results are used by LegUp HLS. Further details
+are in [12].
+
+Given the possibility that modules from different clock
+domains may access the same memory, we changed such
+memories from single-clock dual port to dual-clock dual port.
+This imposes a constraint that at most two modules from
+different domains may access the same memory. If a user
+species three modules as having different domains in the
+Tcl conguration le, and those three modules all access the
+same memory, the situation is infeasible, so multi-clock LegUp
+reports an error and terminates.
+
+Fig. 4 illustrates global memory and shared-local memories
+being accessed by multiple clock domains. Observe that Module
+A and B communicate with one another, and both access a
+local shared memory (top left of gure). In this case, port A of
+the memory operates at clock domain 1; port B of the memory
+operates at clock domain 2. In the top-center of the gure,
+we observe that the global memory ports A and B operate
+on clock domains 2 and 3, respectively, and are accessed by
+modules B, C, and D.
+
+To support multiple-clock synthesis, changes were required
+to both the scheduling and binding steps of HLS. The changes
+
+relate to how memories are accessed in the presence of multiple
+clock domains. Regarding scheduling, the LegUp HLS tool
+schedules the computations in an input C program on a function-
+by-function basis. In single-domain designs, it is possible to
+schedule two memory accesses (loads/stores) per cycle to each
+memory in the FPGA, thereby leveraging the dual-point RAMs
+in the fabric. In multiple-clock circuits, when two functions,
+on different clock domains, access the same memory, the two
+ports of the memory must also be on clock domains aligned
+with the two domains of the accessing functions. With just
+one port on each unique clock domain, the scheduler can no
+longer schedule two accesses per cycle to the memory  at
+most one access per clock cycle is permitted for each domain.
+We altered the scheduler to reect this constraint. Namely,
+for shared-local memories or global memories (dened above)
+that are accessed by functions on different clock domains, the
+scheduler permits at most one access per cycle per domain.
+
+Note that for memories accessed by solely one function, or
+that are accessed by multiple functions on the same domain,
+the single-port restriction is unnecessary. In such cases, two
+accesses per cycle are permitted, which is the default LegUp
+HLS behavior.
+
+With regard to binding, one of its tasks is to match memory
+operations (loads/stores) to memory ports. In LegUp HLS,
+binding is formulated as a weighted-bipartite graph matching
+problem instance [15], with one of the objectives being
+to balance memory accesses among the ports, judiciously
+managing the sizes of the input multiplexers feeding the ports.
+In the multiple-clock case, however, for memories on two clock
+domains, the binding step must adhere to the specic domain
+of each port and the accessing function. That is, for a function
+on a particular domain that accesses a dual-clock memory,
+there is no choice when binding ports: memory accesses in the
+function must be bound to the port on the same clock domain
+as the function.
+
+IV. CLOCK DOMAIN ASSIGNMENT AND FREQUENCY
+
+SELECTION
+
+We evaluate the proposed multi-clock-domain HLS using the
+CHStone HLS benchmark suite [2] and target the Altera/Intel
+Cyclone V FPGA.
+
+Local shared memoryModule AModule BModule CModule DGlobal MemoryLocal shared memoryPort APort BPort APort BPort APort BGlobal PortLocal PortLocal PortGlobal PortLocal PortGlobal PortLocal PortClock Domain 1Clock Domain 2Clock Domain 3Clk 2Clk 3Clk 1Clk 2Clk 2Clk 3PERFORMANCE RESULTS FOR ONE CLOCK DOMAIN VERSUS TWO CLOCK DOMAINS.
+
+TABLE I
+
+Benchmark
+
+FMax (MHz)
+
+Time (s)
+
+Average Time (s)
+
+Time (s)
+
+One Clock
+
+FMax (MHz)
+
+112, 140
+143, 189
+155, 197
+139, 195
+120, 197
+93, 113
+117, 163
+202, 205
+
+136, 159
+160, 169
+146, 181
+149, 196
+146, 152
+149, 173
+138, 145
+136, 223
+104, 146
+161, 263
+180, 205
+
+141.8
+62.4
+1141.5
+
+6.1
+
+1316.3
+12699.2
+
+55.6
+1280.5
+304.4
+239.4
+87.6
+1375.9
+24.1
+28.2
+8.9
+
+1103.5
+57.0
+
+12125.1
+
+41.4
+1360.9
+182.5
+
+Two Clock
+
+100.4, 50.3
+5.2, 51.4
+
+785.5, 437.9
+5.94, 1.18
+506.38, 74.4
+2557.6, 8724.2
+
+0.63, 38.82
+114.2, 1103.2
+
+198.2, 44.6
+42.7, 40.9
+431.9, 72.0
+17.8, 7.2
+24.7, 2.46
+3.0, 7.5
+
+635.2, 377.1
+
+52.6, 4.4
+
+7996.0, 3738.4
+
+2.56, 23.38
+178.4, 1108.9
+
+Ratio
+
+Time (s)
+1 (0.94)
+
+1.10
+
+1 (0.93)
+1 (0.86)
+
+2.27
+1.13
+1.42
+1.05
+1.33
+
+1 (0.99)
+
+1.05
+
+1 (0.94)
+1 (0.96)
+
+1.04
+
+1 (0.85)
+
+1.09
+1.00
+1.03
+1.60
+1.06
+1.13
+
+150.4
+56.6
+1223.4
+
+7.1
+580.8
+11281.7
+
+39.2
+1217.6
+263.4
+242.8
+83.6
+1468.5
+25.0
+27.2
+10.5
+1012.4
+57.0
+
+11734.4
+
+25.9
+1287.3
+175.3
+
+Inline Option
+
+Inlined
+
+Not Inlined
+
+Geomean
+
+adpcm
+
+aes
+
+blowsh
+dfadd
+dfsin
+jpeg
+motion
+
+sha
+
+adpcm
+
+aes
+
+blowsh
+dfadd
+dfdiv
+dfmul
+dfsin
+gsm
+jpeg
+motion
+
+sha
+
+Geomean
+
+103
+150
+156
+146
+51
+97
+114
+190
+
+121
+144
+156
+148
+130
+158
+121
+137
+115
+158
+187
+
+For multi-clock HLS, a natural question that arises is: how
+does one decide which functions (and consequent synthesized
+circuits) should be on which clock domain? Considering rst
+the two-domain case, we took the following approach: for each
+benchmark circuit, we rst proled the single-clock-domain
+version of the circuit, and extracted the number of clock cycles
+spent in each function. The function consuming the most cycles
+was placed on a rst clock domain, with the balance of the
+circuit on a second clock domain. This simple approach was
+used for the adpcm, aes and motion CHStone circuits. For
+the other circuits, we observed that this approach produced poor
+performance results, primarily owing to the overheads of cross-
+domain-crossing. Therefore, for these circuits, we examined
+the call graph of the program, and placed all child functions of
+the most cycle-consuming parent function on the same clock
+domain as the parent. We took a similar approach in the three-
+clock-domain case: we put the most compute-intensive function
+on a rst domain, the second most compute-intensive function
+on a second domain, and the balance on a third domain.
+
+V. EXPERIMENTAL STUDY
+
+We compare multi-clock designs to single-clock designs,
+and report both circuit performance, as well as the area impact.
+The CHStone benchmarks used have built-in input vectors,
+and golden output vectors, and incorporate self-checking for
+correctness. We veried the multi-domain circuits functioned
+correctly in two ways: 1) using ModelSim simulation and 2)
+by execution in hardware using the Cyclone V FPGA on the
+DE1-SoC board.
+
+As mentioned above, our multi-clock approach operates at
+the function level of granularity  the synthesized hardware for
+an entire C function must operate on a single unique domain.
+Consequently, our approach is sensitive to which functions
+remain intact (i.e. functions that were not inlined) at the time
+
+HLS commences. To explore this, we synthesized two variants
+of each CHStone benchmark: 1) a no-inline version where we
+disabled inlining by the LLVM compiler, 2) using the normal
+inlining that occurs with -O3 compiler optimization. Note -O3
+optimization was performed in both cases; the only difference
+between the two variants is that inlining is disabled in the rst
+variant.
+
+Table I shows the speed-performance results for single and
+two-clock domain HLS. The top part of the table shows results
+for normal -O3 optimization with inlining enabled; the bottom
+part of the table shows results for the scenario when inlining
+is disabled. Column 2 lists the benchmark name. Columns 3
+and 4 give the FMax and wall-clock time for the single-clock
+implementation (experimental baseline). Wall-clock time is the
+total time needed for circuit execution, which is 1/FMax
+Cycles in the single-clock case, where Cycles is the total cycle
+latency. Columns 5, 6 and 7 pertain to synthesized designs
+with two clock domains. Column 5 gives the two Fmax values;
+column 6 gives the wall-clock time spent in each domain;
+column 7 shows the overall total wall-clock time. Finally,
+column 8 gives the ratio of the single-clock to dual-clock
+wall-clock time. Ratios larger than 1 indicate a win for
+dual-clock. Numbers in parentheses represent degradations in
+wall-clock time for the dual-clock case. In such cases, which
+are mentioned further below, one would simply opt for the
+single-clock design, and hence, we use 1 as the ratio for these
+in the mean-ratio calculations.
+
+Looking rst at the top-half of Table I, we see that 5 of
+the 8 benchmarks benet from two clock domains, with the
+average improvement being 33% (right-most column). The
+largest improvement was observed for dfsin, which suffered
+from a long inter-module critical path in the single-clock case,
+that was broken in the two-clock case by the instantiated CDC
+circuitry. Modest performance degradations are observed for
+
+AREA RESULTS FOR ONE CLOCK DOMAIN VERSUS TWO CLOCK DOMAINS.
+
+TABLE II
+
+One Clock
+
+Two Clock
+
+Benchmark
+
+Logic utilization
+
+Total registers
+
+Logic utilization
+
+Total registers
+
+Logic utilization
+
+Total registers
+
+Ratio
+
+Inline Option
+
+Inlined
+
+Not Inlined
+
+adpcm
+
+aes
+
+blowsh
+dfadd
+dfsin
+jpeg
+motion
+
+sha
+
+Geomean
+
+adpcm
+
+aes
+
+blowsh
+dfadd
+dfdiv
+dfmul
+dfsin
+gsm
+jpeg
+motion
+
+sha
+
+Geomean
+
+6,079
+4,028
+2,635
+3,378
+10,385
+13,007
+6,136
+1,413
+4,741
+7,117
+3,448
+2,887
+4,824
+7,395
+3,283
+12,806
+4,058
+7,918
+1,600
+2,253
+4,411
+
+11,094
+6,864
+5,336
+3,993
+16,674
+18,102
+9,764
+2,444
+7,646
+11,333
+5,705
+5,850
+9,078
+13,644
+5,954
+24,247
+6,963
+11,313
+2,406
+3,880
+7,612
+
+6,310
+4,245
+2,791
+3,539
+9,234
+13,393
+6,235
+1,345
+4,789
+7,483
+3,629
+3,554
+5,409
+8,806
+4,307
+14,134
+4,096
+8,228
+1,693
+2,373
+4,886
+
+11,456
+7,547
+5,636
+4,610
+17,979
+19,452
+10,060
+2,671
+8,211
+12,137
+6,830
+6,939
+10,304
+17,062
+7,987
+27,001
+6,926
+11,837
+2,645
+4,118
+8,618
+
+1 (0.96)
+
+0.95
+
+1 (0.94)
+1 (0.95)
+
+1.12
+0.97
+0.98
+1.05
+1.00
+
+1 (0.95)
+
+0.95
+
+1 (0.81)
+1 (0.89)
+
+0.84
+
+1 (0.76)
+
+0.91
+0.99
+0.96
+0.95
+0.95
+0.94
+
+1 (0.97)
+
+0.91
+
+1 (0.95)
+1 (0.87)
+
+0.93
+0.93
+0.97
+0.92
+0.93
+
+1 (0.93)
+
+0.84
+
+1 (0.84)
+1 (0.88)
+
+0.80
+
+1 (0.75)
+
+0.90
+1.01
+0.96
+0.91
+0.94
+0.91
+
+three of the benchmarks. The degradations are a result of
+the cycle-count overhead of clock-domain-crossing, which is
+particularly onerous in cases where a module on one domain
+is repeatedly invoked by a module on the second domain, and
+where each invocation of the rst module consumes relatively
+few clock cycles. Degradations are also caused by lengthier
+schedules in the two-clock case resulting from reduced memory-
+access parallelism in which shared/global memories, accessed
+by two domains, have solely a single port for each domain.
+
+The bottom half of the table gives results for the case of
+inlining disabled. The improvements in performance here are
+more modest, as the functions are smaller (no inlining) and
+each executes for fewer clock cycles. This implies that the
+fraction of total time required for clock-domain-crossing is
+larger than in the inlined case, increasing CDC overheads and
+reducing the benet of multi-clock synthesis. The average wall-
+clock time improvement in this case is 13%. Note that with the
+inlined case (top-half of the table), there are fewer benchmarks
+listed, owing to inlining reducing the eliminated benchmarks
+to a single function (and hence a single domain).
+
+We also considered three-clock-domain implementations (not
+shown here for brevity), and found that aside from the jpeg
+benchmark, no additional improvements were achieved above
+the two-clock case. jpeg is the largest circuit in the suite, and
+we found it contained large enough sub-circuits to benet from
+additional clocks. We expect that larger benchmarks, containing
+signicant number of large sub-modules, would stand to benet
+from three (or more) domains.
+
+Table II shows the impact on circuit area, including logic
+utilization (Cyclone V ALMs), as well as register count. CDC
+causes no area impact on other block types (DSP blocks, block
+RAMs). Looking at the two right-most columns, we see the area
+impact on ALMs to range from 0-6%, on average, depending
+on whether inlining is used. In some cases, circuit area actually
+
+reduced (ratios > 1), which we attribute to the heuristic nature
+of the synthesis, placement and routing tools. Register-count
+overhead ranges from 7-9%, on average. We believe the area
+overheads shown will be acceptable to users interested in the
+highest-possible performance for their designs.
+
+Overall, we consider the performance results (up to 33%
+wall-clock time improvement, on average) to be encouraging
+for several reasons: 1) the CHStone benchmarks were not
+designed with multi-clock domain synthesis in mind, and 2)
+we used the existing function boundaries in the benchmarks
+for clock-domain assignment, rather than altering the programs
+to isolate their critical paths in separate functions on unique
+domains. We leave the latter for future work.
+
+VI. CONCLUSIONS AND FUTURE WORK
+
+We considered the high-level synthesis of circuits with
+multiple clock domains with the objective of improving
+performance. The open-source LegUp HLS tool was modied
+to accept user constraints designating C functions onto specic
+clock domains. Changes were made to the scheduling and
+binding steps of HLS, to ensure proper handling of hardware
+resources accessed by sub-circuits on different domains. As
+well, the Verilog generation step of LegUp was changed
+to automatically insert clock-domain-crossing circuitry, as
+appropriate, and instantiate PLLs for clock synthesis. On the
+CHStone benchmark suite, average performance gains of 13%
+and 33% were observed, depending on the approach applied
+for function inlining.
+
+As this is a rst study on multi-clock HLS for FPGAs, there
+are ample avenues for future research. An important one is
+to evaluate the power consequences of using multiple clocks.
+While each individual clock may switch less capacitance, we
+believe that overall, cumulative power consumption will be
+worse in multi-domain designs. On the power front, it may also
+
+be fruitful to consider the gating of clocks on a domain-by-
+domain basis to reduce power consumption. A second direction,
+at the compiler level, relates to inlining and exlining in a bid
+to achieve higher performance gains with multiple domains.
+Specically, we would like to examine the idea of exlining
+the time-critical loops in programs into separate functions, to
+be placed on independent domains, as well as develop more
+intelligent decision making around which functions to inline
+to minimize CDC overheads.
+
+REFERENCES
+
+[1] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. Anderson,
+S. Brown, and T. Czajkowski, LegUp: high-level synthesis for FPGA-
+based processor/accelerator systems, in ACM FPGA, 2011, pp. 3336.
+[2] Y. Hara, H. Tomiyama, S. Honda, and H. Takada, Proposal and
+quantitative analysis of the chstone benchmark program suite for practical
+c-based high-level synthesis, J. Information Processing, vol. 17, pp. 242
+254, 2009.
+
+[3] United States bureau of labor statistics, https://www.bls.gov/.
+[4] G. Lhairech-Lebreton, P. Coussy, and E. Martin, Hierarchical and
+multiple-clock domain high-level synthesis for low-power design on
+FPGA, in FPL, 2010, pp. 464468.
+
+[5] D. M. Chapiro, Globally-asynchronous locally-synchronous systems.
+STANFORD UNIV CA DEPT OF COMPUTER SCIENCE, Tech. Rep.,
+1984.
+
+[6] Y. Jiang, H. Zhang, H. Zhang, H. Liu, X. Song, M. Gu, and J. Sun,
+Design of mixed synchronous/asynchronous systems with multiple
+
+clocks, IEEE Transactions on Parallel and Distributed Systems, vol. 26,
+no. 8, pp. 22202232, 2015.
+
+[7] L. P. Carloni, K. L. McMillan, and A. L. Sangiovanni-Vincentelli, Theory
+of latency-insensitive design, IEEE Transactions on computer-aided
+design of integrated circuits and systems, vol. 20, no. 9, pp. 10591076,
+2001.
+
+[8] M. Singh and M. Theobald, Generalized latency-insensitive systems for
+single-clock and multi-clock architectures, in IEEE/ACM DATE, vol. 2,
+2004, pp. 10081013.
+
+[9] A. Agiwal and M. Singh, Multi-clock latency-insensitive architecture and
+wrapper synthesis, Electronic Notes in Theoretical Computer Science,
+vol. 146, no. 2, pp. 528, 2006.
+
+[10] L. Luo, H. He, Q. Dou, and W. Xu, Design and verication of multi-
+clock domain synchronizers, in IEEE Intl Conf. on Intelligent System
+Design and Engineering Application (ISDEA), vol. 1, 2010, pp. 544547.
+[11] C. Lattner and V. S. Adve, LLVM: A compilation framework for lifelong
+program analysis & transformation, in IEEE/ACM SGO, 2004, pp. 75
+88.
+
+[12] J. Choi, S. Brown, and J. Anderson, Resource and memory management
+techniques for the high-level synthesis of software threads into parallel
+FPGA hardware, in IEEE FPT, 2015, pp. 152159.
+
+[13] Understanding metastability in Altera FPGAs, https://www.altera.com/
+
+en US/pdfs/literature/wp/wp-01082-quartus-ii-metastability.pdf.
+
+[14] C. Dike and E. Burton, Miller and noise effects in a synchronizing ip-
+op, IEEE Journal of Solid-State Circuits, vol. 34, no. 6, pp. 849855,
+1999.
+
+[15] C.-Y. Huang, Y.-S. Chen, Y.-L. Lin, and Y.-C. Hsu, Data path allocation
+based on bipartite weighted matching, in IEEE/ACM DAC, 1991, pp.
+
+499504.
+
+

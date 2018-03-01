@@ -6,21 +6,21 @@ Yifan Jin, Shaun Benjamin
 
 Introduction
 
-Monte Carlo Searching Tree(MCST) is a method a method for ﬁnding optimal decisions in
+Monte Carlo Searching Tree(MCST) is a method a method for nding optimal decisions in
 a given domain by taking random samples in the decision space and building a search tree
 according to the results. The idea of this method is given by Bruce Abramson in his 1987 PhD
 thesis. He experimented in-depth with Tic-tac-toe and then with machine generated evaluation
-functions for Othello and Chess. In 1992, B. Br¨ugmann employed this method for the ﬁrst time
+functions for Othello and Chess. In 1992, B. Brugmann employed this method for the rst time
 in a go-playing program.
 In 2006, R. Coulom described the application of the Monte Carlo
 method to game-tree search and coined the name Monte Carlo tree search, L. Kocsis and Cs.
-Szepesv´ari developed the UCT algorithm and S. Gelly et al. implemented UCT in their program
+Szepesvari developed the UCT algorithm and S. Gelly et al. implemented UCT in their program
 MoGo. In 2008, MoGo achieved dan (master) level in 99 go and the Fuego program began to
 win with strong amateur players in 99 go. In January 2012, the Zen program won 3:1 a 1919
 go match with John Tromp, a 2 dan player. MCTS has many attractions:
 it is a statistical
 anytime algorithm for which more computing power generally leads to better performance. It
-can be used with little or no domain knowledge, and has succeeded on diﬃcult problems where
+can be used with little or no domain knowledge, and has succeeded on dicult problems where
 other techniques have failed.
 
 2 Original Monte Carlo Tree Search
@@ -28,28 +28,28 @@ other techniques have failed.
 The basic MCTS is conceptually very simple. A tree is build in an incremental and asymmetric
 manner. Each iteration of MCTS consists of four steps:
 
-• Selection: Begin with some root R, a tree policy is used to ﬁnd the most urgent child of
+ Selection: Begin with some root R, a tree policy is used to nd the most urgent child of
 
 R, then we successively select child till we reach a leaf L.
 
-• Expansion: Unless the node L ends game, create one or more node of L and pick one of
+ Expansion: Unless the node L ends game, create one or more node of L and pick one of
 
 them, call it C.
 
-• Simulation: play random playouts from C.
-• Backpropagation: Update the information of the nodes in the path from C to R using the
+ Simulation: play random playouts from C.
+ Backpropagation: Update the information of the nodes in the path from C to R using the
 
 result of the random playouts.
 
 The tree policy is the rule which is used to select a node amongst the children of the root. The
-main diﬃculty in selecting child nodes is maintaining some balance between the exploitation of
+main diculty in selecting child nodes is maintaining some balance between the exploitation of
 deep variants after moves with high average win rate and the exploration of moves with few
 simulations. The idea is we should maximize the cumulative reward by consistently taking the
 optimal action. The simplest and most widely used policy is called UCT which is introduced
-by L. Kocsis and Cs. Szepesv´ari. They recommend to choose in each node of the game tree the
+by L. Kocsis and Cs. Szepesvari. They recommend to choose in each node of the game tree the
 move, for which the expression
 
-√
+
 has the highest value, where wi is the number of of wins after the ith move, ni is the number
 2.
 of simulations after the ith move, is the exploration parameter which theoretically equal to
@@ -74,9 +74,9 @@ create root node v0 with state s0.
 
 while within computational budget do
 
-vl ← TreePolicy(v0)
-∆ ←Simulate(s(vl))
-Backprog(∆, vl)
+vl  TreePolicy(v0)
+ Simulate(s(vl))
+Backprog(, vl)
 
 return Bestchild (v0)
 
@@ -87,7 +87,7 @@ where textitBestchild leads to the best child of the root node v0.
 The data is represented as a graph and the graph is stored locally on the driver. This is done to
 speed up the node selection process since if the graph is distributed it would take much longer
 to search for the appropriate node to expand. In our setting the nodes of this graph correspond
-to diﬀerent states of the game. For example, in the Nim game the state is encompassed by two
+to dierent states of the game. For example, in the Nim game the state is encompassed by two
 numbers: the number of chips left and the current player. The edges in the graph are then the
 moves required to go from one game state to another game state. Finally, terminal nodes are
 states where the game has ended and no more moves are available to play. In our algorithm,
@@ -115,8 +115,8 @@ random simulation. This function de-serializes the states and selects a random m
 turn until no more moves can be played. Once the simulation ends, the outcome is returned to
 the driver by a reduce call that appends all of the results of the playouts as a list. Finally, we
 iterate over the list and back pteropagate the results up the graph.
-As it turns out, this modiﬁcation only leads to a minor improvement in game playing strength
-even for large values of m and k. The ﬁrst reason is that we only expand a single nodes children
+As it turns out, this modication only leads to a minor improvement in game playing strength
+even for large values of m and k. The rst reason is that we only expand a single nodes children
 in each iteration. This means that during a single iteration of the search, we are only exploring
 what we currently think is the best move while ignoring other good moves. The second reason
 is that we do not expand a node past its children. This means that at the end of each iteration
@@ -137,26 +137,26 @@ know denote m to be the number of nodes we select for expansion, and we let k be
 layer of children. Previously, we could not expand past a single layer of children because we
 cannot apply the tree policy on the children nodes. In order to apply the policy we need the
 UCT values of the children nodes, but since they have yet to be simulated, their UCT values do
-not exist. Thus, we set nodes that have yet to be visited to a small UCT value (∼ 0.1) so that
+not exist. Thus, we set nodes that have yet to be visited to a small UCT value ( 0.1) so that
 we can allow deeper expansion of the search tree in a single iteration.
 
 5 Result
 
-• 4x4 Board: Distributed MCTS set to m = 100, k = 10 and iterations = 10 vs. regular
+ 4x4 Board: Distributed MCTS set to m = 100, k = 10 and iterations = 10 vs. regular
 
-MCTS with iterations = 100 → 24 games, 12 wins, 6 losses, 6 draws
+MCTS with iterations = 100  24 games, 12 wins, 6 losses, 6 draws
 
-• 6x6 Board: Distributed MCTS set to m = 100, k = 20 and iterations = 100 vs. regular
+ 6x6 Board: Distributed MCTS set to m = 100, k = 20 and iterations = 100 vs. regular
 
-MCTS with iterations = 1000 → 10 games, 3 wins, 7 losses
+MCTS with iterations = 1000  10 games, 3 wins, 7 losses
 
-• 6x6 Board: Distributed MCTS set to m = 200, k = 1 and iterations = 100 vs. regular
+ 6x6 Board: Distributed MCTS set to m = 200, k = 1 and iterations = 100 vs. regular
 
-MCTS with iterations = 1000 → 10 games, 3 wins, 7 losses
+MCTS with iterations = 1000  10 games, 3 wins, 7 losses
 
-• 6x6 Board: Distributed MCTS set to m = 100, k = 1 and iterations = 10 with custom
+ 6x6 Board: Distributed MCTS set to m = 100, k = 1 and iterations = 10 with custom
 
-UCT values vs. regular MCTS with iterations = 100 → 10 games, 5 wins, 5 losses
+UCT values vs. regular MCTS with iterations = 100  10 games, 5 wins, 5 losses
 
 6 Analysis
 
@@ -180,7 +180,7 @@ of states to be simulated. S can be smaller than m if there are fewer than m pos
 to play on. This means that in the early stages of the game s == m and k == 1, and so we
 will spend most of the time exploring the tree. In the later stages of the game when s < m,
 and k > 1 and so we will spend more time assessing the quality of each node. In conclusion,
-we ﬁnd that to increase that the strength of the distributed MCTS scales by m and the number
+we nd that to increase that the strength of the distributed MCTS scales by m and the number
 of iterations and that the scaling in gameplaying strength of the distributed MCTS is not as
 straightforward as the scaling of the gameplaying strength of the regular MCTS.
 
@@ -204,22 +204,22 @@ order of mk back to the driver.
 7 Conclusion
 
 In conclusion we propose a scheme for distributing the Monte Carlo tree search that does not
-scale as well as the regular MCTS. However, given enough cores, it is possible to conﬁgure the
+scale as well as the regular MCTS. However, given enough cores, it is possible to congure the
 parameters in order to improve over the regular MCTS.
 
-• m(< N ) is a parameter that is left to be tuned by the programmer, its how complex the
+ m(< N ) is a parameter that is left to be tuned by the programmer, its how complex the
 
 game is, larger m should be
 
-• Increasing mk doesnt increase overall runtime by much, so choosing a higher mk gives a
+ Increasing mk doesnt increase overall runtime by much, so choosing a higher mk gives a
 
 better computation/time = perf ormance.
 
-• Runtime strongly dependent on the number of mapreduces, approximate 90% of time is
+ Runtime strongly dependent on the number of mapreduces, approximate 90% of time is
 
 spent in the mapreduce.
 
-• Main advantage of distributed MCTS is that its scale invariant to game complexity, i.e.
+ Main advantage of distributed MCTS is that its scale invariant to game complexity, i.e.
 to mk, where m is possible number of moves, and k is the variance of the outcome of a
 random game
 

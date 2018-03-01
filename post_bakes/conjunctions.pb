@@ -1,203 +1,195 @@
-Workshop track - ICLR 2018 
-QUANTIZATION ERROR AS A METRIC FOR DYNAMIC 
-PRECISION SCALING IN NEURAL NET TRAINING 
-Ian Taras & Dylan Malone Stuart 
-Department of Electrical ]^[ Computer Engineering 
-University of Toronto 
-Toronto, ON, Canada 
-{tarasian, malones2}@ece.utoronto.ca 
-1 
-INTRODUCTION 
-It is well established that neural networks, though ordinarily trained using 32-bit single precision 
-oating point representation, can achieve desirable accuracy during inference with reduced precision 
-weights ]^[ activations (Judd et al., 2015) (Mishra et al., 2017) (Courbariaux et al., 2015) (Hubara 
-et al., 2016). These reduced precision networks are amenable to acceleration on custom hardware 
-platforms which can take advantage of lower bit-widths in order to speed up computation (Na & 
-Mukhopadhyay, 2016) (Gupta et al., 2015). Reduced precision strategies are ]n[ typically applied 
-during back-propagation whilst training, as this can lead to heavily reduced accuracy ]v[ even non- 
-convergence. 
-Recent work has shown that dynamic precision scaling, a technique in which the numerical precision 
-used during training is varied on-the-y as training progresses, can achieve computational speedups 
-(on custom hardware) without hampering accuracy (Na & Mukhopadhyay, 2016) (Courbariaux 
-et al., 2014). DPS uses feedback from the training process to decide on an appropriate number 
-representation. For example, Na & Mukhopadhyay (2016) suggest starting with reduced precision, 
-]^[ increasing precision dramatically whenever training becomes numerically unstable, ]v[ when 
-training loss stagnates. 
-In this paper, we present a novel DPS algorithm that uses the stochastic xed-point rounding method 
-suggested by Gupta et al. (2015), the dynamic bit-width representation used by Na & Mukhopadhyay 
-(2016), ]^[ an algorithm that leverages information on the quantization error encountered during 
-rounding as a heuristic ]f[ scaling the number of fractional bits utilized. 
-2 FIXED POINT REPRESENTATION AND QUANTIZATION/ROUNDING 
-Fixed point numbers are represented by a fractional portion appended to an integer portion, with an 
-implied radix point in between. We allow our xed point representation to use arbitrary bit-width 
-]f[ both the integer ]^[ fractional parts, ]^[ represent the bit-width of the integer part as IL ]^[ 
-the bit-width of the fractional part as F L. We denote a given xed point representation, then, as 
-(cid:104)IL, F L(cid:105). DPS modies IL ]^[ F L on-the-y during training. 
-Inspired by Gupta et al. (2015), we use stochastic rounding during quantization of oating point 
-values to (cid:104)IL, F L(cid:105), as it implements an unbiased rounding. 
-1 
-Workshop track - ICLR 2018 
-Our algorithm employs a dynamic bit-width, dynamic radix scheme in which IL ]^[ F L are 
-free to vary independently. Note that with the alternative xed bit-width scheme, IL ]^[ F L are 
-inter-dependent as increasing one necessitates a decrease in the other. 
-3 DYNAMIC PRECISION SCALING ALGORITHM 
-Here we formally introduce our novel DPS algorithm which leverages average % quantization error 
-as a metric ]f[ scaling fractional bits. Quantization error is calculated on a per-value basis as in 
-Equation 1. Quantization error % is accumulated ]^[ averaged over all round operations this is the 
-metric used when scaling F L. 
-E% = 
-|xout xin| 
-xin 
-100 
-(1) 
-Table 1 frames this work in relation to prior work in the area. 
-Algorithm 1 Dynamic Precision Scaling with Quantization Error 
-Input: Current Integer Length: IL, Current Fractional Length: FL 
-Overow Rate: R 
-Average % Quantization Error: E 
-Maximum Overow Rate: R max 
-Maximum Average Quantization Error: E max 
-Begin 
-if R > R max: 
-Output: (cid:104)IL, F L(cid:105) ]f[ the given attribute (Weights, Gradients, ]v[ Activations). 
-1: 
-2: 
-3: 
-4: 
-5: 
-6: 
-7: 
-8: 
-9: 
-10: 
-IL IL + 1 
-IL IL 1 
-F L F L + 1 
-F L F L 1 
-if E > E max: 
-End 
-else 
-else 
-Table 1: Summary of related work 
-Authors 
-Fixed point format 
-(bit width, radix) 
-Scaling 
-Rounding 
-(Na & Mukhopadhyay, 2016) 
-(Dynamic, Dynamic) Convergence/ 
-(Courbariaux et al., 2014) 
-(Gupta et al., 2015) 
-Essam et al. (2017) 
-(Koster et al., 2017) 
-(Fixed, Dynamic) 
-(Fixed, Fixed) 
-(Fixed, Dynamic) 
-(Fixed, Dynamic) 
-Training Based 
-Nearest 
-Overow Based Nearest 
-None 
-Overow Based 
-Predictive 
-Max-Value 
-Stochastic 
-Stochastic 
-N/A 
-Precision 
-Granularity 
-Per-Layer 
-Per-Layer 
-Global 
-Global 
-Per-Tensor 
-(Dynamic, Dynamic) Overow ]^[ 
-Quantization 
-Error Based 
-Stochastic 
-Global 
-Ours 
-4 EXPERIMENTS 
-In order to perform evaluations, we emulate a dynamic xed point representation by using custom 
-Caffe layers that quantize/round the native oating point values to values that are legal in our xed 
-point format. In our study, we consider training a neural network using stochastic gradient descent 
-with dynamically scaled precision ]f[ weights, activations, ]^[ gradients during both the forward 
-2 
-Workshop track - ICLR 2018 
-(inference) ]^[ backward pass. As per Na & Mukhopadhyay (2016), we quantize weights, biases, 
-activations, ]^[ gradients at the appropriate pass through the network, ]^[ update the precision 
-on-the-y during training on each iteration. 
-We train LeNet-5 on the MNIST dataset using Caffe ]^[ our custom rounding layers ]^[ DPS 
-algorithm (Lecun et al., 1998). We use a batch size of 64, ]^[ train ]f[ 10,000 iterations. We use an 
-initial learning rate of 0.01, momentum of 0.9, a weight decay factor of 0.0005, ]^[ scale the learning 
-rate using lr = lrinit (1 + iter)pow, where = 0.0001 ]^[ pow = 0.75. We update IL ]^[ FL 
-once each iteration, ]^[ use Emax = Rmax = 0.01%. 
-We compare our results to a baseline network trained on the same dataset with the same hyperparame- 
-ters, ]b[ using full-precision oating point ]f[ all attributes. We also compare against a non-dynamic 
-xed point representation that uses 13 bits ]f[ weights ]^[ activations, ]^[ keeps gradients at 32 bits. 
-(a) Test Error 
-(b) Log of Training Loss 
-Figure 1: Comparison of training with Dynamic Precision Scaling vs. the baseline (oating point) vs. 
-xed point reduced precision (13 bit weights ]^[ activations). 
-Our results reveal that we can achieve accuracy on-par with 
-the baseline, whilst drastically reducing the bit-width used 
-]f[ both weights ]^[ activations. Our dynamic precision 
-scaling algorithm in general, however, doesnt reduce the 
-gradient bit-width very much, as this requires the most 
-precision in order ]f[ training to converge. The training loss 
-using DPS is, in general, larger than the training loss of the 
-baseline model without hurting accuracy, suggesting that 
-the reduced precision may act as a regularization technique 
-during training this needs validation via experimentation 
-on larger networks ]^[ more complex datasets. Note that 
-naively reducing the bit-width of weights ]^[ activations 
-to a xed 13-bits with no dynamic precision scaling results 
-in the training process failing to converge. With dynamic 
-precision scaling, however, 13-bit weights ]^[ activations 
-are sufcient early in the training process. 
-5 DISCUSSION 
-Figure 2: Moving average bitwidths dur- 
-ing training using DPS. 
-We introduce a dynamic precision scaling algorithm that uses quantization error as a metric ]f[ 
-scaling dynamic bit-width xed point values during neural network training. Combining this with 
-stochastic rounding, we achieve greatly reduced bit-width during training, whilst remaining within a 
-fraction of a % of SOTA accuracy on the MNIST dataset. This avenue of algorithmic work, when 
-paired with emerging hardware ]f[ training, has the potential to greatly increase the productivity of 
-engineers ]^[ machine learning researchers alike by decreasing training time. 
-3 
-Workshop track - ICLR 2018 
-REFERENCES 
-M. Courbariaux, Y. Bengio, ]^[ J.-P. David. BinaryConnect: Training Deep Neural Networks with 
-binary weights during propagations. ArXiv e-prints, November 2015. 
-Matthieu Courbariaux, Yoshua Bengio, ]^[ Jean-Pierre David. Low precision arithmetic ]f[ deep 
-learning. CoRR, abs/1412.7024, 2014. URL http://arxiv.org/abs/1412.7024. 
-M. Essam, T. B. Tang, E. T. W. Ho, ]^[ H. Chen. Dynamic point stochastic rounding algorithm ]f[ 
-limited precision arithmetic in deep belief network training. In 2017 8th International IEEE/EMBS 
-Conference on Neural Engineering (NER), pp. 629632, May 2017. doi: 10.1109/NER.2017. 
-8008430. 
-Suyog Gupta, Ankur Agrawal, Kailash Gopalakrishnan, ]^[ Pritish Narayanan. Deep learning with 
-limited numerical precision. CoRR, abs/1502.02551, 2015. 
-Itay Hubara, Matthieu Courbariaux, Daniel Soudry, Ran El-Yaniv, ]^[ Yoshua Bengio. Binarized neu- 
-ral networks. In D. D. Lee, M. Sugiyama, U. V. Luxburg, I. Guyon, ]^[ R. Garnett (eds.), Advances 
-in Neural Information Processing Systems 29, pp. 41074115. Curran Associates, Inc., 2016. URL 
-http://papers.nips.cc/paper/6573-binarized-neural-networks.pdf. 
-Patrick Judd, Jorge Albericio, Tayler Hetherington, Tor Aamodt, Natalie Enright Jerger, Raquel 
-Urtasun, ]^[ Andreas Moshovos. Reduced-Precision Strategies ]f[ Bounded Memory in Deep 
-Neural Nets, arXiv:1511.05236v4 [cs.LG] . arXiv.org, 2015. 
-Urs Koster, Tristan Webb, Xin Wang, Marcel Nassar, Arjun K Bansal, William Constable, Oguz 
-Elibol, Stewart Hall, Luke Hornof, Amir Khosrowshahi, Carey Kloss, Ruby J Pai, ]^[ Naveen 
-Rao. Flexpoint: An adaptive numerical format ]f[ efcient training of deep neural networks. In 
-I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, ]^[ R. Garnett (eds.), 
-Advances in Neural Information Processing Systems 30, pp. 17401750. Curran Associates, Inc., 
-2017. 
-Y. Lecun, L. Bottou, Y. Bengio, ]^[ P. Haffner. Gradient-based learning applied to document 
-recognition. Proceedings of the IEEE, 86(11):22782324, Nov 1998. ISSN 0018-9219. doi: 
-10.1109/5.726791. 
-Asit K. Mishra, Eriko Nurvitadhi, Jeffrey J. Cook, ]^[ Debbie Marr. WRPN: wide reduced-precision 
-networks. CoRR, abs/1709.01134, 2017. URL http://arxiv.org/abs/1709.01134. 
-Taesik Na ]^[ Saibal Mukhopadhyay. Speeding up convolutional neural network training with 
-dynamic precision scaling ]^[ exible multiplier-accumulator. In Proceedings of the 2016 In- 
-ternational Symposium on Low Power Electronics ]^[ Design, ISLPED 16, pp. 5863, New 
-York, NY, USA, 2016. ACM. ISBN 978-1-4503-4185-1. doi: 10.1145/2934583.2934625. URL 
-http://doi.acm.org/10.1145/2934583.2934625. 
-4 
+Giamblanco 1 
+Nicholas V. Giamblanco 
+ENG503 - Science Fiction 
+Professor David Copeland 
+Monday, November 21st, 2016 
+New Crobuzon - The Mirror to Our World 
+Question No. 1 
+Science Fiction has more substance than space ships, alien interactions ]^[ other intergalactic 
+experiences. This genre provides a connection to science, society ]^[ morality, through fiction. 
+Science Fiction is the bridging ]^[ extrapolation between reality ]^[ an alternate world where 
+science is the catalyst ]f[ open-ended ethical ]^[ moral questions. These questions are significant 
+to our society, as we citizens often neglect our reflective duties. Our world contains many ethical 
+]^[ moral issues, ]b[ many of these issues are suppressed by our ignorance ]^[ our lack of 
+responsibility. Walking by the homeless, purchasing clothing to feel good, polluting the environment, 
+consuming an abnormal amount of food while people starve; these are examples of our ignorance 
+]^[ irresponsibility. These problems must be addressed ]^[ investigated in order to create a solution. 
+By using Science Fiction, we grasp the attention of society ]^[ can ask significant questions to 
+highlight problems our society ignores. Perdido Street Station written by China Mieville ´ , provides 
+a connection to our world through the fictional city of New Crobuzon. This connection ]n[ only 
+introduces science fiction’s dependency on this city, ]b[ its exploration provides an obscure lens to 
+our world’s issues. The city’s noir description, its underlying corruption ]^[ lies, ]^[ the cultural 
+differences between Issac ]^[ Lin provide this relationship to our world’s issues. 
+Visual descriptions of a physical environment provide information about the environment’s 
+appearance, inhabitants, ]^[ the emotional atmosphere. In literature, these elements combine to 
+form a relationship with a theme. In Perdido Street Station the noir element of our world is explored 
+]^[ mirrored in New Crobuzon. The description of this city’s entrance, the exploration of the 
+innards of this city, ]^[ the description of the city’s architecture reflect the noir nature of society. 
+This steam-punk novel begins the story with a passenger on a boat, entering an ominous area. The 
+Giamblanco 2 
+passenger begins his tale by describing the location of the boat, ]^[ the body of water it’s traveling 
+on. The boat is traveling on a river that ”...twists ]^[ turns to face the city. It looms suddenly, 
+massive, stamped on the landscape,”(Mieville, 2001, p. 4). The author’s thought was to indicate ´ 
+the prominence of the city, ]^[ how it is ]n[ avoidable. Just as any traveler approaches any city 
+through means of air travel, boating journeys, ]v[ driving, a big city cannot be missed. As the 
+journey progresses, the passenger begins to describe details of the city, ”Its lights wells up around 
+the surrounds, the rock hills, like bruise-blood,”(Mieville, 2001, p. 4) ]^[ ”Its ´ dirty towers glow. I 
+am debased,”(Mieville, 2001, p. 4). The description of the entrance into New Crobuzon provides an ´ 
+emotional atmosphere with sensations involved in debasement, disgust, ]^[ dirtiness. The author is 
+explicit, direct ]^[ grim with the introduction to the city, ”New Crobuzon was a huge plague pit, 
+a morbific city,”(Mieville, 2001, p. 9). ´ Mieville ´ is opening up our eyes to the truth of our world, 
+how dirty, ]^[ disgusting it really is. As the novel progresses, Lin is introduced. She is one of 
+the main characters of Perdido Street Station. She is a Khepri (a humanoid insect, similar to a 
+beetle). One of Lin’s distinct emotional characteristics is her dislike ]f[ her culture. This dislike 
+drives her to leave her sanction, ]^[ change her lifestyle. Lin is an artist, ]b[ maintains practices 
+that are unconventional ]f[ her cultural standards of art. Lin’s interesting personality allows ]f[ 
+an in-depth exploration into the innards of New Crobuzon. In Chapter 2, Lin makes her way into 
+the heart of this grim city. She begins her passage into the core of the city with clogs wet with 
+”... organic muck from the street, rich pickings ]f[ the furtive creatures peering from the drain.” 
+(Mieville, 2001, p. 13). Once again, Mi ´ eville reinforces the the city’s dirtiness ]^[ griminess, in ´ 
+hopes of grabbing the reader’s attention ]f[ comparison to our world. Lin continues her journey 
+in a cab. Dark imagery is presented during this ride, of the Flyside Militia Tower, with its ”... 
+vast filthy pudgy pillar, squat ]^[ mean, somehow, ]f[ all it thirty-five storeys,”(Mieville, 2001, p. ´ 
+14) ]^[ of the half inflated dirigible, ”...It flapped ]^[ lolled ]^[ swelled like a dying fish. She 
+could feel its engine humming, even through the layers of air, as it stained to disappear into the 
+gun-grey clouds.”(Mieville, 2001, p. 14). The intensity of the descriptive elements increase as her ´ 
+journey continues, until she reaches the, ”architectural tissue where the fibres of the city congealed, 
+Giamblanco 3 
+where the skyrails of the militia radiated out from the Spike like a web ... Perdido Street Station,” 
+(Mieville, 2001, p. 16). The emphasis of darkness, dirtiness, ]^[ debasement in New Crobuzon ´ 
+provoke the reader to reflect upon the world we currently live in. The city’s architecture supports 
+this negative intensity the author is conveying to the reader, ”The rotting buildings lean against 
+each other, exhausted,”(Mieville, 2001, p. 4). Furthermore, the architecture represents the cold ´ 
+]^[ unfulfilled emotions surrounding this city, ”Extra Storeys are rendered in the cold white muck 
+which fills gaps between houses ]^[ dead-end alleys,”(Mieville, 2001, p. 5). The beginning of ´ 
+chapter six continues this noir journey, ”Even the trains that moved innumerable women ]^[ men 
+]^[ commodities around New Crobuzon’s great carcuss fought to stay about the houses, as if they 
+were afraid of the putrefaction of architecture,”(Mieville, 2001, p. 39). The imagery surrounding ´ 
+the rotting, decaying, dirty city was intended by the author to convey a reflection of our world. This 
+reflection was emphasized through the grim introduction of New Crobuzon, the exploration of the 
+city’s innards, ]^[ the architectural pieces within the city. 
+The act of lying, is to declare ”An intentionally false statement,”(Oxford University Press, n.d.). 
+As a society, humans frown upon individuals that lie. However, the act of lying is ubiquitous in our 
+society. Intentionally false statements can be used to deceive a target, where the target may be a 
+computing system ]v[ a society. A computer hacker can deceive ]^[ gain access to the computing 
+system. A society can be deceived by a presidential candidate who lies to the public ]^[ manages to 
+win the presidential election. Once the target system is deceived, corruption can ensue. The hacked 
+computing system is subject to file corruption, data corruption, etc. The deceived society is subject 
+to war, segregation, poverty, abuse, ]^[ corruption. Perdido Street Station’s city of New Crobuzon 
+mirrors these elements of lies, deceit, ]^[ corruption through the characters of Yagharek, Bentham 
+Rudgutter, ]^[ Mr. Motley. The character Yagharek, is one to investigate ]f[ characteristics of 
+deceit. His introduction is abrupt, ”... the door swung open ]^[ shut again below,”(Mieville, 2001, p. ´ 
+20). This is where Issac - one of the main characters of the story - is introduced to Yagharek. Issac 
+is a scientist known in New Crobuzon ]f[ his controversial research. Yagharek is a member of the 
+Garuda species, (a species that closely resembles birds). This Garuda contacted Issac in hopes of 
+Giamblanco 4 
+reviving Yagharek’s wings, which, ”...Issac realized that the wings had been sawed from Yagharek’s 
+back. No single sudden cut, ]b[ a long, drawn out torturous cut.” (Mieville, 2001, p. 31). Curiously, ´ 
+Issac probed Yagharek, in order to find out what had happened to Yagharek. Issac discovers that this 
+occurred due to a ”..choice theft in the second degree... with utter disrespect,” ]^[ is kept in the dark 
+about its meaning.(Mieville, 2001, p. 32). The authors intention ]f[ this vague response becomes ´ 
+clear near the end of the novel. Issac agrees to help Yagharek to revitalize his wings. However, 
+Issac was deceived by Yagharek. Yagharek had raped a member of his species. This was choice 
+theft in the second degree. Yagharek’s choice to be elusive with details regarding this punishment 
+is a clear example of deceit. Mieville’s involvement of Yagharek’s deceit provides the plot of the ´ 
+novel, ]b[ it also reveals other underlying corruption within New Crobuzon. The mayor, Bentham 
+Rudgutter, proves to be a source of corruption in Perdido Street Station. Rudgutter has ”got fingers 
+in every fucking pie you can think of,”(Mieville, 2001, p. 81). The mayor of New Crobuzon has ´ 
+been involved in many illicit acts, including his government personnel. They all, ”Churn out the 
+commodity, grab the profit, get the militia to tidy up your customers afterwards, get a new crop 
+of Remade ]v[ slave-miners,”(Mieville, 2001, p. 81). By adding corruption in a governmental ´ 
+figure, Mieville provides the comparison to our corporate sector, ]^[ the elements that drives these ´ 
+corporate giants - lies, deceit ]^[ corruption. The mayor’s illicit activities include bargaining with 
+demons, ”We haven’t even discussed yet, Ambassador. I assure you I can make a very generous 
+offer,” (Mieville, 2001, p. 161). By bargaining with the demon ambassador, Rudgutter proves his ´ 
+corrupt nature; Demons are the symbol of evil. The mayor is also involved with crime related gangs, 
+”What by damn, what in Jabber’s name, what the godshit was Motley playing at? I thought the man 
+was supposed to be professional...,”(Mieville, 2001, p. 156). Finally, Rudgutter has affliations with ´ 
+Mr. Motley, the most feared ganglord in the city ]^[ is equally deceitful ]^[ corrupt. Mr. Motley’s 
+appearance provides an allusion to the theme of corruption, deceit ]^[ lies, ”Scraps of skin ]^[ fur 
+]^[ feathers swung as he moved; tiny limbs clutched; eyes rolled from obscure niches; antlers ]^[ 
+protrusions of bone jutted precariously,”(Mieville, 2001, p. 28). The description of Mr. Motley is ´ 
+the imagery of corruption. His body is a random ]^[ awkward synthesis, providing the comparison 
+Giamblanco 5 
+to our obsession with material goods. The author has chosen to represent our desire ]f[ material 
+goods with this character to explain how materialists are corrupt. Mr. Motley’s character provides 
+more on this theme of corruption, as we see his role in the city of New Crobuzon, ”He talked idly 
+of turf wars in Griss Twist ]^[ Badside, dropped hints of gangland massacres in the heart of The 
+Crow,”(Mieville, 2001, p. 120). The author is establishing Mr. Motley’s power in New Crobuzon. ´ 
+The power Mr. Motley has affects Lin during their sessions together. Through repetition of his 
+corrupt plans, ”Mr. Motley’s blithe chat crept in,”(Mieville, 2001, p. 120) to Lin’s mind. This ´ 
+distorts her thoughts, as she found herself, ”idly wondering,”(Mieville, 2001, p. 120) ]^[ concerned ´ 
+about these plans. Mieville is ensuring Mr. Motley be treated as a corrupt computer program, which ´ 
+creates corruption in any memory space it is connected to. In this case, Mr. Motley is corrupting the 
+city of New Crobuzon, the Mayor of this Dystopian city, ]^[ Lin. 
+Culture is essential to any society. Culture, is ”the beliefs, customs, arts, etc., of a particular 
+society, group, place, ]v[ time” (Merriam-Webster, 2016). Some cities in the modern world consist of 
+an infusion of different cultures. New Crobuzon hosts a wide variety of cultures: Cactace, Remades, 
+Vodyanoi, Khepri, ]^[ many others. With these cultural salads, it is important to investigate 
+their relationships. Cultural mixing may pose issues in romance, lifestyle, ]^[ society. This 
+city in Perdido Street Station, poses questions about multicultural relationships. Issac ]^[ Lin’s 
+multicultural relationship is explored ]f[ its differences ]^[ similarities from a multicultural view, 
+]^[ its reflection to our world. Initially, Perdido Street Station introduces New Crobuzon through 
+a human, Issac. By viewing New Crobuzon through Issac’s eyes in chapter one, cultural traits of 
+humans are presented. Dreaming is an innate trait to humans. The introduction to Issac is brought 
+about by living through one of his dreams. This dream in particular is a nightmare, where Issac was, 
+”staring anxiously at the class when that unctuous bastard Vermishank had looked in,”(Mieville, ´ 
+2001, p. 8). The dreaming mechanism is presented to provide a recognizable feeling, ensuring the 
+reader feels connected. The specific use of a nightmare is important as it unveils human qualities of 
+fear, misery, ]^[ loathing. Issac feels misery, as he failed as a teacher, while working at a university. 
+Issac is also sensitive to external judgment. His sensitivity is brought about when Lin signs, ”You 
+Giamblanco 6 
+hide us ]s[ you can publish articles ]f[ people you despise,”(Mieville, 2001, p. 12) in regards to ´ 
+his failure in the academic world. Issac responds with a defensive comment, wondering how Lin 
+would feel ”if the art-world threatened to ostracize her,”(Mieville, 2001, p. 12). This is a typical ´ 
+human characteristic. Mieville demonstrates these human characteristics with Issac in order to ´ 
+provide a familiarity to our world. Issac is our common ground in New Crobuzon. The Khepri 
+culture is introduced within the second chapter of this novel, through the use of Lin. Lin is the key 
+to understanding this culture. She is able to provide this view as she is an outsider to her culture, 
+”She breathed easier when the streets around her were clean of beetle cement, ]^[ the only Khepri 
+in the crowds were, like here, outcasts,”(Mieville, 2001, p. 16). By being an outsider to the culture, ´ 
+Lin can identify many qualities of the Khepri: ”You have nothing, surrounded by people that mock 
+you as bugs, buy your art cheap, ]^[ sell you food dear, ]b[ because there are others with even 
+less you style yourselves the protectors of the Khepri way. I’m out. I dress how I like. My art is 
+mine,”(Mieville, 2001, p. 16). The Khepri culture is comparable to a boxed-in religious community, ´ 
+where no external thinking is required - just follow blindly with no questions. The author ensures 
+the reader is aware of this, ”Lin’s broodma (who scorned a name as decadent affection) taught Lin 
+]^[ her broodsister that Insect Aspect was the lord of all creation... He had shat out the universe 
+after eating the void, in a mindless act of cosmic creation... they were also taught to worship 
+]^[ serve their mindless brothers”(Mieville, 2001, p. 123). By creating a religious dimension in ´ 
+which a culture is closed off to new ideas, the author has created a link to our world’s cultures ]^[ 
+their beliefs. Lin’s dislike ]f[ her culture reinforces this idea, as many individuals in our world do 
+]n[ support such a one-sided view on life. Lin’s dislike ]f[ the ”Khepri Way” creates a want ]f[ 
+reintegration into another culture. Lin has, ”steeped herself enough in human culture,”(Mieville, ´ 
+2001, p. 83) to become like a human. This want allows the reader to connect to Lin, as it is 
+common ]f[ individuals of different cultures to change their beliefs, customs, ]^[ rituals to fit into 
+another culture. Although her species is alien to us, Mieville has added human characteristics to the ´ 
+Khepri ]f[ us to compare with foreign cultures in our world. These differences ]^[ similarities in 
+Khepri ]^[ Humans are explored, through Issac ]^[ Lin’s relationship. This cultural relationship is 
+Giamblanco 7 
+introduced in the initial chapters of this novel. In certain areas of the city, the couple must hide their 
+status, ”Issac ]^[ Lin had been lovers nearly two years. They had always tried ]n[ to think too hard 
+about the rules of their relationship... Innocent remarks ]^[ askance looks from others, a moment 
+of contact too long in a public-a note from a grocer-was a reminder that they were,in some contexts, 
+living a secret”(Mieville, 2001, p. 10). The author is allowing the reader to relate to instances in our ´ 
+world of forbidden love. Even differences in physical characteristics demonstrate awkwardness, ”I 
+see clearly as you, clearer. For you it is undifferentiated. In one corner a slum collapsing, in another 
+a new train with pistons shining... For me each tiny part has integrity, each fractionally different 
+from the next, until all variation is accounted for, incrementally, rationally”(Mieville, 2001, p. 13). ´ 
+This awkwardness is presented to the reader to highlight differences in culture. These slight cultural 
+differences reflect to our world, where couples of different cultures experience many awkward ]^[ 
+unusual adjustments. The author presents the reader with this relationship as it reflects upon the 
+cultural differences in our world, ]^[ how it affects relationships in a personal ]^[ romantic way. 
+Couples of different cultures often abide by foreign rules ]^[ traditions that over complicate their 
+relationship. By exploring these different cultures, ]^[ their intermingling, a connection to our 
+world is established, ]^[ the reader is able to understand issues regarding multiculturalism. 
+It is absolutely imperative ]f[ society to reflect upon its current state, status, ]^[ condition. By 
+reflecting on our society, it is possible ]f[ positive ]^[ healthy growth in all subjects ]^[ interests. 
+Unfortunately, the frequency of this self-reflection does ]n[ meet the requirements ]f[ this growth. 
+Perdido Street Station explores this deficiency, ]^[ uses Science Fiction as a mirror to our world. 
+New Crobuzon temporarily replaces our world through an abstract ]^[ obscure lens. Issues that 
+reflect politics, society, ]^[ morality are targeted with this city. New Crobuzon explores the darkness 
+of reality, lies, deceit, ]^[ corruption, the cultural infusion of Lin ]^[ Issac’s relationship ]^[ its 
+relationship to our world. Ultimately, the Science Fiction in Perdido Street Station is this obscure, 
+bizarre magnifying glass, which enlarges issues in our world through the dystopic city of New 
+Crobuzon. 

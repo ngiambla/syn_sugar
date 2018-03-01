@@ -13,8 +13,8 @@ var type;
 
 var text_decode 	= "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:".split("");
 var search_query 	= "";
-var summary 		= [];
-var doc  			= [];
+var summary 		= {};
+var doc  			= {};
 
 var summary_h;
 var sentence_len_map;
@@ -49,17 +49,16 @@ function updateHeight() {
 	stroll.bind('ul', { live: true } );
 }
 
-function load_doc(doc) {
+function load_doc(doc, summary) {
 	$("ul").fadeOut('fast', function(e) {
 		$("ul").empty();
 		$("ul").fadeIn('fast', function(e) {
-			for(var i=0; i<doc.length; ++i) {
+			for(var i in doc) {
 				item = '<li id="'+ i +'">'+doc[i]+'</li>'
 				$("ul").append(item);
-				// elem=document.getElementById(""+i);
-				// if (elem.offsetHeight < elem.scrollHeight || elem.offsetWidth < elem.scrollWidth) {
-				// 	$("#"+i).addClass("slide");
-				// }
+				if(i in summary) {
+					$("#"+i).css('background-color', 'green');
+				}
 			}	
 		});
 	});
@@ -83,11 +82,9 @@ function upload_file() {
 	    	console.log(ret["res"])
 	    	summary 			= ret["res"][0];
 	    	doc 				= ret["res"][1];
-	    	summary_h 			= ret["res"][2];
-	    	sentence_len_map 	= ret["res"][3];
-	    	entropy_map			= ret["res"][4];
-
-	    	load_doc(doc);
+	    	sentence_len_map 	= ret["res"][2];
+	    	entropy_map			= ret["res"][3];
+	    	load_doc(doc, summary);
 	    	draw_state 			= 2;
 	    },
 	    error: function(request, status, err) {
@@ -100,39 +97,38 @@ function upload_file() {
 
 
 /*reset the view */
-function reset() {
-	draw_state=1;
-	doc=[];
-	load_doc();
+function reset_sugar() {
+	draw_state=0;
+	doc={};
+	load_doc(doc, doc);
+	$("#cnvs").slideUp("fast", function() {
+
+	});
 }
 
 
-function send_query(query) {
+function query_doc(query) {
 	var status = 1;
+	draw_state = 3;	
 
-	draw_state = 3;
-	$.post("/queries", {name: ""}, function( data ) {
-	console.log(data)
-	  if(data) {
-	  	console.log(data)
-	  	draw_state = 2;
-	  } else {
-	  	draw_state = 0;
-	  }
-	});	
+	setTimeout(function () {
+		draw_state = 2;
+	}, 5000);
 
 	return status;
 }
 
 function get_search_contents() {
 	$("#search").on("change keyup paste",function(e) {
+		$("#cnvs").slideDown("fast", function() {
+		});		
 		if($("#search").val() || $("#search").val() != search_query) {
 			if(draw_state == 0) {
 				draw_state = 	1;
 			}
 			search_query 	=	$("#search").val();
 			if(e.which == 13 && $("#search").val()) {
-	        	send_query(search_query);
+	        	query_doc(search_query);
 	    	}
 			search_query 	= 	search_query.split("");
 		} else {
@@ -204,26 +200,25 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 
 		case 2:
 			ctx.font = font_size + "px monospace";
-			xoffset = font_size*window.innerWidth*0.001;
+			xoffset = font_size*window.innerWidth*0.002;
 			yoffset = font_size*10;
-			if(rotation == 29) {
+			limit 	= 18
+			if(rotation == limit-1) {
 				ctx.fillStyle = "#FFF";
 				ctx.fillText(">>",xoffset-2*font_size, yoffset);
+				i=0;
+				for(var sentence in summary) {
+					for(var j=0; j < summary[sentence].length; ++j) {
+						var text = summary[sentence][j];
+						ctx.fillStyle = "#0F0";
+						ctx.fillText(text, j*font_size+xoffset, i*font_size+yoffset);
+					}
+					i=i+1;
+				}
 			}
 
-			i=which_line
-
-			for(var j=0; j < summary[i].length; ++j) {
-				
-				var text = summary[i][j];
-				ctx.fillStyle = "#FF0";
-				ctx.fillText(text, j*font_size+xoffset, i*font_size+yoffset);
-			}
-
-			which_line = which_line + 1
-			which_line = which_line % summary.length
 			rotation = rotation +1;
-			rotation = rotation % 30;
+			rotation = rotation % limit;
 			break;
 
 		case 3:
@@ -272,11 +267,13 @@ $(function() {
 	start_up_coolness();
 
 	$("#cleanup_btn").on("click", function(e) {
-		reset();
+		reset_sugar();
 	});
 
 	$("#upload_btn").on("click", function(e) {
-		open_upload_modal();
+		$("#cnvs").slideDown("fast", function() {
+			open_upload_modal();
+		});
 	});
 
 	$("#modal_close").on("click", function(e) {

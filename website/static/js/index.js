@@ -67,6 +67,8 @@ function updateHeight() {
 }
 
 function load_doc(doc, summary) {
+	var t_summ="";
+
 	$("ul").fadeOut('fast', function(e) {
 		$("ul").empty();
 		$("ul").fadeIn('fast', function(e) {
@@ -74,14 +76,21 @@ function load_doc(doc, summary) {
 				item = '<li id="'+ i +'">'+doc[i]+'</li>'
 				$("ul").append(item);
 				if(i in summary) {
+					t_summ=t_summ+doc[i]+"\n";
 					$("#"+i).css('background-color', 'green');
 				}
 			}
+			if(t_summ != "") {
+				console.log(t_summ);
+				$("#summary_display").fadeIn('fast', function() {
+					$("#summary_display_box").text(t_summ);
+				});
+			}
+
 			if(Object.keys(entropy_map).length > 0) {
 				console.log("~ entropy found.");
 				load_bar_chart();
 			} else {
-
 				console.log(entropy_map);
 			}
 		});
@@ -129,7 +138,8 @@ function reset_sugar() {
 	entropy_map 		= {}
 	summary["empty"] 	= "No Document Uploaded!";
 	doc 				= {};
-	load_doc(doc, doc);
+	$("#summary_display").fadeOut('fast', function() {});
+	start_up_coolness();
 	hide_term();
 }
 

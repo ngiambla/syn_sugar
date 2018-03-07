@@ -41,6 +41,20 @@ function hide_term() {
 	});
 }
 
+function go_to_in_doc(okay) {
+
+	var where = okay.id;
+	where=where.split("s_");
+	var $innerListItem = $("#"+where[1]);
+	var $parentDiv = $("#doc_contents");
+
+	$parentDiv.scrollTop($parentDiv.scrollTop() + $innerListItem.position().top);
+	$parentDiv.scrollTop($parentDiv.scrollTop() + $innerListItem.position().top - $parentDiv.height()/2 + $innerListItem.height()/2);
+	console.log("done?");
+
+
+}
+
 function show_term() {
 	$("#cnvs").slideDown("fast", function() {
 		$("#show_term").fadeOut('fast', function() {
@@ -67,7 +81,7 @@ function updateHeight() {
 }
 
 function load_doc(doc, summary) {
-	var t_summ="";
+	var is_empty= true;
 
 	$("ul").fadeOut('fast', function(e) {
 		$("ul").empty();
@@ -76,14 +90,14 @@ function load_doc(doc, summary) {
 				item = '<li id="'+ i +'">'+doc[i]+'</li>'
 				$("ul").append(item);
 				if(i in summary) {
-					t_summ=t_summ+doc[i]+"\n";
+					is_empty=false;
+					s_item = '<p id="s_'+ i +'" onclick="go_to_in_doc(this)">'+doc[i]+'</p>'
+					$("#sum_contents").append(s_item)
 					$("#"+i).css('background-color', 'green');
 				}
 			}
-			if(t_summ != "") {
-				console.log(t_summ);
+			if(!is_empty) {
 				$("#summary_display").fadeIn('fast', function() {
-					$("#summary_display_box").text(t_summ);
 				});
 			}
 

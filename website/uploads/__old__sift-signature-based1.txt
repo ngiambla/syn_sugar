@@ -27,27 +27,28 @@ ish.ray@mail.utoronto.ca
 AbstractWe present a correctness checking tool for high-
 level synthesis, SiFT, which aims to prole and modify high-
 level descriptions at the function level to provide fault tolerance.
-Code proling at the function level of a high-level description
-will be tted with memory and logic bug detection techniques to
-alleviate data ow & integrity effects possibly caused by Single
-Event Upsets (SEU). SiFT introduces Function Characterization,
-a logically deduced signature of function output & behaviour
-which asserts synthesized functions have behaved as described.
-We implement SiFT as a LLVM compiler pass, to facilitate
-integration into the existing high-level synthesis tool LegUp [1].
-We will test SiFT by executing LegUp against the CHStone
-benchmarks [2] and two handwritten test cases and check for
-the consumed area and performance degradation while noting on
-the number of logical and memory bugs discovered upon SiFTs
-operation. We will also utilize Quartuss Fault Injection tool [3]
-to identify the resilience of the generated hardware description
-in the presence of SEUs.
+We rst inspect code statically, through use of SATURN [1],
+to check for various softwares bugs such as null pointers,
+deadlock, memory bugs (off-by-1 errors), etc. Upon successful
+code inspection, we prole code at the function level of a high-
+level description. SiFT introduces Function Characterization, a
+logically deduced signature of function output & behaviour which
+asserts synthesized hardware functions behave as described in
+software. We implement SiFT as an LLVM compiler pass, to
+facilitate integration into the existing high-level synthesis tool
+LegUp [2]. We will test SiFT by executing LegUp against the
+CHStone benchmarks [3] and two handwritten test cases and
+check for the consumed area and performance degradation while
+noting on the number of logical and memory bugs discovered
+upon SiFTs operation. We will also utilize Quartuss Fault
+Injection tool [4] to identify the resilience of the generated
+hardware description in the presence of single event upsets (SEU).
 
 I. INTRODUCTION
 
 Modern systems on chip (SoC) design methodologies have
 facilitated the growth and acceleration of many applications
-(i.e Machine learning [4], Timing Critical Applications [5],
+(i.e Machine learning [5], Timing Critical Applications [6],
 etc.), yet have neglected verication of the produced design
 against its specication. One such methodology, high-level
 synthesis, suffers from this negligence. High-level synthesis
@@ -81,20 +82,20 @@ ing mechanism which we call SIFT. We attempt to provide
 correctness checking behaviour at the function level of a high-
 level description. Our approach performs the following:
 
- Proling code through JITed execution of functions with
-simulated inputs, in hopes of detecting runtime bugs with
-memory operations, and logical errors. We identify this
-step as Function Inspection. This operation is described
-in Section III-B
+1) Proling code through JITed execution of functions
+with simulated inputs, in hopes of detecting runtime
+bugs with memory operations, and logical errors. We
+identify this step as Function Inspection. This operation
+is described in Section III-B
 
- Identifying the signature of a function described in a
+2) Identifying the signature of a function described in a
 HLL. We will refer to this as Function Characterization.
 This will be described in Section III-C
 
- Appending a logical check to a function for the assurance
-said function matches its Function Characterization. We
-will refer to this Function Certication which is described
-in Section III-D.
+3) Appending a logical check to a function for the assur-
+ance said function matches its Function Characteriza-
+tion. We will refer to this Function Certication which
+is described in Section III-D.
 
 A. Modied High-Level Synthesis Flow
 
@@ -102,7 +103,7 @@ As noted earlier, HLS is able to map a high-level algorithmic
 description, into an equivalent hardware description. This is
 generally done
 
-[1]
+[2]
 
 B. Function Inspection
 
@@ -114,31 +115,33 @@ IV. IMPLEMENTATION STATUS
 
 The proposed approach
 
-V. CONCLUSION
+REFERENCES
 
-REFERENCES
+[1] Y. Xie and A. Aiken, Saturn: A sat-based tool for bug detection, in
+International Conference on Computer Aided Verication, pp. 139143,
+Springer, 2005.
 
-[1] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. Anderson,
+[2] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. Anderson,
 S. Brown, and T. Czajkowski, Legup: high-level synthesis for fpga-based
 processor/accelerator systems, in Proceedings of the 19th ACM/SIGDA
 international symposium on Field programmable gate arrays, pp. 3336,
 ACM, 2011.
 
-[2] Y. Hara, H. Tomiyama, S. Honda, H. Takada, and K. Ishii, Chstone: A
+[3] Y. Hara, H. Tomiyama, S. Honda, H. Takada, and K. Ishii, Chstone: A
 benchmark program suite for practical c-based high-level synthesis, in
 Circuits and Systems, 2008. ISCAS 2008. IEEE International Symposium
 on, pp. 11921195, IEEE, 2008.
 
-[3] Q. I. Altera, Handbook version 13.1, QII52005-13.1. 0, vol. 2, pp. 121,
+[4] Q. I. Altera, Handbook version 13.1, QII52005-13.1. 0, vol. 2, pp. 121,
 
 2013.
 
-[4] C. Zhang, P. Li, G. Sun, Y. Guan, B. Xiao, and J. Cong, Optimizing
+[5] C. Zhang, P. Li, G. Sun, Y. Guan, B. Xiao, and J. Cong, Optimizing
 fpga-based accelerator design for deep convolutional neural networks, in
 Proceedings of the 2015 ACM/SIGDA International Symposium on Field-
 Programmable Gate Arrays, pp. 161170, ACM, 2015.
 
-[5] C. Leber, B. Geib, and H. Litz, High frequency trading acceleration
+[6] C. Leber, B. Geib, and H. Litz, High frequency trading acceleration
 using fpgas, in Field Programmable Logic and Applications (FPL), 2011
 International Conference on, pp. 317322, IEEE, 2011.
 

@@ -29,6 +29,21 @@ li {
   display: none;
 }
 
+#summ_contents {
+  height: 400px;
+  width: 100%;
+  overflow-y: auto;
+
+}
+
+.summ_line {
+  cursor: pointer;
+}
+
+.summ_line:hover {
+  background-color: #87CEFA;
+}
+
 .columns {
   padding: 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 

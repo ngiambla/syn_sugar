@@ -1,0 +1,10994 @@
+Efficient
+
+Software-Based
+
+Fault
+
+Isolation
+
+Robert
+
+Wahbe
+
+Steven
+
+Lucco
+
+Thomas
+
+E. Anderson
+
+Susan
+
+L. Graham
+
+Computer
+
+Science
+
+Division
+
+University
+
+of California
+
+Berkeley,
+
+CA 94720
+
+Abstract
+
+1
+
+Introduction
+
+for
+
+fault
+
+incurs
+
+switch
+
+isolation
+
+modules,
+
+approach
+
+overhead,
+
+to provide
+
+among cooperating
+
+tightly-coupled
+
+is to place each in its own address
+this so-
+In
+to imple-
+a single address space.
+First, we load the code
+do-
+
+One way
+software modules
+space. However,
+context
+lution
+prohibitive
+a software
+this paper, we present
+isolation
+menting
+within
+fault
+Our approach
+has two parts.
+and data for a distrusted module into its own fault
+portion
+main,
+address space. Second, we modify
+distrusted module
+ing to an address outside its fault
+software operations
+guage independent.
+
+code of a
+or jump-
+Both these
+lan-
+
+of
+the object
+from writing
+
+and programming
+
+the applications
+
+are portable
+
+to prevent
+
+a logically
+
+separate
+
+domain.
+
+it
+
+Our approach
+
+poses a tradeoff
+
+relative
+
+to hardware
+
+for distrusted
+
+domains,
+
+fault
+
+isolation:
+
+fault
+tween
+execution
+strate that
+plementing
+ware can substantially
+performance.
+
+time
+for
+fault
+
+frequently
+isolation
+
+substantially
+
+faster communication
+
+at a cost of slightly
+
+modules.
+communicating
+in software rather
+
+improve
+
+end-to-end
+
+be-
+increased
+We demon-
+im-
+than hard-
+application
+
+modules,
+
+This
+
+work
+ence Foundation
+Projects
+Agency
+contracts
+tal Equipment
+the External
+Anderson
+Young
+necessarily
+and no official
+
+Investigator
+reflect
+
+was
+
+supported
+
+in
+
+( CDA-8722788),
+(DARPA)
+
+under
+
+by
+
+part
+Defense
+
+the National
+
+Advanced
+
+grant MDA972-92-.J-1028
+
+D ABT63-92-C-0026
+
+Corporation
+
+and NO0600-93-C-2481,
+Research
+
+(the Systems
+
+Research
+
+Program),
+
+and
+
+the AT&T
+
+was also supported
+
+by a National
+
+Sci-
+Research
+and
+the Digi-
+and
+
+Center
+Foundation.
+Science Foundation
+the paper
+of
+
+the Government
+
+does not
+
+endorsement
+
+Email:
+
+{rwahbe,
+
+lUCCO,
+
+be inferred.
+
+grahefn}@cs
+
+.berkeley.
+
+edu
+
+Award.
+
+the position
+
+The content
+
+of
+the policy
+
+or
+should
+tea,
+
+Permission
+
+to
+
+copy
+
+prov,ded
+commercial
+
+of
+the
+copying
+
+H,ented
+d!rect
+title
+that
+Machinery.
+andlor
+SIGOPS
+
+specific
+93/12
+
+publ!catlon
+
+that
+advantage,
+and
+IS by permission
+To
+
+copy
+permtsslon.
+/93/N.
+
+C., USA
+
+w!thout
+the GVPIeSW%not mode
+
+all or pa~t of
+
+fee
+
+the ACM copyright
+
+Its date
+
+appear,
+
+and
+
+otherwtse,
+
+of
+
+the Association
+or
+
+to republish,
+
+th!s material
+
+IS
+
+or d,arr(buceu
+
+for
+and the
+IS given
+
+notice
+not[ce
+for Computing
+requires
+
+a fee
+
+0 1993
+
+ACM 0-89791
+
+-632
+
+-S/93
+
+/0012
+
+. ..$l
+
+.50
+
+203
+
+system unreliable,
+corrupt
+
+or even dangerous,
+permanent
+
+data.
+
+independently
+
+often
+
+achieve
+developed
+
+in extension
+
+extensibility
+
+code can render
+
+by
+software mod-
+a
+since
+To in-
+an operat-
+in
+data.
+de-
+sources of system fail-
+
+prevent
+application
+
+software
+
+faults
+
+of
+
+these applications,
+services that
+
+from corrupting
+services also facilitate
+
+to identify
+
+For example,
+
+the POSTGRES
+
+database manager
+
+faults
+
+programs
+
+Application
+incorporating
+ules. However,
+software
+such faults
+could
+crease the reliability
+ing system can provide
+distrusted modules
+Such fault
+velopment
+ure.
+
+isolation
+by helping
+
+POSTGRES
+
+defines
+user-defined
+
+cludes an extensible
+facility,
+code that
+icates
+for
+objects.
+extension
+or corrupt
+Similarly,
+
+Without
+
+recent
+
+code could
+the database.
+
+cused
+
+on making
+
+in-
+Using this
+
+type system [Sto87].
+
+queries
+
+can refer
+
+to general-purpose
+
+constructors,
+data
+isolation,
+
+fault
+
+destructors,
+
+and
+
+pred-
+
+types
+
+such
+
+as geometric
+
+any
+
+query
+
+that
+
+interfere
+
+with
+
+an unrelated
+
+uses
+query
+
+operating
+it
+easier
+
+system
+
+research
+
+for
+
+third
+
+party
+
+fo-
+
+has
+vendors
+
+of
+
+the
+
+parts
+
+enhance
+
+is micro-kernel
+
+to
+ample
+ing system are implemented
+can
+ally,
+the
+packet
+
+be
+several
+operating
+filter
+
+system,
+[M RA87,
+
+modified
+
+systems
+
+easily
+
+operating
+
+system.
+
+design;
+
+parts
+
+of
+
+as user-level
+replaced.
+
+or
+
+the
+servers
+More
+
+ex-
+
+An
+operat-
+that
+gener-
+into
+
+extension
+
+code
+
+the BSD network
+
+added
+example,
+
+have
+for
+MJ93],
+
+application-specific
+
+tual memory
+sages
+
+[vCGS92].
+
+management
+
+[HC92],
+
+Among
+
+industry
+
+and
+systems,
+
+Active
+
+Microsofts
+
+vir-
+
+Mes-
+
+and
+
+Embedding
+
+Linking
+
+together
+
+Object
+link
+ules.
+tem [Dys92]
+general-purpose
+
+Also,
+
+independently
+
+the Quark
+
+Xprem
+
+is structured
+
+third
+
+party
+
+[Cla92]
+
+system
+
+developed
+desktop
+to support
+
+can
+mod-
+sys-
+of
+code. As with PO ST GRES,
+
+software
+publishing
+
+incorporation
+
+in extension modules
+
+faults
+systems unreliable.
+
+can render
+
+any of
+
+these
+
+fault
+
+isolation
+
+among cooperat-
+is to place each in its own address
+[BN84],
+into each
+Hard-
+the code in one address space
+
+(RPC)
+address spaces can call
+
+procedure
+
+interface.
+
+Call
+
+call
+
+of another.
+
+performance
+is a high
+through
+separate
+across protection
+
+there
+isolation
+control
+and
+in a processors
+
+does not
+
+integer
+
+necessarily
+
+cost
+address
+bound-
+scale
+perfor-
+RPC requires
+system kernel, copy-
+to the callee, sav-
+ad-
+
+hardware
+
+from the caller
+registers,
+
+switching
+
+A cross-address-space
+
+One way to provide
+
+in separate
+
+ing software modules
+space. Using Remote Procedure
+modules
+other
+ware page tables prevent
+from corrupting
+Unfortunately,
+
+the contents
+
+a normal
+
+through
+
+fault
+
+least: a trap into the operating
+
+to providing
+spaces. Transferring
+is expensive,
+aries
+with
+improvements
+mance [ALBL91].
+at
+ing each argument
+ing and restoring
+dress spaces (on many machines,
+tion
+These
+turn.
+with
+be two
+the execution
+call
+[BALL90,
+
+operations
+The execution
+a highly
+
+optimized
+orders
+
+time
+ALBL91].
+
+lookaside
+
+to three
+
+overhead
+
+buffer),
+
+must
+
+be repeated
+
+time overhead
+
+and a trap
+
+back to user
+
+flushing
+
+the transla-
+level.
+upon RPC re-
+of an RPC, even
+often
+than
+procedure
+
+will
+greater
+
+implementation,
+of magnitude
+
+of a normal
+
+The goal of our work is to make fault
+
+isolation
+
+can ignore
+
+system developers
+in choosing which modules
+domains.
+be useful,
+yet
+involve
+per call.
+
+enough
+that
+mance
+effect
+separate fault
+lation would
+are frequent
+computation
+tical
+its own address space, because of
+hardware
+
+In this situation
+
+each logically
+
+boundaries.
+
+to isolate
+
+protection
+
+In many cases where fault
+cross-domain
+only
+
+procedure
+
+a moderate
+
+amount
+is imprac-
+separate module within
+the cost of crossing
+
+it
+
+cheap
+its perfor-
+to place in
+iso-
+calls
+of
+
+We propose
+isolation
+
+a software
+within
+
+separate
+
+into its own fault
+applications
+
+fault
+a single address space. Our ap-
+proach has two parts. First, we load the code and data
+for a distrusted module
+a
+logically
+portion
+space.
+tiguous
+a unique
+process
+modify
+vent
+
+domain,
+of memory
+which
+such
+code of a distrusted
+
+address
+a con-
+has
+its access to
+Second,
+we
+to pre-
+outside
+
+identifier
+resources
+the object
+from writing
+
+module
+to an address
+
+the
+in addition
+
+is used to control
+
+A fault
+region
+
+to comprising
+
+an address
+
+descriptors.
+
+domain,
+
+jumping
+
+as file
+
+space,
+
+within
+
+or
+
+of
+
+it
+
+fault
+
+domain.
+
+Program
+
+software-enforced
+others
+
+data
+an explicit
+
+fault
+or execute
+
+its
+rate
+each
+through
+We
+
+modules
+domains
+each others
+
+isolated
+
+in sepa-
+
+can not modify
+except
+
+code
+
+cross-fault-domain
+
+RPC interface.
+
+several
+
+programming-language-
+
+have
+
+independent
+object
+segments.
+
+code
+
+identified
+transformation
+unable
+this
+In
+
+to escape
+paper,
+
+strategies
+
+its own
+
+that
+code
+
+we concentrate
+
+can render
+data
+a sim-
+
+and
+
+on
+
+204
+
+approach
+
+to implementing
+
+the distrusted
+
+modules
+
+incur
+
+any execution
+
+time
+
+over-
+
+ple transformation
+only
+ified
+
+slightly
+object
+
+technique,
+
+called
+
+increases
+
+the execution
+
+sandboxing,
+time
+
+of
+
+that
+the mod-
+that
+
+code. We also investigate
+
+techniques
+
+provide
+greater
+
+more
+execution
+
+debugging
+time
+
+information
+
+but which
+
+incur
+
+overhead.
+
+Our
+
+approach
+
+poses a tradeoff
+
+relative
+
+to hardware-
+
+isolation.
+
+Because we eliminate
+we can offer
+
+the need to
+
+substantially
+
+boundaries,
+
+RPC between
+
+fault
+
+implementation
+
+5000/240
+
+and roughly
+
+than
+
+an order
+
+domains.
+takes
+
+roughly
+
+0.8ps
+of magnitude
+
+A safe RPC in
+1. lps on a
+on a DEC Al-
+than
+in RPC time
+module
+
+faster
+
+RPC system.
+at a cost of slightly
+
+reduction
+
+This
+increased
+
+distrusted
+
+hardware
+
+based fault
+cross
+lower-cost
+our prototype
+DECstation
+pha 400, more
+any existing
+comes
+execution
+
+time.
+
+On
+
+a test
+
+suite
+
+including
+
+the
+
+the C
+
+SPEC92
+4% execution
+and the Alpha.
+
+benchmarks,
+time
+
+sandboxing
+
+incurs
+
+overhead
+
+on both
+
+an average
+the DECstation
+
+of
+
+Software-enforced
+
+fault
+
+isolation
+
+may
+
+seem to
+
+be
+
+we are slowing
+
+execution)
+
+to speed
+communication).
+
+(cross-domain
+
+down
+up
+
+the
+
+the
+
+common
+uncommon
+
+communicating
+substantially
+
+fault
+better
+
+domains,
+end-to-end
+
+fre-
+
+for
+
+But
+our
+performance.
+
+approach
+
+this,
+
+we
+
+applied
+
+software-enforced
+
+isolation
+the Sequoia
+
+to the POSTGRES
+
+database
+
+2000
+
+benchmark.
+
+The
+
+system run-
+benchmark
+
+the POSTGRES
+
+extensible
+
+data
+
+type
+
+sys-
+
+geometric
+
+operators.
+
+software
+
+by more
+
+approach
+
+reduced
+
+than
+
+a factor
+
+of
+
+three
+
+For
+
+this
+
+bench-
+fault
+isolation
+on a DECsta-
+
+demonstrate
+
+counter-intuitive:
+case (normal
+case
+quently
+can offer
+To
+fault
+ning
+makes
+tem to
+mark,
+overhead
+tion
+
+5000/240.
+A software
+
+the
+
+use of
+define
+
+tween
+ules
+
+performance
+a program
+
+in
+
+approach
+
+also
+and level
+are
+
+trusted
+
+provides
+
+of distrust.
+
+while
+
+a tradeoff
+
+be-
+If some mod-
+dis-
+
+are
+
+others
+
+trusted
+
+(as may be the case with
+
+extension
+
+code),
+
+only
+
+domains
+
+can run
+
+at
+
+full
+
+to use our
+
+techniques
+
+preventing
+
+distrusted
+
+code
+
+speed.
+to im-
+from
+
+outside
+
+of
+
+its domain,
+
+execution
+
+time
+
+overhead.
+
+We quantify
+
+at a cost
+this
+
+of
+ef-
+
+the paper
+
+is organized
+
+as follows.
+
+some
+
+examples
+
+of systems
+
+that
+
+re-
+
+communication
+
+between
+
+fault
+
+domains.
+
+how we modify
+
+object
+
+code to pre-
+4
+
+Section
+
+illegal
+
+addresses.
+low latency
+
+cross-fault-
+results
+and finally Section 6 discusses some
+
+performance
+
+5 presents
+
+how we implement
+
+Code
+
+it
+full
+reading
+
+in trusted
+is possible
+security,
+data
+
+head.
+Similarly,
+plement
+even
+higher
+fect
+
+in Section
+
+5.
+
+of
+
+frequent
+
+remainder
+
+2 provides
+
+3 outlines
+from generating
+
+The
+Section
+quire
+Section
+vent
+describes
+domain RPC. Section
+for our prototype,
+related work.
+
+it
+
+2
+
+Background
+
+the distrusted
+tifies
+
+this
+
+trade-off
+
+of
+between
+
+part
+
+the application.
+
+Section
+
+domain-crossing
+
+5 quan-
+overhead
+
+In
+type
+
+this
+
+section,
+
+we
+
+of application
+
+characterize
+that
+
+can
+
+in more
+
+detail
+
+the
+
+benefit
+
+from software-
+
+and
+
+application
+
+execution
+
+time
+
+overhead,
+
+and
+
+demon-
+
+strates
+
+that
+
+even
+
+if domain-crossing
+
+overhead
+
+repre-
+
+enforced
+
+fault
+
+isolation.
+
+We defer
+
+further
+
+description
+
+sents
+
+a modest
+
+proportion
+
+of
+
+the total
+
+application
+
+ex-
+
+the message handlers
+
+are
+
+We divide
+
+but unless the network
+
+controller
+
+[Thi92],
+
+level
+into the kernel
+
+the message
+reason-
+
+for
+
+the POSTGRES
+
+of
+5, which gives performance measurements
+plication.
+
+type system until Section
+this ap-
+
+extensible
+
+for
+
+The operating
+
+systems community
+
+has focused con-
+
+it
+
+kernel
+
+vnode
+
+[Kle86].
+
+interface
+
+extensibil-
+
+Unfortunately,
+
+attention
+For example,
+
+on supporting
+the UNIX
+
+siderable
+ity.
+is de-
+signed to make it easy to add a new file system into
+to
+UNIX
+forward
+so
+typically
+are added
+(The Andrew file system is
+directly
+a
+largely
+kernel cache for performance
+ter-
+is one example of op-
+tiary
+erating
+party
+vendor.
+
+every file system operation
+new file system implementations
+into the kernel.
+implemented
+
+is too expensive
+level,
+
+system kernel code developed
+
+storage file system [Web93]
+
+level, but
+[HKM+88].)
+
+it maintains
+
+by a third
+
+to user
+
+Epochs
+
+at user
+
+Another
+
+example
+
+is user-programmable
+
+If data
+
+is arriving
+
+rate,
+if control
+
+the incoming
+
+high perfor-
+on an 1/0
+be
+
+will
+
+performance
+has to be transferred
+data [FP93].
+high performance
+multiproces-
+
+Active Messages provide
+
+in distributed-memory
+
+1/0
+
+level
+
+systems.
+
+substantially
+
+to manipulate
+
+at a high enough
+
+mance
+channel
+degraded
+to user
+Similarly,
+message handling
+sors [vCGS92].
+application-specific,
+can be accessed from user
+handlers must be compiled
+able
+
+performance.
+
+Typically,
+
+A user-level
+
+example
+
+is the Quark
+One can purchase
+
+Xpress
+third
+
+party
+
+extend
+
+this
+
+system
+
+to
+
+perform
+
+desktop
+soft-
+func-
+
+this
+of problems.
+
+by its original
+extensibility
+Because
+
+on the personal
+extension
+structures.
+
+modules
+
+Hence,
+
+At
+a
+
+designers
+
+[Dys92].
+
+has
+the
+
+of
+
+computers
+
+caused Quark
+lack
+
+of efficient
+where Quark
+Quarks
+party
+
+can corrupt
+bugs
+
+in third
+
+the Quark
+
+system
+do not distinguish
+
+appear
+
+among
+
+unreliable,
+sources
+
+of
+
+publishing
+ware
+
+that
+
+system.
+will
+
+unforeseen
+time,
+
+same
+
+tions
+the
+number
+fault
+Xpress
+internal
+code
+because
+system failure.
+
+domains
+runs,
+data
+
+can make
+
+end-users
+
+All
+using
+
+these
+hardware
+
+examples
+fault
+
+share
+isolation
+
+two
+
+characteristics.
+
+would
+
+result
+
+First,
+in a signif-
+
+of
+the overall
+system context
+
+execution
+
+time
+
+switch
+
+code.
+
+being
+Second,
+
+spent
+only
+the exe-
+
+amount
+
+of code is distrusted;
+
+time
+
+is spent
+
+in trusted
+
+code.
+to
+
+is likely
+
+of
+
+most
+In this
+be more
+
+situation,
+efficient
+
+portion
+
+icant
+in operating
+a small
+cution
+software
+than
+duces
+while
+
+fault
+hardware
+the time
+only
+
+isolation
+fault
+spent
+
+isolation
+crossing
+increasing
+
+slightly
+
+because
+
+it
+
+domain
+
+fault
+the time
+
+spent
+
+re-
+
+sharply
+boundaries,
+executing
+
+205
+
+ecut
+ion
+effective.
+
+time,
+
+software-enforced
+
+fault
+
+isolation
+
+is cost
+
+3
+
+Software-Enforced
+lat
+
+ion
+
+In this
+tion
+
+section,
+techniques
+
+we outline
+for
+
+transforming
+
+several
+
+Fault
+
+Iso-
+
+software
+a distrusted
+
+encapsula-
+module
+
+We first
+the
+we
+can iso-
+
+Next,
+
+so that
+describe
+location
+introduce
+late
+its execution
+analysis
+of
+ware
+fault
+this
+
+it
+can not
+a technique
+of
+
+faults
+
+escape
+that
+
+its
+allows
+
+fault
+
+domain,
+
+users
+
+to pinpoint
+
+within
+
+a software
+
+module.
+
+called
+
+sandboxing,
+
+that
+
+a technique,
+
+a distrusted
+
+module
+
+while
+
+only
+
+slightly
+
+time.
+
+Section
+
+this
+
+technique.
+
+encapsulation
+domains
+discussion
+
+to
+assumes
+
+technique
+
+share memory.
+
+increasing
+a performance
+
+5 provides
+Finally,
+that
+
+we present
+allows
+The
+we are operating
+
+cooperating
+
+remainder
+
+of
+
+on a RISC
+
+a soft-
+
+load/store
+
+architecture,
+
+although
+
+our
+
+techniques
+
+could
+
+be extended
+
+to
+
+handle
+
+CISCS.
+
+Section
+
+4 describes
+
+how we implement
+RPC.
+
+safe and efficient
+
+cross-fault-domain
+
+an applications
+so that
+a unique
+
+aligned
+share
+
+all
+pattern
+
+identifier.
+
+A fault
+
+one for a distrusted
+
+virtual
+
+address
+
+space into
+
+virtual
+
+addresses
+
+of upper
+
+bits,
+consists
+code,
+
+within
+called
+two
+of
+the other
+seg-
+
+The
+
+specific
+
+domain
+modules
+stack.
+
+data,
+
+heap
+
+and
+are determined
+
+addresses
+
+at
+
+load
+
+time.
+
+segments,
+a segment
+the segment
+segments,
+for
+ment
+
+its
+
+static
+
+Software
+
+encapsulation
+
+transforms
+
+a
+
+distrusted
+
+to tar-
+only
+to addresses
+tar-
+bit
+data
+
+jump
+upper
+legal
+
+and
+
+share
+data
+from mod-
+an address
+in-
+
+for
+
+modules
+gets
+within
+gets
+pattern
+
+object
+code
+data
+
+code so that
+segment,
+segment.
+
+in its
+its
+
+in the distrusted
+
+module
+
+(segment
+
+identifier);
+
+it can jump
+only
+
+and write
+
+Hence,
+
+legal
+
+all
+the same
+all
+
+have
+similarly,
+
+addresses
+the same
+segments
+ifying
+with
+stance
+
+its
+
+if
+
+by
+
+the
+
+identifier.
+
+generated
+segment
+are necessary
+code segmentl.
+segment
+to an unmapped
+
+It
+identifier
+
+to prevent
+
+refers
+
+it
+
+the correct
+
+distrusted
+Separate
+
+module
+code
+
+a module
+for
+
+is possible
+
+to be illegal,
+
+page.
+
+This
+
+is caught
+
+by the normal
+
+operating
+
+system page fault mechanism.
+
+3.1
+
+Segment Matching
+
+unsafe
+
+An
+or stores
+
+anstructzon
+
+to an address
+
+is any
+that
+
+instruction
+can not
+
+that
+
+jumps
+
+be statically
+
+to
+ver-
+
+10ur
+interface.
+
+system supports
+
+dynamic
+
+linking
+
+through
+
+a special
+
+to be within
+
+instructions,
+
+the
+
+correct
+
+segment.
+
+Most
+
+control
+
+such as program-counter-relative
+
+be statically
+use an immediate
+
+verified.
+
+Stores
+
+addressing
+
+verified.
+
+However,
+
+jumps
+to implement
+
+used
+
+mode
+
+to static
+and
+reg-
+
+through
+
+procedure
+
+that
+
+use a register
+
+to hold
+
+their
+
+commonly
+stores
+
+dedicated-reg
+
+Move
+scratch-reg
+
+target
++
+
++
+
+target
+address
+into
+(dedicated-reg>
+
+address
+
+dedicated
+
+register.
+
+>shift-reg)
+
+Right-shift
+s crat
+shift-reg
+
+ch-reg
+
+address
+
+is not
+
+segment
+
+to get
+a dedicated
+
+identifier.
+
+register.
+
+is a dedicated
+
+register.
+
+compare
+
+s crat
+
+ch-reg
+
+and segment
+
+is a dedicated
+
+-reg
+register.
+
+address
+
+is outside
+
+of segment.
+
+target
+
+address,
+
+can not
+
+be statically
+
+verified.
+
+A straightforward
+
+approach
+
+to preventing
+
+addresses
+
+unsafe
+
+instruction.
+
+is to insert
+The
+
+checking
+checking
+
+code
+code
+
+the use of
+before
+ev-
+determines
+
+trap
+
+-reg
+
+segment
+not
+if store
+
+Trap
+
+if
+
+equal
+
+the unsafe
+segment
+code will
+
+instructions
+
+target
+
+If
+
+the
+
+check
+
+identifier.
+trap
+modules
+
+to a system error
+domain.
+
+fault
+
+distrusted
+
+address
+fails,
+routine
+We
+
+has the
+the
+in-
+outside
+this
+
+call
+
+store
+
+instruction
+
+uses
+
+dedicated-reg
+
+Figure
+
+1: Assembly
+
+pseudo
+
+code for segment matching.
+
+ified
+transfer
+can
+branches,
+variables
+often
+can be statically
+isters,
+returns,
+
+most
+
+and
+
+illegal
+ery
+whether
+correct
+serted
+the
+software
+
+On
+
+requires
+fragment
+
+typical
+four
+for
+
+in this
+a dedzcated
+inserted
+by
+the
+distrusted
+code
+to jump
+passing
+unsafe
+register.
+
+elsewhere
+
+encapsulation
+RISC
+
+technique
+architectures,
+Figure
+
+matching.
+
+segment matchzng.
+
+segment
+
+matching
+a pseudo-code
+instruction
+
+1 lists
+The
+
+first
+
+instructions.
+segment
+
+fragment
+
+moves
+
+the
+
+store
+
+target
+
+r-eg~ster. Dedicated
+code
+
+are never modified
+
+registers
+
+and
+module.
+in the
+
+They
+distrusted
+unsafe
+
+are necessary
+
+module
+store
+
+may
+
+instruction,
+
+to the
+
+directly
+the
+store
+
+inserted
+and jump
+
+check.
+
+Hence,
+
+we transform
+
+instructions
+
+to use a dedicated
+
+address
+
+into
+are used only
+in
+
+by
+
+code
+because
+arrange
+
+by-
+all
+
+All
+this
+
+in
+matching
+addresses
+in
+the
+amount,
+Using
+
+the software
+
+encapsulation
+
+paper
+
+require
+
+requires
+in the
+
+four
+code
+
+data
+
+segment,
+
+dedicated
+dedicated
+segment,
+one
+to
+
+techniques
+registers.
+registers:
+one to hold
+
+presented
+
+Segment
+one to hold
+addresses
+shift
+
+hold
+
+the
+
+segment
+
+the segment
+
+identifier.
+
+and one to hold
+dedicated
+the execution
+time
+since most modern
+MIPS
+retarget
+minimal
+
+the compiler
+performance
+
+and Alpha,
+
+RISC
+have
+
+registers
+of
+
+may
+the distrusted
+
+have
+
+an impact
+
+on
+
+module.
+
+However,
+
+architectures,
+
+including
+
+at
+
+least
+
+to use a smaller
+impact.
+
+32 registers,
+register
+
+For example,
+
+Section
+
+5
+
+the
+we can
+set with
+
+that,
+shows
+five registers
+(gee)
+execution
+
+did
+
+on the DECstation
+
+5000/240,
+
+reducing
+
+by
+
+the register
+
+set available
+
+not
+time
+
+have
+of
+
+a significant
+
+effect
+
+the SPECg~
+
+benchmarks.
+
+to a C compiler
+on the
+average
+
+3.2
+
+Address
+
+Sandboxing
+
+The
+
+segment
+
+matching
+
+technique
+
+has
+
+the
+
+advantage
+
+can
+
+that
+it
+capability
+can reduce
+of providing
+
+pinpoint
+is useful
+runtime
+
+the
+during
+overhead
+
+offending
+software
+still
+about
+
+no information
+
+instruction.
+development.
+
+further,
+the source
+
+at
+
+the
+of
+
+faults.
+
+This
+We
+cost
+
+2For
+
+architectures
+
+with
+
+limited
+
+register
+
+[Int86],
+
+80386
+served registers
+
+it
+
+is possible
+by restricting
+
+to encapsulate
+
+sets,
+a module
+
+such
+as the
+using no re-
+
+control
+
+flow within
+
+a fault
+
+domain.
+
+206
+
+dedicated-reg
+
+~
+
+target-reg&and-mask-reg
+
+Use dedicated
+to clear
+
+segment
+
+register
+
+and-mask-reg
+
+identifier
+
+bits.
+
+dedicated-reg
+
++= dedicated-reg
+
+I segment-reg
+
+Use dedicated
+to set segment
+
+register
+identifier
+
+segment-reg
+
+bits.
+
+store
+
+instruction
+
+uses
+
+dedicated-reg
+
+2: Assembly
+
+Figure
+in target-reg.
+
+pseudo
+
+code
+
+to sandbox
+
+address
+
+that
+correct
+address.
+it merely
+main
+
+Address
+
+Before
+
+each unsafe
+
+sets the
+
+upper
+
+instruction
+bits
+identifier.
+
+of
+
+the
+
+we simply
+target
+
+insert
+
+address
+sandboxzng
+
+code
+to the
+the
+
+We call
+
+this
+
+segment
+
+Sandboxing
+prevents
+
+does not
+
+catch
+
+illegal
+
+addresses;
+
+them from affecting
+
+any
+
+fault
+
+do-
+
+other
+
+the one generating
+
+than
+sandboxing
+
+requires
+
+before
+
+each
+
+instructions
+
+The
+
+identifier
+
+first
+bits
+
+inserted
+and stores
+
+the address.
+two
+or
+
+of
+store
+
+insertion
+unsafe
+instruction
+
+result
+
+sets
+
+Figure
+
+The
+
+second
+to the correct
+this
+
+to perform
+
+we modify
+
+to use the dedicated
+
+the
+instruction
+value.
+operation.
+unsafe
+register.
+the distrusted
+
+the
+
+a dedicated
+produce
+
+register,
+an illegal
+
+instruction
+
+address
+
+even
+in the sandboxing
+
+arith-
+jump
+
+clears
+the
+in a ded-
+seg-
+the
+seg-
+
+the
+2 lists
+
+As with
+or
+
+store
+
+jump
+
+Since we are
+module
+code
+by jumping
+sequence;
+
+al-
+sec-
+
+this
+
+upper
+
+bits
+
+of
+
+the
+
+dedicated
+
+register
+
+will
+
+the
+
+will
+
+correct
+
+segment
+have no effect.
+can verify
+that
+
+identifier,
+Section
+that
+
+3.6 presents
+
+an object
+
+code
+
+algorithm
+has been
+
+correctly
+
+sandboxed.
+
+register.
+
+identifier
+
+metic
+instruction.
+segment
+icated
+ment
+pseudo-code
+ment matching,
+instruction
+using
+can
+to the second
+the
+since
+ready
+contain
+ond instruction
+a simple
+module
+
+not
+
+Address
+
+register
+
+One
+registers
+
+five dedicated
+the
+code
+
+segment
+
+and
+
+registers,
+
+mask,
+
+two
+
+sandboxing
+is used
+
+requires
+to hold
+
+are used to hold
+
+the
+
+data
+
+segment
+
+
+
+Guard Zones
+
+Segment
+
+(
+
+Figure
+the guard
+offsets
+
+3: A segment with
+
+guard
+
+zones
+
+covers
+
+the range
+
+zones.
+of possible
+
+The size of
+immediate
+
+in register-plus-offset
+
+addressing
+
+modes.
+
+identifiers,
+code and data addresses.
+
+and two are used to hold the sandboxed
+
+3.3
+
+Optimization
+
+prototype
+
+overhead
+
+of software
+
+The
+duced by using conventional
+Our current
+tion and instruction
+ACD74].
+we employ
+software
+
+a number
+encapsulation.
+
+In addition
+
+encapsulation
+
+can be re-
+
+compiler
+
+optimizations.
+
+applies loop invariant
+optimizations
+
+scheduling
+
+to these conventional
+
+code mo-
+[ASU86,
+techniques,
+
+of optimizations
+
+specialized
+
+to
+
+arithmetic
+
+of software
+
+by avoiding
+
+a register-plus-offset
+
+addresses.
+include
+
+We can reduce the overhead
+
+tion mechanisms
+target
+tures
+where the offset
+ited range. On the MIPS architecture
++64K,
+limited
+store
+off
+address
+
+encapsula-
+that computes
+For example, many RISC architec-
+mode,
+in some lim-
+are
+the
+whose
+ad-
+
+Consider
+(reg),
+register-plus-offset
+
+the
+instruction
+set
+
+to
+value,
+the
+
+is an immediate
+
+such offsets
+
+instruction
+
+constant
+
+range
+
+store
+
+(reg)
+
+uses
+
+-64K
+
+set
+
+off
+
+to
+
+mode.
+
+Sandboxing
+
+inserted
+
+instructions:
+
+dedicated
+
+to set
+
+register,
+the segment
+
+this
+one
+and
+identifier
+
+requires
+
+instruction
+to sum reg+offset
+two
+
+sandboxing
+of
+
+the dedicated
+
+in-
+
+dressing
+three
+into
+the
+structions
+register.
+Our
+
+only
+
+dress
+support
+guard
+To create
+jacent
+We
+MIPS
+sandboxing
+
+prototype
+the register
+
+optimizes
+rather
+
+regj
+
+this
+than
+
+case by
+the actual
+
+sandboxing
+
+target
+
+ad-
+
+To
+
+establishes
+segment.
+pages
+
+ad-
+
+reg+of
+
+this
+zones
+
+thereby
+
+f set,
+optimization,
+at
+top
+
+and
+
+saving
+the
+bottom
+
+prototype
+
+of each
+
+an instruction.
+
+the
+guard
+
+the
+
+to the segment
+also
+stack
+
+reduce
+pointer
+the uses of
+
+zones,
+
+virtual
+
+memory
+
+are unmapped
+
+runtime
+
+overhead
+
+(see Figure
+by
+treating
+
+3).
+
+the
+We avoid
+
+as a dedicated
+
+register.
+
+the stack
+
+pointer
+
+by sandboxing
+
+register
+
+this
+pointer
+changes
+
+whenever
+
+it
+to form addresses
+to it,
+
+this
+
+is set. Since
+are much more
+
+uses of
+
+plentiful
+
+the stack
+than
+improves
+
+optimization
+
+significantly
+
+performance.
+
+Further,
+
+we can avoid
+
+sandboxing
+
+the stack
+
+pointer
+
+it
+
+is modified
+
+after
+the modified
+store
+tion.
+
+address
+If
+
+stack
+before
+the modified
+
+by a small
+pointer
+
+constant
+
+offset
+
+is used as part
+
+as long
+of a load
+
+as
+or
+
+the next
+
+control
+
+transfer
+
+instruc-
+
+stack
+
+pointer
+
+has moved
+
+into
+
+a
+
+guard
+cause
+processor,
+frame
+
+could
+the
+quences
+dress
+each loop
+ment
+
+zone,
+a hardware
+
+the load
+
+or store
+
+instruction
+
+address
+these
+
+fault.
+On
+optimizations
+
+we apply
+
+using
+the DEC
+
+it will
+Alpha
+
+to both
+
+the
+
+pointer
+
+and the stack
+
+pointer.
+
+There
+
+are a number
+
+of
+
+further
+overhead.
+
+optimizations
+
+For
+
+that
+example,
+
+reduce
+
+transformation
+
+sandboxing
+tool
+in cases where
+
+could
+
+remove
+
+from loops,
+
+sandboxing
+target
+
+a store
+
+se-
+ad-
+
+changes
+
+by only
+
+a small
+
+constant
+
+offset
+
+iteration.
+
+Our
+
+prototype
+
+does not
+
+yet
+
+optimizations.
+
+these
+
+during
+imple-
+
+3.4
+
+Process
+
+Resources
+
+fault
+
+the fault
+
+domains
+domain
+
+distrusted modules
+
+from corrupting
+
+on a per-address-space
+domain
+
+is allowed
+
+it can close or delete files needed by other
+
+share the same virtual
+implementation
+must
+resources
+For
+to make system
+code
+causing the
+
+basis.
+
+Because multiple
+address space,
+prevent
+that
+example,
+calls,
+executing
+application
+
+are allocated
+if a fault
+
+in the address space, potentially
+
+as a whole to crash.
+
+One solution
+
+is to modify
+
+fault
+
+know about
+fault,
+mine the currently
+resources accordingly.
+
+domains.
+
+executing
+
+the operating
+system to
+On a system call or page
+to deter-
+and restrict
+
+fault domain,
+
+the kernel can use the program counter
+
+To
+
+keep
+
+our
+
+an alternative
+distrusted
+quire
+
+distrusted
+
+prototype
+approach.
+
+portable,
+In
+
+addition
+
+module
+
+in a separate
+
+fault
+
+we implemented
+
+to placing
+domain,
+
+each
+we re-
+
+modules
+
+to
+
+access
+
+system
+
+resources
+
+cross-fault-domain
+to hold
+
+trusted
+
+through
+domain
+
+only
+fault
+termines
+by
+modules
+into
+transform
+the case of an extensible
+
+whether
+other
+object
+this
+
+some
+
+call
+
+a particular
+domain
+
+fault
+code performs
+
+the
+
+arbitration
+system
+is safe.
+a direct
+appropriate
+
+RPC. We
+
+reserve
+
+a
+de-
+
+code
+
+that
+
+call
+performed
+If a distrusted
+system call, we
+In
+por-
+
+RPC
+
+call.
+
+the trusted
+
+application,
+
+of
+
+tion
+and shares
+
+the application
+
+can make
+
+system calls
+
+a fault
+
+domain
+
+with
+
+the arbitration
+
+directly
+code.
+
+3.5
+
+Data
+
+Sharing
+
+Hardware
+sharing
+ing
+
+page
+
+fault
+among
+table
+
+isolation
+virtual
+entries.
+
+207
+
+mechanisms
+address
+
+can support
+
+data
+
+spaces
+
+by manipulat-
+
+Fault
+
+domains
+
+share
+
+an
+
+ad-
+
+dress
+so they
+
+space,
+can
+
+and
+not
+
+hence
+
+a set
+use a standard
+
+of page
+
+table
+
+shared memory
+
+entries,
+im-
+
+plementation.
+since
+ter
+
+our
+
+Read-only
+
+sharing
+
+software
+
+encapsulation
+
+load instructions,
+
+fault
+
+domains
+
+techniques
+
+is straightforward;
+do not
+al-
+any mem-
+
+can read
+
+Our
+modified
+
+current
+
+prototype
+
+uses the
+
+first
+
+a version
+
+of
+
+the gcc compiler
+
+approach.
+to perform
+
+We
+soft-
+
+ware encapsulation.
+mentation
+
+is language
+
+language
+
+independent.
+
+Note
+
+that while
+
+dependent,
+
+our
+our
+
+current
+techniques
+
+imple-
+
+are
+
+ory mapped
+
+in the applications
+
+address
+
+If
+
+the
+
+object
+
+code
+
+in a particular
+
+space
+distrusted
+
+3.
+
+mod-
+
+We
+
+that
+
+built
+works
+
+a verifier
+
+for
+
+for
+
+both
+
+sandboxing
+
+the MIPS
+and
+
+instruction
+
+set
+
+segment
+
+match-
+
+The main
+
+ing.
+presence
+any
+situation,
+encapsulation
+
+of
+instruction
+the
+
+challenge
+
+indirect
+
+in the
+
+verifier
+techniques:
+
+register
+
+in verification
+execution
+jumps,
+code
+segment.
+uses a property
+all unsafe
+
+is that,
+may
+
+begin
+
+in the
+on
+this
+
+To address
+of our
+
+software
+and jumps
+
+stores
+
+divides
+
+to form their
+into
+An
+to a dedicated
+
+target
+sequences
+unsafe
+
+the program
+regions.
+
+unsafe
+any modification
+region
+
+]ump
+
+begins
+register.
+
+with
+If
+
+address.
+
+of
+store
+
+in-
+re-
+store
+any mod-
+in-
+
+first
+
+the
+is executed,
+
+unsafe
+
+An
+to a dedicated
+in a unsafe
+
+jump
+or
+
+store
+
+jump
+
+region
+are guaranteed
+
+instructions
+store
+next
+register
+
+the
+
+instruction
+to form its
+
+is a store
+
+target
+
+to be exe-
+one of
+the
+which
+address,
+
+verifier
+
+called
+begins with
+
+use a dedicated
+The
+structions
+gion
+register.
+ification
+struction
+all
+cuted.
+following
+uses a dedicated
+the
+next
+the next
+or
+there
+A similar
+
+subsequent
+
+hold:
+
+An
+
+instruction
+instruction
+are no more
+
+definition
+
+is a control
+is not guaranteed
+instructions
+is used for unsafe
+
+transfer
+
+instruction,
+
+to be executed,
+in the code segment.
+
+schemes,
+
+each shared
+
+region must
+
+have
+
+a different
+
+unsafe
+
+region
+
+ends when
+
+ule has been
+
+sandboxed,
+
+then
+
+it can share
+
+read-write
+
+with
+
+lazy
+
+other
+pointer
+
+domains
+
+fault
+swizzling.
+
+through
+
+Lazy
+
+pointer
+
+a technique
+swizzling
+
+a mechanism
+many
+runtime
+
+read-write
+
+overhead.
+
+for
+
+fault
+
+domains
+
+memory
+
+regions
+
+to share
+with
+
+ar-
+no ad-
+
+To support
+
+this
+
+technique,
+
+the hardware
+
+page tables
+
+region
+
+into
+
+every
+
+address
+is mapped
+
+region
+In other
+
+words,
+in
+
+locations
+
+access;
+
+the
+
+segment.
+into multiple
+but
+
+each
+
+aliased
+bits.
+
+location
+As with
+
+address
+
+at
+
+space segment
+the same
+
+to map the shared
+that
+offset
+the shared
+address
+the same
+shared mem-
+
+we alias
+the
+
+virtual
+
+has exactly
+
+hardware
+
+memory
+we call
+provides
+bitrarily
+ditional
+we modify
+memory
+needs
+in each
+region
+space,
+low order
+ory
+segment
+
+offset,
+
+To
+
+avoid
+
+incorrect
+code,
+ensure
+
+address.
+
+the
+sandboxed
+that
+face must
+unique
+As
+cesses shared memory,
+cally
+ing addresses
+This
+
+translation
+
+translates
+
+shared
+
+within
+
+works
+
+shared
+shared
+each
+
+shared
+distrusted
+
+the
+the sandboxing
+addresses
+
+pointer
+memory
+
+comparisons
+creation
+
+in
+
+inter-
+
+object
+
+is given
+
+object
+
+code
+
+a
+ac-
+
+code automati-
+correspond-
+the
+segment.
+transla-
+
+data
+hardware
+
+into
+domains
+
+like
+
+the fault
+exactly
+
+tion;
+the
+
+the low bits
+
+high
+Under
+
+bits
+operating
+
+of
+are set
+
+the address
+to the data
+that
+
+systems
+
+remain
+segment
+do not
+
+the same,
+identifier.
+allow
+
+virtual
+
+and
+
+address
+introducing
+shared
+
+aliasing,
+
+we can implement
+
+shared
+
+a new software
+
+segment
+
+mat
+
+thing.
+
+encapsulation
+To implement
+
+by
+
+regions
+technique:
+
+sharing,
+
+we
+
+use a dedicated
+indicates
+For
+matching
+matching.
+
+each
+
+which
+unsafe
+requires
+
+register
+segments
+
+to hold
+
+a bitmap.
+
+The
+
+bitmap
+
+the fault
+
+domain
+
+instruction
+
+one more
+
+checked,
+instruction
+
+shared
+than
+
+can access.
+segment
+segment
+
+3.6
+
+Implementation
+
+and Verification
+
+We
+software
+to emit
+ule;
+
+module
+the
+directly
+
+have
+
+identified
+
+two
+
+strategies
+
+for
+
+implementing
+
+encapsulation.
+
+One approach
+
+encapsulated
+
+object
+
+code for a distrusted
+
+the integrity
+
+of
+
+this
+
+code is then
+
+verified
+
+uses a compiler
+mod-
+the
+
+when
+
+is loaded
+
+into
+
+a fault
+
+domain.
+
+Alternatively,
+
+system can encapsulate
+
+modifying
+
+its object
+
+the distrusted
+load
+code at
+
+module
+
+by
+
+time.
+
+3 We have implemented
+
+versions
+
+of
+
+these techniques
+
+by encapsulating
+
+load
+
+instructions.
+
+We discuss
+
+the performance
+
+that
+instructions
+
+per-
+as
+
+form general
+protection
+well as store and jump
+of
+
+these variants
+
+in Section
+
+5.
+
+208
+
+The
+
+verifier
+to insure
+region
+
+analyzes
+that
+is valid
+
+gion
+the
+
+any dedicated
+upon
+
+exit
+
+of
+
+each
+
+unsafe
+
+to a dedicated
+
+register
+
+a load
+If
+
+register,
+region
+
+the region
+
+appropriately
+region
+be verified,
+
+the unsafe
+
+can not
+
+ample,
+region.
+icated
+unsafe
+By
+isting
+piler
+
+jump
+
+store
+register
+the
+
+region.
+
+begins
+sandboxes
+
+is deemed
+the code
+
+regions.
+or
+jump
+modified
+For
+
+re-
+in
+ex-
+
+an unsafe
+the ded-
+If an
+
+safe.
+is rejected.
+into
+
+an ex-
+of com-
+
+incorporating
+compiler,
+infrastructure
+
+software
+
+encapsulation
+
+we are able to take
+
+advantage
+
+for
+
+code
+
+optimization.
+
+However,
+
+has two disadvantages.
+will
+
+support
+
+only
+
+approach
+compilers
+
+this
+ified
+guage (gee supports C, C++,
+compiler
+and verifier must
+spect
+employed.
+
+to the particular
+
+encapsulation
+
+and Pascal). Second,
+with
+
+be synchronized
+
+First, most mod-
+lan-
+the
+re-
+being
+
+technique
+
+one programming
+
+alternative,
+problems.
+
+An
+these
+When
+system can encapsulate
+code.
+fying
+
+object
+
+the
+
+called
+
+binary
+
+patching,
+
+alleviates
+
+the fault
+
+domain
+
+is loaded,
+
+the
+
+the module
+
+by directly
+
+Unfortunately,
+
+practical
+
+modi-
+ro-
+
+and
+
+bust
+
+binary
+
+patching,
+
+resulting
+
+in efficient
+
+code,
+
+is not
+
+possible
+
+format
+on
+
+rely
+from data
+
+currently
+binary
+tools
+code
+dle
+unknown
+encapsulation,
+code
+
+so that
+
+[LB92].
+to another
+compiler-specific
+
+Tools
+have
+
+which
+
+been
+idioms
+
+built,
+to
+
+translate
+but
+
+one
+these
+
+distinguish
+
+and
+indirect
+
+use processor
+
+emulation
+
+jumps[SCK+93].
+
+For
+
+to han-
+software
+
+the main
+
+challenge
+
+it
+
+uses a subset
+
+of
+
+is to transform
+the
+
+registers,
+
+the
+leav-
+
+Tmsted
+
+Mler Domain
+
+call Add
+
+F
+
+call
+Stub
+
+Untrusted
+
+Cake Domain
+
+Add:
+
+return
+
+Return
+Stub
+
+~
+
+
+
+T
+
+Jump Table
+
+I
+
+4: Major
+
+components
+
+of a cross-fault-domain
+
+Figure
+RPC.
+
+available
+
+for
+
+we are working
+uses simple
+
+that
+
+ing registers
+problem,
+type
+formats.
+usage information
+encapsulation.
+
+4
+
+Low
+main
+
+Latency
+
+Cross
+
+Fault
+
+Do-
+
+Communication
+
+purpose
+for
+
+this work
+
+of
+cooperating
+
+section,
+
+is to reduce
+but
+distrustful
+we presented
+
+the cost of
+
+software
+one half
+
+software
+the
+
+other
+
+encapsulation.
+fast
+
+half
+
+In this
+
+communication
+
+fault
+mod-
+of our
+sec-
+
+The
+isolation
+ules.
+solution:
+tion,
+across
+
+In the last
+efficient
+we describe
+
+domains,
+4 illustrates
+RPC
+This
+domain
+
+fault
+mechanism
+a trusted
+
+fault
+
+Figure
+
+call
+
+stub
+
+domain.
+of
+
+fault-domain
+fault
+pects
+a simple
+safely
+that
+domain.
+ciently
+how registers
+cross-fault-domain
+protocol
+fault
+
+domains
+
+passed
+
+the major
+
+components
+
+between
+section
+
+a trusted
+concentrates
+
+and
+
+crossing.
+
+which
+stub
+
+allows
+
+routine
+
+First,
+a fault
+
+outside
+into
+
+of a cross-
+distrusted
+
+on three
+we
+
+describe
+
+as-
+
+domain
+
+to
+
+its domain;
+
+routine
+Second,
+
+safely
+then
+we discuss
+
+among
+
+fault
+
+and other machine
+
+the destination
+
+calls
+how arguments
+Third,
+are managed
+
+state
+
+are effi-
+we detail
+
+domains.
+
+for exporting
+
+RPCS to insure
+naming
+
+and
+is independent
+control
+Each
+
+for
+table.
+
+of our
+
+to escape
+table
+
+jump
+
+fault
+
+isolation.
+
+procedures
+techniques.
+a fault
+entry
+address
+
+transfer
+
+instruction
+
+whose
+
+target
+
+way
+
+only
+a jump
+
+The
+is via
+trol
+
+on
+The
+among
+
+domain
+
+is a con-
+is a legal
+
+target
+
+point
+
+entry
+whose
+instruction,
+a dedicated
+
+outside
+
+the domain.
+
+By using
+
+instructions
+
+address
+the jump
+register.
+
+is an immediate
+table
+does not
+Because
+
+the
+
+rely
+
+table
+
+encoded
+
+in the
+on the use of
+is kept
+in the
+
+dedicated
+on a binary
+
+use. To solve
+
+patching
+
+this
+proto-
+
+extensions
+
+to current
+
+object
+
+file
+
+The stubs
+
+are also responsible
+
+The extensions
+that
+
+store
+
+control
+
+is sufficient
+
+flow and register
+software
+
+to support
+
+(read-only)
+a trusted
+
+code
+module.
+
+segment,
+
+it
+
+can only
+
+be modified
+
+by
+
+For each pair
+is
+
+stub
+
+return
+
+of
+fault
+created
+
+domains
+for
+
+each
+
+a customized
+exported
+
+call and
+
+procedure.
+
+the stubs
+
+are generated
+
+a stub
+
+generator
+
+[J RT85].
+the
+
+outside
+
+of both
+responsible
+
+caller
+for
+
+and
+copying
+
+by hand
+stubs
+
+The
+
+rather
+run
+
+than
+unpro-
+domain.
+
+callee
+
+cross-domain
+
+domains
+
+and managing
+
+machine
+
+are
+between
+
+Currently,
+using
+tected
+The
+arguments
+state.
+
+stubs
+
+call
+ditional
+typically
+arguments
+copies
+finally
+having
+buffer,
+between
+
+that
+
+used
+
+state.
+both
+modified
+ters
+be preserved
+optimization,
+tions
+saving
+kind
+In addition
+must
+register
+nique
+
+switch
+
+being
+
+Because
+
+the
+
+arguments
+RPC
+perform
+
+stubs
+directly
+
+are trusted,
+the
+
+to
+implementations
+
+three
+are marshaled
+
+we are able
+domain.
+address
+
+target
+across
+to transfer
+a message,
+address
+the
+communicate
+a single
+
+to copy
+Tra-
+spaces
+The
+kernel
+and
+By
+via a shared
+to pass data
+
+data.
+the
+space,
+arguments.
+
+copy
+
+copies
+into
+target
+de-marshall
+
+to the
+
+the message
+the callee must
+the caller
+and
+LRPC
+
+callee
+also uses only
+
+domains
+
+[BALL91].
+
+for managing
+registers
+
+machine
+that
+
+are
+
+On each cross-domain
+
+in the
+
+future
+
+by
+callee must
+
+by the
+are designated
+
+call any
+the
+caller
+be protected.
+
+and
+
+by architectural
+
+convention
+
+procedure
+
+calls
+
+are saved.
+
+across
+if
+
+the callee
+
+domain
+
+contains
+
+potentially
+Only
+
+regis-
+to
+As an
+
+that modify
+it. Karger
+
+a preserved
+uses a trusted
+
+no instruc-
+avoid
+this
+
+we can
+to perform
+spaces
+
+register
+linker
+address
+
+of optimization
+
+to saving
+
+the execution
+the
+
+for
+
+context
+
+between
+and restoring
+stack,
+software
+
+registers,
+
+establish
+encapsulation
+
+[Kar89].
+the stubs
+the correct
+tech-
+
+used,
+
+and
+
+validate
+
+Our
+
+system must
+
+also be robust
+
+all dedicated
+in the
+
+registers.
+
+presence
+
+of
+
+errors,
+
+for example,
+
+an addressing
+
+violation,
+
+while
+
+in a fault
+uses the UNIX
+
+Our
+
+domain.
+signal
+
+facility
+the outstanding
+
+current
+to catch
+
+call and notifies
+
+terminates
+fault
+
+domain.
+
+system
+
+If
+thread
+
+the
+
+for
+
+application
+fault
+
+all
+a call
+
+be a way
+for example,
+
+to terminate
+because
+use a timer
+
+that
+
+is taking
+loop.
+to interrupt
+
+of an infinite
+facility
+
+and
+
+determine
+
+if a call
+
+needs
+
+may
+periodically
+
+Trusted
+execu-
+to be
+
+implementa-
+these errors;
+the
+uses the same
+there
+too
+
+domains,
+
+fatal
+executing
+tion
+it
+then
+callers
+operating
+must
+long,
+modules
+tion
+terminated.
+
+5
+
+Performance
+
+Results
+
+the performance
+
+To evaluate
+domains,
+of our system on a 40 MHz DECstation
+MIPS)
+
+we implemented
+
+a 160iMhz
+
+Alpha
+
+and
+
+400
+
+of software-enforced
+
+fault
+
+and measured
+
+a prototype
+
+5000/240
+
+(DEC-
+
+(DEC-ALPHA).
+
+YVe consider
+
+three
+
+questions.
+
+First,
+
+how much
+
+over-
+
+209
+
+application?
+
+We discuss
+
+As can be seen from Table 1, the model
+
+The model provides an effective way to separate known
+col-
+sources of overhead
+umn 5 of Table 1 are the predicted
+
+from second order
+
+overheads.
+
+effects.
+
+overhead.
+
+sandboxing
+
+is, on aver-
+The
+overheads
+with mean 0.770 and standard
+the means
+
+and expected
+
+between
+
+and expected overheads
+
+This experiment
+
+demonstrates
+
+is not statisti-
+that,
+and floating
+
+instruction
+
+count overhead
+
+of 2.6?10. The difference
+
+between measured
+
+at predicting
+
+distributed
+
+age, effective
+differences
+are normally
+deviation
+of the measured
+cally significant.
+by combining
+point
+dict average execution
+that
+head of
+there
+anomalies
+
+the model
+
+in measured
+
+individual
+
+is a second order
+
+interlock measurements,
+time
+
+is also accurate
+benchmarks,
+effect
+
+overhead.
+
+we can accurately
+
+pre-
+If we assume
+the over-
+that
+the observed
+
+at predicting
+we can conclude
+creating
+
+We can discount
+
+time variance.
+the effective
+
+virtual memory
+ecution
+structions,
+reduced. While
+heads higher
+the opposite
+compute
+due to virtual memory
+
+bound,
+
+it
+
+overhead.
+
+effective instruction
+paging as sources for
+
+Because sandboxing
+size of
+the instruction
+
+this might
+
+account
+
+for measured
+
+than predicted,
+it does not account
+effect. Because all of our benchmarks
+the variations
+
+that
+
+is unlikely
+paging.
+
+cache size and
+the observed ex-
+adds in-
+cache is
+over-
+for
+are
+are
+
+the size, contents,
+
+The DEC-MIPS has a physically
+
+the data segment.
+
+data cache.
+
+address of
+
+did not affect
+
+tagged, direct mapped
+sandboxing
+virtual
+and sandboxed
+successive runs showed insignificant
+difficult
+alignment
+experiments.
+
+was an important
+
+versions
+
+of
+
+source
+
+indexed,
+physically
+In our experiments
+or starting
+For both original
+programs,
+Though
+
+variation.
+
+data cache
+in our
+
+of variation
+
+to quantify, we do not believe that
+
+the benchmark
+
+We
+caused
+ware
+tions
+struction
+investigated
+
+reduce
+researcher
+ply
+linked
+icantly
+arranging
+blocks
+
+conjecture
+by
+
+instruction
+
+that
+
+the
+
+observed
+cache mappzng
+
+variations
+conj?icts.
+
+are
+Soft-
+
+encapsulation
+to cache lines,
+
+changes
+hence
+
+cache conflicts.
+
+minimizing
+
+the mapping
+
+of
+
+instruc-
+
+changing
+A number
+instruction
+
+the number
+of researchers
+cache
+
+conflicts
+
+of
+in-
+have
+to
+
+execution
+
+reported
+
+time
+
+[McF89,
+
+PH90,
+a 2070 performance
+
+Sam88].
+
+gain
+
+changing
+
+the
+
+order
+
+in which
+
+the
+
+object
+
+[PH90].
+improved
+only
+[Sam88].
+
+Samples
+
+and Hilfinger
+
+instruction
+
+cache miss
+
+report
+rates
+
+3% to
+
+8!Z0
+
+of
+
+an
+
+applications
+
+basic
+
+this effect,
+
+there were statistically
+
+among
+
+Beyond
+differences
+which
+point
+MIPS
+benchmarks
+the remaining
+
+contained
+operations
+the mean
+
+average,
+
+on
+percentage
+
+programs.
+a significant
+incurred
+overhead
+
+less overhead.
+for
+is 2.5%0, compared
+
+floating
+
+benchmarks.
+
+All
+
+significant
+programs
+floating
+
+of
+
+On the DEC-
+
+point
+
+intensive
+
+to a mean
+of our benchmarks
+
+of 5.6% for
+are
+
+by
+
+One
+sim-
+files were
+signif-
+by
+
+re-
+
+does
+
+head
+fast
+performance
+isolation
+these
+of
+
+so ftware
+
+encapsulation
+
+is a cross-fault-domain
+
+RPC?
+
+impact
+
+of using
+
+software
+
+incur?
+Third,
+
+Second,
+
+what
+enforced
+
+how
+is the
+fault
+each
+
+on an end-user
+questions
+
+in turn.
+
+5.1
+
+Encapsulation
+
+Overhead
+
+We measured
+a wide
+
+boxing
+SPEC 92 benchmarks
+marks
+as if
+
+[Ass91,
+it were
+
+range
+
+SWG9
+
+the execution
+
+time
+of C programs,
+and
+of
+1]. We treated
+
+several
+
+overhead
+
+including
+the Splash
+
+of sand-
+the C
+bench-
+
+each
+
+benchmark
+all
+
+of
+
+a distrusted
+
+module,
+
+sandboxing
+
+code.
+
+its
+the DEC-MIPS,
+
+Column
+
+1 of Table
+
+column
+
+6 reports
+2 and 7 report
+
+Columns
+
+1 reports
+overhead
+the overhead
+
+technique
+load
+
+to provide
+
+instructions
+
+general
+as well
+
+protection
+as store
+
+overhead
+on
+on the DEC-
+of using
+sand-
+jump
+
+by
+and
+
+As
+5 dedicated
+of
+
+removing
+
+detailed
+
+3, sandboxing
+
+registers,
+these
+
+registers
+
+3 reports
+from possible
+
+the
+use
+
+in Section
+Column
+
+ALPHA.
+our
+boxing
+instructions.
+requires
+overhead
+
+the
+
+by
+additional
+grams
+
+compiler.
+
+All
+
+overheads
+
+are computed
+
+execution
+
+time
+
+divided
+
+by the original
+
+as the
+pro-
+
+execution
+
+time.
+
+On
+
+the DEC-MIPS,
+tools
+additional
+
+pixie
+
+and
+instructions
+
+we used
+
+qpt
+
+to
+
+program
+
+the
+calculate
+
+executed
+4 of Table
+
+due
+
+measure-
+number
+sandbox-
+
+the
+to
+
+[Dig,
+
+BL92].
+
+Column
+
+1 reports
+
+this
+
+as a percentage
+
+of original
+
+program
+
+instruction
+
+ment
+of
+ing
+data
+counts.
+
+The
+
+data
+
+in Table
+
+ber
+
+of anomalies.
+
+For
+
+1 appears
+of
+
+some
+
+to
+the
+
+contain
+benchmark
+
+a num-
+pro-
+
+for
+
+example,
+
+056.
+
+ear
+
+on
+
+compress
+
+on the DEC-ALPHA,
+
+grams,
+026.
+execution
+
+the DEC-MIPS
+sandboxing
+
+and
+reduced
+is
+
+time.
+
+In a number
+
+of cases the overhead
+
+surprisingly
+
+low.
+
+To
+
+identify
+
+the
+
+veloped
+The model
+
+an analytical
+predicts
+
+source
+
+of
+model
+
+these
+for
+
+overhead
+
+variations
+
+we de-
+
+execution
+on
+
+based
+
+overhead.
+number
+
+the
+
+of additional
+ing
+
+(s-tnstructtons),
+
+instructions
+
+executed
+
+and
+
+the
+
+number
+
+(interlocks).
+
+instruction-level
+floating-point
+The
+instead,
+
+integer
+delay
+
+of
+
+point
+
+cycles
+
+interlock
+
+reduced.
+
+the
+the
+
+available
+number
+
+ing
+creases
+lowing
+substantially
+provide
+filled with
+bler. Hence, scheduling
+be accurately
+tions will
+structions
+added (s-mstructtons).
+head
+
+nop instructions
+
+is computed
+
+interlocking;
+
+as:
+
+due
+of
+
+to
+saved
+
+sandbox-
+float-
+
+Sandboxing
+parallelism,
+
+interlocks
+
+in-
+al-
+to be
+does not
+
+pipeline
+slots
+
+are explicitly
+
+by the compiler
+
+effects among integer
+reflected
+
+or assem-
+
+instruc-
+
+by the count of
+The
+
+expected
+
+in-
+over-
+
+(s-instructions
+
+ interlocks)
+
+/cyc!es-per-second
+
+ortglnal-execut
+
+ton-t zme-seconds
+
+4Loads
+
+in the libraries,
+
+such as the standard
+
+C library,
+
+were
+
+not
+
+sandboxed.
+
+210
+
+Benchmark
+
+Fault
+Isolation
+Overhead
+
+Protection
+Overhead
+
+DEC-~lIPS
+Reserved
+Register
+Overhead
+
+Instruction
+
+Count
+
+Overhead
+
+DEC-ALPHA
+
+Fault
+Isolation
+Overhead
+
+Protection
+Overhead
+
+Fault
+Isolation
+Overhead
+(predicted)
+
+052. alvinn
+bps
+cholesky
+026.compress
+056, ear
+023.eqntott
+008.espresso
+ooi.gcci.35
+022.li
+locus
+mp3d
+psgrind
+qcd
+072.sc
+tracker
+water
+
+Average
+
+FP
+FP
+FP
+INT
+FP
+INT
+INT
+INT
+INT
+INT
+FP
+INT
+FP
+INT
+INT
+FP
+
+1.4%
+5.6%
+0.0%
+3.3%
+-1.2%
+2.9%
+12.4%
+3.1%
+5.1%
+8.7%
+10.7%
+10.4%
+0.5%
+5.6%
+-0.8%
+0.7%
+
+4.3%
+
+33.4%
+15.5%
+22.7%
+13.3%
+19.1%
+34.4%
+27.0%
+18.7%
+23.4%
+30.4%
+10.7%
+19.5%
+27.0%
+11.2%
+10.5%
+7.4%
+
+-0.3%
+-0.1%
+0.5%
+0.0%
+0.2%
+1.0%
+-1.6%
+-9.4%
+0.3%
+4,3%
+0.0%
+1.3%
+2.0%
+7.0%
+0.4%
+0.3%
+
+19.4%
+8.9%
+6.5%
+10.9%
+12.4%
+2.7%
+11.8%
+17.0%
+14.9%
+10.3%
+13.3%
+12.1%
+8.8%
+8.0%
+3.9%
+6.7%
+
+21.8%0
+
+0.4%0
+
+10.5%
+
+0.2%
+5.7%
+-1.5%
+4.4%
+2.2%
+2.2%
+10.5%
+8.9%
+11.4%
+8.6%
+8.7%
+9.9%
+1.2%
+3.8%
+2.1%
+1.5%
+
+5.070
+
+8.1%
+4.7%
+0.0%
+-4.3%
+3.7%
+2.3%
+13.3%
+
+NA
+5.4%
+4.3%
+0.0%
+8.0%
+-0.8%
+NA
+
+10.9%
+4.3%
+
+4.3%
+
+35.5%
+20.3%
+9.3%
+0.0%
+18.3%
+17.4%
+33.6%
+
+NA
+
+16.2%
+8.7%
+6.7%
+36.0%
+12.1%
+
+NA
+
+19.9%
+12.3%
+
+17.6Zo
+
+OOi.gccl.35
+The predicted
+
+and
+fault
+
+1: Sandboxing
+
+for DEC-MIPS and DEC-ALPHA platforms.
+
+The benchmarks
+
+Table
+072.sc
+isolation
+
+overheads
+ona
+
+pointer
+
+are dependent
+overhead for choleskyis
+
+size of32
+
+bits and do not compile
+
+on the DEC-ALPHA.
+
+negative
+
+due to conservative
+
+interlocking
+
+on the MIPS floating-point
+
+unit.
+
+compute
+amounts
+
+intensive.
+of 1/0 will
+
+Programs
+incur
+
+less overhead.
+
+that
+
+perform
+
+significant
+
+the native
+trip
+time.
+
+operating
+These
+
+system and measured
+
+the round-
+
+times
+
+are reported
+
+in the
+
+last
+
+two
+
+5.2
+
+Fault
+
+Domain
+
+Crossing
+
+of Table
+
+columns
+of cross-address-space
+magnitude
+
+more
+
+2.
+
+On
+calls
+
+expensive
+
+platforms,
+
+three
+
+these
+is roughly
+local
+than
+
+the
+orders
+
+cost
+of
+
+procedure
+
+calls.
+
+We now turn to the cost of cross-fault-domain
+
+registers.
+
+As detailed
+
+that are designated
+
+Our RPC mechanism spends most of
+and restoring
+registers
+preserved
+addition,
+modify
+saved.
+a NULL
+
+calls
+in the
+then
+the times
+
+across
+if no instructions
+
+a preserved
+Table
+
+cross-fault-domain
+
+procedure
+
+2 reports
+
+register
+
+RPC.
+
+need
+
+RPC.
+its time saving
+in Section 4, only
+to be
+In
+
+to be saved.
+
+by the architecture
+
+callee
+
+fault
+
+domain
+
+it does not need to be
+of
+the
+
+versions
+1 lists
+
+three
+Column
+
+for
+
+crossing
+
+times when
+
+all data
+
+registers
+
+are caller
+
+saved.
+
+of
+
+Operating
+plementations
+space RPC
+tude
+address-space
+is 314
+call
+a 40Mhz
+
+[Ber93].
+
+local
+
+systems
+
+with
+
+have
+
+reduced
+
+highly
+the
+
+to within
+
+roughly
+procedure
+calls.
+RPC on a 25Mhz
+
+optimized
+
+RPC
+
+im-
+
+of cross-address-
+cost
+orders
+two
+On Mach
+DECstation
+
+of magni-
+cross-
+3.0,
+
+5000/200
+procedure
+
+times more
+
+expensive
+
+than
+
+a local
+
+The Spring
+
+SPARCstation2,
+
+operating
+delivers
+
+system,
+cross-address-space
+
+running
+
+on
+
+RPC that
+procedure
+
+is 73 times more
+call
+
+[H K93].
+
+expensive
+
+than
+
+Software
+
+enforced
+
+a local
+fault
+
+leaf
+isola-
+
+the preserved
+
+tion
+
+is able
+
+to reduce
+
+the
+
+relative
+
+cost
+
+of cross-fault-
+
+For
+
+comparison,
+
+we measured
+
+two
+
+other
+
+calling
+
+To capture
+
+2 lists
+registers
+
+the
+
+crossing
+are saved.
+
+times when
+Finally,
+
+the times
+
+listed
+
+in
+
+3 include
+In many
+by statically
+
+saving
+cases crossing
+
+all preserved
+times
+the registers
+
+could
+
+partitioning
+
+floating
+
+point
+be further
+between
+
+Column
+integer
+Column
+registers.
+reduced
+
+domains.
+
+mechanisms.
+C procedure
+no value.
+address
+
+we measured
+
+First,
+call
+
+Second,
+
+that
+
+takes
+we sent
+
+the time
+no arguments
+a single
+byte
+
+spaces
+
+using
+
+the pipe
+
+abstraction
+
+to perform
+and returns
+
+a
+
+between
+provided
+
+two
+by
+
+211
+
+RPC by an order
+
+of magnitude
+
+over
+
+these
+
+sys-
+
+domain
+tems.
+
+5.3
+
+Using
+
+Fault
+
+Domains
+
+in POSTGRES
+
+the
+we
+
+effect
+added
+
+of our
+
+system
+
+on application
+
+software
+
+enforced
+
+fault
+
+do-
+
+performance,
+mains
+and measured
+benchmark
+
+to the PO STGRES database
+
+management
+
+POSTGRES
+
+running
+
+the
+
+Sequoia
+
+[SFGIV193].
+
+The Sequoia
+
+2000
+
+benchmark
+
+system,
+2000
+
+Cross
+
+Fault-Domain
+
+RPC
+
+Platform
+
+Caller
+Save
+
+Save
+Integer
+
+Save
+
+c
+
+Pipes
+
+Integer+
+
+Float
+
+Procedure
+
+Registers
+
+Registers
+
+Registers
+
+DEC-MIPS
+
+DEC-ALPHA
+
+l.llps
+o.75ps
+
+1.81ps
+1.35ps
+
+2.83ps
+1.80ps
+
+Call
+
+O.lops
+0.06ps
+
+204.72ps
+227.88ps
+
+Table2:
+
+Cross-fault-domain
+
+crossing times.
+
+Sequoia 2000
+
+Untrusted
+
+Soft ware-Enforced
+
+Number
+
+DEC-MIPS-PIPE
+
+Query
+
+Function Manager
+
+Fault
+
+Isolation
+
+Cross-Domain
+
+Overhead
+
+Overhead
+
+Query 6
+Query
+7
+
+Query
+
+Query
+
+8
+
+10
+
+1.4%
+5.0%
+9.0%
+9.6%
+
+1.7%
+1.8%
+2.7%
+5.7%
+
+Calls
+
+60989
+121986
+121978
+1427024
+
+Overhead
+(predicted)
+
+18.6%
+38.6%
+31.2%
+31.9%
+
+Table
+
+3: Fault
+
+isolation
+
+overhead
+
+for POSTGRES
+
+running
+
+Sequoia
+
+2000 benchmark.
+
+queries
+in studying
+
+contains
+tists
+of non-traditional
+extensible
+are written
+such
+manager.
+safety
+
+type
+in
+as C, and
+
+This
+
+typical
+the
+
+of
+
+those
+
+used
+
+climate.
+
+To support
+
+by earth
+these
+
+provides
+user-defined
+
+queries,
+
+PO STGRES
+
+Currently,
+
+system.
+conventional
+dynamically
+has long been recognized
+
+programming
+loaded
+into
+
+languages,
+database
+to be a serious
+
+the
+
+scien-
+kinds
+a user-
+types
+
+problem [Sto88].
+
+the eleven
+
+queries
+
+in the Sequoia
+
+use of user-defined
+queries
+
+polygon
+using
+four
+and software-enforced
+
+these
+linking
+
+POSTGRES
+dynamically
+
+code
+
+is trusted,
+user
+
+loaded
+
+2000 bench-
+types. We
+
+data
+
+both
+
+unprotected
+isolation.
+
+fault
+we only
+
+code.
+
+For
+
+sand-
+this
+
+Four of
+mark make
+measured
+dynamic
+Since
+boxed
+experiment,
+
+the
+the
+
+our
+
+cross-fault-domain
+
+RP C mechanism
+
+of
+
+2).
+
+(the
+
+code
+
+isolation
+
+based
+
+Untrusted
+
+integer
+
+registers
+
+preserved
+
+3 presents
+
+to Column
+
+the results.
+
+in POSTGRES
+
+2 in Table
+to count
+
+variant
+In addition,
+
+number
+estimate
+on separate
+
+cor-
+we
+of cross-
+the per-
+address
+
+the
+the
+RPCS so that we could
+fault
+
+saved
+the
+responding
+instrumented
+fault-domain
+formance
+spaces.
+Table
+mecha-
+functions
+the over-
+nism from built-in
+soft-
+without
+head
+in
+overheads
+ware
+using the un-
+Table
+the mea-
+trusted
+sured overhead of software enforced fault domains. Us-
+ing the number
+3
+and the DEG-MIPS-PIPE time reported
+in Table 2, Col-
+umn 4 lists the estimated
+hardware
+
+fault
+3 are relative
+
+calls listed in Column
+
+domains.
+to original
+
+function manager.
+
+using conventional
+
+manager
+reported
+
+address spaces.
+
+of cross-domain
+
+of
+enforced
+
+calling
+1 lists
+
+use a separate
+
+user-defined
+
+overhead
+
+the
+
+untrusted
+
+2 reports
+
+POSTGRES
+
+Column
+
+functions.
+
+function
+
+Column
+
+All
+
+5.4
+
+Analysis
+
+For
+
+the POSTGRES
+
+experiment
+
+software
+
+encapsulation
+
+provided
+
+substantial
+
+savings
+
+over
+
+using
+
+native
+
+operat-
+
+ing
+
+system
+
+services
+
+and
+
+hardware
+
+address
+
+spaces.
+
+In
+
+general,
+
+the
+
+savings
+
+provided
+
+by
+
+our
+
+techniques
+
+hardware-based
+
+mechanisms
+
+is a function
+
+of
+
+centage
+
+centage
+
+of
+
+of
+
+time
+
+spent
+
+in
+
+distrusted
+
+code
+
+(td),
+
+time
+
+spent
+
+crossing
+
+among
+
+over
+
+per-
+
+per-
+
+the
+
+the
+
+(ic),
+
+the
+
+overhead
+
+of encapsulation
+
+(h),
+
+r,
+
+of
+
+our
+
+fault
+
+domain
+
+crossing
+
+time
+
+to
+
+of
+
+the
+
+competing
+
+hardware-based
+
+time
+nism.
+
+savzngs = (1 T)tc ht~
+
+fault
+
+and
+
+domains
+
+the
+
+ratio,
+
+the
+crossing
+RPC mecha-
+
+Figure
+
+axis gives
+
+5 graphically
+the percentage
+
+depicts
+
+of
+
+time
+
+these
+
+trade-offs.
+an application
+
+The X
+spends
+
+fault
+
+domains.
+
+The Y axis
+
+of software
+
+enforced
+
+address
+
+spaces.
+
+overhead
+
+of encapsulated
+
+fault-domain
+Assuming
+
+reports
+
+the
+cross-
+the
+code is 4.3Y0,
+
+that
+
+region
+
+illustrates
+
+when
+
+software
+
+enforced
+
+among
+cost
+
+crossing
+relative
+ing over hardware
+execution
+the
+fault
+
+isolation
+
+shaded
+
+time
+
+Software-enforced
+
+is the better
+fault
+
+performance
+isolation
+
+alternative.
+
+becomes
+higher
+
+increas-
+degrees
+
+ingly
+
+attractive
+
+as applications
+
+achieve
+
+of
+
+fault
+
+isolation
+
+(see Figure
+
+5). For example,
+
+if an ap-
+
+spends
+
+its competitor.
+
+plication
+our RPC mechanism
+than
+as little
+39%0 improvement
+reported
+
+as 10YOof
+
+in Section
+
+3070 of
+
+crossing
+
+fault
+
+its time
+need
+
+only
+
+Applications
+time
+
+their
+in fault
+5.2, our
+
+perform
+that
+crossing
+
+currently
+require
+
+domain
+crossing
+
+crossing
+time
+
+for
+
+domains,
+1O$ZObetter
+spend
+only
+
+a
+time.
+As
+the DEC-
+
+MIPS
+
+is
+
+l.10~s
+
+and
+
+for
+
+the DEC-ALPHA
+
+0.75~s.
+
+Hence,
+
+212
+
+1on% .
+
+. .
+
+$5$3
+
+8$$
+
+.$$s$$
+
+Percentage of Execution Time Spent Crossing
+
+Figure
+ware
+
+5:
+
+The
+
+shaded
+
+region
+
+represents
+
+enforced
+
+fault
+
+isolation
+
+provides
+
+the
+
+when
+better
+
+(t.).
+speed
+(lr)tc
+overhead
+
+formance
+centage
+
+alternative.
+time
+
+spent
+
+of
+
+The
+
+X axis
+
+represents
+
+crossing
+
+among
+
+fault
+
+domains
+
+The Y axis
+
+represents
+
+the relative
+
+(r).
+
+The
+= htd.
+
+represents
+
+curve
+In this graph,
+
+RPC
+
+crossing
+even point:
+
+the break
+
+h = 0.043 (encapsulation
+
+on the DEC-MIPS
+
+and DEC-ALPHA).
+
+latter
+
+example,
+
+a hardware
+
+address
+
+this
+
+for
+ing time
+
+DEC-ALPHA
+software
+duction
+
+of 1.80ps
+would
+
+on the DEC-MIPS
+better
+far
+
+provide
+
+As
+
+fault
+
+domains.
+
+as we know,
+
+or experimental
+
+system currently
+
+1.23ps
+and
+performance
+
+space cross-
+on the
+than
+no pro-
+this
+
+provides
+
+soft-
+per-
+
+per-
+
+level
+
+of performance.
+
+Further,
+
+Figure
+
+5 assumes
+
+that
+
+the
+
+entire
+
+tion was encapsulated.
+
+For many
+
+applications,
+
+assumption
+
+is conservative.
+
+PO STGRES,
+transforms
+total
+
+execution
+
+this
+the
+
+previous
+is spent
+
+Figures
+
+5 and
+is
+
+6 illustrate
+the
+best
+
+isolation
+
+figure,
+in distrusted
+that
+choice
+
+assuming
+
+that
+extension
+
+software
+whenever
+
+of
+
+an
+7 demonstrates
+
+Figure
+
+applica-
+such as
+6
+50%0 of
+code.
+enforced
+crossing
+applica-
+that
+re-
+
+fault
+overhead
+tions
+overhead
+
+mains
+ure 7 plots
+and
+supplied
+mechanisms
+at ive
+This
+performance
+modules
+
+is a significant
+
+proportion
+
+execution
+
+time.
+
+Figure
+
+due
+
+to software
+
+enforced
+
+fault
+
+isolation
+
+small
+
+regardless
+
+of application
+
+behavior.
+
+Fig-
+
+crossing
+
+overhead
+cost.
+highly
+
+and
+
+as a function
+Crossing
+
+times
+
+of crossing
+
+typical
+
+are shown.
+
+optimized
+The
+
+hardware-based
+
+graph
+of
+the
+
+illustrates
+software
+
+performance
+stability
+
+allows
+
+stability
+
+effect
+
+of
+
+to place
+
+in separate
+
+system developers
+fault
+
+isolation
+fault
+
+behavior
+of vendor-
+RPC
+the rel-
+
+solution.
+
+6
+
+Related
+
+Work
+
+systems
+
+Many
+RPC performance
+BALL90,
+
+BALL91].
+
+have
+
+considered
+
+[vvST88,
+
+TA88,
+
+Traditional
+
+to ignore
+
+the
+which
+
+in choosing
+
+domains.
+
+ways
+Bla90,
+RPC
+
+of
+
+optimizing
+
+SB90, HK93,
+based
+
+systems
+
+213
+
+6:
+
+The
+
+shaded
+
+region
+
+represents
+
+enforced
+
+fault
+alternative.
+
+isolation
+
+The
+
+provides
+X axis
+
+when
+better
+
+the
+represents
+
+soft-
+per-
+per-
+
+of
+
+time
+
+The Y axis
+
+crossing
+
+spent
+represents
+
+among
+the relative
+
+fault
+RPC
+
+(r).
+
+The
+= htd.
+
+represents
+
+curve
+In this graph,
+
+the break
+
+even
+
+h = 0.043
+
+(encapsulation
+
+domains
+crossing
+point:
+
+Figure
+ware
+formance
+
+centage
+(t.).
+speed
+(1r)t.
+overhead
+
+on the DEC-MIPS
+
+and DEC-ALPHA).
+
+I
+
+/
+
+I LJltrix 4.2 Context Switch
+
+DECstation
+
+5000
+
+Software
+
+10
+
+20
+
+# Crossings/Millisecond
+
+100%,
+
+40%
+
+o%
+
+o
+
+7: Percentage
+number
+
+of
+
+fault
+
+on the DEC-MIPS,
+number
+
+is taken
+
+of
+
+time
+domain
+The
+
+spent
+
+in
+crossings
+
+crossing
+
+code
+
+per millisec-
+
+hardware
+
+minimum
+
+switch
+time
+
+switch
+
+from a cross-architectural
+1]. The Ultrix
+in the
+
+times
+[ALBL9
+is as reported
+
+last
+
+cross-
+study
+4.2 con-
+of
+
+column
+
+Figure
+versus
+ond
+ing
+of context
+text
+Table
+
+2.
+
+isolation
+
+are ultimately
+
+fault
+hardware
+
+hardware
+
+cent ext
+
+cost of
+
+taking
+switches.
+
+limited
+
+by
+traps
+was one
+
+two
+
+kernel
+
+L RPC
+
+at
+
+random
+
+placed
+dress
+that
+
+space.
+is,
+they
+
+locations
+between
+reveal
+
+Calls
+do not
+
+in the same
+domains
+the
+
+location
+
+hardware
+
+ad-
+
+are anonymous,
+
+the
+callee
+protection
+
+or
+tic
+be able
+by malicious
+serve anonymity,
+tected
+text
+
+switch
+
+code
+
+to either
+
+side.
+
+This
+
+ it
+to discover
+
+is unlikely
+the
+
+location
+
+provides
+any
+
+that
+
+of any
+
+other
+
+or accidental
+
+memory
+
+probes.
+
+a cross domain
+
+call must
+
+trap
+
+kernel;
+
+however,
+
+no hardware
+
+in the
+is needed.
+
+of
+
+the
+
+caller
+
+probabilis-
+
+domain
+
+will
+domain
+To
+pre-
+to pro-
+con-
+
+7
+
+Summary
+
+have
+
+We
+portable,
+isolation
+providing
+this
+tion
+than
+
+described
+programming
+among
+fault
+
+isolation
+
+a software-based
+
+mechanism
+
+language
+
+independent
+
+cooperating
+
+software
+
+within
+
+a singIe
+
+modules.
+address
+
+for
+fault
+By
+space,
+
+delivers
+
+approach
+that
+any RPC mechanism
+
+is more
+
+than
+
+cross-fault-domain
+
+communica-
+
+an order
+
+of magnitude
+
+faster
+
+to date.
+
+To prevent
+
+distrusted
+
+modules
+
+from escaping
+
+their
+
+own
+fault
+technique,
+execution
+executing
+tion will
+formance,
+the overhead
+tor
+of
+in this
+the better
+of using
+
+a software
+
+encapsulation
+
+we use
+sandboxing,
+
+overhead.
+
+domain,
+called
+time
+distrusted
+
+often
+
+yield
+Extensive
+
+that
+Despite
+software-based
+
+incurs
+this
+
+code,
+the
+kernel
+
+best
+
+overall
+
+optimizations
+
+fault
+application
+
+of hardware-based
+
+RPC to within
+
+about
+overhead
+
+4~0
+in
+isola-
+per-
+can reduce
+a fac-
+Even
+be
+
+will
+
+ten
+over
+situation,
+
+our
+
+software-based
+
+software-based
+
+fault
+
+performance
+hardware-based
+
+choice whenever
+RPC is greater
+
+overhead
+
+570.
+
+alternative.
+isolation
+the
+than
+
+8
+
+Acknowledgements
+
+thank
+
+We
+nessy, Peter
+
+Brian
+
+Bershad,
+
+Mike
+
+Burrows,
+
+Kessler,
+
+Butler
+
+Lampson,
+
+Ed
+
+Hen-
+
+John
+Lazowska,
+
+Patterson,
+
+Sites,
+
+Dave
+Richard
+their
+vided
+Mike Olson
+
+helpful
+us with
+
+John
+
+Ousterhout,
+
+Oliver
+
+Smith
+
+Alan
+
+comments
+
+the
+
+profiling
+Aoki
+
+and Paul
+
+and Mike
+on the paper.
+tool
+qpt.
+for helping
+
+Stonebraker
+Jim Larus
+We
+also
+us with
+
+Sharp,
+for
+pro-
+thank
+
+POST-
+
+on hardware
+the minimal
+and
+
+two
+
+and
+caller
+
+the
+
+first
+
+prototype
+
+of
+our
+in LRPC
+the
+both
+kept
+as simple
+directly
+callee
+in the
+based
+fault
+substantially
+Address
+
+must
+
+(which
+
+address
+
+hardware
+one
+TLB
+estimated
+Firefly
+misses [BALL90].
+reduce
+operations
+mance[ALBL91].
+based
+ized
+
+architectural
+
+fault
+
+Restrictive
+provide
+
+to
+user,
+typed
+space
+strong
+of
+languages
+
+fault
+and library
+language;
+[RDH+
+typing
+programming
+like
+
+strongly-typed
+programmers
+the
+
+type
+
+trast,
+
+our
+Deutsch
+
+RPC
+
+systems
+
+to approach
+
+this
+
+limit,
+
+uses a number
+systems:
+later
+the
+as possible,
+
+and
+
+callee
+
+and
+found
+
+of
+the
+
+the techniques
+same
+thread
+domain,
+
+the
+
+runs
+
+stubs
+
+in
+are
+
+and the crossing
+avoiding
+
+these
+hardware
+
+systems,
+context
+
+code jumps
+a dispatch
+software-
+switches,
+
+to the
+
+called
+
+domain.
+
+procedure,
+Unlike
+
+isolation
+
+avoids
+
+reducing
+
+crossing
+
+space
+context
+
+identifier
+switch
+
+tags
+times.
+
+space
+
+to
+
+be flushed
+that
+
+the
+
+share
+on each
+
+costs.
+can be used
+Tags
+
+TLB;
+context
+
+allow more
+otherwise
+switch.
+of an LRPC
+due
+
+was
+do not,
+
+to reduce
+than
+the
+It was
+on the
+to TLB
+however,
+or system calls,
+perfor-
+integer
+of software-
+rely on special-
+tags.
+can also be used
+all
+kernel,
+a strongly
+address
+
+a single
+
+space
+
+requires
+in Mesa,
+
+as address
+
+advantage
+
+shares
+
+the
+
+cost
+
+have
+
+tags)
+
+25T0 of
+does
+not
+Address
+space tags
+register management
+are not
+An important
+
+scaling
+
+with
+
+isolation
+
+is that
+
+it does not
+
+languages
+
+such
+
+features
+programming
+isolation.
+Pilot
+code to be written
+all
+
+code
+
+then
+
+the cost of
+
+which
+
+80]. The main
+
+disadvantage
+
+of
+
+is that
+
+it
+
+severely
+
+restricts
+
+relying
+the
+
+on
+choice
+
+languages,
+
+C, C++,
+
+and
+
+ruling
+
+out
+assembly.
+
+conventional
+
+Even
+
+with
+
+languages
+find
+
+often
+
+such
+
+as Ada
+
+and Modula-3,
+
+they
+
+to use loopholes
+
+need
+fault
+
+isolation.
+
+independent.
+that
+
+in
+In con-
+
+system,
+
+undercutting
+
+techniques
+
+are language
+
+and Grant
+
+built
+
+a system
+
+allowed
+
+measurement
+the operating
+
+modules
+
+to be dynamically
+
+system and executed
+
+directly
+
+[D Gi1].
+
+object
+
+code
+the
+
+that
+
+The module
+designed
+
+to make
+
+format
+
+was a
+
+code
+
+did
+
+not
+
+violate
+
+it easier
+pro-
+
+user-defined
+into
+loaded
+processor
+on the
+stylized
+native
+to statically
+tection
+
+verify
+boundaries.
+
+example,
+defines
+ing
+
+An interpreter
+
+can also provide
+network
+is interpreted
+
+the BSD UNIX
+which
+
+a language
+
+packet
+
+system
+
+operating
+
+network
+
+driver.
+
+The
+
+system from possible
+
+interpreter
+
+filter
+
+utility
+by the operat-
+insulates
+
+the
+tomization
+any
+(or
+full
+
+programming
+rejected
+speed
+
+if
+
+language
+
+it
+
+is not
+
+safe),
+
+by the operating
+
+Anonymous
+
+RPC
+low latency
+
+provide
+lation
+
+[YBA93].
+
+exploits
+RPC
+Logically
+
+encapsulated
+
+executed
+
+at near
+
+to be safely
+and then
+system.
+64-bit
+
+address
+
+and
+
+probabdtstzc
+
+independent
+
+spaces
+fault
+domains
+
+failure
+
+isolation.
+
+For
+
+GRES.
+
+code. Our
+
+approach
+
+allows
+
+faults
+
+in the
+code written
+
+cus-
+in
+
+[ACD74]
+
+References
+
+K.M.
+of
+
+T.L. Adam,
+A comparison
+cessing systems.
+17(12):685690,
+
+Chandy,
+
+list schedules
+Communications
+December
+
+1974.
+
+and J.R. Dickson.
+pro-
+the A CM,
+
+for parallel
+
+of
+
+Thomas
+Anderson,
+shad, and Edward
+of Architecture
+
+Lazowska.
+and Operating
+
+Henry
+
+Levy,
+
+Brian
+
+
+Ber-
+
+
+1 he interaction
+System Design.
+
+[ALBL91]
+
+to
+iso-
+are
+
+214
+
+[Ass91]
+
+[ASU86]
+
+[BALL90]
+
+[BALL91]
+
+[Ber93]
+
+[BL92]
+
+[Bla90]
+
+[BN84]
+
+[Cla92]
+
+[DG71]
+
+[Dig]
+
+[Dys92]
+
+[FP93]
+
+[HC92]
+
+In Proceedings
+of
+ence on Architectural
+Languages
+120, April
+
+and Operating
+1991.
+
+the ~th International
+
+Confer-
+
+[HK93]
+
+Support
+
+for Programming
+
+Systems,
+
+pages 108-
+
+Graham Hamilton
+Spring
+Proceedings
+ence, pages 147159,
+
+nucleus:
+of
+
+and Panes Kougiouris.
+
+A microkernel
+the Summer
+
+for objects.
+
+USENIX
+
+Confer-
+
+The
+In
+
+June 1993.
+
+Administrator:
+Association.
+1991.
+
+National
+
+Computer
+
+Graphics
+3(4), December
+
+SPEC
+
+Newsletter,
+
+V. Aho, Ravi Sethi,
+Compilers,
+Principles,
+Addison-Wesley
+
+and Jeffrey D. Unm-
+
+Techniques,
+
+and
+
+Publishing
+
+Company,
+
+[Int86]
+
+Alfred
+an.
+Tools.
+1986.
+
+[HKM+88]
+
+Satyanarayanan,
+
+J. Howard, M. Kazar,
+M.
+M. West.
+tributed
+Computer
+
+File System.
+
+Sgstems,
+
+Scale
+
+Sidebotham,
+in
+
+S. Menees, D. Nichols,
+and
+R.
+a Dis-
+on
+1988.
+
+Transactions
+February
+
+ACM
+6(1):51-82,
+
+and Performance
+
+Corporation,
+80386
+
+Programmers
+
+Santa
+
+Clara,
+Reference
+
+California.
+Manual,
+
+Intel
+Intel
+
+1986.
+
+Brian Bershad,
+zowska,
+Procedure
+puter
+
+Systems,
+
+Call.
+
+Thomas Anderson,
+
+Edward
+
+and Henry
+
+Levy.
+
+Lightweight
+
+La-
+Remote
+on Com-
+
+ACM
+
+Transactions
+
+8(l),
+
+February
+
+1990.
+
+Brian Bershad,
+zowska,
+and Henry
+cess Communication
+tiprocessors.
+ACM
+Systems,
+
+9(2), May
+
+Thomas Anderson,
+
+Edward
+
+La-
+
+Levy. User-Level
+
+for Shared-Memory
+
+Interpro-
+Mul-
+
+Transactions
+1991.
+
+on Computer
+
+Brian Bershad,
+nication.
+
+August
+
+1993. Private Commu-
+
+Thomas
+profiling
+Conference
+guages,
+
+BaJl and James R. Larus.
+and
+
+tracing.
+
+In Proceedings
+
+OptimaJly
+
+of
+
+the
+
+on Principles
+
+of Programming
+
+Lan-
+
+pages 59-70,
+
+1992.
+
+Scheduling
+
+Black.
+and Parallelism
+
+Support
+
+for Concur-
+in the Mach Operating
+
+IEEE
+
+Computer,
+
+23(5):3543,
+
+May
+
+David
+rency
+System.
+1990.
+
+Birrell
+
+and Bruce Nelson.
+
+Procedure
+
+Calls.
+
+Implement-
+ACM Transac-
+Febru-
+
+on Computer
+
+Systems,
+
+2(1):3959,
+
+Andrew
+ing Remote
+tions
+ary 1984.
+
+J.D. Clark.
+OLE/DDE.
+
+Window
+
+Prentice-Hall,
+
+Programmer
+1992.
+
+Guide
+
+To
+
+L. P. Deutsch
+surement
+Congress,
+
+tool
+1971.
+
+and C. A. Grant.
+
+A flexible mea-
+
+for
+
+software
+
+systems.
+
+In IFIP
+
+Digit al Equipment
+Pixie Manual
+
+Page.
+
+Corporation,
+
+Ultrix
+
+W/.2
+
+Peter Dyson.
+Software
+on Desktop
+
+Xtensions
+
+for Custom Systems.
+
+for Xpress: Modular
+Report
+June 1992.
+
+Seybold
+
+6(10):121,
+
+Publwhing,
+
+FaJl and Joseph PasquaJe. Exploiting
+data
+
+to improve
+
+1/0
+
+throughput
+
+in-
+
+y.
+
+In Proceedings
+
+Conference,
+
+of
+
+the
+pages 327
+
+paths
+
+Kevin
+kernel
+and CPU a vailabilit
+USENIX
+1993 Winter
+January
+1993.
+
+333,
+
+Application-controlled
+
+Harty
+
+and
+physi-
+page-cache manage-
+
+In Proceedings
+
+using external
+of
+on Architectural
+
+Languages
+
+the
+
+5th
+Support
+and Operating
+
+International
+
+Keiran
+David Cheriton.
+caJ memory
+ment.
+Conference
+gramming
+October
+
+1992.
+
+Pro-
+for
+Systems,
+
+215
+
+[JRT85]
+
+[Kar89]
+
+[Kle86]
+
+[LB92]
+
+[McF89]
+
+[MJ93]
+
+[MRA87]
+
+[PH90]
+
+Richard
+
+F. Rashid,
+
+Matchmaker:
+
+An
+
+and
+in-
+
+language
+
+In Proceedings
+
+of
+
+Symposium
+
+Languages,
+
+for distributed
+the
+
+12th
+
+ACM
+on Principles
+225235,
+
+pages
+
+B.
+
+specification
+
+Jones,
+R. Thompson.
+
+Michael
+Mary
+terface
+processing.
+SIGA CT- SIGPLAN
+of Programming
+January
+1985.
+
+Paul A. Karger.
+Cross-Domain
+ings
+
+of
+
+Using Registers
+
+CaJl Performance.
+
+to Optimize
+In Proceed-
+
+the %-d International
+
+Conference
+
+on
+
+Architectural
+Support
+guages and Operating
+April
+
+3-61989.
+
+for
+Systems,
+
+Programming
+
+Lan-
+pages 194204,
+
+Vnodes:
+
+An Architecture
+
+Steven R. Kleiman.
+for Multiple
+In Proceedings
+Conference,
+
+of
+
+File System Types
+
+the
+
+1986
+pages 238-247,
+
+Summer
+1986.
+
+in SUN UNIX.
+USENIX
+
+executable
+
+James R. Larus
+ing
+havior.
+Technical
+Wisconsin-Madison,
+
+and Thomas
+
+Ball.
+
+Rewrit-
+
+files
+
+to measure
+
+program
+1083, University
+1992.
+
+be-
+of
+
+Report
+
+March
+
+Scott McFarling.
+instruction
+ternational
+port
+for
+ing Systems,
+
+Program
+In Proceedings
+
+optimization
+
+of
+on Archztecturai
+
+the
+
+for
+In-
+Sup-
+
+caches.
+Conference
+
+Programming
+
+Languages
+
+pages 183191, April
+
+and Operat-
+1989.
+
+Steven McCanne
+BSD Packet
+User-Level
+the 1993 Wznter
+1993.
+
+and
+
+Van
+
+Jacobsen.
+
+A New Architecture
+
+Filter:
+
+Packet Capture.
+
+In Proceedings
+
+The
+for
+of
+
+USENIX
+
+Conference,
+
+January
+
+The
+
+J. C. Mogul,
+cetta.
+packet
+nism for user-level
+ings
+of
+Principles,
+
+the Sgmposium
+
+R. F. Rashid,
+
+filter:
+network
+
+and M.
+
+J. Ac-
+An efficient mecha-
+In Proceed-
+System
+
+code.
+
+on Operating
+
+pages 39-51, November
+
+1987.
+
+Pettis
+
+Karl
+code
+guided
+the Conference
+sign
+Plains,
+SIGPLAN
+
+and
+
+and Robert
+positioning.
+
+C. Hansen.
+
+Profile
+
+In
+
+Proceedings
+
+of
+
+on Programming
+
+Implementation,
+
+New York,
+
+NOTICES
+
+June
+
+25(6j.
+
+Language
+
+De-
+pages 1627, White
+1990.
+
+Appeared
+
+as
+
+[RDH+ 80] David D. RedelJ, Yogen K. DaJaJ, Thomas
+
+R.
+
+Horsley,
+
+Hugh C. Lauer, William
+
+C. Lynch,
+
+[Sam88]
+
+[SB90]
+
+[SCK+ 93]
+
+(SFGM931
+
+[Sto87]
+
+[Sto88]
+
+[SWG91]
+
+[TA88]
+
+[Thi92]
+
+[vCGS92]
+
+[VVST88]
+
+[Web93]
+
+R. McJones,
+C, Purcell.
+Personal Computer.
+
+Hal
+Pilot:
+
+G. Murray,
+An Operating
+
+and
+Sys-
+
+Communications
+
+Protection
+ceedings
+of
+June 1993.
+
+in a 64-Bit
+the Summer
+
+Address
+
+Space.
+
+In Pro-
+
+USENIX
+
+Conference,
+
+Paul
+Stephen
+temfora
+of
+
+the ACM,
+
+23(2):8192,
+
+February
+
+1980.
+
+A. Dain Samples.
+struction
+88/447,
+tober
+
+University
+
+1988.
+
+Code reorganization
+
+for
+
+in-
+
+caches. TechnicaJ Report
+
+UCB/CSD
+
+of California,
+
+Berkeley, Oc-
+
+Schroeder
+
+and Michael
+
+Burrows.
+
+of Firefly
+
+on Computer
+
+RPC.
+S~stems,
+
+ACM
+
+8(1):1-17,
+
+Per-
+Tmnsckc-
+Febru-
+
+Michael
+formance
+tions
+ary 1990.
+
+Richard
+Kirk, Maurice
+son.
+the ACM,
+
+Binary
+
+L. Sites, Anton
+
+Chernoff, Matthew
+
+B.
+
+P. Marks,
+
+and Scott G. Robin-
+
+translation.
+
+Cornmunzcat~ons
+
+of
+
+36(2):6981,
+
+February
+
+1993.
+
+J. Frew,
+The Sequoia
+the ACM
+
+M. Stonebraker,
+J. Meridith.
+In Proceedings
+national
+May 1993.
+
+of
+Conference
+
+and
+
+K. Gardels,
+2000 Benchmark.
+Inter-
+of Data,
+
+SIGMOD
+
+on Management
+
+Michael
+GRES.
+ber 1987.
+
+Stonebraker.
+IEEE
+
+Database
+
+Extensibility
+
+Engineering,
+
+in POST-
+Septem-
+
+data base systems.
+
+In Michael
+
+Stonebraker.
+
+Michael
+relational
+braker,
+Readings
+pages 480487. Morgan
+Inc.,
+
+editor,
+
+1988.
+
+Inclusion
+
+of new types in
+Stone-
+Systems,
+Publishers,
+
+in Database
+
+Kaufmann
+
+J. P. Singh,
+Splash:
+shared-memory.
+469, Stanford,
+
+W. Weber,
+parallel
+
+Stanford
+
+and
+applications
+
+A. Gupta.
+for
+
+Technical
+
+Report CSL-TR-91-
+
+1991.
+
+and David
+
+P. Anderson.
+
+A
+of the DASH Message-
+
+Evaluation
+
+Technical
+
+Report
+Science Division,
+
+UCB/CSD
+University
+
+Berkeley, October
+
+1988.
+
+Tzou
+
+Shin-Yuan
+Performance
+Passing System.
+88/452, Computer
+of California,
+
+Thinking
+work
+
+Interface
+
+Machines
+
+Corporation,
+
+CM- 5 Net-
+
+von Eicken,
+
+T.
+K. Schauser.
+for
+Integrated
+tion,
+osium
+
+In Proceedings
+
+on Computer-
+
+Programmers
+
+Guide,
+
+1992.
+
+D. Culler,
+
+S. Goldstein,
+
+and
+
+Active Messages:
+Communication
+
+A Mechanism
+and Computa-
+
+of
+the 19th
+Architecture,
+
+Annual
+
+Symp-
+
+1992.
+
+Robbert
+Andrew
+Worlds
+(@wzt;?zg
+ber 1988.
+
+van Renesse, Hans van St averen,
+S. Tanenbaum.
+of
+Fastest Distributed
+Review,
+
+and
+the
+System.
+;2534, Octo-
+
+Operating
+22(4)
+
+Performance
+
+systems
+
+Neil Webber.
+Portable
+ings
+of
+January
+
+the
+
+1993.
+
+Operating
+
+System Support
+
+for
+
+Filesystem
+
+1993 Winter
+
+Extensions.
+USENIX
+
+In Proceed-
+Conference,
+
+[YBA93]
+
+Yarvin,
+
+Curtis
+Anderson.
+
+Richard
+
+Bukowski,
+
+Anonymous
+
+RPC:
+
+and Thomas
+Low Latency
+
+216
+
+

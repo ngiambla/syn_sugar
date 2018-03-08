@@ -42,7 +42,20 @@ function hide_term() {
 }
 
 function go_to_in_doc(okay) {
-	document.getElementById(((okay.id).split("s_"))[1]).scrollIntoView(true);
+
+	$(".doc_line").each(function() {
+		if(this.id in summary) {
+			$(this).css("background-color","#34BC6F"); 
+		}
+	});
+	$("#"+((okay.id).split("s_"))[1]).css("background-color", "#87CEFA"); 
+	
+
+	document.getElementById(((okay.id).split("s_"))[1]).scrollIntoView({
+		 behavior: "smooth",
+		 block: "center", 
+		 inline: "nearest"
+	});
 }
 
 function show_term() {
@@ -67,7 +80,7 @@ function close_upload_modal() {
 
 
 function updateHeight() {
-	stroll.bind('ul', { live: true } );
+	
 }
 
 function load_doc(doc, summary) {
@@ -77,13 +90,15 @@ function load_doc(doc, summary) {
 		$("ul").empty();
 		$("ul").fadeIn('fast', function(e) {
 			for(var i in doc) {
-				item = '<li id="'+ i +'">'+doc[i]+'</li>'
+				item = '<li class="doc_line" id="'+ i +'">'+doc[i]+'</li>'
 				$("ul").append(item);
 				if(i in summary) {
 					is_empty=false;
 					s_item = '<p class="summ_line" id="s_'+ i +'" onclick="go_to_in_doc(this)">'+doc[i]+'</p>'
 					$("#summ_contents").append(s_item)
-					$("#"+i).css('background-color', 'green');
+					$("#"+i).css('background-color', '#34bc6f');
+					$("#"+i).css('color', 'white');
+
 				}
 			}
 			if(!is_empty) {
@@ -104,6 +119,8 @@ function load_doc(doc, summary) {
 
 function upload_file() {
 
+	var filename = $("#upload-file").val();
+	filename = (filename.split("C:\\fakepath\\"))[1];
 	var form_data = new FormData($('#upload-file-form')[0]);
 	console.log(form_data);
 
@@ -118,13 +135,18 @@ function upload_file() {
         processData: false,
         async: true,
 	    success: function(ret) {
-	    	console.log(ret["res"])
-	    	summary 			= ret["res"][0];
-	    	doc 				= ret["res"][1];
-	    	sentence_len_map 	= ret["res"][2];
-	    	entropy_map			= ret["res"][3];
-	    	load_doc(doc, summary);
-	    	draw_state 			= 2;
+	    	if(ret) {
+		    	console.log(ret["res"]);
+		    	$("#doc_title").text(filename);
+		    	summary 			= ret["res"][0];
+		    	doc 				= ret["res"][1];
+		    	sentence_len_map 	= ret["res"][2];
+		    	entropy_map			= ret["res"][3];
+		    	load_doc(doc, summary);
+		    	draw_state 			= 2;
+	    	} else {
+	    		draw_state = 0;
+	    	}
 	    },
 	    error: function(request, status, err) {
 	        console.log(status);
@@ -142,7 +164,9 @@ function reset_sugar() {
 	entropy_map 		= {}
 	summary["empty"] 	= "No Document Uploaded!";
 	doc 				= {};
-	$("#summary_display").fadeOut('fast', function() {});
+	$("#summary_display").fadeOut('fast', function() {
+			$("#doc_title").text("");
+	});
 	start_up_coolness();
 	hide_term();
 }

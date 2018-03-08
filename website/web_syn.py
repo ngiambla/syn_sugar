@@ -34,6 +34,7 @@ def uploads():
 		print("No file sent.")
 		return "1"
 	file = request.files['upload-file']
+	print(file)
 	if file and allowed_file(file.filename) and file.filename != "":
 		try:
 			filename = secure_filename(file.filename)

@@ -1,0 +1,674 @@
+SiFT: Signature Based Fault Tolerance for
+
+High-Level Synthesis
+
+Nicholas Giamblanco
+
+Department of Electrical and
+
+Computer Engineering
+University of Toronto
+
+Ontario, Canada
+
+nicholas.giamblanco@mail.utoronto.ca
+
+Ishita Ray
+
+Department of Electrical and
+
+Computer Engineering
+University of Toronto
+
+Ontario, Canada
+
+ish.ray@mail.utoronto.ca
+
+AbstractWe present a correctness checking tool for high-
+level synthesis, SiFT, which aims to prole and modify high-
+level descriptions at the function level to provide area-aware
+fault tolerance. SiFT provides fault tolerance against incorrect
+function behaviour from software bugs, bugs injected by a high-
+level synthesis tool, or bugs caused by single event upsets. We rst
+inspect code statically through use of SATURN [1] to check for
+various softwares bugs such as but not limited to null pointers,
+deadlock, memory bugs (off-by-1 errors, etc.). Upon successful
+code inspection, we prole code at the function level of a
+high-level description. SiFT introduces Function Characterization,
+a classication method of
+function behaviour which asserts
+synthesized hardware functions behave as described in software.
+We implement SiFT as an LLVM [2] compiler pass, to facilitate
+integration into the existing high-level synthesis tool LegUp [3].
+We will test SiFT by executing LegUp against the CHStone
+benchmarks [4] and two handwritten test cases and check for
+the consumed area and performance degradation while noting on
+the number of logical and memory bugs initially discovered upon
+SiFTs operation. We will also utilize Quartuss Fault Injection
+tool [5] to identify the resilience of the generated hardware
+description in the presence of single event upsets (SEU).
+
+I. INTRODUCTION
+
+Modern systems on chip (SoC) design methodologies have
+facilitated the growth and acceleration of many applications
+(i.e Machine learning [6], Timing Critical Applications [7],
+etc.), with the majority of these methodologies enforcing
+proper verication of the produced design. This idea of
+checking for correctness has been studied heavily within the
+eld of digital hardware design.Verication methods outlined
+in by Kropf [8] provide details in which hardware can be
+sufciently veried. Additionally, both hardware description
+and verication can be combined into one unied language
+such as System Verilog. However, one recent design strategy,
+high-level synthesis, does not provide such strict verica-
+tion measures. High-level synthesis compiles a high-level
+description (usually written in C) to a corresponding hard-
+ware description, described in either Verilog or VHDL. This
+description is then synthesized to hardware, which is typically
+a eld programmable gate array. This design process enables
+faster time-to-market than constructing digital circuit designs
+by hand.
+
+However, this high-level synthesis process vigorously op-
+timizes1 the high-level description during compilation, which
+can lead to unwanted bug generation in the resulting hardware
+description. Additionally the hardware description may lose
+the semantic structure upheld in the high-level language for
+some algorithmic description. Description obscuration can
+make verifying and debugging hardware designs difcult.
+In the same regard, faulty hardware designs pose additional
+challenges, such as tracing back to the offending high level
+language statements. Although debugging techniques have
+been proposed for HLS (i.e. [9], [10], [11]), they have yet
+to become an industry practice.
+
+High-level synthesis tools assume that the high-level de-
+scription provided as input is bug-free or has been analyzed
+for software bugs, and is suitable for synthesis. Currently,
+producing bug-free code is difcult, and hence the assump-
+tion cannot hold. Compiled hardware designs from high-level
+synthesis could then suffer from all possible bugs that occur in
+software. The scope of bugs which could affect the generated
+hardware is not
+limited to purely memory bugs or logic
+bugs; bugs related to threaded behaviour are also subject to
+synthesis as the HLS tool utilized for this report provides
+support for Pthreads. However, many bug-detection and bug-
+correction systems exist (i.e. [1], [12], [13]) for high-level
+languages (such as C or C++). It would be logical to inspect
+a high-level description before entering the HLS process, as
+this may mitigate potential bugs which could be synthesized
+to hardware. As noted by Goeders and Wilton [14],
+this
+debugging ability is required to bridge potential issues that
+may arise out of HLS tools.
+
+Additionally, digital hardware devices can suffer from single
+event upsets (SEU). Single event upsets (or more commonly
+identied as bit ips or soft errors) occur when an environment
+with free neutrons or alpha particles strike a silicon device and
+ionize a silicon atom [15]. The ionization of the silicon atom
+upsets the state in which the silicon device was presumably
+in. SEUs can affect several circuit operations: transient circuit
+pulses, memory corruption, and latch up. The latter is detri-
+
+1The usage of optimization refers to compiler based optimizations/passes,
+which modify the code for some specied purpose. HLS generally compile
+high level descriptions through tool specic optimizations.
+
+mental to device operation and can lead to overheating and/or
+melting [15]. A model of how an SEU may occur is outlined
+in Figure 1.
+
+Fig. 1. An illustration of a single event upset with a transistor, taken from
+[15]
+
+HLS targets both application specic integrated circuits
+(ASIC) designs and eld programmable gate arrays (FPGA)
+designs, both of which consist of digital hardware comprised
+of silicon. As identied, SEUs are a threat to these devices and
+possible effects from SEUs should be mitigated. It is worth
+noting that ASIC designs are more susceptible to SEU effects
+due to their abudant usages of registers/ip-ops. Nevertheless,
+static random access memory (SRAM) based FPGAs are at
+risk of SEUs, and have degrade circuit behaviour. In general,
+FPGAs represent circuit behaviour as a stream of bits named
+conguration bits. With SRAM-based FPGA, conguration
+bits are stored on SRAM cells located on the FPGA. Hence,
+an SEU that occurs in an area where the conguration bits
+reside would cause unpredictability in circuit behaviour.
+
+Yet, high-level synthesis offers limited support
+
+to SEU
+mitigation & fault tolerance, or use practices that are expen-
+sive2 (i.e. [16], [17], [18]), such as an n-Modular-Redundancy
+scheme. n-Modular-Redundancy schemes for system level or
+function level fault tolerance towards SEU aim to replicate the
+system or function an n number of times in order to increase
+reliability.
+
+The reliability of a system can be represented as a prob-
+abilistic model [19]. Reliability is dened as the ability to
+perform a desired task correctly against some period of op-
+eration. With historical knowledge of behaviour pertaining to
+some item  on the duration of execution for some task T ,
+we can make some statistical claim of s reliability. This can
+be described as a rate, , which denotes the hazard rate of a
+. We can model the reliability R with:
+
+R = et,
+
+0  R  1
+
+(1)
+
+Generally, we deal with a system comprised of many items
+connected through serial or parallel means [20]. Hence, we
+can model the overall probability of each case:
+
+In a serial system, we evaluate the reliability through a
+multiplicative fashion, where the reliability of the system S
+with N serial components can be modeled as:
+
+The reliability of a parallel system with M parallel compo-
+
+nents is represented as:
+
+Rs = 1  M(cid:89)
+
+(1  Ri)
+
+(3)
+
+i=1
+
+It can be seen that n-Modular-Redundancy schemes provide
+increased reliability. However, these replication schemes con-
+sume n times more silicon area, and introduce latency into the
+resulting fault tolerant system. Certain applications may not be
+able to tolerate this area consumption or increase in latency.
+Hence, other fault tolerance methods should be explored.
+
+To address these issues, we introduce SiFT3, a method to
+insert fault tolerance during the HLS process. SiFT provides
+fault tolerance to the HLS process by primarily inspecting
+high-level descriptions with a pre-existing tool, SATURN [1],
+which is able to identify many latent bugs such as null
+pointer bugs, memory bugs, etc. This addresses the bug-free
+assumption placed on high-level descriptions. Upon successful
+inspection of the high-level description, an HLS tool begins
+the compilation process. Before completion of the compi-
+lation, SiFT performs a compiler pass which proles and
+gains knowledge of the high-level description at a function
+level. SiFT proles each function to attempt to categorize
+its behaviour through inspection of inputs & corresponding
+outputs and produce a signature or characterization. These
+signatures are then introduced back into the proled function
+as a specialized assertion. These assertions enforce execution
+abortion when an error/anomaly is detected. This allows for
+automatic detection and handling of a misbehaving function
+due to a bug inserted during high-level synthesis or data
+corruption due to a single event upset. This feature of SiFT
+aims to reduce the amount of debugging required if a fault or
+error is detected. SiFT will be further detailed in Section III.
+The remainder of this report is organized as follows. Sec-
+tion II discusses related works. Section III discusses SiFT
+in higher detail. We outline the progress made with SiFTs
+implementation in Section IV. Finally, Section V discusses
+evaluation techniques for SiFT.
+
+II. RELATED WORK
+
+In this section, we discuss works that are related to our
+approach. To our knowledge, this project is the rst of its
+kind within the eld of high-level synthesis. However, the
+approaches described in the following subsections are deeply
+related to SiFTs operation. Sections II-A and Section II-B
+are closely related to how SiFT performs Function Charac-
+terization and lastly, Section II-C is related to some of the
+technicalities used in SiFTs Function Inspection.
+
+A. Improved Error Reporting for Software that Uses Black-
+Box Components
+
+N(cid:89)
+
+i=1
+
+Rs =
+
+Ri
+
+(2)
+
+Ha et al. describe an approach to enhance error messages
+brought about by black-box software [21], through training
+of a pattern classication system with labeled examples of
+
+2expensive refers to latency and area considerations for hardware
+
+3Signature based Fault Tolerance
+
+faulty program execution. This approach, which they refer to
+as Clarify, can be encased in a two step process: (1) a runtime
+monitor against black-box software components, and (2) a
+classication system to interpret the output of the runtime.
+Clarify is able to deduce a behaviour prole for the black-
+box software modules. To gather information regarding the
+behaviour prole, control ow and data features of a program
+are collected. Ha et al.s describe several control ow feature
+extraction techniques: (1) Clarify introduces a Call-Tree Pro-
+ling technique in which control ow features are extracted
+that summarize the calling behaviour of a function and the
+caller, (2) Function and Call-Site Proling which counts the
+number of times a function was execute, or how many times
+the function was called, (3) Path proling, which counts
+the unique path outlined a basic block, described by [22].
+Clarify also collects features associated with data, where two
+methods are described: (1) Call-Site Proling with Predicted
+Return Values and (2) Stack-Scraping. Once features have
+been collected, Clarify requires labeled examples of faulty
+program execution to train a machine learning classication
+system. Clarify is able to link or classify certain behaviour
+proles to more robust error messages. Although the exact
+pattern classication mechanism utilized by Clarify (which is
+a decision tree) is useful to their purpose, we will employ
+other machine learning techniques and algorithms.
+
+B. Automatic Software Fault Diagnosis by Exploiting Appli-
+cation Signatures
+
+Ding et al. attempt to diagnose failures in software through
+an automatic deduction of correct software behaviour classied
+by a signature of software runtime. [23]. Their treatment of
+fault diagnosis uses a black-box approach, where there is
+limited knowledge of the underlying software which may en-
+counter failure. They identify what is an Application Signature,
+where runtime information is collected from the executing
+black-box. Specically, this signature consists of system call
+attributes, signals, environment variables, resource limits, and
+access controls [23]. They note that not all elements of each
+of these set of attributes are not well-suited for the case of
+a signature. In such cases, mathematical tests for tness of
+statistical variables are used such as one-sample Kolmogorov-
+Smirnov statistical test [24]. As these elements of signature-
+related attributes are collected, they are then persisted to a
+signature bank, in order to then later classify if the system
+has misbehaved. Hence,
+the
+signature collected by this Ding et al.s approach allows for
+(1) identication of a failure, and (2) diagnosis of the failure.
+This signature based approach for fault identication is related
+to one of the goals in our work.
+
+if an application misbehaves,
+
+C. Debugging
+
+Due to the scope of our project being within the realm of
+HLS, we also reviewed several debugging techniques for this
+unique area of research. Yang et al. propose a JIT verication
+scheme for high-level synthesis tools. This approach traces
+program execution with known input values to each function
+
+in question during high-level synthesis [25]. During the HLS
+compilation process, Yang et al. rework LLVMs intermediate
+representation of some high-level language for proling and
+instrumentation of specied instructions (such as address and
+data values). Upon completion, verication code is generated
+for these instrumentations. Upon completion of compilation,
+this hardware description is then synthesized to hardware and
+tested. Any failures during the execution of the synthesized
+hardware will indicate where a bug exists within the HLS
+compilation process. Yang et al.s work is concerned with the
+correctness of the HLS tool where as our work focuses on the
+correctness of the synthesized high-level description.
+
+III. OUR APPROACH
+
+In this section, we detail the behaviour of SiFT.
+
+A. Modied High-Level Synthesis Flow
+
+SiFT is a tool which aims to provide fault tolerance within
+High-Level Synthesis and hence, we modify an existing HLS
+tool, LegUp [3] to be tted for SiFT. The LegUp tool from
+the University of Toronto is built within the LLVM framework,
+and operates on LLVMs intermediate representation (IR) of
+a high-level description to compile to a hardware description.
+The general operation is outlined in Figure 2.
+
+Fig. 2. An overview of the LegUp tool, taken from [3].
+
+Referring to Figure 2, SiFT is only concerned with steps
+(1) and (3) of this system ow. In (1) a high-level description
+is compiled to LLVMs bitcode4 through use of Clang [26].
+It is important to highlight that the IR could be interpreted as
+an abstracted assembly language. This means that the IR is
+a detailed set of abstracted machine code. With this bitcode,
+LegUp performs HLS specic LLVM passes upon this bitcode,
+to eventually produce a hardware description. This hardware
+description generation occurs in (3).
+
+SiFTs modication to LegUp can be viewed in a system
+
+level diagram of operation. This is depicted in Figure 3.
+
+We will now describe SiFT with reference to Figure 3. SiFT
+
+has the following behaviour:
+
+(a) Static code inspection for various bugs, which we refer
+to as Hesitant Inspection. This is outlined in Sec-
+tion III-B. This state of SiFT refers to number nodes
+(1) and (2) in Figure 3.
+
+4the IR is encoded in bitcode.
+
+arguments and return values, and their behaviour at runtime.
+To prole function behaviour, we implemented a JIT compiler
+within our pass which can execute bitcode on demand. Hence,
+we can execute particular functions described in the compiled
+bitcode without having to link into main. When using the
+JIT compiler on a per-function basis, we either generate
+inputs randomly or utilized supplied values from the high-level
+description (which correspond to the argument data types)
+for the function5. This information, as well as any output
+information is stored for analysis. This function pass also
+provides the ability to automatically insert additional bitcode
+into the function.
+
+D. Function Characterization
+
+Once a function has been proled against known input cases
+or has completed a randomized execution from our generated
+inputs, SiFT attempts to generalize the function behaviour in
+the following way:
+
+1) If we can detect a constraint on the range for the outputs,
+and if the return value of a function is signed, we apply
+this as signature exit from this procedure.
+
+2) We assume that if the tested inputs do not cause the
+program to hang and/or crash unexpectedly that these
+inputs are satisfactory, and hence are labeled features
+which classify correct execution. We will employ a
+machine learning algorithm to classify this information
+into clusters. Hence, the pattern classication we should
+employ should aim to generalize a functions behaviour.
+This portion of SiFT is in development and requires
+further research to identify.
+
+3) Some functions may not require fault tolerance, and/or
+can be omitted. Other functions can be specied to
+ensure fault tolerance. These two cases will be handled
+with user #pragmas
+
+E. Function Certication
+
+Once a signature or function characterization has been
+obtained, SiFT generates a function specic assert against the
+Function Characterization. This assertion is produced as IR
+instructions, which are then inserted at the output of a function.
+The function is then modied to adhere to this assertion
+conditionally. Upon error detection or function misbehaviour
+the hardware system will be signaled to reboot.6
+
+These four stages of SiFT have effectively added fault
+tolerance to a synthesizable design, where we aim to reduce
+the possibility of hardware faults caused by bugs set out in the
+high-level description and the HLS compilation process, while
+attempting to mitigate the effects of SEUs on a synthesized
+design. SiFT is area-aware for the corresponding hardware
+design. We provide fault tolerance without having to perform
+area-inefcient n-modular redundancy. SiFT should also have
+little impact on the corresponding circuit latency.
+
+5We may choose to utilize a symbolic engine to produce inputs for functions
+
+during JIT execution. However, this requires more research.
+
+6We are also investigating if these function specic hardware modules can
+
+be rebooted separately, taking inspiration from [27]
+
+Fig. 3. SiFTs integration into LegUp.
+
+(b) Code proling through JIT execution of the high-level
+description to gain information of function behaviour,
+which is referred to as Function Inspection and is
+described in Section III-C. Function Inspection is high-
+lighted in Figure 3 at nodes (3) and (4).
+
+(c) Signature generation through bit-pattern analysis tech-
+niques or return value enforcement, which is named
+Function Characterization. This operation is detailed in
+Section III-D. Function Characterization refers to node
+(4) in Figure 3.
+
+(d) Automatic insertion of assertion logic which identies
+if a function is behaving correctly, which we refer to
+as Function Certication is described in Section III-E.
+Function Certication refers to node (4) in Figure 3
+
+B. Hesitant Inspection
+
+The bug-free assumption placed on high-level descriptions
+makes SiFT hesitant
+to continue to the HLS compilation
+process, and hence checks this description for any possible
+bugs that can be determined statically. We utilize SATURN,
+a boolean satisability approach to bug detection. We employ
+this static bug detection mechanism for several reasons, (i)
+SATURN is scalable, and was intended to be that way, (ii)
+it comes working out of the box and has a variety of bug
+checking templates, (iii) it is open source. We do not consider
+using symbolic execution tools for bug detection as we could
+extend SiFT to gain this functionality. Although other bug
+detection techniques could be investigated, SATURN seems
+to work well for the types of high-level description typical to
+HLS, which are algorithmic descriptions.
+
+C. Function Inspection
+
+Once the high-level description passes SATURNs bug
+detection mechanism, SiFT permits LegUp to begin opera-
+tion. LegUp rst compiles the high-level description in C to
+LLVMs bitcode. Immediately after the compilation process,
+SiFT is called by LegUp as an LLVM pass and begins
+the Function Inspection process. We implement SiFT as a
+specialized FunctionPass which is a template from the
+LLVM framework. Our pass allows for proling of function
+
+We iterate, SiFT is not a debugging tool, and hence does
+not aim to identify the origins of faults. SiFT is a correctness
+checking tool, which simply aims to check the correctness of
+a synthesized function. Upon detection of an issue, SiFT will
+simply aim to reboot the hardware system.
+
+IV. IMPLEMENTATION STATUS
+
+SiFT is still in development. However, the following outline
+what has been accomplished, and what needs to be completed:
+ The bug detection system SATURN [1] has been ac-
+quired and tested on several user-dened .c descriptions.
+As noted, SATURN comes working-out-of-the-box, with
+many bug detection templates available. We need to
+automate the usage of this bug detection system.
+
+ Both Clang and LLVM have been installed and studied
+
+for its usage and for safe modications.
+
+ We have already developed an LLVM FunctionPass
+which is able to prole the IR at a function level and
+determine the input and output arguments of a particular
+function. This pass also includes a JIT compiler for a
+functions bitcode, which allows the pass to identify func-
+tion behaviour. We have also tted this pass with the abil-
+ity to insert automatically generated IR into a functions
+code. We need to identify ways of producing the Function
+Characterization, and hence have been reviewing machine
+learning techniques which are unsupervised.
+
+ We have installed LegUp onto an EECG machine. LegUp
+has been tested, and inspected to see how to include
+modications. We need to integrate SiFTs function pass
+into LegUp and prepend SiFTs Hesitant Inspection state
+as a preprocessing step to LegUp.
+
+V. EVALUATION OF SIFT
+
+To evaluate SiFT we will perform the following:
+ Evaluate the accuracy of our choice of machine learning
+
+algorithm we employ for Function Characterization
+
+ Record the number of bugs possibly detected prior to
+HLS, to note if there is any correlation with impacts on
+the hardwares estimated latency, performance and area
+consumption.
+
+ Record the hardwares estimated latency, performance
+and area consumption after compiling the CHStone [4]
+benchmark with use of SiFT. Also record these metrics
+without the use of SiFT and using triple modular redun-
+dancy.
+
+ Attempt to utilize Alteras Quartus Prime Fault Injection
+IP Core, to inject faults into the conguration bits of
+an FPGA. We then will record the number of times the
+FPGA with SiFTs fault tolerance safely exits operation
+due to Function Certication failures (failure for a func-
+tion to operate correctly). 7
+
+This will evaluate SiFT on all that it was designed to do,
+which was to provide fault tolerance, automatically to HLS,
+
+7This is subject to which version of Quartus the school has available, and/or
+
+if we can get access to this another way.
+
+while ensuring the high-level description is safe (i.e. has based
+the Hesitant Inspection state of SiFT) for compilation.
+
+REFERENCES
+
+[1] Y. Xie and A. Aiken, Saturn: A sat-based tool for bug detection, in
+International Conference on Computer Aided Verication, pp. 139143,
+Springer, 2005.
+
+[2] C. Lattner and V. Adve, Llvm: A compilation framework for lifelong
+program analysis & transformation, in Proceedings of the international
+symposium on Code generation and optimization: feedback-directed and
+runtime optimization, p. 75, IEEE Computer Society, 2004.
+
+[3] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H. An-
+derson, S. Brown, and T. Czajkowski, Legup: high-level synthesis
+for fpga-based processor/accelerator systems, in Proceedings of the
+19th ACM/SIGDA international symposium on Field programmable gate
+arrays, pp. 3336, ACM, 2011.
+
+[4] Y. Hara, H. Tomiyama, S. Honda, H. Takada, and K. Ishii, Chstone: A
+benchmark program suite for practical c-based high-level synthesis, in
+Circuits and Systems, 2008. ISCAS 2008. IEEE International Symposium
+on, pp. 11921195, IEEE, 2008.
+
+[5] Q. I. Altera, Handbook version 13.1, QII52005-13.1. 0, vol. 2, pp. 12
+
+1, 2013.
+
+[6] C. Zhang, P. Li, G. Sun, Y. Guan, B. Xiao, and J. Cong, Optimizing
+fpga-based accelerator design for deep convolutional neural networks,
+in Proceedings of the 2015 ACM/SIGDA International Symposium on
+Field-Programmable Gate Arrays, pp. 161170, ACM, 2015.
+
+[7] C. Leber, B. Geib, and H. Litz, High frequency trading acceleration
+using fpgas, in Field Programmable Logic and Applications (FPL),
+2011 International Conference on, pp. 317322, IEEE, 2011.
+
+[8] T. Kropf, Introduction to formal hardware verication. Springer Science
+
+& Business Media, 2013.
+
+[9] N. Calagar, S. D. Brown, and J. H. Anderson, Source-level debugging
+for fpga high-level synthesis, in Field Programmable Logic and Appli-
+cations (FPL), 2014 24th International Conference on, pp. 18, IEEE,
+2014.
+
+[10] J. Goeders and S. J. Wilton, Effective fpga debug for high-level synthe-
+sis generated circuits, in Field Programmable Logic and Applications
+(FPL), 2014 24th International Conference on, pp. 18, IEEE, 2014.
+
+[11] L. Yang, S. Gurumani, D. Chen, and K. Rupnow, Autoslide: Automatic
+instrumentation and debugging for hls, in 2016 IEEE
+source-level
+24th Annual International Symposium on Field-Programmable Custom
+Computing Machines (FCCM), pp. 127130, May 2016.
+
+[12] C. Cadar, D. Dunbar, D. R. Engler, et al., Klee: Unassisted and auto-
+matic generation of high-coverage tests for complex systems programs.,
+[13] N. Nethercote and J. Seward, Valgrind: A program supervision frame-
+work, Electronic notes in theoretical computer science, vol. 89, no. 2,
+pp. 4466, 2003.
+
+[14] J. Goeders and S. J. Wilton, Allowing software developers to debug hls
+
+hardware, arXiv preprint arXiv:1508.06805, 2015.
+
+[15] J. Hussein and G. Swift, Single-event upsets, 2012.
+[16] S. Tosun, N. Mansouri, E. Arvas, M. Kandemir, and Y. Xie, Reliability-
+centric high-level synthesis, in Proceedings of
+the conference on
+Design, Automation and Test in Europe-Volume 2, pp. 12581263, IEEE
+Computer Society, 2005.
+
+[17] C. Fibich, M. Horauer, and R. Obermaisser, Hlshield: a reliability en-
+hancement framework for high-level synthesis, in Industrial Embedded
+Systems (SIES), 2017 12th IEEE International Symposium on, pp. 110,
+IEEE, 2017.
+
+[18] G. Lee, D. Agiakatsikas, T. Wu, E. Cetin, and O. Diessel, Tlegup: A
+tmr code generation tool for sram-based fpga applications using hls, in
+Field-Programmable Custom Computing Machines (FCCM), 2017 IEEE
+25th Annual International Symposium on, pp. 129132, IEEE, 2017.
+
+[19] R. E. Barlow and F. Proschan, Statistical theory of reliability and life
+testing: probability models, tech. rep., Florida State Univ Tallahassee,
+1975.
+
+[20] K. Neubeck, Practical reliability analysis. Prentice Hall, 2004.
+[21] J. Ha, C. J. Rossbach, J. V. Davis, I. Roy, H. E. Ramadan, D. E. Porter,
+D. L. Chen, and E. Witchel, Improved error reporting for software
+that uses black-box components, in ACM SIGPLAN Notices, vol. 42,
+pp. 101111, ACM, 2007.
+
+[22] T. Ball and J. R. Larus, Efcient path proling, in Proceedings of the
+29th annual ACM/IEEE international symposium on Microarchitecture,
+pp. 4657, IEEE Computer Society, 1996.
+
+[23] X. Ding, H. Huang, Y. Ruan, A. Shaikh, and X. Zhang, Automatic
+software fault diagnosis by exploiting application signatures., in LISA,
+vol. 8, pp. 2339, 2008.
+
+[24] F. J. Massey Jr, The kolmogorov-smirnov test for goodness of t,
+Journal of the American statistical Association, vol. 46, no. 253, pp. 68
+78, 1951.
+
+[27] G. Candea, S. Kawamoto, Y. Fujiki, G. Friedman, and A. Fox,
+Microreboot-a technique for cheap recovery., in OSDI, vol. 4, pp. 31
+44, 2004.
+
+[25] L. Yang, M. Ikram, S. Gurumani, S. Fahmy, D. Chen, and K. Rup-
+trace-based verication for high-level synthesis, in Field
+now, Jit
+Programmable Technology (FPT), 2015 International Conference on,
+pp. 228231, IEEE, 2015.
+
+[26] C. Lattner, Llvm and clang: Next generation compiler technology, in
+
+The BSD Conference, pp. 12, 2008.
+
+

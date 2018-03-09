@@ -88,6 +88,8 @@ function load_doc(doc, summary) {
 
 	$("ul").fadeOut('fast', function(e) {
 		$("ul").empty();
+		$("#summ_contents").empty();
+		
 		$("ul").fadeIn('fast', function(e) {
 			for(var i in doc) {
 				item = '<li class="doc_line" id="'+ i +'">'+doc[i]+'</li>'

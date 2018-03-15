@@ -4,12 +4,33 @@
  * performs tasks required for the index of this website. 
  */
 
-/* Global Bars */
+/* Global vars */
 var cnvs;
 var ctx;
 var list;
 var type;
 
+/* Global Graphing Vars */
+var margin;
+var marginOverview;
+var selectorHeight;
+var width;
+var height;
+var heightOverview; 
+var maxLength;
+var barWidth;
+var numBars;
+var xscale;
+var yscale;
+var xAxis;
+var yAxis;
+var svg;
+var diagram;
+var bars;
+var xOverview;
+var subBars;
+var displayed;
+var tooltip;
 
 var text_decode 		= "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:".split("");
 var search_query 		= "";
@@ -110,7 +131,9 @@ function load_doc(doc, summary) {
 
 			if(Object.keys(entropy_map).length > 0) {
 				console.log("~ entropy found.");
-				load_bar_chart();
+				$("#entropy_graph_p").fadeIn('fast', function(e) {
+					load_bar_chart();
+				});
 			} else {
 				console.log(entropy_map);
 			}
@@ -168,6 +191,8 @@ function reset_sugar() {
 	doc 				= {};
 	$("#summary_display").fadeOut('fast', function() {
 			$("#doc_title").text("");
+			$("#entropy_graph_p").fadeOut('fast', function(e) {
+			});
 	});
 	start_up_coolness();
 	hide_term();
@@ -346,59 +371,180 @@ function start_up_coolness() {
 
 }
 
+
 function load_bar_chart() {
-	var data 	= entropy_map;
-	var data_x 	= [];
-	var data_y 	= [];
 
+	var wid = document.getElementById("entropy_graph").parentElement.clientWidth;
+	
+	var _data 	= entropy_map;
+	var data	= [];
 
-	for(var key in data) {
-	    if(data.hasOwnProperty(key)) {
-	    	data_x.push(key);
-	    	data_y.push(data[key]);
+	var i =0;
+	for(var key in _data) {
+	    if(_data.hasOwnProperty(key)) {
+	    	data.push({"xval":key , "yval":_data[key]})
+	    	i++;
+	    }
+	}
+	margin =  {top: 20, right: 45, bottom: 20, left: 45};
+	marginOverview = {top: 30, right: 10, bottom: 20, left: 40};
+	selectorHeight = 50;
+	width = wid - margin.left - margin.right;
+	height = 350 - margin.top - margin.bottom - selectorHeight;
+	heightOverview = 90 - marginOverview.top - marginOverview.bottom;
+	       
+	maxLength = 4+ d3.max(data, function (d) { return (""+d.xval).length; });
+	barWidth = maxLength * 7;
+	numBars = Math.round(width/barWidth);
+	isScrollDisplayed = barWidth * data.length > width;
+       
+	tooltip = d3.select("body").append("div").attr("class", "tooltip");
+
+	xscale = d3.scale.ordinal()
+	                .domain(data.slice(0,numBars).map(function (d) { return d.xval; }))
+	                .rangeBands([0, width], .2);
+
+	yscale = d3.scale.linear()
+								.domain([0, d3.max(data, function (d) { return d.yval; })])
+	              .range([height, 0]);
+	  
+	xAxis  = d3.svg.axis().scale(xscale).orient("bottom");
+	yAxis  = d3.svg.axis().scale(yscale).orient("left");
+	  
+	svg = d3.select("svg")
+				.attr("width", width + margin.left + margin.right)
+	        	.attr("height", height + margin.top + margin.bottom + selectorHeight);
+	  
+	diagram = svg.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	  
+	diagram.append("g")
+	  		 	.attr("class", "x axis")
+	       		.attr("transform", "translate(0, " + height + ")")
+	       		.call(xAxis);
+	  
+	diagram.append("g")
+	       .attr("class", "y axis")
+	       .call(yAxis);
+	  
+	bars = diagram.append("g");
+	  
+	bars.selectAll("rect")
+	            .data(data.slice(0, numBars), function (d) {return d.xval; })
+	            .enter().append("rect")
+	            .attr("class", "bar")
+	            .attr("x", function (d) { return xscale(d.xval); })
+	            .attr("y", function (d) { return yscale(d.yval); })
+	            .attr("width", xscale.rangeBand())
+				.on("mouseenter", function(d){
+					tooltip
+					.style("left", d3.event.pageX - 50 + "px")
+					.style("top", d3.event.pageY - 70 + "px")
+					.style("display", "inline-block")
+					.html("Sentence: "+ (d.xval) + ", Entropy: " + (d.yval));
+				})
+    			.on("mouseleave", function(d){ tooltip.style("display", "none");})
+	            .attr("height", function (d) { return height - yscale(d.yval); });
+
+	  
+	if (isScrollDisplayed)
+	{
+	  xOverview = d3.scale.ordinal()
+	                  .domain(data.map(function (d) { return d.xval; }))
+	                  .rangeBands([0, width], .2);
+	  yOverview = d3.scale.linear().range([heightOverview, 0]);
+	  yOverview.domain(yscale.domain());
+
+	  subBars = diagram.selectAll('.subBar')
+	      .data(data)
+
+	  subBars.enter().append("rect")
+	      .classed('subBar', true)
+	      .attr({
+	          height: function(d) {
+	              return heightOverview - yOverview(d.yval);
+	          },
+	          width: function(d) {
+	              return xOverview.rangeBand()
+	          },
+	          x: function(d) {
+	              return xOverview(d.xval);
+	          },
+	          y: function(d) {
+	              return height + heightOverview + yOverview(d.yval)
+	          }
+	      })
+
+	  displayed = d3.scale.quantize()
+	              .domain([0, width])
+	              .range(d3.range(data.length));
+
+	  diagram.append("rect")
+				.attr("transform", "translate(0, " + (height + margin.bottom) + ")")
+				.attr("class", "mover")
+				.attr("x", 0)
+				.attr("y", 0)
+				.attr("height", selectorHeight)
+				.attr("width", Math.round(parseFloat(numBars * width)/data.length))
+				.attr("pointer-events", "all")
+				.attr("cursor", "ew-resize")
+	            .call(d3.behavior.drag().on("drag", display));
+	}
+} 
+
+function display () {
+	
+	var _data 	= entropy_map;
+	var data	= [];
+
+	var i =0;
+	for(var key in _data) {
+	    if(_data.hasOwnProperty(key)) {
+	    	data.push({"xval":key , "yval":_data[key]})
+	    	i++;
 	    }
 	}
 
-	var svg = d3.select("svg"),
-	    margin = {top: 10, right: 10, bottom: 10, left: 10},
-	    width = +svg.attr("width") - margin.left - margin.right,
-	    height = +svg.attr("height") - margin.top - margin.bottom;
+    var x = parseInt(d3.select(this).attr("x")),
+        nx = x + d3.event.dx,
+        w = parseInt(d3.select(this).attr("width")),
+        f, nf, new_data, rects;
 
-	var x = d3.scaleBand().rangeRound([0, width]).paddingInner(0.1),
-	    y = d3.scaleLinear().rangeRound([height, 0]);
+    if ( nx < 0 || nx + w > width ) return;
 
-	var g = svg.append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    d3.select(this).attr("x", nx);
+
+    f = displayed(x);
+    nf = displayed(nx);
+
+    if ( f === nf ) return;
+
+    new_data = data.slice(nf, nf + numBars);
+    xscale.domain(new_data.map(function (d) { return d.xval; }));
+    diagram.select(".x.axis").call(xAxis);
+
+    rects = bars.selectAll("rect")
+	    .data(new_data, function (d) {return d.xval; });
 
 
-  x.domain([0, d3.max(data_x, function(d) { return data_x; })]);
-  console.log([0, d3.max(data_x, function(d) { return data_x; })]);
-  y.domain([0, d3.max(data_y, function(d) { return data_y; })]);
+	 	rects.attr("x", function (d) { return xscale(d.xval); });
 
-  g.append("g")
-      .attr("class", "axis axis--x")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-  g.append("g")
-      .attr("class", "axis axis--y")
-      .call(d3.axisLeft(y).ticks(10, "%"))
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "0.71em")
-      .attr("text-anchor", "end")
-      .text("Frequency");
-
-  g.selectAll(".bar")
-    .data(data)
-    .enter().append("rect")
+    rects.enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(data_x); })
-      .attr("y", function(d) { return y(data_y); })
-      .attr("width", x.bandwidth())
-      .attr("height", function(d) { return height - y(data_y); });
+      .attr("x", function (d) { return xscale(d.xval); })
+      .attr("y", function (d) { return yscale(d.yval); })
+		.on("mouseenter", function(d){
+			tooltip
+			.style("left", d3.event.pageX - 50 + "px")
+			.style("top", d3.event.pageY - 70 + "px")
+			.style("display", "inline-block")
+			.html("Sentence: "+ (d.xval) + ", Entropy: " + (d.yval));
+		})
+		.on("mouseleave", function(d){ tooltip.style("display", "none");})
+      .attr("width", xscale.rangeBand())
+      .attr("height", function (d) { return height - yscale(d.yval); });
 
+    rects.exit().remove();
 }
 
 

@@ -1,0 +1,41 @@
+.bar {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+  
+.subBar { 
+  fill: gray;
+  opacity: 0.5;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill: steelblue;
+  fill-opacity: .25;
+  shape-rendering: crispEdges;
+}
+
+rect.mover {
+  stroke: red;
+  stroke-opacity: .1;
+  fill: lightSteelBlue;
+  fill-opacity: .5;
+}
+
+.tooltip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  color: white;
+  background:rgba(0,0,0,0.6);
+  padding: 14px;
+  text-align: center;
+}

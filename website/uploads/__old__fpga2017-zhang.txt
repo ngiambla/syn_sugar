@@ -1,0 +1,1716 @@
+Appears in ACM FPGA 2017
+
+Frequency Domain Acceleration of Convolutional Neural
+
+Networks on CPU-FPGA Shared Memory System
+
+Ming Hsieh Department of Electrical Engineering
+
+University of Southern California, Los Angeles, USA 90089
+
+Chi Zhang, Viktor Prasanna
+
+{zhan527, prasanna}@usc.edu
+
+ABSTRACT
+We present a novel mechanism to accelerate state-of-art Con-
+volutional Neural Networks (CNNs) on CPU-FPGA plat-
+form with coherent shared memory. First, we exploit Fast
+Fourier Transform (FFT) and Overlap-and-Add (OaA) to
+reduce the computational requirements of the convolutional
+layer. We map the frequency domain algorithms onto a
+highly-parallel OaA-based 2D convolver design on the FPGA.
+Then, we propose a novel data layout in shared memory
+for ecient data communication between the CPU and the
+FPGA. To reduce the memory access latency and sustain
+peak performance of the FPGA, our design employs dou-
+ble buering. To reduce the inter-layer data remapping la-
+tency, we exploit concurrent processing on the CPU and
+the FPGA. Our approach can be applied to any kernel size
+less than the chosen FFT size with appropriate zero-padding
+leading to acceleration of a wide range of CNN models. We
+exploit the data parallelism of OaA-based 2D convolver and
+task parallelism to scale the overall system performance.
+By using OaA, the number of oating point operations is
+reduced by 39.14%  54.10% for the state-of-art CNNs. We
+implement VGG16, AlexNet and GoogLeNet on Intel Quick-
+Assist QPI FPGA Platform. These designs sustain 123.48
+GFLOPs/sec, 83.00 GFLOPs/sec and 96.60 GFLOPs/sec,
+respectively. Compared with the state-of-the-art AlexNet
+implementation, our design achieves 1.35x GFLOPs/sec im-
+provement using 3.33x less multipliers and 1.1x less mem-
+ory. Compared with the state-of-art VGG16 implementa-
+tion, our design has 0.66x GFLOPs/sec using 3.48x less mul-
+tipliers without impacting the classication accuracy. For
+GoogLeNet implementation, our design achieves 5.56x im-
+provement in performance compared with 16 threads run-
+ning on a 10 Core Intel Xeon Processor at 2.8 GHz.
+
+This work is supported by the US NSF under grants ACI-
+
+1339756 and CCF-1320211. This work is also supported in
+part by Intel Strategic Research Alliance funding. Equip-
+ment grant from the Intel Hardware Accelerator Research
+Program is gratefully acknowledged.
+
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for prot or commercial advantage and that copies bear this notice and the full cita-
+tion on the rst page. Copyrights for components of this work owned by others than
+ACM must be honored. Abstracting with credit is permitted. To copy otherwise, or re-
+publish, to post on servers or to redistribute to lists, requires prior specic permission
+and/or a fee. Request permissions from permissions@acm.org.
+FPGA 17, February 22-24, 2017, Monterey, CA, USA
+c(cid:13) 2017 ACM. ISBN 978-1-4503-4354-1/17/02. . . $15.00
+DOI: http://dx.doi.org/10.1145/3020078.3021727
+
+Keywords
+Convolutional Neural Networks; Discrete Fourier Transform;
+Overlap-and-Add; CPU; FPGA; Shared Memory; Double
+Buering; Concurrent Processing
+
+1.
+
+INTRODUCTION
+
+Convolutional Neural Network (CNN)[9, 15, 17, 20] has
+been widely used in image recognition, video analysis and
+natural language processing. Its high computational com-
+plexity and need for real-time performance in many applica-
+tions, has lead to several eorts to accelerate CNN. Various
+accelerators and libraries have been developed on FPGA[4,
+13, 16, 21], GPU[14], multi-core processor[23] for both infer-
+ence and training.
+
+Due to the high computational complexity of the convolu-
+tional layer, prior work has addressed parallelism of the com-
+putation by unrolling the 2D convolution to matrix multipli-
+cation[12] or reducing the number of operations using Fast
+Fourier Transform[10]. However, parallelization by unrolling
+encounters a bottleneck due to limited on-chip memory of
+FPGAs. Even though FFT provides an asymptotically supe-
+rior approach, the large gap between the input feature map
+size and kernel size makes it very inecient. Other attempts
+include compressing the model using approximation[22] and
+data quantization techniques[13] while sacricing some clas-
+sication accuracy.
+
+Recently, heterogeneous architectures employing FPGA
+accelerators have become attractive including Xilinx Zynq,
+Convey-HC2 and Intel QuickAssist QPI FPGA Platform[19,
+8, 11]. The shared memory and high speed interconnection
+in these platforms makes data communication more ecient
+between the CPU and the FPGA compared with earlier plat-
+forms. The exibility of CPU and massive parallelism of
+FPGA makes accelerating large scale CNNs promising. Our
+design eectively uses the CPU-FPGA platform as follows:
+ We exploit the massive parallelism of FPGA to accel-
+erate the most computationally intensive and universal
+operation (2D convolution) and leave the other layer
+specic work to the general purpose processor. This
+makes our approach highly exible and applicable to
+a wide range of CNN architectures.
+
+ We characterize the parallelism of our FPGA accel-
+erator by data parallelism and task parallelism. Data
+parallelism is determined by the convolver design while
+task parallelism is determined by the number of con-
+volvers operating in parallel. We carefully optimize the
+design to eectively use the available FPGA resources.
+
+We develop a highly-parallelized convolver in frequency
+domain on FPGA and a software engine on CPU for inter-
+layer data remapping including ReLU layer. The CPU is also
+responsible for optional pooling layer, normalization layer
+and fully-connected layer after the convolutional layers. The
+main contributions of this paper are:
+
+ We make a quantitative analysis of the required num-
+ber of oating point operations in convolutional layers
+by space convolution1 and by using Fast Fourier Trans-
+form (FFT) and Overlap-and-Add (OaA) [18].
+
+ We propose a highly-parallelized OaA-based 2D con-
+volver architecture on FPGA to accelerate the convo-
+lutional layers.
+
+ To make a fair comparison among various convolvers,
+we use a composite performance metric in signal pro-
+cessing called Delay-Multiplier (DM) Product. We
+demonstrate the superiority of OaA-based convolver
+by showing that there always exists a FFT size such
+that the DM Product of OaA-based convolver is less
+than that of space convolver for typical kernel sizes.
+ We exploit double buering technique on FPGA to
+reduce the memory access latency. We make a quan-
+titative analysis of the tradeo between the on-chip
+memory consumption and the memory access latency.
+ We propose a novel data layout in the shared mem-
+ory for ecient data communication between CPU and
+FPGA. We also propose a software engine on CPU to
+perform data remapping between layers working con-
+currently with FPGA.
+
+ We evaluate our work by implementing VGG16[15],
+AlexNet[9] and GoogLeNet[17] on Intel QuickAssist
+QPI FPGA Platform. Experimental results show that
+our designs achieve 2.28x  4.5x improvement in re-
+source eciency and 0.48x  1.90x improvement in
+power eciency.
+
+2. BACKGROUND
+2.1 CNN in Frequency Domain
+
+Typically, a CNN contains four building blocks, known
+as convolutional layer, ReLU layer, pooling layer and fully-
+connected(FC) layer. The overall architecture of a CNN is
+a connection of several such building blocks to form a very
+deep classication system.
+2.1.1 Convolutional Layer
+Throughout this paper, we use the following notations.
+ Input feature maps of size Nin  Nin  Din
+ Dout kernels, each of size F  F  Din
+ Output feature maps of size Nout  Nout  Dout
+
+The convolutional layer serves as a feature extractor. For
+each Nin  Nin input feature map2, it performs 2D convolu-
+tion with the shifting F  F kernel map of the same depth
+in each kernel with stride S. Then Din output maps are
+1We use space convolution to refer to direct convolution.
+2We assume that zero-padding before the convolutional layer
+is included in Nin.
+
+Figure 1: Summary of Various Approaches to Accelerate
+CNN
+
+summed up to obtain one output feature map. This pro-
+cess is repeated for all Dout kernels to obtain the complete
+Nout  Nout  Dout output feature maps. Note that
+
+Nout =
+
++ 1
+
+(1)
+
+Nin  F
+
+S
+
+2D Convolution and 2D FFT. 2D Convolution can
+be computed using 2D Fast Fourier Transform (FFT) as
+follows[18]:
+
+y = CONV2(x, f ) = IFFT2(FFT2(x).  FFT2(f ))
+
+(2)
+where x is a Nin  Nin input, f is a F  F kernel, y is the
+output of size Nout  Nout. 2D FFT can be computed as 1D
+FFT of each row followed by 1D FFT of each column.
+
+inF 2) to (N 2
+
+Using 2D FFT reduces the computation complexity of a
+convolutional layer from (N 2
+in log Nin). How-
+ever, it is worth noticing that the overhead of FFT and addi-
+tional operations due to zero-padding and stride cannot be
+neglected, especially when dealing with small kernels as in
+most CNNs. In traditional signal processing, Overlap-and-
+Add (OaA) [18] is used to eciently calculate the discrete
+convolution of a long input signal with a small kernel. By
+using OaA, we can further reduce the computational com-
+plexity of a convolutional layer to (N 2
+2.1.2 Other Layers
+Besides convolutional layer, CNN also contains three other
+
+in log F ) [6].
+
+layers including ReLU layer, pooling layer and fully-connected
+layer. It is still challenging to compute these layers in fre-
+quency domain due to the non-linearity of ReLU layer. The
+computation of a fully-connected layer can be viewed as
+large matrix-vector multiplication, which has been optimized
+on FPGA in earlier designs[13].
+
+3. RELATED WORK
+
+We summarize various approaches to accelerate CNN and
+highlight our focus in Figure 1. Currently, there are three
+main approaches to accelerate CNN including algorithm, au-
+tomatic code generation and hardware. Using FFT to reduce
+the convolutional layer computation complexity is studied in
+[10, 6]. Using singular value decomposition (SVD) to accel-
+erate fully-connected layer on FPGA is studied in [13].
+
+In order to compress the CNN model, a new architecture
+called SqueezeNet is studied in [7]. Another eort to com-
+press the model is to shrink the data precision from 32-bit
+
+AlgorithmLevelModel CompressionComputation ReductionFast Fourier TransformSingular Value DecompositionOverlap-and-AddShrink Model RepresentationShrink Data PrecisionConvolutional Neural Network AccelerationHardwareLevelOptimize Computation EngineOptimize Memory SystemHeterogeneous Platform Concurrent ProcessingHigh Throughput ConvolverHigh Throughput FFT EngineDouble BueringHide Memory LatencyCPU + FPGA Shared Memory SystemAutomatic Code GenerationHigh-level SynthesisFigure 2: CPU-FPGA Shared Memory Model
+
+(a) 2D OaA for original input feature maps layout (Only one kernel
+is shown above)
+
+Figure 3: Proposed Mapping
+
+oating point to 16 bit or even 8 bit xed-point while pre-
+serving classication accuracy.
+
+Hardware-level optimization is targeted for FPGA imple-
+mentation. A high throughput convolver and a FFT engine
+has been studied in [2]. For large-scale CNN acceleration on
+FPGA, memory system optimization is the key to sustaining
+peak performance on a FPGA. A general strategy is to bal-
+ance the computation throughput and memory bandwidth.
+Data buering techniques can be used to hide the memory
+access latency. Concurrent processing on FPGA and CPU
+can further improve performance.
+
+4. SYSTEM-LEVEL FRAMEWORK
+4.1 Shared Memory Model
+
+The shared memory model of CPU-FPGA platform is
+shown in Figure 2. Similar to the CPU load/store instruc-
+tion, FPGA can send memory access request to the coherent
+memory system to perform read/write operations. A mem-
+ory fetch unit and memory request and response buer is
+implemented on FPGA.
+
+The address space of the CPU user program is the entire
+main memory while the FPGA can only access a portion
+of it. To transfer data between the shared memory address
+space and the CPU thread private address space, a memory
+relay engine is implemented as a thread on the CPU.
+
+In the shared memory model, the FPGA can be viewed
+as a special thread, which operates on the same set of data
+with CPU. Using a synchronization mechanism, CPU and
+FPGA can process dierent portions of the shared data con-
+currently.
+4.2 Mapping Choices on CPU and FPGA
+
+The CPU-FPGA heterogeneous platform provides a ex-
+ible CPU for light-weight operations and a FPGA for high
+performance parallel computing. Besides, the shared mem-
+ory model provides an easy and ecient mechanism for FPGA
+to access data. Thus, various design choices can be made to
+accelerate CNNs. We identify our design choices in Figure 3.
+
+(b) 2D Overlap-and-Add for unrolled input feature maps tiles
+
+Figure 4: Illustration of 2D Overlap-and-Add
+
+As mentioned in [21], the convolutional layer occupies
+more than 90% of the total computation time in a CNN.
+Also, the convolution operations can be fully pipelined and
+parallelized on FPGA when transformed into frequency do-
+main. The convolutional layer is mandatory inside all CNNs.
+By using Overlap-and-Add, we can build a generic convolver
+on FPGA for any kernel size less than the chosen FFT size.
+The overlap varies with respect to the kernel size. The
+computation time required by performing overlap is much
+smaller compared with the time to perform 2D convolution.
+The ReLU layer is a threshold function, which takes very
+little time to compute on the CPU. The pooling layer takes
+the maximum value over a certain window, which is also a
+light-weight computation. The depth concatenation is op-
+tional and can be performed while the CPU is rearranging
+the data output from the FPGA. The shared memory model
+enables concurrent processing on the CPU and the FPGA,
+which reduces the overall computation latency further.
+
+5. FREQUENCY DOMAIN 2D CONVOLVER
+The 2D convolver is the key computation engine on FPGA
+to accelerate CNN inference. A traditional convolver on
+recongurable architecture is studied in [1]. Note that it
+cannot be used for dierent kernel sizes at run time. Also,
+the data parallelism of the design is too low to support high
+throughput computations. To address these issues, we pro-
+pose a high throughput 2D convolver based on FFT and
+Overlap-and-Add (OaA) [18].
+5.1
+
+2D Overlap-and-Add
+
+In traditional signal processing, Overlap-and-Add (OaA)
+is used to eciently calculate the discrete convolution of a
+very long input signal with a small lter. Typical kernel
+sizes in CNN are 1 1, 3 3, 5 5 and 7 7, which are much
+
+Memory Fetch UnitInputoutputmemory response buermemory requestbuerCoherent Memory InterfaceFPGAShared MemoryAddress SpaceCoherent Memory InterfaceMemory RelayEngineMain MemoryHigh Speed InterconnectionAcceleratorAcceleratorAcceleratorPrepare Input Feature Maps, kernels (CPU)Accelerate CONV layer (FPGA)Overlap (CPU)ReLU (CPU)Pooling (CPU) (Optional)Depth Concatenation (CPU) (Optional)Fully-Connected (CPU)Zero Padding + 2D FFT(1, 1, 3)(1, 2, 3)(1, 3, 3)(1, 4, 3)(2, 1, 3)(3, 1, 3)(4, 1, 3)(1, 1, 2)(1, 2, 2)(1, 3, 2)(1, 4, 2)(2, 1, 2)(3, 1, 2)(4, 1, 2)(1, 1, 1)(1, 2, 1)(1, 3, 1)(1, 4, 1)(2, 1, 1)(2, 2, 1)(2, 3, 1)(2, 4, 1)(3, 1, 1)(3, 2, 1)(3, 3, 1)(3, 4, 1)(4, 1, 1)(4, 2, 1)(4, 3, 1)(4, 4, 1)(1, 1, 3)(1, 2, 3)(1, 3, 3)(1, 4, 3)(2, 1, 3)(3, 1, 3)(4, 1, 3)(1, 1, 2)(1, 2, 2)(1, 3, 2)(1, 4, 2)(2, 1, 2)(3, 1, 2)(4, 1, 2)(1, 1, 1)(1, 2, 1)(1, 3, 1)(1, 4, 1)(2, 1, 1)(2, 2, 1)(2, 3, 1)(2, 4, 1)(3, 1, 1)(3, 2, 1)(3, 3, 1)(3, 4, 1(cid:12)(4, 1, 1)(4, 2, 1)(4, 3, 1)(4, 4, 1)|{z}L|{z}L|{z}P|{z}P|{z}P|{z}P|{z}F 1Sum + 2D IFFT(1, 1)(1, 2)(1, 3)(1, 4)(2, 1)(2, 2)(2, 3)(2, 4)(3, 1)(4, 1)(3, 2)(4, 2)(3, 3)(3, 4)(4, 3)(4, 4)HadamardProduct321|{z}F|{z}F321Zero Padding + 2D FFT321|{z}P|{z}P|{z}P|{z}PNinDinNin|{z}F 1|{z}SSelect valid results for next layerPPDin(1, 1, 4)(1, 1, 3)(1, 1, 2)(1, 1, 1)|{z}PPDin(1, 2, 4)(1, 2, 3)(1, 2, 2)(1, 2, 1)|{z}PPDin(4, 4, 4)(4, 4, 3)(4, 4, 2)(4, 4, 1)|{z}PPDin|{z}PPDin|{z}PPDin|{z}dNinLe2|{z}Unrolled Input Feature Maps in Tile (after FFT)Dout Kernels in Frequency DomainMultiply-AccumulateOverlap-and-AddOutput Feature Maps(1, 1)(1, 2)(1, 3)(1, 4)(2, 1)(2, 2)(2, 3)(2, 4)(3, 1)(4, 1)(3, 2)(4, 2)(3, 3)(3, 4)(4, 3)(4, 4)(1, 1)(1, 2)(1, 3)(1, 4)(2, 1)(2, 2)(2, 3)(2, 4)(3, 1)(4, 1)(3, 2)(4, 2)(3, 3)(3, 4)(4, 3)(4, 4)(1, 1, 1)(1, 2, 1)(1, 3, 1)(1, 4, 1)(2, 1, 1)(2, 2, 1)(2, 3, 1)(2, 4, 1)(3, 1, 1)(4, 1, 1)(3, 2, 1)(4, 2, 1)(3, 3, 1)(3, 4, 1)(4, 3, 1)(4, 4, 1)Figure 5: Diagram of OaA-based 2D Convolver
+
+smaller compared with the input feature map size. This
+makes OaA suitable for this task.
+The 2D Overlap-and-Add technique is illustrated in Fig-
+ure 4a. The input is a NinNinDin feature map and Dout
+kernels, each size F  F  Din. The steps of 2D Overlap-
+and-Add are:
+
+1. Choose the row and column FFT size P , such that
+
+P  F and P is a power of 2.
+
+2. Pad each F  F kernel map to P  P and perform P
+point 2D FFT to each map inside each kernel. (Note
+this can be performed in advance and stored in the
+main memory for inference)
+
+3. Divide the input feature map into L L tiles (If Nin is
+not divisible by L, use zero padding), where L+F1 =
+P . Then, pad each L L tile to P  P and perform P
+point 2D FFT to each tile.
+
+4. For each (i, j) pair, perform Hadamard Product of
+each input feature tile (i, j, 1), . . . , (i, j, Din) with cor-
+responding kernel map 1, 2, . . . , Din of kth kernel. Then
+sum them up and perform P point 2D inverse FFT
+(IFFT) to obtain output tile (i, j, k).
+
+5. Each output tile (i, j, k) overlaps with its neighboring
+tile with a stride of width F  1 as shown in Figure 4a.
+The green stride is overlapped by 2 tiles and red stride
+is overlapped by 4 tiles. Add all the overlapped items
+to produce one output feature map.
+
+6. Note that not all the computed results are used as
+input feature maps for the next layer. First, crop out
+the boundary region of width F  1. Then, select the
+results with a stride of S as shown in Figure 4a.
+
+7. Repeat Step 3 to 6 for all Dout kernels and concate-
+nate the results in depth to obtain the complete output
+feature map.
+
+Note that in Step 4, it is valid to perform the sum rst
+and then perform 2D IFFT due to the linearity of IFFT.
+This will signicantly reduce the amount of computations
+performed in IFFT.
+5.2 OaA-based 2D Convolver
+
+The proposed OaA-based 2D convolver is shown in Fig-
+ure 5.
+It contains three stages including 2D FFT Ker-
+nel, Multiply-and-Accumulate (MAC) and 2D IFFT Kernel.
+The data parallelism of this architecture is P 2, where P is
+the 1D FFT size. The MAC unit must support complex
+numbers. A canonical complex number multiplier contains
+3 oating-point multipliers [5].
+
+Figure 6: Diagram of Space 2D Convolver
+
+L (cid:101)2
+
+To illustrate how the input data is fed into the convolver,
+we redraw the 2D Overlap-and-Add for the unrolled input
+feature tiles in Figure 4b. There are in total (cid:100) Nin
+input
+feature tiles. For each kernel, we perform MAC with all
+the input tiles and overlap the results to obtain one output
+feature map. We then repeat the process for all the kernels
+to obtain the complete output feature maps.
+The input of the convolver is one P  P tile of each input
+feature map and P  P map with the same depth of certain
+kernel. Note that the architecture shown in Figure 5 does
+not perform nal overlapping. The reason is that the over-
+lapped stride width is determined by the kernel size, which
+can change at run time for dierent layers. It is inecient to
+build a specic hardware module compared with performing
+overlapping on CPU, given that it is a light-weighted com-
+putation.
+
+The main motivation to use OaA to perform 2D con-
+volution is to reduce the number of oating point oper-
+ations asymptotically as well as increase the data paral-
+lelism. The computational complexity of space convolu-
+tion and OaA convolution is O(N 2
+in log F ) re-
+spectively3[6]. However, given that the kernel size is often
+small, the constant factor cannot be ignored and detailed
+analysis needs to be performed.
+5.3 Performance Analysis
+
+inF 2), O(N 2
+
+We assume the convolvers are all pipelined and no pipeline
+bubbles are fed into the convolver during any clock cycle.
+For space convolver, the kernels are in time domain. For
+OaA-based convolver, the kernels are in frequency domain.
+5.3.1 Performance Metric
+We consider the Delay-Multiplier Product in traditional
+signal processing as a key performance metric to compare
+convolver designs employing various algorithms. It is dened
+as the delay (# of cycles) to process a complete convolutional
+layer times the number of multipliers used. Since we only
+compare the performance of the computation engines:
+
+ Power consumption of the convolver is proportional to
+
+the number of multipliers.
+
+ Area of the convolver is proportional to the number of
+
+multipliers.
+
+Thus, the Delay-Multiplier Product is an approximation
+to Delay-Power Product, which is the energy dissipated by
+the design. Note that the Delay-Power Product is also an
+approximation to the Area-Delay Product, which is a key
+metric to evaluate the eciency of a hardware design.
+
+3We consider FFT-based convolution as a special case of
+OaA-based convolution, where L = Nin.
+
+1DIFFT1DIFFT1D IFFT1DIFFT1DIFFT1DIFFT1D IFFT1DIFFTStream Matrix Transpose|{z}2DIFFTKernel1DFFT1DFFT1D FFT1DFFT1DFFT1DFFT1D FFT1DFFTStream Matrix Transpose|{z}2DFFTKernelz}|{Streaminputfeaturemaps++++|{z}MACInputkernels|{z}StreamoutputfeaturemapsP2|{z}RowFFT|{z}RowIFFT|{z}ColumnIFFT|{z}ColumnFFT++++Input FeatureMapsInput Kernels++Multiplier ArrayAdder Tree++AccumulatorOutput(a) AlexNet (2012)
+
+(b) VGG16 (2014)
+
+(c) GoogLeNet (2014)
+
+Figure 7: Floating Point Operations required in various state-of-art CNNs
+
+Table 1: # of multipliers needed for various 1D FFT kernels
+
+FFT size
+
+# of multipliers
+
+4
+0
+
+8
+4
+
+16
+24
+
+32
+88
+
+ratio as
+
+DM ratio =
+
+DMspace
+DMOaA
+
+=
+
+( NinF
+
+S + 1)2  F 2
+
+(cid:100) Nin
+
+L (cid:101)2  (3P 2 + 4P  Nmult)
+
+(7)
+
+Nin  F
+
+S
+
+Nin  F
+
+Table 2: Space-OaA convolver DM ratio with various kernel
+and FFT sizes, S = 1, Nin (cid:29) F
+Kernel size
+
+FFT size
+DM ratio
+Kernel size
+
+FFT size
+DM ratio
+
+3
+4
+
+3
+8
+
+0.75
+
+1.01
+
+3
+16
+0.77
+
+7
+16
+
+7
+32
+
+9
+16
+
+5
+8
+
+5
+16
+
+7
+8
+
+1.25
+
+1.56
+
+9
+32
+
+11
+16
+
+0.61
+11
+32
+
+2.12
+
+2.31
+
+2.25
+
+3.25
+
+1.89
+
+4.09
+
+Space Convolver
+
+5.3.2
+We show the diagram of a space 2D convolver in Figure 6.
+It consumes FF multipliers and can produce 1 valid output
+every 1
+Din
+
+clock cycle. Thus, the total latency4 Dspace is
+
+Dspace = (
+
++ 1)2  Din  Dout
+
+(3)
+
+The delay-multiplier product is
+
+DMspace = (
+
++ 1)2  Din  Dout  F 2
+
+(4)
+
+S
+5.3.3 OaA Convolver
+According to Figure 4b, for each input tile and kernel pair,
+
+we need Din cycles to process. There are (cid:100) Nin
+pairs. Thus,
+
+L (cid:101)2  Dout such
+
+DOaA = (cid:100) Nin
+L
+
+(cid:101)2  Din  Dout
+
+(5)
+
+The number of multipliers needed in various FFT sizes is
+shown in Table 1. In addition, we need P 2 complex mul-
+tipliers to perform MAC, each containing 3 oating point
+multipliers [5]. Thus, the delay-multiplier product of OaA
+convolver is:
+
+DMOaA = (cid:100) Nin
+L
+
+(cid:101)2  Din  Dout  (3P 2 + 4P  Nmult)
+
+(6)
+
+where Nmult is the number of multipliers in each 1D FFT
+kernel.
+5.3.4 Performance Comparison
+DM Product comparison. To compare OaA convolver
+with space convolver, we dene the space-OaA convolver DM
+
+4We ignore the latency to ll and drain the pipeline since
+they are too small compared with the total processing time.
+
+We assume the stride is 1 and Nin (cid:29) F as in most convo-
+lutional layers. Using P = L + F  1, we can simplify Eq 7
+as:
+
+DM ratio =
+
+(P  F + 1)2F 2
+3P 2 + 4P  Nmult
+
+(8)
+
+We show the space-OaA convolver DM ratio with typical
+kernel and FFT sizes in Table 2. As shown in Table 2,
+for each typical kernel size 3, 5, 7, 9, 11, we can always
+nd a FFT size such that the OaA convolver is superior
+to space convolver in terms of Delay-Multiplier Product as
+emphasized in bold. In practice, we choose the FFT size to
+maximize the DM ratio given on-chip resource and memory
+bandwidth constraints.
+
+Computational Complexity. The total number of oat-
+ing point operations required by various state-of-the-art CNNs
+using space convolution and OaA convolution is shown in
+Figure 7. For AlexNet, VGG16 and GoogLeNet, using OaA
+convolution can reduce the the total number of oating point
+operations by 48.82%, 54.10%, 19.79%, respectively, com-
+pared with the space convolution. Note that in GoogLeNet
+Inception Module, more than half of the convolutional layers
+use 1  1 kernels; in this case using overlap-and-add is not
+advantageous. If we use space convolution in convolutional
+layers with 1  1 kernels and use OaA convolution for the
+rest of the convolutional layers, we can reduce the the total
+number of oating point operations by 39.43% as shown in
+Figure 7c grey bars.
+
+Reduced computational complexity can lead to less ex-
+ecution time and higher energy eciency given the same
+computational resources (# of multipliers). We dene the
+throughput as the number of outputs produced in each cycle
+by the convolver. It is determined by the hardware mapping
+of the algorithm. For OaA-based convolver, the throughput
+is O(P 2) as shown in Figure 5, whereas the throughput of
+the adder-tree based space convolver is O(1) as shown in
+Figure 6.
+
+Flexibility. The OaA convolver can be exploited to ac-
+celerate any kernel size less than the FFT size P at run
+time if the data in the shared memory is appropriately zero-
+padded. This can be easily achieved by choosing the cor-
+responding tile size L and performing data rearrangement
+using the CPU for dierent convolutional layers.
+
+0123CONV1CONV2CONV3CONV4CONV5TotalAlexNetCONVLayer	(GFLOP)Space	ConvolutionOverlap-and-Add010203040CONV1CONV2CONV3CONV4CONV5TotalVGG16CONVLayer(GFLOP)Space	ConvolutionOverlap-and-Add0510CONV1CONV2INCEP3INCEP4INCEP5TotalGoogLeNet	CONV	Layer(GFLOP)Space	ConvolutionOverlap-and-AddOaA	+	Space(a) On Chip Memory Layout for Image and Kernel
+
+Figure 8: An example of folding 2D FFT Kernel
+
+(b) Data Layout in Shared Memory Address Space
+
+Figure 10: Data Layout for Convolutional Layer with 4  4
+input feature map and 3  3 kernels, Ti = 3, Tk = 2, x =
+4  Din, y = 4  Din
+
+nel and the frequency domain input feature map is stored
+in the image buers. The kernel data is directly stored in
+the kernel buers. The MAC array is the main computa-
+tion engine, which reads data from the image and kernel
+buers and performs MAC operations. Each accumulated
+result is sent to 2D IFFT kernel and the output data is sent
+to the shared memory. The data width switching registers
+are needed to match the MAC array output data parallelism
+with the communication channel data width. Note that the
+switcher registers will not overow since the MAC array pro-
+duces results every Din cycles. Since the focus of this paper
+is CNN inference, we can assume that all the kernels are in
+frequency domain. These can be precomputed and stored in
+the main memory. In this section, we further explore task
+parallelism to scale the system performance. We dene,
+ Ti: The number of input feature maps processed in
+
+parallel in each cycle.
+
+ Tk: The number of kernel maps processed in parallel
+
+in each cycle.
+
+Note that we need to perform MAC operations between each
+input feature map and each kernel map. Thus, the total
+system task parallelism Tt = TiTk. Figure 9 illustrates the
+design for Ti = 3, Tk = 1.
+As mentioned in Section 5, it is inecient to perform con-
+volution layer with 1  1 kernel in frequency domain. Thus,
+a 1-by-1 kernel bypassing is added to the original data
+path as shown in Figure 9. In this case, the input feature
+maps are directly stored and the kernels are in time domain.
+The 2D IFFT is also bypassed and accumulated results are
+sent directly to the shared memory. To support 1-by-1 ker-
+nel bypassing, we design the MAC array to support both
+real numbers and complex numbers.
+
+Figure 9: Overall System Design on FPGA, Ti = 3, Tk = 1
+
+6. OVERALL SYSTEM DESIGN
+
+In Section 5, we assumed that the convolvers are running
+at the peak performance with no pipeline stalls. However,
+this may not be true if the design is bounded by memory
+bandwidth. This causes the computation engines on the
+FPGA to be stalled waiting for the input data from the
+external memory. The data parallelism of the 2D convolver
+may be larger than the communication channel data width.
+In this case, we need to fold the 2D FFT Kernel to match
+the communication channel data width and make the design
+scalable.
+6.1 Folding 2D FFT Kernel
+
+In order to match data parallelism with the communica-
+tion channel data width W , we can reduce the data paral-
+lelism of the 2D FFT kernel. As shown in Figure 8, we fold
+it by a factor of K, where 1  K  P and K is a divisor of
+P such that W  P 2
+K . The data parallelism after folding is
+P 2
+K and the number of 1D FFT kernels required is 2P
+K . In or-
+der to support streaming matrix transpose for data arriving
+in consecutive cycles, we apply the techniques described in
+[3]. Matrix transpose is a special form of data permutation
+and by storing the data using intermediate RAMs, we can
+achieve matrix transpose for data arriving in consecutive cy-
+cles. The additional on-chip memory needed for folding 2D
+FFT kernel is 8P 2 bytes.
+6.2 Overall System Diagram
+
+The overall system is shown in Figure 9. The input data
+from shared memory can be either input feature maps or
+kernels. The input feature map data is sent to 2D FFT Ker-
+
+1DFFT1DFFT1D FFT1DFFT1DFFT1DFFT1D FFT1DFFTC X C Crossbarz}|{Streaminputfeaturemaps|{z}RowFFT|{z}ColumnFFTC X C Crossbar|{z}StreamMatrixTransposeusingRAMs|{z}PPoint2DFFTKernelFoldedbyKC=P2K2D FFT Kernel2D FFT Kernel2D FFT KernelKernel Buer 0Kernel Buer 1Memory Response From Shared Memory(Input Feature Maps/Kernels)Image Buer 0Image Buer 1WMuxMux+++TiP2TiTkP2MAC2D IFFT Kernel2D IFFT Kernel2D IFFT KernelMemory Request to Shared Memory(Output Feature Maps)WMux1x1 Kernel BypassingWTkP2Mux1x1 Kernel BypassingWWWWWWData WidthSwitching Registers(3, 2)(3, 3)(3, 4)(2, 3)(2, 4)(3, 1)(1, 4)(2, 1)(2, 2)(1, 1)(1, 2)(1, 3)Din|{z}|{z}P2|{z}x lines in depth|{z}Ti image tiles in parallel78563412Din|{z}|{z}P2|{z}y lines in depth|{z}Tk kernels in parallelInput feature mapsKernelsOutput feature mapsUnoccupied Shared Address Space(1, 1)(1, 2)(4, 4)(1, 1, 1)(1, 1, 2)(1, 1, 3)(1, 1, 4)(1, 1, 1)(1, 2, 1)(1, 3, 1)(1, 1, 2)(1, 2, 2)(1, 3, 2)(3, 4, 2)(3, 4, 2)(3, 4, 2)(1, 1, 3)(1, 2, 3)(1, 3, 3)Output feature tiles computed by image buer tile (1, 1), (1, 2), (1, 3) and kernel buer 1 and 2Output feature tiles computed by image buer rest tiles and rest kernels|{z}|{z}read address image = 0; read address kernel = 0;
+for image start line = 0 to x  1 by Din
+
+current image line = image start line;
+for current kernel line = 0 to y  1
+
+read address image = current image line;
+read address kernel = current kernel line;
+if current image line == image start line + Din  1
+
+current image line = image start line;
+
+else
+
+current image line = current image line + 1;
+
+end
+
+end
+
+end
+
+Code 1: Image and Kernel Buer Read Address Computation
+
+6.3 Optimizing Memory Subsystem
+
+6.3.1 Data Layout
+Input feature maps and kernels. We show the shared
+memory data layout in Figure 10b. The input feature maps
+and kernel data is stored tile by tile instead of the original
+3D array. This enables the FPGA to access data through
+continuous virtual addresses instead of scattered pointers;
+this improves the cache performance due to high spatial lo-
+cality.
+
+On-chip memory. The data layout for on-chip input
+feature maps and kernels is also tile by tile as shown in
+Figure 10a. The P 2 data in one input feature map tile or
+one kernel map is unrolled and stored in parallel as shown
+in Figure 10a. Let x and y denote the depth of image and
+kernel buer, respectively. An example of x = 4  Din, y =
+4  Din is shown in Figure 10a.
+
+Output feature maps. The output feature map layout
+is determined by the image buer depth x and the kernel
+buer depth y. A pseudo-code to compute the read address
+of image and kernel buers is shown in Code 1.
+An example of the output feature map data layout in
+shared memory is shown in Figure 10b, where x = 4Din, y =
+4 Din and the input feature map size is 4 4 and the kernel
+size is 3  3.
+6.3.2 Double Buffering
+To reduce the FPGA-memory trac and enable full over-
+lap of the memory access and the computation, double buer-
+ing technique is exploited as shown in Figure 9. Double
+buering is only eective when the computation time is
+greater than the time to bring the same amount of data to
+on-chip memory of the FPGA. The data access pattern pro-
+posed in Code 1 satises this requirement because it takes
+O(xy) time to perform computations while O(x + y) time
+to bring the same amount of data to the on-chip memory.
+However, the on-chip memory will soon become the bottle-
+neck. In this case, we can use only one image buer and the
+latency to bring the input feature maps to on-chip memory
+cannot be fully hidden. The additional delay increased due
+to using only one image buer is 4N 2
+
+inDin/B.
+
+6.3.3 Timing Analysis
+A detailed timing diagram of on-chip memory write des-
+tination, read source buer and memory write request is
+shown in Figure 11. i, k denote the image buer and the
+
+kernel buer, respectively. At any time, only one image
+buer and kernel buer is activated to produce buered data
+and the other image and kernel buer is used for buering
+data from the shared memory. Suppose the memory read
+bandwidth is B, the FPGA operating frequency is f . Then
+according to Code 1, the time to consume one kernel buer
+is
+
+x
+Din
+
+ y  1
+f
+
+tkernel,consume =
+
+(9)
+Each kernel buer contains Tk  P 2  y complex numbers.
+Thus, the time to ll one kernel buer is5
+Tk  P 2  y  8
+
+tkernel.f ill =
+
+B
+
+(10)
+
+In order to hide the kernel memory access latency, the in-
+equality tkernel,f ill < tkernel,consume must be satised. Thus,
+
+x >
+
+8TkP 2Dinf
+
+B
+
+(11)
+
+Another constraint is that we have to ll the vacant im-
+age buer during the time slots between lling kernel buer
+and consuming kernel buer within one image buer output
+period as shown in Figure 11. Thus,
+(x  y
+Din
+
+)  Din  Dout
+y  Tk
+
+ Tk  P 2  y  8
+
+Ti  P 2  x  8
+
+ 1
+f
+
+>
+
+B
+
+B
+
+(12)
+
+This leads to,
+
+x >
+
+8P 2DinDoutf Tk
+DoutB  8TiP 2f Tk
+
+(13)
+
+where DoutB  8TiP 2f Tk > 0. Thus,
+
+,
+
+8TkP 2Dinf
+
+8P 2DinDoutf Tk
+DoutB  8TiP 2f Tk
+
+B
+
+x > max (
+
+(14)
+where DoutB  8TiP 2f Tk > 0. Note that there is no con-
+straint on the kernel buer depth y and it can be arbitrarily
+small as long as it can hold the largest kernel among all
+the convolutional layers. The total on-chip memory Mtotal
+needed by the design is
+
+)
+
+Mtotal = (x  P 2  Ti + y  P 2  Tk)  2
+6.3.4 CPU-FPGA Concurrent Processing
+As shown in Figure 3, CPU performs overlap, ReLU, pool-
+ing and optional depth concatenation, which varies with dif-
+ferent convolutional layers. These light-weight tasks are well
+suited for CPU and can be overlapped with the FPGA.
+
+(15)
+
+Synchronization Mechanism. The synchronization be-
+tween the CPU and the FPGA is through a shared ag as
+shown in Figure 11. After FPGA completes each output
+tile of each output feature map, it sets a shared ag in the
+shared memory. Once the CPU detects the set ag, it per-
+forms overlap, ReLU, rearranges the data for the next layer.
+6.4 Performance and Resource Estimation
+
+The performance and resource consumption of our design
+employing double buering and single image buer is shown
+in Table 3, where Nin is input feature map size, L is OaA
+tile size, Din is the number of input feature maps, Dout is
+the number of output feature maps, f is FPGA operating
+
+5In this paper, we use 32-bit single precision oating-point.
+
+Table 3: Theoretical Performance and Resource Consump-
+tion
+
+Table 4: Design Parameters for AlexNet, VGG16 and
+GoogLeNet
+
+Figure 11: Timing Diagram
+
+Delay
+
+Multipliers
+
+Memory
+
+L (cid:101)2
+
+double buering
+(cid:100) Nin
+DinDout/f
+3P 2 + 4P Nmult/K
+P 2(2xTi + 2yTk + 8)
+
+single image buer
+L (cid:101)2
+(cid:100) Nin
++ 4N 2
+
+DinDout/f
+inDin/B
+
+3P 2 + 4P Nmult/K
+P 2(xTi + 2yTk + 8)
+
+frequency, B is memory bandwidth, K is 2D FFT folding
+factor, P is the FFT size, Nmult is the number of multi-
+pliers in 1D FFT kernel, Ti (Tk) is the image (kernel) task
+parallelism, x (y) is the image (kernel) buer depth.
+
+We also give an estimation of the performance and re-
+source consumption by using single image buer. According
+to the analysis in Section 6.3.3, the image buer is often large
+and the kernel buer is small. Using single image buer can
+make the design practical for FPGAs with limited on-chip
+memory. The additional delay introduced to bring the input
+feature maps to FPGA is 4NinDin/B, which is considerably
+small compared with the total processing time.
+
+7. EXPERIMENTS AND RESULTS
+7.1 Experimental Setup
+
+We conducted our experiments on Intel Heterogeneous
+Architecture Research Platform (HARP), which is a pre-
+production of Intel QuickAssist QPI FPGA Platform[8]. It
+integrates 10 Core Intel Xeon E5-2600 v2 processor and Al-
+tera Stratix V FPGA with 6.25 MB BRAM on chip. The
+CPU and FPGA exchange data through a shared memory;
+this platform is an example of the model described in Sec-
+tion 4. The high speed interconnection in HARP is Intel
+QuickPath Interconnection (QPI), which achieves 5.0 GB/s
+bandwidth according to our own experiments. The QPI data
+width W is 64 bytes. A direct-mapped coherent cache of
+64 KB is implemented on FPGA to reduce the data ac-
+cess latency. Results in this work were generated using pre-
+production hardware and software from Intel, and may not
+reect the performance of production or future systems.
+
+We conducted experiments on AlexNet, GoogLeNet and
+VGG16 using HARP. We measured the execution time of
+each group layer inside the three CNNs. We measured the
+CPU-FPGA sequential execution time; in this case the CPU
+waits for all the results from the FPGA and then performs
+overlap and ReLU. We also measured the concurrent execu-
+tion time; in this case the CPU processes the partial results
+from the FPGA using the synchronization model discussed
+in Section 6.3.4.
+7.2 Performance Evaluation
+
+We show the overall design parameters in Table 4. Based
+on the number of DSPs available, the task parallelism is
+
+Parameter
+
+Design Value
+
+Task Parallelism Tt = TiTk
+
+# of image buers
+
+Image buer depth x
+
+# of kernel buers
+
+Kernel buer depth y
+
+1
+1
+
+8192
+
+2
+
+512 (AlexNet, VGG16)
+
+1024 (GoogLeNet)
+
+FFT size
+
+2D FFT folding factor K
+
+8
+4
+
+Table 5: Resource used in our design, 4.0 MB BRAM re-
+quired by VGG16 and AlexNet. 5.0 MB BRAM required by
+GoogLeNet.
+
+Resource
+
+Used
+
+Available
+
+Registers
+
+(K)
+266
+939
+
+Logic
+32-bit oat
+(ALM) Multipliers
+200522
+234720
+
+224
+256
+
+DSP
+
+224
+256
+
+BRAM
+(MB)
+4.0/5.0
+
+6.25
+
+set to 1. Based on the available on-chip memory, we use a
+single image buer of depth 8192. In AlexNet/VGG16, the
+maximum kernel depth is 512. In GoogLeNet, the maximum
+kernel depth is 832. Thus, we choose the kernel depth y
+to be 512 for AlexNet/VGG16 and 1024 for GoogLeNet.
+According to DM ratio analysis in Section 5, we choose
+FFT size to be 8, which is superior to space convolver in
+terms of Delay-Multiplier Product for most kernel sizes in
+CNNs in our experiments based on the available on-chip
+memory and measured bandwidth. The Intel HARP QPI
+data width supports 16 32-bit oating point data access in
+parallel. Thus, we can shrink the 2D FFT data parallelism
+to 16 and the corresponding folding factor K is 4.
+
+The resource consumption is shown in Table 5 for the
+design parameters in Table 4. According to Table 5, we
+conclude that the number of available DSPs is the bottleneck
+for the chosen design parameters.
+
+Most of the kernel sizes in AlexNet, VGG16 and GoogLeNet
+
+convolutional layers is less than the chosen FFT size. Thus,
+they can be accelerated using the design parameters de-
+scribed in Table 4. Only one exception occurs in CONV1
+of AlexNet, whose kernel size is 11 and stride is 4. Acceler-
+ating convolutional layers with large stride using frequency
+domain convolution is not attractive compared with space
+convolution. Hence, we choose to directly implement it on
+the CPU.
+7.2.1 Tradeoff Analysis
+On-chip Memory Consumption vs. Sustained Per-
+formance. The peak performance is achieved when there is
+no pipeline stalls in the computation engines. The sustained
+performance is determined by the number of the computa-
+tion engine pipeline stalls and the total computation time. It
+
+i0k0i0k1Memory Write DestinationRead Image Buer SourcewaitRead Kernel Buer Sourcewaitk0Timek1i1k0i1i1k0i1k1i1k1k0k1i0k0i0i0k0i0k1Memory Write RequestData 0FlagData 1FlagData 2FlagData 3Flag Data 4FlagCPURearrage 0Rearrage 1Rearrage 2Rearrage 3Table 6: Execution Time for VGG16 and AlexNet
+
+VGG16 Execution Time (ms)
+
+AlexNet Execution Time (ms)
+
+Layer (Group)
+
+FPGA
+
+(Theoretical)
+
+CONV1
+CONV2
+CONV3
+CONV4
+CONV5
+
+CONV Total
+
+30.96
+44.36
+81.92
+81.92
+17.69
+256.85
+
+FPGA
+(Actual)
+
+31.53
+46.01
+82.27
+82.77
+18.36
+262.94
+
+CPU Sequential Concurrent
+
+7.76
+4.18
+3.54
+1.37
+0.27
+17.12
+
+39.29
+50.19
+85.81
+84.14
+18.63
+280.06
+
+32.74
+46.48
+82.75
+82.90
+18.40
+263.27
+
+FPGA
+(Actual)
+
+-
+
+7.86
+4.42
+6.64
+4.42
+23.34
+
+CPU Sequential Concurrent
+
+17.17
+0.09
+0.12
+0.15
+0.11
+17.64
+
+17.17
+7.95
+4.54
+6.79
+4.53
+40.98
+
+17.17
+7.94
+4.50
+6.71
+4.49
+40.81
+
+Table 7: Performance Comparison with the State-of-Art
+CNN Implementations on FPGA
+
+Platform
+
+Clock (MHz)
+Data Precision
+
+Bandwidth (GB/s)
+
+CNN Model
+
+BRAM
+
+DSP, Multipliers
+
+Throughput (CONV)
+
+(GFLOPs/sec)
+
+Delay (CONV) (ms)
+
+Power (FPGA) (W)
+DelayMultipliers
+Resource Eciency
+
+(GFLOPs/sec/Multiplier)
+
+Power Eciency
+(GFLOPs/sec/W)
+
+Classication Accuracy
+
+Flexibility
+
+[21]
+
+Virtex7
+VX485t
+
+100
+
+[13]
+Zynq
+
+XC7Z045
+
+150
+
+This Work
+
+Intel QuickAssist
+
+QPI FPGA
+
+200
+
+32-bit oat
+
+16-bit xed
+
+32-bit oat
+
+12.8
+
+AlexNet
+4.5 MB
+2240, 747
+
+61.62
+
+21.61
+
+18.61
+16142
+
+0.082
+
+3.31
+
+Lossless
+Any CNN
+
+4.2
+
+VGG16-SVD
+
+2.13 MB
+780, 780
+
+187.80
+
+163.42
+
+9.63
+
+127467
+
+0.241
+
+19.50
+
+Lossy
+Limited
+
+5.0
+
+AlexNet
+4.0 MB
+224, 224
+
+VGG16
+4.0 MB
+224, 224
+
+83.00
+
+123.48
+
+CPU:17.17
+FPGA:23.64
+
+13.18
+
+9141/5295
+
+0.37
+
+6.30
+
+263.27
+
+13.18
+58972
+
+0.55
+
+9.37
+
+Lossless
+Any CNN
+
+Table 8: Resources for implementing multipliers
+
+Multipliers
+
+DSP
+
+16-bit xed point (Xilinx)
+32-bit xed point (Xilinx)
+32-bit oat point (Xilinx)
+32-bit oat point (Altera)
+
+1
+2
+3
+1
+
+is determined by to what extent we can overlap the computa-
+tion with the memory access latency. We show the impact
+of on-chip memory on sustained performance versus peak
+performance ratio in Figure 12.
+
+Energy vs. FFT Size. It is shown in Section 5.3 that
+larger FFT size reduces the DM Product, which leads to the
+reduction of energy consumption of the convolvers. How-
+ever, the energy consumed by on-chip memory to sustain
+peak performance increases. Thus, in an energy constrained
+system, we should tradeo between the on-chip memory en-
+ergy consumption and the convolver energy consumption.
+
+7.2.2 VGG16 and AlexNet
+We show the execution time of various layers in VGG16
+and AlexNet in Table 6. Note that the VGG16 execution
+time of each layer is very close to the predicted value using
+our analysis. The predicted value is obtained using Table 3.
+The variation between predicted and actual results is due
+to the delay to ll and drain the pipelines. The sequential
+CPU-FPGA total execution time of VGG16 is 280.06 ms
+while the concurrent total execution time is 263.27 ms. The
+CPU-FPGA concurrent processing through shared memory
+reduces the total execution time by 6.0%. However, the ad-
+vantage of concurrent processing is not noticeable in AlexNet
+since the execution time on CPU is much smaller than that
+of FPGA.
+
+Table 9: GoogLeNet Convolutional Layer Performance
+
+GoogLeNet (convolutional layer only)
+
+Execution Time (ms)
+
+Layer
+
+CONV1
+CONV2
+
+Inception3
+Inception4
+Inception5
+
+Total
+
+Throughput
+
+(GFLOPs/sec)
+
+CPU
+
+CPU (1 thd)
+
+(16 thds)
+
++ FPGA
+
+38.53
+117.13
+91.05
+173.21
+45.45
+465.37
+
+17.36
+
+12.70
+17.14
+16.16
+29.16
+8.48
+83.64
+
+96.60
+
+Comparison with State-of-the-Art. We show the
+comparison of our work with two state-of-art CNN imple-
+mentations on FPGA in Table 7. Since the number of mul-
+tipliers consumed is not directly available in [21, 13], we
+convert the DSP consumption to multipliers consumption
+using Table 8. Compared with the state-of-the-art AlexNet
+implementation, our design achieves 1.35x GFLOPs/sec and
+similar delay with 3.33x less multipliers and 1.1x less mem-
+ory. Compared with the state-of-the-art VGG16 implemen-
+tation[13], our design has 0.66x throughput with 3.48x less
+multipliers without sacricing the classication accuracy.
+
+Resource and Power Eciency Comparison. Ta-
+ble 7 shows that our design improves resource eciency by
+4.5x and 2.28x compared with state-of-the-art CNN imple-
+mentations[21, 13]. Compared with state-of-art AlexNet and
+VGG16 implementations, our design improves power e-
+ciency by 1.90x and 0.48x. The reasons for having lower
+power eciency compared with [13] is: 1) Our design con-
+sumes more BRAMs. 2) Our design uses oating-point oper-
+ations, which limits the system task parallelism and overall
+performance. 3) Design in [13] is only optimized for VGG16
+while our design is applicable to any CNN with maximum
+kernel size less than the chosen FFT size.
+
+Fully-Connected (FC) Layer. We implemented the
+FC layer directly on CPU using 16 threads. The FC layer
+can be viewed as matrix-vector multiplication, which is bounded
+by memory bandwidth. The execution time for FC1, FC2,
+FC3 in VGG16 is 115.74 ms (16.10 ms with SVD), 19.30
+ms and 4.71 ms, respectively. It outperforms the FC layer
+implementation on FPGA in [13].
+7.2.3 GoogLeNet
+We also implemented GoogLeNet on Intel HARP and the
+results are shown in Table 9. Our experiments show that we
+improve the performance by 5.56x compared with 16 threads
+running on 10 Core Intel Xeon CPU at 2.8 GHz. The soft-
+ware was compiled with gcc using optimization level O3 and
+OpenMP.
+
+Scalability. The major issue to increase the thread-level
+parallelism to compute the convolutional layer lies in the
+
+Field-Programmable Gate Arrays, FPGA 15, pages 240249,
+New York, NY, USA, 2015. ACM.
+
+[4] C. Farabet, Y. Lecun, K. Kavukcuoglu, B. Martini, P. Akselrod,
+
+S. Talay, and E. Culurciello. Large-Scale FPGA-Based
+Convolutional Networks. In R. Bekkerman, M. Bilenko, and
+J. Langford, editors, Scaling Up Machine Learning, pages
+399419. Cambridge University Press, 2011. Cambridge Books.
+
+[5] M. Hemnani, S. Palekar, P. Dixit, and P. Joshi. Hardware
+
+optimization of complex multiplication scheme for DSP
+application. In Computer, Communication and Control (IC4),
+2015 International Conference on, pages 14, Sept 2015.
+
+[6] T. Highlander and A. Rodriguez. Very Ecient Training of
+
+Convolutional Neural Networks using Fast Fourier Transform
+and Overlap-and-Add. CoRR, abs/1601.06815, 2016.
+
+[7] F. N. Iandola, M. W. Moskewicz, K. Ashraf, S. Han, W. J.
+Dally, and K. Keutzer. SqueezeNet: AlexNet-level accuracy
+with 50x fewer parameters and <0.5MB model size. CoRR,
+abs/1602.07360, 2016.
+
+[8] Intel Inc. Xeon+FPGA Platform for the Data Center.
+
+https://www.ece.cmu.edu/ calcm/carl/lib/
+exe/fetch.php?media=carl15-gupta.pdf.
+
+[9] A. Krizhevsky, I. Sutskever, and G. E. Hinton. ImageNet
+
+Classication with Deep Convolutional Neural Networks. In
+F. Pereira, C. J. C. Burges, L. Bottou, and K. Q. Weinberger,
+editors, Advances in Neural Information Processing Systems
+25, pages 10971105. Curran Associates, Inc., 2012.
+
+[10] M. Mathieu, M. Hena, and Y. LeCun. Fast Training of
+
+Convolutional Networks through FFTs. CoRR, abs/1312.5851,
+2013.
+
+[11] Micron Technology, Inc. The Convey HC-2 Computer.
+
+https://www.micron.com/about/about-the-convey-computer-
+acquisition.
+
+[12] Y. Qiao, J. Shen, T. Xiao, Q. Yang, M. Wen, and C. Zhang.
+
+FPGA-accelerated deep convolutional neural networks for high
+throughput and energy eciency. Concurrency and
+Computation: Practice and Experience, pages n/an/a, 2016.
+cpe.3850.
+
+[13] J. Qiu, J. Wang, S. Yao, K. Guo, B. Li, E. Zhou, J. Yu,
+
+T. Tang, N. Xu, S. Song, Y. Wang, and H. Yang. Going Deeper
+with Embedded FPGA Platform for Convolutional Neural
+Network. In Proceedings of the 2016 ACM/SIGDA
+International Symposium on Field-Programmable Gate
+Arrays, FPGA16. ACM, 2016.
+
+[14] D. Scherer, H. Schulz, and S. Behnke. Accelerating Large-Scale
+
+Convolutional Neural Networks with Parallel Graphics
+Multiprocessors, pages 8291. Springer Berlin Heidelberg,
+Berlin, Heidelberg, 2010.
+
+[15] K. Simonyan and A. Zisserman. Very Deep Convolutional
+
+Networks for Large-Scale Image Recognition. CoRR,
+abs/1409.1556, 2014.
+
+[16] N. Suda, V. Chandra, G. Dasika, A. Mohanty, Y. Ma,
+
+S. Vrudhula, J.-s. Seo, and Y. Cao. Throughput-Optimized
+OpenCL-based FPGA Accelerator for Large-Scale
+Convolutional Neural Networks. In Proceedings of the 2016
+ACM/SIGDA International Symposium on
+Field-Programmable Gate Arrays, FPGA 16, pages 1625,
+New York, NY, USA, 2016.
+
+[17] C. Szegedy, W. Liu, Y. Jia, P. Sermanet, S. E. Reed,
+
+D. Anguelov, D. Erhan, V. Vanhoucke, and A. Rabinovich.
+Going Deeper with Convolutions. CoRR, abs/1409.4842, 2014.
+
+[18] Wikipedia. https://en.wikipedia.org/wiki/Multidimensional
+
+discrete convolution#Overlap and Add.
+
+[19] Xilinx Inc. Zynq-7000 All Programmable SoC.
+
+http://www.xilinx.com/products/silicon-devices/soc/zynq-
+7000.html.
+
+[20] M. D. Zeiler and R. Fergus. Visualizing and Understanding
+
+Convolutional Networks. CoRR, abs/1311.2901, 2013.
+
+[21] C. Zhang, P. Li, G. Sun, Y. Guan, B. Xiao, and J. Cong.
+
+Optimizing FPGA-based Accelerator Design for Deep
+Convolutional Neural Networks. In Proceedings of the 2015
+ACM/SIGDA International Symposium on
+Field-Programmable Gate Arrays, FPGA 15, pages 161170,
+New York, NY, USA, 2015.
+
+[22] X. Zhang, J. Zou, X. Ming, K. He, and J. Sun. Ecient and
+
+Accurate Approximations of Nonlinear Convolutional Networks.
+CoRR, abs/1411.4229, 2014.
+
+[23] A. Zlateski, K. Lee, and H. S. Seung. ZNN - A Fast and
+
+Scalable Algorithm for Training 3D Convolutional Networks on
+Multi-Core and Many-Core Shared Memory Machines. CoRR,
+abs/1510.06706, 2015.
+
+Figure 12: Sustained Performance versus Peak Performance
+ratio vs. Memory Consumption. The x-axis is in log scale
+
+cost to maintain cache coherency. For FPGA based design,
+the parallelism can always be increased if the memory band-
+width and the FPGA on-chip resources increase.
+
+8. DISCUSSION
+
+Platform Choice. A CPU-FPGA based design will con-
+sume more power than FPGA-only based design. However,
+the CPU adds more exibility to the design. Moreover, since
+most of the computational complexity is in the convolutional
+layers, the CPU performs simple operations and data rear-
+rangement. Thus the power consumption of the CPU will
+not increase signicantly as the CNN size increases.
+
+Automatic Code Generation. Our framework pro-
+vides a complete solution to accelerate CNN on FPGA in-
+cluding intra-layer data rearrangement. Widely used CNNs
+convolutional layers mainly consist of small kernels. Thus,
+by zero-padding various kernel sizes to t a chosen FFT size,
+and using FPGA to accelerate it by exploiting massive par-
+allelism, we can achieve large performance improvement for
+various CNN models. We can use our framework to develop
+an automatic code generation tool so high-level users can
+specify CNN models and generate the design.
+
+Fixed Point vs. Floating Point. Many previous ap-
+proaches use xed point instead of oating point for com-
+putations. The advantage is less resource consumption and
+higher power eciency. However, it may penalize the clas-
+sication accuracy.
+
+9. CONCLUSION
+
+In this paper, we rst exploited Overlap-and-Add to re-
+duce the computation complexity of the convolutional lay-
+ers. Then, we proposed a 2D convolver in frequency domain
+to accelerate convolutional layers on FPGA. To optimize
+the memory system, we exploited the double buering tech-
+nique to overlap the computation with the memory access.
+Finally, we implemented 3 state-of-art CNN models includ-
+ing AlexNet, VGG16 and GoogLeNet on Intel QuickAssist
+QPI FPGA Platform. Future work includes employing our
+design to more CNN models, conducting experiments using
+xed point data as well as automatic generation of optimized
+designs.
+
+10. REFERENCES
+
+[1] B. Bosi, G. Bois, and Y. Savaria. Recongurable Pipelined 2D
+
+Convolvers for Fast Digital Signal Processing. IEEE Trans. On
+Very Large Scale Integration (VLSI) Systems, 1999.
+
+[2] R. Chen and V. K. Prasanna. Energy Optimizations for
+
+FPGA-based 2-D FFT Architecture. In High Performance
+Extreme Computing Conference (HPEC), 2014 IEEE, pages
+16, Sept 2014.
+
+[3] R. Chen, S. Siriyal, and V. K. Prasanna. Energy and Memory
+Ecient Mapping of Bitonic Sorting on FPGA. In Proceedings
+of the 2015 ACM/SIGDA International Symposium on
+
+0.000.501.000.52.512.5SustainedPerformance/PeakPerformanceMemoryConsumption(MB)4	point	FFT8	point	FFT16	point	FFT

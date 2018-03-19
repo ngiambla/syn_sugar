@@ -342,7 +342,7 @@ class garnish:
 			s1=s1 + "\n"
 			s3.append(s1)
 			s3_map[_label]=s1
-		return [s2_map, s3_map, sentence_length_map, sentence_entropy_map ] 
+		return [s2_map, s3_map, sentence_length_map, sentence_entropy_map, sen_pairs, fields, sorted_bins] 
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

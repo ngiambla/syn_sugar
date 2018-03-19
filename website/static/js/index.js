@@ -32,6 +32,7 @@ var subBars;
 var displayed;
 var tooltip;
 
+/* Syn Suagr's Vars */
 var text_decode 		= "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:".split("");
 var search_query 		= "";
 var summary 			= {};
@@ -39,6 +40,10 @@ var doc  				= {};
 
 var sentence_len_map 	= {};
 var entropy_map 		= {};
+
+var sen_pairs 			= {};
+var fields 				= {};
+var sorted_bins 		= {};
 
 var font_size 			= 45;
 var columns;
@@ -64,15 +69,23 @@ function hide_term() {
 
 function go_to_in_doc(okay) {
 
+	console.log(okay);
 	$(".doc_line").each(function() {
 		if(this.id in summary) {
 			$(this).css("background-color","#34BC6F"); 
+		} else {
+			$(this).css("background-color","#FFF");
 		}
 	});
-	$("#"+((okay.id).split("s_"))[1]).css("background-color", "#87CEFA"); 
+	if(okay in summary) {
+		$("#"+okay).css("background-color", "#87CEFA"); 
+	} else {
+		$("#"+okay).css("background-color", "#FFA07A"); 		
+	}
+	
 	
 
-	document.getElementById(((okay.id).split("s_"))[1]).scrollIntoView({
+	document.getElementById(okay).scrollIntoView({
 		 behavior: "smooth",
 		 block: "center", 
 		 inline: "nearest"
@@ -108,6 +121,7 @@ function load_doc(doc, summary) {
 	var is_empty= true;
 
 	$("ul").fadeOut('fast', function(e) {
+		$("#entropy_graph").empty();
 		$("ul").empty();
 		$("#summ_contents").empty();
 		
@@ -117,7 +131,7 @@ function load_doc(doc, summary) {
 				$("ul").append(item);
 				if(i in summary) {
 					is_empty=false;
-					s_item = '<p class="summ_line" id="s_'+ i +'" onclick="go_to_in_doc(this)">'+doc[i]+'</p>'
+					s_item = '<p class="summ_line" id="s_'+ i +'" onclick="go_to_in_doc('+i+')">'+doc[i]+'</p>'
 					$("#summ_contents").append(s_item)
 					$("#"+i).css('background-color', '#34bc6f');
 					$("#"+i).css('color', 'white');
@@ -167,6 +181,10 @@ function upload_file() {
 		    	doc 				= ret["res"][1];
 		    	sentence_len_map 	= ret["res"][2];
 		    	entropy_map			= ret["res"][3];
+		    	sen_pairs 			= ret["res"][4];
+		    	fields 				= ret["res"][5];
+		    	sorted_bins 		= ret["res"][6];
+
 		    	load_doc(doc, summary);
 		    	draw_state 			= 2;
 	    	} else {
@@ -436,6 +454,15 @@ function load_bar_chart() {
 	            .attr("x", function (d) { return xscale(d.xval); })
 	            .attr("y", function (d) { return yscale(d.yval); })
 	            .attr("width", xscale.rangeBand())
+	            .style("cursor", "pointer")
+	            .style("fill", function(d) {
+	            	if(d.xval in summary) {
+	            		return "#34BC6F";
+	            	}
+	            })
+	            .on("click", function(d){
+					go_to_in_doc(d.xval);
+	            })
 				.on("mouseenter", function(d){
 					tooltip
 					.style("left", d3.event.pageX - 50 + "px")
@@ -530,19 +557,28 @@ function display () {
 	 	rects.attr("x", function (d) { return xscale(d.xval); });
 
     rects.enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function (d) { return xscale(d.xval); })
-      .attr("y", function (d) { return yscale(d.yval); })
+		.attr("class", "bar")
+		.attr("x", function (d) { return xscale(d.xval); })
+		.attr("y", function (d) { return yscale(d.yval); })
+		.style("cursor", "pointer")
+		.style("fill", function(d) {
+			if(d.xval in summary) {
+				return "#34BC6F";
+			}
+		})
+		.on("click", function(d){
+			go_to_in_doc(d.xval);
+		})
 		.on("mouseenter", function(d){
 			tooltip
-			.style("left", d3.event.pageX - 50 + "px")
-			.style("top", d3.event.pageY - 70 + "px")
-			.style("display", "inline-block")
-			.html("Sentence: "+ (d.xval) + ", Entropy: " + (d.yval));
+				.style("left", d3.event.pageX - 50 + "px")
+				.style("top", d3.event.pageY - 70 + "px")
+				.style("display", "inline-block")
+				.html("Sentence: "+ (d.xval) + ", Entropy: " + (d.yval));
 		})
 		.on("mouseleave", function(d){ tooltip.style("display", "none");})
-      .attr("width", xscale.rangeBand())
-      .attr("height", function (d) { return height - yscale(d.yval); });
+		.attr("width", xscale.rangeBand())
+		.attr("height", function (d) { return height - yscale(d.yval); });
 
     rects.exit().remove();
 }

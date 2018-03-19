@@ -73,7 +73,8 @@
 
   <div id="summary_display" class="container">
     <div class="row">
-      <h2>Summary</h2>
+      <h2>Summary <i onclick="save_summary();" class="far fa-save save_summ"></i> </h2>
+      
       <div id="summ_contents" class="twelve columns" style="overflow-y: auto;">
         
       </div>      
@@ -96,6 +97,17 @@
     <div class="row"> 
       <div class="twelve columns">
         <svg id="entropy_graph"></svg>
+      </div>
+    </div>
+  </div>
+
+  <div id="similarity_graph_p" class="container" style="display: none;">
+    <div class="row"> 
+      <div class="six columns">
+        <svg id="structure_sim"></svg>
+      </div>      
+      <div class="six columns">
+        <svg id="semantic_sim"></svg>
       </div>
     </div>
   </div>
@@ -134,7 +146,7 @@
     <div class="container">
       <form id="upload-file-form" enctype="multipart/form-data" method="post">
         <div class="row" style="margin-top: 60px;">
-          <input id="upload-file" name="upload-file" type="file">
+          <input id="upload-file" name="upload-file" type="file" accept=".txt,.pdf">
         </div>
         <div class="row">
           <a onclick="upload_file();">Upload <i class="far fa-hand-pointer"></i></a>
@@ -144,6 +156,8 @@
   </div>
 
 </div>
+
+<a id="file_download_ref" style="display: none;"></a>
 
 
 <!-- End Document

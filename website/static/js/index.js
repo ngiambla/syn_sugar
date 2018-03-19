@@ -36,6 +36,7 @@ var tooltip;
 var text_decode 		= "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:".split("");
 var search_query 		= "";
 var summary 			= {};
+var summ_text 			= [];
 var doc  				= {};
 
 var sentence_len_map 	= {};
@@ -69,7 +70,6 @@ function hide_term() {
 
 function go_to_in_doc(okay) {
 
-	console.log(okay);
 	$(".doc_line").each(function() {
 		if(this.id in summary) {
 			$(this).css("background-color","#34BC6F"); 
@@ -77,13 +77,12 @@ function go_to_in_doc(okay) {
 			$(this).css("background-color","#FFF");
 		}
 	});
+
 	if(okay in summary) {
 		$("#"+okay).css("background-color", "#87CEFA"); 
 	} else {
 		$("#"+okay).css("background-color", "#FFA07A"); 		
 	}
-	
-	
 
 	document.getElementById(okay).scrollIntoView({
 		 behavior: "smooth",
@@ -102,6 +101,25 @@ function show_term() {
 	});
 }
 
+function save_summary() {
+	var text = "";
+	for(var i=0; i< summ_text.length; ++i) {
+		text=text+summ_text[i]+"\n";
+	}
+
+	var blob = new Blob([summ_text], {type: "text/plain;charset=utf-8"});
+	//saveAs(blob, "filename.txt");
+    var anchor = document.getElementById("file_download_ref");
+    $("#file_download_ref").click(function() {
+    	console.log("Save File?");
+    });
+	anchor.download = $("#doc_title").text()+"_summary.txt";
+	anchor.href = (window.URL).createObjectURL(blob);
+	anchor.dataset.downloadurl = ['text/plain', anchor.download, anchor.href].join(':');
+	anchor.click();
+}
+
+
 function open_upload_modal() {
 	$("#file_modal").fadeIn('slow', function() {
 	});
@@ -119,6 +137,8 @@ function updateHeight() {
 
 function load_doc(doc, summary) {
 	var is_empty= true;
+	
+	summ_text = [];
 
 	$("ul").fadeOut('fast', function(e) {
 		$("#entropy_graph").empty();
@@ -130,6 +150,7 @@ function load_doc(doc, summary) {
 				item = '<li class="doc_line" id="'+ i +'">'+doc[i]+'</li>'
 				$("ul").append(item);
 				if(i in summary) {
+					summ_text.push(doc[i]);
 					is_empty=false;
 					s_item = '<p class="summ_line" id="s_'+ i +'" onclick="go_to_in_doc('+i+')">'+doc[i]+'</p>'
 					$("#summ_contents").append(s_item)
@@ -161,7 +182,11 @@ function upload_file() {
 	var filename = $("#upload-file").val();
 	filename = (filename.split("C:\\fakepath\\"))[1];
 	var form_data = new FormData($('#upload-file-form')[0]);
-	console.log(form_data);
+	var file_ext = filename.substring(filename.length-3, filename.length);
+	
+	if(file_ext != "pdf" && file_ext != "txt") {
+		return;
+	}
 
 	draw_state = 3;
 	close_upload_modal()
@@ -429,7 +454,7 @@ function load_bar_chart() {
 	xAxis  = d3.svg.axis().scale(xscale).orient("bottom");
 	yAxis  = d3.svg.axis().scale(yscale).orient("left");
 	  
-	svg = d3.select("svg")
+	svg = d3.select("#entropy_graph")
 				.attr("width", width + margin.left + margin.right)
 	        	.attr("height", height + margin.top + margin.bottom + selectorHeight);
 	  

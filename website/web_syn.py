@@ -45,7 +45,10 @@ def uploads():
 				os.remove("uploads/__1_"+filename)
 				filename="__1_"+filename.rsplit('.', 1)[0]+".txt"
 				print("Filename: " + filename)
+			elif "txt" == filename.rsplit('.', 1)[1].lower():
+				filename="__1_"+filename
 			summary=syn_sugar.bake()
+			print(filename)
 			os.rename("uploads/"+filename, "uploads/__old_"+filename[3:])
 			return jsonify(res=summary)
 		except Exception as e:

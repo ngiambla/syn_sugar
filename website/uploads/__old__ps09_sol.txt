@@ -1,0 +1,496 @@
+ECE216
+Signals and Systems
+
+University of Toronto
+Spring 2018
+
+Problem Set #9
+
+Problem 9.1 (Running Average Filter)
+Dene an L-point running average lter to be the system given by
+
+L1(cid:88)
+
+k=0
+
+y[n] =
+
+1
+L
+
+x[n  k].
+
+(i) Find the impulse response of an L-point running average lter.
+
+(ii) Show that the frequency response of an L-point running average lter is given by
+
+Hint: make use of(cid:80)L1
+
+k=0 k = (1  L)/(1  ) and Eulers formula.
+(iii) Find the impulse response corresponding to the frequency response
+
+H(ej) = ej L1
+
+2
+
+sin(L/2)
+L sin(/2)
+
+.
+
+H(ej) = ej4.5 sin(5)
+sin(/2)
+
+.
+
+Solutions:
+
+(i) Let x[n] = [n], the impulse response of an L-point running average lter is
+
+L1(cid:88)
+
+k=0
+
+h[n] =
+
+1
+L
+
+[n  k].
+
+(ii)
+
+H(ej) =
+
+=
+
+1
+L
+
+1
+L
+
+L1(cid:88)
+
+k=0
+
+1
+L
+
+ejk =
+
+1  ejL
+1  ej
+ejL/2(ejL/2  ejL/2)
+ej/2(ej/2  ej/2)
+
+= ej(L1)/2 sin(L/2)
+L sin(/2)
+
+.
+
+(iii) Comparing the given impulse response to (b), we observe that the given H(ej) is
+nearly identical to the frequency response of a 10-point moving-average lter y[n] =
+
+(1/10)(cid:80)9
+
+k=0 [n  k]. Hence, h[n] =(cid:80)9
+
+k=0 [n  k].
+
+1
+
+Problem 9.2 (Moving Average Filter)
+Consider the 4-point moving average lter
+
+y[n] =
+
+1
+4
+
+3(cid:88)
+
+k=0
+
+x[n  k].
+
+Recall that |H(ej)|  0 and  < H(ej)   are real-valued functions satisfying
+
+H(ej) = |H(ej)|ejH(ej).
+
+(i) Use the results of Problem 9.1 to write down the impulse response h[n] and frequency
+
+response H(ej) of the 4-point moving average lter.
+
+(ii) Find the magnitude response |H(ej)| for  <   .
+(iii) Find the phase response H(ej) for  <   . Hint: Pay attention to the sign of
+
+H(ej), it is part of the phase.
+
+(iv) Plot the magnitude and phase responses for  <   .
+
+Solutions:
+
+(i) Directly from P9.1,
+
+3(cid:88)
+
+k=0
+
+1
+4
+
+h[n] =
+
+[n  k],
+
+H(ej) = ej1.5 sin(2)
+4 sin(/2)
+
+.
+
+(ii)
+
+(iii)
+
+|H(ej)| = |ej1.5|| sin(2)
+4 sin(/2)
+
+| = | sin(2)
+4 sin(/2)
+
+|.
+
+H(ej) = ej1.5 +  sin(2)
+4 sin(/2)
+
+= 1.5 +  sin(2)
+4 sin(/2)
+
+.
+
+Since sin(2) is periodic with period  and sin(/2) is periodic with period 4,  sin(2)
+has exactly 2 sign changes in the interval  <   . They occur at  = /2. Every
+time a sign change occurs, it causes an addition of  to the phase. Hence,
+
+4 sin(/2)
+
+ <   /2
+/2 <   /2
+/2 <   
+
+H(ej) =
+
+1.5  
+
+1.5
+1.5 + 
+
+2
+
+(iv)
+
+Problem 9.3 (Frequency Response Plot)
+Given the discrete-time LTI system with frequency response
+
+H(ej) =
+
+1
+2ej
+1 + 1
+
+.
+
+(i) Find the magnitude response |H(ej)| for  <   .
+(ii) Find the phase response H(ej) for  <   .
+(iii) Plot the magnitude and phase responses for  <   .
+
+3
+
+Solutions:
+(i) since 1 + 0.5ej = 1 + 0.5 cos()  j0.5 sin(), we have
+
+(ii) From using the real and imaginary parts of 1 + 0.5ej, we have
+
+H(ej) = 0  tan1
+
+(iii)
+
+|H(ej)| =
+
+=
+
+=
+
+1
+
+(cid:112)(1 + 0.5 cos())2 + (0.5 sin())2
+(cid:112)1 + cos() + 0.25
+(cid:112)1.25 + cos()
+(cid:18) 0.5 sin()
+
+(cid:19)
+
+1
+
+1
+
+= tan1
+
+(cid:18) sin()
+
+(cid:19)
+
+2 + cos()
+
+1 + 0.5 cos()
+
+4
+
+Problem 9.4 (The DTFT and LTI Systems)
+Given the discrete-time LTI system with impulse response
+
+(cid:18)1
+
+(cid:19)n
+
+2
+
+h[n] =
+
+u[n].
+
+(i) Find the frequency response H(ej).
+
+(ii) Given the input to the system
+
+x[n] =
+
+(cid:18)3
+
+(cid:19)n
+
+4
+
+u[n],
+
+nd the DTFT of x[n], X(ej). Find the DTFT of the output Y (ej).
+
+(iii) Find the DTFT of the output Y (ej) when the input to the system is
+
+(cid:18)1
+
+(cid:19)n
+
+4
+
+x[n] = (n + 1)
+
+u[n].
+
+Solutions:
+
+(i)
+
+(ii)
+
+(1/2)nu[n]ejn
+
+(cid:88)
+(cid:88)
+
+n=
+
+(1/2)nejn
+
+n=0
+
+1
+
+1  1/2ej
+
+H(ej) =
+
+=
+
+=
+
+(cid:88)
+(cid:88)
+
+n=
+
+X(ej) =
+
+=
+
+(3/4)nu[n]ejn
+
+(3/4)nejn
+
+n=0
+
+1
+
+=
+
+1  3/4ej ,
+Y (ej) = X(ej)H(ej)
+
+1
+
+=
+
+=
+
+1  1/2ej
+(1  1/2ej)(1  3/4ej)
+
+1  3/4ej
+1
+
+.
+
+1
+
+5
+
+(iii)
+
+X(ej) =
+
+=
+
+=
+
+(n + 1)(1/4)nu[n]ejn
+
+(n + 1)(1/4)nejn
+
+ej(cid:17)n
+
+(cid:16)1
+
+4
+
+(n + 1)
+
+Let r =
+
+ej
+
+n=0
+
+n=
+
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:18) (cid:88)
+(cid:18) r
+
+n=0
+d
+dr
+
+1
+4
+
+n=0
+
+n=0
+
+X(ej) =
+
+=
+
+=
+
+=
+
+=
+
+(n + 1)rn
+
+(cid:19)
+
+rn+1
+
+(cid:19)
+
+d
+dr
+
+1  r
+
+1
+
+1  r2
+1
+
+1 (cid:0) 1
+
+4ej(cid:1)2
+
+Y (ej) = X(ej)h(ej)
+
+1
+
+1
+
+=
+
+=
+
+1  1/2ej
+(1  1/2ej)(1  1/4ej)2 .
+
+(1  1/4ej)2
+1
+
+Problem 9.5 (Superposition Input)
+A linear time-invariant system has frequency response
+
+H(ej) = (1  ej/2ej)(1  ej/2ej)(1 + ej).
+
+The input to the system is
+
+x[n] = 5 + 20 cos(0.5n + 0.25) + 10[n  3].
+
+Use superposition to determine the corresponding output y[n] of the LTI system for  <
+n < .
+
+Solutions:
+
+6
+
+Let x1[n] = 5, x2[n] = 20 cos(0.5n + 0.25), x3[n] = 10[n  3]
+
+y1[n] = T{x1[n]} = 5H(e0) = 20
+x2[n] = 10ej/4ejn/2 + 10ej/4ejn/2
+y2[n] = 10ej/4H(ej/2) + 10ej/4H(ej/2)
+
+= 0
+
+= 10ej/4(cid:0)(1  e0)(1  ej)(1 + ej/2)(cid:1) + 10ej/4(cid:0)(1  ej)(1  e0)(1 + ej/2)(cid:1)
+= 10ej3(cid:0)1  (ej/2 + ej/2)ej + e2j(cid:1)(1 + ej)
+= 10ej3(cid:0)1  2 cos(/2)ej + ej  2 cos(/2)ej2 + ej2 + ej3(cid:1)
+
+y3[n] = 10h[n  3]
+
+ Y3(ej) = 10ej3H(ejw)
+
+= 10ej3(1 + ejw + ej2 + ej3)
+= 10(ej3 + ej4 + ej5 + ej6)
+
+ y3[n] = 10(cid:0)[n  3] + [n  4] + [n  5] + [n  6](cid:1)
+
+x[n] = x1[n] + x2[n] + x3[n]
+ y[n] = y1[n] + y2[n] + y3[n]
+
+= 20 + 10(cid:0)[n  3] + [n  4] + [n  5] + [n  6](cid:1)
+
+7
+
+

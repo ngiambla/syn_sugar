@@ -200,18 +200,23 @@ function upload_file() {
         async: true,
 	    success: function(ret) {
 	    	if(ret) {
-		    	console.log(ret["res"]);
-		    	$("#doc_title").text(filename);
-		    	summary 			= ret["res"][0];
-		    	doc 				= ret["res"][1];
-		    	sentence_len_map 	= ret["res"][2];
-		    	entropy_map			= ret["res"][3];
-		    	sen_pairs 			= ret["res"][4];
-		    	fields 				= ret["res"][5];
-		    	sorted_bins 		= ret["res"][6];
+	    		if(ret["res"]) {
+			    	console.log(ret["res"]);
+			    	$("#doc_title").text(filename);
+			    	$("#all_data").val(JSON.stringify(ret['res'])).change();
+			    	summary 			= ret["res"][0];
+			    	doc 				= ret["res"][1];
+			    	sentence_len_map 	= ret["res"][2];
+			    	entropy_map			= ret["res"][3];
+			    	sen_pairs 			= ret["res"][4];
+			    	fields 				= ret["res"][5];
+			    	sorted_bins 		= ret["res"][6];
 
-		    	load_doc(doc, summary);
-		    	draw_state 			= 2;
+			    	load_doc(doc, summary);
+			    	draw_state 			= 2;
+	    		} else {
+	    			draw_state = 0;	
+	    		}
 	    	} else {
 	    		draw_state = 0;
 	    	}

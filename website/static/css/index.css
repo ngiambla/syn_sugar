@@ -25,6 +25,37 @@ li {
   width: 100%;
 }
 
+.container {
+  margin-bottom: 10px;
+}
+
+.view_changer {
+  text-align: center;
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+}
+
+.view_changer > a {
+  color: #000;
+  text-align:center;  
+  line-height: 50px;
+  padding: 10px 10px;
+  margin: 0px 5px;
+  height: 50px;
+  width: 100px;
+}
+
+.view_changer > a > i {
+  width: 50px;
+}
+
+.view_changer > a:hover {
+  background-color: #87CEFA;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+}
+
 .save_summ {
   float: right;
 }
@@ -34,13 +65,24 @@ li {
   color: #87CEFA;
 }
 
+/*Info Divs */
+
 #entropy_graph_p {
+  display: none;
   margin-top: 10px;
 }
 
-#summary_display {
+#summary_display_p {
   display: none;
   margin-bottom: 20px;
+}
+
+#similarity_graph_p {
+  display: none;
+}
+
+#view_changer_container {
+  display: none;
 }
 
 #summ_contents {

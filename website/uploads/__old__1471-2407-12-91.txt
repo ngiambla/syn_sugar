@@ -1,0 +1,1242 @@
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Open Access
+
+RESEARCH ARTICLE
+EMT transcription factors snail and slug directly
+contribute to cisplatin resistance in ovarian
+cancer
+Alexandria M Haslehurst1, Madhuri Koti1, Moyez Dharsee4, Paulo Nuin1,4, Ken Evans1,4, Joseph Geraci4,
+Timothy Childs1, Jian Chen4, Jieran Li4, Johanne Weberpals2, Scott Davey1, Jeremy Squire1,3, Paul C Park1 and
+Harriet Feilotter1,4*
+
+Abstract
+
+Background: The epithelial to mesenchymal transition (EMT) is a molecular process through which an epithelial
+cell undergoes transdifferentiation into a mesenchymal phenotype. The role of EMT in embryogenesis is well-
+characterized and increasing evidence suggests that elements of the transition may be important in other
+processes, including metastasis and drug resistance in various different cancers.
+Methods: Agilent 4  44 K whole human genome arrays and selected reaction monitoring mass spectrometry
+were used to investigate mRNA and protein expression in A2780 cisplatin sensitive and resistant cell lines. Invasion
+and migration were assessed using Boyden chamber assays. Gene knockdown of snail and slug was done using
+targeted siRNA. Clinical relevance of the EMT pathway was assessed in a cohort of primary ovarian tumours using
+data from Affymetrix GeneChip Human Genome U133 plus 2.0 arrays.
+Results: Morphological and phenotypic hallmarks of EMT were identified in the chemoresistant cells. Subsequent
+gene expression profiling revealed upregulation of EMT-related transcription factors including snail, slug, twist2 and
+zeb2. Proteomic analysis demonstrated up regulation of Snail and Slug as well as the mesenchymal marker
+Vimentin, and down regulation of E-cadherin, an epithelial marker. By reducing expression of snail and slug, the
+mesenchymal phenotype was largely reversed and cells were resensitized to cisplatin. Finally, gene expression data
+from primary tumours mirrored the finding that an EMT-like pathway is activated in resistant tumours relative to
+sensitive tumours, suggesting that the involvement of this transition may not be limited to in vitro drug effects.
+Conclusions: This work strongly suggests that genes associated with EMT may play a significant role in cisplatin
+resistance in ovarian cancer, therefore potentially leading to the development of predictive biomarkers of drug
+response or novel therapeutic strategies for overcoming drug resistance.
+
+Background
+Of the gynecological malignancies, ovarian cancer has
+the highest associated mortality rate in the western
+world [1,2]. While relatively rare at 1 in 71 women
+affected in Canada [3], approximately 70-80% of patients
+with ovarian cancer will succumb to the disease within
+five years of diagnosis [4]. The high mortality rate is
+due, in part, to the fact that ovarian cancer is often
+
+* Correspondence: feilotth@kgh.kari.net
+1Department of Pathology and Molecular Medicine, Queens University, 88
+Stuart Street, Kingston, ON, K7L3N6, Canada
+Full list of author information is available at the end of the article
+
+diagnosed in advanced stage, because of a lack of mea-
+surable early symptoms and ineffective screening techni-
+ques [5,6]. Of equal importance, 20% of tumours display
+primary resistance to platinum compounds while the
+majority of initial responders will relapse, often as a
+result of acquired drug resistance [7,8].
+
+Standard treatment
+
+for ovarian cancer involves
+tumour debulking and platinum-based chemotherapy
+administered intravenously or intraperitoneally [9,10].
+Cisplatin, the most common first line chemotherapeutic
+drug, is a platinum compound that binds to and cross-
+links DNA [11]. During cell division cisplatin-DNA
+
+ 2012 Haslehurst et al; licensee BioMed Central Ltd. This is an Open Access article distributed under the terms of the Creative
+Commons Attribution License (http://creativecommons.org/licenses/by/2.0), which permits unrestricted use, distribution, and
+reproduction in any medium, provided the original work is properly cited.
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 2 of 10
+
+adducts block replicative machinery, inducing the DNA
+damage response, and eventually apoptosis [11,12]. It
+has been proposed that decreased cellular uptake of
+drug as well as increased capacity for DNA damage
+repair and anti-apoptotic signaling may play a role in
+cisplatin resistance displayed by many tumours [12-17].
+
+Recent evidence has suggested that processes of the
+epithelial to mesenchymal transition (EMT) may play a
+role in the development of chemoresistance. EMT is a
+critical process in embryogenesis [18] and has been well
+studied in that context. It is characterized by up-regula-
+tion of extracellular matrix components, a loss of inter-
+cellular cohesion, increased rate of cellular migration
+and invasion, as well as increased resistance to apopto-
+sis, and is modulated by a number of transcription fac-
+tors, namely SNAI1 (Snail) and SNAI2 (Slug) [19,20]. In
+early embryogenesis, these cellular traits enable both the
+formation of the germinal layers during gastrulation by
+facilitating formation of the mesoderm and endoderm
+from cells in the primitive streak, and derivation of
+migratory neural crest cells from the epithelial neural
+plate [21]. EMT also has a significant role later in
+embryo development during tissue reorganization and
+organ modeling [22,23]. The same cellular remodeling
+and signaling networks appear to be active during
+metastasis, and may also contribute to the development
+of drug resistance in tumour cells [24-26]. During can-
+cer progression, EMT appears to promote dissemination
+of cells from the tumour mass [27] and facilitates tissue
+invasion by regulating the production of matrix metallo-
+proteases and altering cytoskeletal organization [28,29].
+In models of drug resistant breast and ovarian cancers,
+EMT gene signatures have been found to correlate with
+the presence of drug resistance [30,31] and manipulation
+of EMT transcriptional regulators modulates resistance
+to chemotherapeutic drugs in lung and bladder cancers
+[32,33]. Additional evidence suggests that EMT may
+contribute to the acquisition of drug resistance by alter-
+ing expression of key genes involved in cell cycle regula-
+tion, drug transport and apoptosis [34-36].
+
+We hypothesized that the genes that regulate EMT
+have a role in cisplatin resistance in ovarian cancer.
+Using a cell line model of cisplatin-resistant ovarian
+cancer, we demonstrate features of a mesenchymal phe-
+notype in the resistant cells relative to their epithelial
+parent cells. Additionally, we demonstrate increased
+capacity for migration and invasion in resistant com-
+pared to sensitive cells, characteristics that are reverted
+following reduction of expression of snail and slug.
+Using a cohort of primary human ovarian tumours, we
+demonstrate that EMT genes are upregulated in chemo-
+nave drug resistant tumours, suggesting that these
+genes may act as biomarkers of chemotherapy resis-
+tance. Finally, we modulate resistance to cisplatin in
+
+A2780cis cells by manipulating levels of snail and slug,
+suggesting that the key regulators of EMT are directly
+contributing to the drug resistant phenotype in ovarian
+cancer cells.
+
+Methods
+Cell lines and culture conditions
+The cisplatin-sensitive A2780 ovarian adenocarcinoma
+cell line and its daughter line, A2780cis, were obtained
+from the European Collection of Cell Cultures (Salis-
+bury, UK). Cells were cultured in RPMI with 10%FBS,
+1% penicillin/streptomycin and 1% L-glutamine at 37C
+in 5% CO2. A2780cis cells were maintained in media
+with 1 M cisplatin. For all assays, cells were grown to
+70-80% confluence and harvested following trypsiniza-
+tion. Analysis of cell morphology was done at 20 mag-
+nification using a Zeiss Axiovert 25 Phase Contrast
+Inverted Microscope. Digital images were captured
+using a Canon Power Shot G10 equipped with a Carl
+Zeiss 426126 lens.
+
+Human ovarian tumours
+Consent for tumour banking was obtained and the study
+was approved by the Research Ethics Boards at both
+Kingston General Hospital and The Ottawa Hospital.
+Tumour samples were obtained from the Division of
+Gynecologic Oncology Ovarian Tissue Bank and the
+Ontario Tumour Bank. All tumours were chemonave at
+collection. Seventeen tumours were classified as chemo-
+sensitive (progression-free interval of greater than 18
+months) and eleven as chemoresistant (progression-free
+interval of less than 8 months) using available follow-up
+clinical data. Histological assessment of samples con-
+firmed that each sample contained > 70% tumour cells.
+
+Gene expression profiling and analysis
+Total RNA was extracted from the cell
+lines and
+tumours using the Qiagen miRNeasy Mini kit (Tor-
+onto, Canada). RNA quality was assessed to have an
+RNA integrity number of at least eight using an Agi-
+lent 2100 Bioanalyzer (Mississauga, Canada). For cell
+lines, total RNA was labeled with Cyanine-3 dye using
+a Quick Amp Labeling Kit (Agilent, Mississauga,
+Canada) and hybridized to Agilent Whole Human
+Genome (4  44 K) Microarrays (Mississauga, Canada)
+for 17 hours in a rotating SciGene model 700 oven
+(Sunnyvale, USA). Arrays were scanned using an Agi-
+lent Technologies DNA Microarray Scanner and data
+were feature extracted using Feature Extraction Soft-
+ware 10.5.1.1 (Agilent) and statistically analyzed using
+default settings on GeneSpring GX 11.0.1 software
+(Agilent).
+
+Expression profiles from the tumor RNA were
+obtained using Affymetrix GeneChip Human Genome
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 3 of 10
+
+U133 plus 2.0 arrays. Raw data were imported into
+GeneSpring GX 11.0.1 and analyzed. Unsupervised hier-
+archical clustering of the tumour samples was com-
+pleted using the self-organizing maps algorithm in the
+GeneSpring GX 11.0.1 package.
+
+qRT-PCR Taqman arrays
+Snail and Slug expression levels were analyzed using Taq-
+man assays (Applied Biosystems, Streetsville, Canada,
+item Hs00195591_m1 and item Hs00950344_m1) and the
+SuperScript III First-Strand Synthesis SuperMix kit for
+qRT-PCR (Invitrogen, Burlington, Canada). PCR condi-
+tions were 50C for 2 minutes, 95C for 10 minutes, 40
+cycles of 95C for 15 seconds, 60C for 1 minute. GAPDH
+was used as an internal control. As a measure of relative
+change in expression between the parental and resistant
+samples, Ct values were calculated and converted to
+approximate fold change values (2-Ct) [37].
+
+Cell proliferation assay
+Cells were plated in 24-well plates at 5  104 cells/well.
+Cells were harvested and counted using a haemocyt-
+ometer after 24, 48 and 72 hours. Average cell counts
+were used to produce growth curves, from which cell
+doubling time was calculated.
+
+Wound healing assay
+Cell migration was assessed using wound-healing assays.
+Cells were grown in a confluent monolayer in a 60 mm
+plate. A wound was inflicted in the cell layer by scratch-
+ing the plate with a sterile pipette tip. Plates were rinsed
+gently with media twice prior to incubation to remove
+non-adherent cells. Digital images of the wound were
+obtained at times 0 hours, 12 hours and 36 hours at
+10 magnification. Effects of proliferation were con-
+trolled for by using a reduced serum medium (3%FBS)
+and monitored via cell count.
+
+Boyden chamber migration and invasion assays
+Cells were serum starved for 24 hours prior to use.
+Media with 10% FBS was added to the wells of a 24-
+well plate. BD Falcon Cell Culture Inserts (BD Bios-
+ciences, Mississauga, Canada) were placed in each
+well. 2  103 cells in serum-free media were added to
+the interior of each insert. Plates were incubated for
+24 hours at 37C in 5% CO2, and media removed
+from the insert, which was then washed with PBS.
+Insert membranes were fixed with cold methanol for
+10 minutes, stained with 0.5% Crystal Violet in 25%
+methanol
+for 10 mins and rinsed with water to
+remove excess dye. Membranes were removed from
+the insert, placed under a microscope and the number
+of cells that migrated through the porous membrane
+was counted.
+
+Invasion assays were done as described above using
+BD BioCoat Matrigel invasion chambers (BD Bios-
+ciences, Mississauga, Canada).
+
+MTT assays
+5  103 cells/well were seeded in 96-well plates in 100
+ul medium with 10 M cisplatin and without phenol
+red and left to incubate for 48 hours at 37C and 5%
+CO2 . After 48 hours, 10 l MTT (3-(4,5-Dimethylthia-
+zol-2-yl)-2,5-diphenyltetrazolium bromide) (Sigma-
+Aldrich, Oakville, Canada) was added to each well and
+cells were left for 4 hours. After incubation, 150 l
+MTT solvent (0.1 N HCl in anhydrous isopropanol) was
+added to each well and mixed thoroughly by pipetting
+until all formazan crystals were dissolved. Colourimetric
+change was measured at 570 nm and background absor-
+bance at 690 nm. Final values were obtained by sub-
+tracting OD690 nm from OD570 nm. MTT assays for
+siRNA optimization were done without adding cisplatin
+and the initial seeded cells were only incubated for 24
+hours prior to MTT addition.
+
+for
+
+snail
+
+siRNA oligos
+
+Gene knockdown
+Pre-designed
+(cat#
+SASI_Hs01_00039785, duplex sequences: 5GCCUU-
+CAACUGCAAAUACU and 5AGUAUUUGCAGUU-
+GAAGGC) and slug (cat# SASI_Hs01_00159363, duplex
+5GCAUUUGCAGACAGGUCAA and
+sequences:
+5UUGACCUGUCUGCAAAUGC) were purchased from
+Sigma-Aldrich (Oakville, Canada).
+
+Optimization of gene knockdown was done using All-
+Stars Hs Cell Death Control siRNA (Qiagen, Toronto,
+Canada), a mix of siRNAs that target genes essential for
+cell survival. 5  104 cells/well were plated in 24-well
+plates and incubated overnight. After 24 hours cells
+were transfected with 7.5 ng, 19 ng, 37.5 ng or 75 ng of
+AllStars Hs Cell Death Control siRNA and 1.5 l, 3 l
+or 7.5 l of HiPerFect Transfection Reagent (Qiagen,
+Toronto, Canada). Cells were incubated for 72 hours
+and cell death measured using MTT assays. Maximum
+cell death was achieved using 19 ng siRNA with 3 l of
+transfection reagent. Optimal time points were then
+established using siRNA targeted against Snail and Slug.
+24, 48 and 72 hours after transfection the level of snail
+and slug transcript was determined by qRT-PCR Taq-
+Man assay. Optimal knockdown of both genes was seen
+72 hours post transfection. Efficiency of transfection in
+the A2780 and A2780cis cells was determined to be 87%
+and 84%, respectively.
+
+For knockdown experiments, 5  104 cells/well were
+plated in 24-well plates and incubated overnight. 19 ng
+of siRNA and 3 l of HiPerFect transfection reagent
+were diluted in 100 l serum-free RPMI and were incu-
+bated for 10 minutes at room temperature. Transfection
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 4 of 10
+
+complexes were then added drop-wise onto the cells.
+Cells were incubated for 72 hours at 37C and 5% CO2.
+Media was changed as necessary. Transfection of
+A2780cis cells with AllStars Negative Control (Qiagen),
+an siRNA sequence with no homology to any known
+mammalian gene, was used as a control for this experi-
+ment. Cells with reduced expression were designated as
+follows: A2780cisSN - snail knockdown, A2780cisSL -
+slug knockdown, A2780cisSN/SL - both snail and slug
+knocked down.
+
+Statistical analysis
+Each assay was performed in triplicate. Data are
+expressed as the mean  standard deviation (SD). Statis-
+tical significance of all data was evaluated using the Stu-
+dents t-test, p < 0.05.
+
+Sample preparation for proteomic analysis
+Samples were lysed in RIPA buffer containing Halt Pro-
+tease and Phosphatase Inhibitor Cocktail (PIERCE, IL,
+USA). Cells were sonicated and lysates incubated at 4C
+for 30 minutes with shaking. Supernatants were sepa-
+rated by centrifugation for 15 minutes at 4C. Protein
+concentration was measured with a Bio-Rad DC Protein
+Assay kit and 30 g of protein was used for tryptic
+digestion. Each aliquot was dried, dissolved in 0.5 M
+triethylammonium bicarbonate (TEAB), reduced by add-
+ing 2 l of tris-(2-carboxyethyl)-phosphine (TCEP),
+incubated at room temperature for 1 hour, alykalted
+using 1 l of methyl methane thiosulfonate (MMTS)
+and incubated at room temperature for 1 hour in the
+dark. 2 g trypsin was added for overnight digestion at
+37C. The tryptic digest was desalted by using a C18
+spin column (PIERCE, USA), dried under vaccum and
+resuspended in 0.1% formic acid for SRM analysis.
+
+LC/SRM-MS analysis
+The LC/SRM-MS analytical system consisted of an Eksi-
+gent nanoflow HPLC (AB Sciex, USA) coupled to a
+5500 QTRAP hybrid triple quadrupole/linear ion trap
+mass spectrometer (AB SCIEX, USA). 1 g of digested
+protein was loaded onto a trap column (0.3 mm I.D, 5
+mm L), packed with 5 m Zorbax SB-C18, 300  pore
+(Agilent, USA). Peptides were separated on a 75 m I.
+D., 15 cm long nanoflow column with 15 m spray tip
+(New Objectives, USA). A linear gradient profile was
+employed starting from 5% solvent B to 40% B in 60
+minutes (solvent A was 2% acetonitrile in water with
+0.1% formic acid; solvent B was 2% water in acetonitrile
+with 0.1% formic acid). The ion spray voltage was set at
+2300 V, and source temperature at 160C. The declus-
+tering voltage was 100 V, and collision energy value was
+selected for each transition as generated by Multi-
+Quant software (AB Sciex, USA). To ensure sensitive
+
+and reliable quantification, tryptic peptides and SRM
+transitions were generated by MRMPilot software (AB
+SCIEX, USA) based on common chemical rules of pep-
+tide fragmentation. The specificity of each peptide was
+verified using BLAST alignment against the NCBI-NR
+human protein database. Raw SRM-MS data was pre-
+processed using MultiQuant 2.0.2 software (AB SCIEX).
+A 2-point Gaussian smoothing window was applied to
+all transition peaks. Peak area for each transition was
+averaged over three replicate experiments per resistant
+and sensitive cell line sample; fold-change was calculated
+from the ratio of the average peak area in resistant cells
+to that in sensitive cells. A transition was discarded if
+peak area coefficient of variation (CV) across replicates
+was greater than 0.2 or peak area in any replicate was
+below the 25th percentile. Peptides with at least 2 tran-
+sitions satisfying these constraints were conserved.
+
+Results
+Cisplatin resistance in A2780cis correlates with changes in
+cellular morphology consistent with EMT signaling
+We examined the morphological characteristics of the
+cell lines during exponential growth. Parental A2780
+cells formed cohesive clusters with round cellular mor-
+phology in vitro (Figure 1a), consistent with an epithelial
+phenotype. In contrast, A2780cis cells, grown in the pre-
+sence of 1 M cisplatin, display a spindle-like morphol-
+ogy and formed dyscohesive sheets (Figure 1b).
+Additionally, the resistant cells exhibit the formation of
+pseudopodia (Figure 1b, inset), not seen in the parental
+cells.
+
+Whole transcriptome profiling and LC/SRM-MS analysis
+identify components of EMT signaling networks in
+A2780cis relative to A2780
+To confirm the involvement of EMT elements in the
+development of cisplatin resistance, whole transcriptome
+microarrays (Agilent, Mississauga, Canada) were used to
+
+Figure 1 Morphology of A2780 and A2780cis cells. Cells
+visualized under 20 magnification. Drug sensitive cells (a) have
+round morphology and grow in tight clusters with substantial
+cellular cohesion. Comparatively, the drug resistant cells (b) have a
+more fibroblastic appearance and demonstrate reduced intercellular
+contacts. Additionally, drug resistant cells extend pseudopodia
+(inset).
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 5 of 10
+
+compare gene expression between A2780 and A2780cis
+cells during exponential growth. In repeated assays,
+EMT pathway elements, including snail, slug, twist2 and
+zeb2, were over-expressed in the cisplatin-resistant cell
+line relative to the parental line (Figure 2a). Technical
+validation by qRT-PCR using Taqman assays confirmed
+relative overexpression of snail by 3.7  0.3 (SD) fold
+and slug by 6.9  0.4 (SD) fold, in the drug-resistant
+cells compared to the drug-sensitive cells (Figure 2b).
+Protein analysis by liquid chromatography/selected reac-
+tion monitoring mass spectrometry (LC/SRM-MS) con-
+firmed upregulation of Snail, Slug and vimentin, as well
+as downregulation of epithelial marker E-cadherin in the
+drug resistant cells relative to the drug sensitive cells
+(Table 1).
+
+Cisplatin resistant cells display increased potential for
+migration and invasion
+Migratory capacity was measured using Boyden chamber
+assays. In three independent experiments, 23.7  5.1
+
+Figure 2 Upregulation of genes associated with EMT in
+resistant cells. Genes known to regulate EMT were shown to be
+upregulated in the A2780cis cells compared to the A2780 cells. Data
+from the gene expression microarrays (a) and technical validation of
+snail and slug expression levels using qRT-PCR TaqMan assay (b)
+demonstrate that upregulation. Approximate fold change calculated
+as Ct for snail is 3.7  0.3 (p-value = 0.0008) and for slug is 6.9 
+0.4 (p-value = 0.001).
+
+drug sensitive cells and 194.0  7.0 drug-resistant cells
+migrated through the membrane after 24 hours (p-value
+= 0.003) (Figure 3c). Resistant cells also showed a five-
+fold increased invasive capability relative to sensitive
+cells using a Matrigel-coated Boyden chamber assay.
+After 24 hours, an average of 36.3  5.03 sensitive cells
+and 188.3  4.04 resistant cells invaded the matrix (p-
+value = 0.003) (Figure 3c).
+
+Knockdown of snail and slug reverses the EMT phenotype
+and reduces cellular resistance to cisplatin
+SiRNA was used to reduce the levels of snail and slug
+transcript in the A2780cis cells to those of the parent
+line (A2780cisSN - snail knockdown,
+A2780 cell
+A2780cisSL - slug knockdown, A2780cisSN/SL - both
+snail and slug knocked down). Knockdown of these
+genes was confirmed by qRT-PCR (results not shown)
+and resulted in reversion of cell morphology of the
+resistant cells to that of the parent cell line (Figure 3a).
+Additionally, the knockdowns resulted in a reduction of
+the doubling time of the resistant cells from 45.7  2.4
+hours to 31.1  2.4 hours (p-value = 0.017), similar to
+the 27.3  1.6 hour doubling time of the drug-sensitive
+A2780 cells (p-value = 0.15) (Figure 3b). Migratory
+capacity of the transfected cells was reduced from 194.0
+ 7.0 (untransfected controls) to 33.67  3.1 cells
+migrating through the membrane (p-value = 0.002) (Fig-
+ure 3c). Invasive capability was reduced from 188.3 
+4.04 (untransfected controls) to 56  4.58 cells invading
+the matrix (p-value = 0.004) (Figure 3c). Finally, we
+showed increased cellular sensitivity to cisplatin in
+transfected cells relative to controls (Figure 4). Following
+48 hours of growth in 10 M cisplatin, transfected cells
+displayed 62  2.5% cell death compared to controls at
+37  2.4% (p-value = 0.005). As a comparator, parental
+drug-sensitive cells displayed 75  3.3% cell death.
+
+Drug resistant human ovarian tumours can be
+differentiated from drug sensitive ovarian tumours using
+a biomarker panel of EMT-related genes
+Human ovarian tumour samples were classified as che-
+mosensitive (progression-free interval of greater than 18
+months) or chemoresistant (progression-free interval of
+less than 6 months) based on available clinical data
+(Additional file 1: Table S1). Gene expression data from
+17 sensitive and 11 resistant tumours were mined to
+investigate the relative expression levels of EMT-related
+genes. In addition to snail, slug, twist2 and zeb2, the
+resistant tumour samples also showed increased expres-
+sion of twist1 and zeb1, two other important regulators
+of EMT (Figure 5a). We used published information
+about EMT to derive a list of 17 additional genes with a
+role directly upstream or downstream of Snail and Slug
+(Table 2). Unsupervised hierarchical clustering using
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 6 of 10
+
+Table 1 Targeted protein analysis of A2780 and A2780cis cells.
+
+Protein
+
+Peptide
+
+Fragment Change
+
+Fold
+
+Mean Peak Area
+
+CV
+
+E- cadherin
+
+GPFPKNLVQJK
+
+VFYSITGQADTPPVGVFIIER
+
+Vimentin
+
+Snail
+
+Slug
+
+EYQDLLNVK
+
+ILLAELEQLK
+
+SFLVR
+
+HFNASK
+
+VSPPPPSDTSSK
+
+b8
+b9
+b10
+y8
+y9
+y10
+y6
+y7
+y8
+y6
+y7
+y8
+y9
+b3
+b4
+y3
+b3
+b5
+b10
+b11
+y9
+
+Sensitive
+5.82E+04
+1.57E+04
+3.33E+04
+2.10E+04
+8.25E+04
+8.45E+04
+4.78E+06
+2.19E+06
+1.27E+05
+4.58E+06
+7.34E+06
+1.11E+07
+1.35E+06
+6.00E+04
+7.38E+04
+2.14E+04
+1.92E+04
+2.40E+05
+9.96E+04
+4.47E+04
+4.00E+04
+
+Resistant
+3.22E+04
+1.01E+06
+2.05E+04
+5.02E+03
+1.99E+04
+2.11E+04
+2.52E+06
+2.50E+06
+1.14E+05
+4.62E+06
+7.94E+06
+1.22E+07
+1.47E+06
+7.50E+04
+8.89E+04
+2.76E+04
+2.10E+04
+3.06E+05
+1.04E+05
+5.34E+04
+4.96E+04
+
+-1.18
+-1.55
+-1.63
+-4.48
+-4.16
+-4.01
+1.15
+1.14
+1.11
+1.01
+1.08
+1.10
+1.08
+1.25
+1.21
+1.29
+1.10
+1.27
+1.05
+1.19
+1.24
+
+Sensitive
+
+Resistant
+
+0.01
+0.07
+0.03
+0.09
+0.02
+0.07
+0.01
+0.02
+0.02
+0.02
+0.04
+0.04
+0.04
+0.14
+0.03
+0.16
+0.18
+0.06
+0.13
+0.07
+0.07
+
+0.13
+0.08
+0.19
+0.10
+0.12
+0.11
+0.01
+0.01
+0.05
+0.03
+0.05
+0.04
+0.04
+0.03
+0.07
+0.04
+0.14
+0.16
+0.07
+0.05
+0.06
+
+Summary of SRM-MS quantification results for E-Cadherin, Vimentin, Snail, and Slug. Mean peak area and coefficient of variation (CV) for each peptide fragment
+ion were derived from peak areas measured in three replicate assays of each of the sensitive and resistant cell line samples. Transitions with CV > 0.20 in either
+sample are not shown
+
+expression data from those genes allowed reasonable
+separation between the drug sensitive and drug resistant
+ovarian tumours (Figure 5b).
+
+Discussion
+Ovarian cancer exhibits a high rate of platinum sensitiv-
+ity in the first-line setting, but resistance frequently
+develops in recurrent disease [38]. As such, understand-
+ing the signaling networks that regulate chemoresistance
+is critical for successful treatment. This can be said of
+any cancer commonly treated with cisplatin such as
+small cell lung cancer, head and neck cancer, colorectal
+and hepatocelluar cancers.
+
+While EMT has been widely studied for its role in
+early development and, more recently, cancer metastasis,
+it may also contribute to a cellular ability to evade the
+effects of platinum-based therapies. EMT results in the
+transformation of a differentiated epithelial cell to a
+mesenchymal cell with stem-like properties, and is char-
+acterized by loss of cell-to-cell adhesion, specifically
+through the dismantling of adherens, tight and gap junc-
+tions, as well as loss of cell polarity and increased moti-
+lity [39].
+In embryogenesis, EMT functions by
+promoting migration of mesenchymal cells, first, during
+gastrulation and neural crest cell migration, then later
+
+during tissue remodeling and organogenesis, ultimately
+contributing to the development of differentiated tissues
+with specific phenotypes [18]. In cancer progression,
+EMT appears to be at least partially responsible for the
+invasive nature of tumour cells and facilitates metastasis
+by converting a non-motile cancerous epithelial cell into
+a motile mesenchymal cell capable of disseminating
+from the tumour mass and entering the circulatory or
+lymphatic system [40]. It is widely believed that embryo-
+genesis and cancer metastasis represent two facets of
+EMT, the former, a self-contained process that functions
+to generate diverse cell types and tissues, while the latter
+is affected by oncogenes and tumour suppressor genes
+resulting in invasion and metastatic spread through the
+circulatory system [41,42].
+
+It is likely that EMT in drug resistance may rely on
+many of the same transcription factors that function in
+embryogenesis and metastasis-related EMT, although
+details of their regulation are largely unknown. Studies
+from embryology and metastasis provide evidence to
+suggest that these cellular changes provide a survival
+advantage to cells under chemotoxic stress, for example,
+by down-regulating pro-apoptotic factors such as cas-
+pases and Dap1, or up-regulating anti-apoptotic factors
+Dad1 and Bcl2 [43,44]. Additionally, oxaliplatin-resistant
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 7 of 10
+
+Figure 3 Knockdown of snail and slug reverses EMT phenotype. Snail and slug knockdown resulted in an epithelial morphology (a) and
+reduced the doubling time of the A2780cisSN/SL cells (p-value = 0.017) compared to the A2780cis cells (b). Additionally, knockdown of snail
+and slug resulted in a reduction in migration from 194.0  7.0 cells to 33.67  3.1 cells migrating through the membrane (p-value = 0.002) as
+well as reducing invasion rate from 188.3  4.04 cells to 56  4.58 invading the matrix (p-value = 0.004), in each case, making the A2780cisSN/SL
+knockdown cells more similar to the A2780 cell line, having migration and invasion rates of 23.7  5.1 and 36.3  5.03, respectively (c). The
+control group, A2780cis cells transfected with a scrambled siRNA sequence, show no statistically significant changes in morphology, doubling
+time, migration or invasion.
+
+colorectal cancer cells have been shown to display many
+of the hallmarks of EMT, including increased migration
+and invasion as well as a spindle-cell shape, loss of
+polarity and formation of pseudopodia [45]. Increased
+expression of zeb1 and decreased expression of E-cad-
+herin have been associated with drug resistant pancrea-
+tic cell lines and reduction of zeb1 expression has been
+implicated in increased drug sensitivity [46]. In ovarian
+cancer cell lines, upregulation of snail and slug has been
+correlated with resistance to radiation and paclitaxel and
+shown to directly participate in p53-mediated pro-survi-
+val signaling [47]. Therefore the idea that the EMT
+genes play a significant role in cisplatin resistance in
+ovarian cancer is supported by previous evidence, and
+
+our own demonstration of a direct impact of these
+genes on platinum resistance.
+
+Through the manipulation of key EMT signaling
+molecules, we have been able to show that we can re-
+sensitize drug resistant cells to the effects of cisplatin,
+approaching wild-type sensitivity after 72 hours in cul-
+ture. Our findings suggest that genes known to regu-
+late EMT directly contribute to cisplatin resistance in
+this ovarian cancer model. We do recognize that the
+A2780 cell line may not provide a faithful model of
+serous ovarian carcinoma, given that lineage fidelity for
+this line may not be maintained in long term culture.
+However, we conclude that the translation of our cell
+line derived results to a series of primary ovarian
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 8 of 10
+
+Table 2 List of genes used for unsupervised hierarchical
+clustering of primary tumours.
+
+VIM
+EGPR
+PPARG
+IGF1
+TGFB2
+FN1
+ZEB1
+SNAI2
+TWIST2
+RXRA
+KRT5
+KRT15
+KRT17
+KRT18
+KRT7
+KRT16
+KRT4
+
+Vimentin
+
+Epidermal growth factor recetor
+
+Peroxisome proliferator-activated receptor gamma
+
+Insulin-like growth factor 1
+
+Transforming growth factor beta 2
+
+Fibronectin
+
+Zinc finger E-box-binding homeobox 1
+
+Slug (Zinc finger protein)
+Twist-related protein 2
+
+Retinoid X receptor alpha
+
+Keratin5
+Keratin15
+Keratin17
+Keratin18
+Keratin7
+Keratin16
+Keratin4
+
+Genes used to perform unsupervised hierarchical clustering on the primary
+ovarian tumours, chosen based on their documented involvement in EMT in
+recent literature
+
+carcinomas provides evidence for the effectiveness of
+this model in this instance. We have demonstrated
+that a panel of EMT-related genes provides a reason-
+able model of classifying primary ovarian tumours
+according to their chemoresistance status. While we
+recognize that optimization of the biomarker panel
+would be required before suggesting this could provide
+a clinical benefit, this initial gene list identifies key dif-
+ferences in the underlying molecular circuitry of drug
+sensitive and resistant ovarian tumours. We have not
+determined whether this signature derives entirely
+from tumour cells, given that we did not enrich for
+tumour cells in our experiments; however, the fact that
+all of the primary tumours showed at least 70%
+tumour cells by histology would support the idea that
+the tumour likely contributes substantially to the sig-
+nature we noted. To our knowledge, this is the first
+study in primary tumours demonstrating an EMT gene
+signature that can be used to differentiate between
+chemosensitive and chemoresistant human ovarian
+tumours and suggests that our overall findings may
+provide important clues about chemotherapy resistance
+in ovarian cancer.
+
+Conclusions
+In summary, we have demonstrated, through the use of
+an ovarian cancer cell line, A2780, and its cisplatin-
+resistant daughter line, A2780cis, that the genes that
+regulate the epithelial to mesenchymal transition directly
+contribute to cisplatin-resistance in ovarian cancer. We
+have shown that when snail and slug, two key regulators
+
+Figure 4 Cisplatin sensitivity with snail and slug knockdown.
+Cells with snail and slug knockdowns were grown in 10 M
+cisplatin for 48 hours and cell survival was determined by MTT
+assay. Approximately 75  3.3% of the drug sensitive cells died after
+treatment compared to 37  2.4% of the drug resistant cells. With
+snail and slug knockdown, cell death was significantly increased to
+62  2.5% (p-value = 0.005).
+
+Figure 5 EMT gene signatures in drug resistant ovarian
+tumours. EMT gene signatures are present in primary drug resistant
+ovarian tumours. (a) Gene expression arrays identify increased
+expression of genes integral to EMT in the resistant tumours relative
+to the sensitive tumours. (b) Unsupervised hierarchical clustering
+based on a panel of genes related to EMT supports differentiation
+between drug sensitive (blue) and drug resistant (red) tumours.
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 9 of 10
+
+of EMT, are knocked down in our cisplatin resistant cell
+line, the EMT phenotype is largely reversed and drug
+sensitivity is restored. Additionally, we demonstrate that
+this gene signature is present in drug resistant human
+ovarian tumours and that we can distinguish between
+drug sensitive and drug resistant ovarian tumours using
+the differential expression of a panel of EMT-related
+genes. Therefore, as it appears that EMT is connected
+to the drug resistant phenotype, this process and corre-
+sponding signaling network may be relevant biomarkers
+of drug resistance in ovarian cancer. Additionally, these
+molecules may represent targets for novel therapeutic
+strategies, used to overcome chemotherapy resistance in
+ovarian cancer, thereby modulating drug response in
+these patients and reducing the mortality rate associated
+with this disease.
+
+Additional material
+
+Additional file 1: Table S1 Clinical data for ovarian tumour samples.
+Available clinical data for each tissue sample including; patients age at
+time of diagnosis (years), tumour stage, progression-free interval (PFI,
+months) and drug response classification.
+
+Abbreviations
+EMT: Epithelial to mesenchymal transition; LC/SRM-MS: Liquid
+chromatography/selected reaction monitoring mass spectrometry
+
+Acknowledgements
+The authors would like to thank Xiao Zhang from Queens University
+Microarray Facility for his assistance with the gene expression arrays for the
+cell line data, and the Division of Gynecologic Oncology Ovarian Tissue Bank
+at the Ottawa Hospital for providing tumour samples and clinical follow up
+data. This study was conducted with the support of the Ontario Institute for
+Cancer Research through funding provided by the Government of Ontario.
+Additional funding was provided by the Queens University Terry Fox
+Foundation Training Program in Transdisciplinary Cancer Research in
+partnership with CIHR.
+
+Author details
+1Department of Pathology and Molecular Medicine, Queens University, 88
+Stuart Street, Kingston, ON, K7L3N6, Canada. 2Division of Gynaecologic
+Oncology, The Ottawa Hospital, 501 Smyth Road, Ottawa, ON, K1H8L6,
+Canada. 3NCIC Clinical Trials Group, Cancer Research Institute, 10 Stuart
+Street, Kingston, ON, K7L3N6, Canada. 4Ontario Cancer Biomarker Network,
+101 College Street, Toronto, ON, M5G 1L7, Canada.
+
+Authors contributions
+AMH carried out analysis of cell line microarray data, completed in vitro
+studies including cell migration, invasion and drug sensitivity assays, as well
+as gene knockdown experiments, and drafted the manuscript. MK provided
+microarray data for the primary tumours. MD, PN and JG carried out
+bioinformatic analysis of microarray data. MD and PN also designed peptide
+sequences for SRM-MS. KE, JC and JL carried out targeted protein
+quantification via SRM-MS and subsequent analysis. JW carried out
+classification of primary tumours as drug sensitive or resistant using clinical
+data. TC examined the primary tumours and calculated the percent tumour
+cells. SD provided guidance on biological interpretations. JS and HF
+conceived of the study, and participated in its design. AMH, SD, JS, PCP and
+HF all made significant intellectual contributions to this study. All authors
+contributed to the editing of this manuscript. All authors read and approved
+the final manuscript.
+
+Competing interests
+The authors declare that they have no competing interests.
+
+Received: 13 December 2011 Accepted: 19 March 2012
+Published: 19 March 2012
+
+References
+1.
+
+Khalil I, Brewer MA, Neyarapally T, Runowicz CD: The potential of biologic
+network models in understanding the etiopathogenesis of ovarian
+cancer. Gynecol Oncol 2010, 116(2):282-285.
+Kbel M, Kalloger SE, Boyd N, McKinney S, Mehl E, Palmer C, Leung S,
+Bowen NJ, Ionescu DN, Rajput A, Prentice LM, Miller D, Santos J,
+Swenerton K, Gilks CB, Huntsman D: Ovarian carcinoma subtypes are
+different diseases: Implications for biomarker studies. PLOS Med 2008,
+5(12):1749-1760.
+Canadian Cancer Society: Canadian Cancer Statistics. Statistics Canada/
+Public Health Agency of Canada 2011 [http://www.cancer.ca].
+Holschneider C, Berek J: Ovarian cancer: epidemiology, biology, and
+prognostic factors. Semin Surg Oncol 2000, 19:3-10.
+
+2.
+
+3.
+
+4.
+
+5. Moore R, MacLaughlin S: Current clinical use of biomarkers for epithelial
+
+6.
+
+7.
+
+8.
+
+9.
+
+ovarian cancer. Curr Opin Oncol 2010, 22(5):492-497.
+Kulasingam V, Pavlou MP, Diamandis EP: Integrating high-throughput
+technologies in the quest for effective biomarkers for ovarian cancer.
+Nat Rev 2010, 10(5):371-378.
+Visintin I, Feng Z, Longton G, Ward DC, Alvero AB, Lai Y, Tenthorey J,
+Leiser A, Flores-Saaib R, Yu H, Azori M, Rutherford T, Schwartz PE, Mor G:
+Diagnostic markers for early detection of ovarian cancer. Clin Cancer Res
+2008, 14(4):1065-1072.
+Dressman HK, Berchuck A, Chan G, Zhai J, Bild A, Sayer R, Cragun J, Clarke J,
+Whitaker RS, Li L, Gray J, Marks J, Ginsburg GS, Potti A, West M, Nevins JR,
+Lancaster JM: An integrated genomic-based approach to individualized
+treatment of patients with advanced stage ovarian cancer. J Clin Oncol
+2007, 25(5):517-525.
+Yen MS, Juang CM, Lai CR, Chao GC, Ng HT, Yuan CC: Intraperitoneal
+cisplatin-based chemotherapy vs. intravenous cisplatin-based
+chemotherapy for stage III optimally cytoreduced epithelial ovarian
+cancer. Int J Gynaecol Obstet 2001, 72(1):55-60.
+
+10. Hogberg T: Chemotherapy: current drugs still have potential in
+advanced ovarian cancer. Nat Rev Clin Oncol 2010, 7(4):191-193.
+
+11. Marsh S: Pharmacogenomics of Taxane/Platinum therapy in ovarian
+
+cancer. Int J Gynecol Cancer 2009, 2:30-34.
+
+12. Galluzzi L, Senovilla L, Vitale I, Michels J, Martins I, Kepp O, Castedo M,
+
+13.
+
+14.
+
+Kroemer G: Molecular mechanisms of cisplatin resistance. Oncogene 2011,
+doi:10.1038/onc.2011.384.
+Konstantinopolous PA, Spentzos D, Cannistra S: Gene-expression profiling
+in epithelial ovarian cancer. Nat Clin Pract Oncol 2008, 5:577-587.
+Li J, Wood WH, Becker KG, Weeraratna AT, Morin PJ: Gene expression
+response to cisplatin treatment in drug-sensitive and drug-resistant
+ovarian cancer cells. Oncogene 2007, 26:2860-2872.
+
+15. Cheng TC, Manorek G, Samimi G, Lin X, Berry CC, Howell SB: Identification
+
+of genes whose expression is associated with cisplatin resistance in
+human ovarian carcinoma cells. Cancer Chemother Pharmacol 2006,
+58:384-395.
+
+16. Ahmad S: Platinum-DNA interactions and subsequent cellular processes
+controlling sensitivity to anticancer platinum complexes. Chem Biodivers
+2010, 7(3):543-566.
+
+17. Burger H, Loos WJ, Eechoute K, Verweij J, Mathijssen RH, Wiemer EA: Drug
+
+transporters of platinum-based anticancer agents and their clinical
+significance. Drug Resist Update 2011, 14(1):22-34.
+
+18. Hay E: The mesenchymal cell, its role in the embryo, and the remarkable
+
+19.
+
+signaling mechanisms that create it. Dev Dyn 2005, 233(3):706-720.
+Kalluri R, Weinberg R: The basics of Epithelial-Mesechymal transition. J
+Clin Invest 2009, 119(6):1420-1428.
+
+20. Micalizzi D, Farabough FM, Ford H: Epithelial-Mesenchymal transition in
+
+cancer: parallels between normal development and tumour progression.
+J Mam Gland Biol Neoplasia 2010, 15:117-134.
+
+21. Acloque H, Adams MS, Fishwick K, Bronner-Fraser M, Nieto MA: Epithelial-
+
+mesenchymal transitions: the importance of changing cell state in
+development and disease. J Clin Invest 2009, 119(6):1438-1449.
+Soo K, ORourke MP, Khoo PL, Steiner KA, Wong N, Behringer RR, Tam PP:
+Twis function is required for the morphogenesis of the Cephalic neural
+
+22.
+
+Haslehurst et al. BMC Cancer 2012, 12:91
+http://www.biomedcentral.com/1471-2407/12/91
+
+Page 10 of 10
+
+tube and the differentiation of the Cranial neural crest cells in the
+mouse embryo. Dev Biol 2002, 247(2):251-270.
+Ekblom P: Genetics of kidney development. Curr Opin Nephrol Hypertens
+1996, 5(3):282-287.
+
+23.
+
+24. Geiger TR, Peeper DS: Metastasis mechanisms. Biochim Biophys Acta 2009,
+
+47.
+
+1796:293-308.
+
+25. Zlobec I, Lugli A: Epithelial mesenchymal transition and tumor budding
+
+26.
+
+27.
+
+in aggressive colorectal cancer: tumor budding as oncotarget.
+Oncotarget 2010, 1(7):651-661.
+Iwatsuki M, Mimori K, Yokobori T, Ishi H, Beppu T, Nakamori S, Baba H,
+Mori M: Epithelial-mesenchymal transition in cancer development and its
+clinical significance. Canc Sci 2009, 101(2):293-299.
+Sabe H: Cancer early dissemination: cancerous epithelial-mesenchymal
+transdifferentiation and transforming growth factor  signalling. J
+Biochem 2011, 149(6):633-639.
+
+28. Zhang K, Chen D, Jiao X, Zhang S, Liu X, Cao J, Wu L, Wang D: Slug
+
+enhances invasion ability of pancreatic cancer cells through
+upregulation of matri metalloproteinase-9 and actin cytoskeleton
+remodeling. Lab Invest 2011, 91(3):426-438.
+
+29. Zhao XL, Sun T, Che N, Sun D, Zhao N, Dong XY, Gu Q, Yao Z, Sun BC:
+
+Promotion of hepatocellular carcinoma metastasis through matrix
+metalloproteinase activation by epithelial-mesenchymal transition
+regulator Twist1. J Cell Mol Med 2011, 15(3):691-700.
+Ieri OD, Kars MD, Arpaci F, Atalay C, Pak I, Gndz U: Drug resistant MCF-
+7 cells exhibit epithelial- mesenchymal transition gene expression
+pattern. Biomed and Pharmacotherapy 2011, 65(1):40-45.
+
+30.
+
+31. Helleman J, Smid M, Jansen MP, van der Berg ME, Berns EM: Pathway
+analysis of gene lists associated with platinum-based chemotherapy
+resistance in ovarian cancer: the big picture. Gynecol Oncol 2010,
+117(2):170-176.
+
+32. Chang TH, Tsai MF, Su KY, Wu SG, Huang CP, Yu SL, Yu YL, Lan CC,
+
+Yang CH, Lin SB, Wu CP, Shih JY, Yang PC: Slug confers resistance to the
+epidermal growth factor receptor tyrosine kinase inhibitor. Am J Respir
+Crit Care Med 2010, 183(8):1071-1079.
+
+33. McConkey DJ, Choi W, Marquis L, Martin F, Williams MB, Shah J, Svatek R,
+Das A, Adam L, Kamat A, Siefker-Radtke A, Dinney C: Role of epithelial-to-
+mesenchymal transition (EMT) in drug sensitivity and metastasis in
+bladder cancer. Canc Met Rev 2009, 28(3-4):335-344.
+
+34. Vega S, Morales AV, Ocaa OH, Valds F, Fabregat I, Nieto MA: Snail blocks
+
+35.
+
+the cell cycle and confers resistance to cell death. Genes Dev 2004,
+18(10):1131-1143.
+Saxena M, Stephens MA, Pathak H, Rangarajen A: Transcription factors that
+mediate epithelial-mesenchymal transition lead to multidrug resistance
+by upregulating ABC transporters. Cell Death and Disease 2011, 2(6):e179.
+36. Wu K, Bonavida B: The activated NF-kappaB-Snail-RKIP circuitry in cancer
+
+37.
+
+38.
+
+regulates both the metastatic cascade and resistance to apoptosis by
+cytotoxic drugs. Crit Rev Immunol 2009, 29(3):241-254.
+Schmittgen T, Livak K: Analyzing real-time PCR data by the comparative
+CT method. Nat Protoc 2008, 3(6):1101-1108.
+Solar P, Sytkowski AJ: Differentially expressed genes associated with
+cisplatin resistance in human ovarian adenocarcinoma cell line A2780.
+Cancer Lett 2011, 309(1):11-18.
+
+39. Moustakas A, Heldin CH: Signaling networks guiding epithelial-
+
+mesenchymal transitions during embryogenesis and cancer progression.
+Cancer Sci 2007, 98(10):1512-1520.
+
+40. Yang J, Weinberg R: Epithelial-Mesenchymal transition: at the crossroads
+
+of development and tumor metastasis. Dev Cell 2008, 14(6):818-829.
+
+41. Zeisberg M, Neilson E: Biomarkers for epithelial-mesenchymal transitions.
+
+42.
+
+43.
+
+44.
+
+J Clin Invest 2009, 119(6):1429-1437.
+Kalluri R: EMT: When epithelial cells decide to become mesenchymal-like
+cells. J Clin Invest 2009, 119:1417-1419.
+LaGamba D, Nawshad A, Hay E: Microarray analysis of gene expression
+during epithelial-mesenchymal transformation. Dev Dynamics 2005,
+234:132-142.
+Sun T, Sun BC, Zhao XL, Zhao N, Dong XY, Che N, Yao Z, Ma YM, Gu Q,
+Zong WK, Liu ZY: Promotion of tumor cell metastasis and vasculogenic
+mimicry by way of transcription coactivation by Bcl-2 and Twist1: A
+study of hepatocellular carcinoma. Hepatology 2011, doi:10.1002/
+hep.24543.
+
+45. Yang D, Wang AH: Structural studies of interactions between anticancer
+
+platinum drugs and DNA. Prog Biophys Mol Biol 1996, 66(1):81-111.
+
+46. Arumugam T, Ramachandran V, Fournier KF, Wang H, Marquis L,
+
+Abbruzzese JL, Gallick GE, Logsdon CD, McConkey DJ, Choi W: Epithelial to
+mesencymal transition contributes to drug resistance in pancreatic
+cancer. Canc Res 2009, 69(14):5820-5828.
+Kurrey NK, Jalgaonkar SP, Joglekar AV, Ghanate AD, Chaskar PD,
+Doiphode RY, Bapat SA: Snail and slug mediate radioresistance and
+chemoresistance by antagonizing p53-mediated apoptosis and
+acquiring a stem-like phenotype in ovarian cancer cells. Stem Cells 2009,
+27(9):2059-2068.
+
+Pre-publication history
+The pre-publication history for this paper can be accessed here:
+http://www.biomedcentral.com/1471-2407/12/91/prepub
+
+doi:10.1186/1471-2407-12-91
+Cite this article as: Haslehurst et al.: EMT transcription factors snail and
+slug directly contribute to cisplatin resistance in ovarian cancer. BMC
+Cancer 2012 12:91.
+
+Submit your next manuscript to BioMed Central
+and take full advantage of: 
+
+ Convenient online submission
+
+ Thorough peer review
+
+ No space constraints or color gure charges
+
+ Immediate publication on acceptance
+
+ Inclusion in PubMed, CAS, Scopus and Google Scholar
+
+ Research which is freely available for redistribution
+
+Submit your manuscript at 
+www.biomedcentral.com/submit
+
+

@@ -94,12 +94,13 @@ function plot_sim() {
 	svg = d3.select("#structure_sim")
 	    .attr("width", width)
 	    .attr("height", height);
-
+	console.log("About to add circles.");
 	node = svg.selectAll("circle")
 	    .data(nodes)
 	  .enter().append("circle")
 	    .style("fill", function(d) { return color(d.cluster); })
 	    .call(force.drag);
+	console.log("Done adding circles.");
 
 	node.transition()
 	    .duration(375)
@@ -168,12 +169,8 @@ function collide(alpha) {
 $(function() {
 
 	$("#all_data").bind("change", function() {
-		console.log($(this).val()); 
 		all_data = JSON.parse($(this).val());
-		console.log(all_data);
-		$("#similarity_graph_p").fadeIn('fast', function(e) {
-			plot_sim();
-		});
+		plot_sim();
 	});
 
 });

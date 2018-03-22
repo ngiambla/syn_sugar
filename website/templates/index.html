@@ -71,16 +71,6 @@
     </div>
   </div>
 
-  <div id="summary_display" class="container">
-    <div class="row">
-      <h2>Summary <i onclick="save_summary();" class="far fa-save save_summ"></i> </h2>
-      
-      <div id="summ_contents" class="twelve columns" style="overflow-y: auto;">
-        
-      </div>      
-    </div>
-  </div>
-
 
   <div class="container">
     <div class="row">
@@ -93,7 +83,25 @@
     </div>
   </div>
 
-  <div id="entropy_graph_p" class="container" style="display: none;">
+  <div id="view_changer_container" class="container">
+    <div class="view_changer">
+      <a onclick="change_view(0);"><i class="fas fa-angle-double-left"></i></a>
+      <a onclick="change_view(1);"><i class="fas fa-angle-double-right"></i></a>
+    </div>
+  </div>
+
+
+  <div id="summary_display_p" class="container">
+    <div class="row">
+      <h2>Summary <i onclick="save_summary();" class="far fa-save save_summ"></i> </h2>
+      
+      <div id="summ_contents" class="twelve columns" style="overflow-y: auto;">
+        
+      </div>      
+    </div>
+  </div>
+
+  <div id="entropy_graph_p" class="container">
     <div class="row"> 
       <div class="twelve columns">
         <svg id="entropy_graph"></svg>
@@ -101,7 +109,7 @@
     </div>
   </div>
 
-  <div id="similarity_graph_p" class="container" style="display: none;">
+  <div id="similarity_graph_p" class="container">
     <div class="row"> 
       <div class="twelve columns">
         <svg id="structure_sim"></svg>

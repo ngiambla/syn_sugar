@@ -57,6 +57,41 @@ var draw_state 			= 0;
 var rotation 			= 29;
 var which_line 			= 0;
 
+// dict for info-divs.
+var which_info_div 		= 0;
+var info_divs			= {};
+
+
+function load_info_divs() {
+	var all_info_divs=$("div[id*='_p']");
+	for(var i = 0; i < all_info_divs.length; ++i) {
+		info_divs[i]=all_info_divs[i].id;
+	}
+}
+
+function change_view(dir) {
+	if(dir != 0 && dir != 1) {
+		console.log("Not Handling this directions");
+	} else {
+		$("#"+info_divs[which_info_div]).fadeOut('fast', function() {
+			if(dir == 0) {
+				console.log("Heading left.");
+				which_info_div--;
+				if(which_info_div < 0) {
+					which_info_div = Object.keys(info_divs).length-1;
+				}
+
+			} else if (dir == 1) {
+				console.log("Heading right.");
+				which_info_div++;
+				which_info_div=which_info_div%Object.keys(info_divs).length;
+			} 
+			$("#"+info_divs[which_info_div]).fadeIn('fast',function(){
+
+			});
+		});
+	}
+}
 
 function hide_term() {
 	$("#cnvs").slideUp("fast", function() {
@@ -108,11 +143,13 @@ function save_summary() {
 	}
 
 	var blob = new Blob([summ_text], {type: "text/plain;charset=utf-8"});
-	//saveAs(blob, "filename.txt");
+
     var anchor = document.getElementById("file_download_ref");
+
     $("#file_download_ref").click(function() {
     	console.log("Save File?");
     });
+
 	anchor.download = $("#doc_title").text()+"_summary.txt";
 	anchor.href = (window.URL).createObjectURL(blob);
 	anchor.dataset.downloadurl = ['text/plain', anchor.download, anchor.href].join(':');
@@ -160,17 +197,15 @@ function load_doc(doc, summary) {
 				}
 			}
 			if(!is_empty) {
-				$("#summary_display").fadeIn('fast', function() {
-				});
+				$("#view_changer_container").fadeIn('fast', function() {
+					$("#summary_display_p").fadeIn('fast', function() {
+					});
+				})
 			}
 
 			if(Object.keys(entropy_map).length > 0) {
 				console.log("~ entropy found.");
-				$("#entropy_graph_p").fadeIn('fast', function(e) {
-					load_bar_chart();
-				});
-			} else {
-				console.log(entropy_map);
+				load_bar_chart();
 			}
 		});
 	});
@@ -203,6 +238,7 @@ function upload_file() {
 	    		if(ret["res"]) {
 			    	console.log(ret["res"]);
 			    	$("#doc_title").text(filename);
+			    	$("#structure_sim").empty();
 			    	$("#all_data").val(JSON.stringify(ret['res'])).change();
 			    	summary 			= ret["res"][0];
 			    	doc 				= ret["res"][1];
@@ -232,15 +268,19 @@ function upload_file() {
 
 /*reset the view */
 function reset_sugar() {
+	which_info_div 		= 0;
 	draw_state 			= 0;
 	summary 			= {};
 	entropy_map 		= {}
 	summary["empty"] 	= "No Document Uploaded!";
 	doc 				= {};
-	$("#summary_display").fadeOut('fast', function() {
-			$("#doc_title").text("");
-			$("#entropy_graph_p").fadeOut('fast', function(e) {
+	$("#view_changer_container").fadeOut('fast', function() {
+		$("#doc_title").text("");
+		for(var key in info_divs) {
+			$("#"+info_divs[key]).fadeOut('fast', function() {
+
 			});
+		}
 	});
 	start_up_coolness();
 	hide_term();
@@ -422,8 +462,8 @@ function start_up_coolness() {
 
 function load_bar_chart() {
 
-	var wid = document.getElementById("entropy_graph").parentElement.clientWidth;
-	
+	var wid = document.getElementById("doc_contents").clientWidth;
+	console.log(wid);
 	var _data 	= entropy_map;
 	var data	= [];
 
@@ -616,6 +656,7 @@ function display () {
 
 $(function() {
 
+	load_info_divs();
 	start_up_coolness();
 	$("#cleanup_btn").on("click", function(e) {
 		reset_sugar();
@@ -648,7 +689,7 @@ $(function() {
 	ctx = cnvs.getContext("2d");
 
 	//making the canvas full screen
-	cnvs.height = 400;
+	cnvs.height = 350;
 	cnvs.width = window.innerWidth;
 
 	font_size = 10;

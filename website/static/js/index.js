@@ -75,14 +75,12 @@ function change_view(dir) {
 	} else {
 		$("#"+info_divs[which_info_div]).fadeOut('fast', function() {
 			if(dir == 0) {
-				console.log("Heading left.");
 				which_info_div--;
 				if(which_info_div < 0) {
 					which_info_div = Object.keys(info_divs).length-1;
 				}
 
 			} else if (dir == 1) {
-				console.log("Heading right.");
 				which_info_div++;
 				which_info_div=which_info_div%Object.keys(info_divs).length;
 			} 
@@ -204,7 +202,6 @@ function load_doc(doc, summary) {
 			}
 
 			if(Object.keys(entropy_map).length > 0) {
-				console.log("~ entropy found.");
 				load_bar_chart();
 			}
 		});
@@ -236,7 +233,6 @@ function upload_file() {
 	    success: function(ret) {
 	    	if(ret) {
 	    		if(ret["res"]) {
-			    	console.log(ret["res"]);
 			    	$("#doc_title").text(filename);
 			    	$("#structure_sim").empty();
 			    	$("#all_data").val(JSON.stringify(ret['res'])).change();
@@ -462,8 +458,7 @@ function start_up_coolness() {
 
 function load_bar_chart() {
 
-	var wid = document.getElementById("doc_contents").clientWidth;
-	console.log(wid);
+	var wid = document.getElementById("doc_contents").clientWidth-10;
 	var _data 	= entropy_map;
 	var data	= [];
 
@@ -502,6 +497,20 @@ function load_bar_chart() {
 	svg = d3.select("#entropy_graph")
 				.attr("width", width + margin.left + margin.right)
 	        	.attr("height", height + margin.top + margin.bottom + selectorHeight);
+
+	svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Entropy");
+
+	// svg.append("text")
+	// 	.attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+	// 	.attr("transform", "translate("+ (width/2) +","+(height-(padding/2))+")")  // centre below axis
+	// 	.text("Sentence ID");
+
 	  
 	diagram = svg.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");

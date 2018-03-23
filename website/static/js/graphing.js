@@ -94,13 +94,11 @@ function plot_sim() {
 	svg = d3.select("#structure_sim")
 	    .attr("width", width)
 	    .attr("height", height);
-	console.log("About to add circles.");
 	node = svg.selectAll("circle")
 	    .data(nodes)
 	  .enter().append("circle")
 	    .style("fill", function(d) { return color(d.cluster); })
 	    .call(force.drag);
-	console.log("Done adding circles.");
 
 	node.transition()
 	    .duration(375)

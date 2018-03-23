@@ -32,7 +32,7 @@ var subBars;
 var displayed;
 var tooltip;
 
-/* Syn Suagr's Vars */
+/* Syn Sugar's Vars */
 var text_decode 		= "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()~_-+,.:".split("");
 var search_query 		= "";
 var summary 			= {};
@@ -43,10 +43,11 @@ var sentence_len_map 	= {};
 var entropy_map 		= {};
 
 var sen_pairs 			= {};
-var fields 				= {};
 var sorted_bins 		= {};
+var freq_vec_map		= {};
 
 var font_size 			= 45;
+var timeout 			= 45;
 var columns;
 
 //an array of drops - one per column
@@ -166,24 +167,31 @@ function close_upload_modal() {
 }
 
 
+// to be coompleted later.
 function updateHeight() {
 	
 }
+
+function load_freq_map() {
+
+}
+
 
 function load_doc(doc, summary) {
 	var is_empty= true;
 	
 	summ_text = [];
 
-	$("ul").fadeOut('fast', function(e) {
+	$("#doc_contents_ul").fadeOut('fast', function(e) {
 		$("#entropy_graph").empty();
-		$("ul").empty();
+		$("#doc_contents_ul").empty();
+		$("#frequency_map_ul").empty();
 		$("#summ_contents").empty();
 		
-		$("ul").fadeIn('fast', function(e) {
+		$("#doc_contents_ul").fadeIn('fast', function(e) {
 			for(var i in doc) {
 				item = '<li class="doc_line" id="'+ i +'">'+doc[i]+'</li>'
-				$("ul").append(item);
+				$("#doc_contents_ul").append(item);
 				if(i in summary) {
 					summ_text.push(doc[i]);
 					is_empty=false;
@@ -203,6 +211,9 @@ function load_doc(doc, summary) {
 
 			if(Object.keys(entropy_map).length > 0) {
 				load_bar_chart();
+			}
+			if(Object.keys(freq_vec_map).length > 0) {
+				load_freq_map();
 			}
 		});
 	});
@@ -231,6 +242,7 @@ function upload_file() {
         processData: false,
         async: true,
 	    success: function(ret) {
+	    	timeout = 45;
 	    	if(ret) {
 	    		if(ret["res"]) {
 			    	$("#doc_title").text(filename);
@@ -241,8 +253,8 @@ function upload_file() {
 			    	sentence_len_map 	= ret["res"][2];
 			    	entropy_map			= ret["res"][3];
 			    	sen_pairs 			= ret["res"][4];
-			    	fields 				= ret["res"][5];
-			    	sorted_bins 		= ret["res"][6];
+			    	sorted_bins 		= ret["res"][5];
+			    	freq_vec_map 		= ret["res"][6];
 
 			    	load_doc(doc, summary);
 			    	draw_state 			= 2;
@@ -404,7 +416,14 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 		case 3:
 			//looping over drops
 			ctx.fillStyle = "#0F0";
-			status_q = " Loading ...";
+			
+			if(timeout > 0) {
+				status_q = " Loading ...";
+				timeout--;
+			} else {
+				status_q = " Please Hold On ...";
+			}
+
 			status_q = status_q.split("");
 			for(var qi = 0; qi < status_q.length; ++ qi) {
 				t=status_q[qi];

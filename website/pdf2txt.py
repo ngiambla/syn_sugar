@@ -11,7 +11,7 @@ def convert(pdfname):
 	# PDFMiner boilerplate
 	rsrcmgr = PDFResourceManager()
 	sio = StringIO()
-	codec = 'ascii'
+	codec = 'utf8'
 	laparams = LAParams()
 	device = TextConverter(rsrcmgr, sio, codec=codec, laparams=laparams)
 	interpreter = PDFPageInterpreter(rsrcmgr, device)

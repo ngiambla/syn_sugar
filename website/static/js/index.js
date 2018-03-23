@@ -47,7 +47,7 @@ var sorted_bins 		= {};
 var freq_vec_map		= {};
 
 var font_size 			= 45;
-var timeout 			= 45;
+var timeout 			= 60;
 var columns;
 
 //an array of drops - one per column
@@ -242,7 +242,7 @@ function upload_file() {
         processData: false,
         async: true,
 	    success: function(ret) {
-	    	timeout = 45;
+	    	timeout = 60;
 	    	if(ret) {
 	    		if(ret["res"]) {
 			    	$("#doc_title").text(filename);
@@ -414,14 +414,20 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 			break;
 
 		case 3:
-			//looping over drops
-			ctx.fillStyle = "#0F0";
-			
+			//looping over drops			
+			timeout--;
 			if(timeout > 0) {
-				status_q = " Loading ...";
-				timeout--;
+				ctx.fillStyle = "#0F0";
+				status_q = " Baking ...";
+			} else if(timeout > -60 && timeout <= 0){
+				ctx.fillStyle = "#F00";
+				status_q = " Cooling ...";
 			} else {
-				status_q = " Please Hold On ...";
+				ctx.fillStyle = "#0AF";
+				status_q = " Garnishing ...";
+				if(timeout < -120) {
+					timeout = 60;
+				}
 			}
 
 			status_q = status_q.split("");

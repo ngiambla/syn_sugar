@@ -349,21 +349,23 @@ function get_search_contents() {
 
 		show_term();
 
-		if("empty" in summary) {
+		if("empty" in summary ) {
 			draw_state = 2;
 		} else {
-			if($("#search").val() || $("#search").val() != search_query) {
-				if(draw_state == 0 || draw_state == 2) {
-					draw_state = 	1;
+			if($("#search").val()) {
+				if(!($("#next_word").is(":visible"))) {
+					$("#next_word").fadeIn("fast", function() {
+					});
 				}
 				search_query 	=	$("#search").val();
 				$("#doc_contents_ul").unmark();
-				$("#doc_contents_ul").mark(search_query);
+				$("#doc_contents_ul").mark(search_query);				
+				draw_state = 	1;
 			} else {
 				$("#doc_contents_ul").unmark();
-				if(draw_state == 1 || draw_state == 2) {
-					draw_state = 	0;
-				}			
+				$("#next_word").fadeOut("fast", function(){
+				});
+				draw_state = 	0;
 			}
 		}
 	});

@@ -199,15 +199,11 @@ function load_freq_map() {
 	if(items.length > 0) {
 		var max_size=items[0][1];
 
-		var bottom_out_lim = 0;
 		for(var i = 0; i < items.length; ++i) {
-			var content = "<li style='font-size:"+(65*items[i][1]/max_size)+"px;'>"+items[i][0]+" : "+items[i][1]+"</li>" 
+			var content = "<li style='font-size:"+(70*items[i][1]/max_size)+"px;'>"+items[i][0]+" : "+items[i][1]+"</li>" 
 			$("#frequency_map_ul").append(content);
 
-			if(items[i][1]==1) {
-				++bottom_out_lim;
-			}
-			if(bottom_out_lim == 10) {
+			if((70*items[i][1]/max_size) < 10) {
 				break;
 			}
 
@@ -358,11 +354,11 @@ function get_search_contents() {
 					});
 				}
 				search_query 	=	$("#search").val();
-				$("#doc_contents_ul").unmark();
-				$("#doc_contents_ul").mark(search_query);				
+				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").unmark();
+				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").mark(search_query);				
 				draw_state = 	1;
 			} else {
-				$("#doc_contents_ul").unmark();
+				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").unmark();
 				$("#next_word").fadeOut("fast", function(){
 				});
 				draw_state = 	0;
@@ -637,6 +633,11 @@ function load_bar_chart() {
 
 	  subBars.enter().append("rect")
 	      .classed('subBar', true)
+  	      .style("fill", function(d) {
+        	if(d.xval in summary) {
+        		return "#34BC6F";
+        	}
+          })
 	      .attr({
 	          height: function(d) {
 	              return heightOverview - yOverview(d.yval);

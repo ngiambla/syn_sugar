@@ -8,6 +8,9 @@
 // ~ all data
 var all_data;
 
+// ~ show sentence proportionality
+var show_prop = true;
+
 // graphing variables
 var width 				= 700;
 var height 				= 450;
@@ -46,6 +49,28 @@ function close_sim_modal() {
 }
 
 
+function show_proportions() {
+	show_prop = true;
+    $("#structure_sim").empty();
+    $("#sim_prop").fadeOut('fast', function() {
+    	$("#sim_sim").fadeIn('fast', function() {
+
+    	})
+    }) 
+	plot_sim();
+}
+
+function show_sim() {
+	show_prop = false;
+	$("#structure_sim").empty();
+    $("#sim_sim").fadeOut('fast', function() {
+    	$("#sim_prop").fadeIn('fast', function() {
+    		
+    	})
+    }) 
+	plot_sim();
+}
+
 function plot_sim() {
 
 	var doc = all_data[1];
@@ -74,23 +99,47 @@ function plot_sim() {
 	var is_init				= true;
 	var g_max 				= 0;
 
-	while(m != Object.keys(sorted_keys).length) {
+	while(m > Object.keys(sorted_keys).length) {
 		var max = 0;
 		var which;
 		for(var key in sen_pairs) {
 			if(sen_pairs.hasOwnProperty(key)) {
-				if((Object.keys(sen_pairs[key]).length > max) && !(key in sorted_keys)) {
-					which = key;
-					max   = Object.keys(sen_pairs[key]).length;
-					if(is_init) {
-						g_max = max;
-						is_init=false;
+				if(show_prop) {
+					if((Object.keys(sen_pairs[key]).length >= max) && !(key in sorted_keys)) {
+						which = key;
+						max   = Object.keys(sen_pairs[key]).length;
+						if(is_init) {
+							g_max = max;
+						}
+					}
+				} else {
+					if(Object.keys(sen_pairs).length > 20 && key > 10) {
+						key = parseInt(key);
+						if(key >= max && !(key in sorted_keys)) {
+							which=key;
+							max = key;
+							if(is_init) {
+								g_max = max;
+							}
+						}	
+					} else {
+						key = parseInt(key);
+						if(key >= max && !(key in sorted_keys)) {
+							which=key;
+							max = key;
+							if(is_init) {
+								g_max = max;
+							}
+						}								
 					}
 				}
 			}
 		}
+		is_init=false;
 		sorted_keys[which] = max;
 	}
+	console.log(g_max);
+	console.log(sorted_keys);
 
 	for(var key in sorted_keys) {
 		if(sorted_keys.hasOwnProperty(key)) {
@@ -210,6 +259,10 @@ function collide(alpha) {
 }
 
 $(function() {
+
+	tippy(document.querySelector('#sim_prop_i'));
+	tippy(document.querySelector('#sim_sim_i'));
+
 
 	$("#all_data").bind("change", function() {
 		all_data = JSON.parse($(this).val());

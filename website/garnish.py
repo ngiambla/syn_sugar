@@ -48,6 +48,16 @@ class garnish:
 			exit()
 		return _classes_out
 
+	def load_red_words(self):
+		red_dict={}
+
+		with open("bad_ingredients/bad_ingredients.pb", "r") as f:
+			for line in f:
+				bad_things = line.split()
+				for bad_thing in bad_things:
+					red_dict[bad_thing] = "%%#%%"
+		return red_dict
+
 	def display_progress_check(self, stage, count, columns):
 
 		try:
@@ -84,7 +94,10 @@ class garnish:
 		min_entropy 			= 	1000000
 		avg_entropy 			= 	0
 
+		bad_ingredient_map 		= 	self.load_red_words();
+
 		ingredient_freq_map 	= 	{}
+		ingredient_freq_map_ 	= 	{}
 		ingredient_free_map 	= 	{}
 
 		_ingredients_all		=	_ingredients.get_ingredients()
@@ -107,6 +120,18 @@ class garnish:
 				ingredient_freq_map[only_char_item] = 1
 			else:
 				ingredient_freq_map[only_char_item] = ingredient_freq_map[only_char_item] +1
+
+			#for web.
+			only_char_item_ = ''.join(e for e in _ingredients.get_unprepped_ingredients()[_label] if e.isalnum())
+			only_char_item_ = only_char_item_.lower()
+			bad_ingredient_map["and"]="temp";
+			bad_ingredient_map[""]="temp";
+
+			if only_char_item_ not in bad_ingredient_map:
+				if only_char_item_ not in ingredient_freq_map_:
+					ingredient_freq_map_[only_char_item_] = 1
+				else:
+					ingredient_freq_map_[only_char_item_] = ingredient_freq_map_[only_char_item_] +1
 
 			if "~$[" in item:
 
@@ -342,7 +367,7 @@ class garnish:
 			s1=s1 + "\n"
 			s3.append(s1)
 			s3_map[_label]=s1
-		return [s2_map, s3_map, sentence_length_map, sentence_entropy_map, sen_pairs, freq_vec_map] 
+		return [s2_map, s3_map, sentence_length_map, sentence_entropy_map, sen_pairs, ingredient_freq_map_] 
 
 	def final_touches(self, _ingredients, special_items):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)

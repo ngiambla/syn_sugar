@@ -50,6 +50,8 @@ li {
   width: 100px;
 }
 
+
+/*dashboard interaction */
 .view_changer > a > i {
   width: 40%;
 }
@@ -69,8 +71,13 @@ li {
   color: #87CEFA;
 }
 
-/*Info Divs */
 
+/* Similarity Modals */
+
+
+
+
+/*Info Divs */
 #entropy_graph_p {
   display: none;
   margin-top: 10px;
@@ -261,3 +268,14 @@ form > .row >input[type=text] {
     cursor: pointer;
 }
 
+.sim_content_holder {
+  width: 100%;
+  height: 230px;
+  overflow: auto;
+}
+
+.help_modal_content {
+  width: 100%;
+  height: 230px;
+  overflow: auto;
+}

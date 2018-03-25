@@ -26,7 +26,23 @@ var m; // number of distinct clusters
 
 
 function show_sim_modal(sim_data) {
-	console.log(sim_data);
+	$("#sim_content").empty();
+	for(var item in sim_data) {
+		var sentence = all_data[1][item]
+		var content  = "<p>"+sentence+"</p>"
+		$("#sim_content").append(content);
+
+	}
+	$("#sim_modal").fadeIn('slow', function(e){
+		$("#sim_content").fadeIn('fast', function(e){
+
+		});
+	});
+}
+
+function close_sim_modal() {
+	$("#sim_modal").fadeOut('slow', function(e){
+	});
 }
 
 

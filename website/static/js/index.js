@@ -177,12 +177,45 @@ function close_help_modal() {
 }
 
 
-// to be coompleted later.
+// to be completed later.
 function updateHeight() {
 	
 }
 
 function load_freq_map() {
+
+	$("#frequency_map_ul").empty();
+
+	// Create items array
+	var items = Object.keys(freq_vec_map).map(function(key) {
+	    return [key, freq_vec_map[key]];
+	});
+
+	// Sort the array based on the second element
+	items.sort(function(first, second) {
+	    return second[1] - first[1];
+	});
+
+	if(items.length > 0) {
+		var max_size=items[0][1];
+
+		var bottom_out_lim = 0;
+		for(var i = 0; i < items.length; ++i) {
+			var content = "<li style='font-size:"+(65*items[i][1]/max_size)+"px;'>"+items[i][0]+" : "+items[i][1]+"</li>" 
+			$("#frequency_map_ul").append(content);
+
+			if(items[i][1]==1) {
+				++bottom_out_lim;
+			}
+			if(bottom_out_lim == 10) {
+				break;
+			}
+
+		}
+	}
+	$("#frequency_map_ul").fadeIn('fast', function() {
+
+	});
 
 }
 

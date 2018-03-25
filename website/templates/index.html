@@ -50,8 +50,8 @@
     
   </canvas>
   <div class="navbar">
-    <a id="upload_btn">Bake</a>
-    <a id="help_btn">Help</a>
+    <a id="upload_btn">Bake <i class="fas fa-fire"></i></a>
+    <a id="help_btn">Help <i class="fas fa-question"></i></a>
     <a id="hide_term"><i class="fas fa-chevron-up"></i></a>
     <a id="show_term"><i class="fas fa-chevron-down"></i></a>
 
@@ -115,47 +115,6 @@
     </div>
   </div>
 
-
-
-<!--   <div id="summary_display_p" class="container">
-    <div class="row">
-      <h2>Summary <i onclick="save_summary();" class="far fa-save save_summ"></i> </h2>
-      
-      <div id="summ_contents" class="twelve columns" style="overflow-y: auto;">
-        
-      </div>      
-    </div>
-  </div>
-
-  <div id="entropy_graph_p" class="container">
-    <div class="row"> 
-      <h2>Entropy Graph</h2>
-      <div class="twelve columns">
-        <svg id="entropy_graph"></svg>
-      </div>
-    </div>
-  </div>
-
-  <div id="similarity_graph_p" class="container">
-    <div class="row"> 
-      <h2>Similarity Graph</h2>
-      <div class="twelve columns">
-        <svg id="structure_sim"></svg>
-      </div>      
-    </div>
-  </div>
-
-  <div id="frequency_map_p" class="container">
-    <div class="row">
-      <h2>Frequency Mapping</h2>
-        <ul id="frequency_map_ul" class="freq cards">
-          
-        </ul>
-    </div>
-  </div>
- -->
-
-
 <!-- File Modal -->
 <div id="file_modal" class="modal">
 
@@ -184,31 +143,51 @@
     <a id="help_modal_close" class="close">
       <i class="fas fa-times"></i>
     </a>
-      <h2>Hallo,</h2>
-      <pre>
-        <code id="about_me_code">
+      <div class="help_modal_content" >
+        <h2>Hallo,</h2>
+        <pre>
+          <code id="about_me_code">
 
-          I am Nicholas Giamblanco. Better known by my University of Toronto ID: giambla2.
-          I am the designer of Syntactic Sugar, a text summarization system.
-          I have created this website to help explore what Syntactic Sugar has to offer for textual information.
+    I am Nicholas Giamblanco. 
+    I am the designer of Syntactic Sugar,
+          a text summarization system.
 
-          What This Offers:
+    I have created this website to help explore 
+    what Syntactic Sugar has to offer for textual information.
 
-          + Semantically Relevant Summary of Information
+    What This Offers:
 
-          + Spatial Highlighting of Information
+    + Semantically Relevant Summary of Information
 
-          + Sentence Importance Map
-          
-          + Keyword Identification
-          
-          + Similarity Indexing
+    + Spatial Highlighting of Information
 
-          How This Works:
-          + You'll see two very 
+    + Sentence Importance Map
+    
+    + Keyword Identification
+    
+    + Similarity Indexing
 
-        </code>
-      </pre>
+    How This Works:
+    + You'll see two very 
+
+          </code>
+        </pre>
+      </div>
+  </div>
+</div>
+
+<!-- Help Modal -->
+<div id="sim_modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <a onclick="close_sim_modal();" class="close">
+      <i class="fas fa-times"></i>
+    </a>
+    <div class="sim_content_holder">
+      <div id="sim_content">
+
+      </div>
+    </div>
   </div>
 </div>
 

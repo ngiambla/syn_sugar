@@ -260,8 +260,16 @@ function collide(alpha) {
 
 $(function() {
 
-	tippy(document.querySelector('#sim_prop_i'));
-	tippy(document.querySelector('#sim_sim_i'));
+	tippy(document.querySelector('#sim_prop_i'), {
+		size: 'large',
+		animation: 'scale',
+        arrow: true
+	});
+	tippy(document.querySelector('#sim_sim_i'), {
+		size: 'large',
+		animation: 'scale',
+        arrow: true
+   	});
 
 
 	$("#all_data").bind("change", function() {

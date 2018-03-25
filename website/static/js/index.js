@@ -166,6 +166,16 @@ function close_upload_modal() {
 	});
 }
 
+function open_help_modal() {
+	$("#help_modal").fadeIn('slow', function() {
+	});	
+}
+
+function close_help_modal() {
+	$("#help_modal").fadeOut('slow', function() {
+	});
+}
+
 
 // to be coompleted later.
 function updateHeight() {
@@ -201,6 +211,9 @@ function load_doc(doc, summary) {
 					$("#"+i).css('color', 'white');
 
 				}
+			}
+			if(!is_empty && $("#doc_contents").hasClass("twelve")) {
+				$("#doc_contents").toggleClass('twelve six');
 			}
 			if(!is_empty) {
 				$("#view_changer_container").fadeIn('fast', function() {
@@ -253,8 +266,7 @@ function upload_file() {
 			    	sentence_len_map 	= ret["res"][2];
 			    	entropy_map			= ret["res"][3];
 			    	sen_pairs 			= ret["res"][4];
-			    	sorted_bins 		= ret["res"][5];
-			    	freq_vec_map 		= ret["res"][6];
+			    	freq_vec_map 		= ret["res"][5];
 
 			    	load_doc(doc, summary);
 			    	draw_state 			= 2;
@@ -290,26 +302,20 @@ function reset_sugar() {
 			});
 		}
 	});
+	$("#search").val("");
 	start_up_coolness();
 	hide_term();
+	if($("#doc_contents").hasClass("six")) {
+		$("#doc_contents").toggleClass('six twelve');
+	}
 }
 
-
-function query_doc(query) {
-	var status = 1;
-	draw_state = 3;	
-
-	setTimeout(function () {
-		draw_state = 2;
-	}, 5000);
-
-	return status;
-}
 
 function get_search_contents() {
 	$("#search").on("change keyup paste",function(e) {
 
 		show_term();
+
 		if("empty" in summary) {
 			draw_state = 2;
 		} else {
@@ -318,11 +324,10 @@ function get_search_contents() {
 					draw_state = 	1;
 				}
 				search_query 	=	$("#search").val();
-				if(e.which == 13 && $("#search").val()) {
-		        	query_doc(search_query);
-		    	}
-				search_query 	= 	search_query.split("");
+				$("#doc_contents_ul").unmark();
+				$("#doc_contents_ul").mark(search_query);
 			} else {
+				$("#doc_contents_ul").unmark();
 				if(draw_state == 1 || draw_state == 2) {
 					draw_state = 	0;
 				}			
@@ -399,9 +404,13 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 				ctx.fillStyle = "#FFF";
 				ctx.fillText(">>",xoffset-2*font_size, yoffset);
 				i=0;
-				for(var sentence in summary) {
-					for(var j=0; j < summary[sentence].length; ++j) {
-						var text = summary[sentence][j];
+				var _summ = summary;
+				if(!("empty" in summary)) {
+					_summ = {"done": "Document has been Baked!"}
+				}
+				for(var sentence in _summ) {
+					for(var j=0; j < _summ[sentence].length; ++j) {
+						var text = _summ[sentence][j];
 						ctx.fillStyle = "#0F0";
 						ctx.fillText(text, j*font_size+xoffset, i*font_size+yoffset);
 					}
@@ -454,10 +463,10 @@ function rand_draw(cnvs, ctx, font_size, text_decode, drops) {
 }
 
 function start_up_coolness() {
-	var coolness= 'What is Syntactic Sugar?'+
-				'-Basically you should just upload your document.'+
-	 			'-We want to give you unprecedented access to information'+
-	 			'-We want you to see what is most important in this.'+
+	var coolness= 'Welcome to Syntactic Sugar?'+
+				'-Upload a document and see the magic.'+
+	 			'-We want to give you unprecedented access to information in this document'+
+	 			'-We want you to see what is most important in your information.'+
 	 			'-Give it a shot.'+
 	 			'-Please.'+
 	 			'-...'+
@@ -465,7 +474,7 @@ function start_up_coolness() {
 	 			'-.'+
 	 			'-Just do it.'+
 	 			'-I know you want to'+
-	 			'-Also, feel free to form me.'+
+	 			'-Also, feel free to fork me.'+
 	 			'-...(only when this assignment is done of course.)'+
 	 			'-(what the hell are licenses?)'+
 	 			'-Signed By Yours Truly,'+
@@ -498,7 +507,7 @@ function load_bar_chart() {
 	marginOverview = {top: 30, right: 10, bottom: 20, left: 40};
 	selectorHeight = 50;
 	width = wid - margin.left - margin.right;
-	height = 350 - margin.top - margin.bottom - selectorHeight;
+	height = 450 - margin.top - margin.bottom - selectorHeight;
 	heightOverview = 90 - marginOverview.top - marginOverview.bottom;
 	       
 	maxLength = 4+ d3.max(data, function (d) { return (""+d.xval).length; });
@@ -562,6 +571,8 @@ function load_bar_chart() {
 	            .style("fill", function(d) {
 	            	if(d.xval in summary) {
 	            		return "#34BC6F";
+	            	} else {
+	            		return "#FFA07A";
 	            	}
 	            })
 	            .on("click", function(d){
@@ -569,10 +580,10 @@ function load_bar_chart() {
 	            })
 				.on("mouseenter", function(d){
 					tooltip
-					.style("left", d3.event.pageX - 50 + "px")
+					.style("left", d3.event.pageX - 80 + "px")
 					.style("top", d3.event.pageY - 70 + "px")
 					.style("display", "inline-block")
-					.html("Sentence: "+ (d.xval) + ", Entropy: " + (d.yval));
+					.html("Sentence: "+ (d.xval) + ", Entropy: " + (d.yval).toFixed(2));
 				})
     			.on("mouseleave", function(d){ tooltip.style("display", "none");})
 	            .attr("height", function (d) { return height - yscale(d.yval); });
@@ -668,6 +679,8 @@ function display () {
 		.style("fill", function(d) {
 			if(d.xval in summary) {
 				return "#34BC6F";
+			} else {
+				return "#FFA07A";
 			}
 		})
 		.on("click", function(d){
@@ -675,10 +688,10 @@ function display () {
 		})
 		.on("mouseenter", function(d){
 			tooltip
-				.style("left", d3.event.pageX - 50 + "px")
+				.style("left", d3.event.pageX - 80 + "px")
 				.style("top", d3.event.pageY - 70 + "px")
 				.style("display", "inline-block")
-				.html("Sentence: "+ (d.xval) + ", Entropy: " + (d.yval));
+				.html("Sentence: "+ (d.xval) + ", Entropy: " + (d.yval).toFixed(2));
 		})
 		.on("mouseleave", function(d){ tooltip.style("display", "none");})
 		.attr("width", xscale.rangeBand())
@@ -701,8 +714,16 @@ $(function() {
 		open_upload_modal();
 	});
 
-	$("#modal_close").on("click", function(e) {
+	$("#upload_modal_close").on("click", function(e) {
 		close_upload_modal();
+	});
+
+	$("#help_btn").on("click", function(e){
+		open_help_modal();
+	});
+
+	$("#help_modal_close").on("click", function(e){
+		close_help_modal();
 	});
 
 	$("#hide_term").on("click", function(e) {
@@ -723,7 +744,7 @@ $(function() {
 	ctx = cnvs.getContext("2d");
 
 	//making the canvas full screen
-	cnvs.height = 350;
+	cnvs.height = 200;
 	cnvs.width = window.innerWidth;
 
 	font_size = 10;

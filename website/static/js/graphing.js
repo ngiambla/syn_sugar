@@ -9,11 +9,11 @@
 var all_data;
 
 // graphing variables
-var width 				= 960;
-var height 				= 500;
+var width 				= 700;
+var height 				= 450;
 var padding 			= 1.5; 	// separation between same-color nodes
 var clusterPadding 		= 6; 	// separation between different-color nodes
-var maxRadius 			= 50;
+var maxRadius 			= 55;
 var color;
 var clusters;
 var nodes;

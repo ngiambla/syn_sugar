@@ -349,18 +349,13 @@ function get_search_contents() {
 			draw_state = 2;
 		} else {
 			if($("#search").val()) {
-				if(!($("#next_word").is(":visible"))) {
-					$("#next_word").fadeIn("fast", function() {
-					});
-				}
+
 				search_query 	=	$("#search").val();
 				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").unmark();
 				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").mark(search_query);				
 				draw_state = 	1;
 			} else {
 				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").unmark();
-				$("#next_word").fadeOut("fast", function(){
-				});
 				draw_state = 	0;
 			}
 		}

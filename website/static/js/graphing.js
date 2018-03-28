@@ -113,7 +113,7 @@ function plot_sim() {
 						}
 					}
 				} else {
-					if(Object.keys(sen_pairs).length > 20 && key > 10) {
+					if(Object.keys(sen_pairs).length > 20 && key > 5) {
 						key = parseInt(key);
 						if(key >= max && !(key in sorted_keys)) {
 							which=key;
@@ -184,11 +184,19 @@ function plot_sim() {
 			show_sim_modal(similar_sentences);
         })
 		.on("mouseenter", function(d){
-			tooltip
-			.style("left", d3.event.pageX + 15 + "px")
-			.style("top", d3.event.pageY + 15 + "px")
-			.style("display", "inline-block")
-			.html("Cluster: "+d.index+", # of Sentences: "+ sorted_keys[d.key]);
+			if(show_prop) {
+				tooltip
+				.style("left", d3.event.pageX + 15 + "px")
+				.style("top", d3.event.pageY + 15 + "px")
+				.style("display", "inline-block")
+				.html("Cluster: "+d.index+", # of Sentences: "+ sorted_keys[d.key]);
+			} else {
+				tooltip
+				.style("left", d3.event.pageX + 15 + "px")
+				.style("top", d3.event.pageY + 15 + "px")
+				.style("display", "inline-block")
+				.html("Cluster: "+d.index+", Similarity: "+ sorted_keys[d.key]+"%");				
+			}
 		})
 		.on("mouseleave", function(d){ tooltip.style("display", "none");})	    
 	    .style("fill", function(d) { return color(d.cluster); })

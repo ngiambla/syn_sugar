@@ -1,0 +1,2808 @@
+Do Not Blame Users for Misconﬁgurations
+
+Tianyin Xu, Jiaqi Zhang, Peng Huang, Jing Zheng, Tianwei Sheng,
+
+Ding Yuan∗, Yuanyuan Zhou, Shankar Pasupathy†
+
+University of California, San Diego, ∗University of Toronto, †NetApp, Inc.
+
+Abstract
+
+Similar to software bugs, conﬁguration errors are also
+one of the major causes of today’s system failures. Many
+conﬁguration issues manifest themselves in ways simi-
+lar to software bugs such as crashes, hangs, silent fail-
+ures. It leaves users clueless and forced to report to de-
+velopers for technical support, wasting not only users’
+but also developers’ precious time and effort. Unfortu-
+nately, unlike software bugs, many software developers
+take a much less active, responsible role in handling con-
+ﬁguration errors because “they are users’ faults.”
+
+This paper advocates the importance for software de-
+velopers to take an active role in handling misconﬁgu-
+rations. It also makes a concrete ﬁrst step towards this
+goal by providing tooling support to help developers im-
+prove their conﬁguration design, and harden their sys-
+tems against conﬁguration errors. Speciﬁcally, we build
+a tool, called SPEX, to automatically infer conﬁguration
+requirements (referred to as constraints) from software
+source code, and then use the inferred constraints to: (1)
+expose misconﬁguration vulnerabilities (i.e., bad system
+reactions to conﬁguration errors such as crashes, hangs,
+silent failures); and (2) detect certain types of error-
+prone conﬁguration design and handling.
+
+We evaluate SPEX with one commercial storage sys-
+tem and six open-source server applications. SPEX au-
+tomatically infers a total of 3800 constraints for more
+than 2500 conﬁguration parameters. Based on these con-
+straints, SPEX further detects 743 various misconﬁgu-
+ration vulnerabilities and at least 112 error-prone con-
+straints in the latest versions of the evaluated systems.
+To this day, 364 vulnerabilities and 80 inconsistent con-
+
+Permission to make digital or hard copies of part or all of this work for
+personal or classroom use is granted without fee provided that copies
+are not made or distributed for proﬁt or commercial advantage and that
+copies bear this notice and the full citation on the ﬁrst page. Copyrights
+for third-party components of this work must be honored. For all other
+uses, contact the Owner/Author.
+
+Copyright is held by the Owner/Author(s).
+SOSP’13, Nov. 3–6, 2013, Farmington, Pennsylvania, USA.
+ACM 978-1-4503-2388-8/13/11.
+http://dx.doi.org/10.1145/2517349.2522727
+
+straints have been conﬁrmed or ﬁxed by developers after
+we reported them. Our results have inﬂuenced the Squid
+Web proxy project to improve its conﬁguration parsing
+library towards a more user-friendly design.
+
+Categories and Subject Descriptors: D.4.5 [Operating
+Systems]: Reliability
+
+General Terms: Reliability, Design
+
+Keywords: Misconﬁguration, Constraint, Inference,
+Testing, Vulnerability
+
+1 Introduction
+
+1.1 Motivation
+
+Conﬁguration errors are one of the major causes of to-
+day’s system failures. For example, Barroso and H¨olzle
+report that misconﬁgurations are the second major cause
+of service-level failures at one of Google’s main ser-
+vices [6]. Similar ﬁndings are reported in other stud-
+ies [12, 22, 24, 27]. Recently, several systems, including
+Microsoft Azure, Amazon EC2, and Facebook, expe-
+rienced a number of misconﬁguration-induced outages
+that affected millions of their customers [2, 13, 31].
+
+In fact, misconﬁgurations affect not only end users but
+also support and software engineers, because they need
+to spend time and effort in troubleshooting and correct-
+ing them [8, 14]. A recent study [36] shows that con-
+ﬁguration issues account for 27% of customer support
+cases in a major storage company. Regardless of the root
+causes (software bugs or misconﬁgurations), the system
+often misbehaves with similar symptoms (e.g., crashes,
+missing functionalities, incorrect results). This leaves
+users no choice but to report the problems to the techni-
+cal support. When support engineers are misled by such
+ambiguous symptoms, the diagnosis can take an unnec-
+essarily long time [36].
+
+Recently, many research efforts have been conducted
+to address the misconﬁguration problem including trou-
+bleshooting anomalies caused by conﬁguration errors [1,
+3, 4, 5, 25, 32, 33, 34, 37, 40], detecting certain types of
+misconﬁgurations [11, 35, 38], automating certain con-
+
+244ﬁguration tasks [7,9,17], and some others [15,19,26,28,
+30,36]. All these studies focus on parameter-related mis-
+conﬁgurations, as they account for the majority of users’
+conﬁguration errors [36]. Similarly, this paper also fo-
+cuses on parameter-related misconﬁgurations.
+
+While the previous work has signiﬁcantly improved
+the situation by providing the last level of defense, the
+fundamental problem of misconﬁgurations probably lies
+in the conﬁguration design and the target system itself.
+Unfortunately, not much attention has been paid to these
+two, partially due to our (software developers’) attitude
+towards misconﬁgurations (which is quite different from
+how we treat software bugs). For software bugs, devel-
+opers typically take a responsible and active role. This is
+reﬂected in many ways, such as various choices of bug-
+tracking databases, patch releases, unit/regression tests,
+and bug checkers. In contrast, developers often take laid-
+back roles in handling misconﬁgurations because “they
+are users’ faults.” Such an attitude is reﬂected in two
+main aspects: (1) Misconﬁgurations are much less rig-
+orously tracked; and (2) After a conﬁguration error is
+identiﬁed as the root cause, developers often do not take
+any further action, such as changing the code or releas-
+ing patches in order to avoid the same misconﬁgurations
+by other users (which is often the case).
+
+In most cases, even though it is the users who com-
+mit the conﬁguration errors, they should not take all the
+blame. After all, a misconﬁguration is referred to as an
+“error” simply because it does not match our (software
+developers’) requirements for conﬁguration. Therefore,
+before blaming users for conﬁguration errors, we need to
+question whether we have the right requirements in the
+ﬁrst place. For example, are we assuming too much from
+users? Users do not write our code and sometimes can-
+not read our code. How could they have the same level of
+understanding of the requirements and impact of various
+conﬁguration settings as we do? Are our conﬁguration
+requirements too strict or too confusing? After all, users
+are human beings, and just like us, also make mistakes,
+especially when the requirements are error-prone.
+
+Moreover, while we are often trained and educated to
+implement our code to tolerate hardware and network
+errors, we place little emphasis on tolerating or reacting
+gracefully to users’ conﬁguration errors. In fact, just like
+hardware errors, human errors are a force of nature, too.
+Unfortunately, in reality, developers often unconsciously
+assume correct conﬁgurations. As a result, many con-
+ﬁguration errors lead to system crashes, hangs, incorrect
+results, etc., leaving users clueless and forced to report to
+support engineers for assistance in failure diagnosis. On
+the other hand, if the software could pinpoint the conﬁg-
+uration errors with explicit log messages, users could di-
+rectly ﬁx their mistakes by themselves without resorting
+to the technical support. Different from software bugs,
+
+Misconfiguration:
+InitiatorName: iqn.time.domain:TARGET
+Symptom:
+The storage share cannot be recognized.
+Root Cause:
+InitiatorName only allows lowercase letters, while the user sets the name
+with the capital letters (cid:1930)TARGET(cid:1930).
+
+Diagnosis Efforts
+75 rounds of communication
+10 collections of system logs
+
+Figure 1: A real-world example from a commercial com-
+pany. The conﬁguration constraint was too strict and users
+made mistakes despite two documents explaining it.
+
+Misconfiguration:
+listener-threads 32
+Symptom:
+Crash after server startup with the only
+log message: (cid:1930)Segmentation fault(cid:1930).
+Root Cause:
+OpenLDAP only supports a hard-coded
+maximum of 16 listener threads.
+
+The user manual does not
+
+mention this limit.
+
+Developer's Response:
+Refused to change the source
+code and the manual because
+the setting is not valid.
+
+Figure 2: A real-world example from OpenLDAP. The
+server crashes when “listener-threads” is set to be larger
+than 16. More real-world examples are given in Figure 7.
+
+if accurate error messages are provided by the system,
+most conﬁguration errors can be easily ﬁxed by users
+themselves. Therefore, providing good reactions to con-
+ﬁguration errors can signiﬁcantly reduce the number of
+issues reported to support engineers.
+
+Figures 1 and 2 give two real-world examples to fur-
+ther illustrate the points above. As shown in Figure 1,
+a commercial system1 required users to type all low-
+ercase letters to conﬁgure the initiator names of iSCSI
+adapters. This requirement is too strict. As a result, sev-
+eral customers made mistakes and had to call the com-
+pany to help troubleshoot the problem. In this particular
+case, the diagnosis took over 75 rounds of communica-
+tion with the customer as well as 10 rounds of debugging
+message collection. It resulted in not only customers’
+downtime but also high supporting cost.
+
+The second example, as shown in Figure 2, is from
+the latest version of OpenLDAP. With the parameter,
+“listener-threads”, conﬁgured to be larger than 16, the
+LDAP server would crash after startup with “segmenta-
+tion fault.” The crash symptom misled at least two users
+to report it as a software bug. This problem is detected
+by our tool. Unfortunately, after we reported this prob-
+lem, the developer refused to take any action, such as
+changing the conﬁguration design, editing the manual
+entry, or adding code to check the value and printout ex-
+plicit error messages. This was mainly due to the com-
+mon attitude many developers have towards conﬁgura-
+tion errors: “It is not a bug, but an invalid setting.”
+
+Of course, not all developers are like this. Some de-
+velopers have a more responsible attitude towards han-
+dling conﬁguration errors. For example, after we re-
+ported the misconﬁguration vulnerabilities (bad system
+
+1We are required to keep the company and the product anonymous.
+
+245reactions to conﬁguration errors such as crashes, hangs,
+silent failures) and error-prone constraints to Squid (an
+open-source Web proxy and cache server), Squid devel-
+opers ﬁxed the reported problems immediately. Also,
+the large U.S. commercial company we worked with has
+been very cooperative, allowing us to publish our evalu-
+ation results of their system.
+
+Certainly, the ultimate solutions to avoid misconﬁg-
+urations are auto-conﬁguration and completely rethink-
+ing, redesigning conﬁguration to prevent user mistakes.
+While these solutions are revolutionary and fundamen-
+tal, they are challenging and probably prohibitively difﬁ-
+cult, because they have to balance two conﬂicting goals:
+usability and ﬂexibility (to adjust the system). In addi-
+tion, not every conﬁguration parameter can be automat-
+ically conﬁgured. Moreover, few user studies have been
+conducted to design conﬁguration in better ways.
+
+1.2 Our Contributions
+
+In this paper, we make one of the ﬁrst steps towards tak-
+ing an active role in handling misconﬁgurations. Our ap-
+proach is more evolutionary and practical. Specially, the
+solutions and proposed changes in this paper can easily
+be adopted by existing software systems. In particular,
+we aim at improving the conﬁguration design of today’s
+software systems by (1) hardening systems against con-
+ﬁguration errors; and (2) detecting certain types of error-
+prone conﬁguration design and handling.
+
+Achieving the above goals would need the speciﬁca-
+tion of conﬁguration requirements referred to as con-
+ﬁguration constraints in this paper. A constraint for a
+conﬁguration parameter speciﬁes its data type, format,
+value range, dependency and correlation with other pa-
+rameters, etc., in order to conﬁgure the parameter cor-
+rectly. Since large-scale systems usually contain hun-
+dreds or even thousands of conﬁguration parameters,
+it is time-consuming and error-prone to let developers
+specify each constraint manually [16]. Another solution
+is to leverage user manuals. Unfortunately, manuals are
+written in natural languages and are hard to analyze au-
+tomatically. Moreover, user manuals are often incom-
+plete and outdated as shown in a recent study [26].
+
+As source code always contains up-to-date informa-
+tion, our idea is to automatically infer conﬁguration con-
+straints from source code by analyzing how the conﬁgu-
+ration parameters are read and used. We implement our
+idea in a tool called SPEX. Furthermore, SPEX leverages
+the inferred conﬁguration constraints to: (1) harden sys-
+tems against misconﬁgurations by injecting errors that
+violate the constraints, in order to expose misconﬁg-
+uration vulnerabilities; and (2) detect certain types of
+error-prone conﬁguration design and handling, in order
+to make them more user-friendly.
+
+We evaluate SPEX with the latest versions of one
+commercial system from a major U.S. storage vendor,
+and six open-source server software including Apache,
+MySQL, PostgreSQL, OpenLDAP, VSFTP, and Squid.
+SPEX automatically infers a total of 3800 constraints
+for more than 2500 conﬁguration parameters. Based
+on these constraints, it exposes 743 misconﬁguration
+vulnerabilities that caused system misbehavior such as
+crashes, hangs, indeterminate failures, etc. It also de-
+tects at least 112 error-prone conﬁguration constraints.
+To this day, 364 vulnerabilities and 80 error-prone con-
+straints have been conﬁrmed or ﬁxed by developers after
+we reported them. Section 5 reports our experiences in
+interacting with developers during our work and some
+good practices we have observed. Our results have inﬂu-
+enced the Squid Web proxy server to improve its conﬁg-
+uration library towards a more user-friendly design, ben-
+eﬁting more than 150 conﬁguration parameters in Squid.
+
+2 Conﬁguration Constraint Inference
+
+This section describes the design and implementation
+of SPEX, a tool that automatically infers conﬁguration
+constraints (i.e., rules that differentiate correct conﬁg-
+urations from misconﬁgurations) from source code. In
+the next section, we will discuss how we use such con-
+straints to expose misconﬁguration vulnerabilities, and
+to detect error-prone conﬁguration design and handling.
+SPEX requires the target software’s source code and
+simple annotations as a starting point to help identify
+and analyze conﬁguration parameters in source code. In
+this section, we ﬁrst describe what kinds of conﬁguration
+constraints we can infer and then discuss how to infer
+them. Finally, we discuss the limitations, in particular,
+what kinds of constraints cannot be inferred by SPEX.
+
+2.1 What Constraints Can Be Inferred?
+
+Many conﬁguration requirements are reﬂected in the
+software’s source code. Examples include data types,
+formats, value ranges, multi-parameter dependencies,
+etc. Some of these can be automatically inferred via
+static code analysis by leveraging the properties of vari-
+ous operations and system/library APIs when accessing
+(reading or assigning to) conﬁguration-related variables.
+Of course, as we will discuss in Section 2.3, not all
+conﬁguration constraints are reﬂected in source code or
+can be automatically inferred via static analysis. This
+work provides a ﬁrst step in this direction. Our evalu-
+ation has shown promising results with even a modest
+real-world impact on both commercial and open-source
+software, as brieﬂy presented in Section 4.1.
+
+SPEX analyzes source code and infers constraints that
+manifest through concrete, recognizable program pat-
+
+246Code Snippets:
+int ft_init_stopwords((cid:171)) { ...
+
+MySQL-5.5.29
+
+(cid:1216)ft_stopword_file(cid:1216)
+
+fd = my_open(ft_stopword_file, ...) ...
+
+}
+
+/* storage/myisam/ft_stopwords.c */
+
+}
+
+Code Snippets:
+void icpOpenPorts() { ...
+
+...
+icpIncomingConn->local.SetPort(port);
+...
+
+/* src/icp_v2.cc */
+
+Squid-3.2.5
+
+(cid:1216)udp_port(cid:1216)
+
+File my_open(const char *FileName, ...) {
+
+...
+fd = open((char *) FileName, Flags);
+...
+
+unsigned short
+Ip::Address::SetPort(unsigned short prt) {
+
+/* src/ip/Address.cc */
+
+m_SocketAddress.sin6_port = htons(prt);
+...
+/* prt is passed to the sin6_port of
+
+struct sockaddr_in6 */
+
+}
+
+Constraint Inferred:
+The semantic type of (cid:1216)udp_port(cid:1216) is a PORT.
+
+Code Snippets:
+
+(cid:1216)log.filesize(cid:1216)
+
+Storage-A
+
+static char *set_max_ranges(..., char *arg, ...)
+{
+
+...
+int val = strtoll(arg, NULL, 0);
+...
+
+Transforming from char* type
+
+}
+
+to 32-bit integer type
+
+Constraint Inferred:
+
+}
+
+/* mysys/my_open.c */
+
+The basic data type of (cid:1216)log.filesize(cid:1216) is a 32-bit
+integer number.
+
+Constraint Inferred:
+The semantic type of (cid:1216)ft_stopword_file(cid:1216) is a FILE.
+
+(a) Basic-type constraint
+
+(b) Semantic-type constraint (FILE)
+
+(c) Semantic-type constraint (PORT)
+
+OpenLDAP-2.4.33
+
+Code Snippets:
+static int *config_generic(ConfigArgs *c)
+{
+
+(cid:1216)index_intlen(cid:1216)
+
+...
+if (c->value_int < 4)
+c->value_int = 4;
+
+else if (c->value_int > 255)
+
+...
+
+}
+
+c->value_int = 255;
+
+/* servers/slapd/bconfig.c */
+
+Constraint Inferred:
+The valid range of (cid:1216)index_intlen(cid:1216) is 4 to 255.
+
+PostgreSQL-9.2.1
+/* access/transam/xact.c */
+
+Code Snippets:
+static TransactionId
+RecordTransactionCommit() { ...
+
+(cid:1216)fsync(cid:1216)
+
+(cid:1216)commit_siblings(cid:1216)
+
+if( enableFsync &&
+
+...
+
+}
+
+MinimumActiveBackends(CommitSiblings))
+
+Control dep.
+
+/* All (cid:1216)commit_siblings(cid:1216) 's usages
+
+are inside the func. call. */
+
+Code Snippets:
+
+MySQL-5.5.29
+
+(cid:1216)ft_min_word_len(cid:1216)
+
+uchar ft_get_word(...) { ...
+
+(cid:1216)ft_max_word_len(cid:1216)
+
+if( length >= ft_min_word_len && ...
+
+length < ft_max_word_len ) ) {
+
+}
+
+}
+
+... //full-text operations
+
+/* storage/myisam/ft_parser.c */
+
+Constraint Inferred:
+(cid:1216)commit_siblings(cid:1216) takes effect only when (cid:1216)fsync(cid:1216)
+is not set as zero.
+
+Constraint Inferred:
+(cid:1216)ft_max_word_len(cid:1216) should be greater than
+(cid:1216)ft_min_word_len(cid:1216).
+
+(d) Data-range constraint
+
+(e) Control-dependency constraint
+
+(f) Value-relationship constraint
+
+Figure 3: Real-world examples to illustrate what conﬁguration constraints our SPEX infers. The arrows show the data-
+ﬂow, which motivates SPEX to do data-ﬂow analysis. Conﬁguration parameters are quoted in the ﬁgure, and the program
+variables that store the parameters are shaded. Section 2.2 explains how these constraints are inferred.
+
+terns. These constraints can be classiﬁed into attributes
+and correlations. The former deﬁne the correct settings
+of a parameter, while the latter specify the correlations
+among multiple parameters. Figure 3 gives several con-
+crete real-world examples of various kinds of conﬁgura-
+tion constraints our SPEX infers. We describe each kind
+in more detail as follows. The next subsection will ex-
+plain in detail how SPEX infers them, starting from how
+it identiﬁes conﬁguration variables in source code.
+
+Data Type: To set a conﬁguration parameter correctly,
+users ﬁrst need to know the expected data type. We call
+such constraints type constraints. There are two classes
+of data types for conﬁguration parameters: basic types
+and semantic types. The basic-type constraint speci-
+ﬁes a parameter’s value by the low-level data representa-
+tion including integer, character, boolean, ﬂoating-point
+number, string, etc.
+
+However, basic types alone may not be sufﬁcient. For
+example, a “string” parameter may refer to either a ﬁle
+path or an IP address. Each such semantic type has its
+own speciﬁc requirements. For example, a ﬁle path has a
+speciﬁc path-like format and should represent a valid ﬁle
+in the ﬁle system. In addition to the “ﬁle path” and “IP
+address” types, there are many other types such as user
+name, port number, timeout, etc. In SPEX, we support
+the high-level semantic types of most standard libraries.
+
+Figures 3(a), (b), and (c) show three real-world exam-
+ples of type constraints inferred by SPEX. In the ﬁrst
+example, via static code analysis, SPEX infers the pa-
+rameter, “log.ﬁlesize”, to be a 32-bit integer number.
+Figure 3(b) gives an example of the “FILE” type, and
+Figure 3(c) shows an example of the “PORT” type.
+
+Value Range: Conﬁguration parameters may be further
+constrained by some acceptable ranges of valid values,
+such as minimum and maximum values or a list of ac-
+ceptable values as in the enumerative type. Figure 3(d)
+shows a range constraint inferred by SPEX from OpenL-
+DAP, in which, as the code indicates, “index intlen”
+needs to be between 4 and 255.
+
+Control Dependency: Multiple conﬁguration parame-
+ters might have dependencies. Often, the resolution to
+problems like, “Why does my setting of parameter A not
+work?” is simply, “Turn on parameter B.” When such
+dependencies are neither documented in the manual, nor
+pinpointed explicitly by log messages, it is difﬁcult for
+users to ﬁgure them out. Such constraints are typically
+manifested as control dependencies in source code.
+
+Formally, we deﬁne the control dependency of two
+parameters as (P,V, ⋄) 7→ Q which means that the usage
+of parameter Q relies on the setting of parameter P, un-
+der the condition of P⋄V , where ⋄ ∈ {<, >, =, 6=, ≥, ≤},
+and V is a constant value. Figure 3(e) shows an example
+
+247from PostgreSQL, where “commit siblings” takes effect
+only when “fsync” is non-zero.
+
+Value Relationship: In addition to the control depen-
+dency between two parameters, the relationship of their
+values may also impose constraints. For example, in
+Figure 3(f), the value of “ft max word len” should be
+greater than that of “ft min word len”.
+
+2.2 How to Infer Constraints?
+
+To infer conﬁguration constraints, SPEX ﬁrst needs to
+identify conﬁguration variables in source code. It then
+tracks the data-ﬂow of each program variable corre-
+sponding to the conﬁguration parameter, and records any
+constraint that is discovered along the data-ﬂow path.
+
+We implement SPEX’s analysis to be inter-procedural,
+context-sensitive, and ﬁeld-sensitive. Inter-procedure is
+necessary because conﬁguration parameters are com-
+monly passed through function calls. SPEX also needs
+to be ﬁeld-sensitive because conﬁguration parameters
+could be stored in composite data types. SPEX is built
+on top of the LLVM compiler infrastructure [18].
+
+As a design choice, we do not use symbolic execution
+for SPEX. Symbolic execution is able to explore all the
+possible code paths in the program for the given input.
+However, it suffers from path explosion when applied to
+large systems such as Storage-A. Moreover, as shown in
+Section 2, SPEX looks for concrete code patterns on the
+data-ﬂow path of each conﬁguration parameter, which
+does not ﬁt the strength of symbolic execution.
+
+SPEX scans the source code twice. In the ﬁrst pass, it
+infers the data-ﬂow path of each parameter and looks for
+data-type and data-range constraints for each parameter.
+To further infer constraints involving multiple parame-
+ters (i.e., control dependencies and value relationships),
+SPEX scans the code again, but this time only on the pro-
+gram slice containing the data-ﬂow of each parameter.
+
+2.2.1 Mapping Parameters to Variables
+
+To start constraint inference, SPEX has to know the pro-
+gram variables that store the values of conﬁguration pa-
+rameters. Different software projects may have differ-
+ent conventions. We observe that developers often use
+clean interface to manage the mapping information. By
+examining 18 widely-used software projects (shown in
+Table 1), we ﬁnd that all but one of them map conﬁgu-
+ration parameters into program variables via one of the
+three interfaces: structure, comparison, and container.
+Correspondingly, SPEX provides three template toolkits
+to extract the mapping information with minimal anno-
+tation efforts.
+
+In structure-based mapping, data structures are used
+to directly map each conﬁguration parameter to the cor-
+
+Software
+
+Desc.
+
+Storage
+Storage-A
+DB
+MySQL
+PostgreSQL
+DB
+Apache httpd Web
+Web
+lighttpd
+Web
+Ngnix
+OpenSSH
+SSH
+Email
+Postﬁx
+VSFTP
+FTP
+
+Type
+
+struct
+struct
+struct
+struct
+struct
+struct
+struct
+struct
+struct
+
+Software
+
+Desc.
+
+Type
+
+Proxy
+Squid
+DB
+Redis
+NTP
+ntpd
+SCM
+CVS
+DB
+Hypertable
+MongoDB
+DB
+AOLServer Web
+SCM
+Subversion
+OpenLDAP
+LDAP
+
+comparison
+comparison
+comparison
+comparison
+container
+container
+container
+container
+hybrid
+
+Table 1: Parameter-to-variable mapping in 18 software
+projects. All of them fall into one of the three conventions:
+structure, container, comparison, or their combinations.
+
+PostgreSQL-9.2.1
+
+Apache-httpd-2.4.1
+
+Code Snippets(cid:726)
+struct config_int ConfigureNamesInt[] =
+{ { "deadlock_timeout",
+
+...,
+&DeadlockTimeout,
+...
+...
+
+..., },
+
+};
+
+82 mapping in this structure
+
+/* src/backend/utils/misc/guc.c */
+
+Annotation(cid:726)
+{ @STRUCT = ConfigureNamesInt
+@PAR = [config_int, 1]
+@VAR = [config_int, 3] }
+
+(a) Structure-based mapping (direct)
+
+Code Snippets(cid:726)
+static command_rec core_cmds[] = {
+
+AP_INIT_TAKE1("DocumentRoot",
+set_document_root, ... ),
+...
+
+};
+
+103 mapping in this structure
+
+...
+
+char* set_document_root(..., char * arg) {
+}
+/* server/core.c */
+Annotation(cid:726)
+{ @STRUCT = core_cmds
+@PAR = [command_rec, 1]
+@VAR = ([command_rec, 2], $arg) }
+(b) Structure-based mapping (function)
+
+Redis-2.4.17
+
+Hypertable-0.9.6.4
+
+Code Snippets(cid:726)
+void loadServerConfig(...) { ...
+
+if (!strcasecmp(argv[0],"timeout")) {
+
+server.maxidletime = atoi(argv[1]);
+...
+
+} else if(...)
+
+...
+51 mapping in the function
+
+}
+
+Code Snippets(cid:726)
+void obtain_master_lock(...) { ...
+
+uint32_t retry_interval =
+
+context->props->
+get_i32("Connection.Retry.Interval");
+
+...
+
+}
+
+the getter function
+
+/* src/config.c */
+
+/* src/cc/Hypertable/Master/main.cc */
+
+Annotation(cid:726)
+{ @PARSER = loadServerConfig
+@PAR = $argv[0]
+@VAR = $argv[1] }
+
+Annotation(cid:726)
+{ @GETTER = get_i32
+@PAR = 1
+@VAR = $RET }
+
+(c) Comparison-based mapping
+
+(d) Container-based mapping
+
+Figure 4: Examples of mapping conventions, and the cor-
+responding annotations to get the mapping information.
+
+responding variable(s) in source code [as shown in Fig-
+ure 4(a)], or to the parsing function [as shown in Fig-
+ure 4(b)]. In the former case, developers only need to
+provide the structure variable’s name and each speciﬁc
+ﬁeld. For Figure 4(a), three lines of annotations are suf-
+ﬁcient to extract the mapping information of 82 parame-
+ters in PostgreSQL. In the latter case, developers need to
+further annotate which parameter in the parsing function
+is the conﬁguration variable [e.g., arg in Figure 4(b)].
+
+Comparison-based mapping, as shown in Figure 4(c),
+uses string comparison functions (e.g., strcasecmp) to
+match parameters. It further assigns values to the vari-
+ables in the branch blocks. SPEX recognizes standard
+string comparison functions.
+In this case, developers
+need to annotate the parsing function and the initial input
+variables holding the parameter names and values.
+
+Container-based mapping, exempliﬁed in Figure 4(d),
+stores all the conﬁguration parameters in a central con-
+tainer and uses common getter functions to retrieve the
+
+248In such cases, developers need to annotate the
+
+value.
+getter functions (typically only a few).
+
+By asking developers to annotate the mapping inter-
+faces rather than every mapping pair, the toolkits require
+a limited amount of information from developers. In the
+evaluation, the number of annotations needed for most
+software is less than 10, as shown in Table 4. Note: The
+annotation only requires modest understanding of source
+code. The conﬁguration-related code is usually modu-
+larized and can be found by simply searching parameter
+names in source code (e.g., using grep).
+
+Starting from the annotations, the SPEX toolkits infer
+the mapping information in the form of key-value pairs:
+(“parameter name”, variable name). For example,
+the key-value pair in Figure 4(a) is (“deadlock timeout”,
+DeadlockTimeout). In the remainder of this section,
+we refer to the variables storing the parameters’ values
+as “parameters,” to simplify our description.
+
+2.2.2 Data Type Inference
+
+Basic Type: SPEX infers each parameter’s basic type
+from its type information in source code. On the data-
+ﬂow path of a parameter, its type might be casted mul-
+tiple times. In such cases, we record the type after the
+ﬁrst casting as the basic type, because it is common for
+a parameter to be ﬁrst stored as a string (e.g., a char
+array) before being transformed into its real type. Fig-
+ure 3(a) shows an example from the commercial soft-
+ware Storage-A, in which the parameter is converted
+from a string to a 32-bit integer. Thus, the basic-type
+constraint of “log.ﬁlesize” is inferred as 32-bit integer.
+
+Semantic Type: SPEX infers semantic-type constraints
+by searching the following patterns along a parameter’s
+entire data-ﬂow path: (1) the parameter is passed to a
+known function call (e.g., system- and library-call) or a
+known data structure; or (2) the parameter is compared
+with, or is assigned with, the return value of a known
+function call (e.g., the return value of the time syscall).
+Figure 3(b) shows an example from MySQL of the
+ﬁrst pattern. In this example, SPEX infers the semantic
+type of “ft stopword ﬁle” to be a ﬁle path because it is
+used in the open syscall. Note: SPEX searches such
+patterns along the entire data-ﬂow path, even after the
+parameter is modiﬁed, because the modiﬁcation seldom
+affects the semantic type. For example, a ﬁle path after
+canonicalization is still used as a ﬁle path.
+
+Currently, SPEX supports standard library APIs and
+data types. In addition, we also allow developers to im-
+port their own library APIs and data types by pointing to
+their header ﬁles. For example, for the commercial stor-
+age software used in our evaluation, we also imported its
+proprietary library APIs. For constraint inference, the li-
+brary APIs included in .h ﬁles are enough, but for mis-
+
+conﬁguration injection described in the next section, we
+need developers to provide types of conﬁguration errors
+to inject for each customized data type. Note: They do
+not need to provide such information for types deﬁned in
+standard libraries. In our evaluation, such customization
+is used only for the commercial storage system.
+
+2.2.3 Data Range Inference
+
+SPEX infers range constraints when the parameter is
+compared with constant values in conditional branches.
+SPEX infers two types of ranges: numeric and enumera-
+tive. For numeric comparison, SPEX treats the constant
+numbers as thresholds of the data range. Enumerative
+ranges are inferred if the parameter is used in switch
+statements or “if...else if...else” logics.
+
+For each range inferred, SPEX further decides whether
+the range is valid or not by analyzing the program behav-
+ior within the corresponding branch blocks. The reason
+for inferring such information is to guide misconﬁgu-
+ration injection to expose bad system reactions.
+If in
+the branch block, the program exits, aborts, returns error
+code, or resets the parameter, SPEX treats the range as
+invalid. Otherwise, it is valid. Figure 3(d) shows an ex-
+ample of range inference from OpenLDAP, in which the
+range of “index intlen” is divided into (−∞, 4), [4, 255],
+and (255, +∞). Both (−∞, 4) and (255, +∞) are in-
+valid because the parameters are reset in those ranges.
+The default in a switch statement or the last else
+in “if...else if...else” logics is also treated as
+invalid. Please note: Since such information is used
+to guide misconﬁguration injection, some false positives
+are not a major concern. It just wastes some testing time.
+As a good practice, range constraints should be ex-
+plicitly documented, but this is not always the case. As
+shown in Figure 3(d), OpenLDAP limits index lengths
+within [4, 255]. However, this constraint is not docu-
+mented. If users set out-of-range values, the system mis-
+behaves silently, leaving users suspecting it as a bug.
+
+2.2.4 Control Dependency Inference
+
+To infer control dependencies, SPEX starts from the us-
+age statements of a parameter Q, and looks for con-
+ditional branches that dominate these statements in a
+bottom-up manner.
+If the condition involves the vari-
+able that is part of the data-ﬂow of another parameter P,
+SPEX records a control dependency between P and Q in
+the form of (P,V, ⋄) 7→ Q.
+
+Figure 3(e) gives an example of a control dependency
+from PostgreSQL. Starting from the usage statement of
+“commit siblings” inside a function call (omitted in the
+ﬁgure), SPEX goes backwards to check the conditions
+that allow the execution of this usage and infers the de-
+pendency: (“fsync”, 0, 6=) 7→ “commit siblings”. Note:
+
+249Passing a parameter to a function and modifying its
+value are not considered as usage because they do not
+change program behavior [29]. They have to be used in
+branches, arithmetic operations, and system-/library-call
+arguments to be considered as usage statements.
+
+However, if we blindly treated every such occurrence
+of control dependencies as one constraint, there would
+be many false ones. For example, VSFTP has three
+parameters: “listen” (for ipv4), “listen ipv6”, and “lis-
+ten port”. “listen port” is used after the check of “lis-
+ten” and the check of “listen ipv6”. If we blindly gen-
+erated two constraints: (“listen”, 1, =) 7→ “listen port”
+and (“listen ipv6”, 1, =) 7→ “listen port”, both would be
+too strict. To handle this problem, SPEX aggregates
+all the inferred control dependencies for each parame-
+ter from all control-ﬂow paths, and calculates the MAY-
+belief conﬁdence of each dependency in a way similar to
+[10]. If the conﬁdence exceeds a predeﬁned threshold
+(currently set to 0.75), the dependency will be reported.
+In the above example, each dependency will have a con-
+ﬁdence of 0.5, not exceeding the threshold. Therefore,
+both of them are ﬁltered out.
+
+2.2.5 Value Relationship Inference
+
+Similar to control-dependency inference, the value rela-
+tionship also involves multiple parameters. SPEX looks
+for comparison statements in parameters’ usage. If two
+variables from different parameters’ data-ﬂow paths are
+compared with each other, SPEX infers the value rela-
+tionship of the two parameters in the form of P ⋄ Q.
+In addition, the value relationship is transitive, which
+means it can be transited through intermediate variables.
+Figure 3(f) gives such an example from MySQL that the
+min-max relation is transited by a local variable. In the
+current prototype of SPEX, we only check one interme-
+diate variable for transitivity, which is fast and captures
+common cases. SPEX further tries to decide whether the
+inferred relationship indicates a valid setting or not, in a
+manner similar to that in range-constraint inference.
+
+2.3 Discussion and Limitation
+
+No tool is perfect, and SPEX is no exception. SPEX can-
+not infer all conﬁguration constraints and it also has false
+positives, even though our evaluation with commercial
+and open-source software has shown good results.
+
+Currently, the constraint inference of SPEX is limited
+within the scope of a single program. However, when
+we study real-world misconﬁguration issues (presented
+in Section 4.2), we ﬁnd that cross-software conﬁgura-
+tion correlations also account for a considerable number
+of misconﬁguration cases. Inferring these constraints re-
+quires new techniques to consider the software stacks as
+a whole, which remains our future work.
+
+Even within a single program, SPEX does not infer all
+constraints. Some constraints are program-speciﬁc with-
+out common, concrete program patterns. For example, it
+is hard for SPEX to understand the complicated string
+manipulation logics used in parsing certain parameters
+(e.g., nesting and semi-structured rules), which might
+appear in software providing services of networking and
+access controls (e.g., Bind9, Netﬁlter). Moreover, SPEX
+cannot infer all the possible semantics of parameters.
+
+The constraints inferred by SPEX are basic and can-
+not capture certain complicated constraints (e.g., depen-
+dencies involving complicated compositions of boolean
+or arithmetic operations). Fortunately, according to our
+inspection, systems seldom have these complicated con-
+straints on the conﬁguration, possibly because users can-
+not handle such complexity.
+
+Not every constraint inferred by SPEX is a true con-
+straint. Section 4.3 provides the evaluation results for
+false positives. SPEX’s inference accuracy is above 90%
+for most evaluated software. To further improve accu-
+racy, we would need developers to manually examine
+each constraint and prune out the 10% false ones.
+
+The analysis of SPEX works on LLVM’s intermediate
+code representation (IR), a generic assembly language
+in the static single assignment (SSA) form [18]. Thus,
+SPEX is applicable to software programs written in pro-
+gramming languages that can be compiled into LLVM
+IR. In our evaluation, we use Clang as the front-end tool
+to compile C/C++ source code into LLVM IR.
+
+3 Use Cases of Conﬁguration Constraints
+
+3.1 Harden Systems against Conﬁguration
+
+Errors
+
+Given the conﬁguration constraints inferred by SPEX,
+we take one step further. We build a misconﬁguration
+injection-based testing tool called SPEX-INJ, to expose
+misconﬁguration vulnerabilities. SPEX-INJ automati-
+cally generates conﬁguration errors by violating the con-
+straints inferred by SPEX. Then, it injects the errors to
+the conﬁguration settings and tests how the system re-
+acts.
+If the system does not react well (e.g., crashes,
+hangs, failures), SPEX-INJ reports the bad reactions to
+the developers. By ﬁxing these vulnerabilities (e.g.,
+adding checks and log messages to detect and pinpoint
+the errors), developers can harden systems against users’
+misconﬁgurations, and allow users to quickly ﬁnd their
+conﬁguration errors so as to ﬁx the errors by themselves.
+
+Misconﬁguration Generation and Injection: Table 2
+summarizes how SPEX-INJ generates conﬁguration er-
+rors by intentionally violating the inferred constraints.
+Each misconﬁguration includes one or several erro-
+
+250(cid:1930)log.filesize(cid:1930): 32-bit INTEGER (Storage-A)
+
+(cid:1930)ft_stopword_file(cid:1930): FILE (MySQL-5.5.29)
+
+(cid:1930)udp_port(cid:1930): PORT (Squid-2.3.5)
+
+SPEX Injects:
+log.filesize = 9,000,000,000
+
+SPEX Injects:
+log.filesize = 9G
+
+SPEX Injects:
+ft_stopword_file = a_directory_path
+
+Bad Reaction Exposed:
+Change the setting to the
+overflowed number
+
+Bad Reaction Exposed:
+Ignore G as the unit, using
+9 bytes as the size
+
+Bad Reaction Exposed:
+System crash! (caused by segmentation fault)
+
+SPEX Injects:
+udp_port = an_occupied_port
+
+Bad Reaction Exposed:
+Abort with the misleading log message:
+(cid:1930)FATAL: Cannot open ICP Port(cid:1930)
+
+(a) Basic-type violation
+
+(b) Semantic-type Violation (FILE)
+
+(c) Semantic-type Violation (PORT)
+
+(cid:1930)index_intlen(cid:1930): [4, 255] (OpenLDAP-2.4.33)
+
+((cid:1930)fsync(cid:1930), 0, (cid:143))
+
+(cid:1930)commit_siblings(cid:1930)
+
+(cid:1930)ft_min_word_len(cid:1930) < (cid:1930)ft_max_word_len(cid:1930)
+
+SPEX Injects:
+index_intlen = 300
+
+Bad Reaction Exposed:
+Change the setting to 255 without notifying users
+(the constraint is not documented in user manual)
+
+(d) Data-range violation
+
+SPEX Injects:
+fsyn = off
+commit_siblings = 5
+
+(PostgreSQL-9.2.1)
+
+SPEX Injects:
+ft_min_word_len = 25
+ft_max_word_len = 10
+
+(MySQL-5.5.29)
+
+Bad Reaction Exposed:
+(cid:1930)commit_siblings(cid:1930) silently takes no effect
+(e) Control-dependency violation
+
+Bad Reaction Exposed:
+Incorrect results returned by full-text search.
+
+(f) Value-relationship violation
+
+Figure 5: Real-world examples to illustrate the conﬁguration error generation of SPEX-INJ (based on the rules in Table 2),
+and the exposed misconﬁguration vulnerabilities (bad system reactions). How the constraints are inferred from these exam-
+ples is shown in Figure 3. All the vulnerabilities are detected by SPEX-INJ in the latest versions of the evaluated systems.
+
+Constraint Generation Rules
+
+Reaction
+
+Description
+
+Generate parameter values with invalid basic types
+Generate invalid parameter values speciﬁc to
+different semantic types
+Generate out-of-range values
+
+Basic type
+Semantic
+type
+Range
+Control dep. Generate (P ⋄ V ) ∧ Q for (P,V,⋄) 7→ Q
+Value relat.
+
+Generate invalid value relationships
+
+Table 2: SPEX-INJ generates conﬁguration errors for dif-
+ferent types of constraints inferred by SPEX.
+
+neous parameter values that violate a speciﬁc constraint.
+SPEX-INJ may generate several misconﬁgurations in
+various aspects for a parameter: violating the constraints
+of its data type, its data range, its dependencies and cor-
+relations with other parameters. Every generation rule
+is implemented as a plug-in, which can be extended for
+customization. Figure 5 lists several real-world exam-
+ples for each rule along with the exposed vulnerabilities.
+SPEX-INJ injects misconﬁgurations by replacing the
+default parameter values with the generated erroneous
+values in conﬁguration ﬁles. We use the conﬁguration
+ﬁle parser in ConfErr [15] to parse a template conﬁgura-
+tion ﬁle into an abstract representation (AR), and trans-
+form the modiﬁed AR with errors injected to a usable
+conﬁguration ﬁle for testing. In fact, other conﬁguration
+ﬁle parsing tools such as Augeas can also be used.
+
+Category of Misconﬁguration Vulnerabilities (Bad
+System Reactions): When a misconﬁguration occurs,
+the system should pinpoint either the misconﬁgured pa-
+rameter’s name/value or its location information (e.g.,
+line numbers in the ﬁle). Otherwise, SPEX-INJ considers
+the system reaction as a misconﬁguration vulnerability.
+Table 3 categorizes different types of misconﬁgura-
+tion vulnerabilities. The ﬁrst category, system crashes
+and hangs, is considered as severe vulnerabilities, espe-
+cially for server applications where availability is cru-
+
+Crash/Hang
+Early
+termination
+Functional
+failure
+Silent
+violation
+Silent
+ignorance
+
+The system crashes or hangs.
+The system exits without pinpointing the
+injected conﬁguration error.
+The system fails functional testing without
+pinpointing the injected error.
+The system changes input conﬁgurations to
+different values without notifying users.
+The system ignores input conﬁgurations
+(mainly for control-dependency violation).
+
+Table 3: The category of bad system reactions.
+
+cial. Such symptoms would mislead users and sup-
+port engineers to suspect them as software bugs. The
+second category, early termination without pinpointing
+message, is also undesirable. In this case, the system
+terminates itself but does not give useful feedback for
+users to ﬁx the problems by themselves. Similarly, func-
+tion failures without pinpointing error messages can also
+confuse users, as shown in the MySQL example in Fig-
+ure 5(f). As for the last two categories, it is still unac-
+ceptable (maybe less severe) to silently violate or ignore
+the users’ intention, which might cause users’ confusion
+or sophisticated problems (e.g., performance issues, fea-
+ture not activated), as shown in Figure 5(a) and (d).
+
+In this paper, we do not consider performance issues
+caused by misconﬁgurations, mainly because of the dif-
+ﬁculties in objectively judging whether the performance
+is acceptable. Unless the performance degradation af-
+fects the system usability (belonging to “hang”), we con-
+sider it acceptable as long as the functionality is correct.
+
+Testing and Analysis: SPEX-INJ leverages each soft-
+ware’s own test infrastructure, including test cases and
+test oracles, for accepting/rejecting test results. For each
+generated conﬁguration ﬁle (containing one misconﬁg-
+uration), SPEX-INJ ﬁrst launches the target system. If
+the system successfully starts, SPEX-INJ will further ap-
+
+251ply existing functional test cases one by one and monitor
+the system status and output. During testing, SPEX-INJ
+records all the system and console logs. If the test results
+fail to pass the test oracles, SPEX-INJ checks the logs to
+see whether the system pinpoints the misconﬁguration.
+If not, it generates an error report for the developers.
+
+The error report (the output of SPEX-INJ) contains the
+constraint, the injected error, and the failed test cases,
+associated with all the log messages. Therefore, the de-
+velopers can know what misconﬁgurations caused what
+problems. SPEX-INJ reports silent violation/ignorance if
+the system does not pinpoint errors but passes testing.
+
+The testing process can be slow, as N × T , where N
+is the number of misconﬁgurations SPEX-INJ generates
+and T is the time to run all input test cases once. To
+shorten the time, we apply two optimizations. First, for
+each misconﬁguration, SPEX-INJ stops immediately af-
+ter the ﬁrst failed test case. Second, we sort the running
+time of each test case and run the shortest test case ﬁrst.
+By using these optimizations, the testing time of SPEX-
+INJ on the evaluated software is under 10 hours. Note:
+This is a one-time cost because SPEX-INJ can be made
+incrementally. Only those constraints affected by code
+modiﬁcation during each revision need to be retested.
+
+3.2 Detect Error-Prone Design
+
+Conﬁguration settings which are expected to be per-
+formed by users, should be intuitive and less prone to
+errors. Carefully-designed conﬁguration constraints can
+prevent users’ confusion and mistakes. More speciﬁ-
+cally, since the conﬁguration setting is also one type of
+software interface exposed to the users, it should follow
+the interface design principles [20, 23].
+
+We expect conﬁguration design to be (1) consistent in
+constraints of different parameters, (2) explicit to users
+when changing (violating) their settings, and (3) com-
+plete in documenting the requirements of parameters
+(i.e., constraints). In this section, we show how to lever-
+age the constraints to detect error-prone conﬁguration
+design and handling that break these three principles.
+
+Design Inconsistency: Consistency is a primary in-
+terface design principle to prevent user mistakes. The
+inferred constraints provide opportunities for detecting
+two types of conﬁguration inconsistency: (1) case sen-
+sitivity, and (2) unit granularity. Such inconsistency is
+error-prone because users are likely confused by the con-
+tradictory requirements for parameters of same types.
+
+Figures 6(a) and (b) show two real-world examples
+In Fig-
+of the two types of constraint inconsistency.
+ure 6(a), different from most string case-insensitive con-
+ﬁguration parameters in MySQL, the values of param-
+eter “innodb ﬁle format check” are case sensitive.
+In
+
+MySQL-5.5.29
+
+(cid:1216)innodb_file_format_check(cid:1216)
+
+if (!strcmp(method, "fsync")) {
+
+...
+
+} else if (!strcmp(method, "O_DSYNC")) {
+
+...
+
+(cid:1216)MaxMemFree(cid:1216)
+
+Apache httpd-2.4.3
+
+value = strtol(arg, NULL, 10);
+...
+...
+ap_max_mem_free = value * 1024;
+
+unit: "Kilobyte"
+
+Most enum options in MySQL
+are insensitive (strcasecmp)!
+
+Most size parameters in Apa-
+
+che use "byte" as the unit.
+
+/* storage/innobase/srv/srv0start.c */
+
+(a) Inconsistency of case sensitivity
+
+/* server/mpm_common.c */
+(b) Inconsistency of parameter units
+
+input from users
+if (!strcasecmp(token, (cid:1930)on(cid:1930))) {
+
+Squid-2.3.5
+
+*var = 1;
+
+} else {
+
+*var = 0;
+
+}
+
+(cid:1930)yes(cid:1930) and (cid:1930)enable(cid:1930) are
+treated as (cid:1930)off(cid:1930) silently
+
+/* src/cache_cf.cc */
+
+Squid-2.3.5
+
+input from users
+
+int i;
+sscanf(token, (cid:1930)%i(cid:1930), &i);
+//use the value
+
+/* src/Parsing.cc */
+
+The return value of invalid
+
+input is undefined.
+
+(c) Silent Overruling
+
+(d) Using unsafe API
+
+Figure 6: Real-world examples of error-prone conﬁgura-
+tion design and handling in source code.
+
+Figure 6(b), different from the other size parameters in
+Apache that use Bytes as the unit, “MaxMemFree” uses
+KBytes as the unit. Therefore, users can easily make
+mistakes here due to the inconsistency. As shown in
+Section 4.1, we ﬁnd that more than half of the evaluated
+systems have these two kinds of inconsistency.
+
+The inconsistency is detected based on SPEX’s infer-
+ence of semantic-type constraints. Remember that SPEX
+records the API calls that use the parameters. The case
+sensitivity is inferred by identifying string comparison
+functions. If the parameter is used in comparison func-
+tions like strcasecmp, it is case insensitive. Otherwise
+it is sensitive when used in functions like strcmp. Sim-
+ilarly, the unit information is inferred according to the
+API’s unit. For example, parameters used in sleep have
+the unit second, while parameters used in usleep are of
+unit microsecond. We also consider the transformation
+of the parameter, along its data-ﬂow path before it falls
+into the API call, as shown in Figure 6(b).
+
+Silent Overruling: Silent overruling refers to the case
+that the system changes an unacceptable user setting into
+the default value without notifying the user. It may cause
+silent violation of user intention as one type of mis-
+conﬁguration vulnerabilities. As shown in Figure 6(c),
+Squid silently treats any boolean parameter as “off” as
+long as it is not set to “on”, even if its value is “yes” or
+“enable”. Such design can easily confuse users because
+the system behavior would not match their expectation.
+To detect silent overruling, for enumerative range
+constraints inferred in “if...else if...else” or
+switch logics, if the parameter is silently overwritten
+in the else block or default case, we ﬂag it as silent
+overruling. In Squid and Apache, we detect many silent
+overruling cases that affected 74 parameters. All of these
+have been ﬁxed by developers after we reported them.
+
+252We do not consider static initialization of conﬁgura-
+tion parameters as silent overruling. It is mainly used to
+assign default values that would be overwritten by user
+settings. Thus, it is not relevant to users’ conﬁguration.
+
+Unsafe APIs: Using unsafe APIs in conﬁguration han-
+dling can also create confusing behavior. For example,
+unsafe string-to-number transformation APIs, including
+atoi, sscanf and sprintf are vulnerable to erroneous
+user inputs. Taking atoi as an example, there is no way
+to check unexpected characters [atoi(1O0) returns 1]
+and overﬂow issues [atoi(INT MAX) returns -1]. These
+APIs are handy in controlled contexts but should be
+avoided in conﬁguration parsing since user inputs may
+not be trustworthy and can easily be misspelled [39]. In-
+stead, a good practice is to use safe APIs such as strtol
+and check errors through errno and end pointers. Most
+bug detection tools do not report these vulnerabilities be-
+cause they cannot know whether a variable comes from
+user settings. SPEX can detect them exactly because it is
+starting from parameter settings. Our evaluation shows
+that many systems use unsafe APIs, affecting large num-
+bers of parameters as exempliﬁed in Figure 6(d).
+
+Undocumented Constraints: The inferred constraints
+are also useful for developers to check whether the con-
+straints are documented in any form (e.g., user manu-
+als, error messages, or even accurate parameter nam-
+ing). Our evaluation shows that some conﬁguration con-
+straints have never been documented in any form. As the
+consequence, users can easily make mistakes with them.
+
+4 Evaluation
+
+We evaluate the effectiveness of our tools using one
+commercial system and six open-source systems as
+listed in Table 4. The commercial system, Storage-A, is
+from a major storage vendor in the U.S. It is a distributed
+operating system used for managing network attached
+storage devices. It serves storage over networks using
+both ﬁle-based protocols (including NFS, CIFS, FTP,
+HTTP) and block-based protocols (including FC, FCoE,
+iSCSI). The system provides users with a large number
+of conﬁguration parameters. The open-source systems
+are mature, widely-used server applications with consid-
+erable numbers of conﬁguration parameters.
+
+The test cases we use to drive SPEX-INJ are from the
+test suites shipped with the software projects or provided
+by the developers. To collect related warning and error
+log messages, we set sufﬁcient logging verbosity.
+
+Table 4 also shows the numbers of annotations we
+added in each software so that SPEX can use them as
+the starting points to identify and analyze conﬁguration-
+related variables in source code. As shown in Table 4,
+the annotation efforts in terms of lines are acceptable.
+
+Software
+
+Proprietary
+
+LoC
+
+#Parameter
+
+LoA
+
+Storage-A
+
+Commercial
+
+–
+
+Apache
+MySQL
+PostgreSQL
+OpenLDAP
+VSFTP
+Squid
+
+Open source
+Open source
+Open source
+Open source
+Open source
+Open source
+
+148K
+1.2M
+757K
+292K
+16K
+180K
+
+–
+
+103
+272
+231
+86
+124
+335
+
+5
+
+4
+29
+7
+4
+5
+2
+
+Table 4: Evaluated software systems. “–”: We are re-
+quired to keep the concrete numbers of Storage-A conﬁ-
+dential. “LoA” is the abbreviation of lines of annotations.
+
+4.1 Overall Results
+
+We ﬁrst present the end results exposed by SPEX-INJ:
+the misconﬁguration vulnerabilities (bad system reac-
+tions) and error-prone conﬁguration design and han-
+dling. Later in Section 4.3, we will show the interme-
+diate results: the constraints inferred by SPEX.
+
+Misconﬁguration Vulnerabilities: Table 5(a) shows
+the number of misconﬁguration vulnerabilities (bad sys-
+tem reactions) exposed in the latest versions of the eval-
+uated systems. SPEX-INJ exposes a total of 743 vulner-
+abilities (they are true vulnerabilities veriﬁed by us). To
+this day, 364 of them have been conﬁrmed or ﬁxed by the
+developers. The vulnerabilities exposed by SPEX-INJ
+are of various kinds in all the evaluated systems. Most
+notably, all the open-source systems experienced bad re-
+actions such as crashes, hangs, and early terminations
+under some misconﬁgurations. In addition, silent vio-
+lation and ignorance are more prevalent compared with
+terminations and failures. This once again reﬂects that
+developers pay less attention to defending against mis-
+conﬁgurations as long as they do not affect the system’s
+own execution. Figure 7 gives ﬁve additional examples
+for each type of vulnerabilities exposed by SPEX-INJ.
+
+Since one source-code location could affect the con-
+straints of several conﬁguration parameters, Table 5(b)
+further shows the number of unique code locations that
+cause these vulnerabilities. The 743 vulnerabilities are
+caused by 448 locations in source code, and the 364 con-
+ﬁrmed bad reactions can be ﬁxed by 97 code patches.
+
+Error-Prone Conﬁguration Design and Handing:
+Table 6 shows the distribution of the case-sensitivity re-
+quirements for string parameters in each system. We can
+see that more than half of the systems have inconsistent
+case-sensitivity requirements. The inconsistent require-
+ments of 80 parameters in Apache, MySQL, and Squid
+have been conﬁrmed and ﬁxed after we reported them.
+
+Table 7 shows the unit requirements for size and time
+parameters. More than half of the systems have incon-
+sistent size and time units. For example, in Storage-A, 20
+size parameters use Bytes as their units except three pa-
+
+253Crash/
+Hang
+
+Early
+
+Functional
+
+Silent
+
+terminat.
+
+failure
+
+violation
+
+Software
+
+Storage-A
+Apache
+MySQL
+PostgreSQL
+OpenLDAP
+VSFTP
+Squid
+
+Total
+
+0 (0)
+5 (2)
+5 (5)
+1 (0)
+1 (0)
+
+12 (12)
+
+2 (2)
+
+26 (21)
+
+0 (0)
+4 (3)
+10 (3)
+10 (1)
+3 (0)
+5 (0)
+3 (2)
+
+35 (9)
+
+7 (5)
+9 (3)
+12 (4)
+2 (0)
+6 (0)
+18 (0)
+29 (1)
+
+74 (72)
+29 (2)
+71 (70)
+
+1 (0)
+7 (0)
+23 (0)
+
+173 (173)
+
+Silent
+ignor.
+
+83 (0)
+5 (1)
+16 (0)
+35 (2)
+0 (0)
+68 (0)
+14 (1)
+
+Total
+
+Software
+
+164 (77)
+52 (11)
+114 (82)
+
+49 (3)
+17 (0)
+
+126 (12)
+221 (179)
+
+Storage-A
+Apache
+MySQL
+PostgreSQL
+OpenLDAP
+VSFTP
+Squid
+
+Source-code
+
+location
+
+119 (34)
+
+52 (1)
+46 (16)
+44 (3)
+17 (0)
+
+107 (12)
+62 (21)
+
+448 (97)
+
+83 (13)
+
+378 (317)
+
+221 (4)
+
+743 (364)
+
+Total
+
+(a) Misconﬁguration vulnerabilities (bad system reactions)
+
+(b) Corresponding code locations
+
+Table 5: The number of exposed misconﬁguration vulnerabilities, and the corresponding source-code locations. A patch
+to one source-code location might ﬁx multiple vulnerabilities. The numbers in “()” are the numbers of conﬁrmed or ﬁxed
+cases by the developers after we reported them. The cases that have not been conﬁrmed are discussed in Section 5.1.
+
+MySQL-5.5.29
+
+Apache httpd-2.4.3
+
+OpenLDAP-2.4.33
+
+Storage-A
+
+VSFTP-3.0.2
+
+SPEX Injects:
+performance_schema_events_ \
+
+SPEX Injects:
+ThreadLimit = 100000
+
+SPEX Injects:
+sockbuf_max_incoming 1
+
+SPEX Injects:
+pcs.size = 512MB
+
+waits_history_size = 0
+
+Bad Reaction Exposed:
+Crash
+
+System Log:
+Segmentation fault (core
+dumped)
+
+Bad Reaction Exposed:
+Abort during startup
+System Log:
+Cannot allocate memory: AH00004:
+Unable to create access scoreboard
+(anonymous shared memory failure)
+
+Bad Reaction Exposed:
+Any client request leads to:
+(cid:1930)Can't contact LDAP server (-1)(cid:1930)
+System Log:
+conn=xx ACCEPT from IP=x.x.x.x
+conn=xx closed (connection lost)
+
+Bad Reaction Exposed:
+Ignore MB and use 512GB
+(default unit) as pcs.size
+
+No System Log
+
+SPEX Injects:
+virtual_use_local_privs = yes
+one_process_mode = yes
+
+Bad Reaction Exposed:
+The setting of (cid:1930)virtual_use_\
+local_privs(cid:1930) has no effect
+
+No System Log
+
+(a) System Crash
+
+(crash/hang)
+
+(b) Early termination with
+
+misleading message
+
+(c) Functional failure without
+
+(d) Silently change user inputs
+
+(e) Silently ignore user inputs
+
+pinpointing message
+
+(silent violation)
+
+(silent ignorance)
+
+Figure 7: Examples of different types of misconﬁguration vulnerabilities (categorized in Table 3) exposed by SPEX-INJ.
+
+Software
+
+Storage-A
+Apache
+MySQL
+PostgreSQL
+OpenLDAP
+VSFTP
+Squid
+
+Case sensitivity
+
+Developers’
+
+Sensitive
+
+Insensitive
+
+ﬁxes
+
+32 (7.1%)
+3 (11.5%)
+1 (1.7%)
+0 (0.0%)
+0 (0.0%)
+0 (0.0%)
+
+85 (52.8%)
+
+453 (92.9%)
+26 (88.5%)
+58 (98.3%)
+92 (100.0%)
+9 (100.0%)
+73 (100.0%)
+76 (47.2%)
+
+being investigated
+all sens.→insens.
+all sens.→insens.
+
+N/A
+N/A
+N/A
+
+all insens.→sens.
+
+Software
+
+Storage-A
+Apache
+MySQL
+PostgreSQL
+OpenLDAP
+VSFTP
+Squid
+
+Size
+
+Time
+
+B KB MB GB
+
+µs ms
+
+20
+20
+29
+1
+2
+1
+18
+
+1
+1
+0
+3
+0
+0
+2
+
+1
+0
+0
+0
+0
+0
+0
+
+1
+0
+0
+0
+0
+0
+0
+
+2
+0
+2
+1
+0
+0
+1
+
+10
+1
+2
+12
+0
+0
+6
+
+s
+
+53
+26
+13
+9
+3
+6
+33
+
+m h
+
+12
+0
+0
+1
+0
+0
+0
+
+4
+0
+0
+0
+0
+0
+0
+
+Table 6: Case-sensitivity requirements of different conﬁg-
+uration parameters in the evaluated systems.
+
+Table 7: The different units of size- and time-related con-
+ﬁguration parameters in the evaluated systems.
+
+rameters, each of which uses different unit size, namely
+KBytes, MBytes, and GBytes. Storage-A mitigates the
+inconsistency via naming, including the unit information
+in parameter names (c.f., Section 5.2). However, none of
+the open-source systems makes such effort, so the incon-
+sistencies may confuse users and cause mistakes.
+
+Table 8 shows other types of error-prone constraints.
+SPEX detects 74 parameters with silent overruling in
+Apache and Squid, all of which were ﬁxed by the de-
+velopers after we reported them. In addition, more than
+half of the systems use unsafe transformation APIs for
+large numbers of parameters. Moreover, a number of
+inferred constraints are not documented in any form.
+
+However, it might be arguable whether the cases in
+Table 7 and 8 are really confusing and error-prone to
+
+Software
+
+Storage-A
+Apache
+MySQL
+PostgreSQL
+OpenLDAP
+VSFTP
+Squid
+
+Silent
+over-
+ruling
+
+Unsafe
+trans-
+form.
+
+Undoc. Constraints
+Val.
+Data
+range
+rel.
+
+Ctrl
+dep.
+
+0
+1
+0
+0
+0
+0
+73
+
+28
+27
+0
+0
+0
+20
+115
+
+2
+0
+4
+3
+2
+3
+3
+
+0
+1
+3
+3
+0
+47
+4
+
+2
+0
+1
+2
+0
+1
+4
+
+Table 8: Other types of error-prone conﬁguration design
+and handling in the evaluated systems.
+
+users. To be conservative, we did not report them to
+the developers. For the same reason, we did not include
+them in the results presented in the abstract and intro-
+duction sections.
+
+254Software
+
+Storage-A
+Apache
+MySQL
+OpenLDAP
+
+Parameter
+misconﬁg.
+
+Bad reactions that can be
+
+potentially avoided by SPEX
+
+246
+50
+47
+49
+
+68 (27.6%)
+19 (38.0%)
+14 (29.8%)
+12 (24.5%)
+
+Table 9: Real-world misconﬁguration cases that can be
+potentially avoided among all sampled historic cases.
+
+Software
+
+Storage-A
+Apache
+MySQL
+PostgreSQL
+OpenLDAP
+VSFTP
+Squid
+
+922
+103
+272
+231
+75
+130
+258
+
+Total
+
+1991
+
+Data type
+
+Basic
+
+Semtc
+
+Data
+range
+
+Ctrl
+dep.
+
+Value
+
+rel.
+
+111
+22
+74
+52
+15
+34
+46
+
+354
+
+490
+42
+213
+186
+20
+84
+120
+
+81
+1
+35
+44
+0
+68
+14
+
+1155
+
+243
+
+20
+9
+10
+6
+2
+1
+9
+
+57
+
+Software
+
+Storage-A
+Apache
+MySQL
+OpenLDAP
+
+Inference incapability Conform to
+Single-SW Cross-SW constraints
+76 (30.9%)
+19 (7.7%)
+9 (18.0%)
+5 (10.0%)
+18 (38.3%)
+1 (2.1%)
+9 (18.4%)
+12 (24.5%)
+
+51 (20.7%)
+12 (24.0%)
+12 (25.5%)
+
+4 (8.2%)
+
+Good
+
+reactions
+32 (13.0%)
+5 (10.0%)
+2 (4.3%)
+
+12 (24.5%)
+
+Table 10: The breakdown of misconﬁguration cases
+that cannot beneﬁt from SPEX/SPEX-INJ. “Conform con-
+straint” and “Good reactions” are explained in the text.
+
+4.2 Beneﬁts to Real-World Conﬁguration
+
+Problems
+
+It is hard to predict the beneﬁts of SPEX in avoiding fu-
+ture misconﬁguration reports and in reducing miscon-
+ﬁguration diagnosis time. To provide some estimation
+of the end beneﬁts, we have to leverage past misconﬁg-
+uration cases committed by real users and evaluate how
+many customer reports could have been avoided if our
+tools had been used. Note: The results in this section
+are from the perspective of system vendors. We do not
+consider the users’ downtime and frustration.
+
+We study real-world historical misconﬁguration cases
+from four systems: Storage-A, Apache, MySQL, and
+OpenLDAP. For Storage-A, we randomly sampled 246
+parameter misconﬁguration cases from the company’s
+customer issue database. For open-source applications,
+we randomly collected 177 parameter misconﬁgurations
+from ofﬁcial forums, mailing lists, and ServerFault.com
+(a popular system administration forum). The data have
+been presented in our early paper [36].
+
+As shown in Table 9, 24%–38% of the misconﬁgura-
+tion cases could have been potentially avoided if SPEX
+had been used to improve the conﬁguration design and
+harden the system against misconﬁgurations. The re-
+sults may not sound impressive. However, if we consider
+the total number of conﬁguration issues encountered in
+today’s server systems, eliminating approximately one-
+third of the issues is noteworthy. Here, we consider all
+parameter-related conﬁguration errors as the denomina-
+tor. The percentages will be larger if we consider only
+one subtype such as illegal misconﬁgurations [36]. As
+a ﬁrst step in the direction of improving conﬁguration
+design, we believe that 24%–38% is a promising result.
+To guide future research in this direction, Table 10 fur-
+ther breaks down the misconﬁguration cases that cannot
+
+Table 11: Conﬁguration constraints inferred by SPEX.
+
+Software
+
+Storage-A
+Apache
+MySQL
+PostgreSQL
+OpenLDAP
+VSFTP
+Squid
+
+Data type
+
+Basic
+
+Semtc
+
+Data
+range
+
+Ctrl
+dep.
+
+Value
+
+rel.
+
+87.1% 84.1% 94.1%
+95.7%
+97.0%
+94.6% 100.0% 81.8%
+96.1%
+91.7%
+99.1% 94.7% 71.4%
+100.0% 98.7%
+97.3% 91.7% 85.7%
+100.0% 96.3%
+88.2%
+73.1%
+50.0%
+93.7%
+100.0% 100.0% 100.0% 63.9% 100.0%
+77.0% 100.0% 100.0% 77.8% 100.0%
+
+N/A
+
+Table 12: Accuracy of constraint inference.
+
+beneﬁt from our tools. First, as discussed in Section 2.3,
+SPEX cannot infer all the conﬁguration constraints. In
+addition, a conﬁguration setting might conform to the
+constraints, but does not match the users’ intention. For
+example, a permission setting might be valid from the
+constraints’ perspective, but insufﬁcient for the user to
+access ﬁles. Finally, even if the system already provides
+“good reactions” by our criteria (i.e., printing log mes-
+sages containing the faulting parameters), users might
+still report the problem because the semantics of the text
+messages might be confusing.
+
+4.3 Conﬁguration Constraint Inference
+
+Table 11 breaks down different kinds of constraints in-
+ferred by SPEX. It infers a total of 3800 constraints from
+the evaluated systems. We can see that basic types can
+be inferred for most conﬁguration parameters. In com-
+parison, the number of semantic types is much smaller.
+SPEX cannot extract the semantic type for every param-
+eter. It can only infer the semantic type if the param-
+eter interacts with known APIs. Data range and inter-
+parameter correlations, especially control dependencies,
+are also common in the evaluated systems.
+
+Table 12 shows the accuracy of constraint inference.
+We manually and carefully examined all of the 3800
+constraints inferred by SPEX. SPEX achieves over 90%
+inference accuracy in most cases. We ﬁnd that the inac-
+curacy is mainly caused by pointer aliasing. If a conﬁg-
+uration parameter is pointed by aliased pointers, and/or
+there are complicated pointer arithmetic logic, SPEX
+may lose the correct mapping from the conﬁguration pa-
+rameter to the program variable, and thereby infer con-
+
+255straints that do not belong to the right parameter. Cur-
+rently, SPEX does not perform any pointer-alias analysis.
+This explains why OpenLDAP has the lowest accuracy:
+many of its parameters are referenced through pointers.
+However, our overall accuracy is still over 90%, because
+most of the conﬁguration parameters are not aliased.
+
+5 Experience and Practice
+
+5.1 Interaction Experience
+
+We reported the detected vulnerabilities and error-prone
+constraints to developers through the ofﬁcial bug report-
+ing systems. To this day, 364 of our reported vulnerabili-
+ties and 80 inconsistent constraints have been conﬁrmed
+or ﬁxed by the developers. The others are ignored or
+rejected or being investigated. Here, we share our expe-
+riences in interacting with developers.
+
+Positive Experience. We are encouraged by the pos-
+itive feedback from many developers of the evaluated
+systems, and we appreciate their help.
+
+• Storage-A: Misconﬁgurations account for one-third
+of the customer issues of Storage-A in this major U.S.
+storage company. It has incurred signiﬁcant ﬁnancial
+cost for troubleshooting these issues. Therefore, they
+actively investigate solutions to misconﬁgurations and
+have been very supportive to our work, including pro-
+viding us with source code, test cases, and allowing us
+to include Storage-A’s results in this paper. All the ex-
+posed issues have been sent to the corresponding de-
+veloping teams. Many of them have been ﬁxed (c.f.,
+Table 5), and others are under investigation.
+
+• Squid: The developers immediately paid great atten-
+tion to our reported misconﬁguration vulnerabilities.
+We worked together and improved their conﬁguration
+parsing library by adding more checks for conﬁgura-
+tion errors and more logging in reporting errors.
+
+Negative Experience. Not all interaction with develop-
+ers is positive. Some of our reports and patches so far
+have been rejected or ignored. The following summa-
+rize the typical negative responses: (1) Some developers
+think the information is clearly described in the docu-
+ment, so there is no need for systems to check or to pin-
+point the conﬁguration errors in log messages — “The
+manual states, near the top...” However, users may not
+read manuals line by line, especially given that manu-
+als for large systems are usually lengthy (e.g., MySQL-
+5.5’s manual has 4502 pages). Also, users may have
+problems understanding manual contents because many
+users come from a different background. (2) Some open-
+source developers tend to assume that administrators
+read source code (since it is open sourced) when they
+
+conﬁgure systems. In the response to one of our patches,
+the developer wrote, “Most users never adjust these val-
+ues. Those who do, read the code.” Note: Users can read
+open-source code, but this does not mean that users have
+time or are willing to read the code. (3) Some developers
+optimistically assume that users will not make mistakes,
+“If you work exactly and carefully, it does not matter;
+if not, you should not maintain the server at all.” As
+a result, it is not uncommon that developers closed the
+report with comments like, “This is not a bug.” The im-
+plication is that “the user must be a novice or not think-
+ing.” However, such optimistic assumptions are often
+proved unrealistic as partially demonstrated in our work
+and previous work on misconﬁguration.
+
+The negative experiences indicate that the battle to
+have developers take an active role in misconﬁgura-
+tion handling is challenging. The main impediment is
+the controversial responsibilities of misconﬁgurations
+between users and developers. Often, it is only until
+the system suffers considerable support cost or failures
+(caused by misconﬁgurations) will the importance of ac-
+tive handling be appreciated by developers. We believe
+one way to raise this awareness is through education
+on user-friendly conﬁguration design, hopefully leverag-
+ing the trend and attention in good user-interface design
+raised by Apple’s success. As articulated in [24], devel-
+opers should view system administrators and operators
+as their ﬁrst-class users.
+
+5.2 Practice
+
+We highlight some of the good practices we have ob-
+served from the evaluated software projects.
+
+Hiding Critical Conﬁgurations from Users: Despite
+the trend that systems expose more and more conﬁgu-
+ration knobs to users, some systems choose to hide ad-
+vanced and critical parameters from users, in order to
+avoid careless mistakes. Storage-A provides two lev-
+els of conﬁguration interfaces: one for normal users and
+the other for advanced administrators. Moreover, it does
+not allow users to directly modify system conﬁguration
+ﬁles. Users’ conﬁguration settings are enforced to go
+through the interfaces which perform basic checking. In
+fact, developers sometimes are struggling with the con-
+ﬁgurability. For example, eight Squid parameters have
+the following explanation in their manual entries:
+
+“Heavy voodoo here. I can’t even believe you
+are reading this. Are you crazy? Don’t even
+think about adjusting these unless you under-
+stand the algorithms in comm select.c ﬁrst!”
+
+A good practice should hide such esoteric parameters
+from users, or forewarn users with clear log messages
+when they are trying to conﬁgure these parameters.
+
+256Handling Inconsistency: We observe two efforts in
+Storage-A in handling unit inconsistency. First, the unit
+information is exposed in naming (e.g., “cleanup.msec”,
+“takeover.sec”) which serves as both constraint descrip-
+tions and mnemonics for users. Second, some parame-
+ter settings enforce users to specify unit sufﬁxes to help
+them express their intention explicitly.
+
+Exploiting Data Structures: Storage-A, MySQL, and
+PostgreSQL use global data structures which enforce de-
+velopers to specify the data type and the minimum, max-
+imum value for each conﬁguration parameter.
+In this
+way, the systems easily enforce uniform validity check-
+ing for conﬁguration settings. Consequently, they have
+fewer misconﬁguration vulnerabilities that violate type
+and range constraints, as shown in Table 5.
+
+6 Related Work
+
+The major research efforts in addressing misconﬁgura-
+tion problems focus on detecting [11, 35, 38] and trou-
+bleshooting [1,3,4,5,21,25,32,33,34,37,40] conﬁgura-
+tion errors in a timely manner. While these studies pro-
+vide remedies to ﬁnd root causes of misconﬁguration-
+induced system failures and anomalies, it is often too
+late to alleviate users from frustrating experiences.
+
+Our work is different but complementary to miscon-
+ﬁguration detection and troubleshooting. We propose
+to improve the conﬁguration design, to harden systems
+with graceful reactions to misconﬁgurations, and to pro-
+vide users with explicit log messages so as to enable
+users to ﬁx conﬁguration errors by themselves. Doing
+these can help eliminate many conﬁguration errors, or
+at least help users self-diagnose the problems quickly
+(based on system error messages) without the need to
+run any extra detection or troubleshooting tools. Al-
+though we have made only a modest step in this direc-
+tion, we strongly believe that having developers take a
+more active role to improve conﬁguration design and an-
+ticipate/tolerate conﬁguration errors should be the ulti-
+mate solution (maybe not immediately achievable).
+
+ConfErr [15] pioneers the conﬁguration testing di-
+rection. Since it is not guided by conﬁguration con-
+straints, it makes generic alternations to valid conﬁgu-
+ration settings (e.g., omissions, substitutions, and case
+alternations of characters). Similarly, fuzz testing can be
+used to generate random data as conﬁguration settings.
+Our work is complementary to ConfErr and fuzz test-
+ing. The major part of our work focuses on conﬁguration
+constraint inference. Based on the inferred constraints,
+our injection are guided to be program- and constraint-
+speciﬁc. Take the range constraint as an example, SPEX-
+INJ generates values exactly covering in and out of the
+speciﬁc range. Besides misconﬁguration injection, we
+
+also leverage the constraints to detect error-prone conﬁg-
+uration design and handling. Although not demonstrated
+in the paper, the inferred constraints can also be used as
+references for developers or UI engineers to examine if
+the conﬁguration constraints are too complicated or un-
+natural, or not backward-compatible, etc.
+
+Rabkin and Katz extract conﬁguration parameters
+together with their data types from Hadoop-like pro-
+grams [26]. Our work differs from theirs in the following
+three aspects. First, we have different objectives. Their
+objective is to understand the types of conﬁguration pa-
+rameters, whereas ours is to advocate and enable devel-
+opers to take an active role in reducing conﬁguration-
+related issues. Second, their work focuses on data types
+only, whereas our work also extracts other kinds of con-
+straints including data ranges, control dependencies, and
+value relationships. Third, their work focuses on the
+characteristics but shows no use case of the extracted
+information, whereas our work uses the inferred con-
+straints to expose misconﬁguration vulnerabilities and to
+detect error-prone conﬁguration design and handling.
+
+7 Conclusion
+
+This paper advocates the importance for software de-
+velopers to take an active role in handling misconﬁgu-
+rations.
+It makes a concrete useful step by providing
+tooling support for developers to expose misconﬁgura-
+tion vulnerabilities, and detect error-prone conﬁguration
+design and handling. Our tools have exposed 743 vul-
+nerabilities and at least 112 error-prone constraints in
+both commercial and open-source systems. To this day,
+364 vulnerabilities, together with 80 inconsistent con-
+straints, have been conﬁrmed or ﬁxed by developers af-
+ter we reported them. Our results have inﬂuenced the
+Squid Web proxy project to improve its conﬁguration
+parsing library towards a more user friendly design. We
+hope our work can inspire developers to improve their
+practices as well as follow-up research in this direction.
+
+8 Acknowledgement
+
+We would like to express our great appreciation to our
+shepherd, Haibo Chen, who was very responsive and
+provided us with valuable suggestions to improve our
+work. We also thank the anonymous reviewers for their
+insightful comments and suggestions. We are grateful to
+the Opera group in UCSD, the ATG group in NetApp,
+Laurent Nicolas, Raghavan Kalkunte, Matus Telgarsky,
+Dongseok Jang, Brad Chen, and Marc Dacier for their
+feedback and insights. We thank all the developers who
+reviewed our reports and patches and interacted with us.
+This research is supported by NSF CNS-1017784, NSF
+CNS-1321006, and a NetApp Faculty Award.
+
+257References
+
+[1] B. Aggarwal, R. Bhagwan, T. Das, S. Eswaran,
+V. N. Padmanabhan, and G. M. Voelker. NetPrints:
+Diagnosing Home Network Misconﬁgurations Us-
+ing Shared Knowledge. In Proceedings of the 6th
+USENIX Symposium on Networked System Design
+and Implementation (NSDI’09), April 2009.
+
+[2] Amazon Web Services Team. Summary of the
+Amazon EC2 and Amazon RDS Service Disrup-
+tion in the US East Region.
+http://aws.amazon.com/message/65648, 2011.
+
+[3] M. Attariyan, M. Chow, and J. Flinn. X-ray: Au-
+tomating Root-Cause Diagnosis of Performance
+Anomalies in Production Software. In Proceedings
+of the 10th USENIX Conference on Operating Sys-
+tems Design and Implementation (OSDI’12), Oc-
+tober 2012.
+
+[4] M. Attariyan and J. Flinn. Using Causality to
+Diagnose Conﬁguration Bugs. In Proceedings of
+the 2008 USENIX Annual Technical Conference
+(USENIX’08), June 2008.
+
+[5] M. Attariyan and J. Flinn. Automating Conﬁgu-
+ration Troubleshooting with Dynamic Information
+Flow Analysis. In Proceedings of the 9th USENIX
+Conference on Operating Systems Design and Im-
+plementation (OSDI’10), October 2010.
+
+[6] L. A. Barroso and U. H¨olzle. The Datacenter
+as a Computer: An Introduction to the Design of
+Warehouse-Scale Machines. Morgan and Claypool
+Publishers, 2009.
+
+[7] K. Chen, C. Guo, H. Wu, J. Yuan, Z. Feng,
+Y. Chen, S. Lu, and W. Wu. Generic and Automatic
+Address Conﬁguration for Data Center Networks.
+In Proceedings of the 2010 Annual Conference of
+the ACM Special Interest Group on Data Commu-
+nication (SIGCOMM’10), August 2010.
+
+[8] Computing Research Association. Grand Research
+Challenges in Information Systems, Technical Re-
+port, September 2003.
+
+[9] S. Duan, V. Thummala, and S. Babu. Tuning
+Database Conguration Parameters with iTuned. In
+Proceedings of the 35th International Conference
+on Very Large Data Bases (VLDB’09), August
+2009.
+
+[10] D. Engler, D. Y. Chen, S. Hallem, A. Chou, and
+B. Chelf. Bugs as Deviant Behavior: A Gen-
+eral Approach to Inferring Errors in Systems Code.
+
+In Proceedings of the 18th ACM Symposium on
+Operating Systems Principles (SOSP’01), October
+2001.
+
+[11] N. Feamster and H. Balakrishnan. Detecting
+BGP Conﬁguration Faults with Static Analysis.
+In Proceedings of the 2nd USENIX Symposium
+on Networked System Design and Implementation
+(NSDI’05), May 2005.
+
+[12] J. Gray. Why Do Computers Stop and What Can
+Be Done About It? Tandem Technical Report 85.7,
+June 1985.
+
+[13] R. Johnson. More Details on Today’s Outage.
+
+http://www.facebook.com/note.php?note id=431441
+338919, 2010.
+
+[14] A. Kappor. Web-to-host: Reducing Total Cost of
+Ownership. Technical Report 200503, The Tolly
+Group, May 2000.
+
+[15] L. Keller, P. Upadhyaya, and G. Candea. ConfErr:
+A Tool for Assessing Resilience to Human Conﬁg-
+uration Errors. In Proceedings of the 38th Annual
+IEEE/IFIP International Conference on Depend-
+able Systems and Networks (DSN’08), June 2008.
+
+[16] S. Kendrick. What Takes Us Down? USENIX
+
+;login:, 37(5):37–45, October 2012.
+
+[17] N. Kushman and D. Katabi.
+
+Enabling
+by
+Conﬁguration-Independent
+Non-Expert Users.
+In Proceedings of the 9th
+USENIX Conference on Operating Systems Design
+and Implementation (OSDI’10), October 2010.
+
+Automation
+
+[18] C. Lattner and V. Adve. LLVM: A Compila-
+tion Framework for Lifelong Program Analysis &
+Transformation. In Proceedings of the 2004 Inter-
+national Symposium on Code Generation and Op-
+timization (CGO’04), March 2004.
+
+[19] R. Mahajan, D. Wetherall, and T. Anderson. Un-
+derstanding BGP Misconﬁgurations. In Proceed-
+ings of the 2002 Annual Conference of the ACM
+Special Interest Group on Data Communication
+(SIGCOMM’02), August 2002.
+
+[20] D. J. Mayhew. Principles and Guidelines in Soft-
+ware User Interface Design. Prentice Hall, Octo-
+ber 1991.
+
+[21] J. Mickens, M. Szummer, and D. Narayanan.
+Snitch:
+Interactive Decision Trees for Trou-
+bleshooting Misconﬁgurations. In Proceedings of
+the 2nd USENIX Workshop on Tackling Computer
+Systems Problems with Machine Learning Tech-
+niques (SYSML’07), 2007.
+
+258[22] K. Nagaraja, F. Oliveira, R. Bianchini, R. P. Mar-
+tin, and T. D. Nguyen. Understanding and Deal-
+ing with Operator Mistakes in Internet Services.
+In Proceedings of the 6th USENIX Conference
+on Operating Systems Design and Implementation
+(OSDI’04), December 2004.
+
+[23] D. A. Norman. Design Rules Based on Analy-
+ses of Human Error. Communications of the ACM,
+26(4):254–258, April 1983.
+
+the 6th USENIX Conference on Operating Systems
+Design and Implementation (OSDI’04), December
+2004.
+
+[33] Y.-M. Wang, C. Verbowski, J. Dunagan, Y. Chen,
+H. J. Wang, C. Yuan, and Z. Zhang. STRIDER: A
+Black-box, State-based Approach to Change and
+Conﬁguration Management and Support. In Pro-
+ceedings of the 17th Large Installation Systems Ad-
+ministration Conference (LISA’03), October 2003.
+
+[24] D. Oppenheimer, A. Ganapathi, and D. A. Patter-
+son. Why Do Internet Services Fail, and What
+Can Be Done About It? In Proceedings of the 4th
+USENIX Symposium on Internet Technologies and
+Systems (USITS’03), March 2003.
+
+[34] A. Whitaker, R. S. Cox, and S. D. Gribble. Conﬁg-
+uration Debugging as Search: Finding the Needle
+in the Haystack. In Proceedings of the 6th USENIX
+Conference on Operating Systems Design and Im-
+plementation (OSDI’04), December 2004.
+
+[25] A. Rabkin and R. Katz. Precomputing Possible
+In Proceedings
+Conﬁguration Error Diagnosis.
+of the 26th IEEE/ACM International Conference
+on Automated Software Engineering (ASE’11),
+November 2011.
+
+[35] Y. Xiong, A. Hubaux, S. She, and K. Czarnecki.
+Generating Range Fixes for Software Conﬁgura-
+tion. In Proceedings of the 34th International Con-
+ference on Software Engineering (ICSE’12), June
+2012.
+
+[26] A. Rabkin and R. Katz. Static Extraction of Pro-
+gram Conﬁguration Options. In Proceedings of the
+33th International Conference on Software Engi-
+neering (ICSE’11), May 2011.
+
+[27] A. Rabkin and R. Katz. How Hadoop Clusters
+
+Break. IEEE Software, 30(4):88–94, July 2013.
+
+[28] A. Sch¨upbach, A. Baumann, T. Roscoe, and S. Pe-
+ter. A Declarative Language Approach to Device
+Conﬁguration.
+In Proceedings of the 16th Inter-
+national Conference on Architectural Support for
+Programming Languages and Operating Systems
+(ASPLOS’11), March 2011.
+
+[29] M. Sridharan, S. J. Fink, and R. Bod´ık. Thin
+Slicing.
+In Proceedings of the ACM SIGPLAN
+2007 Conference on Programming Language De-
+sign and Implementation (PLDI’07), June 2007.
+
+[30] Y.-Y. Su, M. Attariyan, and J. Flinn. AutoBash:
+Improving Conﬁguration Management with Oper-
+ating System Causality Analysis. In Proceedings
+of the 21st ACM Symposium on Operating Systems
+Principles (SOSP’07), October 2007.
+
+[31] Y. Sverdlik. Microsoft: Misconﬁgured Network
+
+Device Led to Azure Outage.
+http://www.datacenterdynamics.com/focus/archive/
+2012/07/microsoft-misconﬁgured-network-
+device-led-azure-outage, 2012.
+
+[32] H. J. Wang, J. C. Platt, Y. Chen, R. Zhang, and
+Y.-M. Wang. Automatic Misconﬁguration Trou-
+bleshooting with PeerPressure. In Proceedings of
+
+[36] Z. Yin, X. Ma, J. Zheng, Y. Zhou, L. N. Bairava-
+sundaram, and S. Pasupathy. An Empirical Study
+on Conﬁguration Errors in Commercial and Open
+Source Systems.
+the 23rd
+ACM Symposium on Operating Systems Principles
+(SOSP’11), October 2011.
+
+In Proceedings of
+
+[37] C. Yuan, N. Lao, J.-R. Wen, J. Li, Z. Zhang, Y.-M.
+Wang, and W.-Y. Ma. Automated Known Problem
+Diagnosis with Event Traces. In Proceedings of the
+1st EuroSys Conference (EuroSys’06), April 2006.
+
+[38] D. Yuan, Y. Xie, R. Panigrahy, J. Yang, C. Ver-
+bowski, and A. Kumar. Context-based Online
+Conﬁguration Error Detection. In Proceedings of
+the 2011 USENIX Annual Technical Conference
+(USENIX’11), June 2011.
+
+[39] A. Zeller. Why Programs Fail: A Guide to System-
+atic Debugging (2nd Edition). Morgan Kaufmann
+Publishers, June 2009.
+
+[40] S. Zhang and M. D. Ernst. Automated Diagnosis of
+Software Conﬁguration Errors. In Proceedings of
+the 35th Internationl Conference on Software En-
+gineering (ICSE’13), May 2013.
+
+Notice: NetApp, the NetApp logo, and Go further, faster
+are trademarks or registered trademarks of NetApp, Inc.
+in the United States and/or other countries.
+
+259

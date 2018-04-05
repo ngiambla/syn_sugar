@@ -61,35 +61,23 @@ var which_line 			= 0;
 // dict for info-divs.
 var which_info_div 		= 0;
 var info_divs			= {};
+var info_divs_size 		= 0;
 
 
 function load_info_divs() {
 	var all_info_divs=$("div[id*='_p']");
+	info_divs_size=all_info_divs.length;
 	for(var i = 0; i < all_info_divs.length; ++i) {
 		info_divs[i]=all_info_divs[i].id;
 	}
 }
 
 function change_view(dir) {
-	if(dir != 0 && dir != 1) {
-		console.log("Not Handling this directions");
-	} else {
-		$("#"+info_divs[which_info_div]).fadeOut('fast', function() {
-			if(dir == 0) {
-				which_info_div--;
-				if(which_info_div < 0) {
-					which_info_div = Object.keys(info_divs).length-1;
-				}
-
-			} else if (dir == 1) {
-				which_info_div++;
-				which_info_div=which_info_div%Object.keys(info_divs).length;
-			} 
-			$("#"+info_divs[which_info_div]).fadeIn('fast',function(){
-
-			});
+	$("#"+info_divs[which_info_div]).fadeOut('fast', function() {
+		which_info_div=dir;
+		$("#"+info_divs[which_info_div]).fadeIn('fast',function(){
 		});
-	}
+	});	
 }
 
 function hide_term() {
@@ -221,16 +209,17 @@ function load_doc(doc, summary) {
 	
 	summ_text = [];
 
-	$("#doc_contents_ul").fadeOut('fast', function(e) {
+	$("#doc_contents_div").fadeOut('fast', function(e) {
 		$("#entropy_graph").empty();
-		$("#doc_contents_ul").empty();
+		$("#doc_contents_div").empty();
 		$("#frequency_map_ul").empty();
 		$("#summ_contents").empty();
 		
-		$("#doc_contents_ul").fadeIn('fast', function(e) {
+		$("#doc_contents_div").fadeIn('fast', function(e) {
 			for(var i in doc) {
-				item = '<li class="doc_line" id="'+ i +'">'+doc[i]+'</li>'
-				$("#doc_contents_ul").append(item);
+				item = '<p class="doc_line" id="'+ i +'">'+doc[i]+'</p>'
+				$("#doc_contents_div").append(item);
+				
 				if(i in summary) {
 					summ_text.push(doc[i]);
 					is_empty=false;
@@ -342,20 +331,17 @@ function reset_sugar() {
 
 function get_search_contents() {
 	$("#search").on("change keyup paste",function(e) {
-
-		show_term();
-
 		if("empty" in summary ) {
 			draw_state = 2;
 		} else {
 			if($("#search").val()) {
 
 				search_query 	=	$("#search").val();
-				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").unmark();
-				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").mark(search_query);				
+				$("#doc_contents_div, #frequency_map_ul, #summ_contents").unmark();
+				$("#doc_contents_div, #frequency_map_ul, #summ_contents").mark(search_query);				
 				draw_state = 	1;
 			} else {
-				$("#doc_contents_ul, #frequency_map_ul, #summ_contents").unmark();
+				$("#doc_contents_div, #frequency_map_ul, #summ_contents").unmark();
 				draw_state = 	0;
 			}
 		}
@@ -566,11 +552,6 @@ function load_bar_chart() {
         .style("text-anchor", "middle")
         .text("Entropy");
 
-	// svg.append("text")
-	// 	.attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
-	// 	.attr("transform", "translate("+ (width/2) +","+(height-(padding/2))+")")  // centre below axis
-	// 	.text("Sentence ID");
-
 	  
 	diagram = svg.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -734,6 +715,36 @@ function display () {
 
 $(function() {
 
+	// var drake = dragula({
+ //  		copy: true
+	// });
+	// drake.containers.push(document.getElementById("doc_contents_div"));
+	// drake.containers.push(document.getElementById("summ_contents"));
+
+	tippy(document.querySelector('#v1'), {
+		size: 'large',
+		animation: 'scale',
+        arrow: true
+	});
+	
+	tippy(document.querySelector('#v2'), {
+		size: 'large',
+		animation: 'scale',
+        arrow: true
+   	});
+	
+	tippy(document.querySelector('#v3'), {
+		size: 'large',
+		animation: 'scale',
+        arrow: true
+	});
+
+	tippy(document.querySelector('#v4'), {
+		size: 'large',
+		animation: 'scale',
+        arrow: true
+   	});
+	
 	load_info_divs();
 	start_up_coolness();
 	$("#cleanup_btn").on("click", function(e) {

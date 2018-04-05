@@ -1,0 +1,452 @@
+Integration of Multiplication Splitting with LegUp-5.0
+
+Nicholas V. Giamblanco
+
+//
+
+Contents
+
+1 Introduction
+
+2 Installation of LegUp-x.0 on EECG machines
+
+2.1 Freetype . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.2 GCC Toolchain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.3 LLVM . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.4 Environment Variables, Aliases, Etc.
+
+3 Results
+
+2
+
+3
+3
+4
+5
+5
+
+7
+
+4 Appendix
+
+13
+4.1 Test Code . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+
+1
+
+Chapter 1
+
+Introduction
+
+In this report, several items are discussed:
+
+1. Installation instructions of LegUp-x.0 on EECG machines
+
+2. Results of integrating the multiplication-splitting LLVM pass produced by Q. Yang.
+
+2
+
+Chapter 2
+
+Installation of LegUp-x.0 on EECG
+machines
+
+After sending your machine’s public key to LegUp’s repository, you will need to satisfy the following
+dependencies:
+
+• Freetype (used for ModelSim)
+• GCC-4.8
+• LLVM & Clang
+
+2.1 Freetype
+
+ModelSim allows for timing and functional simulation of a given hardware description (Verilog is
+used in LegUp). LegUp permits the use of this functionality through a command make v. On
+the EECG machines, ModelSim behaves incorrectly due to an old FreeType package. Without
+modifying the FreeType package, you will more than likely encounter this error:
+
+$ vsim
+** Fatal: Read failure in vlm process (0,0)
+Segmentation fault
+$
+
+To combat this message, run the following commands.
+
+$ cd ~/
+$ mkdir freetype/
+$ cd freetype/
+$ wget http://download.savannah.gnu.org/releases/freetype/freetype-2.4.12.tar.bz2
+$ tar -jxvf freetype-2.4.12.tar.bz2
+$ cd freetype-2.4.12
+$ ./configure --build=i686-pc-linux-gnu "CFLAGS=-m32" "CXXFLAGS=-m32" "LDFLAGS=-m32"\
+
+--prefix=$HOME/freetype
+
+$ make -j8
+
+3
+
+You will also want to reﬂect $PATH changes:
+
+$ nano ~/.cshrc
+### ADD THIS LINE TO BOTTOM.
+setenv LD_LIBRARY_PATH $HOME/freetype/freetype-2.4.12/objs/.libs
+### EXIT EDITOR
+$ source ~/.cshrc
+
+This should alleviate the issue.
+LLVM is the main machinery in place with LegUp’s HLS process. LLVM is used as a way to
+represent C − Code in a contextual independent form (i.e. a generic assembly-like fashion). LegUp
+operates on this representation. Hence, LLVM needs to be installed. Unfortunately, EECG’s GCC
+version (which is Version 4.7.x) is out of date. According to LegUp, GCC-4.7 should be ﬁne for
+compilation. However, after testing, this is not true (on the EECG machines). Hence, we will
+install a local copy of GCC, and have our PATH reﬂect this change, such that LegUp will utilize
+this.
+
+2.2 GCC Toolchain
+
+To install GCC locally, enter the following commands:
+
+$ cd ~/
+$ mkdir toolchains
+$ cd toolchains
+$ wget https://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2
+$ wget https://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2.sig
+$ wget https://ftp.gnu.org/gnu/gnu-keyring.gpg
+$ signature_invalid=‘gpg --verify --no-default-keyring --keyring\
+
+./gnu-keyring.gpg gcc-4.8.2.tar.bz2.sig‘
+
+$ if [ $signature_invalid ]; then echo "Invalid signature" ; exit 1 ; fi
+$ tar -xvjf gcc-4.8.2.tar.bz2
+$ cd gcc-4.8.2
+$ ./contrib/download_prerequisites
+$ cd ..
+$ mkdir gcc-4.8.2-build
+$ cd gcc-4.8.2-build
+$ $PWD/../gcc-4.8.2/configure --prefix=$HOME/toolchains --enable-languages=c,c++
+$ make -j$(nproc)
+$ make install
+
+You will also want to reﬂect $PATH changes:
+
+$ nano ~/.cshrc
+### ADD THIS LINE TO BOTTOM.
+set path = ($path ~/toolchains/bin)
+### EXIT EDITOR
+$ source ~/.cshrc
+
+You’ll also want to create a local alias of GCC, and G++ from this version.
+
+4
+
+$ nano ~/.u_alias
+### ADD THESE LINES TO ALIAS
+alias gcc ~/toolchains/bin/./gcc
+alias g++ ~/toolchains/bin/./g++
+alias gcc-4.8 ~/toolchains/bin/./gcc
+### EXIT EDITOR
+
+$ nano ~/.cshrc
+### ADD THIS LINE TO CSHRC FILE
+source ~/.u_alias
+### EXIT EDITOR
+$ source ~/.cshrc
+
+2.3 LLVM
+
+To Install LLVM, follow this procedure:
+
+$ cd ~/
+$ mkdir llvm; cd llvm/;
+$ wget http://releases.llvm.org/3.5.1/llvm-3.5.1.src.tar.xz
+$ tar -xvfJ llvm-3.5.1.src.tar.xz
+$ cd llvm-3.5.1.src/
+$ mkdir build/
+$ cd build/
+$ setenv CC ~/toolchains/bin/gcc
+$ setenv CXX ~/toolchains/bin/g++
+$ cmake .. -DCMAKE_CXX_LINK_FLAGS="-Wl,-rpath,$HOME/toolchains/lib64 -L$HOME/toolchains/lib64"
+
+Lastly, we must modify some path variables (since our local installation will be used).
+
+2.4 Environment Variables, Aliases, Etc.
+
+You must allow the shell path to be able to refer to LLVM, Quartus, and Quartus’s SoPC software
+libraries, hence we can add the following to the path:
+
+$ nano ~/.cshrc
+### ADD THIS TO END OF FILE
+set path = ($path /pkgs/altera/quartus/quartus13.1/linux/quartus/bin)
+set path = ($path /pkgs/altera/quartus/quartus13.1/linux/modelsim_ase/bin)
+set path = ($path ~/llvm/llvm-3.5.1.src/build/bin)
+set path = ($path /pkgs/altera/quartus/quartus13.1/linux/quartus/sopc_builder/bin)
+### EXIT EDITOR
+$ source ~/.cshrc
+
+We also will need to modify LegUp’s makeﬁle to reﬂect one change (due to the local GCC
+
+installation).
+
+### MODIFY Makefile
+### CHANGE THIS:
+
+$(MAKE) -C dragonegg GCC=$(DRAGONEGG_GCC_VERSION) LLVM_CONFIG=../llvm/$(LLVM_BUILD)/bin/llvm-config
+
+### TO THIS:
+
+#$(MAKE) -C dragonegg GCC=$(DRAGONEGG_GCC_VERSION) LLVM_CONFIG=../llvm/$(LLVM_BUILD)/bin/llvm-config
+$(MAKE) -C dragonegg GCC=~/toolchains/bin/./gcc LLVM_CONFIG=../llvm/$(LLVM_BUILD)/bin/llvm-config
+
+### END MODIFY
+
+5
+
+You can now make LegUp on the EECG machine.
+
+6
+
+Chapter 3
+
+Results
+
+Q. Yang’s multiplication splitting LLVM pass was integrated into LegUp-5.0, and several tests were
+conducted on this implementation to identify its eﬀectiveness as an optimization within the LegUp
+framework. To integrate this optimization, I applied a patch supplied by the author. However, the
+patch was not complete in integrating this optimization. The ﬁle ∼ /legup/examples/Makefile.common
+did contain the required call to the LLVM pass. I added this modiﬁcation to ∼ /legup/examples/Makefile.common:
+
+# testing SplitMultiplier.cpp pass
+ifeq (0,0)
+
+@echo "======Spliting Multipliers======"
+$(LLVM_HOME)opt $(OPT_FLAGS) -legup-split-multiplier $(NAME).postlto.bc -o $(NAME).spmp.bc
+$(LLVM_HOME)llvm-dis $(NAME).spmp.bc
+@echo "======####################======"
+
+endif
+
+# testing out Joy’s array partitioning
+ifeq ($(PARTITION),1)
+
+@echo "=======Partitioning Arrays======="
+$(LLVM_HOME)opt $(OPT_FLAGS) -legup-array-partition -ap-predicate -dce -globaldce $(NAME).spmp.bc -o $(NAME).ap.bc
+$(LLVM_HOME)llvm-dis $(NAME).ap.bc
+@echo "=======Completed Partitioning======="
+$(LLVM_HOME)llvm-dis $(NAME).ap.bc
+
+ifeq ($(PARTITION_NOOPT),1)
+
+cp $(NAME).ap.bc $(NAME).ap.1.bc
+@echo "=======Skipped optimizations======"
+
+else
+
+endif
+
+else
+
+endif
+
+$(LLVM_HOME)opt $(OPT_FLAGS) $(STD_COMPILE_OPTS) $(NAME).ap.bc -o $(NAME).ap.1.bc
+@echo "=======Completed optimizations======"
+
+$(LLVM_HOME)llvm-dis $(NAME).ap.1.bc
+
+cp $(NAME).spmp.bc $(NAME).ap.1.bc
+
+Here, the modiﬁed IR was lead into a subsequent operation, and hence ﬁles in this operation
+
+had to be modiﬁed to reﬂect this.
+
+All tests were conducted with:
+
+LOCAL_CONFIG = -legup-config=config.tcl
+
+ifeq ($(NO_OPT),)
+
+NO_OPT=1
+
+endif
+ifeq ($(NO_INLINE),)
+
+NO_INLINE=1
+
+endif
+
+in order to evaluate how this particular modiﬁcation performs with no LLVM optimization.
+
+The ﬁle config.tcl consisted of:
+
+7
+
+set_parameter MULTIPLIER_SPLIT_WIDTH XX
+
+Where XX is the desired multiplier size. This optimization should attempt to improve the
+
+overwall Twall which is deﬁned as:
+
+Twall =
+
+N
+fmax
+
+(3.1)
+
+Where fmax is the maximum operating frequency, and N is the number of cycles. I tested common
+multiplier widths of 64 bits, 32 bits, 16 bits, 8 bits for this multiplier splitting optimization.
+I evaluated several .c ﬁles with this optimization, to compare the eﬀects of this optimization. I
+used existing test benches included with LegUp: fft, fir, dfmul, matrixmultiply. In addition to
+these tests, I instantiated a test from Q. Yang’s thesis (attached in Appendix). I collected fmax at
+0◦ Celsius and 85◦ Celsius, the number of DSP blocks required, and the logic utilization (where the
+collected number is out of 32070 ALMs). All tests were conducted using a simulation of a Cyclone
+V board. Attached below are the collected results for the test benches:
+
+Figure 3.1: Collected Statistics from fir
+
+8
+
+Clock (ns)
+
+fmax at 0
+
+5
+10
+15
+
+177.56
+178.99
+143.0
+
+fmax at 85 DSP Utilization Cycles
+3318
+2774
+2502
+
+181.26
+180.77
+148.19
+
+7
+7
+7
+
+1168
+1128
+1149
+
+Table 3.1: Tabulated results from varying clock period constraints at a desired multiplier split
+width = 64 bits, Test: fir
+
+Figure 3.2: Collected Statistics from fft
+
+9
+
+Figure 3.3: Collected Statistics from matrixmultiply
+
+Clock (ns)
+
+fmax at 0
+
+5
+10
+15
+
+155.13
+152.91
+155.16
+
+fmax at 85 DSP Utilization Cycles
+26843
+26843
+26843
+
+156.54
+155.16
+159.91
+
+2
+2
+2
+
+314
+311
+311
+
+Table 3.2: Tabulated results from varying clock period constraints at a desired multiplier split
+width = 64 bits, Test: matrixmultiply
+
+10
+
+Figure 3.4: Collected Statistics from dfmul
+
+11
+
+Figure 3.5: Collected Statistics from the testbench outlined in Q. Yang’s thesis, mult test 2018.c
+
+According to the test conducted with LegUp-5.0’s latest commits, this improvement has very
+select use cases for optimization.
+In fact, the Twall for any test case other than the handmade
+benchmark did not improve very much when splitting to a desired size of 64, 32, 16 or 8 bits. Other
+tests conducted also concluded similar results.
+
+The characteristics derived from the collected results may not carry much improvement, due
+to their implementation. That is, it may be that the input logic to the high-level-synthesis procedure
+may not require wide multiplications, and hence, not much improvement is noted. However, from
+the handmade test bench, this particular optimization improves the overall Twall as we split wide
+multipliers (to a threshold value of 16 bits split).
+
+Referring to Tables 1 & 2, we varied the clock period in hopes of an improvement in the Twall.
+Unfortunately, not much improvement was made. Hence, after implementing this optimization into
+LegUp, I am concerned about the usefulness of this particular methodology, as it may only serve
+niche areas.
+
+12
+
+Chapter 4
+
+Appendix
+
+4.1 Test Code
+
+//~-----------------------------------------------//
+//
+//~ Multiplier Splitting Test: mult_test_2018.c
+//~ Author: N. Giamblanco, derived from Q. Yang
+//
+//~-----------------------------------------------//
+
+#include <stdio.h>
+
+int main() {
+
+volatile long long int a
+volatile long long int b
+volatile long long int RES;
+
+=
+=
+
+1082104981678;
+-1031111;
+
+volatile long long int EXP_RES
+
+=
+
+-1115770349762984258;
+
+printf("Running Test.\n");
+
+RES=a*b;
+
+printf("Test Passed? [%d]\n", RES == EXP_RES);
+
+return RES;
+
+}
+
+13
+
+

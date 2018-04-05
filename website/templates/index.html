@@ -32,6 +32,7 @@
   <script src="../static/js/mark.js"></script>
   <script src="../static/js/stroll.js"></script>
   <script src="../static/js/tippy.js"></script>
+  <script src="../static/js/dragula.min.js"></script>
   <script src="../static/js/d3.v3.min.js"></script>
   <script src="../static/js/index.js"></script>
   <script src="../static/js/graphing.js"></script>
@@ -73,8 +74,10 @@
 
   <div id="view_changer_container" class="container">
     <div class="view_changer">
-      <a onclick="change_view(0);"><i class="fas fa-angle-double-left"></i></a>
-      <a onclick="change_view(1);"><i class="fas fa-angle-double-right"></i></a>
+      <a id="v1" title="Summary" onclick="change_view(0);"><i class="fas fa-book"></i></a>
+      <a id="v2" title="Importance" onclick="change_view(1);"><i class="fas fa-chart-bar"></i></a>
+      <a id="v3" title="Similarity" onclick="change_view(2);"><i class="fas fa-th-large"></i></a>
+      <a id="v4" title="Keywords" onclick="change_view(3);"><i class="fas fa-tags"></i></a>
     </div>
   </div>
 
@@ -82,9 +85,9 @@
     <div class="row">   
       <div id="doc_contents" style="overflow-y: auto;" class="twelve columns">
         <h2 id="doc_title"></h2>
-        <ul id="doc_contents_ul" class="cards">
+        <div id="doc_contents_div">
 
-        </ul>
+        </div>
       </div>
 
       <div id="summary_display_p" class="six columns">

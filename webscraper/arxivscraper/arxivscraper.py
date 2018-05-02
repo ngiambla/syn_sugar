@@ -97,7 +97,7 @@ class Scraper(object):
     """
 
     def __init__(self, category, date_from=None, date_until=None, t=30, filters={}):
-        self.cat = str(category)
+        self.cat = cats[category]
         self.t = t
         DateToday = datetime.date.today()
         if date_from is None:
@@ -175,7 +175,7 @@ def search_all(df, col, *words):
 
 cats = [
  'astro-ph', 'cond-mat', 'gr-qc', 'hep-ex', 'hep-lat', 'hep-ph', 'hep-th',
- 'math-ph', 'nlin', 'nucl-ex', 'nucl-th', 'physics', 'quant-ph', 'math', 'CoRR', 'q-bio',
+ 'math-ph', 'nlin', 'nucl-ex', 'nucl-th', 'physics', 'quant-ph', 'math', 'cs', 'q-bio',
  'q-fin', 'stat']
 subcats = {'cond-mat': ['cond-mat.dis-nn', 'cond-mat.mtrl-sci', 'cond-mat.mes-hall',
               'cond-mat.other', 'cond-mat.quant-gas', 'cond-mat.soft', 'cond-mat.stat-mech',
@@ -184,7 +184,12 @@ subcats = {'cond-mat': ['cond-mat.dis-nn', 'cond-mat.mtrl-sci', 'cond-mat.mes-ha
  'gr-qc': [],'quant-ph': [],'q-fin': ['q-fin.CP', 'q-fin.EC', 'q-fin.GN',
            'q-fin.MF', 'q-fin.PM', 'q-fin.PR', 'q-fin.RM', 'q-fin.ST', 'q-fin.TR'],
 
- 'nucl-ex': [],'CoRR': [],'nlin': ['nlin.AO', 'nlin.CG', 'nlin.CD', 'nlin.SI',
+ 'nucl-ex': [],
+ 'cs': ['cs.AI','cs.CL','cs.CC','cs.CE','cs.CG','cs.GT','cs.CV','cs.CY','cs.CR','cs.DS',
+        'cs.DB','cs.DL','cs.DM','cs.DC','cs.ET','cs.FL','cs.GL','cs.GR','cs.AR','cs.HC',
+        'cs.IR','cs.IT','cs.LG','cs.LO','cs.MS','cs.MA','cs.MM','cs.NI','cs.NE','cs.NA', 
+        'cs.OS','cs.OH','cs.PF','cs.','cs.PL','cs.RO','cs.SI','cs.SE','cs.SD','cs.SC', 'cs.SY'],
+ 'nlin': ['nlin.AO', 'nlin.CG', 'nlin.CD', 'nlin.SI',
           'nlin.PS'],
  'physics': ['physics.acc-ph', 'physics.app-ph', 'physics.ao-ph',
              'physics.atom-ph', 'physics.atm-clus', 'physics.bio-ph', 'physics.chem-ph',

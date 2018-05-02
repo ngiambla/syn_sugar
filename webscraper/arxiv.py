@@ -1,6 +1,10 @@
 import arxivscraper.arxivscraper as ax
 import urllib2
-scraper = ax.Scraper(category='physics:cond-mat', date_from='2017-05-27',date_until='2017-06-07')
+
+
+starting_date=raw_input("Enter starting date in the format YYYY-MM-DD: ")
+ending_date=raw_input("Enter ending date in the format YYYY-MM-DD: ")
+scraper = ax.Scraper(category=14, date_from=str(starting_date),date_until=str(ending_date))
 
 output = scraper.scrape()
 

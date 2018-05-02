@@ -1,0 +1,544 @@
+ECE1387 - Exercise 2
+
+Name: Nicholas V. Giamblanco
+Student Number: 1000324534
+
+December 19, 2017
+
+Introduction
+
+In this report, we utilize a command line tool abc from UC Berkeley [1], which conducts
+and/or simulates the process of technology mapping. Several test circuits were mapped
+during this report, in order to explore certain optimization techniques applicable to area
+reduction, circuit delay mitigation, etc. Specically, we utilized the following circuit les in
+the .blif (Berkeley Logic Interchange Format) [2] le format:
+
+- alu4.blif
+
+- apex2.blif
+
+- ex1010.blif
+
+- misex3.blif
+
+- pdc.blif
+
+As well as a standard cell library:
+
+- mcnc.genlib
+
+We also explore the idea of a mixed integer linear problem (MILP), its formulation and
+solution. We make use of another command line tool lp solve to come to the MILPs
+solution.
+
+This report touches upon and answers the 6 questions presented in this exercise of
+
+ECE1387.
+
+1 FPGA Mapping with 6  input LUTs
+
+As required per the assignment, we recorded the number of LUTs, , as well as the number of
+LUTs that are along the mapped circuits critical path, . These results are listed in Table 1
+
+1
+
+Table 1: The number of 6  input LUTs per circuit and the number of LUTs along the critical
+path
+
+File
+
+
+823
+alu4.blif
+1042
+apex2.blif
+ex1010.blif 2944
+817
+misex3.blif
+2397
+
+pdc.blif
+
+
+6
+6
+6
+5
+7
+
+2 FPGA Mapping Optimization with Respect to Area
+
+During this step of the exercise, an optimization included abcs implementation attempted
+to reduce area consumption per circuit. The results are tabulated in Table 2
+
+Table 2: The number of 6  input LUTs per circuit and the number of LUTs along the critical
+path with an Optimization in Area
+
+File
+
+
+806
+alu4.blif
+962
+apex2.blif
+ex1010.blif 2835
+776
+misex3.blif
+2317
+
+pdc.blif
+
+ % in  from T. 1 % in  from T. 1
+9
+11
+11
+9
+12
+
++50.00
++83.33
++83.33
++80.00
++71.42
+
+-2.06
+-7.67
+-3.70
+-5.01
+-3.33
+
+3 Standard Cell Mapping
+
+For section 3 of the exercise, we utilized abc to conduct a technology independent mapping
+for all of the test circuit les. We recorded the Area consumption, circuit delay, and  per
+each of the mapped circuits. These are recorded in Table 3.
+
+Table 3: Technology-Independent Mappings of All Test Circuits
+
+File
+
+Area
+
+4557.00
+alu4.blif
+5276.00
+apex2.blif
+ex1010.blif 14292.00
+4265.00
+misex3.blif
+12900.00
+
+pdc.blif
+
+Delay
+12.90
+14.40
+13.80
+12.00
+15.20
+
+
+11
+13
+11
+11
+13
+
+2
+
+4 Standard Cell Mapping with a Minimal Gate Library
+
+In this section of the exercise, we explored a technology independent mapping which is
+minimal compared to a standard technology independent library. In section 3 of this exercise
+we explored a technology independent mapping with the following gate library: mcnc.genlib.
+The le had the following blocks:
+
+GATE inv1
+GATE inv2
+GATE inv3
+GATE inv4
+GATE nand2
+GATE nand3
+GATE nand4
+GATE nor2
+GATE nor3
+GATE nor4
+GATE and2
+GATE or2
+GATE xor2a
+GATE xor2b
+GATE xnor2a
+GATE xnor2b
+GATE aoi21
+GATE aoi22
+GATE oai21
+GATE oai22
+GATE buf
+GATE zero
+GATE one
+
+1
+2
+3
+4
+2
+3
+4
+2
+3
+4
+3
+3
+5
+5
+5
+5
+3
+4
+3
+4
+1
+0
+0
+
+PIN * INV 1 999 0.9 0.3 0.9 0.3
+O=!a;
+PIN * INV 2 999 1.0 0.1 1.0 0.1
+O=!a;
+PIN * INV 3 999 1.1 0.09 1.1 0.09
+O=!a;
+PIN * INV 4 999 1.2 0.07 1.2 0.07
+O=!a;
+PIN * INV 1 999 1.0 0.2 1.0 0.2
+O=!(a*b);
+PIN * INV 1 999 1.1 0.3 1.1 0.3
+O=!(a*b*c);
+PIN * INV 1 999 1.4 0.4 1.4 0.4
+O=!(a*b*c*d);
+PIN * INV 1 999 1.4 0.5 1.4 0.5
+O=!(a+b);
+PIN * INV 1 999 2.4 0.7 2.4 0.7
+O=!(a+b+c);
+PIN * INV 1 999 3.8 1.0 3.8 1.0
+O=!(a+b+c+d);
+PIN * NONINV 1 999 1.9 0.3 1.9 0.3
+O=a*b;
+PIN * NONINV 1 999 2.4 0.3 2.4 0.3
+O=a+b;
+O=a*!b+!a*b;
+PIN * UNKNOWN 2 999 1.9 0.5 1.9 0.5
+O=!(a*b+!a*!b); PIN * UNKNOWN 2 999 1.9 0.5 1.9 0.5
+O=a*b+!a*!b;
+PIN * UNKNOWN 2 999 2.1 0.5 2.1 0.5
+O=!(!a*b+a*!b); PIN * UNKNOWN 2 999 2.1 0.5 2.1 0.5
+O=!(a*b+c);
+O=!(a*b+c*d);
+O=!((a+b)*c);
+O=!((a+b)*(c+d)); PIN * INV 1 999 2.0 0.4 2.0 0.4
+O=a;
+O=CONST0;
+O=CONST1;
+
+PIN * INV 1 999 1.6 0.4 1.6 0.4
+PIN * INV 1 999 2.0 0.4 2.0 0.4
+PIN * INV 1 999 1.6 0.4 1.6 0.4
+
+PIN * NONINV 1 999 1.0 0.0 1.0 0.0
+
+We modied this gate library for standard cell mapping by removing all gates except:
+
+ inv1
+
+ nand2
+
+ buf
+
+ one
+
+ zero
+
+We then reran section 3 of the exercise with this new gate library. Again, we recorded
+the area, delay and number of LUTs along the critical path. However, we also recorded the
+number of nand2 gates used,  as well as the number of inv1 gates used, . The results are
+tabulated in Table 4
+
+3
+
+Table 4: Technology-Independent Mappings of All Test Circuits with a Minimal Gate Library
+
+File
+
+Area
+
+6006.00
+alu4.blif
+6888.00
+apex2.blif
+ex1010.blif 19881.00
+5646.00
+misex3.blif
+17010.00
+
+pdc.blif
+
+Delay
+23.80
+27.60
+25.70
+21.90
+29.50
+
+
+25
+29
+27
+23
+31
+
+
+
+2365
+2610
+7269
+2166
+6627
+
+
+
+1276
+1668
+5343
+1314
+3756
+
+5 Comparison of LUTs required per mapping with a
+
+Minimal Gate Library vs Standard Gate Library
+
+In section 5 of this exercise, we were to compare the number of nand equivalents that each
+LUT recorded in sections (1) and (2) represent. We explicitly record the number of nand
+equivalents, . We can visibly note a trend with the number of nand gates represented
+with LUTs when an area optimization was performed. The logic density increased for this
+optimization as expected, since we are to squeeze more logic into less area. Hence, we will
+see that for no optimization, the recorded LUTs represent less nand gate equivalents. These
+results are tabulated in Table 5.
+
+Table 5: Comparison of Number of nands per LUT with (1) no area optimization, and (2)
+with area optimization
+
+File
+
+
+
+3003.00
+alu4.blif
+3444.00
+apex2.blif
+ex1010.blif 9940.50
+misex3.blif 2823.00
+8505.00
+
+pdc.blif
+
+1
+823
+1042
+2944
+817
+2397
+
+ per 1
+
+3.64
+3.30
+3.37
+3.45
+3.54
+
+2
+806
+962
+2835
+776
+2317
+
+ per 2
+
+3.72
+3.58
+3.50
+3.63
+3.67
+
+6 Logic Block Placement with Mixed Integer Linear
+
+Programming
+
+Included in this section is the le required by the lp solver to solve for the linear program
+described in Question 6 of this exercise. We have also included the nal positions of each
+block outlined in the problem in Question 6.
+
+/* Q.6 Floorplanning on the notion of Minimized HPWL */
+
+/* minimization of hpwl only */
+
+min: w1hp + h1hp + w2hp + h2hp + w3hp + h3hp;
+
+4
+
+/* Info: */
+/* Block 1: Block A, Block 2: Block C, Block 3: Block B */
+
+/* ------ Constants ------ */
+wc = 4.0; //width of circuit
+hc = 4.0; //height of circuit
+
+wb1 = 1.0; //width of block 1
+hb1 = 1.0; //height of block 1
+
+wb2 = 2.0; //width of block 2
+hb2 = 1.0; //height of block 2
+
+wb3 = 1.0; //width of block 3
+hb3 = 2.0; //height of block 3;
+
+= 2; // large pos. num
+
+M
+/* ---- End Constants ---- */
+
+/* ---- Constraints ------ */
+
+// Block Defs
+b1xr - b1xl = wb1;
+b1yt - b1yb = hb1;
+
+b2xr - b2xl = wb2;
+b2yt - b2yb = hb2;
+
+b3xr - b3xl = wb3;
+b3yt - b3yb = hb3;
+
+// Intersections
+r12 + r21 + q12 + q21 <= 3;
+r23 + r32 + q23 + q32 <= 3;
+r13 + r31 + q13 + q31 <= 3;
+
+b1xr <= b2xl + M r12;
+b1xr <= b3xl + M r13;
+
+b2xr <= b1xl + M r21;
+b2xr <= b3xl + M r23;
+
+b3xr <= b1xl + M r31;
+b3xr <= b2xl + M r32;
+
+5
+
+b1yt <= b2yb + M q12;
+b1yt <= b3yb + M q13;
+
+b2yt <= b1yb + M q21;
+b2yt <= b3yb + M q23;
+
+b3yt <= b1yb + M q31;
+b3yt <= b2yb + M q32;
+
+b1yt <= b2yb;
+b3yt <= b2yb;
+
+// HPWL1
+xe1r = b2xl;
+xe1l = 0.5 b1xl + 0.5 b1xr;
+xe1r >= xe1l;
+
+ye1t = 0.5 b2yb + 0.5 b2yt;
+yelb = b1yt;
+ye1t >= ye1b;
+
+xe1r - xe1l = w1hp;
+ye1t - ye1b = h1hp;
+
+// HPWL2
+xe2l = b1xr;
+xe2r = b3xl;
+xe2r > xe2l;
+
+ye2t = b2yb;
+0.5 b1yt + 0.5 b1yb >= 0.5 b3yt + 0.5 b3yb;
+ye2b = 0.5 b3yt + 0.5 b3yb;
+ye2t > ye2b;
+
+xe2r - xe2l = w2hp;
+ye2t - ye2b = h2hp;
+
+// HPWL3
+xe3r = b2xr;
+xe3l = b3xr;
+xe3r >= xe3l;
+
+ye3b = 0.5 b3yt + 0.5 b3yb;
+
+6
+
+ye3t = 0.5 b2yt + 0.5 b2yb;
+ye3t >= ye3l;
+
+xe3r - xe3l = w3hp;
+ye3t - ye3b = h3hp;
+
+// Circuit Limits
+b1xr - b1xl <= wc;
+b1xr - b2xl <= wc;
+b1xr - b3xl <= wc;
+
+b2xr - b1xl <= wc;
+b2xr - b2xl <= wc;
+b2xr - b3xl <= wc;
+
+b3xr - b1xl <= wc;
+b3xr - b2xl <= wc;
+b3xr - b3xl <= wc;
+
+b1yt - b1yb <= hc;
+b1yt - b2yb <= hc;
+b1yt - b3yb <= hc;
+
+b2yt - b1yb <= hc;
+b2yt - b2yb <= hc;
+b2yt - b3yb <= hc;
+
+b3yt - b1yb <= hc;
+b3yt - b2yb <= hc;
+b3yt - b3yb <= hc;
+
+/* --- End Constraints --- */
+
+/* --- Types --------------------------*/
+bin r12, r23, r13, r21, r32, r31, q12, q23, q13, q21, q32, q31;
+sec w1hp, h1hp, w2hp, h2hp, w3hp, h3hp, b1xr, b2xr, b3xr, b1xl, b2xl, b3xl, b1yt, b2yt, b3yt, b1yb, b2yb, b3yb;
+/* -- End Types -----------------------*/
+
+Attached here are the bottom-left positions of blocks A, B, and C:
+
+Block A (0, 0.5)
+
+Block B (1, 0)
+
+Block C (0.5, 2)
+
+7
+
+References
+
+[1] BERKELEY LOGIC SYNTHESIS. Abc: a system for sequential synthesis and verica-
+
+tion, release 70930, 2007.
+
+[2] Robert King Brayton. BLIF-MV: An interchange format for design verication and syn-
+thesis. Electronics Research Laboratory, College of Engineering, University of California,
+1991.
+
+8
+
+

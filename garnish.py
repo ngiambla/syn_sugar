@@ -5,6 +5,7 @@ import os
 import sys
 import operator 
 import re
+import math
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -47,35 +48,41 @@ class garnish:
 			exit()
 		return _classes_out
 
+	def display_progress_check(self, stage, count, columns):
 
+		try:
+			how_many=int(math.floor(count/1000))	
+			sys.stdout.write('\rProgress['+ str(stage) +']: ' + '.'*(how_many%(columns-30))+' '*(columns-(how_many%(columns-30))-30))
+			sys.stdout.flush()
+		except Exception as e:
+			rows, cols = os.popen('stty size', 'r').read().split()
+			columns = int(cols)
+			print("\n")
+			how_many=int(math.floor(count/1000))	
+			sys.stdout.write('\rProgress['+ str(stage) +']: ' + '.'*(how_many%(columns-30))+' '*(columns-how_many-30))
+			sys.stdout.flush()			
+		
 
-	def check_quality(self, _ingredients):
-
+	def check_quality(self, _ingredients, special_items):
+		rows, columns = os.popen('stty size', 'r').read().split()
+		cols 					= int(columns)
 		sentence_vec_map 		= 	{}
+		sentence_map 			= 	{}
 
 		sentence_stack 			= 	[]
 
 		sentence_bad_map 		= 	{}
 		sentence_length_map 	= 	{}
-		sentence_and_map		= 	{}
-		sentence_but_map 		=	{}
-		sentence_or_map 		= 	{}
+		sentence_entropy_map 	= 	{}
+		
+		freq_vec_map 			= 	{}
+		freq_vec_map_gb 		= 	{}
 
-		sentence_and_loc 		= 	{}
-		sentence_but_loc 		= 	{}
-		sentence_or_loc 		= 	{}
+		sentence_low_map 		= 	{}
 
-		sentence_xcm_map 		= 	{}
-		sentence_per_map 		= 	{}
-		sentence_qsn_map 		= 	{}
-		sentence_lst_map 		= 	{}
-		sentence_cln_map 		= 	{}
-		sentence_scn_map 		= 	{}
-		sentence_dqt_map 		= 	{}
-		sentence_sqt_map 		= 	{}
-		sentence_dsh_map 		= 	{}
-
-		sentence_compare_map 	= 	{}
+		max_entropy 			= 	0
+		min_entropy 			= 	1000000
+		avg_entropy 			= 	0
 
 		ingredient_freq_map 	= 	{}
 		ingredient_free_map 	= 	{}
@@ -83,6 +90,11 @@ class garnish:
 		_ingredients_all		=	_ingredients.get_ingredients()
 		_number_of_ingredients 	= 	len(_ingredients_all)
 		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
+
+		_special_item_dict 		= 	{}
+
+		for special_item in special_items:
+			_special_item_dict[special_item]=0
 
 		for _label in _ingredients_all:
 
@@ -97,150 +109,252 @@ class garnish:
 				ingredient_freq_map[only_char_item] = ingredient_freq_map[only_char_item] +1
 
 			if "~$[" in item:
+
 				sentence_stack.append(_label)
+
 			if "]$~" in item:
 				try:
 					start=sentence_stack.pop()
-					sentence_length_map[start] 	= 	_label+1
-					bad_things_per_sentence 	= 	0
-					
-					sentence_and_map[start]		= 	0
-					sentence_or_map[start] 		= 	0
-					sentence_but_map[start] 	= 	0
-					sentence_and_loc[start]		= 	[]
-					sentence_but_loc[start] 	= 	[]
-					sentence_or_loc[start]	 	= 	[]
+					sentence_length_map[start] 	= 	_label+1-start
+					sentence_map[start] 		= 	_special_item_dict.copy()
 
-					sentence_xcm_map[start]		= 	0
-					sentence_per_map[start] 	= 	0
-					sentence_qsn_map[start] 	= 	0
-					sentence_lst_map[start] 	= 	0
-					sentence_cln_map[start] 	= 	0
-					sentence_scn_map[start] 	= 	0
-					sentence_dqt_map[start] 	= 	0
-					sentence_sqt_map[start] 	= 	0
-					sentence_dsh_map[start] 	= 	0
-
-					sentence_compare_map[start] = 	0
-
-					# ------------------------------------------
-					# todo: compute entropy, and hamming weight.
-					# ------------------------------------------
-
-					for labels in range(start, _label+1):
-						if "%%#%%" in _ingredients_all[labels]:
-							bad_things_per_sentence = bad_things_per_sentence + 1
-						if "]^[" in _ingredients_all[labels]:
-							sentence_and_loc[start].append(labels)
-							sentence_and_map[start] = sentence_and_map[start] +1
-						if "]b[" in _ingredients_all[labels]:
-							sentence_but_loc[start].append(labels)
-							sentence_but_map[start] = sentence_but_map[start] +1
-						if "]v[" in _ingredients_all[labels]:
-							sentence_or_loc[start].append(labels)
-							sentence_or_map[start] = sentence_or_map[start] +1
-						if "%%cmp%%" in _ingredients_all[labels]:
-							sentence_compare_map[start] = sentence_compare_map[start] +1
-						if "%%xcm%%" in _ingredients_all[labels]:
-							sentence_xcm_map[start] = sentence_xcm_map[start] +1
-						if "%%per%%" in _ingredients_all[labels]:
-							sentence_per_map[start] = sentence_per_map[start] +1
-						if "%%qsn%%" in _ingredients_all[labels]:
-							sentence_qsn_map[start] = sentence_qsn_map[start] +1
-						if "%%lst%%" in _ingredients_all[labels]:
-							sentence_lst_map[start] = sentence_lst_map[start] +1
-						if "%%cln%%" in _ingredients_all[labels]:
-							sentence_cln_map[start] = sentence_cln_map[start] +1
-						if "%%scn%%" in _ingredients_all[labels]:
-							sentence_scn_map[start] = sentence_scn_map[start] +1
-						if "%%dqt%%" in _ingredients_all[labels]:
-							sentence_dqt_map[start] = sentence_dqt_map[start] +1
-						if "%%sqt%%" in _ingredients_all[labels]:
-							sentence_sqt_map[start] = sentence_sqt_map[start] +1
-						if "%%dsh%%" in _ingredients_all[labels]:
-							sentence_dsh_map[start] = sentence_dsh_map[start] +1
-
-					sentence_bad_map[start]=bad_things_per_sentence
+					for special_item in _special_item_dict:
+						_special_item_dict[special_item] = 0
 
 				except Exception as e:
 					print(str(e))
 					pass
 
-		
-		for s_label in sentence_bad_map:
-			sentence_vec_map[s_label]=[sentence_bad_map[s_label], sentence_length_map[s_label]-s_label, _ingredient_mapping[s_label], sentence_and_map[s_label], sentence_but_map[s_label], sentence_or_map[s_label], sentence_compare_map[s_label]]
-			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_xcm_map[s_label], sentence_per_map[s_label], sentence_qsn_map[s_label], sentence_lst_map[s_label], sentence_cln_map[s_label], sentence_scn_map[s_label]]
-			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [sentence_dqt_map[s_label], sentence_sqt_map[s_label], sentence_dsh_map[s_label]]
+			if len(sentence_stack) > 0:
+				for special_item in _special_item_dict:
+					if special_item in item:
+						_special_item_dict[special_item]=_special_item_dict[special_item]+1
 
-			# compute entropy per sentence
-			vec=[]
-			for thing in range (s_label, sentence_length_map[s_label]+1):
-				vec.append(ingredient_freq_map[ingredient_free_map[s_label]]/_number_of_ingredients)
+		for _label in sentence_map:
 
-			sentence_vec_map[s_label]=sentence_vec_map[s_label] + [mutils.entropy(vec)]
+			sfs2 	= 	[]
+			sfs 	= 	[]
+			low_map = 	[]
 
-		i_label_map		=	{}
-		seen_labels 	=   {}
-		ham_sim			=	[]
-		i 				= 	0
-
-		for i_label in sentence_vec_map:
-			i_label_map[i] = i_label
-			i_item = sentence_vec_map[i_label]
-			ham_sim.append([])
-
-			j 			=	0
-			j_label_map = 	{}
-			
-			for j_label in sentence_vec_map:
-
-				j_label_map[j]=j_label
-				if i_label != j_label:# and j_label not in seen_labels: 
-					#if len(seen_labels) <= i +1:
-					#	seen_labels[j_label]=0
-					j_item = sentence_vec_map[j_label]
-					#val=mutils.hamming_distance(i_item,j_item)
-					val=mutils.get_cosine_sim(i_item,j_item)
-					ham_sim[i].append(val)
+			for i in range(_label, sentence_length_map[_label]+_label):
+				low_map.append(ingredient_free_map[i].lower())
+				if _ingredients_all[i] != "%%#%%":
+					sfs2.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
+					sfs.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
 				else:
-					ham_sim[i].append(100000)
-				j=j+1
-			seen_labels[i_label]=1
-			i=i+1
+					sfs2.append(0)
+
+			freq_vec_map[_label]  			=  	sfs2
+			freq_vec_map_gb[_label] 		= 	sfs
+			sentence_low_map[_label] 		= 	low_map
+			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
+
+			vec=[]
+			for special_item in sentence_map[_label]:
+				vec = vec + [sentence_map[_label][special_item]]
+			vec=vec + [sentence_length_map[_label], sentence_entropy_map[_label]]
+			sentence_vec_map[_label]=vec
 
 
-		for i in i_label_map:
-			min_index, min_value 	=  	min(enumerate(ham_sim[i]), key=operator.itemgetter(1))
-			print("Similarity: "+str(min_value))
-			s_label 			=	i_label_map[i]
-			print("Entropy: "+str( sentence_vec_map[s_label][-1] ))
-			sentence=""
-			for s_label in range(s_label, sentence_length_map[s_label]):
-				if _ingredients_all[s_label] != "%%#%%":
-					sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
-			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC)	
-				
-			s_label 	 		= 	j_label_map[min_index]
-			print("Entropy: "+str( sentence_vec_map[s_label][-1] ))
-			sentence=""
-			for s_label in range(s_label, sentence_length_map[s_label]):
-				if _ingredients_all[s_label] != "%%#%%":
-					sentence = sentence + _ingredients_all[s_label]+ bcolors.FAIL+":" +str(ingredient_freq_map[ingredient_free_map[s_label]]) +bcolors.OKCYAN+ " "
-			print(bcolors.OKGREEN+" |-> "+bcolors.OKCYAN+sentence+bcolors.ENDC+"\n\n")
+		
+		avg_wrd_snt = (_number_of_ingredients/len(sentence_vec_map))
+
+		for item in sentence_length_map:
+
+			lcompress=min(avg_wrd_snt/sentence_length_map[item], 0.9)
+			rcompress=max((1-len(freq_vec_map_gb[item])/sentence_length_map[item])/100, 0.0001)
+
+			sentence_entropy_map[item]=sentence_entropy_map[item]*mutils.sig_filter((sentence_length_map[item]), lcompress, rcompress, avg_wrd_snt)
+
+		for _label in sentence_entropy_map:
+
+			avg_entropy = avg_entropy + sentence_entropy_map[_label] 
+
+			if sentence_entropy_map[_label] > max_entropy:
+				max_entropy = sentence_entropy_map[_label]				
+
+			if sentence_entropy_map[_label] < min_entropy:
+				min_entropy = sentence_entropy_map[_label]			
+		
+		avg_entropy = avg_entropy/len(sentence_vec_map)
+
+		_scalar 	= (min_entropy/max_entropy)
+
+		while _scalar < 0.1:
+			_scalar=_scalar*10
+		
+		print(bcolors.OKGREEN+ "\n\n> Stats" + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> MAX Entropy: " + str(max_entropy) + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> MIN Entropy: " + str(min_entropy) + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> AVG Entropy: " + str(avg_entropy) + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> AVG WRD/SNT: " + str(avg_wrd_snt) + bcolors.ENDC)
+		print(bcolors.OKGREEN+ ">> AVG _scalar: " + str(_scalar)     + bcolors.ENDC)
+		print("\n")
 
 
-	def final_touches(self, _ingredients):
+		seen_labels		=	{}
+		sen_pairs 		=	{}
+		count 			= 	0
+
+		curr_limit 		= 	_scalar
+		miss_count 		= 	0
+
+
+		for _i_label in sentence_vec_map:
+
+			if sentence_entropy_map[_i_label] > curr_limit:
+				a = freq_vec_map[_i_label]
+				wa = sentence_low_map[_i_label]
+
+				seen_labels[_i_label]=0
+
+				for _j_label in sentence_vec_map:
+					if sentence_entropy_map[_j_label] > curr_limit: 
+
+						curr_limit = curr_limit*2
+						miss_count = 0
+
+						if  _j_label not in seen_labels:
+
+							b = freq_vec_map[_j_label]
+							wb = sentence_low_map[_j_label]
+							
+							sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)*mutils.jaccard_index(wa,wb)))
+							sim_i  	= int(sim_i)
+							if sim_i not in sen_pairs: 
+								sen_pairs[sim_i] = {}
+
+							if _i_label not in sen_pairs[sim_i]:
+								sen_pairs[sim_i][_i_label]=sentence_entropy_map[_i_label]
+
+							if _j_label not in sen_pairs[sim_i]:
+								sen_pairs[sim_i][_j_label]=sentence_entropy_map[_j_label]
+
+							count=count+1
+							self.display_progress_check(1, count, cols)
+					else:
+						miss_count=miss_count+1
+						if miss_count < len(sentence_vec_map)*0.10:
+							curr_limit = curr_limit*0.05
+							miss_count = 0
+
+
+		fields={}
+		for _bin in sen_pairs:
+			
+			seen_again={}
+			
+			for il in sen_pairs[_bin]:
+				seen_again[il]=True
+				for jl in sen_pairs[_bin]:
+					if jl not in seen_again:
+						dist 	= jl-il
+						field	= (_bin*sen_pairs[_bin][jl]*sen_pairs[_bin][il])/((dist)**2)
+						if il not in fields:
+							fields[il]=field
+						else:
+							fields[il]=fields[il]+field		
+
+		sorted_bins 	= 	{}
+		ent_lim 		= 	avg_entropy
+
+		for _bin in sen_pairs:
+
+			seen_again={}
+
+			for il in sen_pairs[_bin]:
+				if sen_pairs[_bin][il] >= ent_lim:
+
+					if _bin not in sorted_bins:
+						sorted_bins[_bin]={}
+
+					a = sentence_vec_map[il]
+
+					seen_again[il]=0
+
+					for jl in sen_pairs[_bin]:
+						if sen_pairs[_bin][jl] >= ent_lim:
+							count=count+1
+							self.display_progress_check(2, count, cols)
+
+							if jl not in seen_again:
+
+								b = sentence_vec_map[jl]
+
+								hamming_sim = len(sentence_vec_map[il])-mutils.hamming_distance(a,b)
+								sim_j = int( math.floor( 100*(hamming_sim)/len(sentence_vec_map[il]) ) )
+								
+								if sim_j not in sorted_bins[_bin]:
+									sorted_bins[_bin][sim_j]={}
+
+								sorted_bins[_bin][sim_j][il]=1
+								sorted_bins[_bin][sim_j][jl]=1
+
+
+
+		print("\n")
+
+		summary_map 	= {}
+
+		for _bin in sen_pairs:
+
+			if _bin in sorted(sorted_bins, reverse=True):
+				if len(sorted_bins[_bin]) > 0 and _bin > 0:
+					for sim_j in sorted(sorted_bins[_bin], reverse=True):
+						for label in sorted_bins[_bin][sim_j]:
+							if label in fields:
+								if label not in summary_map:
+									summary_map[label] = ((sim_j*10)/(1+_bin))*fields[label]
+								else:
+									summary_map[label] = summary_map[label] + ((sim_j*10)/(1+_bin))*fields[label]
+
+
+		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
+
+		l_summary_map = {}
+
+		for _label in k_summary_map:
+			if len(l_summary_map) < 10:
+				l_summary_map[_label[0]]=_label[1]
+			else:
+				break
+
+		s_summary_map = sorted(l_summary_map.items(), key=operator.itemgetter(0))			
+		
+		s1=""
+		s2=""
+		for _label in s_summary_map:
+			label=_label[0]
+			s1=s1 + "[+"+str(label)+"]  "
+			for i in range (label, sentence_length_map[label]+label):
+				s1=s1+" "+_ingredients.get_unprepped_ingredients()[i]
+				s2=s2+" "+_ingredients.get_unprepped_ingredients()[i]						
+			s1=s1 + "["+str(_label[1]) +"]" +"\n"
+			s2=s2 +"\n"
+		print(bcolors.OKGREEN + s1 + bcolors.ENDC)
+
+		return [s1, s2]
+
+	def final_touches(self, _ingredients, special_items, file_t=""):
 		print(bcolors.OKGREEN+"~ Applying final touches"+bcolors.ENDC)
-		self.check_quality(_ingredients)
-
+		summaries = self.check_quality(_ingredients, special_items)
+		summary = summaries[0]
 
 		_ingredients_all		=	_ingredients.get_ingredients()
 		_ingredient_mapping 	=	_ingredients.get_ingredient_mapping()	
 
+		if file_t != "":
+			with open(file_t, "w+") as f2:
+				f2.write(summaries[1])
+
+
 		with open("post_bakes/result.baked", "w+") as f:
-			title="~$[ Syntatic Sugar ]$~"\
-				  "\nLast Post Baked: "
+			title="~$[ Syntactic Sugar ]$~"\
+				  "\n** Results **: \n\n"
+
 			f.write(title)
+			f.write(summary)
+			f.write("\n Baked Goods: \n\n")
 			line 	= 	0
 			out 	= 	""
 			for _label in _ingredients_all:
@@ -252,3 +366,7 @@ class garnish:
 					line=line+1
 			f.write(out+"\n")
 		print(bcolors.OKGREEN+"~ Voila."+bcolors.ENDC)
+		return summaries[1]
+
+
+

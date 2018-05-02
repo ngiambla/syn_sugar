@@ -1,0 +1,368 @@
+ECE1373: Assignment II
+
+Nicholas Giamblanco
+
+Department of Electrical and
+
+Computer Engineering
+University of Toronto,
+
+Toronto, Canada
+
+nicholas.giamblanco@mail.utoronto.ca
+
+AbstractThe computational structure of a convolutional
+neural network contains many time-consuming operations. In
+this report, we outline an acceleration engine for convolutional
+neural networks, which aimed to reduce latency of network
+operation. Specically, we accelerate the convolutional operation
+through manipulation of memory accesses and mathematically
+reduced computations. Our acceleration engine was developed
+with Vivados High-Level Synthesis tool. Additionally, we ap-
+proach the issue of acceleration for convolutional neural networks
+through a design-space exploration, and hence exploit the fast
+time-to-market production available with high-level synthesis.
+The acceleration engine we built was signicantly better than
+a baseline hardware implementation, providing  1.875 speed
+up. Our report also highlights that high-level synthesis enables
+a faster design-space exploration which could have practical use
+for industry problems in hardware.
+
+I. INTRODUCTION
+
+Recently, neural networks have become a standard way of
+approaching pattern analysis and predictive issues. The true
+robustness of a neural networks problem solving ability can
+be attributed to their composition. A neural network is a
+virtualization of a primitive view on brain function: an input
+is injected into a network of connected articial neurons,
+of which process the input and produce some meaningful
+result. For example, if this network was to view an image
+of a dog, its mission may aim to classify it with a label.
+However, the computation required by the neural network is
+lengthy. An articial neural network is comprised of logically
+segmented groupings of neurons, which are often denoted as
+layers. Layers can exhibit different behaviour based on their
+respective task. In this paper, we consider the following layers
+for the behaviour and computational difculty: convolutional,
+fully-connected and max-pooling layers. Of these three layers,
+we focus our attention to optimize a convolutional layer within
+a neural network, due to their large computational complexity.
+In particular, we analyze and optimize a convolutional neural
+network by accelerating the behaviour and functioning of a
+convolutional layer.
+
+Convolutional neural networks have been investigated for
+acceleration potential through mathematical optimizations, and
+hardware accelerators. Often, these two approaches for accel-
+eration investigation co-exist. Of the work conducted in this
+area ([1], [2], [3]), the authors of these works draw similar
+conclusions: memory bandwidth is often the bandwidth for
+convolutional neural network acceleration. Additionally, they
+
+perform some mathematical optimization to the problem in
+hopes of reducing the computational complexity.
+
+If we consider the use of an FPGA as the acceleration
+engine, we are faced with other issues which may not be
+present
+in application specic integrated circuits (ASIC)s
+or hardware designed for massively parallel operations (i.e.
+GPUs). Specically, hardware designs for FPGA devices could
+induce additional latency into a given hardware design due
+to suboptimal routing and placement, and/or poor choices of
+hardware units during synthesis. This could be intensied if
+high-level synthesis is utilized. However, high-level synthesis
+provides the ability to explore a design-space much more
+efciently then hand-designs. Through use of high-level syn-
+thesis, we can explore designs which hardware designs that
+accelerate performance more effectively by exploiting various
+optimizations & operations for algorithmic descriptions. The
+remainder of this report is as follows: Section II outlines
+the description of the VGG16 neural network [4], and the
+optimizations we performed on convolutional
+layers while
+noting that accelerations persist approximately linearly, and
+in Section III, we conclude this report.
+II. CASE STUDIES
+
+A. Hypothesis for the High-Level Synthesis of VGG16
+
+The original assignment outlined that we implement an
+acceleration engine for the deep neural network of VGG16
+[4]. This network is comprised of the following layers:
+
+Fig. 1. Graphical Representation of the VGG16 Network [4], taken from [5]
+
+Upon inspection of Figure 1,
+
+three types of layers are
+used for network operation: convolutional, fully-connected
+
+and max-pooling. Before we attempt to describe any possible
+optimizations applicable to VGG16, we will describe in high-
+level the function of each layer:
+
+ Convolutional Layer: this layer takes some data which has
+shape in n dimensions, and convolves1 a lter with similar
+dimensionality around the image at some stride. The
+lter can be viewed as a sliding window which performs
+the convolutional operation upon slide. The amount of
+displacement of the lter is noted as the stride. In general,
+a convolutional layer has the following form:
+
+for (int b_=0; b_< b; b_++) {
+
+// Output Dimensions (Feature Maps)
+for (int o_d = 0; o_d < od; o_d++) {
+
+// Output Y Dimension
+for (int o_y = 0; o_y < oy; o_y++) {
+
+// Output X Dimension
+for (int o_x = 0; o_x < ox; o_x++) {
+
+// Set bias
+float output_element = mem[input_offset/
+sizeof(float) + num_weights + o_d];
+
+// Weighted Sum:
+// Input Dimensions (Feature Maps)
+for (int i_d = 0; i_d < id; i_d++) {
+
+// Input Y Dimension
+for (int i_y = o_y*s, iiy = 0; i_y <
+
+o_y*s+k; i_y++, iiy++){
+
+// Input X Dimension
+for (int i_x = o_x*s, iix = 0; i_x <
+
+o_x*s+k; i_x++, iix++)
+
+output_element += mem[input_offset/
+
+sizeof(float) + num_weights+
+num_biases+ b_*id*ix*iy + i_d*ix
+*iy + i_y*ix + i_x]*
+
+mem[input_offset/
+
+sizeof(float) +
+o_d*id*k*k + i_d*k
+*k + iiy*k + iix];
+
+{
+
+}
+
+}
+
+}
+// Write output
+mem[output_offset/sizeof(float) + b_*od*
+ox*oy + o_d*ox*oy + o_y*ox + o_x] =
+std::max(0.0f, output_element);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+Upon inspection of this, we see that complexity of this
+operation is large, as there are 6 nested for loops.
+
+ Fully-Connected Layer: in this layer, an input is feed into
+a layer of articial neurons which are fully-connected to
+each subsequent layer proceeding at the output. For a
+given input, each neuron either outputs some signal which
+is then scaled by some weight, or the output is silenced
+and then propagated. A typical implementation of a fully-
+connected layer appears as:
+
+for (int b = 0; b < batch_size; b++) {
+
+// Output Node Iterator
+for (int o = 0; o < num_outputs; o++) {
+
+1This is the convolutional operation, x(t)  y(t)|t=T =(cid:82) 
+
+ x( )y(T 
+
+ )d, sampled at discrete time intervals.
+
+// Set bias
+float output_element = mem[input_offset/
+
+sizeof(float) + num_weights + o];
+
+// Accumulate weighted sum
+for (int i = 0; i < num_inputs; i++) {
+
+float input_element = mem[input_offset/
+
+sizeof(float) + num_weights +
+num_biases + b*num_inputs+i];
+
+float weight_element = mem[input_offset/
+
+sizeof(float) + o*num_inputs+i];
+
+output_element += input_element *
+
+weight_element;
+
+}
+// Compute activation
+if (enable_relu)
+
+mem[output_offset/sizeof(float) + b*
+num_outputs+o] = std::max(0.0f,
+output_element);
+
+else
+
+mem[output_offset/sizeof(float) + b*
+num_outputs+o] = output_element;
+
+}
+
+}
+
+ Maxpool Layer:
+
+state  1
+input  leData
+if state in {1, 2, 4, 5, 7  9, 11  13, 15  17} then
+input  run conv(input)
+if state in {3, 6, 10, 14, 18} then
+input  run maxPool(input)
+if state in {19, 20, 21} then
+input  run fullyConnected(input)
+
+Algorithm 1 VGG16 Operation
+1: procedure RUNNEURALNET
+2:
+3:
+4: vgg sm:
+5:
+6:
+7:
+8:
+9:
+10:
+11:
+12:
+13:
+14:
+15: end:
+16:
+
+if state > 21 then
+state  state + 1
+goto vgg sm
+
+goto end.
+
+close;
+
+B. Design Flow for Convolutional Layer Optimization
+
+1) Usage: To streamline optimization of a convolutional
+neural network layers, we were given basic code tem-
+plates as well as Makeles and TCL les. We modied
+the Makefile to only compile a high-level description
+of a convolutional
+layer typically used in a neural net-
+work. To compile the project, navigate to the directory
+/ECE1373_assignment2/ and use the command:
+$ make
+
+This builds the project executables. Once built, these com-
+
+mands can be issued to the terminal:
+$ ./conv_layer [layer] [idx]
+$ ./hw_conv_layer [layer] [idx]
+
+Where the command ./conv_layer will ensure that the
+software implementation has no logical aws, and takes pa-
+
+rameters layer and idx which relate to which convolutional
+layer we are simulating and the respective index in that layer.
+Similarly, ./hw_conv_layer performs convolutional layer
+execution upon a HLS-Compiled IP core, requiring the same
+parameters are ./conv_layer.
+
+However,
+
+to instantiate the HLS-Compiled IP core, we
+modied the Makele to permit ease of use. Specically, we
+modify the recipe make pr to compile the software-described
+convolutional layer to a hardware description using HLS. This
+hardware description is then synthesized, and moved into a
+recongurable region of an FPGA device.
+
+2) Complexity Analysis of a General Convolutional Layer:
+A general convolutional layer convolves a lter around an
+input image. Recall that an image exists in 3 dimensions,
+xi, yi and zi. We will use the subscript i to denote dimensions
+of an image . A lter must also exist in the same dimensional
+space as the image, which has the attributes xk, yk, and zk,
+highlighted by the subscript k. We can represent these items
+as matrices which exist in three dimensions, where the matrix
+I describes the input images and is xiyiki and K. Hence,
+we can see that there are
+C. Baseline
+
+In this section, we outline the baseline hardware perfor-
+mance of a stock convolutional layer within a neural network.
+Following the above analysis, we showed that optimizing
+D. Optimization 1
+
+For optimization 1,
+
+E. Optimization 2
+F. Optimization 3
+G. Optimization 4
+H. Further Ideas for Optimization
+
+Due to time constraints,
+
+III. CONCLUSION
+
+In conclusion, we were able to demonstrate two items
+of interest: (1) we were able to develop an convolutional
+neural network acceleration engine, which achieved signicant
+speed up over baseline performance, (2) we demonstrated the
+effectiveness of using high-level synthesis to enable a fast
+and efcient design-space exploration scheme, which could
+produce practical solutions for real time use.
+
+REFERENCES
+
+[1] C. Zhang, P. Li, G. Sun, Y. Guan, B. Xiao, and J. Cong, Optimizing
+fpga-based accelerator design for deep convolutional neural networks, in
+Proceedings of the 2015 ACM/SIGDA International Symposium on Field-
+Programmable Gate Arrays, pp. 161170, ACM, 2015.
+
+[2] K. Ovtcharov, O. Ruwase, J.-Y. Kim, J. Fowers, K. Strauss, and E. S.
+Chung, Accelerating deep convolutional neural networks using special-
+ized hardware, Microsoft Research Whitepaper, vol. 2, no. 11, 2015.
+
+[3] M. Peemen, A. A. Setio, B. Mesman, and H. Corporaal, Memory-centric
+accelerator design for convolutional neural networks, in Computer De-
+sign (ICCD), 2013 IEEE 31st International Conference on, pp. 1319,
+IEEE, 2013.
+
+[4] K. Simonyan and A. Zisserman, Very deep convolutional networks for
+
+large-scale image recognition, CoRR, vol. abs/1409.1556, 2014.
+
+[5] Loading a pre-trained model to speed up the training.
+
+

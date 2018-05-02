@@ -1,0 +1,1096 @@
+ECE216
+Signals and Systems
+
+University of Toronto
+Spring 2018
+
+Problem Set #6
+
+Problem 6.1 (Discrete-Time Fourier Basis)
+In this question, we are concerned with the N0-periodic, discrete-time Fourier basis. We
+dene this basis here as
+
+k[n] =
+
+1
+N0
+
+ej 2
+
+N0
+
+kn where k, n  {0, 1, . . . , N0  1}.
+
+Dene the inner product between two vectors in this basis by
+
+N01(cid:88)
+
+(cid:104)k, l(cid:105) =
+
+k[n]l[n].
+
+(1)
+
+n=0
+
+(i) Show that these basis vectors are normalized, i.e. (cid:104)k, k(cid:105) = 1 for all k.
+(ii) Show that these basis vectors are orthogonal, i.e. (cid:104)k, l(cid:105) = 0 for all k (cid:54)= l.
+
+We conclude that this is an orthonormal basis.
+
+Solutions:
+
+(i)
+
+(ii)
+
+(cid:104)k, k(cid:105) =
+
+=
+
+(cid:104)k, l(cid:105) =
+
+=
+
+N01(cid:88)
+N01(cid:88)
+
+n=0
+
+n=0
+
+N01(cid:88)
+N01(cid:88)
+
+n=0
+
+n=0
+
+1
+N0
+
+1
+N0
+
+1
+N0
+
+1
+N0
+
+= 0
+
+ej2kn/N0ej2kn/N0
+
+1 =
+
+N0
+N0
+
+= 1
+
+ej2kn/N0ej2ln/N0
+
+ej2(kl)n/N0
+
+since k  l  Z \ 0, ej2(kl)n/N0 is periodic in N0, and its sum over one period is 0 (as
+it has no DC component).
+
+1
+
+Problem 6.2 (DTFS by Projection)
+Consider the following orthogonal (but not orthonormal) basis
+
+k[n] = ej 2
+
+N0
+
+kn where k, n  {0, 1, . . . , N0  1}.
+
+Note that each k[n] can be written as an N0-dimensional column vector
+
+(cid:16)
+
+k =
+
+1, ej 2
+
+N0
+
+k(1), ej 2
+
+N0
+
+k(2), . . . , ej 2
+
+N0
+
+k(N01)(cid:17)T
+
+.
+
+The inner product dened in (1) is equivalent to (cid:104)k, l(cid:105) = 1
+k ( 
+T
+inner product being the usual inner product of 2 vectors in CN0.
+
+N0
+
+l ) = 1
+N0
+
+(cid:104) k, l(cid:105), this last
+
+(i) Find (cid:104) k, k(cid:105) for all k.
+
+(ii) Given a periodic function x[n] with fundamental period N0, show that
+
+N01(cid:88)
+
+k=0
+
+x =
+
+(cid:104)x, k(cid:105)
+(cid:104) k, k(cid:105) k
+
+where x = (x[0], x[1] . . . , x[N0  1])T . Hint: consider the DTFS analysis and synthesis
+expressions for x[n].
+
+(iii) Write the DTFS coecients of x[n] as a vector
+
+ = (0, 1, . . . , N01)T .
+
+Give a matrix W such that  = W x.
+
+Solutions:
+
+(i) For all k  {0, . . . , N0  1}
+
+(cid:104)k, k(cid:105) =
+
+=
+
+=
+
+n=0
+
+N01(cid:88)
+N01(cid:88)
+N01(cid:88)
+
+n=0
+
+ej 2
+
+N0
+
+kne
+
+j 2
+N0
+
+kn
+
+e(0)n
+
+1
+
+n=0
+= N0
+
+2
+
+(ii) For periodic x[n] with fundamental period N0 we have from the DTFS analysis equation
+
+ak =
+
+1
+N0
+
+j 2
+N0
+
+kn =
+
+x[n]e
+
+xT 
+
+k =
+
+1
+N0
+
+(cid:104)x, k(cid:105)
+(cid:104) k, k(cid:105) .
+
+From the DTFS synthesis equation
+
+N01(cid:88)
+
+n=0
+
+N01(cid:88)
+
+k=0
+
+x[n] =
+
+akej 2
+
+N0
+
+kn =
+
+N01(cid:88)
+
+k=0
+
+(cid:104)x, k(cid:105)
+(cid:104) k, k(cid:105) k[n]
+
+(iii)
+
+W =
+
+ ( T
+
+0 )
+1 )
+( T
+...
+N01)
+
+( T
+
+ =
+
+
+
+1
+1
+1
+...
+1 e
+
+1
+j 2
+e
+N0
+j 2
+e
+N0
+
+(1)(1)
+
+(2)(1)
+
+1
+j 2
+e
+N0
+j 2
+e
+N0
+
+(1)(2)
+
+(2)(2)
+
+
+
+
+
+1
+(1)(N01)
+(2)(N01)
+
+j 2
+e
+N0
+j 2
+e
+N0
+
+j 2
+N0
+
+(N01)(1) e
+
+j 2
+N0
+
+(N01)(2)
+
+ e
+
+j 2
+N0
+
+(N01)(N01)
+
+
+
+Problem 6.3 (The Gram-Schmidt Process)
+In this question we will develop the Gram-Schmidt process for creating an orthonormal basis.
+Consider a basis B1 = {x1, x2} for a two-dimensional subspace of Cn.
+
+x1
+(cid:104)x1,x1(cid:105). Show that u1 has unit norm.
+
+(i) Let u1 =
+(ii) Let v2 = x2  (cid:104)x2, u1(cid:105)u1. Show that u1 and v2 are orthogonal.
+
+By dening u2 =
+
+v2
+(cid:104)v2,v2(cid:105) we then have an orthonormal basis B2 = {u1, u2} with
+
+Span(B1) = Span(B2). Hence, B2 is a basis for the subspace spanned by the basis
+B1. This process can be generalized to bases of arbitrary size and is known as the
+Gram-Schmidt process.
+
+(iii) Let x1 = (1, 2, 2) and x2 = (2, 2, 1) in C3. Find the corresponding orthonormal u1 and
+
+u2 such that Span({x1, x2}) = Span({u1, u2}).
+
+(iv) Given w = (3, 4, 3), nd the projection of w onto the orthonormal basis {u1, u2}, i.e.
+
+calculate
+
+Calculate w = c1 u1 + c2 u2.
+
+(cid:104) w, ui(cid:105)
+(cid:104)ui, ui(cid:105) for i  {1, 2}.
+
+ci =
+
+(v) Repeat part (iv) for w = (1, 1, 1). Explain the dierence between the results.
+
+3
+
+Solutions:
+
+(i)
+
+(ii)
+
+(iii)
+
+(iv)
+
+(v)
+
+(cid:28)
+
+(cid:29)
+
+1
+
+=
+
+||u1||2 = (cid:104)u1, u1(cid:105)
+
+=
+ ||u1|| = 1
+
+x1(cid:112)(cid:104)x1, x1(cid:105) ,
+x1(cid:112)(cid:104)x1, x1(cid:105)
+(cid:104)x1, x1(cid:105)(cid:104)x1, x1(cid:105) = 1
+(cid:104)u1, v2(cid:105) =(cid:10)u1, x2  (cid:104)x2, u1(cid:105)u1
+
+(cid:11)
+= (cid:104)u1, x2(cid:105) (cid:10)u1,(cid:104)x2, u1(cid:105)u1
+(cid:11)
+= (cid:104)u1, x2(cid:105) (cid:0)(cid:104)x2, u1(cid:105)(cid:1)(cid:104)u1, u1(cid:105)
+
+= (cid:104)u1, x2(cid:105)  (cid:104)u1, x2(cid:105)
+= 0
+
+(cid:19)
+(cid:18)10
+
+2
+3
+
+2
+3
+
+,
+
+u1 =
+
+,
+
+(cid:18)1
+(cid:18)10
+
+3
+v2 = x2  (cid:104)x2, u1(cid:105)u1 =
+
+
+x1(cid:112)(cid:104)x1, x1(cid:105) =
+v2(cid:112)(cid:104)v2, v2(cid:105) =
+
+ u2 =
+
+(cid:19)
+
+,
+
+,7
+2
+
+
+9
+9
+,7
+2
+
+17
+
+(cid:19)
+
+17
+
+9
+
+17
+
+,
+
+51
+
+51
+
+51
+
+c1 = (cid:104) w, u1(cid:105) = 5.667, c2 = 1.334, c1 u1 + c2 u2 = (3, 4, 3) = w
+
+c1 = 1.667, c2 = 0.404, c1 u1 + c2 u2 = (0.882, 1.176, 0.882)
+
+The dierence here is because (3, 4, 3)  Span(x1, x2), while (1, 1, 1) / Span(x1, x2)
+
+Problem 6.4 (Sinusoidal Basis)
+Let the set of signals y be dened as
+
+y(t) = a cos(t) + b sin(t),
+
+a, b  C.
+
+4
+
+(i) Show that the set of signals y(t) form a vector space by
+
+(a) Ensuring the space contains the all-zero vector (The additive identity element)
+
+(b) Showing that any linear combinations of signals y1 and y2 in the space can be
+
+expressed in the form of y for a particular choice of a, b  C
+
+(ii) Find an orthogonal basis for the vector space. What is the dimension of the space
+
+(number of basis elements)?
+
+Solutions: Let V = {a cos t + b sin t|a, b  C}
+
+(i) (a) a = 0, b = 0, y(t) = 0  V .
+
+(b) k1y1(t) + k2y2(t) = k1(a1 + a2) cos t + k2(b1 + b2) sin t  V
+
+2 + b1b
+
+(ii) In order for V to have an orthogonal basis in the rst place, we must show that V
+is an inner product space. Consider the function (cid:104),(cid:105) : V  V  C where (cid:104)y1, y2(cid:105) =
+2. It can be shown (analogously with the inner product of CN ) that (cid:104),(cid:105)
+a1a
+satises the four properties of an inner product - thus V is an inner product space (see
+course notes s. 6.2 and s. 6.A.3).
+Consider the functions {cos t, sin t}. (cid:104)cos t, sin t(cid:105) = (1)(0) + (0)(1)  thus {cos t, sin t}
+are orthogonal. Because V is by denition the set of all linear combinations of {cos t, sin t},
+{cos t, sin t} is an orthogonal basis over V .
+
+Problem 6.5 (Cubic Basis)
+Are the four diagonals of a cube (pairwise) orthogonal?
+
+Solutions:
+No.
+
+Consider a triangular face of a pyramid generated by a single face of the cube and the centre
+of the cube, as shown below (A and C are adjacent vertices in the cube, B is the centre):
+
+
+3
+2 a
+
+A
+
+B
+
+
+
+a
+
+
+3
+2 a
+
+C
+
+5
+
+Let the length of a cube edge be a  the side lengths of the triangular face are then as
+shown above (use Pythagorean theorem). Note that because all diagonals intersect at the
+centre of the cube,  is the angle between two diagonals. With cosine law:
+
+(cid:16)
+
+3
+2
+
+a
+
+(cid:17)2  2
+(cid:16)
+
+3
+2
+
+a
+
+(cid:17)2
+
+cos 
+
+a2 = 2
+
+= cos 
+
+ 1
+2a2
+ 3
+2a2
+cos  = 1/3
+ (cid:54)= /2
+
+Therefore, diagonals are not orthogonal.
+
+Problem 6.6 (Singular Value Decomposition)
+First we introduce a couple concepts from linear algebra. Consider a matrix M  Rnn with
+positive determinant. Then there exists U, D, and V  Rnn such that M = U DV T where
+D is a diagonal matrix and U ,V are orthogonal matrices. That is, U T U = I and V T V = I.
+
+(cid:21)
+
+(cid:20) 2 3
+
+0 2
+
+Let M =
+
+and x =
+
+(cid:20) 1
+
+0
+
+1
+5
+2
+5
+
+(cid:21)
+(cid:35)(cid:20) 4 0
+
+0 1
+
+(cid:34) 2
+
+5
+1
+5
+
+(cid:21)(cid:34) 1
+
+5
+2
+5
+
+(cid:35)T
+
+2
+5
+1
+5
+
+Then M = U DV T =
+
+Plot x, V T x, DV T x, and U DV T x.
+
+From this plot it should be apparent that the linear map dened by M consists of a rotation,
+a stretch, and another rotation. This holds in general for the class of matrices mentioned
+above.
+
+Solutions:
+
+6
+
+x
+
+1
+
+U DV T x
+
+2
+
+V T x
+
+1
+
+DV T x
+
+Problem 6.7 (Nonstandard Basis)
+In each of the following questions, you are given a vector space, V, over the eld of real
+numbers (R). Check that the provided set of vectors, B, forms a basis for V. Write the given
+vector, v, as a linear combination of the elements of B.
+(i) Let V = R3 with the usual addition and scalar multiplication. Let
+
+
+
+B =
+
+4
+ ,
+
+1
+ ,
+
+0
+1
+
+4
+0
+
+ , v =
+ 033
+
+ .
+
+ 12
+
+6.5
+14.5
+
+Hint: The basis vectors can be expressed as a matrix B where each column of B
+represents a basis vector of B. Then, you can simply write the problem as Bx = v and
+solve for x.
+
+(ii) Let V = P4 (polynomials of degree at most 4), with the usual addition and scalar
+
+B =(cid:8)x4  x3, 2x3  x, x4 + x2, 2x + 1,2(cid:9) , v = x2.
+
+multiplication. Let
+
+7
+
+Hint: Polynomials can be expressed in vector form where each coecient of the poly-
+nomial corresponds to an element in the vector. For example, y = x4  x3 is expressed
+in vector form as y = [0, 0, 0,1, 1]T . Then, follow the same procedure as part (i). You
+can use MATLAB in this case since the B matrix will be large.
+
+(iii) Let V = C (complex numbers, where j is the imaginary unit), with the usual addition
+
+and scalar multiplication. Let
+
+B = {1 + 2j, 1  j} , v = 4.
+
+Solutions:
+
+(i) If B is a basis over V, then u  V, c =
+
+  R3 : c1
+
+c1
+
+c2
+c3
+
+4
+ + c2
+
+4
+0
+
+These linear combinations over B can be written as Bc = u, where B =
+Because det(B) (cid:54)= 0, B is invertible, thus c = B1u exists u  V  therefore B is a
+basis over V. For v = [12 6.5 14.5]T , c = [0.5 10  1.5]T .
+
+(ii) We can express each vector u  V = ax4 +bx3 +cx2 +dx+e as a vector [a b c d e]T  R5.
+
+Then, linear combinations of B can be expressed as Bc, where c  R5, and
+
+1
+ 033
+ + c3
+ = u.
+.
+4 1
+
+0
+4 0 3
+0 1 3
+
+0
+1
+
+
+
+B =
+
+0
+2
+0
+
+1
+1 0
+0
+1
+0 0
+0
+1 0
+0
+0
+0 1 0 2
+0
+0 1 2
+0
+
+0
+
+
+
+Because det(B) (cid:54)= 0, Bc can express any vector in V. For v = x2 = [0 0 1 0 0]T , c =
+B1v = [1  1
+
+2 1  1
+
+4  1
+8]T
+
+(iii) We can express each vector u  V = a + jb as a vector [a b]  R2. Through a similar
+, and det(B) (cid:54)= 0. For v = [4 0]T , c = B1v =
+
+(cid:21)
+
+(cid:20)1
+
+1
+2 1
+
+process used above, B =
+[ 4
+
+3  8
+
+3]T .
+
+Problem 6.8 (2D Fourier Basis - Midterm 2017)
+Recall that for an image of size N  M , the 2D Fourier bases is given by k,l, 0  k 
+N  1, 0  l  M  1. These are matrices of dimension N  M , with
+
+k,l[n, m] = ej 2
+
+N knej 2
+
+M lm
+
+8
+
+Consider now the case where N = 2 and M = 3. There are now 6 Fourier bases. Using the
+same notation as the previous problem, write down the entries of the 3  2 matrix 1,1.
+
+Solutions:
+
+ejej2/3 ej2ej2/3
+
+ejej4/3 ej2ej4/3
+ejej2
+ej2ej2
+
+ =
+
+1,1 =
+
+ej2/3 ej2/3
+
+ej4/3 ej4/3
+
+
+
+1
+
+1
+
+Problem 6.9 (Projection Onto Basis - Midterm 2017)
+Consider the discrete time periodic signal x of fundamental period N0 = 4 dened pointwise
+as
+
+x[n] = n,
+
+0  n  3.
+
+Dene the two periodic signals A and B of period 4 given pointwise as
+
+and
+
+B[n] =
+
+A[n] =
+
+,
+
+1
+2
+
+(cid:26)  1
+
+2
++ 1
+2
+
+0  n  3,
+
+if 0  n  1
+if 2  n  3
+
+.
+
+Since x, A, and B are all periodic signals with period 4, their values in a single period corre-
+spond to a 4-dimensional vector. We may refer to these signals in terms of the corresponding
+vectors.
+
+(i) Are A and B orthogonal signals? (Justify your answer.)
+(ii) What is the value of  that minimizes (cid:107)x  A(cid:107)2? Justify your answer.
+(iii) What is the value of  that minimizes (cid:107)x  B(cid:107)2? Justify your answer.
+(iv) What are the values of the coecients c1 and c2 that minimize (cid:107)x  (c1A + c2B)(cid:107)2?
+Justify your answer. For these best values of c1 and c2, plot one period of c1A + c2B
+for 0  n  3.
+
+Solutions:
+
+(i)
+
+A =
+
+1/2
+ B =
+
+1/2
+1/2
+1/2
+
+1/21/2
+
+
+1/2
+1/2
+
+(cid:104)A, B(cid:105) = 1/4 + 1/4 + 1/4 + 1/4 = 0
+
+Therefore, the signals are orthogonal.
+
+9
+
+(ii) Note that (cid:104)A, A(cid:105) = (cid:104)B, B(cid:105). To minimize ||x  A||,  should be chosen so A is
+
+the projection of x onto A (this is a property of vector projection). Therefore:
+
+(iii) Like the previous part,
+
+ =
+
+(cid:104)x, A(cid:105)
+(cid:104)A, A(cid:105)
+
+= 1/2 + 1 + 3/2 = 3
+
+ =
+
+(cid:104)x, B(cid:105)
+(cid:104)B, B(cid:105)
+
+= 2
+
+(iv) To minimize ||x  (c1A| + c2B)||, c1 and c2 should be chosen so that c1A| + c2B is
+the projection of x on Span(A, B). This can be obtained by adding the projections
+of x on A and B separately. From this:
+
+c1 =  = 3, c2 =  = 2
+
+11
+
+
+1
+1
+
+3/2
+ +
+1/2
+
+
+3/2
+3/2
+3/2
+
+1/2
+5/2
+5/2
+
+c1A + c2B =
+
+=
+
+c1A + c2B
+
+3
+
+2 1
+2
+
+2
+
+1 1
+2
+
+1
+
+1
+2
+
+1
+
+2
+
+n
+
+3
+
+10
+
+Problem 6.10 (Calculating the DTFS in MATLAB)
+The purpose of this problem is to learn how to program functions in Matlab by designing
+two functions: one that calculates the discrete-time Fourier series and a second one that
+computes the inverse discrete-time Fourier series.
+
+In the rst part of this problem you are asked to write a Matlab function that computes the
+discrete-time Fourier series coecients of a periodic signal x[n]. The function call should be
+of the form a = dtfs(x), where a is a vector of coecients, x is a vector containing one
+period of the signal. Because x contains one period of the signal, the period of the signal
+should equal length(x).
+
+The rst line of your .m Matlab le should begin with the function command and be similar
+to function a = dtfs(x). Once you create your function in a text editor, you must save
+it with a .m extension and put it in a directory in your Matlab search path. You can view
+your search path by typing path from within Matlab. Further information about function
+and path can be found by typing help function and help path. As an example, if you
+call your function in the following way:
+
+>> dtfs([1 2 3 4])
+
+you should see something similar to
+
+ans =
+
+2.5000
+
+-0.5000 + 0.5000i
+
+-0.5000
+
+-0.5000 - 0.5000i
+
+(i) Write you Matlab function dtfs. Do not use built-in Matlab functions for calculating
+
+Fourier transforms such as fft.
+
+(ii) Use your function to calculate the Fourier series coecients for each of the signals
+
+specied below.
+
+i.dtfs([1 2 3 4])
+
+iv.dtfs([1 1 1 1 1 0 0 0 0 0])
+
+v.dtfs([1 2 3 4 0 -4 -3 -2 -1])
+
+For each of the ve signals, plot the Fourier series coecients. Since the coecients are
+generally complex, for each signal use stem to plot either (a) the real and imaginary
+parts (using real and imag) or (b) the magnitude and phase (using abs and angle).
+You should be able to look at a plot of the real and imaginary parts of a given set of
+coecients, and a second plot of the magnitude and phase for those same coecients
+and be able to tell, roughly, that they both plot the same coecients.
+
+11
+
+In this part of the problem you are asked to write another Matlab function that performs
+the inverse discrete-time Fourier series.
+It should take in a vector of one period of
+Fourier series coecients ak and output one period of the signal x[n] for 0  n  N01,
+where N0 is the signal period. A function call should look like x = idtfs(a) and the
+period N0 of x[n] should equal length(a).
+
+(iii) Write the code for your function idtfs; test your function on your results of part (b)1
+Do not use built-in Matlab functions for calculating inverse Fourier transforms such as
+ifft.
+
+Solutions:
+
+(i) function [ a ] = dtfs( x )
+
+N0 = length(x);
+a = zeros(size(x));
+for k = 1 : N0
+
+for n = 1 : N0
+
+a(k) = a(k) + x(n)*exp(-1i*(2*pi/N0)*(k-1)*(n-1));
+
+end
+a(k) = a(k)/N0;
+
+end
+
+end
+
+(ii)
+
+1Note that while all time-domain signals in part (b) are real, when you invert your Fourier series coe-
+cients to get back to the time domain, your resulting time-domain signals may have an imaginary component.
+Close inspection of this imaginary part should show that it is very small. This component is due to numerical
+round-o errors resulting from the nite precision of Matlab computations. Note also that if, e.g., x is a
+complex signal, and you simply type stem(x), Matlab plots stem(real(x), imag(x)).
+
+12
+
+13
+
+(iii) function [ x ] = idtfs(a)
+
+N0 = length(a);
+x = zeros(size(a));
+for n = 1:N0
+
+for k = 1:N0
+
+x(n) = x(n) + a(k)*exp(1i*(2*pi/N0)*(k-1)*(n-1));
+
+end
+
+end
+
+end
+
+14
+
+

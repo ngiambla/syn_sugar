@@ -1,0 +1,1128 @@
+Accelerating Inference for Convolutional and Fully
+
+Connected Neural Networks
+
+Nicholas V. Giamblanco
+Department of Electrical and
+
+Computer Engineering
+University of Toronto
+
+Toronto, Canada
+
+Email: nicholas.giamblanco@mail.utoronto.ca
+
+AbstractAdvances in technology within the past decade have
+enabled many algorithms from the machine learning community
+to gain practical value as assistive technologies. Of these machine
+learning algorithms, Neural Networks have been making strides
+towards assistive and predictive uses, due to their unprecedented
+accuracy. However, the many different styles available with
+Neural Networks, and their heavy-demand on the underlying
+computational infrastructure pose concerns with performance,
+device utilization, and power consumption. In this paper, we
+review several proposals which aim to accelerate a neural
+networks inference with High-Level Synthesis and FPGAs, with
+additional hopes of area and power minimization. We also
+investigate our own implementation of a Convolutional and Fully-
+Connected Neural Network with the use of High-Level Synthesis.
+Our implementation is to be minimal in terms of latency, and
+hence we utilize several algorithmic extensions and variable
+numerical precision within a high-level synthesis framework to
+achieve this goal. We utilize Xilinxs Vivado High-Level Synthesis
+tool. Our accelerated design was able to obtain a  4.6 speed
+up from baseline performance with inference on convolutional
+neural network, and  6.1 speed up from baseline performance
+from inference on a fully-connected neural network.
+
+I. INTRODUCTION
+
+Neural network models are an abstraction on how the
+human brain is able to learn. Specically, neural networks
+(or commonly referred to as neural nets) contain a network of
+simulated neurons which can take many inputs and produce an
+output. A neural network is an approach to general classica-
+tion through supervised initiatives. The objective of this model
+aims to identify patterns based from some input [1]. virtual
+neurons are connected in layers and transform inputs based
+on some processing mechanism. Specically, these articial
+neurons accept n inputs, x, and produce k outputs, y. Neurons
+will only produce an output if it is part of some trained pattern.
+Hence, there is some activation function on k, if some number
+of the n inputs are active. Mathematically put:
+
+n(cid:88)
+
+yq = ((
+
+xiwi,l) + bq)
+
+(1)
+
+i
+
+where each kth output of node q is a weighted sum of the
+n inputs, with the addition of some bias b at this particular
+neuron. It
+this relationship
+establishes that each kl, n, b  IR+. Additionally each node q
+belongs to some layer. This is a n-to-1 mapping, where some
+
+is important
+
+to highlight
+
+that
+
+number of nodes only map to one particular layer. The neuron
+will only activate if some threshold is met, based from the
+thresholding function . The learning takes place by modifying
+the weights for each particular neuron on a training pass of
+the neuron.
+
+A. Fully Connected Neural Networks
+
+Equation 1 takes the form of the neurons within a Fully
+Connected neural networks. To gain further appreciation, we
+examine a fully connected neural network (FCNN) in higher
+detail. An FCNN has several layers of articial neurons, where
+each layer l has some unique number of nl neurons. The
+fully connected nature of this network is that each node in a
+preceding layer maintains one connection to each proceeding
+layer [2]. We also can see that in general, for some layer l,
+the number of nodes nl1 is greater than nl
+
+nl1 >= nl
+
+(2)
+
+B. Convolutional Neural Networks
+
+Convolutional Neural Networks (CNNs) have a different
+structure than an FCNN. Within a CNN, inputs exist in IRn.
+These inputs are commonly images (data is in IR3) and
+are gradually transformed per layer through a convolutional
+process. That is, at each layer in a CNN, either some feature
+map (which is some intermediate state from a previous layer)
+is convolved with some lter (with at least one dimension
+as the depth of the data), pooled against some maxima lter,
+or feed into a fully connected layer. The pooling layer down
+samples the feature map. Pooling and convolutional layers
+gradually reduces the dimensionality, until it appears at. This
+sort of behaviour correlates with Equation 2. A typical CNN
+can be visualized as in Figure 1.
+
+However, neural networks comes in many avours, and pose
+additional issues on the underlying computational devices.
+Neural Networks require many multiplications and/or convo-
+lutional operations which are expensive1 for the underlying
+substrate. However, an algorithmic analysis of both neural net-
+work types elude to many nested for loops. These nested for
+loops can be accelerated through a pipelined implementation
+(native to many FPGA based architectures)
+
+1Expensive refers to the time-consumption required for each operation.
+
+This model consists of four major components, which are
+processing elements (PEs), on-chip memories (buffers), in-
+terconnects from the buffers to the processing elements and
+external memory with interconnects.
+
+This architecture is general, however can provide overview
+to the limitations incurred by this system: large datasets may
+exceed the devices storage capacity, and hence require tiling.
+Tiling data loads subsets of the dataset (or tiles) of the dataset
+at one particular instant. Other optimization techniques are
+placed as constraints to the DSE of this accelerator, but
+again are not key in our discussion. The interested reader is
+encouraged to refer to this paper [4].
+
+With these constraints in place for an optimized design space
+exploration, the authors were able to choose an optimal design
+for CNN acceleration. Their accelerator design t onto one
+FPGA and had the following architecture: (1) Off-chip DDR3
+memory, (2) MicroBlaze, a RISC soft processor (designed for
+Xilinx FPGAs) and (3) AXI4lite bus. This high-level view of
+the architecture is outlined in Figure 2
+
+Fig. 2. An overview of the architecture design presented in [4], taken from
+[4]
+
+Their accelerator was comprised of the following (a) two
+sets of input buffers, (b) multiple computation engines and (c)
+two sets of output buffers which are controlled by a nite state
+machine controller. The accelerator is outlined in Figure 3.
+
+Here, we note that the authors tile-dependent optimization
+technique has instantiated parallel instances of computation
+engines. This particular structure is common in that of loop-
+unrolling, which the authors heavily make use of. Additionally,
+the authors tiling optimization allowed an adder tree to be
+instantiated. This allowed further exploitation of parallelism
+available with hardware.
+
+Due to their memory to computation boundaries, memory
+subsystems were considered during design. Figure 3 outlines
+how on-chip buffers were instantiated in a ping-pong fashion.
+This allowed for overlaps with data transfer with computa-
+tional results. Hence, this allowed for 2 buffer sets for input
+feature maps and weights, and 2 buffer sets for output feature
+maps.
+
+Fig. 1. A visualization of a convolutional neural network, taken from [3]
+
+In the following sections, we investigate acceleration tech-
+niques for these two neural networks, CNNs and FCNNs. We
+restrict ourselves to accelerating the inference portion of a
+neural network. This report highlights previous work in neural
+network acceleration with specialized hardware. Lastly, we
+provide accelerated and optimized implementations of convo-
+lutional and fully-connected neural nets performing inference,
+and provide a comparison with current methodologies.
+
+II. RELATED WORK
+
+In this section, we discuss three acceleration techniques
+which are applied to several variants of neural networks. These
+techniques will be compared to an implementation conducted
+and highlighted later in this article.
+
+A. Optimizing FPGA-Based Accelerator Design for Deep
+Convolutional Neural Networks
+
+In this work, Zhang et al. aim to accelerate a traditional
+CNN with use of an FPGA. They approach acceleration
+in a design-space-exploration (DSE) manner, making use of
+collected experimental results [4]. This proposed DSE denes
+a relationship to develop a performance evaluation through
+a trade-off between memory bandwidth and achievable com-
+putation. They note this relationship as the Rooine Model,
+where it is mathematically dened as:
+
+(cid:40)
+
+Attainable Perf. = min
+
+Computational Roof
+CTC Ratio  BW
+
+(3)
+
+In equation 3, the authors denote the computational roof
+of some digital system as the peak oating-point throughput
+provided by all of the systems computational resources. How-
+ever, operations related to DRAM trafc are labeled as the
+computation to communication (CTC) ratio. The second term
+attenuates the maximum oating-point performance available
+with a memory system. Although important, this model is
+not the focus of this discussion. Utilizing this model, they
+dened a generic architecture that accelerates CNN inference.
+
+outputs of both the convolutional and fully connected layers
+of a traditional convolutional neural net. This binary neural
+network (BNN) is featured in Figure 5.
+
+Fig. 5. Typical network behaviour of a BNN, taken from [6]
+
+Before proposing any hardware acceleration, the authors
+modify BinaryNet for efciency. They note that
+the bias
+factor typically used in an articial neuron is generally less
+than 1, and hence remove the bias. They also note that the
+batch norm calculation (a layer within a BNN) is a linear
+transformation. Therefore, they provide the relationship in the
+form of y = mx+w. This optimization on the network reduced
+number of operations performed and scales the number of
+stored parameters to two. In addition to this linear transfor-
+mation, the parameters m and w could be precision reduced
+while achieving relatively similar accuracy. Hence, the authors
+reduced the precision of these parameters to 16-bits. These
+optimizations increased the test error by a marginal amount,
+0.87% (implementation in C++) up from the baseline 11.40%.
+Utilizing these optimizations, the authors proposed an ac-
+celeration architecture depicted in Figure 6. This accelerator
+was comprised of three computational units, data, and weight
+buffers, a direct memory access system (DMA) (utilized for off
+chip memory access), and a Finite State Machine controller.
+The three computational layers performed actions required
+for each of the BNNs layers: (1) FP-Conv unit operates on
+the rst convolutional layer, (2) Bin-Conv implements the
+computation required for the ve binary convolutional layers,
+(3) Bin-FC computes for the three binary fully-connected
+layers. Only the Bin-Conv and Bin-FC units handle variable
+sized input, and hence the authors have necessitated special
+hardware considerations.
+
+Interestingly,
+
+the usage of BNN permits the storage of
+feature maps (FMaps) on-chip, due to their size reduction.
+This allowed for in-out data buffers A and B to allow for
+alternating read/writes between layers (i.e Layer 1 reads from
+A, writes to B, Layer 2 reads from B and write to A, etc.).
+
+Fig. 3. The Accelerator Architecture proposed in [4], taken from [4]
+
+Off-chip memory transfer was also a concern, as it has
+been identied as a bottle neck for many accelerator designs2.
+Zhang et al.
+instantiate 4 IP-AXI interfaces to provide a
+maximum bandwidth of 4.5GB/s. They note this as sufcient
+for their accelerator.
+
+The authors evaluate their accelerator through resource
+utilization, performance, and power consumption. We are most
+concerned with performance considerations, as an implemen-
+tation in this report aims to optimize performance of two
+styles of neural networks. A full discourse on the results can
+be obtained through [4]. Referring to Figure 4, their major
+comparison was against a state of the art CPU at different
+thread usage levels.
+
+Fig. 4. Performance Comparison between a State-of-the-Art CPU with the
+accelerator proposed in [4], taken from [4]
+
+We can see that there average speed up from their accelera-
+tor was 17.42x compared to the. This accelerator seems to be
+of high-calibre for performance.
+
+B. Accelerating Binarized Convolutional Neural Networks
+with Software-Programmable FPGAs
+
+Zhao et al. propose a novel acceleration technique which
+is applied to a BinaryNet architecture/model. This neural
+net architecture, taken from [5] binarizes3 the weights and
+
+2These designs are outside the scope of this report.
+3This is not truly binary, as values of the convolutional layer outputs could
+
+take -1, 0 or 1.
+
+Fig. 6. Zhao et al.s BNN acceleration architecture
+
+Unfortunately, the weights required per layer are too large and
+required off chip memory for storage.
+
+For each computational unit, special considerations were
+applied during design. (1) the FP-Conv unit was parallelized
+with respect to three input channels (images are commonly the
+input to CNNs), (2) Bin-Conv implemented a variable width
+line buffer as this was crucial for operation with variable sized
+inputs, and (3) Bin-FC was simplied due to the binary nature
+of the data. It was implemented as an XORing of the data, and
+popcounting the results.
+
+Implementation of Bin-Conv presented the most complica-
+tions, due to the variable-sized input. Recall that 5 layers of
+Bin-Conv were utilized in this BNN, and hence maximum
+throughput was desired. Therefore, the authors proposed a
+variable width line buffer which would aid in the Bin-Conv
+process. The resulting architecture is depicted in Figure 7
+
+Fig. 7. Bin-Convs Variable Width Line Buffer
+
+There implementation was written in a high-level language
+and was then put through Xilinxs SDSoC high-level synthesis
+system. The system was evaluated through Resource Utiliza-
+tion, Performance and Power Consumption. From Figure 8, we
+can see how this accelerator has been a signicant improve-
+ment compared to other accelerators (of varying precision).
+
+Not only have they reduced the power consumption, but they
+have increased performance substantially to 44.2 GOPS4/Watt.
+We also note the performance across other hardware acceler-
+ators. Referring to Figure 9,
+
+We can see how their performance supersedes an mGPU,
+and CPU, with a substantial decrease in power. As noted
+
+4GOPS are Giga-Operations Per Second
+
+Fig. 8. Comparison of Zhao et al.s accelerators to other accelerators, taken
+from [6]
+
+Fig. 9. Performance Comparison across different Hardware Accelerators,
+taken from [6]
+
+previously, the GPU has much better throughput, and hence
+outperforms an FPGA accelerator. Yet, when normalizing
+the results against power consumption, an FPGA accelerator
+for CNNs provide astonishing results, with an average 35.8
+imgs/sec/Watt.
+C. DLAU: A Scalable Deep Learning Accelerator Unit on
+FPGA
+
+Wang et al. [7] propose a novel framework that permits
+acceleration of many deep learning algorithms by targeting
+the commonalities between many neural network implementa-
+tions. Their framework, known as Deep Learning Acceleration
+Unit (DLAU) targets 3 commonly required functions: (1) ma-
+trix multiplication, (2) part sum accumulation, and (3) activa-
+tion function. These commonly required functions were chosen
+to be accelerated through a code execution proler, where
+an average 98.63% of execution was spent performing matrix
+multiplication. Additionally, the activation function made up
+an average 1%. Since a majority of program execution is spent
+on matrix multiplication, it would make sense to accelerate this
+
+particular function. This poses additional constraints however,
+as it requires higher memory bandwidth, which is not currently
+supported with FPGA technology. To combat this, the authors
+utilize tile techniques to partition a large dataset into smaller,
+more FPGA compatible datasets. This enables the authors to
+design an accelerator for matrix multiplication of tiles, which
+they coin the term as Tiled Matrix Multiplier Unit (TMMU).
+They also provide an accelerator unit for both part sums,
+and activations which they name Part Sum Accelerator Units
+(PSAU) and Activations Function Accelerator Units (AFAU).
+They package these three units into one DLAU accelerator,
+along with a DDR3 memory controller, a DMA (Direct
+Memory Access) module, and an embedded processor. The
+responsibility of the embedded processor transfers the input
+data and weights to internal BRAM blocks, controls the
+activation of the DLAU and collects & returns the results to
+the user. The DLAU architecture is highlighted in Figure 10.
+
+provides a good approximation to the activations bounds of
+0 and 1. However, values in between [8, 8] were inspected,
+and the following relationship was derived:
+
+
+
+0
+
+1
+
+1 + a[(cid:4)x
+a[(cid:4) x
+(cid:5)]x + [(cid:4) x
+
+(cid:5)]x  b[(cid:4)x
+(cid:5)]
+
+k
+
+k
+
+(cid:5)]
+
+f (x) =
+
+k
+
+k
+
+if x  8
+if  8 < x  0
+if 0 < x  8
+if x > 8
+
+(6)
+
+Just as the PSAU,
+
+the AFAU is also pipelined so that
+the sigmoid function is pipelined to operate at every cycle.
+By pipelining all three of these accelerator units, maximum
+throughput can be obtained from the DLAU architecture.
+Evaluation took place through a measure of resource uti-
+lization, power consumption and performance. As previously
+mentioned we are primarily concerned with performance and
+hence will only touch on these results. For the interested
+reader, please refer to Wang et al.s work [7]. In gure 11 we
+can see the performance impact this CNN inference accelerator
+had compared to other accelerators of the same kind.
+
+Fig. 10. The DLAU architecture, taken from [7]
+
+The authors highlight how the DLAU is a pipeline of
+the the three accelerator units. The pipeline executes in the
+following order: (1) TMMU, (2) PSAU, (3) AFAU. Each of
+these accelerators has a FIFO buffer as to prevent data loss
+from inconsistent
+throughput. Communication between the
+three elements utilize a steam-like message passing system.
+The TMMUs calculation logic is implemented as a pipelined
+binary adder tree structure, as to provide a partial sum of
+their matrix multiplication at every clock cycle. The PSAU is
+required to provide the accumulation functionality, and hence
+is implemented as a FIFO buffer which acts in a pipelined
+fashion. This allows for data to be sent from the PSAU to the
+AFAU unit every clock cycle (in accordance to the throughput
+of the TMMU). The AFAU instantiates a piece-wise linear
+interpolation of the activation function,
+
+y = aix + bi, x  [x1, xi+1]
+
+(4)
+
+This approximation has minimal impact upon accuracy loss.
+
+Through experimentation, placing bounds on x such that:
+
+x > 8 and x  8
+
+(5)
+
+Fig. 11. Speed up provided by DLAU, with comparisons against other
+standard accelerators, taken from [7]
+
+Although a GPU is substantially faster, it also incurs higher
+power consumption. Wang et al. note, the power consumption
+of GPU based accelerator is 364 times higher than FPGA
+based accelerators. [7].
+
+III. EXPERIMENTS ON NEURAL NETWORK
+
+ACCELERATION WITH HIGH-LEVEL SYNTHESIS
+
+An experimentation with the two styles of neural networks is
+necessary for a uniform view of the design space explored by
+the three papers discussed here. By utilizing some techniques
+and propositions discussed in these articles, we can attempt
+to accelerate both a fully-connected and convolutional neural
+network. Additionally, we accelerate the explorations of the
+the design spaces through the use of high-level synthesis.
+
+A. Convolutional Neural Networks
+
+We explored the acceleration of a convolutional neural
+network layer,
+through several optimization techniques. A
+generic convolutional neural network layer is described in
+Figure 12.
+
+Initially, we collected ran this conv layer with no optimiza-
+tions, for comparisons. Unfortunately, using co-simulation of
+the RTL and C code did not complete within a reasonable
+amount of time, and hence we enabled the use of trip counts as
+a measure of worst-case clock cycles. This worst-case analysis
+estimate was collected during the C-to-RTL Synthesis. We
+
+#include < algorithm >
+#include "conv_layer.h"
+
+void conv_layer(float weights[MAX_INPUT_DIMS * MAX_OUTPUT_DIMS
+* MAX_KERNEL_SIZE * MAX_KERNEL_SIZE],
+
+float biases[MAX_OUTPUT_DIMS],
+float input[MAX_CONV_INPUT * MAX_BATCH],
+float output[MAX_CONV_OUTPUT * MAX_BATCH],
+const int b,
+
+const int od,
+
+const int ox,
+
+const int oy,
+
+const int id,
+
+const int ix,
+
+const int iy,
+
+const int s,
+
+const int k) {
+
+// Batch
+for (int b_ = 0; b_ < b; b_++) {
+
+// Output Dimensions (Feature Maps)
+for (int o_d = 0; o_d < od; o_d++) {
+
+// Output Y Dimension
+for (int o_y = 0; o_y < oy; o_y++) {
+
+// Output X Dimension
+for (int o_x = 0; o_x < ox; o_x++) {
+
+// Set bias
+output[b_*od *ox *oy + o_d*ox*oy + o_y*ox + o_x] = biases[o_d];
+
+// Weighted Sum:
+
+// Input Dimensions (Feature Maps)
+for (int i_d = 0; i_d < id; i_d++) {
+
+// Input Y Dimension
+for (int i_y = o_y * s, iiy = 0; i_y < o_y * s + k; i_y++, iiy++) {
+
+// Input X Dimension
+for (int i_x = o_x * s, iix = 0; i_x < o_x * s + k; i_x++, iix++) {
+
+output[b_ * od * ox * oy + o_d * ox * oy + o_y * ox + o_x] +=
+(input[b_ * id * ix * iy + i_d * ix * iy + i_y * ix + i_x] *
+weights[o_d * id * k * k + i_d * k * k + iiy * k + iix]);
+
+}
+
+}
+
+}
+
+output[b_ * od * ox * oy + o_d * ox * oy + o_y * ox + o_x] =
+
+std::max(0.0 f, output[b_*od*ox*oy + o_d*ox*oy + o_y*ox + o_x]);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+Fig. 12. The High-Level Description of a Convolutional Neural Network,
+performing inference
+
+label all optimizations as x were x is the xth optimization
+we applied. An x = 0 indicates the baseline.
+
+For 1, we re-ordered the loop order, so that the iterator
+on the output dimension was moved before the iterator on the
+input dimension. We then applied a partial loop unroll of 2 on
+the dimension of the output. We attempted this modication
+as it appeared that this iterator had fewer data dependencies.
+Hence, moving it inward would allow for unrolling. By un-
+rolling the loop, we increased resource utilization as hardware
+is replicated for similar operations (enabling parallelism).
+This ideal, unless the additional replicated hardware induces
+increased latency. Experimentation with further loop unrolling
+factors degraded performance due to this reason. After further
+inspection of this implementation, it was discovered that the
+inner most loop could be pipelined, and this motivated our
+second optimization.
+
+2 applied a pipeline directive on this loop5, as it handled
+the computation. It was identied that the inner most loop
+had few data dependencies and was able to pipeline. This
+reduced the wall clock time from our worst case analysis
+from 64, 675, 584 to 34, 685, 341 seconds. Targeting this inner
+loop for pipelining made intuitive sense, as several loop layers
+called upon this. The order of complexity with n6 on this
+loop, and hence pipelining would increase throughput. When
+pipelining, we wish to attain an Initiation Interval (II) of 1.
+
+5We reverted the code back to its original loop styling.
+
+However, this design required an II of 4, had 10 stages. This
+is due to several data dependencies that could not be removed.
+Our nal optimization enabled further wall clock reduction,
+by pipelining and partially unrolling the inner most loop,
+exploiting parallelism for computation. Again, we note that
+the II attained here was 6, with a 12 stage pipeline. We
+were able reduce more than half of the baseline wall-clock
+time through pipelining and partially unrolling the inner most
+iterator. This allowed for sharing of hardware resources within
+the two pipeline stages. This reduced the clock cycles required
+for operation. Our nal and best optimization obtained a wall
+clock time of 27, 978, 568. All performance results are listed
+in Table I.
+
+We have attached an architectural layout of our best per-
+forming accelerator. It is outlined in Figure 13. We have not
+provided diagrams of the other optimizations as they were
+previously described. In addition,
+this architecture inherits
+many similar properties discussed previously.
+
+Fig. 13. Architectural Diagram of our Convolutional Neural Network Accel-
+erator, utilizing a partially unrolled loop with pipelining
+
+TABLE I
+
+OPTIMIZATION OF A CONVOLUTIONAL NEURAL NETWORK THROUGH
+DESIGN SPACE EXPLORATION; CC = CLOCK CYCLES, Tc IS THE CLOCK
+PERIOD IN NANOSECONDS, Tw IS THE WALL CLOCK TIME IN SECONDS
+
+
+
+9.79  1015
+
+1
+
+9.79  1015
+
+6.60
+
+6.43
+
+64,675,584
+
+62,971,533
+
+34,685,341
+
+2
+
+3.91  1015
+
+8.86
+
+3
+
+[2.99  1015]
+
+[9.35]
+
+[27,978,568]
+
+CC
+Tc
+Tw
+
+We have also attached the resource utilizations for each
+
+optimization. These are tabulated in Table II
+
+RESOURCE UTILIZATION FOR EACH CONVOLUTIONAL NEURAL
+
+NETWORK ACCELERATOR OPTIMIZATION
+
+TABLE II
+
+CLB
+LUT
+FF
+DSP
+
+
+271
+1013
+1349
+13
+
+1
+437
+1667
+1982
+35
+
+2
+865
+3482
+3291
+81
+
+3
+754
+3097
+2901
+78
+
+We also experimented with xed point data representation.
+Specically, we initially investigated the oat point represen-
+tation, and checked for the maximum value that could occur
+
+during operation. In this case, we found that having a 32 bit
+data representation would sufce for the entire representation
+of the number. We than began allocating ni of the 32 available
+bits for integer representation. As we began increasing the
+number of reserved integer bits ni, our mean square error of
+output data versus a referenced output began to decrease up
+to a threshold, where ni = 13. Tuning ni > 13 degraded
+precision, and hence induced more error. Hence, we were
+able to obtain the following precision of [32].[13]. We will
+utilize this notation in order to signify that we used 32 bit
+widths and 13 reserved integer bits. We applied this xed
+point representation on our best performer with oating point
+operations. Attached in Table III are the collected resource
+utilizations and performance. We can see that we were able
+obtain a speed up of  4.64X speed up with xed point
+precision.
+
+TABLE III
+
+MODIFICATIONS TO DATA REPRESENTATIONS WITHIN THE
+
+CONVOLUTIONAL NEURAL NETWORK ACCELERATOR
+
+Fixed Point [28].[13]
+
+0.00080
+
+1.49  1015
+
+13911846 s
+
+MSE
+
+Clock Cycles
+Clock Period
+Wall Clock
+
+CLB
+LUT
+FF
+DSP
+
+9.29
+
+570
+2295
+1981
+67
+
+B. Fully-Connected Neural Networks
+
+For the fully connected neural network, we simulated 4
+different implementations: (1) a baseline fully-connected neu-
+ral network, (2) optimization 1, (3) optimization 2, and (4)
+optimization 3. For the baseline case, a fully-connected neural
+network was simulated in order to signify the improvement
+of each optimization we perform. After conducting the C
+Synthesis, co-simulation, and exportation with place and route
+for the compiled design, a staggering time requirement of
+88.81 ms processes a batch of data. Hence, we aim to reduce it.
+By inspecting methods from [4] and from the nature of FPGA
+architecture, pipelining loops seems to be a generic approach
+to optimization for such problems.
+
+Hence, our initial approach was to pipeline the inner-most
+loop (Refer to Figure 14), while inlining some of the func-
+tionality of the outer loops into function code. By using the
+INLINE directive in Vivado, the compiler is able to capture
+more control ow information. As for pipelining, the loop
+which is closest to computation should be pipelined for greater
+throughput. Unfortunately, the II was again 4. The pipeline
+also had a depth of 10 cycles. Following the same simulation
+procedures as before, we see a substantial improvement in
+wall-clock time, to 33.71 ms. This is an  62% improvement.
+Our second optimization built upon this pipelined approach:
+we attempted to pipeline6 the outer most loop, with partial loop
+
+6This was not possible due to variable sizes on loop constraints
+
+#include <algorithm>
+#include "fc_layer.h"
+
+void fc_layer(float weights[MAX_INPUT_SIZE*MAX_OUTPUT_SIZE],
+
+float biases[MAX_OUTPUT_SIZE],
+float input[MAX_INPUT_SIZE*MAX_BATCH],
+float output[MAX_OUTPUT_SIZE*MAX_BATCH],
+const int batch_size,
+const int num_inputs,
+const int num_outputs)
+
+{
+
+// Batch Iterator
+for (int b = 0; b < batch_size; b++) {
+
+// Output Node Iterator
+for (int o = 0; o < num_outputs; o++) {
+
+// Set bias
+output[b*num_outputs+o] = biases[o];
+
+// Accumulate weighted sum
+for (int i = 0; i < num_inputs; i++) {
+
+output[b*num_outputs+o] += input[b*num_inputs+i]*weights[o*num_inputs+i];
+
+}
+
+// Compute activation
+output[b*num_outputs+o] = std::max(0.0f, output[b*num_outputs+o]);
+
+}
+
+}
+
+}
+
+Fig. 14. The High-Level Description of a Fully Connected Neural Network,
+performing inference
+
+unrolling of a factor of 2 for both inner loops. By unrolling
+by a factor of 2, extra hardware resources were consumed to
+obtain parallelism. Further investigations were conducted with
+varying unroll factors. After experimentation, it was found that
+factors greater than two append latency to circuit behaviour,
+and degraded performance. It was interesting to note this
+optimization increased the number of clock cycles required
+to process a batch of data, but reduced the clock period. We
+obtained a better wall-clock time, of 32.66 ms. Although the
+difference in wall-clock time from solution 1 to solution 2 was
+not signicant, it did still yield an benet of  62% reduction.
+Our third optimization was to partially unroll the outer
+most loop, as well as the immediate child loop by factors
+of 2. This was in hopes of producing extra hardware for
+shared parallelism between loop stages. Again, we utilized a
+pipeline for the inner most loop as to maintain throughput for
+computation. The pipelines II was again 4, and had 10 stages.
+Unfortunately, the partial unrolling these two loops together
+introduced undesired latency in the architecture and increased
+the clock period from our 2nd optimization.
+
+Table IV holds the experimental results for optimizations
+
+regarding
+
+We have also attached the block diagram of the best
+performing accelerators high-level instantiation, available in
+Figure 15. This should correlate with the description of our
+solution 2 presented for the accelerator. Although gures of
+our intermediate solutions could have been generated, it seems
+only relevant to highlight the architecture of which was the
+best performing.
+
+For a more uniform comparison, we note the performance
+& resource utilization. This is listed in Table IV and Table V
+respectively. Solutions are labeled with as x where x is the
+number of a solution. If x = 0, then this is the base-case. Here
+all clock-cycles were obtained through co_sim simulations.
+All resource utilization counts were pulled from implementing
+the designs.
+
+RESOURCE UTILIZATIONS FOR DIFFERENT OPTIMIZATIONS OF A FULLY
+
+CONNECTED NEURAL NETWORK ACCELERATOR
+
+TABLE V
+
+CLB
+LUT
+FF
+DSP
+
+
+137
+551
+715
+5
+
+1
+159
+639
+739
+12
+
+2
+[330]
+[1566]
+[1396]
+[21]
+
+3
+344
+1465
+1069
+17
+
+MODIFICATIONS TO DATA REPRESENTATIONS WITHIN THE FULLY
+
+CONNECTED NEURAL NETWORK ACCELERATOR
+
+TABLE VI
+
+Fig. 15. Architectural Description of the best performing Fully Connected
+Neural Network accelerator, exhibiting a partial loop unrolling in the most
+inner loop, and parent.
+
+TABLE IV
+
+OPTIMIZATION OF A FULLY CONNECTED NEURAL NETWORK THROUGH
+DESIGN SPACE EXPLORATION CC = CLOCK CYCLES, Tc IS THE CLOCK
+
+PERIOD IN NANOSECONDS, Tw IS THE WALL CLOCK TIME IN
+
+MILLISECONDS
+
+MSE
+
+Clock Cycles
+Clock Period
+Wall Clock
+
+CLB
+LUT
+FF
+DSP
+
+Fixed Point [18].[4]
+
+0.00014
+2631681
+
+5.509
+
+14.49 ms
+
+59
+185
+354
+8
+
+CC
+Tc
+Tw
+
+
+
+6.772
+88.81
+
+1
+
+6.402
+33.71
+
+13114901
+
+5265921
+
+[5283842]
+
+5264667
+
+2
+
+[6.183]
+[32.66]
+
+3
+
+6.3
+33.16
+
+As per the requirement of our Design Space Exploration, we
+were to modify the data representation of our fully-connected
+neural network accelerator in order to note any hardware
+changes. By converting all data of oating point representation
+to some xed point scale, it was discovered that we were able
+to obtain a better wall-clock time. The results are listed in
+Table VI. To experiment, we utilized design 2 as it provided
+the best wall-clock time7. Our initial attempt at modications
+to the data representation was to reduce the precision of a
+oating point to an [16].[16] xed point representation. This
+provided a mean square error (MSE) of 0.59, and did not
+meet the requirement. Hence, we continually increasing the
+precision of both the integer and decimal components of
+this representation, until we had met the mean square error
+requirements of this experiment. We ended up obtaining results
+at [18].[4] precision for xed representation. This seemed to
+have an unnecessary representation for the decimal component
+of this representation. Running csim indicated that we had
+hit our required mean square error requirement. We then
+synthesized our design, executed cosim, and exported this
+to an IP core. Reducing the precision on our best oating-
+point design provided a  6.1 speed up from the baseline.
+The metrics we collected are outlined in Table VI.
+
+IV. CONCLUSION
+
+In this report, we reviewed several acceleration schemes
+for several variants of neural networks (convolutional, and
+binarized). We noted on the architectural decisions taken by
+the reviewed works for (1) inspiration & further exploration,
+and (2) comparison of our own acceleration attempts. Initially,
+
+7Recall, we are interested in mainly performance aspects
+
+our focus was applied on Zhang et al.s paper as it was most
+relevant to our convolutional neural network accelerator. We
+evaluated their approach to discovering an optimal accelerator
+utilizing their rooine model. Upon implementation of their
+loop traversals, our mean-squared error became too large. This
+was not suitable. Unfortunately, we did not have time to inves-
+tigate the cause of this. However, further ideas were extracted
+from Zhang et al.s work, where we aimed to pipeline &
+unroll the inner most loop. This optimization to our accelerator
+provided a  2 speed up from baseline. This was the basis
+of their architectural design, to induce as much throughput as
+possible while obeying the memory constraints of the system.
+By pipelining we were able to obtain better throughput. Our
+convolutional neural network accelerator was eventually tuned
+to a  6.1 speed up from baseline, yet did not compare
+with the substantial speed up claimed by Zhang et al. Their
+model accounted for many more design details in regards
+to memory bandwidth and behavioural constraints. We also
+applied this throughput extraction towards our fully-connected
+neural network accelerator. By applying pipeline directives, we
+were able to obtains better throughput (as hypothesized), and
+reach  2 speed up in some cases. The DLAU model closely
+followed this idea of providing consistent throughput through
+pipelining and loop unrolling.
+
+We also found Zhao et al.s work to be interesting, where a
+binarized neural network could produce high quality predictive
+results with regards to performance. By totally reducing the
+precision of a networks computational output to two states,
+we can substantially increase performance. Floating point
+operations can be totally re-engineered as logical operations
+(which operate with much ease within any digital circuit).
+Extrapolating on this idea, we were inspired to reduce the
+precision of our data representation in order to gain perfor-
+mance improvements. In both styles of the neural networks
+investigated here, precision reduction substantially improved
+
+performance, while slightly inating the mean square error of
+some expected outputs. This effect is desirable, as we may not
+always need such high precision for these tasks. We note that
+both of our accelerators do not come close to the performance
+increase claimed by Zhao et al.
+
+It was found in most related works, memory bandwidth
+becomes the bound on accelerations for many algorithms
+that have high data dependencies. Approaches to reduce this
+memory bandwidth constraints aim to tile up data such that
+more data-reuse can ensue on chip. All three related works
+utilize tiling in their accelerators. We did not investigate this
+as time constraints did not permit for it.
+
+Investigations into higher bandwidth memory transfers and
+other works have also begun and show promising results [8],
+[9]. In conclusion, this report investigated several state-of-
+the-art techniques for neural network acceleration performing
+inference. We also implemented and accelerated two styles of
+neural network layers, convolutional and fully-connected, with
+signicant improvements in both styles.
+
+REFERENCES
+
+[1] Y. LeCun, Y. Bengio, and G. Hinton, Deep learning, nature, vol. 521,
+
+no. 7553, p. 436, 2015.
+
+[2] Z. Zhang, Articial neural network, in Multivariate Time Series Analysis
+
+in Climate and Environmental Research, pp. 135, Springer, 2018.
+
+[3] Painting like van gogh with convolutional neural networks.
+[4] C. Zhang, P. Li, G. Sun, Y. Guan, B. Xiao, and J. Cong, Optimizing
+fpga-based accelerator design for deep convolutional neural networks, in
+Proceedings of the 2015 ACM/SIGDA International Symposium on Field-
+Programmable Gate Arrays, pp. 161170, ACM, 2015.
+
+[5] M. Courbariaux, I. Hubara, D. Soudry, R. El-Yaniv, and Y. Bengio,
+Binarized neural networks: Training deep neural networks with weights
+and activations constrained to+ 1 or-1, arXiv preprint arXiv:1602.02830,
+2016.
+
+[6] R. Zhao, W. Song, W. Zhang, T. Xing, J.-H. Lin, M. Srivastava, R. Gupta,
+and Z. Zhang, Accelerating binarized convolutional neural networks with
+software-programmable fpgas, in Proceedings of the 2017 ACM/SIGDA
+International Symposium on Field-Programmable Gate Arrays, pp. 15
+24, ACM, 2017.
+
+[7] C. Wang, L. Gong, Q. Yu, X. Li, Y. Xie, and X. Zhou, Dlau: A scalable
+deep learning accelerator unit on fpga, IEEE Transactions on Computer-
+Aided Design of Integrated Circuits and Systems, vol. 36, pp. 513517,
+March 2017.
+
+[8] J. de Fine Licht, M. Blott, and T. Hoeer, Designing scalable fpga
+architectures using high-level synthesis, in Proceedings of the 23rd ACM
+SIGPLAN Symposium on Principles and Practice of Parallel Program-
+ming, pp. 403404, ACM, 2018.
+
+[9] Y. Ma, N. Suda, Y. Cao, S. Vrudhula, and J.-s. Seo, Alamo: Fpga
+acceleration of deep learning algorithms with a modularized rtl compiler,
+Integration, 2018.
+
+

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Syntactic Sugar</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|Space+Mono:400,700" rel="stylesheet">   
+  
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../static/css/normalize.css">
+  <link rel="stylesheet" href="../static/css/skeleton.css">
+  <link rel="stylesheet" href="../static/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="../static/css/stroll.css">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="stylesheet" href="../static/css/graphing.css">
+
+  <!-- Javascript
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="../static/js/jquery-3.2.1.js"></script>
+  <script src="../static/js/mark.js"></script>
+  <script src="../static/js/stroll.js"></script>
+  <script src="../static/js/tippy.js"></script>
+  <script src="../static/js/dragula.min.js"></script>
+  <script src="../static/js/d3.v3.min.js"></script>
+  <script src="../static/js/index.js"></script>
+  <script src="../static/js/graphing.js"></script>
+ 
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <canvas id="cnvs">
+    
+  </canvas>
+  <div class="navbar">
+    <a id="upload_btn">Bake <i class="fas fa-fire"></i></a>
+    <a id="help_btn">Help <i class="fas fa-question"></i></a>
+    <a id="hide_term"><i class="fas fa-chevron-up"></i></a>
+    <a id="show_term"><i class="fas fa-chevron-down"></i></a>
+
+    <a id="cleanup_btn" style="float:right;">Cleanup <i class="fas fa-trash-alt"></i></a>
+  </div>
+
+  <div class="container">
+    <div class="row" style="margin-top: 5%; margin-bottom: 5%">
+      <div class="one-half column">
+        <h1>Syntactic Sugar</h1>
+      </div>
+      <div class="one-half column">      
+        <div class="search-container">
+          <input type="text" placeholder="Search.." id="search" name="search">
+        </div>      
+      </div>
+    </div>
+  </div>
+
+  <div id="view_changer_container" class="container">
+    <div class="view_changer">
+      <a id="v1" title="Summary" onclick="change_view(0);"><i class="fas fa-book"></i></a>
+      <a id="v2" title="Importance" onclick="change_view(1);"><i class="fas fa-chart-bar"></i></a>
+      <a id="v3" title="Similarity" onclick="change_view(2);"><i class="fas fa-th-large"></i></a>
+      <a id="v4" title="Keywords" onclick="change_view(3);"><i class="fas fa-tags"></i></a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">   
+      <div id="doc_contents" style="overflow-y: auto;" class="twelve columns">
+        <h2 id="doc_title"></h2>
+        <div id="doc_contents_div">
+
+        </div>
+      </div>
+
+      <div id="summary_display_p" class="six columns">
+        <h2>Summary <i onclick="save_summary();" class="far fa-save save_summ"></i></h2>
+        <div id="summ_contents"  style="overflow-y: auto;">
+          
+        </div>
+      </div>        
+      
+      <div id="entropy_graph_p" class="six columns">
+        <h2>Entropy Graph</h2>
+        <svg id="entropy_graph"></svg>
+      </div>
+      
+      <div id="similarity_graph_p" class="six columns">
+        <h2 id="sim_prop" style="display: none;">Similarity Graph <i title="Semantic Similarity ordered by proportions." id="sim_prop_i" style="cursor: pointer; float: right;" onclick="show_proportions();" class="fas fa-chart-pie"></i></h2>
+        <h2 id="sim_sim">Similarity Graph <i title="Semantic Similarity ordered by relatedness." id="sim_sim_i" style="cursor: pointer; float: right;" onclick="show_sim();" class="fas fa-signal"></i></h2>
+
+        <svg id="structure_sim"></svg>
+      </div>
+
+      <div id="frequency_map_p" class="six columns">
+        <h2>Frequently Used Words</h2>
+        <ul id="frequency_map_ul" class="freq cards">
+          
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+<!-- File Modal -->
+<div id="file_modal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <a id="upload_modal_close" class="close">
+      <i class="fas fa-times"></i>
+    </a>
+    <div class="container">
+      <form id="upload-file-form" enctype="multipart/form-data" method="post">
+        <div class="row" style="margin-top: 60px;">
+          <input id="upload-file" name="upload-file" type="file" accept=".txt,.pdf">
+        </div>
+        <div class="row">
+          <a onclick="upload_file();">Upload <i class="far fa-hand-pointer"></i></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Help Modal -->
+<div id="help_modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <a id="help_modal_close" class="close">
+      <i class="fas fa-times"></i>
+    </a>
+      <div class="help_modal_content" >
+        <h2>Hallo,</h2>
+        <pre>
+          <code id="about_me_code">
+
+    I am Nicholas Giamblanco. 
+    I am the designer of Syntactic Sugar,
+          a text summarization system.
+
+    I have created this website to help explore 
+    what Syntactic Sugar has to offer for textual information.
+
+    What This Offers:
+
+    + Semantically Relevant Summary of Information
+
+    + Spatial Highlighting of Information
+
+    + Sentence Importance Map
+    
+    + Keyword Identification
+    
+    + Similarity Indexing
+
+    How This Works:
+    + You'll see two very 
+
+          </code>
+        </pre>
+      </div>
+  </div>
+</div>
+
+<!-- Help Modal -->
+<div id="sim_modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <a onclick="close_sim_modal();" class="close">
+      <i class="fas fa-times"></i>
+    </a>
+    <div class="sim_content_holder">
+      <div id="sim_content">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<a id="file_download_ref" style="display: none;"></a>
+<input type="hidden" id="all_data" value="">
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

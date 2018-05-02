@@ -1,0 +1,2443 @@
+EMMC: A Topic Extraction and Word Clustering
+
+Model with Monte Carlo Search Trees and
+Maxwell’s Electromagnetic Relationships
+
+Nicholas Giamblanco Member, IEEE,, Prathap Siddavaatam, Member, IEEE,
+
+1
+
+Abstract—With the arrival of the information age, there has
+been an inﬂux of data. This abundance of data exceeds human
+capacity for interpretation. Typically an interpretation of textual
+data can be equated to a summarization of the information.
+This summary generally includes major themes, ideas, and/or
+topics relevant to the data. Although it is possible to read a
+document and uncover these quantities,
+it generally requires
+several reviews of the data. Therefore, it would be a difﬁcult task
+for a human to read and summarize several hundred documents
+of information. More so, the difﬁculty of this task increases
+due to the abundance of digital data produced daily. Alas, an
+automated language interpreting system is of value for such a
+large task. These automated language interpreting systems are
+commonly known as topic models. This paper proposes a novel,
+unsupervised topic model, utilizing Maxwell’s electromagnetic
+equations and a greedy Monte Carlo Tree Search (MCTS) ﬁtted
+with an AIMD selection process. This approach allows for an
+algorithmic-efﬁcient computation against topics within a textual
+document, with a novel way to cluster information together using
+electromagnetic relationships and Monte Carlo Tree Searches.
+This model deviates from the standard mixture model approach,
+using a Euclidean interpretation of text and the structure of the
+data to infer information of ’latent’ topics. Experimental results
+demonstrate the proposed model has signiﬁcant improvements
+over state-of-the-art models.
+
+Index Terms—Machine Learning, Data & Text Mining, Doc-
+ument Classiﬁcation, Topic Modeling, Maxwell’s Equations,
+Electrostatics, Electromagnetic, Gaussian Distribution, Charge
+Clustering
+
+I. INTRODUCTION
+
+T OPIC models are of interest to the machine learning
+
+community, due to their ability to place related words
+together. These relations are labeled as topics. One desirable
+quality of topic models are their ability to discover latent topics
+with limited background knowledge of some given data. This
+behavior is a trademark of unsupervised machine learning
+algorithms [5] [34] [8]. Supposing a textual document was
+provided to a topic model, a ’topical’ relation or mixture
+should be discovered, providing a quick and effective sum-
+mary to central ideas of that textual data. It is important to
+highlight the fundamental difference between a topic model
+and an unsupervised classiﬁcation algorithm: the relation of
+words resulting from a topic model are not clustered or
+
+N. Giamblanco is a Graduate Student in the Department of Electrical and
+Computer Engineering, University of Toronto, Toronto, Ontario, Canada. E-
+Mail: nicholas.giamblanco@mail.utoronto.ca
+
+P. Siddavaatam is a Ph.D Student in the Department of Electrical and
+Computer Engineering, Ryerson University, Toronto, Ontario, Canada. E-
+Mail: prathap.siddavaatam@ryerson.ca
+
+classiﬁed on boundaries. Topic models assume each word
+has a potential
+to be included with every topic, forming
+some sort of proportional mixture. Unsupervised classiﬁcation
+algorithms may have a similar underlying structure, but their
+aims vary in how words are placed together. Instead of the
+topic modeling assumption, these classiﬁcation algorithms try
+to ﬁnd boundaries against the textual data [8]. The general
+structure of topic models have been modiﬁed and adapted for
+other applications: this is to uncover other hidden mixtures
+in many other ﬁelds, where data may behave differently than
+textual data [39]. Most topic models follow a similar mixture
+model like that of Latent Dirichlet Allocation [4].
+
+However, the idea of a topic is somewhat convoluted, in
+the sense that it may not be quantiﬁable [14]. For example,
+if the topic of science is mentioned, it may be that the actual
+topic is about a subset of science, such as Nuclear Physics, or
+Biology. As well, a topic may not be best deﬁned by one or two
+words. It is possible that a speciﬁc topic may be best described
+by a phrase. This confusion is intensiﬁed if there is no prior
+knowledge about some set of information (without strictly
+referring to language as our medium). Therefore, the general
+assumption for topic models are to not label the relations of
+word per topic.
+
+However, when explicitly dealing with language as the
+medium for topical analysis, several issues arise. Primarily,
+language holds ambiguity with meaning. Authors may try
+to convey some idea, where the idea can be subjected to
+some external view or interpretation. This may or may not
+skew the results of a user’s interpretation of a document.
+Furthermore, the English language holds several interesting
+yet confusing rules. An example of such a rule is a homonym
+[2]. A homonym in the English language is a word which holds
+different meanings, depending on the surrounding context. For
+example, the word bear, can either indicate the aggressive and
+powerful mammal or the action of holding/carrying an item.
+These rules add difﬁculty for topic models, as computational
+systems do not have the required capability for contextual
+awareness [19]. Topic models alleviate such issues by assum-
+ing words may take on more than one meaning. This is made
+possible through mixture models.
+
+Concisely, mixture models describe a subpopulation of a
+probabilistic distribution from an overall population without
+the use of labeled data for the subpopulation as a means
+of identiﬁcation. Formally, a mixture model corresponds to a
+mixture of probability distributions which represent the obser-
+vations of the total population. Mixture models are byproducts
+
+from probabilistic generative models.
+
+K
+
+[U]
+θ
+
+P
+
+zi
+
+U
+
+xi
+
+N
+
+[P]
+φ
+
+Fig. 1. An example of a mixture model (displayed in plate notation)
+
+A generative model aims to provide reasoning on a certain
+application’s outcome, through use of probabilistic distribu-
+tions. More thoroughly, generative models are a mixture of
+probabilistic distributions which describe the joint behavior
+between some random variables, and are used to derive other
+statistical measures for use in prediction and classiﬁcation.
+Generative models are the basis of most topic models [24] [4]
+[22] with some exceptions [23].
+
+The problem we face with Topic Models is the lack of
+understanding and quantifying of their effectiveness, as both
+an algorithm, and a literature analysis tool.
+
+In the following section, several precursors are reviewed to
+gain fundamental understanding of the proposed topic model.
+
+II. PRELIMINARIES
+
+A. Probabilistic Latent Semantic Indexing
+
+Probabilistic Latent Semantic Indexing (PLSI) was one
+of the ﬁrst topic models to quickly gain probability in the
+Natural Language Processing community [17]. It was derived
+from Latent Semantic Analysis (LSA) [21], where the model
+provides the following:
+
+• Represent a document as a high dimensional vector space,
+
+using term frequency as a base
+
+• Provide a dimensionality reduction by a linear projection
+
+(Singular Value Decomposition) [13]
+
+By reducing the dimensionality of documents from the high di-
+mensional representation, estimating and computing similarity
+between documents and terms within document became sim-
+pliﬁed. Although successful, LSA lacked the statistical back-
+ground required for some natural language tasks [17]. Proba-
+bilistic Latent Semantic Indexing provides a generative model,
+extending LSA’s premise to a strong statistical foundation.
+PLSI assumes a certain class z ∈ Z = {z1, z2, . . . , zk} is as-
+sociated to every observed word w ∈ W = {w1, w2, . . . , wm}
+in a document d ∈ D = {d1, d2, . . . , dn}. PLSI assumes that
+Z is a latent variable, and W and D are observed. PLSI’s
+generative model is as follows:
+
+• Choose a document d with P (d),
+• Choose a latent class z with P (z|d)
+• Generate a word with P (w|z)
+
+2
+
+The only observable variables are w, d, neglecting z. Given the
+two observable random variables w, d, the joint probability can
+be computed as:
+
+P (w, d) = P (d)P (w|d)
+
+(1)
+
+Due to the generative model,
+
+P (w|d) =
+
+P (w|z)P (z|d)
+
+(cid:88)
+
+z∈Z
+
+This model require a summation over all possible classes,
+outlining a mixture model behavior. To obey such behavior, it
+is assumed w and d are independent of each other, relating to
+the a bag of words assumption [41]. Also, the conditional in-
+dependence is placed upon z, such that w words are generated
+independently from d.
+It can be noted that this model differs from a completely
+Naive Bayes approach, where the distribution P (w|d) provides
+a mixture on the words per document, instead of a cluster
+group. This mixture based approach can provide specialized
+tuning and power [29], compared to the clustered approach.
+Using the log-likelihood principal P (d), P (w|z), and
+P (z|d) can be determined:
+
+n(d, w)log(P (d, w))
+
+(2)
+
+(cid:88)
+
+(cid:88)
+
+d∈D
+
+w∈W
+
+L =
+
+where n(d, w) is the term frequency per document, (the num-
+ber of times w occurred in d. Due to the latent nature of this
+model, a typical approach uses an Expectation-Maximization
+(EM) approach, against the log-likelihood.
+
+Derivation of these EM formulae for PLSI can be alloted
+to the reader, as this concludes the discussion of PLSI [17].
+
+B. Latent Dirichlet Allocation
+
+With Blei’s Latent Dirichlet Allocation (LDA) [4], topic
+models became advantageous to quickly and efﬁciently extract
+meaningful data from a data source. LDA is a generative
+probabilistic model, using a three-layer hierarchal Bayesian
+approach. LDA builds upon the fundamentals presented with
+PLSI. This assumes that a document was generated by a
+mixture of probabilistic models, and aims to uncover hidden
+topics by reversing the generative approach. This reversal
+requires the use of a inference algorithm to compute the hidden
+or latent topics. Blei’s model has the following assumptions:
+• A word w is used as a discrete unit, characterized by an
+
+index, which ranges by the vocabulary {1, 2, . . . , V }
+
+• A document W consists of a sequence of I words W =
+
+• A Corpus C is a set of k documents, where C =
+
+(w1, w2, . . . , wi)
+{W1, W2, . . . , Wk}
+
+With the assumption that a collection of documents was
+generated on a probabilistic basis, the following assumptions
+were made in [4] explicitly to describe the process for each
+W in C :
+
+1) Select I ∼ Poisson(ζ)
+2) Select θ ∼ Dir(α)
+3) For each wi in I:
+
+a) Select a topic zi ∼ Multinomial(θ)
+
+I(cid:89)
+
+i=1
+
+(cid:32) I(cid:89)
+
+(cid:88)
+
+i=1
+
+zi
+
+(cid:32) Ic(cid:89)
+
+(cid:88)
+
+(cid:90)
+
+(cid:90)
+
+k(cid:89)
+
+b) Select a word wi from P (wi|zi, β) a multinomial
+
+probability conditioned on zi
+
+The Dirichlet distribution is dimensionally reduced on the
+assumption that the number of topics are known prior to the
+generative process. However Dir(α) is parametrized by α and
+β. The Dirichlet distribution can be seen as a topic mixture
+measure, such that α, β, θ, a set of i topics Z, and a set of i
+words W is given by:
+
+P (θ, Z, W|α, β) = P (θ|α)
+
+P (zi|θ)P (wi|zi, β),
+
+(3)
+
+where P (zi|θ) is simply θi for the unique i such that zn
+i =
+1. By integrating over θ and summing over z, the marginal
+distribution of a document W is:
+
+(cid:33)
+
+(cid:33)
+
+dθc
+
+P (W|α, β) =
+
+P (θ|α)
+
+P (zi|θ)P (wi|zi, β)
+
+dθ.
+
+(4)
+Lastly, taking product of the marginal probabilities of single
+
+documents provides the probability of a corpus:
+
+P (C|α, β) =
+
+P (θc|α)
+
+p(zci|θc)P (wci|zci, β)
+
+c=1
+
+i=1
+
+zci
+
+This probabilistic nature is described using plate notation
+for Bayesian Inference [36]. The plate notation describes
+the Latent Dirichlet Allocation generative process graphically.
+Each plate denotes sampling for each of the nodes atop the
+plate. Each node is either a latent (white) or known (shaded)
+random variable or hyper parameter. The arrows indicate a hi-
+erarchal dependence. Therefore, the latent variable β depends
+upon wn,m This model describes the generative process for
+
+3
+
+C. Keyword and Keyphrase Extraction Using Newton’s Law
+of Universal Gravitation
+
+Keyword and keyphrase extraction systems should be ex-
+plored due to their close alikeness to topic models. Keyword
+and Keyphrase extraction systems attempt to classify informa-
+tion by using a specialized subset of data from the information.
+This subset is classiﬁed as the keywords, where each word
+can be used to obtain a general
+idea of the information.
+N. Giamblanco’s keyword and keyphrase extraction system
+utilizes Newton’s Law of Universal Gravitation to collect the
+keyword and keyphrases of a textual document [12]. This
+model employs the famous relationship [15] between mass
+and distance and force, where the force F between two
+masses m1 and m2 are inversely proportional to the square
+of the distance between them, r2. More formally, the force of
+attraction between two masses can be written as:
+
+Fm1m2 ∝ m1m2
+r2
+
+(5)
+
+An interesting consequence of using this relationship dramat-
+ically reduces the force between two masses, as long as r
+becomes very large, or r → ∞. Both m1 and m2 must be
+less than ∞. Using this fact, the force Fr becomes a limit
+
+Fr = lim
+r→∞
+
+m1m2
+
+r2 = 0
+
+(6)
+
+This is known as the inverse square law [10]. This same
+relationship occurs in Maxwell’s electrostatic equations. Par-
+ticularly this is Coulomb’s Law [37], where the force of
+attraction between two point charges q1 and q2 becomes:
+
+Fq1q2 =
+
+kq1q2
+
+r2
+
+(7)
+
+where the general form of both equations take:
+
+F ∝ C
+r2
+
+where C ∈ IR is a constant. Due to the inverse square law,
+r2 ≈ 0.
+there must exist a distance  ∈ IR such that limr→
+Here,  can be considered as cutoff distance, where masses
+at and past this point no longer have relevance in this rela-
+tionship. This ends our discussion of previous works in the
+preliminary discussion, as enough intuition as been provided
+for the model.
+
+C
+
+Fig. 2. Plate Model representation of LDA’s generative model
+
+III. THE EMMC MODEL
+
+a document, but requires the reversal of this process in order
+to extract topics from the corpus. Speciﬁcally, some sort of
+inference must be made on this probabilistic mixture model.
+To extract topics from a corpus, the posterior distribution
+P (θ, Z|W, α, β) must be computed. Like many other mixture
+models, Latent Dirichlet Allocation solution to the posterior
+is intractable. Hence, several sampling techniques exists to
+approximate the inference calculation such as Gibbs Sampling
+[7]. The background provided for both LDA and P LSI is
+sufﬁcient to understand the considerations behind the model
+proposed in this paper. This concludes our discussion of topic
+models. However, a keyword and keyphrase extraction system
+will be investigated for intuition.
+
+Table I provides a list of notation, useful for the discussion
+
+of the EMMC Model
+
+One of the fundamental assumptions with EMMC is that
+each word can be viewed as a point charge in Euclidean
+space IR2 [35], each with some charge component. This
+particular assumption is employed to harness the power of
+both Maxwell’s electrostatic equations [33] and a novel Monte
+Carlo Tree Search (MCTS) Algorithm [9]. The theoretical
+implications from Maxwell’s electrostatic equations become
+apparent in this following sections, as we will attempt to prove
+the usefulness of a geometric representation of a document.
+Maxwell’s relations prove to be useful in partnership with
+the MCTS algorithm. EMMC will now be explored for the
+
+TABLE OF NOTATION USED IN THE EMMC MODEL
+
+TABLE I
+
+Description
+
+of the data, the recovered topics may not be well chosen. To
+improve the performance of EMMC, we apply a noise ﬁlter
+to D.
+
+4
+
+the document for analysis
+
+the number of words in the document
+
+the set of all charge components
+
+the number of characters in the ith word
+
+the set of all topics
+
+the number of requested topics
+
+the number of words per requested topic
+
+the desired height of the shallow Monte Carlo tree
+
+the desired children per level of the shallow Monte Carlo tree
+
+the simulation size for the Monte Carlo Tree
+
+the desired number of new nodes for tree expansion in MCTS
+
+the Monte Carlo tree
+the kth topic of D
+the ith word of D
+
+the frequency of the ith word
+
+the ith charge component from wi
+
+the threshold for optimal game play-out of MCTS-AIMD
+the subset of topics which are assigned to the ith word
+
+the number of potential topic root candidates
+
+The ith index in the document D
+
+Notation
+D
+V
+Q
+Ai
+Z
+k
+β
+H
+C
+G
+T
+χ
+zk
+wi
+fwi
+qi
+γ
+ηi
+κ
+pi
+
+assumptions it has placed, and the analysis of it’s theoretical
+behavior.
+
+Formally, this model assumes:
+1) The document D is a Euclidean space in IR2
+2) Each word wi is associated to some index pi ∈ P ⊆ Z+
+3) Each pi exists in IR2
+4) D consists of a sequence of V words (w1, w2, . . . , wV )
+topics zi ∈ Z =
+5) There are several classes of
+6) ∀zy ∈ Z, zy contains a root of origin within D, where
+7) ∀wi ∈ D, wi is associated to ηi, where ηi ⊆ Z
+8) ∀wi ∈ D, wi is associated to some charge component
+
+where V ∈ Z+
+{z1, . . . , zk} where k ∈ Z+
+zy is associated with a py ∈ P
+
+qi ∈ Q = {q1, . . . , qV} and ∀qi ∈ Q, qi ∈ IR
+
+A. Overview
+
+compute for all topics:
+
+EMMC performs the following high-level logic in order to
+1) For each word wi ∈ D, assign a charge component qi
+2) For Each Requested Topic zg in Z
+a) Draw κ Normally Distributed points p1, . . . , pκ ∈
+D as Topic Root Candidates
+
+b) For Each Topic Root Candidate pl:
+
+i) Calculate the electric ﬁeld intensity at pl
+
+c) Select the Topic Root Candidate pc, where the
+
+electric ﬁeld intensity was the largest.
+
+d) Using a Monte Carlo Search Tree, play Select-a-
+
+topic, with the root at pc
+i) Choose a winning branch from the Monte Carlo
+e) Propagate winning branch throughout D to redis-
+
+Search Tree
+
+tribute the charge density.
+
+This logic describes the process of how EMMC discovers
+topics within some data. However, depending on the quality
+
+B. Noise Filtering
+
+In a signal processing domain, noise ﬁltering removes or
+reduces signals that are not useful in an application. Usually,
+these signals cause undesirable effects on the outcome of
+application. If we consider this Topic Model as a signal
+processing unit, we will come to the following relationship:
+
+Y (f ) = H(f )X(f )
+
+(8)
+
+Such that H(f ) is the topic model system, X(f ) is the input
+to the system, and Y (f ) is the output of the system, once an
+input has been applied. A topic model requires textual data
+to be used as X(f ). However, within X(f ) lies noise. Noise
+in textual data takes the form of conjunctions, determiners,
+prepositions, and other words classes which include ’and’,
+’but’, ’a’, etc. Our model reduces/removes this noise by
+applying a ﬁlter to the input X(f ). Therefore, our model
+becomes:
+
+Y (f ) = H(f )F (f )X(f )
+
+(9)
+
+Where F (f ) is a logical comparison against the words
+(signals) in the input. F (f ) hosts the noise internally, and
+logically compares all words inputted to the system against
+the ’known’ noise. If a logical match is made, the word is not
+used in the analysis of the topic model. Hence, the undesirable
+word has been removed, as per the general application of a
+noise ﬁlter. The algorithm is presented in Algorithm 1
+
+Algorithm 1: Procedure for Noise Filtering
+Result: D := {w0, . . . , wV}: Document of size V
+: D(cid:48)
+Input
+I := {i1, . . . , in}: Stopwords of length n
+
+:= {w0, . . . , wV }: Document of size V > V
+
+1 idx ← 1
+2 foreach word in D(cid:48) do
+
+/* Parsing words in the Document D
+
+and filtering noise
+
+if word NOT in I then
+
+/* Add Word to D
+D[idx] ⇐ word
+
+end
+Increment idx by 1
+
+3
+
+4
+5
+77
+8 end
+
+*/
+
+*/
+
+Described earlier in the PLSI [36] and LDA models [4],
+only D is observed, inferring the prior knowledge of ∀wi ∈ D.
+However, the model does not behave as a generative model.
+Generative Models generally attempt
+to solve for a joint
+distribution against some random variables. Generative models
+provide ﬂexibility for mixtures of distributions, but suffer in
+computational complexity (as many mixture models become
+intractable) [29] [20] [38]. EMMC is a discriminative model,
+
+solving directly for the posterior distribution P (zy|wi), where
+zy ∈ ηi.
+As noted above, each topic zy has a root of origin in
+the documents Euclidean representation, py ∈ P. Our model
+assumes each topic begins about it’s respective centralized
+point. This assumption provides the basis of our model, that
+at some point in the document, a topic zy exists, where the
+surrounding words in some distance r from this py may or
+may not be related to this topic. To determine the probabilistic
+relation against a speciﬁc topic for any given word, any prior
+distributions should be explored to assist in the derivation of
+this model’s distribution P (zy|wi).
+
+Each word has a probability of occurrence:
+
+P (wi) =
+
+1
+V
+that wi
+
+(10)
+
+(11)
+
+(12)
+
+to highlight
+
+is important
+
+It
+is the probability of
+occurrence as a whole. This means wi is considered not to
+be apart of a topic zk. But, wi may be equivalent to wj, such
+that:
+
+P (wi) =
+
+1
+V , where wi = p
+
+(cid:88)
+
+p∈D
+
+This provides the relationship for the frequency of occurrence
+of wi, such that:
+
+fwi = P (wi)V
+
+However, an assumption can be placed on words wf , . . . , wg
+which may be related to topics zf , . . . , zg, where:
+0 ≤ f, g ≤ V, where f (cid:54)= g and f < g
+
+(13)
+
+By inspecting this constraint, a topic zy may be viewed as a
+random variable, such that zy from Z:
+V
+∀zk ∈ Z, zk ∼ N (
+2
+
+,V)
+
+(14)
+
+The intuition that all members of Z distributes Normal dis-
+2 and σ2 = V lies in the
+tribution’s with parameters µ = V
+relationship of a document’s geometric interpretation. A topic
+must lie between the range of all the words in the document,
+with high probability that most of the roots for topics lie within
+the 1st standard deviation of D.
+
+Although this would be sufﬁcient for one topic, our model
+must somehow simulate a mixture of topics. Thus, several
+instances of the random variable Z must be sampled from
+2 ,V), and used as candidates for a given topic zy. Specif-
+N (V
+ically, κ samples are drawn from N (V
+2 ,V). These samples,
+J = {s1, . . . , sκ} can be referred to as the Candidate Topic
+Roots. However,
+
+∀si ∈ J , si is related to some wu
+
+(15)
+
+Recall that an assumption was placed on each word wu such
+that:
+
+∀wu ∈ D, wu is related to qu
+
+(16)
+
+Where qu is the charge component (in Coulombs) associated
+with wu. To choose qu, the following operations are required:
+(17)
+(18)
+
+wu = (c1, . . . , cAu )
+qu = Aufwu
+
+5
+
+Through simulating a quantity of electric charge per word, the
+applied mathematics of electromagnetism can be utilized for
+potential tools relating to intensity calculations.
+
+C. EMMC’s Electromagnetic Relation
+
+Due to the geometric nature of D, we can employ Maxwell’s
+Electrostatic Equations on the Candidate Topic Roots in the
+following way:
+
+Given a point of observation, and a point charge in IR2 ,
+The Electric Field Intensity can be computed in the following
+fashion
+
+(cid:126)E =
+
+q
+
+4πo(cid:126)r 3 (cid:126)r
+
+(19)
+
+Where (cid:126)r is the geometric distance vector between the point
+of observation, p and the point charge q, directed from p
+to q. It is important to note that the points p and q must
+be placed into their respective position vectors. To obtain a
+position vector from a point p, the vector’s magnitude and
+direction are calculated relative to the origin of the space.
+Hence, (cid:126)rpq = (cid:126)q − (cid:126)p Now suppose that there are a collection
+of point charges of size V, the electric ﬁeld intensity can be
+computed as:
+
+(cid:126)E =
+
+1
+
+4πo
+
+qi
+3 (cid:126)ri
+(cid:126)ri
+
+(20)
+
+V(cid:88)
+
+i=1
+
+Using this equation, the electric ﬁeld intensity is computed
+κ times, where the point of observation is replaced with
+each geometric position of the Candidate Topic Roots. A
+collection of Electric Field intensities can be collected, such
+that Es = ( (cid:126)E1, . . . , (cid:126)Eκ). Es is sorted, from greatest to least.
+Intuitively, a higher charge distribution will skew the Electric
+Field Intensity [33], such that an area of importance for a
+given topic may be available. Therefore, ranking Es will
+provide an indication for selecting the most likely Candidate.
+An assumption is placed on the ranking algorithm, where
+the algorithm employed operates with the least running time
+complexity [25]. The greatest element (cid:126)Eg and second greatest
+element (cid:126)El of Es are selected, such that (cid:126)Eg’s relative word
+wg becomes the root of the kth topic class, and (cid:126)El’s relative
+word becomes wl the geometric location is used as the mean
+for Z’s mean in the (k + 1)th topic class.
+
+This allows for insight into the distribution of P (zk) such
+
+that:
+
+∀z
+
+(cid:48)
+
+k ∈ Z, z
+
+(cid:48)
+
+k ∼ N (µzi−1 ,V)
+
+(21)
+
+In this relationship µzi−1 refers to the previously selected
+topics second highest electric ﬁeld intensity placement. This
+assumption is important, as it provides intuition for the next
+likely topic to occur based off the previous topic. Once the
+root candidate has been selected, the related words per topic
+root must be selected. EMMC provides a novel way to cluster
+words zr = {wa, . . . , wb} where:
+
+b − a = β
+∀wr, we ∈ zr, wr (cid:54)= we
+
+(22)
+(23)
+
+D. Monte Carlo Search Trees
+
+E. EMMC: Selection Phase
+
+6
+
+To meet this criteria, a Monte Carlo Tree Search algorithm
+is employed, due to the geometric representation of D. Due to
+the concept of distance r21 between two points p1, p2 in IR2,
+such that r ∈ IR2 and r21 = p1 − p2, a graphical frame can
+be applied against the geometry, allowing for the concept of
+trees. Therefore, the usage of MCTS is warranted.
+Typically a tree search algorithm is provided with some
+data D and an environment where D is used,
+in hopes
+of obtaining a desired output, zr. Speciﬁcally, Monte Carlo
+Tree Search algorithms provide a best-ﬁrst search method,
+developed through Monte Carlo simulations [28]. Monte Carlo
+search trees have two requirements: (1) The tree used for
+analysis should be shallow and (2) The simulations produced
+from the shallow tree should be deep. These two requirements
+elude to an optimal four step procedure to discovering an
+optimal move. The procedure is summarized below:
+
+1) Selection: By applying a set of rules, a subset of the tree
+is selected from the root of the tree, to a particular leaf.
+2) Expansion: Once the selection process has completed, a
+
+new node is added to the tree.
+
+3) Simulation: From the newly added node, a play-out
+occurs until the tree reaches an end of game condition
+(the desired output).
+
+4) Backward Propagation: Once the desired output has
+been selected, the choice will now propagate this de-
+cision towards the root of the tree.
+
+A graphical summary of these steps is shown in Figure 3
+
+Fig. 3. A graphical summary of the MCTS algorithm, [28]
+
+MCTS offers many beneﬁts on the basis of computational
+consumption. Suppose there is some system Ω, in which has
+some sort of computation limit. That is, Ω has an input x,
+an output y and that Ω can only execute n tasks at any
+given time, t. It may be possible that a certain input x
+to
+Ω may present more than n tasks to be executed at time
+(cid:48)
+. Therefore the concept of a computational limit has been
+t
+established. MCTS presents ﬂexibility in implementation, such
+that a computational limit on a system Ω can be applied to the
+general approach of MCTS such that MCTS only performs up
+to the maximum limit n [6].
+
+(cid:48)
+
+In the case of our model, EMMC modiﬁed the general
+behavior of MCTS to discover the words wi, . . . wk of a topic
+zs ∈ Z. MCTS is generally used for statistical play-outs in a
+game-like environment. [9] We will begin our discussion of
+EMMC’s Monte Carlo Tree Search with it’s selection phase.
+
+The game being played in EMMC is Select-a-topic. In this
+
+game, the rules are as follows:
+
+1) Select a subset of words W = {wa, . . . , wb}
+2) For each word wi in W , calculate its respective score
+
+using the function:
+
+Score(wi) = | qi−→rwi
+
+(24)
+2| utilizes the inverse square law for it’s
+
+The score | qi−−→rwi
+relatively steep drop off for large values of (cid:126)rwi
+This would imply that words closer to the root and with
+
+2| > γ
+
+2.
+
+greater charge should be closely related to the topic root.
+However, there must be some threshold α, such that all
+words | qi−−→rwi
+2| > α must be of more importance (either geo-
+metrically, or semantically) than | qi−−→rwi
+2| ≤ α. This threshold is
+set as γ within this model. It may be intuitive to set γ = C,
+where C ∈ IR is some constant for each of the iterations of
+MCTS, yet this does not yield excellent game-play.
+Suppose that as we traversing through the tree representation
+of D, and that γ = C for each iteration. As we begin
+at a root selected through EMMC’s root election process,
+each word wt which is apart of the subtree of D has a
+2| > γ. Thus, every word encountered in this subtree
+| qi−−→rwi
+is deemed important. This is no longer an optimal situation
+for game play-outs. Instead, we employ an Additive Increase,
+Multiplicative Decrease relationship towards γ.
+
+F. Additive Increase, Multiplicative Decrease
+
+The idea of additive increase multiplicative decrease
+(AIMD) has been employed in applications such as network-
+ing. Speciﬁcally, AIMD has been employed for congestion
+control in computer networking (The Transmission Control
+Protocol
+is one example) [40]. The general problem with
+computer networks is the available capacity of a network
+versus the number of users requesting partial capacity at any
+given time. This relationship can be represented as a random
+process. Suppose that there is some resource R, which is
+limited, 0 < R < ∞. This resource exists in an environment,
+where N users live. However, of the N users, a random
+subset of users X take some portion of R at any given time.
+This relation can modeled as a random process, such that
+the number of users N, at sometime t, will provide us with
+X ⊆ N at each time t [16]. The reader is encouraged to review
+a more formal and rich discourse of AIMD algorithms noted in
+[16]. Hence, there must be an efﬁcient way to fairly share this
+resource R. Suppose that each user u is alloted some initial
+share a of R, where u ∈ N. Then, if any one user request for
+more of R, the following will occur: (1) If there is more R
+available, take the extra resource, (2) If there is no more of
+R, do not take any more of the resource, and give up some
+of your resource.
+
+If a user enters condition (1) upon resource request, a user
+may only apply an additive measure on-top of their already
+owned resource. For example, suppose that user ut owns at of
+
+R. Currently, there is bt left of R. The user ut can only ask
+for an constant increase if . If if < bt, then ut is permitted
+the extra resource, making the user’s total consumption at +
+if . This particular condition is the logic associated with the
+Additive Increase phase of AIMD.
+
+If a user enters condition (2), they must release some factor
+of their resource τ. That is, if a user ut holds onto at, and
+request for if but if > bt, then ut will decrease at by a factor
+τ . This condition is known as
+of τ, providing ut with at = at
+the Multiplicative Decrease phase of AIMD.
+
+A typical relationship of between one user and a computer
+
+network appears in Figure 4.
+
+7
+
+As γ can take on any given value at anytime. More formally
+if we suppose the following:
+
+∃Dt|∀wt, wk ∈ Dt, wt (cid:54)= wk
+
+(26)
+
+Then the frequency of occurrence for each word is just 1.
+And supposing that their is a word ws where it’s frequency
+of occurrence is large, it will slightly skew this uniform dis-
+tribution. However, if V is signiﬁcantly large, the words with
+high frequency of occurrence {wy, . . . , wz} will be normalized
+such that the effects on the conditional distribution remain
+approximately equivalent. The relationship is as follows:
+
+P (wi|γ) = limV→∞
+
+1
+V , where wi = p
+
+(27)
+
+(cid:88)
+
+p∈D
+
+A large value of V would reduce the effects of high frequency
+words in a distributive sense. Referring to Figures 5,
+the
+frequency of occurrence is distributed fairly evenly, approx-
+imating a uniform distribution, as highlighted before.
+
+Fig. 4. A typical response of a computer network with TCP [3]
+
+G. AIMD in EMMC’s MCTS
+
+The applicability of the AIMD algorithm in EMMC be-
+comes apparent in the following situation: The resource avail-
+able in EMMC is γ. There are V competitors for the resource
+γ. That is, all the words in the document are wishing for
+this resource γ. A concept of fairness should be applied to
+all the words wishing to gain γ. In the context of EMMC,
+fairness would imply that the words score, | qw−→rw
+2| > γ. Hence,
+if everyone is allowed to have γ, the concept of a threshold
+becomes meaningless. Therefore the AIMD-like algorithm is
+presented in Algorithm 2 to assist the MCTS algorithm.
+
+Fig. 5. The Word Frequency relationship taken from 2016 − June.txt
+
+Algorithm 2: Additive Increase Multiplicative Decrease
+Threshold Assignment in MCTS
+Result: γ
+Input
+1 λ ← γ
+2 foreach wi ∈ D do
+
+: D, γ
+
+(cid:48)
+
+(cid:48)
+
+3
+
+4
+
+2| > λ then
+
+if | qi
+(cid:126)rwi
+γ ← | qi
+(cid:126)rwi
+
+2|
+
+γ ← λ
+
+2
+
+else
+
+end
+
+5
+6
+7
+8 end
+
+Although this algorithm isn’t additive as implied by the
+AIMD algorithm, it still presents an efﬁcient way to share a
+topic zk with words that fairly deserve it, evaluated through
+the each word’s score, | qi−−→rwi
+This makes the probability of choosing a word wi with a
+given threshold γ, is:
+
+2|, and the current threshold γ.
+
+P (wi|γ) =
+
+1
+V
+
+(25)
+
+Continuing forward with the MCTS process, the selection
+phase should be complete once a required number of levels, H,
+and number of children per level C of the shallow Monte Carlo
+tree T (cid:48)
+are acquired. The entire Monte Carlo Tree is denoted
+as T . Before we conclude the discussion of the selection phase
+of EMMC’s MCTS, it is important to note how the selection
+proceeds at every level. At every level l of the tree where
+l < h, a child cl ∈ l is selected to host the next branch to
+level l + 1. The selection for this child cl in l is a child who
+2|, of that level. This restricts
+boasts the maximum score | qi−→rw
+the complexity of growth per level, as only one child per
+level needs to branch. An example of the selection phase is
+presented in Figure 6.
+The selection phase concludes once the subtree has reached
+the desired number of levels, H. There is a constraint on H
+such that:
+
+H = (cid:98) β
+2
+
+(cid:99)
+
+(28)
+That is, H must be half of β which are the requested words
+per any given topic. This is to ensure the MCTS can optimally
+perform in it’s Expansion and Simulation phase. As noted in
+[28], the tree created during the selection phase should be
+shallow, and the tree after simulation should be deep. By
+
+explosion
+
+mexico atomic
+
+site
+
+atomic
+
+planet
+
+uranium
+
+bombs
+
+bombs
+
+blast
+
+Fig. 6. Monte Carlo Search Tree with AIMD, Selection Phase, from
+fission.txt
+
+ensuring the tree is the ﬂoor of half of β, it is possible to
+enforce a shallow tree. Speciﬁcally, suppose there is an odd
+number g, such that g = kn + 1, k, n ∈ Z, then, the division
+of g by 2 does not exist in Z. Therefore by taking the ﬂoor,
+we ensure that the height of the shallow tree is in Z and, that
+the tree is shallow.
+
+H. EMMC: Expansion Phase
+
+The next step in the MCTS process is the Expansion Phase.
+In the EMMC model, a desired number of new nodes can be
+requested for, which is denoted as χ. The expansion phase
+samples from a Gaussian distribution, where
+
+S = {s1, . . . , sχ},∀si ∈ S, si ∼ N (pH, χ2)
+
+(29)
+
+Expansion from the tree produced in the Selection Phase is
+best achieved with Gaussian samples, given the mean pH
+and the variance χ2. pH which is the index of word that
+was selected at the Hth level of the subtree produced in
+the Selection Phase. By centering this distribution to this
+index, or point in the space of D, EMMC can simulate a
+physical environment with proximity to the point pH. This is
+due to the nature of the Gaussian, where 68.2% [30] [26] of
+samples taken from a Gaussian distribution are located near
+the mean/center. The range of samples which fall within the
+68.2% is known as the standard deviation, σ. Hence, by using
+a Gaussian with parameters µ = pH and σ = χ presents a
+probabilistic sense of proximity.
+
+Inspecting the relation, one may wish to verify the claim
+presented in EMMC’s expansion phase. The probability of
+X, the random variable which distributes this instance of a
+Gaussian being within a standard deviation would be:
+
+P (µ − σ < X < µ + σ) = P (−σ < X < σ) ≈ 68% (30)
+These nodes are added to the child selected at the Hth
+level. EMMC’s requirement on proximity correlates on the
+geometric assumption of D. Speciﬁcally, it is reasonable to
+collect words closer to the Topic Root, as noted before. This
+concludes the expansion phase.
+
+I. EMMC: Simulation Phase
+
+The third phase of EMMC’s MCTS algorithm is: Simula-
+tion. By utilizing the same criteria outlined in the Selection
+Phase, words in close proximity to the newly added nodes
+
+8
+
+from expansion are inspected and played against γ. The
+selection of these words are samples of another Gaussian
+distribution, in order to maintain the idea of proximity.
+For each of the added nodes, so ∈ S, m new samples Y are
+generated from a Gaussian, where Y = {y1, . . . , ym},∀yi ∈
+o). Here, σo = G, where G is the simulation
+Y, yi ∼ N (po, σ2
+size of MCTS. To sufﬁce the number of requested words per
+topic, m + H ≥ β. Here, po is the index of so, which lies
+in the space of D, and σ2
+o is the variance of the Gaussian
+distribution. Depending on the variability requested in the
+simulation phase, σ2
+o can be tuned accordingly. For example,
+if there a document Dt, such that the number of words in
+Dt is Vt, and Vt >> ,  ∈ IR, it may be wise to allow
+o to become large, to account for the large space of Dt.
+σ2
+Each of these new samples are tested against γ, and using
+Algorithm 2, and a subset of B ⊆ Y are selected such that
+B = {b1, . . . , bω}, ω+H = β. Therefore, for each of the nodes
+added from the expansion, repeat this process in order to gather
+χ new branches. It is important to note on the usage of branch
+compared to tree expansion. To increase the efﬁciency of the
+MCTS algorithm, the optimal nodes required to win Select-
+a-topic are only included in the tree. Since only one node
+can only be added at any given time, The tree like structure
+only continues branching outward in one direction, from the
+speciﬁed node added during expansion. Therefore, for each of
+the nodes added in the expansion phase, χ lengthy branches
+are added, following the criteria set out in the simulation. To
+select the most optimal branch from the χ branches, we must
+now deﬁne the winning condition of Select-a-topic.
+To win, the branch with the largest charge distribution will
+win. That is, traversing the tree from root to leaf of the largest
+wi∈D qi
+where wi is in the current MCTS tree and wi is in the longest
+branch of that tree. There is equal chance of getting chosen
+on the basis of longest branches in the MCTS subtree. Here,
+the topic selection process has been outlined, such that the
+winning branch is a topic zb ∈ Z, with k− b topics remaining
+to be found. The probability is dependent on the topic root
+node, wr selection, since a subtree can only be produced from
+κ chance of being selected
+the Gaussian samples, and has 1
+from those samples. It would also be worth investigating how
+a word wi from a topic can be probabilistically chosen given
+T . That is, we are interested in the relationship P (wi|T ). This
+relationship takes the form:
+
+branches, select the branch (from root) such that (cid:80)
+
+P (wi|T ) =
+
+1
+
+0.68kH
+
+(31)
+Since, the probability of selecting a word wi, given T is
+dependent on the height of the tree H, and the number of
+topics requested k in D as well as the inverse probability of
+selecting a topic. This may not be intuitive, however we must
+conclude that a tree T contains the topic zy. To account for
+this probability of occurrence of zy, we reduce the probability
+of P (wi|T ) by a factor of P (zy) as to not provide a skewed
+representation of choosing some word, given that it was in
+T . And also, our assumption that P (zk) ≈ 0.68 provides the
+sense of locality from a Gaussian’s ﬁrst standard deviation.
+This was described in Equation 30. This would conclude the
+
+simulation phase of EMMC’s MCTS. Once a winning branch
+has been selected, the rest of D should be informed. This
+leaves us with MCTS’s last stage, backward propagation.
+
+J. EMMC: Backward Propagation Phase
+
+With the longest chosen branch, each word’s charge com-
+ponent in the branch is modiﬁed, to reﬂect the choice of the
+word in the topic. To modify the charge distribution, ∀wi in
+the chosen branch the following modiﬁcation is applied to wi’s
+charge component:
+
+(cid:48)
+
+i = log(|qi|)
+
+q
+
+(32)
+(cid:48)
+Where q
+i is the updated charge component for word wi. The
+relationship of y = log(|x|) is of interest to explore in a
+recursive fashion. That is:
+d
+log|T (n − 1)|
+
+if n = 0
+if n > 0
+
+T (n) =
+
+(cid:40)
+
+If we name d as a seed for this recursive deﬁnition, a random-
+like distribution occurs, such that relationship of T (n) against
+n behaves as in Figure 7.
+
+Fig. 7. The relationship of T (n) versus n, bottom axis is n, where the d =
+1
+
+A particularly interesting quality of this relationship is the
+ability to reduce the charge component of a given word,
+without nullifying the charge component. EMMC’s ﬁnal re-
+quirement placed on ∀wi ∈ D is that a word’s wi charge
+(cid:48)
+component qi is not allowed to be modiﬁed such that q
+i = 0.
+By taking the logarithm of qi’s absolute value, this requirement
+(cid:48)
+is achieved. However, if the ∆ between qi and q
+i is linear, the
+propagated news to D may not be useful. A useful change to
+D would be such that all words in the winning branch have the
+possibility to mix into other topics during the next k topics, but
+without having the possibility that the same branch is found.
+It would follow logically such that:
+
+∀zi, zn ∈ Z, zi (cid:54)= zn
+
+(33)
+
+Thus, formally describing the assumption that all topics are
+assumed to be unique. However the content of any given topic
+zi, which are the words wi,1, . . . , wi,β can be used throughout
+other topics within Z.
+
+Having a linear change between wi,β’s charge component
+qi,β may not be drastic enough to warrant a difference in
+
+9
+
+MCTS’s behavior, in the sense that it is predictable. A ran-
+domized modiﬁcation to qi,β allows for a more robust search
+across the space of D.
+
+that
+
+their
+
+given
+
+Suppose
+
+a winning
+
+corresponding charge
+
+branches words,
+wi,1, . . . , wi,β,
+components,
+qi,1, . . . , qi,β are very large, such that for these charges,
+they are much greater than all other words in D. A linear
+(cid:48)
+adjustment of qi,1, . . . , qi,β to q
+i,β by an addition of
+o∆:
+
+(cid:48)
+i,1, . . . , q
+
+(cid:48)
+q
+i,1 = qi, 1 + o∆
+
+(34)
+
+would yield no success in the subsequent MCTS iteration,
+such that the space of D would be skewed by these words,
+and likely end up occurring again as the next branch.
+
+K. EMMC as a Probabilistic Model
+
+To be complete about the theoretical aspects of EMMC, the
+probabilistic distribution P (zy|wi) should be expanded, such
+that:
+
+P (zy|wi) =
+
+P (wi|zy)P (zy)
+
+P (wi)
+
+(35)
+
+This expansion utilizes Bayes’ theorem [38], where a Bayesian
+relation has the general form:
+
+posterior ∝ likelihood × prior
+
+EMMC’s probabilistic models expands to:
+
+P (wi|zy)P (zy) = P (wi|T )P (T |wr)P (zy)
+
+(36)
+
+(37)
+
+(38)
+
+3(cid:88)
+
+x=0
+
+3(cid:88)
+
+P (wi|zy)P (zy) = Γ
+
+πxN (µx, σ2
+x)
+
+In the following section we will prove EMMC’s proba-
+bilistic function has a likelihood with the form outline in
+Equation 38. More so, we would like to prove that the mixture
+model proposed here has the numerical form of 0.68Γ. Our
+assumptions are the following
+Theorem 1. EMMC’s probabilistic model for a word wi and
+topic zy has the form
+
+P (wi|zy)P (zy) = Γ
+
+πxN (µx, σ2
+x)
+
+x=0
+
+To prove the the formulation of EMMC’s probabilistic
+model, a formal review of Gaussian Mixture Models is pre-
+scribed. GMMs provide a probabilistic distribution across a
+weighted sum of potentially varying Gaussian Distributions
+[31]. Mathematically, this takes the form:
+
+P (y|µ1, . . . , µk, s1, . . . , sk, π1, . . . , πk) =
+
+k(cid:88)
+
+πiN (µi, si)
+
+(39)
+
+Where µi are the means, si are the inverse variances, and πi
+are the mixing proportions and N are Gaussian distributions
+with the speciﬁed mean and variances. Our discussion will
+
+i=1
+
+only consider a discrete number of Gaussian mixtures due to
+the nature of EMMC. Particularly, EMMC has the assumption
+that three Gaussian Distributions are included in the likelihood
+mixture, such that they reﬂect the choices for zy and T . This
+will be outlined in the proof. In our discussion, only univariate
+Gaussian distributions are discussed as to adhere to EMMC’s
+assumptions and behaviors. By inspecting Equation 39, the
+summation of all πi
+in the mixture should equate to 1.
+Therefore each πi can be considered as the prior probability
+for each Gaussian present in the mixture. More formally:
+
+πi = 1 and 0 ≤ πi ≤ 1
+
+(40)
+
+k(cid:88)
+
+i=1
+
+As noted before, EMMC is a discriminative model, such that
+the probabilistic assumptions upon EMMC’s behavior are de-
+rived upon analysis of the model, contrary to the assumptions
+of a generative model. Generally with mixture models, the
+mixtures and parameters of the Gaussian may not be known,
+such that the usage of an Expectation-Maximization algorithm
+can be used to estimate the parameters of a Gaussian. In
+the case of EMMC, the mixture proportions for the GMM
+are presumed to be known, including the parameters for each
+Gaussian. Recall that EMMC is an iterative process such that
+after k iterations, k topics will be discovered. Also recall that
+EMMC works on a concept of locality. That is, a Euclidean
+representation placed on D provides information regarding the
+latent topics that exist in D. By gathering the prior information
+provided about the random variables present in EMMC, we
+provide the following Lemma:
+Lemma 1.
+P (wi|zy)P (zy) = Γ
+
+πxN (µx, σ2
+x)
+
+3(cid:88)
+
+(41)
+
+10
+
+used as a predicative measure in a local sense. To be precise,
+the last element in the summation describes a distribution
+which lies within the a particular distance from (1) height
+of the MCTS tree pH, and (2) pH is in close proximity of wr.
+Recall that the idea of proximity was deﬁned through the use
+of the inverse square law. However, the overall coverage of the
+Gaussian Mixture Model takes shape of the ﬁrst element of the
+summation. We are only interested in the predictive measure
+of the this Gaussian’s primary standard deviation. Hence, this
+allows us to deﬁne and justify the bounds on the integral of
+the mixture model bl, and bu.
+
+P (wi|zy)P (zy) ≈ Γ(cid:82) bu
+
+intentional. These values become meaningless
+sense of P (wi|zy)P (zy) as
+
+Neglecting the particular values of π1, π2, and π3 was
+in the
+the overall distribution of
+N (µz−1,V) ≈ Γ0.68. This is due to
+each distributions proximity and width to the initial element’s
+distribution apparent in the summation.
+
+bl
+
+1,(cid:112)(µ1 − µi)2 =  where  < σ1 . And if ∀σi, σ1 >> σi,
+
+Proof. Suppose that there are several Gaussian distributions
+N = {N1, . . . ,Nn}, such that ∀Ni ∈ N,∃µi, σi, πi. Now
+suppose that N1 has µ1, π1 and σ1 and that ∀µi, i
+(cid:54)=
+and ∀πi, π1 >> πi then
+
+(cid:90) µ1+σ1
+
+n(cid:88)
+
+µ1−σ1
+
+i=0
+
+(cid:90) µ1+σ1
+
+µ1−σ1
+
+πiNi ≈
+
+π1N1
+
+(44)
+
+Since the content of N2, . . . ,Nn generally lie within
+N1, and the contribution of each Ni, i
+(cid:54)= 1 is minimal
+compared to N1. For ease of understanding, a visualization
+of the proof has been included in Figure 8
+
+(cid:90) bu
+
+= Γ
+
+x=0
+
+(π1N (µz−1,V) + π2N (pH, χ2) + π3N (pH,R))dµz−1
+
+·10−2
+
+bl
+
+Such that the bounds bl and bu are:
+
+√
+bl = µz−1 −
+
+√
+V, bu = µz−1 +
+
+and that:
+
+Γ =
+
+1
+kH
+
+V
+
+(42)
+
+(43)
+
+To justify the use of only three Gaussians in this mixture
+model, only three random variable have signiﬁcant impact
+within EMMC. Primarily is the distribution of that in the
+random variables ∀zk ∈ Z, zk ∼ N (µz−1,V). The notion
+of locality was integrated into the assignment of this random
+variable as noted previously. The second distribution of the
+second element of the summation was the distribution used
+for expansion of the Monte Carlo Search Tree. This particular
+distribution is centered in close proximity of the ﬁrst distribu-
+tion of the sum. Once again, utilizing the principal of locality
+as a measure of importance, this distribution is required in
+the mixture model as predictive indicator of a word wi being
+in some topic zy. Lastly, during the Simulation phase of the
+Monte Carlo Tree Search algorithm, another distribution is
+
+4
+
+3
+
+2
+
+1
+
+3
+
+N
+
+3
+π
++
+2
+
+N
+
+2
+π
++
+1
+
+N
+
+1
+π
+
+0
+−6
+
+−4
+
+−2
+
+2
+
+4
+
+6
+
+0
+
+X
+
+Fig. 8. A visualization of the proof, with three Gaussians, N1(Blue),
+N2(Brown), N3(Red), and the resulting summation, Nsum(Black)
+
+Therefore EMMC’s probabilistic formulation takes that of
+a GMM, but can be reduced to an approximate form through
+EMMC’s assumptions of locality with respect to D’s Euclidean
+
+representation. Therefore to summarize EMMC’s probabilistic
+model is:
+
+P (zy|wi) ≈ Γ0.68
+P (wi)
+
+(45)
+
+This ends the discussion of our model. However, evaluation
+of EMMC is compulsory. Two methods of evaluation will be
+explored as a means of evaluating EMMC’s performance as
+a topic model, and as a comparative measure against related
+topic models. The evaluative measures used will be the idea of
+Perplexity [4] [18], and Topic Coherence [27] Latent Dirichlet
+Allocation. Due to LDA’s wide usage and adaptation across
+the machine learning community, it is justiﬁed to unify a
+comparison with solely LDA.
+
+11
+
+(cid:48)
+
+(cid:48)
+
+1 , . . . , v(t)
+
+Where D(v) is the document frequency of the word v,
+, v) the co-document frequency, indicating the count of
+D(v
+the words v and v
+co-occurrence. In the deﬁnition of Topic
+Coherence, V (t) = {v(t)
+m }, denoting the vocabulary
+of the m most probable words of a topic. The addition of 1 is
+added to the numerator of the deﬁnition to prevent taking the
+logarithm of 0. This was referred to in [27] as a smoothing
+count.
+Remark 1. It
+to note the statistics provided
+by D(v) and D(v
+, v) can be gathered from the corpus in
+analysis, or drawn from external sources to provide normalized
+statistics. It is assumed that the model has already taken into
+account for the word co-occurrence.
+
+is important
+
+(cid:48)
+
+L. Perplexity
+
+IV. RESULTS
+
+Perplexity can be viewed as measure of how well a prob-
+abilistic model, or probability distribution predicts a sample.
+Although several mathematical deﬁnitions exist for perplexity,
+only one deﬁnition will be applied as an evaluation method.
+We will refer to Blei’s deﬁnition [4] of perplexity and use their
+unit of measure for evaluations of topic models:
+
+In this section, we present EMMC’s quantitative results
+from a physical
+implementation, and textual documents
+provided
+hack.txt,
+2016 − June.txt,
+and
+eric rp 1.txt. Each one of these texts vary signiﬁcantly,
+allowing for a generalized test of EMMC.
+
+ransomware.txt,
+
+fission.txt
+
+particularly
+
+from [1],
+
+the ﬁles,
+
+Perplexity(Dtest) = exp(−
+
+d=1 log(P (wd))
+
+)
+
+(46)
+
+A. Implementation
+
+(cid:80)M
+(cid:80)M
+
+d=1 Nd
+
+Where P (wd) is the probability of a sequence of words
+occurring in document d, and Nd is the number of words
+per document. Our model modiﬁes this equation by placing
+a constraint on M, such that only one document is being
+analyzed by EMMC at a time. Therefore,
+
+Perplexity(Dt) = exp(− log(P (wt))
+
+Nt
+
+)
+
+(47)
+
+In the EMMC model, only one document is under analysis
+such that wd can be reduced to wt. The probability P (wd) =
+P (wt) can be expanded such that:
+
+P (wt) =
+
+P (wi|zk)P (zk)
+However, we know P (wi|zk) expands to:
+
+i=0
+
+P (wi|zk)P (zk) = P (wi|T )P (T |wr)P (wr|zy)
+
+(48)
+
+Therefore we can conclude that:
+
+Vt(cid:89)
+
+k(cid:88)
+
+P (wt) =
+
+P (wi|T )P (T |wr)P (wr|zj)
+
+(49)
+
+i=0
+
+j=1
+
+M. Topic Coherence
+
+Vt(cid:89)
+
+Another measure of performance for a probabilistic topic
+model is the idea of Topic Coherence. A high level description
+of Topic Coherence could be explained as a measure which
+inspects how closely the piece wise information of each
+topic represents the input data. As described in [27], Topic
+Coherence can be deﬁned as:
+
+m=2(cid:88)
+
+m−1(cid:88)
+
+M
+
+l
+
+C(t; V (t)) =
+
+log
+
+D(v(t)
+
+m , v(t)
+l ) + 1
+D(v(t)
+l )
+
+(50)
+
+The implementation of EMMC was implemented in Python
+(using Version 2.7). All tests were conducted on an Apple
+Macbook Air (2015-Model). The Pythonic Implementation
+is available at Github [11]. The implementation of LDA
+was from a Python Package gensim [32], which has several
+advantages over an implementation from us. (1) This package
+has streamlined the performance of LDA, making use of multi-
+threading and (2) execution in a constant size of memory.
+
+B. Initial Charge Distribution
+
+To represent
+
+the charge distribution of D,
+
+Due to D’s Euclidean representation, it is useful to graph-
+in order to
+ically represent
+identify the words wt ∈ D such that wt has a large qt. As
+identiﬁed through the discussion of our model, wt’s large
+charge component puts a higher probability of association for
+either (1) a Candidate Topic Root, or (2) A word included in
+some topic zk ∈ Z.
+the charge distribution of some document
+Dt, words in D are separated logically into groups of 64
+(for convenience of representation), Gr, with each word in
+increasing order by index. Each group Gr is a row in the
+graphical representation. To graphical represent the word in
+any given Gr, the charge q is hashed to a speciﬁc value
+of color, such that the range of charges can be categorized
+by a range of color. In this representation, high charges are
+indicated by a white color, and low charges are highlighted by
+black.
+
+C. Monte Carlo Search Tree Results
+
+As per the model speciﬁcations, a Monte Carlo Search Tree
+is created at every iteration, where the model goes through k
+iterations to produce k topics. Speciﬁcally, it is of interest
+to explore these trees prior to topic clustering, as much
+
+12
+
+D. Simulation of T (n) from a Given Charge
+
+Due to the nature of T (n) presented in this paper, it is
+important to note the performance and output upon analysis.
+Outlined in Figure 11, is the pseudo random nature as pre-
+scribed in the discussion of EMMC.
+
+Fig. 11. T (n) with d = 3 during the analysis of 2016 − June.txt
+
+E. Discovered Topics
+
+The quantitative analysis and performance of a topic model
+is a hard task [4]. Recall that the idea of a topic is ambiguous,
+such that a collection of words may be classiﬁed. However, a
+comparison topics from both EMMC and LDA is warranted.
+Listed in Table III is comparison of similar topics computed
+from 2016 − June.txt.
+
+A COMPARISON OF OUTPUTS FROM EMMC AND LDA, FROM
+June − 2016.txt WITH C = 15, κ = 30, k = 10, β = 14, χ = 3
+
+TABLE III
+
+EMMC
+exploring
+
+lda
+
+currently
+
+word
+
+algorithm
+
+text
+topics
+vectors
+
+kdimensional
+
+run
+im
+
+identify
+modeling
+corpus
+
+topicmodels
+
+LDA
+word
+vectors
+
+lda
+topics
+
+words
+subject
+sparse
+stop
+build
+weights
+
+3
+
+topics
+topical
+
+2016 − June.txt’s Initial Charge Distribution. Charge Intensity
+
+Fig. 9.
+ranking is provided for each word
+
+information is contained in the generated trees. Referring to
+Figure 10, this tree was produced through the analysis of
+fission.txt. The relationship of this tree provides a scope
+into how effective the Monte Carlo Tree Search algorithm
+behaves with the modiﬁcation of AIMD.
+
+ﬁssion
+
+chemical reaction
+
+massive
+
+reaction
+
+u235
+
+uranium
+
+energy
+
+ev
+
+split
+
+Fig. 10. Monte Carlo Search Tree with AIMD, from fission.txt, with
+= 3
+
+This instance of the tree is associated with the topic outlined
+
+in Table II
+
+A TOPIC PRODUCED BY EMMC, D IS fission.txt, WITH
+
+C = 3, κ = 30, k = 10, β = 14, χ = 3
+
+TABLE II
+
+Topic
+
+diameter
+
+ball
+energy
+u235
+u238
+
+magnitude
+detonation
+chemical
+reaction
+
+ev
+
+massive
+170mev
+uranium
+extract
+
+F. Perplexity
+
+As expected, the perplexity of EMMC remains constant.
+This is only desirable if and only if the perplexity remains
+relatively low. In our case, EMMC’s perplexity stays consistent
+at 29.44. A low perplexity indicates a high performance
+language model. Comparing the perplexity against Latent
+Dirichlet Allocation, EMMC’s perplexity is much less than
+LDA. As indicated by Table IV
+
+The difference in perplexity is staggering. From LDA’s
+perplexity, the percent change was computed to identify how
+
+TABLE IV
+
+COMPARISON OF PERPLEXITY, USING hack.txt,WITH
+
+C = 15, κ = 30, β = 20, χ = 5
+
+Number Of Topics
+
+10
+20
+30
+40
+50
+
+P erplexityEMMC
+
+29.411
+29.411
+29.411
+29.411
+29.411
+
+P erplexityLDA ∆%
+
+294.2
+356.7
+403.5
+440.1
+479.4
+
+-90%
+-91.7%
+-92.7%
+-93.3%
+-93.8%
+
+much of an improvement was made in EMMC relative to LDA.
+By using the following relation
+
+∆% = 100
+
+xnew − xold
+
+xold
+
+(51)
+
+EMMC’s improvement over the perplexity of LDA is an
+average 92.3%. This trend is also plotted in Figure 12 to reﬂect
+the difference in performance.
+
+Fig. 12. The Perplexity of both EMMC and LDA during the Analysis of
+2016 − June.txt (Top) and hack.txt (Bottom)
+
+G. Topic Coherence
+
+The implementation of the Topic Coherence measure is
+based from the UMass Index, noted above and in [27]. As we
+did for the perplexity, the Topic Coherence has been computed
+for both EMMC and LDA on several documents for a uniform
+comparison. Referring to Table V, EMMC again outperforms
+LDA.
+
+COMPARISON OF EMMC AND LDA’S TOPIC COHERENCE SCORE, USING
+
+2016 − June.txt, LISTING TOP 5 OF 10 TOPICS.
+
+TABLE V
+
+Topic Coherence of EMMC
+
+-12.44
+-13.51
+-13.57
+-13.89
+-15.21
+
+Topic Coherence of LDA %∆
+
+-533.71
+-544.27
+-549.98
+-556.33
+-570.36
+
+97.66%
+97.4%
+97.53%
+97.50%
+97.33%
+
+It is also worth noting how the Topic Coherence changes as
+more topics are requested for. EMMC seems to resist change
+in its Topic Coherence scores. Noting the trends in Figure 13,
+
+EMMC provides similar trends for each environment, regard-
+less of the number of requested topics.
+
+13
+
+Fig. 13.
+The Topic Coherence of EMMC during the Analysis of
+ransomware.txt. Top Left: 10 Topics, Top Right: 20 topics, Bottom Left:
+30 topics, Bottom Right: 40 topics
+
+H. Elapsed Time
+
+As with the case of any algorithmic based model, it is
+useful to study and analyze the running time of a model, and
+how this measure varies against other models which try to
+accomplish the same task. Empirically comparing the elapsed
+time of performance of both Latent Dirichlet Allocation and
+EMMC, we arrived at the results in Table VI and Table VII. It
+is important to note that Dtest is the output of the noise ﬁlter
+with D as the input.
+
+TABLE VI
+
+TIME COMPARISON OF EMMC AND LDA, COMPUTING 10 TOPICS
+Words In Dtest
+Dtest
+4315
+hack.txt
+1313
+fission.txt
+6820
+eric rp 1.txt
+
+LDA ∆T
+12.31 seconds
+3.57 seconds
+21.12 seconds
+
+EMMC ∆t
+9.22 seconds
+2.98 seconds
+14.27 seconds
+
+TABLE VII
+
+TIME COMPARISON OF EMMC AND LDA, COMPUTING VARIABLE
+
+NUMBER OF TOPICS, WITH
+
+κ = 15, k = 20, C = 15, χ = 5DTEST = hack.txt
+
+k
+5
+10
+15
+20
+
+EMMC ∆t
+2.42 seconds
+5.19 seconds
+10.00 seconds
+13.29 seconds
+
+LDA ∆T
+12.79 seconds
+13.79 seconds
+13.59 seconds
+14.38 seconds
+
+V. CONCLUSION
+
+In conclusion, the model proposed in this paper is able to
+reveal latent or hidden topics, utilizing Maxwell’s electrostatic
+equations in cooperation with a novel Monte Carlo Tree
+Search Algorithm. The MCTS was optimized through an
+Additive-Like Increase, Multiplicative Decrease child selec-
+tion measure, γ. Speciﬁcally, we developed a mathematical
+
+theory for discovering latent topics in some data, without the
+assumption of a probabilistic generative model. The model
+proposed in this paper exceeded the performance of Latent
+Dirichlet Allocation, in the measures of Perplexity and Topic
+Coherence. EMMC was also superior over LDA in terms of
+computation time. Therefore EMMC serves as a benchmark
+for non-generative topic models.
+
+REFERENCES
+
+[1] T e x t f i l e s d o t c o m.
+[2] Cecilia Ovesdotter Alm, Dan Roth, and Richard Sproat. Emotions
+In
+the conference on human language technology and
+language processing, pages 579–586.
+
+from text: machine learning for text-based emotion prediction.
+Proceedings of
+empirical methods in natural
+Association for Computational Linguistics, 2005.
+
+[3] Keyboard Banger. Dynamics of aimd for a single ﬂow, Aug 2015.
+[4] David M Blei, Andrew Y Ng, and Michael I Jordan. Latent dirichlet
+Journal of machine Learning research, 3(Jan):993–1022,
+
+allocation.
+2003.
+
+[5] Charles A Bouman, Michael Shapiro, GW Cook, C Brian Atkins, and
+Hui Cheng. Cluster: An unsupervised algorithm for modeling gaussian
+mixtures, 1997.
+
+[6] Cameron Browne, P Rohlfshagen, and E Powley. Monte carlo tree
+
+search, 2010.
+
+[7] Chris K Carter and Robert Kohn. On gibbs sampling for state space
+
+models. Biometrika, 81(3):541–553, 1994.
+
+[8] Pimwadee Chaovalit and Lina Zhou. Movie review mining: A com-
+parison between supervised and unsupervised classiﬁcation approaches.
+In System Sciences, 2005. HICSS’05. Proceedings of the 38th Annual
+Hawaii International Conference on, pages 112c–112c. IEEE, 2005.
+
+[9] Guillaume Chaslot. Monte-carlo tree search. Maastricht: Universiteit
+
+Maastricht, 2010.
+
+[10] Ofer Gal. Inverse square law. 2002.
+[11] N. Giamblanco. Emmc. https://github.com/ngiambla/emmc, 2017.
+[12] N. Giamblanco and P. Siddavaatam. Keyword and keyphrase extraction
+using newton’s law of universal gravitation. In 2017 IEEE 30th Cana-
+dian Conference on Electrical and Computer Engineering (CCECE),
+pages 1–4, April 2017.
+
+[13] Gene H Golub and Christian Reinsch. Singular value decomposition and
+least squares solutions. Numerische mathematik, 14(5):403–420, 1970.
+[14] Thomas L Grifﬁths, Mark Steyvers, and Joshua B Tenenbaum. Topics
+
+in semantic representation. Psychological review, 114(2):211, 2007.
+
+[15] Øyvind Grøn. Newtons law of universal gravitation. In Lecture Notes
+
+on the General Theory of Relativity, pages 1–16. Springer, 2009.
+
+[16] Fabrice Guillemin, Philippe Robert, Bert Zwart, et al. Aimd algo-
+rithms and exponential functionals. The Annals of Applied Probability,
+14(1):90–117, 2004.
+
+[17] Thomas Hofmann. Probabilistic latent semantic indexing.
+
+In Pro-
+ceedings of the 22nd annual international ACM SIGIR conference on
+Research and development in information retrieval, pages 50–57. ACM,
+1999.
+
+[18] John Horgan. From complexity to perplexity.
+
+Scientiﬁc American,
+
+272(6):104–109, 1995.
+
+[19] Gwo-Jen Hwang, Tsai Chin-Chung, and Stephen JH Yang. Criteria,
+strategies and research issues of context-aware ubiquitous learning.
+Journal of Educational Technology & Society, 11(2), 2008.
+
+[20] John Lafferty, Andrew McCallum, and Fernando CN Pereira. Condi-
+tional random ﬁelds: Probabilistic models for segmenting and labeling
+sequence data. 2001.
+
+[21] Thomas K Landauer. Latent semantic analysis. Wiley Online Library,
+
+2006.
+
+[22] Kaiwei Li, Jianfei Chen, Wenguang Chen, and Jun Zhu. Saberlda:
+In Proceedings of
+Sparsity-aware learning of topic models on gpus.
+the Twenty-Second International Conference on Architectural Support
+for Programming Languages and Operating Systems, pages 497–509.
+ACM, 2017.
+
+[23] Anas Mahmoud and Gary Bradshaw. Semantic topic models for source
+code analysis. Empirical Software Engineering, 22(4):1965–2000, 2017.
+In
+Advances in neural information processing systems, pages 121–128,
+2008.
+
+[24] Jon D Mcauliffe and David M Blei. Supervised topic models.
+
+[25] Kurt Mehlhorn. Data structures and algorithms 1: Sorting and search-
+
+ing, volume 1. Springer Science & Business Media, 2013.
+
+14
+
+[26] Stanley Milgram and L van Gasteren. Das Milgram-Experiment.
+
+Rowohlt Reinbek, 1974.
+
+[27] David Mimno, Hanna M Wallach, Edmund Talley, Miriam Leenders, and
+Andrew McCallum. Optimizing semantic coherence in topic models. In
+Proceedings of the conference on empirical methods in natural language
+processing, pages 262–272. Association for Computational Linguistics,
+2011.
+
+[28] Christopher Z Mooney. Monte carlo simulation, volume 116. Sage
+
+Publications, 1997.
+
+[29] Andrew Y Ng and Michael I Jordan. On discriminative vs. generative
+classiﬁers: A comparison of logistic regression and naive bayes.
+In
+Advances in neural information processing systems, pages 841–848,
+2002.
+
+[30] Jagdish K Patel and Campbell B Read. Handbook of
+
+the normal
+
+distribution, volume 150. CRC Press, 1996.
+
+[31] Carl Edward Rasmussen. The inﬁnite gaussian mixture model.
+
+In
+Advances in neural information processing systems, pages 554–560,
+2000.
+
+[32] Radim ˇReh˚uˇrek and Petr Sojka. Software Framework for Topic Mod-
+elling with Large Corpora. In Proceedings of the LREC 2010 Workshop
+on New Challenges for NLP Frameworks, pages 45–50, Valletta, Malta,
+May 2010. ELRA. http://is.muni.cz/publication/884893/en.
+
+[33] Matthew NO Sadiku. Elements of electromagnetics. Oxford university
+
+press, 2014.
+
+[34] Xi Shao, Changsheng Xu, and Mohan S Kankanhalli. Unsupervised
+classiﬁcation of music genre using hidden markov model. In Multimedia
+and Expo, 2004. ICME’04. 2004 IEEE International Conference on,
+volume 3, pages 2023–2026. IEEE, 2004.
+
+[35] John Stallings. The piecewise-linear structure of euclidean space.
+
+In
+the Cambridge Philosophical Society,
+
+Mathematical Proceedings of
+volume 58, pages 481–488. Cambridge University Press, 1962.
+
+[36] Mark Steyvers and Tom Grifﬁths. Probabilistic topic models. Handbook
+
+of latent semantic analysis, 427(7):424–440, 2007.
+
+[37] Liang-Cheng Tu and Jun Luo. Experimental tests of coulomb’s law and
+
+the photon rest mass. Metrologia, 41(5):S136, 2004.
+
+[38] Vladimir Naumovich Vapnik and Vlamimir Vapnik. Statistical learning
+
+theory, volume 1. Wiley New York, 1998.
+
+[39] Z. Xu, L. Chen, Y. Dai, and G. Chen. A dynamic topic model and matrix
+factorization-based travel recommendation method exploiting ubiquitous
+data. IEEE Transactions on Multimedia, 19(8):1933–1945, Aug 2017.
+[40] Yang Richard Yang and Simon S Lam. General aimd congestion
+control. In Network Protocols, 2000. Proceedings. 2000 International
+Conference on, pages 187–198. IEEE, 2000.
+
+[41] Yin Zhang, Rong Jin, and Zhi-Hua Zhou. Understanding bag-of-
+words model: a statistical framework. International Journal of Machine
+Learning and Cybernetics, 1(1-4):43–52, 2010.
+
+Nicholas Giamblanco received his B.Eng in Elec-
+trical and Computer Engineering from Ryerson Uni-
+versity, Toronto, Canada in June 2017. He is cur-
+rently working toward his MASc. in Electrical and
+Computer Engineering at the University of Toronto.
+His research interests are in natural language pro-
+cessing, number theory, computer networking, and
+digital communication networks.
+
+Prathap Siddavaatam is working towards com-
+pleting his Ph.D. in Electrical and Computer En-
+gineering at Ryerson University, Toronto, Canada.
+He has worked in various capacities as a developer
+for developing software within the realm of Machine
+Learning in different divisions of Microsoft Corpo-
+ration, Robert Bosch GmbH and Siemens AG. His
+research interests include machine learning, pattern
+analysis, artiﬁcial intelligence and natural language
+processing.
+
+

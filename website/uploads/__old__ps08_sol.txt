@@ -1,0 +1,324 @@
+ECE216
+Signals and Systems
+
+University of Toronto
+Spring 2018
+
+Problem Set #8
+
+Problem 8.1 (SPF 5.17)
+Suppose that three systems are connected in cascade. In other words, the output of S1 is
+the input to S2, and the output of S2 is the input to S3. The three systems are specied as
+follows:
+
+S1 :
+S2 :
+S3 :
+
+y1[n] = x1[n]  x1[n  1]
+y2[n] = x2[n] + x2[n  2]
+y3[n] = x3[n  1] + x3[n  2]
+
+Thus x1 = x, x2 = y1, x3 = y2, and y = y3. We wish to determine the equivalent system
+that is a single operation from the input x (into S1) to the output y, which is the output of
+S3.
+
+(i) Determine the impulse response hi[n] for each individual subsystem Si.
+
+(ii) Determine the impulse response h[n] of the overall system, i.e., nd h[n] so that y =
+
+x  h, where  is the convolution operator.
+
+(iii) Write one dierence equation that denes the overall system in terms of x[n] and y[n]
+
+only.
+
+Solutions:
+(i)
+
+(ii)
+
+(h1  h2)[n] =
+
+k=
+
+=
+= [n]  [n  1] + [n  2]  [n  3]
+
+1
+
+h1[n] = [n]  [n  1]
+h2[n] = [n] + [n  2]
+h3[n] = [n  1] + [n  2]
+
+(cid:88)
+(cid:88)
+
+k=
+
+(cid:0)[k]  [k  1](cid:1)(cid:0)[n  k] + [n  k  2](cid:1)
+(cid:0)[k][n  k]  [k  1][n  k] + [k][n  k  2]  [k  1][n  k  2](cid:1)
+
+h[n] = (h1  h2  h3)[n]
+
+(cid:88)
+(cid:88)
+
+k=
+
+k=
+
+(cid:17)
+
+(cid:0)[k]  [k  1] + [k  2]  [k  3](cid:1)(cid:0)[n  k  1] + [n  k  2](cid:1)
+(cid:16)
+
+[k][n  k  1] + [k][n  k  2]  [k  1][n  k  1]  [k  1][n  k  2]
+
+=
+
+=
+
++ [k  2][n  k  1] + [k  2][n  k  2]  [k  3][n  k  1]  [k  3][n  k  2]
+= [n  1] + [n  2]  [n  2]  [n  3] + [n  3] + [n  4]  [n  4]  [n  5]
+= [n  1]  [n  5]
+
+(iii) y[n] = x[n  1]  x[n  5]
+
+Problem 8.2 (Impulse Response)
+Given an LTI discrete time system, suppose the output due to an input x[n] = [n] is given
+as Figure 1.
+
+(i) Find the output due to an input x[n] = [n  1].
+(ii) Find the output due to input x[n] = 2[n]  [n  2].
+
+Figure 1: impulse response for Problem 8.2
+
+Solutions:
+
+2
+
+ 0 1 1 2 n 1 2 1Problem 8.3 (Step Response)
+The following systems are described by their impulse responses. Evaluate the unit step
+response of each system, i.e., the output y when the input is given by the unit step function:
+
+(cid:40)
+
+3
+
+u[n] =
+
+Show your work.
+
+(i) h[n] =(cid:0) 1
+
+(cid:1)n u[n]
+
+2
+
+0 n < 0,
+1 n  0.
+
+(ii) h[n] = nu[n]
+
+Solutions
+
+4
+
+Problem 8.4 (Multiple choice questions from previous quizzes)
+
+5
+
+(i) Suppose the impulse response of a DT LTI system where h is specied as h[n] =
+[n]  3[n  1]  [n  2] + 2[n  3]. Let the input x to this LTI system be given by
+x[n] = 2[n] + 5[n  1] + [n  2] + 6[n  3]. The maximum value of the absolute
+value of the output, maxn |y[n]| is equal to
+
+(a) 16.
+
+(b) 12.
+
+(c) 19.
+
+(d) 9.
+
+(ii) Let h, the impulse response of a DTLTI system. be given by h[n] = 2[n + 1] + [n 
+1] + 3[n  2]. Let the input x to this LTI system be given by x[n] = 3[n] + [n  2] +
+[n  3] + 2[n  5]. The output y[n] = 0 if n is NOT an integer in the interval
+(a) [1 7].
+(b) [0 7].
+(c) [1 5].
+(d) [1 6].
+
+(cid:1)nu[n] where u[n] indicates the DT unit step signal. Let y[n] = u[n  1]
+
+(iii) Let x[n] =(cid:0) 1
+
+and let z = x  y where  indicates the DT convolution. What is z[4]?
+
+2
+
+(a) z[4] = 15
+16.
+(b) z[4] = 1
+16.
+(c) z[4] = 31
+16.
+(d) z[4] = 15
+8 .
+
+(iv) The impulse response of an LTI system is given by h[n] = nu[n], where o <  < 1.
+
+Which of the following statements is true?
+
+(a) Suppose x[n] is the input. The output is given by y[n] =(cid:80)
+
+k=0 kx[n  k].
+
+(b) The system is causal.
+
+(c) The impulse response is even.
+
+(d) The system is not BIBO stable.
+
+(v) Consider 2 DT LTI systems with impulse responses h1[n] = u[n + 1]  u[n  2] and
+
+h2[n] = u[n  1]  u[n  3]. Let h3[n] = h1[n]  h2[n]. Then h3[n] is given by
+(a) [n] + 2[n  1] + 2[n  2] + [n  3]
+(b) [n] + [n  1] + [n  2] + [n  3]
+(c) [n] + [n  1] + 2[n  2] + [n  3]
+
+6
+
+(d) [n  1] + 2[n  2] + 2[n  3] + [n  4]
+
+Solutions:
+
+(i)
+
+(ii)
+
+7
+
+(iii)
+
+(iv)
+
+8
+
+(v)
+
+Problem 8.5 (DT Convolution I)
+Let x be dened as x[n] = [n] + 2[n  1]  [n  3] and the impulse response h as
+h[n] = 2[n + 1] + 2[n  1]. Compute the following convolutions.
+
+(i) y = x  h
+(ii) y = (x  2)  h
+(iii) y = x  (h  2).
+
+Solutions:
+
+Problem 8.6 (DT Convolution II)
+Evaluate the discrete time convolution, y = x  z, for each of the following signal denitions
+x and z. Show your steps.
+
+(ii) x[n] =(cid:0) 1
+
+4
+
+(i) x[n] = u[n + 3], z[n] = u[n  3]
+
+(cid:1)n u[n], z[n] = u[n + 2]
+
+(iii) x[n] = nu[n], z[n] = nu[n  10] where || < 1,|| < 1
+
+9
+
+(iv) x[n] = u[n], z[n] =(cid:80)
+
+p=0 [n  4p]
+
+Solutions:
+
+10
+
+Problem 8.7 (SPF 6.10)
+Suppose that S is a linear time-invariant system whose exact form is unknown. It has been
+tested by observing the output signals corresponding to several dierent test inputs. Suppose
+that the following input-output pairs were the result of these tests:
+
+x[n] = [n]
+x[n] = cos(2n/3)
+x[n] = cos(n/3 + /2)
+
+(cid:55) y[n] = [n]  [n  3]
+(cid:55) y[n] = 0
+(cid:55) y[n] = 2 cos(n/3 + /2)
+
+(i) Plot the signal x[n] = 3[n]  2[n  2] + [n  3].
+(ii) Determine the output of the system when the input is x[n] = 3[n] 2[n 2] + [n 3]
+
+and plot it.
+
+(iii) Determine the output when the input is x[n] = cos((n  3)/3).
+
+11
+
+Solutions:
+
+(i)
+
+12
+
+(ii)
+
+(iii) y[n] = 2 cos(cid:0) n
+
+3
+
+(cid:1)
+
+13
+
+Problem 8.8 (Advanced Problem, Associativity of Convolution)
+Recall that the discrete time convolution sum is (in most cases of interest) associative. See
+Property 7.33 on page 108 of course notes. Hence,
+
+x  (y  z) = (x  y)  z.
+
+(1)
+
+Consider the following signals:
+
+x[n] = u[n]
+y[n] = [n]  [n  1]
+z[n] = 1
+
+Evaluate the convolution of x, y, and z in two dierent ways as given by the left and right
+sides of (1). What do you nd? Can you explain why? (Hint: see the proof of Property
+7.33.)
+
+Solutions:
+
+x[n]  (y[n]  z[n]) = u[n]  [([n]  [n  1])  1]
+
+= u[n]  (1  1)
+= u[n]  0
+= 0
+
+(x[n]  y[n])  z[n] = [u[n]  ([n]  [n  1])]  1
+
+= [n]  1
+= 1
+
+(cid:80)
+it does not satisfy the condition
+n= |z[n]| < , which is a condition for the valid exchange of summations used in the
+
+The signal z[n] = 1 is not absolutely summable, i.e.
+
+proof of associativity (see equation (7.31) in course notes).
+
+14
+
+

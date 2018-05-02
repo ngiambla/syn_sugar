@@ -1,0 +1,2353 @@
+A Fast Layer Elimination Approach for Power Grid
+
+Reduction ∗
+
+Abdul-Amir Yassine
+
+ECE Department
+
+University of Toronto
+
+Toronto, Ontario, Canada
+
+abed.yassine@mail.utoronto.ca
+
+ABSTRACT
+Simulation and veriﬁcation of the on-die power delivery network
+(PDN) is one of the key steps in the design of integrated cir-
+cuits (ICs). With the very large sizes of modern grids, veriﬁ-
+cation of PDNs has become very expensive and a host of tech-
+niques for faster simulation and grid model approximation have
+been proposed. These include topological node elimination, as in
+TICER and full-blown numerical model order reduction (MOR)
+as in PRIMA and related methods. However, both of these tradi-
+tional approaches suﬀer from certain drawbacks that make them
+expensive and limit their scalability to very large grids. In this
+paper, we propose a novel technique for grid reduction that is
+a hybrid of both approaches–the method is numerical but also
+factors in grid topology. It works by eliminating whole internal
+layers of the grid at a time, while aiming to preserve the dy-
+namic behavior of the resulting reduced grid. Eﬀectively, instead
+of traditional node-by-node topological elimination we provide a
+numerical layer-by-layer block-matrix approach that is both fast
+and accurate. Experimental results show that this technique is
+capable of handling very large power grids and provides a 4.25x
+speed-up in transient analysis.
+
+Keywords
+Power grid, Model order reduction, Graph sparsiﬁcation
+
+1.
+
+INTRODUCTION
+
+On-die power grid integrity checking is one of the key steps in
+the design process of complex ICs. Integrity checking ensures that
+the voltage drop at any node in the grid does not exceed a certain
+threshold, otherwise, the integrated circuit will not perform as in-
+tended. This can be done through simulation and/or veriﬁcation
+of the power grid. However, as the grid size increases (to around
+a billion nodes), simulation and veriﬁcation of such a grid become
+computationally expensive and almost impossible to implement
+given the existing resources. Given that all the logic circuitry
+is connected to the lower metal layers of a power grid, then the
+safety (integrity) of the nodes in those layers is what matters to
+ensure a reliable performance. To this end, model order reduction
+(MOR) has been extensively used in the studies of IC designs for
+the past two decades. Researchers have been using MOR tech-
+niques to reduce the original large power grid systems to much
+
+∗This work was supported by the Natural Sciences and Engineer-
+
+ing Research Council (NSERC) of Canada.
+
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for proﬁt or commercial advantage and that copies bear this notice and the full cita-
+tion on the ﬁrst page. Copyrights for components of this work owned by others than
+ACM must be honored. Abstracting with credit is permitted. To copy otherwise, or re-
+publish, to post on servers or to redistribute to lists, requires prior speciﬁc permission
+and/or a fee. Request permissions from permissions@acm.org.
+ICCAD’16, November 07-10, 2016, Austin, TX, USA
+c(cid:13) 2016 ACM. ISBN 978-1-4503-4466-1/16/11. . . $15.00
+DOI: http://dx.doi.org/10.1145/2966986.2966989
+
+Farid N. Najm
+ECE Deptartment
+University of Toronto
+Toronto, Ontario, Canada
+f.najm@utoronto.ca
+
+smaller ones, preserving accuracy and timing behavior as much
+as possible, such that they can be used in further simulations and
+design veriﬁcation.
+
+Model order reduction tries to capture the essential features
+of a system without computing all its details [8]. Several model
+order reduction techniques have been used or introduced in the
+past years for the purpose of circuit analysis and power grid re-
+duction. Those techniques can be mainly divided into three dif-
+ferent categories: multigrid reduction methods, moment match-
+ing techniques based on Krylov subspaces, and nodal elimination
+methods.
+
+Multigrid methods tend to map the problem of a large power
+grid to some coarse grid (restriction), and then solve that small
+grid. The solution is then mapped back to the original grid (in-
+terpolation). This mapping to smaller grids depends on exploit-
+ing the strength of wire connections and the dominant neigh-
+bors (strongly connected neighbors) [10]. These methods create
+signiﬁcantly smaller grids with relatively sparse system matrices
+that are easy to solve. However, some multigrid methods require
+keeping track of the power grid geometry for each multigrid level,
+which is ineﬃcient for non-uniform grids. Besides, the error in
+such techniques is usually hard to predict or control.
+
+Moment matching methods are based on explicit numerical
+matching of moments of a system to reduce its order. In other
+words, assume that the transfer function of the original system is
+given by:
+
+H(s) = M0 + M1s + M2s2 + . . .
+
+Then, we try to ﬁnd a reduced model that matches the ﬁrst q
+moments, such that its transfer function is given by:
+Hq(s) = M0 + M1s + M2s2 + · · · + Mqsq
+
+PRIMA [4], is a well-known algorithm of moment matching, in
+which the moment space is projected onto an orthonormal sub-
+space called the Krylov subspace. The drawbacks of these meth-
+ods are that they are not realizable for RC and RLC circuits,
+and they can produce dense systems. Besides, as the number of
+port nodes increases, computing higher order moments becomes
+harder and ineﬃcient.
+
+Nodal elimination techniques are used to topologically reduce
+the number of nodes in the original circuit and approximate the
+newly added elements in the reduced circuit. One of the well-
+known nodal elimination methods is the Time Constant Equilib-
+rium Reduction Scheme, or TICER [9]. The aim of TICER is
+to reduce circuits to smaller realizable networks while preserving
+Elmore delays through RC trees. TICER’s key idea is to elimi-
+nate a node that has few neighbors and a small time constant,
+or what the authors call “quick nodes”. However, the addition of
+new elements makes the reduced networks denser compared to the
+original ones. This makes TICER good for tree-like structures of
+networks observed in circuit timing analysis problems. In other
+words, TICER cannot be readily applied to mesh-structured chip
+power grids. The authors in [2] used TICER to eliminate nodes
+from chip power grids in order to check the safety of those grids.
+However, the reduction ratio was not very high, and the work
+couldn’t be extended to very large power grids.
+
+Several other works on MOR have been published in the past
+ﬁve years. In [12], the authors geometrically divide the power grid
+into several blocks, and then they reduce each block to a much
+smaller one based on Gaussian Elimination. Finally, they sparsify
+each resulting dense block using random sampling of edges and
+their eﬀective resistances. However, the authors give very little
+information on their approach for RC grids, and most of their
+results are shown for resistive grids (without capacitances).
+
+In this paper, we propose a novel grid reduction and sparsiﬁca-
+tion technique that exploits the fact that the whole logic circuitry
+is attached to the bottom metal layer of a power grid. We pro-
+pose a numerical layer elimination technique for RC power grids
+based on the nodal elimination approach in order to eliminate
+whole metal layers from a power grid and keep only the important
+ones. This technique factors in the grid topology when specifying
+the layers to be eliminated, and when sparsifying the resulting
+reduced grid while preserving its dynamic behavior.
+
+This paper is organized as follows.
+
+In section 2, we present
+a background on the power grid model used and some concepts
+and notation used later in the paper. Sections 3 and 4 present
+our proposed approach and sparsiﬁcation technique to eliminate
+layers from resistive and RC grids, respectively. In section 5, we
+propose an incremental approach to eliminate the metal layers.
+The experimental results are shown in section 6. Finally, section 7
+concludes this paper.
+
+2. BACKGROUND AND NOTATION
+2.1 Notation
+
+Throughout the rest of this paper, the following notation will
+be used. Let (M )ij denote the (i, j)th entry of any matrix M ,
+and let (v)j denote the jth entry of a vector v. We will use the
+notation M > 0 (or M ≥ 0), for any matrix M , to denote that
+(M )ij > 0 (or (M )ij ≥ 0), ∀i, j.
+2.2 Power Grid Model
+
+Consider an RC model of a power grid where each metal branch
+is represented by a resistor and where there exists a capacitor from
+every node to the ground. Some nodes have ideal current sources
+(to ground) to represent the current drawn by the underlying
+circuitry, and some have ideal voltage sources to represent the
+connections to external power supply. Let the power grid consist
+of n + p nodes, where nodes 1, 2, . . . , n have no voltage sources
+attached, and the remaining nodes are the nodes where p voltage
+sources are attached. Let i(t) be the element-wise non-negative
+vector of all current sources connected to the grid. We assume
+that ∀k = 1, . . . , n, the entry (i(t))k is well-deﬁned, so that nodes
+with no current source attached have (i(t))k = 0. Furthermore,
+let N (i) denote the set of all neighboring nodes of a node i, where
+a node j is considered a neighboring node of i if and only if it is
+directly connected to node i through a metal branch. Besides, let
+g(ij) denote a physical conductance between two nodes, i and j,
+with g(ij) = 0 if the two nodes are not directly connected, and
+g(i) denote the total incident conductance at node i, i.e.:
+
+(cid:88)
+
+g(i) =
+
+g(ij)
+
+j∈N (i)
+
+Let c(i) denote a capacitance connected from node i to ground.
+Finally, Let u(t) be the vector of all nodal voltages, and v(t) =
+Vdd − u(t) be the vector of voltage drops, where Vdd is an n × 1
+constant vector each entry of which is equal to the ideal supply
+voltage source value. Then the RC model for the power grid can
+be written as [3]:
+
+Gv(t) + C ˙v(t) = i(t)
+
+(1)
+where G is an n×n conductance matrix, and C is an n×n diagonal
+non-singular matrix consisting of all node-to-ground capacitances.
+Note that this equation can be obtained directly by writing the
+Nodal Analysis (NA) system for a modiﬁed network in which all
+voltage sources are shorted (set to 0) and all current sources are
+reversed. In the rest of this paper, we are going to assume this
+modiﬁed network topology. Moreover, note that a resistive power
+
+grid is modeled in the same way by neglecting all capacitances,
+and the model can be written as:
+
+(2)
+where V and I are n × 1 time-independent vectors representing
+the DC node voltage drops and currents, respectively.
+
+GV = I
+
+The matrix G is known to be symmetric and diagonally-dominant
+
+with positive diagonal entries and non-positive oﬀ-diagonal en-
+tries, and it is deﬁned as follows, ∀i, j ∈ {1, 2, . . . , n},
+
+(cid:26) g(i)
+
+−g(ij)
+
+(G)ij =
+
+i = j
+i (cid:54)= j
+
+(3)
+
+Assuming the grid is strongly connected and there is at least
+one external voltage source, then G is known to be irreducibly
+diagonally dominant. With these properties, G is known to be
+a so-called M-matrix, so that G−1 exists and is non-negative
+(G−1 ≥ 0).
+
+2.3 Node Elimination
+
+Throughout this paper, we will refer to the topological ap-
+proach to eliminate nodes from a resistive power grid by Node
+Elimination. This topological approach is based on the well-
+known Y − ∆ transformation technique for circuit analysis [6].
+Suppose that node i is to be eliminated, then the elimination
+process is as follows:
+
+• Remove all conductances connecting node i to its neighbors.
+• For each two nodes j, k ∈ N (i), insert a new conductance
+
+between them given by:
+
+g(jk)new
+
+(cid:44) g(jk)old
+
++
+
+g(ij)g(ik)
+
+g(i)
+
+(4)
+
+• Remove node i.
+
+This elimination of node i does not change the surrounding nodes’
+voltages.
+
+3. PROPOSED APPROACH
+
+In [11], the authors use a 2 × 2 block matrix representation
+for the NA conductance matrix of their macromodels in order to
+perform macromodeling and get the port admittance matrix of
+these macromodels using Gaussian Elimination. In this section,
+we divide the grid into three regions and generalize the work
+done in [11] to a 3 × 3 block-matrix Gaussian Elimination. Since
+the resulting grid is dense, we propose a topological technique
+for power grid sparsiﬁcation based on the relation between the
+eﬀective resistance between two nodes in the grid and spatial
+locality.
+3.1 Resistive Grids and Layer Elimination
+
+Let us divide a resistive grid into 3 blocks; one representing the
+top layers of the grid that should be kept (the topmost layer is
+connected to the C4 bumps), another representing the layers that
+are desired to be eliminated (middle layers), and ﬁnally a block
+representing the lower (bottom) layers that are connected to the
+current sources.
+
+Let nl be the total number of nodes in the layers desired to
+be eliminated (middle layers), nt be the number of nodes in the
+top layers of the grid, and let nb be the number of nodes in the
+bottom layers of the grid. Finally, note that n = nt + nl + nb,
+where n is the total number of nodes in the grid. Consider the
+following representation of the resistive grid conductance matrix
+of size n × n:
+
+G11 G12
+
+0
+GT
+12 G22 G23
+0
+23 G33
+
+GT
+
+
+
+G =
+
+where G22 is an nl × nl conductance matrix that represents the
+middle metal layers, G11 is an nt × nt conductance matrix rep-
+resenting the top layers of the grid, and G33 is an nb × nb con-
+ductance matrix representing the bottom layers of the grid. G12
+
+(5)
+
+and G23 are non-positive, non-square matrices that represent the
+vias between the middle layers and each of the top and bottom
+layers, respectively, where G12 is of size nt× nl, and G23 is of size
+nl × nb. Note that G11, G22 and G33 are all M-matrices (their
+inverses are non-negative), since any principal sub-matrix of an
+M-matrix is also an M-matrix [5].
+
+From (2), one can get the DC voltage drops V =
+
+nodes in the grid by solving:
+
+ at all
+
+V1
+
+V2
+V3
+
+(6)
+where V1 is of size nt × 1, V2 is of size nl × 1, and V3 is of size
+nb × 1. I =
+
+ is an n × 1 vector representing the DC current
+
+ 0
+
+GV = I
+
+0
+I3
+
+values drawn from each node in the grid to ground. Note that
+I3 is of size nb × 1, and the zeros are vectors of sizes nt × 1 and
+nl × 1.
+Combining (5) and (6), and solving for V2, we get:
+
+V2 = −G−1
+
+22 (GT
+
+12V1 + G23V3)
+
+From (5) and (6), we also have:
+
+G11V1 + G12V2 = 0
+
+Substituting (7) into (8), we get:
+
+(G11 − G12G−1
+
+22 GT
+
+12)V1 − G12G−1
+
+22 G23V3 = 0
+
+Following the same procedure, we also get:
+23G−1
+
+12V1 + (G33 − GT
+
+23G−1
+
+−GT
+
+22 GT
+
+22 G23)V3 = I3
+
+Let:
+
+ˆG11 (cid:44) G11 − G12G−1
+ˆG13 (cid:44) −G12G−1
+22 G23
+23G−1
+ˆG33 (cid:44) G33 − GT
+
+22 GT
+12
+
+22 G23
+
+Then, the reduced system matrix can be represented by:
+
+(cid:20) ˆG11
+
+ˆGT
+13
+
+ˆG =
+
+(cid:21)
+
+ˆG13
+ˆG33
+
+(7)
+
+(8)
+
+(9)
+
+(10)
+
+(11)
+
+(12)
+
+where ˆG is of size ˆn × ˆn, and ˆn = n − nl = nt + nb. Note that
+computing the inverse of G22 is not necessary, as the number of
+non-zero columns in GT
+12 and G23 is much less than the number of
+columns of G22. Hence, computing G−1
+22 G23 directly
+is much faster.
+
+12 and G−1
+
+22 GT
+
+Finally, the DC voltage drops at all nodes in the reduced grid
+
+can be obtained by solving:
+
+ˆG ˆV = ˆI
+
+(13)
+
+ˆV3
+
+where ˆV =
+
+is an ˆn × 1 vector that represents the DC volt-
+ˆV1 and ˆV3 are of
+age drops at all nodes in the reduced grid.
+is also an ˆn × 1
+sizes nt × 1 and nb × 1, respectively. ˆI =
+vector representing the DC current values drawn from each node
+in the reduced grid to ground. Note that I3 is still the same as
+in (6), since the aim of our proposed approach is to keep the lay-
+ers that are connected to the underlying logic circuitry, which is
+represented by the current sources attached.
+
+(cid:20) 0
+
+(cid:21)
+
+I3
+
+(cid:20) ˆV1
+
+(cid:21)
+
+3.2 Sparsiﬁcation
+
+As the size of the grid increases, the number of nodes in the
+middle layers increases, and thus; Gaussian Elimination results in
+rather dense models that are hard to store in memory, and expen-
+sive to use in simulations. To overcome this issue, we use some
+heuristic techniques in order to reduce the number of connections
+in the reduced model in (12) topologically without creating too
+much inaccuracies in both the DC and transient simulations. The
+method is based on the the eﬀective resistance between any two
+nodes in the original grid.
+
+Several methods for sparsiﬁcation have been implemented in
+our work that are based on random walk or random sampling of
+edges. However, none of them favored the speed of simulations
+on the reduced grids. Based on the spatial locality, the closeness
+to the boundaries and the relation between the top and bottom
+layers of the grid, we propose a method that captures the impor-
+tant connections in the reduced grid while preserving the elec-
+trical properties of the original one as much as possible. Using
+the concept of spatial locality, which states that a supply con-
+nection to the grid aﬀects the most the current passing through
+the nodes closest to it [1], one can say that there is a correlation
+between the eﬀective resistance between any two nodes and the
+length of the path between those nodes. In other words, as the
+nodes become spatially closer to each other, the eﬀective resis-
+tance between them becomes smaller. Accordingly, we keep the
+connections between nodes in the same layer that lie in a small
+neighborhood deﬁned by the user. Empirical results have shown
+that nodes that lie within two to three metal lines away from a
+speciﬁc node have low eﬀective resistance among them, and thus,
+we will use such a neighborhood in our experiments. Clearly, the
+larger the neighborhood, the denser the ﬁnal sparsiﬁed grid will
+be, and more accurate of course. Hence, there is a clear trade-oﬀ
+between the sparsity of the grid and simulations speed, and the
+accuracy of such simulations.
+
+For connections between diﬀerent metal layers, we tend to keep
+them, as those connections tend to have less resistance than the
+branch ones, which means less eﬀective resistance.
+
+4. EXTENSION TO RC GRIDS
+
+In this section, we will extend grid reduction to RC power
+grids. Our main contribution is to reduce an RC grid numerically
+to eliminate multiple layers at once, rather than topologically on
+a node by node basis. We introduce a method to approximate the
+reduced capacitance matrix such that we have a realizable grid
+reduction technique. The approximation is based on the work
+done in [9] and [2]. We give a proof to show that eliminating all
+the layers at once using our approach and eliminating them on a
+node by node basis produce the same reduced system.
+
+Let C be the capacitance matrix deﬁned in section 2. Assume
+
+that it is partitioned as follows:
+
+C1
+
+C =
+
+0
+0 C2
+0
+
+0
+0
+0 C3
+
+
+
+(14)
+
+where C1, C2 and C3 are all diagonal matrices representing the
+capacitances connected from each node in the top, middle and
+bottom layers, respectively, to ground. Note that C1 is of size
+nt × nt, C2 is of size nl × nl and C3 is of size nb × nb.
+
+In [2], the authors used the TICER algorithm [9] to account
+for the capacitance connected to a node being eliminated using
+Node Elimination while approximately preserving the time con-
+stant of the circuit. TICER distributes the capacitance among
+its neighbors in a weighted ratio of conductances. Analytically,
+this translates to:
+c(cid:48)
+
+∀j ∈ N (i)
+
+c(i)g(ij)
+
+(15)
+
+(cid:44) c(j) +
+
+(j)
+
+g(i)
+
+where i is the node being eliminated, and c(cid:48)
+(j) is the updated
+value of the capacitance connected from node j to ground. This
+approximation assumes that the node being eliminated is a so-
+called quick node [9], i.e.:
+
+2πfmaxτ(i) << 1
+
+the structure of chip power grids, each metal layer is connected
+to only the layers above and below it directly. This means that
+there are no physical connections between the top and bottom
+layers, and G13 = 0. Hence, if the q nodes being eliminated
+form a whole layer, then G(q)
+In fact, if q = nl, then
+˜nt = nt, ˜nb = nb, and the block-matrix representations in (5)
+and (18) are equivalent.
+Furthermore, let ˆG(q) be the resulting (˜nt + ˜nb) × (˜nt + ˜nb)
+conductance matrix after applying Gaussian Elimination on G(q)
+22 ,
+i.e., let ˆG(q)
+
+13 = 0.
+
+11 , ˆG(q)
+
+13 and ˆG(q)
+
+(19)
+
+ˆG(q)
+ˆG(q)
+ˆG(q)
+
+11 = G(q)
+13 = G(q)
+33 = G(q)
+
+33 be such that:
+12 G(q)−1
+11 − G(q)
+12 G(q)−1
+13 − G(q)
+23 G(q)−1
+33 − G(q)T
+(cid:35)
+
+(cid:34) ˆG(q)
+
+22 G(q)T
+22 G(q)
+22 G(q)
+
+12
+
+23
+
+23
+
+ˆG(q) =
+
+11
+
+ˆG(q)T
+
+13
+
+ˆG(q)
+13
+ˆG(q)
+33
+
+Then:
+
+Figure 1: Quick Node property of a power grid of size 152K nodes
+(fmax = 1GHz).
+
+c(i)
+g(i)
+
+where fmax is the maximum operating frequency of interest, and
+τ(i) =
+is referred to as the time constant of node i. Fortu-
+nately, as seen in Fig. 1, the maximum 2πfmaxτ(i) on all the
+nodes i in metal layers M 2 to M 8 in modern chip power grids is
+very small, less than 0.012. Even if a higher fmax is chosen, such
+as 2 or 3 GHz, it is still clear that the quick nodes approximation
+is still valid for modern grids. Hence, all the nodes in the layers
+being eliminated are considered quick nodes.
+In this paper, we generalize (15) to eliminate multiple layers
+at once, as follows. Let c1 be an nt × 1 column vector of the
+capacitors connected from node to ground at every node in the
+top layers, i.e., c1 is a column vector of the diagonal entries of
+C1. Likewise, let c2 and c3 be nl × 1 and nb × 1 column vectors
+of the diagonal entries of C2 and C3, respectively.
+Let:
+
+and let:
+
+ˆc1 (cid:44) c1 − G12G−1
+22 c2
+23G−1
+ˆc3 (cid:44) c3 − GT
+(cid:21)
+22 c2
+
+(cid:20) ˆC1
+
+ˆC (cid:44)
+
+0
+ˆC3
+
+0
+
+(16a)
+
+(16b)
+
+(17)
+
+where ˆC1 and ˆC3 are diagonal matrices consisting of the entries
+of ˆc1 and ˆc3, respectively. Claim 1 proves that ˆC is the reduced
+capacitance matrix of the grid obtained by applying (15) sequen-
+tially, while eliminating the desired nodes.
+
+Claim 1. Applying (16) when eliminating all q nodes of the
+middle layers gives the same capacitance values as applying (15)
+sequentially q times for the nodes in the middle layers, while
+using Node Elimination.
+
+Proof. We will prove that the new capacitances connected to
+the top layers are exactly the same in both cases. In other words,
+we are will prove that (16a) and (15) are equivalent. The proof for
+the bottom layers’ capacitances (16b) follows the same structure,
+and is skipped due to lack of space. The proof is by induction
+on the number of nodes being eliminated. Throughout the rest
+of the proof, the following notation will be used.
+Let G be the n×n conductance matrix as deﬁned in (3). Deﬁne
+G(q) to be a q-partition of G, where a q-partition is a block-
+matrix representation of G such that the number of nodes to be
+eliminated is q, and the indexing of the nodes is as follows: all
+the nodes before the q nodes (top nodes) have indices 1, 2, . . . , ˜nt,
+all the nodes to be eliminated have indices ˜nt + 1, . . . , ˜nt + q, and
+all nodes after the q nodes (bottom nodes) have indices ˜nt + q +
+1, . . . , n. Analytically,
+
+ G(q)
+
+G(q)T
+G(q)T
+
+11
+
+12
+
+13
+
+G(q) =
+
+
+
+G(q)
+12
+G(q)
+22
+G(q)T
+
+23
+
+G(q)
+13
+G(q)
+23
+G(q)
+33
+
+This means that G(q)
+The sizes of the partitions are as follows: G(q)
+˜nt × q, G(q)
+˜nb × ˜nb, where ˜nb = n − (˜nt + q).
+
+22 consists of all the q nodes to be eliminated.
+12 is
+33 is
+
+11 is ˜nt × ˜nt, G(q)
+13 is ˜nt × ˜nb, and G(q)
+
+23 is q × ˜nb, G(q)
+
+22 is q × q, G(q)
+
+Recall that in (5), G13 = 0. This is due to the fact that in (5),
+G22 consists of a whole metal layer (or multiple layers), and in
+
+Note that ﬁnding the above expression for ˆG(q)
+13 follows the same
+structure of the Gaussian Elimination mentioned in section 3.1,
+and is skipped due to lack of space.
+
+3
+
+Finally, let us deﬁne C(q), a q-partition of C, such that c(q)
+
+1 , c(q)
+are the ˜nt × 1, q × 1 and ˜nb × 1 vectors representing the
+and c(q)
+capacitances from each node to ground in the corresponding par-
+3 be the resulting ˜nt × 1
+titions of the grid. And, let ˆc(q)
+and ˜nb × 1 vectors after the elimination of q nodes using (16),
+respectively.
+
+and ˆc(q)
+
+1
+
+2
+
+The structure of the proof is as follows:
+
+• Base step: Form a 1-partition of G and C, and prove that
+• Inductive step: For any integer q > 1,
+
+(15) and (16a) are equivalent.
+
+1. Form a (q − 1)-partition of G and C, and reduce the
+system using (19) and (16) to get G(cid:48) and C(cid:48). Assume
+that (15) and (16a) are equivalent when eliminating
+q − 1 nodes.
+2. Eliminate 1 more node using node elimination and
+(15) from G(cid:48) and C(cid:48) to get C(cid:48)(cid:48) and its partitions c(cid:48)(cid:48)
+and c(cid:48)(cid:48)
+3 .
+3. Form a q-partition of G and C using the (q − 1) nodes
+and the additional node used in steps 1 and 2. Apply
+(16a) to get ˆc(q)
+1 .
+1 = ˆc(q)
+1 .
+
+4. Prove that c(cid:48)(cid:48)
+
+1
+
+Base Step: Let node k = ˜nt+1 be the node we need to eliminate,
+and let G(1) and C(1) be the 1-partitions made on G and C to
+eliminate node k. Then, G(1)
+
+22 = g(k), c(1)
+
+2 = c(k), and:
+
+(cid:26) −g(jk)
+
+0
+
+(G(1)
+
+12 )jk =
+
+if j is a neighbor of k
+otherwise
+
+Applying (16a), we get:
+
+ˆc(1)
+1 = c(1)
+
+1 − G(1)
+
+12 G(1)−1
+
+22
+
+c(1)
+2 = c(1)
+
+1 − c(k)
+g(k)
+
+G(1)
+12
+
+(cid:40)
+
+(cid:40)
+
+(ˆc(1)
+
+1 )j =
+
+c(k)g(jk)
+
+g(k)
+
+(c(1)
+(c(1)
+
+1 )j +
+1 )j
+
+if j is a neighbor of k
+
+(20)
+
+otherwise
+
+On the other hand, applying (15) to get the new capacitances at
+all top nodes, we get:
+
+(ˆc(1)
+
+1 )j =
+
+c(k)g(jk)
+
+g(k)
+
+(c(1)
+(c(1)
+
+1 )j +
+1 )j
+
+if j is a neighbor of k
+
+(21)
+
+otherwise
+
+(18)
+
+which translates to:
+
+2πfmaxτ(i)00.0020.0040.0060.0080.010.012NodeCount0200040006000Figure 2: Illustration of G(q) and c(q)
+
+We can see that (20) and (21) are the same. This concludes the
+base step.
+
+Moreover, let:
+
+ˆγk
+
+ˆc(q−1)
+
+(k)
+
+Inductive Step: Assume that the claim is true for eliminating
+q − 1 nodes, i.e., assume that:
+= c(q−1)
+= c(q−1)
+
+12 G(q−1)
+(22)
+G(q−1)
+are equivalent to applying (15) q − 1 times sequentially while
+eliminating q − 1 nodes using node elimination.
+
+− G(q−1)
+− G(q−1)T
+
+c(q−1)
+c(q−1)
+
+ˆc(q−1)
+ˆc(q−1)
+
+23
+
+22
+
+22
+
+3
+
+1
+
+1
+
+2
+
+2
+
+3
+
+Let the additional node to be eliminated be the ﬁrst node in the
+bottom nodes, which has index k = ˜nt + q. Note that eliminating
+the nodes in any order does not aﬀect the ﬁnal reduced system
+(Claim 2 in the appendix gives a proof of this property). Forming
+the q-partition of G with this additional node, we get:
+
+(cid:105)T
+
+c(k)
+
+(cid:105)T
+(cid:105)
+
+γk
+
+(cid:105)
+
+= c1
+
+c(q)
+3
+
+2
+
+1
+
+=
+
+(cid:104)
+1 = c(q−1)
+c(q)
+(cid:104)
+c(q−1)
+c(q)
+2 =
+c(q−1)
+c(k)
+3
+(cid:104)
+11 = G(q−1)
+G(q)
+(cid:104)
+G(q−1)
+G(q)
+12 =
+(cid:34)
+G(q−1)
+(cid:34)
+
+22 =
+
+G(q)
+
+γk G(q)
+13
+G(q−1)
+22
+µT
+k
+
+=
+
+12
+
+11
+
+13
+
+µk
+g(k)
+
+(cid:35)
+
+G(q−1)
+
+33
+
+=
+
+αT
+g(k)
+k
+αk G(q)
+33
+
+(cid:35)
+
+(23a)
+
+(23b)
+
+(23c)
+
+(23d)
+
+where γk is an ˜nt× 1 vector representing the connections between
+the top nodes and node k, µk is a (q − 1) × 1 vector representing
+the connections between the block of the ﬁrst (q − 1) nodes being
+eliminated and node k, and αk is an ˜nb × 1 vector representing
+the connections between the bottom nodes and node k. Note
+that: G(q−1)
+, where X is a
+(q − 1) × ˜nb non-positive matrix. Fig. 2 illustrates how G(q) and
+c(q) are composed in terms of G(q−1) and c(q−1), respectively.
+
+= (cid:2)µk X(cid:3), while G(q)
+
+(cid:20) X
+
+23 =
+
+(cid:21)
+
+αT
+k
+
+23
+
+In what follows, we will give some results that will be helpful
+in the rest of the proof. From [7], the inverse of any non-singular
+2× 2 block-matrix A =
+written as:
+
+(cid:20)B−1 + B−1ES−1F B−1 −B−1ES−1
+
+, where B is non-singular, can be
+
+(24)
+where S = C − F B−1E is the well-known Schur complement of
+C in A.
+
+−S−1F B−1
+
+A−1 =
+
+S−1
+
+F C
+
+(cid:21)
+
+(cid:20)B E
+
+(cid:21)
+
+Let ϕk = G(q−1)−1
+
+22
+
+µk. Then, using (23d) and (24), we can
+G(q)−1
+
+(25)
+
+=
+
+(cid:20) P
+
+(cid:21)
+
+λ
+r
+
+write:
+
+where
+
+22
+
+λT
+P = G(q−1)−1
+λ = −rϕk
+r = (g(k) − µT
+
+22
+
++ rϕkϕT
+k
+k ϕk)−1
+
+(26)
+
+where r is a scalar, λ is a (q−1)×1 vector, and P is a (q−1)×(q−1)
+matrix.
+Let:
+
+ˆg(q−1)
+
+(k)
+
+(cid:44) r−1
+= g(k) − µT
+= g(k) − µT
+
+k ϕk
+k G(q−1)−1
+
+22
+
+(27)
+
+µk
+
+12
+
+(cid:44) γk − G(q−1)
+ϕk
+12 G(q−1)−1
+= γk − G(q−1)
+k c(q−1)
+(cid:44) c(k) − ϕT
+k G(q−1)−1
+= c(k) − µT
+
+22
+
+22
+
+2
+
+2
+
+c(q−1)
+
+µk
+
+(28)
+
+Note that ˆg(q−1)
+
+33
+
+(k)
+
+is the total incident conductance at node k
+after eliminating the ﬁrst q − 1 nodes. This can be seen by eval-
+uating ˆG(q−1)
+(cid:16)
+ˆG(q−1)
+G(q−1)
+
+− G(q−1)T
+, and µk is the column of G(q−1)
+
+using (19):
+(cid:17)
+= G(q−1)
+
+Since g(k) =
+corresponds to the connections to node k, then
+
+G(q−1)
+
+that
+
+11
+
+33
+
+33
+
+33
+
+23
+
+23
+
+23
+
+22
+
+G(q−1)−1
+(cid:17)
+
+11
+
+(cid:16) ˆG(q−1)
+
+33
+
+ˆg(q−1)
+(k) =
+
+(29)
+
+Similarly, we can show that ˆc(q−1)
+
+is the capacitance connected
+to node k after eliminating the ﬁrst q − 1 nodes by evaluating
+ˆc(q−1)
+
+(k)
+
+3
+
+using (22):
+(cid:16)
+ˆc(q−1)
+c(q−1)
+
+(cid:17)
+= c(q−1)
+
+3
+
+3
+
+− G(q−1)T
+
+23
+
+c(q−1)
+
+2
+
+22
+
+G(q−1)−1
+(cid:17)
+
+(cid:16)
+ˆc(q−1)
+
+Since c(k) =
+corresponds to the connections to node k, then
+
+3
+
+1
+
+, and µk is the column of G(q−1)
+
+23
+
+that
+
+ˆc(q−1)
+(k) =
+
+(30)
+Using the same reasoning, one can prove that ˆγk is an ˜nt × 1
+vector representing the connections between the top nodes and
+node k after eliminating the ﬁrst q − 1 nodes.
+
+1
+
+3
+
+Going back to the main part of the proof, we have from (16a):
+
+ˆc(q)
+1
+
+Plugging (23a)-(23d) and (25)-(28) into (31), we get:
+
+22
+
+c(q)
+2
+
+12 G(q)−1
+1 − G(q)
+(cid:21)(cid:20)
++ c(k)λ) − γk(λT c(q−1)
+
+c(q−1)
+2
+c(k)
+
+(cid:21)
+(cid:1)c(q−1)
+
++ rϕkϕT
+k
+
+λ
+r
+
+2
+
+2
+
+1 = c(q)
+ˆc(q)
+
+= c1 −(cid:104)
+
+12
+
+12
+
+G(q−1)
+= c1 − G(q−1)
+= c1 − G(q−1)
+− γk(−rϕT
+= c1 − G(q−1)
+
+12
+
+12
+
+γk
+λT
+(P c(q−1)
+
+(cid:105)(cid:20) P
+(cid:18)(cid:0)G(q−1)−1
+(cid:0)G(q−1)−1
+k c(q−1)
+
+22
+
+2
+
+2
+
+22
+
++ rc(k))
+c(q−1)
+
+2
+
++
+
+ϕkϕT
+
+(q−1)
+k c
+2
+(q−1)
+ˆg
+(k)
+
+− c(k)ϕk
+(q−1)
+ˆg
+(k)
+
++ rc(k))
+− c(k)rϕk
+
+(31)
+
+(cid:19)
+(cid:1)
+
+γk
+c(q−1)
+
+2
+
+− −ϕT
+
+(q−1)
+k c
+2
+(q−1)
+ˆg
+(k)
+
++c(k)
+
+12 G(q−1)−1
+
+= c1 − G(q−1)
+22
+(q−1)
+− c(k)−ϕT
+k c
+2
+γk
+(q−1)
+ˆg
+(k)
+(q−1)
+− c(k)−ϕT
+k c
+2
+(q−1)
+ˆg
+(k)
+(q−1)
+(k)
+(q−1)
+ˆg
+(k)
+
+= ˆc(q−1)
+
+= ˆc(q−1)
+
+− ˆc
+
+ˆγk
+
+1
+
+1
+
++ G(q−1)
+
+12
+
+ϕk
+
+(q−1)
+c(k)−ϕT
+k c
+2
+(q−1)
+ˆg
+(k)
+
+(γk − G(q−1)
+
+12
+
+ϕk)
+
+(32)
+
+Algorithm 1 Incremental_Elimination
+
+Table 1: Comparison between Direct and Incremental Elimination.
+Grid Size: 150K nodes
+
+Inputs: G, C, h, l, δ
+Outputs: ˆG, ˆC
+1: for k = h − 1 down to l + 1 do
+2:
+3:
+
+layer nodes := get nodes of layer k
+Form partitions of G and C using (5) and (14) based on
+layer nodes
+Compute ˆG based on (11) using G
+Compute ˆC based on (17) using C
+C := ˆC
+Use SPER to sparsify ˆG, and put the result in G
+
+4:
+5:
+6:
+7:
+8: end for
+9: ˆG := G
+10: ˆC := C
+11: return ˆG, ˆC
+
+which translates to:
+
+ (ˆc(q−1)
+
+(ˆc(q−1)
+
+1
+
+1
+
+ˆc(q−1)
+
+(k)
+
+|(ˆγk)j|
+
+ˆg(q−1)
+
+(k)
+
+)j +
+
+)j
+
+(ˆc(q)
+
+1 )j =
+
+(33)
+On the other hand, let G(cid:48) = ˆG(q−1) and C(cid:48) = ˆC(q−1), applying
+node elimination then (15) to eliminate the same node k, and get
+the new capacitances at all nodes in the top nodes c(cid:48)(cid:48)
+
+1 , we get:
+
+otherwise
+
+ (c(cid:48)
+
+(c(cid:48)
+
+1)j +
+
+1)j
+
+(c(cid:48)(cid:48)
+1 )j =
+
+(k)g(cid:48)
+c(cid:48)
+g(cid:48)
+
+(k)
+
+(kj)
+
+if j is a neighbor of k
+
+(34)
+
+otherwise
+
+(k) = ˆg(q−1)
+
+Using the fact that G(cid:48) = ˆG(q−1) and C(cid:48) = ˆC(q−1), we can see
+from (29) that g(cid:48)
+. Similarly, from (30), we can see
+(k) = ˆc(q−1)
+that c(cid:48)
+(kj) = |(ˆγk)j| , ∀j. Hence, we can see that c(cid:48)(cid:48)
+that g(cid:48)
+this completes the proof.
+
+. It can also be shown using a similar reasoning
+
+1 = ˆc(q)
+
+1 , and
+
+(k)
+
+(k)
+
+5.
+
+INCREMENTAL ELIMINATION
+
+Looking at the reduced conductance matrix in (11) and the
+approximate reduced capacitance matrix in (16), we can see that
+they involve computing G−1
+22 , which represents all the nodes in
+the layers to be eliminated. As the size of the grid and number
+of layers increase, the number of nodes to be eliminated becomes
+larger. Clearly, computing the inverse will take more CPU time,
+and the result may not ﬁt in memory anymore. To this end, we
+propose an incremental layer-by-layer approach to the elimination
+process. The idea is to eliminate one layer at a time and sparsify
+the reduced grid along the way until we eliminate all the desired
+layers. This should reduce the time needed for elimination and the
+memory needed in the process. Note that the quick node property
+has been checked after each elimination process, and it holds.
+In section 6, we will compare both approaches, the direct and
+incremental ones. We will see that the incremental approach takes
+much less time, and it allows us to use very large sizes of grids
+that we couldn’t test with the direct approach. Algorithm 1
+summarizes our incremental elimination approach to eliminate k
+layers. The algorithm takes as input the original grid conductance
+matrix G, the original grid capacitance matrix C, the index of the
+lowest top layer h and the index of the topmost bottom layer l
+such that ∀k ∈ {l + 1, . . . , h − 1}, layer k is eliminated. It also
+requires δ, the sparsiﬁcation lower threshold on conductances to
+keep. The output of the algorithm is ˆG and ˆC which are the
+reduced grid conductance and capacitance matrices, respectively.
+SP ER is the sparsiﬁcation method described in section 3.2.
+
+if j is a neighbor of k
+
+6. EXPERIMENTAL RESULTS
+
+Measure
+Sparsity
+ET (min)
+SPT (sec)
+
+Speed-up in DC solve
+Average Error (mV)
+Maximum Error (mV)
+
+Direct Elimination Incremental Elimination
+
+0.279%
+11.11
+11.09
+1.57x
+1.907
+15.44
+
+0.1833%
+
+0.7
+
+33.974
+1.71x
+1.943
+16.17
+
+Table 2: Numerical Elimination v.s. Topological Elimination
+
+Original
+
+Numerical Elimination
+
+Topological Elimination
+
+Grid
+
+Size
+
+152K
+
+342K
+
+609K
+
+Reduced
+
+Size
+
+33K
+
+74K
+
+133K
+
+ET + SP T
+
+Reduction Reduced
+
+Ratio(%)
+
+Size
+
+RT
+
+Reduction
+
+Ratio (%)
+
+1.27m
+
+6.54m
+
+25.2m
+
+78.3
+
+78.4
+
+78.2
+
+44.7K
+
+3.4m
+
+100.4K 16.3m
+
+179K
+
+50.7m
+
+70.6
+
+70.6
+
+70.6
+
+In this section, we will present some results from tests run
+on the proposed Layer Elimination method with sparsiﬁcation.
+First, we will compare the direct and incremental approaches for
+layer elimination by comparing their DC responses and elimina-
+tion time. Next, we will test the reduced RC grid by comparing
+its transient voltage drops to those computed on the original grid.
+A C++ implementation was written to perform the above tests.
+Our test grids were generated based on user speciﬁcations such as
+the grid dimensions, number of layers, layers’ geometrical speciﬁ-
+cations and current source distributions. The generated grids are
+consistent with a 45nm technology. All tests were run on a Linux
+machine with 3.4 GHz Intel core i7-4770 processor with 8 cores
+and 32GB of RAM. In all tests, the number of metal layers in the
+grids was set to 8. The number of layers eliminated was 6, keeping
+only layers M8 that is attached to the C4 bumps (top layer) and
+M1 that is attached to the current sources (bottom layer). The
+model assumes that there is a current source attached to each
+non-boundary node in M1.
+
+Whenever we compare two things by looking at the error, we
+mean the error at the nodes of layer M 1 (that are attached to
+current sources) in the reduced grid relative to the exact values
+of those in the original grid. The comparison may be based on
+the DC voltage drops or the transient voltage drops in an RC
+grid.
+6.1 Direct vs. Incremental Elimination
+
+In this section, we present a comparison between the direct and
+the incremental elimination processes discussed in sections 3.1
+and 5, respectively. Table 1 presents such a comparison on a grid
+of size 150K nodes. The size of the reduced system is 33K nodes.
+For each approach, the table shows the sparsity of the reduced
+resistive systems (the sparsity of the original system is 0.00261%),
+the elimination time (ET), the sparsiﬁcation time (SPT) using
+SPER, the speed-up in the DC solve of the systems compared to
+the original system, and the average error of the DC voltage drops
+at layer M 1. The sparsity of any n× m matrix A is calculated as
+follows:
+
+Sparsity(A) =
+
+nnz(A)
+
+nm
+
+× 100%
+
+where nnz(A) is the number of non-zeros in the matrix A. We
+can see that the elimination time of the direct approach is around
+15 times that of the incremental approach. This is due to the fact
+that in the direct approach, the size of the matrix being inverted
+is much larger than those being inverted in the gradual process.
+However, the sparsiﬁcation process in the incremental elimination
+is 3 times slower than the direct one. This is because in the
+incremental approach, SPER is called as many times as there are
+layers being eliminated, and in each time, it goes over all the
+connections in the reduced system. The error in the incremental
+process is insigniﬁcantly larger, however, the speed-up in the DC
+
+Figure 3: (a): Voltage Drop Waveforms at one node in the grid
+
+(b): Histogram of the error over all nodes
+
+solve is better. Finally, It is worth mentioning that the direct
+simulation stopped working on grids of size beyond 300K nodes
+due to lack of memory, while with the incremental simulation, we
+were able to go up to sizes of the order of 3M nodes.
+
+Table 2 compares the reduction time and ratio of our incre-
+mental numerical approach with the topological one implemented
+in [2], which is based on TICER [9]. A lower threshold of 10−5
+was used on the new conductances to be added to the reduced
+grids in both cases. The table presents, along with the size of the
+original grid, the reduction time (ET + SP T ) in our incremental
+approach and RT in the topological one. In addition, the table
+presents the reduction ratio in both approaches, which is the ratio
+of the size of the reduced grid to that of the original one. From
+the table, we can see that our incremental approach is almost 2.2
+times faster than the topological one. Besides, the reduction ratio
+in our technique is higher, which is better as we aim to eliminate
+complete layers and keep only the important nodes. Note that
+the topological approach broke down after a grid size of 609K
+due to lack of memory, while our approach handled much larger
+grid sizes.
+6.2 Transient Simulations
+
+To ﬁnd the transient voltage drops on all the nodes in an RC
+power grid, we created a simple simulation engine for the ODE
+in (1) based on a standard backward-Euler discretization. All
+current waveforms were generated randomly. When comparing
+the voltage drops on the original and reduced grids, we computed
+the worst-case voltage drop error at each node over the whole
+simulation time, and then took the average and maximum error
+over all the nodes.
+
+Fig. 3a shows the voltage drop waveform before and after re-
+duction at one node in a grid of size 152K. The node lies in the
+center of layer M 1, and it is representative because most nodes
+have low worst-case error associated with them, as can be seen
+from the histogram of the worst-case errors on all M 1 nodes in
+Fig. 3b. We can see that our capacitance approximation is good,
+since the rate of convergence to steady state is almost the same.
+In other words, the time constant of both grids is almost the same.
+Table 3 shows the transient simulation results for diﬀerent
+grid sizes. The length of the simulation was taken to be 120ns.
+For each grid, the table presents the transient simulation time
+(TT) before and after reduction, the elimination and sparsiﬁca-
+tion times (ET and SPT), the speed-up gained after reduction,
+and the average and maximum worst-case errors on the voltage
+drops. The speed-up is computed as follows:
+
+Speedup =
+
+T Toriginal
+T Treduced
+
+As can be seen in the table, the speed-up gain is around 4.25x.
+This speed-up is obtained due to our topological sparsiﬁcation
+procedure, which keeps only the important connections in the
+reduced grid. Accordingly, the time taken in one linear solve of
+the reduced grid is around 4.25 times smaller that of the original
+grid, and hence, the 4.25x speed-up. Fig. 5 shows that as the
+simulation time increases, the eﬀect of the reduction overhead
+diminishes and becomes negligible.
+
+As mentioned before, there is a clear trade-oﬀ between the
+simulation speed-up and the accuracy of the simulations. To see
+this trade-oﬀ, Fig. 4 shows the relative worst-case error rate at
+the M 1 nodes versus the actual voltage drop for two cases. In
+
+Figure 4: (a): Error rate with layer M 2 eliminated
+
+(b): Error rate while keeping layer M 2
+
+Figure 5: Total Simulation Time before and after reduction
+
+the ﬁrst case (a), we eliminate 6 out of 8 layers, while in the
+second case (b), we eliminate only 5 layers by keeping layer M 2.
+From the ﬁgures, we can see how keeping layer M 2 aﬀects the
+errors by restricting them below the 5mV hyperbolas. In fact,
+the average worst-case error while keeping layer M 2 is 1.2mV .
+However, it is worth mentioning that the speed-up in the ﬁrst
+case simulations is 4.2x, while in the second one, it is only 2.34x.
+Moreover, the elimination ratio in the ﬁrst case is around 80%,
+while in the second, it is only 46%. This gives an idea on how
+there is a trade-oﬀ with more layers being eliminated.
+
+7. CONCLUSION
+
+Model order reduction (MOR) is one of the common techniques
+to study the behavior of modern on-die power grids. Traditional
+methods suﬀer from many drawbacks that limit their scalability
+to very large grids. We propose a novel numerical layer-by-layer
+grid reduction technique that is fast and accurate. We prove
+using empirical tests that it is scalable to modern grids. Results
+show that we are able to achieve a 4.25x speed-up in the transient
+analysis and a 2.4mV average worst-case error at the bottom layer
+of the grid.
+
+8. REFERENCES
+[1] E. Chiprout. Fast ﬂip-chip power grid analysis via locality
+
+and grid shells. In IEEE/ACM International Conference
+on Computer Aided Design, 2004. ICCAD-2004., pages
+485–488, Nov 2004.
+
+[2] A. Goyal and F. Najm. Eﬃcient RC power grid veriﬁcation
+
+using node elimination. In Design, Automation Test in
+Europe Conference Exhibition (DATE), 2011, pages 1–4,
+March 2011.
+
+[3] M. Nizam, F. N. Najm, and A. Devgan. Power grid voltage
+
+integrity veriﬁcation. In Proceedings of the 2005
+International Symposium on Low Power Electronics and
+Design, 2005. ISLPED’05., pages 239–244. IEEE, 2005.
+
+[4] A. Odabasioglu, M. Celik, and L. T. Pileggi. PRIMA:
+
+passive reduced-order interconnect macromodeling
+algorithm. In Proceedings of the 1997 IEEE/ACM
+international conference on Computer-aided design, pages
+58–65. IEEE Computer Society, 1997.
+
+[5] R. Plemmons and A. Berman. Nonnegative matrices in the
+
+mathematical sciences. Ch, 6:137, 1979.
+
+[6] R. Powell. Introduction to electric circuits.
+
+Butterworth-Heinemann, 1995.
+
+SimulationTime(ns)0246810VoltageDropatonenode(mV)0102030405060(a)OriginalVoltageDropVoltageDropafterReductionWorstcaseerror(mV)051015Numberofoccurrences020004000600080001000012000(b)VoltageDrop(mV)0102030405060ErrorRate(%)-200-150-100-50050100150200(a)Changeinvoltagedrop-5mV5mVVoltageDrop(mV)0102030405060ErrorRate(%)-100-80-60-40-20020406080100(b)Changeinvoltagedrop-5mV5mVTransientSimulationTime(ns)051015202530TotalSimulationTime(min)02468101214OriginalSim.TimeReducedSim.Timew/ReductionTimeReducedSim.Timew/outReductionTimeTable 3: Power grids reduction time and Transient simulations run time
+
+Original Grid
+
+Reduced Grid
+
+Elimination
+Time (ET)
+
+Sparsiﬁcation
+Time (SPT)
+
+Transient
+Time (TT)
+
+Speedup
+
+Average Worst Case
+
+Error
+in (mV )
+
+Error
+in (mV )
+
+Size
+
+152K
+
+342K
+
+609K
+
+950K
+
+1.36M
+
+1.86M
+
+2.43M
+
+3.08M
+
+Transient
+Time (TT)
+
+1.17hr
+
+2.51hr
+
+4.34hr
+
+8.05hr
+
+11.22hr
+
+19.18hr
+
+23.65hr
+
+26.59hr
+
+Size
+
+33K
+
+74K
+
+133K
+
+208K
+
+299K
+
+407K
+
+532K
+
+676K
+
+43.68s
+
+3.71m
+
+15.8m
+
+47.25m
+
+112.95m
+
+4.24hr
+
+7.42hr
+
+9.06hr
+
+36.92s
+
+2.94m
+
+9.7m
+
+21.06m
+
+43.41m
+
+1.34hr
+
+2.39hr
+
+3.49hr
+
+16.68m
+
+35.49m
+
+1.01hr
+
+1.91hr
+
+2.64hr
+
+4.25hr
+
+5.11hr
+
+5.73hr
+
+4.2x
+4.24x
+4.3x
+4.21x
+4.25x
+4.51x
+4.63x
+4.64x
+
+2.4
+
+2.5
+
+2.4
+
+2.3
+
+2.3
+
+2.3
+
+2.4
+
+2.39
+
+14.5
+
+19.1
+
+16.2
+
+14.3
+
+17.7
+
+15.4
+
+16.0
+
+16.9
+
+[7] Y. Saad. Iterative methods for sparse linear systems.
+
+SIAM, 2003.
+
+[8] W. H. Schilders, H. A. Van der Vorst, and J. Rommes.
+
+Model order reduction: theory, research aspects and
+applications, volume 13. Springer, 2008.
+
+[9] B. N. Sheehan. Realizable reduction of RC networks. IEEE
+
+Transactions on Computer-Aided Design of Integrated
+Circuits and Systems, 26(8):1393–1407, 2007.
+
+[10] H. Su, E. Acar, and S. R. Nassif. Power grid reduction
+
+based on algebraic multigrid principles. In Proceedings of
+the 40th annual Design Automation Conference, pages
+109–112. ACM, 2003.
+
+[11] M. Zhao, R. V. Panda, S. S. Sapatnekar, and D. Blaauw.
+
+Hierarchical analysis of power distribution networks. IEEE
+Transactions on Computer-Aided Design of Integrated
+Circuits and Systems, 21(2):159–168, Feb. 2002.
+
+[12] X. Zhao, Z. Feng, and C. Zhuo. An eﬃcient spectral graph
+
+sparsiﬁcation approach to scalable reduction of large
+ﬂip-chip power grids. In IEEE/ACM International
+Conference on Computer-Aided Design (ICCAD), 2014,
+pages 218–223, Nov 2014.
+
+APPENDIX
+In this appendix, we prove a result that is used in the proof of
+Claim 1.
+
+Claim 2. Eliminating q nodes in any order using (11) and
+(16) from an RC power grid produces the same reduced RC grid.
+Proof. Let G22 be an nl × nl conductance matrix that repre-
+sents the connections between the nl nodes to be eliminated in a
+speciﬁc order. Changing the order of the nodes to be eliminated is
+achieved by permuting the order of the rows and columns of G22,
+using P G22P T , where P is a permutation matrix. A permutation
+matrix P is a matrix obtained by permuting the rows or columns
+of an identity matrix according to some permutation. Moreover,
+P −1 = P T , because permutation matrices are unitary [7].
+Let P be any nl × nl arbitrary permutation matrix, and let Q
+be another permutation matrix of size n × n given by:
+
+Int
+
+0
+0
+
+
+
+0
+P
+0
+
+0
+0
+Inb
+
+Q =
+
+(35)
+
+where n = nt + nl + nb, and Int and Inb are identity matrices
+of sizes nt × nt and nb × nb, respectively. Let G(cid:48) be a reordered
+version of G in (5) given by:
+
+G(cid:48) = QGQT
+
+Int
+ G11
+
+P GT
+
+0
+0
+
+=
+
+=
+
+0
+P
+0
+
+G11 G12
+
+
+0
+
+0
+GT
+12 G22 G23
+0
+23 G33
+
+GT
+
+0
+0
+Inb
+G12P T
+
+12 P G22P T P G23
+G33
+
+23P T
+
+GT
+
+0
+
+From (36), we have:
+
+G(cid:48)
+11 = G11
+G(cid:48)
+12 = G12P T
+G(cid:48)
+22 = P G22P T
+G(cid:48)
+23 = P G23
+G(cid:48)
+33 = G33
+
+Int
+
+0
+0
+
+
+
+0
+P T
+0
+
+0
+0
+Inb
+
+(36)
+
+(37)
+
+To ﬁnd the reduced grid of G(cid:48) after elimination, we apply (11)
+
+11 − G(cid:48)
+
+ˆG(cid:48)
+11 = G(cid:48)
+
+on the partitions in (37). Hence, we get:
+12G(cid:48)−1
+22 G(cid:48)T
+= G11 − G12P T P G−1
+12
+22 P T P GT
+= G11 − G12G−1
+12
+22 GT
+12
+= ˆG11
+13 = −G(cid:48)
+ˆG(cid:48)
+
+23
+22 P T P G23
+
+12G(cid:48)−1
+22 G(cid:48)
+= −G12P T P G−1
+= −G12G−1
+22 G23
+= ˆG13
+ˆG(cid:48)
+33 = G(cid:48)
+
+33 − G(cid:48)T
+= G33 − GT
+= G33 − GT
+= ˆG33
+
+23G(cid:48)−1
+22 G23
+23P T P G−1
+23G−1
+22 G23
+
+22 P T P G23
+
+where G(cid:48)−1
+Form (38), we can see that ˆG = ˆG(cid:48).
+
+22 = (P G22P T )−1 = P G−1
+
+22 P T , since P is unitary.
+
+Similarly, reordering the matrix C using Q gives the following
+
+reordered versions of the vectors c1, c2 and c3:
+
+c(cid:48)
+1 = c1
+c(cid:48)
+2 = P c2
+c(cid:48)
+3 = c3
+Using (37) and (39) in (16), we get:
+
+(38)
+
+(39)
+
+(40)
+
+2
+22P T P c2
+
+1 − G(cid:48)
+
+1 = c(cid:48)
+ˆc(cid:48)
+
+12G(cid:48)−1
+22 c(cid:48)
+= c1 − G12P T P G1
+= ˆc1
+ˆc(cid:48)
+3 = c(cid:48)
+
+3 − G(cid:48)T
+= c3 − GT
+= ˆc3
+
+23G(cid:48)−1
+22 c(cid:48)
+2
+23P T P G1
+22P T P c2
+
+From (40), we can see that ˆC(cid:48) = ˆC, and this completes the proof.
+
+

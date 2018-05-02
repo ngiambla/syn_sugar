@@ -1,0 +1,105 @@
+1 Deep Q-Network (DQN)
+
+1.1 Take-away
+
+ DQN approximates a non-linear reinforcement learning algorithm through
+
+experience.
+
+ Conveys choices through a uniform distribution.
+
+ Gives rise to a large yet nite Markov Decision process.
+
+2 Neural Network Based Reinforcement Learn-
+
+ing Acceleration on FPGA Platforms
+
+2.1 Architecture Overview
+
+Authors note on:
+
+ Multi Mode Matrix Multiplication (MMMX)
+ For Feed Forward (FF) use in tandem with Multiply Accumulate (MAC)
+ For BP use in tandem in Multiply adder tree (MADD)
+ This allows for streaming in the memory access pattern for both FF BP.
+
+Has three modes,
+
+1
+
+1. Feed Forward (FF)
+
+2. Hidden Gradient (HG)
+
+3. Weight Gradient (WG)
+
+2.2 FF Mode
+
+For FF mode,
+
+ Layers are segmented into columns (Columns are weights of the nodes)
+
+ Each Layer is then fed through the MMMX structure with utilizations on
+
+the MAC.
+
+ Outputs are then fed into hidden layer memory block (H).
+
+ Rinse/Repeat with each previous layer
+
+2.3 HG Mode
+
+For HG mode,
+
+ Working backwards, we are calculating the gradients of the Hs.
+
+ This utilizes the MADD logic.
+
+ The output of this computation is fed back into dH-1.
+
+ Rinse/Repeat.
+
+2.4 WG Mode
+
+For WG mode,
+
+ Using the computed hidden gradients, we need to calc the new weights.
+
+ Using the dH from current layer and H-1, we then multiply and produce:
+
+dw1,2 = Hi1  dHi1
+
+(1)
+
+ Rinse/Repeat.
+
+1This is piecewise.
+
+2
+
+2.5 Evaluation
+
+ The CPU & GPU alloted for testing purposes were out-of-date. More
+
+recent hardware should be used to compare performance.
+
+ FPGA used is modern: 10AX066 (Arria 10). Not fair comparison.
+
+ Tests were on object identication and collection. Collecting a desired item
+was rewards, incorrect specimens were penalized, and boundaries/obstacles.
+
+ The mechanism had nine distance identiers, with 3 data points collected
+
+at each identier. In total, the mechanism collected 27 data points.
+
+3 FPGA Architecture for Deep Learning and its
+
+application to Planetary Robotics
+
+3.1 Application Details
+
+ Interesting application for space exploration
+
+3
+
+

@@ -1,0 +1,20 @@
+ This holds true in particular for images decomposed into a number of scales, exemplary in JPEG 2000 coding system.
+ We present the core focused on CDF 5/3 wavelet and the symmetric border extension method, both employed in the JPEG 2000.
+ INTRODUCTION transform (DWT) The discrete wavelet is the signal- processing transform suitable as a basis for sophisticated compression algorithms.
+ The transform results in two subbands, corresponding to two FIR filters (a low-pass and high-pass ones).
+ This induces special prolog and epilog phases, which cause delays at the beginning and end of the processing.
+ The polyphase matrix [4], [6], [7] is a convenient tool to express the transform filters.
+ Unlike a convolution scheme, the lifting allows [9] formulation of the transforms mapping integers to integers.
+ To keep the total number of wavelet coefficients equal to the number of input samples, symmetric border extension is widely used.
+ The symmetric border extension method assumes that the input image can be recovered outside its original area by symmetric replication of boundary values.
+ The direct consequence of this formulation is the possibility of an elegant treatment of signal boundaries.
+ The stage is used in the sense of the scheme step, usually the lifting step.
+ As a next step, a unit which continuously consumes the input signal a0 and produces the output a1, d1 subbands is proposed.
+ As a consequence of the DWT nature, the core has to consume pairs of input samples.
+ The input signal is processed progressively from the beginning to the end, therefore in a single loop.
+ The size of the buffer can be expressed as κ coefficients, where κ is the number of values that have to be passed between adjacent cores.
+ To simplify relations, two functions are introduced given by Θ(n) = n + F, and Ω(n) = ⌈n/2⌉. (5) The function Θ(n) maps core output coordinates onto core input coordinates with the lag F .
+ The output signal is generated with the lag F = 1 sample with respect to the input signal.
+ The data-flow graph obtained shows the mirroring at the beginning and end of the signal.
+ CONCLUSIONS We have focuses on treatment of signal boundaries for com- puting of the discrete wavelet transform.
+ Malumbres, “On the efficient memory usage in the lifting scheme for the two-dimensional wavelet transform computation,” in Image Processing, 2005.

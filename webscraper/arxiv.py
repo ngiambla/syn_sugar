@@ -1,42 +1,53 @@
 import arxivscraper.arxivscraper as ax
 
+import os
+import glob
 import urllib2
 import datetime
 import argparse
+
 from pprint import pprint
 
-def download_file(page_url, abstract):
-    filenum         = page_url.split('/')[-1]
-    download_url    = 'https://arxiv.org/pdf/'+filenum+'.pdf'
-    response        = urllib2.urlopen(download_url)
-    file            = open('./docs/'+filenum+".pdf", 'w')
-    file.write(response.read())
-    file.close()
+SUCCESS = 1
+QUIT    = -1
 
-    file            = open('./solns/'+filenum+'.txt', 'w')
-    file.write(abstract)
-    file.close()
-    
-    print("Extracted: "+str(filenum))
+def download_file(page_url, abstract):
+    try:
+        filenum         = page_url.split('/')[-1]
+        download_url    = 'https://arxiv.org/pdf/'+filenum+'.pdf'
+        response        = urllib2.urlopen(download_url)
+        file            = open('./docs/'+filenum+".pdf", 'w')
+        file.write(response.read())
+        file.close()
+
+        file            = open('./solns/'+filenum+'.txt', 'w')
+        file.write(abstract)
+        file.close()
+        
+        print("Extracted: "+str(filenum))
+        return SUCCESS
+    except KeyboardInterrupt:
+        print("Exiting...")
+        return QUIT
 
 
 # Parse user range based on input
 # i.e., 1-5, 7, 8 will give categories 1-5, 7 and 8
-def parse_categories(cat_range):
+def parse_categories(cat_range, categories):
     result = set()
     for part in cat_range.split(','):
         x = part.split('-')
         result.update(range(int(x[0]), int(x[-1]) + 1))
+    print("[!] Going to collect documents from")
+    for item in result:
+            print("  [+] "+categories[item])
     return sorted(result)
 
-#def parse_sc(categories):
-#    sc = defaultdict(categories)
-#    for part in range(categories):
-#        if part==
-#    return sorted(result)
-
-def check_categories(cat_range):
+def check_categories(cat_range, categories):
     if len(cat_range) < 1: # add support for non-integer input
+        return False
+
+    if len(cat_range) > len(categories)-1:
         return False
 
     for part in cat_range.split(','):
@@ -82,18 +93,39 @@ def main():
     ending_date         = ""
     categories          = ""
     
-    cats = ['Physics',  'Mathematics', 'Computer Science', 'Quantitative Biology', 'Quantitative Finance', 
-            'Statistics', 'Electrical Engineering and System Science', 'Economics']
+    cats = {
+        0 : 'Physics',  
+        1 : 'Mathematics', 
+        2 : 'Computer Science', 
+        3 : 'Quantitative Biology', 
+        4 : 'Quantitative Finance', 
+        5 : 'Statistics', 
+        6 : 'Electrical Engineering and System Science', 
+        7 : 'Economics'
+        }
+
+
+    print("[WEBSCRAPE]: Would you like to begin with a fresh dataset? [Y/n]")
+    ans = ""
+    while ans.upper() != "Y" and ans.upper() != "N": 
+        ans=raw_input("? ")
+    if ans.upper() == "Y":
+        for file in glob.glob("docs/*"):
+            os.remove(file)
+        for file in glob.glob("solns/*"):
+            os.remove(file)
+        print("[INFO] Clean.\n")
 
     print("Available Categories:")
-    pprint(cats)
+    for cat in cats:
+        print(str(cat)+": "+str(cats[cat]))
+    print("\n")
 
+    while not check_categories(categories, cats): 
 
-
-    while not check_categories(categories): 
         categories=raw_input("Enter a valid range of categories from list abve: i.e., 0-5, 7: ")
-    
-    categories=parse_categories(categories)
+
+    categories=parse_categories(categories, cats)
     adjust_date_range=False
 
     if 6 or 7 in categories:
@@ -107,15 +139,16 @@ def main():
         ending_date=raw_input("Enter ending date in the format YYYY-MM-DD: ")
     
     
-    
+    raw_input("~~INFO:\n-[CTRL + c] exits.\n-Press [return] to Process.")
     for category in range(len(categories)):
         scraper = ax.Scraper(category=categories[category], date_from=str(starting_date),date_until=str(ending_date))
 
         documents = scraper.scrape()
-        print("Found "+ str(documents) + "documents")
+        print("Found "+ str(len(documents)) + " documents.")
 
         for doc in range(len(documents)):
-            download_file(documents[doc]['url'], documents[doc]['abstract'])
+            if download_file(documents[doc]['url'], documents[doc]['abstract']) == -1:
+                return
 
 
 if __name__ == "__main__":

@@ -1,0 +1,20 @@
+ In addition, the achievable rates under uncorrelated Rayleigh fading are close to those under practical measured channels with non-line-of-sight and spatially distributed UEs [28].
+ We denote as φl′i ∈ Cτp, ∀l′ ∈ ΦD, i ∈ {1, . . . , K} the pilot sequence assigned to UEl′i with |[φl′i] j| = 1, ∀ j ∈ {1, . . . , τp}.
+ UE0k transmits a superposition of the pilot sequence ϕT 0k and the data signal sT 0k along with all other UEs in the network over τc instances of (1).
+ The noise matrix is deﬁned as N0 =(cid:2)n01, . . . , n0τc(cid:3) with i.i.d. columns distributed as n0 j ∼ CN(cid:0)0, σ2IM(cid:1) ∀ j ∈ {1, . . . , τc}.
+ Random Pilot allocation The key advantage that SP has with respect to RP is the ability to use the whole coherence block for both channel estimation and data detection.
+ To obtain clear insights into the data rate performance with respect to the number of samples used of channel estimation, τp (with RP) and τc (with SP), we consider a random pilot allocation method with both RP and SP.
+ This means that for l′ , 0, χ SP l′i are Bernoulli distributed random variables with success probability K/τp ϕ H 0k ϕl′i τc χRP i=1 = and K/τc, respectively.
+ Thus, we assume statistical channel inversion power control where the transmission power of data symbols is computed as pl′i = ρd/βl′l′i = ρdωdα l′l′i and of pilot symbols as ql′i = ρp/βl′l′i = ρpωdα l′l′i.
+ Moreover, we deﬁne ρ as the total average transmission power per symbol7 such that ρd = ρp = ρ with RP and ρd + ρp = ρ with SP.
+ We deﬁne the proportion between pilot and data power with SP as ∆ ∈ [0, 1] such that ρp = ∆ρ and ρd = (1 − ∆)ρ.
+ In particular, we calculate an expected value of ¯RRP 0k with respect to the distances dll′i ∀l, l′ ∈ ΦD and i ∈ {1, . . . , K}.
+ Number of antennas M (b) Achievable rate per UE for ρ = σ2/4 (SNR = −6 dB), τc = 200 and K = 10. 50 ] s / t i b M [ E U r e p e t a r . g v A 50 40 30 20 10 0 101 ] s / t i b M [ E U r e p e t a r . g v A 102 103 40 30 20 10 10−1 100 101 102 103 Size of coherence block τc (c) Achievable rate per UE for ρ = σ2/4 (SNR = −6 dB), M = 100 and K = 10. (d) Achievable rate per UE for M = 100, τc = 200 Avg.
+ From the results with and without pilot subtraction, we can see that the optimal ∆ seeks to balance the interference from pilot symbols and the quality of channel estimation.
+ At the same time, however, additional coherent interference appears from data transmission and, in the case of SP without pilot subtraction, that is substantial.
+ Coh. / 26 N-coh.+noise (b) Interference sources for M = 100, ρ = σ2/4 (SNR = −6 dB), τc = 200 and K = 10. ] e l u o J / t i b M [ E E 10 8 6 4 2 0 SP perf. sub.
+ Ki=1(cid:18) dα ρ!! ∆ρτc! (1−∆) K +l′∈ΨD 0l′i! + ∆τcl′∈ΨD Ki=1 dα l′l′i dα 0l′i (1 − ∆)2 + 1+ + (1 − ∆)2 K(1 − ∆) Ki=1 K(1−∆) dα l′l′i dα 0l′i dα l′l′i dα 0l′i dα l′l′i dα l′l′i dα l′l′i dα + M τc l′l′i dα τ2 c 1 + + ∆τc l′l′i dα + + ∆τc σ2 + τ2 c σ2 σ2 ∆ σ2 (52) 0k E( G +Tl′∈ΨD Ki=1 0l′i!
+ For the case of RP we have G = 1 + σ2 ρτp , T = 1 τp , B = K + σ2 ρ , J = 1, and by combining (53) with (54) we obtain the last two terms in the denominator of SINRRP in (34).
+ In the case of SP we have G = 1 + K(1 − ∆) ∆τc + σ2 ∆ρτc , T = 1 ∆τc , B = K + σ2 ρ , J = 1, (55) and by combining (53) with (55) the last two terms in the denominators of SINRSP in (36) are obtained.
+ For the case of SP with perfect pilot subtraction we have the same values as in (55) ρ and J = 1 − ∆.
+ Then by combining these values with (53) the last except for B = K(1 − ∆) + σ2 two terms in the denominator of SINRSP-UB in (37) are found.

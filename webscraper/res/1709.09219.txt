@@ -1,0 +1,20 @@
+ A Centralized Power Control and Management Method for Grid-Connected Photovoltaic (PV)-Battery Systems 7 1 0 2 p e S 6 2 ] .
+ Battery groups are used in PV systems to balance the power ﬂows and eliminate power ﬂuctuations due to change of operating condition, e.g., irradiance and temperature variation.
+ In an attempt to effectively manage the power ﬂows, this paper presents a novel power control and management system for grid-connected PV-Battery systems.
+ However, this method only schedules the battery changing and discharging but does not comprehensively manage the power ﬂows of the entire system.
+ Pbat > 0 and Pbat < 0 indicates discharging and charging mode of the battery, respectively; Pgrid > 0 means the power is being transferred from the DC microgrid to the utility grid, and vice versa.
+ A power control and management system is designed (Fig. 2), which supervises the status of each generation and load in the system, and, depending on the situations, determines the references for the PV power, DC bus voltage, battery charging/discharging power, and the active and reactive power though the inverter.
+ Detailed control schemes are elaborated as follows. 1) PV Generation Control: The power control for the PV array can be switched between MPPT control mode and power reference control mode, depending on the SOC of battery, DC load demand PDC−load and the grid-requested power Pgrid.
+ On the other hand, if the battery is fully changed (SOC ≥ 95%), DC load demand (PDC−load) is fulﬁlled, and the grid is not able to consumed the excess PV power, MPPT will turn off, and the PV will be switched to power reference control mode, where the reference is given by the following equation.
+ Namely, there are maximum and minimum limits for SOC, which is set to be 95% and 20% respectively in this scheme, to eliminate the degradations and extend the life cycle of the battery.
+ A bidirectional DC/DC converter is used to control the charging and discharging of battery (Fig. 4 (a)), and the control scheme is illustrated in Fig. 4 (b), where Pbat−mes and Pbat−ref Fig. 1.
+ Therefore, if the control strategies are able to stabilize the DC bus voltage while balancing the power ﬂow, converters can be omitted for load access, making the system more convenient and economical.
+ Fig. 5 illustrates the control scheme for the inverter, which aims at stabilizing the DC bus voltage, VDC, and controlling the reactive power, Q, ﬂowing through the inverter.
+ CONCLUSION Power management in grid-connected PV-battery systems is critical to maintain a reliable power supply to load and the utility grid demands.
+ This paper proposes a power control and management system, which is able to effectively manage the power ﬂows in grid PV-battery microgrid systems.
+ Power demands and supplies are successfully balanced by the control of power converts, and the reactive power is also under full monitoring and control.
+ Etemadi, “A uniﬁed control and power management scheme for pv-battery-based hybrid microgrids for both grid-connected and islanded modes,” IEEE Transactions on Smart Grid, vol.
+ Houssamo, “DC load and batteries control limitations for photovoltaic systems. experimental validation,” IEEE Transactions on Power Electronics, vol. 27, no. 9, pp. 4030–4038, Sept 2012. [7] H.
+ Jiang, “A power management strategy for pv/battery hybrid systems in islanded microgrids,” IEEE Journal of Emerging and Selected Topics in Power Electronics, vol. 2, no. 4, pp. 870–882, Dec 2014. [8] M.
+ Huang, “Optimal charg- ing/discharging scheduling of battery storage systems for distribution systems interconnected with sizeable pv generation systems,” IEEE Transactions on Power Systems, vol. 28, no. 2, pp. 1425–1433, May 2013. [10] Y.
+ Ploix, “Optimal power ﬂow management for grid connected PV systems with batteries,” IEEE Transactions on Sustainable Energy, vol. 2, no. 3, pp. 309–320, July 2011. [11] J.

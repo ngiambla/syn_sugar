@@ -314,7 +314,7 @@ class garnish:
 		l_summary_map = {}
 
 		for _label in k_summary_map:
-			if len(l_summary_map) < 10:
+			if len(l_summary_map) < 20:
 				l_summary_map[_label[0]]=_label[1]
 			else:
 				break

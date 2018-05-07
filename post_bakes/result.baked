@@ -1,74 +1,608 @@
 ~$[ Syntactic Sugar ]$~
 ** Results **: 
 
-[+0]   If Mr Ernesto Zedillo, Mexico's next president, had any doubts about the difficulties of reforming Mexico's governing party and the country's corrupt judicial and legal system, the assassination last week of Mr Jose Francisco Ruiz Massieu, the party's number two official, will probably have removed them.[13.6209221133]
-[+46]   Mr Ruiz Massieu's killing was allegedly ordered by Mr Manuel Munoz Rocha, a federal deputy of the ruling Institutional Revolutionary party (PRI), and Mr Abraham Rubio Canales, a former tourism developer with strong links to the Gulf drug cartel in the state of Tamaulipas.[9.24368862081]
-[+114]   This alleged alliance between a hardliner in the governing party and a man with links to a drug gang has underlined concerns that efforts by Mr Zedillo to reform his party and the country's criminal justice system will be met with fierce and violent resistance from those who stand to lose from these changes.[0.781479426495]
-[+194]   Since Mr Ruiz Massieu's assassination, there has been renewed speculation that political reactionaries and drug traffickers may have had a hand in the killing six months ago of Mr Luis Donaldo Colosio, the ruling party's reform-minded presidential candidate, even though no evidence has emerged to indicate this is the case.[12.4809356201]
-[+244]   Mr Carlos Fuentes, the novelist, asked yesterday in a newspaper article entitled 'Who is next?' whether Mexico, like Colombia, was facing a period of sustained political violence orchestrated by drug barons.[1.58515265364]
-[+314]   Two newspapers reported yesterday that Mr Munoz Rocha has admitted to a role in the crime but put the responsibility on Mr Rubio Canales, who reportedly blames Mr Ruiz Massieu for his conviction for fraud in 1992, and the prison sentence he is currently serving.[0.238923191821]
-[+400]   Mr Ignacio Pichardo, the president of the party, declared on Monday that Mr Munoz Rocha 'never had intellectual interests, never raised issues of political theory, and was never associated with making ideological pronouncements.' Mr Pichardo insisted that the reform of the PRI would go ahead.[22.4517603539]
-[+445]   As if to underline this pledge, Ms Maria de los Angeles Moreno, the head of the PRI group in the Chamber of Deputies and a reformist, was appointed to replace Mr Ruiz Massieu as the party's secretary-general.[5.63878653664]
+[+528]   L’estimation des coefﬁcient de pondération, dite codage par- cimonieux (sparse coding en anglais), est un problème non convexe et NP-difﬁcile à cause de la contrainte de type ℓ0 pour imposer la parcimonie.[1416.63974788]
+[+625]   Le présent article vise à résoudre d’une manière exacte le problème de l’apprentissage de dictionnaire, c’est à dire en considérant la norme ℓ0 sans aucune relaxation.[1227.19776192]
+[+782]   La section 3 montre la per- tinence de la méthode proposée en débruitage d’image, et la dernière section conclut l’article. 2 Représentation parcimonieuse 2.2 Optimisation globale du problème 2.1 Énoncé du problème Soit Y = [y1, . . . , yℓ] ∈ Rn×ℓ, une matrice contenant ℓ signaux yi, i = 1, . . . , ℓ, de dimension n.[1233.85999356]
+[+1028]   Une manière classique d’aborder ce problème (1) d’estimation jointe de D et X consiste à utiliser une procédure de relaxation alternée en deux phases [1].[857.207307597]
+[+1418]   L’idée est d’associer à tous les éléments xi du vecteur x, une variable binaire zi égale à 0 si xi = 0 et égale à un sinon.[1017.41353435]
+[+1586]   Supposons que l’on connaisse un réel M > 0 suf- ﬁsamment grand, de sorte que, si x⋆ est solution du problème (2), alors kx⋆k∞ < M .[1675.32916755]
+[+2076]   Cette solution peut être utilisée comme une bonne initialisation des variables à optimiser et du para- mètre M , permettant aux solveurs d’accéder plus rapidement au minimum globale du problème [2].[844.732273319]
+[+2122]   Elle est construite à partir de l’opé- rateur proximal associé à la contrainte kxk0 6 T : proxT : Rp −→ Rp x 7−→ proxT (x) = arg min kuk06T 1 2 ku − xk2.[1675.23239112]
+[+2215]   L’algorithme de descente de gradient proximal consiste alors à mettre en œuvre, pour un pas ρ, les itérations suivantes [3] : xk+1 ∈ proxT(cid:0)xk − ρDT (Dxk − y)(cid:1).[1919.39505391]
+[+2264]   Soulignons que, comme pour la plupart des méthodes itéra- tives, il existe de nombreuses variantes de l’algorithme permet- tant d’accélérer la convergence.[1458.09208108]
+[+2286]   Connaissant x⋆ le point de convergence de l’algorithme proximal, il est possible d’en déduire une initialisation pour le vecteur z et le paramètre M .[2015.93111472]
+[+2311]   Par exemple, pour un ε > 0 donné, on peut initialiser z avec zj = 0 si |x⋆ j | 6 ε et zj = 1 sinon.[2915.33362762]
+[+2338]   La constante M peut être choisie telle que M = (1 + α)kx⋆k∞ avec α > 0 choisi le plus petit possible.[2616.20859933]
+[+2445]   Nous avons construit la matrice Y des données d’appren- tissage à l’aide des cinq images simultanément en utilisant, comme dans la littérature [6], des imagettes de taille 8 × 8 se chevauchant.[1091.69441342]
+[+2491]   Nous avons ﬁxé expérimentalement le nombre d’atomes du dictionnaire à p = 100 et le coefﬁcient de parci- monie à T = 20.[1090.87331585]
+[+2514]   Nous avons testé différents niveaux de bruit additif gaussien sur les images en utilisant trois différents ni- veaux de bruit avec des valeurs d’écart type σ = 10, 20 et 50.[2028.87583726]
+[+2575]   Pour la phase de codage parcimonieux, nous avons comparé notre approche MIQP avec les deux méthodes références de la littérature, K-SVD [6] et la méthode proximale [3], toutes choses égales par ailleurs.[1789.98491387]
+[+2700]   Nous avons aussi ﬁxé α = 1,5 pour des raisons de stabilité. 1. http://sipi.usc.edu/database/database.php?volume=misc La TABLE 1 résume nos résultats.[1502.02769489]
+[+2830]   Cependant, pour un faible niveau de bruit (σ = 10), notre méthode ne réussit pas à améliorer les résultats de K-SVD alors que, pour un niveau intermédiaire (σ = 20) les résultats sont plus contrastés et dépendent de l’image considérée.[829.590385479]
+[+3079]   Pour arriver à ce résultat, nous avons proposé deux techniques d’accélération du traitement des MIQP, la reformulation des contraintes pour mieux structurer le problème, et l’initialisation efﬁcace de la procédure grâce à un algorithme proximal.[1043.88734513]
 
  Baked Goods: 
 
-~$[if %%#%% ernesto zedillo%%lst%% mexico%%sqt%%s %%#%% president%%lst%% %%#%% %%#%% doubts %%#%% %%#%% 
-difficulties %%#%% reforming mexico%%sqt%%s governing party ]^[ %%#%% country%%sqt%%s corrupt 
-judicial ]^[ legal system%%lst%% %%#%% assassination last week %%#%% %%#%% jose francisco 
-ruiz massieu%%lst%% %%#%% party%%sqt%%s number %%#%% official%%lst%% %%#%% probably %%#%% removed 
-them%%per%%]$~ 
-~$[mr ruiz massieu%%sqt%%s killing %%#%% allegedly ordered %%#%% %%#%% manuel munoz rocha%%lst%% %%#%% 
-federal deputy %%#%% %%#%% ruling institutional revolutionary party (pri)%%lst%% ]^[ %%#%% 
-abraham rubio canales%%lst%% %%#%% former tourism developer %%#%% strong links %%#%% %%#%% 
-gulf drug cartel %%#%% %%#%% state %%#%% tamaulipas%%per%%]$~ 
-~$[the %%#%% allegedly hired %%#%% gunman%%lst%% ]^[ %%#%% accomplices%%lst%% according %%#%% 
-testimony %%#%% %%#%% %%#%% %%#%% %%#%% confessed %%#%% %%#%% role %%#%% %%#%% killing%%per%%]$~ 
-~$[this alleged alliance %%#%% %%#%% hardliner %%#%% %%#%% governing party ]^[ %%#%% %%#%% 
-%%#%% links %%#%% %%#%% drug gang %%#%% underlined concerns %%#%% efforts %%#%% %%#%% zedillo 
-%%#%% reform %%#%% party ]^[ %%#%% country%%sqt%%s criminal justice system %%#%% %%#%% met 
-%%#%% fierce ]^[ violent resistance %%#%% %%#%% %%#%% stand %%#%% lose %%#%% %%#%% 
-changes%%per%%]$~ 
-~$[according %%#%% testimony %%#%% %%#%% alleged accomplices %%#%% %%#%% assassination%%lst%% 
-%%#%% conspirators drew %%#%% %%#%% list %%#%% reform%%dsh%%minded politicians %%#%% plans %%#%% 
-kill %%#%% %%#%% them%%per%%]$~ 
-~$[since %%#%% ruiz massieu%%sqt%%s assassination%%lst%% %%#%% %%#%% %%#%% renewed speculation 
-%%#%% political reactionaries ]^[ drug traffickers %%#%% %%#%% %%#%% %%#%% hand %%#%% %%#%% 
-killing six months ago %%#%% %%#%% luis donaldo colosio%%lst%% %%#%% ruling party%%sqt%%s 
-reform%%dsh%%minded presidential candidate%%lst%% %%#%% %%#%% %%#%% evidence %%#%% emerged %%#%% 
-indicate %%#%% %%#%% %%#%% case%%per%%]$~ 
-~$[mr carlos fuentes%%lst%% %%#%% novelist%%lst%% %%#%% yesterday %%#%% %%#%% newspaper article 
-entitled %%sqt%%who %%#%% next?%%sqt%% %%#%% mexico%%lst%% %%#%% colombia%%lst%% %%#%% facing %%#%% period 
-%%#%% sustained political violence orchestrated %%#%% drug barons%%per%%]$~ ~$[other 
-columnists %%#%% insinuated %%#%% %%#%% %%#%% %%cmp_ta%% currently revealed %%#%% %%#%% 
-involved %%#%% %%#%% ruiz massieu%%sqt%%s murder%%per%%]$~ 
-~$[mr munoz rocha %%#%% promised %%#%% hand %%#%% %%#%% %%cmp_if%% %%#%% safety %%#%% guaranteed%%lst%% 
-according %%#%% %%#%% statement %%#%% mexico%%sqt%%s congress%%per%%]$~ ~$[two newspapers reported 
-yesterday %%#%% %%#%% munoz rocha %%#%% admitted %%#%% %%#%% role %%#%% %%#%% crime ]b[ %%#%% 
-%%#%% responsibility %%#%% %%#%% rubio canales%%lst%% %%#%% reportedly blames %%#%% ruiz 
-massieu ]f[ %%#%% conviction ]f[ fraud %%#%% 1992%%lst%% ]^[ %%#%% prison sentence %%#%% %%#%% 
-currently serving%%per%%]$~ 
-~$[mr munoz rocha %%#%% %%#%% participated %%#%% %%#%% assassination %%sqt%%%%cmp_b%% %%#%% %%#%% 
-angry %%#%% %%#%% %%#%% ]n[ %%#%% supported %%#%% %%#%% political aspirations%%sqt%%%%per%%]$~ 
-~$[the ruling party %%#%% denied %%#%% %%#%% crime reflects %%#%% internal battle 
-%%#%% ideological factions %%#%% %%#%% pri%%per%%]$~ ~$[mr ignacio pichardo%%lst%% %%#%% president 
-%%#%% %%#%% party%%lst%% declared %%#%% monday %%#%% %%#%% munoz rocha %%sqt%%never %%#%% intellectual 
-interests%%lst%% %%#%% raised issues %%#%% political theory%%lst%% ]^[ %%#%% %%#%% associated 
-%%#%% %%#%% ideological pronouncements%%per%%%%sqt%% 
-%%#%% pichardo insisted %%#%% %%#%% reform %%#%% %%#%% pri %%#%% %%#%% ahead%%per%%]$~ ~$[as %%cmp_if%% %%#%% 
-underline %%#%% pledge%%lst%% ms maria de los angeles moreno%%lst%% %%#%% head %%#%% %%#%% pri 
-%%#%% %%#%% %%#%% chamber %%#%% deputies ]^[ %%#%% reformist%%lst%% %%#%% appointed %%#%% replace 
-%%#%% ruiz massieu %%#%% %%#%% party%%sqt%%s secretary%%dsh%%general%%per%%]$~ 
-~$[government officials %%#%% suggested %%#%% gulf drug cartel %%#%% %%#%% 
-deliberately involved %%#%% munoz rocha %%#%% %%#%% assassination %%#%% maximise %%#%% 
-political impact %%#%% %%#%% crime%%per%%]$~ 
-~$[the motives %%#%% drug traffickers %%#%% uncertain%%per%%]$~ ~$[one view %%#%% %%#%% believed %%#%% 
-assassination %%#%% weaken %%#%% ruiz massieu%%sqt%%s brother%%lst%% mario%%lst%% %%#%% %%#%% %%#%% 
-deputy attorney %%#%% %%#%% charge %%#%% drug enforcement%%per%%]$~ 
-~$[if %%#%% %%#%% %%#%% motivation%%lst%% %%#%% plan %%#%% %%#%% backfired%%per%%]$~ ~$[mr ruiz massieu %%#%% 
-%%#%% charge %%#%% %%#%% investigation %%#%% %%#%% brother%%sqt%%s death%%lst%% ]^[ search ]f[ 
-drug cartel %%#%% appears %%#%% %%#%% intensified%%per%%]$~ 
-~$[another view %%#%% %%#%% cartel %%#%% seeking revenge%%per%%]$~ ~$[mr mario ruiz massieu 
-recently %%#%% arrested raul valladares%%lst%% top lieutenant %%#%% %%#%% gulf cartel ]^[ 
-son%%dsh%%in%%dsh%%law %%#%% %%#%% rubio canales%%lst%% %%#%% %%#%% %%#%% %%#%% acapulco jail accused %%#%% 
-jointly plotting %%#%% assassination%%per%% 
- 
+~$[une véritable approche ℓ0 pour l’apprentissage de dictionnaire 
+yuan liu%%lst%% stéphane canu%%lst%% paul honeine%%lst%% su ruan 
+normandie univ%%lst%% insa rouen%%lst%% unirouen%%lst%% unihavre%%lst%% litis%%scn%% 
+avenue de l’université%%lst%% 76801 saint%%dsh%%Étienne%%dsh%%du%%dsh%%rouvray cedex%%lst%% france 
+yuan%%per%%liu@insa%%dsh%%rouen%%per%%fr%%lst%% stephane%%per%%canu@insa%%dsh%%rouen%%per%%fr 
+paul%%per%%honeine@univ%%dsh%%rouen%%per%%fr%%lst%% su%%per%%ruan@univ%%dsh%%rouen%%per%%fr 
+7 
+1 
+0 
+2 
+%%#%% 
+%%#%% 
+%%#%% 
+2 
+1 
+] 
+%%#%% 
+%%#%% 
+%%per%% 
+%%#%% 
+%%#%% 
+[ 
+1 
+%%#%% 
+7 
+3 
+9 
+5 
+0 
+%%per%% 
+9 
+0 
+7 
+1 
+%%cln%% 
+%%#%% 
+%%#%% 
+%%#%% 
+%%#%% 
+%%#%% 
+résumé – ces derniers temps%%lst%% les modèles parcimonieux ont suscité un vif intérêt de %%#%% leur capacité à sélectionner automatiquement un 
+modèle simple parmi une grande collection%%per%%]$~ ~$[ils se sont notamment révélés être utiles pour l’apprentissage de dictionnaire%%per%%]$~ ~$[la manière classique 
+d’exprimer la parcimonie dans ce cadre%%lst%% consiste à utiliser la norme ℓ0 qui permet de compter%%lst%% et donc de contrôler%%lst%% le nombre de composantes 
+d’un modèle%%per%%]$~ ~$[malheureusement%%lst%% les problèmes d’optimisation associés s’avèrent être %%#%% convexes et np%%dsh%%difﬁciles%%lst%% ce qui %%#%% justiﬁé la recherche 
+de relaxations pour obtenir une bonne approximation de la solution globale du problème%%per%%]$~ ~$[a l’inverse%%lst%% nous montrons dans cet article que%%lst%% en 
+dépit de sa complexité%%lst%% ce problème l’apprentissage de dictionnaire avec la norme ℓ0 peut aujourd’hui être traité efﬁcacement%%per%%]$~ ~$[l’idée est de 
+reformuler le problème comme un programme quadratique mixte en nombres entiers (miqp) et d’utiliser un logiciel d’optimisation pour obtenir 
+l’optimum global du problème%%per%%]$~ ~$[la principale difﬁculté de cette approche étant le temps de calcul%%lst%% nous proposons deux méthodes pour le réduire%%per%%]$~ 
+~$[l’application de notre méthode d’apprentissage de dictionnaire miqp à un problème de débruitage d’images démontre sa faisabilité%%per%%]$~ 
+~$[abstract – sparse representation learning %%#%% recently gained %%#%% %%#%% success %%#%% signal ]^[ image processing%%lst%% %%cmp_ta%%ks %%#%% recent advances %%#%% 
+dictionary learning%%per%%]$~ ~$[to %%#%% end%%lst%% %%#%% ℓ0%%dsh%%norm %%#%% %%#%% %%#%% %%#%% control %%#%% sparsity level%%per%%]$~ ~$[nevertheless%%lst%% optimization problems based %%#%% %%#%% ℓ0%%dsh%%norm 
+%%#%% non%%dsh%%convex ]^[ np%%dsh%%hard%%per%%]$~ ~$[for %%#%% reasons%%lst%% relaxation techniques %%#%% %%#%% attracting %%#%% attention %%#%% researchers%%lst%% %%#%% priorly targeting 
+approximation solutions (e%%per%%g%%per%% ℓ1%%dsh%%norm%%lst%% pursuit strategies)%%per%%]$~ ~$[on %%#%% contrary%%lst%% %%#%% paper considers %%#%% exact ℓ0%%dsh%%norm optimization problem ]^[ 
+proves %%#%% %%#%% %%#%% %%#%% solved effectively%%lst%% despite %%#%% %%#%% complexity%%per%%]$~ ~$[the proposed method reformulates %%#%% problem %%#%% %%#%% mixed%%dsh%%integer quadratic 
+program (miqp) ]^[ %%#%% %%#%% global optimal solution %%#%% applying existing optimization software%%per%%]$~ ~$[because %%#%% main difﬁculty %%#%% %%#%% approach %%#%% 
+%%#%% computational time%%lst%% %%#%% techniques %%#%% introduced %%#%% improve %%#%% computational speed%%per%%]$~ ~$[finally%%lst%% %%#%% method %%#%% applied %%#%% image denoising 
+%%#%% %%#%% %%#%% feasibility ]^[ relevance %%cmp%%d %%#%% %%#%% state%%dsh%%of%%dsh%%the%%dsh%%art%%per%% 
+1 introduction 
+l’apprentissage de représentations parcimonieuses %%#%% été lar%%dsh%% 
+gement considéré avec succès dans les domaines du traitement 
+du signal%%lst%% des images et en vision%%lst%% notamment pour des ap%%dsh%% 
+plications de débruitage d’image [6%%lst%% 3]%%lst%% d’inpainting [11] et 
+de classiﬁcation [15]%%lst%% pour n’en citer que quelques%%dsh%%unes%%per%%]$~ ~$[il 
+consiste à modéliser les données par une combinaison linéaire 
+de quelques éléments d’un dictionnaire%%per%%]$~ ~$[au delà d’un diction%%dsh%% 
+naire prédéﬁni%%lst%% nous considérons ici l’apprentissage du diction%%dsh%% 
+naire pour une représentation adaptée aux données disponibles%%per%%]$~ 
+~$[l’apprentissage nécessite alors l’estimation jointe des élé%%dsh%% 
+ments du dictionnaire et de leur coefﬁcient de pondération%%per%%]$~ ~$[en 
+opérant une procédure d’optimisation alternée%%lst%% les éléments du 
+dictionnaire peuvent être estimés facilement à chaque itération 
+par moindres carrés ou descente de gradient stochastique [11]%%per%%]$~ 
+~$[l’estimation des coefﬁcient de pondération%%lst%% dite codage par%%dsh%% 
+cimonieux (sparse coding en anglais)%%lst%% est un problème %%#%% 
+convexe et np%%dsh%%difﬁcile à cause de la contrainte de type ℓ0 pour 
+imposer la parcimonie%%per%%]$~ ~$[aﬁn de surmonter cette difﬁculté%%lst%% deux 
+principales approches ont été mises en œuvre pour relaxer la 
+contrainte ℓ0%%per%%]$~ ~$[la première considère une solution approchée 
+par poursuite séquentielle [6%%lst%% 9]%%per%%]$~ ~$[la seconde approche opère en 
+remplaçant la norme ℓ0 par sa relaxation convexe %%cln%% la norme ℓ1%%per%%]$~ 
+~$[les méthodes les plus connues sont la méthode bayésienne 
+[13]%%lst%% la méthode k%%dsh%%svd [1] et la méthode proximale [3]%%per%%]$~ 
+~$[le présent article vise à résoudre d’une manière exacte le 
+problème de l’apprentissage de dictionnaire%%lst%% c’est à dire en 
+considérant la norme ℓ0 sans aucune relaxation%%per%%]$~ ~$[pour ce faire%%lst%% 
+nous reformulons le problème d’optimisation pour le résoudre 
+par programme quadratique mixte en nombres entiers (miqp)%%per%%]$~ 
+~$[ainsi%%lst%% les récentes avancées théoriques en optimisation sont%%dsh%% 
+elles exploitées avec les améliorations d’implémentation qui 
+les accompagnent%%per%%]$~ ~$[nous proposons aussi deux techniques pour 
+réduire le coût calculatoire%%lst%% d’une %%#%% avec la mise en %%#%% de 
+nouvelles contraintes pour renforcer la formulation et d’autre 
+%%#%% en initialisant par une méthode proximale%%per%%]$~ ~$[nous mon%%dsh%% 
+trons que ces différentes contributions permettent la résolu%%dsh%% 
+tion exacte de l’apprentissage parcimonieux pour le débruitage 
+d’images%%per%%]$~ ~$[les résultats obtenues corroborent une récente étude 
+sur la tolérance élevée de miqp à la présence du bruit [4]%%per%%]$~ 
+~$[l’article est organisé comme suit%%per%%]$~ ~$[le problème de représen%%dsh%% 
+tation parcimonieuse est présenté et la méthode d’optimisation 
+exacte est décrite dans la section 2%%per%%]$~ ~$[la section 3 montre la per%%dsh%% 
+tinence de la méthode proposée en débruitage d’image%%lst%% et la 
+dernière section conclut l’article%%per%% 
+2 représentation parcimonieuse 
+2%%per%%2 optimisation globale du problème 
+2%%per%%1 Énoncé du problème 
+soit %%#%% = [y1%%lst%% %%per%% %%per%% %%per%% %%lst%% yℓ] ∈ rn×ℓ%%lst%% une matrice contenant ℓ 
+signaux yi%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% ℓ%%lst%% de dimension n%%per%%]$~ ~$[on suppose que 
+%%#%% = %%#%% + %%#%% où %%#%% et %%#%% sont deux matrices modélisant respec%%dsh%% 
+tivement les %%#%% d’information et de bruit inconnu%%lst%% contenues 
+des signaux%%per%%]$~ ~$[la représentation parcimonieuse de %%#%% %%lst%% consiste à 
+trouver une matrice %%#%% = [x1%%lst%% %%per%% %%per%% %%per%% %%lst%% xℓ] ∈ rp×ℓ parcimonieuse 
+(i%%per%%e%%per%%%%lst%% avec seulement quelques termes %%#%% nuls) et un diction%%dsh%% 
+naire %%#%% = [d1%%lst%% %%per%% %%per%% %%per%% %%lst%% dp] ∈ rn×p tels que %%#%% = dx%%per%%]$~ ~$[les 
+éléments di%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% p%%lst%% sont appelés atomes et %%#%% appartient 
+à l’espace %%#%% = {d ∈ rn×p%%lst%% dt 
+%%#%% dj ≤ 1%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% p}%%per%%]$~ ~$[l’esti%%dsh%% 
+mation jointe de %%#%% et de %%#%% peut s’écrire comme un problème 
+de minimisation du risque empirique régularisé %%cln%% 
+1 
+ℓ 
+min 
+d∈d 
+x∈rp×ℓ 
+ℓ 
+xi=1(cid:0) 1 
+2 kyi − dxik2 
+2 + λΩ(xi)(cid:1)%%per%% 
+(1) 
+le premier terme représente l’erreur de reconstruction et le se%%dsh%% 
+cond la régularisation%%lst%% qui comprend un opérateur de régula%%dsh%% 
+risation Ω(xi)%%per%%]$~ ~$[le paramètre λ > 0 contrôle le compromis 
+entre la ﬁdélité aux données et la parcimonie%%per%%]$~ ~$[une manière 
+classique d’aborder ce problème (1) d’estimation jointe de %%#%% 
+et %%#%% consiste à utiliser une procédure de relaxation alternée en 
+deux phases [1]%%per%%]$~ ~$[la première phase%%lst%% dite de codage parcimo%%dsh%% 
+nieux (sparse coding)%%lst%% consiste à estimer %%#%% en supposant %%#%% 
+connu%%per%%]$~ ~$[les méthodes les plus utilisées sont celle de gauss sei%%dsh%% 
+del [14] et de descente de gradient [10]%%per%%]$~ ~$[la seconde phase%%lst%% dite 
+d’apprentissage de dictionnaire%%lst%% consiste à estimer %%#%% en suppo%%dsh%% 
+sant %%#%% connu%%per%%]$~ ~$[les algorithmes les plus utilisés sont ceux des 
+moindres carrés et de descente de gradient stochastique [11]%%per%%]$~ 
+~$[dans ce travail nous nous intéressons au cas où la régularisa%%dsh%% 
+tion est de type ℓ0%%lst%% (Ω(x) = kxk0)%%lst%% ce qui permet de contrôler 
+explicitement le nombre de termes %%#%% nuls du vecteur x%%per%%]$~ ~$[en 
+pratique%%lst%% deux formulations de minimisation sous contraintes 
+analogues à (1) peuvent être utilisées%%per%%]$~ ~$[la première s’écrit%%lst%% pour 
+un %%#%% > 0 majorant le nombre de composantes %%#%% nulles %%cln%% 
+2 avec kxik0 6 t%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% n%%per%% 
+2 kyi − dxik2 
+(2) 
+1 
+min 
+d∈d 
+xi∈rp 
+la seconde s’écrit%%lst%% pour ε > 0 représentant le niveau de bruit %%cln%% 
+(3) 
+kxik0 avec 1 
+2 6 ε%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% n%%per%% 
+2 kyi − dxik2 
+min 
+d∈d 
+xi∈rp 
+quelle que soit la formulation choisie%%lst%% (1)%%lst%% (2) ou (3)%%lst%% dans le 
+cadre de l’approche de minimisation alternée que nous nous 
+proposons d’utiliser%%lst%% à cause de la la norme ℓ0%%lst%% le problème 
+d’optimisation lié à la phase de codage parcimonieux est non%%dsh%% 
+convexe et np%%dsh%%difﬁcile%%per%%]$~ ~$[constatant cette difﬁculté%%lst%% la plupart 
+des travaux dans le domaine proposent de relaxer le problème 
+en remplaçant la norme ℓ0 par un terme convexe comme la 
+norme ℓ1 [11] ou d’utiliser un algorithme approché comme ce%%dsh%% 
+lui de poursuite [6]%%per%%]$~ ~$[dans cet article%%lst%% nous proposons un nouvel 
+algorithme basé sur la programmation quadratique mixte bi%%dsh%% 
+naire%%lst%% permettant de résoudre de manière exacte le problème de 
+codage parcimonieux avec la norme ℓ0 associé à l’équation (2)%%per%% 
+2%%per%%2%%per%%1 programmation quadratique mixte (miqp) 
+une manière de traiter la norme ℓ0 qui apparaît dans la phase 
+de sparse coding associée au problème d’optimisation (2)%%lst%% 
+consiste à réécrire le problème sous une forme standard que 
+l’on sait résoudre avec les logiciels d’optimisation d’aujour%%dsh%% 
+d’hui%%per%%]$~ 
+~$[cette réécriture peut s’effectuer grâce à l’introduction de va%%dsh%% 
+riables binaires%%per%%]$~ ~$[l’idée est d’associer à tous les éléments xi du 
+vecteur x%%lst%% une variable binaire zi égale à 0 si xi = 0 et égale 
+à un sinon%%per%%]$~ ~$[cela revient à imposer la relation logique suivante%%lst%% 
+composante par composante 
+zi = 0 ⇐⇒ xi = 0%%lst%% 
+(4) 
+%%#%% l’aide de cette nouvelle variable binaire%%lst%% la contrainte de par%%dsh%% 
+cimonie kxk0 6 %%#%% peut s’exprimer sous la forme 
+%%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% p%%per%% 
+%%#%% 
+xi=1 
+zi 6 t%%lst%% 
+(5) 
+de sorte que le problème de sparse coding associé à (2) se ré%%dsh%% 
+écrive %%cln%% 
+min 
+x∈rp 
+z∈{0,1}p 
+avec 
+1 
+2 ky − dxk2 
+2 
+zi = 0 ⇔ xi = 0%%lst%% 
+1t 
+%%#%% %%#%% 6 t%%lst%% 
+%%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% %%#%% 
+(6) 
+où 1p est un vecteur de 1 de dimension p%%per%%]$~ 
+~$[si la relation logique (4) est traitée par certains logiciels%%lst%% il 
+est parfois préférable de l’éliminer explicitement%%per%%]$~ ~$[ce peut être 
+réalisé par l’intermédiaire de l’introduction d’une contrainte de 
+type %%#%% %%#%% %%per%%]$~ ~$[supposons que l’on connaisse un réel %%#%% > 0 suf%%dsh%% 
+ﬁsamment grand%%lst%% de sorte que%%lst%% si x⋆ est solution du problème 
+(2)%%lst%% alors kx⋆k∞ < %%#%% %%per%%]$~ ~$[dans ce cas%%lst%% imposer les contraintes 
+(4) revient à poser 
+− zim 6 xi 6 zim%%lst%% 
+(7) 
+la formulation %%#%% %%#%% du problème (2) est donc%%lst%% pour %%#%% > 0 
+et %%#%% > 0 donnés %%cln%% 
+%%#%% ∈ 1%%lst%% %%per%% %%per%% %%per%% %%lst%% p%%per%% 
+min 
+x∈rp 
+z∈{0,1}p 
+avec 
+1 
+2 ky − dxk2 
+2 
+−zm 6 %%#%% 6 zm 
+1t 
+%%#%% %%#%% 6 t%%per%% 
+(8) 
+selon [4]%%lst%% la contrainte dans (8) est équivalent à celle de (2)%%per%%]$~ 
+~$[de plus%%lst%% %%#%% doit satisfaire la propriété d’unique representa%%dsh%% 
+tion property [7] qui assure l’unicité de la solution%%per%%]$~ ~$[analysons 
+maintenant ce problème d’optimisation%%per%%]$~ ~$[d’abord%%lst%% sa fonction 
+objectif est quadratique%%per%%]$~ ~$[ensuite%%lst%% il comporte deux types des 
+variables %%#%% et %%#%% respectivement continues et entières %%cln%% c’est ce 
+qu’on appelle un problème d’optimisation mixte en nombre 
+binaires (ou plus généralement en nombre entiers)%%per%%]$~ ~$[enﬁn%%lst%% les 
+contraintes%%lst%% quand à elles%%lst%% sont linéaires%%per%%]$~ ~$[ce type de problème 
+est connu sous le nom de programme quadratique mixte en 
+nombre binaires ou en anglais mixed binary (integer) quadratic 
+programming (miqp)%%per%%]$~ ~$[ce problème miqp (8) peut être résolu 
+exactement sur les images qui nous intéressent en utilisant un 
+logiciel d’optimisation comme cplex ou gurobi%%per%% 
+2%%per%%2%%per%%2 l’introduction de contraintes complémentaires 
+en programmation mixte%%lst%% il est bien connu qu’une « bonne » 
+formulation des contraintes peut grandement accélérer les per%%dsh%% 
+formances d’un solveur [12]%%per%%]$~ ~$[notamment%%lst%% si dans le meilleur 
+des cas %%#%% arrive à exprimer des contraintes déﬁnissant l’en%%dsh%% 
+veloppe convexe du domaine admissible%%lst%% alors la solution op%%dsh%% 
+timale d’un programme mixte est la même que celle de sa re%%dsh%% 
+laxation continue [8]%%per%%]$~ ~$[malheureusement%%lst%% l’obtention de cette 
+enveloppe convexe est un problème np%%dsh%%difﬁcile%%per%%]$~ ~$[en revanche%%lst%% 
+l’enveloppe convexe des contraintes sur les variables continues 
+%%#%% = nx ∈ rp (cid:12)(cid:12) %%#%% ∈ {0%%lst%% 1}p%%lst%% 
+%%#%% 
+xj=1 
+zj ≤ t%%lst%% |xj | ≤ zjt,o%%lst%% 
+peut s’exprimer à l’aide des normes un et inﬁnies de %%#%% comme %%cln%% 
+nx ∈ rp (cid:12)(cid:12) kxk1 6 %%#%% m%%lst%% ||xk∞ 6 mo%%per%%]$~ 
+~$[nous proposons d’ajouter ces contraintes au problème (8) pour 
+obtenir le problème suivant équivalent mais mieux structuré %%cln%% 
+min 
+x∈rp 
+z∈{0,1}p 
+avec 
+1 
+2 ky − dxk2 
+2 
+−zm 6 %%#%% 6 zm 
+%%#%% %%#%% 6 %%#%% 
+1t 
+kxk1 6 %%#%% %%#%% 
+||xk∞ 6 m%%per%% 
+(9) 
+cette formulation permet au solveur d’obtenir la même solu%%dsh%% 
+tion que (8)%%lst%% mais plus rapidement%%per%%]$~ 
+~$[il reste que les performances des solveurs sur cette formu%%dsh%% 
+lation sont très sensibles au choix de la constante %%#%% %%per%%]$~ ~$[nous al%%dsh%% 
+lons maintenant voir comment régler ce paramètre en utilisant 
+une procédure proximale du premier ordre permettant en plus%%lst%% 
+d’obtenir une bonne initialisation des variables à optimiser%%per%% 
+2%%per%%2%%per%%3 initialisation par la méthode du gradient proximal 
+l’algorithme du gradient proximal est une méthode du pre%%dsh%% 
+mier ordre permettant d’obtenir rapidement une solution lo%%dsh%% 
+cale du problème (2)%%per%%]$~ ~$[cette solution peut être utilisée comme 
+une bonne initialisation des variables à optimiser et du para%%dsh%% 
+mètre %%#%% %%lst%% permettant aux solveurs d’accéder plus rapidement 
+au minimum globale du problème [2]%%per%%]$~ ~$[l’approche proximale 
+consiste à minimiser itérativement une succession de majora%%dsh%% 
+tions de la fonction objectif%%per%%]$~ ~$[elle est construite à partir de l’opé%%dsh%% 
+rateur proximal associé à la contrainte kxk0 6 %%#%% %%cln%% 
+proxt %%cln%% rp −→ rp 
+%%#%% 7−→ proxt (x) = arg min 
+kuk06t 
+1 
+2 ku − xk2%%per%%]$~ 
+~$[il est facile de voir que la solution de ce problème est donnée 
+par les %%#%% plus grandes valeurs absolues des composantes du 
+vecteur x%%lst%% soit 
+proxt (x) = (cid:26) xj 
+0 
+si %%#%% ∈ {(1)%%lst%% %%per%% %%per%% %%per%% %%lst%% (t )} 
+sinon%%lst%% 
+où (j) est la suite d’indices tels que |x(1)| > · · · > |x(p)|%%per%%]$~ 
+~$[l’algorithme de descente de gradient proximal consiste alors à 
+mettre en œuvre%%lst%% pour un pas ρ%%lst%% les itérations suivantes [3] %%cln%% 
+xk+1 ∈ proxt(cid:0)xk − ρdt (dxk − y)(cid:1)%%per%%]$~ 
+~$[lorsque le pas ρ est bien choisi%%lst%% il est %%#%% de démontrer 
+que l’algorithme proximal converge vers un minimum local%%per%%]$~ 
+~$[soulignons que%%lst%% comme pour la plupart des méthodes itéra%%dsh%% 
+tives%%lst%% il existe de nombreuses variantes de l’algorithme permet%%dsh%% 
+tant d’accélérer la convergence%%per%%]$~ 
+~$[connaissant x⋆ le %%#%% de convergence de l’algorithme 
+proximal%%lst%% il est %%#%% d’en déduire une initialisation pour 
+le vecteur %%#%% et le paramètre %%#%% %%per%%]$~ ~$[par exemple%%lst%% pour un ε > 0 
+donné%%lst%% %%#%% peut initialiser %%#%% avec zj = 0 si |x⋆ 
+%%#%% | 6 ε et 
+zj = 1 sinon%%per%%]$~ ~$[la constante %%#%% peut être choisie telle que 
+%%#%% = (1 + α)kx⋆k∞ avec α > 0 choisi le plus petit possible%%per%%]$~ 
+~$[par la résolution exacte de (2) pour déterminer le codage par%%dsh%% 
+cimonieux%%lst%% la convergence de notre algorithme peut être assuré 
+selon l’analyse conduite dans [1]%%per%% 
+3 résultats expérimentaux 
+le ]b[ de nos expériences est de %%cmp%%r les performances 
+de notre méthode miqp avec celles des algorithme de réfé%%dsh%% 
+rence sur une tâche de débruitage%%per%%]$~ ~$[nous avons travaillé sur cinq 
+images naturelles de bonne qualité fréquemment utilisées et ex%%dsh%% 
+traites de miscellaneous volumes %%#%% %%#%% usc%%dsh%%sipi image data%%dsh%% 
+base 1 (barbara%%lst%% cameraman%%lst%% elaine%%lst%% lena et men)%%per%%]$~ 
+~$[nous avons construit la matrice %%#%% des données d’appren%%dsh%% 
+tissage à l’aide des cinq images simultanément en utilisant%%lst%% 
+comme dans la littérature [6]%%lst%% des imagettes de taille 8 × 8 se 
+chevauchant%%per%%]$~ ~$[notre matrice %%#%% %%#%% donc pour dimension %%#%% = 64 
+et ℓ > 3,5×104%%per%%]$~ ~$[nous avons ﬁxé expérimentalement le nombre 
+d’atomes du dictionnaire à %%#%% = 100 et le coefﬁcient de parci%%dsh%% 
+monie à %%#%% = 20%%per%%]$~ ~$[nous avons testé différents niveaux de bruit 
+additif gaussien sur les images en utilisant trois différents ni%%dsh%% 
+veaux de bruit avec des valeurs d’écart type σ = 10%%lst%% 20 et 50%%per%%]$~ 
+~$[pour chaque expérience%%lst%% nous avons utilisé la procédure de re%%dsh%% 
+laxation alternée et nous avons itéré 30 fois les deux phases 
+successives de codage parcimonieux et d’apprentissage de dic%%dsh%% 
+tionnaire%%per%%]$~ 
+~$[pour la phase de codage parcimonieux%%lst%% nous avons comparé 
+notre approche miqp avec les deux méthodes références de 
+la littérature%%lst%% k%%dsh%%svd [6] et la méthode proximale [3]%%lst%% toutes 
+choses égales par ailleurs%%per%%]$~ ~$[nous avons aussi comparé deux mé%%dsh%% 
+thodes de reconstruction %%cln%% la méthode directe où l’image est re%%dsh%% 
+construite par dx et l’approche proposée par elad et al%%per%% [6] où 
+elle est estimée par une combinaison linéaire entre %%#%% et dx%%per%%]$~ 
+~$[nous avons réalisé nos expériences en matlab sur un pc dell 
+t5500 à 8 cœurs%%per%%]$~ ~$[le nombre d’itérations maximal de la mé%%dsh%% 
+thode proximale %%#%% été ﬁxé à 200%%per%%]$~ ~$[nous avons utilisé gurobi 
+7%%per%%0 pour résoudre les miqp avec un temps d’exécution maxi%%dsh%% 
+mal de 50 secondes%%lst%% un nombre d’itération maximal de 200%%per%%]$~ 
+~$[nous avons aussi ﬁxé α = 1,5 pour des raisons de stabilité%%per%% 
+1%%per%% http://sipi%%per%%usc%%per%%edu/database/database%%per%%php?volume=misc 
+la table 1 résume nos résultats%%per%%]$~ ~$[la première remarque est 
+que%%lst%% pour un fort niveau de bruit (σ = 50) et sur toutes les 
+images testées%%lst%% notre méthode miqp donne de meilleurs résul%%dsh%% 
+tats (le rapport signal sur bruit est plus grand) que les autres 
+approches de codage parcimonieux (k%%dsh%%svd et l’algorithme 
+proximal seul)%%per%%]$~ ~$[l’amélioration peut être quantiﬁée en moyenne 
+par une augmentation de 1,79 par rapport à la méthode proxi%%dsh%% 
+male et de 3,73 par rapport à k%%dsh%%svd%%lst%% soit un gain de près de 20 
+%%%per%%]$~ ~$[cela reste vrai quelle que soit la méthode de reconstruction 
+utilisée%%per%%]$~ ~$[nous avons aussi constaté que la méthode de recons%%dsh%% 
+truction proposée par [6] donne systématiquement de meilleurs 
+résultats%%per%%]$~ ~$[cependant%%lst%% pour un faible niveau de bruit (σ = 10)%%lst%% 
+notre méthode ne réussit pas à améliorer les résultats de k%%dsh%%svd 
+alors que%%lst%% pour un niveau intermédiaire (σ = 20) les résultats 
+sont plus contrastés et dépendent de l’image considérée%%per%%]$~ ~$[nous 
+constatons que miqp %%#%% tendance à moins bien se comporter sur 
+des images de bonne qualité%%per%%]$~ ~$[d’une certaine manière%%lst%% miqp 
+montre une meilleure capacité à éliminer le bruit via la parci%%dsh%% 
+monie que les autres approches%%per%%]$~ 
+~$[quand nous comparons les résultats obtenus par chaque mé%%dsh%% 
+thode pour différents niveaux de bruit%%lst%% nous constatons aussi 
+que ce sont ceux de miqp qui diminuent le plus lentement 
+que les autres méthodes lorsque σ augmente%%per%%]$~ ~$[soulignons enﬁn 
+que%%lst%% contrairement aux algorithmes de référence de la littéra%%dsh%% 
+ture [6%%lst%% 5%%lst%% 3] pour lesquels le niveau de bruit doit être connu%%lst%% 
+la méthode proposée débruite l’image sans des connaissance %%#%% 
+priori autre que le niveau de parcimonie souhaité%%per%% 
+4 conclusion 
+dans cet article nous avons proposé%%lst%% pour résoudre un pro%%dsh%% 
+blème de débruitage%%lst%% une véritable modélisation ℓ0 de la par%%dsh%% 
+cimonie et la reformulation du problème associé sous la forme 
+d’un programme quadratique mixte en nombre entiers (miqp)%%per%%]$~ 
+~$[nous avons montré que les logiciels d’optimisation disponibles 
+aujourd’hui pouvaient donner la solution globale du problème 
+en un temps raisonnable%%lst%% ce qui nous %%#%% permis de traiter des 
+problèmes de débruitage sur de vraies images par une méthode 
+itérative d’apprentissage de dictionnaire%%lst%% exigeant à chaque ité%%dsh%% 
+ration la résolution de plus de 35 000 miqp%%per%%]$~ ~$[pour arriver à 
+ce résultat%%lst%% nous avons proposé deux techniques d’accélération 
+du traitement des miqp%%lst%% la reformulation des contraintes pour 
+mieux structurer le problème%%lst%% et l’initialisation efﬁcace de la 
+procédure grâce à un algorithme proximal%%per%%]$~ 
+~$[nos résultats démontent d’abord la faisabilité de notre ap%%dsh%% 
+proche%%per%%]$~ ~$[les progrès conjugués des logiciels%%lst%% du matériel et de la 
+modélisation (notre compréhension de la nature du problème)%%lst%% 
+permettent aujourd’hui d’utiliser la programmation mixte en 
+nombre entiers pour résoudre des problèmes de traitement 
+d’image%%per%%]$~ ~$[cela ouvre la porte à une nouvelle approche des pro%%dsh%% 
+blèmes de modélisation de la parcimonie%%lst%% puisqu’il est mainte%%dsh%% 
+nant %%#%% de la gérer explicitement grâce aux programmes 
+mixtes dont %%#%% est en mesure de calculer la solution globale%%lst%% en 
+dépit de leur caractère %%#%% convexe et np difﬁcile%%per%%]$~ 
+~$[table 1%%cln%% résultats en terme de rapport signal sur bruit (psnr) 
+avec reconstruction standard de l’image (à gauche) et avec la 
+reconstruction proposée dans elad et al%%per%% [6] (à droite)%%per%%]$~ ~$[les 
+meilleurs résultats de chaque expérience sont en rouge%%per%% 
+❍ 
+σ 
+❍ 
+❍image 
+❍ 
+barbara 
+cameraman 
+elaine 
+lena 
+%%#%% 
+method 
+psnr 
+psnr [6] 
+10 
+20 
+50 
+10 
+20 
+50 
+k%%dsh%%svd 
+proximal 
+miqp 
+k%%dsh%%svd 
+proximal 
+miqp 
+k%%dsh%%svd 
+proximal 
+miqp 
+k%%dsh%%svd 
+proximal 
+miqp 
+k%%dsh%%svd 
+proximal 
+miqp 
+32,15 
+31,49 
+26,42 
+29,53 
+28,80 
+25,90 
+32,93 
+33,14 
+30,88 
+33,61 
+34,08 
+30,82 
+31,95 
+31,62 
+28,47 
+27,48 
+27,36 
+25,72 
+26,45 
+26,75 
+25,25 
+27,45 
+28,99 
+29,09 
+27,91 
+29,52 
+29,07 
+27,36 
+28,20 
+27,38 
+19,71 
+20,71 
+22,73 
+19,46 
+21,11 
+22,30 
+19,73 
+22,87 
+24,20 
+19,79 
+22,12 
+24,20 
+19,68 
+21,26 
+23,59 
+33,6 
+32,98 
+27,91 
+31,02 
+30,30 
+27,39 
+34,42 
+34,63 
+32,38 
+35,10 
+35,57 
+32,31 
+33,45 
+33,11 
+29,97 
+28,25 
+28,13 
+26,50 
+27,23 
+27,53 
+26,03 
+28,52 
+29,77 
+29,87 
+28,69 
+30,30 
+29,85 
+28,14 
+28,98 
+28,16 
+20,03 
+21,03 
+23,05 
+19,78 
+21,43 
+22,62 
+20,05 
+23,19 
+24,52 
+20,11 
+22,44 
+24,52 
+20,00 
+21,58 
+23,91 
+références 
+[1] m%%per%%]$~ ~$[aharon%%lst%% m%%per%%]$~ ~$[elad%%lst%% ]^[ a%%per%%]$~ ~$[bruckstein%%per%% k%%dsh%%svd %%cln%% %%#%% algorithm ]f[ designing over%%dsh%% 
+complete dictionaries ]f[ sparse representation%%per%%]$~ ~$[ieee transactions %%#%% signal pro%%dsh%% 
+cessing%%lst%% 54(11) :4311–4322%%lst%% 2006%%per%% 
+[2] a%%per%%]$~ ~$[atamtürk ]^[ m%%per%%]$~ ~$[w%%per%%]$~ ~$[savelsbergh%%per%%]$~ ~$[integer%%dsh%%programming software systems%%per%%]$~ ~$[an%%dsh%% 
+nals %%#%% operations research%%lst%% 140(1) :67–124%%lst%% 2005%%per%% 
+[3] c%%per%%]$~ ~$[bao%%lst%% h%%per%%]$~ ~$[ji%%lst%% y%%per%%]$~ ~$[quan%%lst%% ]^[ z%%per%%]$~ ~$[shen%%per%%]$~ ~$[l0 norm based dictionary learning %%#%% proxi%%dsh%% 
+mal methods %%#%% global convergence%%per%%]$~ ~$[in proceedings %%#%% %%#%% ieee conference %%#%% 
+computer vision ]^[ pattern recognition%%lst%% pages 3858–3865%%lst%% 2014%%per%% 
+[4] s%%per%%]$~ ~$[bourguignon%%lst%% j%%per%%]$~ ~$[ninin%%lst%% h%%per%%]$~ ~$[carfantan%%lst%% ]^[ m%%per%%]$~ ~$[mongeau%%per%%]$~ ~$[exact sparse approxi%%dsh%% 
+mation problems via mixed%%dsh%%integer programming %%cln%% formulations ]^[ computational 
+performance%%per%%]$~ ~$[ieee transactions %%#%% signal processing%%lst%% 64(6) :1405–1419%%lst%% 2016%%per%% 
+[5] h%%per%%]$~ ~$[p%%per%%]$~ ~$[dang ]^[ p%%per%%]$~ ~$[chainais%%per%%]$~ ~$[towards dictionaries %%#%% optimal size %%cln%% %%#%% bayesian %%#%% 
+parametric approach%%per%%]$~ ~$[journal %%#%% signal processing systems%%lst%% pages 1–12%%lst%% 2016%%per%% 
+[6] m%%per%%]$~ ~$[elad ]^[ m%%per%%]$~ ~$[aharon%%per%%]$~ ~$[image denoising via sparse ]^[ redundant representations 
+%%#%% learned dictionaries%%per%%]$~ ~$[ieee transactions %%#%% image processing%%lst%% 15(12) :3736– 
+3745%%lst%% 2006%%per%%]$~ 
+~$[i%%per%%]$~ ~$[f%%per%%]$~ ~$[gorodnitsky ]^[ b%%per%%]$~ ~$[d%%per%%]$~ ~$[rao%%per%%]$~ ~$[sparse signal reconstruction %%#%% limited data 
+using focuss %%cln%% %%#%% re%%dsh%%weighted minimum norm algorithm%%per%%]$~ 
+~$[ieee transactions %%#%% 
+signal processing%%lst%% 45(3) :600–616%%lst%% 1997%%per%% 
+[7] 
+[8] k%%per%%]$~ ~$[l%%per%%]$~ ~$[hoffman ]^[ t%%per%%]$~ ~$[k%%per%%]$~ ~$[ralphs%%per%%]$~ ~$[integer ]^[ combinatorial optimization%%per%%]$~ ~$[in ency%%dsh%% 
+clopedia %%#%% operations research ]^[ management science%%lst%% pages 771–783%%per%%]$~ ~$[sprin%%dsh%% 
+ger%%lst%% 2013%%per%% 
+[9] p%%per%%]$~ ~$[honeine%%per%%]$~ ~$[analyzing sparse dictionaries ]f[ online learning %%#%% kernels%%per%%]$~ ~$[ieee 
+transactions %%#%% signal processing%%lst%% 63(23) :6343–6353%%lst%% december 2015%%per%% 
+[10] j%%per%%]$~ ~$[mairal%%lst%% f%%per%%]$~ ~$[bach%%lst%% j%%per%%]$~ ~$[ponce%%lst%% et al%%per%%]$~ ~$[sparse modeling ]f[ image ]^[ vision processing%%per%%]$~ 
+~$[foundations ]^[ trends r(cid:13) %%#%% computer graphics ]^[ vision%%lst%% 8(2%%dsh%%3) :85–283%%lst%% 2014%%per%% 
+[11] j%%per%%]$~ ~$[mairal%%lst%% f%%per%%]$~ ~$[bach%%lst%% j%%per%%]$~ ~$[ponce%%lst%% ]^[ g%%per%%]$~ ~$[sapiro%%per%%]$~ ~$[online dictionary learning ]f[ sparse 
+%%#%% proceedings %%#%% %%#%% 26th annual international conference %%#%% machine 
+coding%%per%% 
+learning%%lst%% pages 689–696%%per%%]$~ ~$[acm%%lst%% 2009%%per%% 
+[12] a%%per%%]$~ ~$[neumaier ]^[ o%%per%%]$~ ~$[shcherbina%%per%%]$~ ~$[safe bounds %%#%% linear ]^[ mixed%%dsh%%integer linear 
+programming%%per%%]$~ ~$[mathematical programming%%lst%% 99(2) :283–296%%lst%% 2004%%per%% 
+[13] b%%per%%]$~ ~$[a%%per%%]$~ ~$[olshausen ]^[ d%%per%%]$~ ~$[j%%per%%]$~ ~$[field%%per%%]$~ ~$[sparse coding %%#%% %%#%% overcomplete basis set %%cln%% %%#%% 
+strategy employed %%#%% v1 %%qsn%%]$~ ~$[vision research%%lst%% 37(23) :3311–3325%%lst%% 1997%%per%% 
+[14] j%%per%%]$~ ~$[a%%per%%]$~ ~$[tropp ]^[ a%%per%%]$~ ~$[c%%per%%]$~ ~$[gilbert%%per%%]$~ ~$[signal recovery %%#%% random measurements via or%%dsh%% 
+thogonal matching pursuit%%per%%]$~ ~$[ieee transactions %%#%% information theory%%lst%% 53(12) :4655– 
+4666%%lst%% 2007%%per%% 
+[15] q%%per%%]$~ ~$[zhang ]^[ b%%per%%]$~ ~$[li%%per%%]$~ ~$[discriminative k%%dsh%%svd ]f[ dictionary learning %%#%% %%#%% recognition%%per%%]$~ 
+~$[in computer vision ]^[ pattern recognition (cvpr)%%lst%% 2010 ieee conference on%%lst%% 
+pages 2691–2698%%per%%]$~ ~$[ieee%%lst%% 2010%%per%% 

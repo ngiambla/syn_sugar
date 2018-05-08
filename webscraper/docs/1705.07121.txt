@@ -1,0 +1,1701 @@
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+1 
+
+BAMHealthCloud: A Biometric Authentication 
+and Data Management System for Healthcare 
+
+Data in Cloud 
+
+Kashish A. Shakil*, Student Member, IEEE, Farhana J. Zareen*, Mansaf Alam, Member, IEEE 
+
+And Suraiya Jabin 
+
+ 
+
+in  healthcare 
+
+Abstract-  Advancements 
+
+industry  with  new 
+technology and population growth has given rise to security threat 
+to our most personal data. The healthcare data management system 
+consists  of  records  in  different  formats  such  as  text,  numeric, 
+pictures  and  videos  leading  to data  which is  big and  unstructured. 
+Also,  hospitals  have  several  branches  at  different  locations 
+throughout a country and overseas. In view of these requirements a 
+cloud  based  healthcare  management  system  can  be  an  effective 
+solution  for  efficient  health  care  data  management.  One  of  the 
+major  concerns  of  a  cloud  based  healthcare  system  is  the  security 
+aspect.  It  includes  theft  to  identity,  tax  fraudulence,  insurance 
+frauds,  medical  frauds  and  defamation  of  high  profile  patients. 
+Hence,  a  secure  data  access  and  retrieval  is  needed  in  order  to 
+in  health  care 
+provide  security  of  critical  medical  records 
+management  system.  Biometric  authentication  mechanism 
+is 
+suitable in this scenario since it overcomes the limitations of token 
+theft  and  forgetting  passwords  in  conventional  token  id-password 
+mechanism  used  for  providing  security.  It  also  has  high  accuracy 
+rate  for  secure  data  access  and retrieval.  In  this  paper  we propose 
+BAMHealthCloud  which  is  a  cloud  based  system  for  management 
+of  healthcare  data,  it  ensures  security  of  data  through  biometric 
+authentication.  It  has  been  developed  after  performing  a  detailed 
+case  study  on  healthcare  sector  in  a  developing  country.  Training 
+of  the  signature  samples  for  authentication  purpose  has  been 
+performed  in  parallel  on  hadoop  MapReduce  framework  using 
+Resilient  Backpropagation  neural  network.  From  rigorous 
+experiments  it  can  be  concluded  that  it  achieves  a  speedup  of  9x, 
+Equal error rate (EER) of 0.12, sensitivity of 0.98 and specificity of 
+0.95 as compared to other approaches existing in literature.  
+ 
+
+Index  Terms—  biometric,  authentication,  healthcare,  cloud, 
+
+healthcare cloud, hadoop 
+
+I.  INTRODUCTION 
+
+M 
+
+EDICAL  data  theft  is  rising  at  an  alarming  rate.  Health 
+data is the most vulnerable, easy and tempting target for 
+
+ 
+  Kashish Ara Shakil is with the Department of Computer Science, Jamia 
+Millia Islamia, New Delhi 110025. E-mail: shakilkashish@yahoo.co.in. 
+
+  Farhana Javed Zareen is with the Department of Computer Science, Jamia 
+
+Millia Islamia, New Delhi 110025. E-mail: farhanazareen@yahoo.com. 
+
+  Mansaf Alam is with Department of Computer Science, Jamia Millia 
+
+Islamia, New Delhi 110025. E-mail: malam2@jmi.ac.in 
+
+  Suraiya Jabin is with Department of Computer Science, Jamia Millia 
+
+Islamia, New Delhi 110025. E-mail: sjabin@jmi.ac.in 
+*Equal Contributions 
+ 
+
+hackers.  According  to  a  survey  conducted  by  Ponemon 
+institute, 2.32 million Americans have been victims to medical 
+data theft [1]. Damages occurring from medical data theft are 
+graver  than  other  type  of  thefts,  since  in  other  types  of  thefts 
+like credit card or bank ATMs, the bank can be reported of the 
+theft  and  immediate  actions  are  taken  but  in  health  data  theft 
+fraud  detection  is  rather  tricky  and  slow.  Heath  data  has 
+become  a  very  tempting  target  for  frauds  due  to  a  number  of 
+reasons.  One  of  the  reasons  being  the  easy  access  to  health 
+data  as  compared  to  any  other  kind  of  financial  data  due  to 
+lack  of  security  provided  in  storing  the  data.  Further  this 
+information  is  used  by  the  thieves  for  creating  fraud  credit 
+card accounts and file fake tax returns. This health information 
+can  be  misused  to  purchase  drugs  or  medical  equipments 
+illegally  or  even  to  claim  false  medical  care.  From  past  two 
+years,  the  highest  number  of  hackings  is  suffered  by  health 
+industry.  According  to  the  Identity  Theft  Resource  Center,  it 
+accounted for 43% of the total data breaches recorded [2]. And 
+most  of  the  time  the  victims  are  not  even  aware  of  the  theft. 
+Patient’s  privacy  is  first  and  foremost  important  issue  which 
+must  be  addressed  while  switching  to  e-healthcare  system. 
+Thus, a mechanism is required for proper access and retrieval 
+of heath data in a secure manner.  
+
+The  number  of  healthcare  records  is  increasing  at  an 
+exponential  rate  and  it  needs  to  be  maintained  in  an  efficient 
+manner. Each of the medical record comprises of many pages 
+comprising  of  text,  images  and  graphs.    Thus,  each  of  these 
+records  is  in  unstructured  and  unencrypted  form.  The  size  of 
+these records is therefore becoming so large that the traditional 
+systems fail to handle and store it. Furthermore, processing of 
+these huge records is an issue. Also, reputed healthcare centers 
+have  several  branches  and  there  is  a  need  for  global 
+accessibility  of 
+records.  Hence,  Cloud 
+computing comes up as a viable solution in this scenario with 
+added  advantage  of  providing  these  facilities  in  a  scalable, 
+flexible  and  robust  manner,  along  with  location  independent 
+access.  
+
+their  medical 
+
+Modern  technologies  are  being  integrated 
+
+to  already 
+existing  medical  services.  For  example  EMR  (electronic 
+medical  records)  and  EHR  (electronic  health  records)  are 
+those two technologies that have been adopted by some of the 
+medical  healthcare  centers  to  maintain  health  records.  But 
+
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+2 
+
+these  technologies  are  susceptible  to  security  threats  by 
+hackers  and  employees  of  the  center.  Biometrics  based  data 
+authentication  provides  an  apt  solution  for  providing  security 
+of  health  data  stored  in  cloud.  Biometric  security  can  be 
+obtained  from  different  methods  such  as  confidentiality, 
+integrity,  non-repudiation  and  authentication  as  shown  in  fig. 
+1.  Amongst  which,  authentication  is  a  prime  concern  so  that 
+any illegal access can be prohibited, thus we  have focused on 
+biometric  authentication  in  this  paper.  There  are  many 
+different  biometric  authentication  mechanisms  in  practice  but 
+biometric  signatures  are  becoming  more  and  more  popular 
+because  of  its  social  acceptability.  Biometric  signatures  are 
+different from conventional static signatures as static signature 
+verification  is  based  on  just  the  structural  properties  but 
+biometric  signature  authentication  takes  into  account  the 
+dynamic features of a signature such as velocity, acceleration, 
+total  time,  pen  tilt  angles,  pen-ups  and  pen-downs  which 
+assures maximum security to the user.  
+Therefore,  an  amalgamation  of  biometrics  and  cloud  can  be 
+thought of as an elixir for management of e-health records. In 
+order  to  speedup  processing  of  data  and  ensure  a  secure,   
+scalable storage and management of data cloud computing has 
+been  used  in  combination  with  biometric  authentication 
+mechanism 
+in 
+BAMHealthCloud.  It  makes  use  of  parallel  computing 
+frameworks  such  as  apache  hadoop[3]  for  carrying  out  the 
+authentication of data and artificial neural network for training 
+and  processing  of  dynamic  signature  data.  Furthermore, 
+priority  has  also  been  taken  into  consideration  for  defining 
+various levels of data access in order to safeguard high profile 
+clients  against  data  theft  which  can  set  grounds  for  crimes 
+such  as  defamation  of  high  profile  patients  through  rumors, 
+baseless allegations and falsehood [4]. 
+ Thus,  this  paper  proposes  BAMHealthCloud  and  discusses 
+various  existing  approaches  for  e-  health  data  and  presents  a 
+case  study  about  management  of  health  data  in  a  developing 
+country. It suggests BAMHealthCloud as a solution for secure 
+data  access,  retrieval  and  management.  It  has  two  modules 
+namely  health  data  management  system  and  biometric 
+authentication  agent.  Following  are  the  contributions  of  this 
+paper: 
+
+and  processing  purpose 
+
+for 
+
+storage 
+
+  Proposal  of  BAMHealthCloud  which  is  a  novel 
+framework  for  biometric  authentication  of  data  in  a 
+healthcare cloud. 
+
+  Development  of  a  priority  based  parallel  algorithm 
+
+Fig. 1: Different Levels of Biometric Security 
+
+ALGOHealthSecurityCheck  for  providing  a  secure 
+access to data. Results showed that a speedup of 9x was 
+achieved  with  the  proposed  distributed  approach  as 
+compared to the other approaches existing in literature. 
+
+  Validation  of  BAMHealthCloud  through  experiments 
+which showed a better  performance in terms of EER of 
+0.12, sensitivity of 0.98 and specificity of 0.95 which is 
+less than the values existing in literature. 
+
+The  rest  of  the  paper  is  organized  as  follows:  section  II 
+gives the problem description followed by a survey of recent 
+literatures pertaining to health care data in section III. Section 
+IV discusses the case study and proposes BAMHealthCloud 
+framework  followed  by  section  V  where  authentication  of 
+the user’s access to data is elucidated.  Section VI validates 
+the  proposed  framework  through  rigorous  experimentations 
+which  are  explained  further  by  results.  Finally  the  paper 
+concludes with the conclusion in section VII.  
+
+II.  PROBLEM DESCRIPTION 
+
+A.  HealthCare Cloud 
+
+Let HC denote the health care cloud Hc={S, P, D, Sm} where 
+S denotes staff i.e. S = {S1, S2, S3, …} where Si is the ith staff 
+member  having  access  to  health  data  stored  in  cloud,  Pt 
+represents  patients  i.e.  Pt  =  {Pt1,  Pt2, Pt3, …}  where  Pti  is  the 
+ith patient  having access to  only his or  her record, D denotes 
+data store and Sm security manager. The problem lies in how S 
+and  Pt  interact  with  the  entity  D  and  how  access  to  D  is 
+restricted by the component Sm. 
+
+B.  Data Management Problem 
+
+Health  data  usually  contains  records  spanning  across 
+hundreds  of  GB’s  of  data.  This  data  is  usually  difficult  to 
+manage  using  traditional  tools  and  techniques  available  at 
+disposal.  Thus,  we  need  a  system  that  can  handle  such  data 
+characterized  by  large  volume  and  variety.  In  order  to  meet 
+this end the proposed technique uses health data management  
+system which has been built over cloud database management 
+system architecture [5]. 
+
+C.  Biometric Security management problem 
+
+The data stored at a third party location is prone to intrusive 
+attacks,  thus  we  need  a  management  system  to  secure  the 
+system  from  such  attacks.  The  two  main  objectives  are  to 
+provide  proper  access  to  legitimate  users  and  to  authenticate 
+the  users  (patients  and  staffs).  The  authentication  is  provided 
+through the biometric authentication agent incorporated in the 
+system.  This  agent  also  provides  access  control  to  users,  so 
+that  no  outsider  or  attacker  is  able  to  access  the  system  with 
+malicious  intentions.  All  the  other  symbols  used  and  their 
+explanations is given in table 1. 
+
+III.  LITERATURE SURVEY 
+
+The  healthcare  data  is  growing  at  an  exponential  rate,  the 
+sources  being  patient’s  individual  records,  data  from  clinical 
+trials,  radiology  images  and  genomics  sequences  data.  It  is 
+estimated  that  this  data  will  escalate  to  a  value  of  25,000 
+petabyte by 2020 [6]. Virtualization and cloud computing are 
+
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+3 
+
+technologies 
+that  are  gaining  popularity  for  capturing, 
+manipulation and storage of data of large volume. Some of the 
+data  management  and  processing  platforms  are  Hadoop 
+framework  and  Amazon  Corporation  EC2.  Storing  health 
+information  in cloud involves its access by a remote desktop, 
+PDAs and mobile devices, but the access through such devices 
+lead  to  a  security  issue.  The  work  done  in  this  paper  focuses 
+on  health  care  data  management  through  cloud  and  hadoop 
+distributed  programming  framework.  Furthermore,  biometric 
+authentication is used for securing access to this data. 
+
+According  to  NIST  [7]  Cloud  computing  is  defined  as  a 
+model of ubiquitous computing  which provides an on demand 
+access  to  a  set  of  resources  such  as  network,  services  and 
+storage  in  a  flexible  manner.  Some  of  its  benefits  include 
+resource  pooling,  rapid  elasticity  and  on  demand  services. 
+These  are  the  features  that  have  facilitated  the  use  of  cloud 
+computing  in  various  domains  including  healthcare.  Thrust 
+areas  of  healthcare  where  cloud  computing  is  becoming 
+popular  include  DNA  sequencing    using  hadoop  for  parallel 
+execution  of  large  DNA  sequences  without  any  compromise 
+on the accuracy [8]. Biomedical information sharing is another 
+area  where  cloud  computing 
+is  gaining  popularity  for 
+investigators to share data and information with each other but 
+involves  risks  like  data  loss  and  unauthorized  access  to  data  
+[9]. This work makes uses of hadoop for parallel execution in 
+order  to  achieve  a  high  speed  up  and  robust  access  to 
+resources  along  with  overcoming  the  security  issue  by 
+employing an authentication element to it. 
+
+Biometric  system  can  be  used  for  providing  authentication 
+in a scenario such as healthcare data storage and retrieval. The 
+main  requirement  of  implementing  biometric  in  healthcare 
+sector  is  the  need  for  privacy  and  confidentiality  of  patient’s 
+
+TABLE I 
+
+SYMBOLS AND NOTATIONS 
+
+ 
+Symbols  Explanations 
+𝐈𝐝𝐣𝐤 
+
+Od 
+
+Cov 
+
+s 
+
+Cor 
+
+Pcacoef 
+
+Tloc 
+Ф 
+∪ 
+TNet 
+Err 
+Loc 
+
+Input signature sample, representing kth 
+sample of jth user 
+Output data after performing 
+MapReduce on Input data 
+The covariance matrix obtained after 
+performing  Sigcovariance function 
+Square root of the diagonal elements of 
+the covariance matrix 
+Correlation  matrix  obtained 
+covariance  matrix 
+square root matrix 
+The matrix representing the PCA 
+coefficients 
+The local trained network 
+
+from 
+  and  product  of 
+
+NULL 
+
+Union 
+
+Consolidated trained network 
+
+Error of the network 
+
+Number of local networks 
+
+records. There are some international regulations like HIPAA 
+(Health Insurance Portability and Accountability Act) [10], the 
+Australian  Privacy  Principles  Act  and  the  European  Data 
+Protection Directive that demand high level of security, access 
+control,  and  exchange  of  sensitive  data.  Biometric  based 
+technology  provides  a  secured  method  to  perform  access 
+control  and  individual  identification  as  compared  to  other 
+traditional  technologies.  It  is  very  difficult  to  reproduce 
+biometric  features  and  therefore  it  can  be  used  to  easily 
+identify an individual. 
+
+In  [11],  authors  have  used  bimodal  approach  for  providing 
+security  for  electronic  medical  record,  this  bimodal  approach 
+combines  voice  recognition  and  signature  authentication 
+technologies.  Multi-biometric  system  integrated  with  cloud 
+can also provide  security for healthcare data [12]. The data in 
+this case is stored in UBUNTU Enterprise Cloud Eucalyptus 
+Database  (UEC).  In  [13]  a  semi  continuous    authentication 
+mechanism  has  been  designed  for  authentication  of  a  layered 
+health  monitor  framework.  It  is  aimed  at  reducing  misuse  of 
+data  stored  in  a  heterogeneous  cloud  system.  It  uses  a  fusion 
+of  behavioral  and  physiological  biometric  i.e.  keystroke  and 
+face recognition. In BAMHealthCloud, the  behavioral as well 
+as the structural characteristics of a person’s signature is taken 
+for  performing  authentication.  Furthermore,  signatures  are 
+highly socially acceptable means of individual authentication. 
+A cloud based approach is used to implement signature based 
+authentication  system  in  order  to  decrease  the  running  time, 
+and  hence  BAMHealthCloud  achieves  high  accuracy  along 
+with high speedup.  
+
+Hence,  we  have  used  signature  biometric  for  security  of 
+health  data  stored  in  cloud.  This  is  the  novelty  of  our  paper 
+that  we  have  used  behavioral  biometric  technique  like 
+signature  which  has  not  been  used  in  the  recent  literature.  It 
+provides  minimum  error  rate  and  is  socially  acceptable. 
+Integrating  biometric  with  cloud  provides  high  levels  of 
+security which is fast, globally accessible, scalable and robust. 
+In addition, the health care staffs are using hand  held devices 
+such as mobile phones, tablets, PDAs to access the records of 
+patients.  Using  signature  biometric  amalgamated  with  cloud 
+technology  and  integrated  with  handheld  devices  would  be  a 
+foolproof security system for data access and retrieval without 
+any extra hardware cost. 
+
+IV.  CASE STUDY: HEALTHCARE CENTER AT CAPITAL CITY OF 
+
+A DEVELOPING COUNTRY  
+
+In  a  developing  country  like  India  with  the  population  mark 
+reaching  second  highest  in  the  world.  Health  is  an  issue  of 
+prime  concern  as  the  individuals  are  the  nations  building 
+itself  has  a  population  of 
+forces.  The  capital  city 
+approximately  1780 
+lakh  [14].  Lakhs  of  patients  visit 
+healthcare  centers  and  corresponding  to  each  patient  a  record 
+is  maintained.  According  to  department  of  health  and  family 
+welfare,  the  department  has  to  cater  to  the  needs  of 
+approximately  160  lakh  [15]  people  plus  migratory  and 
+floating  population  from  neighboring  states.  With 
+the 
+evolution  of  digital  era  a  digital  copy  is  kept  and  since  the 
+numbers of patients escalate on a daily basis therefore this has 
+lead to huge volumes of healthcare records. Therefore, it’s the 
+need of the hour to handle such voluminous records.  
+
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+4 
+
+Fig.2: BAMHealthCloud- Cloud based secure biometric architecture 
+
+  There  have  been  many  cases  reported  in  past  where 
+healthcare data theft has been performed by employees such as 
+a  husband  and  wife  team  stole  data  of  80  patients  from 
+Manhattans  Lenox  Hill  Hospital  worth  more  than  14,00000 
+USD. In another incident a  former employee  stole fact  sheets 
+of  450  patients  which  can  be  used  for  committing  medical 
+fraud, tax fraud and health insurance fraud [16]. 
+
+In  this  case  study,  we  propose  a  cloud  based  solution  for 
+handling  such  huge  number  of  records,  the  data  arising  from 
+different health care sources is offloaded to a third party cloud 
+i.e.  the  proposed  healthcare  cloud  as  shown  by  Fig.  2.  The 
+storage  and  retrieval  of  this  data  is  handled  by  the  healthcare 
+cloud. The healthcare cloud consists of two components health 
+data store and security manager. The health data store is based 
+on health data management system and security is handled by 
+the  biometric  authentication  agent  on  behalf  of  the  security 
+manager.  The  relationship  between  the  different  modules  is 
+given  by  Fig.  3.  Health  data  store  and  security  manager  are 
+overlapping  entities  which  belongs  to  the  Health  Care  cloud. 
+The  data  that  is  to  be  secured  is  stored  in  Health  Data  Store 
+and  the  security  manager  uses  biometric  authentication  agent 
+for providing the security on cloud. 
+
+A.  Health Data Management System 
+
+This  component  of  the  healthcare  cloud  is  responsible  for 
+management  of  patients  report  and  other  information.  It  is 
+composed  of  three  layers  namely  client  level,  health  service 
+
+ 
+Fig. 3. Relationship between modules of BAMHealthCloud 
+
+ 
+
+provider  level  and  data  center  level.  The  health  service 
+provider  level  is  further  divided  into  administrative  and 
+security  level.  Biometric  authentication  agent  acts  at  the 
+security  level.  Client  level  provides  an  interaction  interface 
+between the cloud data and its users. The security and resource 
+provisioning  is  in  turn  handled  by  the  two  components  of 
+health  service  provider  level  respectively.  The  data  storage 
+and  its  management  is  the  responsibility  of  the  data  center 
+level.  Thus, 
+is 
+responsible  for  overall  management,  storage  and  retrieval  of 
+the healthcare data. 
+
+the  Health  Data  Management  System 
+
+B.  Biometric authentication agent 
+
+This  module  uses  biometric  signatures  for  the  purpose  of 
+authentication. The dynamic features of a signature is captured 
+using  a  digitizing  tablet  which  records  features  like  x,  y 
+coordinates,  velocity  of  the  pen,  total  time  taken  to  sign, 
+angles  of  pen  while  signing,  number  of  pen  ups  and  pen-
+downs,  acceleration  etc.  After  the  signature  is  captured  its 
+important  features  are  extracted  and  then  it  is  preprocessed 
+and stored as a template. After this phase, this template is used 
+for training the data and then these trained networks are stored 
+in  cloud.  During  verification  phase,  the  user’s  signature  is 
+checked  against  the  stored  database  and  it  is  found  out 
+whether the user is genuine or forged. 
+
+ Moreover, another added advantage of this approach is that 
+the processing is also done on cloud. This saves on the storage 
+and cost along with providing lesser carbon footprints i.e. it’s 
+an  energy  efficient  approach  as  it  makes  use  of  mobile  and 
+handheld devices like tablets and phones for access purpose.   
+
+V.  AUTHENTICATING USER ACCESS 
+
+In order to ensure that only legitimate users have access to 
+
+HEALTH DATA USERS AND THEIR PRIORITIES 
+
+TABLE II 
+
+USER TYPES 
+
+VIP Patients 
+
+Privileged Patients 
+
+Privileged Staff  
+
+Regular Staff 
+
+PRIORITY 
+
+4 
+
+3 
+
+2 
+
+1 
+
+ 
+
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+5 
+
+ALGORITHM 1 
+
+ALGOHealthSecurityCheck 
+
+3. 
+4. 
+5. 
+6. 
+
+Input: P: user priority which can be either 1, 2, 3 or 4 
+1.  Begin: 
+2. 
+
+      If P equals 1 /* If a user is a regular staff then       
+authentication is performed with low priority*/ 
+          Then 
+             ALGOHealthAuthentication(Priority_Low)   
+      End If 
+      If P equals 2 /* If a user is a privileged staff then 
+authentication is performed with average priority*/ 
+          Then 
+              ALGOHealthAuthentication(Priority_Avg)   
+       End If 
+
+7. 
+8. 
+9. 
+10.         If P equals 3 /* If a user is a privileged patient then 
+
+authentication is performed with high priority*/ 
+
+11.            Then 
+12.                ALGOHealthAuthentication(Priority_High)   
+13.         End If 
+14.         If P equals 4 /* If a user is a VIP patient then 
+
+authentication is performed with very high priority*/ 
+
+15.            Then 
+16.                ALGOHealthAuthentication(Priority_VHigh)   
+17.        End If 
+18.  End 
+ 
+
+the data stored on healthcare cloud we use the proposed  
+biometric  authentication  technique.  Moreover,  in  order  to 
+speedup  the  processing  we  use  parallelized  training  through 
+MapReduce  programming  which 
+is  based  on  Hadoop 
+framework.  Hadoop  is  a  popular  technique  for  parallel 
+processing of large scale data on cloud. Furthermore, the use  
+mobile phones for authenticating the access to healthcare data 
+ensure  that  the  entire  process  is  energy  as  well  as  cost 
+efficient. 
+
+The proposed approach is divided into two phases: Phase I-
+
+Enrollment phase and Phase II authentication phase 
+
+A.  Phase I-Enrollment phase 
+
+In this phase, as  shown in Fig.  4, the  staff and the patients 
+enrolled  in  the  health  care  centre  are  asked  to  enroll 
+themselves  by  giving  their  signature  samples  using  either  the 
+signature  capturing  device  or  their  smart  phones  that  are 
+installed  with the signature capturing  software.  Once a  user’s 
+signature  is  captured,  the  quality  of  the  given  signature  is 
+checked  using  SigQuality  checker  software.  The  function  of 
+this  software  is  to  ensure  that  the  recorded  signature  samples 
+match up to the quality standards required for authentication.  
+Once this match is performed, the features of the samples are 
+extracted and are stored in the healthcare cloud. 
+
+ALGORITHM 2 
+
+ALGOHealthAuthentication 
+
+Input:  L:  number  of  users,  M:  number  of  signature 
+samples of each user,  P: Threshold value taken as input 
+from  ALGOHealthSecurityCheck 
+Target: target matrix  
+
+        Output: TNet : trained network  
+
+1.  Begin:  
+2. 
+3. 
+4. 
+
+     ParFor j = 1 to L 
+                  ParFor k = 1 to M 
+                    ReadSamples(𝐼𝑑 𝑗𝑘 ) 
+samples from individuals for authentication purpose*/ 
+                  End ParFor 
+      End ParFor 
+
+5. 
+6. 
+7.  Od  =Sigmapreduce (Id, Sigcovariancemapper, 
+
+/*Input 
+
+signature 
+
+Sigcovariancereducer)      /*  Running Sigmapreduce on 
+input data samples */       
+
+8.  Cov = Sigcovariance(Od) /*covariance is calculated on 
+
+9. 
+
+the data output from  Sigmapreduce */ 
+ S  =  sqrt(diagonal(Cov))  /*square  root  of  the  diagonal 
+elements  of  the  covariance  matrix  obtained  from  previous 
+step is calculated */ 
+
+10.  Cor = Cov/s*s’  /* correlation from  covariance  matrix  
+and  product  of  square  root  matrix  obtained  from  step  10 
+and its transpose  is calculated */ 
+
+11.  Pcacoef  ←  svd(Cor)  /*  PCA  is  performed  using 
+singular  value  decomposition  on  the  correlation  matrix 
+obtained from step 10*/ 
+
+12.  Parallelized training:            
+13.                 For j = 1 to L 
+14.                    For k =  1 to M 
+15.                         Input1ij  ←  Pcacoefij 
+
+/* 
+
+inputting 
+
+preprocessed signature samples obtained from step 11*/ 
+
+16.                    End For 
+17.                  End For 
+18.   TNet =  Ф  /*Empty trained network in the beginning*/ 
+19.                  For l  ϵ Loc do   /*  repeating  steps  20-22  for  all 
+
+the local networks*/ 
+
+/*Creating 
+
+20.                    Tloc=  netcreate() 
+
+local 
+networks  using  Resilient  backpropagation  algorithm  on  a  
+feedforward neural network in a distributed manner */ 
+21.                     ( Tloc ,Err) = Sigtrain( Tloc ,input, 
+target, P) /* Performing  training on local networks 
+created in step 20*/ 
+
+22.                    TNet  ←  Tloc ∪  TNet       /* Combining 
+all the local networks to form a combined network  TNet */ 
+
+23.                  End For 
+24.     End of parallelized training 
+25.  Return  TNet  /* a combined network  TNet is returned at 
+
+the end of parallelized training*/ 
+
+26.  End 
+
+B.  Phase II authentication phase 
+
+In this phase as described in Fig. 5, user is checked for his 
+authenticity. The  user is asked to give  his signature,  which is 
+sent for quality check and after that, its features are extracted. 
+Then, this signature sample is checked against the stored user 
+template  in  the  healthcare  cloud.  This  matching  is  performed 
+using  resilient  backpropagation  algorithm  in  a  feedforward 
+
+neural  network  (explained  later).  The  matching  process  is 
+done in order to find out whether the user is a genuine one or 
+not.  This  user  authentication  is  done  in  a  parallelized  way. 
+ALGOHealthSecurityCheck  describes  the  approach  adopted  for 
+performing  security check on  health data lying in the  healthcare 
+cloud. In order to check the level of access provided to a user 
+an access hierarchy is defined. This hierarchy is based on the 
+
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+6 
+
+ 
+Fig. 4. Enrollment Phase 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fig. 3.Enrollment Phase 
+ 
+ 
+ 
+ 
+Fig. 5. Authentication Phase 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fig. 4.Authentication Phase 
+ 
+
+ priority of the users. This priority value is assigned at the time 
+of enrollment on a scale of 1-4, 4 is the highest priority value 
+and 1 is the lowest value. The different types of users and their 
+respective  priority  values  are  illustrated  further  in  Table.  II. 
+Higher the priority value associated  with the  user  more is  the 
+level of  security  guaranteed by the  system. This is taken care 
+of by associating a threshold value in the training algorithm  
+i.e. algorithm 1 that depends upon the priority P. According to 
+this  algorithm  authentication  is  performed  based  on  the 
+associated  priority  value.  If  a  user  with  low  priority  i.e.  a 
+regular  staff  member accesses the data then  its authentication 
+performed with its threshold value set to Priority_Low (lines 1-
+4). Similarly, the threshold values are set as Priority_Avg, 
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+ 
+
+ 
+
+Priority_High and Priority_VHigh for privileged staff, privileged 
+patients and VIP patients respectively. 
+
+is 
+
+done 
+
+by 
+
+2 
+
+value 
+
+algorithm 
+
+Authentication  of  the  health  data  based  on  the  priority  as 
+threshold 
+i.e. 
+ALGOHealthAuthentication.  In  steps  2  to  6,  the  signature 
+samples are read. This  read  is performed  in  a  parallel  fashion. 
+Idjk  is the input signature sample  matrix  which represents the 
+kth samples of jth user. After this mapreduce function is applied 
+for  calculating  the  covariance  on  the  input  data  sample.  The 
+usage of mapreduce framework ensures that all the processing 
+of  data  is  done  in  a  parallelized  approach  on  commodity 
+hardware  across  a  distributed  cluster.  This  speeds  up  the 
+processing and is cost effective along with being fault tolerant. 
+
+EER
+
+Sensitivity
+
+Specificity
+
+Khan et al. 2014
+
+Bhattasali et al. 2014
+
+Krawczyk & Jain 2005
+
+BAMHealthCloud
+
+Authors
+
+Fig. 6: EER, Sensitivity and specificity of BAMHealthCloud versus approaches used in literature  
+ 
+
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+7 
+
+)
+s
+e
+t
+u
+n
+i
+m
+(
+e
+m
+
+i
+t
+ 
+g
+n
+i
+n
+n
+u
+R
+
+1000
+
+800
+
+600
+
+400
+
+200
+
+0
+
+BAMHealthCloud
+
+Khan et al. 2014
+
+Krawczyk & Jain 2005
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 12 13 14 15
+
+Bhattasali et al. 20142
+
+Number of Iterations
+
+Fig. 7: Running time of BAMHealthCloud versus approaches used in literature  
+ 
+
+ 
+
+In  step  11,  the  PCA  feature  extraction  is  performed  on  the 
+input data. After this, training of dataset is done using resilient 
+backpropagation algorithm in a parallelized manner. 
+Resilient backpropogation (RPROP) is a popular algorithm for  
+backprpogation    training  of  multilayer  feed-forward  neural 
+netwoks.  Backpropogation  algorithm  involves  application  of 
+chain  rule  repeatedly  to  findout  the  impact  of  each  weight  in 
+accordance to error function E [17].  
+∂E t 
+∂ωij
+  
+where,  ωij  is  the  weight  from  neuron  j  to  neuron  i.  si  is  the 
+output and neti is the sum of inputs of neurons i. 
+wij(t + 1) = wij(t) -∈
+ 
+
+                                                              (1) 
+
+(𝑡)                      
+
+              (2) 
+
+∂net i
+∂w ij
+
+∂si
+∂net i
+
+∂E
+∂si
+
+=  
+
+ 
+
+ 
+
+. 
+
+.
+
+Theorem 1: The time complexity of ALGOHealthSecurityCheck is 
+
+O(L xM). 
+
+Proof:  The  time  complexity  for  performing  security  check 
+on health data stored on cloud is O (L x M). It takes O (L x M) 
+for  performing  security  check  on  low  priority  users  (line  4, 
+ALGORITHM 1) as given in theorem 2. It takes O (L x M) for 
+performing  security  check  on  average  priority  users  (line  8, 
+ALGORITHM 1). It takes O (L x M) for performing security 
+check  on  high  priority  users  (line  12,  ALGORITHM  1)  and 
+takes  O  (L  x  M)  for  performing  security  check  on  very  high 
+priority users (line 16, ALGORITHM 1).Thus, the complexity 
+of ALGOHealthSecurityCheck is maximum (O (L x M), O (L 
+x M), O (L x M), O (L x M)) i.e. O (L x M) 
+
+Theorem 2: The time complexity of ALGOHealthAuthentication is 
+O (L x M) where L is the number of users and M is the number of 
+signature samples corresponding to each user. 
+     Proof:  For  performing  authentication  of  health  data  the 
+
+TABLE III 
+
+FEATURES RECORDED WHILE SIGNING [19] 
+
+Parameters 
+
+Acceleration 
+
+Magnetic  Field 
+
+Features 
+
+Xα 
+
+Yα 
+
+Zα 
+
+Xμ 
+
+Yμ 
+
+Zμ 
+
+Orientation 
+
+Azimuth 
+
+Angular Velocity 
+
+Pitch 
+
+Roll 
+
+Xv 
+
+Yv 
+
+Zv 
+
+Unit 
+
+m/s2 
+
+m/s2 
+
+m/s2 
+
+Μt 
+
+Μt 
+
+Μt 
+
+Degrees 
+
+Degrees 
+
+Degrees 
+
+rad/s 
+
+rad/s 
+
+rad/s 
+
+ 
+
+complexity  is  O  (L  x  M).  It  takes  O  (L  x  M)  for  performing 
+read on sample data (line 4, ALGORITHM 2), It takes O (L x 
+M)  for  performing  mapreduce  function  on  data  samples 
+(line 7, ALGORITHM 2).  Sigcovariance finds the covariance 
+
+∂E
+∂w ij
+
+by 
+
+descent 
+
+gradient 
+
+stochastic 
+
+RPROP  solves 
+the  problem  of  "vanishing  gradients", 
+according  to  which  with  increase  in  depth  and  complexity  of 
+an  artificial  neural  network, 
+the  gradient  propagates 
+backwards 
+(SGD) 
+backpropogation becomes increasingly smaller which leads to 
+negligible  updates  in  weight  along  with  slow  training  [18] 
+[17].  It achieves this by using a fixed update value δij  whose 
+value can be increased or decreased with each iteration η+ and 
+η-    multiplicativley.  where,  η    is  an  asymmetric  factor.  The 
+increase  or  decrease  in  values  depends  on  the  change  in  sign 
+of  gardient  with  respect  to  weight  ωij  It  converges  to  a  local 
+minima but is able to skip through flat surfaces fast due to η+ 
+multiplicative  factor.  Algorithm  3  shows  the  pseudocode  of 
+Resilient  backpropogation  algorithm  [18].  Here,  ∆ij  is  the 
+update  value  for  each  weight  i.e.  the  size  of  weight  update. 
+∆max and ∆min are the maximum and minimum change and ∆wij 
+is the change in weights. 
+ Local  networks  (Tloc)  are  created  using  netcreate  ()  function 
+and  then  these  local  networks  are  combined  to  form  a 
+(TNet).This 
+consolidated  network  of 
+consolidated network is the output of the algorithm. 
+Definition  1:  netcreate 
+implements  Resilient 
+backpropagation  algorithm  on  a  feed  forward  network  in  a 
+distributed manner and this distribution is done based on the size 
+of the dataset being used. 
+Definition 2: Sigtrain is the function which takes input and target 
+matrices and trains a network based on the architecture of a local 
+network  which  was  created  using  Resilient  backpropagation 
+algorithm. 
+
+local  networks 
+
+function 
+
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+8 
+
+takes  O(LxM) 
+
+in O (L2) time and steps 13-17 take O (LxM) time and steps 20-
+21 
+complexity  of 
+ALGOHealthAuthentication is maximum (O (L x M), O (L x 
+M), O (L2), O (L x M), O (L x M)) 
+
+time.  Thus, 
+
+the 
+
+VI.  EXPERIMENTS AND RESULTS 
+
+A.  Experimental Setup 
+
+1)  System setup 
+
+An 8 cabinet cluster with 397 nodes was taken for carrying 
+out experimentations of BAMHealthCloud. Each node had 
+12  cores  and  hence,  the  total  number  of  cores  was  4764 
+(397x 12). The total memory available per node was 64 GB 
+and therefore, the total memory available was 768GB (12x 
+64).  The  experimental  data  that  were  used  are  real 
+handwritten  signature  data  that  were  collected  through 
+handheld devices. 
+
+2)  Dataset Used 
+
+Different  handheld  devices  such  as  Smart  phones,  tablets, 
+phablets,  personal  digital  assistants  (PDAs)  were  used  for 
+acquiring  data.  The  signature  samples  were  collected  from 
+9000 users. The users involved both the staff and patients. The 
+data  has  been  recorded  in  five  temporal  sessions  separated 
+over a period of one week per 1500 users. The data collected 
+comprised  of  2000  staff  members  and  7000  patients.  40 
+samples  were  collected  from  each  user,  25  were  genuine  and 
+15  samples  were  forged.  Therefore,  the  total  number  of 
+samples stored was 360000. 
+
+In order to comply to the  ethics involved  with collection of 
+such  significant  and  critical  information,  the  participants 
+consent was taken on the clause that their identity will be kept 
+anonymous.  The  participants  were  only  identified  as  either 
+staff  or  patients,  apart  from  this  all  the  personal  information 
+were kept anonymous. 
+
+Table  III  shows  the  features  that  have  been  recorded  while 
+capturing  signatures  [19].   The  features  include  Acceleration, 
+Magnetic Field, Orientation and Angular Velocity which were 
+recorded while capturing signatures. 
+
+3)  Data Preparation and  Processing 
+
+In  order  to  prepare  data  for  training  purpose,  the  raw  data 
+was firstly preprocessed by using hadoop framework. The data 
+was first imported into hadoop distribuited file system and was 
+then  reduced  using  Principal  component  analysis  (PCA)  [20] 
+technique. MapReduce code for PCA was executed in order to 
+carry  out  all  the  computations  in  a  parallel  manner.  It  should 
+be  noted  that  since  the  dataset  used  was  very  large,  the 
+processing  involved  multiple  mapper  functions  spanning 
+across  several  nodes  of  the  cluster.  Hadoop2.x  which  is  the 
+latest  version  has  been  utilized  in  our  experimentations.  The 
+replication  factor  of  3  which  was  adopted  ensured  that  our 
+system  is  robust  against  any  node  failures.  Furthermore, 
+robustness  was  also  ensured  through  speculative  execution 
+property of hadoop cluster.  
+
+B.  Evaluation metrics 
+
+Following metrics have been used to evaluate the framework 
+1)  Sensitivity: 
+
+   It is the probability of a system to correctly classify that a 
+signature sample belongs to a particular authorized health 
+
+RESILIENT BACKPROPAGATION ALGORITHM[18] 
+
+ALGORITHM 3 
+
+ 
+
+1.  η+ = 1.2, η- = 0.5, ∆max = 50, ∆min = 10-6 
+2.  pick ∆ij(0) 
+3.  ∆ωij  0  =   −sgn
+
+. ∆ij  0  
+
+∂E 0 
+∂w ij
+
+4. 
+
+5. 
+
+6. 
+
+7. 
+
+8. 
+
+9. 
+
+ for all t ∈ [1..T ] do  
+
+   if 
+
+∂E t 
+∂ωij
+
+∙  
+
+∂E t−1 
+
+∂ωij
+
+> 0  then 
+
+ ∆ij(t) = min{∆ij(t - 1) · η+, ∆max} 
+
+          ∆wij(t) = - sgn 
+
+∂E t 
+∂w ij
+
+· ∆ij(t) 
+
+ wij(t + 1) = wij(t) + ∆wij(t) 
+∂E t−1 
+
+          
+
+∂w ij
+
+=  
+
+∂E t 
+∂w ij
+
+  
+
+10.     else if   
+
+∂E t 
+∂w ij
+
+ . 
+
+∂E t−1 
+
+∂w ij
+
+< 0 𝐭𝐡𝐞𝐧 
+
+11. 
+12.               
+
+∆ij(t) = max{∆ij(t - 1) · η-, ∆min} 
+∂E t−1 
+
+=  0  
+
+∂w ij
+
+13.      else 
+
+14.              ∆wij(t) = - sgn  
+
+∂E t 
+∂w ij
+
+· ∆ij(t) 
+
+15. 
+16.               
+
+wij(t + 1) = wij(t) + ∆wij(t) 
+∂E t−1 
+
+=  
+
+∂E t 
+ 
+∂w ij
+
+∂w ij
+
+17.     end if 
+18.   end for 
+
+data user and is given by equation 1.
+
+                                 
+
+ 
+(1)
+
+2)  Specificity: 
+
+ It is the probability of a system to correctly classify that 
+the particular sample does not belong to the user class and 
+is given by equation (2). 
+ 
+
+3)  Equal Error Rate (EER): 
+
+ 
+                                   (2)
+
+i)  False acceptance rate (FAR) measures the rate of the 
+system  that  how  many  times  a  system  accepts  a 
+forged  sample  as  correct 
+input.  FAR  can  be 
+represented using equation 3. 
+
+                                                              
+
+ 
+
+ 
+
+               (3) 
+
+ii)  False  rejection  rate  (FRR)  measures  the  rate  of  the 
+system  that  how  many  times  a  system  rejects  a 
+genuine  sample  as  forged.  FRR  can  be  represented 
+using equation 4. 
+
+ 
+
+                                                                                    (4) 
+
+ 
+
+ 
+ 
+
+ 
+ 
+ 
+
+iii)  EER is the value  when both FAR  and FRR becomes 
+equal  and 
+represented  using  equation  5. 
+                                                                                        
+                                                                                                (5) 
+
+is 
+
+ dFalseForgeeTrueGenuineTrueGenuinySensitivit TrueForgedTrueForgedTrueForgedySpecificitTrueForgedneFalseGenuineFalseGenuiFAReTrueGenuindFalseForgedFalseForgeFRRFARFRRFRRFARFRRFAREER||> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+9 
+
+Where, TrueGenuine is the number of genuine users who 
+are  classified  as  a  genuine  by  BAMHealthCloud. 
+FalseGenuine  is  number  of  genuine  users  who  have  not 
+been  correctly  classified,  TrueForged  is  number  of  forged 
+users  who  have  been  falsely  classified  as  genuine  and 
+FalseForged  is  number  of  forged  users  who  have  been 
+correctly classified as forged. 
+
+4)  Speedup: 
+
+Speedup of BAMHealthCloud is defined as the amount of 
+performance  gain  which  is  obtained  by  running  the 
+system  on  a  single  machine  in  contrast  to  that  when  it  is 
+run  on  multiple  machines.  The  speedup  according  to 
+Amdahl’s 
+equation  6. 
+ 
+
+is  given  by 
+
+[21] 
+
+law 
+
+S (P) = (
+
+𝑇(1)
+
+𝑇(𝑃)
+
+)      
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+                   (6) 
+
+Where P is the number of processors, S (P) is the speedup 
+achieved while running computation on P processors, T (1) 
+is  the  running  time  on  a  single  processor  and  T (P)  is  the 
+running time on P processors. 
+
+C.  Results 
+
+In  order  to  validate  the  authenticity  of  BAMHealthCloud, 
+experiments  have  been  performed.  The 
+results  of 
+BAMHealthCloud  have  been  compared 
+the  other 
+approaches  that  have  been  used  in  recent  literature  and  are 
+summarized  in  Fig.  6  and  Fig.  7.  Fig.  6  shows  the  results  in 
+terms  of  Equal  Error  Rate  (EER),  sensitivity  and  specificity, 
+while  Fig.  7  shows  the  plot  of  running  times  of  the  different 
+approaches. 
+
+to 
+
+From  Fig.  6,  we  can  see  that  results  obtained  from  the 
+proposed  framework  are  better  than  the  other  compared 
+approaches  in  literature.  BAMHealthCloud  achieves  an  EER 
+of  0.12  which  is  better  than  the  rest  of  the  approaches  used. 
+The  sensitivity  of  the  proposed  system  is  0.98  and  the 
+specificity  is  0.95  which  is  again  better  than  the  existing 
+approaches implemented in literature. 
+
+In order to further validate the effectiveness of the proposed 
+approach,  the  running  time  of  BAMHealthCloud  has  been 
+calculated  along  with  running  time  of  other  sequential 
+approaches proposed in [12], [13] and [11] as shown in Fig.7. 
+The experiments have been conducted rigorously 15 times and 
+from  the  results  it  can  be  concluded  that  BAMHealthCloud 
+took  lesser  time  to  run  than  these  approaches.  The  results 
+furthermore,  show  that  a  speedup  of  9x  was  achieved  by 
+BAMHealthCloud using equation 6. 
+
+With the achieved results showing EER of 0.12, sensitivity 
+of  0.98,  specificity  of  0.95  and  speed  up  of  9x,  it  can  be 
+inferred  that  BAMHealthCloud  outperforms  all  the  other 
+methods that have been used in healthcare sectors. Moreover, 
+this approach can be successfully deployed for securing health 
+data in real life. 
+
+VII.  CONCLUSION 
+
+In order to handle ever growing data of health sectors and to 
+provide security to different  users and  staff involved, a cloud 
+based  biometric  authentication  system  BAMHealthCloud  has 
+been  proposed  in  this  paper.  This  model  is  developed  after 
+
+performing  a  detailed  case  study  on  a  healthcare  centre  in  a 
+developing country. This model has two different components, 
+one component takes care of the management of the huge data 
+that  is  being  generated  on  a  daily  basis  and  other  one  takes 
+care  of  the  security  aspect.  ALGOHealthSecurityCheck  has 
+been  proposed  in  this  work  which  performs  security  check 
+using  parallelized  MapReduce  programming  model.  The  use 
+of this model ensures the scalability, flexibility and robustness 
+of  the  system.  Experiments  performed  on  this  system  reveal 
+that  BAMHealthCloud  achieves  a  speedup  of  9x  which  is 
+better  than  other  systems  implemented  in  recent  works. 
+Priority 
+in 
+system 
+BAMHealthCloud  which 
+fetching  and 
+processing of crucial records. The system achieves an EER of 
+0.12,  sensitivity  of  0.98  and  specificity  of  0.95  which  is 
+comparable to other approaches existing in literature. 
+
+has 
+results 
+
+incorporated 
+
+based 
+
+been 
+
+fast 
+
+in 
+
+BAMHealthCloud  can  be  successfully  deployed  in  other 
+sectors as well such as defense, banking sector, organizations, 
+and  educational  sectors.  It  is  well  suited  for  applications  of 
+any size as it offers horizontal scaling of resources and thus is 
+suitable for big data processing. 
+
+ 
+
+ACKNOWLEDGMENT 
+
+It 
+
+is 
+
+this  paper. 
+
+This  is  to  acknowledge  that  Farhana  Javed  Zareen  is  the 
+corresponding  author  of 
+further 
+acknowledged that Farhana Javed Zareen and Kashish Ara 
+Shakil share equal contributions for the work carried out in 
+this  article.  This  work  was  supported  by  a  grant  from 
+“Young  Faculty  Research  Fellowship”  under  Visvesvaraya 
+PhD  Scheme  for  Electronics  and  IT,  Department  of 
+Electronics  &  Information  Technology  (DeitY),  Ministry  of 
+Communications & IT, Government of India. 
+
+[1] 
+
+[2] 
+
+[3] 
+
+[4] 
+
+[5] 
+
+[6] 
+
+REFERENCES 
+
+D. Munro, “New Study Says Over 2 Million 
+Americans Are Victims Of Medical Identity Theft - 
+Forbes.” [Online]. Available: 
+http://www.forbes.com/sites/danmunro/2015/02/23/ne
+w-study-says-over-2-million-americans-are-victims-
+of-medical-identity-theft/#640dcc93702d. [Accessed: 
+18-Aug-2016]. 
+L. Shin, “How biometrics could improve health 
+security,” Fortune, Feb-2015. 
+D. Borthakur, “HDFS architecture guide,” Hadoop 
+Apache Proj. http//hadoop apache …, pp. 1–13, 2008. 
+A. Jayanthi, “7 celebrity data breaches: When 
+employees snoop on high-profile patients,”  Beckers 
+Health IT and CIO Review, 2015. [Online]. Available: 
+http://www.beckershospitalreview.com/healthcare-
+information-technology/7-celebrity-data-breaches-
+when-employees-snoop-on-high-profile-patients.html. 
+[Accessed: 19-Aug-2016]. 
+M. Alam and K. A. Shakil, “Cloud Database 
+Management System Architecture,” UACEE Int. J. 
+Comput. Sci. its Appl., vol. 3, no. 1, pp. 27–31, 2013. 
+B. Feldman, E. M. Martin, and T. Skotnes, “Big Data 
+in Healthcare Hype and Hope,” 2012. 
+
+> REPLACE THIS LINE WITH YOUR PAPER IDENTIFICATION NUMBER (DOUBLE-CLICK HERE TO EDIT) < 
+ 
+
+10 
+
+University). She has written several research papers in the field 
+of  Cloud  computing.  Her  area  of  interest  includes  database 
+management  using  Cloud  computing,  distributed  and  service 
+computing. 
+ 
+ 
+ 
+
+ Farhana  Javed  Zareen,  Ph.D.  Scholar,  
+Jamia  Millia  Islamia,  Central  University, 
+New Delhi, India. She is working in the field 
+of  biometric  authentication  from  past  3 
+years. She has received her bachelor’s degree 
+(2010)  and  master’s  degree  (2012) 
+in 
+computer  science  from  Calcutta  University. 
+She has published two research papers in pattern recognition field. 
+Her  research  interests  include  pattern  recognition,  biometric 
+authentication, image processing and machine learning. 
+ 
+ 
+
+ Mansaf  Alam  received  his  doctoral 
+degree  in  computer  Science  from  Jamia 
+Millia Islamia, New Delhi in the year 2009.  
+He  is  currently  working  as  an  Assistant 
+Professor at the Department  of Computer 
+Science, Jamia Millia Islamia. He is also the 
+of  Applied 
+Editor-in-Chief, 
+Information  Science.  His  areas  of  research  include  Cloud 
+database  management  system  (CDBMS),  Object  Oriented 
+Database 
+(OODBMS),  Genetic  Programming, 
+Bioinformatics,  Image  Processing,  Information  Retrieval  and 
+Data Mining. 
+ 
+
+Journal 
+
+System 
+
+Suraiya Jabin is an Assistant professor in 
+the  Department  of  Computer  Science, 
+Jamia  Millia  Islamia,  Central  University, 
+New Delhi, India. She received her Ph. D 
+degree 
+in  2009  from  Department  of 
+Computer  Science,  Hamdard  University, 
+and  New  Delhi,  India.  Her  research 
+interests include Artificial Intelligence, Pattern Recognition, Soft 
+Computing, and Biometrics. 
+ 
+ 
+
+[7] 
+
+[8] 
+
+[9] 
+
+P. Mell and T. Grance, “The NIST Definition of Cloud 
+Computing Recommendations of the National Institute 
+of Standards and Technology.” 
+A. O‟Driscoll, J. Daugelaite, and R. Sleator, “„Big 
+data‟, Hadoop and cloud computing in genomics,” J. 
+Biomed. Inform., 2013. 
+A. Rosenthal, P. Mork, M. H. Li, J. Stanford, D. 
+Koester, and P. Reynolds, “Cloud computing: A new 
+business paradigm for biomedical information 
+sharing,” J. Biomed. Inform., vol. 43, no. 2, pp. 342–
+353, 2010. 
+
+[10]  A. E. Flores Zuniga, K. T. Win, and W. Susilo, 
+
+[11] 
+
+[12] 
+
+[13] 
+
+“Biometrics for Electronic Health Records,” J. Med. 
+Syst., vol. 34, no. 5, pp. 975–983, Oct. 2010. 
+S. Krawczyk and A. K. Jain, “Securing Electronic 
+Medical Records Using Biometric Authentication,” 
+Springer Berlin Heidelberg, 2005, pp. 1110–1119. 
+F. A. Khan, A. Ali, H. Abbas, and N. A. H. Haldar, “A 
+Cloud-based Healthcare Framework for Security and 
+Patients‟ Data Privacy Using Wireless Body Area 
+Networks,” Procedia Comput. Sci., vol. 34, pp. 511–
+517, 2014. 
+T. Bhattasali, K. Saeed, N. Chaki, and R. Chaki, “Bio-
+authentication for layered remote health monitor 
+framework,” J. Med. Informatics Technol., vol. Vol. 
+23, 2014. 
+
+[14]  World Population Review, “Delhi Population 2016,” 
+
+2016. [Online]. Available: 
+http://worldpopulationreview.com/world-cities/delhi-
+population/. [Accessed: 01-Jun-2016]. 
+
+[15]  Delhi government, “Health &amp; Family Welfare,” 
+
+[16] 
+
+2016. [Online]. Available: 
+http://www.delhi.gov.in/wps/wcm/connect/DoIT_Heal
+th/health/home/. [Accessed: 02-Jun-2016]. 
+“Five New Cases of Healthcare Employee Data Theft 
+Reported,” HIPPA JOURNAL, 2015. [Online]. 
+Available: http://www.hipaajournal.com/5-cases-
+healthcare-employee-data-theft-8211/. [Accessed: 19-
+Aug-2016]. 
+
+[17]  M. Riedmiller and H. Braun, “A Direct Adaptive 
+
+Method for Faster Backpropagation Learning: The 
+RPROP Algorithm.” 
+
+[18]  A. Mosca and G. Magoulas, “Adapting Resilient 
+
+[19] 
+
+Propagation for Deep Learning,” arXiv Prepr. 
+arXiv1509.04612, 2015. 
+F. J. Zareen, K. A. Shakil, M. Alam, and S. Jabin, “A 
+Cloud based Mobile Biometric Authentication 
+Framework,” Jan. 2016. 
+
+[20]  H. Abdi and L. J. Williams, “Principal component 
+
+analysis,” Wiley Interdiscip. Rev. Comput. Stat., vol. 
+2, no. 4, pp. 433–459, Jul. 2010. 
+
+[21]  M. Hill and M. Marty, “Amdahl‟s law in the multicore 
+
+era,” 2008. 
+
+ 
+Kashish  Ara  Shakil  has  received  her 
+Bachelor’s degree in     Computer Science 
+from  Delhi  University and  has an  MCA 
+degree as well. She is currently pursuing 
+her doctoral studies in Computer Science 
+from  Jamia  Millia  Islamia  (A  Central 
+
+

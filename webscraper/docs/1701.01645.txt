@@ -1,0 +1,1084 @@
+Sharing Means Renting?: An Entire-marketplace Analysis of
+
+Airbnb
+Qing Ke
+
+Indiana University, Bloomington
+
+qke@indiana.edu
+
+7
+1
+0
+2
+
+ 
+
+y
+a
+M
+2
+1
+
+ 
+
+ 
+ 
+]
+
+Y
+C
+.
+s
+c
+[
+ 
+ 
+
+2
+v
+5
+4
+6
+1
+0
+
+.
+
+1
+0
+7
+1
+:
+v
+i
+X
+r
+a
+
+ABSTRACT
+Airbnb, an online marketplace for accommodations, has experi-
+enced a staggering growth accompanied by intense debates and
+scattered regulations around the world. Current discourses, how-
+ever, are largely focused on opinions rather than empirical evi-
+dences. Here, we aim to bridge this gap by presenting the first
+large-scale measurement study on Airbnb, using a crawled data set
+containing 2.3 million listings, 1.3 million hosts, and 19.3 million
+reviews. We measure several key characteristics at the heart of
+the ongoing debate and the sharing economy. Among others, we
+find that Airbnb has reached a global yet heterogeneous coverage.
+The majority of its listings across many countries are entire homes,
+suggesting that Airbnb is actually more like a rental marketplace
+rather than a spare-room sharing platform. Analysis on star-ratings
+reveals that there is a bias toward positive ratings, amplified by a
+bias toward using positive words in reviews. The extent of such
+bias is greater than Yelp reviews, which were already shown to
+exhibit a positive bias. We investigate a key issue—commercial
+hosts who own multiple listings on Airbnb—repeatedly discussed
+in the current debate. We find that their existence is prevalent, they
+are early-movers towards joining Airbnb, and their listings are
+disproportionately entire homes and located in the US. Our work
+advances the current understanding of how Airbnb is being used
+and may serve as an independent and empirical reference to inform
+the debate.
+
+CCS CONCEPTS
+• Information systems → Reputation systems; • Applied com-
+puting → Law, social and behavioral sciences;
+
+KEYWORDS
+Airbnb; measurement; sharing economy; online marketplace
+
+ACM Reference format:
+Qing Ke. 2017. Sharing Means Renting?: An Entire-marketplace Analysis of
+Airbnb. In Proceedings of WebSci ’17, Troy, NY, USA, June 25-28, 2017, 9 pages.
+https://doi.org/http://dx.doi.org/10.1145/3091478.3091504
+
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than ACM
+must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,
+to post on servers or to redistribute to lists, requires prior specific permission and/or a
+fee. Request permissions from permissions@acm.org.
+WebSci ’17, June 25-28, 2017, Troy, NY, USA
+© 2017 Association for Computing Machinery.
+ACM ISBN 978-1-4503-4896-6/17/06...$15.00
+https://doi.org/http://dx.doi.org/10.1145/3091478.3091504
+
+1 INTRODUCTION
+Recent years have seen a proliferation of online peer-to-peer mar-
+ketplaces [10]. Examples abound and the services covered range
+from personal loans (Prosper, LendingClub, SocietyOne) and ride
+(Uber, Lyft) to household tasks (TaskRabbit) and accommodations
+(Airbnb). Enabled by the Internet and information technology, these
+marketplaces aim to match sellers who are willing to share under-
+utilized goods or services with buyers who need them [3, 29]. Such
+marketplaces are thus often referred to as examples of the so-called
+“sharing economy” [6, 25, 33]. Airbnb, a primary example of this
+type of marketplaces, connects hosts who have spare rooms with
+guests who need accommodations. Founded in 2008, it now has
+more than two million listings located in more than 191 countries,
+and has accumulated more than 60 million guests.1
+
+Accompanied by its rapid growth, Airbnb has confronted intense
+debates, regulatory challenges, and battles. Advocates argue that
+the platform enables many householders to become small business
+owners and reduce their rental burden. It may also make travelers
+pay less than hotel prices and have a more local and authentic
+experience, exemplified by its slogan “live there.” Opponents argue
+that many hosts rent their entire homes for short-terms, which
+is illegal in many cities [17, 30, 31]. This usage also involves two
+other critical issues. First, entire homes that are used for short-term
+rentals on Airbnb may be taken down from local housing markets,
+which may drive the rents up. A recent study, however, suggested
+that this might not be the case [32]. Second, the coming-in of more
+travelers may be disruptive to residential neighborhoods. Another
+argument from opponents is that some hosts who own a large
+number of listings may be operating business on Airbnb but may
+fail to fulfill their tax obligations. This gives them advantages over
+hotels and makes them “free riders,” because accommodation taxes
+collected from hotels are often used for tourism promotions that
+benefit all accommodation suppliers [17].
+
+Although much debated, to what extent the discussed arguments
+are empirically grounded remains to be seen. To this end, here we
+present the first large-scale data-driven study on Airbnb, focusing
+on the entire market. By measuring key characteristics directly
+related to these arguments, we paint a more complete yet compli-
+cated picture of Airbnb. First, regrading the issue of short-term
+rentals of entire homes, we document that across many countries,
+entire homes account for the majority of listings; 68.5% of all list-
+ings are entire homes and only 29.8% are private rooms. Although
+we do not further quantify the extent to which they are used for
+short-term rentals—a limitation of our work—simply due to the
+unavailability of proprietary data from Airbnb on listing bookings,
+we note that the statistics of room types have changed from 2012
+when 57% are entire homes and 41% are private rooms [17]. This
+
+1https://www.airbnb.com/about/about-us
+
+WebSci ’17, June 25-28, 2017, Troy, NY, USA
+
+Qing Ke
+
+Table 1: Statistics of our data set about Airbnb
+
+Countries
+
+Listings
+
+Users
+
+Reviews
+Note:
+
+Active
+Unavailable
+Total
+Hosts
+Guests
+Total
+
+193
+2, 018, 747
+284, 039
+2, 302, 786
+1, 313, 626
+11, 150, 017
+12, 156, 178∗
+19, 377, 978
+∗ 307, 465 users are both hosts and guests
+
+Figure 1: Cumulative number of hosts.
+
+change suggests that Airbnb has been becoming more like a rental
+marketplace rather than a spare-room sharing platform. Moreover,
+listings owned by business operators may more likely be rented in
+short-terms, compared with other ordinary hosts.
+
+Second, regarding the issue of business operators, we character-
+ize in a great detail who they are and what their listings are. Our
+results suggest a heavier usage from business operators than previ-
+ously thought. The number of listings owned by a host is distributed
+according to a power-law, spanning three orders of magnitude. One
+third of all listings are owned by 9.4% of hosts, each of whom
+has at least three listings, and one host even owns 1, 800 listings.
+Furthermore, we show that business operators are early-movers
+towards joining Airbnb and behave more professionally than or-
+dinary hosts and that their listings are disproportionately of the
+entire home type and located in the US. These results reinforce the
+rental marketplace notion of Airbnb.
+
+Third, our analysis reveals predominantly positive star-ratings
+of listings, which is different from previously observed J-shaped
+distribution. This positivity bias is consistent with a bias toward
+using positive words in reviews, and the extent is greater than Yelp
+reviews. These results may suggest that many guests had overall
+positive experiences during their stays, corroborating advocates’
+argument on traveler experiences. It can also indicate the presence
+of selection bias in review behaviors [14]—only those who had great
+experiences chose to give reviews.
+
+Taken together, we believe that our work significantly advances
+the current understanding of how Airbnb is being used. Our main
+contributions in this work are:
+
+reviews of listings. (§ 3)
+
+• We crawl Airbnb listing data on a global scale. (§ 2)
+• We analyze geolocations, room types, star-ratings, and
+• We characterize hosts who own multiple listings on Airbnb
+• We investigate factors linked to listings’ future rental per-
+
+and those listings owned by them. (§ 4)
+
+formance. (§ 5)
+
+of our data collection is to accumulate as many listings as possible,
+so that we can perform a systematic analysis. There are two steps
+in the data collection process: (1) accumulating listing IDs; and (2)
+downloading their HTML files and reviews. We describe them in
+detail below, and before that, let us present in Table 1 some summary
+statistics about the collected data set. To our best knowledge, these
+are the first public and exact statistics about the Airbnb marketplace.
+In the first step, we accumulated listing IDs by exploiting the
+hierarchical structure of the Airbnb site map, which has three levels:
+country, regions in the country, and search results of listings in
+the region. The top level at /sitemaps lists 152 countries, each of
+which has a hyperlink pointing to the web page that lists regions
+in the country. All the regions in Australia, for example, are listed
+at /sitemaps/AU. Each region, again, has a hyperlink pointing
+to the page of search results of listings in the region. Our script
+followed all these hyperlinks and obtained 83, 174 regions in 152
+countries. Then for each region, our script visited its search page
+and saved all the listing IDs there. We repeated this search process
+7 times, with each new search resulting in a smaller number of
+new IDs. The only constraint stopping us from more searches is
+the availability of computing and storage resources. In total, we
+accumulated 2, 302, 786 unique listings.
+
+In the second step, for each listing, our script visited its web
+page, saved the HTML file, and collected all the reviews. As we are
+also interested in rental performances of listings, we repeated this
+step 3 times—after the 1st, 2nd, and 7th search. The statistics in
+Table 1 and the analyses presented in § 3 and § 4 are based on the
+latest crawl. We found 284, 039 (12.3%) listings were unavailable,
+by which we mean visiting them redirected to a search page with a
+message saying “the listing is no longer available.” As an example,
+see /rooms/11599049.
+
+The entire data collection process was performed between May
+and September, 2016. Note that we followed the crawler-etiquette
+described in Airbnb’s robots.txt:2 None of the three directories
+we visited—/sitemaps, /s/, and /rooms/{listing ID}—are spec-
+ified as disallowed in the file.
+
+2 DATA
+2.1 Data Collection
+On Airbnb, each listing has a web page showing its details such as
+room type, price, reviews from previous guests, host information,
+etc. For example, the listing called “Van Gogh’s Bedroom” can be
+visited at https://www.airbnb.com/rooms/10981658. The main goal
+
+2.2 Summary Statistics Analysis
+We compare the statistics in Table 1 with official ones. The only
+official but approximate numbers we found were already mentioned
+in § 1: 191+ countries, 2M+ listings, and 60M+ total guests. Our
+obtained number of countries and listings seem to be comparable
+
+2https://www.airbnb.com/robots.txt
+
+2009-012010-012011-012012-012013-012014-012015-012016-01Month0.00.20.40.60.81.01.21.4# hosts×106Sharing Means Renting?: An Entire-marketplace Analysis of Airbnb
+
+WebSci ’17, June 25-28, 2017, Troy, NY, USA
+
+Figure 2: Geolocations of Airbnb listings. (a) Dot plot of all the 2,018,747 active listings; (b–c) Histogram of longitude and lati-
+tude; (d–g) Dot plot of listings in the city of Los Angeles, New York, London, and Barcelona. See Appendix A for the copyright
+of city maps.
+
+to official ones. We note, however, that the number of guests (11M)
+is much smaller than the official one (60M). One obvious reason is
+that here we have only counted those guests who have left at least
+one review captured in our data set but not every guest has given
+reviews.
+
+Next, we provide estimations of some statistics that are still
+unknown or may be outdated. First, 307, 465 users are both hosts
+and guests, accounting for 23.4% of all hosts, counted based on
+the observation that they own listings and give reviews to other
+listings. This gives one answer to the Quora question.3 Second,
+Fig. 1 presents the cumulative number of hosts in each month
+from March 2008 to August 2016, constructed using the month
+information that indicates when they joined Airbnb. We see that an
+exponential growth of number of hosts started from around 2012.
+Third, we make an estimate of an important statistic—the guest-to-
+host review rate—meaning the fraction of stays where guests have
+left reviews to their hosts after the conclusion of their stays. We
+approximate it as
+
+guest-to-host review rate =
+
+# stays with reviews left
+
+# total stays
+
+≈ 19, 102, 711
+102, 718, 148 = 18.6%.
+
+(1)
+
+Here the number of stays with reviews left is simply the number
+of reviews (excluding automatic reviews, cf. § 3.4), and the total
+number of stays is estimated by extrapolating the distribution of
+
+3https://www.quora.com/What-percentage-of-Airbnb-hosts-are-also-guests
+
+number of reviews per guest showed in Fig. 5(a) from the 11M
+guests to the entire population of 60M guests. Our estimate has
+already been significantly smaller than the reported 72% in 2012 by
+Airbnb’s CEO Brian Chesky.4 It remains to be seen how accurate
+our estimation is and how the one disclosed in early days is different
+from the one nowadays.
+
+3 MEASURING AIRBNB LISTINGS
+3.1 Geolocations
+Let us start with where Airbnb listings are located—a question re-
+peatedly asked by hoteliers, policy-makers, and other stakeholders
+(e.g., [30]). Using each listing’s approximate geolocation informa-
+tion in latitude/longitude values provided by Airbnb, we present in
+Fig. 2(a) a dot plot showing geolocations of all active listings across
+the world. We see that listings are globally distributed. To under-
+stand their geographic concentration, Figs. 2(b) and (c) respectively
+show the histograms of longitude and latitude values. We observe
+that, on the continental level, listings are heavily located in West-
+ern Europe, North America, East and South Asia, and Pacific Asia.
+Focusing on the country level, Airbnb has reached a world-wide
+yet heterogeneous coverage. US is the largest market for Airbnb,
+with 308, 714 listings totaling for 15.29% of all listings, followed by
+France (11.82%), Italy (10.07%), Spain (6.16%), and United Kingdom
+(3.93%). Figure 3(b) lists the top 30 countries, which in total account
+for 83.55% of all listings. Meanwhile, many countries have only
+4https://www.quora.com/What-percent-of-Airbnb-hosts-leave-reviews-for-their-
+guests/answer/Brian-Chesky?srid=uU9cX
+
+WebSci ’17, June 25-28, 2017, Troy, NY, USA
+
+Qing Ke
+
+Figure 3: Room types of Airbnb listings. (a) Distribution of room types of all active listings; (b) Number of listings by room
+type in the top 30 countries with the highest number of listings. Countries with smaller number of entire homes than private
+rooms are marked red; (c) Distribution of the ratio between entire homes and private rooms in countries with high, medium,
+and low number of listings.
+
+hundreds of listings, and there are no listings in a lot of African
+countries.
+
+Focusing on cities, Figs. 2(d)–(g) respectively display locations of
+listings in the city of Los Angeles, New York, London, and Barcelona.
+As here we are interested in the global distribution, we leave the
+detailed study of how listings are located within cities as future
+work. Some studies have done so focusing on London [28] and
+Barcelona [16].
+
+3.2 Room Types
+Next, we study the distribution of the three types of rooms of
+Airbnb listings: entire home/apartment, private room, and shared
+room. As suggested by their names, entire home means that the
+host will not be present in the home during one’s stay; private room
+means that the guest will occupy a private bedroom and share other
+spaces with others; and shared room means the guest will share the
+bedroom with other guests. While the latter two types of listings
+may align with the symbolism of the sharing economy that hosts
+occasionally share their spare rooms, it is the type of entire home
+that (1) directly contrasts with such symbolism; and (2) becomes
+the necessary condition for hosts to convert residential houses into
+short-term rentals and for business operators to conduct business by
+renting out their numerous properties. Hosts who use entire homes
+in such ways have become one of the main targets of regulations in
+some cities. For instance, the New York State Legislature recently
+passed a bill that subjects hosts to fines when they rent their entire
+homes for less than thirty days,5 and the bill was recently signed
+by New York Governor Andrew M. Cuomo.6 The statistics about
+room types are therefore among the key characteristics mentioned
+in many reports by various interest groups (e.g., [30]), yet they are
+still unknown at the entire-marketplace level.
+
+5http://www.forbes.com/sites/briansolomon/2016/06/17/new-york-wants-to-fine-
+airbnb-hosts-up-to-7500
+6http://www.nytimes.com/2016/10/22/technology/new-york-passes-law-airbnb.html
+
+Figure 3(a) shows that on the entire market, 68.5% of listings
+are entire homes, while only 29.8% are private rooms; Airbnb has
+1.3 times more entire homes than private rooms. These statistics
+are in contrast with the ones back in 2012 when 57% were entire
+homes and 41% were private rooms [17]. Such change indicates that
+Airbnb, a primary example of the “sharing economy,” is more like a
+rental marketplace rather than a spare-room sharing platform.
+
+We investigate variations of the room type distribution across
+countries. Figure 3(b) shows the number of the three types of listings
+in the top 30 countries with the largest number of listings. Among
+them, 27 countries have more entire homes than private rooms. In
+the US, which has the largest number of listings, 65.8% are entire
+rooms, and the ratio between number of entire homes and private
+rooms reaches 2. The only three countries or regions where there
+are more private rooms than entire homes are Taiwan (0.57), India
+(0.91), and Ireland (0.96), though the ratio is close to one for the
+latter two countries. We further calculate the ratio for each of the
+150 countries with more than 100 listings (Countries with small
+number of listings have large fluctuations of the ratio.), and show
+in Fig. 3(c) the distributions of the ratio for the three equally-sized
+groups of countries, based on their total number of listings. We see
+that the ratio is greater than one across many countries and even
+larger for countries with smaller number of listings.
+
+3.3 Star-ratings
+We now focus on star-ratings and reviews, which are the reputation
+system of Airbnb and important sources of information for guests
+to pick listings [24]. At the conclusion of each stay, both the host
+and guest can give reviews to and rate each other at a scale from 1
+to 5 stars with a unit of 0.5 star. Each listing will receive an average
+star-rating once it is rated by at least 3 guests.7 The star-rating of
+each individual review, however, is not publicly disclosed.
+
+7https://www.airbnb.com/help/article/1257/how-do-star-ratings-work
+
+EntirePrivateShared020406080Percentage68.529.81.7(a)United StatesFranceItalySpainUnited KingdomAustraliaGermanyBrazilCroatiaCanadaGreecePortugalChinaJapanMexicoThailandRussiaNetherlandsTurkeySouth AfricaSwitzerlandDenmarkTaiwanIndonesiaIndiaNew ZealandSouth KoreaColombiaNorwayIreland0.00.51.01.52.02.53.03.5# listings×105(b)HighMediumLow# listings10-1100101Ratio(c)Sharing Means Renting?: An Entire-marketplace Analysis of Airbnb
+
+WebSci ’17, June 25-28, 2017, Troy, NY, USA
+
+Figure 5: Review counts on Airbnb. (a) Distribution of num-
+ber of reviews per listing and guest; (b) Number of reviews
+of listings with different host ages.
+
+Figure 4: Distribution of star-ratings.
+
+Figure 4(a) shows a bimodal distribution of star-ratings over all
+listings. More than half of them (54.6%) have not received their
+ratings, and 40.6% have 4.5 or 5 stars. These three categories of
+listings account for over 95% of all listings, and the number of
+listings with 3.5 or lower stars is essentially negligible. Focusing on
+listings that have received star-ratings, Fig. 4(a) inset shows that
+star-ratings are overwhelmingly positive; 89.5% of them have 4.5
+or 5 stars, and the mean (median) rating is 4.67 (4.5). These results
+are consistent with a previous small-scale study [35]. However,
+this heavily skewed distribution is sightly different from previously
+observed J-shaped distribution of product reviews [18]. In particular,
+such distribution suggests that the number of 1-star products is
+high, which is not the case for Airbnb listings.
+
+We explore variations of this distribution by room type. Fig-
+ures 4(b)–(d) respectively show the star-rating distributions of en-
+tire homes, private rooms, and shared rooms. Although, for shared
+rooms, 4.5-star listings are of a higher fraction than 5-star listings,
+there is very limited variation of the distribution: The majority
+of listings, irrespective of room type, have either no or very high
+ratings. This, on the one hand, suggests that many guests had great
+experiences during their stays, but makes star-ratings less informa-
+tive and distinguishable for future guests to choose among potential
+listings, on the other.
+
+3.4 Reviews
+There are 19, 377, 978 reviews given by 11, 150, 017 guests. We are
+aware that Airbnb will post an automatic review if a host cancels a
+reservation, serving as one penalty for the cancellation.8 We find
+275, 267 automatic reviews, amounting to 1.4% of all reviews. This
+provides an upper bound of the cancellation rate by hosts, as not
+every stay yields a review. We removed all automatic reviews before
+further analysis.
+
+3.4.1 Distribution of Review Counts. On the Airbnb review sys-
+tem, which is different from others like Yelp, only guests who con-
+cluded their stays can give reviews. This makes the number of
+
+reviews a listing has received a proxy of its business attention, al-
+though the review rate and number of stayed nights associated with
+each review may be different. Therefore, we analyze how reviews
+are distributed among listings, showing in Fig. 5(a) the survival
+distribution. We shift it by one to make the zero-review data point
+visible in the logarithmic scale. We see that although Airbnb is a
+relatively young marketplace, reviews have already been hetero-
+geneously distributed among listings. About 35.7% listings do not
+have reviews, and respectively 12.2% and 7.4% listings have one
+and two reviews. The remaining 44.6% listings, each of which has
+at least three reviews, account for 93.6% reviews. In § 5, we demon-
+strate the presence of the rich-get-richer mechanism in explaining
+the growth of reviews.
+
+We next analyze the relation between listing age and number of
+reviews. As we do not know when each listing was established, nor
+do we know when each and every review was given, we use the
+Airbnb age of its host—the number of months passed since they
+joined Airbnb—as a proxy of the listing age. Focusing on listings
+with at least one review, Fig. 5(b) shows the 10th, 50th, and 90th
+percentile of number of reviews of listings grouped by host age.
+We observe that (1) the number of reviews in general increases
+with host ages; (2) even for hosts who joined Airbnb for years, the
+median number of reviews still remains in the order of ten; and (3)
+the review count is heterogeneously distributed even for hosts who
+joined Airbnb in the same month.
+
+Figure 5(a) also shows a heavy-tailed distribution of number of
+reviews per guest. Respectively 66.3% and 17.8% guests have given
+one and two reviews, while only 0.63% guests have left at least 10
+reviews.
+
+3.4.2 Review Content. We start investigating text content of
+reviews with what languages are used. Using the langdetect lan-
+guage detection library,9 we found 49 languages used. Table 2 re-
+ports the percentages of reviews written in the top 10 most used
+languages. English dominates this ranking, with 72.8% of reviews
+using it, followed by French, Spanish, German, and Italian. From
+now on, we focus on the 14, 094, 229 English reviews.
+
+Positive/Negative words: Recall that a vast majority (89.5%)
+of listings have 4.5 or 5 stars (Fig. 4(a) inset). This raises the ques-
+tion of whether this strongly skew toward positive star-ratings is
+
+8https://www.airbnb.com/help/article/314/why-did-i-get-a-review-that-says-i-
+canceled
+
+9https://pypi.python.org/pypi/langdetect
+
+0204060Percentage(a) Overall<3.53.544.5502040600204060(b) Entire home<3.53.544.550204060None<3.53.544.550204060Percentage(c) Private room<3.53.544.550204060None<3.53.544.550204060(d) Shared room<3.53.544.5502040601101001000# reviews per listing, guest10-810-710-610-510-410-310-210-1100CCDF(a)(a)ListingGuest020406080100Host age (month)100101102# reviews(b)90thmedian10thWebSci ’17, June 25-28, 2017, Troy, NY, USA
+
+Qing Ke
+
+Table 2: Top 10 languages used in reviews
+
+Language
+English
+French
+Spanish
+German
+Italian
+
+% Language
+
+72.8 Chinese (Simplified)
+10.3 Korean
+3.8
+3.5 Dutch
+2.3 Russian
+
+Portuguese
+
+%
+1.6
+1.3
+1.0
+0.9
+0.9
+
+consistent with a usage bias toward positive vocabulary. To answer
+this, we use a recently released resource that contains norms of
+almost 14K English words [34], each of which has a valence score
+from 1 to 9, where valence greater than 5 means positive words
+and smaller than 5 negative words. We calculate the ratio of the
+frequency of positive and negative words in Airbnb reviews. To
+compare the skewness, we also calculate the ratio for 2.7M Yelp
+reviews.10 Table 3 shows that the ratio doubles for Airbnb reviews.
+This confirms a bias toward using positive words, and the extent is
+even greater than reviews on Yelp, which already exhibits a positive
+bias [20]. Given that Airbnb is a P2P platform where hosts can also
+choose which guests to accommodate, this finding may open up
+further investigations into user behaviors on different platforms.
+
+4 MEASURING MULTI-LISTING HOSTS
+In this section, we investigate a key issue repeatedly discussed in
+the current debate—the existence of hosts who own multiple listings
+on Airbnb. Hereafter, we call them “multi-listers.” Note that they
+may have different names in various reports, such as “commercial
+hosts,” “professional hosts,” and “business operators,” all attempting
+to capture the possibility that they may operate business on Airbnb,
+as an ordinary host is less likely to own numerous listings. Despite
+being a critical issue, there has been no systematic analysis about
+multi-listers and their listings.
+
+(cid:17)−α
+
+(cid:16) x
+
+4.1 Existence of Multi-listers
+Recall that there are 2, 018, 747 active listings owned by 1, 313, 626
+hosts (Table 1), thus on average every host owns 1.54 listings. Fig-
+ure 6(a) shows the survival distribution of number of owned listings
+per host. We observe a somewhat surprising heavy-tailed distribu-
+tion that spans more than three orders of magnitude, similar to what
+have been observed in many complex systems [1]. We fit the empir-
+ical distribution with a power-law function p(x) = α−1
+xmin
+using the methods developed in refs [2, 4], and obtain α = 2.65 and
+xmin = 15. These results not only demonstrate the existence of “su-
+per multi-listers”—hosts who can own up to 1, 800 listings, but also
+indicate that the existence of multi-listers is prevalent. Simply put,
+although the vast majority of hosts have a small number of listings,
+there is a consistent number of hosts who own a large number of
+listings. In particular, 1, 030, 134 (78.4%) and 159, 627 (12.2%) hosts
+respectively own one and two listings, and the remaining 9.43%
+hosts own 33.16% of all listings.
+
+To further characterize multi-listers and their listings, we need
+to answer a key question—which threshold of number of owned
+
+xmin
+
+10https://www.yelp.com/dataset_challenge/
+
+Table 3: Ratio of frequency of positive and negative words
+used in Airbnb and Yelp reviews
+
+Airbnb reviews Yelp reviews
+
+Ratio
+
+13.749
+
+6.705
+
+listings per host allows us to separate hosts into two groups and then
+compare them. Previous literature have not reached a consensus
+about this. The New York State Attorney General, for example,
+defined “commercial hosts” as those who have three or more unique
+listings [30]. Li et al. defined “professional hosts” as those who have
+two or more listings [23]. Here, we argue that a typical threshold
+value may not be well-defined, as Fig. 6(a) clearly suggests that the
+number of owned listings is a multi-scale phenomenon. Moreover,
+as we shall show, focusing on a particular value loses the whole
+picture and can even be misleading.
+
+Instead, we simply increase the threshold and study how various
+measures of interest change accordingly. Specifically, for a given
+threshold, we characterize (1) the subset of hosts whose number
+of owned listings exceeds the given threshold; and (2) the subset of
+listings owned by those hosts. If the threshold is zero, we simply
+focus on all hosts and all listings.
+
+4.2 Listings Owned by Multi-listers
+Figures 6(b)–(e) present the characterization results for listings
+owned by multi-listers. Figure 6(b) shows the percentages of list-
+ings in 5 countries, United States (US), Spain (ES), Croatia (HR),
+Italy (IT), and Australia (AU), selected because they have the largest
+number of listings when the threshold is 20. We observe that as
+we increase the threshold, listings owned by multi-listers are dis-
+proportionately located in the US. We also see that a decreasing
+portion of listings are from Italy, while Spain and Croatia have an
+increasing portion. Figure 6(b) (and Fig. 6(d)) also illustrates why
+focusing on a particular threshold can be misleading. For exam-
+ple, if one focused on a particular value (1 or 2), one would have
+concluded that the number of US listings owned by multi-listers is
+proportional to total listings in the US, which is not the case.
+
+Figure 6(c) focuses on how the total number of listings and
+number of reviews received by them change as we increase the
+threshold. We observe a faster decrease of review counts, indicating
+that the average number of reviews per listing decreases. When the
+threshold is 0, on average a listing has 9.6 reviews, which decreases
+to 2.6 when the threshold reaches 20. Therefore, listings owned by
+multi-listers are less reviewed.
+
+Figure 6(d) shows that an increasing portion of listings are entire
+homes as the threshold increases. When the threshold is 20, more
+than 92% of listings are entire homes, compared to 68.5% on the en-
+tire market. This confirms the previous conjecture that commercial
+hosts seek to rent out their entire home properties.
+
+Figure 6(e) answers the question of how far away the listings
+owned by a single host. Using listings’ latitude/longitude values, we
+calculate, for each host, the maximum distance among all pairwise
+distances between two of their listings, capturing the geographical
+diameter of their “managerial” activities. Figure 6(e) shows that
+the median of the distribution of maximum distance over all hosts
+
+Sharing Means Renting?: An Entire-marketplace Analysis of Airbnb
+
+WebSci ’17, June 25-28, 2017, Troy, NY, USA
+
+Figure 6: Characterizing multi-listers and their listings. (a) Survival distribution of number of owned listings per host. From
+(b) to (h), we focus on (1) the subset of hosts whose number of owned listings exceeds a threshold; and (2) the subset of listings
+owned by those hosts, and show how various measures change as we increase the threshold. (b) Percentage of listings located
+in 5 countries; (c) Number of listings and their total reviews; (d) Percentage of entire homes; (e) The median of the distribution
+of the maximum distance between pairs of listings owned by a host; (f) Mean Airbnb age of hosts; (g) Percentage of hosts who
+give descriptions; (h) Percentage of hosts whose profile photos have facial features.
+
+whose number of listings exceeds a given threshold, though keeps
+increasing, is in the order of 10km. This suggests that listings owned
+by multi-listers may locate within a city and that they may operate
+business locally.
+
+4.3 Multi-listers
+Figures 6(f)–(h) show the characterization results for multi-listers.
+First, Fig. 6(f) demonstrates that multi-listers are early-movers to-
+wards joining Airbnb, as their mean Airbnb age is larger than other
+hosts.
+
+Figure 6(g) focuses on the percentages of hosts who give de-
+scriptions in the space-limited “Your Host” section on listings’ web
+pages. Presenting self-description is one important way to establish
+trust between guests and hosts. Surprisingly, only 47.3% of all hosts
+have given descriptions (threshold 0), and multi-listers are more
+likely to do so. Using the method described in ref. [26] and set-
+ting the threshold to 10, we find the top 10 overrepresented words
+used in multi-listers’ descriptions are “https,” “vacation,” “wildschö-
+nau,” “properties,” “rentals,” “team,” “villas,” “rental,” “apartments,”
+and “services,” indicating that they use the description section to
+advertise their listings.
+
+Figure 6(h) examines another way to establish trust—showing
+faces in profile photos. Using a service provided by Face++ to detect
+whether there are facial features presented in a given photo,11 we
+find that for 69.5% of all hosts, there are faces detected in their
+profile photos. Multi-listers are less likely to show faces in their
+
+11http://www.faceplusplus.com/detection_detect/
+
+photos, and a manual inspection reveals that many of them use
+company’s logos as profile photos.
+
+5 MODELING REVIEW GROWTH
+In the last section, we have found notable differences between
+multi-listers and other hosts. This raises the question of whether
+the differences are linked to listings’ future rental performances.
+To answer this, we approximate performances with number of new
+reviews, as we do not know listings’ actual booked nights. For each
+listing, we calculate the number of new reviews it has received in
+one month, which is our response variable. The first two columns
+in Table 4 list predictors and their definitions. Instant Book is a
+listing feature, meaning that a potential guest can book the listing
+without the host’s approval.12 The superhost badge is awarded
+to a host if they satisfies a series of requirements set by Airbnb.13
+Response time of a host is transformed into numerical values, so
+that a faster response corresponds to a larger value.
+
+We fit a linear regression model by ordinary least squares (OLS)
+to understand factors linked to the growth of reviews. The last
+column in Table 4 presents the regression results. Other predictors
+being the same, listings with more existing reviews will have more
+new reviews, demonstrating the presence of the rich-get-richer
+mechanism that has been found to explain the growth of numerous
+systems [27]. Listings whose ratings have one more star will have
+0.169 more review. A private room will gain 0.112 more review than
+
+12https://www.airbnb.com/help/article/187/what-is-instant-book
+13https://www.airbnb.com/superhost
+
+1101001000# owned listings per host10-710-610-510-410-310-210-1100CCDF(a)Empiricalα=2.6505101520Threshold05101520253035Percentage(b)USESHRITAU05101520105106107# listings, reviews(c)ListingsReviews05101520405060708090100% Entire home(d)0510152010-1100101102Distance (km)(e)05101520Threshold15202530Age (months)(f)05101520Threshold405060708090100% give description(g)05101520Threshold405060708090100% show face(h)WebSci ’17, June 25-28, 2017, Troy, NY, USA
+
+Qing Ke
+
+Table 4: Regression results for monthly new reviews
+
+and personal photos [11] of their hosts. The impact of Airbnb on
+hotel industry revenue [36, 37] and on tourism industry employ-
+ment [12] has been investigated. Discussions about regulations of
+Airbnb have also generated much attention [5, 7]. Li et al. inves-
+tigated differences in performances and behaviors between pro-
+fessional hosts—those who own two or more listings—and non-
+professional hosts on Airbnb [23]. Our analysis, however, reveals
+the lack of threshold that allows us to separate professional and non-
+professional hosts. Studies focusing on the motivations behind join-
+ing Airbnb to provide hospitality have pointed out that monetary
+compensation and sociability are two important aspects [19, 22].
+Fradkin et al. experimentally investigated the determinants and
+bias in the Airbnb review system [14]. Fradkin proposed ranking
+algorithms for the Airbnb search engine [13].
+
+7 CONCLUSION AND FUTURE WORK
+In this work, we have presented the first large-scale data-driven
+study on Airbnb. After crawling the largest ever number of Airbnb
+listings, we have measured their geolocations, room types, star-
+ratings, and reviews. We have also characterized in a great detail
+hosts who own multiple listings as well as their listings. We have
+built a linear regression model to understand factors linked to the
+growth of reviews. As these aspects are among the key points
+discussed in the ongoing debate and among important features in
+the sharing economy, we believe that our work provides valuable
+insights for various stakeholders and may serve as a public and
+empirical reference to inform the debate.
+
+One major limitation of our work is that we do not measure
+listing occupancy. Therefore we do not know to what extent a listing
+is rented in short-terms or what revenue differences are between
+multi-listers and ordinary hosts. We notice that it is feasible to
+crawl listing calendar data. However, one issue of using such data is
+that, given a listing is unavailable on some dates, we cannot tell if it
+is rented out or simply blocked by the host for not renting. Another
+technical challenge is to large-scale monitor the calender data on a
+daily basis. Future work may do so on a small scale. Other future
+work include studying geolocation at a finer level, measuring hosts’
+behavioral changes, and understanding the effect of review content
+on listings’ future rentals.
+
+A COPYRIGHT OF CITY MAPS
+Los Angeles: shapefile from https://goo.gl/SxFhCx. New York
+City: shapefile from https://goo.gl/Isb4rf. London: shapefile from
+https://goo.gl/bWn9ua; copyright: “Contains National Statistics data
+©Crown copyright and database right [2015]” and “Contains Ord-
+nance Survey data ©Crown copyright and database right [2015]”.
+Barcelona: shapefile from https://goo.gl/bYOhWL.
+
+ACKNOWLEDGMENTS
+I thank the anonymous referees for their comments and sugges-
+tions and Center for Complex Networks and Systems Research and
+School of Informatics and Computing at Indiana University for
+excellent computing resources.
+
+reviews
+
+ratinд
+
+room_type
+
+amenities
+
+instant_book
+
+photos
+
+host_aдe
+
+host_super
+
+host_desp
+
+host_nlistinд
+
+Constant
+
+Observations
+Adjusted R2
+Note:
+
+host_resp_rate Host response rate
+
+host_resp_time Host response time
+
+# owned listings
+
+# available amenities
+
+Instant book is allowed
+
+Number of photos
+
+Host age
+
+Host is a superhost
+
+Host gives descriptions
+
+Number of reviews
+
+Star-rating
+
+Room type
+
+shared
+
+private
+
+0.037∗∗∗
+(0.0001)
+0.169∗∗∗
+(0.001)
+0.112∗∗∗
+(0.003)
+−0.091∗∗∗
+(0.011)
+0.017∗∗∗
+(0.0003)
+0.272∗∗∗
+(0.003)
+−0.002∗∗∗
+(0.0001)
+−0.018∗∗∗
+(0.0001)
+0.259∗∗∗
+(0.005)
+0.040∗∗∗
+(0.003)
+0.229∗∗∗
+(0.013)
+0.220∗∗∗
+(0.002)
+−0.001∗∗∗
+(0.00002)
+−0.446∗∗∗
+(0.011)
+1,140,488
+0.388
+∗p<0.1; ∗∗p<0.05; ∗∗∗p<0.01
+
+1
+
+1
+
+1
+
+an entire home, while a shared room will have 0.091 less review
+than an entire home. A listing that can be instantly booked will
+have 0.272 more review than those without the Instant Book feature.
+Being a superhost, giving descriptions, maintaining high response
+rate, responding in short time, and owning a smaller number of
+listings all have positive effects on review growth, though the effect
+is small for the number of owned listings.
+
+6 RELATED WORK
+There is a growing interest in Airbnb and other sharing economy
+platforms from diverse disciplines, ranging from computer science
+to economics to law. Empirical studies have focused on, for exam-
+ple, star-ratings of listings [35] and geolocations of listings within
+cities [16, 28]. Our focus here is the entire Airbnb platform. There
+are studies that have reported the presence of discrimination on
+Airbnb [8, 9]. Some work have investigated factors associated with
+listings’ price, such as the receipt of star-ratings [15] and race [21]
+
+Sharing Means Renting?: An Entire-marketplace Analysis of Airbnb
+
+WebSci ’17, June 25-28, 2017, Troy, NY, USA
+
+[26] Burt L. Monroe, Michael P. Colaresi, and Kevin M. Quinn. 2008. Fightin’ Words:
+Lexical Feature Selection and Evaluation for Identifying the Content of Political
+Conflict. Political Analysis 16, 4 (2008), 372–403. https://doi.org/10.1093/pan/
+mpn018
+[27] Matjaž Perc. 2014. The Matthew effect in empirical data. Journal of The Royal
+Society Interface 11, 98 (2014), 20140378. https://doi.org/10.1098/rsif.2014.0378
+[28] Giovanni Quattrone, Davide Proserpio, Daniele Quercia, Licia Capra, and Mirco
+Musolesi. 2016. Who Benefits from the “Sharing” Economy of Airbnb?. In
+Proceedings of the 25th International Conference on World Wide Web. 1385–1394.
+https://doi.org/10.1145/2872427.2874815
+[29] Alvin E. Roth. 2015. Who Gets What—and Why: The New Economics of Match-
+[30] Eric T. Schneiderman. 2014.
+(October 2014).
+
+making and Market Design.
+https://ag.ny.gov/pdfs/AIRBNB REPORT.pdf.
+
+Airbnb in the city.
+
+[31] David Streitfeld. 2014. Airbnb Listings Mostly Illegal, New York State
+http://www.nytimes.com/2014/10/16/business/
+
+Contends.
+airbnb-listings-mostly-illegal-state-contends.html.
+
+(2014).
+
+[32] Ariel Stulberg. 2016. Airbnb Probably Isn’t Driving Rents Up Much, At Least
+Not Yet. (August 2016). http://fivethirtyeight.com/features/airbnb-probably-isnt-
+driving-rents-up-much-at-least-not-yet/.
+
+[33] Arun Sundararajan. 2016. The Sharing Economy.
+[34] A. B. Warriner, V. Kuperman, and M. Brysbaert. 2013. Norms of valence, arousal,
+and dominance for 13,915 English lemmas. Behavior Research Methods 45, 4
+(2013), 1191–1207. https://doi.org/10.3758/s13428-012-0314-x
+[35] Georgios Zervas, Davide Proserpio, and John Byers. 2015. A First Look at
+(2015).
+
+Online Reputation on Airbnb, Where Every Stay is Above Average.
+http://ssrn.com/abstract=2554500.
+
+[36] Georgios Zervas, Davide Proserpio, and John Byers. 2016. The Rise of the Sharing
+Economy: Estimating the Impact of Airbnb on the Hotel Industry. (2016). Boston
+U. School of Management Research Paper No. 2013–16.
+
+[37] Georgios Zervas, Davide Proserpio, and John W. Byers. 2015. The Impact of the
+Sharing Economy on the Hotel Industry: Evidence from Airbnb’s Entry Into the
+Texas Market. In Proceedings of the Sixteenth ACM Conference on Economics and
+Computation. 637–637. https://doi.org/10.1145/2764468.2764524
+
+[2]
+
+REFERENCES
+[1] Réka Albert and Albert-László Barabási. 2002. Statistical mechanics of complex
+networks. Reviews of Modern Physics 74 (2002), 47–97. Issue 1. https://doi.org/10.
+1103/RevModPhys.74.47
+Jeff Alstott, Ed Bullmore, and Dietmar Plenz. 2014. powerlaw: A Python Package
+for Analysis of Heavy-Tailed Distributions. PLoS ONE 9, 1 (2014), e85777. https:
+//doi.org/10.1371/journal.pone.0085777
+[3] Eduardo M. Azevedo and E. Glen Weyl. 2016. Matching markets in the digital age.
+Science 352 (2016), 1056–1057. Issue 6289. https://doi.org/10.1126/science.aaf7781
+[4] Aaron Clauset, Cosma Rohilla Shalizi, and M. E. J. Newman. 2009. Power-
+law distributions in empirical data. SIAM Rev. 51, 4 (2009), 661–703. https:
+//doi.org/10.1137/070710111
+[5] Molly Cohen and Arun Sundararajan. 2015. Self-Regulation and Innovation in
+
+the Peer-to-Peer Sharing Economy. U Chi L Rev Dialogue 82 (2015), 116.
+[6] Michael A. Cusumano. 2015. How Traditional Firms Must Compete in the Sharing
+Economy. Commun. ACM 58, 1 (2015), 32–34. https://doi.org/10.1145/2688487
+[7] Benjamin G. Edelman and Damien Geradin. 2015. Efficiencies and Regulatory
+Shortcuts: How Should We Regulate Companies like Airbnb and Uber? (2015).
+https://ssrn.com/abstract=2658603.
+
+[8] Benjamin G. Edelman and Michael Luca. 2014. Digital Discrimination: The Case
+of Airbnb.com. (2014). Harvard Business School NOM Unit Working Paper No.
+14–054.
+
+[9] Benjamin G. Edelman, Michael Luca, and Dan Svirsky. 2017. Racial Discrimi-
+nation in the Sharing Economy: Evidence from a Field Experiment. American
+Economic Journal: Applied Economics 9, 2 (2017), 1–22. https://doi.org/10.1257/
+app.20160213
+[10] Liran Einav, Chiara Farronato, and Jonathan D. Levin. 2016. Peer-to-Peer Mar-
+kets. Annual Review of Economics 8, 1 (2016), 615–635. https://doi.org/10.1146/
+annurev-economics-080315-015334
+[11] Eyal Ert, Aliza Fleischer, and Nathan Magen. 2016. Trust and Reputation in the
+Sharing Economy: The Role of Personal Photos on Airbnb. Tourism Management
+55 (2016), 62–73. https://doi.org/10.1016/j.tourman.2016.01.013
+[12] Bin Fang, Qiang Ye, and Rob Law. 2016. Effect of sharing economy on tourism
+industry employment. Annals of Tourism Research 57 (2016), 264–267. https:
+//doi.org/10.1016/j.annals.2015.11.018
+[13] Andrey Fradkin. 2015. Search Frictions and the Design of Online Marketplaces.
+
+(2015). http://andreyfradkin.com/assets/SearchFrictions.pdf.
+
+[16]
+
+[14] Andrey Fradkin, Elena Grewal, Dave Holtz, and Matthew Pearson. 2015. Bias and
+Reciprocity in Online Reviews: Evidence From Field Experiments on Airbnb. In
+Proceedings of the 16th ACM Conference on Economics and Computation. 641–641.
+https://doi.org/10.1145/2764468.2764528
+[15] Dominik Gut and Philipp Herrmann. 2015. Sharing Means Caring? Hosts’ Price
+Reaction to Rating Visibility. European Conference on Information Systems 2015
+Research-in-Progress Papers (2015). Paper 54.
+Javier Gutierrez, Juan Carlos Garcia-Palomares, Gustavo Romanillos, and
+Maria Henar Salas-Olmedo. 2016. Airbnb in tourist cities: comparing spatial
+patterns of hotels and peer-to-peer accommodation. (2016). arXiv:1606.07138.
+[17] Daniel Guttentag. 2015. Airbnb: disruptive innovation and the rise of an informal
+tourism accommodation sector. Current Issues in Tourism 18, 12 (2015), 1192–1217.
+https://doi.org/10.1080/13683500.2013.827159
+[18] Nan Hu, Jie Zhang, and Paul A. Pavlou. 2009. Overcoming the J-shaped dis-
+tribution of product reviews. Commun. ACM 52, 10 (2009), 144–147. https:
+//doi.org/10.1145/1562764.1562800
+[19] Tapio Ikkala and Airi Lampinen. 2015. Monetizing Network Hospitality: Hospi-
+tality and Sociability in the Context of Airbnb. In Proceedings of the 18th ACM
+Conference on Computer Supported Cooperative Work & Social Computing. 1033–
+1044. https://doi.org/10.1145/2675133.2675274
+[20] Dan Jurafsky, Victor Chahuneau, Bryan R. Routledge, and Noah A. Smith. 2014.
+Narrative framing of consumer sentiment in online restaurant reviews. First
+Monday 19, 4 (2014), 4944. https://doi.org/10.5210/fm.v19i4.4944
+Effects of
+[21] Venoo Kakar, Julisa Franco, Joel Voelz, and Julia Wu. 2016.
+Host Race Information on Airbnb Listing Prices in San Francisco.
+(2016).
+https://ideas.repec.org/p/pra/mprapa/69974.html.
+
+[22] Airi Lampinen and Coye Cheshire. 2016. Hosting via Airbnb: Motivations
+and Financial Assurances in Monetized Network Hospitality. In Proceedings of
+the 2016 CHI Conference on Human Factors in Computing Systems. 1669–1680.
+https://doi.org/10.1145/2858036.2858092
+Jun Li, Antonio Moreno, and Dennis J. Zhang. 2015. Agent Behavior in the
+Sharing Economy: Evidence from Airbnb. (2015). Ross School of Business Paper
+No. 1298. http://ssrn.com/abstract=2708279.
+
+[24] Michael Luca. 2016. Designing Online Marketplaces: Trust and Reputation
+Mechanisms. (2016). https://doi.org/10.3386/w22616 NBER Working Paper No.
+22616.
+
+[25] Arvind Malhotra and Marshall Van Alstyne. 2014. The Dark Side of the Sharing
+Economy . . . and How to Lighten It. Commun. ACM 57, 11 (2014), 24–27.
+https://doi.org/10.1145/2668893
+
+[23]
+
+

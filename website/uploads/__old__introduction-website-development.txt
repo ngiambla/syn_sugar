@@ -1,0 +1,517 @@
+Introduction to Website Development: HTML,
+
+CSS, & JS
+
+Nicholas V. Giamblanco
+
+February 23, 2018
+
+Abstract
+
+Why are we concerned with website development? Naively put, net-
+work technology has taken over digital application development and de-
+ployment, day-to-day services, information retrieval, etc. Web-development
+is the practice of developing some potentially interactive framework to be
+made visible on a network which may require processing of data. This
+broad denition is comprised of many sub-tasks, such as security consid-
+erations, user-usability, responsiveness, etc.
+In this talk, we will focus
+on front-end development, which is development and design of interac-
+tive displays of information, freely available on some network (typically
+Internet).
+
+1
+
+Introduction
+
+How do you typically interpret a website? What is/are the websites main func-
+tion(s)? What should be interactive? How should we visualize features. A web-
+site can be thought of as a fast and interactive information producer/consumer.
+Figure 1 provides an example website. Can you identify its purpose?
+
+Figure 1: A particular view of the website www.unsplash.com
+
+During this discussion, web-design will be approached from a usability per-
+spective, where we consider every action we aim to commit. For example, should
+we include a menu bar? If we do include a menu bar, should it be sticky or not?
+
+1
+
+We will not be covering the packet-level ow of websites. IP level abstrac-
+tions are too-low-level for the practical considerations of front-end website de-
+sign1.
+
+2 Typical Workow
+
+To develop front-end websites, we will require the following tools and knowledge.
+
+ A Goal we would like to achieve.
+ A Text Editor (I personally use Sublime Text Editor
+ A Working Directory
+ Knowledge of HTML, CSS and JS2
+ Some Programming Experience
+ Patience.
+
+This talk makes use of the UNIX environment, and hence directory references
+
+should be in the form:
+
+../your_directory/another/directory
+
+To help get started, a typical directory structure used for front-end web
+
+development is like this:
+
+templates
+static
+
+js
+images
+fonts
+css
+
+All our HTML documents will be stored in templates, CSS sheets will be
+
+stored in the css directory, etc.
+
+We will make relevant path references within our les for several reasons:
+ Portability
+ Security
+
+Today we will be developing a single page website, which will be partially
+
+interactive.
+
+1The interested reader may be intrigued to note how information is interpreted and trans-
+ported from computer to computer. This is a client/server based approach to web-design.
+This approach to web-design is the defacto standard
+
+2This can be some variant of Javascript (like JQuery) or Vanilla JS
+
+2
+
+3 HTML
+
+We will begin website development with HTML. HTML could be thought about
+in the following way:
+
+Imagine that we just went grocery shopping, and we have some items we
+would like to refrigerate. Now imagine, that we have a refrigerator. Now imag-
+ine that this refrigerator is congurable. Shelves can be dynamically placed and
+resized, drawers can be added or removed on demand, etc. This allows for all
+the items to be placed within the fridge in some user specied way. An HTML
+document behaves in a similar manner: users can divide (partition) a digital
+environment, such that certain partitions can hold certain types of information.
+HTML can also be thought of as a blueprint for what is to come. Recall that HTML
+is an acronym for Hyper Text Markup Language. As with any Markup Lan-
+guage, we apply <tags> </tags> against some information for interpretation
+purposes. We have many dierent tag types:
+
+ <script src="../static/js/what it is.js"></script>
+ <link rel="stylesheet" href="../static/css/your stylez.css">
+ <div> </div>
+ <img>
+ <ol> </ol> or <ul> </ul>
+ <li> </li>
+ <form></form>
+ <input>
+ <a> </a>
+ <p> </p>, <hx> </hx> and other text identication tags.
+
+There is some ordering required when placing tags. Referring to Figure 2:
+
+<!DOCTYPE html>
+
+<head>
+
+load up some js, css, libs etc.
+
+</head>
+
+<body>
+
+fill in stuff here...
+
+</body>
+
+</html>
+
+Figure 2: Example layout of HTML
+
+To iterate, HTML document has a hierarchal structure. We will refer to par-
+titions which contain further partitions and elements as the parent of these.
+
+3
+
+Likewise, we will call the partitions and elements within a parent as children.
+This is very important.
+
+As with many Markup Languages, attributes can be described for each tag.
+Thinking back to our dynamic refrigerator example, we can provide attributes
+to each of our partitions. Suppose we wanted to one of our shelves in our
+refrigerator to be blue, we can assign this shelf partition this attribute. Perhaps
+we would like to designate a draw in our fridge to having only a maximum of
+fruits. The utilizations of attributes are key in website design. Attributes hold
+extra information which will be applied to some partition. Figure 3 provides a
+typical usage:
+
+<div class="this_is_an_attribute">
+
+<img width="100px" src="...">
+
+</div>
+
+Figure 3: Usage of an attribute with a tag in an HTML document
+
+Arguably the two most important attributes to be described are: the (1)
+
+class attribute, and the (2) id attribute.
+
+3.1 The class attribute
+
+Suppose that our refrigerator requires many shelves with the same shape and
+color. Should we individually describe each one? This would be an intractable
+problem, as large websites (i.e. Facebook) would have to manually (1) partition
+each new webpage they develop, and (2) describe each new partition. Instead,
+the class attribute can be inserted into the tag, where these partitions will
+now inherit behaviour from some predened notion. This notion is known as
+a class and is a well known software design methodology. Following with our
+example, perhaps we wanted all of our fridge shelves to be blue and gold. Instead
+of having to describe each shelf with the attributes of blue and gold, we can
+describe these same attributes with the use of a class. These shelves would be
+of a certain class of description. This will become clearer during discussion of
+Cascaded Style Sheets (CSS).
+
+3.2 The id attribute
+
+Suppose that after picking up a few things at the grocery store, we arrived home
+to nd our refrigerators light was out. This is an issue for us, as we need to be
+able to see what is in our fridge. In this example, we were able to identify that
+our fridges main light was out, and it needed changing. The id attribute does
+exactly this. It allows us to uniquely identify partitions that we created. The
+uses for this may not seem exactly intuitive just yet, but probing against our
+partitions will require some sort of identication mechanism. This will become
+clearer during out discussion of Javascript and related technologies.
+
+3.3 Extras
+
+There is a lot more information in regards to how to partition the available
+digital space. This is more than the scope of this talk.
+
+4
+
+4 CSS
+
+We have seen that HTML allows partitioning of a digital space for our own
+interpretation. But, how can we bring these partitions to life? That is, how can
+we specify these attributes:
+
+ height
+ width
+ padding
+ margins
+ border
+ colors
+ shadows
+
+And how can we capture certain actions taken by the user like mouse-events?
+As we noted back in Section 3, we can dene the class attribute, which can
+apply a common set of attributes to a particular partition. Cascaded Style
+Sheets provided this functionality.
+It can be seen as the designer of web-
+development, as mostly all visual details are described with this technology.
+The name is inspired by its behaviour.
+
+tag {
+
+width: 100%;
+height: 10px;
+
+}
+
+.class {
+
+background-color: #cafeee;
+
+}
+
+#id {
+
+margin-top: 25px;
+
+}
+
+Figure 4: CSS Syntax
+
+Suppose the following: I have described a class as spicy. This class is ensures
+that every partition which is described by this class has a bright red background
+and a black border. Now suppose for every partition I append another class to
+their attributes. This class was named calm. This class makes the background
+color blue. What should be the resulting background color, bright red or blue?
+Should the border still be applied? To answer this question, picture a waterfall.
+This waterfall can synonymously represent descriptions. Close to the top of
+this waterfall, the spicy class was described and applied. Nearest the end of
+the waterfall, the calm class was described and applied. However, the calm
+
+5
+
+class did not modify the previous description of the border color And hence, we
+would expect to see that water which hits the ground to contain the background
+provided by the calm class with the border described by the spicy class.
+
+This is why Cascaded appears in CSS. Therefore, the order in which class are
+listed may aected the nal styling of a particular element. Styles are placed
+in a sheet (or le), in which decouples the styling descriptions from the HTML
+document. This again allows for more portability between website designs. The
+syntax for CSS can be visualized in Figure 4.
+It is also important to note:
+classes applied to parent elements and partitions will also apply styling upon
+the children.
+
+CSS also has the ability to capture various mouse events through selectors.
+
+An example of one is given in Figure 5
+
+tag:hover {
+
+background-color: #000;
+
+}
+
+Figure 5: CSS Selector
+
+CSS now can be applied to virtually any partition in the form of classes, or
+through the selection of ids, and have dynamically generated responses to user
+inputs. A full list of attributes modiable by is beyond the scope of this talk 3.
+
+5 JS
+
+So far, we have seen how we can partition a digital space for some purpose, and
+we can append attributes to these partitions for visual appeal, or for meta-data.
+But, what if we need our partition to change? What if we need to add extra
+partitions on demand? Both HTML & CSS are static.
+
+Alas, Javascript plays an important role in front-end web development. Ref-
+erencing our refrigerator example, all items stored on some shelves or in some
+draws require cooling at some specic temperature and humidity level. But, if
+we think for a moment, we would realize that refrigerators are adaptive to the
+external environment. That is, temperature changes to the external environ-
+ment will impact the temperature of the fridge. Hence the fridge is dynamic.
+
+This sort of dynamic behaviour to external inuences can be accomplished
+
+in the digital world with Javascript.
+
+Javascript is a high-level, interpreted language. It is known to be weakly
+
+typed, and can be classied as dynamic. Javascript can do... a lot.
+
+5.1 Variables
+
+Dening variables in Javascript is easy as var one, two, three;. Assigning
+is even easier: one=1;two=3;three=0;. Variables cannot contain - in their
+declaration. Also, assignments to variables do not require ; but are recom-
+mended. Variables are case sensitive. Dened variables left unassigned are
+denoted as undened.
+
+3Many attributes like !important and > should be reviewed during this talks example
+
+6
+
+Lines of executable code can be commented just like other languages. The
+
+comment struture can be line by line or in blocks:
+
+\\
+
+or
+
+/*
+...
+...
+*/
+
+For a complete discussion on Javascript as a language, this talk will be
+
+insucient.
+
+5.2 Usages with Web Design
+
+We can reference elements by ids, classes and tag types:
+
+ document.getElementById(name)
+ document.getElementsByClassName(name)
+ document.getElementsByTagName(name)
+
+Javascript also provides the ability to modify elements:
+
+element.attribute = new value
+element.setAttribute(attribute, value)
+element.style.property = new style
+
+Some examples:
+ document.getElementById("demo").innerHTML = 5 + 6;
+ document.getElementById("demo").style.fontSize = "35px";
+ document.getElementById(myImage).src = "pickle.png";
+ document.getElementById("myBtn").onclick = displayDate;
+ document.getElementById(demo).style.display = block;
+
+We can append or delete HTML elements:
+
+document.createElement(element)
+document.removeChild(element)
+document.appendChild(element)
+document.replaceChild(element)
+
+We can clear an HTML document with document.write(your arg); We can
+
+write arguments to the JS console using console.log("What-ever-you-want");.
+
+7
+
+5.3 Functions
+
+6 Examples
+
+6.1 index.html
+
+<!-- Page Reqs -->
+
+<meta charset="utf-8">
+<title>Your Title!!!</title>
+<meta name="author" content="You!">
+
+<!-- Mobile Specific Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FONT -->
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com
+/css?family=Ubuntu:regular,bold&subset=Latin">
+
+<!-- CSS -->
+<link rel="stylesheet" href="index.css">
+
+<!-- JS -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="index.js"></script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.ico">
+
+.......
+
+<div class="sticky navbar">
+<a onclick="toTop();">EECG</a>
+<a onclick="go_to_area(research-groups);">Research Areas</a>
+<a onclick="go_to_area(faculty);">Faculty</a>
+</div>
+
+.......
+
+<div class="parallax geometry"></div>
+<button onclick="hide_me_dude();">Hide this square?</button>
+
+<div class="parallax grass"></div>
+
+<div id="pic" style="width: 400px; height: 400px; background-color: black;">
+
+</div>
+
+8
+
+6.2 index.css
+
+/* Parallax */
+.parallax {
+
+z-index:-1;
+height: 400px;
+position: relative;
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+
+.geometry {
+
+background-image: url("../images/geometry.jpg");
+height: 300px;
+
+}
+
+.grass {
+
+background-image: url("../images/grass.jpg");
+height: 300px;
+
+}
+
+/* Navbar */
+.navbar {
+
+z-index: 2;
+height: 60px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+background-color: #fff;
+/* opacity: 0; */
+
+}
+
+.navbar a {
+
+float: left;
+display: block;
+margin-right: 5px;
+width: 115px;
+color: #000;
+font-size: 16px;
+text-align: center;
+padding: 15px 12px;
+text-decoration: none !important;
+border-style: solid;
+border-width: 0px 0px 5px 0px;
+border-color: #c3c3c3;
+
+}
+
+9
+
+.navbar a:hover {
+
+background-color: #c0c0c0;
+color: #fff;
+border-color: #3F88C5;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.sticky {
+
+position: fixed;
+top: 0;
+width: 100%
+
+}
+
+6.3 index.js
+
+...
+
+function hide_me_dude() {
+
+$("#pic").fadeOut(slow, function(){
+
+console.log("Faded. Faded.");
+
+})
+
+}
+...
+
+10
+
+

@@ -1,0 +1,677 @@
+ECE1387: CAD FOR CIRCUIT SYNTHESIS AND LAYOUT
+
+1
+
+A Breadth-First Approach to MAX-SAT using
+
+Branch and Bound
+
+Nicholas V. Giamblanco, 1000324534
+
+AbstractThe idea of
+
+logically representing an issue has
+profound impacts in many elds of science and engineering.
+These logical representations are typically known as Boolean
+expressions. Boolean expressions take the form of a sequence
+of logical ANDs, ORs and negations with regards to some logical
+claims. Boolean expressions can either be evaluated to a logical
+truth (true) or a logical fallacy (false). However in many
+real-world problems, the assignments to logical conditions are
+unknown, and as a result, the boolean formulation may not
+be solvable. In many cases however, it is desirable to satisfy a
+maximum number of clauses within a boolean expression. In this
+report, we implement and optimize a MAX-SAT solver, which
+utilizes a breadth rst search in cooperation with a modied
+branch & bound algorithm. Specically, we dene greedy lower
+bounding function which can reduce the required number of
+nodes traditionally visited with the ability to still retrieve a global
+maximum.
+
+I. DESIGN AND IMPLEMENTATION
+
+I N this report, we implemented a MAX-SAT solver based
+
+on a breadth-rst search approach. Through this sections
+and its subsections,(A) an explanation will be provided on
+how we interpreted the problem of MAX-SAT, (B) we will
+describe this implementation in a high-level way, in order to
+encapsulate the major software routines, and (C) elaborate on
+our decision for a lower bound.
+
+A. MAX-SAT Solvers & Evaluating Expressions
+
+MAX-SAT [1] [2] has been an active research area for
+many years. Their motivation can be encapsulated in the
+following manner: in many elds and applications, sometimes
+a logical argument may not be solvable. But supposing that
+this argument A is made up of sub-arguments, it may be
+optimal to nd the maximum number of sub-arguments that
+can be satised. MAX-SAT problems generally have boolean
+expression in Conjective-Normal Form (CNF) [3] which can
+be viewed as this sub-argument approach where if A is logical
+argument with n sub arguments, then:
+
+A = B0  B1    Bn
+
+(1)
+and more specically, each sub-argument has the following
+
+form:
+
+Bi = bi,0  bi,1  
+
+(2)
+Generally, the sub-arguments Bi are denoted as clauses.
+Each clause consists of a variable number of conditions, bi,k.
+Immediately, one may note that a clause is true as long as 1 of
+the conditions1 in this clause is true. This is due to the string
+
+1We will use conditions and variables interchangeably in this report.
+
+of logical ORs which appear in the ith clause. We use this fact
+to our advantage during implementation.
+
+However, to attempt to nd a maximum number of clauses
+that are satisable from a boolean expression we may imme-
+diately conclude to try every possible condition assignment.
+Supposing we had 3 conditions, bi,0, bi,1, bi,2, we can search
+the solution space by evaluating over all 23  1 possibilities.
+This is easily search-able. However, if we had encountered a
+boolean expression with just 15 more conditions, our solution
+space grows to 218  1. This is large. Although this number
+is easily handled with a modern computer, a typical boolean
+expression may contain hundreds of conditions. Recall that
+264 = 18, 446, 744, 073, 709, 551, 616. This is not feasible to
+evaluate.
+
+Hence we explored the ideas and added value of a Branch
+and Bound algorithm. Branch and Bound algorithm provide
+an optimal solution to a given combinatorics problem through
+the notion of usefulness. Specically, a branch and bound
+algorithm attempt to discover suboptimal solutions through an
+enumeration of the solution space. A suboptimal solution will
+not be explored further. This reduces the search complexity
+that may required with a total solution space of 2n. The dis-
+covery of these suboptimal solutions occurs through the notion
+of an upper and lower bound, () and () respectively.
+
+B. High-Level Interpretation
+
+To implement the ideas discussed above, we had the fol-
+
+lowing high-level requirements:
+
+1) Some notion of an expression, which can be evaluated,
+and a number of either satised clauses or unsatised
+clauses can be returned.
+
+2) A node, which can have two children nodes, and one
+parent node. The children nodes will be denoted as left
+and right, and will represent the boolean values false
+and true respectively. Each node should contain either
+a partial or complete solution for the given boolean
+expression. Each node should also contain some identity
+in regards to itself, as well as an assignment to its
+parents condition. This structure will behave as a binary
+tree.
+
+3) Some system, which can construct a tree based on the
+notion of a branch and bound algorithm, and arrive at
+an optimum solution for a given boolean expression.
+It should use a lower bounding function (), which
+accepts a Node , provides a decision if exploration
+should continue from this node.
+
+ECE1387: CAD FOR CIRCUIT SYNTHESIS AND LAYOUT
+
+2
+
+Consequently, the following directory tree structure was
+
+designed:
+
+boolean_sat_bb/
+
+docs/
+inputs/
+source/
+
+bbdefs.h
+graphics.*
+expression.*
+node.*
+ms_solver.*
+ms_util.*
+expression.*
+log.h
+
+tests/
+
+The les expression., node. and ms solver. are the
+implementation of the high level requirements, respectively.
+
+C. Routine Flow
+
+To explain the implementation, we will proceed through a
+
+pass of the routine ow.
+
+1) Initially, we required to interpret a boolean expres-
+(.cnf for-
+sion from a le in a specic format
+mat). A function read_in_expression() was
+used to develop an Expression object. This object
+was a vector< vector<int>> which each inner
+vector being a clause, the other vector was the col-
+lection of clauses, or the entire expression. This object
+had two major routines, eval_expression(...)
+and eval_expression_neg(...) which returned
+the number of satised or unsatised clauses, respec-
+tively.
+
+2) Once an Expression was generated, an instance of
+a MAX-SAT solver, MS_Solver was created. After
+initialization of the objects environment, it proceeds
+to execute the routine solve(). This is the main
+routine of this entire software implementation. It begins
+by inspecting the Expression objects variables. The
+variance of the used variables to indicate how this
+boolean expression should be solved. If an expression
+exhibits large variance across its variables, it was found
+through experimentation that a greedy lower bound may
+produce suboptimal solutions. To counter this issue, a
+high variance expression can brute force exploration up
+to a level L. A low-variance equation also applies this
+brute force exploration, but the depth of brute forcing
+continues to l and is less than L. By brute-forcing up to
+a given level n our optimized algorithm obtains a more
+uniform view against the initial solution space. This
+routine then decides on a starting variable through the
+routine select_start(). The select_start()
+discovers the variable that when set to either true or
+false provides the least amount of unsatised clauses.
+This variable is then transformed into a Node object,
+and is denoted as the head of the tree.
+
+3) As with most Branch and Bound algorithms, an initial
+solution is required for use as a lower-bound against
+partial solutions. Our algorithm handles an initial solu-
+tion by assuming all conditions are evaluated to true,
+and evaluates how many unsatised clauses exist. This
+becomes (). An optimization we performed in this
+algorithm was to only pass the entire initial solution
+in to the head of the tree if and only if the boolean
+expression had low variance. This is due to the idea of
+symmetry within a boolean expression. This meant that
+as the entire solution was passed down the tree during
+runtime, enabling faster convergence towards an opti-
+mum. Otherwise, if the boolean expression experiences
+high-variance, we pass no initial solution.
+
+4) This routine would now construct
+
+the tree. We use
+a vector< vector< Node *>> as an intermedi-
+ate stage for our
+tree structure, where each inner
+vector<> holds the nodes visited per level, and the
+outer vector<> holds all levels. The initial level con-
+tains only the head node. The routine enters a while
+loop, where each iteration of the loop, a new level 
+is created, and the number of potential nodes to be
+inspected are 2. Recall that we have an initial burn-
+in period up to a threshold level L or l. All potential
+nodes are created during this period. After burning-in,
+this while loop contains 4 stages of operations: (a)
+Determine the best solution applicable on the level ,
+(b) create children nodes for the parent if and only if
+the solution is at par or better than the given solution,
+(c) continuing adding children if a quota of children
+are not met, (d) move onto the next level. Each level
+corresponds to a variable/condition2.
+
+5) In (a), we do not explicitly visit a node since we
+are calculating a hypothetical lower bound associated
+to choosing a new node. During inspection, the lower
+bound is modied if and only if the lower bound
+associated with the level  is better than the previously
+found lower bound. The lower bound is the number
+of unsatised nodes with the current partial solution.
+This partial solution was passed down from a parent
+of the previous level. If a hypothetical solution better
+than the current lower bound is found, the lower bound
+becomes the hypothetical solution. (a) is synonymous to
+a breadth-rst search. However, we compute the breadth
+rst search from right-to-left. Conducting the search
+from left-to-right has no effect on the output, it was
+purely a implementation choice to match how we found
+our initial solution.
+
+6) During stage (b), any children meeting or exceeding this
+criteria are inserted into the level, and their respective
+parents are connected. Hence, we only visit children that
+meet or exceed this criteria. Using this greedy approach
+provides limitations, where an inspection may have lead
+to a lower bound conict. That is, a newly inspected
+level may not have changed the previous lower bound,
+
+2The variable do not occur in a particular order, due to the usage of C + +s
+
+unordered map.
+
+ECE1387: CAD FOR CIRCUIT SYNTHESIS AND LAYOUT
+
+3
+
+ NT : the total number of possible nodes within the deci-
+
+sion tree.
+
+ medium: the elapsed time (in seconds) required for the
+
+algorithm to complete on the specied test medium.
+
+ S: the maximum number of clauses satised.
+ ST : the total number of clauses present in the test.
+
+RESULTS COLLECTED ACROSS ALL TEST FILES.
+
+TABLE I
+
+Test File
+1.cnf
+2.cnf
+3.cnf
+4.cnf
+
+N
+7
+
+6356
+4225
+4482
+
+NT
+8
+
+1.12  1015
+1.15  1018
+4.72  1021
+
+ECF
+
+0.00025
+0.662
+0.680
+0.909
+
+Ubuntu
+0.0003
+0.652
+0.691
+0.881
+
+S/ST
+7/8
+79/80
+159/160
+191/192
+
+This implementation is able to quickly deduce the maximum
+number of satisable clauses within a very short time. In les
+1.cnf, 3.cnf and 4.cnf the algorithm proceeds in a very
+similar manner, greedily attaching to true conditions. This
+can be seen in their respective gures listed in the following
+subsections. We should also speculate on the analysis of the
+le 2.cnf. The value of N for this le is greater than all
+of the other Ns for the other les. This could be indicative
+of a boolean expression which requires more exploration for
+deduction. That is, this expression is greedy resilient. Since
+our implementation is greedy, it is possible that less children
+would have been added during stage (b), and required more
+exploration in stage (c).
+
+In addition to these values, we also collected the true
+and false values assigned to the maximum satised solution
+per test le. These results, as well as their graphical repre-
+sentations are listed in the subsections 1.cnf to 4.cnf. All
+gures shown in these subsections do not indicate a level to
+variable mapping. This was done to improve the image quality
+of this report. However, this implementation requires such a
+mapping for the highlighted solution to correlate to the textual
+values. By zooming into the tree representation (using the
+provided graphics application), the level to variable mapping
+is highlighted with textual tags as in Figure 1.
+
+in which case, more children should be added to meet
+an inspection quota for the next level.
+
+7) Hence in (c), children with a suboptimal or optimal
+solution are added, in hopes that the next level will
+provide a better solution. We limit the quota of children
+to be added with suboptimal solutions by geometrically
+decreases an initial quota until some minimum amount.
+(d) We append this newly created level the tree structure.
+This while loop executes until we have visited all
+potential variables in the given expression.
+is
+that we
+
+an
+unordered map < int, bool > to hold our partial solutions
+for every node. This allowed for a O(1) look-up, and O(1)
+insert. This mapping allowed for
+fast evaluation of our
+expression with the specied partial solution.
+
+interesting
+
+used
+
+It
+
+to
+
+note
+
+D. Decisions on a Lower Bound
+
+Two variations of a lower bounding function () were
+explored in this implementation. Initially, another greedy
+approach explored used the number of satised clauses as
+a lower bound per partial solution. That is, a node with a
+partial solution that produced more satised clauses compared
+to either the initial lower bound or previous lower bound would
+then be assigned to the lower bound. By using this greedy
+approach, several optimal solutions can be missed, and would
+defeat the objective of MAX-SAT. The missed solutions occur
+when either the level at which the tree is being searched a
+less optimal solution. This could have been used in tandem
+with the number of unsatised clauses, making the number of
+satised clauses an upper bound (). Although using both
+may have provided interesting results, time did not permit for
+an exploration into this.
+
+A three stage look-ahead was also investigated per node in
+cooperation with both lower bound types (using the number of
+satised clauses or using the number of unsatised clauses).
+After experimentation, it was found that it was not better than
+the current implementation described in this lab, and discarded
+as it increased the runtime of this system. This could be due
+to method of implementation. Future work should re-examine
+this methodology.
+
+An attempt was made to also provide a depth rst search
+with a lower bounding function on the number of unsatised
+clauses. Using a depth rst search guarantees that an optimal
+solution will be found, at the cost of time. Therefore, the
+solution provided in this report may not always produce the
+through thorough testing and partial
+optimum answer, but
+verications methods,
+the implementation provided in this
+assignment is able to attain the MAX-SAT results.
+
+II. RESULTS
+
+Attached in this section are the results of the implementation
+of this MAX-SAT algorithm. We tested this implementation
+against four different boolean expressions, all of which are
+non-satisable. We collected the following information during
+each test:
+
+ N: the number of visited nodes required to deduce the
+
+solution.
+
+Fig. 1. Example of textual tags appearing for 2.cnfs tree representation. The
+number associated with each level is a variable within the boolean expression.
+
+ECE1387: CAD FOR CIRCUIT SYNTHESIS AND LAYOUT
+
+4
+
+Fig. 2. The Decision Tree of 1.cnf
+
+A. 1.cnf
+
+Var [1] = TRUE
+Var [2] = TRUE
+Var [3] = TRUE
+
+B. 2.cnf
+
+Var [26] = TRUE
+Var [35] = TRUE
+Var [27] = TRUE
+Var [34] = TRUE
+Var [28] = FALSE
+Var [33] = TRUE
+Var [29] = TRUE
+Var [32] = TRUE
+Var [30] = TRUE
+Var [31] = TRUE
+
+C. 3.cnf
+
+Fig. 3. The Decision Tree of 2.cnf
+
+Fig. 4. The Decision Tree of 3.cnf
+
+Var [50] = FALSE
+Var [49] = TRUE
+Var [13] = TRUE
+Var [48] = FALSE
+Var [12] = FALSE
+Var [20] = TRUE
+Var [1] = TRUE
+Var [41] = TRUE
+Var [5] = TRUE
+Var [21] = TRUE
+Var [38] = TRUE
+Var [2] = TRUE
+Var [40] = FALSE
+Var [4] = TRUE
+Var [23] = TRUE
+Var [22] = TRUE
+Var [39] = TRUE
+Var [3] = TRUE
+Var [42] = TRUE
+Var [6] = FALSE
+Var [19] = TRUE
+Var [43] = TRUE
+Var [7] = TRUE
+Var [18] = FALSE
+Var [44] = TRUE
+Var [8] = FALSE
+Var [17] = FALSE
+Var [45] = TRUE
+Var [9] = TRUE
+Var [16] = TRUE
+Var [46] = TRUE
+Var [10] = TRUE
+Var [15] = TRUE
+Var [47] = TRUE
+Var [11] = TRUE
+Var [14] = FALSE
+Var [24] = FALSE
+Var [37] = TRUE
+Var [25] = TRUE
+Var [36] = TRUE
+
+Var [60] = TRUE
+Var [59] = TRUE
+Var [58] = TRUE
+Var [57] = TRUE
+Var [56] = TRUE
+Var [55] = TRUE
+Var [54] = TRUE
+Var [53] = TRUE
+Var [52] = TRUE
+Var [51] = TRUE
+Var [50] = TRUE
+Var [49] = TRUE
+Var [13] = TRUE
+Var [48] = TRUE
+Var [12] = TRUE
+Var [20] = TRUE
+Var [1] = TRUE
+Var [41] = TRUE
+Var [5] = TRUE
+Var [21] = TRUE
+Var [38] = TRUE
+Var [2] = TRUE
+Var [40] = TRUE
+Var [4] = TRUE
+Var [23] = TRUE
+Var [22] = TRUE
+Var [39] = TRUE
+Var [3] = TRUE
+Var [42] = TRUE
+Var [6] = TRUE
+Var [19] = TRUE
+Var [43] = TRUE
+Var [7] = TRUE
+Var [18] = TRUE
+Var [44] = TRUE
+Var [8] = TRUE
+Var [17] = TRUE
+Var [45] = TRUE
+Var [9] = TRUE
+Var [16] = TRUE
+Var [46] = TRUE
+Var [10] = TRUE
+
+ECE1387: CAD FOR CIRCUIT SYNTHESIS AND LAYOUT
+
+5
+
+Var [48] = TRUE
+Var [12] = TRUE
+Var [20] = TRUE
+Var [1] = TRUE
+Var [41] = TRUE
+Var [5] = TRUE
+Var [21] = TRUE
+Var [38] = TRUE
+Var [2] = TRUE
+Var [40] = TRUE
+Var [4] = TRUE
+Var [23] = TRUE
+Var [22] = TRUE
+Var [39] = TRUE
+Var [3] = TRUE
+Var [42] = TRUE
+Var [6] = TRUE
+Var [19] = TRUE
+Var [43] = TRUE
+Var [7] = TRUE
+Var [18] = TRUE
+Var [44] = TRUE
+Var [8] = TRUE
+Var [17] = TRUE
+Var [45] = TRUE
+Var [9] = TRUE
+Var [16] = TRUE
+Var [46] = TRUE
+Var [10] = TRUE
+Var [15] = TRUE
+Var [47] = TRUE
+Var [11] = TRUE
+Var [14] = TRUE
+Var [24] = TRUE
+Var [37] = TRUE
+Var [25] = TRUE
+Var [36] = TRUE
+Var [26] = TRUE
+Var [35] = TRUE
+Var [27] = TRUE
+Var [34] = TRUE
+Var [28] = TRUE
+Var [33] = TRUE
+Var [29] = TRUE
+Var [32] = TRUE
+Var [30] = TRUE
+Var [31] = TRUE
+
+III. CONCLUSION
+
+In conclusion, a MAX-SAT solver was implemented in this
+assignment. To reduce the overall runtime of searching the
+solution space, a Branch and Bound algorithm was introduced
+and modied to (a) nd the optimal solution per boolean
+expression, (b) reduce the runtime of searching the solution
+space, (c) reduce the number of nodes required per visit. Our
+results indicate that this implementation has met these criteria.
+By using a Breadth-First exploration of partial solutions, and
+a greedy lower bound function, our implementation is able to
+compute the optimal solution.
+
+REFERENCES
+
+[1] Jens Gramm, Edward A Hirsch, Rolf Niedermeier, and Peter Rossmanith.
+Worst-case upper bounds for max-2-sat with an application to max-cut.
+Discrete Applied Mathematics, 130(2):139155, 2003.
+
+[2] Steve Joy, John Mitchell, and Brian Borchers. A branch and cut algorithm
+In SATISFIABILITY PROBLEM:
+for max-sat and weighted max-sat.
+THEORY AND APPLICATIONS, VOLUME 35 OF DIMACS SERIES
+ON DISCRETE MATHEMATICS AND THEORETICAL COMPUTER
+SCIENCE. Citeseer, 1997.
+
+[3] Raymond J Nelson. Simplest normal truth functions. The Journal of
+
+Symbolic Logic, 20(2):105108, 1955.
+
+Var [15] = TRUE
+Var [47] = TRUE
+Var [11] = TRUE
+Var [14] = TRUE
+Var [24] = TRUE
+Var [37] = TRUE
+Var [25] = TRUE
+Var [36] = TRUE
+Var [26] = TRUE
+Var [35] = TRUE
+Var [27] = TRUE
+Var [34] = TRUE
+Var [28] = TRUE
+Var [33] = TRUE
+Var [29] = TRUE
+Var [32] = TRUE
+Var [30] = TRUE
+Var [31] = TRUE
+
+D. 4.cnf
+
+Fig. 5. The Decision Tree of 4.cnf
+
+Var [63] = TRUE
+Var [64] = TRUE
+Var [62] = TRUE
+Var [65] = TRUE
+Var [61] = TRUE
+Var [66] = TRUE
+Var [60] = TRUE
+Var [67] = TRUE
+Var [59] = TRUE
+Var [68] = TRUE
+Var [58] = TRUE
+Var [69] = TRUE
+Var [57] = TRUE
+Var [70] = TRUE
+Var [56] = TRUE
+Var [71] = TRUE
+Var [55] = TRUE
+Var [72] = TRUE
+Var [54] = TRUE
+Var [53] = TRUE
+Var [52] = TRUE
+Var [51] = TRUE
+Var [50] = TRUE
+Var [49] = TRUE
+Var [13] = TRUE
+
+

@@ -1,0 +1,747 @@
+ECE216
+Signals and Systems
+
+University of Toronto
+Spring 2018
+
+Problem Set #10
+
+Problem 10.1 (Graphical Convolution Computation)
+Compute using the graphical method, “Flip-and-shift”, the convolution between the follow-
+ing signal and impulse response
+
+h[n] =
+
+Solution:
+
+(cid:40)
+
+0 ≤ n ≤ 4
+otherwise
+
+1,
+0,
+
+x[n] =
+
+(cid:40)
+
+2 ≤ n ≤ 7 or 11 ≤ n ≤ 16
+otherwise
+
+1,
+0,
+
+Problem 10.2 (DTFT I)
+Find the DTFT of the following signals:
+
+(i) x[n] =(cid:0) 1
+
+(cid:1)n−1u[n − 1]
+
+2
+
+1
+
+05101520250123456(ii) x[n] = (n + 1)anu[n], for |a| < 1
+
+Solution:
+
+(i)
+
+(ii)
+
+X(ejω) =
+
+u[n − 1]e−jωn
+
+∞(cid:88)
+∞(cid:88)
+
+n=−∞
+
+=
+
+n=−∞
+= e−jω
+
+2
+
+(cid:19)n−1
+(cid:18)1
+(cid:18)1
+(cid:19)n
+(cid:18)1
+∞(cid:88)
+
+(cid:19)n
+
+2
+
+2
+
+n=0
+
+e−jω
+1 − 1
+2e−jω
+
+=
+
+u[n]e−jω(n+1)
+
+e−jωn
+
+X(ejω) =
+
+=
+
+=
+
+∞(cid:88)
+∞(cid:88)
+
+n=−∞
+
+n=0
+
+nane−jωn +
+ae−jω
+
+(1 − ae−jω)2 +
+(1 − ae−jω)2 .
+
+1
+
+(n + 1)anu[n]e−jωn
+
+∞(cid:88)
+
+ane−jωn
+
+n=0
+
+1
+
+1 − ae−jω
+
+Where from line 2 to 3 we used the fact(cid:80)∞
+
+=
+
+n=0 nrn = r/(1 − r)2 for |r| < 1.
+
+Problem 10.3 (Partial Fraction Expansion)
+In the course notes, you have seen the inversion of the frequency response
+
+H(ejω) =
+
+1
+
+(1 − αe−jω)(1 − βe−jω)
+
+.
+
+where |α| < 1, |β| < 1, and α (cid:54)= β. The method used is write the partial fractions expansion
+with undetermined coeﬃcients, determine the equations satisﬁed by the coeﬃcients, and
+solving them to get the complete partial fractions expansion. This problem shows you how
+you can determine the partial fractions expansion using an alternative method.
+
+2
+
+Let z = ejω. A frequency response of the form
+
+F (ejω) =
+
+1
+
+1 − αe−jω
+
+F (z) =
+
+1
+
+1 − αz−1 =
+
+z
+
+z − α
+
+H(z)
+
+z
+
+=
+
+z
+
+(z − α)(z − β)
+
+.
+
+can therefore be written as
+
+(i) Verify that
+
+(ii) Write
+
+(z − α)(z − β)
+Determine the coeﬃcients a and b using
+z
+
+z
+
+=
+
+a
+
+z − α
+
++
+
+b
+
+z − β
+
+a =
+
+(z − α)(z − β)
+
+(z − α)|z=α
+
+and
+
+b =
+
+z
+
+(z − α)(z − β)
+
+(z − β)|z=β
+
+(iii) Now write
+
+az
+z − α
+Finally, substitute ejω for z to get
+
+H(z) =
+
++
+
+bz
+z − β
+
+=
+
+a
+
+1 − αz−1 +
+
+b
+
+1 − βz−1
+
+H(ejω) =
+
+a
+
+1 − αe−jω +
+
+b
+
+1 − βe−jω
+
+Verify that you have the same answer as the partial fractions expansion obtained in
+course notes.
+
+Solution:
+
+(i) Let z = ejω, H(z) =
+
+(1−αz−1)(1−βz−1). Hence,
+
+1
+
+H(z)
+
+z
+
+=
+
+=
+
+=
+
+1
+
+z
+
+z(1 − αz−1)(1 − βz−1)
+z2(1 − αz−1)(1 − βz−1)
+(z − α)(z − β)
+
+z
+
+.
+
+3
+
+(1)
+
+(ii)
+
+(iii)
+
+a =
+
+=
+
+b =
+
+z
+
+(z − α)(z − β)
+α
+α − β
+(z − α)(z − β)
+
+z
+
+,
+
+(z − α)|z=α
+
+(z − β)|z=β
+
+=
+
+β
+
+β − α
+
+.
+
+(2)
+
+H(z) =
+
+α
+α − β
+
+1
+
+1 − αz−1 +
+
+β
+
+β − α
+
+1
+
+1 − βz−1 .
+
+Substitute ejω for z, we get
+
+H(ejω) =
+
+=
+
+1
+
+α
+1 − αe−jω +
+α − β
+(1 − αe−jω)(α − β)
+
+α
+
+β
+
+β − α
+
+1
+
+1 − βe−jω
+
++
+
+β
+
+(β − α)(1 − βe−jω)
+
+.
+
+We get the same answer as the partial fractions expansion obtained in Section 8.2.
+
+Problem 10.4 (Low-pass Filter)
+Suppose a DT LTI system has frequency response
+
+(cid:26) 1, −ωb ≤ ω ≤ ωb
+
+0, ωb < |ω| ≤ π
+
+H(ejω) =
+
+This is a low-pass ﬁlter as it allows sinusoidal signals with freqeuncies |ω| ≤ ωb to pass
+through, but eliminates sinusoidal signals with frequencies higher than ωb. Using the inverses
+DT Fourier Transform formula to solve for the impulse respone h[n] of the low-pass ﬁlter,
+determine the impulse response h[n] of the low-pass ﬁlter. Is the system causal?
+
+Solution:
+The impulse response h[n] of the low-pass ﬁlter can be obtained by the inverse DTFT as
+follows.
+
+(cid:90) ωb
+
+−ωb
+
+1
+2π
+
+ejωndω
+
+(ejωbn − e−jωbn)
+
+(cid:90) π
+
+1
+2π
+1
+
+2πjn
+1
+πn
+sin(ωbn)
+
+πn
+
+h[n] =
+
+=
+
+=
+
+=
+
+H(ejω)ejωndω =
+−π
+ejωn|ωb−ωb =
+ejωbn − e−jωbn
+
+2jπn
+
+1
+
+2j
+
+4
+
+Since h[n] (cid:54)= 0 for n < 0, the system is non-causal.
+
+Problem 10.5 (Final 2017 - A-typical prof-student Relationship)
+Frustrated by a multiple choice test made of an inﬁnite number of questions each with 5
+multiple choice answers, a student decides to answer in a pattern as follows:
+
+11115111151111511115...
+
+Realizing this, the professor decides to punish the student by making him answer the ques-
+tions underwater. The water acts as a linear time-invariant (LTI) system on the student’s
+movements as the student answers the question. This results in the following answer pattern
+(i.e. the output of the LTI system):
+
+11133111331113311133...
+
+(i) Treating each answer as a periodic discrete time signal (x[n] for answering in air and
+y[n] for answering under water), determine the discrete time Fourier series (DTFS) of
+each signal.
+
+(ii) It is known that the impulse response of the system is of the form h[n] = αδ[n] +
+βδ[n + 1]. Determine the values of α and β which produce the output signal y (the
+under-water answer) when the input signal is x (the in air answer).
+
+(iii) Find the DTFT of the system’s impulse response h.
+
+Solution:
+
+(i)
+
+N0 = 5
+
+ak =
+
+=
+
+bk =
+
+=
+
+1
+5
+
+1
+5
+1
+5
+
+1
+5
+
+x[n]e−j2πkn/5
+
+4(cid:88)
+(cid:0)1 + e−j2πk/5 + e−j4πk/5 + e−j6πk/5 + 5e−j8πk/5(cid:1)
+4(cid:88)
+(cid:0)1 + e−j2πk/5 + e−j4πk/5 + 3e−j6πk/5 + 3e−j8πk/5(cid:1)
+
+y[n]e−j2πkn/5
+
+n=0
+
+n=0
+
+5
+
+(ii)
+
+(iii)
+
+y[n] =
+
+h[n − k]x[k]
+
+∞(cid:88)
+∞(cid:88)
+
+n=−∞
+
+= α
+
+n=−∞
+
+δ[n − k]x[k] + β
+
+∞(cid:88)
+
+n=−∞
+
+δ[n + 1 − k]x[k]
+
+= αx[n] + βx[n + 1]
+
+∴ [1 1 1 3 3] = α[1 1 1 1 5] + β[1 1 1 5 1]
+α + β = 1, α + 5β = 3, 5α + β = 3
+
+α = 1/2, β = 1/2
+
+∴ h[n] =
+
+1
+2
+
+δ[n] +
+
+1
+2
+
+δ[n + 1]
+
+∞(cid:88)
+
+h[n]e−jωn
+
+H(ejω) =
+
+=
+
+n=−∞
+1
+1
+2
+2
+
++
+
+ejω
+
+Problem 10.6 (Final 2017 - DTFT II)
+Let h be the impulse response of a discrete time (DT) LTI system with input signal x. If
+the input x is given by
+
+the corresponding output y is given by
+
+
+
+
+x[n] =
+
+1
+if n = 0
+−1 if n = 1
+if n = 2
+1
+0
+otherwise
+
+y[n] =
+
+1
+if n = 0
+0
+if n = 1, 2, 3
+1
+if n = 4
+−1 if n = 5
+otherwise
+0
+
+(i) Find h[n] for all n.
+
+(ii) H(ejω) (i.e., the discrete time Fourier transform (DTFT) of h[n]).
+
+6
+
+Solution:
+
+(ii) (misordering done on purpose)
+
+∞(cid:88)
+
+X(ejω) =
+
+x[n]e−jωn
+= 1 − e−jω + e−j2ω
+Y (ejω) = 1 + e−j4ω − e−j5ω
+
+n=−∞
+
+H(ejω) =
+
+=
+
+Y (ejω)
+X(ejω)
+1 + e−j4ω − e−j5ω
+1 − e−jω + e−j2ω
+(1 − e−jω + e−j2ω)(1 + e−jω − ej3ω)
+
+=
+= 1 + e−jω − ej3ω
+
+1 − e−jω + e−j2ω
+
+(use long division)
+
+(i) h[n] = δ[n] + δ[n − 1] − δ[n − 3] (use F{δ[n − k]} = e−jωk and linearity of the inverse
+Fourier transform)
+
+Problem 10.7 (Final 2017 - DTFT III)
+We have a discrete time output signal y from a discrete time LTI system that is related to
+a discrete time input signal x as follows:
+
+∞(cid:88)
+
+y[n] = 0.2
+
+(x[n − m] − x[n − m − 1]) (0.8)m
+
+Let the impulse response of this DT LTI system be denoted h.
+
+m=0
+
+(i) Find h and express it in the form h[n] = γδ[n]+α(βn−1)u[n−1]. Idenitfy the parameters
+
+γ, α, and β. (Hint: Set x[n] = δ[n] and simplify.)
+
+(ii) Find the DTFT of the impulse response (i.e. H(ejω)).
+
+(iii) Is the system causal? Is it BIBO stable? Justify your answers.
+
+Solution:
+
+7
+
+(cid:0)δ[n − m] − δ[n − m − 1](cid:1)0.8m
+
+h[n] = 0.2
+
+∞(cid:88)
+∞(cid:88)
+
+m=0
+
+For n = 0, h[0] = 0.2
+For n ≥ 1, h[n] = 0.2(0.8n − 0.8n−1)
+
+m=0
+
+δ[−m]0.8m = 0.2
+
+= (0.2)(0.8)n−1(0.8 − 1) = −0.04(0.8)n−1
+
+∴ h[n] = 0.2δ[n] − 0.04(0.8)n−1u[n − 1]
+
+γ = 0.2, α = −0.04, β = 0.8
+
+(i)
+
+(ii)
+
+H(ejω) = F{0.2δ[n]} − F{0.04(0.8)n−1u[n − 1]}
+
+= 0.2 − e−jωF{0.04(0.8)nu[n]}
+= 0.2 − e−jω
+
+0.04
+
+1 + 0.8e−jω
+
+(iii) h[n] = 0 ∀n < 0, therefore the system is causal (alternatively, )
+
+n=−∞ |h[n]| = 0.2 +(cid:80)∞
+(cid:80)∞
+
+n=1 0.04(0.8)n−1 < ∞, therefore, the system is BIBO stable.
+
+Problem 10.8 (Continuous-Time Convolution)
+Use the convolution integral to determine the convolution of two exponential signals with
+the same exponent, i.e.
+
+Solution:
+
+y(t) =
+
+y(t) =(cid:2)e−atu(t)(cid:3) ∗(cid:2)e−atu(t)(cid:3).
+(cid:90) ∞
+(cid:40)(cid:82) t
+e−aτ u(τ )e−a(t−τ )u(t − τ )dτ
+−∞
+0 e−aτ e−at+aτ dτ
+(cid:40)(cid:82) t
+0
+0 e−atdτ
+(cid:40)
+0
+e−atτ|t
+0
+
+t ≥ 0
+otherwise
+t ≥ 0
+otherwise
+
+t ≥ 0
+otherwise
+
+τ =0
+
+=
+
+=
+
+=
+= te−atu(t).
+
+8
+
+

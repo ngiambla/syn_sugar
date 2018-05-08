@@ -1,0 +1,1225 @@
+Pegasus in the Cloud: 
+Science Automation through 
+Workflow Technologies
+
+Ewa Deelman, Karan Vahi, Mats Rynge, Gideon Juve, Rajiv Mayani, and 
+Rafael Ferreira da Silva • University of Southern California
+
+The Pegasus Workflow Management System maps abstract, resource-indepen-
+dent  workflow  descriptions  onto  distributed  computing  resources.  Pegasus 
+workflows are portable across different infrastructures, optimizable for perfor-
+mance and efficiency, and automatically map to many different storage systems 
+and data flows.
+
+S cientific workflows are being used to orches-
+
+trate large-scale computations in a wide vari-
+ety of scientific domains, including astronomy, 
+bioinformatics,  earthquake  science,  and  physics. 
+Workflows  provide  automation  of  simulation  and 
+data analysis pipelines, ensuring that the computa-
+tions are executed reliably, efficiently, and correctly. 
+The  use  of  workflow  technologies  brings  with  it 
+a  number  of  benefits  over  traditional  approaches 
+(such as shell scripting), including the following:
+
+•	 Ease  of  computation  expression.  Workflows 
+provide high-level interfaces that rely on sim-
+ple  file  formats,  workflow-specific  program-
+ming languages, and visual composition tools.
+•	 Ease of reuse/repurposing. As a result of the 
+declarative nature of the workflow specifica-
+tion,  others  can  reuse  portions  or  the  entire 
+workflow, or modify it to fit new requirements.
+•	 Failure management. Each step in a workflow 
+can be automatically retried to deal with faulty 
+hardware and transient failures, and the entire 
+workflow can be checkpointed and resumed.
+•	 Parallel computing. Workflows enable compu-
+tations and data to be processed in parallel on 
+distributed resources.
+
+•	 Provenance  tracking.  As  the  workflow  exe-
+cutes,  information  about  the  data  processed, 
+the computations invoked, and the resources 
+used is saved and can be inspected when veri-
+fying and validating the results.
+
+Workflow applications execute in a variety of 
+environments, including laptops, campus clus-
+ters, clouds (such as Chameleon or Amazon Web 
+Services  [AWS]),  distributed  high-throughput 
+resources (such as those managed by HTCondor), 
+and high-performance computing (HPC) clusters 
+(such as those operated by the XSEDE collabora-
+tion and the US Department of Energy’s national 
+labs).
+
+Different  applications,  based  on  their  com-
+putational  needs,  rely  on  different  computing 
+resources  and  on  different  aspects  of  scientific 
+workflows.  For  example,  bioinformatics  appli-
+cations that perform genomic processing might 
+execute  on  clusters  “close”  to  the  sequencing 
+machine.  Additionally,  there’s  a  growing  num-
+ber  of  bioinformatics  software  packages  and 
+workflows  that  the  community  wants  to  share 
+and reuse.
+
+Individual  researchers  can  use  astronomy  
+workflows, such as science-grade image mosaick-
+ing, to find new celestial objects, or collaborate to 
+generate large data resources that are useful to the 
+entire astronomy community. Individual research-
+ers might run these workflows on their desktop or 
+laptop, while large data resources might be gener-
+ated on commercial clouds, which provide quick 
+turnaround time to single-core workloads. Finally, 
+there are applications, such as those in earthquake 
+science, that need HPC resources to execute parallel  
+jobs within a workflow.
+
+70  
+
+Published by the IEEE Computer Society 
+
+1089-7801/16/$33.00 © 2016 IEEE 
+
+IEEE INTERNET COMPUTING
+
+View from the CloudEditor: George Pallis • gpallis@cs.ucy.ac.cyPegasus in the Cloud: Science Automation through Workflow Technologies
+
+s
+e
+c
+a
+f
+r
+e
+t
+n
+I
+
+APIs
+
+Python
+
+Java
+
+Perl
+
+Hubzero
+
+Users
+
+Other work(cid:18)ow
+composition tools:
+
+Wings
+
+Monitoring
+
+S
+M
+W
+
+ 
+s
+u
+s
+a
+g
+e
+P
+
+t
+s
+o
+h
+ 
+t
+i
+
+m
+b
+u
+S
+
+s
+n
+o
+i
+t
+a
+c
+“
+i
+t
+o
+N
+
+s
+d
+u
+o
+C
+
+l
+
+s
+e
+c
+r
+u
+o
+s
+e
+r
+ 
+d
+e
+t
+u
+b
+i
+r
+t
+s
+i
+D
+
+Mapper
+
+Engine
+
+Scheduler
+
+j1
+j2
+...
+jn
+
+Job queue
+
+Monitoring
+& provenance
+
+Logs
+
+Work(cid:18)ow DB
+
+Cloudware
+
+OpenStack, Eucalyptus, Nimbus
+
+Compute
+
+Amazon EC2, Google Cloud,
+
+RackSpace, Chameleon
+
+Storage
+
+Amazon S3, Google Cloud
+
+Storage, OpenStack
+
+Campus clusters, Local clusters,
+
+Open Science Grid, XSEDE
+
+HTCondor / GRAM
+
+PBS
+
+LSF
+
+SGE
+
+Compute
+
+e
+r
+a
+w
+e
+d
+d
+M
+
+i
+
+l
+
+GridFTP
+
+HTTP
+
+SRM
+
+IRODS
+
+FTP
+
+SCP
+
+e
+g
+a
+r
+o
+t
+S
+
+Figure 1. Pegasus Workflow Management System (WMS) architecture. The four main components are the mapper, 
+workflow engine, job scheduler, and workflow monitor. (EC2 = Elastic Compute Cloud; GRAM = Globus Resource 
+Allocation Manager; IRODS = Integrated Rule-Oriented Data System; SCP = Secure Copy; SGE = Sun Grid Engine; and 
+SRM = Storage Resource Manager.)
+
+Pegasus Workflow 
+Management System
+The  Pegasus  Workflow  Management 
+System (Pegasus WMS)1 enables users 
+to describe their computations as work-
+flows in a high-level language that’s 
+agnostic  of  the  physical  resources 
+where  the  workflow  is  executed.  We 
+can map this abstract description of the 
+user’s  computation  to  many  different 
+execution environments, ranging from 
+laptops to HPC clusters.
+
+Pegasus  pioneered  the  concept  of  
+planning  in  the  context  of  scientific 
+workflow  systems,  distinguishing 
+between  the  abstract  and  executable 
+workflows. As a result, users don’t have 
+to specify particular command lines for 
+job submission. They also don’t have to 
+specify data movement to and from the 
+computations. Based on the mapping of 
+the abstract workflow to the resources, 
+Pegasus infers the necessary data trans-
+fers. The unique planning process also 
+
+jaNUaRy/fEbRUaRy 2016 
+
+enables Pegasus to optimize the work-
+flow from the point of view of per-
+formance  and  reliability.  Unlike  other 
+WMSs, Pegasus has also a notion of 
+remote workflow engines, which run at 
+the execution site and are able to tailor 
+the task execution to the runtime envi-
+ronment.  For  example,  an  MPI  work-
+flow engine can manage tasks via MPI 
+on an HPC resource.
+
+Figure  1  provides  a  high-level 
+schematic  illustrating  how  scientists 
+interface  with  Pegasus  and  the  target 
+execution environments. The workflow 
+system is installed on a workflow sub-
+mit node from where users submit their 
+workflows. The submit node is usually 
+decoupled from the distributed compu-
+tational  resources  on  which  workflow 
+jobs  are  executed.  The  workflow  sys-
+tem  is  responsible  for  submitting  jobs 
+to remote resources, for managing the 
+associated  job  and  data  lifecycle,  and 
+for  providing  status  updates  to  users. 
+
+This  approach  supports  the  “submit 
+locally/compute  globally”  paradigm, 
+where computations are managed from 
+a central location, but executed on dis-
+tributed resources.
+
+The  Pegasus  system  is  composed 
+
+of four main components.
+
+•	 Pegasus  mapper.  This  component  
+generates an executable workflow 
+based  on  an  abstract  workflow 
+description  provided  by  the  user  or 
+workflow  composition  system.  It 
+finds the appropriate software, data, 
+and computational resources required 
+for workflow execution. The mapper 
+can also restructure the workflow to 
+optimize  performance  and  add  jobs 
+for  data  management  and  prove-
+nance information generation.
+
+•	 Workflow engine (HTCondor DAG-
+Man). The engine executes the tasks 
+defined by the workflow in order  
+of their dependencies. DAGMan 
+
+71
+
+<?xml version=“1.0” encoding-“UTF–8”?>
+
+<!-- generator: python -->
+<adag xmlns=“http://pegasus.isi.edu/schema/DAX”
+
+version=“3.4” name=“hello_world”>
+
+<!-- describe the jobs making
+
+up the hello world pipeline -->
+
+<job id =“ID0000001” namespace=“hello_world”
+
+name=“hello version=“1.0”>
+
+<uses name=“f.b” link=“output”/>
+<uses name=“f.a” link=“input”/>
+
+</job>
+
+</job id=“ID0000002” namespace=“hello_world”
+
+name=“world” version=“1.0”>
+
+<uses name=“f.b” link=“input”/>
+<uses name=“f.c” link=“output”/>
+
+</job>
+
+<!-- describe the edges in the DAG -->
+<child ref=“ID0000002”>
+
+<parent ref=“ID0000001”/>
+
+</child>
+
+</adag>
+
+(a)
+
+creat
+e_dir
+
+f.a
+
+hello
+
+f.b
+
+world
+
+f.c
+
+Abstract work(cid:18)ow
+
+Reg
+f.c
+
+SI
+f.a
+
+f.a
+
+hello
+
+f.b
+
+world
+
+f.c
+
+SO
+f.c
+
+RM
+f.a
+
+RM
+f.b
+
+RM
+f.c
+
+Executable work(cid:18)ow
+
+(b)
+
+LEGEND
+
+Unmapped job
+
+Compute job
+mapped to a site
+Stage-in job
+
+Stage-out job
+
+Registration job
+
+Create dir job
+
+Cleanup job
+
+Figure 2. Workflow design and mapping. (a) Abstract workflow (DAX). (b) Abstract to executable workflow (HTCondor 
+DAG) mapping.
+
+determines  when  jobs  are  ready 
+to  run  and  submits  them  to  the 
+HTCondor queue for execution. It 
+also retries failed jobs and check-
+points failed workflows.
+
+•	 Job  scheduler  (HTCondor  Schedd). 
+The scheduler maintains a queue of 
+ready jobs, and manages their execu-
+tion on local and remote resources.
+•	 Workflow  monitor.  The  monitor-
+ing daemon updates the workflow 
+database with runtime provenance 
+and performance information, noti-
+fies users of important events such 
+as job failures, and provides a Web 
+interface  for  users  to  monitor  and 
+debug their workflows.
+
+Workflows  are  described  using  an 
+abstract format — called the DAX — that’s 
+independent of the target execution envi-
+ronment.  This  format  enables  portabil-
+ity, sharing, and collaboration, and lets 
+users focus on designing and describing 
+their  pipelines  without  worrying  about 
+how  the  workflows  will  be  executed. 
+
+This approach enables Pegasus to move 
+workflows  between  different  execution 
+environments  and  optimize  workflows 
+for each environment. The optimization 
+takes  into  account  how  to  maximize 
+the data’s effi ciency and performance. 
+Our users also benefit from the ability to 
+execute  workflows  in  newer  execution 
+environments  as  system  improvements 
+are made. Migration between or across 
+systems  doesn’t  require  changes  to  the 
+abstract workflow description.
+
+The DAX captures, at a high level, 
+the jobs that make up the user’s com-
+putation, the input and output datasets 
+each job references, and the dependen-
+cies  between  the  jobs  that  determine 
+the  order  in  which  they  can  be  exe-
+cuted. Figure 2 illustrates the DAX for 
+a two-node hello world workflow and a 
+schematic of the abstract to executable 
+workflow mapping done by Pegasus.
+
+When  creating  the  abstract  work-
+flow, users refer to executables and files 
+by logical identifiers instead of physi-
+cal paths or URLs. The Pegasus mapper 
+
+uses various information catalogs (data 
+replica locations, executable locations, 
+and  available  computing  resources) 
+to resolve these logical identifiers and 
+generate an executable workflow for a 
+specific target environment. The map-
+per adds auxiliary jobs that are respon-
+sible for transferring input and output 
+data, for removing datasets that are no 
+longer required, and for registering data 
+in information catalogs for future dis-
+covery and reuse.
+
+During the mapping process, Pegasus 
+
+performs the following optimizations.
+
+•	 Data movement. This involves select-
+ing the appropriate input file replicas 
+and data transfer mechanisms to use. 
+For example, if an input file already 
+exists at the resource, then the map-
+per will set up the executable work-
+flow to use that file instead of staging 
+a file from an external location. Dif-
+ferent data transfer mechanisms are 
+employed,  depending  on  where  the 
+input, intermediate, and output files 
+
+72 
+
+www.computer.org/internet/ 
+
+IEEE INTERNET COMPUTING
+
+View from the CloudPegasus in the Cloud: Science Automation through Workflow Technologies
+
+are located and placed. For example, 
+data-movement  jobs  can  transfer 
+input  files  hosted  on  a  user’s  FTP 
+server  to  Amazon  Simple  Storage 
+Service (S3), where compute jobs exe-
+cuting  in  Amazon  Elastic  Compute  
+Cloud (EC2) can use them, and then 
+transfer the outputs from EC2 or S3 
+back to the user’s FTP server.
+
+•	 Data reuse. If during the data dis-
+covery  phase,  the  Pegasus  mapper 
+finds  that  a  subset  of  the  work-
+flow’s  outputs  already  exists,  the 
+workflow  is  automatically  pruned 
+to  avoid  recomputing  the  existing 
+outputs.  This  data  reuse  feature  is 
+commonly used for projects with 
+overlapping  datasets  and  work-
+flows,  and  also  enables  failure 
+recovery where Pegasus can use the 
+partially computed results of a pre-
+viously failed run. Data registration 
+jobs  in  the  executable  workflow 
+add  information  about  generated 
+outputs  to  an  information  catalog 
+for future data discovery and reuse.
+•	 Data  cleanup.  Cleanup  tasks  are 
+added to the executable workflow 
+to  reduce  the  workflow’s  storage 
+footprint at runtime.
+
+•	 Job clustering. The mapper can clus-
+ter  multiple  tasks  from  the  DAX 
+into larger jobs for performance and 
+scalability. For example, the mapper 
+can  cluster  short  running  tasks  to 
+minimize job-scheduling overheads.
+
+In  any  distributed  system,  failures 
+are  a  common  occurrence,  and  pose 
+a  significant  challenge  for  users  to 
+debug.  The  Pegasus  system  automati-
+cally records the executable workflow’s 
+state  in  a  database  at  runtime  and 
+provides  a  variety  of  debugging  and 
+monitoring  tools  that  let  users  easily 
+detect and troubleshoot failures in their 
+workflows.  The  system  also  captures 
+and  records  performance  information 
+such  as  workflow  and  job  runtimes, 
+execution  hosts  and  their  characteris-
+tics, memory usage, and so on. We can 
+use this information to build models for 
+performance prediction of applications.
+
+jaNUaRy/fEbRUaRy 2016 
+
+Running Pegasus Workflows 
+on Cloud Infrastructures
+There  are  many  advantages  to  using 
+clouds for scientific workflows, includ-
+ing  on-demand  resource  provisioning; 
+the  ability  to  allocate  resources  that 
+match  the  workflow  needs  (such  as 
+large memory instances); and the ability 
+to  use  custom  software  configurations 
+that support applications with complex 
+dependencies. In addition, users can eas-
+ily share their computing environments 
+with  colleagues  and  reviewers,  thus 
+increasing collaboration and the repro-
+ducibility of scientific results.
+
+Users  can  easily  deploy  Pegasus 
+workflows in the cloud by configur-
+ing  cloud  instances  as  an  HTCondor 
+pool. The VM image used for worker 
+instances in the pool should contain 
+HTCondor,  the  Pegasus  client  tools, 
+and  the  application,  and  should  be 
+configured to contact the submit node 
+to receive jobs. Users can deploy the 
+submit  node  inside  or  outside  the 
+cloud, depending on their needs and 
+preferences.  For  data  storage,  users 
+can configure the pool with a shared 
+file system such as Network File Sys-
+tem  (NFS),  or  Pegasus  can  plan  the 
+workflow to use an object store such 
+as Amazon S3 or transfer data from 
+the submit node for each job.
+
+In the early days of cloud infrastruc-
+tures, Pegasus encountered some com-
+mon issues in trying to adjust to this 
+new infrastructure model. Provisioning 
+and  image  management  were  espe-
+cially  difficult,  as  Pegasus  users  were 
+accustomed  to  running  workflows  on 
+professionally managed infrastructures 
+such as HPC clusters. With clouds, users 
+were suddenly responsible for more of 
+the  software  stack.  Not  only  did  the 
+user  have  to  think  about  managing 
+their computation, but also the under-
+lying  system  components  such  as  the 
+OS,  libraries,  schedulers,  and  in  some 
+cases, storage systems. The maturing of 
+the cloud and development of higher-
+level tooling helped. Within the Pega-
+sus project, we designed the Wrangler2 
+system  to  set  up  virtual  clusters  with 
+
+instance dependencies, and created the 
+Pegasus  Repeatable  Experiments  for 
+the  Cloud  in  Python  (PRECIP)  frame-
+work3  to  manage  repeatable  cloud-
+based computer science experiments.
+
+The ability to dynamically scale the 
+pool up (provision more instances) and 
+down (kill instances) based on the num-
+ber of jobs in the queue is important, 
+because it impacts the runtime and cost 
+of the workflows. HTCondor is designed 
+to be deployed on resources not owned 
+by the pool administrator, such as across 
+administrative domains of a university 
+campus, and across wide area networks. 
+It also uses soft-state protocols and has 
+automatic job failover and recovery to 
+enable resources to be added or removed 
+on the fly. These features enable cloud 
+autoscaling of HTCondor pools and, by 
+extension, Pegasus workflows.
+
+We’ve  used  tools  such  as  Amazon 
+Auto  Scaling  and  Scalr  to  automati-
+cally  scale  pools  based  on  demand. 
+Upscaling  decisions  are  usually  based 
+on either the load of existing compute 
+instances, or the number of idle jobs in 
+the queue on the submit node. Down-
+scaling can be more difficult, because 
+there’s a possibility of killing running 
+jobs. This problem is more acute when 
+running instances have multiple cores 
+and  are  configured  to  run  multiple 
+jobs at the same time. One solution is 
+to only downscale instances that don’t 
+have  any  jobs  assigned  to  them.  This 
+solution works fine for workflows with 
+jobs  of  relatively  short  duration.  For 
+workflows  with  a  few  long-running 
+jobs, a more sophisticated downscaling 
+policy might be required to consolidate 
+the jobs onto as few instances as pos-
+sible, and terminate instances that have 
+only  one  job  running.  Any  jobs  that 
+get killed will be rescheduled automati-
+cally onto another instance.
+
+Another approach is to signal the 
+HTCondor  daemons  on  the  compute 
+instances to stop accepting new jobs, and 
+let the currently running jobs finish before 
+terminating the instance. While indi-
+vidual  pieces  (HTCondor  configuration 
+recipes)  exist  that  enable  downscaling,  
+
+73
+
+Abstract
+work(cid:21)ow
+
+W
+
+Input data
+
+hosted at user
+
+server
+
+Submit
+
+host
+
+J
+
+X
+
+Y
+
+Cloud object storage
+
+Output data
+
+server
+
+Pegasus
+planner
+
+Work(cid:21)ow
+
+setup
+job
+
+Work(cid:21)ow
+stage in
+
+job
+
+Executable
+work(cid:21)ow
+
+J
+
+W
+
+X
+
+Y
+
+Work(cid:21)ow
+stage-out
+
+job
+Data
+cleanup
+
+job
+
+Condor schedd
+
+queue
+
+J
+W
+
+Condor
+DAGMan
+
+Input Files
+
+Intermediate Files
+
+Produced Dataset
+
+1 Work(cid:26)ow stage-in job
+stages in the input data
+
+for work(cid:26)ow
+
+from user server
+
+2 PegasusLite instance pulls
+job input data from object
+
+store to cloud instance
+3 PegasusLite instance stages
+
+out job output data
+from cloud instance to
+
+object store
+
+4 Work(cid:26)ow stage-out job
+
+stages produced data
+from object storage
+
+to user server
+
+Computional cloud
+
+J
+
+Pegasus Lite
+
+instance
+
+J
+
+Cl
+
+Cl
+
+Cl
+
+Cl
+
+Cl
+
+Cl
+
+Cl
+
+Cl
+
+LEGEND
+
+Directory setup job
+
+Data stage-out job
+
+J
+
+Pegasus lite compute job
+
+Directory stage-in job
+
+Directory cleanup job
+
+Compute instance
+
+Figure 3. Data flow for Pegasus workflows in cloud environments. The magnifying glass highlights the data management 
+performed by the Pegasus-added data/provenance layer around the user task.
+
+more  research  and  development  is 
+required to develop a software compo-
+nent that’s able to automatically inspect 
+the  local  job  queue,  and  implement 
+user-defined policies for downscaling.
+Resource provisioning and job man-
+agement are obviously important to be 
+able to execute workflows in a cloud envi-
+ronment, but the major cloud-enabling 
+change to Pegasus was in data man-
+agement.  Before  clouds,  Pegasus  only 
+had  one  data  management  approach, 
+which  was  based  on  the  HPC  cluster 
+model. In that approach, Pegasus used 
+the  shared  file  system  for  exchanging  
+
+data between jobs, and jobs interacted 
+with  data  directly  on  the  shared  file 
+system.
+
+With  the  advent  of  clouds,  Pega-
+sus’  data  management  was  updated 
+to make use of object stores. Pegasus 
+already tracked all the files in a work-
+flow,  so  the  change  was  focused  on 
+how to move data around and how to 
+continue  to  offer  Portable  Operation 
+System  Interface  (POSIX)  file  system 
+access  to  jobs.  This  was  important 
+because  most  scientific  codes  require 
+a  basic  file  system  to  do  I/O.  Our 
+approach is based on using a local disk 
+
+on the virtual machine (VM) instance 
+for job execution. Pegasus ensures that 
+whenever a user task is executed, it’s 
+launched on a POSIX file system in a 
+directory where the inputs required by 
+the task are already present.
+
+In  the  new  data  management 
+approach,  Pegasus  automatically 
+wraps  user  jobs  with  tools  to  man-
+age data in the executable workflow. 
+First,  files  required  by  a  task  are 
+fetched from an object store and put 
+on  local  file  system  of  the  instance, 
+then the job is executed, and, finally, 
+any output files are transferred back 
+
+74 
+
+www.computer.org/internet/ 
+
+IEEE INTERNET COMPUTING
+
+View from the CloudPegasus in the Cloud: Science Automation through Workflow Technologies
+
+to  the  object  store.  The  object  store 
+doesn’t  need  to  be  co-located  with 
+the compute instances, and could be 
+outside  the  cloud  or  even  hosted  at 
+another cloud provider. This separa-
+tion  enables  workflow  executions 
+to  span  a  mix  of  resources  —  for 
+example, when using multiple cloud 
+providers  at  the  same  time,  or  mix-
+ing cloud and non-cloud resources.4 
+Figure  3  illustrates  a  typical  data 
+flow for Pegasus workflows in cloud 
+environments.
+
+An  additional  advantage 
+
+that 
+clouds  offer  is  the  ability  to  package 
+the  compute  environment  along  with 
+application codes. An increasing num-
+ber  of  scientific  workflow  users  are 
+developing VM images that have Pega-
+sus  configured  to  start  automatically 
+when  the  VM  starts  up.  These  virtual 
+appliances provide an application-spe-
+cific  Web  interface  that  enables  other 
+scientists in the community to upload 
+their  input  datasets,  or  refer  to  exist-
+ing datasets in the cloud, launch their 
+scientific analysis, and monitor them.
+
+Example Applications
+The Galactic Plane5 project used cloud 
+workflows to generate image mosaics 
+for astronomy. The project’s goal was 
+to take a set of existing data products 
+from different telescopes and different 
+product specifications, and process the 
+data in such a way that the produced 
+datasets would look like it came from 
+a  single  instrument.  In  collaboration 
+with  NASA’s  Infrared  Processing  and 
+Analysis Center (IPAC), AWS, and the 
+Pegasus team, an ensemble of 16 mas-
+sive hierarchical workflows were exe-
+cuted  on  AWS.  We  used  EC2  for  the 
+computation and S3 for both the inter-
+mediate files and the final output stor-
+age. The 16 hierarchical workflows in 
+the ensemble each had 1,001 subwork-
+flows  with  an  average  of  6  million 
+tasks each. Input data access were over 
+publicly accessible data find interfaces, 
+also  used  by  other  projects.  In  order 
+not  to  overwhelm  these  interfaces, 
+the number of compute instances was 
+
+jaNUaRy/fEbRUaRy 2016 
+
+limited  by  using  manual  provision-
+ing with the AWS Web interface. The 
+final  data  product  of  the  project  was 
+an image atlas containing large-scale 
+mosaics  of  the  galactic  plane  in  16 
+wavelengths, totaling 45 terabytes.
+
+The rSEQ6 project packaged GT-FAR, 
+a  transcriptome  optional  ribonucleic 
+acid (RNA)-sequence analysis pipeline, 
+along with Pegasus as a virtual appliance  
+to bring accurate expression analysis  
+to  researchers  without  significant 
+computational  resources.  The  appli-
+ance provides an application-specific 
+Web  interface  that  lets  users  upload 
+custom  datasets,  start  and  monitor 
+the progress of their GT-FAR analysis, 
+receive  notifications  when  the  anal-
+ysis  is  done,  and  makes  the  output 
+datasets available for download from 
+S3. It generates error reports based on 
+information  reported  by  the  Pegasus 
+system that users can access to iden-
+tify application errors. The appliance 
+also  leverages  Pegasus  data  reuse 
+capabilities  to  bypass  the  computa-
+tionally  expensive  index-generation 
+phase at the start of the pipeline, by 
+tracking  and  storing  the  index  files 
+when they’re first generated.
+
+W e provided an overview of how sci-
+
+entists  can  model  their  computa-
+tional pipelines as workflows using the 
+Pegasus WMS and the advantages that 
+this system provides. Although Pegasus 
+was initially developed for a more tra-
+ditional  HPC  environment,  its  unique 
+planning  and  optimization  approach 
+has  enabled  users  to  take  advantage 
+of  cloud  resources  without  having  to 
+change their workflow descriptions. The 
+overall  system  design  allows  Pegasus 
+users to fully take advantage of cloud 
+concepts  such  as  auto  scaling,  object 
+stores, and image sharing. We are cur-
+rently  developing  task  resource  esti-
+mation  and  provisioning  capabilities, 
+which  will  enable  the  workflow  man-
+agement system to automatically provi-
+sion  and  de-provision  cloud  resources 
+as a workflow executes. 
+
+Acknowledgments
+This  work  was  supported  by  the  US  National 
+Science Foundation (under grants ACI-1148515, 
+ACI 1245926, and FutureGrid 0910812) and the 
+National Institutes of Health under the NHGRI 
+GS-IT program, grant 1U01 HG006531-01.
+
+References
+1.  E.  Deelman  et  al.,  “Pegasus:  A  Workflow 
+Management System for Science Automa-
+tion,”  Future  Generation  Computer  Sys-
+tems, vol. 46, May 2015, pp. 17–35.
+
+2.  G.  Juve  and  E.  Deelman,  “Wrangler:  Vir-
+tual  Cluster  Provisioning  for  the  Cloud,” 
+Proc.  20th  Int’l  Symp.  High-Performance 
+Distributed Computing, 2011, pp. 277–278.
+3.  S. Azarnoosh et al., “Introducing PRECIP: 
+An  API  for  Managing  Repeatable  Experi-
+ments  in  the  Cloud,”  Proc.  Workshop  on 
+Cloud  Computing  for  Research  Collabora-
+tions, 2013, pp. 19–26.
+
+4.  G.  Juve  et  al.,  “Comparing  FutureGrid, 
+Amazon  EC2,  and  Open  Science  Grid  for 
+Scientific  Workflows,”  Computing  in  Sci-
+ence & Eng., vol. 15, no. 4, 2013, pp. 20–29.
+5.  M.  Rynge  et  al.,  “Producing  an  Infrared 
+Multiwavelength  Galactic  Plane  Atlas 
+Using Montage, Pegasus and Amazon Web 
+Services,”  Proc.  23rd  Ann.  Astronomical  
+Data Analysis Software and Systems Conf.,  
+2013;  http://pegasus.isi.edu/publications/ 
+2013/rynge-montage-pegasus-amazon-
+adass2013.pdf.
+
+6.  Y. Wang et al., “RseqFlow: Workflows for 
+RNA-Seq  Data  Analysis,”  Bioinformatics, 
+vol. 27, no. 18, 2011, pp. 2598–2600.
+
+Ewa Deelman is a research associate professor in 
+the  Computer  Science  Department  and  the 
+assistant  director  for  the  Science  Automa-
+tion  Technologies  group  at  the  University 
+of Southern California Information Sciences 
+Institute. Her research focuses on distributed 
+computing,  in  particular  regarding  how  to 
+best support complex scientific applications 
+on  a  variety  of  computational  environ-
+ments, including campus clusters, grids, and 
+clouds. Deelman has a PhD in computer sci-
+ence from Rensselaer Polytechnic Institute. 
+Contact her at deelman@isi.edu.
+
+Karan Vahi is a computer scientist in the Sci-
+ence  Automation  Technologies  group 
+
+75
+
+at  the  University  of  Southern  California 
+Information Sciences Institute. His research 
+interests  include  scientific  workflows  and 
+distributed computing systems. Vahi has an 
+MSc in computer science from the Univer-
+sity of Southern California. Contact him at 
+vahi@isi.edu.
+
+versity  of  Southern  California  Information  
+Sciences Institute. His research interests include 
+computational workflows, scientific comput-
+ing, high-throughput parallel computing, grid 
+computing, and cloud computing. Juve has a 
+PhD in computer science from the University  
+of  Southern  California.  Contact  him  at 
+gideon@isi.edu.
+
+Mats Rynge is a computer scientist in the Sci-
+ence  Automation  Technologies  group 
+at  the  University  of  Southern  California 
+Information  Sciences  Institute.  His  work 
+focuses on distributed and grid computing. 
+Rynge has a BS in computer science from 
+the  University  of  California,  Los  Angeles. 
+Contact him at rynge@isi.edu.
+
+Rajiv  Mayani  is  a  research  programmer  at  the 
+University  of  Southern  California  Informa-
+tion  Sciences  Institute.  His  work  focuses 
+on  bioinformatics  projects.  Mayani  has  an 
+MSc  in  computer  science  from  the  Univer-
+sity  of  Southern  California.  Contact  him  at 
+mayani@isi.edu.
+
+at  the  University  of  Southern  California 
+Information Sciences Institute. His research 
+focuses  on  the  self-healing  of  scientific 
+workflow  executions  on  heterogeneous 
+distributed  systems  such  as  clouds  and 
+grids. Ferreira da Silva has a PhD in com-
+puter science from the Institut National des 
+Sciences Appliquées de Lyon, France. Con-
+tact him at rafsilva@isi.edu.
+
+Gideon Juve is a computer scientist in the Science 
+Automation Technologies group at the Uni-
+
+Rafael  Ferreira  da  Silva is a computer scien-
+tist in the Collaborative Computing group 
+
+Selected  CS  articles  and  columns 
+are also available for free at http:// 
+
+ComputingNow.computer.org.
+
+ADVERTISER INFORMATION
+
+Advertising Personnel
+
+Marian Anderson: Sr. Advertising Coordinator
+Email: manderson@computer.org
+Phone: +1 714 816 2139 | Fax: +1 714 821 4010
+
+Sandy Brown: Sr. Business Development Mgr.
+Email sbrown@computer.org
+Phone: +1 714 816 2144 | Fax: +1 714 821 4010
+
+Advertising Sales Representatives (display)
+
+Southwest, California: 
+Mike Hughes
+Email: mikehughes@computer.org
+Phone: +1 805 529 6790
+
+Southeast: 
+Heather Buonadies
+Email: h.buonadies@computer.org
+Phone: +1 973 304 4123
+Fax: +1 973 585 7071
+
+Central, Northwest, Far East: 
+Eric Kincaid
+Email: e.kincaid@computer.org
+Phone: +1 214 673 3742
+Fax: +1 888 886 8599
+
+Northeast, Midwest, Europe, Middle East: 
+Ann & David Schissler
+Email: a.schissler@computer.org, d.schissler@computer.org
+Phone: +1 508 394 4026
+Fax: +1 508 394 1707
+
+Advertising Sales Representatives (Classified Line)
+
+Heather Buonadies
+Email: h.buonadies@computer.org
+Phone: +1 973 304 4123
+Fax: +1 973 585 7071
+
+Advertising Sales Representatives (Jobs Board)
+
+Heather Buonadies
+Email: h.buonadies@computer.org
+Phone: +1 973 304 4123
+Fax: +1 973 585 7071
+
+76 
+
+www.computer.org/internet/ 
+
+IEEE INTERNET COMPUTING
+
+View from the Cloud

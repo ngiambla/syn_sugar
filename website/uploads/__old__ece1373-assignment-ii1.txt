@@ -1,0 +1,581 @@
+ECE1373: Assignment II
+
+Nicholas Giamblanco
+
+Department of Electrical and
+
+Computer Engineering
+University of Toronto,
+
+Toronto, Canada
+
+nicholas.giamblanco@mail.utoronto.ca
+
+AbstractThe computational structure of a convolutional
+neural network contains many time-consuming operations. In
+this report, we outline an acceleration engine for convolutional
+neural networks, which aimed to reduce latency of network
+operation. Specically, we accelerate the convolutional operation
+through manipulation of memory accesses and mathematically
+reduced computations. Our acceleration engine was developed
+with Vivados High-Level Synthesis tool. Additionally, we ap-
+proach the issue of acceleration for convolutional neural networks
+through a design-space exploration, and hence exploit the fast
+time-to-market production available with high-level synthesis.
+The acceleration engine we built was signicantly better than
+a baseline hardware implementation, providing  1.875 speed
+up. Our report also highlights that high-level synthesis enables
+a faster design-space exploration which could have practical use
+for industry problems in hardware.
+
+I. INTRODUCTION
+
+Recently, neural networks have become a standard way of
+approaching pattern analysis and predictive issues. The true
+robustness of a neural networks problem solving ability can
+be attributed to their composition. A neural network is a
+virtualization of a primitive view on brain function: an input
+is injected into a network of connected articial neurons,
+of which process the input and produce some meaningful
+result. For example, if this network was to view an image
+of a dog, its mission may aim to classify it with a label.
+However, the computation required by the neural network is
+lengthy. An articial neural network is comprised of logically
+segmented groupings of neurons, which are often denoted as
+layers. Layers can exhibit different behaviour based on their
+respective task. In this paper, we consider the following layers
+for the behaviour and computational difculty: convolutional,
+fully-connected and max-pooling layers. Of these three layers,
+we focus our attention to optimize a convolutional layer within
+a neural network, due to their large computational complexity.
+In particular, we analyze and optimize a convolutional neural
+network by accelerating the behaviour and functioning of a
+convolutional layer.
+
+Convolutional neural networks have been investigated for
+acceleration potential through mathematical optimizations, and
+hardware accelerators. Often, these two approaches for accel-
+eration investigation co-exist. Of the work conducted in this
+area ([1], [2], [3]), the authors of these works draw similar
+conclusions: memory bandwidth is often the bandwidth for
+convolutional neural network acceleration. Additionally, they
+
+perform some mathematical optimization to the problem in
+hopes of reducing the computational complexity.
+
+If we consider the use of an FPGA as the acceleration
+engine, we are faced with other issues which may not be
+present
+in application specic integrated circuits (ASIC)s
+or hardware designed for massively parallel operations (i.e.
+GPUs). Specically, hardware designs for FPGA devices could
+induce additional latency into a given hardware design due
+to suboptimal routing and placement, and/or poor choices of
+hardware units during synthesis. This could be intensied if
+high-level synthesis is utilized. However, high-level synthesis
+provides the ability to explore a design-space much more
+efciently then hand-designs. Through use of high-level syn-
+thesis, we can explore designs which hardware designs that
+accelerate performance more effectively by exploiting various
+optimizations & operations for algorithmic descriptions. The
+remainder of this report is as follows: Section II outlines the
+description of the VGG16 neural network [4] and potential
+performance optimizations, Section III outlines the optimiza-
+tions we performed on convolutional layers while noting that
+accelerations persist approximately linearly, and in Section IV,
+we conclude this report.
+
+II. CASE STUDIES
+
+A. Hypothesis for the High-Level Synthesis of VGG16
+
+The original assignment outlined that we implement an
+acceleration engine for the deep neural network of VGG16
+[4]. This network is comprised of the following layers:
+
+Fig. 1. Graphical Representation of the VGG16 Network [4], taken from [5]
+
+Upon inspection of Figure 1,
+
+three types of layers are
+used for network operation: convolutional, fully-connected
+and max-pooling. Before we attempt to describe any possible
+optimizations applicable to VGG16, we will describe in high-
+level the function of each layer:
+
+ Convolutional Layer: this layer takes some data which has
+shape in n dimensions, and convolves1 a lter with similar
+dimensionality around the image at some stride. The
+lter can be viewed as a sliding window which performs
+the convolutional operation upon slide. The amount of
+displacement of the lter is noted as the stride. In general,
+a convolutional layer has the following form:
+
+for (int b_=0; b_< b; b_++) {
+
+// Output Dimensions (Feature Maps)
+for (int o_d = 0; o_d < od; o_d++) {
+
+// Output Y Dimension
+for (int o_y = 0; o_y < oy; o_y++) {
+
+// Output X Dimension
+for (int o_x = 0; o_x < ox; o_x++) {
+
+// Set bias
+float output_element = mem[input_offset/
+sizeof(float) + num_weights + o_d];
+
+// Weighted Sum:
+// Input Dimensions (Feature Maps)
+for (int i_d = 0; i_d < id; i_d++) {
+
+// Input Y Dimension
+for (int i_y = o_y*s, iiy = 0; i_y <
+
+o_y*s+k; i_y++, iiy++){
+
+// Input X Dimension
+for (int i_x = o_x*s, iix = 0; i_x <
+
+o_x*s+k; i_x++, iix++)
+
+output_element += mem[input_offset/
+
+sizeof(float) + num_weights+
+num_biases+ b_*id*ix*iy + i_d*ix
+*iy + i_y*ix + i_x]*
+
+mem[input_offset/
+
+sizeof(float) +
+o_d*id*k*k + i_d*k
+*k + iiy*k + iix];
+
+{
+
+}
+
+}
+
+}
+// Write output
+mem[output_offset/sizeof(float) + b_*od*
+ox*oy + o_d*ox*oy + o_y*ox + o_x] =
+std::max(0.0f, output_element);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+Dissecting this description, we see that complexity of this
+operation is large, as there are 6 nested for loops.
+
+ Fully-Connected Layer: in this layer, an input is feed into
+a layer of articial neurons which are fully-connected
+to each subsequent layer proceeding at the output. For
+a given input, each neuron either outputs some signal
+which is then scaled by some weight, or the output is
+silenced and then propagated. A typical implementation
+of a fully-connected layer appears as a specialization of
+a convolutional layer, in which the lter size is 1.
+
+1This is the convolutional operation, x(t)  y(t)|t=T =(cid:82) 
+
+ x( )y(T 
+
+ )d, sampled at discrete time intervals.
+
+ Maxpool Layer: this layer aims to select the maximum
+value within a particular window of a given input. This
+layer can be also be seen as a specialization of the
+convolutional layer, in which the lter size is of the same
+dimension as the input.
+
+These layers must act
+
+in accordance to the operations
+outlined in Figure 1. Hence, we design a high-level view of
+a state machine which corresponds to how VGG16 operates.
+This state machine is depicted in Algorithm 1.
+
+state  1
+input  leData
+if state in {1, 2, 4, 5, 7  9, 11  13, 15  17} then
+input  run conv(input)
+if state in {3, 6, 10, 14, 18} then
+input  run maxPool(input)
+if state in {19, 20, 21} then
+input  run fullyConnected(input)
+
+Algorithm 1 VGG16 Operation
+1: procedure RUNNEURALNET
+2:
+3:
+4: vgg sm:
+5:
+6:
+7:
+8:
+9:
+10:
+11:
+12:
+13:
+14:
+15: end:
+16:
+
+if state > 21 then
+state  state + 1
+goto vgg sm
+
+goto end.
+
+close;
+
+Many optimization could be made to this network on several
+degrees, where we could target an optimization for any combi-
+nation of: (1) layers, (2) memory architectures and (3) system
+level operations. To explore these avenues, we outlined three
+potential performance optimizations of the VGG16 network
+which would benet an FPGA-based implementation. These
+optimizations are outlined in the following sections.
+
+B. VGG16 Optimization: Memory Access
+
+To gain motivation for memory access optimization, it is
+worthwhile to note hardware accelerator operation. In partic-
+ular,
+
+C. VGG16 Optimization:
+D. VGG16 Optimization:
+
+III. DESIGN FLOW FOR CONVOLUTIONAL LAYER
+
+OPTIMIZATION
+
+A. Usage
+
+To streamline optimization of a convolutional neural net-
+work layers, we were given a basic code templates as well
+as Makeles and TCL les. We modied the Makefile to
+only compile a high-level description of a convolutional layer
+typically used in a neural network. To compile the project,
+navigate to the directory /ECE1373_assignment2/ and
+use the command:
+$ make
+
+This builds the project executables. Once built, these com-
+
+mands can be issued to the terminal:
+
+$ ./conv_layer [layer] [idx]
+$ ./hw_conv_layer [layer] [idx]
+
+Where the command ./conv_layer will ensure that the
+software implementation has no logical aws, and takes pa-
+rameters layer and idx which relate to which convolutional
+layer we are simulating and the respective index in that layer.
+Similarly, ./hw_conv_layer performs convolutional layer
+execution upon a HLS-Compiled IP core, requiring the same
+parameters are ./conv_layer.
+
+However,
+
+to instantiate the HLS-Compiled IP core, we
+modied the Makele to permit ease of use. Specically, we
+modify the recipe make pr to compile the software-described
+convolutional layer to a hardware description using HLS. This
+hardware description is then synthesized, and moved into a
+recongurable region of an FPGA device.
+
+We stored all our optimizations in the following directory:
+
+/ECE1373_assignment2/conv_test/solns/soln[X]
+
+Where [X] is an integer ranging from 1 to 4. In each
+folder soln[X]/, lives the high-level description for this
+optimization, along with the compiled bit streams.
+
+B. Complexity Analysis of a General Convolutional Layer
+
+A general convolutional layer convolves a lter around an
+input image. Recall that an image exists in 3 dimensions,
+xi, yi and zi. We will use the subscript i to denote dimensions
+of an image . A lter must also exist in the same dimensional
+space as the image, which has the attributes xk, yk, and zk,
+highlighted by the subscript k. We describe the operation as
+the following:
+
+C. Baseline
+
+In this section, we outline the baseline hardware perfor-
+mance of a stock convolutional layer within a neural network.
+We did not capture the utilization of the baseline
+
+D. Primary Optimization
+
+the convolutional
+
+For our primary optimization, we explored the idea of
+moving biases to be used in the calculation onto on-chip
+memory. When optimizing a system for memory, exploiting
+the idea of locality aids in memory access and storage times.
+Before computation begins at
+layer, we
+memory burst all bias values onto on-chip memory before
+computation. This allowed for quick access to the bias values
+(required for the convolution computation), and hence would
+benet the system for faster reads (biases are never modied).
+We also manually unrolled the inner most loop to increase
+parallelism in terms of hardware modules. We believe the high-
+level synthesis tool would treat this manual loop unrolling as
+the interpretation of three separate operations which could op-
+erate in parallel during computation. We noted the maximum
+size applicable for both inner loops to have a bound of three.
+Therefore, we unrolled the inner-most three times, allowing
+
+Fig. 2. Primary Optimization Diagram
+
+for the removal of this inner-for loop. We have attached a
+high-level view of this behaviour in Figure 2
+
+We then compiled and synthesized this design with high-
+level synthesis, in order to generate a bit stream and perform
+a hardware test of our design. This design had the following
+resource utilization:
+
+RESOURCE UTILIZATION FOR PRIMARY OPTIMIZATION
+
+TABLE I
+
+DSP
+
+BRAM
+
+LUT (RAM)
+
+LUT
+
+41, 5.34% 115, 6.66% 9063, 11.80% 70927, 13.19%
+
+We also tested this hardware implementation with the exe-
+cution of ./hw_conv_layer conv1 1 and found that the
+time to process 1 batch for this layer was 150 seconds. The
+associated root mean squared (RMS) error was 1.83  1011.
+We noted that was much more room for improvement.
+
+E. Secondary Optimization
+
+We built upon our primary optimization, modifying fre-
+quently accessed variables which behave statically2 to become
+localized in on-chip memory, in order to reduce (1) com-
+putation costs for local variables and (2) enhance on chip
+memory access. We also unrolled the inner most loop again
+(which had a known bound of three), to now have the main
+computation described in 9 similar modules. Once this design
+was submitted through the high-level synthesis process, we
+obtained the resource utilization, and execution time of conv1
+1. We describe the hardware instantiation in Figure 3, and
+outlined the resource utilization in Table II.
+
+Fig. 3. Secondary Optimization Diagram
+
+RESOURCE UTILIZATION FOR SECONDARY OPTIMIZATION
+
+TABLE II
+
+DSP
+
+BRAM
+
+LUT (RAM)
+
+LUT
+
+47, 6.12% 115, 6.66% 9063, 11.80% 71889, 13.37%
+
+We also note the execution time for conv1_1 was 118
+seconds, which was a substantial
+reduction in execution
+time from 150 seconds from our primary optimization. The
+achieved mean squared error did not change from our primary
+optimization, and was left at 1.83  1011.
+
+This optimization did consume more DSP blocks. This is
+logical, since we unrolled the inner most loop again, and hence
+having nine processing units which behave identically. These
+processing units must have consumed additional DSP blocks
+to ensure fast processing.
+
+2Static in this context implies little to no change in variable content.
+
+F. Tertiary Optimization
+
+H. Overall System Improvement
+
+In this section, we outline the trend for each subsequent
+optimization, from primary to quaternary. Figure 4 depicts the
+gradual reduction of executions as we persist through each
+optimization provided in this report.
+
+We continued manipulating variable expression to ensure
+maximum locality was present for memory access on chip.
+Therefore, we continue to build off our secondary optimiza-
+tion. As expected, we were able to squeeze extra latency out of
+the convolution layer. However, the improvement was not as
+substantial, dropping execution time for conv1_1 from 118
+seconds to 109 seconds. The overall structure of the system did
+not change, and hence we did not included a block diagram.
+However, we did note that our error did increase by a minute
+amount to 5.01  1011, compared to 1.83  1011. We also
+included the resource utilization in Table III.
+
+RESOURCE UTILIZATION FOR TERTIARY OPTIMIZATION
+
+TABLE III
+
+DSP
+
+BRAM
+
+LUT (RAM)
+
+LUT
+
+35, 4.56% 115, 6.66% 9063, 11.80% 70930, 13.19%
+
+Interestingly, we found this optimization was 9 seconds
+faster, yet used less DSPs and LUTS then our secondary opti-
+mization. This was most likely due to the heavy optimization
+performed by hand on how the parallel processing units are in-
+stantiated by the high-level synthesis process. Specically, by
+thoroughly inspecting all variable instantiations and accesses,
+we were able to optimize away many unneeded computations.
+
+G. Quaternary Optimization
+
+that we could burst
+
+In our quaternary & last optimization, we did further
+analysis on how much input data to the convolutional layer
+could be stored on-chip during analysis. We discovered that
+we could burst a portion of input weights to the layer for
+on-chip usage. We were able to read-in enough data from
+the weight
+in data for each iteration
+on the outer-dimension loop described in the convolutional
+layer. This optimization provided a staggering improvement,
+dropping execution time of conv1_1 from 109 seconds to
+80 seconds. This optimization demonstrated two things: (1)
+memory is an bottleneck for performance (as outlined earlier
+in this paper) and (2) mathematically reduced models aid in
+increased performance. By localizing weights which pertain
+to an output dimension, we were able to reduce memory
+access time since we could avoid reading from the off-chip
+DRAM. We made some nal modication to the way we
+access variables and attempted to reduce as much redundant
+calculations as possible. We tabulated the resource utilizations
+in Table IV. We also highlight that the attained error in our
+tertiary optimization was the same for this optimization.
+
+RESOURCE UTILIZATION FOR QUATERNARY OPTIMIZATION
+
+TABLE IV
+
+DSP
+
+BRAM
+
+LUT (RAM)
+
+LUT
+
+49, 6.38% 121.5, 7.03% 9063, 11.80% 71160, 13.24%
+
+We did notice the increase in DSP consumption, BRAM
+consumption and LUT consumption compared to our previous
+optimizations.
+
+Fig. 4. Execution time in seconds for each optimization executing on conv1
+1
+
+We also highlight for all required convolutional layers, the
+execution time and mean squared error per batch, with our
+best optimization; The Quaternary Optimization. This is made
+available in Table V.
+
+EXECUTION TIME OF ALL REQUIRED CONVOLUTIONAL LAYERS WITH
+
+TABLE V
+
+OUR BEST OPTIMIZATION
+
+conv1_1
+5.01  1011
+
+80
+
+conv1_2
+1.90  109
+
+1603
+
+conv4_1
+3.07  108
+
+766
+
+conv4_2
+1.29  108
+
+1530
+
+conv4_3
+2.28  109
+
+1536
+
+TE
+MSE
+
+IV. CONCLUSION
+
+In conclusion, we were able to demonstrate two items
+of interest: (1) we were able to develop an convolutional
+neural network acceleration engine, which achieved signicant
+speed up over baseline performance, (2) we demonstrated the
+effectiveness of using high-level synthesis to enable a fast
+and efcient design-space exploration scheme, which could
+produce practical solutions for real time use.
+
+REFERENCES
+
+[1] C. Zhang, P. Li, G. Sun, Y. Guan, B. Xiao, and J. Cong, Optimizing
+fpga-based accelerator design for deep convolutional neural networks, in
+Proceedings of the 2015 ACM/SIGDA International Symposium on Field-
+Programmable Gate Arrays, pp. 161170, ACM, 2015.
+
+[2] K. Ovtcharov, O. Ruwase, J.-Y. Kim, J. Fowers, K. Strauss, and E. S.
+Chung, Accelerating deep convolutional neural networks using special-
+ized hardware, Microsoft Research Whitepaper, vol. 2, no. 11, 2015.
+
+[3] M. Peemen, A. A. Setio, B. Mesman, and H. Corporaal, Memory-centric
+accelerator design for convolutional neural networks, in Computer De-
+sign (ICCD), 2013 IEEE 31st International Conference on, pp. 1319,
+IEEE, 2013.
+
+[4] K. Simonyan and A. Zisserman, Very deep convolutional networks for
+
+large-scale image recognition, CoRR, vol. abs/1409.1556, 2014.
+
+[5] Loading a pre-trained model to speed up the training.
+
+

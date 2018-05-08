@@ -1,0 +1,15 @@
+ We ﬁnally illustrate this approach on a model and on Youtube crawls, targeting the prediction of ”Recommended for you” links (i.e., biased or not by Youtube).
+ Let Ri(u) ⊂ Vt be this set of R(u, j) ≥ recommended items to u at a web-page: ∀j ∈ Ri(u), j(cid:48) ∈ Vt \ Ri(u), si R(u, j(cid:48)).
+ By selecting a recommended item j ∈ Ri(u), u enjoys j, and in turn si gets recommended items similar to j, namely Rj(u).
+ In a system that biases recommendations, the user is proposed certain items (for economical, or legal reasons for instance): this translates in biased edges toward items from set Vt.
+ Bias in an observed user-graph of recommendations The service oﬃ- cially exploits the recommender R (such as the one advertised in [4]).
+ The service may add recommendation bias in destination to user u for orienting her navigation among items; this translates into Gt(u) containing biased edges.
+ Let Et,B this set of biased edges; we thus have Gt(u) = (Vt, Et ∪ Et,B), observed as ˆGh t (u, i).
+ We now ask the following question: having access to ˆGh t (u, i), can user u decide whether a given edge of that graph is biased or not?
+ Hereafter, we propose a model for addressing this question, that is based on the small-world parallel with graphs of recommendations. 3.1 Towards algorithms for tagging long biased edges We propose to study potential bias in recommendation graphs, in relation to the locality or not of recommended items.
+ To model the fact that biased recommendations may not be completely unrelated to normal recommendations, we use a tuning parameter iRR(cid:48) presented hereafter.
+ The user-graph of recommendation is then Gt(u) = (Vt, Et ∪ Et,R(cid:48)) in which nodes have an out-degree of k = kR + kB.
+ Features are generated uniformly at random: ∀i ∈ Vt : (pi[c])1≤c≤d ∼ U (0, 1) and (bi[c])1≤c≤d(cid:48) ∼ U (0, 1).
+ We set dency between pi and bi is as following: ∀i ∈ Vt,∀1 ≤ c ≤ iRR(cid:48), bi[c] ← pi[c].
+ That is, if d = d(cid:48) = iRR(cid:48), both recom- menders R and R(cid:48) will produce exactly the same results (and therefore equiva- lent user-graphs of recommendations).
+ They show the approach useful for comparing recommender algorithms as a function of the pairs of users they are connecting a posteriori.

@@ -1,0 +1,1794 @@
+Guardrail: A High Fidelity Approach to
+
+Protecting Hardware Devices from Buggy Drivers
+
+Olatunji Ruwase1  Michael A. Kozuch2
+
+Phillip B. Gibbons2
+
+Todd C. Mowry3
+
+1Microsoft Research
+
+2Intel Labs Pittsburgh
+
+olruwase@microsoft.com, {michael.a.kozuch, phillip.b.gibbons}@intel.com, tcm@cs.cmu.edu
+
+3Carnegie Mellon University
+
+Abstract
+Device drivers are an Achilles heel of modern commod-
+ity operating systems, accounting for far too many system
+failures. Previous work on driver reliability has focused on
+protecting the kernel from unsafe driver side-effects by in-
+terposing an invariant-checking layer at the driver interface,
+but otherwise treating the driver as a black box. In this paper,
+we propose and evaluate Guardrail, which is a more pow-
+erful framework for run-time driver analysis that performs
+decoupled, instruction-grain dynamic correctness checking
+on arbitrary kernel-mode drivers as they execute, thereby
+enabling the system to detect and mitigate more challeng-
+ing correctness bugs (e.g., data races, uninitialized mem-
+ory accesses) that cannot be detected by todays fault iso-
+lation techniques. Our evaluation of Guardrail shows that it
+can nd serious data races, memory faults, and DMA faults
+in native Linux drivers that required xes, including previ-
+ously unknown bugs. Also, with hardware logging support,
+Guardrail can be used for online protection of persistent de-
+vice state from driver bugs with at most 10% overhead on the
+end-to-end performance of most standard I/O workloads.
+
+Categories and Subject Descriptors C.4 [Performance of
+Systems]: Reliability, availability, and serviceability; D.2.5
+[Software Engineering]: Testing and DebuggingMonitors,
+Tracing
+
+Keywords Device Drivers; Dynamic Analysis
+
+ Work done at Carnegie Mellon University
+
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for prot or commercial advantage and that copies bear this notice and the full citation
+on the rst page. Copyrights for components of this work owned by others than ACM
+must be honored. Abstracting with credit is permitted. To copy otherwise, or republish,
+to post on servers or to redistribute to lists, requires prior specic permission and/or a
+fee. Request permissions from permissions@acm.org.
+ASPLOS 14, March 15, 2014, Salt Lake City, Utah, USA.
+Copyright c(cid:13) 2014 ACM 978-1-4503-2305-5/14/03. . . $15.00.
+http://dx.doi.org/10.1145/2541940.2541970
+
+Introduction
+
+1.
+Because device drivers have been identied as a critical
+weak link in overall systems reliability [8, 17, 31, 39, 46],
+researchers have attempted to improve their robustness
+through strategies such as static analysis [1, 8, 21, 31], spec-
+ication [26, 40, 50], type safety [35, 44, 54], user-level
+drivers [4, 18, 25, 50], and run-time analysis [4, 5, 14, 18,
+45, 50]. While each of these approaches has its merits, we
+focus on run-time analysis in this paper because it is com-
+plementary to the other approaches and can potentially catch
+problems that the other techniques may miss due to practical
+limitations.
+
+The main focus of run-time driver analysis to date has
+been on fault isolation [4, 5, 14, 18, 45, 50], where the
+goal is to augment the driver interfaces to prevent a buggy
+driver from corrupting the OS kernel. The basic idea behind
+fault isolation is to interpose a run-time checking layer at
+the driver interface that performs a sanity check before the
+driver is allowed to proceed with performing any side effects
+outside of the driver (e.g., writing to kernel memory [45]).
+
+1.1 Limitations of Existing Fault Isolation Techniques
+While existing fault isolation techniques are useful, they suf-
+fer from two key limitations. First, they only check invariants
+at the drivers interface, treating the bulk of the drivers exe-
+cution as a black box. For example, most fault isolation tech-
+niques ignore driver reads (since normal reads do not have
+side-effects), which means that they are unable to recognize
+problems such as data races within drivers. In other words,
+existing fault isolation techniques do not focus on whether
+the driver software is executing correctly (at a fundamental
+level), but rather on whether the driver has obviously harm-
+ful side-effects beyond its interface.
+
+Second, while fault isolation research has focused on
+the drivers interface with the kernel, arguably the drivers
+interface to its hardware device is equally important (if not
+more important) since rebooting the kernel may do little
+good once persistent device state has been corrupted. In
+contrast with the driver/kernel interface, which tends to be
+relatively uniform across drivers, the driver/device interfaces
+are far more diverse and device-specic, which makes it
+
+655analysis enabled by Guardrail does increase overall compu-
+tational load on the system, our decoupled approach allows
+the bulk of this overhead to be ofoaded onto idle CPUs
+(unless the system is already saturated on CPU throughput).
+Hence Guardrail is suitable for either a fast debug/testing
+environment or a production environment that is not already
+throughput limited.
+1.3 Related Work
+As described above, our work complements earlier research
+on fault isolation [4, 5, 14, 18, 45, 50] by not only using in-
+terpositioning to prevent harmful side effects from escaping
+from the driver, but also by opening the black box: i.e., us-
+ing instruction-by-instruction dynamic analysis of the driver
+software to hopefully identify problems that are not obvious
+to interface invariant checks. In contrast with the previous
+proposal for isolating devices from driver faults [50], which
+required modifying the driver and moving it into user-space,
+our approach is transparent to both the driver and the device,
+therefore enabling Guardrail to work with arbitrary driver
+binaries and devices.
+
+Regarding dynamic checking for faults within drivers,
+SafeDrive [54] and KAddrcheck [15] perform run-time
+checks to detect memory addressability issues in kernel
+code, including drivers. In contrast with SafeDrive [54],
+which instruments drivers at compile-time, our approach
+works directly on binaries and does not require access to
+driver source code. In contrast with KAddrcheck [15], our
+approach uses decoupled analysis to reduce the impact on
+driver performance and can detect problems with mem-
+ory initialization (in addition to addressability). Moreover,
+within the same Guardrail framework, a wide variety of tools
+are readily supported. For example, our DMACheck tool dy-
+namically detects DMA bugs in drivers; this runtime ap-
+proach is complimentary to a static analysis approach [3]
+detecting similar bugs using separation logic with permis-
+sions.
+
+Finally, DataCollider [13] detects data races through a
+sampling-based approach by stalling kernel threads in crit-
+ical sections and using data breakpoints to detect conict-
+ing accesses in other threads. There are three fundamental
+differences between DataCollider and our Guardrail-enabled
+data race detection tool (DRCheck, which we describe in de-
+tail later in this paper). First, DataCollider can only detect
+whether a data race occurred in a specic observed interleav-
+ing, whereas DRCheck can detect race conditions that might
+occur in other interleavings (because DRCheck models syn-
+chronization protocols used in the driver). Second, DataCol-
+lider uses sampling to reduce run-time overheads, whereas
+DRCheck uses decoupled analysis to reduce overhead while
+still checking all driver invocations for potentially harm-
+ful behavior. Third, DataColliders stalling approach is not
+suited for threads servicing time-critical interrupts, making
+it less effective for drivers (which are frequently in interrupt
+contexts) than DRCheck.
+
+Figure 1: Incorporating decoupled dynamic analysis to pro-
+tect the system from driver faults.
+
+far more challenging to interpose and successfully check
+invariants across this latter interface [50].
+
+1.2 Our Approach: Protecting Devices through
+
+Decoupled, Instruction-Grain Dynamic Driver
+Analysis
+
+In this paper, we present a new framework (called Guardrail)
+that focuses on preventing buggy device drivers from cor-
+rupting hardware device state. Rather than treating the bulk
+of the driver execution as a black box, Guardrails decision
+of whether to allow the driver to proceed with a side-effect-
+causing operation is driven not simply by invariant checks
+at the drivers interface, but rather by instruction-grain dy-
+namic analysis of the driver software as it executes, as illus-
+trated in Figure 1. Indeed, Guardrail typically identies cor-
+rectness problems within the driver before they even reach
+the drivers interface. Hence Guardrail enables a more com-
+prehensive analysis of whether or not the driver software is
+behaving correctly than what is practical today; for exam-
+ple, handling the case where a buggy driver stores the wrong
+value in a valid target location (in either kernel memory or
+its device).
+
+To achieve this higher delity of dynamic correctness
+checking without sacricing driver performance, we pro-
+pose a decoupled approach to performing the dynamic
+instruction-by-instruction analysis of the driver as it exe-
+cutes. In our decoupled approach, an execution trace of the
+driver software is captured (e.g., via a hardware-assisted
+logging mechanism [6, 47] or through binary instrumenta-
+tion [15, 32]) and stored in a buffer that is consumed asyn-
+chronously by a dynamic analysis tool running concurrently
+in a separate virtual machine. Because the dynamic analysis
+tool can lag behind the driver in our decoupled approach, the
+interposition layer stalls any side-effect-causing operations
+at the driver interface until the dynamic analysis is able to
+catch up. Guardrail effectively achieves a sweet spot be-
+tween synchronous instruction-grain analysis (which results
+in too large of a performance overhead for latency-critical
+driver operations such as interrupt handling) and ofine (or
+post-mortem) instruction-grain analysis (which avoids run-
+time overhead but occurs too late to prevent faulty drivers
+from corrupting persistent state). Although the dynamic
+
+Device	 driver	 Interposi/on	 &	 	 	 Checking	 Device	 Kernel	 Dynamic	 	 Analysis	 Execu/on	 trace	 Interposi/on	 &	 	 	 Checking	 6561.4 Contributions
+This paper makes the following contributions:
+ We propose and implement a novel framework, Guardrail,
+for detecting incorrect driver behavior at run-time and
+preventing the faulty driver from corrupting the rest of the
+system (including persistent state on hardware devices).
+In contrast to previous proposals, Guardrail performs
+instruction-grain correctness checking as the driver ex-
+ecutes, and uses a decoupled VM-based approach to pro-
+vide isolation and minimize the impact on driver perfor-
+mance. Guardrail supports arbitrary kernel-mode driver
+binaries and devices for commodity operating systems.
+ Within Guardrail, we demonstrate three new instruction-
+grain correctness checking tools that detect data races
+(DRCheck), DMA faults (DMACheck), and unsafe uses
+of uninitialized data (DMCheck), none of which are
+supported by existing driver fault isolation techniques.
+DRCheck improves upon prior approaches by minimiz-
+ing false positives and avoiding false negatives, while
+handling the complexities of kernel-mode drivers.
+ Our experimental results show that Guardrail is more
+effective at catching driver bugs than previous tools, e.g.,
+by nding a bug in the popular qla2xxx SCSI driver
+that was undetected for years. Moreover, with hardware
+logging support, Guardrail modestly impacts the end-
+to-end performance of standard I/O workloads in most
+cases.
+
+2. System Design
+To foster a principled approach while designing Guardrail,
+we developed a set of high-level design goals. In particular,
+Guardrail should:
+(generality) support the monitoring of unmodied driver bi-
+naries running in common computing environments (e.g.,
+stock multithreaded OS, arbitrary applications and run-
+time environments, etc.);
+
+(detection delity) enable ne-grain correctness-checking
+and identication of errors, while supporting a wide va-
+riety of monitoring tools;
+
+(containment) provide mechanisms for preventing detected
+
+driver errors from erroneously affecting external state;
+
+(response exibility) allow users to control what Guardrail
+does on detecting an error (e.g., disable I/O operations
+from the driver, or simply record information for post-
+mortem analysis); and
+
+(trustworthiness) rely on a minimal trusted computing base
+
+for containment.
+The system architecture that resulted from these goals is
+shown in Figure 2. To simultaneously satisfy the contain-
+ment and generality goals, we adopted a virtual machine-
+based system. The driver(s) of interest, along with the stock
+
+Figure 2: System architecture of Guardrail.
+
+OS (Linux, in our prototype) and related applications, exe-
+cute in one virtual machine (VM), labeled the Driver VM
+in the gure. The virtual machine monitor (VMM) provides
+the interposition mechanism. I/O operations are intercepted
+in this layer, and should an error be detected, the VMM pre-
+vents the error from propagating outside the Driver VM by
+simply not delivering it to the physical hardware.
+
+While the driver executes, a trace of its operations is col-
+lected and delivered to a second virtual machine, the Anal-
+ysis VM. An instruction-level trace supporting high detec-
+tion delity can be captured through one of several mecha-
+nisms: binary translation [15, 32] in the Driver VM, VMM-
+based monitoring [9, 52], or monitoring hardware [6, 47,
+48]. Because driver code is potentially executed by an un-
+bounded number of kernel threads, logical logs are main-
+tained per virtual processor in the Driver VM, rather than
+per kernel thread, to avoid scalability issues.
+
+The execution trace is streamed, possibly with some
+buffering delay, to the Dynamic Binary Analysis tool, which
+runs in user space in the Analysis VM. This tool consumes
+the execution trace and checks for driver errors, such as data
+races or memory access violations, to help the VMM deter-
+mine when (or if) an intercepted I/O operation can be safely
+dispatched to the device (see Section 2.2 for details). If a
+fault is identied in the drivers execution then it is poten-
+tially unsafe to dispatch the intercepted I/O operation to the
+device. However, the appropriate course of action in this sit-
+uation often depends on the particular requirements of the
+user (e.g., willingness to sacrice system availability to en-
+sure persistent data integrity). Therefore, to accommodate
+the variety of constraints in production sites, end users have
+the response exibility of conguring Guardrail to operate in
+one of 3 modes: (i) stringent, (ii) permissive, and (iii) triage.
+In stringent mode, Guardrail blocks the intercepted and
+subsequent I/O operations from the driver, effectively dis-
+abling the I/O device. Permissive mode is the other extreme,
+where after performing user specied actions (e.g., alerting
+the user, recording event information for additional off-line
+post-mortem analysis, taking a system checkpoint, enabling
+additional online analysis, etc.) Guardrail dispatches the of-
+fending I/O operation to the device and resumes normal
+execution. Triage mode represents a middle ground between
+
+User	 space	 Kernel	 space	 VMM	 space	 I/O	 interposi4on	 Device	 Driver	 Driver	 VM	 Analysis	 VM	 Dynamic	 Binary	 Analysis	 Hardware	 Device	 2	 4	 1	 3	 On	 I/O	 Event	 1.	 Access	 trap	 2.	 Request	 approval	 3.	 Approve	 access	 4.	 Complete	 access	 During	 Execu1on	 0.	 Collect	 Trace	 0	 Trace	 657these two extremes, where Guardrail performs a best-effort
+estimation of the safety of completing the I/O operation by
+automatically triaging the fault [22, 27, 34]. If the I/O op-
+eration is deemed safe, Guardrail behaves like permissive
+mode, otherwise it behaves like stringent mode. Although
+this exibility allows Guardrail to be congured in interest-
+ing ways for different real-world deployment scenarios, this
+paper is however focused on stringent Guardrail.1
+
+Note that in this design, the trustworthiness of the con-
+tainment mechanism is maintained because any complexity
+associated with tracking the driver state, emulating device-
+specic logic, or correctness checking is managed in the
+dynamic analysis tool. Consequently, device-independent
+I/O interpositioning may be implemented through a sim-
+ple addition to the VMM layer; less than 500 lines of C
+code were required to retrot a commodity VMM (Xen [2])
+with I/O interpositioning. The complexity of the checking
+tool may be non-trivial, however, primarily because the sys-
+tem was designed to accommodate arbitrary correctness-
+checking to cope with the wide variety of bug types that
+plague drivers [8, 17, 31]. Fortunately, these tools run in
+user space of the Analysis VM, easing their development
+and deployment.
+
+2.1 Analysis Scope
+An important question that arises in our design is: which
+events should be captured in the execution trace? For ex-
+ample, the trace could capture all instructions events in the
+Driver VM, all kernel-level events only, or solely events
+associated with the driver. Naturally, capturing a larger set
+of events than necessary incurs a performance overhead, so
+ideally, the driver analysis tool would only need to process
+events generated by the driver. In our case, this would mean
+instructions whose addresses belong to the loaded driver
+module.
+
+However, we soon observed that many operations critical
+to determining whether a driver is behaving correctly are
+in fact performed outside the driver. In particular, the I/O
+subsystem (or protocol stack) (e.g., network, SCSI, sound),
+which manages the driver, provides certain invariants upon
+which the driver writer may rely. For example, the network
+stack will acquire certain locks prior to driver execution to
+protect shared data accesses within the driver, as illustrated
+by the code snippet from Linux 2.6.18 in Figure 3. Here, the
+network stack serializes packet transmission by locking the
+execution of the drivers hard start xmit() callback. A
+race detector focused solely on the drivers execution would
+not observe the lock acquire, which happens outside the
+driver context, and hence would incorrectly ag as data races
+
+1 Permissive and Triage modes only affect Guardrails response to suspected
+driver correctness issues within the context of the Driver VM. The interpo-
+sition layer always enforces the virtual machine denition. For example, an
+attempt to read/write past the end of a virtual disk will be strictly enforced
+under all modes.
+
+Figure 3: The Linux interface to network drivers serializes
+packet transmission by locking hard start xmit().
+
+all pairs of accesses in hard start xmit() by different
+threads with at least one writer.
+
+To address this issue, Guardrail monitors and analyzes
+operations occurring in the relevant portions of the I/O sub-
+system (e.g., the scsi mod module in the Linux SCSI sub-
+system) as well as those originating in the driver, itself. Ex-
+tending the scope to include this interface captured all such
+critical operations that we observed. Our goal is not to de-
+termine whether there are errors in the interface, but rather
+to detect operations that are critical to driver correctness, and
+this extension was useful for both our memory fault and data
+race detectors. A possible drawback of our approach is that
+interface changes across kernel versions will require corre-
+sponding modications to our checking toolsfortunately,
+such changes are likely infrequent because they require cor-
+responding modications to the entire driver code base.
+
+I/O Interposition Details
+
+2.2
+Because devices are controlled by reading/writing device
+registers, the interposition layer prevents driver errors from
+propagating beyond the VM boundary by: (i) intercepting
+all2 device register accesses, (ii) coordinating with a decou-
+pled correctness checker to determine the safety of the ac-
+cesses, and (iii) ensuring their timely completion as soon as
+they are deemed safe. Because the Driver VM has direct ac-
+cess to the device [51], the interposition layer is transparent
+to both the driver and device, and therefore supports arbi-
+trary drivers and devices. Figure 2 depicts the steps associ-
+ated with the transparent handling of a device register access.
+Intercepting device register access Device register ac-
+cesses from the driver are intercepted by ensuring that device
+register accesses from the Driver VM fault to the VMM. In
+virtualized x86 environments, the I/O port address space is
+typically considered to be privileged by default and accesses
+to this space will fault. Many modern devices, however, are
+managed through memory-mapped I/O registers that are ac-
+cessed through regular load and store instructions. Because
+these operations are subject to the usual address translation
+mechanisms, Guardrail intercepts accesses to the device reg-
+isters by conguring the page tables of the Driver VM such
+that these accesses fault to the VMM. The page faults result-
+ing from this interposition can be distinguished from normal
+memory management page faults based on the faulting ad-
+
+2 Some performance improvements could be obtained by not intercepting
+I/O operations that do not affect externally-visible state, such as side-effect
+free reads, but such optimizations would require scrutiny of the operations
+and were not pursued in this work.
+
+ HARD_TX_LOCK(dev, cpu);!  . . .     !  rc = dev->hard_start_xmit(nskb, dev);! . . .! HARD_TX_UNLOCK(dev);!658dress. Note that interposition only affects communication
+originating from the Driver VM; interrupts to the Driver
+VM may be delivered normally.
+Coordinating with decoupled correctness checking To
+limit the performance penalty of I/O interposition, inter-
+cepted device accesses should be veried and re-issued as
+soon as possible. If correctness checking is coupled with
+I/O interposition [50], this can be relatively straightforward;
+however, in our decoupled checking approach, additional co-
+ordination is required between the interposition and check-
+ing components. After intercepting a device register access,
+the interposition layer uses a memory-based communication
+channel to request approval from the checker to complete
+the access. Details of the faulting instruction (e.g., thread id,
+faulting address) are included in the request. If the checker
+veries that no errors occurred in the execution trace up to
+the point where the access was encountered, the access will
+be approved. Otherwise, if the access is disapproved because
+of a driver fault, the interposition layer can initiate recovery
+using appropriate techniques [5, 24, 46].
+
+Because the checkers response will typically incur some
+latency, the interposition layer has at least two options re-
+garding what to do while waiting for the checkers response.
+The rst is to hold the request in the hypervisor until the
+response arrives, effectively freezing the virtual CPU. To
+maintain the responsiveness of the guest OS, if interrupts are
+generated during this period, they should be delivered to the
+virtual CPU at the point just before the faulting instruction.3
+For development expediency, we selected a different option:
+the interposition layer simply returns control to the faulting
+instruction periodically. In other words, a guest OS thread
+that accesses a device register will continue executing the
+access and trapping into the interposition layer, until either
+the checker veries the safety of the access or the thread is
+preempted.
+Completing device register access After the checking tool
+has veried that the intercepted register access is safe, there
+are two ways of issuing the operation: (i) retrying the fault-
+ing instruction after temporarily making the device register
+available to the guest OS [10], or (ii) emulating the fault-
+ing instruction in the hypervisor. Because the concurrently
+executing kernel threads of commodity OSes share a sin-
+gle kernel address space, the rst option requires great care
+in attempting to ensure that the temporarily accessible page
+is only accessed by the veried operation in the intended
+thread at an appropriate time. Consequently, in our current
+implementation, we chose the emulation option in order to
+avoid potential containment errors, especially in SMP envi-
+ronments.
+
+3 We assume that the faulting instruction will eventually be re-executed, and
+the matching approval from the checker can then be applied. The VMM
+may need to monitor the guest to ensure it doesnt make an adjustment to
+prevent such re-execution (e.g. re-writing the stack). Such adjustments were
+not encountered in our experiments.
+
+3. Driver Correctness Tools
+Guardrail enables a wide range of driver correctness check-
+ing tools. In this work, we focus on tools for memory safety
+and concurrency, and OS protocol issues, because studies
+have shown that these account for a signicant fraction of
+production driver faults [8, 17, 31, 39]. This section de-
+scribes the three instruction-grain dynamic analysis tools
+that we developed for nding (i) data races, (ii) violations
+of OS rules for using DMA, and (iii) memory faults in un-
+modied Linux driver binaries.
+3.1 DRCheck: Detecting Data Races
+Our rst dynamic analysis tool, DRCheck, detects data races
+in kernel-mode drivers. A data race condition occurs when-
+ever there are two unserialized accesses to the same shared
+data with at least one being a write. Race conditions are dif-
+cult to avoid during driver development because of the com-
+plex concurrency setting in which drivers operate, and dif-
+cult to nd during pre-release testing because of their non-
+deterministic nature. Moreover, most drivers are developed
+by third parties who are unlikely to be kernel experts [17,
+31]. As modern OS kernels and their drivers increasingly
+exploit parallelism to improve performance, avoiding race
+conditions becomes all the more challenging, posing a seri-
+ous threat to system stability.
+3.1.1 Complexity of concurrency issues in drivers
+While there have been many studies on user-mode data race
+detection [16, 41, 42, 53], existing tools cannot be eas-
+ily adapted for drivers, because the concurrency issues of
+kernel-mode execution are more complex than user-mode
+execution. For example, the LockSet algorithm [41], which
+associates a lockset state with each memory location, as-
+sumes that all synchronization occurs through well-dened
+library primitives. To integrate the LockSet techniques into
+DRCheck, any kernel synchronization mechanisms that do
+not use library primitives would need to be adapted to the
+framework. We identied the following four sources of ad-
+ditional complexity that must be addressed in kernel-mode
+driver execution:
+1. a form of concurrency that makes it possible for a single
+thread to make racy accesses to shared data (i.e., to race
+itself);
+
+2. synchronization invariants based on the context of the
+
+device state;
+
+3. synchronization based on deferred execution using softirqs
+
+and kernel timers; and
+
+4. ad hoc mutual exclusion techniques that avoid lock over-
+
+heads, such as disabling interrupts and preemption.
+
+These issues can lead to excessive false positives and false
+negatives for user-mode race detectors, as shown by our
+experimental study in Section 4. We discuss these concur-
+rency issues in more details below, and then describe how
+
+659Figure 4: A kernel thread executing network driver code in
+different Linux kernel contexts.
+
+DRCheck addresses them to reduce false positives and avoid
+false negatives.
+Sources of concurrency in drivers The most basic source
+of driver concurrency is multi-threaded execution of driver
+code that accesses shared data. In addition, a subtle form of
+concurrency is introduced by the multiple execution contexts
+of varying priority levels that are provided by commodity
+preemptive OS kernels, in order to enable scheduling ex-
+ibility for time-constrained, privileged work. For example,
+Linux kernel threads execute either in process context (low-
+est priority) or in interrupt contextfurther divided into bot-
+tom half and top half (highest priority). Kernel-mode execu-
+tion contexts are critical to driver performancethey enable
+the prompt completion of higher priority tasks (e.g., interrupt
+handling) by hijacking a thread that is performing a lower
+priority task and using it for the higher priority task. As an
+example, Figure 4 illustrates the time line of a kernel thread
+executing network driver code in process and interrupt con-
+texts of the Linux kernel. The thread is initially executing the
+packet transmission routine of the driver in process context,
+next it is switched to top half context to service a network
+card interrupt using the interrupt handling routine, and after-
+wards it resumes the packet transmission routine. However,
+execution contexts complicate concurrency in drivers in the
+sense that if the high priority code shares data with the sus-
+pended low priority code then the kernel thread could race
+itself.4 For example, a race would occur in Figure 4 if on re-
+sumption of process context the thread reads data that was
+updated in top half context. Such a race will be missed by
+existing race detection tools because only one thread is in-
+volved.
+Device state-based synchronization Many peripheral de-
+vices (ethernet, scsi, usb, etc.) behave like nite state ma-
+chines (FSM), and drivers often use their states to protect
+critical sections. The set of valid operations for a device de-
+pends on the state of the device, and so the kernel, in or-
+der to prevent device failures, invokes only driver callbacks
+that are valid for the current device state. In other words,
+device states act as the invariants that guard the invocation
+
+4 A restricted form of this issue arises in user-space due to signal handling
+(i.e., reentrancy), and to our knowledge has been ignored by prior work on
+user-space data race detection.
+
+Figure 5: State transitions for a Linux PCI network device,
+showing that the probe() and open() functions of the
+driver are serialized.
+
+of certain driver callbacks by the kernel. Thus, any pair of
+driver callbacks that are never concurrently valid (i.e., they
+have conicting invariants) will not execute concurrently,
+and their critical sections are mutually serialized as a re-
+sult. For example, consider the FSM snippet in Figure 5
+for a Linux network device. It shows that the pci::probe
+and netdev::open callbacks of a network driver are valid
+in different device states, and hence cannot race with each
+other. Existing race detection tools are oblivious to the in-
+variants (or states) in which driver callbacks are executed,
+and hence they can incorrectly report races between call-
+backs with conicting invariants. Indeed, our experimental
+study in Section 4 shows that ignoring state-based synchro-
+nization results in a high false positive rate.
+
+Deferred execution Kernel
+threads that execute under
+tight deadlines (e.g., interrupt service routines) often have
+important tasks (e.g., copying received packets from the net-
+work card) that cannot be completed in a timely manner.
+Thus, most OS kernels provide mechanisms for postponing
+work until a more convenient time, such as softirqs in Linux,
+deferred procedure calls (DPCs) in Windows, and software
+interrupts in Solaris. Kernel timers are also provided for
+deferring the execution of functions, such as checking that
+tasks are completed on schedule or that a device is still func-
+tional, until at least a specied time in future.
+
+Softirqs are commonly used by interrupt handlers of high
+performance drivers to defer work to a future context, e.g.,
+to the bottom half context. However, the way the interrupt
+thread deferring work synchronizes with the polling thread
+that will do the work poses a challenge for data race analysis
+because these threads do not share any locks. Kernel timers
+also pose some challenges to data race detection. For exam-
+ple, although a delay is specied when registering a timer,
+only the operations that were performed by the thread prior
+to timer registration are guaranteed to be serialized with ex-
+ecution (possibly by a different thread) of the deferred func-
+tion. This is because the thread could be preempted for a
+period longer than the timer delay. Also, successive execu-
+tions of the function of a timer are serialized, even though
+synchronization primitives (e.g., locks) are not used in the
+function. On the other hand, executions of functions with
+different timers are not serialized.
+
+Kernel-mode mutual exclusion primitives The kernel pro-
+vides a variety of synchronization primitives for mutual
+
+Interrupt	 context	 Time	 Priority	 1.In	 process	 context	 (e.g.	 packet	 transmission)	 2.Preempted	 to	 interrupt	 context	 to	 service	 NIC	 interrupt	 (e.g.	 packet	 recep>on)	 3.Resume	 process	 context	 Process	 context	 1	 2	 3	 connected	 to	 pci	 bus	 inac.ve	 ready	 for	 	 pkt	 rx/tx	 pci::probe () netdev::open () 660exclusion: (i) locking primitives such as spinlocks and
+mutexes, (ii) operations that disable interrupts and pre-
+emption, and (iii) hardware atomic instructions such as
+test and set. Detecting (and tracking) locking primitives
+such as spinlocks and mutexes is easy because of their mod-
+ularized interface (e.g., spin lock()/spin unlock()).
+However, other primitives, such as interrupt enabling/disabl-
+ing and hardware atomic instructions (e.g., test and set)
+require more effort to detect because they are not accessed
+through modularized interfaces.
+
+3.1.2 Addressing driver concurrency issues
+Before describing how DRCheck addresses the concurrency
+issues of kernel-mode drivers, we rst discuss how DataCol-
+lider [13] (discussed in Section 1.3) addresses these issues.
+DataCollider purposely stalls kernel threads and detects
+synchronization errors by observing collisions between
+the stalled thread and improperly synchronized threads. A
+thread collides with a purposely stalled thread only if there
+is nothing preventing them from collidingthe tool need
+not reason about the particular mechanisms used to serial-
+ize threads. However, because such stalling is not suited for
+threads servicing time-critical interrupts, DataCollider pro-
+vides only limited coverage of interrupt contexts. This makes
+DataCollider less effective for drivers, because interrupt con-
+texts represent signicant portions of driver executions.
+
+DRCheck, in contrast, covers interrupt contexts as well
+as all other contexts. Furthermore, DRCheck can detect not
+just realized race conditions but also some potential race
+conditions that may occur in thread execution interleavings
+other than the one(s) observed.
+
+Detecting driver concurrency DRCheck uses thread iden-
+tier information to detect and disambiguate the concur-
+rency associated with multi-threaded execution of driver
+code, similar to user-mode tools. To detect concurrency due
+to interleaved execution of different execution contexts by
+a single kernel thread, DRCheck also tracks the execution
+context of each kernel thread. Basically, just as memory
+operations of a user-mode thread are considered serialized,
+DRCheck considers the memory accesses of a kernel thread
+in a particular context to be serialized. In other words, ex-
+cept when explicitly synchronized by any of the methods
+discussed in this section, a kernel threads memory access in
+one context is considered to be concurrent with its memory
+accesses from other contexts.
+
+Detecting synchronization based on device state As dis-
+cussed in Section 3.1.1, devices can be in certain disjoint
+states known to the kernel, and the kernel may (implicitly or
+explicitly) guarantee that certain driver entry points are only
+invoked in particular device states. Figure 6, for example,
+shows how the Linux kernel networking stack uses device
+states to guard the execution of the open() callback of a net-
+work driver. Consequently, driver code need not include ex-
+
+Figure 6: Snippet of Linux network code that uses device
+state to guard the open() callback of a network driver.
+
+plicit synchronization between two access if those accesses
+are known to only occur in particular states.
+
+DRCheck detects the use of device state for synchroniza-
+tion by drivers by exploiting the fact that the kernel already
+leverages device state information to guard driver execution.
+For each driver callback, DRCheck dynamically maintains
+the set of all the device states in which the callback has been
+invoked. With this information, DRCheck can identify call-
+backs that are invoked under disjoint sets of device states.
+Because such callbacks cannot execute concurrently with
+one another, their accesses to shared data are implicitly seri-
+alized and therefore not races. An alternative to dynamically
+building the set of device states for each callback would be
+to obtain such information from kernel experts [12, 19], per-
+haps reducing runtime overhead. However, we adopted our
+dynamic discovery approach because it does not rely on the
+availability of correct specications.
+
+Because drivers routinely change device states, the ba-
+sic approach of tracking states at driver entry points is not
+sufcient: other regions of a callback might execute under a
+different set of states. As a renement, DRCheck also tracks
+device states at code points that follow device state changes.
+So far, we have focused on device states that are used by the
+kernel to control driver execution. Some examples include
+status of the PCI connection, interrupt request line (IRQL),
+polling/interrupt handling, etc. However, it is possible for
+a driver to use other state information internally to manage
+critical sections. Nevertheless, our focus is on kernel-aware
+device states, because most OS kernels organize devices into
+classes (e.g., network, scsi, graphics, usb) and export a stan-
+dard interface to the drivers of a given class. It is therefore
+more scalable to design for the kernel interface rather than
+for individual drivers.
+
+Handling deferred execution Although Linux interrupt
+threads that defer work using softirqs do not share locks with
+the polling threads that will eventually do the work, they do
+invoke the polling threads using the raise softirq call.
+Further, the Linux softirq infrastructure guarantees that only
+one polling thread, on the same processor as the interrupt
+thread, will respond to a given call and complete the deferred
+work. Hence, DRCheck recognizes the raise softirq call
+as the serializing operation between threads.
+
+For kernel timers, DRCheck associates a virtual state with
+each timer. A timer is inactive before its registration, and ac-
+tive until it executes, after which it becomes inactive again.
+
+int dev_open (dev) {!  !  !if (! test_bit(__LINK_STATE_PRESENT, &dev->state))!     return ENODEV;!  ! dev->open (dev)!  !661This serializes the execution of the timer to operations pre-
+ceding its registration. Additionally, DRCheck associates a
+virtual lock with each timer that is held throughout the exe-
+cution of the timer function. This serializes successive exe-
+cution of the timers function.
+
+Detecting non-lock based mutual exclusion Interrupt en-
+abling/disabling can be detected (and tracked) by observ-
+ing the specic instructions (e.g., STI, CLI, POPF, IRET,
+etc. in x86) in the execution trace. Hardware atomic instruc-
+tions like test and set are more challenging because of
+the need to determine whether the instruction guards a criti-
+cal section and, if so, whether or not it succeeded in entering.
+DRCheck uses pattern matching over a small window of the
+trace starting with the test and set instruction (btsl in
+x86) in order to determine whether the sequence matches a
+known critical section preamble for the specic kernel. If so,
+it checks the value returned by the test and set to deter-
+mine whether it succeeded.
+
+3.1.3 DRCheck implementation
+DRCheck is an extension of the Lockset algorithm in
+Eraser [41]. Lockset detects races in multithreaded applica-
+tions by checking that shared data access is protected by a
+consistent locking discipline. Lockset maintains metadata for
+each word of shared memory indicating whether the location
+has been accessed by multiple threads, and if so, the set of
+locks consistently held by all threads accessing the location
+from that point on. If there is no such common lock, Lockset
+reports a potential data race.
+
+DRCheck extends Lockset as follows. First, adapting
+Lockset for kernel-mode locking primitives was straightfor-
+ward for the ones that behave similarly to user-mode prim-
+itives (e.g., kernel spinlocks). However, some kernel-mode
+locking primitives, such as spin lock irq, also disable
+interrupts. Based on previous Lockset proposals for support-
+ing interrupts, per-CPU virtual locks are associated with
+interrupt contexts, and are acquired by threads that disable
+preemption or interrupts. Logical locks are maintained for
+virtual and real locks, e.g. spinlocks, including bitlocks of
+atomic test and set instructions. In the evaluation, we
+call this variant KLockset.
+
+Second, we add the mechanisms for handling deferred
+execution discussed in Section 3.1.2. Finally, we further
+include state-based synchronization tracking, as follows. For
+each shared data, in addition to tracking the set of locks
+held by threads on each access, the set of device states is
+also tracked. The state variable eld in the device class data
+structure of each driver is used to track device states. When a
+shared datas set of locks becomes empty at an access, a race
+is not reported only if the current device state is disjoint with
+the state set of the data. Instead, the locations metadata is
+reset to the exclusive (i.e., no longer accessed by multiple
+threads) state.
+
+Note that, as in all our tools (recall Section 2.1), DRCheck
+tracks synchronization in both the driver and kernel-driver
+interface execution, while reporting races only in the driver
+execution.
+
+3.2 Direct Memory Access (DMA) Faults
+Direct Memory Access (DMA) is a common technique for
+transferring data to and from devices without consuming
+CPU cycles. To detect incorrect DMA operations that might
+harm the system, we created a new tool within our Guardrail
+framework called DMACheck, which performs instruction-
+grain dynamic analysis of drivers to ensure that they cor-
+rectly address the following issues related to DMA buffers
+(i.e. regions of system memory used in DMA transfers):
+Sharing: Because DMA buffers are shared between the
+driver and the device, there is the potential for data races
+(e.g., writes by the driver into source DMA buffers could
+corrupt outgoing I/O data). Hence the driver should as-
+sume that the device has exclusive access during a trans-
+fer in order to avoid data corruption.
+
+Management: DMA buffers are system resources, and
+should be carefully managed by drivers. Drivers should
+avoid leaking (i.e., failing to unmap) DMA buffers, or
+redundantly mapping or unmapping them.
+
+Coherence: Because devices access DMA buffers directly
+(bypassing any caches) on non-coherent systems while
+drivers accesses to DMA buffers can be cached, cache
+lines should never mix DMA buffer data with other types
+of data (including other DMA buffers). Proper alignment
+and padding of data can prevent this problem.
+DMACheck detects DMA buffer bugs in Linux drivers
+by monitoring how they manipulate DMA buffers. Because
+Linux drivers operate on DMA buffers through both vir-
+tual and physical addresses (e.g., a driver reads or writes a
+DMA buffer using the virtual address, but synchronizes the
+cache and memory copies of the buffer using the physical
+address), DMACheck tracks the mapping of a DMA buffer
+in both the virtual and physical address spaces; this makes
+it unusual compared with other tools. (DRCheck and DM-
+Check (Section 3.3), for example, need to track only vir-
+tual addresses.) Although some DMA buffer bugs (e.g., mis-
+aligned DMA buffers) can be detected simply by inspecting
+the arguments that drivers use to make DMA function calls
+(e.g., dma map single()), data races require instruction-
+grain dynamic analysis to identify when driver accesses to a
+DMA buffer overlap with those from the device.
+
+DMACheck detects races on DMA buffers by checking
+for unserialized accesses by the driver and device to a DMA
+buffer. One challenge is that device access to DMA buffers
+cannot be directly observed by DMACheck. To overcome
+this, DMACheck denes a time interval that includes the pe-
+riod during which a DMA buffer could be accessed by the
+device, and checks that no driver accesses are made to the
+
+662buffer during that interval. We identied two pairs of driver
+operations for dening this interval: (i) between mapping the
+buffer into the I/O address space and the corresponding un-
+mapping, and (ii) between specifying the buffer as part of a
+DMA transfer to the device and the corresponding servicing
+of the completion interrupt. While the latter option may ap-
+pear to provide a smaller correct interval, DMACheck uses
+the former, more conservative, option for two practical rea-
+sons. First, some coherence issues of DMA are addressed
+when DMA buffer(s) are mapped/unmapped into/from the
+I/O address space. For example, the cache lines of a source
+DMA buffer are ushed when it is mapped for the device to
+read, and thus, later driver updates may be lost in the trans-
+fer. In fact, Linux kernel documentation recommends that
+drivers should not touch DMA buffers that are accessible
+to the device without unmapping the buffer or synchroniz-
+ing the cache and memory copies. Second, the latter option
+requires understanding the device-specic way that drivers
+setup DMA transferan unscalable undertaking, given the
+large number of available devices.
+3.3 DMCheck: Detecting Memory Faults
+Kernel-mode drivers for commodity OSes are prone to type
+safety issues because they are written in unsafe languages
+(C and C++). Common memory faults in drivers include
+accesses to unallocated memory, unsafe use of uninitialized
+data, and memory leaks. The objective of our analysis is
+to detect such faults in driver executions. To this end, we
+adapt the analysis in Memcheck [28], a popular tool for
+nding memory faults in application binaries, to kernel-
+mode drivers. Specically, we use Memchecks algorithm
+for nding memory faults by maintaining metadata for each
+byte of memory indicating whether the byte is currently
+allocated and, if so, whether it has been initialized. The
+metadata is updated in response to instructions that initialize
+data or system calls that allocate or free memory. An error
+is reported if an instruction accesses unallocated memory or
+uses uninitialized data in an unsafe way, or a memory leak is
+detected.
+
+Our tool, DMCheck, adapts Memcheck to kernel-mode
+drivers by addressing two issues: (i) recognizing kernel func-
+tions for (de)allocating memory, and (ii) dealing with mem-
+ory objects that are (de)allocated outside the driver. The rst
+issue is trivially handled by recognizing that kernel memory
+management functions such as kmalloc() and kfree() are
+analogous to user-space functions such as malloc() and
+free().
+
+The second issue arises because of the need for drivers to
+communicate with the kernel in an efcient manner. Some-
+times, this means the driver will manipulate memory ob-
+jects that are allocated by other parts of the kernel. An ex-
+ample can be found in how socket buffers, for storing net-
+work packets, are handled in the network stack. The packet
+transmission path of a network driver receives socket buffers
+from the network stack and deallocates them after transmis-
+
+sion. Conversely, the packet reception path allocates socket
+buffers, for received packets, and expects the network stack
+to deallocate them. DMCheck addresses this issue by incor-
+porating the kernel-driver interface module into our analysis,
+as described in Section 2.1, so that the address range for each
+such memory object can be captured by the analysis.5
+
+3.4 Discussion
+As we demonstrate through evaluation with production
+Linux drivers (Section 4.2), our checking tools can detect
+errors that are missed by current techniques. This suggests
+that our techniques can be used to improve driver debugging
+and testing, and to make production systems more resilient
+to defective drivers. However, in evaluating how to deploy
+our techniques in these scenarios, it is worth considering the
+practical implications of false positives and false negatives
+that certain analysis tools may incur.
+
+DRCheck is a tool that may incur false positives. The un-
+derlying Lockset algorithm of DRCheck leads to false data
+race reports for code that while properly synchronized, de-
+viates from the expected locking discipline. This is a seri-
+ous limitation for production deployments, because halting
+a system for a false alarm is simply unacceptable. Moreover,
+the fact that 76%90% of true races are actually benign [27]
+means that simply avoiding false alarms (e.g., by incorporat-
+ing a Happens-Before approach [53]) is insufcient. How-
+ever, rather than foregoing race detection entirely on pro-
+duction systems, we believe that Guardrails triage mode
+(Section 2) can help, when armed with techniques seeking
+to automatically classify the alarms raised by DRCheck into
+harmless and harmful races. Furthermore, DRCheck could
+be extended to recognize the synchronization patterns and
+benign data sharing patterns that it had incorrectly agged
+in the past, to improves its classier and reduce the number
+of spurious alarms.
+
+The dynamic nature of our techniques creates the possi-
+bility of false negativesrun-time analysis cannot guaran-
+tee driver correctness. Rather, our tools can determine only
+whether or not the observed driver executions (i.e., code
+paths, thread interleavings, and input) are fault-free. For pro-
+duction deployments, this is not a problem because the goal
+is to keep the system running (i.e., availability), until there
+is a compelling reason to do otherwise (i.e., driver misbe-
+having). In contrast, for driver debugging or testing, false
+negatives make it difcult to reproduce bugs or guarantee
+their absence. Thus, our tools will be more effective for pre-
+release purposes when combined with techniques for achiev-
+ing high coverage driver execution [7, 36].
+
+5 As in prior work, we trust the kernel-driver interface module. E.g., we
+assume that pointer and size arguments passed to the driver correspond to a
+properly allocated memory object for the given address range. The design
+can be readily extended to correctness check the kernel, but this is beyond
+the papers driver-checking scope.
+
+663Benchmark Description
+
+I/O type
+Multimedia player
+Audio & Video Mplayer
+Webserver
+Apache
+In-memory key value store
+Memcache
+Netperf
+Network perf. meter
+GNU Make Compilation utility
+Postmark
+
+Filesystem benchmark
+
+Network
+
+Storage
+
+Workload
+Full HD movie trailer (i.e., 1920 x 1080p resolution, 24 fps)
+16K requests for 40KB static page using 16 concurrent requests
+256 client threads each making 100K get requests
+20 secs run with 16KB msg for stream and 32B for request/response
+4-way parallel build of Linux 2.6.18 kernel with default conguration
+100K transactions on 20K les of size range 10KB20KB
+
+Table 1: I/O intensive benchmarks and workload settings for evaluating Guardrail.
+
+4. Evaluation
+We evaluated our Guardrail prototype to answer two ques-
+tions:
+
+1. How effectively do our techniques detect driver faults,
+
+particularly when compared with existing techniques?
+
+2. What is the impact on the system end-to-end perfor-
+mance, particularly if the monitored device is heavily
+used?
+
+4.1 Methodology
+The I/O interposition layer of our Guardrail prototype was
+implemented by extending paravirtualized Xen-3.3.1 VMM
+with our techniques for containing potential driver faults.
+The guest OS in the Driver and Analysis VMs was a 32 bit
+Fedora Core 6 OS, based on the Linux 2.6.18 kernel. We
+used a variety of audio, video, network and storage devices
+in our evaluation, along with the corresponding stock, un-
+modied Linux driver binaries. In all experiments, the de-
+vice is directly assigned [51] to the Driver VM to minimize
+I/O virtualization overheads [11].
+Benchmarks We generated driver workloads using a set
+of popular I/O benchmarks, listed in Table 1. We used the
+open source media player, Mplayer, to evaluate the audio
+and video drivers. We evaluated the network drivers us-
+ing the Apache web server, the Memcache in-memory key-
+value store, and the Netperf network performance mea-
+surement tool. Network load for Apache and Memcache
+were generated using their respective benchmarking tools:
+ApacheBench and Memslap, while Netperf load was gener-
+ated using its stream tests (TCP STREAM & UDP STREAM)
+and request/response tests (TCP RR & UDP RR). The stor-
+age drivers were evaluated using the Postmark lesystem
+benchmark and a kernel compilation workload. Table 1
+shows the workload settings for the results in this paper.
+
+Class
+Audio
+Network
+Storage
+Video
+
+Device
+
+Driver
+snd hda intel High Denition Audio (ICH7)
+tg3
+ahci
+nvidia
+
+Broadcom 5754 1Gpbs NIC
+ICH7 SATA disk (200GB)
+Quadro NVS 285
+
+Table 2: Drivers and devices evaluated in real hardware.
+
+Experimental setup We conducted experiments on both
+real and simulated multicore x86 hardware, but used the
+same software stack in both environments.
+
+Our evaluation of Guardrail on real hardware focused on
+the performance of virtualization-based I/O interposition-
+ing and software-based instruction tracing of kernel-mode
+drivers. The devices and corresponding drivers that were
+used in these experiments are presented in Table 2. The test
+system for these experiments was a Dell Precision 390 work-
+station that had Dual-Core Intel Core 2 Duo processors run-
+ning at 2.66 GHZ and with 2GB of physical memory. For
+the network experiments, the server ran on the test system
+while the client ran on a Dell Precision T3400 workstation
+with Quad-Core Intel Core 2 Extreme processors running at
+3 GHz and with a 4GB physical memory. The client system
+was running 32-bit Ubuntu 10 (2.6.32 kernel) Linux OS. The
+client and server systems were in the same local area net-
+work so that network latency was negligible in our results.
+
+For our Guardrail evaluation on simulated hardware, we
+used the Simics [43] full system simulator (academic pack-
+age, version 4.0.63) to model hardware-assisted instruction-
+level streaming of a drivers execution from the Driver VM
+to the Analysis VM. We used these experiments to study
+the bug detection effectiveness of Guardrail and the end-to-
+end performance of online protection of I/O operations from
+buggy drivers. Our kernel-mode instruction tracing hardware
+is based on previous hardware proposals [6, 48] for tracing
+user-mode execution. We carefully chose the simulation pa-
+rameters illustrated in Table 3a to derive a similar environ-
+ment to the real hardware platform. The lack of audio and
+video device models in our simulation package restricted our
+evaluation to the network and storage drivers and devices
+shown in Table 3b.
+
+4.2 Fault Detection
+We evaluated how Guardrail improves driver bug detec-
+tion by using the framework to implement our proposed
+dynamic binary analysis tools: (i) DRCheck, for detecting
+data races (Section 3.1), (ii) DMACheck, for detecting DMA
+faults (Section 3.2), and (iii) DMCheck, for detecting mem-
+ory faults (Section 3.3). The results show that Guardrail
+enables better detection of driver bugs than previous ap-
+proaches.
+
+664Parameter
+Processors
+Private L1I
+Private L1D
+Shared L2
+Main Memory
+Tracing
+Driver VM
+Analysis VM 1 VCPU, 512MB RAM
+
+Values used
+Dual-Core, Intel Pentium 4, 2.6Ghz, 2GB RAM
+16KB, 64B line, 2-way assoc, 1-cycle access lat.
+16KB, 64B line, 2-way assoc, 1-cycle access lat.
+2MB, 64B line, 8-way assoc, 10-cycle access lat, 4 banks
+200-cycle access latency
+512KB log buffer
+2 VCPU, 1GB RAM
+
+Class
+
+Network
+
+Storage
+
+(a)
+
+Driver
+e100
+e1000
+pcnet32
+tg3
+tulip
+qla1280
+qla2xxx
+sym53c8xx
+
+Device
+I82559 100Mbps NIC
+I82543gc 1Gbps NIC
+AM79C973 100Mbps NIC
+BCM5703C 1Gbps NIC
+DEC21143 100Mbps NIC
+ISP1040 SCSI disk
+ISP2200 SCSI disk
+SYM53C875 SCSI disk
+(b)
+
+Table 3: The simulation parameters, and the drivers and devices used for simulation based evaluation.
+
+Tool
+DRCheck
+Det-DataCollider
+Ideal-DataCollider
+
+Count
+9
+2
+6
+
+(a) Data races detected
+
+Count
+Tool
+0
+DataCollider
+11
+DRCheck
+67
+DeferExec
+KLockset
+111
+(b) False data race alarms
+
+Table 4: Races and false alarms reported by Guardrail.
+
+4.2.1 Data races
+As shown in Table 4a, DRCheck found nine serious data
+races in ve Linux drivers (six of which have either been
+conrmed or xed). Also, using this table, we compare
+DRCheck with DataCollider based on the details in [13].
+We made two assumptions in our analysis to increase the
+chances that DataColliders sampling will detect the races.
+First, we assume that the racy accesses, outside of interrupt
+contexts, are deterministically sampled (Det-DataCollider).
+DataCollider does not sample interrupt context accesses for
+robustness reasons. Second, for races involving interrupt
+and non-interrupt contexts, we assume that the non-interrupt
+context access occurred earlier (Ideal-DataCollider). With
+two races will be detected by Det-
+these assumptions,
+DataCollider, and six races by Ideal-DataCollider.
+
+However, unlike DataCollider which has no false posi-
+tives, DRCheck generated a small number of false alarms
+while detecting these driver races, as shown in Table 4b. The
+number of false alarms, though, is an order of magnitude
+fewer than KLockset. DeferExec, which is DRCheck with-
+out state-based synchronizations (Section 3.1.2), falls in be-
+tween. We were not able to compare with DDT [23], an ex-
+isting data race detector for the Windows kernel, because it
+was not described in sufcient detail to enable comparisons.
+
+4.2.2 DMA faults
+The different DMA buffer faults found by DMACheck in six
+drivers are summarized in Table 5a. Races on DMA buffers,
+which are the most serious of these bugs, affected only the
+tulip network driver. DMACheck found seven unique driver
+writes (i.e., static instruction addresses) that could poten-
+
+Bug type
+Data race
+Leak
+Repeat map/unmap
+Misaligned buffer
+
+Count
+7
+4
+4
+10
+
+Tool
+DMCheck
+DDT
+KAddrcheck
+KMemcheck
+
+Count
+2
+1
+1
+2
+
+(a) DMA buffer bugs
+
+(b) Memory bugs
+
+Table 5: DMA buffer bugs detected by Guardrail by type,
+and memory bugs detected by different tools.
+
+tially corrupt I/O data being read by the network card. DMA
+buffers with unaligned virtual addresses (assuming 32 byte
+cache lines) are the most common fault typeaffecting ve
+drivers (i.e., e100, e1000, pcnet32, tg3, tulip). As discussed
+earlier, this bug is a serious issue in non-coherent systems.
+The sym5c8xx driver was the only one that leaked DMA
+buffers (i.e., failed to unmap DMA buffers before unload-
+ing), whereas tulip and tg3 were the only drivers to map
+previously mapped DMA buffers, or unmap previously un-
+mapped DMA buffers. Although these faults reect pro-
+grammer error in managing DMA operations, and should be
+avoided, we did not observe any resulting system failures
+during our experiments.
+
+4.2.3 Memory faults
+As shown in Table 5b, DMCheck found two serious mem-
+ory faults, which have been xed. In particular, the qla2xxx
+memory bug was previously unknown until reported by our
+tool. Based on our report, the bug was eventually xed in
+the 3.2 release of the Linux kernel six years after the 2.6.18
+version we used for our study. Because these bugs involve
+memory that is exclusively used by the driver, they cannot
+be detected using fault isolation techniques that only check
+driver interaction with the kernel [5, 18, 45, 49, 50, 54]. For
+example, the e1000 memory bug is an unsafe use of unini-
+tialized stack data, while the qla2xxx memory bug is an out-
+of-bounds read of memory-mapped device registers.
+
+Furthermore, we use Table 5b to compare DMCheck
+against existing kernel-mode memory fault detectors for the
+Windows kernel (DDT [23]) and the Linux kernel (KAd-
+drcheck [15], KMemcheck [30]). DDT and KAddrcheck track
+
+665memory addressability, and therefore can only detect the
+out-of-bounds bug. KMemcheck, on the other hand, tracks
+both memory addressability and initialization, and therefore
+detected both the memory faults.
+
+4.2.4 Fault detection summary
+In summary, our evaluation validated our thesis that instruc-
+tion-grained dynamic analysis can be used to improve the
+reliability of device drivers by detecting bugs in their exe-
+cution. Guardrails instruction-grained dynamic analysis en-
+ables detection of a signicant number of hard-to-nd bugs
+in production Linux drivers (i.e., data races, DMA buffer
+faults, and memory faults) that are missed by other tools, in-
+cluding a previously unknown buffer overow in the qla2xxx
+storage driver. Guardrail sometimes incurs a small number
+of false positives, e.g., for data race detection. Guardrails
+support for a variety of sophisticated checking tools demon-
+strates its value as a general-purpose framework, in contrast
+to fault-specic tools such as DataCollider.
+
+Instruction-Grained Tracing Performance
+
+4.3
+Guardrails instruction-grained tracing of driver execution
+can be implemented using software or hardware techniques.
+To evaluate the performance of a purely software approach,
+we obtained an early version of the Granary binary instru-
+mentation framework for OS kernels [20] from the authors.
+Granary can instrument individual kernel modules rather
+than the entire kernel. In the version we used, Granary em-
+ploys a trap-based mechanism to toggle instrumentation as
+execution switches between the kernel and the instrumented
+module. We modied Granary to stream the execution trace
+of a module, containing program counter values, instruction
+opcodes, and effective addresses, into a 256KB per-CPU
+circular buffer6. We refer to our Granary modications as
+Granary-Trace.
+
+We used the tg3 driver to measure the impact of Granary-
+Trace on server throughput and CPU utilization. We com-
+pared against running the server on a native Linux system
+(i.e., Linux), and on a Granary system with no instrumen-
+tation (i.e., Granary-Null). For this experiment, the server
+system was running a 64 bit Linux 3.8.2 kernel version be-
+cause Granary was implemented in that OS. The results, nor-
+malized to Linux, are presented in Figure 7. We observed
+that Granary-Trace noticeably impacts both throughput and
+CPU utilization in most cases. Even Apache, which suffers
+no throughput loss, more than doubles its CPU consumption.
+Other benchmarks were impacted more signicantly. For ex-
+ample, Memcache7 suffered a 60% reduction in throughput,
+while the Netperf consumed 4.6x and over 10x more CPU
+cycles for TCP and UDP streaming, respectively. Although,
+Granary-Null outperforms Granary-Trace, it still performs
+poorly in some cases, such as a 23% reduction in Mem-
+
+6 Trace records were overwritten when the buffer lled up.
+7 16 client threads were used because of robustness issues in Granary.
+
+(a)
+
+(b)
+
+Figure 7: Impact of software-based instruction tracing on (a)
+server throughput and (b) CPU utilization.
+
+cache throughput and a 4.4x increase in CPU utilization for
+TCP streaming. The results show that while the overheads
+of a software-based implementation of Guardrail instruc-
+tion tracing are acceptable in test environments, hardware-
+assisted instruction tracing is needed for practical deploy-
+ment of Guardrail in production environments.
+
+I/O Interposition Performance
+
+4.4
+We studied the impact of Guardrails I/O interposition on au-
+dio, video, network and storage I/O performance. For conve-
+nience, we use the following naming convention to report the
+results. Linux means a non-virtualized Linux system and is
+the baseline in all experiments. Xen means Linux as a guest
+OS on Xen VMM with directly assigned physical devices
+(i.e., only CPU and memory are virtualized). IO-Interpose
+is Xen with Guardrails I/O interposition enhancements. Un-
+less stated otherwise, the reported results are the median of
+10 runs.
+
+4.4.1 Audio and video performance
+We used Mplayer to measure the impact of IO-Interpose on
+the audio and video quality of multimedia movie playback
+using the workload shown in Table 1. Mplayer was cong-
+ured to use the ALSA audio output and the X11 video out-
+put modes. The results are summarized in Table 6, and show
+that the playback was of similar audio and video quality on
+
+Linux
+Xen
+IO-Interpose
+
+Time (s)
+150.51
+150.52
+150.52
+
+Frame Rate CPU (%)
+
+23.94
+23.93
+23.91
+
+33
+35
+36
+
+Table 6: Impact of I/O interposition on movie playback.
+
+Normalized	 	 Throughput	 (rela3ve	 to	 Linux)	 1.0	 1.0	 1.0	 1.0	 1.0	 0.8	 1.0	 1.0	 1.0	 0.4	 0.8	 0.5	 0.0	 0.2	 0.4	 0.6	 0.8	 1.0	 Apache	 Memcache	 TCP_STREAM	 UDP_STREAM	 Linux	 Granary-Null	 Granary-Trace	 Normalized	 CPU	 U/liza/on	 (rela/ve	 to	 Linux)	 1.0	 1.0	 1.0	 1.0	 1.3	 1.2	 4.4	 2.8	 2.3	 1.6	 4.6	 10.8	 0	 2	 4	 6	 8	 10	 12	 Apache	 Memcache	 TCP_STREAM	 UDP_STREAM	 Linux	 Granary-Null	 Granary-Trace	 666Linux, Xen, and IO-Interpose, with virtually the same frame
+rates achieved on all 3 systems. The CPU utilization of IO-
+Interpose was 3% higher than Linux and 1% higher than Xen.
+Overall, these results suggest that I/O interpositioning is un-
+likely to degrade the user experience of modern multimedia
+playback in any noticeable way.
+
+4.4.2 Network performance
+We used Apache, Memcache, and Netperf, and the workload
+settings in Table 1 to study the impact of IO-Interpose on
+server throughput or transaction rate (for request/response).
+Figure 8 reports server performance normalized to Linux. In
+most cases, IO-Interpose imposes at most 8% overhead on
+server performance. Since Xen performs similarly in these
+situations, most of the overheads could be attributed to it.
+The exception is Memcache, which loses 38% of its through-
+put on IO-Interpose. Xen appears to be responsible for over
+half of this degradation. CPU utilization for Apache (Mem-
+cache) was 35% (85%) on Linux, 52% (89%) on Xen, and
+58% (92%) on IO-Interpose.
+
+Figure 8: Impact of I/O interposition on network performace.
+
+Memcaches exceptionally poor performance can be at-
+tributed to (i) frequent device register accesses and (ii) high
+CPU utilization in Linux. Memcaches device register ac-
+cess rate (184K/sec) is at least an order of magnitude higher
+than the other benchmarks, which means trap-and-emulate
+overheads are incurred more frequently. Furthermore, high
+CPU utilization means there are fewer idle CPU cycles avail-
+able to handle the frequent trap-and-emulate operations.
+
+4.4.3 Storage performance
+We used the GNU Make compilation utility and the Post-
+mark benchmark with the workload settings in Table 1 to
+evaluate how I/O interpositioning affects disk storage per-
+formance. The results, in terms of normalized performance
+relative to Linux, are reported in Figure 9. Compilation is
+32% slower on IO-Interpose compared to Linux. Also, IO-
+Interpose consumes about 93% of the CPU, which is about
+8% higher than Linux. On the other hand, Xens perfor-
+mance is identical to IO-Interpose, which suggests that in
+this case most of IO-Interpose overheads are due to Xen
+(i.e., CPU and memory virtualization). For Postmark, the
+read, write, and transaction rates of IO-Interpose are 910%
+lower than Linux. Again, the performance of Xen is similar
+
+to IO-Interpose. The CPU utilization of Linux, Xen, and IO-
+Interpose were 7%, 11%, and 8% respectively.
+
+Figure 9: Impact of I/O interposition on storage performance.
+
+I/O interposition performance summary
+
+4.4.4
+Our evaluation shows that Guardrails I/O interposition layer
+imposed at most 10% overheads on common I/O workloads
+in most cases, and that code compilation (32%) and Mem-
+cache (40%) were the exceptions. All of the code compi-
+lation overheads and over half of the Memcache overheads
+could be attributed to CPU and memory virtualization. Fi-
+nally, the combination of Memcaches frequent device reg-
+ister accesses and high CPU utilization in Linux is a worst-
+case scenario for Guardrail.
+
+4.5 End-to-End Performance
+We evaluated the end-to-end performance impact on com-
+mon I/O workloads of using Guardrail for online protec-
+tion of persistent device state from defective drivers. We ran
+Guardrail in permissive mode (Section 2) to ensure that the
+experiments ran to completion without being abruptly halted
+for detected driver faults. We conducted this experiment in
+simulation so as to study the benets of hardware logging
+support. We specically measured the performance of I/O
+workloads while the corresponding driver is being monitored
+by the Guardrail checking toolsDRCheck, DMACheck,
+and DMChecknormalized to the workloads performance
+without driver monitoring in a non-virtualized Linux system.
+Robustness issues of the device models forced us to reduce
+the workload size and study only the tg3 and sym53c8xx
+drivers.
+
+4.5.1 Network performance
+Apache received a total of 1600 requests, Memcache was
+loaded by 16 client threads issuing 1K get requests each,
+and Netperf runs for 5 seconds. The results are presented in
+Figure 10. With the exception of network streaming using
+TCP and UDP, Guardrail imposed modest overheads on the
+workloads ( 6%). However, the throughput reduction for
+TCP streaming was up to 60% (DMCheck) and for UDP
+streaming, up to 53% (DMCheck). The high rate of device
+register accesses (up to 300K/sec) of network streaming
+caused these high overheads, because the driver had to be
+stalled for the checking tool to catch up.
+
+Normalized	 	 Performance	 (rela1ve	 to	 Linux)	 0.91	 0.79	 0.94	 0.96	 0.96	 0.96	 0.92	 0.62	 0.94	 0.96	 0.94	 0.96	 1	 1	 1	 1	 1	 1	 0.0	 0.2	 0.4	 0.6	 0.8	 1.0	 TCP	 UDP	 TCP	 UDP	 APACHE	 MEMCACHE	 STREAM	 REQUEST/RESPONSE	 Linux	 Xen	 IO-Interpose	 1.00	 1.00	 1.00	 1.00	 0.68	 0.90	 0.90	 0.91	 0.68	 0.91	 0.90	 0.90	 0.0	 0.2	 0.4	 0.6	 0.8	 1.0	 (-j	 4)	 Read	 rate	 Write	 rate	 Tx	 rate	 Make	 Postmark	 Linux	 Xen	 IO-Interpose	 Normalized	 	 Throughput	 (relaJve	 to	 Linux)	 667Figure 10: Network performance with Guardrail protection.
+
+Figure 11: Postmark performance with Guardrail protection.
+
+4.5.2 Storage performance
+Postmarks workload setting was congured as in Table 1,
+except with 1K input les. The normalized transaction, read,
+and write rates of the benchmark with Guardrail monitoring
+are reported in Figure 11. The overheads were less than 10%
+in most cases. The sole exceptions were a 1213% reduction
+in read and write rates for DMACheck. The relatively better
+performance compared to network streaming is because the
+device register access rate of Postmark is orders of magni-
+tude lower (i.e., 3K/sec.).
+
+4.5.3 End-to-end performance summary
+Our experiments showed that online protection of the persis-
+tent state of I/O devices from subtle driver bugs (e.g., mem-
+ory faults, data races) can be achieved with minimal impact
+on the end-to-end performance of most I/O intensive bench-
+marks. Network streaming was the exception to this, and we
+observed up to 60% drop in throughput. However, we expect
+that these overheads can be signicantly reduced through
+software [29, 33, 37, 38] and hardware [6, 48] techniques
+for accelerating dynamic analysis.
+
+5. Conclusion
+While device driver code is both (i) critical to proper sys-
+tem operation and (ii) more susceptible to bugs than other
+system software, relatively little work has been done in the
+area of online driver correctness monitoring (perhaps due to
+the performance-sensitive nature of driver software). The re-
+sults of this paper demonstrate that decoupled correctness-
+checking together with VM-based I/O interpositioning can
+provide a high performance driver monitoring framework
+that achieves each of our system goals: generality, detec-
+tion delity, containment, response exibility, and trustwor-
+thiness. Guardrail represents a promising direction in driver
+correctness-checking that provides better safety not only for
+
+system devices, but also for the user data entrusted to those
+devices.
+
+Acknowledgments. We are grateful to Peter Goodman, An-
+gela Demke Brown and Ashvin Goel from the University
+of Toronto for providing us an early copy of Granary for
+our evaluation. We also thank Michael Swift (University of
+Wisconsin-Madison) and Brad Chen (Google) for their valu-
+able input on this research. This work is supported in part by
+a grant from the National Science Foundation and by the In-
+tel Science and Technology Center for Cloud Computing.
+
+References
+[1] T. Ball, E. Buonimova, B. Cook, V. Levin, J. Lichtenberg,
+C. McGarvey, B. Ondrusek, S. K. Rajamani, and A. Ustunner.
+In EuroSys,
+Thorough Static Analysis of Device Drivers.
+2006.
+
+[2] P. Barham, B. Dragovic, K. Fraser, S. Hand, T. Harris, A. Ho,
+R. Neugebauer, I. Pratt, and A. Wareld. Xen and The Art of
+Virtualization. In SOSP, 2003.
+
+[3] M. Botincan, M. Dodds, A. F. Donaldson, and M. J. Parkin-
+son. Safe Asynchronous Multicore Memory Operations. In
+ASE, 2011.
+
+[4] S. Boyd-Wickizer and N. Zeldovich. Tolerating Malicious
+
+Device Drivers in Linux. In USENIX, 2010.
+
+[5] M. Castro, M. Costa, J.-P. Martin, M. Peinado, P. Akritidis,
+A. Donelly, P. Barham, and R. Black. Fast Byte-Granularity
+Software Fault Isolation. In SOSP, 2009.
+
+[6] S. Chen, M. Kozuch, T. Strigkos, B. Falsa, P. B. Gibbons,
+T. C. Mowry, V. Ramachandran, O. Ruwase, M. Ryan, and
+E. Vlachos. Flexible Hardware Acceleration for Instruction-
+grain Program Monitoring. In ISCA, 2008.
+
+[7] V. Chipounov, V. Kuznetsov, and G. Candea. S2E: A Platform
+In
+
+for In-Vivo Multi-Path Analysis of Software Systems.
+ASPLOS, 2011.
+
+[8] A. Chou, J. Yang, B. Chelf, S. Hallem, and D. Engler. An
+Empirical Study of Operating Systems Errors. In SOSP, 2001.
+[9] J. Chow, T. Garnkel, and P. M. Chen. Decoupling Dynamic
+Program Analysis from Execution in Virtual Environments.
+In USENIX, 2008.
+
+[10] A. Dinaburg, P. Royal, M. Sharif, and W. Lee. Ether: Malware
+In CCS,
+
+Analysis via Hardware Virtualization Extensions.
+2008.
+
+[11] Y. Dong, X. Yang, X. Li, J. Li, K. Tian, and H. Guan. High
+Performance Network Virtualization with SR-IOV. In HPCA,
+2010.
+
+[12] D. Engler, B. Chelf, A. Chou, and S. Hallem. Checking Sys-
+tem Rules using System-specic, Programmer-written Com-
+piler Extensions. In OSDI, 2000.
+
+[13] J. Erickson, M. Musuvathi, S. Burckhardt, and K. Olynyk.
+Effective Data-Race Detection for the Kernel. In OSDI, 2010.
+[14] U. Erlingsson, M. Abadi, M. Vrable, M. Budiu, and G. C.
+Necula. XFI: Software Guards for System Address Spaces.
+In OSDI, 2006.
+
+1.00	 0.99	 1.00	 1.00	 0.45	 0.47	 0.95	 0.97	 1.00	 1.00	 0.40	 0.47	 0.94	 0.98	 1.00	 1.00	 0.55	 0.73	 0.0	 0.2	 0.4	 0.6	 0.8	 1.0	 TCP	 UDP	 TCP	 UDP	 APACHE	 MEMCACHE	 REQUEST/RESPONSE	 STREAM	 DMA	 MEMORY	 RACE	 Normalized	 Throughput	 0.91	 0.88	 0.87	 0.91	 0.92	 0.91	 0.91	 0.92	 0.91	 0.0	 0.2	 0.4	 0.6	 0.8	 1.0	 TRX	 RATE	 READ	 RATE	 WRITE	 RATE	 DMA	 MEMORY	 RACE	 Normalized	 Throughput	 668[15] P. Feiner, A. D. Brown, and A. Goel. Comprehensive Kernel
+Instrumentation via Dynamic Binary Translation. In ASPLOS,
+2012.
+
+[34] V. Raychev, M. Vechev, and M. Sridharan. Effective Race
+
+Detection for Event-driven Programs. In OOPSLA, 2013.
+
+[35] M. Renzelmann and M. Swift. Decaf: Moving Device Drivers
+
+[16] C. Flanagan and S. N. Freund. FastTrack: Efcient and Pre-
+
+to a Modern Language. In USENIX, 2009.
+
+cise Dynamic Race Detection. In PLDI, 2009.
+
+[17] A. Ganapathi, V. Ganapathi, and D. Patterson. Windows XP
+
+Kernel Crash Analysis. In LISA, 2006.
+
+[18] V. Ganapathy, M. Renzelmann, A. Balakrishnan, M. Swift,
+and S. Jha. The Design and Implementation of Microdrivers.
+In ASPLOS, 2008.
+
+[19] Q. Gao, W. Zhang, Z. Chen, M. Zheng, and F. Qin. 2ndStrike:
+Toward Manifesting Hidden Concurrency Typestate Bugs. In
+ASPLOS, 2011.
+
+[20] P. Goodman, A. Kumar, A. D. Brown, and A. Goel. Granary:
+A Sane Framework for Instrumenting an Insane Environment.
+Manuscript, 2013.
+
+[21] A. Kadav, M. J. Renzelmann, and M. M. Swift. Tolerating
+
+Hardware Device Failures in Software. In SOSP, 2009.
+
+[22] B. Kasikci, C. Zamr, and G. Candea. Data Races vs. Data
+Race Bugs: Telling the Difference with Portend. In ASPLOS,
+2012.
+
+[23] V. Kuznetsov, V. Chipounov, and G. Candea. Testing Closed-
+Source Binary Device Drivers with DDT. In USENIX, 2010.
+[24] A. Lenharth, V. S. Adve, and S. T. King. Recovery Domains:
+An Organizing Principle for Recoverable Operating Systems.
+In ASPLOS, 2009.
+
+[25] B. Leslie, P. Chubb, N. Fitzroy-dale, S. Gtz, C. Gray,
+L. Macpherson, D. Potts, Y. Shen, K. Elphinstone, and
+G. Heiser. User-level Device Drivers: Achieved Performance.
+J. Computer Science and Technology, 20, 2005.
+
+[26] F. Merillon, L. Reveill`ere, C. Consel, R. Marlet, and
+In
+
+G. Muller. Devil: An IDL for Hardware Programming.
+OSDI, 2000.
+
+[27] S. Narayanasamy, Z. Wang, J. Tigani, A. Edwards, and
+B. Calder. Automatically Classifying Benign and Harmful
+Data Races Using Replay Analysis. In PLDI, 2007.
+
+[28] N. Nethercote and J. Seward. Valgrind: A Framework for
+In PLDI,
+
+Heavyweight Dynamic Binary Instrumentation.
+2007.
+
+[29] E. B. Nightingale, D. Peek, P. M. Chen, and J. Flinn. Paral-
+lelizing Security Checks on Commodity Hardware. In ASP-
+LOS, 2008.
+
+[30] V. Nossum.
+
+Getting
+
+started with KMemcheck.
+
+http://www.mjmwired.net/kernel/Documentation/kmemcheck.txt,
+2012.
+
+[31] N. Palix, G. Thomas, S. Saha, C. Calv`es, J. Lawall, and
+In ASPLOS,
+
+G. Muller. Faults in Linux: Ten Years Later.
+2011.
+
+[32] H. Patil, C. Pereira, M. Stallcup, G. Lueck, and J. Cownie.
+PinPlay: A Framework for Deterministic Replay and Repro-
+ducible Analysis of Parallel Programs. In CGO, 2010.
+
+[33] F. Qin, C.Wang, Z. Li, H. Kim, Y. Zhou, and Y. Wu. LIFT: A
+Low-Overhead Practical Information Flow Tracking System
+for Detecting Security Attacks. In MICRO-39, 2006.
+
+[36] M. J. Renzelmann, A. Kadav, and M. M. Swift. SymDrive:
+
+Testing Drivers without Devices. In OSDI, 2012.
+
+[37] O. Ruwase, P. B. Gibbons, T. C. Mowry, V. Ramachandran,
+S. Chen, M. Kozuch, and M. Ryan. Parallelizing Dynamic
+Information Flow Tracking. In SPAA, 2008.
+
+[38] O. Ruwase, S. Chen, P. B. Gibbons, and T. C. Mowry. Decou-
+pled Lifeguards: Enabling Path Optimizations for Dynamic
+Correctness Checking Tools. In PLDI, 2010.
+
+[39] L. Ryzhyk, P. Chubb, I. Kuz, and G. Heiser. Dingo: Taming
+
+Device Drivers. In EuroSys, 2009.
+
+[40] L. Ryzhyk, P. Chubb, I. Kuz, E. L. Sueur, and G. Heiser.
+Automatic Device Driver Synthesis with Termite. In SOSP,
+2009.
+
+[41] S. Savage, M. Burrows, G. Nelson, P. Sobalvarro, and T. An-
+derson. Eraser: A Dynamic Race Detector for Multithreaded
+Programs. ACM TOCS, 15(4), 1997.
+
+[42] K. Serebryany and T. Iskhodzhanov. ThreadSanitzer - Data
+
+Race Detection in Practice. In WBIA, 2009.
+
+[43] Simics.
+
+Wind River Simics Full System Simulator.
+
+http://www.simics.net/, 2010.
+
+[44] M. F. Spear, T. Roeder, O. Hodson, G. C. Hunt, and
+S. Levi. Solving the Starting Problem: Device Drivers as Self-
+describing Artifacts. In Eurosys, 2006.
+
+[45] M. M. Swift, B. N. Bershad, and H. M. Levy. Improving the
+Reliability of Commodity Operating Systems. In SOSP, 2003.
+[46] M. M. Swift, M. Annamalai, B. N. Bershad, and H. M. Levy.
+
+Recovering Device Drivers. ACM TOCS, 24(4), 2006.
+
+[47] M. Tiwari, S. Mysore, and T. Sherwood. Quantifying the
+
+Potential of Program Analysis Peripherals. In PACT, 2009.
+
+[48] E. Vlachos, M. L. Goodstein, M. A. Kozuch, S. Chen, B. Fal-
+sa, P. B. Gibbons, and T. C. Mowry. ParaLog: Enabling
+and Accelerating Online Parallel Monitoring of Multithreaded
+Applications. In ASPLOS, 2010.
+
+[49] R. Wahbe, S. Lucco, T. E. Anderson, and S. L. Graham.
+
+Efcient Software-based Fault Isolation. In SOSP, 1993.
+
+[50] D. Williams, P. Reynolds, K. Walsh, E. G. Sirer, and F. B.
+Schneider. Device Driver Safety through a Reference Valida-
+tion Mechanism. In OSDI, 2008.
+
+[51] Xen.
+
+Xen
+
+PCI
+
+Passthrough.
+
+http://wiki.xen.org/wiki/XenPCIpassthrough, 2012.
+
+[52] M. Xu, V. Malyugin, J. Sheldon, G. Venkitachalam, and
+B. Weissman. ReTrace: Collecting Execution Trace with Vir-
+tual Machine Determinstic Replay. In MoBS, 2007.
+
+[53] Y. Yu, T. Rodeheffer, and W. Chen. RaceTrack: Efcient
+Detection of Data Race Conditions via Adapative Tracking.
+In SOSP, 2005.
+
+[54] F. Zhou, J. Condit, Z. Anderson, I. Bagrak, R. Ennals, M. Har-
+ren, G. Necula, and E. Brewer. SafeDrive: Safe and Recover-
+able Extensions Using Language-Based Techniques. In OSDI,
+2006.
+
+669

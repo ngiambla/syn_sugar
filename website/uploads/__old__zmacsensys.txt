@@ -1,0 +1,2420 @@
+Z-MAC: a Hybrid MAC for Wireless Sensor Networks
+
+Injong Rhee, Ajit Warrier, Mahesh Aia and Jeongki Min
+
+Dept. of Computer Science, North Carolina State University
+
+Raleigh, NC 27695
+
+ABSTRACT
+This paper presents the design, implementation and perfor-
+mance evaluation of a hybrid MAC protocol, called Z-MAC,
+for wireless sensor networks that combines the strengths of
+TDMA and CSMA while o(cid:11)setting their weaknesses. Like
+CSMA, Z-MAC achieves high channel utilization and low-
+latency under low contention and like TDMA, achieves high
+channel utilization under high contention and reduces col-
+lision among two-hop neighbors at a low cost. A distinc-
+tive feature of Z-MAC is that its performance is robust to
+synchronization errors, slot assignment failures and time-
+varying channel conditions;
+in the worst case, its perfor-
+mance always falls back to that of CSMA. Z-MAC is imple-
+mented in TinyOS.
+
+Categories and Subject Descriptors: B.2.1 [Computer-
+Communication Networks]: Network Protocols, Wireless Com-
+munications
+
+General Terms: Algorithms, Design, Performance
+
+Keywords: MAC, CSMA, TDMA, wireless sensor networks.
+
+1.
+
+INTRODUCTION
+
+A radio channel cannot be accessed simultaneously by
+two or more nodes that are in a radio interference range
+{ neighboring nodes may cause \con(cid:13)ict" or signal interfer-
+ence at some nodes if transmitting at the same time on the
+same channel. In wireless sensor networks, controlling ac-
+cess to the channel, generally known as multiple access con-
+trol (MAC), plays a key role in determining channel capac-
+ity utilization, network delays and more important, power
+consumption. It also in(cid:13)uences congestion and fairness in
+channel usage.
+
+Sensor networks serve many diverse applications from low
+data rate event driven monitoring applications to high data
+rate real-time industrial applications. Balakrishnan [4] re-
+ports that some high data rate applications can reach sens-
+ing rates of 102 to 105 Hz and consume from a few bytes
+per seconds up to 10 or 100 Mbps aggregate bandwidth;
+
+Permission to make digital or hard copies of all or part of this work for
+personal or classroom use is granted without fee provided that copies are
+not made or distributed for prot or commercial advantage and that copies
+bear this notice and the full citation on the rst page. To copy otherwise, to
+republish, to post on servers or to redistribute to lists, requires prior specic
+permission and/or a fee.
+SenSys05, November 24, 2005, San Diego, California, USA.
+Copyright 2005 ACM 1-59593-054-X/05/0011 ...$5.00.
+
+these applications require over 5 times improvement on the
+channel utilization of existing sensor networking technolo-
+gies. Notwithstanding high channel utilization, traditional
+sensor network requirements such as power e(cid:14)ciency, scal-
+ability, robustness and small footprints must also not be
+compromised.
+
+A common MAC paradigm in wireless networks is CSMA
+(carrier sense multiple access). It is popular because of its
+simplicity, (cid:13)exibility and robustness.
+It does not require
+much infrastructure support: no clock synchronization and
+global topology information are required, and dynamic node
+joining and leaving are handled gracefully without extra
+operations. These advantages, however, come at the cost
+of trial and error { a trial may cost access collision where
+more than two \con(cid:13)icting" nodes transmit at the same time
+causing signal (cid:12)delity degradation at destinations. Collision
+can happen in any two-hop neighborhood of a node. While
+collision among one-hop neighbors can be greatly reduced
+by carrier sensing before transmission, carrier sensing does
+not work beyond one hop. This problem, called the hidden
+terminal problem, causes a serious throughput degradation
+especially in high data rate sensor applications. Although
+RTS/CTS can alleviate the hidden terminal problem, it in-
+curs high overhead (40% to 75% of the channel capacity in
+sensor networks [3, 15]) because data packets are typically
+very small in sensor networks.
+
+TDMA (time-division multiple access), on the other hand,
+can solve the hidden terminal problem without extra mes-
+sage overhead because it can schedule transmission times
+of neighboring nodes to occur at di(cid:11)erent times. However,
+TDMA has many other disadvantages as documented in [24].
+First, (cid:12)nding an e(cid:14)cient time schedule in a scalable fashion
+is not trivial. It often requires a centralized node to (cid:12)nd a
+collision-free schedule. Furthermore, developing an e(cid:14)cient
+schedule with a high degree of concurrency or channel reuse
+is very hard (the optimal solution is NP-hard [17]). Sec-
+ond, TDMA needs clock synchronization. Although clock
+synchronization is an essential feature of many sensor appli-
+cations, tight synchronization incurs high energy overhead
+because it requires frequent message exchanges. Third, sen-
+sor networks may undergo frequent topology changes be-
+cause of time-varying channel conditions, physical environ-
+mental changes, battery outage and node failures. Handling
+dynamic topology changes is expensive, possibly requiring a
+global change. Fourth, it is di(cid:14)cult to ascertain the interfer-
+ence relation among neighboring nodes because radio inter-
+ference ranges are di(cid:11)erent from communication ranges and
+some interfering nodes may not be in a direct communica-
+
+tion range (this phenomenon is known as interference irreg-
+ularity [25]). Therefore, any channel assignment that uses
+the communication ranges, in place of interference ranges,
+for building the con(cid:13)ict relations does not necessarily yield
+an interference free schedule. Furthermore as interference
+ranges and also channel conditions are highly time-varying,
+it is unlikely that one (cid:12)xed schedule is su(cid:14)cient to prevent
+collision all the time. Fifth, during low contention TDMA
+gives much lower channel utilization and higher delays than
+CSMA because in TDMA, a node can transmit only dur-
+ing its scheduled time slots whereas in CSMA, nodes can
+transmit at any time as long as there is no contention.
+
+These di(cid:14)culties with TDMA suggest that a stand-alone
+TDMA scheme is not practical. Even if we have an e(cid:14)-
+cient TDMA schedule, the other factors such as interference
+irregularity, time-varying channel conditions and clock syn-
+chronization errors would diminish the bene(cid:12)ts of TDMA.
+Nevertheless, we posit that the information provided by an
+e(cid:14)cient TDMA schedule, in particular, the independent sets
+of nodes that can transmit concurrently can be used in cur-
+tailing occurrences of collision especially under high con-
+tention. This position greatly motivates our work.
+
+In this paper, we present a new hybrid MAC scheme,
+called Z-MAC (Zebra MAC), for sensor networks that com-
+bines the strengths of TDMA and CSMA while o(cid:11)setting
+their weaknesses. The main feature of Z-MAC is its adapt-
+ability to the level of contention in the network so that under
+low contention, it behaves like CSMA, and under high con-
+tention, like TDMA. It is also robust to dynamic topology
+changes and time synchronization failures commonly occur-
+ring in sensor networks.
+
+Z-MAC uses CSMA as the baseline MAC scheme, but
+uses a TDMA schedule as a \hint" to enhance contention
+resolution. In Z-MAC, a time slot assignment is performed
+at the time of deployment - higher overhead is incurred at
+the beginning. Its design philosophy is that the high initial
+overhead is amortized over a long period of network opera-
+tion, eventually compensated by improved throughput and
+energy e(cid:14)ciency. We use DRAND [18], an e(cid:14)cient scal-
+able channel scheduling algorithm. DRAND is a distributed
+implementation of RAND [17], a centralized channel reuse
+scheduling algorithm. After the slot assignment, each node
+reuses its assigned slot periodically in every predetermined
+period, called frame. We call a node assigned to a time slot
+an owner of that slot and the others the non-owners of that
+slot. There can be more than one owner per slot because
+DRAND allows any two nodes beyond their two-hop neigh-
+borhoods to own the same time slot.
+
+Unlike TDMA, a node may transmit during any time slot
+in Z-MAC. Before a node transmits during a slot (not nec-
+essarily at the beginning of the slot),
+it always performs
+carrier-sensing and transmits a packet when the channel is
+clear. However, an owner of that slot always has higher
+priority over its non-owners in accessing the channel. The
+priority is implemented by adjusting the initial contention
+window size in such a way that the owners are always given
+earlier chances to transmit than non-owners. The goal is
+that during the slots where owners have data to transmit,
+Z-MAC reduces the chance of collision since owners are given
+earlier chances to transmit and their slots are scheduled a
+priori to avoid collision, but when a slot is not in use by its
+owners, non-owners can steal the slot. This priority scheme
+has an e(cid:11)ect of implicitly switching between CSMA and
+
+TDMA depending on the level of contention. An impor-
+tant feature of this priority scheme is that the probability
+of owners accessing the channel can be adjusted indepen-
+dently from that of non-owners. We show that this feature
+contributes to increasing the robustness of the protocol to
+synchronization and slot assignment failures while enhanc-
+ing its scalability to contention.
+
+By mixing CSMA and TDMA, Z-MAC becomes more ro-
+bust to timing failures, time-varying channel conditions, slot
+assignment failures and topology changes than a stand-alone
+TDMA; in the worst case, it always falls back to CSMA.
+Since Z-MAC needs only local synchronization among senders
+in two-hop neighborhoods, we devise a simple local synchro-
+nization scheme where each sending node adjusts its syn-
+chronization frequency based on its current data rate and
+resource budget. Our analysis shows that even in the case
+when clocks are completely unsynchronized and some degree
+of slot assignment failure occurs, its performance becomes
+comparable to that of CSMA.
+
+In what follows, we describe the design, implementation
+
+and performance of Z-MAC in detail.
+
+2. RELATED WORK
+
+S-MAC [24] and T-MAC [20] are a hybrid of CSMA and
+TDMA in that they also maintain the synchronized time
+slots, but unlike TDMA their slots can be much bigger than
+normal TDMA slots and synchronization failures do not nec-
+essarily lead into communication failure because they em-
+ploy RTS/CTS. Nodes maintain periodic duty cycle to listen
+for channel activities and transmit data. As these protocols
+use RTS/CTS, the overhead of the protocols is quite high
+because most data packets in sensor networks are small. T-
+MAC [20] improves the energy e(cid:14)ciency of S-MAC by forc-
+ing all the transmitting nodes to start transmission at the
+beginning of each active period.
+
+Polastre et al. [15] develop a lightweight MAC protocol
+called B-MAC which is used as the default MAC for Mica2.
+B-MAC allows application to implement its own MAC through
+a well-de(cid:12)ned interface. They also adopt LPL (low power lis-
+tening) [10, 7] and engineer the clear channel sensing (CCA)
+technique to improve channel utilization. B-MAC is shown
+to have higher throughput and better energy e(cid:14)ciency than
+S-MAC and T-MAC.
+
+CSMA/p(cid:3) [19] uses the optimal probability distribution in
+determining the channel access probability for CSMA when
+the number of senders N is known. When N is unknown, it
+provides sub-optimal performance. Sift [13] adapts CSMA/p(cid:3)
+[19] for a network where N is unknown. The result is high
+success probability for channel access and reduced collision
+probability, thus achieving good throughput under both low
+and high contention. However the optimal probability distri-
+bution works only when senders always have data to trans-
+mit and they are synchronized for the channel access, and
+thus, when data arrivals to a node are highly random and
+senders cannot sense each other for data transmission (as in
+two-hops), its performance degenerates to the case of CSMA
+with the uniform access probability distribution. Sift relies
+on RTS/CTS to handle hidden terminals.
+
+TDMA has long been dismissed as an impractical solution
+for mobile wireless ad hoc networks for its lack of scalabil-
+ity and adaptability to changing environments. However, it
+provides a good energy e(cid:14)ciency and collision-freedom. Re-
+cently, several proposals [1, 11, 14, 16] are made for TDMA
+
+in sensor networks. Unfortunately, these protocols still fail
+to address the fundamental di(cid:14)culties that stand-alone TDMA
+schemes face.
+
+Seamlessly adapting the MAC behavior between TDMA
+and CSMA according to the level of contention was previ-
+ously explored by Ephremides and Mowa(cid:12) [8] for a wire-
+less LAN (or one-hop) environment using a scheme called
+Probabilistic TDMA (PTDMA). As in TDMA, real time is
+slotted and by adjusting the access probability of owners
+(a) and that of non-owners (b), PTDMA adapts the be-
+havior of MAC between TDMA and CSMA depending on
+contention. These probabilities are adjusted by a function
+a + (M (cid:0) 1)b = 1 where M is the number of senders. While
+PTDMA and Z-MAC share a common goal, PTDMA, be-
+ing designed primarily for a one-hop wireless LAN environ-
+ment, does not deal with many di(cid:14)culties that TDMA faces
+in ad hoc sensor networks such as time synchronization er-
+rors, interference irregularity and topology changes. These
+failures can drastically reduce the performance of PTDMA.
+PTDMA also assumes bu(cid:11)ered senders where all nodes ex-
+perience the same statistical arrival.
+In a network where
+only a subset of nodes is active data sources (which is a com-
+mon scenario in sensor networks), PTDMA exhibits very low
+channel utilization and does not behave like CSMA. This is
+because b cannot be arbitrarily set to a high value without
+reducing a (reducing a also causes MAC not to behave like
+TDMA) due to the dependency between a and b. The e(cid:11)ect
+of probability "a" is also not clear; it seems that the au-
+thors want to adjust "a" for di(cid:11)erent contention levels but
+the paper does not mention how this can be achieved (Z-
+MAC does not need to dynamically adjust its parameters to
+achieve the desired e(cid:11)ect).
+
+3. DESIGN OF Z-MAC
+
+Z-MAC has the setup phase in which it runs the following
+operations in sequence: neighbor discovery, slot assignment,
+local frame exchange and global time synchronization. These
+operations run only once during the setup phase and does
+not run until a signi(cid:12)cant change in the network topology
+(such as physical relocation of sensors) occurs. The idea is
+that the initial upfront costs for running these operations are
+compensated by improved throughput and energy e(cid:14)ciency
+during data transmission. In this section, we (cid:12)rst describe
+how we implement these setup phase operations and then
+discuss how they are integrated with the main transmission
+control of Z-MAC.
+3.1 Neighbor Discovery and Slot Assignment
+As a node starts up, it (cid:12)rst runs a simple neighbor dis-
+covery protocol where it periodically broadcasts a ping to
+its one-hop neighbors to gather its one-hop neighbor list. A
+ping message contains the current list of its one-hop neigh-
+bors.
+In our implementation, each node sends one ping
+message at a random time in each second for 30 seconds.
+Through this process, each node gathers the information
+received from the pings from its one-hop neighbors which
+essentially constitutes its two-hop neighbor information.
+
+The two-hop neighbor list is used as input to a time slot
+assignment algorithm. The current implementation of Z-
+MAC uses DRAND [18], a distributed implementation of
+RAND [17], to assign time slots to every node in the net-
+work. DRAND ensures a broadcast schedule where no two
+nodes within a two-hop communication neighborhood are
+
+assigned to the same slot. This assignment guarantees that
+no transmission by a node to any of its one-hop neigh-
+bors interferes with any transmission by its two-hop neigh-
+bors. Note that a broadcast schedule can handle any routing
+changes among its one-hop neighbors.
+
+The performance of DRAND is scalable because it does
+not depend on the network size, but on the local neigh-
+borhood size of each node. The protocol produces a very
+e(cid:14)cient time schedule where the slot number assigned to a
+node does not exceed the size of its local two-hop neighbor-
+hood ((cid:14)) { in most cases, much less than that. The running
+time and message complexity of DRAND is also bounded
+by O((cid:14)). Thus, its energy cost is linearly proportional to
+the size of the local neighborhood. When only a small num-
+ber of new nodes are joined late, DRAND can also perform
+localized time slot assignment without modifying the time
+slots already assigned to the existing nodes. The detailed
+performance analysis of DRAND can be found in [18].
+3.2 Local Framing
+
+Once a node picks a time slot, each node needs to decide
+on the period in which it can use the time slot for trans-
+mission. This period is called the time frame of the node.
+The conventional wisdom is that all nodes must keep the
+same time frame while all nodes synchronize to have their
+time slot 0 at the same time. But this requires to propagate
+the maximum slot number (MSN) to the entire network and
+is also not adaptive to local time slot changes. When new
+nodes are added to the network, DRAND can run local slot
+assignment while maintaining the existing assignment.
+If
+this assignment causes the MSN to be changed, that change
+must be propagated again to the entire network. This could
+incur high cost for adapting to a small change in the network
+topology. (Note that network topology changes by unstable
+radio channel conditions are handled by the inherent opera-
+tion of Z-MAC so it does not incur new assignment, but new
+node joining or node redeployment can cause slot changes.)
+We present a new scheme where each node maintains its
+own local time frame that (cid:12)ts its local neighborhood size,
+but avoids any con(cid:13)ict with its contending neighbors. The
+main idea is as follows.
+
+Time frame rule (TF rule). Let a node i be assigned
+to a slot si according to DRAND and the MSN within its
+two-hop neighborhood be Fi. We set is time frame to be
+2a where a positive integer a is chosen to satisfy condition
+2a(cid:0)1 (cid:20) Fi < 2a (cid:0) 1. That is, i uses the si-th slot in every
+2a time frame (is slots are l (cid:1) 2a + si, for all l = 1; 2; 3; : : :).
+
+Theorem 3.1. If every node i uses only slots l(cid:1)2a+si, for
+all l = 1; 2; 3; : : :, then no node j in the two-hop neighborhood
+of i uses any slot that i uses.
+
+The TF rule allows nodes to pick their own time frame
+sizes based on their local two-hop information. This rule
+makes DRAND adaptive to dynamic time frame changes
+(caused by local topology changes) without incurring any
+global changes. Figure 1 shows an example of a TDMA
+schedule obtained by the TF rule. If the global time frame
+is used, then 6 will be the time frame size. Then nodes A
+and B can use their slots only once every 6 slots although
+their frame sizes are 2 each. But if the TF rule is used,
+we can allow them to use frame size 4. This increases the
+concurrency in the channel usage and reduces the message
+
+A
+0 (2)
+
+B
+
+1 (2)
+
+C
+
+2 (5)
+
+E
+1 (5)
+
+F
+
+3 (5)
+
+H
+5 (5)
+
+D
+
+0 (5)
+
+G
+
+4 (5)
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+A
+
+B
+
+C
+
+D
+
+E
+
+F
+
+G
+
+H
+
+Figure 1: An example of the TF rule. The top (cid:12)gure
+shows a network topology and the numbers indicate
+the slot numbers assigned by DRAND and the num-
+bers in parenthesis are Fi. The bottom (cid:12)gure shows
+the slot schedule of all nodes (shaded slots are ones
+where each node transmits, and dark slots are the
+\empty" slots that are not used by any one-hop or
+two-hop neighbors).
+
+delays for node A and B. However, we (cid:12)nd that slots 6 and
+7 are not assigned to any node in the neighborhood. This is
+a trade-o(cid:11); when the network is uniformly dense, the global
+time frame would create a smaller number of empty slots.
+But if the network contains many sparse areas with only
+a few dense areas, then the local framing would be more
+preferable.
+In Z-MAC, since empty slots are available for
+CSMA (more details on Z-MACs transmission control are
+given next section), they are not necessarily wasted.
+Synchronizing on slot 0. The local framing rule implic-
+itly assumes that every node starts its time slot 0 at the
+same time. This can be achieved without any communica-
+tion, if clocks are synchronized, by (cid:12)xing a predetermined
+absolute time to synchronize slot 0. For instance, we can
+set the beginning of the real time (i.e., when the synchro-
+nized clock value is zero) to be the beginning of slot 0. New
+nodes can easily synchronize their slots if they synchronize
+their clocks to the global clock. To allow this synchroniza-
+tion, Z-MAC performs global clock synchronization such as
+TPSN [9], only once at the beginning. After the initial syn-
+chronization, each node runs a low-cost local synchroniza-
+tion protocol discussed in Section 3.6.
+
+3.3 Transmission Control of Z-MAC
+
+At the end of the DRAND phase, every node forwards
+its frame size and slot number to its two-hop neighborhood.
+Thus, a node knows about the slot and frame information of
+its one-hop and two-hop neighbors at the beginning of the Z-
+MAC phase. At this point, every node synchronizes to slot
+0 and then they are (cid:12)nally ready to run the transmission
+control of Z-MAC.
+
+In Z-MAC, a node can be in one of two modes: low con-
+tention level (LCL) or high contention level (HCL). A node
+is in HCL only when it receives an explicit contention noti-
+(cid:12)cation (ECN) message from a two-hop neighbor within the
+
+last tECN period. Otherwise, the node is in LCL. A node
+sends an ECN when it experiences high contention. The
+details on ECN are in next section.
+
+In LCL, any node can compete to transmit in any slot,
+but in HCL, only the owners of the current slot and their
+one-hop neighbors are allowed to compete for the channel
+access. In both modes, the owners have higher priority over
+non-owners. If a slot does not contain an owner or its owner
+does not have data to send, non-owners can steal the slot.
+This feature achieves high channel utilization even under
+low contention as a node can transmit as soon as the chan-
+nel is available. Z-MAC implements LCL and HCL using
+the backo(cid:11), CCA and LPL interfaces of B-MAC.
+
+The transmission rule. As a node i acquires data to
+transmit, it checks whether it is the owner of the current slot.
+If it is the owner of the slot, it takes a random backo(cid:11) within
+a (cid:12)xed time period To. When the backo(cid:11) timer expires, it
+runs CCA and if the channel is clear, it transmits the data.
+If the channel is not clear, then it waits until the channel
+is not busy and repeats the above process.
+If node i is a
+non-owner of the current slot and it is in LCL, or if it is
+in HCL and the current slot is not owned by its two-hop
+neighbors, then it waits for To and then performs a random
+backo(cid:11) within a contention window [To; Tno]. When the
+backo(cid:11) timer expires, it runs CCA and if the channel is
+clear, then it starts transmission. If the channel is not clear,
+then it waits until the channel is clear, and repeats the above
+process. If node i is a non-owner of the current slot and is in
+HCL (this means that a two-hop neighbor of i has sent an
+ECN in the last tECN), postpones its transmission (it may
+sleep) until it (cid:12)nds a time slot that either (1) is not owned
+by a two-hop neighbor or (2) is its owner. After waking up,
+it repeats the above process.
+
+According to the above transmission rules, in the LCL
+mode, a node can compete in any slot, albeit with di(cid:11)erent
+priorities. In HCL mode, it can compete in the current slot
+only if it is the owner of the slot or a one-hop neighbor
+to the owner of that slot. Note that it is possible that a
+transmission started in the previous slot crosses over to an
+HCL slot causing collision with the owner of the slot. One
+way to prevent this is to restrict a transmission not to cross
+over an HCL slot. We opt not to support this because this
+restriction might create too many fragmentations in time
+slots reducing the channel utilization. Since the slot size
+should be big enough to handle more than one packet, HCL
+slots will give more chance to an owner to succeed without
+hidden terminals.
+
+Speci(cid:12)c values of To and Tno have performance impact.
+We select these values based on stochastic analysis to maxi-
+mize e(cid:11)ective throughput. We omit the mathematical anal-
+ysis because of the space constraint, but instead provide an
+intuitive explanation for our methodology to pick these val-
+ues. The choice of To determines the robustness of Z-MAC
+in the face of time synchronization errors or slot assignment
+failures which cause some slots to have more than one owner.
+If the synchronization error is no more than one TDMA slot
+size, then there can be at most two to three con(cid:13)icting own-
+ers at any time. We can analytically obtain the optimal
+size of To to handle contention among two to three owners.
+Based on this technique, we set To to 8 contention window
+slots (also a power of 2 for e(cid:14)cient implementation). We
+set Tno to 32 slots since it is commonly used as the initial
+
+contention window size in IEEE 802.11 [5].
+
+The transmission rule of Z-MAC is quite di(cid:11)erent from
+that of PTDMA [8]. Unlike PTDMA, in Z-MAC, the owner
+and non-owner access probabilities (a and b in Eq. 1 in [8])
+are independently adjusted by To and Tno since non-owners
+cannot compete during To. This enhances the ability to
+increase the robustness of the protocol without a(cid:11)ecting
+the general behavior of the protocol. For instance, increas-
+ing To does not change the priority between owners and
+non-owners, thus preserving the performance swing between
+TDMA and CSMA depending on contention. In PTDMA,
+this is not possible due to the dependency between a and b.
+
+3.4 Explicit Contention Notication
+
+ECN messages notify two-hop neighbors not to act as hid-
+den terminals to the owner of each slot when contention is
+high. Each node makes a local decision to send an ECN
+message based on its local estimate of the contention level.
+There are two ways to estimate two-hop contention. One is
+to receive acknowledgment from the one-hop receiver and
+measure the packet loss rate. Since two-hop contention
+causes collision, it is highly related to the loss rate. However
+this technique requires the receiver to send feedback and in-
+curs extra overhead. Unless the acknowledgment feature is
+enabled by the application, this overhead can unduly reduce
+the channel utilization. The other technique is to measure
+the noise level of the channel. When high contention occurs,
+it tends to increase the noise level. This technique does not
+require any extra overhead as the noise level can be mea-
+sured passively at the time of data transmission. In order
+to measure the noise level passively without actively sam-
+pling the channel, we measure the average number of noise
+backo(cid:11)s that a sender takes before transmitting a packet. A
+noise backo(cid:11) is the backo(cid:11) taken by a transmitter when it
+senses the channel using CCA before packet transmission (it
+transmits only when the channel is clear). When the noise
+level is higher than the CCA threshold, the node takes back-
+o(cid:11). In order to see the correlation between the noise backo(cid:11)
+and two-hop contention, we took a Mica2 experiment where
+two clusters of nodes transmit to a common receiver called
+sink. The nodes in di(cid:11)erent clusters are in a two-hop dis-
+tance to each other and the nodes in the same cluster are
+one-hop away from each other. In one cluster, we (cid:12)x one
+sender, called measurement node, and in the other cluster,
+we vary the number of senders. We measure the correlation
+between two-hop contention at the sink and the noise level
+at the measurement node as we vary the number of senders
+in one cluster and their transmission rate. The two-hop con-
+tention is measured by the number of times per second that
+the sink leaves the idle state into the receiving state but
+fails to receive the data because of corrupted data or high
+noise in sampled data (including loss of sync, CRC fail, and
+preamble fail).
+
+Under low transmission rates, even if we increase the num-
+ber of senders, we (cid:12)nd that the average noise level and two-
+hop contention are very low, below 0.1 per packet and 5
+per second respectively. However, we increase the transmis-
+sion rate to the full rate (all senders always have data to
+send), the noise level increases beyond 0.2. Figure 2 shows
+the correlation between the average noise level and two-hop
+contention under the full data rate. The simple correlation
+coe(cid:14)cient [6], the ratio of co-variance of the two metrics
+over the product of the variances of individual metrics, is
+
+)
+d
+n
+o
+c
+e
+s
+ 
+r
+e
+p
+
+ 
+s
+t
+e
+k
+c
+a
+p
+
+ 
+
+t
+
+d
+e
+p
+u
+r
+r
+o
+c
+(
+ 
+
+n
+o
+
+i
+t
+
+ 
+
+t
+
+n
+e
+n
+o
+C
+p
+o
+h
+-
+o
+w
+T
+
+ 30
+
+ 25
+
+ 20
+
+ 15
+
+ 10
+
+ 5
+
+ 0
+
+ 0
+
+ 0.1
+
+Noise relationship between the sink and node
+
+two hop contender 4
+two hop contender 3
+two hop contender 2
+two hop contender 1
+two hop contender 0
+Weighted Moving Average
+
+ 0.2
+ 0.4
+Node Noise (noise backoffs per packet)
+
+ 0.3
+
+ 0.5
+
+ 0.6
+
+Figure 2: The correlation between the noise level
+and two-hop contention.
+
+0.68 (1 and -1 indicate the maximum positive and nega-
+tive correlations and 0 indicates no correlation), indicating
+high correlation. The exponentially moving average value
+(with weight 0.5) of the noise level when the two-hop con-
+tention is higher than 20 per second increases beyond 0.3
+backo(cid:11)s/packet. We repeated the experiment many times
+and con(cid:12)rmed that average 0.3 noise backo(cid:11)s per packet
+consistently indicates high two-hop contention. However,
+this is only a conservative metric because even one-hop con-
+tention can cause high noise backo(cid:11)s as well, but it is clear
+that low noise indicates low contention.
+
+As a transmitting node detects high contention, the node
+sends a unicast message, one-hop ECN to a destination to
+which the node is experiencing contention. If more than one
+destinations experience contention, it can send one broad-
+cast with information about the multiple destinations. Typ-
+ically, in sensor networks, since each node has one parent to
+transmit data to, a node has one destination. When a node
+j receives a one-hop ECN message triggered by its one-hop
+neighbor i, it (cid:12)rst checks whether j is the destination of
+the ECN message.
+If so, it then broadcasts the ECN to
+its one-hop neighbors (this ECN messages are called two-
+hop ECN). If j is not the destination, it simply discards the
+one-hop ECN. When a node receives a two-hop ECN, then
+it sets its HCL (cid:13)ag. Figure 3 shows an example of ECN
+forwarding.
+
+The HCL (cid:13)ag is only a soft state, meaning that unless
+another two-hop ECN message is received within the last
+tECN period, the (cid:13)ag is reset. Thus, if node i continually ex-
+periences contention, it needs to transmit the ECN message
+periodically. This refresh period tECN is set by the system.
+Typically, when a node detects contention, it is likely that
+its neighboring senders will do so at the same time. There-
+fore, we will have many duplicate ECN messages forwarded
+to routing nodes. To prevent ECN implosion, we use over-
+hearing to suppress ECN. When a node i detects high con-
+tention, it takes random backo(cid:11)s before the transmission of
+a one-hop ECN message. In the mean time, if it receives a
+one-hop ECN intended for another node that has the same
+destination as is ECN, then node i suppresses its ECN and
+cancels the transmission of the ECN. After tECN, if it still
+experiences high contention, it schedules another ECN by
+taking a random backo(cid:11) and repeats the above process. The
+
+S6
+
+forward
+
+S5
+
+S0
+
+S1
+
+S2
+
+discard
+
+discard
+
+S4
+
+Figure 3: An example of ECN forwarding. When a
+node s1 experiences heavy packet losses, it sends a
+one-hop ECN to s5. The thick arrows indicate the
+routing path and the dotted arrows indicate ECN
+messages. Since nodes s2 and s4 are not the destina-
+tion, they simply discard the ECN. Node s5 broad-
+casts the ECN to its one-hop. Once HCL is enabled,
+nodes s6 and s0 cannot compete during the time slot
+of s1, while nodes s5, s2 and s4 can compete as one-
+hop neighbors with lower priority than s1.
+
+same suppression rule applies to routing nodes. If a routing
+node receives a one-hop ECN and it has forwarded an ECN
+within tECN period, it does not forward a two-hop ECN.
+
+ECN is similar to RTS/CTS in CSMA/CA. But the dif-
+ference is that HCL uses topology information (i.e., slot in-
+formation) to avoid two hop collision. The cost of ECN is
+also far less than RTS/CTS since it is triggered only when
+contention is high. Using ECN suppression, only a small
+number of ECN messages need to be forwarded. Since the
+HCL state may last for a much longer term than a single
+packet transmission, its cost is amortized over many packet
+transmissions. ECN can also be viewed similar to the sup-
+pression message in CODA[21]. However the di(cid:11)erence is
+that ECN suppresses two-hop neighbors only for the time
+slot of the ECN originator whereas a suppression message
+suppresses all receivers except the one designated in the mes-
+sage.
+3.5 Receiving Schedule of Z-MAC
+
+DRAND de(cid:12)nes only the transmission schedule of nodes.
+In Z-MAC, a node can transmit in any slot. As Z-MAC
+is implemented on top of B-MAC, it uses LPL by default
+wherein each node maintains listening duty cycle separated
+by a check period and each transmission is preceded by a
+preamble as large as the check period. Therefore, the energy
+consumption of Z-MAC for idle listening especially under
+low duty cycles is comparable to that of B-MAC.
+
+The check period also is a factor in determining the slot
+size because a slot must be big enough to transmit one
+packet. Thus, the slot size must be larger than the sum of
+the check period, To, Tno, the CCA period and one packet
+propagation time. There is a trade-o(cid:11) between the slot size
+and the network delay, especially under high contention.
+Under low contention the slot size does not a(cid:11)ect the de-
+lay since a node can transmit at any time. But under high
+contention, a node is in HCL and transmits only during a
+few designated slots. Therefore, a large slot size can incur
+a large delay. We leave the choice of the slot size to the
+application. The application designers have to evaluate the
+trade-o(cid:11)s and (cid:12)nd the slot size that (cid:12)ts their needs.
+
+3.6 Local Time Synchronization
+
+Using carrier-sensing and congestion backo(cid:11)s, Z-MAC be-
+comes more robust to clock errors than TDMA. Even under
+no synchronization,
+its performance falls back to that of
+CSMA. Furthermore under low contention, Z-MAC works
+like CSMA with or without synchronization. Thus, Z-MAC
+requires clock synchronization under high contention to im-
+plement HCL. An important feature of Z-MAC is that syn-
+chronization is required only among neighboring senders and
+also when they are under high contention. These points
+o(cid:11)er an excellent opportunity to optimize the overhead of
+clock synchronization because synchronization is required
+only locally among neighboring senders, and the frequency
+of synchronization can be adjusted according to the trans-
+mission rates of senders so that senders with higher data
+rates transmit more frequent synchronization messages. In
+this scheme, receivers passively synchronize their clocks to
+the senders clocks and do not have to send any synchro-
+nization messages.
+
+To implement the local clock synchronization among senders,
+Z-MAC adopts a technique from RTP/RTCP (real-time trans-
+port protocol) [2].
+In this protocol, the control message
+transmission rate is limited to a small fraction of session
+bandwidth and each session member adjusts its sending rate
+of control messages according to the allocated session band-
+width.
+In Z-MAC, each data sender limits its bandwidth
+consumed by synchronization messages to a predetermined
+fraction of its data sending rate, Bsynch (e.g., one synchro-
+nization packet per every 100 data packets). In fact, each
+sender can independently determine this fraction by some
+function of its energy and bandwidth budget. We currently
+set Bsynch to 1% of the sending rate.
+
+In our local synchronization protocol, each data sender
+transmits a synchronization message containing its current
+clock value periodically. When a node receives a synchro-
+nization message,
+it updates its clock value by taking a
+weighted moving average of its current value and the newly
+received value. Because only senders transmit synchroniza-
+tion messages, it is possible that some nodes located in a low
+tra(cid:14)c area might have clock values drift far away from the
+other synchronized nodes. When those nodes start trans-
+mission, their clock values are unsynchronized (note that
+the maximum clock drift rate of Mica2 is around 40(cid:22)s [9]).
+Thus, their clock values must not be trusted. To avoid hon-
+oring clock values from unsynchronized senders, we adjust
+the averaging weight by applying a trust factor ((cid:12)t) that
+re(cid:13)ects the frequency of synchronizations of the message
+senders. (cid:12)t is computed by the frequency of transmitted
+and received synchronization messages as below.
+
+Let rdrift be the maximum clock drift rate of each sensor
+and (cid:15)clock be the maximum acceptable clock error. Then
+Isynch = (cid:15)clock=rdrift determines the minimum synchroniza-
+tion interval required to achieve the maximum clock er-
+ror or less. Let S be the average rate at which a node
+receives or sends synchronization messages, and (cid:11)synch be
+the maximum weight that applies to the new clock value
+received. Then the (cid:12)t of the node can be computed by
+(cid:12)t = minf(cid:11); S (cid:2) Isynch (cid:2) (cid:11)synchg. The weighted moving
+average value Cavg of a clock can be computed by taking
+a weighted moving average of a newly received clock value
+Cnew and Cavg: Cavg = (1 (cid:0) (cid:12)t)Cavg + (cid:12)t (cid:1) Cnew.
+
+In Mica2, to maintain 1 ms clock accuracy with 40 (cid:22)s per
+second maximum drift rate and one synchronization packet
+
+per every hundred packets (packet size 49 bytes), a node
+needs to maintain its sending and/or receiving data rate to
+1.5 Kbps or higher. At that rate, the trust factor of the node
+becomes (cid:11)synch, consuming only 1% of the sending rate, 150
+bps (or 1/3 packets per second with 49 byte packets), for
+synchronization. If the data rate (sum of sending and re-
+ceiving rates) goes below this, then the trust factor of that
+node gets discounted. But this does not pose any threat to
+throughput because it is likely that the node does not ex-
+perience much contention below that data rate and CSMA
+works e(cid:11)ectively under low contention.
+
+In the above scheme, the nodes that send and receive syn-
+chronization messages more often tend to have a higher trust
+factor and their values will be re(cid:13)ected more heavily in up-
+dating clock values. Typically, these nodes on routing paths
+tend to have higher trust factors because they tend to send
+more packets than the others. Similarly, source nodes that
+infrequently send data have lower trust factors. When a
+source starts sending data again after a long hibernation,
+its clock could be drifted far apart from other more syn-
+chronized clocks. But as it increases its rate and its data
+being routed to the sink, its clock value will come closer to
+the clock values of other routing nodes. In our experiment,
+we (cid:12)nd that even if an island of 30 nodes is not synchro-
+nized, it resynchronizes with the rest of the network within
+10 synchronization messages.
+
+4. PERFORMANCE EVALUATION
+
+4.1 Experimental Method
+
+To evaluate the performance of Z-MAC, we implemented
+Z-MAC in both ns-2 and Mica2/TinyOS. We use ns-2 sim-
+ulation to compare the performance with existing protocols
+whose TinyOS implementation does not exist at the time
+of preparing this work. We compare the performance of Z-
+MAC with that of PTDMA (ns-2), Sift (ns-2) and B-MAC
+(ns-2 and TinyOS). We do not run S-MAC and T-MAC as
+[15] shows that these protocols perform much worse than B-
+MAC. Although our performance evaluation does not cover
+all the available sensor MAC protocols, we believe that the
+evaluated protocols constitute a good representation of ex-
+isting protocols.
+
+Unless speci(cid:12)ed otherwise, we use the default settings of
+B-MAC as described in [15]. Since Z-MAC is implemented
+on top of B-MAC, we use the same packet format as B-MAC
+(shown in Table 4 in [15]). The default initial and congestion
+backo(cid:11) window sizes of B-MAC are 32 and 16 slots respec-
+tively (each slot is 400 (cid:22)s). Except the throughput tests
+where we vary the backo(cid:11) window sizes to see the impact
+of window sizes on channel utilization, we keep the default
+window sizes. The default values of Z-MAC parameters are
+shown in Table 1.
+
+We use three benchmark setups in our experiment: one-
+
+hop, two-hop and multi-hop benchmarks.
+One-hop benchmark. This benchmark is reproduced from
+[15] where n nodes are placed equidistant from a receiver in
+a circle. Each node transmits as quickly as possible with the
+full transmission power. Before each run of experiment, we
+ensured that all nodes are in a one-hop distance to each other
+so that there are no hidden terminals. This benchmark is
+used to measure the achievable throughput of di(cid:11)erent MAC
+protocols for di(cid:11)erent levels of contention within a one-hop
+neighborhood. Since B-MAC has the same test, we can di-
+
+TinyOS and ns-2 experiment parameter
+
+Owner contention window size (To)
+
+Non-owner contention window size (Tno)
+
+Contention window per-slot duration
+
+Default
+8 slots
+32 slots
+400 (cid:22)s
+
+ECN refresh period (tECN)
+
+10 seconds
+
+Averaging weight for time synchronization ((cid:11)synch)
+
+Maximum clock drift rate (rdrift)
+
+Maximum clock error ((cid:15)clock)
+
+Synchronization bandwidth (Bsynch)
+
+Z-MAC slot size
+
+Communication range (ns-2)
+
+Interference range (ns-2)
+
+0.25
+40 (cid:22)s
+1 ms
+1 %
+50 ms
+200 ft
+300 ft
+
+Communication bandwidth (TinyOS, ns-2)
+
+19.2 Kbps
+
+Table 1: The default settings of Z-MAC parameters
+
+rectly compare their result to ours. All nodes are placed at
+least 2 feet apart and the distance to the receiver was ap-
+proximately 2 meters. The setup is placed in an open con-
+ference room without any obstruction. Ns-2 one-hop simu-
+lation follows the same setup.
+
+Two-hop benchmark. We create this benchmark to test
+the performance of di(cid:11)erent protocols when hidden termi-
+nals are present. We organize nodes into two clusters where
+7 and 8 sending nodes are located in each cluster respec-
+tively. The two clusters are placed approximately 5 meters
+apart in a house with drywall. A receiver node (or routing
+node) is placed in the middle of the two clusters. Nodes
+within the same cluster are placed about 2 feet apart. In
+this environment, we cannot get a sharp boundary of inter-
+ference but we ensure that all senders (cid:12)nd the receiver as
+a one-hop neighbor and all nodes are reachable by two hop
+communications.We also reduce the transmission power of
+senders to 1 dBm (1.3 mW) to control the number of hidden
+terminals. Since the number of hidden terminals varies with
+the transmission power, we get more hidden terminals with
+a low transmission power. On the other hand, ns-2 simula-
+tion of the two-hop benchmark can de(cid:12)ne a clear separation
+of the two clusters so that they become always two-hop to
+each other.
+
+Multi-hop benchmark. For a realistic multi-hop scenario,
+we construct a network of 42 Mica2 nodes, each placed in
+faculty o(cid:14)ces and classrooms of our computer science build-
+ing. Figure 4 shows the testbed and wireless communication
+links among nodes. In this testbed, the maximum two-hop
+neighborhood size of all nodes is 27 and the maximum local
+frame size is 32 (many nodes have smaller local frame sizes).
+To remove any e(cid:11)ect of routing di(cid:11)erences, we use (cid:12)xed rout-
+ing paths for all tests. The paths are taken from one run of
+Mint [23], the default routing protocol of TinyOS. Figure 5
+shows the tree routing paths we used out of 30 nodes in the
+testbed. We use node 36 as the sink. Thicker lines indicate
+links carrying more tra(cid:14)c.
+
+4.2 Throughput
+
+In this experiment, we measure and compare the e(cid:11)ective
+channel utilization of B-MAC and S-MAC and Z-MAC. For
+throughput measurement, we measure only data throughput
+as done in [15] where the data portion of each packet consists
+of 36 bytes (29 bytes for the data payload, 5 bytes for the
+header, and 2 bytes for CRC).
+One-hop Benchmark. In this test, all senders are trans-
+
+7
+
+16
+
+25
+
+12
+
+29
+
+30
+
+26
+
+4
+
+6
+
+3
+
+33
+
+34
+
+2
+
+39
+
+9
+
+10
+
+27 28
+
+24
+
+8
+
+20
+
+1
+
+.
+t
+f
+ 
+0
+4
+2
+
+21
+
+22
+
+37
+
+38
+
+11
+
+35
+
+36
+
+13
+
+15
+
+17
+
+31
+32
+
+40
+
+41
+
+42
+
+43
+
+5
+
+14
+
+18
+
+19
+
+400 ft.
+
+s
+p
+b
+K
+
+ 
+-
+ 
+t
+u
+p
+h
+g
+u
+o
+r
+h
+T
+
+ 14
+
+ 12
+
+ 10
+
+ 8
+
+ 6
+
+ 4
+
+ 2
+
+ 0
+
+ 0
+
+One Hop Throughput; Mica2 Experiment
+
+B-MAC-Initial = 0, Congestion = 16
+B-MAC-Initial = 16, Congestion = 64
+B-MAC-Initial = 32, Congestion = 16
+Z-MAC-LCL To = 8, Tno = 32
+Z-MAC-LCL-unsynched - To = 8, Tno = 32
+
+ 2
+
+ 4
+
+ 6
+
+ 8
+
+ 10
+
+ 12
+
+ 14
+
+ 16
+
+ 18
+
+ 20
+
+Number of Sources/Contenders
+
+Figure 4: NCSU testbed with 42 Mica2 nodes.
+
+Figure 6: The data throughput comparison in the
+one-hop Mica2 benchmark.
+
+7
+
+25
+
+24
+
+27
+
+28
+
+26
+
+1
+
+4
+
+6
+
+2
+
+3
+
+9
+
+10
+
+39
+
+5
+
+14
+
+18
+
+19
+
+21
+
+37
+
+38
+
+15
+
+17
+
+31
+
+32
+
+42
+
+40
+
+43
+
+41
+
+36
+
+Figure 5: Routing paths used in the multi-hop
+Mica2 benchmark.
+
+mitting at their full transmission power and the receiver has
+its radio on always (i.e., no duty cycle). The e(cid:11)ective max-
+imum data throughput on Mica2 is 15.6 Kbps (excluding
+preamble and sync bytes). Figure 6 shows the data through-
+put of B-MAC and Z-MAC from Mica2 one-hop benchmark.
+Unfortunately, we are not able to reproduce the same perfor-
+mance of B-MAC as shown in [15]. Our result is signi(cid:12)cantly
+less than what they report ([15] reports approximately the
+maximum throughput of 13 Kbps with one sender). We con-
+jecture this discrepancy could be due to a higher noise (cid:13)oor
+level in our experiment environment. The performance of
+B-MAC with congestion window size 64 shows much better
+than that with congestion backo(cid:11) window size 16. This hap-
+pens because the larger congestion window size reduces the
+contention among senders.
+
+For the Z-MAC tests, we (cid:12)x the frame size to 20 for all
+experiments and vary the number of senders. HCL is dis-
+abled because the performance of HCL and LCL is the same
+when all nodes are in a one-hop distance to each other. Be-
+fore running Z-MAC, we run DRAND and TPSN to get slot
+assignments and to synchronize the clocks of the senders.
+The data throughput is obtained after these protocols (cid:12)nish.
+The data throughput of Z-MAC with one sender is about
+40% less than that of B-MAC with window sizes (0,16) and
+(32,16). This happens because Z-MAC uses a larger con-
+
+n
+o
+
+i
+t
+
+a
+z
+
+i
+l
+i
+t
+
+U
+
+ 1
+
+ 0.8
+
+ 0.6
+
+ 0.4
+
+ 0.2
+
+ 0
+
+ 0
+
+One Hop Utilization; Simulation
+
+P-TDMA - a = .5
+P-TDMA - a = .8
+P-TDMA - a = 1.0
+Z-MAC-LCL - To = 8, Tno = 32
+B-MAC - Initial = 32, Congestion = 16
+ = .9
+
+Sift - a
+
+ 2
+
+ 4
+
+ 6
+
+ 8
+
+ 10
+
+ 12
+
+ 14
+
+ 16
+
+ 18
+
+ 20
+
+Number of Sources/Contenders
+
+Figure 7: The data throughput comparison in the
+one-hop ns-2 benchmark.
+
+gestion backo(cid:11) window size. With one source, it sends as
+non-owners at most times except for its own slot. There-
+fore, it incurs the cost of waiting for To for the non-owner
+slots. The throughput of Z-MAC is almost independent of
+the number of senders. When the number of senders is small,
+most senders are sending as non-owners. Thus, they can uti-
+lize the unused slots that belong to the other nodes. As the
+number of senders increases, so does the number of senders
+transmitting during their own slots. Thus, when contention
+is high, it can maintain good throughput since it works more
+like TDMA. The throughput with 20 senders is much higher
+than that of B-MAC (in fact, higher than that shown in [15].
+We also run Z-MAC with no clock synchronization. At
+the beginning of the run, we randomize the clock values
+of all nodes. We turn o(cid:11) the local clock synchronization
+protocol as well. This allows some slots to be overlapped
+with each other so that several nodes consider themselves
+as owners at the same time. Thus, this scenario essentially
+emulates slot assignment failures as well. We observe that
+the performance of Z-MAC even with unsynchronized clocks
+is quite comparable to that with synchronized clocks. This
+is because To is su(cid:14)ciently large to handle multiple owners
+within a slot.
+
+s
+p
+b
+K
+
+ 
+-
+ 
+t
+u
+p
+h
+g
+u
+o
+r
+h
+T
+
+ 14
+
+ 12
+
+ 10
+
+ 8
+
+ 6
+
+ 4
+
+ 2
+
+ 0
+
+ 2
+
+Two Hop Throughput; Mica2 Experiment
+
+B-MAC-Initial = 16, Congestion = 64
+B-MAC-Initial = 32, Congestion = 16
+Z-MAC-HCL - To = 8, Tno = 32
+Z-MAC-LCL - To = 8, Tno = 32
+Z-MAC-HCL-unsynched - To = 8, Tno = 32
+
+ 4
+
+ 6
+
+ 8
+
+ 10
+
+ 12
+
+ 14
+
+Number of Sources/Contenders
+
+n
+o
+i
+t
+a
+z
+
+i
+l
+i
+t
+
+U
+
+ 1
+
+ 0.8
+
+ 0.6
+
+ 0.4
+
+ 0.2
+
+ 0
+
+ 0
+
+Two Hop Utilization; Simulation
+
+P-TDMA - a = 0.5
+P-TDMA - a = 0.8
+P-TDMA - a = 1.0
+Z-MAC-HCL - To = 8, Tno = 32
+B-MAC-RTS/CTS - Initial = 32, Congestion = 16
+ = .9
+
+Sift-RTS/CTS - a
+
+ 2
+
+ 4
+
+ 6
+
+ 8
+
+ 10
+
+ 12
+
+ 14
+
+ 16
+
+ 18
+
+Number of Sources/Contenders
+
+Figure 8: The data throughput comparison in the
+two-hop Mica2 benchmark.
+
+Figure 9: The data throughput comparison in the
+two-hop ns-2 benchmark.
+
+Figure 7 shows ns-2 simulation results for one-hop involv-
+ing PTDMA, Sift, B-MAC and Z-MAC. For PTDMA and
+Z-MAC, we set the number of stations M to be 21. For
+PTDMA, we vary a, the access probability of owners, from
+0.5 to 1. The slot size for PTDMA is set to 20 ms which is
+enough to send one packet. For Sift, the probability distri-
+bution parameter (cid:11) is set to 0.9 and the contention window
+size is set to 32 slots as recommended in [13]. The results
+presented in this (cid:12)gure are also veri(cid:12)ed by our stochastic
+analysis. The analysis can be found in [22]. PTDMA, for
+any value of a, shows very low utilization under a small num-
+ber of sources. As the number of senders increases to M ,
+it shows its maximum channel utilization. But under lower
+values of a, its performance becomes close to that of CSMA
+(which is B-MAC in this (cid:12)gure). Only when the number
+of senders is equal to M , it becomes closer to TDMA as a
+increases (these data points can be veri(cid:12)ed from the results
+in [8] as well). The B-MAC simulation result closely follows
+that in [15]. Z-MAC is the top performer in this test, but
+only by a small margin from Sift. The good performance
+of Sift is because all nodes are one-hop and data are always
+available for transmission so the senders can be easily syn-
+chronized with each other to the boundary of each packet
+transmission.
+Two-hop Benchmark.
+In the two-hop benchmark, we
+measure the data throughput when hidden terminals are
+present. We vary the number of senders while (cid:12)xing the
+number of neighbors. As in the one-hop benchmark, all
+senders always have data to send. Each additional sender is
+chosen from the alternating clusters. For Z-MAC tests, we
+set the frame size to 16. In this test, we run Z-MAC with
+HCL disabled (marked as Z-MAC-LCL) and with HCL en-
+abled (marked as Z-MAC-HCL). Both cases run along with
+the local clock synchronization protocol in which each sender
+sends one synchronization packet in every 100 packets trans-
+mitted. The data throughput reported by Z-MAC includes
+the overhead of the clock synchronization and ECN.
+
+Figure 8 shows the results of the two-hop Mica2 bench-
+mark. Since the transmission power is low (1.3 mW), the
+maximum achievable throughput also gets lower. As the
+number of hidden terminals increases along with more senders,
+the throughput of LCL drops more than that of HCL. On
+the other hand, HCL performs relatively well maintaining
+
+around 6 Kbps even under high contention. According to
+[15], the protocols with RTS/CTS (S-MAC and B-MAC
+with RTS/CTS) achieve around 2 Kbps when more than
+15 nodes (even when no hidden terminals are present). This
+con(cid:12)rms that the overhead of ECN is much lower than that
+of RTS/CTS. B-MAC shows high sensitivity to hidden ter-
+minals as its throughput drops to 1 Kbps under high con-
+tention. We also run Z-MAC-HCL under unsynchronized
+clocks. Its performance drops a little but is still better than
+B-MAC.
+
+Figure 9 shows the results of the two-hop ns-2 benchmark
+tests. Because this benchmark is simulated, we make sure
+that the two node clusters do not sense each other, thus max-
+imizing the number of hidden terminals. To be fair, we add
+RTS/CTS and data acknowledgment for the CSMA tech-
+niques (B-MAC and Sift). The size of RTS and CTS includ-
+ing the TinyOS default preamble and synchronization bytes
+is set to 15 bytes and the acknowledgment size is 5 bytes.
+the throughput of B-MAC and Sift immediately dropped to
+zero without RTS/CTS because of hidden terminals so we
+did not plot them. The utilization of B-MAC and Sift with
+RTS/CTS reaches around 10 to 12% as RTS/CTS/ACK in-
+cur high overhead. These results are similar to the result
+of B-MAC with RTS/CTS in [15]. The performance of PT-
+DMA does not change much from the one-hop benchmark
+result since time is completely synchronized and they use
+DRAND time slots (note that in PTDMA, senders always
+send at the beginning of a slot without sensing the channel).
+Z-MAC-HCL shows a good sustained performance indepen-
+dent of the number of senders.
+Its performance degrades
+slightly from that in the one-hop ns-2 benchmark because
+nodes can compete only during their own slots and the slots
+of their one-hop neighbors and also because of the overhead
+of ECN messages.
+
+To see more e(cid:11)ect of time synchronization errors to the
+performance of PTDMA and Z-MAC, we add some clock
+drift in our two-hop ns-2 benchmark. A randomized clock
+drift value is added at every 1 s and the average throughput
+of PTDMA and Z-MAC measured over 600 seconds is plot-
+ted in Figure 10 as we increase the drift rate. We (cid:12)x the
+number of senders to 18. For Z-MAC, we turn o(cid:11) the local
+clock synchronization feature. The results are that PTDMA
+shows high sensitivity to even a small clock drift rate (1
+
+Utilization Variation with Time Synchronization Error
+
+P-TDMA - a = 0.5
+P-TDMA - a = 0.8
+P-TDMA - a = 1.0
+Z-MAC-HCL - To = 8, Tno = 32
+
+ 1
+
+ 0.8
+
+ 0.6
+
+ 0.4
+
+ 0.2
+
+n
+o
+i
+t
+a
+z
+
+i
+l
+i
+t
+
+U
+
+ 0
+ 0.01
+
+ 0.1
+
+ 1
+
+ 10
+
+ 100
+
+ 1000
+
+ 10000
+
+Clock drift rate (us/s)
+
+Figure 10: The data throughput in the two-hop ns-2
+benchmark as we add clock drifts. The (cid:12)gure re-
+ports throughput when the number of senders is 18
+as we vary the drift rate (shown in a logarithmic
+scale).
+
+s
+p
+b
+K
+
+ 
+-
+ 
+t
+
+u
+p
+h
+g
+u
+o
+r
+h
+T
+e
+g
+a
+r
+e
+v
+A
+
+ 
+
+ 8
+
+ 7
+
+ 6
+
+ 5
+
+ 4
+
+ 3
+
+ 2
+
+ 1
+
+Multi-hop Throughput; Mica2 Experiment
+
+Z-MAC-HCL - To = 8, Tno = 32
+B-MAC - Initial = 32, Congestion = 16
+
+ 0.5
+
+ 1
+
+ 2
+
+ 4
+
+ 8
+
+ 16
+
+ 32
+
+Packets per second
+
+Figure 11: The data throughput in the multi-hop
+Mica2 benchmark as we vary the transmission rate
+of each sender. In this experiment, all nodes except
+the sink (node 36) are sending.
+
+(cid:22)s/s), losing its throughput down to 38% of the channel ca-
+pacity. As we increase the drift rate, the channel utilization
+of PTDMA quickly drops to 25%. This is because PTDMA
+relies on a high value of a to get the e(cid:11)ect of TDMA un-
+der high load and with a high a value, any overlapping with
+neighboring slots increases the chance of collision among the
+owners of neighboring slots. In contrast, Z-MAC shows good
+robustness to the synchronization errors as it sustains its su-
+perior performance until the drift error becomes larger than
+1 ms/s even without its local clock synchronization. Note
+that the maximum drift rate of Mica2 is around 40 (cid:22)s per
+second.
+Multi-hop Benchmark. Figure 11 shows data through-
+put of Z-MAC-HCL and B-MAC under the multi-hop Mica2
+benchmark of 42 nodes. Under transmission rate lower than
+3.12 packets/sec, both protocols deliver all the packets and
+achieves about the same throughput. B-MAC shows slightly
+better throughput than Z-MAC. This is because the backo(cid:11)
+
+congestion window value of Z-MAC for non-owners (To +Tno
+= 8 + 32 = 40) is larger than B-MAC (which has 16). The
+backo(cid:11) value make di(cid:11)erence because contention is low and
+most transmissions in Z-MAC are done as non-owners. As
+the transmission rate increases beyond 3 packets/sec, we ob-
+serve that Z-MAC achieves about 20 to 30% higher through-
+put than B-MAC. Under the full data rate (50 packets/sec),
+Z-MAC achieves about 7.2 Kbps while B-MAC achieves
+about 5.2 Kbps. These (cid:12)gures are slightly higher than the
+values from the two-hop benchmark under low contention.
+This is because as the network is so densely populated, nodes
+can sense each other very well so one-hop contention domi-
+nates two-hop contention.
+4.3 Fairness
+
+We measure the fairness index [12] of delivered packets of
+all the senders. As the number of packets delivered to the
+sink is more uniformly distributed among all the senders,
+the index approaches one. We compute fairness index from
+the average number of packets delivered per sender within
+10 second intervals. Figure 12 shows the result of the two-
+hop Mica2 benchmark. The fairness indices of Z-MAC-HCL
+are within 0.7 and 1 while those of B-MAC drop to 0.2 to 0.3
+as the number of senders increases. The high performance
+of Z-MAC comes from the TDMA aspect of the protocol
+as each sender will have eventually one chance to transmit
+without interference during one time frame. One reason that
+B-MAC does not perform well is that it does not handle
+two-hop contention. Thus two-hop nodes get less chance to
+deliver packets because of increased chance of collision.
+
+Transmission Fairness in the Two-hop Mica2 Experiment
+
+x
+e
+d
+n
+
+I
+ 
+s
+s
+e
+n
+r
+i
+a
+F
+
+ 1
+
+ 0.8
+
+ 0.6
+
+ 0.4
+
+ 0.2
+
+ 0
+
+ 2
+
+B-MAC - Initial = 32, Congestion = 16
+B-MAC - Initial = 16, Congestion = 64
+Z-MAC-HCL - To = 8, Tno = 32
+Z-MAC-LCL - To = 8, Tno = 32
+
+ 4
+
+ 6
+
+ 8
+
+ 10
+
+ 12
+
+ 14
+
+ 16
+
+Number of Sources/Contenders
+
+Figure 12: Fairness index from the two-hop Mica2
+benchmark
+
+Figure 13 shows the fairness index from the multi-hop
+Mica2 experiment. Under low transmission rates, both Z-
+MAC-HCL and B-MAC show high fairness. However as the
+transmission rate increases, their fairness indices drop (more
+precipitously for B-MAC). This is because in the testbed
+some links are so unreliable that under high load, we see
+high packet losses from the links. The fairness index of Z-
+MAC still shows about 40% higher than that of B-MAC,
+under the full rate.
+4.4 Energy Efciency
+
+Table 2 shows the itemized energy cost of the Z-MAC
+setup phase operations in the multi-hop benchmark. We
+
+x
+e
+d
+n
+I
+ 
+s
+s
+e
+n
+r
+i
+a
+F
+
+ 0.9
+
+ 0.8
+
+ 0.7
+
+ 0.6
+
+ 0.5
+
+ 0.4
+
+ 0.3
+
+Transmission Fairness in the Multi-hop Mica2 Experiment
+
+Z-MAC-HCL - To = 8, Tno = 32
+B-MAC - Initial = 32, Congestion = 16
+
+ 0.5
+
+ 1
+
+ 2
+
+ 4
+
+ 8
+
+ 16
+
+ 32
+
+Packets per second
+
+Figure 13: Fairness index from the multi-hop Mica2
+benchmark
+
+Operation
+
+Average (J)
+
+Neighbor discovery
+
+DRAND
+
+Local Frame Exchange
+
+TPSN
+
+0.73
+4.88
+1.33
+0.28
+
+StdDev
+0.0018
+3.105
+1.39
+0.036
+
+Table 2: Average energy consumption (in Joule)
+during the setup operations in the multi-hop Mica2
+testbed.
+
+run the setup phase for 30 times and report the average val-
+ues and standard deviations. Total 7.22 J/node on average
+is consumed for the setup phase which constitutes about
+0.03% of the total energy available per node with 2500 mAh
+and 3 V battery (the same battery used in Table 3 [15]).
+Although DRAND and the other operations are not opti-
+mized for energy saving, this is still a substantial amount
+of energy consumption compared to the per-transmission
+energy cost. However, the idea is that this upfront energy
+cost is later compensated by increased energy e(cid:14)ciency dur-
+ing the regular transmission of Z-MAC. In this section, we
+summarize our energy e(cid:14)ciency result from the mica2-based
+benchmarks.
+
+Energy Consumption
+
+B-MAC - Initial = 32, Congestion = 16
+Z-MAC-LCL - To = 8, Tno = 32
+S-MAC
+
+Z-MAC uses the CCA and LPL features of B-MAC. Thus,
+its energy e(cid:14)ciency is no better than B-MACs under low-
+data applications. We run the same energy e(cid:14)ciency test
+described in Section 6.2 of [15] using the one-hop Mica2
+benchmark. As we vary the transmission rate, we compute
+the optimal check interval for the tra(cid:14)c pattern. As a ref-
+erence point, we use S-MAC result in [15] and plot it along
+with the results of Z-MAC and B-MAC in Figure 14. The
+power consumption of Z-MAC is slightly worse than that of
+B-MAC. This is because in Z-MAC, (1) nodes tend to wake
+up longer for transmission since their backo(cid:11) window sizes
+are larger and (2) clock synchronization messages are peri-
+odically sent. In this test, the data rates are so low that all
+nodes are in LCL. Thus, no overhead for ECN is incurred.
+
+J
+m
+/
+s
+t
+i
+b
+K
+
+ 
+-
+ 
+y
+g
+r
+e
+n
+E
+
+/
+t
+
+u
+p
+h
+g
+u
+o
+r
+h
+T
+
+ 0.32
+
+ 0.3
+
+ 0.28
+
+ 0.26
+
+ 0.24
+
+ 0.22
+
+ 0.2
+
+ 0.18
+
+Throughput/Energy
+
+Z-MAC-HCL - To = 8, Tno = 32
+B-MAC - Initial = 32, Congestion = 16
+
+ 0.5
+
+ 1
+
+ 2
+
+ 4
+
+ 8
+
+ 16
+
+Packets per second
+
+Figure 15: The power e(cid:14)ciency in the multi-hop
+Mica2 benchmark.
+
+We measure the energy e(cid:14)ciency of Z-MAC and B-MAC
+in the multi-hop Mica2 benchmark. For each sending rates,
+we vary the duty cycle from 20% to 60% and measure the en-
+ergy e(cid:14)ciency in terms of throughput over power. Figure 15
+presents the best ratio of throughput over power for a given
+sending rate among all duty cycle runs. As we observe in the
+multi-hop throughput test, under low data rates, B-MAC
+has slightly higher throughput. Also we observe in the en-
+ergy e(cid:14)ciency test, that B-MAC also has slightly less power
+consumption (up to 10%) under low transmission rates. This
+is again because as B-MAC has a smaller contention window
+size than Z-MAC, its idle time is less under low transmis-
+sion rates. But as the transmission rate increases beyond 3
+packets per second, we (cid:12)nd that Z-MACs energy e(cid:14)ciency
+improves and beats that of B-MAC by about 40% under the
+full rate. This higher energy e(cid:14)ciency under high transmis-
+sion rates is attributable to the e(cid:14)ciency in the contention
+resolution of Z-MAC-HCL. Figure 16 plots the average num-
+ber of data transmissions per second in the testbed. We
+(cid:12)nd that Z-MAC has substantially fewer transmissions un-
+der high transmission rates. This is because HCL (when
+ECN is sent) forces senders not to transmit during the slots
+owned by two-hop neighbors and instead to sleep to save
+energy.
+
+)
+
+W
+m
+
+(
+ 
+
+d
+e
+m
+u
+s
+n
+o
+C
+
+ 
+r
+e
+w
+o
+P
+
+ 45
+
+ 40
+
+ 35
+
+ 30
+
+ 25
+
+ 20
+
+ 15
+
+ 10
+
+ 5
+
+ 0
+
+ 0
+
+ 50
+
+ 100
+
+ 150
+
+ 200
+
+ 250
+
+ 300
+
+ 350
+
+Average Per Node Throughput (Bits/Second)
+
+5. CONCLUSION AND FUTURE WORK
+
+Figure 14: The power e(cid:14)ciency in low-data rate ap-
+plications with low duty cycle.
+
+This paper presents a new MAC protocol, called Z-MAC,
+for sensor networks that can dynamically adjust the behav-
+ior of MAC between CSMA and TDMA depending on the
+
+d
+n
+o
+c
+e
+S
+/
+s
+n
+o
+s
+s
+m
+s
+n
+a
+r
+T
+
+i
+
+i
+
+ 
+f
+o
+ 
+r
+e
+b
+m
+u
+N
+ 
+e
+g
+a
+r
+e
+v
+A
+
+ 300
+
+ 250
+
+ 200
+
+ 150
+
+ 100
+
+ 50
+
+ 0
+
+Transmission Rate
+
+Z-MAC-HCL - To = 8, Tno = 32
+B-MAC - Initial = 32, Congestion = 16
+
+ 0.5
+
+ 1
+
+ 2
+
+ 4
+
+ 8
+
+ 16
+
+ 32
+
+Packets per second
+
+Figure 16: The average number of data transmis-
+sions per second in the multi-hop Mica2 experiment
+
+level of contention in the network. The protocol uses the
+knowledge of topology and loosely synchronized clocks as
+hints to improve MAC performance under high contention.
+Under low contention, and when these hints are not reli-
+able, the protocol behaves like CSMA. The performance re-
+sults show that Z-MAC has advantage over B-MAC under
+medium to high contention while it shows competitive, but
+slightly less performance than B-MAC under low contention
+(especially in terms of energy e(cid:14)ciency). Z-MAC (cid:12)nds its
+utility in applications where expected data rates and two-
+hop contention are medium to high. PTDMA shows high
+sensitivity to timing and slot errors and further, low utiliza-
+tion when a subset of nodes are transmitting. Sift shows
+high performance under one-hop contention, but under two-
+hop contention, it needs to rely on RTS/CTS, hence incur-
+ring high overhead. We plan to extend Z-MAC to wireless
+mesh networks and mobile ad hoc networks. The TinyOS
+and ns-2 source code of Z-MAC and DRAND can be found
+in http://www.csc.ncsu.edu/faculty/rhee/export/zmac.
+
+Acknowledgment
+The work reported in this paper is (cid:12)nancially supported
+in part by NSF-NOSS 0435157. We would like to thank
+Andrew Campbell (who helped shepherd this paper) and
+anonymous reviewers for their constructive comments. Wed
+also like to thank Kyle Jamieson for providing us with ns-2
+implementation of Sift.
+
+6. REFERENCES
+[1] K. Arisha, M. Youssef, and M. Younis. Energy-aware
+
+TDMA-based MAC for sensor networks. In IEEE Workshop on
+Integrated Management of Power Aware Communications,
+Computing and NeTworking (IMPACCT 2002), New York
+City,NY, May 2002.
+
+[2] Audio-Video Transport Working Group, H. Schulzrinne,
+
+S. Casner, R. Frederick, and V. Jacobson. RFC 1889: RTP: A
+transport protocol for real-time applications, Jan. 1996.
+
+[3] A.Woo and D.Culler. A transmission control scheme for media
+
+access in sensor networks. In ACM MobiCom 2001, pages
+221{235, 2001.
+
+[4] H. Balakrishnan. Opportunities in high-rate wireless sensor
+
+networking. NSF NOSS Principal Investigator and
+Informational Meetings, October 2004.
+
+[5] B. Crow, I. Widjaja, J. G. Kim, and P. Sakai. IEEE 802.11
+
+wireless local area networks. IEEE Communications
+Magazine, 35(9):116{126, 1997.
+
+[6] A. L. Edwards. The correlation coe(cid:14)cient. In An Introduction
+
+to Linear Regression and Correlation, pages 33{46. W. H.
+Freeman, 1976.
+
+[7] A. El-Hoiydi. Spatial TDMA and CSMA with Preamble
+
+Sampling for Low Power Ad Hoc Wireless Sensor Networks. In
+ISCC, pages 685{692, July 2002.
+
+[8] A. Ephremides and O. A. Mowa(cid:12). Analysis of a hybrid access
+scheme for bu(cid:11)ered users{probabilistic time division. In IEEE
+Transactions on Software Engineering, Vol. SE-8, No. 1,
+pages 52{61. IEEE, Jan. 1982.
+
+[9] S. Ganeriwal, R. Kumar, and M. Srivastava. Timing-sync
+
+protocol for sensor networks. In Proceedings of the First ACM
+Conference on Embedded Networked Sensor Systems
+(SenSys), Los Angeles, CA, November 2003.
+
+[10] J. Hill and D. Culler. A wireless embedded sensor architecture
+
+for system-level optimization, 2001.
+
+[11] T. Inukai. An e(cid:14)cient SS/TDMA time slot assignment
+
+algorithm. IEEE Trans. Communications, 27:1449{1455, 1979.
+[12] R. Jain, D.-M. Chiu, and W. Hawe. A quantitative measure of
+
+fairness and discrimination for resource allocation in shared
+computer system. Technical report, Digital Equipment
+Corporation, 1984.
+
+[13] K. Jamieson, H. Balakrishnan, and Y. Tay. Sift: A MAC
+protocol for event-driven wireless sensor networks, 2003.
+
+[14] J. Li and G. Lazarou. A bit-map-assisted energy-e(cid:14)cient MAC
+
+scheme for wireless sensor networks. In 3rd Int. Symp. on
+Information Processing in Sensor Networks (IPSN04), pages
+55{60, Berkeley,CA, April 2004.
+
+[15] J. Polastre, J. Hill, and D. Culler. Versatile low power media
+
+access for wireless sensor networks. In Proceedings of the
+Second ACM Conference on Embedded Networked Sensor
+Systems (SenSys), Baltimore,MD, November 2004.
+
+[16] V. Rajendran, K. Obraczka, and J. J.Garcia-Luna-Aceves.
+
+Energy-e(cid:14)cient, collision-free medium access control for
+wireless sensor networks. In Proceedings of the First ACM
+Conference on Embedded Networked Sensor Systems
+(SenSys), Los Angeles, CA, November 2003.
+
+[17] S. Ramanathan. A uni(cid:12)ed framework and algorithms for
+
+(T/F/C)DMA channel assignment in wireless networks. In
+IEEE INFOCOM 1997, pages 900{907, 1997.
+
+[18] I. Rhee, A. Warrier, and L. Xu. Randomized dining
+
+philosophers to TDMA scheduling in wireless sensor networks.
+Technical report, Computer Science Department, North
+Carolina State University, Raleigh, NC, 2004.
+
+[19] Y. Tay, K. Jamieson, and H. Balakrishnan.
+
+Collision-Minimizing CSMA and its Applications to Wireless
+Sensor Networks. IEEE Journal on Selected Areas in
+Communications, August 2004.
+
+[20] T. van Dam and K. Langendoen. An adaptive energy-e(cid:14)cient
+MAC protocol for wireless sensor networks. In Proceedings of
+the First ACM Conference on Embedded Networked Sensor
+Systems (SenSys), Los Angeles, CA, November 2003.
+
+[21] C.-Y. Wan, S. B. Eisenman, and A. T. Campbell. CODA:
+congestion detection and avoidance in sensor networks. In
+SenSys 03: Proceedings of the 1st international conference
+on Embedded networked sensor systems, pages 266{279, New
+York, NY, USA, 2003. ACM Press.
+
+[22] A. Warrier and I. Rhee. Stochastic analysis of wireless sensor
+network MAC protocols. Technical report, Computer Science
+Department, North Carolina State University, Raleigh, NC,
+2005.
+
+[23] A. Woo, T. Tong, and D. Culler. Taming the underlying
+
+challenges of reliable multihop routing in sensor networks. In
+SenSys 03: Proceedings of the 1st international conference
+on Embedded networked sensor systems, pages 14{27, New
+York, NY, USA, 2003. ACM Press.
+
+[24] W. Ye, J. Heidemann, and D. Estrin. Medium access control
+
+with coordinated adaptive sleeping for wireless sensor networks.
+IEEE/ACM Trans. Netw., 12(3):493{506, 2004.
+
+[25] G. Zhou, T. He, S. Krishnamurthy, and J. A. Stankovic. Impact
+
+of radio irregularity on wireless sensor networks. In MobiSys
+04: Proceedings of the 2nd international conference on
+Mobile systems, applications, and services, pages 125{138,
+New York, NY, USA, 2004. ACM Press.
+
+

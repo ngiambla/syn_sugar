@@ -27,8 +27,12 @@ class compress():
 
 		red_dict = self.load_red_words()
 		for _label in _ingredients_all:
-			sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
-			sys.stdout.flush()
+			try: 
+				sys.stdout.write("\rChecking: ("+str(_label)+","+str(_ingredient_mapping[_label])+")")
+				sys.stdout.flush()
+			except Exception as e:
+				pass
+			
 			_ingredients_all[_label] = _ingredients_all[_label].lower()
 			if _ingredients_all[_label] in red_dict:
 				_ingredients_all[_label] = red_dict[_ingredients_all[_label]]
@@ -47,3 +51,5 @@ class compress():
 		_ingredients.update(_ingredients_all, _ingredient_mapping)
 		print("")
 		print("")
+
+		return ["%%#%%"]

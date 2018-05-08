@@ -1,0 +1,397 @@
+Efficient 
+Software-Based 
+Fault Isolation
+
+Hello!
+
+Im Nick Giamblanco
+
+You can reach me nicholas.giamblanco@mail.utoronto.ca
+
+2
+
+1
+
+Objective:
+Isolate the untrusted
+
+3
+
+ One way to provide fault isolation 
+
+among cooperating software 
+modules is to place each in its 
+own address space [1].
+
+44
+
+Issues with Software Dependability & Extensions
+
+ User extensions can lead to system crashes
+ Potential Security Flaw
+ Mitigations techniques are costly
+
+User Extensions should be untrusted and isolated.
+
+5
+
+Efficient Fault 
+Isolation
+
+Thinking in the sandbox.
+
+6
+
+Efficient Fault Isolation
+
+Typical Approach:
+Remote Procedure Call (RPC)
+
+7
+
+Efficient Fault Isolation
+
+Typical Approach:
+Remote Procedure Call (RPC)
+ Generate Stub [C]
+ Pack Stub [C]
+ Send Stub [C]
+ Receive Stub [S]
+ Unpack Stub [S]
+ Process [S]
+
+Issues:
+Largely Inefficient
+ Network Congestion
+ Many Context Switches
+
+8
+
+Efficient Fault Isolation
+
+Other Approaches:
+ Address Space Identifier Tags
+ Restrictive Programming Languages [2]
+ Anonymous RPC [3]
+
+9
+
+ Unfortunately, there is a high 
+
+performance cost to providing 
+fault isolation through separate 
+address spaces [1]
+
+1010
+
+Novel Contributions:
+
+1. Generate a Fault Domain - Logical Separation 
+
+of Address Space
+2.
+(Efficient) Sandboxing
+3. Lazy Pointer Swizzling
+4. Modified Cross-Address RPC
+
+Hopes: Efficient Fault Isolation!
+
+11
+
+Fault Domains
+
+Logically Separating a Process Address 
+Space
+
+12
+
+Segment Matching & Sandboxing
+
+Software Encapsulation Techniques:
+
+Split Address into Segments
+1. Program and Data have 
+
+different segments
+
+2. Segments are identified 
+with Segment Identifiers
+
+SegMask  = 0x5400..
+Seg  
+Pseg 
+
+= 0x34df & 0x00ff..
+= Seg | SegMask
+
+0x34df..
+
+0x54df..
+
+0x44df..
+
+13
+
+Segment Matching & Sandboxing
+
+Software Encapsulation Techniques:
+
+Segment Matching
+
+Sandboxing
+
+ded_reg <= targ_addr
+   //Move targ_addr into ded_reg
+scrch_reg <= (ded_reg>>shft_reg)
+   //Right shift addr to get 
+sed_id
+   //shft_reg is dedicated
+CMP scrch_reg, seg_reg
+   //seg_reg is dedicated
+trap if NEQ 
+   //Trap if STR not in fault area
+STR ded_reg
+
+ded_reg <= targ_addr&and_mask_reg
+   //clears seg bits
+ded_reg <= ded_reg|seg_id
+   //Force ded_reg to be in fault
+   // area
+STR ded_req
+   //seg_reg is dedicated
+
+14
+
+Segment Matching & Sandboxing
+
+Software Encapsulation Techniques:
+
+Segment Matching
+ Can Pinpoint Fault
+ More efficient than RPC, 
+
+but still costly.
+
+Sandboxing
+ Can only identify, no 
+
+pinpointing
+
+ Much More Efficient
+
+15
+
+Efficient 
+Sandboxing
+
+Space-Time Tradeoffs with Segmentations
+
+16
+
+Efficient Sandboxing:
+
+Problem: Sandboxing control flow with REG+OFFSET is 
+costly.
+
+Solution: Include Guard 
+Zone with Segmentation!
+
+*Their prototype applies loop invariant code motion and 
+instruction scheduling optimizations
+
+17
+
+Data-Sharing 
+
+Lazy Pointer Swizzling
+
+18
+
+Sharing Data between Fault Domains
+
+Problem: Sharing Read-Write Data with Other Fault 
+Domains 
+
+Solution: Alias Page Tables into Segmented 
+Fault Domains! Voila!
+
+*Read only accesses are trivial!
+
+19
+
+Low Latency Cross 
+Fault Domain 
+Communication 
+
+20
+
+Low Latency RPC for Fault Domains:
+
+1. Use a (READONLY) jump table for control flow instructions
+2. Using Specialized Stub (Hand generated)
+3. Only Transfer parameters (no marshalling) (Single Copy 
+
+compared to 3)
+
+Works on the principal of trust!
+
+21
+
+Low Latency RPC for Fault Domains:
+
+22
+
+Implementation & Evaluation
+
+ Implemented with GCC. (Limitations on use cases).
+ Benchmarks: C SPEC 92, Sequoia 2000, and some of 
+
+Splash.
+
+ Evaluated Overheads + Novel RPC method
+Consensus: 
+ The encapsulation overhead has minimal impact on 
+
+program execution! 
+
+23
+
+Implementation & Evaluation
+
+24
+
+Implementation & Evaluation
+
+Consensus: 
+
+ This approach reduces the relative cost of cross-fault 
+
+domain RPC by an order of magnitude.
+
+25
+
+Implementation & Evaluation
+
+26
+
+Questions...
+
+27
+
+Question 1
+What did the authors 
+mean when they said they 
+could provide 
+full-security? Is this true?
+
+Answer
+- By isolating untrusted code in a fault 
+
+security 
+
+domain and disallowing jumps 
+beyond this, they provide security. 
+
+- However they do not provide full 
+
+28
+
+Question 2
+The idea presented here 
+has value for software 
+design. What could you 
+extrapolate from this idea 
+in this context?
+
+Answer
+- New code could be identified as 
+
+distrusted and put in their own fault 
+domain. 
+
+- Then the new code could be safe 
+from affecting other parts of some 
+system.
+
+29
+
+Question 3
+Do you think that this 
+approach would benefit 
+from 64-bit Addressing?
+What if they combined the 
+anonymous RPC 
+approach?
+
+Answer
+- The 64-bit Addressing mode may 
+loosen the requirement for Guard 
+Zoning
+
+- Although, the randomized approach 
+
+my present issues when Pointer 
+Swizzling is used.
+
+30
+
+Question 4
+What is Binary Patching? 
+Why is Binary Patching 
+difficult? Can you think of 
+any solution to this 
+problem?
+
+Answer
+- Compiled High Level Descriptions 
+
+turn into binary representations 
+available for interpretation by the 
+host. Binary Patching is able to 
+sandbox code by modifying the 
+literal binary rep. This is difficult as 
+binaries are host dependent.
+
+- A solution: utilize LLVM and produce 
+
+an IR?
+
+31
+
+Question 5
+Could you apply fault 
+isolation techniques to 
+determining runtime bugs?
+
+Answer
+- By using some variant of 
+
+Segmentation Matching, it may be 
+possible to identify runtime bugs 
+(upon careful selection)
+
+32
+
+THANKS!
+
+You can find me at
+
+nicholas.giamblanco@mail.utoronto.ca
+
+33
+
+References
+
+[1] R. Wahbe, S. Lucco, T. Anderson and S. Graham, "Efficient software-based fault isolation", ACM SIGOPS 
+Operating Systems Review, vol. 27, no. 5, pp. 203-216, 1993
+
+[2] David D Redell, Yogen K Dalal, Thomas R Horsley, Hugh C Lauer, William C Lynch, Paul R McJones, Hal G 
+Murray, and Stephen C Purcell. Pilot: An operating system for a personal computer. Communications  of the ACM, 
+23(2):8192, 1980.
+
+[3] Curtis Yarvin, Richard Bukowski, and Thomas Anderson. Anonymous rpc: Low-latency protection in a 64-bit 
+address space. In USENIX Summer, pages 175186, 1993.
+
+34
+
+

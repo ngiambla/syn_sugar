@@ -1,0 +1,1957 @@
+Lazy Diagnosis of In-Production Concurrency Bugs
+
+University of Michigan and Microso Research
+
+Baris Kasikci
+barisk@umich.edu
+Xinyang Ge
+Microso Research
+xing@microso.com
+
+ABSTRACT
+Diagnosing concurrency bugsthe process of understanding
+the root causes of concurrency failuresis hard. Develop-
+ers depend on reproducing concurrency bugs to diagnose
+them. Traditionally, systems that aempt to reproduce con-
+currency bugs record ne-grained thread schedules of events
+(e.g., shared memory accesses) that lead to failures. Record-
+ing schedules incurs high runtime performance overhead
+and scales poorly, making existing techniques unsuitable in
+production.
+
+In this paper, we formulate the coarse interleaving hypothe-
+sis, which states that the events leading to many concurrency
+bugs are coarsely interleaved. erefore, a ne-grained and
+expensive recording is unnecessary for diagnosing such con-
+currency bugs. We test the coarse interleaving hypothesis
+by studying 54 bugs in 13 systems and nd that it holds in all
+cases. In particular, the time elapsed between events leading
+to concurrency bugs is on average 5 orders of magnitude
+greater than what is used today in ne-grained recording.
+Using the coarse interleaving hypothesis, we develop Lazy
+Diagnosis, a hybrid dynamic-static interprocedural pointer
+and type analysis to diagnose the root causes of concur-
+rency bugs. Our Lazy Diagnosis prototype, S, relies
+on commodity hardware to track thread interleavings at a
+coarse granularity. S does not require any source
+code changes and can diagnose complex concurrency bugs
+in real large-scale systems (MySQL, hpd, memcached, etc.)
+with full accuracy and an average runtime performance over-
+head of below 1%. Broadly, we believe that our ndings can
+be used to build more ecient in-production bug detection
+and record/replay techniques.
+
+Permission to make digital or hard copies of all or part of this work for
+personal or classroom use is granted without fee provided that copies are not
+made or distributed for prot or commercial advantage and that copies bear
+this notice and the full citation on the rst page. Copyrights for components
+of this work owned by others than ACM must be honored. Abstracting with
+credit is permied. To copy otherwise, or republish, to post on servers or to
+redistribute to lists, requires prior specic permission and/or a fee. Request
+permissions from permissions@acm.org.
+SOSP 17, Shanghai, China
+ 2017 ACM. 978-1-4503-5085-3/17/10...$15.00
+DOI: 10.1145/3132747.3132767
+
+582
+
+Weidong Cui
+Microso Research
+wdcui@microso.com
+
+Ben Niu
+
+Microso Research
+beniu@microso.com
+
+CCS CONCEPTS
+Soware and its engineering ! Multithreading; Con-
+currency control; Soware testing and debugging;
+
+ACM Reference format:
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu. 2017. Lazy
+Diagnosis of In-Production Concurrency Bugs. In Proceedings of
+SOSP 17, Shanghai, China, October 28, 2017, 17 pages.
+DOI: 10.1145/3132747.3132767
+
+1 INTRODUCTION
+Bug diagnosis, the activity of identifying the root cause of
+a failure, is expensive. According to a recent report [80],
+testing and debugging with the purpose of bug diagnosis
+amounts to 35% of all soware development costs, a gure
+expected to rise up to 41-50% by the end of 2018. Diagnosing
+and xing bugs is also time-consuming, taking up to 50% of
+developers time [61].
+
+Concurrency bugs, which happen due to synchroniza-
+tion problems in multithreaded soware, are notorious for
+being harder and more time-consuming to x than other
+types of bugs [56]. Concurrency bugs can have catastrophic
+consequences [50, 88], and can compromise system secu-
+rity [24, 94]. To diagnose concurrency bugs, developers need
+to determine the exact interleavings of memory accesses
+and/or synchronization operations leading to failures. Ac-
+cording to practitioners in industry [32] and in the open-
+source community [96], diagnosing and xing concurrency
+bugs can take weeks, or even up to a month.
+
+To make maers worse, certain concurrency bugs only
+occur in production and cannot be reproduced in house due
+to their non-deterministic nature. is substantially compli-
+cates debugging [42], because traditionally, developers rely
+on reproducing bugs to x them. In particular, a study by
+Google revealed that developers lacked the means to diag-
+nose and x hard-to-reproduce bugs [81].
+
+A notable method to diagnose concurrency bugs that
+are dicult to reproduce is record/replay systems [62, 64,
+71, 77]. Record/replay systems record the execution of a
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu
+
+program (inputs, system call return values, thread sched-
+ules, etc.), which enable developers to reproduce failing ex-
+ecutions and diagnose bugs. Despite improvements in the
+past decade, multiprocessor record/replay of arbitrary multi-
+threaded programs incurs large runtime performance over-
+heads (200% in the worst case for the state of the art [92]),
+making record/replay unsuitable for in-production usage.
+Furthermore, expensive record/replay systems may perturb
+executions and hide concurrency bugs [42]. For instance,
+rr [64], Mozillas record/replay system, serializes concur-
+rent executions, which may mask bugs that may only occur
+during parallel executions.
+
+Another promising approach to tackle hard-to-reproduce
+in-production bugs is failure diagnosis systems [39, 42, 53].
+ese systems identify failure root causes using instrumen-
+tation and/or non-commodity hardware support to record
+events such as memory accesses, code execution paths, and
+thread schedules. Although promising, these systems assume
+that in-production code can be instrumented for sampling
+purposes [51, 52], or use unscalable mechanisms to track
+executions, or rely on custom hardware support for bug
+diagnosis. None of these assumptions hold for real-world
+soware. Consequently, there is no deployed in-production
+system for concurrency bug diagnosis.
+
+State-of-the-practice in-production bug diagnosis systems
+(e.g., the ones used in industry) have stringent eciency
+requirements. erefore, they rely on post-mortem analysis
+of crash dumps [2, 13, 31, 33]. ese systems diagnose bugs
+by mainly analyzing call stacks in a crash dump using a
+mixture of custom heuristics and function white-listing. e
+most advanced in-production bug diagnosis system that we
+are aware of is RETracer [23] from Microso, which performs
+a backward data-ow analysis from a corrupt pointer to
+identify the provenance of the corruption.
+
+In this paper, we introduce the coarse interleaving hypoth-
+esis, which states that the events leading to many concur-
+rency bugs in real systems are coarsely interleaved. We
+test the coarse interleaving hypothesis using 54 concurrency
+bugs (order violations, atomicity violations, and deadlocks)
+in 13 real systems. We nd that the time elapsed between
+events leading to concurrency bugs is at least 91 microsec-
+onds, which is 5 orders of magnitude greater than what
+ne-grained recording provides. Consequently, a more e-
+cient coarse-grained time tracking mechanism is sucient
+to track thread interleavings in practice.
+
+Using the coarse interleaving hypothesis, we develop Lazy
+Diagnosis, a hybrid dynamic-static analysis technique for
+accurate and ecient concurrency bug diagnosis. Lazy Diag-
+nosis relies on control ow tracing with timing information
+in modern hardware (e.g., Intel Processor Trace [35] or ARM
+Embedded Trace Macrocell [14]). e key idea behind Lazy
+
+Diagnosis is to lazily bind dynamic control and timing in-
+formation to an otherwise expensive static interprocedural
+pointer and type analysis. e control ow trace allows
+static analysis to only focus on executed code, and the coarse
+timing information enables the analysis to be partially ow
+sensitive, resulting in accurate and ecient root cause diag-
+nosis.
+
+As we will explain in 7, the coarse interleaving hypoth-
+esis may not hold for concurrency bugs in programs with
+a high degree of parallelism and ne-grained concurrency.
+If a concurrency bug does not meet the coarse interleaving
+hypothesis, Lazy Diagnosis will not produce misleading re-
+sults. Lazy Diagnosis will point out the events (e.g., memory
+accesses, lock operations, etc.) that are likely involved in the
+concurrency bug without providing the ordering information
+between these events, which we believe is still useful.
+
+Overall, we make the following contributions:
+
+ Coarse interleaving hypothesis, which claims that a
+coarse-grained timing information is sucient to in-
+fer thread interleavings leading to many concurrency
+bugs. We validate the hypothesis for 54 bugs in real
+systems, and discuss implications of this hypothesis
+to testing and debugging multithreaded programs.
+ Lazy Diagnosis, a novel hybrid dynamic-static pro-
+gram analysis technique that leverages the coarse
+interleaving hypothesis to accurately and eciently
+diagnose concurrency bugs. Lazy Diagnosis can di-
+agnose bugs in unmodied programs running on
+commodity hardware. Lazy Diagnosis does not rely
+on sampling, which leads to low root cause diagnosis
+latency (i.e., it can quickly diagnose bugs).
+
+We implemented Lazy Diagnosis in our prototype system
+S 1. We tested S using real systems such as
+MySQL, Memcached, Apache hpd, SQLite, Transmission.
+S diagnosed concurrency bugs with 100% accuracy
+with a runtime performance overhead of 0.97% on average.
+S can diagnose concurrency bugs aer a single fail-
+ure because it does not rely on sampling. Although S
+is geared towards the Intel platform, Lazy Diagnosis can be
+implemented on other platforms with control ow tracing
+capability (e.g., ARM). erefore, we believe that our tech-
+niques are broadly applicable, and S is suitable for
+real-world adoption.
+
+In the rest of this paper, we rst discuss the challenges
+of developing concurrency bug diagnosis techniques (2),
+followed by a discussion of the coarse interleaving hypothe-
+sis (3). We then describe the design of Lazy Diagnosis (4)
+followed by the implementation (5) and evaluation (6) of
+S. Aer discussing limitations (7) and the related
+work (8), we nally conclude the paper (9).
+
+1Snorlax is a lazy, but powerful Pokemon
+
+583
+
+Lazy Diagnosis of In-Production Concurrency Bugs
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+2 CHALLENGES OF CONCURRENCY BUG
+
+DIAGNOSIS
+
+We now explain the key challenges of diagnosing concur-
+rency bugs which apply to testing and debugging concur-
+rency bugs as well. We also explain how challenges of con-
+currency bug diagnosis are interrelated.
+
+2.1 Overhead Challenge
+A fundamental challenge in building eective concurrency
+bug diagnosis techniques is the runtime performance over-
+head incurred on the programs monitored for diagnosis pur-
+poses. Low runtime performance overhead is especially im-
+portant for diagnosing in-production bugs.
+
+To reduce performance overhead, existing techniques em-
+ploy a variety of methods. e rst technique is to use custom
+hardware support [16, 76, 77], which hurts applicability. e
+second major technique is to use sampling [15, 17, 42, 44, 51,
+52]. Alas, sampling techniques can signicantly reduce the
+probability of diagnosis. For instance, according to our evalu-
+ation (6.3), the diagnosis probability can be reduced at least
+by a factor of 3.7 and up to 2523. Furthermore, certain
+sampling techniques modify the source code or instrument
+in-production code on-the-y, which may not be practical
+or even possible. Moreover, modication or instrumentation
+of deployed programs could perturb program behavior and
+mask bugs [42].
+
+Certain techniques perform heavyweight in-house analy-
+ses [43] to avoid any runtime performance overhead. ese
+techniques may take a long time to analyze executions (e.g.,
+up to 5000 longer than real executions).
+Lazy Diagnosis solves the overhead challenge with a hy-
+brid dynamic-static program analysis that combines non-
+intrusive and low-overhead hardware control ow tracing,
+coarse-grained timing information, and powerful interproce-
+dural static program analysis (4). Control ow traces allow
+static analysis to reduce its scope to executed code (4.2),
+and timing information enables partial ow sensitivity (4.4),
+resulting in accurate diagnosis without sacricing perfor-
+mance.
+
+2.2 Accuracy Challenge
+Bug diagnosis techniques need to be accurate (i.e., provide
+correct results) to be adopted and used by developers in the
+real world. For instance, if the results of a data race detector
+contain too many false positives, developers may end up
+losing a lot of time weeding out the false positives, or worse,
+they will simply not use the detector.
+
+It is dicult to correctly identify the program state that
+leads to a failure in a complex large-scale soware. An ac-
+curate concurrency bug diagnosis system needs to correctly
+track the statements leading to failures and their execution
+
+584
+
+order. e accuracy challenge is also related to the overhead
+challenge. Tracking execution information is necessary for
+accurate diagnosis, but this can be expensive, especially for
+in-production code.
+
+Existing techniques rely on either non-commodity hard-
+ware support [76, 77] or heavyweight analyses that are not
+suitable for in-production usage [43], whereas Lazy Diagno-
+sis achieves high accuracy thanks to its hybrid dynamic-static
+interprocedural program analysis (4).
+2.3 Bug Diagnosis Latency Challenge
+Existing bug diagnosis techniques are prone to long diagno-
+sis latencies or low diagnosis probabilities due to sampling.
+ere are two predominant sampling strategies. e rst
+strategy is sampling in time [17, 40, 51, 52], i.e., turning mon-
+itoring on and o at certain time intervals, and the second
+is sampling in space [42, 44] which turns on monitoring for
+certain portions of a program. Prior work has shown that
+sampling in time can dramatically increase the latency of
+bug diagnosis (up to 100 according to [16]), and we show
+in our evaluation that sampling in space can cause an even
+more drastic increase (up to 2523 6.3).
+Reducing the bug diagnosis latency of hard-to-reproduce
+bugs requires monitoring programs continuously. To our
+knowledge, there is no in-production system that continu-
+ously monitors entire program executions for bug diagnosis
+purposes. e only related work to do so uses custom hard-
+ware [39] that is not readily available.
+
+Lazy Diagnosis relies on ecient control ow tracing in
+modern commodity hardware (Intel PT [35] or ARM ETM [14])
+to continuously track executions, thereby reducing bug di-
+agnosis latency.
+3 COARSE INTERLEAVING HYPOTHESIS
+In this section, we evaluate the coarse interleaving hypoth-
+esis, which claims that coarse-grained timing information
+is sucient to determine the thread interleaving of events
+(shared memory accesses and synchronization operations)
+leading to concurrency bugs. In the rest of the text, we refer
+to these events as target events or target instructions.
+
+We dened diagnosis of a bug as the identication of the
+failures root cause (1), where the root cause of a failure is
+intuitively the real reason behind the failure. More precisely,
+we dene the execution order of target events across threads
+as the root cause of concurrency bugs. Although we do not
+aempt a formal proof, we borrow this notion of root cause
+from the notion of causation dened by Halpern et al. [34].
+In particular, the execution order of events such as memory
+accesses are the only events pertinent to the occurrence of
+concurrency bugs we have encountered (deadlocks, order
+violations, and atomicity violations), and any other event is
+immaterial to reproducing these bugs.
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu
+
+the most common ones [56]. Atomicity violations may in-
+volve order violations, however their key characteristic is
+the violated atomicity of a code section. We focus on single
+variable atomicity violations, because as we discuss in 7, it
+is challenging for Lazy Diagnosis to diagnose multi-variable
+atomicity violations without tracing the data ow of a pro-
+gram. We refer to the time elapsed between the rst and
+the second access as  T1 and the time elapsed between the
+second and the third access as  T2.
+
+It is possible to determine the order of target events if
+the time elapsed between the events can be measured. A
+developer can then x the associated concurrency bugs e.g.,
+by ensuring that threads do not acquire locks in the order
+that leads to a deadlock or by using proper synchronization
+to eliminate the order or the atomicity violation.
+
+Figure 1: Patterns of concurrency bugs and target
+events
+
+3.1 Concurrency Bug Patterns
+Target event paerns vary based on the type of the con-
+currency bug. In this paper, we consider deadlocks, order
+violations, and atomicity violations. Order violations and
+atomicity violations are in many cases caused by one or more
+data races, which are unsynchronized accesses to shared vari-
+ables from multiple threads.
+
+We show the bug types and associated target event pat-
+terns in Figure 1. LA denotes an aempt to call a lock acqui-
+sition function to acquire the lock A. R and W denote read
+and write instructions to the same memory location respec-
+tively. e arrow sign between events denotes an ordering
+in time. It is not a formal happens-before relationship [48]
+established by synchronization operations except in the case
+of the deadlock paern.
+
+Deadlocks happen when a group of threads are each wait-
+ing for one another to release a lock to progress with their
+execution. A deadlock paern between two threads is in Fig-
+ure 1.(a), where read 1 which is already holding the lock
+LB aempts to acquire LA. LA is held by read 2, which in
+turn is aempting to acquire LB. We denote the time elapsed
+between the two lock acquisition aempts as  T. Lazy Di-
+agnosis is not limited to deadlocks with two threads, but we
+only show an example with two threads for brevity.
+
+Order violations happen when two threads access the
+same memory location, at least one of the accesses is a write,
+and the sequence of accesses violates the programs correct-
+ness. An order violation paern is in Figure 1.(b), where
+we denote the time elapsed between the two accesses in an
+order violation as  T.
+
+Atomicity violations happen when developers do not prop-
+erly identify sections of code that need to execute atomically
+and fail to enclose them in critical sections [57]. We show
+the paerns of single-variable atomicity violations in Fig-
+ure 1.(c), namely RWR, WWR, RWW, WRW, since they are
+
+585
+
+3.2 Evaluating the Coarse Interleaving
+
+Hypothesis
+
+We now briey discuss the systems we used to test the coarse
+interleaving hypothesis. Our benchmarks are widely-used
+real-world systems. MySQL [66] is a popular relational data-
+base system used by companies such as Google, Facebook,
+and Twier; Apache hpd [7] is the most widely used web
+server in the world, powering around 50% of all the web-
+sites [69]; memcached is a distributed object cache used by
+companies such as Amazon, Youtube, and Facebook [28];
+SQLite [86] is an embedded database used in Chrome, Fire-
+fox, and iOS; Transmission is a cross-platform BitTorrent
+client [78]; Pbzip2 is a parallel compression and decompres-
+sion tool [30]; aget is a parallel wget utility [26]; the Java
+Development Kit (JDK) [72] is the implementation of the
+Java Platform; Apache Derby is a relational database imple-
+mented entirely in Java [9]; Apache Groovy is a dynamic
+programming language [10] used by services such as Euca-
+lyptus [27] and Jenkins [38]; DBCP is Apaches connection
+pooling infrastructure for relational database connections in
+Java [8]; Apache Log4j is a Java-based logging utility [11];
+Apache Lucene is an indexing and search library [12].
+
+To measure the time elapsed between target events, we
+rst identify the target instructions leading to each con-
+currency bug. We then instrument C/C++ programs us-
+ing clock gettime() and Java programs using System.nano-
+Time(), which also relies on clock gettime() [29]. e instru-
+mentation is solely for the purposes of evaluating the coarse
+interleaving hypothesis. Lazy Diagnosis and S do
+not rely on any instrumentation or source code modication.
+e instrumentation calls to time measurement functions are
+injected as immediate predecessors [3] of target instructions.
+Linux uses the nanosecond-granularity time stamp counter
+(TSC) in Intel processors to implement clock gettime() [55].
+e reliability of our results depends on the accuracy of the
+TSC, and in particular, whether it is properly synchronized
+
+(b) Order violationsTimeRWWRTTRWWRTTThread 1Thread 2Thread 1Thread 2WWT1Thread 1Thread 2RT2WWT1Thread 1Thread 2RT2RWT1Thread 1Thread 2RT2RWT1Thread 1Thread 2RT2WRT1Thread 1Thread 2WT2WRT1Thread 1Thread 2WT2RWT1Thread 1Thread 2WT2RWT1Thread 1Thread 2WT2(c) Atomicity violations(a) DeadlocksThread 1(already holding LB)Thread 2(already holding LA)LBLBLALATLazy Diagnosis of In-Production Concurrency Bugs
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Table 1: Average time elapsed for deadlocks ( T in Figure 1.a) and standard deviation (  T ) in microseconds
+
+Table 2: Average time elapsed for order violations ( T in Figure 1.b) and standard deviation (  T ) in microseconds
+
+Table 3: Average times elapsed for atomicity violations ( T1,  T2 in Figure 1.c) and standard deviations (  T 1,   T 2)
+in microseconds
+
+across multiple cores in our test machine which has an Intel
+Skylake i7-6500U CPU. Fortunately, Intel CPUs since Ne-
+halem have invariant TSC [36], meaning that the TSC is
+synchronized across the CPUs [95]. Furthermore, the TSC is
+not aected by CPU frequency changes.
+
+We reproduced all the 54 concurrency bugs in 13 sys-
+tems that we could reproduce, while measuring time elapsed
+between target events. We chose these systems and bugs be-
+cause they were previously used for evaluating concurrency
+bug diagnosis and debugging tools [16, 42, 97], and there are
+publicly available frameworks to reproduce these bugs reli-
+ably [54, 83]. To correctly evaluate the coarse interleaving
+hypothesis, we did not instrument these programs (e.g., by
+inserting delays) to increase the bug reproduction probabil-
+ity. Consequently, in some cases, we had to run programs a
+few thousand times (less than 5000 in any case) to reproduce
+the bugs.
+
+We show the results of our study in Tables 13. e elapsed
+times represent averages over 10 runs, and we also provide
+
+586
+
+standard deviations. e rst row in each table shows the
+system name as well as the bug tracker id (N/A if the bug
+ID is not available). As a summary, the average time elapsed
+between target events is between 154 and 3505 microseconds.
+e shortest time elapsed is 91 microseconds. We discard
+the overhead of calling time measurement functions, which
+we measured to be always less than 1 microsecond in total
+for a given execution.
+
+3.3 Implications of e Coarse
+
+Interleaving Hypothesis
+
+Our evaluation results of the coarse interleaving hypothesis
+are encouraging. In particular, our results show that it is pos-
+sible to diagnose all the concurrency bugs we studied using
+an ecient time tracking mechanism that is roughly 5 orders
+of magnitude coarser than what a ne-grained record/replay
+system would provide.
+
+We compute the magnitude of the granularity dierence as
+follows: Our study in the previous section revealed that the
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu
+
+1ns = 91000 105.
+
+shortest time elapsed between target events was 91 microsec-
+onds. On the other hand, multi-processor record/replay
+should be able to provide nanosecond granularity. Consider
+an L1 cache hit, which takes around one nanosecond (4 cy-
+cles in Skylake [84]). A record/replay system should be able
+to track the exact order in which multiple L1 cache hits from
+dierent cores execute, which requires nanosecond record-
+ing granularity. We then compute the 5 orders of magnitude
+ratio as 91us
+
+As we show for our Lazy Diagnosis prototype implemen-
+tation, S, modern hardware is able to provide such
+granularity with an average performance overhead of 1%.
+We posit that the coarse interleaving hypothesis holds for
+real large-scale systems because of the inherent complexity
+of such systems (e.g., many operations, context switches,
+network communication, etc.). We acknowledge that the
+coarse interleaving hypothesis does not hold for operations
+in highly concurrent soware such as a concurrent linked
+list, where a formal verication of correctness may be pos-
+sible [18]. However, based on our study, we conclude that
+the coarse interleaving hypothesis is useful, and as we show
+in the next section, it can be used to eciently diagnose
+concurrency bugs in practice.
+
+We also believe that the coarse interleaving hypothesis can
+be useful for designers of bug detection tools and techniques
+such as record/replay systems and symbolic analysis tools.
+Recent work has shown that it is possible to build an ecient
+record/replay system if a multithreaded program has no data
+races [60]. Although this is true, record/replay systems are
+especially valuable for debugging hard-to-reproduce failures
+due to concurrency bugs such as data races. In many cases,
+the coarse interleaving hypothesis can be used to eciently
+record the order of racing accesses, thereby enabling the
+design of ecient record/replay engines that can work in the
+presence of data races. Similarly, symbolic analysis engines
+that aempt to synthesize executions with data races [43,
+99, 100] can leverage the coarse interleaving hypothesis to
+eciently record the order of racing accesses rather than
+aempting to synthesize thread schedules with data races.
+
+4 DESIGN OF LAZY DIAGNOSIS
+As discussed in 2, the key challenge of building accurate
+concurrency bug diagnosis tools is achieving low overhead.
+e key reason why existing diagnosis tools incur high over-
+head is because the mechanisms they use to accurately track
+the interleaving of shared memory accesses and synchroniza-
+tion operations across multiple threads are expensive [92].
+e coarse interleaving hypothesis suggests that it is possi-
+ble to use a relatively coarse-grained and inexpensive time
+tracking mechanism to determine the execution order of
+target events as long as the granularity is sucient.
+
+587
+
+Figure 2: Design of Lazy Diagnosis
+
+In this section, we present the design of Lazy Diagnosis,
+which builds on the coarse interleaving hypothesis. Lazy
+Diagnosis relies on ecient control ow tracing with timing
+information that is present in modern processors (Intel PT
+or ARM ETM) to continuously monitor the execution of pro-
+grams. For instance, Intel PT generates a per-thread trace
+that contains both control ow events (e.g., taken branches)
+and timing events (e.g., TSC) that are synchronized across all
+CPUs. Lazy Diagnosis uses control ow traces with timing
+information to perform an interprocedural dynamic-static
+analysis for concurrency bug diagnosis. e analysis is in-
+terprocedural, because concurrency bugs can span multiple
+functions.
+
+Figure 2 shows the high-level design of Lazy Diagnosis.
+Lazy Diagnosis operates in a client-server model, where
+the program is run on client machines in production, while
+continuously collecting control ow traces, and the server
+performs the core of Lazy Diagnosis analysis. Note that
+a client in our model can be either a desktop or a server
+machine.
+
+e control ow trace with timing information is gen-
+erated upon a failure such as a crash or a deadlock, or on
+demand (step 1 ). Lazy Diagnosis performs steps 2 to 7
+aer the server receives the rst control ow trace upon a
+failure to identify the most likely root cause of the failure. To
+increase the statistical signicance and hence the accuracy
+of bug diagnosis in step 7 , Lazy Diagnosis gathers further
+control ow traces from successful executions, generated at
+the location where the failure occurred previously (step 8 ).
+
+ProgramCompilerExecutable                  KernelTraceDriverControl Flow TraceTrace ProcessingHybridPoints-to AnalysisPointer0PointeriPointernMemLockMemLock+mToggle trace flushfor a given PC124Type-basedRanking5Bug Pattern classification6StatisticalDiagnosisWRMemLocwMemLocr7ClientsServer8Dynamic instruction trace3Lazy Diagnosis of In-Production Concurrency Bugs
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+We now explain how the key components of Lazy Diag-
+nosis work to solve the eciency, accuracy, and root cause
+diagnosis latency challenges we outlined in 2. In partic-
+ular, we discuss trace processing (4.1), hybrid points-to
+analysis (4.2), type-based ranking (4.3), bug paern com-
+putation (4.4), and statistical diagnosis (4.5).
+
+4.1 Trace Processing
+First, trace processing uses control ow traces from clients
+to identify the executed instructions (step 2 , Figure 2). In
+this context, when we say instructions, we refer to instruc-
+tions used by Lazy Diagnosis, where the actual format is
+implementation-dependent (e.g., LLVM IR). is step does
+not take into account the timing information in the traces
+or the dynamic sequence of instructions (e.g., an instruction
+executed multiple times counts as having executed once).
+
+We illustrate the result of step 2 on the hypothetical con-
+trol ow graph of the program, where blue nodes correspond
+to executed code as per the trace, and other nodes are grayed-
+out. e nodes on the graph represent basic blocks, which
+are contiguous instruction sequences without a branch. e
+edges represent branches, whose executions are tracked by
+control ow tracing. Hybrid points-to analysis uses the re-
+sults of this to reduce the scope of the analysis (4.2).
+
+Second, trace processing uses the control ow trace with
+the timing information to generate a dynamic instruction
+trace of executed instructions that are partially-ordered in
+time, i.e., a subset of the executed instructions are ordered
+with respect to each other (step 3 , Figure 2). e instructions
+in this trace are partially-ordered, because in practice, the
+granularity of the timing information in an ecient control
+ow tracing mechanism (e.g., Intel PT) is too coarse to infer a
+total order of all instructions. Nevertheless, as per the coarse
+interleaving hypothesis, we show that a partial order is suf-
+cient to diagnose real concurrency bugs (6.1). e results
+of this step are used by bug paern computation (4.4).
+
+Trace processing happens whenever the server receives a
+control ow trace from a failing execution, or from a success-
+ful execution at the request of the server. e server requests
+traces to be generated for successful executions (step 8 )
+to increase the statistical accuracy of root cause diagnosis
+(step 7 ). However, we note that Lazy Diagnosis does not
+employ statistical sampling like prior root cause diagnosis
+techniques [39, 42, 5153].
+
+Lazy Diagnosis instructs clients to generate traces from
+successful executions at the same program counter where a
+failure previously occurred. It may not be always possible to
+generate a trace at a previous failure location (e.g., if the fail-
+ure is in error handling code), in which case the server will
+instruct control ow traces to be generated at predecessor
+
+588
+
+p = &l
+
+MemLocl 2 p
+
+(1)
+
+p = q
+p  q
+(2)
+
+p = q
+p  q
+(3)
+
+p = q
+p  q
+(4)
+
+Figure 3: Constraint inference rules for inclusion-
+based points-to analysis [4]
+
+basic block(s) of the block where the failure occurred previ-
+ously. Lazy Diagnosis clients iterate over predecessor blocks
+until they reach a block where a trace can be generated.
+
+4.2 Hybrid Points-to Analysis
+Lazy Diagnosis uses trace processing results from step 3 to
+perform the hybrid interprocedural points-to analysis (step
+4 , Figure 2) that establishes a mapping between pointers
+and memory locations (e.g., Pointeri can point to locations
+MemLock to MemLock +m). e hybrid points-to analysis is lazy
+in that it computes the points-to set only whenever the server
+receives a new control ow trace from a client, as opposed
+to oine, in an eager manner.
+
+e key insight behind the hybrid points-to analysis is
+that we can relatively quickly perform an otherwise slow
+and unscalable interprocedural program analysis using the
+control ow information gathered from clients.
+
+Hybrid points-to analysis is an inclusion-based points-
+to analysis [5]. In short, such an analysis iterates over all
+the instructions in a program while generating constraints,
+which are then fed into a constraint solver to determine
+points-to sets. In Figure 3, we provide four inference rules
+assuming C/C++ as the source language (the rules are similar
+for other languages), where MemLocl is a memory location
+representing the address of object l. Pointers are represented
+by p and q. Rule (1) states that the assignment p = &l creates
+a constraint stating that the memory location of l is in the
+set of locations pointed to by p. Rule (2) states that the
+assignment p = q generates a constraint stating that the set
+of locations pointed to by p are a superset of the locations
+pointed to by q (i.e., the points-to set of p includes the points-
+to set of q, hence the name inclusion-based).
+
+Inclusion-based points-to analysis is more accurate [25]
+than the other major class of interprocedural analysis, namely
+unication-based points-to analysis [87]. Although inclusion-
+based points-to analysis is more expensive than unication-
+based points-to analysis, hybrid points-to analysis employs
+scope restriction to improve the eciency of inclusion-based
+analysis, while leveraging its higher accuracy.
+
+Scope restriction Lazy Diagnosis restricts the scope of
+interprocedural analysis to the instructions that executed.
+is reduces the amount of code that Lazy Diagnosis needs
+to analyze by 9 on average (6.1). Scope restriction enables
+Lazy Diagnosis to operate on code that actually executed, but
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu
+
+Figure 4: Type-based ranking example. e failure in
+this example is a crash. e ranking favors the Queue*
+type over the i32* type, because the instruction where
+the failure occurs operates on the type Queue*.
+
+Figure 5: Partial ow sensitivity across instructions
+involved in a concurrency bug (I1, I2 and If from Fig-
+ure 4). e executes before relationship is based on
+the timing information in the control ow trace, and
+it is not a happens before [48] relationship.
+
+it comes at the cost of potentially missing points-to relations
+because, in practice, control ow traces are limited in size.
+For instance, we capture the last 6764 branches on average
+with a 64KB ring buer in our evaluation. However, we
+will show that scope restriction does not impact root cause
+diagnosis accuracy in our evaluation.
+
+Finally, hybrid points-to analysis is ow insensitive, i.e., it
+discards the execution order of program instructions. Hybrid
+points-to analysis leverages the conservativeness of ow
+insensitivity when analyzing a multi-threaded program. e
+execution order of instructions in a multithreaded program
+cannot be inferred based on the order of instructions in the
+code. In a multithreaded program, instructions from dierent
+threads can be arbitrarily interleaved to aect the points-
+to information, and ow insensitivity models this behavior.
+However, Lazy Diagnosis introduces ow sensitivity among
+target instructions during bug paern computation (4.4).
+is approach allows us to use the timing information in a
+conservative way.
+4.3 Type-Based Ranking
+Type-based ranking takes as input the points-to set of the
+operand of a failing instruction. e operand depends on the
+type of the failure: for a deadlock, the operand is a pointer to
+a lock object, and for a crash, the operand is an invalid pointer
+(e.g., due to memory corruption). Type-based ranking then
+ranks the instructions accessing the memory locations in the
+points-to set of the operand, based on the likelihood with
+which these instructions could be involved in a concurrency
+bug (Figure 2, step 5 ). We discuss the specics of retrieving
+the operand from the instruction where the failure occurred
+in the implementation section (5).
+
+Type-based ranking highly ranks the instructions that
+operate on types that exactly match the type of the operand
+involved in the failure. Type-based ranking operates on static
+instances of instructions. In the bug paern computation
+section (4.4), we explain how Lazy Diagnosis takes into
+account the dynamic instances of the instructions.
+
+Figure 4 shows an example of type-based ranking using
+the LLVM IR (intermediate representation) [49]. We assume
+that the failure in this example is a crash. If is the instruction
+
+where the failure occurred, and based on the hybrid points-to
+analysis, If , I1, and I2s operands (circled on the gure) might
+point to the same memory location. Type-based ranking
+ranks I1, the store instruction operating on type Queue*, with
+rank 1, because If also operates on the same type. However
+type-based ranking ranks I2, the store instruction operating
+on the 32-bit integer pointer type i32*, with rank 2.
+
+Lazy Diagnosis does not discard any instruction based on
+its rank, because instructions operating on dierent types
+can be involved in the same concurrency bug. A type mis-
+match occurs due to type casts, where for instance, an i32*
+could be referring to a Queue*. Type-based ranking merely
+prioritizes the remaining stages of the analysis to improve
+bug diagnosis latency. In our evaluation (6), type-based
+ranking decreases root cause diagnosis latency by 4.6.
+4.4 Bug Pattern Computation
+Bug paern computation takes as input the output of type-
+based ranking and the partially-ordered dynamic instruction
+trace generated by trace processing, and identies paerns
+that may have caused concurrency bugs (step 6 , Figure 2).
+Lazy Diagnosis is able to identify the paerns of deadlocks,
+order violations and atomicity violations from Figure 1.
+
+As discussed in 3, concurrency bug diagnosis requires
+knowing the execution order of target instructions involved
+in the bug. Lazy Diagnosis determines the execution order
+of target instructions using partial ow sensitivity.
+
+Partial flow sensitivity: It uses the partially-ordered dy-
+namic instruction trace (step 3 , Figure 2) to add the ordering
+information between the dynamic instances of instructions
+that were previously ranked based on their types. Figure 5
+shows how the instructions I1, I2, and IF from Figure 4 are
+augmented with executes before relations. Partial ow sen-
+sitivity establishes executes-before relations across dynamic
+instances of instructions, as opposed to type-based ranking
+that operates on static instances of instructions. However,
+for brevity purposes, in Figure 5, we assume that each static
+instance of I1, I2 and If from Figure 4 only has one dynamic
+instance in the trace. erefore, we refer to the dynamic and
+static instances of the instructions with the same name.
+
+589
+
+%7 = load %struct.Queue*, %struct.Queue** %fifostore %struct.Queue* %1, %struct.Queue** %q  store i32* %21, i32** %bufSize8  12CRASHRank basedon typeIFI1I2I1I2IFexecutes beforeexecutes before12Lazy Diagnosis of In-Production Concurrency Bugs
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Figure 6: Patterns of potential concurrency bugs for
+the instructions in the example from Figure 4. Ti
+stands for thread i. I1 and I2 are writes (store); If is
+a read (load).
+
+Next, bug paern computation uses the partially-ordered
+instructions to generate potential deadlock, order violation,
+and atomicity violation paerns.
+
+Deadlocks: Major operating systems like Windows [31]
+and Ubuntu Linux [91] and execution environments such as
+the JVM can identify [73] that a failure occurred due to a
+deadlock. If the failure was due to a deadlock, Lazy Diagnosis
+generates potential deadlock paerns using the type-ranked
+and partially ow-sensitive instructions. Lazy Diagnosis
+determines which of the generated paerns is the root cause
+of the deadlock with great certainty in the nal stage, namely,
+statistical diagnosis (4.5).
+
+Order violations and atomicity violations: It is not
+easy to know whether a failure occurred due to an order
+violation or an atomicity violation. erefore, if the failure
+is a crash, Lazy Diagnosis generates potential paerns of
+both order and atomicity violations that may have caused
+the crash.
+
+Figure 6 shows potential order and atomicity violation pat-
+terns that Lazy Diagnosis generates using the instructions
+from the example in Figure 4, which fails with a crash. Since
+the failure instruction (If ) is a read (load), and the other
+instructions (I1, I2) are write (store) instructions, the likely
+paerns are a WR order violation, and a WWR atomicity vi-
+olation. Just as for deadlocks, Lazy Diagnosis determines the
+root cause of a failure with great certainty in the statistical
+diagnosis stage (4.5).
+
+Bug paern computation uses additional out-of-band in-
+formation such as thread IDs (e.g., T1, T2 in Figure 6) when
+computing concurrency bug paerns. For instance, bug pat-
+tern computation requires instructions involved in an order
+violation to be executed by dierent threads. It is possible to
+use thread IDs, because in practice, the control ow traces
+are per thread (with the proper kernel driver support).
+
+4.5 Statistical Diagnosis
+Statistical diagnosis [39, 5153] determines the likelihood
+that the paerns computed by bug paern computation are
+the root causes of concurrency bugs (step 7 , Figure 2).
+
+Statistical diagnosis computes the F1 score [79] for each
+paern, which is the harmonic mean of precision (P) and
+recall (R) (F1 = 2 P .R
+P +R ). In the context of Lazy Diagnosis,
+precision indicates the number of executions that fail among
+those executions that were predicted to fail based on the
+presence of a paern. Recall indicates the number of execu-
+tions that were predicted to fail based on the presence of a
+paern among the executions that failed.
+
+A high F1 score for a concurrency bug paern indicates
+that the presence of the paern is positively correlated with
+the failure. A high F1 score is also a strong indicator that the
+paern is the root cause of a concurrency bug (as we show
+in our evaluation). e eectiveness of statistical diagnosis
+is due to the nature concurrency bugs we discussed in 3.
+In particular, we dened the paerns in Figure 1 as the root
+causes of concurrency bugs. Consequently, a high F1 score
+(i.e., the presence of a paern) is an indicator that the paern
+in question is likely the root cause.
+
+We note that execution traces from successful executions
+are necessary for increasing the accuracy of statistical di-
+agnosis. In our evaluation, S was able to accurately
+diagnose failure root causes by gathering information from
+10 more successful executions than failing executions. In
+practice, traces from successful executions are abundant and
+easy to obtain for most in-production soware.
+
+If there are multiple paerns with the same F1 score, de-
+velopers will need to manually identify the root cause from
+these paerns. We have not seen this in our evaluation (6).
+
+5 IMPLEMENTATION OF SNORLAX
+S, our current prototype of Lazy Diagnosis, is built to
+analyze C/C++ programs compiled using clang [22]. We rely
+on clang to generate an LLVM bitcode le that is used by the
+server-side analysis. However a dierent implementation
+with another program analysis framework is possible [68,
+85]. S also relies on Intel PT for generating control
+ow traces with timing information. is step too can be
+implemented on other platforms [14, 58]. S does not
+require the program for which it is diagnosing concurrency
+bugs to be modied in production.
+
+On the client side, S relies on a custom 3773 LOC
+Intel PT driver for Linux that exposes an ioctl interface for
+conguring the driver to save the trace when the program
+executes a specic instruction, or whenever a fail-stop event
+such as a crash occurs. e driver uses hardware breakpoints
+(i.e., watchpoints) to detect that the execution reached a
+specic program counter.
+
+590
+
+(a) Write-Read (WR) Order violation patternsIFI1T1TimeT2IFI2T1T2I2I1T1T2IF(b) Write-Write-Read (WWR) Atomicity violation patternsI1I2T1T2IFSOSP 17, October 28, 2017, Shanghai, China
+
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu
+
+We did not modify the Linux kernel itself, because our
+driver is a loadable module. We congured Intel PT to hold
+64 KB of control trace per thread (congurable up to 128 MB)
+in memory in a ring-buer. e ring-buer mode overrides
+the control ow trace for each thread once the trace size
+reaches the buer size. e ring-buer mode keeps all the
+trace in memory until a failure occurs or the trace is saved
+on-demand, thereby avoiding any I/O overhead of saving
+the trace to persistent storage during operation.
+
+We congured our Intel PT driver to insert timing packets
+(MTC and CYC packets [36]) into Intel PT trace at the highest
+possible frequency. is conguration does not set a specic
+frequency, but instructs Intel PT to inject as many timing
+packets as possible. Timing packets occupied on average 49%
+of the trace buer size. is does not hurt Ss accu-
+racy as we discuss in the next section. In fact, timing packets
+allow S to determine target instruction orderings,
+thereby increasing root cause diagnosis accuracy.
+
+On the server side, to decode Intel PT traces, we rely on
+the stock decoder from Intel [37]. We rely on the LLVM
+compiler toolchain [49] to implement the hybrid points-to
+analysis as well as the type-based ranking (total of 2618 LOC).
+For eciency purposes, programs running in production do
+not contain the debug information. To mimic this behavior,
+we strip the debug information from generated binaries and
+use it on the server side to map the program counter of the
+failure to the LLVM intermediate representation.
+
+S limits the maximum number of traces gathered
+from successful executions for the purposes of statistical
+diagnosis to 10 of the number of failing executionsan
+upper limit we empirically determined to be sucient for
+full root cause diagnosis accuracy.
+
+e client-server communication code as well as the bug
+paern classication and statistical diagnosis modules are
+wrien in a total of 1486 LOC of Python. S clients
+retrieve the failure code (e.g., crash or hang) from Ubuntus
+built-in ErrorTracker [91].
+
+6 EVALUATION OF SNORLAX
+In this section, we aim to answer the following questions
+regarding S: Can S accurately diagnose con-
+currency bugs (6.1)? How ecient S is in diagnosing
+concurrency bugs (6.2)? How does S compare to a
+state of the art bug diagnosis system (6.3)?
+
+To answer these questions, we evaluate S using
+concurrency bugs in real C/C++ systems such as MySQL (650
+KLOC), Apache hpd (223 KLOC), memcached (9 KLOC),
+SQLite (100 KLOC), Transmission (60 KLOC), pbzip2 (2 KLOC),
+and aget (842 LOC). We use these benchmarks, because they
+have been used to evaluate previous concurrency bug detec-
+tion and diagnosis tools [54, 97], and we compare S
+to one such tool, namely Gist [42].
+
+591
+
+On the client side, we ran our experiments with a 2 core
+Intel Skylake i7-6500U CPU with Intel PT support and 8 GB
+of RAM running Ubuntu 16.04 with kernel version 4.8.0-41.
+On the server side, we used an 8 core Intel Xeon E5-1620
+CPU with 16 GB of RAM and the same Linux setup.
+
+We used existing test cases to trigger the bugs [97]. For
+each buggy execution trace, we gathered an additional 10
+traces from successful executions at the failure location
+where each bug manifests itself. On average, S clients
+gathered 6764 control events (e.g., branches, calls) and 6695
+timing packets per thread.
+6.1 Accuracy
+In this section, we rst evaluate the accuracy of S
+by comparing Ss diagnosis results with the bug x
+patches of the applications we evaluated. We also compare
+Ss diagnosis results to those of a state-of-the art
+concurrency bug diagnosis tool, Gist. We then quantify the
+contribution of techniques used in Lazy Diagnosis to S
+s diagnosis accuracy.
+
+S was able to accurately diagnose the root cause
+of all the concurrency bugs we evaluated. We manually ana-
+lyzed the bug xes of all the 11 concurrency bugs and found
+that developers eliminated the paerns that S diag-
+nosed as the root causes of all these bugs. We also compared
+Ss diagnosis results with Gists diagnosis results and
+conrmed that the root causes diagnosed by Gist and S
+ are the same. However, in the next section, we show
+that Gists root cause diagnosis latency can be orders of mag-
+nitude larger than Ss, making Gist less practical for
+in-production usage.
+
+More formally, we adopt an accuracy metric from prior
+work [42] called ordering accuracy, namely AO. AO denes
+to what extent the order of target instructions diagnosed
+by a tool diers from the ground truth, i.e., the manually
+diagnosed and veried order of instructions leading to the
+failure. Ordering accuracy uses the normalized Kendall tau
+distance [46],  , which measures the pairwise disagreements
+between ordered lists. For instance, for ordered lists of in-
+structions [I1, I2, I3] and [I1, I3, I2],   = 1, because the pairs
+[I1, I2] and [I1, I3] have the same ordering, whereas the pair
+[I2, I3] has dierent orderings in the two lists.
+If the or-
+dered list of instructions that S computes is OS and
+the manually computed (ground truth) list of ordered in-
+structions is OM, then the ordering accuracy is dened as
+AO = 100( 1 
+). We computed the order-
+ing accuracy for all the concurrency bugs S diagnosed
+in our evaluation, and obtained 100% for each one.
+
+# of pairs inOS[OM
+
+e accuracy is 100% thanks to the timing packets in-
+jected in the control ow trace by Intel PT. For all the bugs
+we reproduced, timing packets granularity was ne enough
+to accurately determine the order of target events leading
+
+ (OS,OM)
+
+Lazy Diagnosis of In-Production Concurrency Bugs
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Trace processing
+Hybrid points-to analysis + Trace processing
+Type-based ranking + Hybrid points-to analysis + Trace processing
+Bug pattern computation + Type-based ranking + Hybrid points-to analysis + Trace processing
+Statistical diagnosis + Bug pattern computation + Type-based ranking + Hybrid points-to analysis + Trace processing
+100
+
+	
+
+y
+c
+a
+r
+u
+c
+c
+A
+
+]
+
+%
+
+[
+	
+n
+o
+i
+t
+u
+b
+i
+r
+t
+n
+o
+c
+
+95
+
+90
+
+85
+
+80
+
+	
+Figure 7: Contribution of each stage of Lazy Diagnosis to Ss accuracy. On the x-axis, we show system
+names and the bug ids (N/A if bug id is not available). We start the y-axis at 80% to make the contribution of the
+last four stages clearer.
+
+to concurrency bugs. More specically, the longest time
+elapsed between the timing packets in our experiment was
+65 microseconds, whereas the shortest time elapsed between
+target events was 91 microseconds. Our results show that
+S was able to leverage the coarse interleaving hy-
+pothesis to accurately diagnose concurrency bugs.
+
+Finally, in Figure 7, we show to what extent each stage of
+Lazy Diagnosis (steps 27 in Figure 2) improves Ss
+accuracy. To quantify this contribution, we compute how
+much every stage of Lazy Diagnosis reduces the number of
+instructions to be analyzed. In comparison to a purely static
+analysis, trace processing reduces the number of instructions
+to be analyzed by a geometric mean of 9, contributing 87.9%
+towards full accuracy. e next big contribution comes from
+type-based ranking, which further reduces the number of
+instructions to be analyzed by a geometric mean of 4.6,
+contributing an additional 9.7% towards full accuracy. Over-
+all, for all the bugs, each of the ve stages is necessary to
+achieve 100% accuracy.
+
+6.2 Eciency
+In this section, we evaluate Ss eciency by rst mea-
+suring the performance overhead of control ow tracing on
+client executions in production. We then measure how long
+it takes S to perform its analysis once a new control
+ow trace is obtained from a client and how much faster
+
+592
+
+S is compared to the same static analysis but without
+the control ow trace (i.e., a whole-program analysis).
+
+To evaluate the performance overhead of control ow
+tracing using Intel PT, we use tests wrien by other re-
+searchers [97], SQLites performance tests, Apaches bench-
+marking tool ab [6], and MySQLs benchmarking tool [65].
+To measure performance overhead for MySQL, hpd, and
+SQLite, we measure the drop in throughput and for all the
+other benchmarks, we measure the increase in runtime.
+
+We show performance overhead results in Figure 8. Across
+all programs, control ow tracing incurs a runtime perfor-
+mance overhead of 0.97% on average. e highest average
+overhead as well as the peak overhead we recorded during
+our experiments is for pbzip2 at 1.78% and 1.91%, respectively.
+We conclude that S incurs low runtime performance
+overhead in client executions, and therefore it is suitable for
+in-production usage.
+
+Table 4 shows the average server-side analysis time of
+S (steps 27 in Figure 2) and the average speedup of
+the analysis compared to a purely static analysis. Aer the
+rst full-program static analysis, S takes on average
+2.5 seconds to perform its server-side analysis whenever a
+new trace is received. Ss hybrid points-to analysis
+is a function of the trace size and not the program size (aside
+from constant factors due to pre-processing the program
+binary), enabling S to diagnose bugs for large-scale
+soware. e geometric mean of Ss speedup over
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu
+
+Bug Recurrence Requirement: Gist employs sampling
+in space by turning monitoring on for a single bug it is trying
+to diagnose per execution. Consequently, if the number of
+bugs Gist is trying to diagnose is large, the probability that
+Gist is monitoring the events for the right bug decreases.
+For instance, at the time of this writing, Chromium has 684
+open race condition bugs [89], which would reduce the root
+cause diagnosis latency of Gist by a factor of 684 compared
+to an always on monitoring for all the bugs. S on the
+other hand, does not employ sampling and has always-on
+monitoring, where it captures a control ow trace whenever
+a failure occurs. erefore, S is not impacted by the
+number of bugs it is trying to diagnose at a given time.
+
+Static Analysis: Ss and Gists static analysis
+have dierent designs and purposes. Gists static analysis
+computes a static backward slice which includes all the pro-
+gram instructions that could eect the failing instruction.
+Gist then renes the static slice aer every recurrence of
+the failure to improve bug diagnosis accuracy. S per-
+forms static points-to analysis to identify potential target
+events. S then uses control ow traces to determine
+the execution order of target events.
+
+Diagnosis Latency: Gist requires on average 3.7 recur-
+rences of a failure before it can diagnose a bug [42]. is
+is because, every time a failure recurs, Gists analysis itera-
+tively broadens its scope to reduce overhead and increase ac-
+curacy. S is always on and tracing the entire control
+ow that ts into the Intel PT buer. erefore, it requires
+a failure to occur once to be able to diagnose the bug. In
+summary, S has on average at least 3.7 lower bug
+diagnosis latency compared to Gist. In practice, Ss
+latency is lower than Gists by at least a further factor equal
+to the number of bugs being diagnosed. For instance, in the
+case of Chromium, S would have on average 2523
+lower latency than Gist. In fact, this estimate is conservative,
+and in practice, Gists bug diagnosis latency is unbounded.
+is is because Gist does not know in which executions a
+previously-observed bug will recur, and a bug for which Gist
+is trying to perform diagnosis may occur at an arbitrary time
+in the future.
+
+Scalability: Finally, we measure the scalability of S
+ and Gist when monitoring client executions in produc-
+tion. For this, we double the application thread count from 2
+until we reach 32, while measuring the runtime performance
+overhead. For each thread count, we represent the average
+overhead across all applications (i.e., we conate the over-
+head) to determine the scalability dierences between the
+two tools for a range of programs.
+
+We show the scalability results in Figure 9. e aver-
+age overhead of S increases from 0.87% to 1.98%,
+because the Intel PT driver has to manage a separate buer
+for each thread. Gist has low overhead for low thread counts.
+
+Figure 8: Runtime performance overhead of control
+ow tracing with Intel PT
+
+Table 4: Ss average analysis times (in seconds)
+and speedups (as a factor) versus the static analysis
+without the control ow trace. Standard deviations
+are all below 3%
+
+pure static analysis is 24. e speedup is greater for larger
+programs, because the dynamic trace corresponds to a rela-
+tively small portion of the program.
+
+6.3 Comparison to the State of the Art
+In this section, we compare S to a state of the art
+open source concurrency bug diagnosis tool, Gist [42, 83].
+First, we list the key dierences between S and Gist
+in terms of assumptions, practicality, and static analysis. We
+then argue that Ss concurrency bug diagnosis la-
+tency is substantially lower than Gists. Aer it, we compare
+the scalability of Gist and S as the number of ap-
+plication threads increases, and show that S scales
+beer. Finally, we compare Gist and S in terms of
+their generality.
+
+Intrusiveness: Gist [42] repeatedly modies the source
+code to instrument programs in production to gather infor-
+mation for root cause diagnosis, which may not be possible
+or desirable in practice. S does not modify or in-
+strument programs running in production, because Intel PT
+tracks the control ow transparently. is makes S
+non-invasive and therefore more practically applicable.
+
+593
+
+ 00.511.52Overhead [%]Lazy Diagnosis of In-Production Concurrency Bugs
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Figure 9: Scalability of S and Gist with the num-
+ber of application threads
+
+However, its overhead increases with an increasing thread
+count. In particular, Gists overhead increases from 3.14% for
+2 threads all the way to 38.9% for 32 threads. e poor scala-
+bility of Gist is due to blocking synchronization it employs to
+track the order of shared memory accesses. S lever-
+ages the coarse interleaving hypothesis to avoid such syn-
+chronization and the associated high overhead. We conclude
+that S scales beer than Gist with the increasing
+number of application threads.
+
+Generality: Gist does not rely on the coarse interleaving
+hypothesis to diagnose bugs. erefore, in theory, it can
+perform diagnosis for a broader class of bugs than S.
+However, Gists generality comes at the expense of poor
+scalability and increased overhead, making it less practically
+applicable.
+
+7 DISCUSSION
+In this section, we discuss open questions and current limi-
+tations of our prototype S.
+
+Applicability of coarse interleaving hypothesis: e
+coarse interleaving hypothesis does not hold for all classes of
+programs (e.g., a highly contended concurrent data structure,
+or a highly concurrent program running on a many-core
+machine). As a result, the coarse interleaving hypothesis
+cannot be leveraged to build tools that can diagnose concur-
+rency bugs if the events involved in the bug are interleaved
+at a granularity that cannot be tracked eciently. However,
+our evaluation with 54 bugs suggests that the coarse inter-
+leaving hypothesis holds for a broad range of bugs in real
+systems, thereby making it useful. Moreover, even if the
+coarse interleaving hypothesis does not hold, S is
+able to determine target events leading to concurrency bugs
+without the ordering information, which is still useful in
+practice.
+
+Presence of Intel PT: S relies on Intel PT, which
+is only available on Intel processors since the Broadwell
+microarchitecture (i.e., aer 2014). Lazy Diagnosis is not
+limited to Intel PT, and it can be implemented using other
+current technologies such as ARM ETM.
+
+Limited control flow trace: In our experiments, S
+ uses a 64 KB control ow trace ring buer, which was
+sucient to diagnose all the concurrency bugs with the low
+overhead numbers we reported. is nding corroborates
+the short-distance hypothesis from prior work [103], which
+states that a concurrency bug propagates through a short
+data/control dependency chain. For bugs where the short-
+distance hypothesis does not hold, a 64 KB, or even a 128
+MB (the largest buer that we currently support) buer may
+not be sucient. e solution to this limitation presents a
+performance challenge. We can record an entire Intel PT
+trace by saving the in-memory trace buer to persistent stor-
+age every time the buer is full. is solution will increase
+the runtime performance overhead as well as the storage
+overhead.
+
+Type-based ranking heuristic: is heuristic may not
+always reduce the root cause diagnosis latency, especially
+if the target events involved in a concurrency bug consist
+of accesses to data via generic pointers (e.g., a pointer to
+an integer). In our evaluation (6), the type-based ranking
+heuristic reduced root cause diagnosis latency by a factor of
+4.6.
+Failing instruction not in the bug paern: S
+assumes that the failing instruction is part of the bug paern.
+If this assumption is not correct, Snorlax may not be able
+to diagnose failure root causes. Although recent work [23]
+reported that 85% of 140 real-world bugs at Microso had
+the failing instruction as part of the bug paern, we will still
+explore handling other cases in future work. One possibility
+is to perform additional static analysis to nd instructions
+with control/data dependencies to the failing instruction and
+include them in Ss analysis.
+
+Non fail-stop failures: S is an automated root
+cause diagnosis system. erefore it requires the failures to
+be either fail-stop, or it requires developers to dene custom
+modes of failure (e.g., using assertions) allowing S to
+automatically determine that failure has occurred. S
+cannot diagnose latent bugs that corrupt a systems state
+without any externally-observable eect.
+
+Multi-variable atomicity violations: ese violations
+do occur in real systems [56]. Lazy Diagnosis focuses on
+detecting single-variable atomicity violations. We leave the
+handling of multi-variable cases to future work.
+
+Privacy implications: S does not track any data
+values in the programs it analyzes, but it tracks control ow,
+which can potentially leak private information. One way to
+alleviate this problem is to use techniques such as symbolic
+analysis to anonymize control ow traces [20].
+
+8 RELATED WORK
+Lazy Diagnosis design is inuenced by Exterminator [70],
+which is the rst system to suggest collaborative bug xing
+
+594
+
+ 020402481632Overhead [%]Thread countSnorlaxGistSOSP 17, October 28, 2017, Shanghai, China
+
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu
+
+by merging patches generated by multiple users. Similarly,
+Clearview [75] automatically generates patches to x vul-
+nerabilities in production. Lazy Diagnosis can assist these
+techniques in the generation of patches for concurrency
+bugs.
+
+Lazy Diagnosis design is also inuenced by Windows
+Error Reporting (WER) [23, 31], which is the rst bug di-
+agnosis technique that is widely deployed in production.
+Neither WER nor any other widely deployed bug diagnosis
+technique can diagnose concurrency bugs eectively. We
+believe Lazy Diagnosis can complement WER and other bug
+diagnosis systems and enable them to diagnose concurrency
+bugs eciently and eectively.
+
+SherLog [98] used dynamic and static analysis to automat-
+ically generate control and data ow information to diagnose
+bugs in sequential programs. Conseq [103] computes static
+program slices and perturbs recorded executions to detect
+bugs. Lazy Diagnosis can allow SherLog to work for concur-
+rency bugs and lower Conseqs performance overhead.
+
+PRES [74] and HOLMES [21] record execution informa-
+tion such as function calls and use this information for bug
+diagnosis. PRES uses recorded proles to perform state space
+exploration to reproduce failures, and HOLMES performs
+bug diagnosis. Lazy Diagnosis can be used to improve the
+eciency and eectiveness of both techniques.
+
+ProRace [102] detects data races in production by using
+performance counters, control ow traces and program anal-
+ysis. S can do root cause analysis for concurrency
+bugs other than data races, namely atomicity violations and
+deadlocks. Furthermore, S only relies on control ow
+tracing to perform its oine analysis and performs a multi-
+stage program analysis that diers from ProRaces analysis.
+Delta debugging [101] isolates program inputs and the
+control ow leading to a failure by repeatedly reproducing
+a bug. Ochiai [1] and Tarantula [41] record failing and suc-
+cessful executions and replay them to isolate root causes.
+Lazy Diagnosis does not rely on expensive record/replay
+techniques nor does it assume bugs can be reproduced.
+
+Castor [60] is a recent record/replay system that relies
+on commodity hardware support as well as instrumentation
+to enable low-overhead recording. Castro uses hardware-
+synchronized time stamp counters to order events without
+incurring any contention. We believe that Castor constitutes
+another example of how the coarse interleaving hypothesis
+can be used to improve the eciency of an existing analysis
+(i.e., record/replay in the case of Castor).
+
+As we discussed previously, certain techniques rely on
+non-commodity hardware extensions for root cause diagno-
+sis [39] and record/replay [63, 67]. Lazy Diagnosis relies on
+modern commodity hardware.
+
+We borrow statistical analysis of Lazy Diagnosis from prior
+work on cooperative bug isolation [15, 39, 53]. However, un-
+like prior work on cooperative bug isolation, Lazy Diagnosis
+does not rely on statistical sampling for bug diagnosis, which
+results in low bug diagnosis latency.
+
+Symbiosis [59] and Portend [43, 45] perform symbolic pro-
+gram analysis to synthesize executions. Symbiosis uses syn-
+thesized executions for concurrency bug diagnosis, whereas
+Portend uses such executions to classify data races. Lazy Di-
+agnosis can be used to help such tools synthesize executions
+faster in the absence of test cases that can reproduce failures.
+Dynamic program slicing [82, 90, 93] relies on reproducing
+failures and tracking the control and data ow information,
+which is then used for bug diagnosis. Dynamic slicing is
+expensive and is not suitable for in-production usage. Lazy
+Diagnosis can provide failing thread schedules to dynamic
+slicing techniques and improve their eciency.
+
+Many prior systems have focused on testing and bug de-
+tection in concurrent programs [19, 47, 103]. S is
+complementary to all these systems, as it can diagnose the
+root causes of bugs detected by such systems.
+
+9 CONCLUSION
+In this paper, we introduced the coarse interleaving hypothe-
+sis which states that the events leading to many concurrency
+bugs are coarsely interleaved. We showed that the coarse
+interleaving hypothesis holds in a number of real large-scale
+systems, and the time elapsed between events leading to con-
+currency bugs is on average ve orders of magnitude greater
+than what ne-grained recording provides. We leverage the
+coarse interleaving hypothesis to design Lazy Diagnosis, a
+hybrid dynamic-static program analysis technique for diag-
+nosing concurrency bugs in real-world soware. Our Lazy
+Diagnosis prototype, S, can diagnose concurrency
+bugs in large-scale soware with full accuracy. Lazy Diag-
+nosis has lower overhead, beer scalability, and lower bug
+diagnosis latency than a state-of-the-art bug diagnosis sys-
+tem. Unlike prior work, Lazy Diagnosis does not require any
+modications to the source code at any time. We believe
+that Lazy Diagnosis is suited for diagnosing in-production
+concurrency bugs.
+
+ACKNOWLEDGEMENTS
+We are indebted to our shepherd, Shan Lu, and the anony-
+mous reviewers for their insightful feedback. We are also
+thankful to Ioan Stefanovici and Miguel Castro for their gen-
+erous help in improving this paper. is work was supported
+in part by the Electrical Engineering and Computer Science
+Department of the University of Michigan.
+
+595
+
+Lazy Diagnosis of In-Production Concurrency Bugs
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+REFERENCES
+[1] Rui Abreu, Peter Zoeteweij, and Arjan J. C. van Gemund. 2006. An
+Evaluation of Similarity Coecients for Soware Fault Localization.
+In Pacic Rim Intl. Symp. on Dependable Computing.
+
+[2] Adobe Systems Inc. 2017. Adobe Crash Reporter. hps://helpx.adobe.
+
+com/creative-suite/kb/changing-seings-crash-reporter.html.
+
+[3] Alfred V. Aho, Ravi Sethi, and Jerey D. Ullman. 1986. Compilers:
+
+principles, techniques, and tools.
+
+Lecture Notes:
+
+[4] Johnathan Aldrich. 2017.
+
+ysis.
+resources/pointer.pdf.
+
+Pointer Anal-
+hps://www.cs.cmu.edu/aldrich/courses/15-819O-13sp/
+[5] Lars O. Andersen. 1994. Program Analysis and Specialization for
+the C Programming Language. Ph.D. Dissertation. University of
+Copenhagen.
+
+[6] Apache Soware Foundation. 2010. Apache Benchmark (ab). hp:
+
+//hpd.apache.org/docs/2.0/programs/ab.html.
+
+[7] Apache Soware Foundation. 2013. Apache hpd. hp://hpd.
+
+apache.org.
+
+[8] Apache Soware Foundation. 2017. Apache Commons DBCP. hps:
+
+//commons.apache.org/proper/commons-dbcp/.
+
+[9] Apache Soware Foundation. 2017. Apache Derby. hps://db.apache.
+
+[10] Apache Soware Foundation. 2017. Apache Groovy.
+
+hp://
+
+org/derby/.
+
+groovy-lang.org/.
+
+apache.org/log4j/2.x/.
+
+apache.org/.
+
+[11] Apache Soware Foundation. 2017. Apache Log4j. hps://logging.
+
+[12] Apache Soware Foundation. 2017. Apache Lucene. hps://lucene.
+
+[13] Apple Inc. 2017. MacOSX CrashReporter. hps://developer.apple.
+
+com/library/content/technotes/tn2004/tn2123.html.
+
+[14] armetm 2017.
+
+ARM Embedded Trace Macrocell
+
+(ETM).
+
+hp://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.
+ihi0014q/index.html.
+
+[15] Joy Arulraj, Po-Chun Chang, Guoliang Jin, and Shan Lu. 2013.
+Production-run Soware Failure Diagnosis via Hardware Perfor-
+mance Counters. In Intl. Conf. on Architectural Support for Program-
+ming Languages and Operating Systems.
+
+[16] Joy Arulraj, Guoliang Jin, and Shan Lu. 2014. Leveraging the Short-
+term Memory of Hardware to Diagnose Production-run Soware
+Failures. In Intl. Conf. on Architectural Support for Programming Lan-
+guages and Operating Systems.
+
+[17] Michael D. Bond, Katherine E. Coons, and Kathryn S. McKinley.
+2010. PACER: Proportional detection of data races. In Intl. Conf. on
+Programming Language Design and Implem.
+
+[18] Sebastian Burckhardt, Rajeev Alur, and Milo M. K. Martin. 2007.
+CheckFence: Checking Consistency of Concurrent Data Types on
+Relaxed Memory Models. In Intl. Conf. on Programming Language
+Design and Implem.
+
+[19] Cristian Cadar, Daniel Dunbar, and Dawson Engler. 2008. KLEE:
+Unassisted and Automatic Generation of High-coverage Tests for
+Complex Systems Programs. In USENIX Conference on Operating
+Systems Design and Implementation.
+
+[20] Miguel Castro, Manuel Costa, and Jean-Philippe Martin. 2008. Beer
+Bug Reporting with Beer Privacy. In Intl. Conf. on Architectural
+Support for Programming Languages and Operating Systems.
+
+[21] Trishul M. Chilimbi, Ben Liblit, Krishna Mehra, Aditya V. Nori, and
+Kapil Vaswani. 2009. HOLMES: Eective Statistical Debugging via
+Ecient Path Proling. In Intl. Conf. on Soware Engineering.
+
+[22] Clang 2017. e Clang compiler. hp://clang.llvm.org/.
+[23] Weidong Cui, Marcus Peinado, Sang Kil Cha, Yanick Fratantonio, and
+Vasileios P. Kemerlis. 2016. RETracer: Triaging Crashes by Reverse
+Execution from Partial Memory Dumps. In International Conference
+
+on Soware Engineering.
+
+ninja/.
+
+[24] CVE-2016-5195. 2017. Dirty Cow Vulnerability. hps://dirtycow.
+
+[25] Rayside Derek. 2005. Points-to analysis. Technical report, MIT CSAIL.
+[26] EnderUnix. 2017. Aget. hp://www.enderunix.org/aget/.
+[27] Eucalyptus Open Source Project. 2017. Eucalyptus. hps://github.
+
+com/eucalyptus.
+
+[28] Brad Fitzpatrick. 2013. Memcached. hp://memcached.org.
+[29] Free Soware Foundation Inc. 2017. java lang VMSystem.c. hps:
+
+//tinyurl.com/nx28nym.
+
+[30] Je Gilchrist. 2017. Parallel BZIP2. hp://compression.ca/pbzip2.
+[31] Kirk Glerum, Kinshuman Kinshumann, Steve Greenberg, Gabriel
+Aul, Vince Orgovan, Greg Nichols, David Grant, Gretchen Loihle,
+and Galen Hunt. 2009. Debugging in the (Very) Large: Ten Years of
+Implementation and Experience. In ACM Symp. on Operating Systems
+Principles.
+
+[32] Patrice Godefroid and Nachiappan Nagappan. 2008. Concurrency at
+Microso  An Exploratory Survey. In Intl. Conf. on Computer Aided
+Verication.
+
+[33] Google Inc. 2017. Chrome Error and Crash Reporting. hps://support.
+
+google.com/chrome/answer/96817?hl=enl.
+
+[34] Joseph Y. Halpern and Judea Pearl. 2005. Causes and Explanations:
+A Structural-Model Approach. Part I: Causes. e British Journal for
+the Philosophy of Science.
+
+[35] Intel Corporation. 2013. Intel Processor Trace. hps://soware.intel.
+
+com/en-us/blogs/2013/09/18/processor-tracing.
+
+[36] Intel Corporation. 2017. Intel 64 and IA-32 Architectures Soware
+
+[37] Intel Corporation. 2017. Intel Processor Trace Decoder. hps://github.
+
+Developers Manual.
+
+com/01org/processor-trace.
+
+[38] Jenkins Open Source Project. 2017. Jenkins. hps://jenkins.io/.
+[39] Guoliang Jin, Aditya akur, Ben Liblit, and Shan Lu. 2010. Instru-
+mentation and sampling strategies for cooperative concurrency bug
+isolation. In International Conference on Object Oriented Programming
+Systems Languages and Applications.
+
+[40] Sebastian Burckhardt John Erickson, Madanlal Musuvathi and Kirk
+Olynyk. 2010. Eective Data-Race Detection for the Kernel. In Symp.
+on Operating Sys. Design and Implem.
+
+[41] James A. Jones and Mary Jean Harrold. 2005. Empirical Evaluation of
+the Tarantula Automatic Fault-localization Technique. In IEEE/ACM
+International Conference on Automated Soware Engineering.
+
+[42] Baris Kasikci, Benjamin Schubert, Cristiano Pereira, Gilles Pokam,
+and George Candea. 2015. Failure Sketching: A Technique for Au-
+tomated Root Cause Diagnosis of In-production Failures. In ACM
+Symp. on Operating Systems Principles.
+
+[43] Baris Kasikci, Cristian Zamr, and George Candea. 2012. Data Races
+vs. Data Race Bugs: Telling the Dierence with Portend. In Interna-
+tional Conference on Architectural Support for Programming Languages
+and Operating Systems.
+
+[44] Baris Kasikci, Cristian Zamr, and George Candea. 2013. RaceMob:
+Crowdsourced Data Race Detection. In ACM Symp. on Operating
+Systems Principles.
+
+[45] Baris Kasikci, Cristian Zamr, and George Candea. 2015. Automated
+Classication of Data Races Under Both Strong and Weak Memory
+Models. ACM Trans. Program. Lang. Syst..
+
+[46] M. G. Kendall. 1938. A New Measure of Rank Correlation. Biometrika.
+[47] Ali Kheradmand, Baris Kasikci, and Arjan George Candea. 2014. Lock-
+out: Ecient Testing for Deadlock Bugs. In Workshop on Determinism
+and Correctness in Parallel Programming.
+
+[48] Leslie Lamport. 1978. Time, clocks, and the ordering of events in a
+
+distributed system. 21, 7.
+
+596
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Baris Kasikci, Weidong Cui, Xinyang Ge, and Ben Niu
+
+jo2odgl.
+
+[49] Chris Laner and Vikram Adve. 2004. LLVM: A Compilation Frame-
+work for Lifelong Program Analysis and Transformation. In Intl.
+Symp. on Code Generation and Optimization.
+
+[50] Nancy G. Leveson and Clark S. Turner. 1993. An Investigation of the
+
+erac-25 Accidents. IEEE Computer.
+
+[51] Ben Liblit, Alex Aiken, Alice X. Zheng, and Michael I. Jordan. 2003.
+Bug isolation via remote program sampling. In Intl. Conf. on Program-
+ming Language Design and Implem.
+
+[52] Ben Liblit, Alex Aiken, Alice X. Zheng, and Michael I. Jordan. 2003.
+Sampling User Executions for Bug Isolation. In e Workshop on
+Remote Analysis and Measurement of Soware Systems.
+
+[53] Benjamin Robert Liblit. 2004. Cooperative Bug Isolation. Ph.D. Dis-
+
+sertation. University of California, Berkeley.
+
+[54] Ziyi Lin, Darko Marinov, Hao Zhong, Yuting Chen, and Jianjun Zhao.
+2015. JaConTeBe: A Benchmark Suite of Real-World Java Concur-
+rency Bugs. In IEEE/ACM International Conference on Automated
+Soware Engineering.
+
+[55] Linux. 2017. Linux man pages, clock geime. hps://tinyurl.com/
+
+[56] Shan Lu, Soyeon Park, Eunsoo Seo, and Yuanyuan Zhou. 2008. Learn-
+ing from Mistakes  A Comprehensive Study on Real World Concur-
+rency Bug Characteristics. In International Conference on Architectural
+Support for Programming Languages and Operating Systems.
+
+[57] Brandon Lucia, Joseph Deviei, Karin Strauss, and Luis Ceze. 2008.
+Atom-Aid: Detecting and Surviving Atomicity Violations. In Intl.
+Symp. on Computer Architecture.
+
+[58] Chi-Keung Luk, Robert Cohn, Robert Muth, Harish Patil, Artur
+Klauser, Geo Lowney, Steven Wallace, Vijay Janapa Reddi, and
+Kim Hazelwood. 2005. PIN: building customized program analysis
+tools with dynamic instrumentation. In Intl. Conf. on Programming
+Language Design and Implem.
+
+[59] Nuno Machado, Brandon Lucia, and Lus Rodrigues. 2015. Concur-
+rency Debugging with Dierential Schedule Projections. In Intl. Conf.
+on Programming Language Design and Implem.
+
+[60] Ali Mashtizadeh, Tal Garnkel, David Terei, David Mazie`res, and
+Mendel Rosenblum. 2017. Towards Practical Default-On Multi-Core
+Record/Replay. In Intl. Conf. on Architectural Support for Programming
+Languages and Operating Systems.
+
+[61] Steve McConnell. 2004. Code Complete. Microso Press.
+[62] Pablo Montesinos, Luis Ceze, and Josep Torrellas. 2008. DeLorean:
+Recording and Deterministically Replaying Shared-Memory Multi-
+processor Execution Eciently. In Intl. Symp. on Computer Architec-
+ture.
+
+[63] Pablo Montesinos, Mahew Hicks, Samuel T. King, and Josep Torrel-
+las. 2009. Capo: A Soware-hardware Interface for Practical Deter-
+ministic Multiprocessor Replay. In Intl. Conf. on Architectural Support
+for Programming Languages and Operating Systems.
+
+[64] Mozilla Corporation. 2017. Mozilla rr. hp://rr-project.org/.
+[65] MySQL 2010. MySQL Benchmark Tool. hps://dev.mysql.com/
+
+downloads/benchmarks.html.
+
+[66] MySQL 2010. hp://www.mysql.com/.
+[67] Satish Narayanasamy, Gilles Pokam, and Brad Calder. 2005. BugNet:
+Continuously Recording Program Execution for Deterministic Replay
+Debugging. In Intl. Symp. on Computer Architecture.
+
+[68] George C. Necula, Sco McPeak, S.P. Rahul, and Westley Weimer.
+2002. CIL: Intermediate Language and Tools for Analysis and Trans-
+formation of C Programs. In Intl. Conf. on Compiler Construction.
+
+[69] Netcra Survey 2013. Netcra Web Server Survey. hp://hpd.
+
+apache.org.
+
+[70] Gene Novark, Emery D. Berger, and Benjamin G. Zorn. 2008. Ex-
+terminator: Automatically Correcting Memory Errors with High
+Probability. Commun. ACM.
+
+597
+
+[71] Marek Olszewski, Jason Ansel, and Saman Amarasinghe. 2009. Kendo:
+
+ecient deterministic multithreading in soware. SIGPLAN Not..
+
+[72] Oracle. 2017. Java Development Kit. hp://openjdk.java.net/.
+[73] Oracle Corp. 2017. Diagnose a Hung Process. hps://docs.oracle.com/
+
+javase/8/docs/technotes/guides/troubleshoot/hangloop002.html.
+
+[74] Soyeon Park, Weiwei Xiong, Zuoning Yin, Rini Kaushik, Kyu H. Lee,
+Shan Lu, and Yuanyuan Zhou. 2009. PRES: Probabilistic Replay with
+Execution Sketching on Multiprocessors. In ACM Symp. on Operating
+Systems Principles.
+
+[75] Je H. Perkins, Sunghun Kim, Sam Larsen, Saman Amarasinghe,
+Jonathan Bachrach, Michael Carbin, Carlos Pacheco, Frank Sher-
+wood, Stelios Sidiroglou, Greg Sullivan, Weng-Fai Wong, Yoav Zibin,
+Michael D. Ernst, and Martin Rinard. 2010. Automatically Patching
+Errors in Deployed Soware. In Symp. on Operating Sys. Design and
+Implem.
+
+[76] Gilles Pokam, Klaus Danne, Cristiano Pereira, Rolf Kassa, Tim
+Kranich, Shiliang Hu, Justin Goschlich, Nima Honarmand, Nathan
+Dautenhahn, Samuel T. King, and Josep Torrellas. 2013. ickRec:
+Prototyping an Intel Architecture Extension for Record and Replay
+of Multithreaded Programs. In Intl. Symp. on Computer Architecture.
+[77] Gilles Pokam, Cristiano Pereira, Shiliang Hu, Ali-Reza Adl-Tabatabai,
+Justin Goschlich, Jungwoo Ha, and Youfeng Wu. 2011. CoreRacer:
+A Practical Memory Race Recorder for Multicore x86 TSO Processors.
+In IEEE/ACM International Symposium on Microarchitecture.
+
+[78] Transmission Project. 2017. Transmission. hps://transmissionbt.
+
+[79] C. J. Van Rijsbergen. 1979. Information Retrieval.
+[80] Capegmini S.A. 2015.
+
+Capgemini World ality Report
+hps://www.uk.capgemini.com/thought-leadership/
+
+2015-2016.
+world-quality-report-2016-17.
+
+[81] Caitlin Sadowski and Jaeheon Yi. 2014. How Developers Use Data
+Race Detection Tools. In Workshop on Evaluation and Usability of
+Programming Languages and Tools.
+
+[82] Swarup Kumar Sahoo, John Criswell, Chase Geigle, and Vikram
+Adve. 2013. Using Likely Invariants for Automated Soware Fault
+Localization. In Proceedings of the Eighteenth International Conference
+on Architectural Support for Programming Languages and Operating
+Systems.
+
+[83] Benjamin Schubert and Baris Kasikci. 2017. Bugbase. hps://github.
+
+com/.
+
+[84] skylake-cache 2013.
+
+Skylake specications.
+
+hp://www.7-
+
+[85] Soot
+
+2017.
+
+Soot
+
+- A Java optimization framework.
+
+com/dslab-ep/bugbase.
+
+cpu.com/cpu/Skylake.html.
+
+hps://sable.github.io/soot/.
+
+[86] SQLite 2013. SQLite. hp://www.sqlite.org/.
+[87] Bjarne Steensgaard. 1996. Points-to analysis in almost linear time. In
+
+Intl. Conf. on Programming Language Design and Implem.
+
+[88] e Associated Press. 2004. General Electric Acknowledges North-
+
+eastern Blackout Bug. hp://www.securityfocus.com/news/8032.
+
+[89] e Chromium Project. 2017. Chromium Issues. hps://bugs.
+
+chromium.org.
+
+[90] Joseph Tucek, Shan Lu, Chengdu Huang, Spiros Xanthos, and
+Yuanyuan Zhou. 2007. Triage: diagnosing production run failures at
+the users site. In ACM Symp. on Operating Systems Principles.
+
+[91] Ubuntu. 2017. Ubuntu Error. hps://wiki.ubuntu.com/ErrorTracker.
+[92] Kaushik Veeraraghavan, Dongyoon Lee, Benjamin Wester, Jessica
+Ouyang, Peter M. Chen, Jason Flinn, and Satish Narayanasamy. 2011.
+DoublePlay: Parallelizing Sequential Logging and Replay. In Intl.
+Conf. on Architectural Support for Programming Languages and Oper-
+ating Systems.
+
+[93] Yan Wang, Harish Patil, Cristiano Pereira, Gregory Lueck, Rajiv
+Gupta, and Iulian Neamtiu. 2014. DrDebug: Deterministic Replay
+
+Lazy Diagnosis of In-Production Concurrency Bugs
+
+SOSP 17, October 28, 2017, Shanghai, China
+
+Based Cyclic Debugging with Dynamic Slicing. In Intl. Symp. on Code
+Generation and Optimization.
+
+[94] Junfeng Yang, Ang Cui, Sal Stolfo, and Simha Sethumadhavan. 2012.
+Concurrency Aacks. In e Fourth USENIX Workshop on Hot Topics
+in Parallelism.
+
+[95] Oliver Yang. 2017. Pitfalls of TSC usage. hp://oliveryang.net/2015/
+
+09/pitfalls-of-TSC-usage/.
+
+[96] Zuoning Yin, Ding Yuan, Yuanyuan Zhou, Shankar Pasupathy, and
+Lakshmi Bairavasundaram. 2011. How Do Fixes Become Bugs?.
+In ACM SIGSOFT European Conference on Foundations of Soware
+Engineering.
+
+[97] Jie Yu and Satish Narayanasamy. 2009. A Case for an Interleav-
+ing Constrained Shared-Memory Multi-Processor. In Intl. Symp. on
+Computer Architecture.
+
+[98] Ding Yuan, Haohui Mai, Weiwei Xiong, Lin Tan, Yuanyuan Zhou, and
+Shankar Pasupathy. 2010. SherLog: error diagnosis by connecting
+clues from run-time logs. In Intl. Conf. on Architectural Support for
+
+Programming Languages and Operating Systems.
+
+[99] Cristian Zamr and George Candea. 2010. Execution Synthesis: A
+Technique for Automated Debugging. In ACM EuroSys European Conf.
+on Computer Systems.
+
+[100] Cristian Zamr, Baris Kasikci, Johannes Kinder, Edouard Bugnion,
+and George Candea. 2013. Automated Debugging for Arbitrarily
+Long Executions. In Workshop on Hot Topics in Operating Systems.
+[101] Andreas Zeller and Ralf Hildebrandt. 2002. Simplifying and Isolating
+Failure-Inducing Input. IEEE Transactions on Soware Engineering.
+[102] Tong Zhang, Changhee Jung, and Dongyoon Lee. 2017. ProRace:
+Practical Data Race Detection for Production Use. In Proceedings of
+the Twenty-Second International Conference on Architectural Support
+for Programming Languages and Operating Systems.
+
+[103] Wei Zhang, Junghee Lim, Ramya Olichandran, Joel Scherpelz, Guo-
+liang Jin, Shan Lu, and omas Reps. 2011. ConSeq: Detecting
+Concurrency Bugs through Sequential Errors. In Intl. Conf. on Archi-
+tectural Support for Programming Languages and Operating Systems.
+
+598
+
+

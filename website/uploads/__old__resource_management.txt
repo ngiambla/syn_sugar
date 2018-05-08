@@ -1,0 +1,942 @@
+Resource Management with Deep Reinforcement Learning
+
+Hongzi Mao(cid:63), Mohammad Alizadeh(cid:63), Ishai Menache, Srikanth Kandula
+
+Massachusetts Institute of Technology(cid:63), Microsoft Research
+{hongzi, alizadeh}@mit.edu, {ishai, srikanth}@microsoft.com
+
+Abstract Resource management problems in systems and
+networking often manifest as difcult online decision mak-
+ing tasks where appropriate solutions depend on understand-
+ing the workload and environment. Inspired by recent ad-
+vances in deep reinforcement learning for AI problems, we
+consider building systems that learn to manage resources di-
+rectly from experience. We present DeepRM, an example so-
+lution that translates the problem of packing tasks with mul-
+tiple resource demands into a learning problem. Our initial
+results show that DeepRM performs comparably to state-of-
+the-art heuristics, adapts to different conditions, converges
+quickly, and learns strategies that are sensible in hindsight.
+
+1.
+
+INTRODUCTION
+
+Resource management problems are ubiquitous in com-
+puter systems and networks. Examples include job schedul-
+ing in compute clusters [17], bitrate adaptation in video stream-
+ing [23, 39], relay selection in Internet telephony [40], virtual
+machine placement in cloud computing [20, 6], congestion
+control [38, 37, 13], and so on. The majority of these prob-
+lems are solved today using meticulously designed heuris-
+tics. Perusing recent research in the eld, the typical design
+ow is: (1) come up with clever heuristics for a simplied
+model of the problem; and (2) painstakingly test and tune
+the heuristics for good performance in practice. This process
+often has to be repeated if some aspect of the problem such
+as the workload or the metric of interest changes.
+
+We take a step back to understand some reasons for why
+real world resource management problems are challenging:
+1. The underlying systems are complex and often impos-
+
+sible to model accurately. For instance, in cluster schedul-
+ing, the running time of a task varies with data locality,
+
+Permission to make digital or hard copies of all or part of this work for personal
+or classroom use is granted without fee provided that copies are not made or
+distributed for prot or commercial advantage and that copies bear this notice
+and the full citation on the rst page. Copyrights for components of this work
+owned by others than ACM must be honored. Abstracting with credit is per-
+mitted. To copy otherwise, or republish, to post on servers or to redistribute to
+lists, requires prior specic permission and/or a fee. Request permissions from
+permissions@acm.org.
+HotNets-XV, November 09-10, 2016, Atlanta, GA, USA
+c(cid:13) 2016 ACM. ISBN 978-1-4503-4661-0/16/11. . . $15.00
+DOI: http://dx.doi.org/10.1145/3005745.3005750
+
+50
+
+server characteristics, interactions with other tasks, and
+interference on shared resources such as CPU caches,
+network bandwidth, etc [12, 17].
+
+2. Practical instantiations have to make online decisions
+with noisy inputs and work well under diverse condi-
+tions. A video streaming client, for instance, has to
+choose the bitrate for future video chunks based on
+noisy forecasts of available bandwidth [39], and oper-
+ate well for different codecs, screen sizes and available
+bandwidths (e.g., DSL vs. T1).
+
+3. Some performance metrics of interest, such as tail per-
+formance [11], are notoriously hard to optimize in a
+principled manner.
+
+In this paper, we ask if machine learning can provide a
+viable alternative to human-generated heuristics for resource
+management. In other words: Can systems learn to manage
+resources on their own?
+
+This may sound like we are proposing to build Skynet [1],
+but the recent success of applying maching learning to other
+challenging decision-making domains [29, 33, 3] suggests
+that the idea may not be too far-fetched. In particular, Rein-
+forcement Learning (RL) (2) has become an active area in
+machine learning research [30, 28, 32, 29, 33]. RL deals with
+agents that learn to make better decisions directly from ex-
+perience interacting with the environment. The agent starts
+knowing nothing about the task at hand and learns by rein-
+forcement  a reward that it receives based on how well it
+is doing on the task. RL has a long history [34], but it has
+recently been combined with Deep Learning techniques to
+great effect in applications such as playing video games [30],
+Computer Go [33], cooling datacenters [15], etc.
+
+Revisiting the above challenges, we believe RL approaches
+are especially well-suited to resource management systems.
+First, decisions made by these systems are often highly repet-
+itive, thus generating an abundance of training data for RL
+algorithms (e.g., cluster scheduling decisions and the result-
+ing performance). Second, RL can model complex systems
+and decision-making policies as deep neural networks anal-
+ogous to the models used for game-playing agents [33, 30].
+Different raw and noisy signals1 can be incorporated as in-
+
+1It is usually easy to identify signals that are relevant to a decision-
+making task (but not how to lter/combine them to make decisions).
+
+put to these neural networks, and the resultant strategy can
+be used in an online stochastic environment. Third, it is pos-
+sible to train for objectives that are hard-to-optimize directly
+because they lack precise models if there exist reward sig-
+nals that correlate with the objective. Finally, by continu-
+ing to learn, an RL agent can optimize for a specic work-
+load (e.g., small jobs, low load, periodicity) and be graceful
+under varying conditions.
+
+As a rst step towards understanding the potential of RL
+for resource management, we design (3) and evaluate (4)
+DeepRM, a simple multi-resource cluster scheduler. DeepRM
+operates in an online setting where jobs arrive dynamically
+and cannot be preempted once scheduled. DeepRM learns
+to optimize various objectives such as minimizing average
+job slowdown or completion time. We describe the model in
+3.1 and how we pose the scheduling task as an RL problem
+in 3.2. To learn, DeepRM employs a standard policy gradi-
+ent reinforcement learning algorithm [35] described in 3.3.
+We conduct simulated experiments with DeepRM on a
+synthetic dataset. Our preliminary results show that across a
+wide range of loads, DeepRM performs comparably or bet-
+ter than standard heuristics such as Shortest-Job-First (SJF)
+and a packing scheme inspired by Tetris [17]. It learns strate-
+gies such as favoring short jobs over long jobs and keeping
+some resources free to service future arriving short jobs di-
+rectly from experience. In particular, DeepRM does not re-
+quire any prior knowledge of the systems behavior to learn
+these strategies. Moreover, DeepRM can support a variety of
+objectives just by using different reinforcement rewards.
+
+Looking ahead, deploying an RL-based resource manager
+in real systems has to confront additional challenges. To
+name a few, simple heuristics are often easier to explain,
+understand, and verify compared to an RL-based scheme.
+Heuristics are also easier to adopt incrementally. Neverthe-
+less, given the scale and complexity of many of the resource
+management problems that we face today, we are enticed by
+the possibility to improve by using reinforcement learning.
+
+2. BACKGROUND
+
+We briey review Reinforcement Learning (RL) techniques
+that we build on in this paper; we refer readers to [34] for a
+detailed survey and rigorous derivations.
+Reinforcement Learning. Consider the general setting shown
+in Figure 1 where an agent interacts with an environment. At
+each time step t, the agent observes some state st, and is
+asked to choose an action at. Following the action, the state
+of the environment transitions to st+1 and the agent receives
+reward rt. The state transitions and rewards are stochastic
+and are assumed to have the Markov property; i.e. the state
+transition probabilities and rewards depend only on the state
+of the environment st and the action taken by the agent at.
+
+It is important to note that the agent can only control its ac-
+tions, it has no apriori knowledge of which state the environ-
+ment would transition to or what the reward may be. By in-
+teracting with the environment, during training, the agent can
+
+Figure 1: Reinforcement Learning with policy repre-
+sented via DNN.
+
+the expected cumulative discounted reward: E [(cid:80)
+
+observe these quantities. The goal of learning is to maximize
+t=0 trt],
+where   (0, 1] is a factor discounting future rewards.
+Policy. The agent picks actions based on a policy, dened as
+a probability distribution over actions  : (s, a)  [0, 1];
+(s, a) is the probability that action a is taken in state s. In
+most problems of practical interest, there are many possible
+{state, action} pairs; up to 2100 for the problem we consider
+in this paper (see 3). Hence, it is impossible to store the pol-
+icy in tabular form and it is common to use function approx-
+imators [7, 27]. A function approximator has a manageable
+number of adjustable parameters, ; we refer to these as the
+policy parameters and represent the policy as (s, a). The
+justication for approximating the policy is that the agent
+should take similar actions for close-by" states.
+
+Many forms of function approximators can be used to rep-
+resent the policy. For instance, linear combinations of fea-
+tures of the state/action space (i.e., (s, a) = T (s, a)) are
+a popular choice. Deep Neural Networks (DNNs) [18] have
+recently been used successfully as function approximators to
+solve large-scale RL tasks [30, 33]. An advantage of DNNs
+is that they do not need hand-crafted features. Inspired by
+these successes, we use a neural network to represent the
+policy in our design; the details are in 3.
+Policy gradient methods. We focus on a class of RL al-
+gorithms that learn by performing gradient-descent on the
+policy parameters. Recall that the objective is to maximize
+the expected cumulative discounted reward; the gradient of
+this objective given by [34]:
+
+(cid:34) (cid:88)
+
+(cid:35)
+
+E
+
+trt
+
+= E [ log (s, a)Q (s, a)] . (1)
+
+t=0
+
+Here, Q (s, a) is the expected cumulative discounted re-
+ward from (deterministically) choosing action a in state s,
+and subsequently following policy . The key idea in pol-
+icy gradient methods is to estimate the gradient by observing
+the trajectories of executions that are obtained by following
+the policy. In the simple Monte Carlo Method [19], the agent
+samples multiple trajectories and uses the empirically com-
+puted cumulative discounted reward, vt, as an unbiased es-
+timate of Q (st, at). It then updates the policy parameters
+
+51
+
+Agent state s DNN parameter   policy  (s, a) Environment Take action a Observe state s Reward r via gradient descent:
+
+   + 
+
+(cid:88)
+
+t
+
+ log (st, at)vt,
+
+(2)
+
+where  is the step size. This equation results in the well-
+known REINFORCE algorithm [35], and can be intuitively
+understood as follows. The direction  log (st, at) gives
+how to change the policy parameters in order to increase
+(st, at) (the probability of action at at state st). Equa-
+tion 2 takes a step in this direction; the size of the step de-
+pends on how large is the return vt. The net effect is to re-
+inforce actions that empirically lead to better returns. In our
+design, we use a slight variant [32] that reduces the variance
+of the gradient estimates by subtracting a baseline value from
+each return vt. More details follow.
+
+3. DESIGN
+
+In this section, we present our design for online multi-
+resource cluster scheduling with RL. We formulate the prob-
+lem (3.1) and describe how to represent it as an RL task
+(3.2). We then outline our RL-based solution (3.3) build-
+ing on the machinery described in the previous section.
+3.1 Model
+
+We consider a cluster with d resource types (e.g., CPU,
+memory, I/O). Jobs arrive to the cluster in an online fashion
+in discrete timesteps. The scheduler chooses one or more of
+the waiting jobs to schedule at each timestep. Similar to prior
+work [17], we assume that the resource demand of each job
+is known upon arrival; more specically, the resource prole
+of each job j is given by the vector rj = (rj,1, . . . , rj,d) of
+resources requirements, and Tj  the duration of the job. For
+simplicity, we assume no preemption and a xed allocation
+prole (i.e., no malleability), in the sense that rj must be al-
+located continuously from the time that the job starts execu-
+tion until completion. Further, we treat the cluster as a single
+collection of resources, ignoring machine fragmentation ef-
+fects. While these aspects are important for a practical job
+scheduler, this simpler model captures the essential elements
+of multi-resource scheduling and provides a non-trivial set-
+ting to study the effectiveness of RL methods in this domain.
+We discuss how the model can be made more realistic in 5.
+Objective. We use the average job slowdown as the primary
+system objective. Formally, for each job j, the slowdown is
+given by Sj = Cj/Tj, where Cj is the completion time of
+the job (i.e., the time between arrival and completion of ex-
+ecution) and Tj is the (ideal) duration of the job; note that
+Sj  1. Normalizing the completion time by the jobs dura-
+tion prevents biasing the solution towards large jobs, which
+can occur for objectives such as mean completion time.
+3.2 RL formulation
+State space. We represent the state of the system  the cur-
+rent allocation of cluster resources and the resource proles
+of jobs waiting to be scheduled  as distinct images (see
+
+Figure 2: An example of a state representation, with two
+resources and three pending job slots.
+
+Figure 2 for illustration). The cluster images (one for each
+resource; two leftmost images in the gure) show the alloca-
+tion of each resource to jobs which have been scheduled for
+service, starting from the current timestep and looking ahead
+T timesteps into the future. The different colors within these
+images represent different jobs; for example, the red job in
+Figure 2 is scheduled to use two units of CPU, and one unit
+of memory for the next three timesteps. The job slot images
+represent the resource requirements of awaiting jobs. For
+example, in Figure 2, the job in Slot 1 has a duration of two
+timesteps, in which it requires two units of CPU and one unit
+of memory.2
+
+Ideally, we would have as many job slot images in the state
+as there are jobs waiting for service. However, it is desirable
+to have a xed state representation so that it can be applied
+as input to a neural network. Hence, we maintain images
+for only the rst M jobs to arrive (which have not yet been
+scheduled). The information about any jobs beyond the rst
+M is summarized in the backlog component of the state,
+which simply counts the number of such jobs. Intuitively,
+it is sufcient to restrict attention to the earlier-arriving jobs
+because plausible policies are likely to prefer jobs that have
+been waiting longer. This approach also has the added ad-
+vantage of constraining the action space (see below) which
+makes the learning process more efcient.
+Action space. At each point in time, the scheduler may want
+to admit any subset of the M jobs. But this would require
+a large action space of size 2M which could make learning
+very challenging. We keep the action space small using a
+trick: we allow the agent to execute more than one action in
+each timestep. The action space is given by {, 1, . . . , M},
+where a = i means schedule the job at the i-th slot; and
+a =  is a void action that indicates that the agent does not
+wish to schedule further jobs in the current timestep. At each
+timestep, time is frozen until the scheduler either chooses the
+2We tried more succinct representations of the state (e.g., a jobs
+resource prole requires only d + 1 numbers). However, they did
+not perform as well in our experiments for reasons that we do not
+fully understand yet.
+
+52
+
+Cluster Job Slot 1 Backlog Resource Time CPU Memory Job Slot 2 Job Slot 3 void action, or an invalid action (e.g., attempting to schedule
+a job that does not t such as the job at Slot 3 in Fig-
+ure 2). With each valid decision, one job is scheduled in the
+rst possible timestep in the cluster (i.e., the rst timestep in
+which the jobs resource requirements can be fully satised
+till completion). The agent then observes a state transition:
+the scheduled job is moved to the appropriate position in the
+cluster image. Once the agent picks a =  or an invalid
+action, time actually proceeds: the cluster images shift up
+by one timestep and any newly arriving jobs are revealed to
+the agent. By decoupling the agents decision sequence from
+real time, the agent can schedule multiple jobs at the same
+timestep while keeping the action space linear in M.
+Rewards. We craft the reward signal to guide the agent to-
+wards good solutions for our objective: minimizing average
+slowdown. Specically, we set the reward at each timestep to
+, where J is the set of jobs currently in the system
+(either scheduled or waiting for service).3 The agent does
+not receive any reward for intermediate decisions during a
+timestep (see above). Observe that setting the discount factor
+ = 1, the cumulative reward over time coincides with (neg-
+ative) the sum of job slowdowns, hence maximizing the cu-
+mulative reward mimics minimizing the average slowdown.
+3.3 Training algorithm
+
+(cid:80)
+
+1
+Tj
+
+jJ
+
+We represent the policy as a neural network (called policy
+network) which takes as input the collection of images de-
+scribed above, and outputs a probability distribution over all
+possible actions. We train the policy network in an episodic
+setting. In each episode, a xed number of jobs arrive and
+are scheduled based on the policy, as described in 3.2. The
+episode terminates when all jobs nish executing.
+
+To train a policy that generalizes, we consider multiple ex-
+amples of job arrival sequences during training, henceforth
+called jobsets.
+In each training iteration, we simulate N
+episodes for each jobset to explore the probabilistic space of
+possible actions using the current policy, and use the result-
+ing data to improve the policy for all jobsets. Specically,
+we record the state, action, and reward information for all
+timesteps of each episode, and use these values to compute
+the (discounted) cumulative reward, vt, at each timestep t
+of each episode. We then train the neural network using a
+variant of the REINFORCE algorithm described in 2.
+
+Recall that REINFORCE estimates the policy gradient us-
+ing Equation (2). A drawback of this equation is that the
+gradient estimates can have high variance. To reduce the
+variance, it is common to subtract a baseline value from the
+returns, vt. The baseline can be calculated in different ways.
+The simple approach that we adopt is to use the average of
+the return values, vt, where the average is taken at the same
+3Note that the above reward function considers all the jobs in the
+system; not just the rst M. From a theoretical standpoint, this
+makes our learning formulation more challenging as the reward de-
+pends on information not available as part of the state representation
+(resulting in a Partially Observed Markov Decision Process [31]);
+nevertheless, this approach yielded good results in practice.
+
+for each iteration:
+
+  0
+for each jobset:
+
+run episode i = 1, . . . , N :
+
+{si
+
+1, ri
+
+1, ai
+
+1, . . . , si
+Li
+compute returns: vi
+for t = 1 to L:
+
+, ai
+
+t =(cid:80)Li
+
+Li
+
+Li
+
+}  
+, ri
+s=t stri
+(cid:80)N
+
+s
+
+compute baseline: bt = 1
+N
+for i = 1 to N :
+   +  log (si
+
+i=1 vi
+t
+
+t, ai
+
+t)(vi
+
+t  bi
+t)
+
+end
+
+end
+
+end
+   +  % batch parameter update
+
+end
+
+Figure 3: Pseudo-code for training algorithm.
+
+timestep t across all episodes4 with the same jobset (a sim-
+ilar approach has been used in [32]). Figure 3 shows the
+pseudo-code for the training algorithm.
+3.4 Optimizing for other objectives
+
+The RL formulation can be adapted to realize other objec-
+tives. For example, to minimize average completion time,
+we can use |J | (negative the number of unnished jobs in
+the system) for the reward at each timestep. To maximize re-
+source utilization, we could reward the agent for the sum of
+the resource utilizations at each timestep. The makespan for
+a set of jobs can also be minimized by penalizing the agent
+one unit for each timestep for which unnished jobs exist.
+
+4. EVALUATION
+
+We conduct a preliminary evaluation of DeepRM to an-
+
+swer the following questions.
+
+ When scheduling jobs that use multiple resources, how
+does DeepRM compare with state-of-the-art mechanisms?
+ Can DeepRM support different optimization objectives?
+ Where do the gains come from?
+ How long does DeepRM take to train?
+
+4.1 Methodology
+Workload. We mimic the setup described in 3.1. Specif-
+ically, jobs arrive online according to a Bernoulli process.
+The average job arrival rate is chosen such that the average
+load varies between 10% to 190% of cluster capacity. We
+assume two resources, i.e., with capacity {1r, 1r}. Job dura-
+tions and resource demands are chosen as follows: 80% of
+the jobs have duration uniformly chosen between 1t and 3t;
+the remaining are chosen uniformly from 10t to 15t. Each
+job has a dominant resource which is picked independently
+at random. The demand for the dominant resource is chosen
+uniformly between 0.25r and 0.5r and the demand of the
+other resource is chosen uniformly between 0.05r and 0.1r.
+DeepRM. We built the DeepRM prototype described in 3
+using a neural network with a fully connected hidden layer
+4Some episodes terminate earlier, thus we zero-pad them to make
+every episode equal-length L.
+
+53
+
+Figure 4: Job slowdown at different levels of load.
+
+Figure 5: Performance for different objectives.
+
+with 20 neurons, and a total of 89, 451 parameters. The im-
+ages used by the DeepRM agent are 20t long and each ex-
+periment lasts for 50t. Recall that the agent allocates from
+a subset of M jobs (we use M = 10) but can also observe
+the number of other jobs (backlog which we set to 60 jobs).
+We use 100 different jobsets during training. In each training
+iteration, per jobset we run N = 20 Monte Carlo simulations
+in parallel. We update the policy network parameters using
+the rmsprop [21] algorithm with a learning rate of 0.001. Un-
+less otherwise specied, the results below are from training
+DeepRM for 1000 training iterations.
+Comparables. We compare DeepRM against a Shortest Job
+First
+(SJF) agent which allocates jobs in increasing order
+of their duration; a Packer agent which allocates jobs in in-
+creasing order of alignment between job demands and re-
+source availability (same as the packing heuristic in [17]);
+and Tetris(cid:63), an agent based on Tetris [17] which balances
+preferences for short jobs and resource packing in a com-
+bined score. These agents are all work-conserving, and allo-
+cate as many jobs as can be accommodated with the available
+resources (in the preference order).
+Metrics. We measure the various schemes on a few different
+the average job slowdown (3.1) and the average
+aspects:
+job completion time. To observe the convergence behavior
+of DeepRM, we also measure the total reward achieved at
+each iteration during training.
+4.2 Comparing scheduling efciency
+
+Figure 4 plots the average job slowdown for DeepRM ver-
+sus other schemes at different load levels. Each datapoint is
+an average over 100 new experiments with jobsets not used
+during training. As expected, we see that (1) the average
+slowdown increases with cluster load, (2) SJF performs bet-
+
+54
+
+(a) average slowdown
+
+(b) total reward
+
+jJ
+
+1
+Tj
+
+Figure 6: Learning curve showing the training improves
+the total reward as well as the slowdown performance.
+ter than Packer because it allocates the smaller jobs rst, and
+(3) Tetris(cid:63) outperforms both heuristics by combining their
+advantages. The gure also shows that DeepRM is compa-
+rable to and often better than all heuristics. As we will see
+shortly, DeepRM beats Tetris(cid:63) at higher loads because it au-
+tomatically learns to keep some resources free so that small
+jobs arriving in the near future can be scheduled quickly;
+with Tetris(cid:63), small jobs may sometimes have to wait un-
+til a (large) existing job nishes because Tetris(cid:63) enforces
+work-conservation, which may not always be the best strat-
+egy when jobs cannot be preempted. Remarkably, DeepRM
+is able to learn such strategies directly from experience 
+without any prior knowledge of what strategies (e.g., favor-
+ing shorter jobs) are suitable.
+Other objectives. Figure 5 shows the behavior for two ob-
+jectives (average job slowdown and average job completion
+time) when the cluster is highly loaded (load=130%). Recall
+that DeepRM uses a different reward function for each ob-
+jective (|J | to optimize average job completion time, and
+for average job slowdown; see 3.4). As before
+we see that Tetris(cid:63) outperforms the other heuristics. How-
+ever, DeepRM is the best performing scheme on each objec-
+tive when trained specically to optimize for that objective
+with the appropriate reward function. Thus DeepRM is cus-
+tomizable for different objectives.
+4.3 Understanding convergence and gains
+Convergence behavior. To understand the convergence be-
+havior of DeepRM, we look deeper into one specic data-
+point of Figure 4: training DeepRM to optimize the average
+job slowdown at a load of 70%. Figure 6(a) plots the aver-
+age job slowdown achieved by the policy learnt by the end
+of each iteration. To compare, the gure also plots the values
+for the other schemes. As expected, we see that DeepRM im-
+proves with iteration count; the starting policy at iteration 0
+is no better than a random allocation but after 200 iterations
+DeepRM is better than Tetris(cid:63).
+
+(cid:80)
+
+Would running more iterations further improve the aver-
+age job slowdown? Figure 6(b) plots the maximum reward
+across all of the Monte Carlo runs at each iteration and the
+average reward. As expected, both values increase with it-
+erations as DeepRMs policy improves. Further, higher re-
+wards, which is what the learning algorithm explicitly opti-
+mizes for, correlate with improvements in average job slow-
+down (Fig. 6(a)). Finally, recall that the policy is a proba-
+bility distribution over possible actions. Hence, a large gap
+
+051015202510%30%50%70%90%110%130%150%170%190%Average	slowdownAverage	cluster	loadDeepRMTetris*SJFPacker2.8117.554.1615.084.5916.254.8916.5912.4627.9801020300102030Average	job	slowdownAverage	job	completion	timeAverage	job	completion	timeAverage	job	slowdownDeepRM	trained	for	slowdownDeepRM	trained	for	completion	timeTetris*SJFPacker123456780150300450600750900Average	slowdowniterationDeepRMTetris*SJFPackerRandom-120-100-80-60-400150300450600750900Total	rewarditerationDeepRM	MaxDeepRM	Meaninto account data locality considerations [41, 22]. This can
+can be done by giving a higher reward to data-local alloca-
+tions, or perhaps, enabling the agent to learn the true value
+of data locality with appropriate observation signals.
+Job models. We did not model inter-task dependencies that
+are common in data-parallel jobs. For example, jobs may
+consist of multiple stages, each with many tasks and differ-
+ent resource requirements [17]. Further, the resource prole
+of a job may not be known in advance (e.g., for non-recurring
+jobs [4]), and the scheduler might have get an accurate view
+only as the job runs [14]. The RL paradigm can in principle
+deal with such situations of partial observability by casting
+the decision problem as a POMDP [9]. We intend to investi-
+gate alternative job models and robustness to uncertainty in
+resource proles in future work.
+Bounded time horizon. Notice that DeepRM uses a small
+time horizon whereas the underlying optimization problem
+has an innite time horizon. The bounded horizon is needed
+for computing the baseline (see 3.3). We hope to overcome
+this issue by replacing the time-dependent baseline with a
+value network [34] that estimates the average return value.
+
+6. RELATED WORK
+
+RL has been used for a variety of learning tasks, rang-
+ing from robotics [25, 24] to industrial manufacturing [26]
+and computer game playing [34]. Of specic relevance to
+our work is Zhang and Dietterichs paper [42] on allocat-
+ing human resources to tasks before and after NASA shut-
+tle missions. Our job scheduling setup has similarities (e.g.,
+multiple jobs and resources), but differs crucially in being an
+online problem, whereas the NASA task is ofine (all input
+is known in advance). Some early work uses RL for decen-
+tralized packet routing in a switch [8], but the problem sizes
+were small and neural network machinery was not needed.
+Recently, learning has been applied to designing congestion
+control protocols using a large number of ofine [37] or on-
+line [13] experiments. RL could provide a useful framework
+for learning such congestion control algorithms as well.
+
+Motivated by the popularity of data-parallel frameworks,
+cluster scheduling has been studied widely recently. Several
+scheduler designs address specic issues or objectives, such
+as fairness [41, 16], locality [22, 41], packing [17] and strag-
+gling tasks [5]. We are not aware of any work that applies
+reinforcement learning for data-parallel cluster scheduling.
+
+7. CONCLUSION
+
+This paper shows that it is feasible to apply state-of-the-art
+Deep RL techniques to large-scale systems. Our early ex-
+periments show that the RL agent is comparable and some-
+times better than ad-hoc heuristics for a multi-resource clus-
+ter scheduling problem. Learning resource management strate-
+gies directly from experience, if we can make it work in
+a practical context, could offer a real alternative to current
+heuristic based approaches.
+
+(a) length of withheld jobs
+
+(b) slowdown vs. job length
+
+Figure 7: DeepRM withholds large jobs to make room
+for small jobs and reduce overall average slowdown.
+
+between the maximum and average rewards implies the need
+for further learning; if some action path (sampled from the
+policy output by the neural network) is much better than the
+average action path, there is room to increase reward by ad-
+justing the policy. Conversely, when this gap narrows, the
+model has converged; as we see near the 1000th iteration.
+
+We have thus far measured number of iterations but how
+long does one iteration take to compute? Our multi-threaded
+implementation took 80 seconds per iteration on a 24-core
+CPU server. Ofoading to a GPU server may speedup the
+process further [10, 2]. Finally, note that the policy need
+only be trained once; retraining is needed only when the en-
+vironment (cluster or job workload) changes notably.
+Where are the gains from? To understand why DeepRM
+performs better, we examine the case with load 110%. Re-
+call that, unlike the other schemes, DeepRM is not work-
+conserving, i.e., it can hold a job even if there are enough
+resources available to allocate it. We found that in 23.4% of
+timesteps in this scenario, DeepRM was not work-conserving.
+Whenever DeepRM withholds a job, we record its length,
+and plot the distribution of the length of such jobs in Fig-
+ure 7(a). We see that DeepRM almost always withholds only
+large jobs. The effect is to make room for yet-to-arrive small
+jobs. This is evident in Figure 7(b): the slowdown for small
+jobs is signicantly smaller with DeepRM than Tetris(cid:63), with
+the tradeoff being higher slowdown for large jobs. Since in
+this workload (4.1), there are 4 more small jobs than large
+jobs, the optimal strategy to minimize average job slowdown
+(Figure 4) in a heavy load is to keep some resources free so
+that newly arriving small jobs can be immediately allocated.
+DeepRM learns such a strategy automatically.
+
+5. DISCUSSION
+
+We next elaborate on current limitations of our solution,
+
+which motivate several challenging research directions.
+Machine boundaries and locality. Our problem formula-
+tion assumes a single large resource pool"; this abstracts
+away machine boundaries and potential resource fragmenta-
+tion. This formulation is more practical than might appear
+since many cluster schedulers make independent scheduling
+decisions per machine (e.g., upon a hearbeat from the ma-
+chine as in YARN [36]). By having the agent allocate only
+one machines worth of resources, the same formulation can
+be employed in such scenarios. We also currently do not take
+
+55
+
+0.0030.00200.1440.1560.1790.170.1790.16900.050.10.150.2123101112131415FractionJob	lengthDeepRM123[10,11][12,13][14,15]Joblength15101520JobslowdownDeepRMTetris*Acknowledgments. We thank the anonymous HotNets re-
+viewers whose feedback helped us improve the paper, and
+Jiaming Luo for fruitful discussions. This work was funded
+in part by NSF grants CNS-1617702 and CNS-1563826.
+
+8. REFERENCES
+[1] Terminator, http://www.imdb.com/title/tt0088247/.
+[2] M. Abadi, A. Agarwal, P. Barham, E. Brevdo, Z. Chen, C. Citro,
+
+G. S. Corrado, A. Davis, J. Dean, M. Devin, et al. Tensorow:
+Large-scale machine learning on heterogeneous systems, 2015.
+Software available from tensorow. org, 2015.
+
+[3] P. Abbeel, A. Coates, M. Quigley, and A. Y. Ng. An application of
+reinforcement learning to aerobatic helicopter ight. Advances in
+neural information processing systems, page 1, 2007.
+
+[4] S. Agarwal, S. Kandula, N. Bruno, M.-C. Wu, I. Stoica, and J. Zhou.
+Reoptimizing data parallel computing. In NSDI, pages 281294, San
+Jose, CA, 2012. USENIX.
+
+[5] G. Ananthanarayanan, S. Kandula, A. G. Greenberg, I. Stoica, Y. Lu,
+B. Saha, and E. Harris. Reining in the outliers in map-reduce clusters
+using mantri. In OSDI, number 1, page 24, 2010.
+
+[6] M. Armbrust, A. Fox, R. Grifth, A. D. Joseph, R. Katz,
+
+A. Konwinski, G. Lee, D. Patterson, A. Rabkin, I. Stoica, et al. A
+view of cloud computing. Communications of the ACM, (4), 2010.
+
+[7] D. P. Bertsekas and J. N. Tsitsiklis. Neuro-dynamic programming: an
+
+overview. In Decision and Control,. IEEE, 1995.
+
+[8] J. A. Boyan and M. L. Littman. Packet routing in dynamically
+
+changing networks: A reinforcement learning approach. Advances in
+neural information processing systems, 1994.
+
+[9] A. R. Cassandra and L. P. Kaelbling. Learning policies for partially
+
+observable environments: Scaling up. In Machine Learning
+Proceedings 1995, page 362. Morgan Kaufmann, 2016.
+
+[10] T. Chilimbi, Y. Suzue, J. Apacible, and K. Kalyanaraman. Project
+
+adam: Building an efcient and scalable deep learning training
+system. In OSDI, pages 571582, Broomeld, CO, Oct. 2014.
+USENIX Association.
+
+[11] J. Dean and L. A. Barroso. The tail at scale. Communications of the
+
+ACM, pages 7480, 2013.
+
+[12] C. Delimitrou and C. Kozyrakis. Quasar: Resource-efcient and
+
+qos-aware cluster management. ASPLOS 14, pages 127144, New
+York, NY, USA, 2014. ACM.
+
+[13] M. Dong, Q. Li, D. Zarchy, P. B. Godfrey, and M. Schapira. Pcc:
+
+Re-architecting congestion control for consistent high performance.
+In NSDI, pages 395408, Oakland, CA, May 2015. USENIX
+Association.
+
+[14] A. D. Ferguson, P. Bodik, S. Kandula, E. Boutin, and R. Fonseca.
+
+Jockey: guaranteed job latency in data parallel clusters. In
+Proceedings of the 7th ACM european conference on Computer
+Systems. ACM, 2012.
+
+[15] J. Gao and R. Evans. Deepmind ai reduces google data centre cooling
+
+bill by 40%. https://deepmind.com/blog/deepmind-ai-reduces-
+google-data-centre-cooling-bill-40/.
+
+[16] A. Ghodsi, M. Zaharia, B. Hindman, A. Konwinski, S. Shenker, and
+
+I. Stoica. Dominant resource fairness: Fair allocation of multiple
+resource types. NSDI11, pages 323336, Berkeley, CA, USA, 2011.
+USENIX Association.
+
+[17] R. Grandl, G. Ananthanarayanan, S. Kandula, S. Rao, and A. Akella.
+Multi-resource packing for cluster schedulers. SIGCOMM 14, pages
+455466, New York, NY, USA, 2014. ACM.
+
+[18] M. T. Hagan, H. B. Demuth, M. H. Beale, and O. De Jess. Neural
+
+network design. PWS publishing company Boston, 1996.
+
+[19] W. K. Hastings. Monte carlo sampling methods using markov chains
+
+and their applications. Biometrika, (1), 1970.
+
+[20] B. Heller, S. Seetharaman, P. Mahadevan, Y. Yiakoumis, P. Sharma,
+
+S. Banerjee, and N. McKeown. Elastictree: Saving energy in data
+center networks. NSDI10, Berkeley, CA, USA, 2010. USENIX
+Association.
+
+[21] G. Hinton. Overview of mini-batch gradient descent. Neural
+
+Networks for Machine Learning.
+
+[22] M. Isard, V. Prabhakaran, J. Currey, U. Wieder, K. Talwar, and
+
+56
+
+A. Goldberg. Quincy: fair scheduling for distributed computing
+clusters. In ACM SIGOPS, 2009.
+
+[23] J. Junchen, D. Rajdeep, A. Ganesh, C. Philip, P. Venkata, S. Vyas,
+
+D. Esbjorn, G. Marcin, K. Dalibor, V. Renat, and Z. Hui. A
+control-theoretic approach for dynamic adaptive video streaming over
+http. SIGCOMM 15, New York, NY, USA, 2015. ACM.
+
+[24] L. P. Kaelbling, M. L. Littman, and A. W. Moore. Reinforcement
+
+learning: A survey. Journal of articial intelligence research, 1996.
+
+[25] J. Kober, J. A. Bagnell, and J. Peters. Reinforcement learning in
+
+robotics: A survey. The International Journal of Robotics Research,
+2013.
+
+[26] S. Mahadevan and G. Theocharous. Optimizing production
+
+manufacturing using reinforcement learning. In FLAIRS Conference,
+1998.
+
+[27] I. Menache, S. Mannor, and N. Shimkin. Basis function adaptation in
+
+temporal difference reinforcement learning. Annals of Operations
+Research, (1), 2005.
+
+[28] V. Mnih, A. P. Badia, M. Mirza, A. Graves, T. P. Lillicrap, T. Harley,
+
+D. Silver, and K. Kavukcuoglu. Asynchronous methods for deep
+reinforcement learning. CoRR, 2016.
+
+[29] V. Mnih, K. Kavukcuoglu, D. Silver, A. Graves, I. Antonoglou,
+
+D. Wierstra, and M. A. Riedmiller. Playing atari with deep
+reinforcement learning. CoRR, 2013.
+
+[30] V. Mnih, K. Kavukcuoglu, D. Silver, A. A. Rusu, J. Veness, M. G.
+
+Bellemare, A. Graves, M. Riedmiller, A. K. Fidjeland, G. Ostrovski,
+S. Petersen, C. Beattie, A. Sadik, I. Antonoglou, H. King,
+D. Kumaran, D. Wierstra, S. Legg, D. H. I. Antonoglou, D. Wierstra,
+and M. A. Riedmiller. Human-level control through deep
+reinforcement learning. Nature, 2015.
+
+[31] G. E. Monahan. State of the art - a survey of partially observable
+
+markov decision processes: theory, models, and algorithms.
+Management Science, (1), 1982.
+
+[32] J. Schulman, S. Levine, P. Moritz, M. I. Jordan, and P. Abbeel. Trust
+
+region policy optimization. CoRR, abs/1502.05477, 2015.
+
+[33] D. Silver, A. Huang, C. J. Maddison, A. Guez, L. Sifre, G. van den
+
+Driessche, J. Schrittwieser, I. Antonoglou, V. Panneershevlvam,
+M. Lanctot, S. Dieleman, D. Grewe, J. Nham, N. Kalchbrenner,
+I. Sutskever, T. Lillicrap, M. Leach, K. Kavukcuoglu, T. Graepel, and
+D. Hassabis. Mastering the game of go with deep neural networks
+and tree search. Nature, 2016.
+
+[34] R. S. Sutton and A. G. Barto. Reinforcement Learning: An
+
+Introduction. MIT Press, 1998.
+
+[35] R. S. Sutton, D. A. McAllester, S. P. Singh, Y. Mansour, et al. Policy
+
+gradient methods for reinforcement learning with function
+approximation. In NIPS, 1999.
+
+[36] V. K. Vavilapalli, A. C. Murthy, C. Douglas, S. Agarwal, M. Konar,
+R. Evans, T. Graves, J. Lowe, H. Shah, S. Seth, B. Saha, C. Curino,
+O. OMalley, S. Radia, B. Reed, and E. Baldeschwieler. Apache
+hadoop yarn: Yet another resource negotiator. SOCC 13, pages
+5:15:16, New York, NY, USA, 2013. ACM.
+
+[37] K. Winstein and H. Balakrishnan. TCP Ex Machina:
+
+Computer-generated Congestion Control. In SIGCOMM, 2013.
+
+[38] K. Winstein, A. Sivaraman, and H. Balakrishnan. Stochastic forecasts
+
+achieve high throughput and low delay over cellular networks. In
+NSDI, pages 459471, Lombard, IL, 2013. USENIX.
+
+[39] S. Yi, Y. Xiaoqi, J. Junchen, S. Vyas, L. Fuyuan, W. Nanshu, L. Tao,
+
+and B. Sinopoli. Cs2p: Improving video bitrate selection and
+adaptation with data-driven throughput prediction. SIGCOMM, New
+York, NY, USA, 2016. ACM.
+
+[40] X. Yin, A. Jindal, V. Sekar, and B. Sinopoli. Via: Improving internet
+telephony call quality using predictive relay selection. In SIGCOMM,
+SIGCOMM 16, 2016.
+
+[41] M. Zaharia, D. Borthakur, J. Sen Sarma, K. Elmeleegy, S. Shenker,
+
+and I. Stoica. Delay scheduling: a simple technique for achieving
+locality and fairness in cluster scheduling. In EuroSys, 2010.
+
+[42] W. Zhang and T. G. Dietterich. A reinforcement learning approach to
+
+job-shop scheduling. In IJCAI. Citeseer, 1995.
+
+

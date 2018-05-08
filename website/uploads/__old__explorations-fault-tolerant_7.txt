@@ -1,0 +1,560 @@
+Explorations of Fault Tolerant System Design within High Level
+
+Synthesis
+
+Nicholas V. Giamblanco, 1000 324 534
+
+I. INTRODUCTION
+
+With the ease of information access and information
+processing that electronic devices provide, it is obvious why
+these devices have dominated every ﬁeld of work imagin-
+able. To meet this demand of electronic device usage and
+integration, the ﬁeld of electrical and computer engineering
+introduced digital design methodologies which can quickly
+produce the devices we require for our daily lives, while
+meeting several environmental and user based constraints.
+One such technology, known as High-Level Synthesis (HLS)
+[1], provided such a design methodology. HLS transforms an
+algorithmic description of some function into a correspond-
+ing digital hardware circuit. The algorithmic description is
+provided through a High-Level Language (HLL) such as C
+[2] and C + +. HLS operates on this description and a set
+of user speciﬁed constraints and/or technology dependent
+constraints by ﬁrst compiling the algorithmic description into
+an optimized ﬂow. This optimized code is then represented
+as a Data Flow Graph (DFG). HLS then initiates a 3 step
+procedure: Allocation, Scheduling and Binding [3]. Alloca-
+tion allocates appropriate hardware resources to the digital
+design. Scheduling assigns a clock cycle applicable to each
+operation(s). Binding maps a speciﬁc operation speciﬁed by
+the algorithmic input to an allocated hardware unit. Once
+this three step process completes, a Register-Transfer-Level
+(RTL) description is generated. This is a simpliﬁed view of
+the operation of high-level synthesis.
+
+To introduce the idea of fault tolerance, and how is to
+be integrated within a high-level synthesis framework, we
+ﬁrst must introduce the idea of a fault, several mitigation
+techniques to a fault, and how faults affect digital circuits and
+electronic devices. We will then introduce techniques which
+implement fault tolerant systems during high-level synthesis.
+A fault can be classiﬁed as a possibly undetected error
+in an operator or data which may or may not affect the
+behaviour of a system and/or it’s operands. In the ﬁeld of
+electrical and computer engineering, this can take the form of
+either corrupted data, and/or a damaged analogue or digital
+circuit. Faults can be divided into two distinct categories (1)
+Random Faults, or (2) Systematic Faults, [4]:
+
+1) Random Faults: faults are due to fatigue and deterio-
+ration of a given system. These faults generally have
+low probability of occurring.
+
+2) Systematic Faults: faults are due to speciﬁcation of a
+given system, and will affect all systems set against
+this speciﬁcation.
+
+In order to quantify failures, we obtain a probability model
+
+which predicts the reliability of a system and the relation
+reliability has to faults.
+
+II. RELIABILITY & A RELIABILITY MODEL
+
+The reliability of a system can be interpreted as a proba-
+bilistic model. Generally, we deﬁne reliability as the ability
+to perform a desired task correctly against some period of
+operation. Therefore, if we can collect data pertaining to
+some item κ on how long it can perform some task T , we
+can make some statistical claim of κ’s reliability. This can
+be encapsulated in some rate, λκ, which denotes the hazard
+rate of a κ. Therefore, we can model the reliability Rκ with:
+(1)
+
+Rκ = e−λκt,
+
+0 ≤ Rκ ≤ 1
+
+We generally deal with a system comprised of many items,
+with interconnections that occur in a serial or parallel fash-
+ion. [4] Hence, we can model the overall probability of each
+case:
+
+In a serial system, we can evaluate the reliability through
+a multiplicative fashion, where the reliability of the system
+S with N serial components can be modeled as:
+
+Rs =
+
+Ri
+
+(2)
+
+N(cid:89)
+
+i=1
+
+Rs = 1 − M(cid:89)
+
+The reliability of a parallel system with M components
+
+in parallel is represented as:
+
+(1 − Ri)
+
+Qi. Hence for a parallel system, Rs = 1 −(cid:81)M
+
+(3)
+However the quantity 1 − Ri is known as the failure rate
+i=1 Qi. We
+now examine one common approach to fault tolerance, triple
+modular redundancy (TMR).
+
+i=1
+
+III. COMMON FAULT TOLERANCE APPROACH: TRIPLE
+
+MODULAR REDUNDANCY
+
+With TMR, some system S is replicated three times. These
+replications S1, S2, S3 aim to provide fault tolerance through
+a majority voter. A System S that has undergone TMR would
+be modiﬁed to have a new system Hs, where Hs has three
+copies of S, namely Hs = {S1, S2, S3}, and could be similar
+to that of Figure 1.
+
+Hs requires a voting function against S1, S2, S3 which
+takes the majority vote of
+these systems, f (Hs) =
+voter(S1, S2, S3). Therefore, if a fault is encountered in only
+one system Si then Hs will have two systems Hs − Si that
+will produce expected results. However, if two systems Sj,
+
+Fig. 1: High Level View of Triple Modular Redundancy
+(TMR), taken from [5]
+
+Sk encounter an error of the same kind, Hs will believe that
+Hs − Sj − Sk is the system experiencing a fault, and allows
+the majority vote to consist of Sj, Sk. A TMR system has
+the following reliability:
+
+RTMR = R3
+
+m + 3R2
+
+m(1 − Rm)
+
+(4)
+
+Hence, if Rm close to unity, the reliability given by TMR
+is advantageous. We speciﬁcally outline TMR due to it’s
+effectiveness in fault tolerant design for SRAM FPGAs [6].
+We now examine a particular fault susceptible to SRAM
+FPGAs, and the current approaches which mitigate this fault.
+
+IV. SINGLE EVENT UPSETS
+
+Single Event Upsets (SEU)s are phenomena which pro-
+duce unwanted modiﬁcation of some data in a system due
+to radiation. These events are also known as soft errors, as
+it directly affects a binary representation of data. In high-
+altitude and space related work, radioactive particles are
+higher in abundance, therefore providing higher probability
+of SEU to electronic devices within these ﬁelds. Three
+types of radiation sources can induce soft errors: (1) alpha
+particles from naturally occurring radioactive materials, (2)
+extraterrestrial cosmic rays (3) and 10B ﬁssion’s release of
+neutrons [7]. Although these radioactive particles affect the
+integrity of the data of some system, they generally have
+no ill effect on the hardware. SEUs are capable of changing
+the integrity of some electrostatic state in a transistor if any
+of the radioactive particles can ionize some particular atom
+within the transistor producing an abundance of free charge.
+This free charge is the agent which produces a soft fail.
+
+Fig. 2: Demonstration of a Single Event Upset, image taken
+from [7]
+
+SRAM modules seem to be most prone to SEUs compared
+to that of CMOS, NMOS and Dynamic RAMs [8]. It is worth
+mentioning, that certain Field Programmable Gate Arrays
+(FPGA) may contain SRAM units. If an FPGA utilizes
+SRAM modules, it is common for an FPGA’s conﬁguration
+to be stored within these memories. Modifying any of these
+
+conﬁguration bits can be detrimental to device integrity and
+operation [9]. Hence, user-memory and memory reserved for
+conﬁguration may be affected by a SEU.
+
+In the following sections, we explore several methods
+which aim to reduce the effect and/or prevent SEUs and
+other possible faults during HLS. These approaches focus
+on technologies that utilize SRAM modules.
+
+V. RELIABILITY-CENTRIC HLS
+
+Tosun et al. [7] describe an module-reliability approach to
+reducing the probability of erroneous data due to soft errors
+during HLS. Speciﬁcally, the authors propose a method-
+ology which categorizes library modules against area im-
+pacts, delay in operation, and component reliability. Current
+approaches to library characterization of modules mainly
+deals with latency, area and power consumption. Adding a
+reliability trait to modules allows for a HLS framework to
+continue to meet area and performance criteria while having
+several variants of a design with varying levels of reliability.
+The authors propose an estimation method to produce the
+level of reliability per component. The estimation uses some
+idea of a critical charge Qcrit, where this charge can be
+viewed as a threshold against some charge induced by an
+SEU. It was formally described as [7]:
+SER ∝ Nﬂux × CS × e
+
+−Qcrit
+Qs
+
+(5)
+
+Equation 5 was originally proposed by Hazucha et al
+[10], where Nﬂux is the intensity of the neutron ﬂux, CS
+is the cross sectional area, and Qs is the efﬁciency of charge
+collection. The authors then propose that each module has
+some reliability Rt = e−λt, with λ being equivalent to the
+SER (Signal Error Rate). Their proposition for the reliability
+model implements the approach described in Section II, with
+an important modiﬁcation. The authors modify a parallel
+system in the reliability model to behave in a serial fashion,
+like Equation 2.
+
+To formally redeﬁne the high-level synthesis process with
+this innovative approach, the authors use a reliability-centric
+approach to resource allocation, scheduling and binding.
+Here, the authors provide this framework with the added
+feature of optimizing (maximizing) the reliability of the
+high-level reference. Several candidate solutions may be
+presented, but only the most reliable circuit
+is initially
+selected. This initial solution may not meet other constraints,
+and hence an iterative process begins, where some reliability
+must be sacriﬁced at the cost of meeting timing, area or
+power constraints. Reliability is traded-off with components
+that are less reliable but are more area/power/timing efﬁcient.
+This iterative process completes when the area and latency
+constraints are met.
+
+VI. TLEGUP
+
+Lee et al. [11] propose a modiﬁcation to an open source
+HLS tool, LegUp [12], adding the ability to include TMR
+before the HLS process begins. Speciﬁcally, TLegUp utilizes
+Low Level Virtual Machine’s (LLVM) [13] Intermediate
+Representation (IR) to achieve TMR. LLVM’s IR provides
+
+VII. STITCHUP
+
+Another approach to Fault Tolerance is to utilize only a
+duplication of resources. This particular strategy is known
+was Double Modular Redundancy (DMR). DMR behaves
+similarly to TMR, still utilizing a majority voting function
+for only two system replicas 1. StitchUp [14] provides a
+DMR-like approach to fault tolerance. However, StitchUp
+is not DMR. StitchUp only duplicates components of mod-
+ules that provide control-ﬂow for a given hardware design.
+Hence, StitchUp only adds double redundancy to control
+ﬂow modules. Fleming and Thomas build upon LegUp’s
+[12] HLS tool by designing a control-ﬂow extraction system
+(which they refer to as CSIS Extraction) from LLVM’s IR.
+By determining the basic blocks of the IR which represent
+the control-ﬂow of some algorithmic description, StitchUp
+stitch together LegUp’s synthesized hardware design along
+with their extracted control-ﬂow circuit to produce a fault
+tolerant hardware circuit. Their extracted control-ﬂow circuit
+is generated through their own HLS process after they have
+extracted their control-ﬂow IR. The FSM produced by LegUp
+is then copied to StitchUp’s circuit, along with other timing
+critical information such that the two circuits can behave
+as a minimal DMR system with respect to control ﬂow
+and related modules. Once both circuits have the required
+information (FSM, timing and cycle information), StitchUp
+wraps these circuits as a whole unit. A high-level view of
+their operations are visualized in Figure 4.
+
+Fig. 4: StichUp’s design ﬂow, taken from [14]
+
+VIII. ANALYSIS OF CURRENT APPROACHES
+
+In this section, we analyze the effectiveness of each
+approach discussed previously in regards to fault tolerance,
+latency, area and utilized power.
+
+A. Analysis of Reliability-Centric High Level Synthesis
+
+Tosun et al. approached the problem of fault tolerance by
+including an extra parameter for consideration during high-
+level synthesis. Their approach modiﬁed a module library to
+include reliability parameters, such that components selected
+during the allocation, mapping and binding process of HLS
+could be aimed to maximize the usage of reliable parts,
+while minding typical constraints aimed at area consumption,
+circuit delay, etc. Here, S. Tosun et al. do not make use of
+
+1DMR has reliability R = R2
+
+m + 2Rm(1 − Rm)
+
+(a) LegUp’s Design Flow [12]
+
+(b) TLegUp’s Modiﬁcation [11]
+
+Fig. 3: Visual Comparison of LegUp and TLegUp’s design
+ﬂow
+
+a platform-independent RISC-y instruction set, that orients a
+HLL description into a control ﬂow graph of these RISC-like
+instructions. LegUp uses this representation as their basis for
+HLS. TLegUp inherits LegUp’s LLVM’s complier passes,
+and adds another complier pass during IR computation,
+enabling TMR with several voting styles. Modiﬁcations were
+made to the typical LegUp ﬂow to accommodate for these
+new features. LegUp’s design ﬂow and TLegUp’s design
+ﬂow are outlined in Figure 3. Speciﬁcally, additional user
+constraints were added to the conﬁguration ﬁle needed by
+the LegUp tool, allowing users to specify if they wish to
+enable TMR, and which voting styles should be incorporated.
+It is important to value how TLegUp only allows the user to
+either enable TMR or disable TMR. The user has no free-
+dom on what speciﬁc modules should be made redundant.
+TLegUp allows for Simplex (no TMR used) RTL, TMR
+with combinational voters RTL, or TMR with Registered
+(Sequential) Voters RTL[11]. Combinational Voters provide
+a typical voting function, in which voting takes place in the
+same clock cycle as the TMR operations. Sequential Voters
+provide stages between TMR modules, where results are
+latched into a register and then voted against. TLegUp only
+triplicates speciﬁed modules, FSMs, memories, registers, and
+wires. Input/Ouput pins are not triplicated. Several variants of
+Voters were outlined with TLegUp, which are: (1) Feedback
+Voters (FV) which are typically used for cyclic signals
+(i.e.
+loops), (2) Partitioning Voters (PV) used for when
+submodules of a system are made fault tolerant through TMR
+and (3) Reducing Voters (RV) used for output values of a
+module. Triplication is also generated after LegUp’s HLS
+process is ﬁnalized. By implementing the triplication process
+after HLS completes, hardware requirements of TMR won’t
+be optimized away by LegUp.
+
+any fault tolerant model such as an N-Modular Redundancy
+scheme. Their focus is on maximizing the overall reliability
+of a system, through the selection of reliable components and
+modules. They assume that the overall reliability of their dig-
+ital circuit is of a serial fashion, as described in Equation 2.
+The evaluation of their Reliability-Centric approach was
+compared to Orailoglu and Karri’s fault tolerance approach to
+HLS for ASICs [15], and the conducted test utilized achieved
+Latency and Area and estimated Reliability (by Equation 5)
+as their criteria for evaluation. They performed tests on three
+circuit benchmarks (1) FIR, (2) EW, and (3) DiffEq. From
+their tests, the Reliability-Centric approach performed well
+compared to [15]2, with average reliability improvements
+of 21.92%, 9.67% and 9.21% for benchmarks (1), (2) and
+(3), respectively. Although some notion of reliability was
+achieved, the estimation method outlined in Equation 5 may
+not provide a proper estimate. It was also interesting that
+their tests on reliability were focused more for an ASIC
+devices. Hence, the authors did not touch upon errors that
+occur with soft errors of conﬁguration bits on an FPGA.
+
+B. Analysis of TLegUp
+
+TLegUp utilizes TMR to gain fault tolerance, through user
+speciﬁed directives. With any TMR system, an increase in
+area usage should be expected, as systems and subsystems
+are being triplicated. This triplication can also contribute
+to higher latency, which is disadvantageous since digital
+designs aim to have low latency and area impacts. Also,
+triplication with any IC will require extra routing resources,
+driving up latency, and power consumption. Several metrics
+were collected with the CHStone Benchmark [16], such
+as the number of registers (REG), LUTS (LUT) Latency
+(LAT), Operating Frequency (FM), Execution Time (ET),
+Essential Bits (EB), and Soft Error Sensitivity (SES). Tests
+were conducted upon with three variants of TLegUp, (1)
+Simplex, (2) TMR with Combinational Voters, and (3) TMR
+with Sequential Voters. All results from (2) and (3) were
+normalized to (1) to provide some comparison in magnitude.
+As expected, the number of LUTs and REGs increased ∼ 3x
+in (2) and (3) compared to (1). This is not advantageous
+in TLegUp’s approach, since ∼ 3x area is required for
+operation. The average FM was lower in both (2) and (3)
+by 29%, and 18%, respectively. However, the ET increased
+in both (2) and (3) by 42% and 36%. No latency change
+was detected with (2), but with (3), a latency increase
+of 11% was detected. To test for fault tolerance of their
+system, the authors utilize a fault injection platform speciﬁc
+to FPGA’s. This platform analyzes a conﬁguration bit stream,
+and discovers bits which are crucial to correct functionality,
+Essential Bits (EB). Flipping these EBs was a way of
+fault injection, where a SEU would behave similarly. This
+allowed for a measure of how well TLegUp handles faults,
+where SES = number of functional errors
+. Although modules were
+triplicated, there was only a ∼ 50% increase in the number
+
+EB
+
+2Orailoglu and Karri utilizes TMR on selected modules to provide
+
+reliability (mitigating the effects of SEUs)
+
+of EBs. However, the SES was recorder to be 9.09x lower
+in both (2) and (3). It appears that TLegUp has minimal
+performance impacts, and provides 9.09x better protection
+for faults due to SEUs. However, TLegUp’s triplication
+process may add unneeded redundancy, and therefore uses
+an excessive amount of area. TLegUp did not comment on
+the power consideration of their TMR based approach. This
+should be part of their focus, as power consumption with
+criticality-based application are of large concern.
+
+C. Analysis of StitchUp
+
+DMR, an instance of N-modular redundancy where N =
+2 also has signiﬁcant fault tolerance properties. DMR enables
+error detection within a system. However, DMR does not
+guarantee error recovery. Also, DMR utilizes ∼ 2x area
+which is disadvantageous. StitchUp provides fault tolerance
+by instantiating a minimal DMR of a digital hardware
+circuit. StitchUp minimizes the effects of control-ﬂow errors
+introduced by SEUs. This approach was analyzed for its
+performance, area, power consumption and fault tolerance
+properties compared with the CHStone benchmark. Their
+duplication strategy is area efﬁcient compared to that of
+TMR and DMR, with some average savings with respect to
+the original circuit (minimum was 1% extra, maximum was
+same area usage as DMR). There was no mention of latency
+changes with StitchUp’s approach. It appears this approach
+had negligble impacts on the overall
+latency. StitchUp’s
+duplication saw larger power dissipation in a non-duplicated
+circuit, less than or equal to DMR. This is to be expected
+due to the extra circuitry required for their control-ﬂow du-
+plication. The authors utilize fault injections to determine the
+level of fault tolerance acheived. They propose a novel way
+of injecting faults, by utilizing a distributed fault injection
+approach. Their system was evaluated for three types of
+errors: Execution Time Errors (ETE), Data-ﬂow Only Errors
+(DOE), Caught Errors (CE). This method of fault tolerance
+testing provides through evaluation, and should be adopted
+as a standard for fault tolerance testing. According to these
+tests, StitchUp is able to mitigate all ETEs, and reduce the
+number DOEs. The fault tolerance provided by StitchUp is
+relative to the size of the replication. StitchUp’s approach to
+fault tolerance is able to provide fault tolerance with minimal
+impacts upon performance, area, and power dissipation.
+
+IX. CONCLUSION
+
+In conclusion, we explored three HLS implementations
+which aimed to mitigate SEUs from producing faults in
+digital hardware circuits. Each approach delivered unique
+solutions to the problem of SEUs. Tosun et al. deﬁned a
+module library categorized on latency, area, and reliability,
+where reliability was a new parameter to be maximized
+during the HLS process. Lee et al. proposed a modiﬁcation
+to an existing HLS tool, permitting a TMR of the hardware
+for fault
+tolerance. Fleming and Thomas also utilize an
+existing HLS tool alongside a novel algorithm to identify
+and perform DMR against control-ﬂow modules. This DMR-
+like circuit is stitched alongside the original hardware circuit
+
+to enable fault tolerance. Each approach attempts different
+testing styles in hopes to classify the effectiveness of the
+fault tolerant approaches. Tosun et al. proposed and used an
+estimation method in fault tolerance effectiveness. Both Lee
+et al. and Fleming & Thomas used fault injections as their
+measurement. All approaches can be used to provide fault
+tolerance with both ASICs and FPGAs. However, Tosun et
+al. focus their efforts towards a more ASIC design ﬂow, while
+the other approaches analyzed attend to FPGA technology.
+
+REFERENCES
+
+[1] M. C. McFarland, A. C. Parker, and R. Camposano, “The high-level
+synthesis of digital systems,” Proceedings of the IEEE, vol. 78, no. 2,
+pp. 301–318, 1990.
+
+[2] B. W. Kernighan and D. M. Ritchie, The C programming language.
+
+2006.
+
+[3] P. Coussy, D. D. Gajski, M. Meredith, and A. Takach, “An introduction
+to high-level synthesis,” IEEE Design Test of Computers, vol. 26,
+pp. 8–17, July 2009.
+
+[4] K. Neubeck, Practical reliability analysis. Prentice Hall, 2004.
+[5] R. E. Lyons and W. Vanderkulk, “The use of triple-modular redun-
+dancy to improve computer reliability,” IBM Journal of Research and
+Development, vol. 6, pp. 200–209, April 1962.
+
+[6] D. Agiakatsikas, E. Cetin, and O. Diessel, “Fmer: A hybrid conﬁgu-
+ration memory error recovery scheme for highly reliable fpga socs,”
+in 2016 26th International Conference on Field Programmable Logic
+and Applications (FPL), pp. 1–4, Aug 2016.
+
+[7] S. Tosun, N. Mansouri, E. Arvas, M. Kandemir, and Y. Xie,
+“Reliability-centric high-level synthesis,” in Proceedings of the confer-
+ence on Design, Automation and Test in Europe-Volume 2, pp. 1258–
+1263, IEEE Computer Society, 2005.
+
+[8] J. F. Ziegler, H. W. Curtis, H. P. Muhlfeld, C. J. Montrose, B. Chin,
+M. Nicewicz, C. Russell, W. Y. Wang, L. B. Freeman, P. Hosier, et al.,
+“Ibm experiments in soft fails in computer electronics (1978–1994),”
+IBM journal of research and development, vol. 40, no. 1, pp. 3–18,
+1996.
+
+[9] R. Katz, J. Wang, J. McCollum, and B. Cronquist, “The impact of
+software and cae tools on seu in ﬁeld programmable gate arrays,”
+IEEE Transactions on Nuclear Science, vol. 46, pp. 1461–1468, Dec
+1999.
+
+[10] P. Hazucha and C. Svensson, “Optimized test circuits for ser charac-
+terization of a manufacturing process,” IEEE Journal of Solid-State
+Circuits, vol. 35, pp. 142–148, Feb 2000.
+
+[11] G. Lee, D. Agiakatsikas, T. Wu, E. Cetin, and O. Diessel, “Tlegup:
+A tmr code generation tool for sram-based fpga applications using
+hls,” in 2017 IEEE 25th Annual International Symposium on Field-
+Programmable Custom Computing Machines (FCCM), pp. 129–132,
+April 2017.
+
+[12] A. Canis, J. Choi, M. Aldham, V. Zhang, A. Kammoona, J. H.
+Anderson, S. Brown, and T. Czajkowski, “Legup: high-level synthesis
+for fpga-based processor/accelerator systems,” in Proceedings of the
+19th ACM/SIGDA international symposium on Field programmable
+gate arrays, pp. 33–36, ACM, 2011.
+
+[13] C. Lattner and V. Adve, “Llvm: A compilation framework for lifelong
+program analysis & transformation,” in Proceedings of the interna-
+tional symposium on Code generation and optimization: feedback-
+directed and runtime optimization, p. 75, IEEE Computer Society,
+2004.
+
+[14] S. T. Fleming and D. B. Thomas, “Stitchup: Automatic control
+ﬂow protection for high level synthesis circuits,” in 2016 53nd
+ACM/EDAC/IEEE Design Automation Conference (DAC), pp. 1–6,
+June 2016.
+
+[15] A. Orailoglu and R. Karri, “A design methodology for the high-
+level synthesis of fault-tolerant asics,” in Workshop on VLSI Signal
+Processing, pp. 417–426, Oct 1992.
+
+[16] R. Nane, V. M. Sima, C. Pilato, J. Choi, B. Fort, A. Canis, Y. T.
+Chen, H. Hsiao, S. Brown, F. Ferrandi, J. Anderson, and K. Bertels,
+“A survey and evaluation of fpga high-level synthesis tools,” IEEE
+Transactions on Computer-Aided Design of Integrated Circuits and
+Systems, vol. 35, pp. 1591–1604, Oct 2016.
+
+

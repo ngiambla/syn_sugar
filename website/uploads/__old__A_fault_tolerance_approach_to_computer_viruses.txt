@@ -1,0 +1,1579 @@
+A FAULT TOLERANCE APPROACH TO COMPUTER VIRUSES
+
+Mmk K. Joseph and Algirdas AviiZienis
+
+Dependable Computing & Fault-Tolerant SyStems Laboratory
+
+UCLA Computer Science Department
+
+University of California, Los Angeles, CA 9(?024
+
+ABSTRACT
+
+of one
+
+The general
+
+taken in this paper is somewhat different
+from those taken by current computer security researchers. We
+treat computer viruses as a fault tolerance problem, and thus
+we apply a fault tolerance perspective in our attempt to prevent
+viruses from affecting proper system service.
+
+In a fault
+
+Computing
+
+and
+
+to provide
+
+Fault-Tolerant
+
+The applicability of fault
+tolerance techruques to computer
+security problems is currently being investigated at the UCLA
+Systems
+Dependable
+tolerance approach it is assumed that faults
+Laboratory. A recent result of this research is that extensions
+will occur in the system and that run-time mechanisms must be
+of Program Flow Monitors and N-Version Programming can
+included in the design in order
+to tolerate them. These
+be combined
+a solution to the detection and
+mechanisms
+(e.g.,
+to fault
+containment of computer viruses. The consequence is that a
+techniques which aim to remove all faults
+formal verification)
+and random
+computer
+(or
+a computer
+physical
+common mechanism.
+systems life-cycle. All
+the faults to be handled are defined
+Specifically,
+the technique described here detects control 170w
+and characterized by standard fault classes [Aviz 87]. Once
+errors due to physical faults as well as the presence of viruses.
+this is done, error detection, masking, error recovery, and error
+containment
+selected. This has been the
+general approach that has led to the proposed solution to
+computer viruses presented here. This approach has also been
+applied to other security threats (e.g.,
+trap doors, denial-of-
+service,
+
+can tolerate both deliberate faults
+faults
+
+1. INTRODUCTION
+
+channels) [Jose 88].
+
+are complementary
+
+flaws, hardware
+
+and software)
+
+by means
+
+throughout
+
+boundaries
+
+are
+
+avoidance
+
+This paper addresses the computer virus problem as
+fist
+introduced in [Cohe 84]: A computer virus is a program
+that can infect other programs by modifying them (i.e., their
+executable file) to include a possibly evolved copy of itself.
+With the infection properqy, a virus can spread throughout a
+computer system or network using the authorizations of every
+user, using it to infect their programs. Every program that gets
+infected may also act as a virus and thus the infection grows.
+Additionally, we address the case where a Trojan horse in a
+program handling tool (e.g., a compiler) infects an unprotected
+program it is manipulating.
+
+infections are:
+
+Some apparent properties of viral
+
+(1)
+most viruses add themselves to the beginning of an executable
+file, (2) the date of the most recent write to an executable tile is
+likely to get changed, (3) the size of an infected executable file
+is very likely to be larger than the original, and (4) the behavior
+of an infected executable will change. The approaches taken
+here use item (4) as a basis for detection and containment
+mechanisms.
+86] also
+system behavior
+monitors
+to detect viruses and other threats;
+however,
+it does that at a coarse-grain level of monitoring.
+The viras detection approach described here utilizesa
+fine-
+
+scheme presented
+
+in @enn
+
+The
+
+graiued monitoring of program control flow for detection.
+
+sections 3 and 5 provide introductions
+
+The rest of the paper is organized as follows: section 2
+presents a fault tolerance oriented characterization of computer
+viruses,
+to Program
+Flow Monitors
+(PFM) and N-Version Programming (NVP)
+respectively, section 4 extends the basic program flow monitor
+approach in order to detect computer viruses, and section 6
+discusses how NVP can eliminate the effects of a Trojan horse
+in program handling tools.
+
+2. CC9MNJTER V~USES
+
+--
+
+B(ITH A FAULT AND AN ERROR
+
+A fault
+
+is the identified or hypothesized cause of an
+error or of a failure. An error is an undesired state of a
+resource (computing system) that exists either at the boundary
+or at an internat point in the resource and may be experienced
+as a failure when it is propagated to and manifested at the
+boundary. A failure is a loss of proper service (i.e., specified
+behavior)
+is experienced by the user (i.e., a human or
+anothers ystem) at the boundary of a resource [Aviz 86].
+
+that
+
+CH2558-5/88/0000/0052$01 .00 01988 IEEE
+
+52
+
+(or
+
+(i.e.,
+
+fault
+
+faults
+
+specification),
+
+A design fault
+
+and can occur
+
+misinterpretation
+
+is a human-made
+
+flaw),
+resulting in a deviation of the design from its specification.
+It
+includes both implementation faiths (e.g., coding errors) and
+interpretation
+or
+misunderstanding of the specification, rather than a mistake in
+the
+and
+software. For example,
+failing to check input values is an
+interpretation fault, while being unable to retrieve records from
+a database is an implementation fault [Aviz 84]. Design faults
+can partially be characterized by the fault class by intent,
+which includes both random (i.e., accidental)
+faults
+idea of applying
+techniques
+tolerance of deliberate ones is further explored in [Jose 87].
+
+and deliberate
+fault
+
+that are used to address
+
+tolerance
+to the
+
+in both hardware
+
+[Aviz 86]. The
+
+random faults,
+
+Figure 1 is a fault tolerance oriented characterization of
+the behavior of a computer virus.
+Initially a computer virus
+can start as a special type of Trojan horse that injects or infects
+an executable file with a virus. The Trojan horse is a deliberate
+design fault, and causes an error by changing the state of the
+executable file resource. Nex~ the infected executable spreads
+or propagates
+the error
+becomes
+the fault causing other errors, and a typical error
+propagation occurs just as it does in the case of a random fault.
+The characterization of a virus as both a fault and an error
+indicates
+two
+should
+mechanisms, rather than just one.
+
+the error to other executable.
+
+countered with
+
+viruses
+
+Thus,
+
+that
+
+be
+
+@o
+
+fault +error+fault+error
+The computer
+
+virus error propagates.
+
+virus can be a special
+
+into a computer
+fault.
+
+design
+
+the virus
+
+a computer
+injects
+This is a deliberate
+
+1:
+Initially
+horse that
+[Pozz86].
+2: e.g.,
+unprotected
+space in the Intel 8086 processor.
+
+the virus writes
+
+to an executable
+
+file, or
+
+part of RAM such as a processs
+
+stack
+
+Trojan
+system
+
+Figure 1 Computer Virus:
+
+A Fault and an Error
+
+Figure 2 provides a somewhat different perspective by
+indicating the types of damage a computer virus can cause.
+that a computer virus design fault can
+The figure shows
+potentially cause the following errors:
+integrity of
+function and data, i.e., the actions of the Trojan horse injecting
+the virus
+of
+programs,
+and
+spooling (e.g.,
+to be the program it has
+infected). Note, that DAC in the figure refers to discretionary
+access control.
+
+5), unauthorized modifications
+disclosure,
+
+section
+(see
+unauthorized
+
+the virus pretends
+
+denial-of-service,
+
+loss of
+
+The two life stages of a virus (i.e., first a design fault
+via a Trojan horse, and then an error propagating or infecting
+executable)
+can be detected and recovered from differently.
+The deliberate design fault via a Trojan horse cart be masked
+out with the use of N versions of that program (e.g., 3 versions
+since NVP is too
+of a compiler,
+expensive to be applied everywhere,
+it must be accompanied
+by a mechanism that can detect the computer virus in its error
+stage. A scheme to detect and recover from the viral infection
+is presented in section 4 and is an extension of PFMs [Mahm
+88].
+
+see section 6). However,
+
+Computer
+
+Virus
+
+(fault) 1
+
+1
+
+Loss of
+function
+
+Integrity
+and data
+
+of
+
+System design
+(e.g., DAC inadequacy)
+
+flaw
+
+of
+
+Virus
+
+\/
+
+:
+
+2
+
+Comwter
+
+programs
+
+Unauthorizedrmodification
+#/l
+
+4
+
+5
+
+Spoofing
+
+Denial
+
+of
+
+Service
+
+[error)
+
+Unauthonzed
+disclosure
+
+virus can be a special Trojan horse that
+
+system. This
+
+is a deliberate
+
+(i.e., error propagation),
+
+or
+
+loading a
+
+domain (i.e., gain of privileges).
+
+insert use of a covert channel.
+
+fault.
+
+property
+
+Initially a computer
+
+1:
+injects the virus into a computer
+design
+2 Infection
+program into a privileged
+3: e.g.,
+4:
+[Glig83, p.140]:...
+modify the intended
+by exploiting
+or policy.
+executable
+resource denied.
+5: e.g., computer
+pretends
+
+into an infinite
+
+...misbehaved
+
+to be the original program.
+
+is possible that a malicious
+
+it
+service behaviour
+
+user can
+in a non-obvious way
+access mechanism
+
+design flaws in the service
+
+service..
+loop,
+
+[Cohe84]: place all
+
+infected
+
+thus resulting in CPU
+
+virus runs before original program, and
+
+Figure
+
+2
+
+Fault Tree
+
+for a Computer Virus
+
+53
+
+3. PROGRAM FLOW MONITORS
+
+A Program Flow Monitor
+
+(PFM) is a concurrent error
+detection mechanism that can be used in the design of a fault-
+tolerant computer.
+It is basically a watchdog processor, which
+is a small and simple coprocessor used to perform concurrent
+system-level error detection by monitoring the behavior of the
+main processor [Mahm 88].
+It is used to detect control flow
+errors due to transient (e.g., single event upset) and permanent
+faults.
+
+are
+
+Control
+
+incorrect
+
+flow errors
+
+of
+instructions, branch to wrong addresses, branching from a
+wrong address, etc.. These errors can be the result of faults
+in the instruction register,
+the address
+register, decoding circuitry, memory addressing circuitry, etc.
+[Mahm 88].
+
+the program counter,
+
+sequences
+
+Detection of control flow errors is done by comparing
+dynamic characteristics of program behavior with the expected
+behavior. One approach is to associate
+to a
+sequence of assembly language statements that do not contain
+any control flow change instructions (e.g., branches, subroutine
+calls). The signatures are. derived from the assembly language
+the signatures can be stored in~a
+statements. After generation,
+control
+flow graph (CFG),
+embedded
+graph program, or
+embedded in the executable code. The signatures and control
+flow graph are generated by a compiler and linker [Mahm 88].
+
+a signature
+
+primitive
+1). When
+
+As a program runs on a CPU, the fetched instructions
+go through a signature generator which is based on a linear
+feedback shift register (LFSR). Thus, a signature is computed
+(e.g.,
+2M + X ~2+ X3g;y+
+flow change
+instruction passes through the signature generator,
+the current
+signature value is passed to the PFM. The PFM then compares
+the run-time generated and link-time generated signatures, and
+a disagreement
+If a control flow
+graph is used,
+signature
+these
+comparisons are made.
+
+indicates an error condition.
+as
+
+polynomial
+control
+
+traversed
+
+then it
+
+is
+
+a
+
+The
+
+applicability
+
+of a PFM-based
+
+to the
+detection of computer viruses is based on the observation that
+actions of a virus
+an invalid sequence of
+instructions. However,
+the basic PFM schemes must be
+extended to prevent a virus from hiding from it.
+
+also represent
+
+scheme
+
+4. EXTENDED PFM TO HANDLE
+
+VIRAL INFECTIONS
+
+The present PFM schemes
+
+are designed to detect
+random physical and possibly some design faults, but not
+deliberate faults. Thus, the existing schemes are susceptible to
+all but a few viral attack scenarios,
+
+The first weakness against viruses is that PFMs use
+all signatures.
+fault compiled on the monitored
+If a CFG
+
+only one primitive polynomial
+Thus, a computer virus
+m~achinewill have vflld signatures generated for it.
+is used, then the virus would have to add its signatures to it.
+
+to compute
+
+A computer virus error propagating over a network may
+not have valid signatures, and thus would be detected by even
+the existing PFM designs. However,
+the backward recovery
+mechanisms used with a PFM (e.g., rollback) would end up
+mistaking the virus as a permanent
+fault. This inability to
+distinguish between viruses and random faults is the second
+weakness of existing PFM designs. Any PFM-based scheme
+must have a recovery approach that can identify a viral attack,
+since
+transients,
+pwrnanents, and viruses.
+
+recovery
+
+different
+
+action
+
+the
+
+for
+
+is
+
+The following five extensions
+
+are made to a PFM
+
+scheme that utilizes a control flow graph (CFG):
+
+The signature generator must be able to employ many
+different primitive polynomials. This is easily done by
+constructing an LFSR with sufficient D-flip-flops, XOR
+gates, and feedback loops to generate an entire range of
+polynomials
+(e.g., a subrange from degree 16 to 32
+could be chosen). The PFM specifies to the LFSR
+to use by enablingkiisabling XOR
+which polynomial
+gates
+is
+represented as a 32 bit wide vector that is latched at the
+LFSR.
+the
+enabling/disabling.
+
+polynomial
+
+feedback
+
+control
+
+vector
+
+loops.
+
+The
+
+The
+
+bits
+
+and
+
+thk
+
+of
+
+The compiler and linker pair must randomly assign a
+primitive polynomial
+for each compiled program. This
+polynomial must be protected from dkclosure
+and
+modification. Thus,
+the polynomial bit vector can be
+stored in the CFG along with the link-time generated
+signatures, and then the entire CFG is encrypted.
+
+and the polynomial. Thus,
+
+Immediately before program execution the PFM must
+the delivered CFG to obtain the pre-calculated
+decrypt
+signatures
+this approach
+must also provide management of different encryption
+keys per CFG, and must ensure executable file - CFG
+association.
+is
+obtained,
+it is transferred to the LFSR. Note that the
+executable file is itself both readable and writable.
+
+polynomial
+
+vector
+
+Once
+
+the
+
+bit
+
+for
+
+the
+
+signature
+
+comparisons
+
+I/O operations
+
+are atomic. They are performed
+All
+only if
+code
+sequence is valid. This feature blocks the infection
+computer
+capability of
+systems
+that
+(i.e.,
+rollback)
+since most
+this is a necessary requirement,
+I/O operations cannot be rolled back without adversely
+affecting the service.
+
+the virus. For
+use
+backward
+
+fault-tolerant
+
+recovery
+
+error
+
+their
+
+(:1)
+
+(2)
+
+(3)
+
+(4)
+
+54
+
+(5)
+
+of PFMs,
+
+application
+
+The curnmt PFM designs concentrate on error detection
+and do not explicitly address the methods of subsequent
+recovety. However, details of recovery are important
+since we need to
+for our
+distinguish between virus errors and physical
+faults.
+Upon detection of an error condition it is necessary to
+save the invalid, dynamically generated signature, and
+the location in the code at which the error manifested
+itself
+the programs execution is
+resumed with a rollback (backwwd error recovery), and
+proceeds
+in the program that
+immediately follows a previous signature check.
+
+from a rollback point
+
+in the PFM. Then,
+
+the rollback. For
+
+still cause
+after
+
+if the initial error was due to a permanent
+an improper dynamically
+some faults,
+
+The rollback procedure allows the identification of the
+type of fault as follows. First, if the initial error was caused by
+a transient
+faul~ the recomputation will succeed, and the
+program will continue on after a successful signature check.
+fault,
+Second,
+the
+generated
+fault will
+signattue
+the second
+signature will not be identical
+to the first invalid signature, and
+a permanent physical fault is indicated. Third, the initial error
+may have been caused by a permanent
+fault which causes the
+identical error to appear again. Generation of the identical, but
+incorrect,
+require
+diagnostics to be run to locate the permanent
+if
+diagnostics do not detect a fault, then a high probability exists
+that a virus error has been detected.
+
+rollback will
+
+fault. Lastly,
+
+signature
+
+after
+
+first
+
+the
+
+For computer architectures without effective process
+isolation (e.g., the Intel 8086, the non-protect mode of the Intel
+80286),
+the memory address for writing to memory can be
+monitored by the PFM. This will detect a viral infection of an
+executable ,during run-time (e.g., a block move of virus code
+into a processs unused stack space). This approach is a design
+option of a PFM, not a real extension of the technique.
+In fact,
+all externally visible actions of a CPU can be monitored by the
+PFM.
+
+A PFM-based virus detection approach offers
+
+some
+significant advantages.
+FirsL it protects an executable even
+during run-time, while the schemes presented in [Pozz 86] and
+[Cohe 87] do not provide this protection. Second,
+it also
+provides detection of errors caused by physical, and possibly
+certain design faults. Third, standard PFM schemes can be
+extended for virus detection at a modest
+cost.
+Fourth, no run-time performance
+degradation occurs, after
+CFG decryption. Finrdly, the PFM is virus proof, since all of
+its components are either hardwired or ROM based, and the
+PFM local memory, as well as the LFSR can only be accessed
+by the PFM.
+
+additional
+
+(a)
+
+compiler
+
+each CFG must
+
+and linker pair must
+
+The additional costs of the PFM-based approach are as
+the
+assign
+follows:
+(b) the CFG should be encrypted, and the keys
+polynomials
+for
+(c)
+modifications to existing compilers and linkers are needed, (d)
+extra mechanisms for atomic I/O are required, and (e) due to
+the overhead associated with the setup of a C!FG in a PFM
+memory,
+in which
+
+this scheme is applicable to environments
+
+be managed
+
+protected
+
+and
+
+process context switches are not frequent (e.g., multiprocessor
+applications, embedded applications, personal computers).
+
+5. SECURITY ASPECTS OF N-VERSION
+
+PROGRAMMING
+
+Several definitions for integrity in a security context are
+
+presented in [Port 85]. The relevant definitions are:
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+How correct (we believe) the information in an object
+is.
+
+the information in that
+is actually from the alleged source, and that it
+
+How confident we are that
+object
+has not been altered from its original form.
+
+How correct (we believe) the functioning of a process
+is.
+
+How confident we are that the functioning of a process
+[or any software or hardware] is as it was designed to
+be.
+
+How concerned we are that the information in an object
+not be altered.
+
+Each item above is referred to by : integrity-g. Integrity-2
+and integrity-5 are classical concerns, since these are what the
+current state-of-the-art can ensure [Bibs 77] [Voyd 83].
+
+fault
+
+tolerance
+
+[Port 85] later continues with the interesting statement
+that ..., we first eliminate integrity-3 and 4, until we have a
+way to deal with design issues. Integrity-1 is also bypassed
+for approximately the same reason. However,
+through the use
+of
+integrity-1, 3, and 4 can be
+Integrity-3 and 4 from a fault tolerance perspective
+supported.
+involves ensuring proper
+service of a function (software or
+hardware) with respect
+Integrity-1 can
+be partially provided by preventing a failing function from
+generating incorrect data (e.g., for missile targeting).
+
+to a defined fault class.
+
+techniques
+
+We designate the items integrity-1, 3 and 4 as ensuring
+integrity of function and data.  Two examples of violations to
+be avoided are: inaccurate (old) data deliberately placed into a
+database, and incorrect actions (e.g., fire a missile at an ally).
+It was observed from the very beginning of this research that
+these integrity concerns were very close to those addressed in
+both hardware and software fault tolerance.
+
+NVP is an approach that aims to provide reliable
+softwme by means of design fault tolerance [Aviz 85]. N >2
+versions of one program are independently
+designed and
+implemented from a common specification (or even from two
+executed
+or more
+concurrently,
+system.
+During execution,
+the versions periodically fotm a consensus
+on intermediate results and on the futal result. As long as a
+majority of versions produce correct results, design faults in
+one or more version will be detected and masked out. The
+
+typically on an N-processor computer
+
+All N versions
+
+specifications).
+
+are
+
+55
+
+strength of this approach is that reliable computing does not
+depend on the total absence of design faults.
+
+outputs
+
+incorrect
+
+A natural extension of this approach is to employ NVP
+to maintain the integrity of function and data by masking out
+the
+The
+probability of identically behaving versions of malicious logic
+appearing in a majority of the N versions of programs
+is
+diminished due to the independent design, implementation, and
+maintenance of multiple versions.
+
+of deliberate
+
+design
+
+faults.
+
+6. NVP PROTECTION
+
+OF PROGRAM
+
+HANDLING TOOLS
+
+In this example,
+
+(e.g., a compiler),
+
+it is designed to detect
+
+The design fault stage of a computer virus can exist in a
+program handling tool
+as well as in an
+ordinary application program [Cohe 84] [Pozz 86]. Thompson
+[Them 84] gives an example of how a Trojan horse in a C-
+langnage compiler can implant a trap door into a UNIX* login
+the Trojan horse is ,particukwly
+program.
+insidious in that
+its own compilation
+(i.e., the C compilers source code) and then to implant a copy
+of itself into the generated executable. Furthermore,
+the actual
+code for the Trojan horse can be removed from the compilers
+source after
+the preceding
+property. This makes the detection of this Trojan horse attack
+by
+source
+impossible.
+addressing the correctness of program handling
+Currently,
+for class A 1 secure systems
+tools is beyond the requirements
+[DoD 85], and thus it is a deficiency in any current defense.
+In
+summary, a virus can infect a program during an editing
+session, compilation, assembly, linking, or loading.
+
+its first compilation because of
+
+verification
+
+inspection
+
+code
+
+and
+
+(i.e.,
+
+the absence of
+
+systems. Current
+
+In addition, assurance of the correctness of hardware
+and firmware
+random and deliberate
+hardware design faults) for the TCB of a system is also beyond
+for the hardware of both development environments and
+Al
+operational
+research in secure execution
+environments
+is directed towards the use of advanced formal
+verification techniques for both hardware and software [Bevi
+87]. While this research looks promising, a solution of the
+problem for large, complex systems is not certain for the near
+future.
+hardware
+verification does not include timing, nor system behavior in the
+presence of faults (i.e., the system may be broken into due to
+deliberately induced faults).
+
+Specifically,
+
+approach
+
+used
+
+the
+
+for
+
+It
+
+based
+
+on N-Version
+
+In this section we propose a potential alternative to
+is the design of secure development
+formal verification.
+tools
+secure
+development hardware based on hardwme design diversity. A
+secure 3-version
+to
+denial-of-service
+for
+example, would operate as follows. Consensus voting between
+
+(two version systems
+are susceptible
+attacks [Jose 87]) C-language compiler,
+
+programming,
+
+and
+
+* A trademarkof AT&TBellLaboratories.
+
+56
+
+(b)
+
+items:
+
+(a) parts
+versions would periodically occur on several
+state,
+temporary output at each phase of
+of
+the local
+compilation,
+(c) actions which manipulate files, and (d) the
+final generated code. The voting locations (cc-points) and
+the values to be voted on (cc-vectors) need to be clearly
+defined in the compilers design specification before it is built.
+this to work strict guidelines on code
+(We note that
+Item c above
+generation and optimization must be provided.)
+the
+includes an action voting requirement
+external actions taken by a process, for example,
+the system
+calls, are voted on, as well as, the data generated [Jose 88]).
+
+for NVP (i.e.,
+
+for
+
+Experiments at UCLA have already demonstrated the
+feasibility of constructing
+an teliable NVP text processor
+[Chen 78]. However, an NW-based tool is just as vulnerable
+to a computer virus error as any other executable file. Thus, if
+the NVP scheme
+a virus infects a majority of the versions
+would be defeated. To prevent
+each
+version must be monitored by a PFM, or protected by a scheme
+such as presented in [Pozz 86], [Cohe 87].
+
+this from occurring,
+
+In summary,
+
+the reason why NVP-based program
+handling tools can counter the design fault stage of a virus, and
+also many actions of general Trojan horses,
+all
+maliciously generated actions are masked out by the N version
+consensus operation.
+
+is that
+
+7. CONCLUSIONS
+
+and secure
+
+fault-tolerant
+
+The need for
+
+computing
+systems is becoming quite evident (e.g., the SDI application).
+This has sparked the exploration of the issues concerning the
+design of computing systems that possess both attributes. Fault
+tolerance and security concerns are not disjoint. For example,
+security considerations may prevent
+the use of rollback to
+recover from an error ~urn 86].
+
+Attacks on a computer
+system can take one of three
+forms:
+from completely outside the computing system, from a
+legitimate, authorized user trying to extend his or her allowed
+access rights, and from within the computer system itself due
+to design flaws purposely planted by its designers [Jose 87]. It
+should no longer be acceptable to consider only the classical
+security concerns of preventing the unauthorized disclosure of
+sensitive information,
+and the unauthorized modification of
+information and programs. The elimination of the effects of
+malicious logic must be addressed, and this problem reveals
+many similarities to problems in fault tolerance.
+
+It is envisioned that
+
+in the near future most military
+computer systems will require both security and fault tolerance
+properties. Other critical
+systems may follow soon (e.g.,
+financial, point-of-sale, and plane reservations) where failures,
+deliberate or otherwise, will be unacceptable due to loss of life,
+finances, andlor privacy. For example, as of 1987, an average
+of a trillion dollars
+axe
+exchanged
+by banks
+networks
+
+[FRBS 87]. This represents a potential
+
+telecommunications
+financial
+
+on a typical day,
+
+in payments,
+
+electronic
+
+over
+
+disaster
+high
+communications and processing are not guaranteed.
+
+fault-tolerant,
+
+secure,
+
+and
+
+if
+
+integrity
+
+[Denn 86]
+
+a cost-effective
+
+design of a fault-tolerant,
+
+The approach presented in this paper is just one step
+secure
+towards
+computing system, The extension of PFMs is art excellent
+example of a fault
+solves both
+faults:
+accidental
+the detection of computer
+and deliberate
+virus errors, and control
+flow errors due to transient and
+intermittent faults. We note that extended PFM, by itself, does
+not protect against denial-of-service
+[Glig 83] due to repeated
+infection of the same executable.
+
+technique
+
+tolerance
+
+that
+
+REFERENCES
+
+A. AviEienis, and J. P. J. Kelly, Fault
+Tolerance by Design Diversity: Concepts
+and Experiments, Computer, Vol. 17, No.
+8, August 1984, pp. 67-80.
+
+A. Avi2ienis, The N-Version Approach to
+FauIt-ToIerant Software, IEEE Trans. on
+Soft. Eng., Vol. SE-I 1, No. 12, Dec. 1985,
+pp. 1491-1501.
+
+and
+
+A. Avi%ienis,
+
+Laprie,
+Dependable Computing: From Concepts
+to Design Diversity, Proc. of
+the IEEE,
+Vol. 74, No. 5, May 1986, pp. 629-638.
+
+J-C.
+
+A. Avi2ienis,
+A Design Paradigm for
+Fault-Tolerant Systems, AL&! Computers
+in Aerospace W Con$, Oct.1987, pp. 52-
+57.
+
+[Mahm 88]
+
+W. I?..Bevier, W. A. Hunt, Jr., and W. D.
+Young,
+Execution
+Environments,
+IEEE Symp. on Security
+and Privacy, April 1987, pp. 106-115.
+
+Toward
+
+Verified
+
+Wtegrit-y Considerations
+
+for
+K. J. Bibs,
+Secure
+Mitre
+Technical Report TR-3153, Mkre Corp.,
+Bedford, MA., Aprif 1977.
+
+Systems,
+
+computer
+
+L. CM-m,Improvhg Software Reliabili~y
+M.D.
+By N-Version %ogramlir~g,
+Disseflation, UCLA computer
+Stience
+Department, Las Angeles, CA., Tech.
+Report Eng-7843, August 1978.
+
+F. Cohen, C!omputer Viruses: Theory q,d
+Experiments, M-z Wafional Com.outer
+Seciirii>tcord., W@. 1984, pp. 240-26.3.
+
+[Port 85]
+
+[POZZ86]
+
+[Schu 87]
+
+[Aviz 84]
+
+[Aviz 85]
+
+[Aviz
+
+86]
+
+[Aviz 87]
+
+[Bevi 87]
+
+[Bibs 77]
+
+[Chin 73]
+
+[coke 84]
+
+Q.;ohe g-l]
+
+[DoD 85]
+
+[FRBS 87]
+
+[Glig 83]
+
+[Good 86]
+
+[Jose 87]
+
+[Jose 88]
+
+D. E. Denning, An Instrusion-Detection
+Model,
+and
+Privacy, April 1986, pp. 118-131.
+
+IEEE Symp. on Security
+
+Department of Defense Trusted Computer
+System Evaluation Criteria, DoD 5200.28-
+STD, Dec. 1985.
+
+Federal Reserve Bank of San Francisco,
+Controlling
+Rese~ch
+Payments System Risk, FRBSF Weekly
+Letter, Aug. 14, 1987.
+
+Department,
+
+V. D. Gligor, A Note on the Denial-of-
+Service Problem, IEEE Symp. on Security
+and Privacy, April 1983, pp. 139-149.
+
+D. I. Good, R. L. Akers, and L. M. Smith,
+Report on Gypsy 2.05, Computational
+Inc., Technical Report, Austin,
+Logic,
+Texas, Oct. 1986.
+
+M. K. Joseph, Towards the Elimination of
+the Effects
+of Malicious Logic: Fauh
+Tolerance Approaches,
+10th National
+Computer Security Conf., Sept. 1987, pp.
+238-244.
+
+Issues
+
+Architectural
+
+in
+M. K. Joseph,
+Fault-Tolerant,
+Computing
+Systems, Ph.D. dissertation, University of
+California at Los Angeles, Los Angeles,
+CA., May 1988.
+
+Secure
+
+and E.
+
+A. Mahmood,
+Concurrent
+Error
+Watchdog Processors
+Trans. on Computers, Vol. C-37, NO.
+Feb. 1988, pp. 160-174.
+
+J. McCluskey,
+Detection
+Using
+- A Survey, IEEE
+2.,
+
+and T. S. Arnold,
+Problem
+
+S. Porter,
+Intsgri!y
+Compc4terSecun2y Conf., Sept. 30- Oct.3,
+1985, pp. 15-17.
+
+On the
+tl$h National
+
+,
+
+the Containmcnl
+
+M. M. Pozz.o, and T. E. ~m.y, A ~~Ode~
+of Corq~uter Viruses,
+for
+AIAAtASISIDODCI
+Aerospace
+Computer
+1986, pp.
+Security
+11-18.
+
+Lonf., Dec.
+
+.2nd
+
+Processor
+
+I.Jsing Signature
+
+Control
+
+How
+Instn.xtkm
+
+f$chuette,
+
+M.
+Monitoring
+f$tmms,
+C-36, No. 3, March
+
+IEEE Trans. on Computers, Vol.
+
+1987, -pp. 264-276.
+
+P. Cohen, A -~to~aphic
+Protection,
+htegrity
+6, N9.
+Security,
+
+Vol.
+pp, 505-51%
+
+Dec.
+
+1987,
+
+Checksum for
+&
+
+compute~s
+
+6, NOti-HOll~nd,
+
+rrilomt 841
+
+K. Thompson.
+Reflections on Trusting
+Trust, Comnt. of rhe ACM, ~cd.27, No. 8,
+Aug. 19X4., pp. 761-763.
+
+57
+
+[Turn
+
+~
+
+[Voyd 83]
+
+J. Habibi,
+
+R. Turn,
+Interactions
+Tolerance,
+Securi~ Con$, Sept. 1986, pp. 138-142.
+
+and
+of securityand
+9th
+
+On
+
+the
+Fault
+Computer
+
+National
+
+V. L. Voydock, and S. T. Kent, Security
+Mechanisms
+Network
+Protocols} ACM Computing Surveys, Vol.
+15, No. 2, June 1983, pp. 135-171.
+
+in High-Level
+
+58
+
+

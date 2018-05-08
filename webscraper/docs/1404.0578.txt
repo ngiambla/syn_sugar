@@ -1,0 +1,718 @@
+5
+1
+0
+2
+
+ 
+l
+u
+J
+ 
+
+0
+3
+
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+
+3
+v
+8
+7
+5
+0
+
+.
+
+4
+0
+4
+1
+:
+v
+i
+X
+r
+a
+
+Mental Disorder Recovery Correlated with
+
+Centralities and Interactions on an Online Social
+
+Network
+
+Xinpei Ma
+
+Hiroki Sayama
+
+Center for Collective Dynamics of Complex Systems
+
+Department of Systems Science and Industrial Engineering
+
+Binghamton University, State University of New York
+
+Binghamton, NY 13902-6000, USA
+
+xma5@binghamton.edu
+
+July 31, 2015
+
+Abstract
+
+Recent research has established both a theoretical basis and strong em-
+pirical evidence that eﬀective social behavior plays a beneﬁcial role in the
+maintenance of physical and psychological well-being of people. To test
+whether social behavior and well-being are also associated in online com-
+munities, we studied the correlations between the recovery of patients with
+mental disorders and their behaviors in online social media. As the source
+of the data related to the social behavior and progress of mental recov-
+ery, we used PatientsLikeMe (PLM), the world's ﬁrst open-participation
+research platform for the development of patient-centered health outcome
+measures. We ﬁrst constructed an online social network structure based on
+patient-to-patient ties among 200 patients obtained from PLM. We then
+characterized patients' online social activities by measuring the numbers
+of posts and views and helpful marks each patient obtained. The patients'
+recovery data were obtained from their self-reported status information
+that was also available on PLM. We found that some node properties
+(in-degree, eigenvector centrality and PageRank) and the two online so-
+cial activity measures were signiﬁcantly correlated with patients' recovery.
+Furthermore, we re-collected the patients' recovery data two months after
+the ﬁrst data collection. We found signiﬁcant correlations between the
+patients' social behaviors and the second recovery data, which were col-
+lected two months apart. Our results indicated that social interactions
+in online communities such as PLM were signiﬁcantly associated with the
+current and future recoveries of patients with mental disorders.
+Keywords: social media, mental disorder, social network, patient-to-patient
+network, non-drug treatments, PatientsLikeMe
+
+1
+
+Introduction
+
+Mental health problems (disorders) are medical anomalies that disrupt a per-
+son's thinking, feeling, mood, and ability to relate to others, and impair his/her
+daily functioning [39]. According to the National Alliance on Mental Illness, one
+in four adults, approximately 57.7 million Americans, experience some sort of
+mental health disorder every year. Mental disorders might lead to other physical
+or psychological illnesses and severely interfere with a person's ability to work,
+study, and entertain [23].
+
+Some traditional treatments for mental disorders have been proved insuf-
+ﬁcient in dealing with the complexities of mental diseases. Somatic and psy-
+chotherapeutic treatments are traditional treatment options for mental disorders
+[24]. Somatic treatments, such as medication and electroconvulsive treatment
+(ECT), successfully control physical symptoms, but are always associated with
+side eﬀects like drowsiness, dizziness, muscle spasm and so forth [26]. A sudden
+stop or discontinuation of medicine use is likely to cause relapse. For individuals
+with moderate or severe mental disorders, both somatic and psychotherapeu-
+tic treatments are long-term. The rising cost of mental health services and
+medicines has put pressure on both patients and mental health providers [27].
+Nowadays, high relapse rates, side eﬀects, and high costs are three major draw-
+backs of these treatments. Non-drug treatments, such as interpersonal therapy,
+peer support groups, and community services, have emerged as cognitive cures
+for mental illnesses [14, 34]. These treatments help patients understand their
+diseases and manage feelings, thoughts, and actions to improve their mental
+health conditions [11, 2, 33]. Recent reviews of mental health studies pointed
+out that trust, engagement, communication, and support may strengthen men-
+tal functions, and may also buﬀer negative eﬀects of mental illnesses [10, 1].
+Since the beneﬁcial role of mutual help and self-help behaviors in the recovery
+process has received signiﬁcant attention of both physicians and patients, it
+is believed that developing eﬀective approaches to investigate these underlying
+relations has direct implications for the improvement of recovery outcomes [8].
+Recently, social science research has shown that patients' social networking
+with professionals or other patients could facilitate the development of mutual
+trust and self-help behaviors [7]. In some cases, however, face-to-face social in-
+teraction may not oﬀer adequate support for patients with mental disorders [13].
+Limited access to services and increased social stresses for such patients may
+become obstacles to their social activities, which could easily make them feel
+isolated [35]. Over the last decade, however, the proliferation of social media
+for health promotion has been oﬀering patients opportunities of peer-learning,
+information sharing and communications [41, 30]. Establishing useful and en-
+joyable social interactions on online social media may soon become a feasible
+alternative approach for their social life, with low costs, high eﬃciency and rich
+diversity. Patients may be able to develop skills to overcome diﬃculties in com-
+munication and recovery, better engage in their disease management processes
+and brighten their lives through social interactions on those online social media
+platforms [43].
+
+2
+
+The concept of Health 2.0 has emerged in response to the widespread adop-
+tion of web-based platforms for healthcare purposes. These platforms provide
+patients and healthcare practitioners with electronic channels to store, share
+and communicate health-related information [38]. As those Health 2.0 plat-
+forms become an irreplaceable component of today's healthcare systems, more
+and more patients with mental health problems are inclined to participate in
+various forms of online communications to gather information and build connec-
+tions with other patients [15]. The Health 2.0 movement also nurtures dozens
+of startups with creative concepts, which are reforming the healthcare systems
+globally [12, 18, 29].
+
+Online-based social networking complements face-to-face communication and
+helps patients improve their self-esteem and social competence [25, 29, 28]. It
+encourages patients to be more active in their social environment [9]. For in-
+stance, patients may be able to discuss, via online media, their private problems
+without fear of prejudice or discrimination [20]. Furthermore, online social me-
+dia may play a complementary role to traditional mental health services and
+help patients understand their conditions more and take better control over
+their diseases and behaviors [17]. For example, while many treatment decisions
+are still made based on physicians' empirical judgments that might not have
+solid supporting evidence, information sharing via healthcare social media may
+allow patients to perceive their diseases from other patients' point of view, do
+their own research online, and make their own informed decisions on how to
+manage their diseases [19, 16, 42, 6].
+
+In this paper, we study potential linkages between online social behaviors
+of patients with mental health disorders and their recovery processes. Patients'
+social network structure and social activities are the two aspects of online social
+behaviors considered, whose impact on the recovery of mental disorders were in-
+vestigated. The recovery data were collected twice, at the time of data collection
+of online social behavior, and then two months later, to examine possible asso-
+ciations between patients' online social behaviors and their current and future
+recovery from mental disorders.
+
+Methods
+
+Source of Data
+
+We used PatientsLikeMe (PLM; http://www.patientslikeme.com/), one of the
+ﬁrst online communities to encourage patients to share their stories and report
+their medical histories after receiving therapies [42]. PLM has grown to have
+more than 300,000 members and has gradually expanded to diversiﬁed commu-
+nities involving diﬀerent kinds of disease such as Parkinson's disease, Multiple
+Sclerosis (M.S.), HIV, and mood disorder, among other diseases. The authors
+are not aﬃliated with PLM and have no ﬁnancial or other interest in PLM.
+
+We sampled, from the Mental Health and Behavior Forum in PLM, 200
+patients who (i) have/had mental disorder(s), (ii) have full information about
+
+3
+
+social activities and recovery outcomes from the mental disorder(s), (iii) have
+registered for more than six months, (iv) have social connections and posted
+relevant contents or comments to the forum, and (v) do not appear to be a spam,
+phishing or fake account. We scanned a list of patients who participated in the
+forum, ranked in the order of their popularity, to collect sample participants.
+We terminated the sampling when the size of the collected samples that met
+the above criteria reached 200. The following information was recorded for each
+patient in our data: (a) online social connections with other existing patients,
+(b) two online social activities in the forum, and (c) self-assessments of recovery
+outcomes.
+
+Measures
+
+We calculated six network properties (in-degree, out-degree, betweenness cen-
+trality, closeness centrality, eigenvector centrality, and PageRank) by using
+Gephi [4, 5]. These network properties are widely used in social network analysis
+to characterize local and global features of network structures [3].
+
+The in- and out- degrees are the numbers of links that go into and out
+of the node, respectively.
+In this study, the in-degree represents the number
+of followers a patient has, which reﬂects the popularity of the patient in the
+community. Similarly, the out-degree represents the number of other patients
+a patient follows, which reﬂects the willingness and intention of the patient to
+connect to others [36]. Betweenness centrality refers to the probability for a
+node to be on shortest paths between two other nodes.
+It is an indicator of
+the level of control of information ﬂow and inﬂuence [31]. Closeness centrality
+is the inverse of average distance of all shortest paths from a node to all other
+nodes in the whole network [31]. It represents how long and far one node will
+take to reach other nodes. Both eigenvector centrality and PageRank measure
+how important a node is in the network, taking non-local topological structure
+into account. The concept underlying those centrality measures assumes that
+connections from high-importance nodes provide the node more importance than
+connections from low-importance nodes. PageRank is a variation of eigenvector
+centrality in which transition probability matrices are used instead of adjacency
+matrices [32].
+
+For data collection about patients' social activities, we recorded (i) how
+many helpful marks patients received and (ii) how many posts and views they
+made per month on the Mental Health and Behavior Forum after they registered
+to PLM. These numbers are the only available numbers online that relate to
+patients' general social activities.
+
+The data about patients' recovery processes were obtained from patients'
+self-reported health records in PLM. In this website, patients were encouraged
+to evaluate their physical and psychological feelings and describe their symptoms
+once a day. We recorded the following ﬁve recovery outcomes: mood function,
+stress, distress, life essentials and symptoms, which are closely related to mental
+disorders. In a patient's historical record, these recovery outcomes are visualized
+as continuous curves or bar graphs (Figures 1, 2 and 3). From these charts, we
+
+4
+
+quantiﬁed the rate of change as follows.
+
+The curve of mood function shows a patient's ability to regulate his/her
+mood. Each point on the curve represents how well the patient could control
+his/her anxiety and mood swings. Similarly, the stress and distress curves show
+the extent of change in a patient's stressful and distressful feelings, respectively
+(Figure 1). Dividing a curve into shorter segments and comparing average values
+of the segments have been commonly used to measure the rate of change for
+time series data [22]. We partitioned each of these curves into two parts of
+equal length in time, and calculated the average level for each part. The rate of
+change was then calculated by dividing the diﬀerence of two averages (average
+of the latter part minus average of the former part) by the whole range of the
+curve (maximum value minus zero) (Equation 1). As a result, the values of
+those three recovery outcome variables were normalized to the range between
+-1 and 1 (Figure 4).
+
+Rate of change =
+
+average value of ﬁrst half − average value of second half
+
+whole range of curve
+
+(1)
+
+In PLM, patients' life essentials were measured based on patients' self-
+xassessments of life necessities, including sleep, energy, appetite, and sex drive
+(Figure 2). Similarly to the previous three variables, we separated the records
+of patients' life essentials in two parts of equal length in time. The average level
+of each part was calculated by converting categorical levels (Much More, More,
+Normal, Less, Much Less) to numerical values, and then averaged over all the
+four life essential variables to create a curve. The computation of the rate of
+change was done on this curve in the same way as described above, again with
+the results ranging from -1 to 1.
+
+PLM also records general and speciﬁc symptoms, which reﬂect a patient's
+general mental health conditions as well as particular disease-speciﬁc condi-
+tions. In this study, we collected some general symptoms (such as fatigue and
+depressed mood) and some speciﬁc symptoms that were closely related to men-
+tal disorder conditions (Figure 3). They were converted to numerical values and
+then aggregated to form a curve, as for the life essentials described above, and
+then the rate of change was calculated using the same procedure as above. The
+results were again normalized between -1 and 1.
+
+Finally, we roughly estimated the overall recovery outcome of a patient by
+summing the ﬁve recovery variables measured above (Mood Function, Stress,
+Distress, Life Essentials, and Symptoms). In this study, the ﬁve recovery vari-
+ables are fundamental measurements for patients with mental disorders. Cur-
+rently, there is no reasonable way to adjust their relative weights, thus we used
+the simplest possible approach, i.e., a simple sum with equal weights.
+
+Analysis
+
+We ﬁrst constructed a social network structure among the sampled 200 patients
+based on their social ties to examine whether or not social networking is asso-
+
+5
+
+ciated with their recovery outcomes. The patient-to-patient ties (edges) were
+established based on following relationships in PLM. Since the website suggests
+a list of other patients with similar conditions or symptoms to each online user,
+patients tend to follow like-minded patients. In addition, they are also prone to
+follow popular and helpful ones. In PLM, followers will automatically receive
+updates from the followed patients, just like in other typical social media. In our
+study, the direction of a social tie was set from the follower to the followed, rep-
+resenting the direction of attention (i.e., opposite to the direction of information
+ﬂow).
+
+We visualized the patient-to-patient social network structure and calculated
+important node properties. In the following paragraphs, we conducted a series
+of statistic analyses to examine the relationship between patients' online social
+behaviors and their recovery outcomes.
+
+We calculated Pearson's correlation coeﬃcients between each of the six node
+properties measured in social network analysis and each of the recovery outcomes
+(the ﬁve recovery outcome variables as well as the overall sum) to ﬁnd possi-
+ble associations between network properties and recovery outcomes. The same
+correlation analysis was also conducted between two online social activities and
+the recovery outcomes. We did these analyses to identify relevant independent
+variables that would be incorporated in the following statistical modeling task.
+Based on the results obtained above, we developed a statistical model of the
+recovery outcome using multivariable linear regression (we call this part Study
+I hereafter). The overall recovery outcome was used as the dependent variable
+and regressed on three explanatory variables of a patient: in-degree, the number
+of helpful marks, and the number of posts and views. The reasons of this model
+setting are threefold. First, the in-degree directly captures the popularity level
+of a patient and it was found to be signiﬁcantly correlated with the recovery
+outcome as well as with other network properties. Second, the numbers of
+helpful marks and posts and views are two distinct aspects of patients' online
+social activities, which were also found to be signiﬁcantly correlated to the
+recovery outcome. Third, combining measures of social ties and social activities
+was expected to better represent patients' online social behaviors. Up to this
+point, all the data were collected at a single point in time, with no substantial
+time delay. We conducted the variation inﬂation factor (VIF) test to control
+the issue of multiconlinearity in regression.
+
+Furthermore, we re-collected the recovery outcome data for the same 200
+patients two months after the initial data collection, and examined associations
+between online social behaviors and future recovery from mental disorders (we
+call this part Study II hereafter). The newly collected dependent variable was
+in the same scale as that of Study I. The same method was applied to measure
+the rate of change in the recovery outcomes, while the explanatory variables
+about the patients' online social behavior (social ties and activities) were not
+updated, i.e., they remained at the same values measured two months earlier
+(i.e., the predicting variables were recorded prior to the measurement of re-
+covery outcomes). Multivariate linear regression was conducted to analyze the
+relationship between online social behaviors and the overall recovery outcome
+
+6
+
+that were gathered two months apart.
+
+The research methods were reviewed and approved by IRB (Protocol Num-
+ber: 2234-13). The research was conducted with permission of PLM. According
+to the research protocol reviewed and approved by Binghamton University IRB
+and to the agreement of data usage with PLM, the researchers are not allowed
+to share the data with third parties outside the research team. Please contact
+the corresponding author for more details.
+
+Results
+
+We ﬁrst visualized the patients' social network structure, which consisted of 200
+individuals (nodes) and 981 connections (social ties) (Figure 5). Hu's multilevel
+graph drawing algorithm was used to lay out the network structure [21, 40]. As
+a result, a cluster of higher degree nodes gathered in the center of the network,
+whereas the lower degree nodes were spread across the peripheral area of the
+graph.
+
+The correlation coeﬃcients between six network properties and recovery out-
+comes are shown in Table 1. The correlations between the in-degree and the
+three recovery outcomes, including distress reduction, life essentials, and symp-
+toms, were 0.219**, 0.222**, 0.200**, respectively. The correlation between the
+in-degree and the overall recovery was 0.222**. The results demonstrated that
+patients who had more incoming social connections (i.e., more followers) experi-
+enced greater improvements in feelings of distress, life essentials, and symptoms.
+PageRank and eigenvector centralities showed similar correlation patterns. As
+shown in Table 2, the in-degree, eigenvector centrality and PageRank were very
+strongly intercorrelated. Even though these network measurements capture
+topologically distinct properties of a network, they are often measuring similar
+nature of the network and thus show high correlations with each other, especially
+when the analyzed network has many reciprocated relationships [37]. Therefore
+we chose the in-degree as the social behavior variable to represent all of those
+three in statistical model building.
+
+In the meantime, for out-degree, closeness centrality, and betweenness cen-
+trality, their correlations with the recovery outcomes were not statistically sig-
+niﬁcant. The results suggested that following a large number of patients and
+being close to or in-between other patients in the network were not associated
+with a signiﬁcant improvement in recovery outcomes.
+
+Table 3 shows the correlation coeﬃcients between the two online social ac-
+tivities and recovery outcomes. The numbers of helpful marks patients obtained
+were strongly correlated with improvements in mood functions, feelings of dis-
+tress, life essentials, and symptoms as represented in Table 2. Similarly, the
+number of posts and views patients made was also signiﬁcantly correlated with
+improvements in the same set of recovery outcomes. Most importantly, both
+of the two online social activities were signiﬁcantly correlated with the overall
+recovery outcome. The numbers of helpful marks and posts and views were also
+correlated with each other as well (correlation coeﬃcient is 0.590, p < 0.01)
+
+7
+
+(see Table 1 in Supplemental Materials). In the meantime, the stress recovery
+outcome was not signiﬁcantly correlated with the online social activities. One
+possible explanation for this observation might be that stress is a reﬂection of
+the objective or external conditions felt by patients rather than an implication
+of subjective control. In short, our results revealed statistically signiﬁcant corre-
+lations between both types of online social activities and all recovery outcomes
+except stress.
+
+Based on the results of correlation analyses described above, we selected the
+in-degree, the number of helpful marks, and the number of posts and views as
+three explanatory variables for the statistical modeling. The overall recovery
+outcome was used as the sole dependent variable. We conducted two studies
+for the statistical modeling: Study I used the recovery data collected at the
+same time as the collection of online social behavior data, while Study II used
+the recovery data collected two months later. Study I was to model the overall
+recovery outcome using the three online social behavior variables that were all
+collected at a single time point. The result is shown in Table 4. The partial
+F statistic was signiﬁcant (p < 0.01), and the overall model explained 15.5%
+of variance in the recovery outcomes (R2 = 0.155).
+In this model, only the
+beta coeﬃcient of the number of helpful marks was signiﬁcant at the 0.05 level.
+The results showed a statistically signiﬁcant association between the number of
+”helpful marks” and recovery outcomes. The variation inﬂation factor (VIF) test
+conﬁrmed that there was no multicollinearity among the independent variables
+(the mean VIF was 1.58, which is far from 10).
+
+In Study II, we conducted the same statistical modeling but with the new
+data of recovery outcomes that were collected for the same 200 patients two
+months later (while the original social behavior data were still used as is). The
+result is shown in Table 5. The new model explained 17.3% of variance in the
+recovery outcomes (R2 = 0.173). The beta coeﬃcients for both helpful marks
+and posts and views were signiﬁcant at the 0.05 level. Overall, the results of
+Study II revealed that some online social behaviors were signiﬁcantly correlated
+with patients' recovery outcomes collected two months later. It was suggested
+that the numbers of helpful marks and views and posts were associated with
+the future recovery of patients with mental disorders.
+
+In this study, we used SPSS to perform statistical analyses.
+
+Discussions and Conclusions
+
+In this study, we investigated possible relationships between the behaviors of
+patients with mental health disorders in online social media and their recovery
+outcomes over time. Social network analysis revealed that patients' in-degree,
+eigenvector centrality and PageRank had signiﬁcant correlations with their re-
+covery outcomes, especially distress reduction, life essentials, and symptoms.
+The results implied that those high in-degree patients experienced greater re-
+duction of stress, better satisfaction of life essentials and greater alleviation of
+symptoms, than those who had low in-degrees. Patients' online activities, which
+
+8
+
+were characterized by how many helpful marks they obtained and how many
+posts and views they made, were also found to be signiﬁcantly correlated with
+their recovery outcomes. These ﬁndings provide initial evidence that online so-
+cial behaviors of patients may be positively correlated with their recovery from
+mental disorders.
+
+In order to investigate the relationship between online social activities and
+recovery outcomes, we constructed two statistical models using the recovery
+outcome data collected at two time points that were two months apart. Study
+I used the recovery data collected at the same time as the social behavior data.
+The result showed that the number of helpful marks was correlated with the
+patients' recovery outcomes. Study II used another set of recovery data collected
+two months later. The result showed that the numbers of both helpful marks
+and views and posts were signiﬁcantly correlated with the patients' recovery
+outcomes. Study I and Study II suggested that patients' social interactions
+in online social media were strongly correlated with their current and future
+recovery from mental disorders.
+
+We note that there are several important limitations in this study. First,
+we collected the data through scanning the Mental Health and Behavior Forum,
+starting with the top ranked patients, and terminated the sampling when the
+sample size reached the capacity of our data collection/processing capability.
+This must have resulted in underrepresentation of patients who did not engage
+much in social activities. Second, although we attempted to control some of
+demographic variables (e.g., we conﬁrmed that the ages of sampled patients
+were nearly evenly distributed, with the mean age being 40.6 years old), we did
+not have enough information to control other variables such as gender, disease
+type, residential locations, social/ economic status, education level, etc. Third,
+only the connections within these 200 patients were considered to construct
+social network structure, and link weights were ignored in this process. To
+fully capture and represent the social environment for each patient, other links
+to/from the outside of this sample group as well as the variation of link weights
+should be included in the social network analysis. In order to overcome these
+limitations, a more systematic, fully data-driven research should be conducted.
+Finally, both distributions of patients' recovery outcomes in Study I and Study
+II approximated normal distributions with mean 0.436 and 0.454, respectively
+(see Figure 1 and Figure 2 in Supplemental Materials). The results indicated
+that, among the 200 participants, the majority of patients reported that they
+had improvements in their recovery outcomes after using PLM. In this study,
+we did not seek to quantify the potential bias of online self-reported data, which
+might limit the interpretability of the obtained results. Addressing this problem
+and improving the accuracy of the analysis requires further eﬀort.
+
+To sum up, in this paper, we investigated the association between typi-
+cal online social behaviors and recovery outcomes of mental disorders. Even
+though this study has produced some evidence of possible links between online
+social interactions and mental health improvement, the important issue regard-
+ing precise mechanisms and causal pathways, through which social activities
+aﬀect mental health outcomes and/or vice versa, still remains unclear. In order
+
+9
+
+to obtain a conclusive answer to the question about how online social behavior
+and mental health improvement are causally linked, a much larger-scale longitu-
+dinal study (ideally with randomized control experiments) would be necessary.
+In the meantime, we believe that our ﬁnding that online social behaviors are
+strongly linked to patients' current and future recovery still has merit by itself,
+even without full understanding of its causality.
+
+References
+
+[1] K. Ali, L. Farrer, A. Gulliver, and K. M. Griﬃths. Online peer-to-peer sup-
+port for young people with mental health problems: A systematic review.
+JMIR Mental Health, 2(2):e19, 2015.
+
+[2] J. Andersson, G.and Bergstr¨om, F. Holl¨andare, P. Carlbring, V. Kaldo, and
+L. Ekselius. Internet-based self-help for depression: randomised controlled
+trial. The British Journal of Psychiatry, 187(5):456–461, 2005.
+
+[3] M. Bampo, M. T. Ewing, Stewart D. Mather, D. R., and M. Wallace.
+The eﬀects of the social structure of digital networks on viral marketing
+performance. Information Systems Research, 19(3):273–290, 2008.
+
+[4] M. Bastian, S. Heymann, and M. Jacomy. Gephi: an open source software
+
+for exploring and manipulating networks. In ICWSM, 2009.
+
+[5] S. P. Borgatti, A. Mehra, D. J. Brass, and G. Labianca. Network analysis
+
+in the social sciences. Science, 323(5916):892–895, 2009.
+
+[6] J. Chen and S Zhu. Online information searches and help seeking for men-
+tal health problems in urban china. Administration and Policy in Mental
+Health and Mental Health Services Research, 1-11, 2015.
+
+[7] W. S. Chow and L. S. Chan. Social network, social trust and shared goals
+in organizational knowledge sharing. Information & Management, 20:317–
+330, 2008.
+
+[8] Sheldon Cohen, Benjamin H. Gottlieb, and Lynn G. Underwood. Social
+relationships and health. Social support measurement and intervention: A
+guide for health and social scientists, 2000:3–25, 2000.
+
+[9] J. Cothrel and R. L. Williams. On-line communities: helping them form
+
+and grow. Journal of Knowledge Management, 3(1):54–60, 1999.
+
+[10] L. Davis and J. Brekke. Social support and functional outcome in severe
+mental illness: The mediating role of proactive coping. Psychiatry research,
+215(1):39–45, 2014.
+
+[11] R. J. DeRubeis, T. Z. Tang, and A. T. Beck. Cognitive therapy. Handbook
+
+of cognitive-behavioral therapies, 2:349–392, 2001.
+
+10
+
+[12] I. Doherty. Web 2.0: a movement within the health community. Health
+
+Care & Informatics Review Online, JUNE(2008), 2008.
+
+[13] S. P. Farrell and C. R. McKinnon. Technology and rural mental health.
+
+Archives of Psychiatric Nursing, 17(1):20–26, 2003.
+
+[14] J. Fieldhouse. The impact of an allotment group on mental health clients’
+health, wellbeing and social networking. The British Journal of Occupa-
+tional Therapy, 66(7):286–296, 2003.
+
+[15] S. Fox and S. Jones. The social life of health information. Washington,
+
+DC: Pew Internet & American Life Project, 2009-12, 2009.
+
+[16] J. Frost, S. Okun, T. Vaughan, J. Heywood, and P. Wicks. Patient-reported
+outcomes as a source of evidence in oﬀ-label prescribing: analysis of data
+from PatientsLikeMe. Journal of Medical Internet research, 13(1), 2011.
+
+[17] J. H. Frost and M. P. Massagli. Social uses of personal health information
+within PatientsLikeMe, an online patient community: what can happen
+when patients have access to one anothers data. Journal of Medical Internet
+Research, 10(3), 2008.
+
+[18] C. Hawn. Take two aspirin and tweet me in the morning: how Twitter,
+Facebook, and other social media are reshaping health care. Health Aﬀairs,
+28(2):361–368, 2009.
+
+[19] M. HERT, D. Cohen, J. Bobes, M. Cetkovich-Bakmas, S. Leucht, D. M.
+Ndetei, J. W. Newcomer, R. Uwakwe, I. Asai, H. M¨oller, S. Gautam, J. De-
+traux, and C. U. Correll. Physical illness in patients with severe mental
+disorders. ii. barriers to care, monitoring and treatment guidelines, plus
+recommendations at the system and individual level. World Psychiatry,
+10(2):138–151, 2011.
+
+[20] R. C. Hsiung. The best of both worlds: An online self-help group hosted by
+a mental health professional. CyberPsychology & Behavior, 3(6):935–950,
+2000.
+
+[21] Y. Hu. Algorithms for visualizing large networks. Combinatorial Scientiﬁc
+
+Computing, 5(3):180–186, 2011.
+
+[22] I. Ihm and B. Naylor. Piecewise linear approximations of digitized space
+curves with applications. In Scientiﬁc Visualization of Physical Phenom-
+ena, pp.545-568, 1991.
+
+[23] R. C. Kessler, W. T. Chiu, O. Demler, and E. E. Walters. Prevalence,
+severity, and comorbidity of 12-month dsm-iv disorders in the national
+comorbidity survey replication. Archives of General Psychiatry, 62(6):617–
+627, 2005.
+
+11
+
+[24] A. Koﬀmann and M. G.. Walters. Introduction to Psychological Theories
+
+and Psychotherapy. Oxford University Press, 2014.
+
+[25] P. E. Kummervold, D. Gammon, S. Bergvik, J. A. K. Johnsen, T. Hasvold,
+and J. H. Rosenvinge. Social support in a wired world: use of online mental
+health forums in norway. Nordic Journal of Psychiatry, 56(1):59–65, 2002.
+
+[26] T. C Leinbaugh. Electroconvulsive therapy: A primer for mental health
+
+counselors. Journal of Mental Health Counseling, 23(1):36, 2001.
+
+[27] D. L. Leslie and R. Rosenheck. Shifting to outpatient care? mental health
+care use and cost under private insurance. American Journal of Psychiatry,
+2014.
+
+[28] R. R. Morris, S. M. Schueller, and R. W. Picard. Eﬃcacy of a web-based,
+crowdsourced peer-to-peer cognitive reappraisal platform for depression:
+Randomized controlled trial. Journal of medical Internet research, 17(3),
+2015.
+
+[29] S. Myneni, N. K. Cobb, and T. Cohen. Finding meaning in social media:
+Content-based social network analysis of quitnet to identify new opportu-
+nities for health promotion. Studies in health technology and informatics,
+192:807–811, 2013.
+
+[30] B. L. Neiger, R. Thackeray, S. A. Van Wagenen, C. L. Hanson, J. H.
+West, M. D. Barnes, and M. C. Fagen. Use of social media in health
+promotion purposes, key performance indicators, and evaluation metrics.
+Health promotion practice, 13(2):159–164, 2012.
+
+[31] M. E. Newman. A measure of betweenness centrality based on random
+
+walks. Social Networks, 27(1):39–54, 2005.
+
+[32] L. Page, S. Brin, R. Motwani, and T. Winograd. The pagerank citation
+
+ranking: bringing order to the web. 1999.
+
+[33] B. L. Perry and B. A Pescosolido. Social network activation: the role of
+health discussion partners in recovery from mental illness. Social Science
+& Medicine, 125, 2014.
+
+[34] S. M. Rice, J. Goodall, S. E. Hetrick, A. G. Parker, T. Gilbertson, G. P.
+Amminger, C. G. Davey, P. D. McGorry, J. Gleeson, and M. Alvarez-
+Jimenez. Online and social networking interventions for the treatment
+of depression in young people: a systematic review. Journal of medical
+Internet research, 16(9), 2014.
+
+[35] J. Sadavoy, R. Meier, and A. Y. M. Ong. Barriers to access to mental
+health services for ethnic seniors: the toronto study. Canadian Journal of
+Psychiatry, 49(3):192–199, 2004.
+
+12
+
+[36] T. A. Snijders. The statistical evaluation of social network dynamics. So-
+
+ciological Methodology, 31(1):361–395, 2001.
+
+[37] T. W. Valente, K. Coronges, C. Lakon, and E. Costenbader. How correlated
+are network centrality measures? Connections (Toronto, Ont.), 28(1),
+2008.
+
+[38] T. H. Van De Belt, L. J. Engelen, S. A. Berben, and L. Schoonhoven.
+Deﬁnition of health 2.0 and medicine 2.0: a systematic review. Journal of
+medical Internet research, 12(2), 2010.
+
+[39] J. C. Wakeﬁeld. The concept of mental disorder: on the boundary between
+biological facts and social values. American Psychologist, 47(3):373, 1992.
+
+[40] C. Walshaw. A multilevel algorithm for force-directed graph drawing. In
+
+Graph Drawing. Springer Berlin Heidelberg, 2001.
+
+[41] M. Wells, K. J. Mitchell, D. Finkelhor, and K. A. Becker-Blease. Online
+mental health treatment: Concerns and considerations. CyberPsychology
+& Behavior, 10(3):453–459, 2007.
+
+[42] Paul Wicks, Michael Massagli, Jeana Frost, Catherine Brownstein, Sally
+Okun, Timothy Vaughan, Richard Bradley, and James Heywood. Sharing
+health data for better outcomes on PatientsLikeMe. Journal of Medical
+Internet Research, 12, no.2, 2010.
+
+[43] L. Yan and Y. Tan. An empirical study of online supports among patients.
+
+Available at SSRN 1697849, 2010.
+
+13
+
+Figure 1:  Patient’s Recovery Records about Mood Function, Distress and Stress             Figure 2: Life Essentials  Figure 3: Symptoms           Figure 4: Schematic Diagram of How to Calculate the Rate of Change of A Recovery Curve. This diagram shows a time series of a patient’s mood function changes.            Figure 5: Social Network Structure of 200 Sampled Patients with Mental Disorders. Nodes are shaded according to their degrees.                Table 1: Correlation Coefficient Matrix between Six Node Properties and Five Recovery Outcomes (Overall recovery is represented by the sum of all variables listed above) ** Correlation is significant at the 0.01 level  *Correlation is significant at the 0.05 level      Table 2: Correlation Coefficient Matrix of Six Network Properties ** Correlation is significant at the 0.01 level * Correlation is significant at the 0.05 level          Correlation Matrix In-Degree Out-Degree Closeness Centrality Betweenness centrality Eigenvector centrality PageRank Mood Function 0.08 0.067 -0.071 0.067 0.094 0.902 Stress -0.014 0.036 -0.087 -0.085 -0.024 -0.024 Distress 0.219** 0.119 -0.015 0.181* 0.223** 0.224** Life Essentials 0.222** 0.119 0.042 0.109 0.235** 0.196** Symptoms 0.200** 0.134 -0.069 0.143 0.216* 0.208** Overall Recovery 0.222** 0.125 -0.035 0.144 0.234** 0.208**  In-Degree Out-Degree Closeness Centrality Betweenness Centrality Eigenvector Centrality PageRank In-Degree 1      Out-Degree .442** 1     Closeness Centrality .286** .279** 1    Betweenness Centrality .557** .732** .177** 1   Eigenvector Centrality .975** .424** .322** .509** 1  PageRank .941** .494** .265** .648** .917** 1  Correlation Matrix Helpful Marks Posts & Views Mood Function 0.147* 0.141* Stress -0.013 0.026 Distress 0.216** 0.147** Life Essentials 0.316** 0.226** Symptoms 0.209** 0.177* Overall Recovery 0.279** 0.242** Table 3: Correlation Coefficients between Online Social Activities and Recovery Outcomes (Overall recovery is represented by the sum of all variables listed above) ** Correlation is significant at the 0.01 level  *Correlation is significant at the 0.05 level     Beta Coefficient Standard Error t-Value p-value Intercept -0.066 0.107 -0.615 0.539 In-degree 0.070 0.040 1.759 0.080 Helpful Marks 0.152 0.077 2.000 0.047* Posts and Views 0.130 0.069 1.881 0.062  Table 4: Summery Statistics of Multivariate Linear Regression in Study I R2: 0.155  F-statistic: 11.037 (p < 0.01)  Residual standard error: 0.516      Beta Coefficient Standard Error t-Value p-value Intercept -0.093 0.111 -0.839 0.403 In-degree 0.066 0.040 1.619 0.107 Helpful Marks 0.161 0.079 2.055 0.041* Posts and Views 0.165 0.071 2.312 0.022*  Table 5: Summery Statistics of Multivariate Linear Regression In Study II 𝑹𝟐: 0.173  F-statistic: 12.574 (p < 0.01)  Residual standard error: 0.531 

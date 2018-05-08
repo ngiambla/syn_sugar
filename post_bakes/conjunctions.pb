@@ -1,150 +1,2169 @@
-Digital Grid: Transforming the Electric Power Grid into an 
-Innovation Engine ]f[ the United States 
-Aranya Chakrabortty ]^[ Alex Huang 
-North Carolina State University 
-The electric power grid is one of the largest ]^[ most complex infrastructures ever built by mankind. Modern 
-civilization depends on it ]f[ industry production, human mobility, ]^[ comfortable living. However, many critical 
-technologies such as the 60 Hz transformers were developed at the beginning of the 20th century ]^[ have changed 
-very little since then.1 The traditional unidirectional power from the generation to the customer through the 
-transmission-distribution grid has also changed nominally, ]b[ it no longer meets the need of the 21st century market 
-energy customers. On one hand, 128m US residential customers pay $15B/per month ]f[ their utility bill, ]y[ they 
-have no option to select their energy supplier. In a world of where many traditional industries are transformed by 
-digital Internet technology (Amazon, Ebay, Uber, Airbnb), the traditional electric energy market is lagging 
-significantly behind. A move towards a true digital grid is needed. Such a digital grid requires a tight integration of the 
-physical layer (energy ]^[ power) with digital ]^[ cyber information to allow an open ]^[ real time market akin to the 
-world of e-commerce. Another major factor that is pushing ]f[ this radical transformation are the rapidly changing 
-patterns in energy resources ownership ]^[ load flow. Driven by the decreasing cost in distributed solar, energy 
-storage, electric vehicle, on site generation ]^[ microgrids, the high penetration of Distributed Energy Resource 
-(DER) is shifting challenges substantially towards the edge of grid from the control point of view. The envisioned 
-Digital Grid must facilitate the open competition ]^[ open innovation needed to accelerate of the adoption of new 
-DER technologies while satisfying challenges in grid stability, data explosion ]^[ cyber security. 
-The American Recovery ]^[ Reinvestment Act of 2009 was an unprecedented action to stimulate the economy ]^[ to 
-modernize our nation’s energy ]^[ communication infrastructure ]^[ enhance energy independence. Under this act, 
-the US Department of Energy ]^[ the electricity industry have jointly invested in 99 cost-shared projects involving 
-more than 200 participating electric utilities ]^[ other organizations to modernize the electric grid, improve inter- 
-operability, ]^[ collect an unprecedented level of data on smart grid operations ]^[ benefits. A new ]^[ substantial 
-investment is needed to develop the new Digital Grid. Radical reductions in the cost of sensors, communication, 
-information processing, cyber-security, ]^[ new regulatory policies in electricity markets are needed. Federal 
-leadership is essential to break the logjam ]^[ encourage new approaches. The key is designing programs that drive 
-change ]b[ leave plenty of room ]f[ ideas from unexpected sources. 
-Challenges ]^[ Potential Solution 
-There are many challenges to transform the power grid into a Digital Grid. The primary ones are listed as follows: 
-1. 
-Low marginal costs coupled with high initial capital costs are characteristic of traditional power generation. Today 
-the ratio between running cost ]^[ capital cost is falling rapidly with the introduction of renewable generation, along 
-with flexibility of resources such as storage ]^[ demand response. Standard economic theory predicts that price of 
-power will collapse in this setting, which is indeed the case today. Wholesale prices ]f[ electric power in the U.S. ]^[ 
-other parts of the world are frequently far below operating cost, ]^[ even negative prices are commonly observed. 
-This trend ]^[ price volatility will discourage capital investment, which is why FERC ]^[ local authorities are 
-searching ]f[ market designs that will encourage long-term investment. A holistic approach to market design that 
-accommodates both surplus ]^[ shortage in renewables, combines them with other generation assets as well as 
-storage, ]^[ includes design guidelines ]^[ incentives that enable short-term benefits of improved grid performance 
-]^[ long-term benefits of sustainability ]^[ economic stability is highly warranted. Innovations in wholesale markets 
-need to be accompanied by those in retail markets to accommodate multiple DG owners ]^[ aggregators. 
-On the demand side, changes are needed due to the same reason as above, to accommodate intermittency ]^[ 
-Electricity Market ]^[ Regulatory Policy 
-1 Mynatt et al. (2017) “A National Research Agenda ]f[ Intelligent Infrastructure” CCC Led Whitepapers 
-http://cra.org/ccc/resources/ccc-led-whitepapers/, last accessed April 12, 2017. 
+A 
+Software Platforms ]f[ Smart Cities: 
+Concepts, Requirements, Challenges, ]^[ a Uni ed Reference 
+Architecture 
+Eduardo Felipe Zambom Santana, University of S ao Paulo 
+Ana Paula Chaves, Federal Technological University of Paran a 
+Marco Aurelio Gerosa, University of S ao Paulo 
+Fabio Kon, University of S ao Paulo 
+Dejan S. Milojicic, Hewlett Packard Labs Palo Alto 
+Making cities smarter help improve city services ]^[ increase citizens quality of life. Information ]^[ com- 
+munication technologies (ICT) are fundamental ]f[ progressing towards smarter city environments. Smart 
+City software platforms potentially support the development ]^[ integration of Smart City applications. 
+However, the ICT community must overcome current signi cant technological ]^[ scienti c challenges 
+before these platforms can be widely used. This paper surveys the state-of-the-art in software platforms 
+]f[ Smart Cities. We analyzed 23 projects with respect to the most used enabling technologies, as well as 
+functional ]^[ non-functional requirements, classifying them into four categories: Cyber-Physical Systems, 
+Internet of Things, Big Data, ]^[ Cloud Computing. Based on these results, we derived a reference architec- 
+ture to guide the development of next-generation software platforms ]f[ Smart Cities. Finally, we enumer- 
+ated the most frequently cited open research challenges, ]^[ discussed future opportunities. This survey 
+gives important references ]f[ helping application developers, city managers, system operators, end-users, 
+]^[ Smart City researchers to make project, investment, ]^[ research decisions. 
+General Terms: Digital Cities, Internet of Things, Big Data, Cloud Computing, Cyber-Physical Systems, 
+Middleware, Infrastructure 
+Additional Key Words ]^[ Phrases: Wireless sensor networks, Software platforms, Middleware, Infrastruc- 
+ture 
+1. INTRODUCTION 
+Since 2009, most of the world s population lives in cities [United Nations 2009]. Cur- 
+rent resources ]^[ infrastructure are hardly enough to cope with the increasing de- 
+mand that population growth ]^[ geographic concentration generates [Caragliu et al. 
+2011]. Making cities smarter can help optimize resource ]^[ infrastructure utilization 
+toward increased sustainability. One approach involves creatively combining the large 
+amounts of data generated by multiple city sources (such as sensor networks, traf c 
+systems, user devices, ]^[ social networks) to create integrated services ]^[ appli- 
+cations, improving city services, ]^[ making better use of city resources. However, 
+ef ciently ]^[ effectively using all these data sources is a challenge. 
+Initiatives ]f[ developing Smart City systems have been proposed in a wide range 
+of city services, such as transportation [Djahel et al. 2014], traf c control [Barba et al. 
+2012], air pollution [Vakali et al. 2014], waste management [Perera et al. 2014], health 
+care [Hussain et al. 2015], public safety [Galache et al. 2014], water [P erez-Gonz alez 
+]^[ D az-D az 2015], energy [Yamamoto et al. 2014], ]^[ emergency management 
+[Asimakopoulou ]^[ Bessis 2011]. However, most of these solutions focus on a spe- 
+ci c domain, target a speci c problem, ]^[ were developed from scratch, with little 
+software reuse. They do ]n[ interoperate, leading to duplication of work, incompatible 
+solutions, ]^[ non-optimized resource use. 
+Integrating all of these domains into a complete ]^[ consistent solution require ba- 
+sic services from the underlying software infrastructure. Such basic services could be 
+provided by a novel, comprehensive software platform, which could include facilities 
+]f[ application development, integration, deployment, ]^[ management, easing the 
+7 
 1 
-Data Analytics 
-Grid Stability ]^[ Resiliency under High DER Penetration 
-uncertainty in renewable generation. The standard practice of generation following load has to be shed, ]^[ loads need 
-to be more dispatchable as well. This approach leads to the generalized concept of Demand Response, which needs to 
-be integrated into the functioning of electricity markets. Direct Load Control ]^[ Transactive Control, the two 
-methods that make up Demand Response are both highly promising methods that can help in shaping demand ]s[ as to 
-coordinate fluctuations in renewables. Research is needed to ensure that consumer engagement will enhance rather 
-than disrupt reliability of the grid. Further, automation of demand response is required to ensure grid reliability ]^[ 
-also to ensure that each participant receives the benefits that are promised. For example, strict bounds on indoor 
-temperature ]^[ humidity must be maintained. Market rules are required to ensure that players receive transparent 
-incentives ]f[ services provided to the grid, even in the case of residential consumers who have little understanding of 
-power systems ]v[ even their own fuse box. Given that all of the aforementioned innovations require real-time ]^[ 
-reliable communication, a cyber-physical approach is essential to realize an efficient electricity market. 
-2. 
-The envisioned Digital Grid must be realized with no comprise to grid reliability ]^[ resilience. Since the Digital Grid 
-is fundamentally supporting high DER penetration with very dynamic bidirectional power flows affected by the real- 
-time market participation, the grand challenges in control is to achieve voltage ]^[ frequency stability, as well as 
-intelligent protection. To address these issues as well as to the severe intermittence issue in the DER ]^[ the lack of 
-traditional system inertia, the Digital Grid will need the development ]^[ installation of a new generation of Smart 
-Transformers as an universal cyber-physical system interface, that can provide the needed system inertia ]^[ provide 
-autonomous voltage, frequency ]^[ protection. It must also have the secured communication ]^[ software such as the 
-Block-chain to participate in the real time energy market ]f[ resource sharing (a key attribute to the Digital Grid) by 
-aggregating the DER, load ]^[ storage devices. New transmission technologies such as the High Voltage Direct 
-Current (HVDC) must be further developed ]^[ installed to connect highly dynamic distribution grids with strong 
-regional interconnection to balance of the system demand ]^[ supply. 
-3. 
-Availability of smart grid data is expected to increase precipitously. Compared to the traditional Supervisory Control 
-]^[ Data Acquisition (SCADA) systems available ]f[ operations, these future data sources could provide vastly richer 
-information about the state of the grid. Transforming this raw data into contextual information to support operations 
-requires new data platforms ]^[ analytics capable of extracting useful information. This new information will enable 
-utilities to: 1) create new control paradigms that operate the grid closer to system limits, lowering the cost of operation 
-without sacrificing reliability; 2) improve asset utilization ]^[ management across transmission ]^[ distribution 
-systems; ]^[ 3) integrate high levels of renewable generation. The unique characteristics of the new information 
-available to operations create a number of challenges, including: extensive geo-spatial distribution, temporal diversity, 
-internal organizational boundaries, disparate underlying physical sources ]^[ a wide range of data quality. Despite 
-extensive investments in various IT technologies, utilities still lack sufficient infrastructure ]^[ understanding of the 
-best approaches to manage this data. Major challenges ]f[ utilities today include data quality, data volume, data 
-velocity, ]^[ especially data variety, although they clearly have issues to address in all these dimensions. 
-4. 
-Currently one of the biggest roadblocks ]f[ grid modernization is that the Information Technology (IT) infrastructure 
-]f[ today's grid is rigid ]^[ low capacity. The push to adopt the existing open Internet ]^[ high-performance 
-computing technologies would ]n[ be enough to meet the requirement of collecting ]^[ processing very large volumes 
-of real-time data. Secondly, the impact of unreliable ]^[ insecure communication ]^[ computation infrastructures on 
-grid operations is ]n[ well understood. Typically, the Internet cannot provide the required latency ]^[ packet loss 
-performance ]f[ grid operation under high data-rates. Moreover, the network performance is highly random, ]^[ 
-therefore, difficult to model accurately. Few studies have been conducted to leverage emerging IT technologies such 
-as cloud computing, software defined networking (SDN), ]^[ network function virtualization (NFV), to accelerate this 
-development. With the recent revolution in networking technology, these new communication mechanisms can open 
-up more degrees of freedom in programmability ]^[ virtualization ]f[ tomorrow's grid. 
-5. 
-Cyber vulnerabilities of the power grid exist in numerous facilities, including Supervisory Control ]^[ Data 
-Acquisition (SCADA) systems that power grids rely upon ]f[ monitoring ]^[ control of the physical grid. The 
-increasing penetration of wind turbines, solar arrays, ]^[ energy storage devices creates potential new targets ]f[ 
-cyber intrusions. About 65 million smart meters ]^[ other sensing devices, with capabilities ]f[ data collection ]f[ 
-billing, outage reporting, ]^[ customers’ choice, have been installed at the customer locations. These low-cost devices 
-New Communication Technologies ]f[ Smart Grid 
-Cyber-Physical Security 
+0 
 2 
-are targets ]f[ attackers, who may compromise large numbers of meters ]^[ use those meters to mount attacks. Such 
-attacks resemble the October 2016 attack on the eastern U.S., in which smart devices such as wireless cameras were 
-compromised ]^[ used to disrupt Internet access to millions of users. Ensuring resilience of the power grid to cyber 
-threats will require a sustained ]^[ coordinated research effort towards understanding the vulnerabilities of cyber- 
-attacks on the grid, providing defense mechanisms that can ameliorate the impact of attacks ]^[ ensure continued 
-operation ]^[ efficient recovery from attacks when ]^[ where they occur. The cyber vulnerabilities of grid 
-components must be characterized ]^[ mitigated. Privacy of sensitive power system data must also be preserved by 
-efficient data protection ]^[ encryption techniques. 
-Actions ]^[ Recommendations 
-Based on the preceding discussion, we offer the following recommended actions: 
-1. 
-Create a multi-university based national consortium on digital grid to jointly study the critical cyber-physical 
-challenges based on a competitive solicitation. 
-Create a DOE led investment program to US industry ]^[ electric power companies to manufacture ]^[ 
-upgrade the edge of the grid into a Digital Grid, such as the Smart Transformer manufacturing ]^[ 
-deployment. 
-Enhance funding ]f[ programs such as the NSF’s Cyber Physical System (CPS) program to focus on research 
-needs associated with the Digital Grid. 
-Develop realistic ]^[ comprehensive testbeds ]f[ evaluations of control ]^[ cyber- security that would be 
-impractical to conduct on the power grid itself. 
-Promote education ]^[ workforce development initiatives to train existing power engineers ]^[ grid 
-operators about cyber-physical systems, data analytics, Internet-of-Things, cyber-security as well as educate 
-the next generation of researchers ]^[ practitioners in the design ]^[ operation of secure ]^[ resilient power 
-systems. 
-2. 
-3. 
-4. 
-5. 
-6. 
-Form a task force by federal regulatory agencies to study the policy changes needed ]f[ creating a transactive 
-energy market supported by the Digital Grid infrastructure. 
-Acknowledgements 
-The authors would like to acknowledge the following individuals ]f[ their contribution to this paper. 
-• Sean Meyn, University of Florida 
-• Anuradha Annaswamy, MIT 
-• Kevin Tomsovic, University of Tennessee 
-• 
-Joe H. Chow, Rensselaer Polytechnic Institute 
-• Chen-Ching Liu, Washington State University 
-• Radha Poovendran, University of Washington, Seattle 
-This material is based upon work supported by the National Science Foundation under Grant No. (1136993). Any 
-opinions, findings, ]^[ conclusions ]v[ recommendations expressed in this material are those of the authors ]^[ do ]n[ 
-necessarily reflect the views of the National Science Foundation. 
+l 
+u 
+J 
+4 
+2 
+] 
+Y 
+C 
+. 
+s 
+c 
+[ 
 3 
+v 
+9 
+8 
+0 
+8 
+0 
+. 
+9 
+0 
+6 
+1 
+: 
+v 
+i 
+X 
+r 
+a 
+A:2 
+Santana, E. F. Z. et al. 
+construction of sophisticated Smart Cities applications. We de ne a software platform 
+]f[ Smart Cities as 
+an integrated middleware environment that supports software developers in 
+designing, implementing, deploying, ]^[ managing applications ]f[ Smart Cities. 
+Many challenging issues still need to be addressed before a highly effective software 
+platform ]f[ Smart Cities can be created, including: enabling interoperability between 
+a city s multiple systems, guaranteeing citizens privacy, managing large amounts of 
+data, supporting the required scalability, ]^[ dealing with a large variety of sensors. 
+In the research described in this paper, we evaluated initiatives ]f[ developing soft- 
+ware platforms ]f[ Smart Cities, aiming to comprehensively analyze relevant func- 
+tional ]^[ non-functional requirements, according to the literature. Based on the anal- 
+ysis, we derived a reference architecture that addresses these requirements. With this 
+survey, we intend to clarify important aspects of the design, development, ]^[ man- 
+agement of Smart Cities platforms. To do so, we examined 23 Smart Cities software 
+platforms, aiming to answer the following general research question: 
+What is required ]f[ the development of a software platform ]f[ enabling the 
+construction of scalable integrated Smart City applications? 
+We investigated three more speci c research questions: 
+RQ1:. What are the enabling technologies used in state-of-the-art software plat- 
+forms ]f[ Smart Cities? 
+RQ2:. What are the requirements that a software platform ]f[ Smart Cities should 
+meet? 
+RQ3:. What are the main challenges ]^[ open research problems in the develop- 
+ment of next generation robust software platforms ]f[ Smart Cities? 
+To answer research question RQ1, we identi ed the most common enabling technolo- 
+gies employed in platforms ]f[ Smart Cities. As described in Section 2.2, we grouped 
+them into four main categories: Internet of Things (IoT) [Atzori et al. 2010], applied 
+to control sensors ]^[ actuators responsible ]f[ retrieving information from the city; 
+Big Data [Mayer-Sch onberger ]^[ Cukier 2013], to support storage ]^[ processing 
+of the data collected from the city; Cloud Computing [Armbrust et al. 2010], to pro- 
+vide elasticity to the services ]^[ data storage; ]^[ Cyber-Physical Systems [White 
+et al. 2010], to enable the interaction of systems with the city environment. To answer 
+RQ2, we identi ed the most common functional ]^[ non-functional requirements ]f[ 
+developing a platform ]f[ Smart Cities, as described in Section 3.3. Finally, to answer 
+RQ3, we explored the main challenges researchers identi ed in developing software 
+platforms ]f[ Smart Cities, as discussed in Section 4. 
+Combining the results of the three research questions, we derived a reference archi- 
+tecture. This architecture presents components ]f[ implementing a software platform 
+]f[ Smart Cities, based on the most common enabling technologies, the requirements, 
+]^[ challenges surveyed in this research. We also discuss the critical implications of 
+platforms ]f[ Smart Cities in the Section 6. 
+The remainder of this paper is organized as follows. Section 2 presents the de nition 
+of Smart Cities ]^[ introduces the four enabling technologies ]f[ platforms ]f[ Smart 
+Cities. Section 3 presents the platforms, architectures, ]^[ implemented systems ]f[ 
+Smart Cities, grouped according to the enabling technologies that each platform uses. 
+Section 4 points out challenges ]^[ open research problems in the development of a 
+platform ]f[ Smart Cities. In Section 5, we present a reference architecture ]f[ soft- 
+ware platforms ]f[ Smart Cities. In Section 6, we discuss the relationship between the 
+Software Platforms ]f[ Smart Cities 
+A:3 
+requirements ]^[ the enabling technologies as well as their implications ]f[ the de- 
+velopment of software platforms ]f[ Smart Cities. Section 7 presents the related work 
+and, nally, Section 8 presents our conclusions. 
+2. MAIN CONCEPTS 
+We now introduce the main concepts used in the discussions within this survey. We 
+rst present de nitions of Smart Cities and, then, discuss the most adopted enabling 
+technologies ]f[ the development of software platforms ]f[ Smart Cities. 
+2.1. Smart Cities 
+The term Smart City has many different de nitions. Some exceed the software con- 
+text, focusing only on social ]v[ business aspects. Regarding software systems, many 
+authors de ne a Smart City as the integration of social, physical, ]^[ IT infrastruc- 
+ture to improve the quality of city services [Caragliu et al. 2011; Hollands 2008]. Other 
+authors focus on a set of Information ]^[ Communication Technology (ICT) tools used 
+to create an integrated Smart City environment [Hollands 2008; Washburn et al. 2009; 
+Hall et al. 2000]. 
+Gif nger et al. [Gif nger et al. 2007] assert that a Smart City has six main dimen- 
+sions: smart economy, smart people, smart governance, smart mobility, smart environ- 
+ment, ]^[ smart living. Many authors adopt this de nition [Hernndez-Mu noz et al. 
+2011; Papa et al. 2013] ]^[ there are even benchmarks to produce a ranking of the 
+smartest city using these dimensions1. 
+In their de nition of Smart Cities, Washburn et al. [Washburn et al. 2009] ]^[ Hall 
+et al. [Hall et al. 2000] emphasize integrating software services ]^[ applications to 
+improve regular city services ]^[ the lives of their citizens. Following this idea, Kanter 
+]^[ Litow [Kanter ]^[ Litow 2009] declare that creating independent software ]f[ 
+each city domain is ]n[ suf cient ]f[ creating an environment ]f[ Smart Cities. They 
+contend that all city sub-systems (such as transport, education, energy, ]^[ water) 
+must be linked in a network as an organic whole to provide integration among all city 
+subsystems. Caragliu et al. [Caragliu et al. 2011] de nition of Smart Cities highlights 
+the signi cant bene t of sustainability ]^[ management of natural resources. 
+We are aligned with the vision that a city must have an integrated environment 
+to facilitate the interoperability between the city s sub-systems. Based on that, in our 
+view: 
+a Smart City is a city in which its social, business, ]^[ technological aspects are 
+supported by Information ]^[ Communication Technologies to improve the experience 
+of the citizen within the city. To achieve that, the city provides public ]^[ private 
+services that operate in an integrated, affordable, ]^[ sustainable way. 
+To make a city smarter, it is desirable to integrate services ]^[ applications in a 
+uni ed technological infrastructure. A sensible way to make the above reality is with 
+a well-designed software platform providing the necessary infrastructure ]f[ dealing 
+with large volumes of data, a wide variety of devices ]^[ applications, system interop- 
+erability, ]^[ other problems related to Smart City environments. 
+There are multiple smart city initiatives in a variety of countries around the world, 
+with different maturity levels ]^[ applications in different domains. Most of the ini- 
+tiatives are in Europe [Caragliu et al. 2011; Manville et al. 2014], the USA2, Japan, 
+]^[ South Korea [Liu ]^[ Peng 2013]. Isolated initiatives exist in countries such as 
+Brazil [Fortes et al. 2014] ]^[ the United Arab Emirates [Janajreh et al. 2013]. Figure 
+1Smarts Cities in Europe - http://www.smart-cities.eu 
+210 Smartest Cities in USA - http://www.fastcoexist.com/3021592/the-10-smartest-cities-in-north-america 
+A:4 
+Santana, E. F. Z. et al. 
+1 presents a map with cities that have at least one Smart City project included in this 
+survey. The map shows that most of the projects are located in developed countries, a 
+few in developing countries, ]^[ none in underdeveloped countries, where the need ]f[ 
+improvements in urban quality of life are most pressing. 
+Fig. 1. Smart Cities initiatives covered in this survey. 
+2.2. Enabling Technologies 
+To answer the question What are the main enabling technologies used in state-of- 
+the-art software platforms ]f[ Smart Cities? , we present the most common enabling 
+technologies that we found in our literature review. We observed four main technolo- 
+gies used by software platforms ]f[ Smart Cities: Cyber-Physical Systems, Internet of 
+Things, Big Data, ]^[ Cloud Computing. In this section, we give an overview ]^[ re- 
+late them to Smart City research. These technologies are used later in this paper to 
+group the analyzed platforms ]^[ help to understand better the requirements that the 
+platforms must address. 
+Figure 2 presents an overview of the four enabling technologies that we found in our 
+survey ]^[ examples of how they contribute to a platform ]f[ Smart Cities. 
+2.2.1. Cyber-Physical Systems. Cyber-Physical Systems (CPS) can be characterized as 
+the use of computation ]^[ communication technologies to improve the features of 
+physical systems. Wan et al. [Wan et al. 2010] de ne CPS as integration of computation 
+with physical processes. The authors suggest the use of local ]^[ remote computational 
+models in networked embedded computers to monitor ]^[ control physical processes. 
+Many real-world applications already leverage CPS [White et al. 2010], such as 
+Smart Cities, power grid control systems, ]^[ electronic medical devices. However, 
+some authors [Wan et al. 2010] claim that existing ICT solutions do ]n[ support appli- 
+cations with dynamically changing physical contexts. Thus, applying CPS should intro- 
+duce this requirement to Smart City applications. According to Gurgen et al. [Gurgen 
+et al. 2013], CPS enables applications to become aware of the changes in the physical 
+context adapting their execution according to it. 
+An example of a Cyber-Physical System related to Smart Cities is WreckWatch 
+[White et al. 2010], an application ]f[ detecting traf c accidents. This application was 
+developed ]f[ smart phones; it reads the device s accelerometer ]^[ GPS getting the 
+driver s current speed ]^[ acceleration. In case of a strong deceleration, the data is 
+Software Platforms ]f[ Smart Cities 
+A:5 
+Fig. 2. Platforms ]f[ Smart Cities Enabling Technologies 
+analysed using an accident prediction model ]^[ if it indicates an accident, the appli- 
+cation generates an alert to a centralized server. 
+2.2.2. Internet of Things. Coetzee ]^[ Eksteen [Coetzee ]^[ Eksteen 2011] de ne IoT 
+as situations where objects become part of the Internet. According to the authors, the 
+objects have to be uniquely identi ed, with recognized position ]^[ status, ]^[ acces- 
+sible to the network. Gubbi et al. (2013) [Gubbi et al. 2013] de ne three components 
+in an IoT environment: the hardware, which includes sensors, actuators, ]^[ embed- 
+ded communication hardware; a middleware, which processes ]^[ stores data received 
+from the hardware; ]^[ a presentation layer, in which users access, manipulate, ]^[ 
+visualize data extracted from the hardware. In this sense, this is very similar to what 
+we expect from a platform ]f[ Smart Cities. 
+The very large number of devices used to collect data from cities forces platforms ]f[ 
+Smart Cities to use IoT technologies. The data collected from these devices must be 
+transmitted via interconnected networks ]s[ that they can be grouped ]^[ processed 
+to provide advanced Smart City services. Zanella et al. [Zanella et al. 2014] present 
+multiple potential uses of the Internet of Things ]f[ Smart Cities, e.g., monitoring 
+the health of historical buildings, detecting the load level of waste containers, sensing 
+noise in central areas of the city, observing the conditions of traf c lights, ]^[ analyz- 
+ing the usage of energy in Smart Homes. 
+2.2.3. Big Data. Most authors consider Big Data as a set of techniques ]^[ tools to 
+store ]^[ manipulate large data sets whereas conventional technologies, such as rela- 
+tional databases ]^[ sequential processing tools, cannot deal with such a vast volume 
+of data. There are four major characteristics of Big Data [Chen et al. 2014; Demchenko 
+et al. 2014]: 
+Volume: the scale of data generated ]^[ collected is rapidly increasing, ]^[ Big Data 
+tools must deal with this challenge. In Smart Cities, the volume of data will be mas- 
+sive, coming from many data sources distributed across the city. 
+Variety: data is collected from different sources, ]^[ have structured, semi- 
+structured, ]v[ unstructured formats, such as video records, relational databases, ]^[ 
+A:6 
+Santana, E. F. Z. et al. 
+raw texts, respectively. This is important ]f[ Smart Cities, since city data is collected 
+from multiple sources, such as surveillance cameras, sensors, ]^[ citizen devices. 
+Velocity: data processing must be fast and, in some cases, real-time, ]v[ it may be 
+useless. City infrastructure, operators, ]^[ managers need to respond to urban prob- 
+lems, such as traf c jams, accidents, ]^[ oods, in short time. 
+Veracity: because of the large amount of data collected, ]^[ the use of multiple data 
+sources, it is important to ensure data quality, because errors in the data ]v[ the usage 
+of unreliable sources can compromise its analysis. In cities, incorrect GPS readings, 
+malfunctioning sensors, ]^[ malicious users can be sources of poor data. 
+Figure 3 relates the four Vs of Big Data with Smart Cities needs. 
+Fig. 3. 4 Vs of Big Data 
+Smart Cities already use Big Data tools to support the amount of data generated 
+from city devices. Sensor networks regularly transmit data about city conditions, such 
+as temperature, air quality, ]^[ pluviometry. Citizens generate data using smart- 
+phones ]^[ social networks, ]^[ vehicles continuously send their positions. 
+Big Data tools are already used by Smart City platforms, including: NoSQL 
+databases [Khan et al. 2013; Bain 2014], such as MongoDB ]^[ HBase; parallel data 
+processing tools [Parkavi ]^[ Vetrivelan 2013; Takahashi et al. 2012], such as Apache 
+Hadoop ]^[ Apache Spark; real-time data streams processing tools [Girtelschmid et al. 
+2013], such as Apache Storm; ]^[ visualization tools [Khan et al. 2013], such as Rapid- 
+Miner. 
+Al Nuaimi et al. [Al Nuaimi et al. 2015] discuss potential applications of Big Data 
+tools in Smart Cities, such as recognizing traf c patterns ]^[ using historic data to 
+locate the causes ]^[ avoid traf c jams, facilitating the decisions of city governments 
+using analyses of large data sets, ]^[ predicting the use of resources, such as electric- 
+ity, water, ]^[ gas, in different situations using historic ]^[ real-time data. 
+Software Platforms ]f[ Smart Cities 
+A:7 
+2.2.4. Cloud Computing. Cloud Computing offers a very large, elastic, ]^[ highly avail- 
+able infrastructure ]f[ both data storage ]^[ computation, which is essential ]f[ com- 
+plex Smart City systems. In addition, a Smart City environment can be highly dy- 
+namic, requiring recon gurations of the underlying infrastructure, which is also sup- 
+ported by Cloud Computing. 
+Many authors, such as [Distefano et al. 2012; Aazam et al. 2014], have advocated 
+combining IoT ]^[ Cloud Computing, coining the term Cloud of Things . Their idea 
+is to store ]^[ process all the data from an IoT network in a cloud computing environ- 
+ment, which is currently used in some Smart City projects [Mitton et al. 2012; Tei ]^[ 
+Gurgen 2014]. 
+Another concept related to a cloud computing environment in Smart Cities is Soft- 
+ware as a Service (SaaS), which provides the sensor data with a cloud computing in- 
+frastructure. The work of Perera et al. [Perera et al. 2014] extends this concept, using 
+the term Sensing as a Service . The ClouT platform, presented in [Tei ]^[ Gurgen 
+2014], also uses the concept of software services ]^[ de nes the terms City Applica- 
+tion Software as a Service (CSaaS) ]^[ City Platform as a Service (CPaaS). 
+Some authors relate the use of Cloud Computing, Big Data, ]^[ IoT [Chen et al. 
+2014; Aazam et al. 2014], because a cloud environment is an ideal infrastructure to 
+store data ]^[ execute services. Hence, the data generated from an IoT middleware 
+can be stored ]^[ processed in a cloud environment using Big Data tools. This syn- 
+ergistic combination helps to support important non-functional requirements such as 
+scalability, elasticity, ]^[ security. 
+3. PLATFORMS FOR SMART CITIES 
+We describe here various platforms ]f[ Smart Cities presented in the literature. All 
+platforms use at least one of the enabling technologies discussed in Section 2.2. 
+To nd these studies, we used the following query string: ( Smart City ]v[ Smart 
+Cities ) ]^[ (Platform ]v[ Middleware ]v[ Architecture). After analyzing the query results, 
+we focused our study on 47 papers describing Smart City platforms ]^[ applications. 
+We did ]n[ include in our search other terms that are more rarely used to describe 
+the application of ICT in cities, such as Knowledge City , Intelligent City , ]^[ Con- 
+nected City . Figure 4 illustrates the use of these expressions in recent years using 
+Google Trends. 
+Fig. 4. Trends in Smart City related terms 
+A:8 
+Santana, E. F. Z. et al. 
+Since the expression Digital City is still used, we analyzed the de nition of this 
+expression ]^[ the differences with Smart Cities . We found that, normally, the de- 
+scription of a digital city relates to the use of digital technologies in a city, ]b[ ]n[ with 
+the goal of making smart services ]^[ improving the city s overall infrastructure. In 
+a digital city, the integration of the multiple systems is ]n[ at stake. The differences 
+between these two concepts are discussed by Cocchia [Cocchia 2014] ]^[ by Yin et al. 
+[Yin et al. 2015]. 
+The next subsection describes existing platforms, developed as research projects 
+with different approaches. Subsection 3.2 shows systems developed using these plat- 
+forms. Finally, in Subsection 3.3, we present a set of functional ]^[ non-functional 
+requirements extracted from our analysis of the platforms ]^[ systems described in 
+the previous subsections. 
+3.1. Platform Categories 
+To facilitate the presentation, we divided the platforms into ve categories, according 
+to the enabling technologies that each platform uses. Figure 5 presents an overview 
+of the platforms ]f[ Smart Cities that we analyzed. In this gure, we can observe 
+that most platforms use Cloud Computing. Almost all of them use at least one more 
+enabling technology, more commonly IoT ]^[ Big Data. 
+Fig. 5. Use of Enabling Technologies by Smart City Platforms 
+3.1.1. Internet of Things ]^[ Cloud Computing. In this section, we present the platforms 
+that use both IoT ]^[ Cloud Computing as enabling technologies. 
+SmartSantander is an experimental infrastructure to support the development ]^[ 
+deployment of Smart City applications ]^[ services [Sanchez et al. 2014]. The project 
+is centered in Santander, Spain, with smaller facilities in other European cities. The 
+platform processes a large variety of information, including data about traf c condi- 
+tions, temperature, CO2 emissions, humidity, ]^[ luminosity. Currently, the project 
+has implanted more than 20,000 sensors in the city. 
+Software Platforms ]f[ Smart Cities 
+A:9 
+Padova Smart City [Zanella et al. 2014] uses IoT to create a sensor network in the 
+city of Padova, Italy. Using more than three hundred sensors, the platform collects 
+environmental data, such as CO2 emissions ]^[ air temperature, ]^[ monitors street 
+lights. A feature highlighted in this platform is the use of common protocols ]^[ data 
+formats to allow interoperability among multiple city systems. 
+The European Platform ]f[ Intelligent Cities (EPIC) project [Ballon et al. 2011] pro- 
+poses a complete IoT Middleware to facilitate the use ]^[ management of the Wireless 
+Sensor Network (WSN). This middleware aims to deal with the heterogeneity, interop- 
+erability, scalability, extensibility, ]^[ con gurability problems in a WSN. 
+ClouT [Tei ]^[ Gurgen 2014] proposes a two-layer architecture to collect data from 
+the WSN ]^[ manage the sensors ]^[ actuators in the city network [Galache et al. 
+2014]. The rst layer is the Sensors ]^[ Actuators Layer, which handles data from the 
+WSN. The second layer, the IoT Kernel Layer, manages ]^[ monitors the sensors ]^[ 
+actuators network. 
+OpenMTC [Elmangoush et al. 2013] (Open Machine Type Communications) is a 
+Machine-To-Machine (M2M) based communication platform ]f[ Smart Cities. Its goal 
+is to enable ef cient communication among a large number of devices, associating them 
+with multiple services. To achieve this, the platform supports standard interfaces to 
+various types of devices, data/event processing methods to achieve real-time perfor- 
+mance, ]^[ easy application development, providing a software development kit. 
+The analysis of the platforms aforementioned led to the identi cation of four major 
+functional requirements: management of a WSN, management of the data collected 
+from the city, management of services ]^[ applications, ]^[ an infrastructure to make 
+the data from the platform available to city applications. This analysis also led to the 
+identi cation of ve non-functional requirements: adaptation, interoperability, scala- 
+bility, extensibility, ]^[ con gurability. 
+We identify two weak points of these platforms: (1) the lack of pre-processing compo- 
+nents to verify the integrity of the data collected from the city ]^[ make small transfor- 
+mations of the data, such as aggregations, ]^[ (2) most of the platforms do ]n[ include 
+a discussion about security concerns. 
+3.1.2. Internet of Things, Cloud Computing, ]^[ Big Data. In this subsection, we present 
+platforms that use IoT, Cloud Computing, ]^[ Big Data as enabling technologies. 
+OpenIoT3 is an open source middleware ]f[ the development of IoT-based applica- 
+tions. It has an API to manage the WSN, ]^[ a directory service to dynamically dis- 
+cover the sensors deployed in the city; it also has a layer ]f[ service de nition ]^[ 
+access. Big Data tools are used to store ]^[ analyze the data from the platform. A 
+Smart City project called Vital [Petrolo et al. 2014] builds on this platform ]^[ uses 
+the term Cloud of Things to refer to the use of Cloud Computing ]^[ IoT. 
+The Concinnity project provides a platform ]f[ managing data ]^[ applications fol- 
+lowing the PaaS model [Wu et al. 2014], with which its authors built Big Sensor Data 
+Applications. However, this platform focuses on multiple data sources such as the 
+WSN, social networks, ]^[ data from platform users. It also includes a service di- 
+rectory where developers can nd ]^[ publish services facilitating its reuse. 
+OpenIoT ]^[ Concinnity, offer developers tools to implement applications directly 
+on the platform. OpenIoT allows the mash-up of the services de ned in the platform 
+]^[ automatically creates a visual interface ]f[ end-users. Concinnity provides a set of 
+development tools, such as a Work ow Editor ]^[ Engine, a Service Publisher, ]^[ an 
+Application Editor. 
+3OpenIoT - https://github.com/OpenIotOrg/openiot 
+A:10 
+Santana, E. F. Z. et al. 
+Sentilo [Bain 2014] is platform that deals with the management of sensors ]^[ ac- 
+tuators, designed ]f[ Smart Cities that looks ]f[ openness ]^[ interoperability. Sentilo 
+uses IoT concepts to control the WSN, ]^[ Cloud Computing to share data with the 
+applications. Big Data tools are mainly used to collect ]^[ store data from sensors, en- 
+suring platform scalability. The Sentilo project was originally designed to be deployed 
+in the city of Barcelona; after its deployment, the City released the code under the 
+LGPL ]^[ EUPL open source licenses. 
+The main functional requirements identi ed ]f[ this group of platforms were: man- 
+agement of a WSN, management of data life cycle (collect, store, process), making the 
+data from the platform publicly available, a service directory ]f[ application develop- 
+ers, ]^[ tools ]f[ application development. As non-functional requirements, we identi- 
+ed: interoperability ]^[ scalability. 
+A weak point of these platforms is the lack of streams processing tools to analyze 
+real-time data from the city, an important requirement ]f[ many Smart City applica- 
+tions. Another problem is that most of the platforms do ]n[ support the customization 
+of services with citizen data. In spite of the privacy problems, offering context-aware, 
+customized services to the citizens is highly desirable. 
+3.1.3. Cloud Computing ]^[ Big Data. In this subsection, we present platforms that use 
+Cloud Computing ]^[ Big Data as enabling technologies. 
+Vilajosana et al. [Vilajosana et al. 2013] present a platform ]f[ Smart Cities based 
+on Cloud Computing ]^[ Big Data, whose main components are data management 
+]^[ service hosting. It includes an Open Data API allowing third-party applications to 
+access the data stored on the platform. Big Data tools are used to collect data streams 
+]^[ analyze data, such as prediction ]^[ inference. 
+Scallop4SC (SCALable LOgging Platform ]f[ Smart City) [Takahashi et al. 2012; 
+Yamamoto et al. 2014] uses Big Data to process a large volume of data gathered from 
+smart buildings. The platform uses information about the building, such as water ]^[ 
+energy consumption, temperature, air humidity, ]^[ the amount of garbage generated. 
+Periodically, the buildings send data to the platform ]f[ processing. The objective is to 
+analyze smart building data, ]f[ which it uses the MapReduce algorithm. 
+CiDAP [Cheng et al. 2015] is a big data analytics platform deployed into the Smart- 
+Santander testbed. The platform uses data collected from SmartSantander ]^[ ana- 
+lyzes it to understand the behavior of the city. The main components of this platform 
+are: the agents, which collect data from the SmartSantander platform; the Big Data 
+repository ]f[ storing the data; the Big Data processing ]f[ intensive data processing 
+]^[ analytics; ]^[ a CityModel server, responsible ]f[ interfacing with external appli- 
+cations. This platform uses Apache Spark [Zaharia et al. 2010] to process the data. 
+[Khan et al. 2015] propose a Smart City architecture based on Big Data to achieve 
+the necessary availability ]^[ scalability required ]f[ a Smart Cities platform. The 
+architecture has three layers: one to collect, analyze, ]^[ lter data; another to map 
+]^[ aggregate data to make it semantically relevant; ]^[ a third layer where users can 
+browse ]^[ recover the data processed from the other two layers. The implementation 
+of the architecture uses only open source projects, ]^[ the authors have presented tools 
+]f[ all layers [Khan et al. 2013]. 
+WindyGrid [Thornton 2013], an initiative of the City of Chicago, is a platform ]f[ 
+Smart Cities, whose objective is to present real-time ]^[ historical data with a uni ed 
+view of city operations. Big Data technologies, such as the MongoDB NoSQL database 
+]^[ parallel data processors, were used to develop the platform. 
+SMARTY [Anastasi et al. 2013] is a project aimed at providing tools ]^[ services 
+]f[ mobility ]^[ exible city transport systems. Its software platform collects data 
+from multiple sources, such as traf c ow, user location, transport service delays, ]^[ 
+Software Platforms ]f[ Smart Cities 
+A:11 
+parking availability. A network of low-cost sensors collects data from the city ]^[ social 
+networks are continuously monitored to get data from citizens. The platform processes 
+the massive amount of data generated by the city with data mining techniques, such 
+as classi cation, regression, ]^[ clustering. 
+The platform proposed by Girtelschmid et al. [Girtelschmid et al. 2013] uses se- 
+mantic technologies to create a platform ]f[ Smart Cities, adding exibility in system 
+con guration ]^[ adaptation. However, to overcome the performance bottlenecks nor- 
+mally associated with ontology repositories ]^[ reasoning tools, the authors combine 
+their semantic techniques with Big Data processing methods. 
+The main functional requirements identi ed ]f[ this group of platforms were: data 
+management, such as collecting, analyzing, ]^[ visualizing data; large scale data pro- 
+cessing, such as batch ]^[ real-time processing; ]^[ the use of semantic techniques 
+combined with Big Data. As non-functional requirements, we identi ed scalability ]^[ 
+adaptation. 
+Most of the platforms in this section do ]n[ have an IoT layer, ]^[ do ]n[ indicate how 
+the data is collected from the city; the exception is CiDAP, which uses the SmartSan- 
+tander testbed as an IoT middleware. Another drawback is that most of the platforms 
+do ]n[ include a discussion about security concerns. 
+3.1.4. Cloud Computing. In this subsection, we present platforms that use only Cloud 
+Computing as an enabling technology. 
+Piro et al. [Piro et al. 2014] present a two-layered service platform ]f[ the creation of 
+Smart City applications. The rst is a low-level layer that controls the communication 
+among the city WSN devices. The second layer collects the data from the devices ]^[ 
+provides services ]f[ the development of applications that use the data from the city. 
+U-City [Lee ]^[ Rho 2010] is a platform ]f[ the creation of smart ubiquitous cities. 
+The platform offers several service management features, such as autonomic service 
+discovery, service deployment, ]^[ context-aware service execution. It also offers pre- 
+de ned services such as an inference engine, a context-aware data service, ]^[ a portal 
+]f[ the management of the platform. 
+Gambas, a middleware ]f[ the development of Smart City applications [Apolinarski 
+et al. 2014], supports data acquisition, distribution, ]^[ integration. The platform 
+also provides an application runtime to facilitate the development ]^[ deployment 
+of services using city data ]^[ a service registry. The middleware supports context- 
+awareness, ]s[ that Smart City services can adapt to the citizen situation, behavior, 
+]^[ intent. All communication in the platform is encrypted to ensure citizen s privacy 
+]^[ security. 
+Civitas [Villanueva et al. 2013] is a middleware to support the development of Smart 
+Cities services. It is used to facilitate the development ]^[ deployment of Smart City 
+applications, ]^[ to avoid the emergence of information islands [Qiu et al. 2010], i.e., 
+disconnected applications that do ]n[ share relevant information. Citizens connect to 
+the middleware via a special device called the Civitas Plug, which ensures the privacy 
+]^[ the security. The middleware has two main design principles to facilitate the ap- 
+plication integration: Everything is a Software Object, which promotes the consistency 
+of the software design ]^[ reusability of the middleware; ]^[ Independence of the City 
+Layout, meaning that city services should ]n[ work with just one city layout. 
+The main functional requirements identi ed ]f[ this group of platforms were: service 
+management ]^[ data management. As non-functional requirements, we identi ed: 
+security, privacy, ]^[ context awareness. 
+A drawback of the platforms presented in this section is that none of them use known 
+frameworks to implement components, such as the inference engine ]^[ processing 
+tools, which might make dif cult the maintenance of the platform. Another problem is 
+A:12 
+Santana, E. F. Z. et al. 
+that the platforms do ]n[ describe a mechanism to allow external access to the platform 
+data. 
+3.1.5. Cloud Computing ]^[ Cyber-Physical Systems. In this section, we present platforms 
+that use Cloud Computing ]^[ Cyber-Physical Systems (CPS) as enabling technolo- 
+gies. 
+Gurgen et al. [Gurgen et al. 2013] present a middleware ]f[ Smart Cities auto- 
+nomic services, which includes many self- properties, such as self-organization, self- 
+optimization, self-con guration, self-protection, self-healing, self-discovery, ]^[ self- 
+description. They justify using cloud computing to provide scalability, reliability, ]^[ 
+elasticity to the platform. This platform provides application developers with the con- 
+texts of individual users ]^[ the city. 
+Privat et al. [Privat et al. 2014] propose another CPS-based platform, whose main 
+characteristic is self-con guration ]^[ self-adaptation capabilities in smart environ- 
+ments, including Smart Cities. This platform provides a shared distributed software 
+infrastructure that collects data ]^[ reacts to changes in the environment. 
+Wan et al. [Wan et al. 2012] propose an event-based CPS platform, which uses 
+an event manager to manage ]^[ generate cooperation among M2M components. 
+This platform provides data ]^[ services to third-party applications through a pub- 
+lish/subscribe module. The platform also enables the design of event processing ows 
+to manage the mission-critical wireless messages. 
+The main functional requirements identi ed ]f[ this group of platforms were: auto- 
+nomic reaction to changes in the city environment, communication among city devices, 
+]^[ a publish/subscribe mechanism ]f[ applications to communicate with the platform. 
+As non-functional requirements, we identi ed: con gurability, adaptation, ]^[ context 
+awareness. 
+The platforms of this section focus on the deployment, con guration, ]^[ execution 
+of CPS devices in the city, ]b[ they lack important requirements, such as the mon- 
+itoring ]^[ publication of the data from the devices. They also do ]n[ describe any 
+mechanism to verify the data collected from the city, discarding inconsistencies. 
+3.2. Systems 
+In this subsection, we illustrate applications built on top of the platforms presented 
+in the previous section. Table I presents an overview of the domains of the analyzed 
+systems. 
+The GAMBAS middleware was used to develop two applications ]f[ the public trans- 
+portation system in Madrid, Spain. Foell et al. [Foell et al. 2014] present a context- 
+aware urban bus navigator to help travelers nd the best buses ]f[ their trips. Handte 
+et al. [Handte et al. 2014] describe a system that estimates the number of passengers 
+of city buses using smartphone sensing. 
+SEN2SOC [Vakali et al. 2014] is a system deployed on the SmartSantander platform 
+that uses data streams from the city (e.g., sensor data) ]^[ social networks (e.g., Twit- 
+ter) to create Smart City applications. Two examples of applications are: capturing the 
+emotional state of city inhabitants, ]^[ visualizing the air pollution in the city. Also in 
+SmartSantander, Vlahogianni et al. [Vlahogianni et al. 2014] present an application 
+to predict the utilization of city parking lots. 
+Two applications were developed using the Padova Smart City platform. Bui ]^[ 
+Zorzi [Bui ]^[ Zorzi 2011] present a health care system whose main features are 
+monitoring conditions of patients, sending their data directly to doctors, ]^[ calling 
+emergency services if the patient has an urgent problem. Bressan et al. [Bressan et al. 
+2010] present a monitoring application to manage ]^[ collect data from all the light 
+posts connected to the platform. 
+Software Platforms ]f[ Smart Cities 
+A:13 
+Table I. Domains of Smart City Systems 
+l 
+o 
+r 
+t 
+n 
+o 
+C 
+c 
+f 
+a 
+r 
+T 
+X 
+X 
+X 
+X 
+4 
+n 
+o 
+i 
+t 
+u 
+l 
+l 
+o 
+P 
+r 
+i 
+A 
+X 
+X 
+2 
+d 
+r 
+a 
+o 
+b 
+h 
+s 
+a 
+D 
+y 
+t 
+i 
+C 
+X 
+1 
+g 
+n 
+i 
+s 
+n 
+e 
+S 
+y 
+t 
+i 
+C 
+X 
+X 
+X 
+X 
+X 
+5 
+e 
+r 
+a 
+C 
+h 
+t 
+l 
+a 
+e 
+H 
+X 
+X 
+2 
+y 
+t 
+e 
+f 
+a 
+S 
+X 
+X 
+2 
+n 
+o 
+i 
+t 
+n 
+e 
+v 
+e 
+r 
+P 
+r 
+e 
+t 
+s 
+a 
+s 
+i 
+D 
+X 
+1 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+y 
+g 
+r 
+e 
+n 
+E 
+X 
+1 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+e 
+t 
+s 
+a 
+W 
+X 
+1 
+GAMBAS 
+SmartSantander 
+Padova Smart City 
+OpenIoT 
+WindyGrid 
+ClouT 
+Scallop4SC 
+Number of Instances 
+Anagnostopoulos et al. [Anagnostopoulos et al. 2015] present a waste management 
+system implemented using the OpenIoT platform. It presents four models to prioritize 
+critical trash bins, such as bins close to schools, hospitals, ]^[ gas stations. The system 
+was used to compare the four models according to the amount of CO2 emitted ]^[ the 
+distance traveled by trash trucks. 
+The WindyGrid platform [Rutkin 2014] provides three main systems to the city of 
+Chicago: Situational Awareness ]^[ Incident Monitoring, to monitor ]^[ act on prob- 
+lems that are occurring in the city; Historical Data Analyses, to predict the behavior 
+of city systems, such as traf c ]^[ health care; ]^[ Advanced Real-Time Analytics, to 
+analyze the current situation of city systems. Some examples of the data used in these 
+systems are: log of emergency (911) calls, traf c conditions, public buildings informa- 
+tion, ]^[ surveillance cameras. 
+Galache et al. [Galache et al. 2014] present four systems developed using the ClouT 
+platform: an alert service to warn citizens about earthquakes in Fujisawa, Japan; a 
+civil protection system, which warns the population about environmental risks such as 
+storms ]^[ earthquakes in Genova, Italy; a system to help elderly people nd healthy 
+activities in the city of Mitaka, Japan; ]^[ a sensing application to notify people about 
+events in Santander, Spain, such as cultural acts ]^[ traf c accidents. 
+Yamamoto et al. [Yamamoto et al. 2014] present two systems developed ]f[ the Scal- 
+lop4SC platform, both in the energy management domain. The rst system offers a 
+tool ]f[ the visualization of household energy consumption, which analyzes data at 
+different levels, such as state, city, ]^[ neighborhood. The other system is a wasteful 
+energy detection service that is available ]f[ smart homes. 
+The analyzed applications show that the most explored domains in the literature are 
+traf c, with applications to monitor the streets ]v[ help citizens to use the public trans- 
+port, ]^[ city sensing, capturing data from the city using sensors such as air pollution 
+]^[ temperature. Most of the applications are developed external to the platform, us- 
+ing only one ]v[ more platform services. 
+3.3. Requirements ]f[ Smart City Software Platforms 
+To answer the second research question What are the requirements that a software 
+platform ]f[ Smart Cities should meet? , in this section we analyze the functional ]^[ 
+non-functional requirements extracted from the analyzed platforms. 
+A:14 
+Santana, E. F. Z. et al. 
+We assume that a platform implements a requirement if the literature describing it 
+explicitly states so, ]v[ if the platform has a component ]v[ module that clearly ful lls 
+that requirement. 
+3.3.1. Functional Requirements. The main goal of a platform ]f[ Smart Cities is to fa- 
+cilitate the development of Smart City applications. Towards this aim, most of the 
+analyzed platforms implement requirements ]f[ collecting data from the city, manag- 
+ing ]^[ sharing data, ]^[ providing tools to facilitate the development of Smart City 
+applications. Table II presents an overview of the functional requirements ]f[ Smart 
+City platforms, which we describe in the following: 
+Table II. Functional requirements ]f[ Smart City platforms 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+a 
+t 
+a 
+D 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+18 
+e 
+m 
+i 
+t 
+- 
+n 
+u 
+R 
+n 
+o 
+i 
+t 
+a 
+c 
+i 
+l 
+p 
+p 
+A 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+7 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+N 
+S 
+W 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+9 
+g 
+n 
+i 
+s 
+s 
+e 
+c 
+o 
+r 
+P 
+a 
+t 
+a 
+D 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+13 
+s 
+s 
+e 
+c 
+c 
+A 
+a 
+t 
+a 
+D 
+l 
+a 
+n 
+r 
+e 
+t 
+x 
+E 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+16 
+s 
+l 
+o 
+o 
+T 
+g 
+n 
+i 
+r 
+e 
+e 
+n 
+i 
+g 
+n 
+E 
+e 
+r 
+a 
+w 
+t 
+f 
+o 
+S 
+X 
+X 
+X 
+X 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+e 
+c 
+i 
+v 
+r 
+e 
+S 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+14 
+4 
+l 
+e 
+d 
+o 
+M 
+y 
+t 
+i 
+C 
+a 
+f 
+o 
+n 
+o 
+i 
+t 
+i 
+n 
+e 
+D 
+X 
+X 
+X 
+3 
+SmartSantander 
+OpenIoT 
+Concinnity 
+Civitas 
+Gambas 
+[Khan et al. 2013] 
+[Girtelschmid et al. 2013] 
+Scallop4SC 
+OpenMTC 
+[Wan et al. 2012] 
+[Piro et al. 2014] 
+[Gurgen et al. 2013] 
+[Vilajosana et al. 2013] 
+ClouT 
+Padova Smart City 
+U-City 
+Sentilo 
+WindyGrid 
+EPIC 
+[Privat et al. 2014] 
+SMARTY 
+CiDAP 
+Number of Instances 
+Data Management: This is a requirement implemented by most of the platforms 
+]f[ Smart Cities, which includes collection, storage, analysis, ]^[ visualization of 
+city data. The analyzed platforms use different techniques ]f[ this requirement, such 
+as relational databases [Hernndez-Mu noz et al. 2011; Lee ]^[ Rho 2010], big data 
+Software Platforms ]f[ Smart Cities 
+A:15 
+tools [Thornton 2013; Cheng et al. 2015], ]^[ customized tools implemented by the 
+platform development team [Wu et al. 2014]. 
+Applications Run-time: Some platforms focus on managing the execution of their 
+applications. The goal is to facilitate the deployment ]^[ integration of such applica- 
+tions. Some platforms provide a complete environment ]f[ developers to deploy their 
+applications [Apolinarski et al. 2014]; others offer an execution run-time service ]f[ 
+applications developed with tools the platform provides [Petrolo et al. 2014; Wu et al. 
+2014]. 
+WSN Management: Many of the analyzed platforms have a Wireless Sensor Net- 
+work (WSN) management layer to control ]^[ monitor the devices deployed in the 
+city. Most of these platforms use IoT concepts to organize ]^[ manage the WSN 
+[Hernndez-Mu noz et al. 2011; Tei ]^[ Gurgen 2014]. Other platforms [Bain 2014] 
+do ]n[ explicitly mention this, ]b[ indeed have a software layer to manage the city 
+network devices. Some platforms include features to manage all the device activities, 
+such as adding, removing, ]^[ monitoring the sensors ]^[ actuators. Two platforms 
+describe a WSN deployed in a city: Padova Smart City [Zanella et al. 2014], with 3000 
+sensors, ]^[ SmartSantander [Sanchez et al. 2014], with more than 20000 sensors. 
+Data Processing: Some platforms use speci c processing components, such as infer- 
+ence engines [Lee ]^[ Rho 2010], work ow processing [Wu et al. 2014], ]^[ big data 
+processing tools [Takahashi et al. 2012]. These components process large data sets, 
+]^[ their main purpose is to analyze, verify, aggregate, ]^[ lter the data from the 
+city. In addition, some platforms [Girtelschmid et al. 2013; Cheng et al. 2015] make 
+real-time analyses of data streams. 
+External Data Access: Almost all platforms describe an interface ]f[ external ap- 
+plications to access the platform data. The most common approach is an API to allow 
+access to the data generated in the city. Some platforms use REST [Hernndez-Mu noz 
+et al. 2011; Elmangoush et al. 2013], others use cloud computing concepts to provide 
+the city data as a service [Ballon et al. 2011], ]^[ one proposes an open data platform 
+[Zanella et al. 2014]. Also, a platform [Gurgen et al. 2013] uses the publish/subscribe 
+paradigm to make the data ]^[ services available to applications. 
+Service Management: Most of the analyzed platforms adopt a Service-Oriented Ar- 
+chitecture, in which the platform functionalities are offered by services [Issarny et al. 
+2011]. Some of them use services to provide features to applications, such as access 
+to raw sensors data [Petrolo et al. 2014] ]^[ analyzed data [Zanella et al. 2014], ]^[ 
+work ow engines [Wu et al. 2014]. Others enable developers to deploy services on 
+the platform ]^[ make them available to other applications [Apolinarski et al. 2014; 
+Piro et al. 2014]. Some platforms also use service compositions ]^[ choreographies 
+[Issarny et al. 2011] to create new services ]v[ applications [Lee ]^[ Rho 2010; Piro 
+et al. 2014]. 
+Software Engineering Tools: Some platforms provide a set of tools ]f[ the develop- 
+ment ]^[ maintenance of services ]^[ applications. For describing ]^[ implementing 
+applications, some platforms create visual interfaces [Petrolo et al. 2014]. Other plat- 
+forms provide work ow design tools [Wu et al. 2014] to de ne data ]v[ service ows 
+]^[ create Smart City applications. Moreover, some platforms [Khan et al. 2013] use 
+analytics ]^[ reporting tools to facilitate the development of data visualization ]^[ 
+reports, ]^[ two platforms describe the use of a Smart City application SDK [Elman- 
+goush et al. 2013; Apolinarski et al. 2014]. 
+De nition of a City Model: Some platforms provide a model of the city to facilitate 
+the manipulation ]^[ understanding of the platform data, ]^[ to facilitate the inte- 
+gration of the collected data. For example, in Cheng et al. [Cheng et al. 2015], the city 
+model is used to allow queries in the data from the city sensor network. Privat et al. 
+[Privat et al. 2014] use a nite-state model to represent the possible city data ows. 
+A:16 
+Santana, E. F. Z. et al. 
+Based on the functional requirements aforementioned, we can observe that the main 
+platforms activities aim to control the city data life cycle: (1) Collecting the data with a 
+WSN, (2) Managing the data in the platform, (3) Processing the data using city models, 
+]^[ (4) Sharing the raw ]^[ processed data allowing external access. These activities 
+are highly related to the enabling technologies, such as IoT with the WSN manage- 
+ment, Data Management ]^[ Processing with Big Data, ]^[ Service Management with 
+Cloud Computing. 
+3.3.2. Non-Functional Requirements. Most of the non-functional requirements of Smart 
+City platforms are related to large, heterogeneous distributed systems, such as scala- 
+bility, adaptation, ]^[ interoperability. Other non-functional requirements are related 
+to the manipulation of critical ]^[ personal data from citizens, such as security ]^[ 
+privacy. Table III presents an overview of the non-functional requirements ]f[ Smart 
+City platforms, which we describe in the following. 
+Table III. Non-Functional requirements ]f[ Smart City platforms 
+y 
+t 
+i 
+l 
+i 
+b 
+a 
+r 
+e 
+p 
+o 
+r 
+e 
+t 
+n 
+I 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+13 
+y 
+t 
+i 
+l 
+i 
+b 
+a 
+l 
+a 
+c 
+S 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+8 
+y 
+t 
+i 
+r 
+u 
+c 
+e 
+S 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+y 
+c 
+a 
+v 
+i 
+r 
+P 
+X 
+X 
+X 
+X 
+X 
+10 
+5 
+s 
+s 
+e 
+n 
+e 
+r 
+a 
+w 
+A 
+t 
+x 
+e 
+t 
+n 
+o 
+C 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+7 
+n 
+o 
+i 
+t 
+a 
+t 
+p 
+a 
+d 
+A 
+y 
+t 
+i 
+l 
+i 
+b 
+i 
+s 
+n 
+e 
+t 
+x 
+E 
+X 
+X 
+X 
+X 
+4 
+X 
+X 
+X 
+X 
+X 
+5 
+y 
+t 
+i 
+l 
+i 
+b 
+a 
+r 
+u 
+g 
+n 
+o 
+C 
+X 
+X 
+X 
+X 
+X 
+5 
+SmartSantander 
+OpenIoT 
+Concinnity 
+Civitas 
+Gambas 
+[Khan et al. 2013] 
+[Girtelschmid et al. 2013] 
+Scallop4SC 
+OpenMTC 
+[Wan et al. 2012] 
+[Piro et al. 2014] 
+[Gurgen et al. 2013] 
+[Vilajosana et al. 2013] 
+ClouT 
+Padova Smart City 
+U-City 
+Sentilo 
+WindyGrid 
+EPIC 
+[Privat et al. 2014] 
+SMARTY 
+CiDAP 
+Number of Instances 
+Interoperability: Different devices, systems, applications, ]^[ platforms compose 
+a Smart City environment, ]^[ all these components must operate in an integrated 
+Software Platforms ]f[ Smart Cities 
+A:17 
+fashion; ]f[ example, sensors from multiple vendors, systems implemented in differ- 
+ent languages, platforms that share data ]^[ users, ]^[ legacy systems that have 
+to communicate with the new platforms. Previous work in the eld adopted several 
+techniques to handle this requirement: interoperable objects [Villanueva et al. 2013], 
+adopting generic ]^[ standard interfaces [Gurgen et al. 2013], applying Semantic 
+Web to integrate all platform components [Girtelschmid et al. 2013], ]^[ using a 
+naming mechanism [Cheng et al. 2015] to recognize different devices ]v[ data sources. 
+Scalability: The amount of users, data, ]^[ services of a Smart City platform will be 
+massive, ]^[ can increase over time. For example, in the SmartSantander testbed, 
+there were more than 20,000 sensors, in a city of 178,000 inhabitants collecting a 
+large amount of city data [Sanchez et al. 2014]; CiDAP collected more than 50 GBs of 
+data in three months [Cheng et al. 2015]. This non-functional requirement is relevant 
+to many functional requirements, such as WSN management [Ballon et al. 2011], 
+data management [Takahashi et al. 2012], ]^[ service management [Bain 2014]. 
+Security: Malicious users can make fraudulent use of services ]^[ data provided by 
+the platform. Many platforms have a component ]v[ describe mechanisms to handle 
+security, avoiding attacks to the city infrastructure ]^[ information theft [Piro et al. 
+2014; Hernndez-Mu noz et al. 2011; Petrolo et al. 2014]. 
+Privacy: A Smart City platform collects ]^[ manipulates several citizen-sensitive 
+data, such as medical records, user localization, ]^[ consuming habits. The challenge 
+is to use these data while hiding, ]v[ to avoid saving identi able information. Some of 
+the strategies used to achieve this requirement are cryptography [Apolinarski et al. 
+2014], tokens to control the access to the data that users can manipulate [Villanueva 
+et al. 2013], ]^[ anonymization [Mylonas et al. 2015]. 
+Context Awareness: As the city ]^[ user situation can change over time, many 
+applications ]^[ services can provide better results using contextual information. 
+Some platforms use information from users [Apolinarski et al. 2014; Privat et al. 
+2014], such as location, activity, ]^[ language. Other platforms use information from 
+the city [Khan et al. 2013; Cheng et al. 2015], such as traf c conditions, climate, 
+]^[ air quality. Examples of context use are: displaying a different language in an 
+application to a tourist, ]^[ changing the route of a user avoiding polluted areas. 
+Adaptation: Related to context awareness, many platforms adapt their behavior 
+based on context in order to achieve fault-tolerance, choose a closer server to improve 
+ef ciency, decide ]f[ batch ]v[ real-time processing, ]^[ adapt data from multiple 
+data sources. This requirement is most used in platforms that use CPS as enabling 
+technology [Privat et al. 2014; Wan et al. 2012], ]b[ other concepts are used to meet 
+this requirement as well, such as semantic technologies [Girtelschmid et al. 2013]. 
+Extensibility: The capability to add services, components, ]^[ applications to the 
+platform is important to assure that it meets evolving system requirements ]^[ user 
+needs. Mun oz et al. [Hernndez-Mu noz et al. 2011] state that easy extensibility is 
+valuable because one cannot know what services a city will need. Scallop4SC [Taka- 
+hashi et al. 2012] uses materialized views that developers extend to implement their 
+applications. Some platforms [Khan et al. 2013; Bain 2014] employ only open source 
+tools, facilitating the platform s extensibility. CiDAP [Cheng et al. 2015] offers exten- 
+sibility to enable the use of the platform in cities of different scales. 
+Con gurability: A Smart City platform has many con guration options ]^[ pa- 
+rameters that de ne its behavior at execution time, such as de ning pollution ]^[ 
+congestion thresholds ]^[ the priority of services. Thus, it is important to allow 
+(re)con guration of the many variables of the platform. Two platforms [Wan et al. 
+2012; Privat et al. 2014] highlighted the importance of self-con gurability capacities, 
+because of the huge amount of con gurations needed in a Smart City platform. Other 
+A:18 
+Santana, E. F. Z. et al. 
+platforms [Lee ]^[ Rho 2010; Kim ]^[ Lee 2014] provide a portal to centralize the 
+con gurations. 
+Based on the non-functional requirements aforementioned, we can observe that 
+some of them are very important to many functional requirements: such as Scala- 
+bility, which is valuable to the WSN ]^[ Data Management; Security ]^[ Privacy, 
+which are important to all data requirements; Extensibility, which is required to the 
+Service Management; ]^[ Con gurability, which is important to all the functional re- 
+quirements. The non-functional requirements are very similar to the challenges ]^[ 
+open research problems that we present in the next section. 
+4. CHALLENGES AND OPEN RESEARCH PROBLEMS 
+To answer RQ3 ( What are the main challenges ]^[ open research problems in the 
+development of next generation, robust software platforms ]f[ Smart Cities? ), we ana- 
+lyzed the challenges pointed out by Smart City research papers. Table IV presents an 
+overview of the main challenges, which we describe in the following. 
+Table IV. Overwiew of most cited Challenges ]^[ Open Research Problems 
+Challenge 
+Privacy 
+Data Management 
+Description 
+Protecting data collected from citizens, city, 
+]^[ enterprises. 
+Managing all the data collected in the platform 
+Heterogeneity 
+Energy Management 
+Communication 
+Scalability 
+Security 
+Lack of Testbeds 
+City Models 
+Platform Maintenance 
+interoperability of devices 
+Ensuring the 
+]^[ applications 
+Managing the electricity used by devices de- 
+ployed in the city. 
+Enabling communication among heteroge- 
+neous devices. 
+Allowing the growth of devices ]^[ users con- 
+nected to the platform. 
+Protecting the city data, services, ]^[ infras- 
+tructure. 
+There are ]n[ suf cient testbeds to experiment 
+Smart City solutions. 
+De ning a model describing the city. 
+Maintaining the city systems ]^[ infrastruc- 
+ture. 
+Technologies/Tools 
+Cryptography, Anonymization, 
+]^[ Access Tokens 
+NoSQL 
+Databases 
+tools. 
+Standards, Ontology, ]^[ a 
+City Uni ed Model. 
+Relational 
+processing 
+]^[ 
+]^[ 
+M2M techniques. 
+Distributed tools ]^[ algo- 
+rithms ]^[ P2P applications. 
+Cryptography, Access Tokens 
+]^[ Devices. 
+Simulators. 
+Semantic Web ]^[ Ontologies. 
+Monitoring ]^[ Alert tools. 
+Privacy: is the most cited challenge to implementing a Smart City platform; the 
+main reason pointed by Hassan et al. [Hassan et al. 2014] ]^[ Balakrishna [Balakr- 
+ishna 2012] is that the data collected from the city includes personal, enterprise, ]^[ 
+governmental data that should ]n[ be accessed by other unauthorized users. Wan et 
+al. [Wan et al. 2012] discuss legal problems in using data belonging to platform users. 
+Data Management: Many authors also cite data management as a challenge, be- 
+cause the platform has to store ]^[ process a large amount of data ]^[ use ef cient 
+]^[ scalable data storage ]^[ processing algorithms [Su et al. 2011; Djahel et al. 
+2014; Perera et al. 2014]. Data Analysis is also a challenge, because it is hard to 
+extract useful knowledge [Hassan et al. 2014]. Another challenge is data trustwor- 
+thiness; ]f[ example, Wu et al. [Wu et al. 2014] claim that a large number of data 
+sources make it dif cult to ensure that all the data are correct. 
+Software Platforms ]f[ Smart Cities 
+A:19 
+Heterogeneity: This is a challenge because of the differences between the devices 
+in a Smart City, ]^[ the dif culty of relating data from different sources [Wu et al. 
+2014; Su et al. 2011; Wan et al. 2012]. Naphade et al. [Naphade et al. 2011] raise the 
+problem of managing data across all city systems because of variations in data from 
+different sources. Other authors [Wenge et al. 2014] state that a Smart City platform 
+has to de ne standards across heterogeneous devices, systems, ]^[ domains. 
+Energy Management: Some authors cite Energy Consumption as a challenge to be 
+faced by all the components of the platform, such as sensors, actuators, ]^[ servers 
+[Perera et al. 2014]. Moreover, Hassan et al. [Hassan et al. 2014] point out that en- 
+ergy management in a Smart City health care application is also important, because 
+applications ]v[ services in domains like this cannot fail due to power outages. 
+Communication: Since the smart cities of the future will incorporate a massive 
+amount of devices, enabling communication among these devices will be a challenge. 
+Some authors [Wan et al. 2012; Hassan et al. 2014] discuss the domains in a Smart 
+City that depend on mission-critical communication to ensure reliability, such as 
+health care ]^[ public safety. In addition, Djahel et al. [Djahel et al. 2014] explain 
+that good communication mechanisms are required to share platform data with ap- 
+plications. 
+Scalability: Within the next decades, the number of connected devices in a Smart 
+City will continually increase [Balakrishna 2012], requiring a strong level of scalabil- 
+ity in the associated software platform. Moreover, the number of users, services, ]^[ 
+data stored will increase with population growth ]^[ on special events in the city. Su 
+et al. [Su et al. 2011] discuss how a Smart City platform must support large-scale, 
+ef cient services. As an example, Sinaeepourfard et al. [Sinaeepourfard et al. 2016] 
+estimated that the city of Barcelona will need more than 1 million sensors to cover 
+all the city, generating more than 8 GB of data every day. 
+Security: Unauthorized users accessing city services without permission may cause 
+a lot of harm. Hancke et al. [Hancke et al. 2012] consider whether city networks will 
+be safe from cyber-terrorism ]^[ cyber-vandalism. Gurgen et al. [Gurgen et al. 2013] 
+highlighted the importance of security in CPS platforms, as such systems control 
+part of the city infrastructure, which a malicious user can corrupt, e.g., by tampering 
+with traf c lights ]^[ light posts. 
+Lack of Testbed: The lack of testbeds is cited by Elmangoush et al. [Elmangoush 
+et al. 2013] ]^[ Muoz et al.[Hernndez-Mu noz et al. 2011] as a challenge to the de- 
+velopment of platforms ]f[ Smart Cities. Without testbeds, it is hard to perform tests 
+]^[ experimentation to discover the real challenges that deploying a Smart City 
+platform will present. Smart City Simulators [Santana et al. 2016] could be a much 
+lower-cost alternative ]f[ experimentation. 
+City Models: Some authors also argue that it is hard to understand a city ]^[ de- 
+scribe an effective ]^[ ef cient model ]f[ it. For example, Wu et al. [Wu et al. 2014] 
+claim that it is necessary to create a useful model of the city to make intelligent 
+decisions. Naphade et al. [Naphade et al. 2011] state that modeling is required to 
+observe ]^[ understand the city activity ]^[ to avoid generating unnecessary ]^[ 
+empty models. Mu noz et al. [Hernndez-Mu noz et al. 2011] state that a uni ed model 
+of the city is required, ]s[ that the huge amount of heterogeneous data generated can 
+be shared among applications ]^[ services. 
+Platform Maintenance: Three works state that deploying ]^[ maintaining the 
+platform is a challenge. Perera et al. [Perera et al. 2014] discuss the dif culty of 
+maintaining a middleware to manage millions ]v[ billions of devices connected to the 
+platform. Similarly, Wenge et al. [Wenge et al. 2014] discuss that the administration 
+of the platform can be a challenge, due to its size as well as the very large number 
+of devices spread across the city. Hancke et al. [Hancke et al. 2012] point out that 
+A:20 
+Santana, E. F. Z. et al. 
+addressing coordination issues in the sensor nodes can be a problem, again because 
+of the size of the city sensor network. 
+5. REFERENCE ARCHITECTURE FOR SMART CITY PLATFORMS 
+Based on the knowledge surveyed in this paper, we present a novel, comprehensive ref- 
+erence architecture to guide the development of next-generation software platforms ]f[ 
+Smart Cities. The platform was derived from architectures proposed in previous works, 
+with enhancements based on the requirements ]^[ challenges described in this sur- 
+vey. First, we describe ]^[ analyze the architecture of two platforms presented in the 
+literature: CiDAP ]^[ OpenIoT. Then, based on these early works, ]^[ on the answers 
+to the research questions presented before, we derived a novel reference architecture. 
+Finally, we compare our proposal with the other two architectures. 
+5.1. CiDAP 
+The City Data ]^[ Analytics Platform (CiDAP) is a Big Data based platform that aims 
+to use the data collected from the city to enable context-awareness ]^[ intelligence 
+in applications ]^[ services. This platform processes large datasets collected from an 
+IoT Middleware. Figure 6 presents the architecture of the platform, which has the 
+following ve main components. 
+Fig. 6. CiDAP Platform [Cheng et al. 2015] 
+IoT-Agents connect to the IoT middleware ]^[ serve as a gateway to the devices 
+available to the platform. Each data source of the IoT middleware is mapped to an 
+IoT-Agent. 
+IoT-Brokers act as a uni ed interface to the IoT agents, facilitating access to the 
+middleware data. This component communicates with the Big Data Repository to 
+send data to be stored, ]^[ with the CityModel Server to send data to be used directly 
+by applications. 
+Software Platforms ]f[ Smart Cities 
+A:21 
+The Big Data Repository stores raw data collected from the city ]^[ processed data 
+from the Big Data processing component. The platform uses the CouchDB4 NoSQL 
+database, which stores data as JSON documents. This component also has an inter- 
+nal processing tool that makes processing simple, such as transforming data into new 
+formats, ]v[ creating new structured views ]^[ tables to index data. 
+Big Data Processing is responsible ]f[ complex ]v[ intensive processing using the 
+data stored in the Big Data Repository, such as data aggregation ]v[ data mining. 
+Also, it processes historical data using batch processes, ]v[ real-time data using data 
+streams. This component uses Apache Spark ]f[ this processing. 
+City Model Server is the interface of the platform to external applications. The 
+CityModel API allows applications to perform simple queries, complex queries, ]^[ 
+subscribe to speci c pieces of data from the platform. Simple queries request the 
+latest data from devices, complex queries request aggregated historical data, ]^[ 
+subscription is a mechanism ]f[ applications to periodically receive data from the 
+devices. 
+The red, green, ]^[ blue boxes in Figure 6 highlight the concepts used to implement 
+each layer of the platform. The IoT Connector box has components to facilitate access 
+]f[ IoT devices in the platform. The Big Data box has components to store ]^[ analyze 
+the data gathered from multiple sources. Finally, the Cloud Computing box indicates 
+the interface of the platform with external applications, which is implemented using 
+cloud services. 
+CiDAP is mainly concerned with storing ]^[ processing a large amount of data in 
+the platform, which is important because of the massive amount of data collected in a 
+city. The strong points of its architecture are data storage ]^[ processing, the real-time 
+]^[ batch processing modules, ]^[ the fact that the associated platform was already 
+tested in the SmartSantander testbed. 
+An important limitation of CiDAP is that the platform does ]n[ foresee speci c ser- 
+vices ]^[ tools ]f[ application developers, ]^[ does ]n[ allow the deployment of new 
+services in the platform, making its extensibility dif cult. 
+The red, green, ]^[ blue boxes in the gure highlight the concepts used to implement 
+each layer of the platform. The IoT Connector box has components to facilitate the 
+access of IoT devices in the platform. The Big Data box has components to store ]^[ 
+analyze the data gathered from multiple sources. Finally, the Cloud Computing box 
+indicates the interface of the platform with external applications which is implemented 
+using cloud services. 
+CiDAP is mainly concerned with storing ]^[ processing a large amount of data in 
+the platform. It is important because of the huge amount of data collected in a city. 
+The strong points of its architecture are the data storage ]^[ processing, the real-time 
+]^[ batch processing modules, ]^[ the fact that the associated platform was already 
+tested in the SmartSantander testbed. 
+An important limitation of CiDAP is that the platform does ]n[ foresee speci c ser- 
+vices ]^[ tools ]f[ application developers ]^[ does ]n[ allow the deployment of new 
+services. 
+5.2. OpenIoT 
+OpenIoT is an Internet of Things platform used by the Vital project [Petrolo et al. 
+2014] to create a Smart City platform. Figure 7 presents an overview of the platform 
+architecture, which has three layers: the Physical Plane, the Virtualized Plane, ]^[ 
+the Utility-App Plane. 
+4http://couchdb.apache.org 
+A:22 
+Santana, E. F. Z. et al. 
+Fig. 7. OpenIoT Platform [Petrolo et al. 2014] 
+The Physical plane is a middleware responsible ]f[ collecting, ltering, combining, 
+]^[ cleaning data from sensors, actuators, ]^[ devices. This plane acts as an interface 
+between the physical world ]^[ the OpenIoT platform. The current version of OpenIoT 
+uses the X-GSN middleware [Calbimonte et al. 2014], an open-source middleware ]f[ 
+managing, monitoring, ]^[ controlling IoT devices. 
+The Virtualized plane aims to store data, execute services, ]^[ schedule the execu- 
+tion of these services. The main components of the Virtualized plane are the following: 
+The Scheduler receives requests ]f[ services ]^[ ensures the access to resources 
+that the service needs, such as data ]^[ data streams. This component is responsible 
+]f[ discovering the sensors required ]f[ a service execution. 
+The Cloud Data Storage keeps all the data from the platform, e.g., data streams 
+collected from the sensors ]^[ the data created within the platform, such as user 
+pro les, service de nitions, ]^[ registered applications. For storing data collected 
+from the IoT middleware, OpenIoT uses the Linked Sensor Middleware (LSM) [Le- 
+Phuoc et al. 2012]. 
+The Service Delivery ]^[ Utility Manager has three primary functions: han- 
+dling the combination of the data collected from the IoT middleware, allowing ser- 
+vice de nitions, ]^[ delivering the results of requested services to the platform ]v[ to 
+third-party applications. Also, this component keeps track of the usage of the services 
+de ned in the platform ]f[ accounting ]^[ billing. 
+The Utility-App Plane, the user interface of the platform, has three main compo- 
+nents: 
+Request De nition enables users to de ne new applications using the services de- 
+ployed on the platform, including the de nition of service mash-ups. 
+Request Presentation executes the applications created in the Request De nition 
+component. When a user executes an application, it communicates with the Service 
+Delivery ]^[ Utility Manager to retrieve the results from the service executions. 
+Software Platforms ]f[ Smart Cities 
+A:23 
+Con guration ]^[ Monitoring allows con guration of platform parameters, such 
+as periodicity of sensor data reads ]^[ monitoring the health of all platform devices 
+]^[ components. 
+OpenIoT is a complete platform, handling almost all the main requirements that 
+we described in the survey. The strong points of this platform are the use of an IoT 
+middleware to con gure ]^[ collect data from devices, the middleware to store the 
+data collected from sensors, the development tools, ]^[ the fact that the platform is 
+open source. However, its architecture does ]n[ consider other data sources, such as so- 
+cial networks, ]^[ does ]n[ provide support ]f[ pre-processing services relevant when 
+dealing with Big Data. 
+5.3. The Uni ed Reference Architecture 
+Based on the answers to the research questions of this survey, the 23 platforms an- 
+alyzed, ]^[ on the two architectures presented above, we derived a novel reference 
+architecture ]f[ Software Platforms ]f[ Smart Cities. With this reference architecture, 
+we answer the general research question stated in Section 1 ( What are the elements 
+required ]f[ the development of a highly-effective software platform ]f[ enabling the 
+easy construction of highly-scalable, integrated Smart City applications? ). Figure 8 
+presents an overview of the architecture. 
+Fig. 8. Reference Architecture ]f[ Smart City Platforms 
+A:24 
+Santana, E. F. Z. et al. 
+The lowest level component of the reference architecture is Cloud ]^[ Network- 
+ing, which is responsible ]f[ the management ]^[ communication of the city network 
+nodes. This component has to identify all the devices connected to the platform, in- 
+cluding servers, sensors, actuators, ]^[ user devices. Using cloud computing concepts 
+is important to ensure some fundamental non-functional requirements, including scal- 
+ability ]^[ extensibility. 
+Just on top of the Cloud ]^[ Networking infrastructure, the reference architecture 
+includes the IoT Middleware ]^[ the Service Middleware. The former has to man- 
+age the city IoT network ]^[ enable the effective communication of the platform with 
+the user devices, city sensors, ]^[ actuators. The Service Middleware has to manage 
+the services that the platform will provide to the applications, performing operations 
+such as publishing, enacting, monitoring, composing, ]^[ choreographing these ser- 
+vices. 
+The X-GSN middleware can be used to implement the IoT Middleware, which is 
+already used in the OpenIoT project. Another option is to use components of the Sen- 
+tilo platform, which is also open-source, ]^[ implement a complete IoT middleware. 
+The CHOREOS framework [Issarny et al. 2011] can be used to implement the Service 
+Middleware; this project aims to enable choreographies of large-scale service-based 
+software systems. 
+To provide better services to the citizens, it is important ]f[ the platform to store 
+some user data ]^[ preferences, which is the role of the User Management compo- 
+nent. But, to ensure user privacy, this data must be properly protected, ]^[ permission 
+to store it must be acquired from the user. Moreover, as the city platform will have 
+many applications, it can be helpful to offer a single sign-on mechanism. 
+Social networks will have a major role in Smart Cities. They can be used to retrieve 
+data from city conditions, ]^[ can be an ef cient communication channel between the 
+platform ]^[ city government with the citizens. Therefore, it is important to allow the 
+integration of the Smart City platform with existing social networks. This is the role of 
+the Social Network Gateway. To implement this gateway, many tools can be used, 
+such as Spark Streaming, which reads data streams of Twitter, ]^[ Spring Social, 
+which is a Java-based framework to facilitate the connection with social networks such 
+as Twitter, Facebook, ]^[ LinkedIn. 
+Big Data Management is a module to manage all the data in the platform. It 
+is responsible ]f[ storing the data collected from the city ]^[ generated by the plat- 
+form. To this extent, the reference platform has three repositories: (1) an App Repos- 
+itory to store applications, including its source/binary code, images, ]^[ associated 
+documents; (2) a Model Repository to store the city models, such as a traf c model, 
+sensor network model, data model, city maps, ]^[ an energy distribution model; ]^[ 
+(3) a Data Repository to store the data collected from sensors, citizens, ]^[ applica- 
+tions. Because of the amount of data that a platform ]f[ Smart Cities generate, NoSQL 
+databases can be more suitable than relational databases. 
+Besides the data storage, the Big Data Management module is also responsible ]f[ 
+the processing of city data. There are two types of data processing that might be more 
+suitable ]f[ different situations: Stream processing, to perform real-time analytics 
+]^[ data- ow processing; ]^[ Batch processing, to analyze large data-sets. More- 
+over, this module must be capable of performing useful pre-processing tasks, such as 
+data ltering, normalization, ]^[ transformation. 
+The Big Data module also has a Machine Learning component, which facilitates 
+understanding of the city by automatically building models of city processes behav- 
+ior ]^[ making predictions of city phenomena. Since a Smart City will produce an 
+enormous amount of data, a Data Cleaning component is responsible ]f[ garbage col- 
+Software Platforms ]f[ Smart Cities 
+A:25 
+lection, deleting unneeded data, ]^[ archiving old data on slower, high capacity data 
+stores. 
+To implement the Big Data Management components, many open-source tools are 
+available. To the repositories, NoSQL Databases, such as CouchDB, MongoDB, ]^[ 
+Cassandra, can store the unstructured ]v[ semi-structured data, such as sensor reads 
+]^[ social networks posts. Relational Databases, such as MySQL ]^[ PostgreSQL, can 
+store structured data, such as user information ]^[ the platform con guration. 
+To implement the processing engines, many tools are also available. To execute batch 
+processing, Apache Hadoop ]^[ Apache Spark are widely used by other platforms. 
+Apache Spark also provides a stream data processing tool, likewise Apache Storm. 
+Many tools offer machine learning algorithms to process large data sets such as Weka5, 
+Spark MLib, ]^[ Scikit-Learn6. 
+Relying on aforementioned middleware component, application developers ]^[ 
+smart city operators will develop ]^[ deploy Smart City applications. By using open 
+data ]^[ open services provided by a city, common citizens ]^[ users may also execute, 
+]v[ even develop, novel applications to run on top of the city s smart infrastructure. The 
+applications will use the services ]^[ data from the platform, ]b[ also generate ]^[ 
+store data on the platform. The platform should provide an SDK to facilitate the devel- 
+opment of applications, including tools such as an Integrated Development Environ- 
+ment (IDE), libraries, ]^[ frameworks ]f[ commonly used programming languages, 
+]^[ a Smart City Simulator ]f[ debugging ]^[ experimenting with applications before 
+real deployment. 
+All components of the platform must support several non-functional requirements, 
+such as scalability, security, privacy, ]^[ interoperability. Scalability is fundamental 
+because of the huge amount of devices, data, ]^[ services in the platform. Privacy ]^[ 
+Security are important because the platform collects, stores, ]^[ processes sensible 
+data from the city ]^[ citizens. Interoperability will allow the integrated operation 
+of different types of services, devices, ]^[ applications. Table V presents options to 
+implement the reference architecture using tools that the platforms described in the 
+survey use. 
+Table V. Technologies used in the platforms implementation 
+Component 
+IoT Middleware 
+Data Repository 
+Data Processing 
+Stream Processing 
+Cluster Management 
+Cloud Environment 
+Data Access 
+Security 
+Machine Learning 
+Tools 
+Sentilo ]^[ X-GSN 
+MongoDB, CouchDB, MySQL, IBM DB2, ]^[ Redis 
+Spark ]^[ Hadoop 
+Storm 
+Apache ZooKeeper ]^[ Haddop YARN 
+OpenNebula ]^[ Microsoft Azure 
+REST APIs ]^[ Jersey 
+SAML Protocol 
+Weka, Spark MLib, ]^[ Scikit Learn 
+5.4. Comparison of Architectures 
+In our architecture, we combined aspects of both platforms described in the beginning 
+of this section. Our Big Data module is similar to the one in CiDAP; both foresee batch 
+5Weka - https://weka.wikispaces.com/ 
+6Scikit-Learn - http://scikit-learn.org/stable/ 
+A:26 
+Santana, E. F. Z. et al. 
+]^[ real-time processing ]^[ big data storage components. However, we added the idea 
+of an application repository (to store data ]^[ meta-data associated with applications 
+]s[ that we can better manage ]^[ re ect on the applications executing in the city), as 
+well as a model repository (to store different types of models associated with various 
+city-related phenomena such as different kinds of maps, data ows, user behaviors, 
+automated processes, ]^[ more). 
+Similar to OpenIoT, we included a Cloud ]^[ Networking layer to manage the de- 
+vices that collect data from the city ]^[ execute service ]^[ application components. 
+We also included a service middleware to support many service-related operations, 
+such as deployment, management, composition (via orchestrations ]^[ choreogra- 
+phies), ]^[ enactment; OpenIoT also provides a Service Delivery component with more 
+limited support ]f[ some of these operations. 
+We also included some components that are ]n[ in these two architectures, ]b[ were 
+considered relevant in our literature review. The rst is the Social Network Gateway, 
+which is important because social networks connect citizens, the city administration, 
+]^[ service providers, ]^[ generate a lot of useful data ]f[ city applications. 
+Although OpenIoT provides some development tools to create applications using the 
+available services, a Smart City platform will have to provide a complete software 
+development toolkit. This SDK has to be aware of all the components of the platform, 
+]^[ enable the construction of sophisticated mash-ups based on them. For example, it 
+must allow the development of a service using data from the IoT middleware, combined 
+with data from social networks, ]^[ thereby generating a data stream that is ltered, 
+processed, distributed to other users that have subscribed to a speci c channel and, 
+later, summarized ]^[ stored in a long-term persistent storage in order to maintain 
+historical records. 
+6. DISCUSSION 
+We now discuss the ndings of this research. Section 6.1 relates the four enabling tech- 
+nologies with the functional ]^[ non-functional requirements; Section 6.2 discusses 
+open research challenges; Section 6.3 presents the implications of our survey to Smart 
+City stakeholders, such as city managers, citizens, ]^[ developers. Finally, Section 6.4 
+considers the limitations of this work. 
+6.1. Enabling Technologies ]^[ Requirements 
+This survey presented multiple approaches ]f[ the development of Smart City plat- 
+forms. From this study, four highly signi cant functional requirements emerged: man- 
+agement of sensor ]^[ actuator networks; management of the data collected from the 
+city; provisioning, management, ]^[ development of services; ]^[ an environment ]f[ 
+the development ]^[ deployment of Smart City applications. These features can be 
+related to the enabling technologies, mapping them onto the major functional ]^[ non- 
+functional requirements of Smart City platforms. 
+Technologies around the Internet of Things are used ]f[ managing the sensor ]^[ 
+actuator networks ]^[ their challenges, such as heterogeneity, scalability, ]^[ adap- 
+tation. Big Data ]^[ Cloud Computing are used to deal with the massive amount of 
+data generated from multiple data sources in the city, such as WSN, social networks, 
+]^[ user devices. Big Data tools are required ]f[ most data-related activities, such 
+as storing, analyzing, ]^[ sharing. Cloud Computing provides a scalable ]^[ elastic 
+environment to store ]^[ process city data. 
+Figure 9 shows the relation between the implemented functional requirements from 
+platforms ]^[ the enabling technologies. For example, it is possible to verify that most 
+of the Big Data platforms handle Data Management ]^[ Data Processing. Cloud Com- 
+puting platforms handle External Data Access ]^[ Service Management. 
+Software Platforms ]f[ Smart Cities 
+A:27 
+Fig. 9. Relationship between functional requirements ]^[ enabling technologies 
+Figure 10 relates the non-functional requirements ]^[ the enabling technologies. 
+We can observe that most platforms are concerned with scalability, regardless of the 
+enabling technology used. It is possible to verify relationships between other non- 
+functional requirements ]^[ the technologies. For example, all the CPS platforms han- 
+dle con gurability. Extensibility is mostly offered by platforms that use Big Data, ]^[ 
+interoperability mostly by platforms that use IoT. 
+Fig. 10. Relationship between non-functional requirements ]^[ enabling technologies 
+A:28 
+Santana, E. F. Z. et al. 
+6.2. Challenges ]^[ Open Research Problems 
+Most of the signi cant challenges ]^[ research problems in implementing a platform 
+]f[ Smart Cities is related to data management. The most cited problem in the litera- 
+ture is ensuring the privacy of user data, because of the amount of personal ]^[ critical 
+data that a platform needs to handle, such as user locations ]^[ medical records. 
+The second most cited challenge is heterogeneity, because of the large number of 
+different systems, services, applications, ]^[ devices that a platform must support. 
+We were surprised that only three authors cited scalability as a problem, because it 
+certainly will be a great challenge support the huge number of devices, users, data, 
+]^[ services in a large metropolis. 
+An important ]^[ understudied issue is how to create a generic platform to support 
+the requirements of different cities. Some literature focuses on a particular city, such 
+as WindyGrid, SmartSantander, ]^[ Padova Smart City. Other platforms provide solu- 
+tions without discussing the characteristics of the cities in which that solution should 
+be applied. The studies proposing generic solutions ]f[ Smart Cities lack a discussion 
+concerning how the components of these platforms could be adapted to t cities of 
+different sizes ]^[ characteristics. 
+6.3. Implications 
+This paper presented important features that software platforms ]f[ Smart Cities 
+should handle. The results give important references ]f[ several city stakeholders, 
+such as platform developers, application developers, city managers, system operators, 
+end-users, ]^[ Smart City researchers. In this section, we discuss the potential impli- 
+cations of our ndings ]f[ these stakeholders. 
+The enabling technologies highlight the infrastructure needed to build Smart Cities. 
+City managers can use this information to improve their investment decisions. Big 
+Data ]^[ Cloud Computing deal with an enormous volume of data storage ]^[ net- 
+work infrastructure to access data ]^[ services. The city must be equipped with sen- 
+sors, actuators, ]^[ Internet services to take advantage of the Internet of Things ]^[ 
+Cyber-Physical Spaces. Besides, the survey can help Smart City application ]^[ sys- 
+tem developers decide what technologies to use. 
+The reference architecture highlights the functional ]^[ non-functional require- 
+ments that platforms ]^[ applications developers should consider when developing 
+software ]f[ Smart Cities. For platforms developers, this survey indicates that is nec- 
+essary to deal with big heterogeneous ]^[ distributed systems, as well as critical ]^[ 
+personal data, in an effective ]^[ ef cient way. For application developers, the refer- 
+ence architecture shows what kind of services ]^[ data they can use to provide better 
+experiences to their end-users. By discussing examples of these systems, we show to 
+end-users, ]v[ citizens, the range of system domains that can be developed to facilitate 
+their daily routine, such as urban mobility, air pollution, ]^[ heath care. 
+Finally, this survey can also helps Smart City researchers by discussing the main 
+open research questions ]^[ challenges to be overcome to build smarter cities. These 
+challenges can guide future work in this research area. 
+6.4. Limitations 
+In this survey, we decided to describe only the most cited enabling technologies used 
+by Smart City platforms. However, we found other less employed technologies, such as 
+M2M Communications ]^[ the Semantic Web. These non-cited technologies are used 
+by few platforms, ]v[ are used to solve a small problem ]b[ ]n[ to serve as a fundamen- 
+tal architectural component of the platform. Thus, there might be key technologies 
+Software Platforms ]f[ Smart Cities 
+A:29 
+that end up being very relevant in the future that have ]n[ ]y[ been identi ed in this 
+survey. 
+We used the most cited paper of each research project to extract components, re- 
+quirements, ]^[ features of the platforms. Other papers, ]v[ the project website, may 
+de ne different aspects. 
+In this research, we classi ed the papers according to the enabling technologies only 
+when they were explicitly mentioned. However, we noticed that, in some papers, they 
+were pointed out as a motivating aspect ]v[ future work. For example, Khan et al. [Khan 
+et al. 2013] do ]n[ explicitly mention IoT in the architecture, ]b[ the authors discuss 
+the possibility of using smart hardware such as sensor networks ]v[ smart household 
+appliances, which can be organized in an IoT system. 
+7. RELATED SURVEYS 
+In our literature search, we found four papers that also surveyed platforms ]^[ appli- 
+cations ]f[ Smart Cities. 
+Da Silva et al. [da Silva et al. 2013] surveyed architectures of Smart Cities platforms, 
+analyzing the requirements handled by the platforms. However, they analyzed few 
+platforms ]^[ did ]n[ distinguish functional ]^[ non-functional requirements, ]^[ 
+did ]n[ address future research ]^[ open challenges in the area. 
+Yin et al. [Yin et al. 2015] conducted a survey on Smart Cities. Although the paper 
+presents some platforms, the main goal of their work was to understand the concept of 
+Smart Cities, identifying the enabling technologies ]^[ Smart City research issues. 
+Al Nuaimi et al. [Al Nuaimi et al. 2015] reviewed the use of Big Data tools ]^[ 
+concepts in applications ]f[ Smart Cities. The paper mainly presents the relation be- 
+tween the challenges to creating applications ]f[ Smart Cities ]^[ the use of Big Data 
+tools. It also identi es Smart City requirements that Big Data tools can address. It has 
+some similarities with our work, ]b[ we conducted a more general ]^[ comprehensive 
+survey. 
+Finally, Botta et al. [Botta et al. 2015] presented a study of the integration of Cloud 
+Computing ]^[ the Internet of Things, de ning this novel paradigm as CloudIoT. They 
+describe applications that use this paradigm, such as health care, transportation, ]^[ 
+smart cities. The paper presents platforms that use the two concepts, some of which 
+are also presented here, such as OpenIoT ]^[ ClouT. 
+In our work, we studied Smart City software platforms ]^[ the related ICT prob- 
+lems, aiming to derive the major functional ]^[ non-functional requirements, ]^[ the 
+technical ]^[ research open challenges. Besides, we presented a reference architecture 
+derived from the requirements pointed out by the surveyed studies. 
+8. CONCLUSION 
+Smart City is a concept that has gained increased attention in academic, industrial, 
+]^[ governmental circles. While the urban population is growing, the infrastructure 
+]^[ resources required to support citizens are often insuf cient, leading to a degrada- 
+tion in public services. Information ]^[ Communication Technologies provide impor- 
+tant tools to reduce this problem, helping to improve the sustainable use of resources, 
+city services, ]^[ the citizens quality of life. 
+Using a software platform rather than ad hoc solutions is a more robust ]^[ sustain- 
+able way to support the features needed by a Smart City environment. In this paper, 
+we surveyed the current research on Smart Cities platforms, aiming to discover theirs 
+most relevant requirements ]^[ how to facilitate the development, integration, ]^[ 
+deployment of Smart City applications. We analyzed 23 studies from different groups, 
+proposing multiple approaches ]f[ the development of a software platform to answer 
+our general research question What are the elements required ]f[ the development 
+A:30 
+Santana, E. F. Z. et al. 
+of a highly-effective software platform ]f[ enabling the easy construction of highly- 
+scalable, integrated Smart City applications? 
+Based on the analyzed projects, we derived a uni ed reference architecture sup- 
+porting the main requirements needed to build a software platform ]f[ Smart Cities. 
+Thus, this paper contributes to the state-of-the-art by providing a guide to help soft- 
+ware developers ]^[ city managers determine the necessary components to handle the 
+functional ]^[ non-functional requirements of a software platform ]f[ Smart Cities. 
+The reference architecture is based on the answers of the three research sub- 
+questions. RQ1 ( What are the enabling technologies used in state-of-the-art software 
+platforms ]f[ Smart Cities? ) showed us that the Internet of Things, Cloud Computing, 
+Big Data, ]^[ Cyber-Physical Systems are the most cited enabling technologies. An- 
+swering RQ2 ( What are the requirements that a software platform ]f[ Smart Cities 
+should meet? ), we could relate these technologies to the requirements that a soft- 
+ware platform should handle. For example, most of the Big Data platforms mention 
+Data Management as a requirement, while Con gurability is strongly related to CPS 
+platforms. In this way, an important contribution of this survey is to discuss the re- 
+quirements that need to be implemented when using a speci c enabling technology. 
+In contrast, it helps to decide which technology to use when a speci c functional ]v[ 
+non-functional requirement is desirable. 
+Finally, to answer RQ3 ( What are the main challenges ]^[ open research problems 
+in the development of next generation, robust software platforms ]f[ Smart Cities? ), 
+we presented the most cited challenges ]^[ open research problems, according to the 
+literature. These challenges were considered when deriving the reference architecture. 
+In this sense, an important contribution of this survey, especially ]f[ developers ]^[ 
+researchers of software platforms, is to identify which platform components should be 
+the focus of future work. 
+This survey described several Smart City initiatives, ]b[ all of them are still in 
+their initial phases, posing multiple challenges ]^[ open problems that need to be 
+addressed. A collaborative effort of research groups, commercial companies, NGOs, 
+]^[ governments is required to tackle the multitude of scienti c, technical, political, 
+]^[ social problems related to the establishment of really-smart cities, reaching the 
+ultimate goal of improving the quality of life of all of a city s citizens, irrespective of its 
+social ]^[ nancial situation. 
+ACKNOWLEDGMENTS 
+This publication is the result of a project promoted by the Brazilian Informatics Law (Law No. 8248 of 
+1991 ]^[ subsequent updates) ]^[ was developed under the Cooperation Agreement 073/2016 between 
+Universidade de S ao Paulo, FDTE, ]^[ Hewlett Packard Enterprise Brazil. 
+REFERENCES 
+Mohammad Aazam, Imran Khan, Aymen Abdullah Alsaffar, ]^[ Eui-Nam Huh. 2014. Cloud of Things: 
+Integrating Internet of Things ]^[ cloud computing ]^[ the issues involved. In Applied Sciences ]^[ 
+Technology (IBCAST), 2014 11th International Bhurban Conference on. IEEE, 414 419. 
+Eiman Al Nuaimi, Hind Al Neyadi, Nader Mohamed, ]^[ Jameela Al-Jaroodi. 2015. Applications 
+of big data to smart cities. Journal of Internet Services ]^[ Applications 6, 1 (2015), 25. 
+DOI:http://dx.doi.org/10.1186/s13174-015-0041-5 
+Theodoros Anagnostopoulos, Kostas Kolomvatsos, Christos Anagnostopoulos, Arkady Zaslavsky, 
+]f[ high priority waste 
+of Systems ]^[ Software 110 (2015), 178 192. 
+]^[ Stathes Hadjiefthymiades. 2015. Assessing dynamic models 
+collection in smart 
+DOI:http://dx.doi.org/10.1016/j.jss.2015.08.049 
+cities. Journal 
+Giuseppe Anastasi, Maximiliano Antonelli, Alessio Bechini, Simone Brienza, Eleonora D Andrea, Domenico 
+De Guglielmo, Pietro Ducange, Beatrice Lazzerini, Francesco Marcelloni, ]^[ Armando Segatori. 2013. 
+Software Platforms ]f[ Smart Cities 
+A:31 
+Urban ]^[ social sensing ]f[ sustainable mobility in smart cities. In Sustainable Internet ]^[ ICT ]f[ 
+Sustainability (SustainIT), 2013. IEEE, 1 4. 
+Wolfgang Apolinarski, Umer 
+dleware ]^[ SDK ]f[ smart 
+tions Workshops 
+DOI:http://dx.doi.org/10.1109/PerComW.2014.6815176 
+Iqbal, ]^[ Josiane Xavier Parreira. 2014. The GAMBAS mid- 
+In Pervasive Computing ]^[ Communica- 
+(PERCOM Workshops), 2014 IEEE International Conference on. 117 122. 
+city applications. 
+Michael Armbrust, Armando Fox, Rean Grif th, Anthony D Joseph, Randy Katz, Andy Konwinski, Gunho 
+Lee, David Patterson, Ariel Rabkin, Ion Stoica, ]^[ others. 2010. A view of cloud computing. Commun. 
+ACM 53, 4 (2010), 50 58. 
+Eleana Asimakopoulou ]^[ Nik Bessis. 2011. Buildings ]^[ Crowds: Forming Smart Cities ]f[ More Effec- 
+tive Disaster Management. In Innovative Mobile ]^[ Internet Services in Ubiquitous Computing (IMIS), 
+2011 Fifth International Conference on. 229 234. DOI:http://dx.doi.org/10.1109/IMIS.2011.129 
+Luigi Atzori, Antonio Iera, ]^[ Giacomo Morabito. 2010. The Internet of Things: A survey. Computer Net- 
+works 54, 15 (2010), 2787 2805. DOI:http://dx.doi.org/10.1016/j.comnet.2010.05.010 
+Malcolm Bain. 2014. Sentilo - Sensor ]^[ Actuator Platform ]f[ smart Cities. 
+(March 2014). 
+from https://joinup.ec.europa.eu/community/eupl/document/ 
+20, 
+Retrieved 
+sentilo-sensor-and-actuator-platform-smart-cities 
+February 
+2015 
+Chitra Balakrishna. 2012. Enabling technologies ]f[ smart city services ]^[ applications. In Next Generation 
+Mobile Applications, Services ]^[ Technologies (NGMAST), 2012 6th International Conference on. IEEE, 
+223 227. 
+Pieter Ballon, Julia Glidden, Pavlos Kranas, Andreas Menychtas, Susie Ruston, ]^[ Shenja Van Der Graaf. 
+2011. Is there a Need ]f[ a Cloud Platform ]f[ European Smart Cities?. In eChallenges e-2011 Conference 
+Proceedings, IIMC International Information Management Corporation. 
+Carolina Tripp Barba, Miguel Angel Mateos, Pablo Reganas Soto, Ahmad Mohamad Mezher, ]^[ M Aguilar 
+Igartua. 2012. Smart city ]f[ VANETs using warning messages, traf c statistics ]^[ intelligent traf c 
+lights. In Intelligent Vehicles Symposium (IV), 2012 IEEE. IEEE, 902 907. 
+Alessio Botta, Walter de Donato, Valerio Persico, ]^[ Antonio Pescap e. 2015. Integration of cloud computing 
+]^[ Internet of Things: A survey. Future Generation Computer Systems (2015). 
+Nicola Bressan, Leonardo Bazzaco, Nicola Bui, Paolo Casari, Lorenzo Vangelista, ]^[ Michele Zorzi. 2010. 
+The Deployment of a Smart Monitoring System Using Wireless Sensor ]^[ Actuator Networks. In 
+Smart Grid Communications (SmartGridComm), 2010 First IEEE International Conference on. 49 54. 
+DOI:http://dx.doi.org/10.1109/SMARTGRID.2010.5622015 
+Nicola Bui ]^[ Michele Zorzi. 2011. Health care applications: a solution based on the internet of things. In 
+Proceedings of the 4th International Symposium on Applied Sciences in Biomedical ]^[ Communication 
+Technologies. ACM, 131. 
+Jean-Paul Calbimonte, So ane Sarni, Julien Eberle, ]^[ Karl Aberer. 2014. XGSN: An Open-source Se- 
+mantic Sensing Middleware ]f[ the Web of Things. In 7th International Workshop on Semantic Sensor 
+Networks. 
+Andrea Caragliu, Chiara Del Bo, ]^[ Peter Nijkamp. 2011. Smart cities in Europe. Journal of urban tech- 
+nology 18, 2 (2011), 65 82. 
+Min Chen, Shiwen Mao, ]^[ Yunhao Liu. 2014. Big data: A survey. Mobile Networks ]^[ Applications 19, 2 
+(2014), 171 209. 
+Bin Cheng, Salvatore Longo, Flavio Cirillo, Martin Bauer, ]^[ Ernoe Kovacs. 2015. Building a Big Data Plat- 
+form ]f[ Smart Cities: Experience ]^[ Lessons from Santander. In Big Data (BigData Congress), 2015 
+IEEE International Congress on. 592 599. DOI:http://dx.doi.org/10.1109/BigDataCongress.2015.91 
+Annalisa Cocchia. 2014. Smart ]^[ Digital City: A Systematic Literature Review. In Smart City, Re- 
+nata Paola Dameri ]^[ Camille Rosenthal-Sabroux (Eds.). Springer International Publishing, 13 43. 
+DOI:http://dx.doi.org/10.1007/978-3-319-06160-3 2 
+Louise Coetzee ]^[ Johan Eksteen. 2011. The Internet of Things promise ]f[ the future? An introduction. 
+In IST-Africa Conference Proceedings, 2011. 1 9. 
+Welington M. da Silva, Alexandre Alvaro, Gustavo H. R. P. Tomas, Ricardo A. Afonso, Kelvin L. Dias, ]^[ 
+Vinicius C. Garcia. 2013. Smart cities software architectures: a survey. In Proceedings of the 28th An- 
+nual ACM Symposium on Applied Computing. ACM, 1722 1727. 
+Yuri Demchenko, Cees de Laat, ]^[ Peter Membrey. 2014. De ning architecture components of the Big Data 
+Ecosystem. In Collaboration Technologies ]^[ Systems (CTS), 2014 International Conference on. IEEE, 
+104 112. 
+Salvatore Distefano, Giovanni Merlino, ]^[ Antonio Pulia to. 2012. Enabling the cloud of things. In Innova- 
+tive Mobile ]^[ Internet Services in Ubiquitous Computing (IMIS), 2012 Sixth International Conference 
+on. IEEE, 858 863. 
+A:32 
+Santana, E. F. Z. et al. 
+Sou ene Djahel, Ronan Doolan, Gabriel-Miro Muntean, ]^[ John Murphy. 2014. A Communications- 
+]f[ Smart Cities: Challenges ]^[ 
+1 1. 
+oriented Perspective 
+Innovative Approaches. Communications Surveys Tutorials, 
+DOI:http://dx.doi.org/10.1109/COMST.2014.2339817 
+on Traf c Management Systems 
+IEEE PP, 
+99 
+(2014), 
+A. Elmangoush, H. Coskun, S. Wahle, ]^[ T. Magedanz. 2013. Design aspects ]f[ a reference M2M communi- 
+cation platform ]f[ Smart Cities. In Innovations in Information Technology (IIT), 2013 9th International 
+Conference on. 204 209. DOI:http://dx.doi.org/10.1109/Innovations.2013.6544419 
+Stefan Foell, Gerd Kortuem, Reza Rawassizadeh, Marcus Handte, Umer Iqbal, ]^[ Pedro Marr on. 2014. 
+Micro-navigation ]f[ Urban Bus Passengers: Using the Internet of Things to Improve the Public Trans- 
+port Experience. In Proceedings of the First International Conference on IoT in Urban Space (URB-IOT 
+14). ICST (Institute ]f[ Computer Sciences, Social-Informatics ]^[ Telecommunications Engineering), 
+ICST, Brussels, Belgium, Belgium, 1 6. DOI:http://dx.doi.org/10.4108/icst.urb-iot.2014.257373 
+MZ Fortes, VH Ferreira, GG Sotelo, AS Cabral, WF Correia, ]^[ OLC Pacheco. 2014. Deployment of smart 
+metering in the B uzios City. In Transmission & Distribution Conference ]^[ Exposition-Latin America 
+(PES T&D-LA), 2014 IEEE PES. IEEE, 1 6. 
+Jose Antonio Galache, Takuro Yonezawa, Levent Gurgen, Daniele Pavia, Marco Grella, ]^[ Hiroyuki 
+Maeomichi. 2014. ClouT: Leveraging Cloud Computing Techniques ]f[ Improving Management of Mas- 
+sive IoT Data. In Service-Oriented Computing ]^[ Applications (SOCA), 2014 IEEE 7th International 
+Conference on. 324 327. DOI:http://dx.doi.org/10.1109/SOCA.2014.47 
+Rudolf Gif nger, Christian Fertner, Hans Kramar, Robert Kalasek, Nata sa Pichler-Milanovic, ]^[ Evert 
+Meijers. 2007. Smart cities-Ranking of European medium-sized cities. Technical Report. Vienna Univer- 
+sity of Technology. 
+Sylva Girtelschmid, Matthias Steinbauer, Vikash Kumar, Anna Fensel, ]^[ Gabriele Kotsis. 2013. Big Data 
+in Large Scale Intelligent Smart City Installations. In Proceedings of International Conference on Infor- 
+mation Integration ]^[ Web-based Applications &#38; Services (IIWAS 13). ACM, New York, NY, USA, 
+Article 428, 5 pages. DOI:http://dx.doi.org/10.1145/2539150.2539224 
+Jayavardhana Gubbi, Rajkumar Buyya, Slaven Marusic, ]^[ Marimuthu Palaniswami. 2013. Internet of 
+Things (IoT): A vision, architectural elements, ]^[ future directions. Future Generation Computer Sys- 
+tems 29, 7 (2013), 1645 1660. 
+Levent Gurgen, Ozan Gunalp, Yazid Benazzouz, ]^[ Mathieu Gallissot. 2013. Self-aware cyber-physical 
+systems ]^[ applications in smart buildings ]^[ cities. In Design, Automation Test in Europe Conference 
+Exhibition (DATE), 2013. 1149 1154. DOI:http://dx.doi.org/10.7873/DATE.2013.240 
+Robert E. Hall, B Bowerman, J Braverman, J Taylor, H Todosow, ]^[ U Von Wimmersperg. 2000. The vision 
+of a smart city. In 2nd International Life Extension Technology Workshop, Paris. 
+Gerhard P. Hancke, Gerhard P. Hancke Jr., ]^[ others. 2012. The role of advanced sensing in smart cities. 
+Sensors 13, 1 (2012), 393 425. 
+Marcus Handte, Muhammad Umer Iqbal, Stephan Wagner, Wolfgang Apolinarski, Pedro Jos e Marr on, Eva 
+Maria Mu noz Navarro, Santiago Martinez, Sara Izquierdo Barthelemy, ]^[ Mario Gonz alez Fern andez. 
+2014. Crowd Density Estimation ]f[ Public Transport Vehicles.. In EDBT/ICDT Workshops. 315 322. 
+Mohammad Mehedi Hassan, Hanouf Saad Albakr, ]^[ Hmood Al-Dossari. 2014. A Cloud-Assisted Internet 
+of Things Framework ]f[ Pervasive Healthcare in Smart City Environment. In Proceedings of the 1st 
+International Workshop on Emerging Multimedia Applications ]^[ Services ]f[ Smart Cities (EMASC 
+14). ACM, New York, NY, USA, 9 13. DOI:http://dx.doi.org/10.1145/2661704.2661707 
+Jos M. Hernndez-Mu noz, Jess Bernat Vercher, Luis Mu noz, Jos A. Galache, Mirko Presser, Luis A. Hern- 
+ndez Gmez, ]^[ Jan Pettersson. 2011. Smart Cities at the Forefront of the Future Internet. Vol. 6656. 
+447 462. DOI:http://dx.doi.org/10.1007/978-3-642-20898-0 32 
+Robert G. Hollands. 2008. Will the real smart city please stand up? Intelligent, progressive ]v[ en- 
+trepreneurial? City 12, 3 (2008), 303 320. 
+Aamir Hussain, Rao Wenbi, Aristides Lopes da Silva, Muhammad Nadher, ]^[ Muhammad Mudhish. 2015. 
+Health ]^[ emergency-care platform ]f[ the elderly ]^[ disabled people in the Smart City. Journal of 
+Systems ]^[ Software 110 (2015), 253 263. DOI:http://dx.doi.org/10.1016/j.jss.2015.08.041 
+Valrie Issarny, Nikolaos Georgantas, Sara Hachem, Apostolos Zarras, Panos Vassiliadist, Marco Autili, 
+Marco Aurlio Gerosa, ]^[ AmiraBen Hamida. 2011. Service-oriented middleware ]f[ the Future Inter- 
+net: state of the art ]^[ research directions. Journal of Internet Services ]^[ Applications 2, 1 (2011), 
+23 45. DOI:http://dx.doi.org/10.1007/s13174-011-0021-3 
+Isam Janajreh, Liu Su, ]^[ Fathi Alan. 2013. Wind energy assessment: Masdar City case study. Renewable 
+energy 52 (2013), 8 15. 
+Software Platforms ]f[ Smart Cities 
+A:33 
+Rosabeth Moss Kanter ]^[ Stanley S. Litow. 2009. Informed ]^[ interconnected: A manifesto ]f[ smarter 
+cities. (March 2009). Retrieved February 20, 2015 from http://papers.ssrn.com/sol3/papers.cfm?abstract 
+id=1420236 
+Zaheer Khan, Ashiq Anjum, ]^[ Saad Liaquat Kiani. 2013. Cloud Based Big Data Analytics ]f[ Smart 
+Future Cities. In Utility ]^[ Cloud Computing (UCC), 2013 IEEE/ACM 6th International Conference 
+on. 381 386. DOI:http://dx.doi.org/10.1109/UCC.2013.77 
+Zaheer Khan, Ashiq Anjum, Kamran Soomro, ]^[ Muhammad Atif Tahir. 2015. Towards cloud 
+based big data analytics ]f[ smart future cities. Journal of Cloud Computing 4, 1 (2015), 1 11. 
+DOI:http://dx.doi.org/10.1186/s13677-015-0026-8 
+Jaeho Kim ]^[ Jang-Won Lee. 2014. OpenIoT: An open service framework ]f[ the Internet of Things. In 
+Internet of Things (WF-IoT), 2014 IEEE World Forum on. IEEE, 89 93. 
+Danh Le-Phuoc, Hoan Quoc Nguyen-Mau, Josiane Xavier Parreira, ]^[ Manfred Hauswirth. 2012. A mid- 
+dleware framework ]f[ scalable management of linked streams. Web Semantics: Science, Services ]^[ 
+Agents on the World Wide Web 16 (2012), 42 51. 
+Yong Woo Lee ]^[ Seungwoo Rho. 2010. U-city portal ]f[ smart ubiquitous middleware. In Advanced Com- 
+munication Technology (ICACT), 2010 The 12th International Conference on, Vol. 1. 609 613. 
+Pu Liu ]^[ Zhenghong Peng. 2013. Smart cities in China. IEEE Computer Society 16 (2013). 
+Catriona Manville, Gavin Cochrane, Jonathan Cave, Jeremy Millard, Jeremy Kevin Pederson, Rasmus K are 
+Thaarup, Andrea Liebe, Matthias Wissner, Roel Massink, ]^[ Bas Kotterink. 2014. Mapping smart 
+cities in the EU. (2014). 
+Viktor Mayer-Sch onberger ]^[ Kenneth Cukier. 2013. Big data: A revolution that will transform how we 
+live, work, ]^[ think. Houghton Mif in Harcourt. 
+Nathalie Mitton, Symeon Papavassiliou, Antonio Pulia to, ]^[ KishorS Trivedi. 2012. Combining Cloud ]^[ 
+sensors in a smart city environment. EURASIP Journal on Wireless Communications ]^[ Networking 
+2012, 1 (2012). DOI:http://dx.doi.org/10.1186/1687-1499-2012-247 
+G. Mylonas, E. Theodoridis, ]^[ L. Munoz. 2015. Integrating Smartphones into the SmartSantander Infras- 
+tructure. Internet Computing, IEEE 19, 2 (Mar 2015), 48 56. DOI:http://dx.doi.org/10.1109/MIC.2015.25 
+Milind Naphade, Guruduth Banavar, Colin Harrison, Jurij Paraszczak, ]^[ Robert Morris. 
+2011. Smarter Cities ]^[ Their Innovation Challenges. Computer 44, 6 (June 2011), 32 39. 
+DOI:http://dx.doi.org/10.1109/MC.2011.187 
+Rocco Papa, Carmela Gargiulo, ]^[ Adriana Galderisi. 2013. Towards an urban planners perspective on 
+smart city. TeMA Journal of Land Use, Mobility ]^[ Environment 6, 01 (2013), 5 17. 
+Anbu Parkavi ]^[ Nagarajan Vetrivelan. 2013. A smart citizen information system using Hadoop: A case 
+study. In Computational Intelligence ]^[ Computing Research (ICCIC), 2013 IEEE International Con- 
+ference on. 1 3. DOI:http://dx.doi.org/10.1109/ICCIC.2013.6724276 
+Charith Perera, Arkady B. Zaslavsky, Peter Christen, ]^[ Dimitrios Georgakopoulos. 2014. Sensing as a 
+service model ]f[ smart cities supported by Internet of Things. Trans. Emerging Telecommunications 
+Technologies 25, 1 (2014), 81 93. DOI:http://dx.doi.org/10.1002/ett.2704 
+Daniel P erez-Gonz alez ]^[ Raimundo D az-D az. 2015. Public Services Provided with ICT in the Smart City 
+Environment: The Case of Spanish Cities. Journal of Universal Computer Science 21, 2 (2015), 248 267. 
+Riccardo Petrolo, Valeria Loscri, ]^[ Nathalie Mitton. 2014. Towards a Cloud of Things Smart City. IEEE 
+COMSOC MMTC E-Letter 9, 5 (Sept. 2014), 44 48. https://hal.inria.fr/hal-01080273 
+Giuseppe Piro, Ilaria Cianci, Luigi A. Grieco, Gennaro Boggia, ]^[ Pietro Camarda. 2014. Informa- 
+tion centric services in Smart Cities. Journal of Systems ]^[ Software 88, 0 (2014), 169 188. 
+DOI:http://dx.doi.org/10.1016/j.jss.2013.10.029 
+Gilles Privat, Mengxuan Zhao, ]^[ Laurent Lemke. 2014. Towards a Shared Software Infrastructure ]f[ 
+Smart Homes, Smart Buildings ]^[ Smart Cities. In International Workshop on Emerging Trends in 
+the Engineering of Cyber-Physical Systems, Berlin. 
+Junping Qiu, Yanhui Song, ]^[ Siluo Yang. 2010. Digital Integrated Model of Government Resources under 
+E-Government Environment. In Internet Technology ]^[ Applications, 2010 International Conference 
+on. 1 4. DOI:http://dx.doi.org/10.1109/ITAPP.2010.5566315 
+Aviva Rutkin. 2014. How data can save a city. New Scientist 224, 2990 (2014), 24 25. 
+DOI:http://dx.doi.org/10.1016/S0262-4079(14)61945-X 
+Luis Sanchez, Luis Muoz, Jose Antonio Galache, Pablo Sotres, Juan R. Santana, Veronica Gutierrez, Ra- 
+jiv Ramdhany, Alex Gluhak, Srdjan Krco, Evangelos Theodoridis, ]^[ Dennis P sterer. 2014. Smart- 
+Santander: IoT experimentation over a smart city testbed. Computer Networks 61 (2014), 217 238. 
+DOI:http://dx.doi.org/10.1016/j.bjp.2013.12.020 Special issue on Future Internet Testbeds Part I. 
+A:34 
+Santana, E. F. Z. et al. 
+Eduardo Felipe Zambom Santana, Daniel Mac edo Bastista, Fabio Kon, ]^[ Dejan S Milojicic. 2016. SCSimu- 
+lator: An Open Source, Scalable Smart City Simulator. In Tools Session of the 34th Brazilian Symposium 
+on Computer Networks (SBRC) . Salvador, Brazil. 
+A. Sinaeepourfard, J. Garcia, X. Masip-Bruin, E. Marn-Tordera, J. Cirera, G. Grau, ]^[ F. Casaus. 2016. 
+Estimating Smart City sensors data generation. In 2016 Mediterranean Ad Hoc Networking Workshop 
+(Med-Hoc-Net). 1 8. DOI:http://dx.doi.org/10.1109/MedHocNet.2016.7528424 
+Kehua Su, Jie Li, ]^[ Hongbo Fu. 2011. Smart 
+ics, Communications ]^[ Control 
+DOI:http://dx.doi.org/10.1109/ICECC.2011.6066743 
+In Electron- 
+(ICECC), 2011 International Conference on. 1028 1031. 
+city ]^[ the applications. 
+Kohei Takahashi, Shintaro Yamamoto, Akihiro Okushi, Shinsuke Matsumoto, ]^[ Masahide Nakamura. 
+2012. Design ]^[ implementation of service API ]f[ large-scale house log in smart city cloud. In Cloud 
+Computing Technology ]^[ Science (CloudCom), 2012 IEEE 4th International Conference on. 815 820. 
+DOI:http://dx.doi.org/10.1109/CloudCom.2012.6427590 
+Kenji Tei ]^[ Levent Gurgen. 2014. ClouT: Cloud of things ]f[ empowering the citizen clout in smart cities. 
+In Internet of Things (WF-IoT), 2014 IEEE World Forum on. IEEE, 369 370. 
+Sean Thornton. 2013. Chicagos WindyGrid: Taking Situational Awareness 
+to a New Level. 
+(March 2013). Retrieved February 20, 2015 from http://datasmart.ash.harvard.edu/news/article/ 
+chicagos-windygrid-taking-situational-awareness-to-a-new-level-259 
+United Nations. 2009. Urban ]^[ Rural Areas 2009. (2009). http://www.un.org/en/development/desa/ 
+population/publications/urbanization/urban-rural.shtml 
+Athena Vakali, Leonidas Anthopoulos, ]^[ Srdjan Krco. 2014. Smart Cities Data Streams Integration: Ex- 
+perimenting with Internet of Things ]^[ Social Data Flows. In Proceedings of the 4th International 
+Conference on Web Intelligence, Mining ]^[ Semantics (WIMS14) (WIMS 14). ACM, New York, NY, 
+USA, Article 60, 5 pages. DOI:http://dx.doi.org/10.1145/2611040.2611094 
+Ignasi Vilajosana, Jordi Llosa, Borja Martinez, Marc Domingo-Prieto, Albert Angles, ]^[ Xavier Vilajosana. 
+2013. Bootstrapping smart cities through a self-sustainable model based on big data ows. Communi- 
+cations Magazine, IEEE 51, 6 (2013), 128 134. 
+Flix J. Villanueva, Maria J. Santo mia, David Villa, Jess Barba, ]^[ Juan Carlos Lopez. 2013. Civ- 
+itas: The Smart City Middleware, from Sensors to Big Data. In Innovative Mobile ]^[ Inter- 
+net Services in Ubiquitous Computing (IMIS), 2013 Seventh International Conference on. 445 450. 
+DOI:http://dx.doi.org/10.1109/IMIS.2013.80 
+Eleni I Vlahogianni, Kostanstinos Kepaptsoglou, Vassileios Tsetsos, ]^[ Matthew G Karlaftis. 2014. Ex- 
+ploiting new sensor technologies ]f[ real-time parking prediction in urban areas. In Transportation 
+Research Board 93rd Annual Meeting Compendium of Papers. 14 1673. 
+Jiafu Wan, Di Li, Caifeng Zou, ]^[ Keliang Zhou. 2012. M2M Communications ]f[ Smart City: An Event- 
+Based Architecture. In Computer ]^[ Information Technology (CIT), 2012 IEEE 12th International 
+Conference on. 895 900. DOI:http://dx.doi.org/10.1109/CIT.2012.188 
+Kaiyu Wan, Danny Hughes, Ka Lok Man, ]^[ Tomas Krilavicius. 2010. Composition challenges ]^[ ap- 
+proaches ]f[ cyber physical systems. In Networked Embedded Systems ]f[ Enterprise Applications (NE- 
+SEA), 2010 IEEE International Conference on. 1 7. DOI:http://dx.doi.org/10.1109/NESEA.2010.5678065 
+Doug Washburn, Usman Sindhu, Stephanie Balaouras, Rachel A. Dines, Nicholas M. Hayes, ]^[ Lauren E. 
+Nelson. 2009. Helping CIOs understand smart city initiatives. Growth 17 (2009). 
+Rong Wenge, Xiong Zhang, Dave Cooper, Li Chao, ]^[ Sheng Hao. 2014. Smart city architecture: A tech- 
+nology guide ]f[ implementation ]^[ design challenges. Communications, China 11, 3 (March 2014), 
+56 69. DOI:http://dx.doi.org/10.1109/CC.2014.6825259 
+Jules White, Siobhan Clarke, Christin Groba, Brian Dougherty, Chris Thompson, ]^[ Douglas C. 
+Schmidt. 2010. R&D challenges ]^[ solutions ]f[ mobile cyber-physical applications ]^[ sup- 
+porting Internet services. Journal of Internet Services ]^[ Applications 1, 1 (2010), 45 56. 
+DOI:http://dx.doi.org/10.1007/s13174-010-0004-9 
+Chao Wu, David Birch, Dilshan Silva, Chun-Hsiang Lee, Orestis Tsinalis, ]^[ Yike Guo. 2014. Concinnity: 
+A Generic Platform ]f[ Big Sensor Data Applications. Cloud Computing, IEEE 1, 2 (July 2014), 42 50. 
+DOI:http://dx.doi.org/10.1109/MCC.2014.33 
+Shintaro Yamamoto, Shinsuke Matsumoto, Sachio Saiki, ]^[ Masahide Nakamura. 2014. Using Material- 
+ized View as a Service of Scallop4SC ]f[ Smart City Application Services. In Soft Computing in Big 
+Data Processing. Springer, 51 60. 
+ChuanTao Yin, Zhang Xiong, Hui Chen, JingYuan Wang, Daven Cooper, ]^[ Bertrand David. 
+2015. A literature survey on smart cities. Science China Information Sciences (2015), 1 18. 
+DOI:http://dx.doi.org/10.1007/s11432-015-5397-4 
+Software Platforms ]f[ Smart Cities 
+A:35 
+Matei Zaharia, Mosharaf Chowdhury, Michael J Franklin, Scott Shenker, ]^[ Ion Stoica. 2010. Spark: 
+cluster computing with working sets. In Proceedings of the 2nd USENIX conference on Hot topics in 
+cloud computing, Vol. 10. 10. 
+Andrea Zanella, Nicola Bui, Angelo Castellani, Lorenzo Vangelista, ]^[ Michele Zorzi. 2014. In- 
+ternet of Things ]f[ Smart Cities. Internet of Things Journal, IEEE 1, 1 (Feb 2014), 22 32. 
+DOI:http://dx.doi.org/10.1109/JIOT.2014.2306328 

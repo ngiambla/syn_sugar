@@ -1,1 +1,16 @@
-measuring centrality in a social network, especially in bipartite mode, posesseveral challenges such as requirement of full knowledge of the networktopology and lack of properly detection of top-k behavioral representativeusers. in this paper, to overcome the aforementioned challenging issues, wepropose an accurate centrality measure, called hellrank, to identify centralnodes in bipartite social networks. hellrank is based on the hellinger distancebetween two nodes on the same side of a bipartite network. we theoreticallyanalyze the impact of the hellinger distance on a bipartite network and find anupper and lower bounds for this distance. the computation of hellrankcentrality measure can be distributed by letting each node uses only localinformation on its immediate neighbors and therefore do not need a centralentity to have full knowledge of the network topological structure. weexperimentally evaluate performance of the hellrank measure in correlation withother centrality measures on real-world networks. the results show partialranking similarity between the hellrank and the other conventional metricsaccording to the kendall and spearman rank correlation coefficient.
+  measuring centrality in a social network, especially in bipartite mode, poses
+several challenges such as requirement of full knowledge of the network
+topology and lack of properly detection of top-k behavioral representative
+users. in this paper, to overcome the aforementioned challenging issues, we
+propose an accurate centrality measure, called hellrank, to identify central
+nodes in bipartite social networks. hellrank is based on the hellinger distance
+between two nodes on the same side of a bipartite network. we theoretically
+analyze the impact of the hellinger distance on a bipartite network and find an
+upper and lower bounds for this distance. the computation of hellrank
+centrality measure can be distributed by letting each node uses only local
+information on its immediate neighbors and therefore do not need a central
+entity to have full knowledge of the network topological structure. we
+experimentally evaluate performance of the hellrank measure in correlation with
+other centrality measures on real-world networks. the results show partial
+ranking similarity between the hellrank and the other conventional metrics
+according to the kendall and spearman rank correlation coefficient.

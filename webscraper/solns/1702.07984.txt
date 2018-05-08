@@ -1,0 +1,21 @@
+  many societal decision problems lie in high-dimensional continuous spaces not
+amenable to the voting techniques common for their discrete or
+single-dimensional counterparts. these problems are typically discretized
+before running an election or decided upon through negotiation by
+representatives. we propose a meta-algorithm called iterative local voting for
+collective decision-making in this setting, in which voters are sequentially
+sampled and asked to modify a candidate solution within some local neighborhood
+of its current value, as defined by a ball in some chosen norm. in general,
+such schemes do not converge, or, when they do, the resulting solution does not
+have a natural description.
+  we first prove the convergence of this algorithm under appropriate choices of
+neighborhoods to plausible solutions in certain natural settings: when the
+voters' utilities can be expressed in terms of some form of distance from their
+ideal solution, and when these utilities are additively decomposable across
+dimensions. in many of these cases, we obtain convergence to the societal
+welfare maximizing solution.
+  we then describe an experiment in which we test our algorithm for the
+decision of the u.s. federal budget on mechanical turk with over 4,000 workers,
+employing neighborhoods defined by $\mathcal{l}^1, \mathcal{l}^2$ and
+$\mathcal{l}^\infty$ balls. we make several observations that inform future
+implementations of such a procedure.

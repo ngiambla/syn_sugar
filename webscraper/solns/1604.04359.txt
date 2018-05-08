@@ -1,0 +1,28 @@
+  the coalitional manipulation problem has been studied extensively in the
+literature for many voting rules. however, most studies have focused on the
+complete information setting, wherein the manipulators know the votes of the
+non-manipulators. while this assumption is reasonable for purposes of showing
+intractability, it is unrealistic for algorithmic considerations. in most
+real-world scenarios, it is impractical for the manipulators to have accurate
+knowledge of all the other votes. in this paper, we investigate manipulation
+with incomplete information. in our framework, the manipulators know a partial
+order for each voter that is consistent with the true preference of that voter.
+in this setting, we formulate three natural computational notions of
+manipulation, namely weak, opportunistic, and strong manipulation. we say that
+an extension of a partial order is if there exists a manipulative vote for that
+extension.
+  1. weak manipulation (wm): the manipulators seek to vote in a way that makes
+their preferred candidate win in at least one extension of the partial votes of
+the non-manipulators.
+  2. opportunistic manipulation (om): the manipulators seek to vote in a way
+that makes their preferred candidate win in every viable extension of the
+partial votes of the non-manipulators.
+  3. strong manipulation (sm): the manipulators seek to vote in a way that
+makes their preferred candidate win in every extension of the partial votes of
+the non-manipulators.
+  we consider several scenarios for which the traditional manipulation problems
+are easy (for instance, borda with a single manipulator). for many of them, the
+corresponding manipulative questions that we propose turn out to be
+computationally intractable. our hardness results often hold even when very
+little information is missing, or in other words, even when the instances are
+quite close to the complete information setting.

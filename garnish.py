@@ -136,7 +136,6 @@ class garnish:
 			sfs 	= 	[]
 			low_map = 	[]
 
-			tainted = 	False
 
 			for i in range(_label, sentence_length_map[_label]+_label):
 				low_map.append(ingredient_free_map[i].lower())
@@ -144,19 +143,13 @@ class garnish:
 				if _ingredients_all[i] != "%%#%%":
 					sfs2.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
 					sfs.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
-					# if _ingredients_all[i] == "=":
-					# 	print(_ingredients_all[i])
-					# 	tainted = True
 				else:
 					sfs2.append(0)
 
 			freq_vec_map[_label]  				=  	sfs2
 			freq_vec_map_gb[_label] 			= 	sfs
 			sentence_low_map[_label] 			= 	low_map
-			if not tainted:
-				sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
-			else:
-				sentence_entropy_map[_label] 	= 	0
+			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
 
 
 			vec=[]
@@ -229,7 +222,9 @@ class garnish:
 							b = freq_vec_map[_j_label]
 							wb = sentence_low_map[_j_label]
 							
-							sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)*mutils.jaccard_index(wa,wb)))
+							#sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)*mutils.jaccard_index(wa,wb)))
+							sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)))
+
 							sim_i  	= int(sim_i)
 							if sim_i not in sen_pairs: 
 								sen_pairs[sim_i] = {}

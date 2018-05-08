@@ -1,1 +1,23 @@
-education and training in digital forensics requires a variety of suitablechallenge corpora containing realistic features including regularwear-and-tear, background noise, and the actual digital traces to be discoveredduring investigation. typically, the creation of these challenges requiresoverly arduous effort on the part of the educator to ensure their viability.once created, the challenge image needs to be stored and distributed to a classfor practical training. this storage and distribution step requires significanttime and resources and may not even be possible in an online/distance learningscenario due to the data sizes involved. as part of this paper, we introduce amore capable methodology and system as an alternative to current approaches.eviplant is a system designed for the efficient creation, manipulation, storageand distribution of challenges for digital forensics education and training.the system relies on the initial distribution of base disk images, i.e., imagescontaining solely base operating systems. in order to create challenges forstudents, educators can boot the base system, emulate the desired activity andperform a "diffing" of resultant image and the base image. this diffing processextracts the modified artefacts and associated metadata and stores them in an"evidence package". evidence packages can be created for different personae,different wear-and-tear, different emulated crimes, etc., and multiple evidencepackages can be distributed to students and integrated into the base images. anumber of additional applications in digital forensic challenge creation fortool testing and validation, proficiency testing, and malware analysis are alsodiscussed as a result of using eviplant.
+  education and training in digital forensics requires a variety of suitable
+challenge corpora containing realistic features including regular
+wear-and-tear, background noise, and the actual digital traces to be discovered
+during investigation. typically, the creation of these challenges requires
+overly arduous effort on the part of the educator to ensure their viability.
+once created, the challenge image needs to be stored and distributed to a class
+for practical training. this storage and distribution step requires significant
+time and resources and may not even be possible in an online/distance learning
+scenario due to the data sizes involved. as part of this paper, we introduce a
+more capable methodology and system as an alternative to current approaches.
+eviplant is a system designed for the efficient creation, manipulation, storage
+and distribution of challenges for digital forensics education and training.
+the system relies on the initial distribution of base disk images, i.e., images
+containing solely base operating systems. in order to create challenges for
+students, educators can boot the base system, emulate the desired activity and
+perform a "diffing" of resultant image and the base image. this diffing process
+extracts the modified artefacts and associated metadata and stores them in an
+"evidence package". evidence packages can be created for different personae,
+different wear-and-tear, different emulated crimes, etc., and multiple evidence
+packages can be distributed to students and integrated into the base images. a
+number of additional applications in digital forensic challenge creation for
+tool testing and validation, proficiency testing, and malware analysis are also
+discussed as a result of using eviplant.

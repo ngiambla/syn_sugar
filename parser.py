@@ -1,5 +1,6 @@
 from ingredients import ingredients
 from bcolors import bcolors
+from langdetect import detect
 import re
 
 TAG_RE = re.compile(r'<[^>]+>')
@@ -35,6 +36,16 @@ class parser:
 			stuffing=self.prepare_stuffing()
 
 			continue_read = False
+
+			with open(filename, 'r') as f:
+				try:
+					which_lang=detect(f.read())
+					print("Document is: "+which_lang)
+					if  which_lang != "en":
+						return -1
+				except Exception as e:
+					print(e)
+					pass
 
 			with open(filename, 'r') as f:
 				for line in f:

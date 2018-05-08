@@ -1,150 +1,2169 @@
-~$[Digital Grid%%cln%% Transforming the Electric Power Grid into an 
-Innovation Engine ]f[ the United States 
-Aranya Chakrabortty ]^[ Alex Huang 
-North Carolina State University 
-The electric power grid is one of the largest ]^[ most complex infrastructures ever built by mankind%%per%%]$~ ~$[Modern 
-civilization depends on it ]f[ industry production%%lst%% human mobility%%lst%% ]^[ comfortable living%%per%%]$~ ~$[However%%lst%% many critical 
-technologies such as the 60 Hz transformers were developed at the beginning of the 20th century ]^[ have changed 
-very little since %%cmp_t%%%%per%%1 The traditional unidirectional power from the generation to the customer through the 
-transmission%%dsh%%distribution grid has also changed nominally%%lst%% ]b[ it no longer meets the need of the 21st century market 
-energy customers%%per%%]$~ ~$[On one hand%%lst%% 128m US residential customers pay $15B/per month ]f[ their utility bill%%lst%% ]y[ they 
-have no option to select their energy supplier%%per%%]$~ ~$[In a world of where many traditional industries are transformed by 
-digital Internet technology (Amazon%%lst%% Ebay%%lst%% Uber%%lst%% Airbnb)%%lst%% the traditional electric energy market is lagging 
-significantly behind%%per%%]$~ ~$[A move towards a true digital grid is needed%%per%%]$~ ~$[Such a digital grid requires a tight integration of the 
-physical layer (energy ]^[ power) with digital ]^[ cyber information to allow an open ]^[ real time market akin to the 
-world of e%%dsh%%commerce%%per%%]$~ ~$[Another major factor that is pushing ]f[ this radical transformation are the rapidly changing 
-patterns in energy resources ownership ]^[ load flow%%per%%]$~ ~$[Driven by the decreasing cost in distributed solar%%lst%% energy 
-storage%%lst%% electric vehicle%%lst%% on site generation ]^[ microgrids%%lst%% the high penetration of Distributed Energy Resource 
-(DER) is shifting challenges substantially towards the edge of grid from the control point of view%%per%%]$~ ~$[The envisioned 
-Digital Grid must facilitate the open competition ]^[ open innovation needed to accelerate of the adoption of new 
-DER technologies while satisfying challenges in grid stability%%lst%% data explosion ]^[ cyber security%%per%%]$~ 
-~$[The American Recovery ]^[ Reinvestment Act of 2009 was an unprecedented action to stimulate the economy ]^[ to 
-modernize our nation’s energy ]^[ communication infrastructure ]^[ enhance energy independence%%per%%]$~ ~$[Under this act%%lst%% 
-the US Department of Energy ]^[ the electricity industry have jointly invested in 99 cost%%dsh%%shared projects involving 
-more %%cmp_ta%% 200 participating electric utilities ]^[ other organizations to modernize the electric grid%%lst%% improve inter%%dsh%% 
-operability%%lst%% ]^[ collect an unprecedented level of data on smart grid operations ]^[ benefits%%per%%]$~ ~$[A new ]^[ substantial 
-investment is needed to develop the new Digital Grid%%per%%]$~ ~$[Radical reductions in the cost of sensors%%lst%% communication%%lst%% 
-information processing%%lst%% cyber%%dsh%%security%%lst%% ]^[ new regulatory policies in electricity markets are needed%%per%%]$~ ~$[Federal 
-leadership is essential to break the logjam ]^[ encourage new approaches%%per%%]$~ ~$[The key is designing programs that drive 
-change ]b[ leave plenty of room ]f[ ideas from unexpected sources%%per%%]$~ 
-~$[Challenges ]^[ Potential Solution 
-There are many challenges to transform the power grid into a Digital Grid%%per%%]$~ ~$[The primary ones are listed as follows%%cln%% 
-1%%per%%]$~ 
-~$[Low marginal costs coupled with high initial capital costs are characteristic of traditional power generation%%per%%]$~ ~$[Today 
-the ratio between running cost ]^[ capital cost is falling rapidly with the introduction of renewable generation%%lst%% along 
-with flexibility of resources such as storage ]^[ demand response%%per%%]$~ ~$[Standard economic theory predicts that price of 
-power will collapse in this setting%%lst%% which is indeed the case today%%per%%]$~ ~$[Wholesale prices ]f[ electric power in the U%%per%%S%%per%% ]^[ 
-other parts of the world are frequently far below operating cost%%lst%% ]^[ even negative prices are commonly observed%%per%%]$~ 
-~$[This trend ]^[ price volatility will discourage capital investment%%lst%% which is why FERC ]^[ local authorities are 
-searching ]f[ market designs that will encourage long%%dsh%%term investment%%per%%]$~ ~$[A holistic approach to market design that 
-accommodates both surplus ]^[ shortage in renewables%%lst%% combines them with other generation assets as well as 
-storage%%lst%% ]^[ includes design guidelines ]^[ incentives that enable short%%dsh%%term benefits of improved grid performance 
-]^[ long%%dsh%%term benefits of sustainability ]^[ economic stability is highly warranted%%per%%]$~ ~$[Innovations in wholesale markets 
-need to be accompanied by those in retail markets to accommodate multiple DG owners ]^[ aggregators%%per%%]$~ 
-~$[On the demand side%%lst%% changes are needed due to the same reason as above%%lst%% to accommodate intermittency ]^[ 
-Electricity Market ]^[ Regulatory Policy 
-1 Mynatt et al%%per%% (2017) “A National Research Agenda ]f[ Intelligent Infrastructure” CCC Led Whitepapers 
-http://cra%%per%%org/ccc/resources/ccc%%dsh%%led%%dsh%%whitepapers/%%lst%% last accessed April 12%%lst%% 2017%%per%% 
+~$[A 
+Software Platforms ]f[ Smart Cities%%cln%% 
+Concepts%%lst%% Requirements%%lst%% Challenges%%lst%% ]^[ a Uni ed Reference 
+Architecture 
+Eduardo Felipe Zambom Santana%%lst%% University of S ao Paulo 
+Ana Paula Chaves%%lst%% Federal Technological University of Paran a 
+Marco Aurelio Gerosa%%lst%% University of S ao Paulo 
+Fabio Kon%%lst%% University of S ao Paulo 
+Dejan S%%per%%]$~ ~$[Milojicic%%lst%% Hewlett Packard Labs Palo Alto 
+Making cities smarter help improve city services ]^[ increase citizens quality of life%%per%%]$~ ~$[Information ]^[ com%%dsh%% 
+munication technologies (ICT) are fundamental ]f[ progressing towards smarter city environments%%per%%]$~ ~$[Smart 
+City software platforms potentially support the development ]^[ integration of Smart City applications%%per%%]$~ 
+~$[However%%lst%% the ICT community must overcome current signi cant technological ]^[ scienti c challenges 
+before these platforms can be widely used%%per%%]$~ ~$[This paper surveys the state%%dsh%%of%%dsh%%the%%dsh%%art in software platforms 
+]f[ Smart Cities%%per%%]$~ ~$[We analyzed 23 projects with respect to the most used enabling technologies%%lst%% as well as 
+functional ]^[ non%%dsh%%functional requirements%%lst%% classifying them into four categories%%cln%% Cyber%%dsh%%Physical Systems%%lst%% 
+Internet of Things%%lst%% Big Data%%lst%% ]^[ Cloud Computing%%per%%]$~ ~$[Based on these results%%lst%% we derived a reference architec%%dsh%% 
+ture to guide the development of next%%dsh%%generation software platforms ]f[ Smart Cities%%per%%]$~ ~$[Finally%%lst%% we enumer%%dsh%% 
+ated the most frequently cited open research challenges%%lst%% ]^[ discussed future opportunities%%per%%]$~ ~$[This survey 
+gives important references ]f[ helping application developers%%lst%% city managers%%lst%% system operators%%lst%% end%%dsh%%users%%lst%% 
+]^[ Smart City researchers to make project%%lst%% investment%%lst%% ]^[ research decisions%%per%%]$~ 
+~$[General Terms%%cln%% Digital Cities%%lst%% Internet of Things%%lst%% Big Data%%lst%% Cloud Computing%%lst%% Cyber%%dsh%%Physical Systems%%lst%% 
+Middleware%%lst%% Infrastructure 
+Additional Key Words ]^[ Phrases%%cln%% Wireless sensor networks%%lst%% Software platforms%%lst%% Middleware%%lst%% Infrastruc%%dsh%% 
+ture 
+1%%per%%]$~ ~$[INTRODUCTION 
+Since 2009%%lst%% most of the world s population lives in cities [United Nations 2009]%%per%%]$~ ~$[Cur%%dsh%% 
+rent resources ]^[ infrastructure are hardly enough to cope with the increasing de%%dsh%% 
+mand that population growth ]^[ geographic concentration generates [Caragliu et al%%per%% 
+2011]%%per%%]$~ ~$[Making cities smarter can help optimize resource ]^[ infrastructure utilization 
+toward increased sustainability%%per%%]$~ ~$[One approach involves creatively combining the large 
+amounts of data generated by multiple city sources (such as sensor networks%%lst%% traf c 
+systems%%lst%% user devices%%lst%% ]^[ social networks) to create integrated services ]^[ appli%%dsh%% 
+cations%%lst%% improving city services%%lst%% ]^[ making better use of city resources%%per%%]$~ ~$[However%%lst%% 
+ef ciently ]^[ effectively using all these data sources is a challenge%%per%%]$~ 
+~$[Initiatives ]f[ developing Smart City systems have been proposed in a wide range 
+of city services%%lst%% such as transportation [Djahel et al%%per%% 2014]%%lst%% traf c control [Barba et al%%per%% 
+2012]%%lst%% air pollution [Vakali et al%%per%% 2014]%%lst%% waste management [Perera et al%%per%% 2014]%%lst%% health 
+care [Hussain et al%%per%% 2015]%%lst%% public safety [Galache et al%%per%% 2014]%%lst%% water [P erez%%dsh%%Gonz alez 
+]^[ D az%%dsh%%D az 2015]%%lst%% energy [Yamamoto et al%%per%% 2014]%%lst%% ]^[ emergency management 
+[Asimakopoulou ]^[ Bessis 2011]%%per%%]$~ ~$[However%%lst%% most of these solutions focus on a spe%%dsh%% 
+ci c domain%%lst%% target a speci c problem%%lst%% ]^[ were developed from scratch%%lst%% with little 
+software reuse%%per%%]$~ ~$[They do ]n[ interoperate%%lst%% leading to duplication of work%%lst%% incompatible 
+solutions%%lst%% ]^[ non%%dsh%%optimized resource use%%per%%]$~ 
+~$[Integrating all of these domains into a complete ]^[ consistent solution require ba%%dsh%% 
+sic services from the underlying software infrastructure%%per%%]$~ ~$[Such basic services could be 
+provided by a novel%%lst%% comprehensive software platform%%lst%% which could include facilities 
+]f[ application development%%lst%% integration%%lst%% deployment%%lst%% ]^[ management%%lst%% easing the 
+7 
 1 
-Data Analytics 
-Grid Stability ]^[ Resiliency under High DER Penetration 
-uncertainty in renewable generation%%per%%]$~ ~$[The standard practice of generation following load has to be shed%%lst%% ]^[ loads need 
-to be more dispatchable as well%%per%%]$~ ~$[This approach leads to the generalized concept of Demand Response%%lst%% which needs to 
-be integrated into the functioning of electricity markets%%per%%]$~ ~$[Direct Load Control ]^[ Transactive Control%%lst%% the two 
-methods that make up Demand Response are both highly promising methods that can help in shaping demand ]s[ as to 
-coordinate fluctuations in renewables%%per%%]$~ ~$[Research is needed to ensure that consumer engagement will enhance rather 
-%%cmp_ta%% disrupt reliability of the grid%%per%%]$~ ~$[Further%%lst%% automation of demand response is required to ensure grid reliability ]^[ 
-also to ensure that each participant receives the benefits that are promised%%per%%]$~ ~$[For example%%lst%% strict bounds on indoor 
-temperature ]^[ humidity must be maintained%%per%%]$~ ~$[Market rules are required to ensure that players receive transparent 
-incentives ]f[ services provided to the grid%%lst%% even in the case of residential consumers who have little understanding of 
-power systems ]v[ even their own fuse box%%per%%]$~ ~$[Given that all of the aforementioned innovations require real%%dsh%%time ]^[ 
-reliable communication%%lst%% a cyber%%dsh%%physical approach is essential to realize an efficient electricity market%%per%% 
-2%%per%%]$~ 
-~$[The envisioned Digital Grid must be realized with no comprise to grid reliability ]^[ resilience%%per%%]$~ ~$[Since the Digital Grid 
-is fundamentally supporting high DER penetration with very dynamic bidirectional power flows affected by the real%%dsh%% 
-time market participation%%lst%% the grand challenges in control is to achieve voltage ]^[ frequency stability%%lst%% as well as 
-intelligent protection%%per%%]$~ ~$[To address these issues as well as to the severe intermittence issue in the DER ]^[ the lack of 
-traditional system inertia%%lst%% the Digital Grid will need the development ]^[ installation of a new generation of Smart 
-Transformers as an universal cyber%%dsh%%physical system interface%%lst%% that can provide the needed system inertia ]^[ provide 
-autonomous voltage%%lst%% frequency ]^[ protection%%per%%]$~ ~$[It must also have the secured communication ]^[ software such as the 
-Block%%dsh%%chain to participate in the real time energy market ]f[ resource sharing (a key attribute to the Digital Grid) by 
-aggregating the DER%%lst%% load ]^[ storage devices%%per%%]$~ ~$[New transmission technologies such as the High Voltage Direct 
-Current (HVDC) must be further developed ]^[ installed to connect highly dynamic distribution grids with strong 
-regional interconnection to balance of the system demand ]^[ supply%%per%% 
-3%%per%%]$~ 
-~$[Availability of smart grid data is expected to increase precipitously%%per%%]$~ ~$[Compared to the traditional Supervisory Control 
-]^[ Data Acquisition (SCADA) systems available ]f[ operations%%lst%% these future data sources could provide vastly richer 
-information about the state of the grid%%per%%]$~ ~$[Transforming this raw data into contextual information to support operations 
-requires new data platforms ]^[ analytics capable of extracting useful information%%per%%]$~ ~$[This new information will enable 
-utilities to%%cln%% 1) create new control paradigms that operate the grid closer to system limits%%lst%% lowering the cost of operation 
-without sacrificing reliability%%scn%% 2) improve asset utilization ]^[ management across transmission ]^[ distribution 
-systems%%scn%% ]^[ 3) integrate high levels of renewable generation%%per%%]$~ ~$[The unique characteristics of the new information 
-available to operations create a number of challenges%%lst%% including%%cln%% extensive geo%%dsh%%spatial distribution%%lst%% temporal diversity%%lst%% 
-internal organizational boundaries%%lst%% disparate underlying physical sources ]^[ a wide range of data quality%%per%%]$~ ~$[Despite 
-extensive investments in various IT technologies%%lst%% utilities still lack sufficient infrastructure ]^[ understanding of the 
-best approaches to manage this data%%per%%]$~ ~$[Major challenges ]f[ utilities today include data quality%%lst%% data volume%%lst%% data 
-velocity%%lst%% ]^[ especially data variety%%lst%% although they clearly have issues to address in all these dimensions%%per%% 
-4%%per%%]$~ 
-~$[Currently one of the biggest roadblocks ]f[ grid modernization is that the Information Technology (IT) infrastructure 
-]f[ today%%sqt%%s grid is rigid ]^[ low capacity%%per%%]$~ ~$[The push to adopt the existing open Internet ]^[ high%%dsh%%performance 
-computing technologies would ]n[ be enough to meet the requirement of collecting ]^[ processing very large volumes 
-of real%%dsh%%time data%%per%%]$~ ~$[Secondly%%lst%% the impact of unreliable ]^[ insecure communication ]^[ computation infrastructures on 
-grid operations is ]n[ well understood%%per%%]$~ ~$[Typically%%lst%% the Internet cannot provide the required latency ]^[ packet loss 
-performance ]f[ grid operation under high data%%dsh%%rates%%per%%]$~ ~$[Moreover%%lst%% the network performance is highly random%%lst%% ]^[ 
-%%cmp_tf%%%%lst%% difficult to model accurately%%per%%]$~ ~$[Few studies have been conducted to leverage emerging IT technologies such 
-as cloud computing%%lst%% software defined networking (SDN)%%lst%% ]^[ network function virtualization (NFV)%%lst%% to accelerate this 
-development%%per%%]$~ ~$[With the recent revolution in networking technology%%lst%% these new communication mechanisms can open 
-up more degrees of freedom in programmability ]^[ virtualization ]f[ tomorrow%%sqt%%s grid%%per%% 
-5%%per%%]$~ 
-~$[Cyber vulnerabilities of the power grid exist in numerous facilities%%lst%% including Supervisory Control ]^[ Data 
-Acquisition (SCADA) systems that power grids rely upon ]f[ monitoring ]^[ control of the physical grid%%per%%]$~ ~$[The 
-increasing penetration of wind turbines%%lst%% solar arrays%%lst%% ]^[ energy storage devices creates potential new targets ]f[ 
-cyber intrusions%%per%%]$~ ~$[About 65 million smart meters ]^[ other sensing devices%%lst%% with capabilities ]f[ data collection ]f[ 
-billing%%lst%% outage reporting%%lst%% ]^[ customers’ choice%%lst%% have been installed at the customer locations%%per%%]$~ ~$[These low%%dsh%%cost devices 
-New Communication Technologies ]f[ Smart Grid 
-Cyber%%dsh%%Physical Security 
+0 
 2 
-are targets ]f[ attackers%%lst%% who may compromise large numbers of meters ]^[ use those meters to mount attacks%%per%%]$~ ~$[Such 
-attacks resemble the October 2016 attack on the eastern U%%per%%S%%per%%%%lst%% in which smart devices such as wireless cameras were 
-compromised ]^[ used to disrupt Internet access to millions of users%%per%%]$~ ~$[Ensuring resilience of the power grid to cyber 
-threats will require a sustained ]^[ coordinated research effort towards understanding the vulnerabilities of cyber%%dsh%% 
-attacks on the grid%%lst%% providing defense mechanisms that can ameliorate the impact of attacks ]^[ ensure continued 
-operation ]^[ efficient recovery from attacks when ]^[ where they occur%%per%%]$~ ~$[The cyber vulnerabilities of grid 
-components must be characterized ]^[ mitigated%%per%%]$~ ~$[Privacy of sensitive power system data must also be preserved by 
-efficient data protection ]^[ encryption techniques%%per%%]$~ 
-~$[Actions ]^[ Recommendations 
-Based on the preceding discussion%%lst%% we offer the following recommended actions%%cln%% 
-1%%per%%]$~ 
-~$[Create a multi%%dsh%%university based national consortium on digital grid to jointly study the critical cyber%%dsh%%physical 
-challenges based on a competitive solicitation%%per%%]$~ 
-~$[Create a DOE led investment program to US industry ]^[ electric power companies to manufacture ]^[ 
-upgrade the edge of the grid into a Digital Grid%%lst%% such as the Smart Transformer manufacturing ]^[ 
-deployment%%per%%]$~ 
-~$[Enhance funding ]f[ programs such as the NSF’s Cyber Physical System (CPS) program to focus on research 
-needs associated with the Digital Grid%%per%%]$~ 
-~$[Develop realistic ]^[ comprehensive testbeds ]f[ evaluations of control ]^[ cyber%%dsh%% security that would be 
-impractical to conduct on the power grid itself%%per%%]$~ 
-~$[Promote education ]^[ workforce development initiatives to train existing power engineers ]^[ grid 
-operators about cyber%%dsh%%physical systems%%lst%% data analytics%%lst%% Internet%%dsh%%of%%dsh%%Things%%lst%% cyber%%dsh%%security as well as educate 
-the next generation of researchers ]^[ practitioners in the design ]^[ operation of secure ]^[ resilient power 
-systems%%per%% 
-2%%per%% 
-3%%per%% 
-4%%per%% 
-5%%per%% 
-6%%per%%]$~ 
-~$[Form a task force by federal regulatory agencies to study the policy changes needed ]f[ creating a transactive 
-energy market supported by the Digital Grid infrastructure%%per%%]$~ 
-~$[Acknowledgements 
-The authors would like to acknowledge the following individuals ]f[ their contribution to this paper%%per%% 
-• Sean Meyn%%lst%% University of Florida 
-• Anuradha Annaswamy%%lst%% MIT 
-• Kevin Tomsovic%%lst%% University of Tennessee 
-• 
-Joe H%%per%%]$~ ~$[Chow%%lst%% Rensselaer Polytechnic Institute 
-• Chen%%dsh%%Ching Liu%%lst%% Washington State University 
-• Radha Poovendran%%lst%% University of Washington%%lst%% Seattle 
-This material is based upon work supported by the National Science Foundation under Grant No%%per%% (1136993)%%per%%]$~ ~$[Any 
-opinions%%lst%% findings%%lst%% ]^[ conclusions ]v[ recommendations expressed in this material are those of the authors ]^[ do ]n[ 
-necessarily reflect the views of the National Science Foundation%%per%% 
+l 
+u 
+J 
+4 
+2 
+] 
+Y 
+C 
+%%per%% 
+s 
+c 
+[ 
 3 
+v 
+9 
+8 
+0 
+8 
+0 
+%%per%% 
+9 
+0 
+6 
+1 
+%%cln%% 
+v 
+i 
+X 
+r 
+a 
+A:2 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+construction of sophisticated Smart Cities applications%%per%%]$~ ~$[We de ne a software platform 
+]f[ Smart Cities as 
+an integrated middleware environment that supports software developers in 
+designing%%lst%% implementing%%lst%% deploying%%lst%% ]^[ managing applications ]f[ Smart Cities%%per%%]$~ 
+~$[Many challenging issues still need to be addressed before a highly effective software 
+platform ]f[ Smart Cities can be created%%lst%% including%%cln%% enabling interoperability between 
+a city s multiple systems%%lst%% guaranteeing citizens privacy%%lst%% managing large amounts of 
+data%%lst%% supporting the required scalability%%lst%% ]^[ dealing with a large variety of sensors%%per%%]$~ 
+~$[In the research described in this paper%%lst%% we evaluated initiatives ]f[ developing soft%%dsh%% 
+ware platforms ]f[ Smart Cities%%lst%% aiming to comprehensively analyze relevant func%%dsh%% 
+tional ]^[ non%%dsh%%functional requirements%%lst%% according to the literature%%per%%]$~ ~$[Based on the anal%%dsh%% 
+ysis%%lst%% we derived a reference architecture that addresses these requirements%%per%%]$~ ~$[With this 
+survey%%lst%% we intend to clarify important aspects of the design%%lst%% development%%lst%% ]^[ man%%dsh%% 
+agement of Smart Cities platforms%%per%%]$~ ~$[To do so%%lst%% we examined 23 Smart Cities software 
+platforms%%lst%% aiming to answer the following general research question%%cln%% 
+What is required ]f[ the development of a software platform ]f[ enabling the 
+construction of scalable integrated Smart City applications%%qsn%%]$~ 
+~$[We investigated three more speci c research questions%%cln%% 
+RQ1:%%per%%]$~ ~$[What are the enabling technologies used in state%%dsh%%of%%dsh%%the%%dsh%%art software plat%%dsh%% 
+forms ]f[ Smart Cities%%qsn%%]$~ 
+~$[RQ2:%%per%%]$~ ~$[What are the requirements that a software platform ]f[ Smart Cities should 
+meet%%qsn%%]$~ 
+~$[RQ3:%%per%%]$~ ~$[What are the main challenges ]^[ open research problems in the develop%%dsh%% 
+ment of next generation robust software platforms ]f[ Smart Cities%%qsn%%]$~ 
+~$[To answer research question RQ1%%lst%% we identi ed the most common enabling technolo%%dsh%% 
+gies employed in platforms ]f[ Smart Cities%%per%%]$~ ~$[As described in Section 2%%per%%2%%lst%% we grouped 
+them into four main categories%%cln%% Internet of Things (IoT) [Atzori et al%%per%% 2010]%%lst%% applied 
+to control sensors ]^[ actuators responsible ]f[ retrieving information from the city%%scn%% 
+Big Data [Mayer%%dsh%%Sch onberger ]^[ Cukier 2013]%%lst%% to support storage ]^[ processing 
+of the data collected from the city%%scn%% Cloud Computing [Armbrust et al%%per%% 2010]%%lst%% to pro%%dsh%% 
+vide elasticity to the services ]^[ data storage%%scn%% ]^[ Cyber%%dsh%%Physical Systems [White 
+et al%%per%% 2010]%%lst%% to enable the interaction of systems with the city environment%%per%%]$~ ~$[To answer 
+RQ2%%lst%% we identi ed the most common functional ]^[ non%%dsh%%functional requirements ]f[ 
+developing a platform ]f[ Smart Cities%%lst%% as described in Section 3%%per%%3%%per%%]$~ ~$[Finally%%lst%% to answer 
+RQ3%%lst%% we explored the main challenges researchers identi ed in developing software 
+platforms ]f[ Smart Cities%%lst%% as discussed in Section 4%%per%%]$~ 
+~$[Combining the results of the three research questions%%lst%% we derived a reference archi%%dsh%% 
+tecture%%per%%]$~ ~$[This architecture presents components ]f[ implementing a software platform 
+]f[ Smart Cities%%lst%% based on the most common enabling technologies%%lst%% the requirements%%lst%% 
+]^[ challenges surveyed in this research%%per%%]$~ ~$[We also discuss the critical implications of 
+platforms ]f[ Smart Cities in the Section 6%%per%%]$~ 
+~$[The remainder of this paper is organized as follows%%per%%]$~ ~$[Section 2 presents the de nition 
+of Smart Cities ]^[ introduces the four enabling technologies ]f[ platforms ]f[ Smart 
+Cities%%per%%]$~ ~$[Section 3 presents the platforms%%lst%% architectures%%lst%% ]^[ implemented systems ]f[ 
+Smart Cities%%lst%% grouped according to the enabling technologies that each platform uses%%per%%]$~ 
+~$[Section 4 points out challenges ]^[ open research problems in the development of a 
+platform ]f[ Smart Cities%%per%%]$~ ~$[In Section 5%%lst%% we present a reference architecture ]f[ soft%%dsh%% 
+ware platforms ]f[ Smart Cities%%per%%]$~ ~$[In Section 6%%lst%% we discuss the relationship between the 
+Software Platforms ]f[ Smart Cities 
+A:3 
+requirements ]^[ the enabling technologies as well as their implications ]f[ the de%%dsh%% 
+velopment of software platforms ]f[ Smart Cities%%per%%]$~ ~$[Section 7 presents the related work 
+and%%lst%% nally%%lst%% Section 8 presents our conclusions%%per%% 
+2%%per%%]$~ ~$[MAIN CONCEPTS 
+We now introduce the main concepts used in the discussions within this survey%%per%%]$~ ~$[We 
+rst present de nitions of Smart Cities and%%lst%% %%cmp_t%%%%lst%% discuss the most adopted enabling 
+technologies ]f[ the development of software platforms ]f[ Smart Cities%%per%% 
+2%%per%%1%%per%%]$~ ~$[Smart Cities 
+The term Smart City has many different de nitions%%per%%]$~ ~$[Some exceed the software con%%dsh%% 
+text%%lst%% focusing only on social ]v[ business aspects%%per%%]$~ ~$[Regarding software systems%%lst%% many 
+authors de ne a Smart City as the integration of social%%lst%% physical%%lst%% ]^[ IT infrastruc%%dsh%% 
+ture to improve the quality of city services [Caragliu et al%%per%% 2011%%scn%% Hollands 2008]%%per%%]$~ ~$[Other 
+authors focus on a set of Information ]^[ Communication Technology (ICT) tools used 
+to create an integrated Smart City environment [Hollands 2008%%scn%% Washburn et al%%per%% 2009%%scn%% 
+Hall et al%%per%% 2000]%%per%%]$~ 
+~$[Gif nger et al%%per%% [Gif nger et al%%per%% 2007] assert that a Smart City has six main dimen%%dsh%% 
+sions%%cln%% smart economy%%lst%% smart people%%lst%% smart governance%%lst%% smart mobility%%lst%% smart environ%%dsh%% 
+ment%%lst%% ]^[ smart living%%per%%]$~ ~$[Many authors adopt this de nition [Hernndez%%dsh%%Mu noz et al%%per%% 
+2011%%scn%% Papa et al%%per%% 2013] ]^[ there are even benchmarks to produce a ranking of the 
+smartest city using these dimensions1%%per%%]$~ 
+~$[In their de nition of Smart Cities%%lst%% Washburn et al%%per%% [Washburn et al%%per%% 2009] ]^[ Hall 
+et al%%per%% [Hall et al%%per%% 2000] emphasize integrating software services ]^[ applications to 
+improve regular city services ]^[ the lives of their citizens%%per%%]$~ ~$[Following this idea%%lst%% Kanter 
+]^[ Litow [Kanter ]^[ Litow 2009] declare that creating independent software ]f[ 
+each city domain is ]n[ suf cient ]f[ creating an environment ]f[ Smart Cities%%per%%]$~ ~$[They 
+contend that all city sub%%dsh%%systems (such as transport%%lst%% education%%lst%% energy%%lst%% ]^[ water) 
+must be linked in a network as an organic whole to provide integration among all city 
+subsystems%%per%%]$~ ~$[Caragliu et al%%per%% [Caragliu et al%%per%% 2011] de nition of Smart Cities highlights 
+the signi cant bene t of sustainability ]^[ management of natural resources%%per%%]$~ 
+~$[We are aligned with the vision that a city must have an integrated environment 
+to facilitate the interoperability between the city s sub%%dsh%%systems%%per%%]$~ ~$[Based on that%%lst%% in our 
+view%%cln%% 
+a Smart City is a city in which its social%%lst%% business%%lst%% ]^[ technological aspects are 
+supported by Information ]^[ Communication Technologies to improve the experience 
+of the citizen within the city%%per%%]$~ ~$[To achieve that%%lst%% the city provides public ]^[ private 
+services that operate in an integrated%%lst%% affordable%%lst%% ]^[ sustainable way%%per%%]$~ 
+~$[To make a city smarter%%lst%% it is desirable to integrate services ]^[ applications in a 
+uni ed technological infrastructure%%per%%]$~ ~$[A sensible way to make the above reality is with 
+a well%%dsh%%designed software platform providing the necessary infrastructure ]f[ dealing 
+with large volumes of data%%lst%% a wide variety of devices ]^[ applications%%lst%% system interop%%dsh%% 
+erability%%lst%% ]^[ other problems related to Smart City environments%%per%%]$~ 
+~$[There are multiple smart city initiatives in a variety of countries around the world%%lst%% 
+with different maturity levels ]^[ applications in different domains%%per%%]$~ ~$[Most of the ini%%dsh%% 
+tiatives are in Europe [Caragliu et al%%per%% 2011%%scn%% Manville et al%%per%% 2014]%%lst%% the USA2%%lst%% Japan%%lst%% 
+]^[ South Korea [Liu ]^[ Peng 2013]%%per%%]$~ ~$[Isolated initiatives exist in countries such as 
+Brazil [Fortes et al%%per%% 2014] ]^[ the United Arab Emirates [Janajreh et al%%per%% 2013]%%per%%]$~ ~$[Figure 
+1Smarts Cities in Europe %%dsh%% http://www%%per%%smart%%dsh%%cities%%per%%eu 
+210 Smartest Cities in USA %%dsh%% http://www%%per%%fastcoexist%%per%%com/3021592/the%%dsh%%10%%dsh%%smartest%%dsh%%cities%%dsh%%in%%dsh%%north%%dsh%%america 
+A:4 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+1 presents a map with cities that have at least one Smart City project included in this 
+survey%%per%%]$~ ~$[The map shows that most of the projects are located in developed countries%%lst%% a 
+few in developing countries%%lst%% ]^[ none in underdeveloped countries%%lst%% where the need ]f[ 
+improvements in urban quality of life are most pressing%%per%%]$~ 
+~$[Fig%%per%% 1%%per%%]$~ ~$[Smart Cities initiatives covered in this survey%%per%% 
+2%%per%%2%%per%%]$~ ~$[Enabling Technologies 
+To answer the question What are the main enabling technologies used in state%%dsh%%of%%dsh%% 
+the%%dsh%%art software platforms ]f[ Smart Cities? %%lst%% we present the most common enabling 
+technologies that we found in our literature review%%per%%]$~ ~$[We observed four main technolo%%dsh%% 
+gies used by software platforms ]f[ Smart Cities%%cln%% Cyber%%dsh%%Physical Systems%%lst%% Internet of 
+Things%%lst%% Big Data%%lst%% ]^[ Cloud Computing%%per%%]$~ ~$[In this section%%lst%% we give an overview ]^[ re%%dsh%% 
+late them to Smart City research%%per%%]$~ ~$[These technologies are used later in this paper to 
+group the analyzed platforms ]^[ help to understand better the requirements that the 
+platforms must address%%per%%]$~ 
+~$[Figure 2 presents an overview of the four enabling technologies that we found in our 
+survey ]^[ examples of how they contribute to a platform ]f[ Smart Cities%%per%% 
+2%%per%%2%%per%%1%%per%%]$~ ~$[Cyber%%dsh%%Physical Systems%%per%%]$~ ~$[Cyber%%dsh%%Physical Systems (CPS) can be characterized as 
+the use of computation ]^[ communication technologies to improve the features of 
+physical systems%%per%%]$~ ~$[Wan et al%%per%% [Wan et al%%per%% 2010] de ne CPS as integration of computation 
+with physical processes%%per%%]$~ ~$[The authors suggest the use of local ]^[ remote computational 
+models in networked embedded computers to monitor ]^[ control physical processes%%per%%]$~ 
+~$[Many real%%dsh%%world applications already leverage CPS [White et al%%per%% 2010]%%lst%% such as 
+Smart Cities%%lst%% power grid control systems%%lst%% ]^[ electronic medical devices%%per%%]$~ ~$[However%%lst%% 
+some authors [Wan et al%%per%% 2010] claim that existing ICT solutions do ]n[ support appli%%dsh%% 
+cations with dynamically changing physical contexts%%per%%]$~ ~$[Thus%%lst%% applying CPS should intro%%dsh%% 
+duce this requirement to Smart City applications%%per%%]$~ ~$[According to Gurgen et al%%per%% [Gurgen 
+et al%%per%% 2013]%%lst%% CPS enables applications to become aware of the changes in the physical 
+context adapting their execution according to it%%per%%]$~ 
+~$[An example of a Cyber%%dsh%%Physical System related to Smart Cities is WreckWatch 
+[White et al%%per%% 2010]%%lst%% an application ]f[ detecting traf c accidents%%per%%]$~ ~$[This application was 
+developed ]f[ smart phones%%scn%% it reads the device s accelerometer ]^[ GPS getting the 
+driver s current speed ]^[ acceleration%%per%%]$~ ~$[In case of a strong deceleration%%lst%% the data is 
+Software Platforms ]f[ Smart Cities 
+A:5 
+Fig%%per%% 2%%per%%]$~ ~$[Platforms ]f[ Smart Cities Enabling Technologies 
+analysed using an accident prediction model ]^[ %%cmp_if%% it indicates an accident%%lst%% the appli%%dsh%% 
+cation generates an alert to a centralized server%%per%% 
+2%%per%%2%%per%%2%%per%%]$~ ~$[Internet of Things%%per%%]$~ ~$[Coetzee ]^[ Eksteen [Coetzee ]^[ Eksteen 2011] de ne IoT 
+as situations where objects become part of the Internet%%per%%]$~ ~$[According to the authors%%lst%% the 
+objects have to be uniquely identi ed%%lst%% with recognized position ]^[ status%%lst%% ]^[ acces%%dsh%% 
+sible to the network%%per%%]$~ ~$[Gubbi et al%%per%% (2013) [Gubbi et al%%per%% 2013] de ne three components 
+in an IoT environment%%cln%% the hardware%%lst%% which includes sensors%%lst%% actuators%%lst%% ]^[ embed%%dsh%% 
+ded communication hardware%%scn%% a middleware%%lst%% which processes ]^[ stores data received 
+from the hardware%%scn%% ]^[ a presentation layer%%lst%% in which users access%%lst%% manipulate%%lst%% ]^[ 
+visualize data extracted from the hardware%%per%%]$~ ~$[In this sense%%lst%% this is very similar to what 
+we expect from a platform ]f[ Smart Cities%%per%%]$~ 
+~$[The very large number of devices used to collect data from cities forces platforms ]f[ 
+Smart Cities to use IoT technologies%%per%%]$~ ~$[The data collected from these devices must be 
+transmitted via interconnected networks ]s[ that they can be grouped ]^[ processed 
+to provide advanced Smart City services%%per%%]$~ ~$[Zanella et al%%per%% [Zanella et al%%per%% 2014] present 
+multiple potential uses of the Internet of Things ]f[ Smart Cities%%lst%% e%%per%%g%%per%%%%lst%% monitoring 
+the health of historical buildings%%lst%% detecting the load level of waste containers%%lst%% sensing 
+noise in central areas of the city%%lst%% observing the conditions of traf c lights%%lst%% ]^[ analyz%%dsh%% 
+ing the usage of energy in Smart Homes%%per%% 
+2%%per%%2%%per%%3%%per%%]$~ ~$[Big Data%%per%%]$~ ~$[Most authors consider Big Data as a set of techniques ]^[ tools to 
+store ]^[ manipulate large data sets whereas conventional technologies%%lst%% such as rela%%dsh%% 
+tional databases ]^[ sequential processing tools%%lst%% cannot deal with such a vast volume 
+of data%%per%%]$~ ~$[There are four major characteristics of Big Data [Chen et al%%per%% 2014%%scn%% Demchenko 
+et al%%per%% 2014]%%cln%% 
+Volume%%cln%% the scale of data generated ]^[ collected is rapidly increasing%%lst%% ]^[ Big Data 
+tools must deal with this challenge%%per%%]$~ ~$[In Smart Cities%%lst%% the volume of data will be mas%%dsh%% 
+sive%%lst%% coming from many data sources distributed across the city%%per%%]$~ 
+~$[Variety%%cln%% data is collected from different sources%%lst%% ]^[ have structured%%lst%% semi%%dsh%% 
+structured%%lst%% ]v[ unstructured formats%%lst%% such as video records%%lst%% relational databases%%lst%% ]^[ 
+A:6 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+raw texts%%lst%% respectively%%per%%]$~ ~$[This is important ]f[ Smart Cities%%lst%% since city data is collected 
+from multiple sources%%lst%% such as surveillance cameras%%lst%% sensors%%lst%% ]^[ citizen devices%%per%%]$~ 
+~$[Velocity%%cln%% data processing must be fast and%%lst%% in some cases%%lst%% real%%dsh%%time%%lst%% ]v[ it may be 
+useless%%per%%]$~ ~$[City infrastructure%%lst%% operators%%lst%% ]^[ managers need to respond to urban prob%%dsh%% 
+lems%%lst%% such as traf c jams%%lst%% accidents%%lst%% ]^[ oods%%lst%% in short time%%per%%]$~ 
+~$[Veracity%%cln%% %%cmp_b%% of the large amount of data collected%%lst%% ]^[ the use of multiple data 
+sources%%lst%% it is important to ensure data quality%%lst%% %%cmp_b%% errors in the data ]v[ the usage 
+of unreliable sources can compromise its analysis%%per%%]$~ ~$[In cities%%lst%% incorrect GPS readings%%lst%% 
+malfunctioning sensors%%lst%% ]^[ malicious users can be sources of poor data%%per%%]$~ 
+~$[Figure 3 relates the four Vs of Big Data with Smart Cities needs%%per%%]$~ 
+~$[Fig%%per%% 3%%per%% 4 Vs of Big Data 
+Smart Cities already use Big Data tools to support the amount of data generated 
+from city devices%%per%%]$~ ~$[Sensor networks regularly transmit data about city conditions%%lst%% such 
+as temperature%%lst%% air quality%%lst%% ]^[ pluviometry%%per%%]$~ ~$[Citizens generate data using smart%%dsh%% 
+phones ]^[ social networks%%lst%% ]^[ vehicles continuously send their positions%%per%%]$~ 
+~$[Big Data tools are already used by Smart City platforms%%lst%% including%%cln%% NoSQL 
+databases [Khan et al%%per%% 2013%%scn%% Bain 2014]%%lst%% such as MongoDB ]^[ HBase%%scn%% parallel data 
+processing tools [Parkavi ]^[ Vetrivelan 2013%%scn%% Takahashi et al%%per%% 2012]%%lst%% such as Apache 
+Hadoop ]^[ Apache Spark%%scn%% real%%dsh%%time data streams processing tools [Girtelschmid et al%%per%% 
+2013]%%lst%% such as Apache Storm%%scn%% ]^[ visualization tools [Khan et al%%per%% 2013]%%lst%% such as Rapid%%dsh%% 
+Miner%%per%%]$~ 
+~$[Al Nuaimi et al%%per%% [Al Nuaimi et al%%per%% 2015] discuss potential applications of Big Data 
+tools in Smart Cities%%lst%% such as recognizing traf c patterns ]^[ using historic data to 
+locate the causes ]^[ avoid traf c jams%%lst%% facilitating the decisions of city governments 
+using analyses of large data sets%%lst%% ]^[ predicting the use of resources%%lst%% such as electric%%dsh%% 
+ity%%lst%% water%%lst%% ]^[ gas%%lst%% in different situations using historic ]^[ real%%dsh%%time data%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:7 
+2%%per%%2%%per%%4%%per%%]$~ ~$[Cloud Computing%%per%%]$~ ~$[Cloud Computing offers a very large%%lst%% elastic%%lst%% ]^[ highly avail%%dsh%% 
+able infrastructure ]f[ both data storage ]^[ computation%%lst%% which is essential ]f[ com%%dsh%% 
+plex Smart City systems%%per%%]$~ ~$[In addition%%lst%% a Smart City environment can be highly dy%%dsh%% 
+namic%%lst%% requiring recon gurations of the underlying infrastructure%%lst%% which is also sup%%dsh%% 
+ported by Cloud Computing%%per%%]$~ 
+~$[Many authors%%lst%% such as [Distefano et al%%per%% 2012%%scn%% Aazam et al%%per%% 2014]%%lst%% have advocated 
+combining IoT ]^[ Cloud Computing%%lst%% coining the term Cloud of Things %%per%%]$~ ~$[Their idea 
+is to store ]^[ process all the data from an IoT network in a cloud computing environ%%dsh%% 
+ment%%lst%% which is currently used in some Smart City projects [Mitton et al%%per%% 2012%%scn%% Tei ]^[ 
+Gurgen 2014]%%per%%]$~ 
+~$[Another concept related to a cloud computing environment in Smart Cities is Soft%%dsh%% 
+ware as a Service (SaaS)%%lst%% which provides the sensor data with a cloud computing in%%dsh%% 
+frastructure%%per%%]$~ ~$[The work of Perera et al%%per%% [Perera et al%%per%% 2014] extends this concept%%lst%% using 
+the term Sensing as a Service %%per%%]$~ ~$[The ClouT platform%%lst%% presented in [Tei ]^[ Gurgen 
+2014]%%lst%% also uses the concept of software services ]^[ de nes the terms City Applica%%dsh%% 
+tion Software as a Service (CSaaS) ]^[ City Platform as a Service (CPaaS)%%per%%]$~ 
+~$[Some authors relate the use of Cloud Computing%%lst%% Big Data%%lst%% ]^[ IoT [Chen et al%%per%% 
+2014%%scn%% Aazam et al%%per%% 2014]%%lst%% %%cmp_b%% a cloud environment is an ideal infrastructure to 
+store data ]^[ execute services%%per%%]$~ ~$[Hence%%lst%% the data generated from an IoT middleware 
+can be stored ]^[ processed in a cloud environment using Big Data tools%%per%%]$~ ~$[This syn%%dsh%% 
+ergistic combination helps to support important non%%dsh%%functional requirements such as 
+scalability%%lst%% elasticity%%lst%% ]^[ security%%per%% 
+3%%per%%]$~ ~$[PLATFORMS FOR SMART CITIES 
+We describe here various platforms ]f[ Smart Cities presented in the literature%%per%%]$~ ~$[All 
+platforms use at least one of the enabling technologies discussed in Section 2%%per%%2%%per%%]$~ 
+~$[To nd these studies%%lst%% we used the following query string%%cln%% ( Smart City ]v[ Smart 
+Cities ) ]^[ (Platform ]v[ Middleware ]v[ Architecture)%%per%%]$~ ~$[After analyzing the query results%%lst%% 
+we focused our study on 47 papers describing Smart City platforms ]^[ applications%%per%%]$~ 
+~$[We did ]n[ include in our search other terms that are more rarely used to describe 
+the application of ICT in cities%%lst%% such as Knowledge City %%lst%% Intelligent City %%lst%% ]^[ Con%%dsh%% 
+nected City %%per%%]$~ ~$[Figure 4 illustrates the use of these expressions in recent years using 
+Google Trends%%per%%]$~ 
+~$[Fig%%per%% 4%%per%%]$~ ~$[Trends in Smart City related terms 
+A:8 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%%]$~ 
+~$[Since the expression Digital City is still used%%lst%% we analyzed the de nition of this 
+expression ]^[ the differences with Smart Cities %%per%%]$~ ~$[We found that%%lst%% normally%%lst%% the de%%dsh%% 
+scription of a digital city relates to the use of digital technologies in a city%%lst%% ]b[ ]n[ with 
+the goal of making smart services ]^[ improving the city s overall infrastructure%%per%%]$~ ~$[In 
+a digital city%%lst%% the integration of the multiple systems is ]n[ at stake%%per%%]$~ ~$[The differences 
+between these two concepts are discussed by Cocchia [Cocchia 2014] ]^[ by Yin et al%%per%% 
+[Yin et al%%per%% 2015]%%per%%]$~ 
+~$[The next subsection describes existing platforms%%lst%% developed as research projects 
+with different approaches%%per%%]$~ ~$[Subsection 3%%per%%2 shows systems developed using these plat%%dsh%% 
+forms%%per%%]$~ ~$[Finally%%lst%% in Subsection 3%%per%%3%%lst%% we present a set of functional ]^[ non%%dsh%%functional 
+requirements extracted from our analysis of the platforms ]^[ systems described in 
+the previous subsections%%per%% 
+3%%per%%1%%per%%]$~ ~$[Platform Categories 
+To facilitate the presentation%%lst%% we divided the platforms into ve categories%%lst%% according 
+to the enabling technologies that each platform uses%%per%%]$~ ~$[Figure 5 presents an overview 
+of the platforms ]f[ Smart Cities that we analyzed%%per%%]$~ ~$[In this gure%%lst%% we can observe 
+that most platforms use Cloud Computing%%per%%]$~ ~$[Almost all of them use at least one more 
+enabling technology%%lst%% more commonly IoT ]^[ Big Data%%per%%]$~ 
+~$[Fig%%per%% 5%%per%%]$~ ~$[Use of Enabling Technologies by Smart City Platforms 
+3%%per%%1%%per%%1%%per%%]$~ ~$[Internet of Things ]^[ Cloud Computing%%per%%]$~ ~$[In this section%%lst%% we present the platforms 
+that use both IoT ]^[ Cloud Computing as enabling technologies%%per%%]$~ 
+~$[SmartSantander is an experimental infrastructure to support the development ]^[ 
+deployment of Smart City applications ]^[ services [Sanchez et al%%per%% 2014]%%per%%]$~ ~$[The project 
+is centered in Santander%%lst%% Spain%%lst%% with smaller facilities in other European cities%%per%%]$~ ~$[The 
+platform processes a large variety of information%%lst%% including data about traf c condi%%dsh%% 
+tions%%lst%% temperature%%lst%% CO2 emissions%%lst%% humidity%%lst%% ]^[ luminosity%%per%%]$~ ~$[Currently%%lst%% the project 
+has implanted more %%cmp_ta%% 20,000 sensors in the city%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:9 
+Padova Smart City [Zanella et al%%per%% 2014] uses IoT to create a sensor network in the 
+city of Padova%%lst%% Italy%%per%%]$~ ~$[Using more %%cmp_ta%% three hundred sensors%%lst%% the platform collects 
+environmental data%%lst%% such as CO2 emissions ]^[ air temperature%%lst%% ]^[ monitors street 
+lights%%per%%]$~ ~$[A feature highlighted in this platform is the use of common protocols ]^[ data 
+formats to allow interoperability among multiple city systems%%per%%]$~ 
+~$[The European Platform ]f[ Intelligent Cities (EPIC) project [Ballon et al%%per%% 2011] pro%%dsh%% 
+poses a complete IoT Middleware to facilitate the use ]^[ management of the Wireless 
+Sensor Network (WSN)%%per%%]$~ ~$[This middleware aims to deal with the heterogeneity%%lst%% interop%%dsh%% 
+erability%%lst%% scalability%%lst%% extensibility%%lst%% ]^[ con gurability problems in a WSN%%per%%]$~ 
+~$[ClouT [Tei ]^[ Gurgen 2014] proposes a two%%dsh%%layer architecture to collect data from 
+the WSN ]^[ manage the sensors ]^[ actuators in the city network [Galache et al%%per%% 
+2014]%%per%%]$~ ~$[The rst layer is the Sensors ]^[ Actuators Layer%%lst%% which handles data from the 
+WSN%%per%%]$~ ~$[The second layer%%lst%% the IoT Kernel Layer%%lst%% manages ]^[ monitors the sensors ]^[ 
+actuators network%%per%%]$~ 
+~$[OpenMTC [Elmangoush et al%%per%% 2013] (Open Machine Type Communications) is a 
+Machine%%dsh%%To%%dsh%%Machine (M2M) based communication platform ]f[ Smart Cities%%per%%]$~ ~$[Its goal 
+is to enable ef cient communication among a large number of devices%%lst%% associating them 
+with multiple services%%per%%]$~ ~$[To achieve this%%lst%% the platform supports standard interfaces to 
+various types of devices%%lst%% data/event processing methods to achieve real%%dsh%%time perfor%%dsh%% 
+mance%%lst%% ]^[ easy application development%%lst%% providing a software development kit%%per%%]$~ 
+~$[The analysis of the platforms aforementioned led to the identi cation of four major 
+functional requirements%%cln%% management of a WSN%%lst%% management of the data collected 
+from the city%%lst%% management of services ]^[ applications%%lst%% ]^[ an infrastructure to make 
+the data from the platform available to city applications%%per%%]$~ ~$[This analysis also led to the 
+identi cation of ve non%%dsh%%functional requirements%%cln%% adaptation%%lst%% interoperability%%lst%% scala%%dsh%% 
+bility%%lst%% extensibility%%lst%% ]^[ con gurability%%per%%]$~ 
+~$[We identify two weak points of these platforms%%cln%% (1) the lack of pre%%dsh%%processing compo%%dsh%% 
+nents to verify the integrity of the data collected from the city ]^[ make small transfor%%dsh%% 
+mations of the data%%lst%% such as aggregations%%lst%% ]^[ (2) most of the platforms do ]n[ include 
+a discussion about security concerns%%per%% 
+3%%per%%1%%per%%2%%per%%]$~ ~$[Internet of Things%%lst%% Cloud Computing%%lst%% ]^[ Big Data%%per%%]$~ ~$[In this subsection%%lst%% we present 
+platforms that use IoT%%lst%% Cloud Computing%%lst%% ]^[ Big Data as enabling technologies%%per%%]$~ 
+~$[OpenIoT3 is an open source middleware ]f[ the development of IoT%%dsh%%based applica%%dsh%% 
+tions%%per%%]$~ ~$[It has an API to manage the WSN%%lst%% ]^[ a directory service to dynamically dis%%dsh%% 
+cover the sensors deployed in the city%%scn%% it also has a layer ]f[ service de nition ]^[ 
+access%%per%%]$~ ~$[Big Data tools are used to store ]^[ analyze the data from the platform%%per%%]$~ ~$[A 
+Smart City project called Vital [Petrolo et al%%per%% 2014] builds on this platform ]^[ uses 
+the term Cloud of Things to refer to the use of Cloud Computing ]^[ IoT%%per%%]$~ 
+~$[The Concinnity project provides a platform ]f[ managing data ]^[ applications fol%%dsh%% 
+lowing the PaaS model [Wu et al%%per%% 2014]%%lst%% with which its authors built Big Sensor Data 
+Applications%%per%%]$~ ~$[However%%lst%% this platform focuses on multiple data sources such as the 
+WSN%%lst%% social networks%%lst%% ]^[ data from platform users%%per%%]$~ ~$[It also includes a service di%%dsh%% 
+rectory where developers can nd ]^[ publish services facilitating its reuse%%per%%]$~ 
+~$[OpenIoT ]^[ Concinnity%%lst%% offer developers tools to implement applications directly 
+on the platform%%per%%]$~ ~$[OpenIoT allows the mash%%dsh%%up of the services de ned in the platform 
+]^[ automatically creates a visual interface ]f[ end%%dsh%%users%%per%%]$~ ~$[Concinnity provides a set of 
+development tools%%lst%% such as a Work ow Editor ]^[ Engine%%lst%% a Service Publisher%%lst%% ]^[ an 
+Application Editor%%per%% 
+3OpenIoT %%dsh%% https://github%%per%%com/OpenIotOrg/openiot 
+A:10 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%%]$~ 
+~$[Sentilo [Bain 2014] is platform that deals with the management of sensors ]^[ ac%%dsh%% 
+tuators%%lst%% designed ]f[ Smart Cities that looks ]f[ openness ]^[ interoperability%%per%%]$~ ~$[Sentilo 
+uses IoT concepts to control the WSN%%lst%% ]^[ Cloud Computing to share data with the 
+applications%%per%%]$~ ~$[Big Data tools are mainly used to collect ]^[ store data from sensors%%lst%% en%%dsh%% 
+suring platform scalability%%per%%]$~ ~$[The Sentilo project was originally designed to be deployed 
+in the city of Barcelona%%scn%% after its deployment%%lst%% the City released the code under the 
+LGPL ]^[ EUPL open source licenses%%per%%]$~ 
+~$[The main functional requirements identi ed ]f[ this group of platforms were%%cln%% man%%dsh%% 
+agement of a WSN%%lst%% management of data life cycle (collect%%lst%% store%%lst%% process)%%lst%% making the 
+data from the platform publicly available%%lst%% a service directory ]f[ application develop%%dsh%% 
+ers%%lst%% ]^[ tools ]f[ application development%%per%%]$~ ~$[As non%%dsh%%functional requirements%%lst%% we identi%%dsh%% 
+ed%%cln%% interoperability ]^[ scalability%%per%%]$~ 
+~$[A weak point of these platforms is the lack of streams processing tools to analyze 
+real%%dsh%%time data from the city%%lst%% an important requirement ]f[ many Smart City applica%%dsh%% 
+tions%%per%%]$~ ~$[Another problem is that most of the platforms do ]n[ support the customization 
+of services with citizen data%%per%%]$~ ~$[In spite of the privacy problems%%lst%% offering context%%dsh%%aware%%lst%% 
+customized services to the citizens is highly desirable%%per%% 
+3%%per%%1%%per%%3%%per%%]$~ ~$[Cloud Computing ]^[ Big Data%%per%%]$~ ~$[In this subsection%%lst%% we present platforms that use 
+Cloud Computing ]^[ Big Data as enabling technologies%%per%%]$~ 
+~$[Vilajosana et al%%per%% [Vilajosana et al%%per%% 2013] present a platform ]f[ Smart Cities based 
+on Cloud Computing ]^[ Big Data%%lst%% whose main components are data management 
+]^[ service hosting%%per%%]$~ ~$[It includes an Open Data API allowing third%%dsh%%party applications to 
+access the data stored on the platform%%per%%]$~ ~$[Big Data tools are used to collect data streams 
+]^[ analyze data%%lst%% such as prediction ]^[ inference%%per%%]$~ 
+~$[Scallop4SC (SCALable LOgging Platform ]f[ Smart City) [Takahashi et al%%per%% 2012%%scn%% 
+Yamamoto et al%%per%% 2014] uses Big Data to process a large volume of data gathered from 
+smart buildings%%per%%]$~ ~$[The platform uses information about the building%%lst%% such as water ]^[ 
+energy consumption%%lst%% temperature%%lst%% air humidity%%lst%% ]^[ the amount of garbage generated%%per%%]$~ 
+~$[Periodically%%lst%% the buildings send data to the platform ]f[ processing%%per%%]$~ ~$[The objective is to 
+analyze smart building data%%lst%% ]f[ which it uses the MapReduce algorithm%%per%%]$~ 
+~$[CiDAP [Cheng et al%%per%% 2015] is a big data analytics platform deployed into the Smart%%dsh%% 
+Santander testbed%%per%%]$~ ~$[The platform uses data collected from SmartSantander ]^[ ana%%dsh%% 
+lyzes it to understand the behavior of the city%%per%%]$~ ~$[The main components of this platform 
+are%%cln%% the agents%%lst%% which collect data from the SmartSantander platform%%scn%% the Big Data 
+repository ]f[ storing the data%%scn%% the Big Data processing ]f[ intensive data processing 
+]^[ analytics%%scn%% ]^[ a CityModel server%%lst%% responsible ]f[ interfacing with external appli%%dsh%% 
+cations%%per%%]$~ ~$[This platform uses Apache Spark [Zaharia et al%%per%% 2010] to process the data%%per%% 
+[Khan et al%%per%% 2015] propose a Smart City architecture based on Big Data to achieve 
+the necessary availability ]^[ scalability required ]f[ a Smart Cities platform%%per%%]$~ ~$[The 
+architecture has three layers%%cln%% one to collect%%lst%% analyze%%lst%% ]^[ lter data%%scn%% another to map 
+]^[ aggregate data to make it semantically relevant%%scn%% ]^[ a third layer where users can 
+browse ]^[ recover the data processed from the other two layers%%per%%]$~ ~$[The implementation 
+of the architecture uses only open source projects%%lst%% ]^[ the authors have presented tools 
+]f[ all layers [Khan et al%%per%% 2013]%%per%%]$~ 
+~$[WindyGrid [Thornton 2013]%%lst%% an initiative of the City of Chicago%%lst%% is a platform ]f[ 
+Smart Cities%%lst%% whose objective is to present real%%dsh%%time ]^[ historical data with a uni ed 
+view of city operations%%per%%]$~ ~$[Big Data technologies%%lst%% such as the MongoDB NoSQL database 
+]^[ parallel data processors%%lst%% were used to develop the platform%%per%%]$~ 
+~$[SMARTY [Anastasi et al%%per%% 2013] is a project aimed at providing tools ]^[ services 
+]f[ mobility ]^[ exible city transport systems%%per%%]$~ ~$[Its software platform collects data 
+from multiple sources%%lst%% such as traf c ow%%lst%% user location%%lst%% transport service delays%%lst%% ]^[ 
+Software Platforms ]f[ Smart Cities 
+A:11 
+parking availability%%per%%]$~ ~$[A network of low%%dsh%%cost sensors collects data from the city ]^[ social 
+networks are continuously monitored to get data from citizens%%per%%]$~ ~$[The platform processes 
+the massive amount of data generated by the city with data mining techniques%%lst%% such 
+as classi cation%%lst%% regression%%lst%% ]^[ clustering%%per%%]$~ 
+~$[The platform proposed by Girtelschmid et al%%per%% [Girtelschmid et al%%per%% 2013] uses se%%dsh%% 
+mantic technologies to create a platform ]f[ Smart Cities%%lst%% adding exibility in system 
+con guration ]^[ adaptation%%per%%]$~ ~$[However%%lst%% to overcome the performance bottlenecks nor%%dsh%% 
+mally associated with ontology repositories ]^[ reasoning tools%%lst%% the authors combine 
+their semantic techniques with Big Data processing methods%%per%%]$~ 
+~$[The main functional requirements identi ed ]f[ this group of platforms were%%cln%% data 
+management%%lst%% such as collecting%%lst%% analyzing%%lst%% ]^[ visualizing data%%scn%% large scale data pro%%dsh%% 
+cessing%%lst%% such as batch ]^[ real%%dsh%%time processing%%scn%% ]^[ the use of semantic techniques 
+combined with Big Data%%per%%]$~ ~$[As non%%dsh%%functional requirements%%lst%% we identi ed scalability ]^[ 
+adaptation%%per%%]$~ 
+~$[Most of the platforms in this section do ]n[ have an IoT layer%%lst%% ]^[ do ]n[ indicate how 
+the data is collected from the city%%scn%% the exception is CiDAP%%lst%% which uses the SmartSan%%dsh%% 
+tander testbed as an IoT middleware%%per%%]$~ ~$[Another drawback is that most of the platforms 
+do ]n[ include a discussion about security concerns%%per%% 
+3%%per%%1%%per%%4%%per%%]$~ ~$[Cloud Computing%%per%%]$~ ~$[In this subsection%%lst%% we present platforms that use only Cloud 
+Computing as an enabling technology%%per%%]$~ 
+~$[Piro et al%%per%% [Piro et al%%per%% 2014] present a two%%dsh%%layered service platform ]f[ the creation of 
+Smart City applications%%per%%]$~ ~$[The rst is a low%%dsh%%level layer that controls the communication 
+among the city WSN devices%%per%%]$~ ~$[The second layer collects the data from the devices ]^[ 
+provides services ]f[ the development of applications that use the data from the city%%per%%]$~ 
+~$[U%%dsh%%City [Lee ]^[ Rho 2010] is a platform ]f[ the creation of smart ubiquitous cities%%per%%]$~ 
+~$[The platform offers several service management features%%lst%% such as autonomic service 
+discovery%%lst%% service deployment%%lst%% ]^[ context%%dsh%%aware service execution%%per%%]$~ ~$[It also offers pre%%dsh%% 
+de ned services such as an inference engine%%lst%% a context%%dsh%%aware data service%%lst%% ]^[ a portal 
+]f[ the management of the platform%%per%%]$~ 
+~$[Gambas%%lst%% a middleware ]f[ the development of Smart City applications [Apolinarski 
+et al%%per%% 2014]%%lst%% supports data acquisition%%lst%% distribution%%lst%% ]^[ integration%%per%%]$~ ~$[The platform 
+also provides an application runtime to facilitate the development ]^[ deployment 
+of services using city data ]^[ a service registry%%per%%]$~ ~$[The middleware supports context%%dsh%% 
+awareness%%lst%% ]s[ that Smart City services can adapt to the citizen situation%%lst%% behavior%%lst%% 
+]^[ intent%%per%%]$~ ~$[All communication in the platform is encrypted to ensure citizen s privacy 
+]^[ security%%per%%]$~ 
+~$[Civitas [Villanueva et al%%per%% 2013] is a middleware to support the development of Smart 
+Cities services%%per%%]$~ ~$[It is used to facilitate the development ]^[ deployment of Smart City 
+applications%%lst%% ]^[ to avoid the emergence of information islands [Qiu et al%%per%% 2010]%%lst%% i%%per%%e%%per%%%%lst%% 
+disconnected applications that do ]n[ share relevant information%%per%%]$~ ~$[Citizens connect to 
+the middleware via a special device called the Civitas Plug%%lst%% which ensures the privacy 
+]^[ the security%%per%%]$~ ~$[The middleware has two main design principles to facilitate the ap%%dsh%% 
+plication integration%%cln%% Everything is a Software Object%%lst%% which promotes the consistency 
+of the software design ]^[ reusability of the middleware%%scn%% ]^[ Independence of the City 
+Layout%%lst%% meaning that city services should ]n[ work with just one city layout%%per%%]$~ 
+~$[The main functional requirements identi ed ]f[ this group of platforms were%%cln%% service 
+management ]^[ data management%%per%%]$~ ~$[As non%%dsh%%functional requirements%%lst%% we identi ed%%cln%% 
+security%%lst%% privacy%%lst%% ]^[ context awareness%%per%%]$~ 
+~$[A drawback of the platforms presented in this section is that none of them use known 
+frameworks to implement components%%lst%% such as the inference engine ]^[ processing 
+tools%%lst%% which might make dif cult the maintenance of the platform%%per%%]$~ ~$[Another problem is 
+A:12 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+that the platforms do ]n[ describe a mechanism to allow external access to the platform 
+data%%per%% 
+3%%per%%1%%per%%5%%per%%]$~ ~$[Cloud Computing ]^[ Cyber%%dsh%%Physical Systems%%per%%]$~ ~$[In this section%%lst%% we present platforms 
+that use Cloud Computing ]^[ Cyber%%dsh%%Physical Systems (CPS) as enabling technolo%%dsh%% 
+gies%%per%%]$~ 
+~$[Gurgen et al%%per%% [Gurgen et al%%per%% 2013] present a middleware ]f[ Smart Cities auto%%dsh%% 
+nomic services%%lst%% which includes many self%%dsh%% properties%%lst%% such as self%%dsh%%organization%%lst%% self%%dsh%% 
+optimization%%lst%% self%%dsh%%con guration%%lst%% self%%dsh%%protection%%lst%% self%%dsh%%healing%%lst%% self%%dsh%%discovery%%lst%% ]^[ self%%dsh%% 
+description%%per%%]$~ ~$[They justify using cloud computing to provide scalability%%lst%% reliability%%lst%% ]^[ 
+elasticity to the platform%%per%%]$~ ~$[This platform provides application developers with the con%%dsh%% 
+texts of individual users ]^[ the city%%per%%]$~ 
+~$[Privat et al%%per%% [Privat et al%%per%% 2014] propose another CPS%%dsh%%based platform%%lst%% whose main 
+characteristic is self%%dsh%%con guration ]^[ self%%dsh%%adaptation capabilities in smart environ%%dsh%% 
+ments%%lst%% including Smart Cities%%per%%]$~ ~$[This platform provides a shared distributed software 
+infrastructure that collects data ]^[ reacts to changes in the environment%%per%%]$~ 
+~$[Wan et al%%per%% [Wan et al%%per%% 2012] propose an event%%dsh%%based CPS platform%%lst%% which uses 
+an event manager to manage ]^[ generate cooperation among M2M components%%per%%]$~ 
+~$[This platform provides data ]^[ services to third%%dsh%%party applications through a pub%%dsh%% 
+lish/subscribe module%%per%%]$~ ~$[The platform also enables the design of event processing ows 
+to manage the mission%%dsh%%critical wireless messages%%per%%]$~ 
+~$[The main functional requirements identi ed ]f[ this group of platforms were%%cln%% auto%%dsh%% 
+nomic reaction to changes in the city environment%%lst%% communication among city devices%%lst%% 
+]^[ a publish/subscribe mechanism ]f[ applications to communicate with the platform%%per%%]$~ 
+~$[As non%%dsh%%functional requirements%%lst%% we identi ed%%cln%% con gurability%%lst%% adaptation%%lst%% ]^[ context 
+awareness%%per%%]$~ 
+~$[The platforms of this section focus on the deployment%%lst%% con guration%%lst%% ]^[ execution 
+of CPS devices in the city%%lst%% ]b[ they lack important requirements%%lst%% such as the mon%%dsh%% 
+itoring ]^[ publication of the data from the devices%%per%%]$~ ~$[They also do ]n[ describe any 
+mechanism to verify the data collected from the city%%lst%% discarding inconsistencies%%per%% 
+3%%per%%2%%per%%]$~ ~$[Systems 
+In this subsection%%lst%% we illustrate applications built on top of the platforms presented 
+in the previous section%%per%%]$~ ~$[Table I presents an overview of the domains of the analyzed 
+systems%%per%%]$~ 
+~$[The GAMBAS middleware was used to develop two applications ]f[ the public trans%%dsh%% 
+portation system in Madrid%%lst%% Spain%%per%%]$~ ~$[Foell et al%%per%% [Foell et al%%per%% 2014] present a context%%dsh%% 
+aware urban bus navigator to help travelers nd the best buses ]f[ their trips%%per%%]$~ ~$[Handte 
+et al%%per%% [Handte et al%%per%% 2014] describe a system that estimates the number of passengers 
+of city buses using smartphone sensing%%per%%]$~ 
+~$[SEN2SOC [Vakali et al%%per%% 2014] is a system deployed on the SmartSantander platform 
+that uses data streams from the city (e%%per%%g%%per%%%%lst%% sensor data) ]^[ social networks (e%%per%%g%%per%%%%lst%% Twit%%dsh%% 
+ter) to create Smart City applications%%per%%]$~ ~$[Two examples of applications are%%cln%% capturing the 
+emotional state of city inhabitants%%lst%% ]^[ visualizing the air pollution in the city%%per%%]$~ ~$[Also in 
+SmartSantander%%lst%% Vlahogianni et al%%per%% [Vlahogianni et al%%per%% 2014] present an application 
+to predict the utilization of city parking lots%%per%%]$~ 
+~$[Two applications were developed using the Padova Smart City platform%%per%%]$~ ~$[Bui ]^[ 
+Zorzi [Bui ]^[ Zorzi 2011] present a health care system whose main features are 
+monitoring conditions of patients%%lst%% sending their data directly to doctors%%lst%% ]^[ calling 
+emergency services %%cmp_if%% the patient has an urgent problem%%per%%]$~ ~$[Bressan et al%%per%% [Bressan et al%%per%% 
+2010] present a monitoring application to manage ]^[ collect data from all the light 
+posts connected to the platform%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:13 
+Table I%%per%%]$~ ~$[Domains of Smart City Systems 
+l 
+o 
+r 
+t 
+n 
+o 
+C 
+c 
+f 
+a 
+r 
+T 
+X 
+X 
+X 
+X 
+4 
+n 
+o 
+i 
+t 
+u 
+l 
+l 
+o 
+P 
+r 
+i 
+A 
+X 
+X 
+2 
+d 
+r 
+a 
+o 
+b 
+h 
+s 
+a 
+D 
+y 
+t 
+i 
+C 
+X 
+1 
+g 
+n 
+i 
+s 
+n 
+e 
+S 
+y 
+t 
+i 
+C 
+X 
+X 
+X 
+X 
+X 
+5 
+e 
+r 
+a 
+C 
+h 
+t 
+l 
+a 
+e 
+H 
+X 
+X 
+2 
+y 
+t 
+e 
+f 
+a 
+S 
+X 
+X 
+2 
+n 
+o 
+i 
+t 
+n 
+e 
+v 
+e 
+r 
+P 
+r 
+e 
+t 
+s 
+a 
+s 
+i 
+D 
+X 
+1 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+y 
+g 
+r 
+e 
+n 
+E 
+X 
+1 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+e 
+t 
+s 
+a 
+W 
+X 
+1 
+GAMBAS 
+SmartSantander 
+Padova Smart City 
+OpenIoT 
+WindyGrid 
+ClouT 
+Scallop4SC 
+Number of Instances 
+Anagnostopoulos et al%%per%% [Anagnostopoulos et al%%per%% 2015] present a waste management 
+system implemented using the OpenIoT platform%%per%%]$~ ~$[It presents four models to prioritize 
+critical trash bins%%lst%% such as bins close to schools%%lst%% hospitals%%lst%% ]^[ gas stations%%per%%]$~ ~$[The system 
+was used to %%cmp%% the four models according to the amount of CO2 emitted ]^[ the 
+distance traveled by trash trucks%%per%%]$~ 
+~$[The WindyGrid platform [Rutkin 2014] provides three main systems to the city of 
+Chicago%%cln%% Situational Awareness ]^[ Incident Monitoring%%lst%% to monitor ]^[ act on prob%%dsh%% 
+lems that are occurring in the city%%scn%% Historical Data Analyses%%lst%% to predict the behavior 
+of city systems%%lst%% such as traf c ]^[ health care%%scn%% ]^[ Advanced Real%%dsh%%Time Analytics%%lst%% to 
+analyze the current situation of city systems%%per%%]$~ ~$[Some examples of the data used in these 
+systems are%%cln%% log of emergency (911) calls%%lst%% traf c conditions%%lst%% public buildings informa%%dsh%% 
+tion%%lst%% ]^[ surveillance cameras%%per%%]$~ 
+~$[Galache et al%%per%% [Galache et al%%per%% 2014] present four systems developed using the ClouT 
+platform%%cln%% an alert service to warn citizens about earthquakes in Fujisawa%%lst%% Japan%%scn%% a 
+civil protection system%%lst%% which warns the population about environmental risks such as 
+storms ]^[ earthquakes in Genova%%lst%% Italy%%scn%% a system to help elderly people nd healthy 
+activities in the city of Mitaka%%lst%% Japan%%scn%% ]^[ a sensing application to notify people about 
+events in Santander%%lst%% Spain%%lst%% such as cultural acts ]^[ traf c accidents%%per%%]$~ 
+~$[Yamamoto et al%%per%% [Yamamoto et al%%per%% 2014] present two systems developed ]f[ the Scal%%dsh%% 
+lop4SC platform%%lst%% both in the energy management domain%%per%%]$~ ~$[The rst system offers a 
+tool ]f[ the visualization of household energy consumption%%lst%% which analyzes data at 
+different levels%%lst%% such as state%%lst%% city%%lst%% ]^[ neighborhood%%per%%]$~ ~$[The other system is a wasteful 
+energy detection service that is available ]f[ smart homes%%per%%]$~ 
+~$[The analyzed applications show that the most explored domains in the literature are 
+traf c%%lst%% with applications to monitor the streets ]v[ help citizens to use the public trans%%dsh%% 
+port%%lst%% ]^[ city sensing%%lst%% capturing data from the city using sensors such as air pollution 
+]^[ temperature%%per%%]$~ ~$[Most of the applications are developed external to the platform%%lst%% us%%dsh%% 
+ing only one ]v[ more platform services%%per%% 
+3%%per%%3%%per%%]$~ ~$[Requirements ]f[ Smart City Software Platforms 
+To answer the second research question What are the requirements that a software 
+platform ]f[ Smart Cities should meet? %%lst%% in this section we analyze the functional ]^[ 
+non%%dsh%%functional requirements extracted from the analyzed platforms%%per%%]$~ 
+~$[A:14 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%%]$~ 
+~$[We assume that a platform implements a requirement %%cmp_if%% the literature describing it 
+explicitly states so%%lst%% ]v[ %%cmp_if%% the platform has a component ]v[ module that clearly ful lls 
+that requirement%%per%% 
+3%%per%%3%%per%%1%%per%%]$~ ~$[Functional Requirements%%per%%]$~ ~$[The main goal of a platform ]f[ Smart Cities is to fa%%dsh%% 
+cilitate the development of Smart City applications%%per%%]$~ ~$[Towards this aim%%lst%% most of the 
+analyzed platforms implement requirements ]f[ collecting data from the city%%lst%% manag%%dsh%% 
+ing ]^[ sharing data%%lst%% ]^[ providing tools to facilitate the development of Smart City 
+applications%%per%%]$~ ~$[Table II presents an overview of the functional requirements ]f[ Smart 
+City platforms%%lst%% which we describe in the following%%cln%% 
+Table II%%per%%]$~ ~$[Functional requirements ]f[ Smart City platforms 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+a 
+t 
+a 
+D 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+18 
+e 
+m 
+i 
+t 
+%%dsh%% 
+n 
+u 
+R 
+n 
+o 
+i 
+t 
+a 
+c 
+i 
+l 
+p 
+p 
+A 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+7 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+N 
+S 
+W 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+9 
+g 
+n 
+i 
+s 
+s 
+e 
+c 
+o 
+r 
+P 
+a 
+t 
+a 
+D 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+13 
+s 
+s 
+e 
+c 
+c 
+A 
+a 
+t 
+a 
+D 
+l 
+a 
+n 
+r 
+e 
+t 
+x 
+E 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+16 
+s 
+l 
+o 
+o 
+T 
+g 
+n 
+i 
+r 
+e 
+e 
+n 
+i 
+g 
+n 
+E 
+e 
+r 
+a 
+w 
+t 
+f 
+o 
+S 
+X 
+X 
+X 
+X 
+t 
+n 
+e 
+m 
+e 
+g 
+a 
+n 
+a 
+M 
+e 
+c 
+i 
+v 
+r 
+e 
+S 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+14 
+4 
+l 
+e 
+d 
+o 
+M 
+y 
+t 
+i 
+C 
+a 
+f 
+o 
+n 
+o 
+i 
+t 
+i 
+n 
+e 
+D 
+X 
+X 
+X 
+3 
+SmartSantander 
+OpenIoT 
+Concinnity 
+Civitas 
+Gambas 
+[Khan et al%%per%% 2013] 
+[Girtelschmid et al%%per%% 2013] 
+Scallop4SC 
+OpenMTC 
+[Wan et al%%per%% 2012] 
+[Piro et al%%per%% 2014] 
+[Gurgen et al%%per%% 2013] 
+[Vilajosana et al%%per%% 2013] 
+ClouT 
+Padova Smart City 
+U%%dsh%%City 
+Sentilo 
+WindyGrid 
+EPIC 
+[Privat et al%%per%% 2014] 
+SMARTY 
+CiDAP 
+Number of Instances 
+Data Management%%cln%% This is a requirement implemented by most of the platforms 
+]f[ Smart Cities%%lst%% which includes collection%%lst%% storage%%lst%% analysis%%lst%% ]^[ visualization of 
+city data%%per%%]$~ ~$[The analyzed platforms use different techniques ]f[ this requirement%%lst%% such 
+as relational databases [Hernndez%%dsh%%Mu noz et al%%per%% 2011%%scn%% Lee ]^[ Rho 2010]%%lst%% big data 
+Software Platforms ]f[ Smart Cities 
+A:15 
+tools [Thornton 2013%%scn%% Cheng et al%%per%% 2015]%%lst%% ]^[ customized tools implemented by the 
+platform development team [Wu et al%%per%% 2014]%%per%%]$~ 
+~$[Applications Run%%dsh%%time%%cln%% Some platforms focus on managing the execution of their 
+applications%%per%%]$~ ~$[The goal is to facilitate the deployment ]^[ integration of such applica%%dsh%% 
+tions%%per%%]$~ ~$[Some platforms provide a complete environment ]f[ developers to deploy their 
+applications [Apolinarski et al%%per%% 2014]%%scn%% others offer an execution run%%dsh%%time service ]f[ 
+applications developed with tools the platform provides [Petrolo et al%%per%% 2014%%scn%% Wu et al%%per%% 
+2014]%%per%%]$~ 
+~$[WSN Management%%cln%% Many of the analyzed platforms have a Wireless Sensor Net%%dsh%% 
+work (WSN) management layer to control ]^[ monitor the devices deployed in the 
+city%%per%%]$~ ~$[Most of these platforms use IoT concepts to organize ]^[ manage the WSN 
+[Hernndez%%dsh%%Mu noz et al%%per%% 2011%%scn%% Tei ]^[ Gurgen 2014]%%per%%]$~ ~$[Other platforms [Bain 2014] 
+do ]n[ explicitly mention this%%lst%% ]b[ indeed have a software layer to manage the city 
+network devices%%per%%]$~ ~$[Some platforms include features to manage all the device activities%%lst%% 
+such as adding%%lst%% removing%%lst%% ]^[ monitoring the sensors ]^[ actuators%%per%%]$~ ~$[Two platforms 
+describe a WSN deployed in a city%%cln%% Padova Smart City [Zanella et al%%per%% 2014]%%lst%% with 3000 
+sensors%%lst%% ]^[ SmartSantander [Sanchez et al%%per%% 2014]%%lst%% with more %%cmp_ta%% 20000 sensors%%per%%]$~ 
+~$[Data Processing%%cln%% Some platforms use speci c processing components%%lst%% such as infer%%dsh%% 
+ence engines [Lee ]^[ Rho 2010]%%lst%% work ow processing [Wu et al%%per%% 2014]%%lst%% ]^[ big data 
+processing tools [Takahashi et al%%per%% 2012]%%per%%]$~ ~$[These components process large data sets%%lst%% 
+]^[ their main purpose is to analyze%%lst%% verify%%lst%% aggregate%%lst%% ]^[ lter the data from the 
+city%%per%%]$~ ~$[In addition%%lst%% some platforms [Girtelschmid et al%%per%% 2013%%scn%% Cheng et al%%per%% 2015] make 
+real%%dsh%%time analyses of data streams%%per%%]$~ 
+~$[External Data Access%%cln%% Almost all platforms describe an interface ]f[ external ap%%dsh%% 
+plications to access the platform data%%per%%]$~ ~$[The most common approach is an API to allow 
+access to the data generated in the city%%per%%]$~ ~$[Some platforms use REST [Hernndez%%dsh%%Mu noz 
+et al%%per%% 2011%%scn%% Elmangoush et al%%per%% 2013]%%lst%% others use cloud computing concepts to provide 
+the city data as a service [Ballon et al%%per%% 2011]%%lst%% ]^[ one proposes an open data platform 
+[Zanella et al%%per%% 2014]%%per%%]$~ ~$[Also%%lst%% a platform [Gurgen et al%%per%% 2013] uses the publish/subscribe 
+paradigm to make the data ]^[ services available to applications%%per%%]$~ 
+~$[Service Management%%cln%% Most of the analyzed platforms adopt a Service%%dsh%%Oriented Ar%%dsh%% 
+chitecture%%lst%% in which the platform functionalities are offered by services [Issarny et al%%per%% 
+2011]%%per%%]$~ ~$[Some of them use services to provide features to applications%%lst%% such as access 
+to raw sensors data [Petrolo et al%%per%% 2014] ]^[ analyzed data [Zanella et al%%per%% 2014]%%lst%% ]^[ 
+work ow engines [Wu et al%%per%% 2014]%%per%%]$~ ~$[Others enable developers to deploy services on 
+the platform ]^[ make them available to other applications [Apolinarski et al%%per%% 2014%%scn%% 
+Piro et al%%per%% 2014]%%per%%]$~ ~$[Some platforms also use service compositions ]^[ choreographies 
+[Issarny et al%%per%% 2011] to create new services ]v[ applications [Lee ]^[ Rho 2010%%scn%% Piro 
+et al%%per%% 2014]%%per%%]$~ 
+~$[Software Engineering Tools%%cln%% Some platforms provide a set of tools ]f[ the develop%%dsh%% 
+ment ]^[ maintenance of services ]^[ applications%%per%%]$~ ~$[For describing ]^[ implementing 
+applications%%lst%% some platforms create visual interfaces [Petrolo et al%%per%% 2014]%%per%%]$~ ~$[Other plat%%dsh%% 
+forms provide work ow design tools [Wu et al%%per%% 2014] to de ne data ]v[ service ows 
+]^[ create Smart City applications%%per%%]$~ ~$[Moreover%%lst%% some platforms [Khan et al%%per%% 2013] use 
+analytics ]^[ reporting tools to facilitate the development of data visualization ]^[ 
+reports%%lst%% ]^[ two platforms describe the use of a Smart City application SDK [Elman%%dsh%% 
+goush et al%%per%% 2013%%scn%% Apolinarski et al%%per%% 2014]%%per%%]$~ 
+~$[De nition of a City Model%%cln%% Some platforms provide a model of the city to facilitate 
+the manipulation ]^[ understanding of the platform data%%lst%% ]^[ to facilitate the inte%%dsh%% 
+gration of the collected data%%per%%]$~ ~$[For example%%lst%% in Cheng et al%%per%% [Cheng et al%%per%% 2015]%%lst%% the city 
+model is used to allow queries in the data from the city sensor network%%per%%]$~ ~$[Privat et al%%per%% 
+[Privat et al%%per%% 2014] use a nite%%dsh%%state model to represent the possible city data ows%%per%%]$~ 
+~$[A:16 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%%]$~ 
+~$[Based on the functional requirements aforementioned%%lst%% we can observe that the main 
+platforms activities aim to control the city data life cycle%%cln%% (1) Collecting the data with a 
+WSN%%lst%% (2) Managing the data in the platform%%lst%% (3) Processing the data using city models%%lst%% 
+]^[ (4) Sharing the raw ]^[ processed data allowing external access%%per%%]$~ ~$[These activities 
+are highly related to the enabling technologies%%lst%% such as IoT with the WSN manage%%dsh%% 
+ment%%lst%% Data Management ]^[ Processing with Big Data%%lst%% ]^[ Service Management with 
+Cloud Computing%%per%% 
+3%%per%%3%%per%%2%%per%%]$~ ~$[Non%%dsh%%Functional Requirements%%per%%]$~ ~$[Most of the non%%dsh%%functional requirements of Smart 
+City platforms are related to large%%lst%% heterogeneous distributed systems%%lst%% such as scala%%dsh%% 
+bility%%lst%% adaptation%%lst%% ]^[ interoperability%%per%%]$~ ~$[Other non%%dsh%%functional requirements are related 
+to the manipulation of critical ]^[ personal data from citizens%%lst%% such as security ]^[ 
+privacy%%per%%]$~ ~$[Table III presents an overview of the non%%dsh%%functional requirements ]f[ Smart 
+City platforms%%lst%% which we describe in the following%%per%%]$~ 
+~$[Table III%%per%%]$~ ~$[Non%%dsh%%Functional requirements ]f[ Smart City platforms 
+y 
+t 
+i 
+l 
+i 
+b 
+a 
+r 
+e 
+p 
+o 
+r 
+e 
+t 
+n 
+I 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+13 
+y 
+t 
+i 
+l 
+i 
+b 
+a 
+l 
+a 
+c 
+S 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+8 
+y 
+t 
+i 
+r 
+u 
+c 
+e 
+S 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+y 
+c 
+a 
+v 
+i 
+r 
+P 
+X 
+X 
+X 
+X 
+X 
+10 
+5 
+s 
+s 
+e 
+n 
+e 
+r 
+a 
+w 
+A 
+t 
+x 
+e 
+t 
+n 
+o 
+C 
+X 
+X 
+X 
+X 
+X 
+X 
+X 
+7 
+n 
+o 
+i 
+t 
+a 
+t 
+p 
+a 
+d 
+A 
+y 
+t 
+i 
+l 
+i 
+b 
+i 
+s 
+n 
+e 
+t 
+x 
+E 
+X 
+X 
+X 
+X 
+4 
+X 
+X 
+X 
+X 
+X 
+5 
+y 
+t 
+i 
+l 
+i 
+b 
+a 
+r 
+u 
+g 
+n 
+o 
+C 
+X 
+X 
+X 
+X 
+X 
+5 
+SmartSantander 
+OpenIoT 
+Concinnity 
+Civitas 
+Gambas 
+[Khan et al%%per%% 2013] 
+[Girtelschmid et al%%per%% 2013] 
+Scallop4SC 
+OpenMTC 
+[Wan et al%%per%% 2012] 
+[Piro et al%%per%% 2014] 
+[Gurgen et al%%per%% 2013] 
+[Vilajosana et al%%per%% 2013] 
+ClouT 
+Padova Smart City 
+U%%dsh%%City 
+Sentilo 
+WindyGrid 
+EPIC 
+[Privat et al%%per%% 2014] 
+SMARTY 
+CiDAP 
+Number of Instances 
+Interoperability%%cln%% Different devices%%lst%% systems%%lst%% applications%%lst%% ]^[ platforms compose 
+a Smart City environment%%lst%% ]^[ all these components must operate in an integrated 
+Software Platforms ]f[ Smart Cities 
+A:17 
+fashion%%scn%% ]f[ example%%lst%% sensors from multiple vendors%%lst%% systems implemented in differ%%dsh%% 
+ent languages%%lst%% platforms that share data ]^[ users%%lst%% ]^[ legacy systems that have 
+to communicate with the new platforms%%per%%]$~ ~$[Previous work in the eld adopted several 
+techniques to handle this requirement%%cln%% interoperable objects [Villanueva et al%%per%% 2013]%%lst%% 
+adopting generic ]^[ standard interfaces [Gurgen et al%%per%% 2013]%%lst%% applying Semantic 
+Web to integrate all platform components [Girtelschmid et al%%per%% 2013]%%lst%% ]^[ using a 
+naming mechanism [Cheng et al%%per%% 2015] to recognize different devices ]v[ data sources%%per%%]$~ 
+~$[Scalability%%cln%% The amount of users%%lst%% data%%lst%% ]^[ services of a Smart City platform will be 
+massive%%lst%% ]^[ can increase over time%%per%%]$~ ~$[For example%%lst%% in the SmartSantander testbed%%lst%% 
+there were more %%cmp_ta%% 20,000 sensors%%lst%% in a city of 178,000 inhabitants collecting a 
+large amount of city data [Sanchez et al%%per%% 2014]%%scn%% CiDAP collected more %%cmp_ta%% 50 GBs of 
+data in three months [Cheng et al%%per%% 2015]%%per%%]$~ ~$[This non%%dsh%%functional requirement is relevant 
+to many functional requirements%%lst%% such as WSN management [Ballon et al%%per%% 2011]%%lst%% 
+data management [Takahashi et al%%per%% 2012]%%lst%% ]^[ service management [Bain 2014]%%per%%]$~ 
+~$[Security%%cln%% Malicious users can make fraudulent use of services ]^[ data provided by 
+the platform%%per%%]$~ ~$[Many platforms have a component ]v[ describe mechanisms to handle 
+security%%lst%% avoiding attacks to the city infrastructure ]^[ information theft [Piro et al%%per%% 
+2014%%scn%% Hernndez%%dsh%%Mu noz et al%%per%% 2011%%scn%% Petrolo et al%%per%% 2014]%%per%%]$~ 
+~$[Privacy%%cln%% A Smart City platform collects ]^[ manipulates several citizen%%dsh%%sensitive 
+data%%lst%% such as medical records%%lst%% user localization%%lst%% ]^[ consuming habits%%per%%]$~ ~$[The challenge 
+is to use these data while hiding%%lst%% ]v[ to avoid saving identi able information%%per%%]$~ ~$[Some of 
+the strategies used to achieve this requirement are cryptography [Apolinarski et al%%per%% 
+2014]%%lst%% tokens to control the access to the data that users can manipulate [Villanueva 
+et al%%per%% 2013]%%lst%% ]^[ anonymization [Mylonas et al%%per%% 2015]%%per%%]$~ 
+~$[Context Awareness%%cln%% As the city ]^[ user situation can change over time%%lst%% many 
+applications ]^[ services can provide better results using contextual information%%per%%]$~ 
+~$[Some platforms use information from users [Apolinarski et al%%per%% 2014%%scn%% Privat et al%%per%% 
+2014]%%lst%% such as location%%lst%% activity%%lst%% ]^[ language%%per%%]$~ ~$[Other platforms use information from 
+the city [Khan et al%%per%% 2013%%scn%% Cheng et al%%per%% 2015]%%lst%% such as traf c conditions%%lst%% climate%%lst%% 
+]^[ air quality%%per%%]$~ ~$[Examples of context use are%%cln%% displaying a different language in an 
+application to a tourist%%lst%% ]^[ changing the route of a user avoiding polluted areas%%per%%]$~ 
+~$[Adaptation%%cln%% Related to context awareness%%lst%% many platforms adapt their behavior 
+based on context in order to achieve fault%%dsh%%tolerance%%lst%% choose a closer server to improve 
+ef ciency%%lst%% decide ]f[ batch ]v[ real%%dsh%%time processing%%lst%% ]^[ adapt data from multiple 
+data sources%%per%%]$~ ~$[This requirement is most used in platforms that use CPS as enabling 
+technology [Privat et al%%per%% 2014%%scn%% Wan et al%%per%% 2012]%%lst%% ]b[ other concepts are used to meet 
+this requirement as well%%lst%% such as semantic technologies [Girtelschmid et al%%per%% 2013]%%per%%]$~ 
+~$[Extensibility%%cln%% The capability to add services%%lst%% components%%lst%% ]^[ applications to the 
+platform is important to assure that it meets evolving system requirements ]^[ user 
+needs%%per%%]$~ ~$[Mun oz et al%%per%% [Hernndez%%dsh%%Mu noz et al%%per%% 2011] state that easy extensibility is 
+valuable %%cmp_b%% one cannot know what services a city will need%%per%%]$~ ~$[Scallop4SC [Taka%%dsh%% 
+hashi et al%%per%% 2012] uses materialized views that developers extend to implement their 
+applications%%per%%]$~ ~$[Some platforms [Khan et al%%per%% 2013%%scn%% Bain 2014] employ only open source 
+tools%%lst%% facilitating the platform s extensibility%%per%%]$~ ~$[CiDAP [Cheng et al%%per%% 2015] offers exten%%dsh%% 
+sibility to enable the use of the platform in cities of different scales%%per%%]$~ 
+~$[Con gurability%%cln%% A Smart City platform has many con guration options ]^[ pa%%dsh%% 
+rameters that de ne its behavior at execution time%%lst%% such as de ning pollution ]^[ 
+congestion thresholds ]^[ the priority of services%%per%%]$~ ~$[Thus%%lst%% it is important to allow 
+(re)con guration of the many variables of the platform%%per%%]$~ ~$[Two platforms [Wan et al%%per%% 
+2012%%scn%% Privat et al%%per%% 2014] highlighted the importance of self%%dsh%%con gurability capacities%%lst%% 
+%%cmp_b%% of the huge amount of con gurations needed in a Smart City platform%%per%%]$~ ~$[Other 
+A:18 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+platforms [Lee ]^[ Rho 2010%%scn%% Kim ]^[ Lee 2014] provide a portal to centralize the 
+con gurations%%per%%]$~ 
+~$[Based on the non%%dsh%%functional requirements aforementioned%%lst%% we can observe that 
+some of them are very important to many functional requirements%%cln%% such as Scala%%dsh%% 
+bility%%lst%% which is valuable to the WSN ]^[ Data Management%%scn%% Security ]^[ Privacy%%lst%% 
+which are important to all data requirements%%scn%% Extensibility%%lst%% which is required to the 
+Service Management%%scn%% ]^[ Con gurability%%lst%% which is important to all the functional re%%dsh%% 
+quirements%%per%%]$~ ~$[The non%%dsh%%functional requirements are very similar to the challenges ]^[ 
+open research problems that we present in the next section%%per%% 
+4%%per%%]$~ ~$[CHALLENGES AND OPEN RESEARCH PROBLEMS 
+To answer RQ3 ( What are the main challenges ]^[ open research problems in the 
+development of next generation%%lst%% robust software platforms ]f[ Smart Cities? )%%lst%% we ana%%dsh%% 
+lyzed the challenges pointed out by Smart City research papers%%per%%]$~ ~$[Table IV presents an 
+overview of the main challenges%%lst%% which we describe in the following%%per%%]$~ 
+~$[Table IV%%per%%]$~ ~$[Overwiew of most cited Challenges ]^[ Open Research Problems 
+Challenge 
+Privacy 
+Data Management 
+Description 
+Protecting data collected from citizens%%lst%% city%%lst%% 
+]^[ enterprises%%per%%]$~ 
+~$[Managing all the data collected in the platform 
+Heterogeneity 
+Energy Management 
+Communication 
+Scalability 
+Security 
+Lack of Testbeds 
+City Models 
+Platform Maintenance 
+interoperability of devices 
+Ensuring the 
+]^[ applications 
+Managing the electricity used by devices de%%dsh%% 
+ployed in the city%%per%%]$~ 
+~$[Enabling communication among heteroge%%dsh%% 
+neous devices%%per%%]$~ 
+~$[Allowing the growth of devices ]^[ users con%%dsh%% 
+nected to the platform%%per%%]$~ 
+~$[Protecting the city data%%lst%% services%%lst%% ]^[ infras%%dsh%% 
+tructure%%per%%]$~ 
+~$[There are ]n[ suf cient testbeds to experiment 
+Smart City solutions%%per%%]$~ 
+~$[De ning a model describing the city%%per%%]$~ 
+~$[Maintaining the city systems ]^[ infrastruc%%dsh%% 
+ture%%per%%]$~ 
+~$[Technologies/Tools 
+Cryptography%%lst%% Anonymization%%lst%% 
+]^[ Access Tokens 
+NoSQL 
+Databases 
+tools%%per%%]$~ 
+~$[Standards%%lst%% Ontology%%lst%% ]^[ a 
+City Uni ed Model%%per%%]$~ 
+~$[Relational 
+processing 
+]^[ 
+]^[ 
+M2M techniques%%per%%]$~ 
+~$[Distributed tools ]^[ algo%%dsh%% 
+rithms ]^[ P2P applications%%per%%]$~ 
+~$[Cryptography%%lst%% Access Tokens 
+]^[ Devices%%per%%]$~ 
+~$[Simulators%%per%%]$~ 
+~$[Semantic Web ]^[ Ontologies%%per%%]$~ 
+~$[Monitoring ]^[ Alert tools%%per%%]$~ 
+~$[Privacy%%cln%% is the most cited challenge to implementing a Smart City platform%%scn%% the 
+main reason pointed by Hassan et al%%per%% [Hassan et al%%per%% 2014] ]^[ Balakrishna [Balakr%%dsh%% 
+ishna 2012] is that the data collected from the city includes personal%%lst%% enterprise%%lst%% ]^[ 
+governmental data that should ]n[ be accessed by other unauthorized users%%per%%]$~ ~$[Wan et 
+al%%per%% [Wan et al%%per%% 2012] discuss legal problems in using data belonging to platform users%%per%%]$~ 
+~$[Data Management%%cln%% Many authors also cite data management as a challenge%%lst%% be%%dsh%% 
+cause the platform has to store ]^[ process a large amount of data ]^[ use ef cient 
+]^[ scalable data storage ]^[ processing algorithms [Su et al%%per%% 2011%%scn%% Djahel et al%%per%% 
+2014%%scn%% Perera et al%%per%% 2014]%%per%%]$~ ~$[Data Analysis is also a challenge%%lst%% %%cmp_b%% it is hard to 
+extract useful knowledge [Hassan et al%%per%% 2014]%%per%%]$~ ~$[Another challenge is data trustwor%%dsh%% 
+thiness%%scn%% ]f[ example%%lst%% Wu et al%%per%% [Wu et al%%per%% 2014] claim that a large number of data 
+sources make it dif cult to ensure that all the data are correct%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:19 
+Heterogeneity%%cln%% This is a challenge %%cmp_b%% of the differences between the devices 
+in a Smart City%%lst%% ]^[ the dif culty of relating data from different sources [Wu et al%%per%% 
+2014%%scn%% Su et al%%per%% 2011%%scn%% Wan et al%%per%% 2012]%%per%%]$~ ~$[Naphade et al%%per%% [Naphade et al%%per%% 2011] raise the 
+problem of managing data across all city systems %%cmp_b%% of variations in data from 
+different sources%%per%%]$~ ~$[Other authors [Wenge et al%%per%% 2014] state that a Smart City platform 
+has to de ne standards across heterogeneous devices%%lst%% systems%%lst%% ]^[ domains%%per%%]$~ 
+~$[Energy Management%%cln%% Some authors cite Energy Consumption as a challenge to be 
+faced by all the components of the platform%%lst%% such as sensors%%lst%% actuators%%lst%% ]^[ servers 
+[Perera et al%%per%% 2014]%%per%%]$~ ~$[Moreover%%lst%% Hassan et al%%per%% [Hassan et al%%per%% 2014] point out that en%%dsh%% 
+ergy management in a Smart City health care application is also important%%lst%% %%cmp_b%% 
+applications ]v[ services in domains like this cannot fail due to power outages%%per%%]$~ 
+~$[Communication%%cln%% Since the smart cities of the future will incorporate a massive 
+amount of devices%%lst%% enabling communication among these devices will be a challenge%%per%%]$~ 
+~$[Some authors [Wan et al%%per%% 2012%%scn%% Hassan et al%%per%% 2014] discuss the domains in a Smart 
+City that depend on mission%%dsh%%critical communication to ensure reliability%%lst%% such as 
+health care ]^[ public safety%%per%%]$~ ~$[In addition%%lst%% Djahel et al%%per%% [Djahel et al%%per%% 2014] explain 
+that good communication mechanisms are required to share platform data with ap%%dsh%% 
+plications%%per%%]$~ 
+~$[Scalability%%cln%% Within the next decades%%lst%% the number of connected devices in a Smart 
+City will continually increase [Balakrishna 2012]%%lst%% requiring a strong level of scalabil%%dsh%% 
+ity in the associated software platform%%per%%]$~ ~$[Moreover%%lst%% the number of users%%lst%% services%%lst%% ]^[ 
+data stored will increase with population growth ]^[ on special events in the city%%per%%]$~ ~$[Su 
+et al%%per%% [Su et al%%per%% 2011] discuss how a Smart City platform must support large%%dsh%%scale%%lst%% 
+ef cient services%%per%%]$~ ~$[As an example%%lst%% Sinaeepourfard et al%%per%% [Sinaeepourfard et al%%per%% 2016] 
+estimated that the city of Barcelona will need more %%cmp_ta%% 1 million sensors to cover 
+all the city%%lst%% generating more %%cmp_ta%% 8 GB of data every day%%per%%]$~ 
+~$[Security%%cln%% Unauthorized users accessing city services without permission may cause 
+a lot of harm%%per%%]$~ ~$[Hancke et al%%per%% [Hancke et al%%per%% 2012] consider whether city networks will 
+be safe from cyber%%dsh%%terrorism ]^[ cyber%%dsh%%vandalism%%per%%]$~ ~$[Gurgen et al%%per%% [Gurgen et al%%per%% 2013] 
+highlighted the importance of security in CPS platforms%%lst%% as such systems control 
+part of the city infrastructure%%lst%% which a malicious user can corrupt%%lst%% e%%per%%g%%per%%%%lst%% by tampering 
+with traf c lights ]^[ light posts%%per%%]$~ 
+~$[Lack of Testbed%%cln%% The lack of testbeds is cited by Elmangoush et al%%per%% [Elmangoush 
+et al%%per%% 2013] ]^[ Muoz et al%%per%%[Hernndez%%dsh%%Mu noz et al%%per%% 2011] as a challenge to the de%%dsh%% 
+velopment of platforms ]f[ Smart Cities%%per%%]$~ ~$[Without testbeds%%lst%% it is hard to perform tests 
+]^[ experimentation to discover the real challenges that deploying a Smart City 
+platform will present%%per%%]$~ ~$[Smart City Simulators [Santana et al%%per%% 2016] could be a much 
+lower%%dsh%%cost alternative ]f[ experimentation%%per%%]$~ 
+~$[City Models%%cln%% Some authors also argue that it is hard to understand a city ]^[ de%%dsh%% 
+scribe an effective ]^[ ef cient model ]f[ it%%per%%]$~ ~$[For example%%lst%% Wu et al%%per%% [Wu et al%%per%% 2014] 
+claim that it is necessary to create a useful model of the city to make intelligent 
+decisions%%per%%]$~ ~$[Naphade et al%%per%% [Naphade et al%%per%% 2011] state that modeling is required to 
+observe ]^[ understand the city activity ]^[ to avoid generating unnecessary ]^[ 
+empty models%%per%%]$~ ~$[Mu noz et al%%per%% [Hernndez%%dsh%%Mu noz et al%%per%% 2011] state that a uni ed model 
+of the city is required%%lst%% ]s[ that the huge amount of heterogeneous data generated can 
+be shared among applications ]^[ services%%per%%]$~ 
+~$[Platform Maintenance%%cln%% Three works state that deploying ]^[ maintaining the 
+platform is a challenge%%per%%]$~ ~$[Perera et al%%per%% [Perera et al%%per%% 2014] discuss the dif culty of 
+maintaining a middleware to manage millions ]v[ billions of devices connected to the 
+platform%%per%%]$~ ~$[Similarly%%lst%% Wenge et al%%per%% [Wenge et al%%per%% 2014] discuss that the administration 
+of the platform can be a challenge%%lst%% due to its size as well as the very large number 
+of devices spread across the city%%per%%]$~ ~$[Hancke et al%%per%% [Hancke et al%%per%% 2012] point out that 
+A:20 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+addressing coordination issues in the sensor nodes can be a problem%%lst%% again %%cmp_b%% 
+of the size of the city sensor network%%per%% 
+5%%per%%]$~ ~$[REFERENCE ARCHITECTURE FOR SMART CITY PLATFORMS 
+Based on the knowledge surveyed in this paper%%lst%% we present a novel%%lst%% comprehensive ref%%dsh%% 
+erence architecture to guide the development of next%%dsh%%generation software platforms ]f[ 
+Smart Cities%%per%%]$~ ~$[The platform was derived from architectures proposed in previous works%%lst%% 
+with enhancements based on the requirements ]^[ challenges described in this sur%%dsh%% 
+vey%%per%%]$~ ~$[First%%lst%% we describe ]^[ analyze the architecture of two platforms presented in the 
+literature%%cln%% CiDAP ]^[ OpenIoT%%per%%]$~ ~$[Then%%lst%% based on these early works%%lst%% ]^[ on the answers 
+to the research questions presented before%%lst%% we derived a novel reference architecture%%per%%]$~ 
+~$[Finally%%lst%% we %%cmp%% our proposal with the other two architectures%%per%% 
+5%%per%%1%%per%%]$~ ~$[CiDAP 
+The City Data ]^[ Analytics Platform (CiDAP) is a Big Data based platform that aims 
+to use the data collected from the city to enable context%%dsh%%awareness ]^[ intelligence 
+in applications ]^[ services%%per%%]$~ ~$[This platform processes large datasets collected from an 
+IoT Middleware%%per%%]$~ ~$[Figure 6 presents the architecture of the platform%%lst%% which has the 
+following ve main components%%per%%]$~ 
+~$[Fig%%per%% 6%%per%%]$~ ~$[CiDAP Platform [Cheng et al%%per%% 2015] 
+IoT%%dsh%%Agents connect to the IoT middleware ]^[ serve as a gateway to the devices 
+available to the platform%%per%%]$~ ~$[Each data source of the IoT middleware is mapped to an 
+IoT%%dsh%%Agent%%per%%]$~ 
+~$[IoT%%dsh%%Brokers act as a uni ed interface to the IoT agents%%lst%% facilitating access to the 
+middleware data%%per%%]$~ ~$[This component communicates with the Big Data Repository to 
+send data to be stored%%lst%% ]^[ with the CityModel Server to send data to be used directly 
+by applications%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:21 
+The Big Data Repository stores raw data collected from the city ]^[ processed data 
+from the Big Data processing component%%per%%]$~ ~$[The platform uses the CouchDB4 NoSQL 
+database%%lst%% which stores data as JSON documents%%per%%]$~ ~$[This component also has an inter%%dsh%% 
+nal processing tool that makes processing simple%%lst%% such as transforming data into new 
+formats%%lst%% ]v[ creating new structured views ]^[ tables to index data%%per%%]$~ 
+~$[Big Data Processing is responsible ]f[ complex ]v[ intensive processing using the 
+data stored in the Big Data Repository%%lst%% such as data aggregation ]v[ data mining%%per%%]$~ 
+~$[Also%%lst%% it processes historical data using batch processes%%lst%% ]v[ real%%dsh%%time data using data 
+streams%%per%%]$~ ~$[This component uses Apache Spark ]f[ this processing%%per%%]$~ 
+~$[City Model Server is the interface of the platform to external applications%%per%%]$~ ~$[The 
+CityModel API allows applications to perform simple queries%%lst%% complex queries%%lst%% ]^[ 
+subscribe to speci c pieces of data from the platform%%per%%]$~ ~$[Simple queries request the 
+latest data from devices%%lst%% complex queries request aggregated historical data%%lst%% ]^[ 
+subscription is a mechanism ]f[ applications to periodically receive data from the 
+devices%%per%%]$~ 
+~$[The red%%lst%% green%%lst%% ]^[ blue boxes in Figure 6 highlight the concepts used to implement 
+each layer of the platform%%per%%]$~ ~$[The IoT Connector box has components to facilitate access 
+]f[ IoT devices in the platform%%per%%]$~ ~$[The Big Data box has components to store ]^[ analyze 
+the data gathered from multiple sources%%per%%]$~ ~$[Finally%%lst%% the Cloud Computing box indicates 
+the interface of the platform with external applications%%lst%% which is implemented using 
+cloud services%%per%%]$~ 
+~$[CiDAP is mainly concerned with storing ]^[ processing a large amount of data in 
+the platform%%lst%% which is important %%cmp_b%% of the massive amount of data collected in a 
+city%%per%%]$~ ~$[The strong points of its architecture are data storage ]^[ processing%%lst%% the real%%dsh%%time 
+]^[ batch processing modules%%lst%% ]^[ the fact that the associated platform was already 
+tested in the SmartSantander testbed%%per%%]$~ 
+~$[An important limitation of CiDAP is that the platform does ]n[ foresee speci c ser%%dsh%% 
+vices ]^[ tools ]f[ application developers%%lst%% ]^[ does ]n[ allow the deployment of new 
+services in the platform%%lst%% making its extensibility dif cult%%per%%]$~ 
+~$[The red%%lst%% green%%lst%% ]^[ blue boxes in the gure highlight the concepts used to implement 
+each layer of the platform%%per%%]$~ ~$[The IoT Connector box has components to facilitate the 
+access of IoT devices in the platform%%per%%]$~ ~$[The Big Data box has components to store ]^[ 
+analyze the data gathered from multiple sources%%per%%]$~ ~$[Finally%%lst%% the Cloud Computing box 
+indicates the interface of the platform with external applications which is implemented 
+using cloud services%%per%%]$~ 
+~$[CiDAP is mainly concerned with storing ]^[ processing a large amount of data in 
+the platform%%per%%]$~ ~$[It is important %%cmp_b%% of the huge amount of data collected in a city%%per%%]$~ 
+~$[The strong points of its architecture are the data storage ]^[ processing%%lst%% the real%%dsh%%time 
+]^[ batch processing modules%%lst%% ]^[ the fact that the associated platform was already 
+tested in the SmartSantander testbed%%per%%]$~ 
+~$[An important limitation of CiDAP is that the platform does ]n[ foresee speci c ser%%dsh%% 
+vices ]^[ tools ]f[ application developers ]^[ does ]n[ allow the deployment of new 
+services%%per%% 
+5%%per%%2%%per%%]$~ ~$[OpenIoT 
+OpenIoT is an Internet of Things platform used by the Vital project [Petrolo et al%%per%% 
+2014] to create a Smart City platform%%per%%]$~ ~$[Figure 7 presents an overview of the platform 
+architecture%%lst%% which has three layers%%cln%% the Physical Plane%%lst%% the Virtualized Plane%%lst%% ]^[ 
+the Utility%%dsh%%App Plane%%per%% 
+4http://couchdb%%per%%apache%%per%%org 
+A:22 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%%]$~ 
+~$[Fig%%per%% 7%%per%%]$~ ~$[OpenIoT Platform [Petrolo et al%%per%% 2014] 
+The Physical plane is a middleware responsible ]f[ collecting%%lst%% ltering%%lst%% combining%%lst%% 
+]^[ cleaning data from sensors%%lst%% actuators%%lst%% ]^[ devices%%per%%]$~ ~$[This plane acts as an interface 
+between the physical world ]^[ the OpenIoT platform%%per%%]$~ ~$[The current version of OpenIoT 
+uses the X%%dsh%%GSN middleware [Calbimonte et al%%per%% 2014]%%lst%% an open%%dsh%%source middleware ]f[ 
+managing%%lst%% monitoring%%lst%% ]^[ controlling IoT devices%%per%%]$~ 
+~$[The Virtualized plane aims to store data%%lst%% execute services%%lst%% ]^[ schedule the execu%%dsh%% 
+tion of these services%%per%%]$~ ~$[The main components of the Virtualized plane are the following%%cln%% 
+The Scheduler receives requests ]f[ services ]^[ ensures the access to resources 
+that the service needs%%lst%% such as data ]^[ data streams%%per%%]$~ ~$[This component is responsible 
+]f[ discovering the sensors required ]f[ a service execution%%per%%]$~ 
+~$[The Cloud Data Storage keeps all the data from the platform%%lst%% e%%per%%g%%per%%%%lst%% data streams 
+collected from the sensors ]^[ the data created within the platform%%lst%% such as user 
+pro les%%lst%% service de nitions%%lst%% ]^[ registered applications%%per%%]$~ ~$[For storing data collected 
+from the IoT middleware%%lst%% OpenIoT uses the Linked Sensor Middleware (LSM) [Le%%dsh%% 
+Phuoc et al%%per%% 2012]%%per%%]$~ 
+~$[The Service Delivery ]^[ Utility Manager has three primary functions%%cln%% han%%dsh%% 
+dling the combination of the data collected from the IoT middleware%%lst%% allowing ser%%dsh%% 
+vice de nitions%%lst%% ]^[ delivering the results of requested services to the platform ]v[ to 
+third%%dsh%%party applications%%per%%]$~ ~$[Also%%lst%% this component keeps track of the usage of the services 
+de ned in the platform ]f[ accounting ]^[ billing%%per%%]$~ 
+~$[The Utility%%dsh%%App Plane%%lst%% the user interface of the platform%%lst%% has three main compo%%dsh%% 
+nents%%cln%% 
+Request De nition enables users to de ne new applications using the services de%%dsh%% 
+ployed on the platform%%lst%% including the de nition of service mash%%dsh%%ups%%per%%]$~ 
+~$[Request Presentation executes the applications created in the Request De nition 
+component%%per%%]$~ ~$[When a user executes an application%%lst%% it communicates with the Service 
+Delivery ]^[ Utility Manager to retrieve the results from the service executions%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:23 
+Con guration ]^[ Monitoring allows con guration of platform parameters%%lst%% such 
+as periodicity of sensor data reads ]^[ monitoring the health of all platform devices 
+]^[ components%%per%%]$~ 
+~$[OpenIoT is a complete platform%%lst%% handling almost all the main requirements that 
+we described in the survey%%per%%]$~ ~$[The strong points of this platform are the use of an IoT 
+middleware to con gure ]^[ collect data from devices%%lst%% the middleware to store the 
+data collected from sensors%%lst%% the development tools%%lst%% ]^[ the fact that the platform is 
+open source%%per%%]$~ ~$[However%%lst%% its architecture does ]n[ consider other data sources%%lst%% such as so%%dsh%% 
+cial networks%%lst%% ]^[ does ]n[ provide support ]f[ pre%%dsh%%processing services relevant when 
+dealing with Big Data%%per%% 
+5%%per%%3%%per%%]$~ ~$[The Uni ed Reference Architecture 
+Based on the answers to the research questions of this survey%%lst%% the 23 platforms an%%dsh%% 
+alyzed%%lst%% ]^[ on the two architectures presented above%%lst%% we derived a novel reference 
+architecture ]f[ Software Platforms ]f[ Smart Cities%%per%%]$~ ~$[With this reference architecture%%lst%% 
+we answer the general research question stated in Section 1 ( What are the elements 
+required ]f[ the development of a highly%%dsh%%effective software platform ]f[ enabling the 
+easy construction of highly%%dsh%%scalable%%lst%% integrated Smart City applications? )%%per%%]$~ ~$[Figure 8 
+presents an overview of the architecture%%per%%]$~ 
+~$[Fig%%per%% 8%%per%%]$~ ~$[Reference Architecture ]f[ Smart City Platforms 
+A:24 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%%]$~ 
+~$[The lowest level component of the reference architecture is Cloud ]^[ Network%%dsh%% 
+ing%%lst%% which is responsible ]f[ the management ]^[ communication of the city network 
+nodes%%per%%]$~ ~$[This component has to identify all the devices connected to the platform%%lst%% in%%dsh%% 
+cluding servers%%lst%% sensors%%lst%% actuators%%lst%% ]^[ user devices%%per%%]$~ ~$[Using cloud computing concepts 
+is important to ensure some fundamental non%%dsh%%functional requirements%%lst%% including scal%%dsh%% 
+ability ]^[ extensibility%%per%%]$~ 
+~$[Just on top of the Cloud ]^[ Networking infrastructure%%lst%% the reference architecture 
+includes the IoT Middleware ]^[ the Service Middleware%%per%%]$~ ~$[The former has to man%%dsh%% 
+age the city IoT network ]^[ enable the effective communication of the platform with 
+the user devices%%lst%% city sensors%%lst%% ]^[ actuators%%per%%]$~ ~$[The Service Middleware has to manage 
+the services that the platform will provide to the applications%%lst%% performing operations 
+such as publishing%%lst%% enacting%%lst%% monitoring%%lst%% composing%%lst%% ]^[ choreographing these ser%%dsh%% 
+vices%%per%%]$~ 
+~$[The X%%dsh%%GSN middleware can be used to implement the IoT Middleware%%lst%% which is 
+already used in the OpenIoT project%%per%%]$~ ~$[Another option is to use components of the Sen%%dsh%% 
+tilo platform%%lst%% which is also open%%dsh%%source%%lst%% ]^[ implement a complete IoT middleware%%per%%]$~ 
+~$[The CHOREOS framework [Issarny et al%%per%% 2011] can be used to implement the Service 
+Middleware%%scn%% this project aims to enable choreographies of large%%dsh%%scale service%%dsh%%based 
+software systems%%per%%]$~ 
+~$[To provide better services to the citizens%%lst%% it is important ]f[ the platform to store 
+some user data ]^[ preferences%%lst%% which is the role of the User Management compo%%dsh%% 
+nent%%per%%]$~ ~$[But%%lst%% to ensure user privacy%%lst%% this data must be properly protected%%lst%% ]^[ permission 
+to store it must be acquired from the user%%per%%]$~ ~$[Moreover%%lst%% as the city platform will have 
+many applications%%lst%% it can be helpful to offer a single sign%%dsh%%on mechanism%%per%%]$~ 
+~$[Social networks will have a major role in Smart Cities%%per%%]$~ ~$[They can be used to retrieve 
+data from city conditions%%lst%% ]^[ can be an ef cient communication channel between the 
+platform ]^[ city government with the citizens%%per%%]$~ ~$[Therefore%%lst%% it is important to allow the 
+integration of the Smart City platform with existing social networks%%per%%]$~ ~$[This is the role of 
+the Social Network Gateway%%per%%]$~ ~$[To implement this gateway%%lst%% many tools can be used%%lst%% 
+such as Spark Streaming%%lst%% which reads data streams of Twitter%%lst%% ]^[ Spring Social%%lst%% 
+which is a Java%%dsh%%based framework to facilitate the connection with social networks such 
+as Twitter%%lst%% Facebook%%lst%% ]^[ LinkedIn%%per%%]$~ 
+~$[Big Data Management is a module to manage all the data in the platform%%per%%]$~ ~$[It 
+is responsible ]f[ storing the data collected from the city ]^[ generated by the plat%%dsh%% 
+form%%per%%]$~ ~$[To this extent%%lst%% the reference platform has three repositories%%cln%% (1) an App Repos%%dsh%% 
+itory to store applications%%lst%% including its source/binary code%%lst%% images%%lst%% ]^[ associated 
+documents%%scn%% (2) a Model Repository to store the city models%%lst%% such as a traf c model%%lst%% 
+sensor network model%%lst%% data model%%lst%% city maps%%lst%% ]^[ an energy distribution model%%scn%% ]^[ 
+(3) a Data Repository to store the data collected from sensors%%lst%% citizens%%lst%% ]^[ applica%%dsh%% 
+tions%%per%%]$~ ~$[Because of the amount of data that a platform ]f[ Smart Cities generate%%lst%% NoSQL 
+databases can be more suitable %%cmp_ta%% relational databases%%per%%]$~ 
+~$[Besides the data storage%%lst%% the Big Data Management module is also responsible ]f[ 
+the processing of city data%%per%%]$~ ~$[There are two types of data processing that might be more 
+suitable ]f[ different situations%%cln%% Stream processing%%lst%% to perform real%%dsh%%time analytics 
+]^[ data%%dsh%% ow processing%%scn%% ]^[ Batch processing%%lst%% to analyze large data%%dsh%%sets%%per%%]$~ ~$[More%%dsh%% 
+over%%lst%% this module must be capable of performing useful pre%%dsh%%processing tasks%%lst%% such as 
+data ltering%%lst%% normalization%%lst%% ]^[ transformation%%per%%]$~ 
+~$[The Big Data module also has a Machine Learning component%%lst%% which facilitates 
+understanding of the city by automatically building models of city processes behav%%dsh%% 
+ior ]^[ making predictions of city phenomena%%per%%]$~ ~$[Since a Smart City will produce an 
+enormous amount of data%%lst%% a Data Cleaning component is responsible ]f[ garbage col%%dsh%% 
+Software Platforms ]f[ Smart Cities 
+A:25 
+lection%%lst%% deleting unneeded data%%lst%% ]^[ archiving old data on slower%%lst%% high capacity data 
+stores%%per%%]$~ 
+~$[To implement the Big Data Management components%%lst%% many open%%dsh%%source tools are 
+available%%per%%]$~ ~$[To the repositories%%lst%% NoSQL Databases%%lst%% such as CouchDB%%lst%% MongoDB%%lst%% ]^[ 
+Cassandra%%lst%% can store the unstructured ]v[ semi%%dsh%%structured data%%lst%% such as sensor reads 
+]^[ social networks posts%%per%%]$~ ~$[Relational Databases%%lst%% such as MySQL ]^[ PostgreSQL%%lst%% can 
+store structured data%%lst%% such as user information ]^[ the platform con guration%%per%%]$~ 
+~$[To implement the processing engines%%lst%% many tools are also available%%per%%]$~ ~$[To execute batch 
+processing%%lst%% Apache Hadoop ]^[ Apache Spark are widely used by other platforms%%per%%]$~ 
+~$[Apache Spark also provides a stream data processing tool%%lst%% likewise Apache Storm%%per%%]$~ 
+~$[Many tools offer machine learning algorithms to process large data sets such as Weka5%%lst%% 
+Spark MLib%%lst%% ]^[ Scikit%%dsh%%Learn6%%per%%]$~ 
+~$[Relying on aforementioned middleware component%%lst%% application developers ]^[ 
+smart city operators will develop ]^[ deploy Smart City applications%%per%%]$~ ~$[By using open 
+data ]^[ open services provided by a city%%lst%% common citizens ]^[ users may also execute%%lst%% 
+]v[ even develop%%lst%% novel applications to run on top of the city s smart infrastructure%%per%%]$~ ~$[The 
+applications will use the services ]^[ data from the platform%%lst%% ]b[ also generate ]^[ 
+store data on the platform%%per%%]$~ ~$[The platform should provide an SDK to facilitate the devel%%dsh%% 
+opment of applications%%lst%% including tools such as an Integrated Development Environ%%dsh%% 
+ment (IDE)%%lst%% libraries%%lst%% ]^[ frameworks ]f[ commonly used programming languages%%lst%% 
+]^[ a Smart City Simulator ]f[ debugging ]^[ experimenting with applications before 
+real deployment%%per%%]$~ 
+~$[All components of the platform must support several non%%dsh%%functional requirements%%lst%% 
+such as scalability%%lst%% security%%lst%% privacy%%lst%% ]^[ interoperability%%per%%]$~ ~$[Scalability is fundamental 
+%%cmp_b%% of the huge amount of devices%%lst%% data%%lst%% ]^[ services in the platform%%per%%]$~ ~$[Privacy ]^[ 
+Security are important %%cmp_b%% the platform collects%%lst%% stores%%lst%% ]^[ processes sensible 
+data from the city ]^[ citizens%%per%%]$~ ~$[Interoperability will allow the integrated operation 
+of different types of services%%lst%% devices%%lst%% ]^[ applications%%per%%]$~ ~$[Table V presents options to 
+implement the reference architecture using tools that the platforms described in the 
+survey use%%per%%]$~ 
+~$[Table V%%per%%]$~ ~$[Technologies used in the platforms implementation 
+Component 
+IoT Middleware 
+Data Repository 
+Data Processing 
+Stream Processing 
+Cluster Management 
+Cloud Environment 
+Data Access 
+Security 
+Machine Learning 
+Tools 
+Sentilo ]^[ X%%dsh%%GSN 
+MongoDB%%lst%% CouchDB%%lst%% MySQL%%lst%% IBM DB2%%lst%% ]^[ Redis 
+Spark ]^[ Hadoop 
+Storm 
+Apache ZooKeeper ]^[ Haddop YARN 
+OpenNebula ]^[ Microsoft Azure 
+REST APIs ]^[ Jersey 
+SAML Protocol 
+Weka%%lst%% Spark MLib%%lst%% ]^[ Scikit Learn 
+5%%per%%4%%per%%]$~ ~$[Comparison of Architectures 
+In our architecture%%lst%% we combined aspects of both platforms described in the beginning 
+of this section%%per%%]$~ ~$[Our Big Data module is similar to the one in CiDAP%%scn%% both foresee batch 
+5Weka %%dsh%% https://weka%%per%%wikispaces%%per%%com/ 
+6Scikit%%dsh%%Learn %%dsh%% http://scikit%%dsh%%learn%%per%%org/stable/ 
+A:26 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+]^[ real%%dsh%%time processing ]^[ big data storage components%%per%%]$~ ~$[However%%lst%% we added the idea 
+of an application repository (to store data ]^[ meta%%dsh%%data associated with applications 
+]s[ that we can better manage ]^[ re ect on the applications executing in the city)%%lst%% as 
+well as a model repository (to store different types of models associated with various 
+city%%dsh%%related phenomena such as different kinds of maps%%lst%% data ows%%lst%% user behaviors%%lst%% 
+automated processes%%lst%% ]^[ more)%%per%%]$~ 
+~$[Similar to OpenIoT%%lst%% we included a Cloud ]^[ Networking layer to manage the de%%dsh%% 
+vices that collect data from the city ]^[ execute service ]^[ application components%%per%%]$~ 
+~$[We also included a service middleware to support many service%%dsh%%related operations%%lst%% 
+such as deployment%%lst%% management%%lst%% composition (via orchestrations ]^[ choreogra%%dsh%% 
+phies)%%lst%% ]^[ enactment%%scn%% OpenIoT also provides a Service Delivery component with more 
+limited support ]f[ some of these operations%%per%%]$~ 
+~$[We also included some components that are ]n[ in these two architectures%%lst%% ]b[ were 
+considered relevant in our literature review%%per%%]$~ ~$[The rst is the Social Network Gateway%%lst%% 
+which is important %%cmp_b%% social networks connect citizens%%lst%% the city administration%%lst%% 
+]^[ service providers%%lst%% ]^[ generate a lot of useful data ]f[ city applications%%per%%]$~ 
+~$[Although OpenIoT provides some development tools to create applications using the 
+available services%%lst%% a Smart City platform will have to provide a complete software 
+development toolkit%%per%%]$~ ~$[This SDK has to be aware of all the components of the platform%%lst%% 
+]^[ enable the construction of sophisticated mash%%dsh%%ups based on them%%per%%]$~ ~$[For example%%lst%% it 
+must allow the development of a service using data from the IoT middleware%%lst%% combined 
+with data from social networks%%lst%% ]^[ thereby generating a data stream that is ltered%%lst%% 
+processed%%lst%% distributed to other users that have subscribed to a speci c channel and%%lst%% 
+later%%lst%% summarized ]^[ stored in a long%%dsh%%term persistent storage in order to maintain 
+historical records%%per%% 
+6%%per%%]$~ ~$[DISCUSSION 
+We now discuss the ndings of this research%%per%%]$~ ~$[Section 6%%per%%1 relates the four enabling tech%%dsh%% 
+nologies with the functional ]^[ non%%dsh%%functional requirements%%scn%% Section 6%%per%%2 discusses 
+open research challenges%%scn%% Section 6%%per%%3 presents the implications of our survey to Smart 
+City stakeholders%%lst%% such as city managers%%lst%% citizens%%lst%% ]^[ developers%%per%%]$~ ~$[Finally%%lst%% Section 6%%per%%4 
+considers the limitations of this work%%per%% 
+6%%per%%1%%per%%]$~ ~$[Enabling Technologies ]^[ Requirements 
+This survey presented multiple approaches ]f[ the development of Smart City plat%%dsh%% 
+forms%%per%%]$~ ~$[From this study%%lst%% four highly signi cant functional requirements emerged%%cln%% man%%dsh%% 
+agement of sensor ]^[ actuator networks%%scn%% management of the data collected from the 
+city%%scn%% provisioning%%lst%% management%%lst%% ]^[ development of services%%scn%% ]^[ an environment ]f[ 
+the development ]^[ deployment of Smart City applications%%per%%]$~ ~$[These features can be 
+related to the enabling technologies%%lst%% mapping them onto the major functional ]^[ non%%dsh%% 
+functional requirements of Smart City platforms%%per%%]$~ 
+~$[Technologies around the Internet of Things are used ]f[ managing the sensor ]^[ 
+actuator networks ]^[ their challenges%%lst%% such as heterogeneity%%lst%% scalability%%lst%% ]^[ adap%%dsh%% 
+tation%%per%%]$~ ~$[Big Data ]^[ Cloud Computing are used to deal with the massive amount of 
+data generated from multiple data sources in the city%%lst%% such as WSN%%lst%% social networks%%lst%% 
+]^[ user devices%%per%%]$~ ~$[Big Data tools are required ]f[ most data%%dsh%%related activities%%lst%% such 
+as storing%%lst%% analyzing%%lst%% ]^[ sharing%%per%%]$~ ~$[Cloud Computing provides a scalable ]^[ elastic 
+environment to store ]^[ process city data%%per%%]$~ 
+~$[Figure 9 shows the relation between the implemented functional requirements from 
+platforms ]^[ the enabling technologies%%per%%]$~ ~$[For example%%lst%% it is possible to verify that most 
+of the Big Data platforms handle Data Management ]^[ Data Processing%%per%%]$~ ~$[Cloud Com%%dsh%% 
+puting platforms handle External Data Access ]^[ Service Management%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:27 
+Fig%%per%% 9%%per%%]$~ ~$[Relationship between functional requirements ]^[ enabling technologies 
+Figure 10 relates the non%%dsh%%functional requirements ]^[ the enabling technologies%%per%%]$~ 
+~$[We can observe that most platforms are concerned with scalability%%lst%% regardless of the 
+enabling technology used%%per%%]$~ ~$[It is possible to verify relationships between other non%%dsh%% 
+functional requirements ]^[ the technologies%%per%%]$~ ~$[For example%%lst%% all the CPS platforms han%%dsh%% 
+dle con gurability%%per%%]$~ ~$[Extensibility is mostly offered by platforms that use Big Data%%lst%% ]^[ 
+interoperability mostly by platforms that use IoT%%per%%]$~ 
+~$[Fig%%per%% 10%%per%%]$~ ~$[Relationship between non%%dsh%%functional requirements ]^[ enabling technologies 
+A:28 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+6%%per%%2%%per%%]$~ ~$[Challenges ]^[ Open Research Problems 
+Most of the signi cant challenges ]^[ research problems in implementing a platform 
+]f[ Smart Cities is related to data management%%per%%]$~ ~$[The most cited problem in the litera%%dsh%% 
+ture is ensuring the privacy of user data%%lst%% %%cmp_b%% of the amount of personal ]^[ critical 
+data that a platform needs to handle%%lst%% such as user locations ]^[ medical records%%per%%]$~ 
+~$[The second most cited challenge is heterogeneity%%lst%% %%cmp_b%% of the large number of 
+different systems%%lst%% services%%lst%% applications%%lst%% ]^[ devices that a platform must support%%per%%]$~ 
+~$[We were surprised that only three authors cited scalability as a problem%%lst%% %%cmp_b%% it 
+certainly will be a great challenge support the huge number of devices%%lst%% users%%lst%% data%%lst%% 
+]^[ services in a large metropolis%%per%%]$~ 
+~$[An important ]^[ understudied issue is how to create a generic platform to support 
+the requirements of different cities%%per%%]$~ ~$[Some literature focuses on a particular city%%lst%% such 
+as WindyGrid%%lst%% SmartSantander%%lst%% ]^[ Padova Smart City%%per%%]$~ ~$[Other platforms provide solu%%dsh%% 
+tions without discussing the characteristics of the cities in which that solution should 
+be applied%%per%%]$~ ~$[The studies proposing generic solutions ]f[ Smart Cities lack a discussion 
+concerning how the components of these platforms could be adapted to t cities of 
+different sizes ]^[ characteristics%%per%% 
+6%%per%%3%%per%%]$~ ~$[Implications 
+This paper presented important features that software platforms ]f[ Smart Cities 
+should handle%%per%%]$~ ~$[The results give important references ]f[ several city stakeholders%%lst%% 
+such as platform developers%%lst%% application developers%%lst%% city managers%%lst%% system operators%%lst%% 
+end%%dsh%%users%%lst%% ]^[ Smart City researchers%%per%%]$~ ~$[In this section%%lst%% we discuss the potential impli%%dsh%% 
+cations of our ndings ]f[ these stakeholders%%per%%]$~ 
+~$[The enabling technologies highlight the infrastructure needed to build Smart Cities%%per%%]$~ 
+~$[City managers can use this information to improve their investment decisions%%per%%]$~ ~$[Big 
+Data ]^[ Cloud Computing deal with an enormous volume of data storage ]^[ net%%dsh%% 
+work infrastructure to access data ]^[ services%%per%%]$~ ~$[The city must be equipped with sen%%dsh%% 
+sors%%lst%% actuators%%lst%% ]^[ Internet services to take advantage of the Internet of Things ]^[ 
+Cyber%%dsh%%Physical Spaces%%per%%]$~ ~$[Besides%%lst%% the survey can help Smart City application ]^[ sys%%dsh%% 
+tem developers decide what technologies to use%%per%%]$~ 
+~$[The reference architecture highlights the functional ]^[ non%%dsh%%functional require%%dsh%% 
+ments that platforms ]^[ applications developers should consider when developing 
+software ]f[ Smart Cities%%per%%]$~ ~$[For platforms developers%%lst%% this survey indicates that is nec%%dsh%% 
+essary to deal with big heterogeneous ]^[ distributed systems%%lst%% as well as critical ]^[ 
+personal data%%lst%% in an effective ]^[ ef cient way%%per%%]$~ ~$[For application developers%%lst%% the refer%%dsh%% 
+ence architecture shows what kind of services ]^[ data they can use to provide better 
+experiences to their end%%dsh%%users%%per%%]$~ ~$[By discussing examples of these systems%%lst%% we show to 
+end%%dsh%%users%%lst%% ]v[ citizens%%lst%% the range of system domains that can be developed to facilitate 
+their daily routine%%lst%% such as urban mobility%%lst%% air pollution%%lst%% ]^[ heath care%%per%%]$~ 
+~$[Finally%%lst%% this survey can also helps Smart City researchers by discussing the main 
+open research questions ]^[ challenges to be overcome to build smarter cities%%per%%]$~ ~$[These 
+challenges can guide future work in this research area%%per%% 
+6%%per%%4%%per%%]$~ ~$[Limitations 
+In this survey%%lst%% we decided to describe only the most cited enabling technologies used 
+by Smart City platforms%%per%%]$~ ~$[However%%lst%% we found other less employed technologies%%lst%% such as 
+M2M Communications ]^[ the Semantic Web%%per%%]$~ ~$[These non%%dsh%%cited technologies are used 
+by few platforms%%lst%% ]v[ are used to solve a small problem ]b[ ]n[ to serve as a fundamen%%dsh%% 
+tal architectural component of the platform%%per%%]$~ ~$[Thus%%lst%% there might be key technologies 
+Software Platforms ]f[ Smart Cities 
+A:29 
+that end up being very relevant in the future that have ]n[ ]y[ been identi ed in this 
+survey%%per%%]$~ 
+~$[We used the most cited paper of each research project to extract components%%lst%% re%%dsh%% 
+quirements%%lst%% ]^[ features of the platforms%%per%%]$~ ~$[Other papers%%lst%% ]v[ the project website%%lst%% may 
+de ne different aspects%%per%%]$~ 
+~$[In this research%%lst%% we classi ed the papers according to the enabling technologies only 
+when they were explicitly mentioned%%per%%]$~ ~$[However%%lst%% we noticed that%%lst%% in some papers%%lst%% they 
+were pointed out as a motivating aspect ]v[ future work%%per%%]$~ ~$[For example%%lst%% Khan et al%%per%% [Khan 
+et al%%per%% 2013] do ]n[ explicitly mention IoT in the architecture%%lst%% ]b[ the authors discuss 
+the possibility of using smart hardware such as sensor networks ]v[ smart household 
+appliances%%lst%% which can be organized in an IoT system%%per%% 
+7%%per%%]$~ ~$[RELATED SURVEYS 
+In our literature search%%lst%% we found four papers that also surveyed platforms ]^[ appli%%dsh%% 
+cations ]f[ Smart Cities%%per%%]$~ 
+~$[Da Silva et al%%per%% [da Silva et al%%per%% 2013] surveyed architectures of Smart Cities platforms%%lst%% 
+analyzing the requirements handled by the platforms%%per%%]$~ ~$[However%%lst%% they analyzed few 
+platforms ]^[ did ]n[ distinguish functional ]^[ non%%dsh%%functional requirements%%lst%% ]^[ 
+did ]n[ address future research ]^[ open challenges in the area%%per%%]$~ 
+~$[Yin et al%%per%% [Yin et al%%per%% 2015] conducted a survey on Smart Cities%%per%%]$~ ~$[Although the paper 
+presents some platforms%%lst%% the main goal of their work was to understand the concept of 
+Smart Cities%%lst%% identifying the enabling technologies ]^[ Smart City research issues%%per%%]$~ 
+~$[Al Nuaimi et al%%per%% [Al Nuaimi et al%%per%% 2015] reviewed the use of Big Data tools ]^[ 
+concepts in applications ]f[ Smart Cities%%per%%]$~ ~$[The paper mainly presents the relation be%%dsh%% 
+tween the challenges to creating applications ]f[ Smart Cities ]^[ the use of Big Data 
+tools%%per%%]$~ ~$[It also identi es Smart City requirements that Big Data tools can address%%per%%]$~ ~$[It has 
+some similarities with our work%%lst%% ]b[ we conducted a more general ]^[ comprehensive 
+survey%%per%%]$~ 
+~$[Finally%%lst%% Botta et al%%per%% [Botta et al%%per%% 2015] presented a study of the integration of Cloud 
+Computing ]^[ the Internet of Things%%lst%% de ning this novel paradigm as CloudIoT%%per%%]$~ ~$[They 
+describe applications that use this paradigm%%lst%% such as health care%%lst%% transportation%%lst%% ]^[ 
+smart cities%%per%%]$~ ~$[The paper presents platforms that use the two concepts%%lst%% some of which 
+are also presented here%%lst%% such as OpenIoT ]^[ ClouT%%per%%]$~ 
+~$[In our work%%lst%% we studied Smart City software platforms ]^[ the related ICT prob%%dsh%% 
+lems%%lst%% aiming to derive the major functional ]^[ non%%dsh%%functional requirements%%lst%% ]^[ the 
+technical ]^[ research open challenges%%per%%]$~ ~$[Besides%%lst%% we presented a reference architecture 
+derived from the requirements pointed out by the surveyed studies%%per%% 
+8%%per%%]$~ ~$[CONCLUSION 
+Smart City is a concept that has gained increased attention in academic%%lst%% industrial%%lst%% 
+]^[ governmental circles%%per%%]$~ ~$[While the urban population is growing%%lst%% the infrastructure 
+]^[ resources required to support citizens are often insuf cient%%lst%% leading to a degrada%%dsh%% 
+tion in public services%%per%%]$~ ~$[Information ]^[ Communication Technologies provide impor%%dsh%% 
+tant tools to reduce this problem%%lst%% helping to improve the sustainable use of resources%%lst%% 
+city services%%lst%% ]^[ the citizens quality of life%%per%%]$~ 
+~$[Using a software platform rather %%cmp_ta%% ad hoc solutions is a more robust ]^[ sustain%%dsh%% 
+able way to support the features needed by a Smart City environment%%per%%]$~ ~$[In this paper%%lst%% 
+we surveyed the current research on Smart Cities platforms%%lst%% aiming to discover theirs 
+most relevant requirements ]^[ how to facilitate the development%%lst%% integration%%lst%% ]^[ 
+deployment of Smart City applications%%per%%]$~ ~$[We analyzed 23 studies from different groups%%lst%% 
+proposing multiple approaches ]f[ the development of a software platform to answer 
+our general research question What are the elements required ]f[ the development 
+A:30 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%% 
+of a highly%%dsh%%effective software platform ]f[ enabling the easy construction of highly%%dsh%% 
+scalable%%lst%% integrated Smart City applications%%qsn%%]$~ 
+~$[Based on the analyzed projects%%lst%% we derived a uni ed reference architecture sup%%dsh%% 
+porting the main requirements needed to build a software platform ]f[ Smart Cities%%per%%]$~ 
+~$[Thus%%lst%% this paper contributes to the state%%dsh%%of%%dsh%%the%%dsh%%art by providing a guide to help soft%%dsh%% 
+ware developers ]^[ city managers determine the necessary components to handle the 
+functional ]^[ non%%dsh%%functional requirements of a software platform ]f[ Smart Cities%%per%%]$~ 
+~$[The reference architecture is based on the answers of the three research sub%%dsh%% 
+questions%%per%%]$~ ~$[RQ1 ( What are the enabling technologies used in state%%dsh%%of%%dsh%%the%%dsh%%art software 
+platforms ]f[ Smart Cities? ) showed us that the Internet of Things%%lst%% Cloud Computing%%lst%% 
+Big Data%%lst%% ]^[ Cyber%%dsh%%Physical Systems are the most cited enabling technologies%%per%%]$~ ~$[An%%dsh%% 
+swering RQ2 ( What are the requirements that a software platform ]f[ Smart Cities 
+should meet? )%%lst%% we could relate these technologies to the requirements that a soft%%dsh%% 
+ware platform should handle%%per%%]$~ ~$[For example%%lst%% most of the Big Data platforms mention 
+Data Management as a requirement%%lst%% while Con gurability is strongly related to CPS 
+platforms%%per%%]$~ ~$[In this way%%lst%% an important contribution of this survey is to discuss the re%%dsh%% 
+quirements that need to be implemented when using a speci c enabling technology%%per%%]$~ 
+~$[In contrast%%lst%% it helps to decide which technology to use when a speci c functional ]v[ 
+non%%dsh%%functional requirement is desirable%%per%%]$~ 
+~$[Finally%%lst%% to answer RQ3 ( What are the main challenges ]^[ open research problems 
+in the development of next generation%%lst%% robust software platforms ]f[ Smart Cities? )%%lst%% 
+we presented the most cited challenges ]^[ open research problems%%lst%% according to the 
+literature%%per%%]$~ ~$[These challenges were considered when deriving the reference architecture%%per%%]$~ 
+~$[In this sense%%lst%% an important contribution of this survey%%lst%% especially ]f[ developers ]^[ 
+researchers of software platforms%%lst%% is to identify which platform components should be 
+the focus of future work%%per%%]$~ 
+~$[This survey described several Smart City initiatives%%lst%% ]b[ all of them are still in 
+their initial phases%%lst%% posing multiple challenges ]^[ open problems that need to be 
+addressed%%per%%]$~ ~$[A collaborative effort of research groups%%lst%% commercial companies%%lst%% NGOs%%lst%% 
+]^[ governments is required to tackle the multitude of scienti c%%lst%% technical%%lst%% political%%lst%% 
+]^[ social problems related to the establishment of really%%dsh%%smart cities%%lst%% reaching the 
+ultimate goal of improving the quality of life of all of a city s citizens%%lst%% irrespective of its 
+social ]^[ nancial situation%%per%%]$~ 
+~$[ACKNOWLEDGMENTS 
+This publication is the result of a project promoted by the Brazilian Informatics Law (Law No%%per%% 8248 of 
+1991 ]^[ subsequent updates) ]^[ was developed under the Cooperation Agreement 073/2016 between 
+Universidade de S ao Paulo%%lst%% FDTE%%lst%% ]^[ Hewlett Packard Enterprise Brazil%%per%%]$~ 
+~$[REFERENCES 
+Mohammad Aazam%%lst%% Imran Khan%%lst%% Aymen Abdullah Alsaffar%%lst%% ]^[ Eui%%dsh%%Nam Huh%%per%% 2014%%per%%]$~ ~$[Cloud of Things%%cln%% 
+Integrating Internet of Things ]^[ cloud computing ]^[ the issues involved%%per%%]$~ ~$[In Applied Sciences ]^[ 
+Technology (IBCAST)%%lst%% 2014 11th International Bhurban Conference on%%per%%]$~ ~$[IEEE%%lst%% 414 419%%per%%]$~ 
+~$[Eiman Al Nuaimi%%lst%% Hind Al Neyadi%%lst%% Nader Mohamed%%lst%% ]^[ Jameela Al%%dsh%%Jaroodi%%per%% 2015%%per%%]$~ ~$[Applications 
+of big data to smart cities%%per%%]$~ ~$[Journal of Internet Services ]^[ Applications 6%%lst%% 1 (2015)%%lst%% 25%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1186/s13174%%dsh%%015%%dsh%%0041%%dsh%%5 
+Theodoros Anagnostopoulos%%lst%% Kostas Kolomvatsos%%lst%% Christos Anagnostopoulos%%lst%% Arkady Zaslavsky%%lst%% 
+]f[ high priority waste 
+of Systems ]^[ Software 110 (2015)%%lst%% 178 192%%per%% 
+]^[ Stathes Hadjiefthymiades%%per%% 2015%%per%%]$~ ~$[Assessing dynamic models 
+collection in smart 
+DOI:http://dx%%per%%doi%%per%%org/10%%per%%1016/j%%per%%jss%%per%%2015%%per%%08%%per%%049 
+cities%%per%%]$~ ~$[Journal 
+Giuseppe Anastasi%%lst%% Maximiliano Antonelli%%lst%% Alessio Bechini%%lst%% Simone Brienza%%lst%% Eleonora D Andrea%%lst%% Domenico 
+De Guglielmo%%lst%% Pietro Ducange%%lst%% Beatrice Lazzerini%%lst%% Francesco Marcelloni%%lst%% ]^[ Armando Segatori%%per%% 2013%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:31 
+Urban ]^[ social sensing ]f[ sustainable mobility in smart cities%%per%%]$~ ~$[In Sustainable Internet ]^[ ICT ]f[ 
+Sustainability (SustainIT)%%lst%% 2013%%per%%]$~ ~$[IEEE%%lst%% 1 4%%per%%]$~ 
+~$[Wolfgang Apolinarski%%lst%% Umer 
+dleware ]^[ SDK ]f[ smart 
+tions Workshops 
+DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/PerComW%%per%%2014%%per%%6815176 
+Iqbal%%lst%% ]^[ Josiane Xavier Parreira%%per%% 2014%%per%%]$~ ~$[The GAMBAS mid%%dsh%% 
+In Pervasive Computing ]^[ Communica%%dsh%% 
+(PERCOM Workshops)%%lst%% 2014 IEEE International Conference on%%per%% 117 122%%per%% 
+city applications%%per%%]$~ 
+~$[Michael Armbrust%%lst%% Armando Fox%%lst%% Rean Grif th%%lst%% Anthony D Joseph%%lst%% Randy Katz%%lst%% Andy Konwinski%%lst%% Gunho 
+Lee%%lst%% David Patterson%%lst%% Ariel Rabkin%%lst%% Ion Stoica%%lst%% ]^[ others%%per%% 2010%%per%%]$~ ~$[A view of cloud computing%%per%%]$~ ~$[Commun%%per%%]$~ 
+~$[ACM 53%%lst%% 4 (2010)%%lst%% 50 58%%per%%]$~ 
+~$[Eleana Asimakopoulou ]^[ Nik Bessis%%per%% 2011%%per%%]$~ ~$[Buildings ]^[ Crowds%%cln%% Forming Smart Cities ]f[ More Effec%%dsh%% 
+tive Disaster Management%%per%%]$~ ~$[In Innovative Mobile ]^[ Internet Services in Ubiquitous Computing (IMIS)%%lst%% 
+2011 Fifth International Conference on%%per%% 229 234%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/IMIS%%per%%2011%%per%%129 
+Luigi Atzori%%lst%% Antonio Iera%%lst%% ]^[ Giacomo Morabito%%per%% 2010%%per%%]$~ ~$[The Internet of Things%%cln%% A survey%%per%%]$~ ~$[Computer Net%%dsh%% 
+works 54%%lst%% 15 (2010)%%lst%% 2787 2805%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1016/j%%per%%comnet%%per%%2010%%per%%05%%per%%010 
+Malcolm Bain%%per%% 2014%%per%%]$~ ~$[Sentilo %%dsh%% Sensor ]^[ Actuator Platform ]f[ smart Cities%%per%% 
+(March 2014)%%per%% 
+from https://joinup%%per%%ec%%per%%europa%%per%%eu/community/eupl/document/ 
+20%%lst%% 
+Retrieved 
+sentilo%%dsh%%sensor%%dsh%%and%%dsh%%actuator%%dsh%%platform%%dsh%%smart%%dsh%%cities 
+February 
+2015 
+Chitra Balakrishna%%per%% 2012%%per%%]$~ ~$[Enabling technologies ]f[ smart city services ]^[ applications%%per%%]$~ ~$[In Next Generation 
+Mobile Applications%%lst%% Services ]^[ Technologies (NGMAST)%%lst%% 2012 6th International Conference on%%per%%]$~ ~$[IEEE%%lst%% 
+223 227%%per%%]$~ 
+~$[Pieter Ballon%%lst%% Julia Glidden%%lst%% Pavlos Kranas%%lst%% Andreas Menychtas%%lst%% Susie Ruston%%lst%% ]^[ Shenja Van Der Graaf%%per%% 
+2011%%per%%]$~ ~$[Is there a Need ]f[ a Cloud Platform ]f[ European Smart Cities?%%per%%]$~ ~$[In eChallenges e%%dsh%%2011 Conference 
+Proceedings%%lst%% IIMC International Information Management Corporation%%per%%]$~ 
+~$[Carolina Tripp Barba%%lst%% Miguel Angel Mateos%%lst%% Pablo Reganas Soto%%lst%% Ahmad Mohamad Mezher%%lst%% ]^[ M Aguilar 
+Igartua%%per%% 2012%%per%%]$~ ~$[Smart city ]f[ VANETs using warning messages%%lst%% traf c statistics ]^[ intelligent traf c 
+lights%%per%%]$~ ~$[In Intelligent Vehicles Symposium (IV)%%lst%% 2012 IEEE%%per%%]$~ ~$[IEEE%%lst%% 902 907%%per%%]$~ 
+~$[Alessio Botta%%lst%% Walter de Donato%%lst%% Valerio Persico%%lst%% ]^[ Antonio Pescap e%%per%% 2015%%per%%]$~ ~$[Integration of cloud computing 
+]^[ Internet of Things%%cln%% A survey%%per%%]$~ ~$[Future Generation Computer Systems (2015)%%per%%]$~ 
+~$[Nicola Bressan%%lst%% Leonardo Bazzaco%%lst%% Nicola Bui%%lst%% Paolo Casari%%lst%% Lorenzo Vangelista%%lst%% ]^[ Michele Zorzi%%per%% 2010%%per%%]$~ 
+~$[The Deployment of a Smart Monitoring System Using Wireless Sensor ]^[ Actuator Networks%%per%%]$~ ~$[In 
+Smart Grid Communications (SmartGridComm)%%lst%% 2010 First IEEE International Conference on%%per%% 49 54%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/SMARTGRID%%per%%2010%%per%%5622015 
+Nicola Bui ]^[ Michele Zorzi%%per%% 2011%%per%%]$~ ~$[Health care applications%%cln%% a solution based on the internet of things%%per%%]$~ ~$[In 
+Proceedings of the 4th International Symposium on Applied Sciences in Biomedical ]^[ Communication 
+Technologies%%per%%]$~ ~$[ACM%%lst%% 131%%per%%]$~ 
+~$[Jean%%dsh%%Paul Calbimonte%%lst%% So ane Sarni%%lst%% Julien Eberle%%lst%% ]^[ Karl Aberer%%per%% 2014%%per%%]$~ ~$[XGSN%%cln%% An Open%%dsh%%source Se%%dsh%% 
+mantic Sensing Middleware ]f[ the Web of Things%%per%%]$~ ~$[In 7th International Workshop on Semantic Sensor 
+Networks%%per%%]$~ 
+~$[Andrea Caragliu%%lst%% Chiara Del Bo%%lst%% ]^[ Peter Nijkamp%%per%% 2011%%per%%]$~ ~$[Smart cities in Europe%%per%%]$~ ~$[Journal of urban tech%%dsh%% 
+nology 18%%lst%% 2 (2011)%%lst%% 65 82%%per%%]$~ 
+~$[Min Chen%%lst%% Shiwen Mao%%lst%% ]^[ Yunhao Liu%%per%% 2014%%per%%]$~ ~$[Big data%%cln%% A survey%%per%%]$~ ~$[Mobile Networks ]^[ Applications 19%%lst%% 2 
+(2014)%%lst%% 171 209%%per%%]$~ 
+~$[Bin Cheng%%lst%% Salvatore Longo%%lst%% Flavio Cirillo%%lst%% Martin Bauer%%lst%% ]^[ Ernoe Kovacs%%per%% 2015%%per%%]$~ ~$[Building a Big Data Plat%%dsh%% 
+form ]f[ Smart Cities%%cln%% Experience ]^[ Lessons from Santander%%per%%]$~ ~$[In Big Data (BigData Congress)%%lst%% 2015 
+IEEE International Congress on%%per%% 592 599%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/BigDataCongress%%per%%2015%%per%%91 
+Annalisa Cocchia%%per%% 2014%%per%%]$~ ~$[Smart ]^[ Digital City%%cln%% A Systematic Literature Review%%per%%]$~ ~$[In Smart City%%lst%% Re%%dsh%% 
+nata Paola Dameri ]^[ Camille Rosenthal%%dsh%%Sabroux (Eds%%per%%)%%per%%]$~ ~$[Springer International Publishing%%lst%% 13 43%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1007/978%%dsh%%3%%dsh%%319%%dsh%%06160%%dsh%%3 2 
+Louise Coetzee ]^[ Johan Eksteen%%per%% 2011%%per%%]$~ ~$[The Internet of Things promise ]f[ the future%%qsn%%]$~ ~$[An introduction%%per%%]$~ 
+~$[In IST%%dsh%%Africa Conference Proceedings%%lst%% 2011%%per%% 1 9%%per%%]$~ 
+~$[Welington M%%per%% da Silva%%lst%% Alexandre Alvaro%%lst%% Gustavo H%%per%%]$~ ~$[R%%per%%]$~ ~$[P%%per%%]$~ ~$[Tomas%%lst%% Ricardo A%%per%%]$~ ~$[Afonso%%lst%% Kelvin L%%per%%]$~ ~$[Dias%%lst%% ]^[ 
+Vinicius C%%per%%]$~ ~$[Garcia%%per%% 2013%%per%%]$~ ~$[Smart cities software architectures%%cln%% a survey%%per%%]$~ ~$[In Proceedings of the 28th An%%dsh%% 
+nual ACM Symposium on Applied Computing%%per%%]$~ ~$[ACM%%lst%% 1722 1727%%per%%]$~ 
+~$[Yuri Demchenko%%lst%% Cees de Laat%%lst%% ]^[ Peter Membrey%%per%% 2014%%per%%]$~ ~$[De ning architecture components of the Big Data 
+Ecosystem%%per%%]$~ ~$[In Collaboration Technologies ]^[ Systems (CTS)%%lst%% 2014 International Conference on%%per%%]$~ ~$[IEEE%%lst%% 
+104 112%%per%%]$~ 
+~$[Salvatore Distefano%%lst%% Giovanni Merlino%%lst%% ]^[ Antonio Pulia to%%per%% 2012%%per%%]$~ ~$[Enabling the cloud of things%%per%%]$~ ~$[In Innova%%dsh%% 
+tive Mobile ]^[ Internet Services in Ubiquitous Computing (IMIS)%%lst%% 2012 Sixth International Conference 
+on%%per%%]$~ ~$[IEEE%%lst%% 858 863%%per%%]$~ 
+~$[A:32 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%%]$~ 
+~$[Sou ene Djahel%%lst%% Ronan Doolan%%lst%% Gabriel%%dsh%%Miro Muntean%%lst%% ]^[ John Murphy%%per%% 2014%%per%%]$~ ~$[A Communications%%dsh%% 
+]f[ Smart Cities%%cln%% Challenges ]^[ 
+1 1%%per%% 
+oriented Perspective 
+Innovative Approaches%%per%%]$~ ~$[Communications Surveys Tutorials%%lst%% 
+DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/COMST%%per%%2014%%per%%2339817 
+on Traf c Management Systems 
+IEEE PP%%lst%% 
+99 
+(2014)%%lst%% 
+A%%per%%]$~ ~$[Elmangoush%%lst%% H%%per%%]$~ ~$[Coskun%%lst%% S%%per%%]$~ ~$[Wahle%%lst%% ]^[ T%%per%%]$~ ~$[Magedanz%%per%% 2013%%per%%]$~ ~$[Design aspects ]f[ a reference M2M communi%%dsh%% 
+cation platform ]f[ Smart Cities%%per%%]$~ ~$[In Innovations in Information Technology (IIT)%%lst%% 2013 9th International 
+Conference on%%per%% 204 209%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/Innovations%%per%%2013%%per%%6544419 
+Stefan Foell%%lst%% Gerd Kortuem%%lst%% Reza Rawassizadeh%%lst%% Marcus Handte%%lst%% Umer Iqbal%%lst%% ]^[ Pedro Marr on%%per%% 2014%%per%%]$~ 
+~$[Micro%%dsh%%navigation ]f[ Urban Bus Passengers%%cln%% Using the Internet of Things to Improve the Public Trans%%dsh%% 
+port Experience%%per%%]$~ ~$[In Proceedings of the First International Conference on IoT in Urban Space (URB%%dsh%%IOT 
+14)%%per%%]$~ ~$[ICST (Institute ]f[ Computer Sciences%%lst%% Social%%dsh%%Informatics ]^[ Telecommunications Engineering)%%lst%% 
+ICST%%lst%% Brussels%%lst%% Belgium%%lst%% Belgium%%lst%% 1 6%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%4108/icst%%per%%urb%%dsh%%iot%%per%%2014%%per%%257373 
+MZ Fortes%%lst%% VH Ferreira%%lst%% GG Sotelo%%lst%% AS Cabral%%lst%% WF Correia%%lst%% ]^[ OLC Pacheco%%per%% 2014%%per%%]$~ ~$[Deployment of smart 
+metering in the B uzios City%%per%%]$~ ~$[In Transmission & Distribution Conference ]^[ Exposition%%dsh%%Latin America 
+(PES T&D%%dsh%%LA)%%lst%% 2014 IEEE PES%%per%%]$~ ~$[IEEE%%lst%% 1 6%%per%%]$~ 
+~$[Jose Antonio Galache%%lst%% Takuro Yonezawa%%lst%% Levent Gurgen%%lst%% Daniele Pavia%%lst%% Marco Grella%%lst%% ]^[ Hiroyuki 
+Maeomichi%%per%% 2014%%per%%]$~ ~$[ClouT%%cln%% Leveraging Cloud Computing Techniques ]f[ Improving Management of Mas%%dsh%% 
+sive IoT Data%%per%%]$~ ~$[In Service%%dsh%%Oriented Computing ]^[ Applications (SOCA)%%lst%% 2014 IEEE 7th International 
+Conference on%%per%% 324 327%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/SOCA%%per%%2014%%per%%47 
+Rudolf Gif nger%%lst%% Christian Fertner%%lst%% Hans Kramar%%lst%% Robert Kalasek%%lst%% Nata sa Pichler%%dsh%%Milanovic%%lst%% ]^[ Evert 
+Meijers%%per%% 2007%%per%%]$~ ~$[Smart cities%%dsh%%Ranking of European medium%%dsh%%sized cities%%per%%]$~ ~$[Technical Report%%per%%]$~ ~$[Vienna Univer%%dsh%% 
+sity of Technology%%per%%]$~ 
+~$[Sylva Girtelschmid%%lst%% Matthias Steinbauer%%lst%% Vikash Kumar%%lst%% Anna Fensel%%lst%% ]^[ Gabriele Kotsis%%per%% 2013%%per%%]$~ ~$[Big Data 
+in Large Scale Intelligent Smart City Installations%%per%%]$~ ~$[In Proceedings of International Conference on Infor%%dsh%% 
+mation Integration ]^[ Web%%dsh%%based Applications &#38%%scn%% Services (IIWAS 13)%%per%%]$~ ~$[ACM%%lst%% New York%%lst%% NY%%lst%% USA%%lst%% 
+Article 428%%lst%% 5 pages%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1145/2539150%%per%%2539224 
+Jayavardhana Gubbi%%lst%% Rajkumar Buyya%%lst%% Slaven Marusic%%lst%% ]^[ Marimuthu Palaniswami%%per%% 2013%%per%%]$~ ~$[Internet of 
+Things (IoT)%%cln%% A vision%%lst%% architectural elements%%lst%% ]^[ future directions%%per%%]$~ ~$[Future Generation Computer Sys%%dsh%% 
+tems 29%%lst%% 7 (2013)%%lst%% 1645 1660%%per%%]$~ 
+~$[Levent Gurgen%%lst%% Ozan Gunalp%%lst%% Yazid Benazzouz%%lst%% ]^[ Mathieu Gallissot%%per%% 2013%%per%%]$~ ~$[Self%%dsh%%aware cyber%%dsh%%physical 
+systems ]^[ applications in smart buildings ]^[ cities%%per%%]$~ ~$[In Design%%lst%% Automation Test in Europe Conference 
+Exhibition (DATE)%%lst%% 2013%%per%% 1149 1154%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%7873/DATE%%per%%2013%%per%%240 
+Robert E%%per%%]$~ ~$[Hall%%lst%% B Bowerman%%lst%% J Braverman%%lst%% J Taylor%%lst%% H Todosow%%lst%% ]^[ U Von Wimmersperg%%per%% 2000%%per%%]$~ ~$[The vision 
+of a smart city%%per%%]$~ ~$[In 2nd International Life Extension Technology Workshop%%lst%% Paris%%per%%]$~ 
+~$[Gerhard P%%per%%]$~ ~$[Hancke%%lst%% Gerhard P%%per%%]$~ ~$[Hancke Jr%%per%%%%lst%% ]^[ others%%per%% 2012%%per%%]$~ ~$[The role of advanced sensing in smart cities%%per%%]$~ 
+~$[Sensors 13%%lst%% 1 (2012)%%lst%% 393 425%%per%%]$~ 
+~$[Marcus Handte%%lst%% Muhammad Umer Iqbal%%lst%% Stephan Wagner%%lst%% Wolfgang Apolinarski%%lst%% Pedro Jos e Marr on%%lst%% Eva 
+Maria Mu noz Navarro%%lst%% Santiago Martinez%%lst%% Sara Izquierdo Barthelemy%%lst%% ]^[ Mario Gonz alez Fern andez%%per%% 
+2014%%per%%]$~ ~$[Crowd Density Estimation ]f[ Public Transport Vehicles%%per%%%%per%%]$~ ~$[In EDBT/ICDT Workshops%%per%% 315 322%%per%%]$~ 
+~$[Mohammad Mehedi Hassan%%lst%% Hanouf Saad Albakr%%lst%% ]^[ Hmood Al%%dsh%%Dossari%%per%% 2014%%per%%]$~ ~$[A Cloud%%dsh%%Assisted Internet 
+of Things Framework ]f[ Pervasive Healthcare in Smart City Environment%%per%%]$~ ~$[In Proceedings of the 1st 
+International Workshop on Emerging Multimedia Applications ]^[ Services ]f[ Smart Cities (EMASC 
+14)%%per%%]$~ ~$[ACM%%lst%% New York%%lst%% NY%%lst%% USA%%lst%% 9 13%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1145/2661704%%per%%2661707 
+Jos M%%per%%]$~ ~$[Hernndez%%dsh%%Mu noz%%lst%% Jess Bernat Vercher%%lst%% Luis Mu noz%%lst%% Jos A%%per%%]$~ ~$[Galache%%lst%% Mirko Presser%%lst%% Luis A%%per%%]$~ ~$[Hern%%dsh%% 
+ndez Gmez%%lst%% ]^[ Jan Pettersson%%per%% 2011%%per%%]$~ ~$[Smart Cities at the Forefront of the Future Internet%%per%%]$~ ~$[Vol%%per%% 6656%%per%% 
+447 462%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1007/978%%dsh%%3%%dsh%%642%%dsh%%20898%%dsh%%0 32 
+Robert G%%per%%]$~ ~$[Hollands%%per%% 2008%%per%%]$~ ~$[Will the real smart city please stand up%%qsn%%]$~ ~$[Intelligent%%lst%% progressive ]v[ en%%dsh%% 
+trepreneurial%%qsn%%]$~ ~$[City 12%%lst%% 3 (2008)%%lst%% 303 320%%per%%]$~ 
+~$[Aamir Hussain%%lst%% Rao Wenbi%%lst%% Aristides Lopes da Silva%%lst%% Muhammad Nadher%%lst%% ]^[ Muhammad Mudhish%%per%% 2015%%per%%]$~ 
+~$[Health ]^[ emergency%%dsh%%care platform ]f[ the elderly ]^[ disabled people in the Smart City%%per%%]$~ ~$[Journal of 
+Systems ]^[ Software 110 (2015)%%lst%% 253 263%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1016/j%%per%%jss%%per%%2015%%per%%08%%per%%041 
+Valrie Issarny%%lst%% Nikolaos Georgantas%%lst%% Sara Hachem%%lst%% Apostolos Zarras%%lst%% Panos Vassiliadist%%lst%% Marco Autili%%lst%% 
+Marco Aurlio Gerosa%%lst%% ]^[ AmiraBen Hamida%%per%% 2011%%per%%]$~ ~$[Service%%dsh%%oriented middleware ]f[ the Future Inter%%dsh%% 
+net%%cln%% state of the art ]^[ research directions%%per%%]$~ ~$[Journal of Internet Services ]^[ Applications 2%%lst%% 1 (2011)%%lst%% 
+23 45%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1007/s13174%%dsh%%011%%dsh%%0021%%dsh%%3 
+Isam Janajreh%%lst%% Liu Su%%lst%% ]^[ Fathi Alan%%per%% 2013%%per%%]$~ ~$[Wind energy assessment%%cln%% Masdar City case study%%per%%]$~ ~$[Renewable 
+energy 52 (2013)%%lst%% 8 15%%per%%]$~ 
+~$[Software Platforms ]f[ Smart Cities 
+A:33 
+Rosabeth Moss Kanter ]^[ Stanley S%%per%%]$~ ~$[Litow%%per%% 2009%%per%%]$~ ~$[Informed ]^[ interconnected%%cln%% A manifesto ]f[ smarter 
+cities%%per%% (March 2009)%%per%%]$~ ~$[Retrieved February 20%%lst%% 2015 from http://papers%%per%%ssrn%%per%%com/sol3/papers%%per%%cfm?abstract 
+id=1420236 
+Zaheer Khan%%lst%% Ashiq Anjum%%lst%% ]^[ Saad Liaquat Kiani%%per%% 2013%%per%%]$~ ~$[Cloud Based Big Data Analytics ]f[ Smart 
+Future Cities%%per%%]$~ ~$[In Utility ]^[ Cloud Computing (UCC)%%lst%% 2013 IEEE/ACM 6th International Conference 
+on%%per%% 381 386%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/UCC%%per%%2013%%per%%77 
+Zaheer Khan%%lst%% Ashiq Anjum%%lst%% Kamran Soomro%%lst%% ]^[ Muhammad Atif Tahir%%per%% 2015%%per%%]$~ ~$[Towards cloud 
+based big data analytics ]f[ smart future cities%%per%%]$~ ~$[Journal of Cloud Computing 4%%lst%% 1 (2015)%%lst%% 1 11%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1186/s13677%%dsh%%015%%dsh%%0026%%dsh%%8 
+Jaeho Kim ]^[ Jang%%dsh%%Won Lee%%per%% 2014%%per%%]$~ ~$[OpenIoT%%cln%% An open service framework ]f[ the Internet of Things%%per%%]$~ ~$[In 
+Internet of Things (WF%%dsh%%IoT)%%lst%% 2014 IEEE World Forum on%%per%%]$~ ~$[IEEE%%lst%% 89 93%%per%%]$~ 
+~$[Danh Le%%dsh%%Phuoc%%lst%% Hoan Quoc Nguyen%%dsh%%Mau%%lst%% Josiane Xavier Parreira%%lst%% ]^[ Manfred Hauswirth%%per%% 2012%%per%%]$~ ~$[A mid%%dsh%% 
+dleware framework ]f[ scalable management of linked streams%%per%%]$~ ~$[Web Semantics%%cln%% Science%%lst%% Services ]^[ 
+Agents on the World Wide Web 16 (2012)%%lst%% 42 51%%per%%]$~ 
+~$[Yong Woo Lee ]^[ Seungwoo Rho%%per%% 2010%%per%%]$~ ~$[U%%dsh%%city portal ]f[ smart ubiquitous middleware%%per%%]$~ ~$[In Advanced Com%%dsh%% 
+munication Technology (ICACT)%%lst%% 2010 The 12th International Conference on%%lst%% Vol%%per%% 1%%per%% 609 613%%per%%]$~ 
+~$[Pu Liu ]^[ Zhenghong Peng%%per%% 2013%%per%%]$~ ~$[Smart cities in China%%per%%]$~ ~$[IEEE Computer Society 16 (2013)%%per%%]$~ 
+~$[Catriona Manville%%lst%% Gavin Cochrane%%lst%% Jona%%cmp_ta%% Cave%%lst%% Jeremy Millard%%lst%% Jeremy Kevin Pederson%%lst%% Rasmus K are 
+Thaarup%%lst%% Andrea Liebe%%lst%% Matthias Wissner%%lst%% Roel Massink%%lst%% ]^[ Bas Kotterink%%per%% 2014%%per%%]$~ ~$[Mapping smart 
+cities in the EU%%per%% (2014)%%per%%]$~ 
+~$[Viktor Mayer%%dsh%%Sch onberger ]^[ Kenneth Cukier%%per%% 2013%%per%%]$~ ~$[Big data%%cln%% A revolution that will transform how we 
+live%%lst%% work%%lst%% ]^[ think%%per%%]$~ ~$[Houghton Mif in Harcourt%%per%%]$~ 
+~$[Nathalie Mitton%%lst%% Symeon Papavassiliou%%lst%% Antonio Pulia to%%lst%% ]^[ KishorS Trivedi%%per%% 2012%%per%%]$~ ~$[Combining Cloud ]^[ 
+sensors in a smart city environment%%per%%]$~ ~$[EURASIP Journal on Wireless Communications ]^[ Networking 
+2012%%lst%% 1 (2012)%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1186/1687%%dsh%%1499%%dsh%%2012%%dsh%%247 
+G%%per%%]$~ ~$[Mylonas%%lst%% E%%per%%]$~ ~$[Theodoridis%%lst%% ]^[ L%%per%%]$~ ~$[Munoz%%per%% 2015%%per%%]$~ ~$[Integrating Smartphones into the SmartSantander Infras%%dsh%% 
+tructure%%per%%]$~ ~$[Internet Computing%%lst%% IEEE 19%%lst%% 2 (Mar 2015)%%lst%% 48 56%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/MIC%%per%%2015%%per%%25 
+Milind Naphade%%lst%% Guruduth Banavar%%lst%% Colin Harrison%%lst%% Jurij Paraszczak%%lst%% ]^[ Robert Morris%%per%% 
+2011%%per%%]$~ ~$[Smarter Cities ]^[ Their Innovation Challenges%%per%%]$~ ~$[Computer 44%%lst%% 6 (June 2011)%%lst%% 32 39%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/MC%%per%%2011%%per%%187 
+Rocco Papa%%lst%% Carmela Gargiulo%%lst%% ]^[ Adriana Galderisi%%per%% 2013%%per%%]$~ ~$[Towards an urban planners perspective on 
+smart city%%per%%]$~ ~$[TeMA Journal of Land Use%%lst%% Mobility ]^[ Environment 6%%lst%% 01 (2013)%%lst%% 5 17%%per%%]$~ 
+~$[Anbu Parkavi ]^[ Nagarajan Vetrivelan%%per%% 2013%%per%%]$~ ~$[A smart citizen information system using Hadoop%%cln%% A case 
+study%%per%%]$~ ~$[In Computational Intelligence ]^[ Computing Research (ICCIC)%%lst%% 2013 IEEE International Con%%dsh%% 
+ference on%%per%% 1 3%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/ICCIC%%per%%2013%%per%%6724276 
+Charith Perera%%lst%% Arkady B%%per%%]$~ ~$[Zaslavsky%%lst%% Peter Christen%%lst%% ]^[ Dimitrios Georgakopoulos%%per%% 2014%%per%%]$~ ~$[Sensing as a 
+service model ]f[ smart cities supported by Internet of Things%%per%%]$~ ~$[Trans%%per%%]$~ ~$[Emerging Telecommunications 
+Technologies 25%%lst%% 1 (2014)%%lst%% 81 93%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1002/ett%%per%%2704 
+Daniel P erez%%dsh%%Gonz alez ]^[ Raimundo D az%%dsh%%D az%%per%% 2015%%per%%]$~ ~$[Public Services Provided with ICT in the Smart City 
+Environment%%cln%% The Case of Spanish Cities%%per%%]$~ ~$[Journal of Universal Computer Science 21%%lst%% 2 (2015)%%lst%% 248 267%%per%%]$~ 
+~$[Riccardo Petrolo%%lst%% Valeria Loscri%%lst%% ]^[ Nathalie Mitton%%per%% 2014%%per%%]$~ ~$[Towards a Cloud of Things Smart City%%per%%]$~ ~$[IEEE 
+COMSOC MMTC E%%dsh%%Letter 9%%lst%% 5 (Sept%%per%% 2014)%%lst%% 44 48%%per%% https://hal%%per%%inria%%per%%fr/hal%%dsh%%01080273 
+Giuseppe Piro%%lst%% Ilaria Cianci%%lst%% Luigi A%%per%%]$~ ~$[Grieco%%lst%% Gennaro Boggia%%lst%% ]^[ Pietro Camarda%%per%% 2014%%per%%]$~ ~$[Informa%%dsh%% 
+tion centric services in Smart Cities%%per%%]$~ ~$[Journal of Systems ]^[ Software 88%%lst%% 0 (2014)%%lst%% 169 188%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1016/j%%per%%jss%%per%%2013%%per%%10%%per%%029 
+Gilles Privat%%lst%% Mengxuan Zhao%%lst%% ]^[ Laurent Lemke%%per%% 2014%%per%%]$~ ~$[Towards a Shared Software Infrastructure ]f[ 
+Smart Homes%%lst%% Smart Buildings ]^[ Smart Cities%%per%%]$~ ~$[In International Workshop on Emerging Trends in 
+the Engineering of Cyber%%dsh%%Physical Systems%%lst%% Berlin%%per%%]$~ 
+~$[Junping Qiu%%lst%% Yanhui Song%%lst%% ]^[ Siluo Yang%%per%% 2010%%per%%]$~ ~$[Digital Integrated Model of Government Resources under 
+E%%dsh%%Government Environment%%per%%]$~ ~$[In Internet Technology ]^[ Applications%%lst%% 2010 International Conference 
+on%%per%% 1 4%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/ITAPP%%per%%2010%%per%%5566315 
+Aviva Rutkin%%per%% 2014%%per%%]$~ ~$[How data can save a city%%per%%]$~ ~$[New Scientist 224%%lst%% 2990 (2014)%%lst%% 24 25%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1016/S0262%%dsh%%4079(14)61945%%dsh%%X 
+Luis Sanchez%%lst%% Luis Muoz%%lst%% Jose Antonio Galache%%lst%% Pablo Sotres%%lst%% Juan R%%per%%]$~ ~$[Santana%%lst%% Veronica Gutierrez%%lst%% Ra%%dsh%% 
+jiv Ramdhany%%lst%% Alex Gluhak%%lst%% Srdjan Krco%%lst%% Evangelos Theodoridis%%lst%% ]^[ Dennis P sterer%%per%% 2014%%per%%]$~ ~$[Smart%%dsh%% 
+Santander%%cln%% IoT experimentation over a smart city testbed%%per%%]$~ ~$[Computer Networks 61 (2014)%%lst%% 217 238%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1016/j%%per%%bjp%%per%%2013%%per%%12%%per%%020 Special issue on Future Internet Testbeds Part I%%per%%]$~ 
+~$[A:34 
+Santana%%lst%% E%%per%%]$~ ~$[F%%per%%]$~ ~$[Z%%per%% et al%%per%%]$~ 
+~$[Eduardo Felipe Zambom Santana%%lst%% Daniel Mac edo Bastista%%lst%% Fabio Kon%%lst%% ]^[ Dejan S Milojicic%%per%% 2016%%per%%]$~ ~$[SCSimu%%dsh%% 
+lator%%cln%% An Open Source%%lst%% Scalable Smart City Simulator%%per%%]$~ ~$[In Tools Session of the 34th Brazilian Symposium 
+on Computer Networks (SBRC) %%per%%]$~ ~$[Salvador%%lst%% Brazil%%per%%]$~ 
+~$[A%%per%%]$~ ~$[Sinaeepourfard%%lst%% J%%per%%]$~ ~$[Garcia%%lst%% X%%per%%]$~ ~$[Masip%%dsh%%Bruin%%lst%% E%%per%%]$~ ~$[Marn%%dsh%%Tordera%%lst%% J%%per%%]$~ ~$[Cirera%%lst%% G%%per%%]$~ ~$[Grau%%lst%% ]^[ F%%per%%]$~ ~$[Casaus%%per%% 2016%%per%%]$~ 
+~$[Estimating Smart City sensors data generation%%per%%]$~ ~$[In 2016 Mediterranean Ad Hoc Networking Workshop 
+(Med%%dsh%%Hoc%%dsh%%Net)%%per%% 1 8%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/MedHocNet%%per%%2016%%per%%7528424 
+Kehua Su%%lst%% Jie Li%%lst%% ]^[ Hongbo Fu%%per%% 2011%%per%%]$~ ~$[Smart 
+ics%%lst%% Communications ]^[ Control 
+DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/ICECC%%per%%2011%%per%%6066743 
+In Electron%%dsh%% 
+(ICECC)%%lst%% 2011 International Conference on%%per%% 1028 1031%%per%% 
+city ]^[ the applications%%per%%]$~ 
+~$[Kohei Takahashi%%lst%% Shintaro Yamamoto%%lst%% Akihiro Okushi%%lst%% Shinsuke Matsumoto%%lst%% ]^[ Masahide Nakamura%%per%% 
+2012%%per%%]$~ ~$[Design ]^[ implementation of service API ]f[ large%%dsh%%scale house log in smart city cloud%%per%%]$~ ~$[In Cloud 
+Computing Technology ]^[ Science (CloudCom)%%lst%% 2012 IEEE 4th International Conference on%%per%% 815 820%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/CloudCom%%per%%2012%%per%%6427590 
+Kenji Tei ]^[ Levent Gurgen%%per%% 2014%%per%%]$~ ~$[ClouT%%cln%% Cloud of things ]f[ empowering the citizen clout in smart cities%%per%%]$~ 
+~$[In Internet of Things (WF%%dsh%%IoT)%%lst%% 2014 IEEE World Forum on%%per%%]$~ ~$[IEEE%%lst%% 369 370%%per%%]$~ 
+~$[Sean Thornton%%per%% 2013%%per%%]$~ ~$[Chicagos WindyGrid%%cln%% Taking Situational Awareness 
+to a New Level%%per%% 
+(March 2013)%%per%%]$~ ~$[Retrieved February 20%%lst%% 2015 from http://datasmart%%per%%ash%%per%%harvard%%per%%edu/news/article/ 
+chicagos%%dsh%%windygrid%%dsh%%taking%%dsh%%situational%%dsh%%awareness%%dsh%%to%%dsh%%a%%dsh%%new%%dsh%%level%%dsh%%259 
+United Nations%%per%% 2009%%per%%]$~ ~$[Urban ]^[ Rural Areas 2009%%per%% (2009)%%per%% http://www%%per%%un%%per%%org/en/development/desa/ 
+population/publications/urbanization/urban%%dsh%%rural%%per%%shtml 
+A%%cmp_t%%a Vakali%%lst%% Leonidas Anthopoulos%%lst%% ]^[ Srdjan Krco%%per%% 2014%%per%%]$~ ~$[Smart Cities Data Streams Integration%%cln%% Ex%%dsh%% 
+perimenting with Internet of Things ]^[ Social Data Flows%%per%%]$~ ~$[In Proceedings of the 4th International 
+Conference on Web Intelligence%%lst%% Mining ]^[ Semantics (WIMS14) (WIMS 14)%%per%%]$~ ~$[ACM%%lst%% New York%%lst%% NY%%lst%% 
+USA%%lst%% Article 60%%lst%% 5 pages%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1145/2611040%%per%%2611094 
+Ignasi Vilajosana%%lst%% Jordi Llosa%%lst%% Borja Martinez%%lst%% Marc Domingo%%dsh%%Prieto%%lst%% Albert Angles%%lst%% ]^[ Xavier Vilajosana%%per%% 
+2013%%per%%]$~ ~$[Bootstrapping smart cities through a self%%dsh%%sustainable model based on big data ows%%per%%]$~ ~$[Communi%%dsh%% 
+cations Magazine%%lst%% IEEE 51%%lst%% 6 (2013)%%lst%% 128 134%%per%%]$~ 
+~$[Flix J%%per%%]$~ ~$[Villanueva%%lst%% Maria J%%per%%]$~ ~$[Santo mia%%lst%% David Villa%%lst%% Jess Barba%%lst%% ]^[ Juan Carlos Lopez%%per%% 2013%%per%%]$~ ~$[Civ%%dsh%% 
+itas%%cln%% The Smart City Middleware%%lst%% from Sensors to Big Data%%per%%]$~ ~$[In Innovative Mobile ]^[ Inter%%dsh%% 
+net Services in Ubiquitous Computing (IMIS)%%lst%% 2013 Seventh International Conference on%%per%% 445 450%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/IMIS%%per%%2013%%per%%80 
+Eleni I Vlahogianni%%lst%% Kostanstinos Kepaptsoglou%%lst%% Vassileios Tsetsos%%lst%% ]^[ Matthew G Karlaftis%%per%% 2014%%per%%]$~ ~$[Ex%%dsh%% 
+ploiting new sensor technologies ]f[ real%%dsh%%time parking prediction in urban areas%%per%%]$~ ~$[In Transportation 
+Research Board 93rd Annual Meeting Compendium of Papers%%per%% 14 1673%%per%%]$~ 
+~$[Jiafu Wan%%lst%% Di Li%%lst%% Caifeng Zou%%lst%% ]^[ Keliang Zhou%%per%% 2012%%per%%]$~ ~$[M2M Communications ]f[ Smart City%%cln%% An Event%%dsh%% 
+Based Architecture%%per%%]$~ ~$[In Computer ]^[ Information Technology (CIT)%%lst%% 2012 IEEE 12th International 
+Conference on%%per%% 895 900%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/CIT%%per%%2012%%per%%188 
+Kaiyu Wan%%lst%% Danny Hughes%%lst%% Ka Lok Man%%lst%% ]^[ Tomas Krilavicius%%per%% 2010%%per%%]$~ ~$[Composition challenges ]^[ ap%%dsh%% 
+proaches ]f[ cyber physical systems%%per%%]$~ ~$[In Networked Embedded Systems ]f[ Enterprise Applications (NE%%dsh%% 
+SEA)%%lst%% 2010 IEEE International Conference on%%per%% 1 7%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/NESEA%%per%%2010%%per%%5678065 
+Doug Washburn%%lst%% Usman Sindhu%%lst%% Stephanie Balaouras%%lst%% Rachel A%%per%%]$~ ~$[Dines%%lst%% Nicholas M%%per%%]$~ ~$[Hayes%%lst%% ]^[ Lauren E%%per%%]$~ 
+~$[Nelson%%per%% 2009%%per%%]$~ ~$[Helping CIOs understand smart city initiatives%%per%%]$~ ~$[Growth 17 (2009)%%per%%]$~ 
+~$[Rong Wenge%%lst%% Xiong Zhang%%lst%% Dave Cooper%%lst%% Li Chao%%lst%% ]^[ Sheng Hao%%per%% 2014%%per%%]$~ ~$[Smart city architecture%%cln%% A tech%%dsh%% 
+nology guide ]f[ implementation ]^[ design challenges%%per%%]$~ ~$[Communications%%lst%% China 11%%lst%% 3 (March 2014)%%lst%% 
+56 69%%per%%]$~ ~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/CC%%per%%2014%%per%%6825259 
+Jules White%%lst%% Siobhan Clarke%%lst%% Christin Groba%%lst%% Brian Dougherty%%lst%% Chris Thompson%%lst%% ]^[ Douglas C%%per%%]$~ 
+~$[Schmidt%%per%% 2010%%per%%]$~ ~$[R&D challenges ]^[ solutions ]f[ mobile cyber%%dsh%%physical applications ]^[ sup%%dsh%% 
+porting Internet services%%per%%]$~ ~$[Journal of Internet Services ]^[ Applications 1%%lst%% 1 (2010)%%lst%% 45 56%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1007/s13174%%dsh%%010%%dsh%%0004%%dsh%%9 
+Chao Wu%%lst%% David Birch%%lst%% Dilshan Silva%%lst%% Chun%%dsh%%Hsiang Lee%%lst%% Orestis Tsinalis%%lst%% ]^[ Yike Guo%%per%% 2014%%per%%]$~ ~$[Concinnity%%cln%% 
+A Generic Platform ]f[ Big Sensor Data Applications%%per%%]$~ ~$[Cloud Computing%%lst%% IEEE 1%%lst%% 2 (July 2014)%%lst%% 42 50%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/MCC%%per%%2014%%per%%33 
+Shintaro Yamamoto%%lst%% Shinsuke Matsumoto%%lst%% Sachio Saiki%%lst%% ]^[ Masahide Nakamura%%per%% 2014%%per%%]$~ ~$[Using Material%%dsh%% 
+ized View as a Service of Scallop4SC ]f[ Smart City Application Services%%per%%]$~ ~$[In Soft Computing in Big 
+Data Processing%%per%%]$~ ~$[Springer%%lst%% 51 60%%per%%]$~ 
+~$[ChuanTao Yin%%lst%% Zhang Xiong%%lst%% Hui Chen%%lst%% JingYuan Wang%%lst%% Daven Cooper%%lst%% ]^[ Bertrand David%%per%% 
+2015%%per%%]$~ ~$[A literature survey on smart cities%%per%%]$~ ~$[Science China Information Sciences (2015)%%lst%% 1 18%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1007/s11432%%dsh%%015%%dsh%%5397%%dsh%%4 
+Software Platforms ]f[ Smart Cities 
+A:35 
+Matei Zaharia%%lst%% Mosharaf Chowdhury%%lst%% Michael J Franklin%%lst%% Scott Shenker%%lst%% ]^[ Ion Stoica%%per%% 2010%%per%%]$~ ~$[Spark%%cln%% 
+cluster computing with working sets%%per%%]$~ ~$[In Proceedings of the 2nd USENIX conference on Hot topics in 
+cloud computing%%lst%% Vol%%per%% 10%%per%% 10%%per%%]$~ 
+~$[Andrea Zanella%%lst%% Nicola Bui%%lst%% Angelo Castellani%%lst%% Lorenzo Vangelista%%lst%% ]^[ Michele Zorzi%%per%% 2014%%per%%]$~ ~$[In%%dsh%% 
+ternet of Things ]f[ Smart Cities%%per%%]$~ ~$[Internet of Things Journal%%lst%% IEEE 1%%lst%% 1 (Feb 2014)%%lst%% 22 32%%per%%]$~ 
+~$[DOI:http://dx%%per%%doi%%per%%org/10%%per%%1109/JIOT%%per%%2014%%per%%2306328 

@@ -116,6 +116,8 @@ def main():
             os.remove(file)
         for file in glob.glob("solns/*"):
             os.remove(file)
+        for file in glob.glob("res/*"):
+            os.remove(file)
         print("[INFO] Clean.\n")
 
     cat_lst=cat_fetch.get_categories()

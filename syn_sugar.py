@@ -188,7 +188,11 @@ def bake(file_ext=""):
 				start = time.time()
 
 				if "pdf" == ghost.rsplit('.', 1)[1].lower(): 
-					pdf2txt.convert(ghost)
+					try:
+						pdf2txt.convert(ghost)
+					except Exception as e:
+						print("[INFO] "+str(e))
+						continue					
 					ghost=ghost.rsplit('.', 1)[0]+".txt"
 					_ingredients=parser().collect_ingredients(ghost, False)
 					print("Reading: "+ghost)
@@ -199,10 +203,13 @@ def bake(file_ext=""):
 					for rank in sorted(_classes.iterkeys()):
 						_class=_classes[rank]
 						print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
-						special_items = special_items + _class().bake(_ingredients)				
-					sys_summ=garnish().final_touches(_ingredients, special_items, ghost.replace("webscraper/docs/", "webscraper/res/"))
-					end = time.time()
-
+						special_items = special_items + _class().bake(_ingredients)	
+					try:			
+						sys_summ=garnish().final_touches(_ingredients, special_items, ghost.replace("webscraper/docs/", "webscraper/res/"))
+						end = time.time()
+					except Exception as e:
+						print("[INFO] "+str(e))
+						continue
 					ref_summ=""
 					if len(sys_summ) > 0:
 

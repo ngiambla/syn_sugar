@@ -1,0 +1,21 @@
+  background: many different simulation frameworks, in different topics, need
+to treat realistic datasets to initialize and calibrate the system. a precise
+reproduction of initial states is extremely important to obtain reliable
+forecast from the model. methodology/principal findings: this paper proposes an
+algorithm to create an artificial population where individuals are described by
+their age, and are gathered in households respecting a variety of statistical
+constraints (distribution of household types, sizes, age of household head,
+difference of age between partners and among parents and children). such a
+population is often the initial state of microsimulation or (agent)
+individual-based models. to get a realistic distribution of households is often
+very important, because this distribution has an impact on the demographic
+evolution. usual techniques from microsimulation approach cross different
+sources of aggregated data for generating individuals. in our case the number
+of combinations of different households (types, sizes, age of participants)
+makes it computationally difficult to use directly such methods. hence we
+developed a specific algorithm to make the problem more easily tractable.
+conclusions/significance: we generate the populations of two pilot
+municipalities in auvergne region (france), to illustrate the approach. the
+generated populations show a good agreement with the available statistical
+datasets (not used for the generation) and are obtained in a reasonable
+computational time.

@@ -1,0 +1,590 @@
+Characteristics of On-time and Late Reward Delivery Projects
+
+Thanh Tran
+
+Department of Computer Science
+
+Utah State University, Logan, UT 84322
+
+thanh.tran@aggiemail.usu.edu
+
+Kyumin Lee
+
+Department of Computer Science
+
+Utah State University, Logan, UT 84322
+
+kyumin.lee@usu.edu
+
+7
+1
+0
+2
+
+ 
+
+y
+a
+M
+1
+2
+
+ 
+
+ 
+ 
+]
+
+Y
+C
+.
+s
+c
+[
+ 
+ 
+
+1
+v
+1
+0
+5
+8
+0
+
+.
+
+5
+0
+7
+1
+:
+v
+i
+X
+r
+a
+
+Abstract
+
+The crowdfunding market size has increased exponentially,
+reaching tens of billions of dollars and showing the popular-
+ity of crowdfunding. However, according to Kickstarter, 35%
+backers did not receive rewards on time. To maintain the trust
+between creators and backers, and sustain the crowdfund-
+ing business growth, it is crucial to understand how on-time
+and late reward delivery projects are different. In this paper,
+we analyze characteristics of on-time and late reward deliv-
+ery projects, especially, focusing on project descriptions, cre-
+ator proﬁles, and activeness and linguistic patterns of creators
+and backers. Our analysis reveals that the less complicated a
+project is and more actively a creator responds to backers,
+the higher an on-time reward delivery probability is. It shows
+there are signiﬁcant differences between on-time and late re-
+ward delivery projects.
+
+Introduction
+
+In recent years, reward-based crowdfunding platforms like
+Kickstarter and Indiegogo have become popular with in-
+creasing number of projects and backers. As shown in Figure
+1, a project has two phases: the fundraising phase and the re-
+ward delivery phase. In the fundraising phase, creators seek
+funding for their projects, and backers fund projects that they
+are interested in. In the reward delivery phase, creators of
+successfully funded projects make and ship their rewards.
+
+In the literature, researchers mostly focused on the
+fundraising phase by understanding the dynamics of crowd-
+funding platforms as well as the interaction and the rela-
+tionship between creators and backers (Kuppuswamy and
+Bayus 2015; Tran et al. 2016), predicting successful projects
+(Chung and Lee 2015; Li, Rakesh, and Reddy 2016), and
+recommending creators to backers or vice versa (Rakesh,
+Choo, and Reddy 2015).
+
+However, little attention has been paid to the reward deliv-
+ery phase, even though 35% backers did not receive rewards
+on time1. If receiving rewards on time, the backers will be
+more likely to invest the creator’s new projects. Therefore,
+delivering the rewards on time is crucial as it helps creators
+to maintain trust with backers and to retain backers’ upcom-
+ing investments.
+Copyright c(cid:13) 2017, Association for the Advancement of Artiﬁcial
+Intelligence (www.aaai.org). All rights reserved.
+
+1https://www.kickstarter.com/fulﬁllment
+
+To achieve trustworthy crowdfunding platforms, the ﬁrst
+step is to understand how on-time and late reward delivery
+projects are different. Can we ﬁnd distinguishing properties
+between on-time and late reward delivery projects? In this
+paper, we focus on this question and analyze characteris-
+tics of these projects. If we ﬁnd distinguishing properties,
+creators can improve new projects’ descriptions, and com-
+munication skills with backers toward planning their project
+well and delivering promised rewards on time.
+
+In particular, we extracted and analyzed various charac-
+teristics of projects and creators which distinguish between
+on-time and late reward delivery projects. Through our com-
+prehensive analysis of 2,198 sampled Kickstarter projects,
+we found that:
+• There were 12 project and creator related features, which
+distinguished between on-time and late reward delivery
+projects. Less complicated projects (e.g., a lower amount
+of goal and less number of rewards) had a higher chance
+to deliver rewards on time.
+
+• During the reward delivery phase, creators in on-time
+reward delivery projects posted updates and comments
+more quickly than creators in late reward delivery
+projects. Backers in on-time reward delivery projects
+asked less number of questions through comments.
+
+• Creators in on-time and late reward delivery projects had
+different linguistic usage in their updates. Similarly, we
+found that backers in on-time and late reward delivery
+projects had different linguistic usage in their comments.
+
+Dataset
+
+Figure 2 shows a reward example on Kickstarter. A reward
+consists of a description, price, the number of pledged back-
+ers, and an estimated delivery date. According to Kickstarter
+policy, a creator sets up her rewards before launching the
+project. Once a reward is pledged, it is not allowed her to
+edit the rewards. Based on this, we ﬁrst deﬁne what on-time
+and late reward delivery projects mean as follows:
+• A project is called an on-time reward delivery project if
+all the rewards associated with the project were shipped
+by the longest estimated delivery date (LEDD) among es-
+timated delivery dates of the rewards.
+
+Figure 1: Project Timeline in reward-based crowdfunding platforms.
+
+Figure 2: An example of a Kickstarter reward.
+
+• A project is called a late reward delivery project if the cre-
+ator did not deliver at least one of rewards by the longest
+estimated delivery date (LEDD).
+
+First of all, we selected 29,499 successful projects
+launched between 2009 and September 2014, and their goals
+were at least $100. Next, we sampled 10% of 29,499 suc-
+cessful projects with keeping the same project distribution
+over project categories, year and goal. Finally, we sampled
+2,949 projects, and collected their pages, corresponding cre-
+ator proﬁles, and associated updates and comments. To get
+the ground-truth regarding whether a project is on-time or
+late reward delivery project, three labelers independently
+read all the project updates and comments and labeled the
+2,949 projects based on the following guidelines:
+• A project was labeled as an on-time reward delivery
+project if: (i) the labeler could identify that all the rewards
+were shipped before LEDD, and (ii) there was no com-
+plaint regarding not receiving the rewards.
+
+• A project was labeled as a late reward delivery project if
+the creator posted at least one update or comment saying
+that the reward shipping process would be delayed and a
+new delivery date beyond LEDD was provided.
+
+• A project would be excluded if there was no information
+to verify whether all the rewards were sent on time or not.
+
+Finally, 1,003 projects were labeled as on-time reward de-
+livery projects, and 1,195 projects were labeled as late re-
+ward delivery projects. 751 projects were excluded because
+of the third guideline.
+
+Figure 3: Category distributions of on-time and late reward
+delivery projects.
+
+Figure 4: Distribution of on-time and late delivery projects
+in various delivery duration ranges.
+
+Characteristics
+
+In this section, we analyze the 2,198 projects, and associated
+creators and backers’ behavior to understand characteristics
+of on-time and late reward delivery projects.
+Project Characteristics: When creating a project, the cre-
+ator has to select its category from 15 categories predeﬁned
+by Kickstarter. We are interested in ﬁnding whether a pro-
+portion of on-time reward delivery projects was equal or not
+across the 15 categories. Can we observe creators in certain
+categories sent more rewards on time? To answer the ques-
+tion, we analyzed category distributions and plotted them in
+Figure 3. Interestingly, rewards in most dance and theater
+related projects were delivered on time, whereas rewards in
+most games, technology, comics, and ﬁlm related projects
+were not delivered on time. We analyzed these rewards, and
+found that project rewards in dance and theater were live
+performances, showcases or teaching dancing classes which
+
+BUILDThinkofaprojectidea.DesignanddevelopaprojectpageandrewardsbeforelaunchingtheprojectLAUNCHCreatorspostedtheirprojectsincrowdfundingplatforms.(Fundraising phase)END OF FUND RAISINGCreators,whoreachedthegoal,willbeginmakingpromisedrewardsREWARD DELIVERY DUECreators are supposed to deliveryall the promised rewards untiltheir estimated delivery date tomaintain credibility(Reward delivery duration)21%79%31%69%35%65%36%64%38%62%39%61%44%56%45%55%55%45%55%45%58%42%64%36%66%34%83%17%89%11%gamestechnologycomicsfilmjournalismdesignmusicpublishingfoodphotographycraftsfashionarttheaterdance0255075100Percentage (%)Categoryon−time delivery    late delivery38%62%47%53%46%54%43%57%39%61%43%57%41%59%52%48%40%60%53%47%56%44%0−30 days30−60 days60−90 days90−120 days120−150 days150−180 days180−210 days210−240 days240−270 days270−300 days>=300 days0100200300Number of ProjectsDelivery Duration Rangeon−time delivery    late deliveryTable 1: Characteristics of on-time and late reward delivery projects . std indicates standard deviation; *,**,***, ns indicates
+p-value < 0.05, < 0.01, < 0.001 and not signiﬁcant, respectively.
+
+Avg. Fundraising Duration (days)
+Avg. Goal (USD)
+Avg. pledged money (USD)
+Avg. # of images
+Avg. # of videos
+Avg. # of FAQs
+Avg. # of rewards
+Avg. # of backers
+Avg. # of sentences in a project desc
+Avg. # of sentences in a reward desc
+Avg. smog score of a project desc
+Avg. smog score of a reward desc
+
+on-time delivery
+32.13
+7,670.7
+14,419.15
+3.94
+1.23
+0.85
+10.09
+234.58
+12.50
+21.58
+30.12
+12.77
+
+std
+10.13
+29,888.04
+134,394.58
+7.39
+0.95
+1.90
+5.18
+2408.07
+2.58
+22.64
+24.51
+5.98
+
+late delivery
+33.71
+13,584.48
+30,126.76
+5.72
+1.38
+1.46
+11.52
+395.32
+12.31
+25.68
+38.59
+12.65
+
+std
+10.48
+24,652.49
+128,016.97
+9.45
+1.16
+2.93
+6.61
+2662.73
+2.09
+25.81
+34.22
+5.25
+
+Total
+32.99
+10,885.88
+22,959
+4.9
+1.31
+1.18
+10.87
+321.97
+12.40
+23.81
+34.72
+12.70
+
+std
+10.35
+27,326.27
+131,199.24
+8.62
+1.07
+2.53
+6.04
+2550.94
+2.33
+24.5
+30.47
+5.59
+
+p-value
+***
+***
+**
+***
+***
+***
+***
+ns
+*
+***
+***
+ns
+
+Table 2: Characteristics of creators in on-time and late reward delivery projects . std indicates standard deviation; *,**,***, ns
+indicate p-value < 0.05, < 0.01, < 0.001 and not signiﬁcant, respectively.
+
+Avg. # of backed projects
+Avg. # of created projects
+Avg. # of sentences in a bio desc
+Avg. smog score of a bio desc
+Avg. # of Facebook friends
+
+on-time delivery
+7.06
+1.65
+6.36
+13.59
+690.8
+
+std
+17.11
+3.87
+7.34
+3.29
+973.01
+
+late delivery
+9.69
+1.75
+6.09
+13.24
+637.7
+
+std
+19.74
+3.26
+6.04
+3.59
+904.18
+
+Total
+8.49
+1.70
+6.21
+13.4
+661.93
+
+std
+18.63
+3.55
+6.66
+3.46
+936.59
+
+p-value
+***
+ns
+ns
+*
+ns
+
+were served to backers at once. In contrast, project rewards
+in other categories such as games, technology, comics, and
+ﬁlm were real products (e.g., a game, book, movie), requir-
+ing more time to produce and ship the products to backers.
+The analysis and observation conﬁrm that creators in certain
+categories delivered more rewards on time.
+
+We next analyzed project related features to see if they
+help to distinguish on-time and late reward delivery projects.
+Table 1 presents statistical information of 12 project fea-
+tures: fundraising duration, goal, amount of pledged money,
+# of images, # of videos, # of FAQs, # of rewards, # of back-
+ers, # of sentences in a project description, # of sentences in
+a reward description, and a smog score (McLaughlin 2008)
+of each of project and reward descriptions. We performed
+the one-tailed two samples t-test to determine which fea-
+ture had a signiﬁcant mean difference in one direction. We
+found that on-time reward delivery projects had some dis-
+tinguishing characteristics compared to late reward delivery
+projects: (i) shorter fundraising duration; (ii) lower goal and
+pledged money; (iii) less number of images, videos, FAQs,
+and rewards; (iv) larger number of sentences in the project
+description, but smaller number of sentences in the reward
+description; and (v) lower smog score of a project descrip-
+tion, indicating more readable.
+
+We are also interested in exploring “Did a longer deliv-
+ery duration range increase a proportion of on-time delivery
+projects?”. Figure 4 shows a proportion of on-time and late
+delivery projects in each delivery duration range with the
+number of projects. It shows that the proportion of on-time
+delivery projects was quite equally distributed across deliv-
+ery duration ranges. Even 44% projects, whose duration was
+greater than 10 months, were late delivery projects. It indi-
+cates that longer delivery duration does not always increase
+a proportion of on-time delivery projects.
+Creator Characteristics: We extracted 5 features related to
+
+creators: # of backed projects, # of created projects, # of sen-
+tences in a bio description, smog score of a bio description,
+and # of Facebook friends. Then, we performed one-tailed
+two samples t-test via the same process as we did for the
+project related features. Table 2 shows our statistical results
+for those features. There were two features differentiated on-
+time and late reward delivery projects: # of backed projects
+and smog score of a bio description. We observed that cre-
+ators in on-time reward delivery projects had a smaller num-
+ber of backed projects and a higher smog score.
+Activeness of creators and backers during delivery dura-
+tion: First, we measured the activeness of creators in two as-
+pects: (1) the average time interval between two consecutive
+updates during the delivery duration; and (2) the responsive-
+ness of creators regarding a backer’s comment.
+
+Figure 5(a) shows the average update time interval of on-
+time and late delivery projects. Creators of the on-time de-
+livery projects posted updates with shorter time interval than
+creators of the late delivery projects. Creators of on-time
+and late delivery projects had signiﬁcantly different behav-
+ior with p-value < 0.001.
+
+Backers often posted questions, as comments, regarding
+the status of rewards during the delivery duration. Our hy-
+pothesis is that creators of the on-time delivery projects
+would respond more quickly than creators of late delivery
+projects, showing they were paying more attention to the
+backers. Figure 5(b) shows that our hypothesis is correct.
+Creators of the on-time delivery projects had signiﬁcantly
+different behavior compared with creators of the late deliv-
+ery project (p-value < 0.05).
+
+Next, we measured the activeness of backers during the
+delivery duration. Did backers in on-time delivery projects
+behave differently from ones in late delivery projects in
+terms of posting more or less number of questions? Fig-
+ure 5(c) shows the number of questions posted by backers
+
+(a) The average update time interval
+(***).
+
+(b) The average time between a backer’s
+question and reply from a creator. (*).
+
+(c) The number of questions posted by
+backers (***).
+
+Figure 5: Activeness of creators and backers in on-time and late delivery projects during the delivery duration. They in two
+groups behaved differently. *,**,***, indicate p-value < 0.05, < 0.01, and < 0.001, respectively.
+
+in on-time and late delivery projects. It makes sense that
+backers in late delivery projects posted more questions than
+backers in on-time delivery projects (p-value < 0.001).
+Linguistic patterns: Did creators in on-time and late deliv-
+ery projects have different linguistic usage? To answer this
+question, we analyzed creators’ updates posted during the
+delivery duration in terms of linguistic patterns. In particu-
+lar, we used Linguistic Inquiry and Word Count (LIWC) dic-
+tionary, a standard approach for mapping text to psycholog-
+ically meaningful categories in various research areas (Lee
+et al. 2014). LIWC-2007 deﬁnes 64 categories for each of
+several languages (e.g., English, German, Dutch). Each cat-
+egory contains several dozens to hundred of words or stems.
+Given each project’s updates which were posted during
+the reward delivery phase, we measured the linguistic usage
+of the creator in 64 LIWC categories by computing his score
+with regard to each category in LIWC dictionary. First, we
+grouped all the updates of each project into one big docu-
+ment. Next, we removed all stop words and counted the total
+number of words N in the document. Then, we counted the
+number of words in the document overlapped with the words
+or matched the stems in each category i in LIWC dictionary,
+denoted by Ci. Finally, we computed the creator’s score of a
+LIWC category i as Ci/N.
+
+We performed the two-sample t-test to discover the LIWC
+categories in which two distributions had a signiﬁcant differ-
+ence in the mean of score. Since we performed simultaneous
+tests against 64 LIWC categories, we applied Bonferroni
+correction and assigned α as 0.00078 (=0.05/64). Finally,
+we observed 12 categories that had the signiﬁcant difference
+of linguistic usage of creators in on-time and late delivery
+projects. Top 3 distinguishing linguistic categories were pos-
+itive emotion, affective process and cognitive processes. In-
+terestingly, creators in on-time delivery projects used words
+related to positive emotion (e.g., love, sweet) and affective
+processes (e.g., happy) more than creators in late deliv-
+ery projects. However, creators in on-time delivery projects
+used words related to Cognitive processes (e.g., cause, know,
+ought) less than creators in late delivery projects. This makes
+sense since creators in late delivery projects usually posted
+updates about reasons why their reward production or deliv-
+ery process was delayed.
+
+We also analyzed backers’ comments to understand their
+linguistic usage via the same process and found 5 categories
+
+with signiﬁcant difference: positive emotion, negative emo-
+tion, anxiety, cognitive processes and insight. In particu-
+lar, backers in on-time delivery projects used words related
+to positive emotion more, and related to negative emotion
+and cognitive processes less than backers in late delivery
+projects. This result is consistent with creators’ linguistic
+patterns.
+
+Conclusion
+
+It is crucial for creators to deliver rewards to backers on
+time as it keeps and fosters the trust between them. As the
+ﬁrst step to achieve trustworthy crowdfunding platforms, we
+analyzed characteristics of on-time and late reward deliv-
+ery projects. Particularly, we analyzed project-based charac-
+teristics, creator-based characteristics, activeness-based and
+linguistic-based characteristics of creators and backers dur-
+ing the reward delivery phase. We found that less compli-
+cated projects with more active response to backers had a
+higher chance to ship rewards on time.
+
+Acknowledgment
+
+This work was supported in part by NSF grant CNS-
+1553035. Any opinions, ﬁndings and conclusions or recom-
+mendations expressed in this material are the author(s) and
+do not necessarily reﬂect those of the sponsors.
+
+References
+
+[Chung and Lee 2015] Chung, J., and Lee, K. 2015. A long-term
+study of a crowdfunding platform: Predicting project success and
+fundraising amount. In HT.
+[Kuppuswamy and Bayus 2015] Kuppuswamy, V.,
+and Bayus,
+B. L. 2015. Crowdfunding creative ideas: The dynamics of project
+backers in kickstarter. UNC Kenan-Flagler Research Paper
+(2013-15).
+[Lee et al. 2014] Lee, K.; Mahmud, J.; Chen, J.; Zhou, M.; and
+Nichols, J. 2014. Who will retweet this?: Automatically identi-
+fying and engaging strangers on twitter to spread information. In
+IUI.
+[Li, Rakesh, and Reddy 2016] Li, Y.; Rakesh, V.; and Reddy, C. K.
+2016. Project success prediction in crowdfunding environments. In
+WSDM.
+[McLaughlin 2008] McLaughlin, G. 2008. Smog: Simple measure
+of gobbledygook. Retreived from: http://www. harrymclaughlin.
+com/SMOG. htm.
+
+Average number of days between two consecutive updates050100150200250300350400450CDF00.20.40.60.81ontime - deliverylate - deliveryAverage number of days for creators to response backer's comment050100150200CDF00.20.40.60.81ontime - deliverylate - deliveryNumber of comments asking for reward progress0100200300400CDF00.20.40.60.81ontime - deliverylate - delivery[Rakesh, Choo, and Reddy 2015] Rakesh, V.; Choo, J.; and Reddy,
+C. K. 2015. Project recommendation using heterogeneous traits in
+crowdfunding. In ICWSM.
+[Tran et al. 2016] Tran, T.; Dontham, M. R.; Chung, J.; and Lee,
+K. 2016. How to succeed in crowdfunding: a long-term study in
+kickstarter. CoRR.
+
+

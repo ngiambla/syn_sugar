@@ -1,0 +1,266 @@
+7
+1
+0
+2
+
+ 
+
+y
+a
+M
+2
+2
+
+ 
+
+ 
+ 
+]
+
+Y
+C
+.
+s
+c
+[
+ 
+ 
+
+1
+v
+7
+4
+7
+7
+0
+
+.
+
+5
+0
+7
+1
+:
+v
+i
+X
+r
+a
+
+What does it all mean?
+
+Capturing Semantics of Surgical Data and
+
+Algorithms with Ontologies
+
+Darko Kati´c1, Maria Maleshkova2, Sandy Engelhardt3, Ivo Wolf3, Keno M¨arz3,
+Lena Maier Hein3, Marco Nolden3, Martin Wagner4, Hannes Kenngott4, Beat
+
+Peter M¨uller-Stich4, R¨udiger Dillmann1, and Stefanie Speidel1
+
+Institute for Anthropomatics and Robotics, Karlsruhe Institute of Technology1
+Institute of Applied Informatics and Formal Description Methods, Karlsruhe
+
+Institute of Technology2
+
+Division of Medical and Biological Informatics, German Cancer Research Center
+
+(DKFZ), Heidelberg3
+
+Department of General, Abdominal and Transplantation Surgery, University of
+
+Heidelberg4
+
+darko.katic@kit.edu
+
+Abstract. Every year approximately 234 million major surgeries are
+performed, leading to plentiful, highly diverse data. This is accompanied
+by a matching number of novel algorithms for the surgical domain.
+To garner all beneﬁts of surgical data science it is necessary to have
+an unambiguous, shared understanding of algorithms and data. This in-
+cludes inputs and outputs of algorithms and thus their function, but also
+the semantic content, i.e. meaning of data such as patient parameters.
+We therefore propose the establishment of a new ontology for data and
+algorithms in surgical data science. Such an ontology can be used to
+provide common data sets for the community, encouraging sharing of
+knowledge and comparison of algorithms on common data. We hold that
+this is a necessary foundation towards new methods for applications such
+as semantic-based content retrieval and similarity measures and that it
+is overall vital for the future of surgical data science.
+
+Keywords: Ontology, Semantic, Knowledge Engineering, Surgery
+
+1 Problem Statement
+
+An estimated 234 million major surgeries are performed every year world-wide
+[1]. The data created during these surgeries is plentiful and highly diverse. In-
+traoperative information artifacts alone range from instrument applications and
+trajectories over images from microscopes, endoscopes or ultrasound. Postop-
+eratively further diagnoses, plannings and outcomes need to be included. The
+technical challenge is the heterogeneity of the data. Time variant states (e.g.
+time-series coming from laboratory results or follow-up images of disease pro-
+gression), processes (e.g. intraoperative workﬂows) and device states need to be
+considered in a combined analysis.
+
+2
+
+The amount of data is matched by the availability of algorithms. There
+is a vast amount of approaches for surgical data science applications ranging
+from preoperative decision support over intraoperative assistance generation and
+workﬂow optimization to post-operative skill assessment. Current algorithms use
+a variety of possible inputs. Even algorithms solving similar problems often use
+diﬀerent data. Amongst others, this is evident in the modeling of intraoperative
+workﬂows where there is no ultimate agreement on relevant features [2].
+
+A deep, clear and machine-readable understanding of the underlying data is
+also important for machine learning. This is best articulated by the No-Free-
+Lunch-Theorem [3]. The theorem states that, under very general conditions,
+there is no universally better algorithm for machine learning. Instead, the algo-
+rithm to be used needs to be chosen speciﬁcally for the data and the problem at
+hand. A clear, formal description of data and algorithms is therefore necessary.
+The quantity, heterogeneity and interconnectedness of algorithms and data
+are salient challenges to surgical data science. To truly realize its potential of
+holistic analysis, a language for data and algorithms needs to be found. A shared
+understanding on the semantic level is necessary to cope with the large amount of
+data and algorithms. Especially in a collaborative community this is important
+as it supports sharing of data and helps avoid misunderstandings.
+
+To this end, we propose the development of an ontology for algorithms and
+data in surgery. Speciﬁcally, we aim to capture semantics, e.g. what the data is
+about. The usefulness of such ontologies is apparent in other domains, e.g. data
+mining [4]. Current medical ontologies like OntoSPM [5], the Foundational Model
+of Anatomy (FMA) [6] and SNOMED-CT [7] focus only on medical knowledge
+itself, yet not on data and algorithms, while OntoDM [4] is not directly applicable
+to medical use-cases without further development.
+
+2 Potential Beneﬁts and Uses
+
+Assuming suﬃcient acceptance, such an ontology oﬀers a community-wide con-
+sensus on terms, algorithms and data structures. This greatly facilitates com-
+parison of proposed approaches and encourages sharing of knowledge and data.
+These steps are not only desirable but salient staples of good scientiﬁc practice.
+The ontology inherently models provenance, i.e. origin of data. This allows
+to estimate trust to arbitrate between conﬂicting assessments. For instance it
+can be queried whether a segmentation was obtained purely algorithmically, by
+an experienced clinician or a novice one.
+
+On a methodological level, such an ontology supports the development of
+novel data interpretation techniques. It can be used for content-based retrieval of
+images or cohorts. Furthermore, it lends itself to use in similarity based retrieval
+over diﬀerent modalities. For machine learning applications, such an ontology
+is very beneﬁcial as it allows ﬁne-granular, semantic selection of training data
+based on the semantic description. It also aids in the selection of machine learning
+approaches as it allows a better understanding of processes and data generation.
+
+3
+
+Further applications include easier search for algorithms tailored to speciﬁc
+purposes, improved understanding as well as documentation. Reasoning tech-
+niques can be used to provide even more advanced functions such as automatic
+proposals of algorithms or even of entire pipelines in speciﬁc use-cases [8].
+
+3 Requirements and Challenges
+
+The development of such an ontology is challenging. For once, it must be ac-
+cepted by the research community. The problem is including many stakeholders
+during the development and ﬁnding a consensus. Furthermore the proposed on-
+tology needs to include relevant ontologies such as SNOMED-CT [7] and FMA
+[6]. This is crucial for interoperability with system using such established ontolo-
+gies. Content-wise, the ontology needs to contain rich semantics and allow for
+reasoning. A mere taxonomy is insuﬃcient. The associated challenge is to gather,
+combine and formalize expert knowledge from clinicians and technicians.
+
+To reap the beneﬁts of the ontology, real-world data sets and algorithms must
+be described with it. This requires considerable eﬀort. Methodically, the anno-
+tation can be created by a mix of manual work, crowd-sourcing and automatic
+labeling. Thus it can be parallelized and partly automated.
+
+Due to these challenges and the large scope, we propose to ﬁrst create a
+mid-level ontology to ensure general agreement. It can then be reﬁned to appli-
+cation ontologies for speciﬁc purposes. Because of the large amount of eﬀort and
+coordination required, widespread collaboration is mandatory.
+
+4 Technical Feasibility Analysis
+
+Such an ontology is diﬃcult yet feasible to attain. Reusability and adherence
+to standards can be ensured using an upper-ontology. Upper-ontolgies deﬁne
+general terms which are further specialized for concrete domains. The main ad-
+vantage is that diﬀerent ontologies built with the same upper-ontology can be
+connected rather easily, as they already share a foundation. Furthermore they
+improve the quality of ontologies oﬀering a well thought-out basic categorization.
+We propose the use of Basic Formal Ontology (BFO) as the upper-ontology
+[9]. BFO is mature and used in many existing (bio-)medical ontologies. Further-
+more, we aim to include the Information Artefact Ontology [10] and the the
+Ontology of Biomedical Investigation [11].
+
+An idea of the ontology is shown in Fig. 1. The example from the domain
+of heart surgery illustrates the representation of a DICOM-ﬁle showing the mi-
+tral valve in the long axis plane, captured using ultrasound with the surface of
+the valve segmented via an implementation of a segmentation algorithm. Al-
+gorithms and their implementations are modeled separately. The processing of
+data is modeled by expressing the process of execution of the implementation
+with inputs and outputs modeled as participants. For applications needing user
+input, e.g. interactive segmentations, additional participant can be added. This
+way the creation of data and thus provenance is modeled.
+
+4
+
+Fig. 1. Representation of a ﬁle showing the mitral valve in the long axis plane, captured
+using ultrasound used to create a segmentation of the mitral valve surface.
+
+Overall, we believe the development of the ontology is a feasible and very
+
+fruitful endeavour.
+
+Acknowledgements The present research was supported by the “SFB TRR 125”
+funded by the DFG.
+
+References
+
+1. Weiser ,T.G., Regenbogen, S.E., Thompson, K.D., Haynes, A.B., Lipsitz, S.R., Berry
+W.R., Gawande A.A. An estimation of the global volume of surgery: a modelling
+strategy based on available data. Lancet. (9633):139–44 (2008)
+
+2. Lalys, F., Jannin, P. Surgical process modelling: a review. Int J Comput Assisted
+
+Radiol Surg. 1-17 (2013)
+
+3. Wolpert, D.H. The lack of a priori distinctions between learning algorithms. Neural
+
+Computation, 8(7):1341–1390. (1996)
+
+4. Panov, P., Soldatova, L., Deroski, S. Ontology of core data mining entities. Data
+
+Mining and Knowledge Discovery 28(5-6):1222-1265 (2014)
+
+5. Gibaud, B., Penet, C., Pierre, J. OntoSPM: a core ontology of surgical procedure
+
+models, SURGETICA (2014)
+
+6. Rosse, C., Mejino, J.L. Jr. A reference ontology for biomedical informatics: the
+
+Foundational Model of Anatomy. J Biomed Inform 36(6):478500 (2003)
+
+7. Cornet, R., de Keizer, N. Forty years of SNOMED: a literature review BMC Medical
+
+Informatics and Decision Making (2008)
+
+8. Philipp, P., Maleshkova, M., Katic, D., Weber, C., G¨otz, M., Rettinger, A., Speidel,
+S., K¨ampgen, B., Nolden, M., Wekerle, A.L., Dillmann, R., Kenngott, H., M¨uller,
+B., Studer, R. Toward cognitive pipelines of medical assistance algorithms. Int J
+Comput Assist Radiol Surg. (2015)
+
+9. Grenon, P., Smith, B. SNAP and SPAN: towards dynamic spatial ontology. Spat
+
+Cognit Compuat 1(4):69103 (2004)
+
+10. IAO Information Artifact Ontology https://github.com/information-artifact-
+
+ontology/IAO Last accessed: 09.05.2016
+
+11. Brinkman, R.R., Courtot, M., Derom, D., Fostel, J.M., He, Y., Lord, P., Malone, J.,
+Parkinson, H., Peters, B., Rocca-Serra, P., Ruttenberg, A., Sansone, S.A., Soldatova,
+L.N., Stoeckert, C.J. Jr, Turner, J.A., Zheng, J.: Modeling biomedical experimental
+processes with OBI. J Biomed Semantics. (2010)
+
+:DICOM fileencoded withhas type:ultrasoundimage:visibilityFMA:mitral valve:long axis view planeshowsstructureviewedin planeencoded with:voxel encodinghas input:algorithm executionprocesshas output:stl file:polygon meshencoding:visibilityhas typehas type:surfacesegmentationshowsstructurehas participant:segmentationalgorithm implementation

@@ -21,7 +21,7 @@ from rouge import Rouge
 
 startup_message="+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+\n"\
 				"| * Syn Sugar: "+strftime("%Y-%m-%d %H:%M:%S", localtime())+"\n"\
-				"| *--- Author: Nicholas V. Giamblanco, 2018"\
+				"| *--- Authors: Nicholas V. Giamblanco, 2018"\
 				"\n+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"
 
 help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
@@ -130,6 +130,8 @@ def bake(file_ext=""):
 		print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 
 	elif(file_ext == "tests/"):
+		p_avg 		= 	0
+		r_avg 		= 	0
 		f1_avg 		= 	0
 		test_cases 	= 	0
 		
@@ -165,12 +167,16 @@ def bake(file_ext=""):
 								print(scores[0]['rouge-2'])
 								print(scores[0]['rouge-1'])
 
+								p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
+								r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
 								f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
 								test_cases 	= test_cases+1
 								
 								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 						except Exception as e:
 							print(e)
+		print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
+		print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
 		print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
 
         elif file_ext == "webscraper/docs/":
@@ -185,6 +191,9 @@ def bake(file_ext=""):
 					pdf2txt.convert(ghost)
 					ghost=ghost.rsplit('.', 1)[0]+".txt"
 					_ingredients=parser().collect_ingredients(ghost, False)
+					print("Reading: "+ghost)
+				else:
+					continue
 				if _ingredients != -1:
 					special_items=[]
 					for rank in sorted(_classes.iterkeys()):

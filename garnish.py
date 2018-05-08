@@ -136,18 +136,28 @@ class garnish:
 			sfs 	= 	[]
 			low_map = 	[]
 
+			tainted = 	False
+
 			for i in range(_label, sentence_length_map[_label]+_label):
 				low_map.append(ingredient_free_map[i].lower())
+
 				if _ingredients_all[i] != "%%#%%":
 					sfs2.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
 					sfs.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
+					# if _ingredients_all[i] == "=":
+					# 	print(_ingredients_all[i])
+					# 	tainted = True
 				else:
 					sfs2.append(0)
 
-			freq_vec_map[_label]  			=  	sfs2
-			freq_vec_map_gb[_label] 		= 	sfs
-			sentence_low_map[_label] 		= 	low_map
-			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
+			freq_vec_map[_label]  				=  	sfs2
+			freq_vec_map_gb[_label] 			= 	sfs
+			sentence_low_map[_label] 			= 	low_map
+			if not tainted:
+				sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
+			else:
+				sentence_entropy_map[_label] 	= 	0
+
 
 			vec=[]
 			for special_item in sentence_map[_label]:
@@ -314,7 +324,7 @@ class garnish:
 		l_summary_map = {}
 
 		for _label in k_summary_map:
-			if len(l_summary_map) < 20:
+			if len(l_summary_map) < 15:
 				l_summary_map[_label[0]]=_label[1]
 			else:
 				break

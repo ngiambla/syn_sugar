@@ -1,0 +1,1396 @@
+Cybernetic Health
+
+Department of Computer Science, University of California, Irvine / Irvine, California, 92617, USA
+
+Nitish Nag, Vaibhav Pandey, Hyungik Oh, Ramesh Jain
+
+Prepared March 2017, Arxiv Version Accepted 21 May 2017
+
+Corresponding Author: N. Nag, nagn@uci.edu
+
+7
+1
+0
+2
+
+ 
+
+y
+a
+M
+1
+2
+
+ 
+
+ 
+ 
+]
+
+Y
+C
+.
+s
+c
+[
+ 
+ 
+
+1
+v
+4
+1
+5
+8
+0
+
+.
+
+5
+0
+7
+1
+:
+v
+i
+X
+r
+a
+
+ABSTRACT
+Future health ecosystems demand the integration of emerg-
+ing data technology with an increased focus on preventive
+medicine. Cybernetics extracts the full potential of data to
+serve the spectrum of health care, from acute to chronic prob-
+lems. Building actionable cybernetic navigation tools can
+greatly empower optimal health decisions, especially by quan-
+tifying lifestyle and environmental data. This data to decisions
+transformation is powered by intuitive event analysis to of-
+fer the best semantic abstraction of dynamic living systems.
+Achieving the goal of preventive health systems in the cyber-
+netic model occurs through the ﬂow of several components.
+From personalized models we can predict health status using
+perpetual sensing and data streams. Given these predictions
+we give precise recommendations to best suit the prediction
+for that individual. To enact these recommendations we use
+persuasive technology in order to deliver and execute targeted
+interventions.
+
+Author Keywords
+cybernetics; diabetes; quantiﬁed-self; objective-self; precision
+medicine; predictive health; prevention; event mining; context
+awareness; mobile health; persuasion; personalized
+
+INTRODUCTION
+Navigation systems, like Google Maps, became rapidly popu-
+lar by providing expert knowledge and real-time personalized
+contextual information to guide travel. Personal lifestyle guid-
+ance in such a manner does not exist in health care systems. In
+order to shift the focus in health systems from temporary ﬁxes
+to long-term solutions such a guidance system must be imple-
+mented [60] [48]. Commonly, physicians focus primarily on
+medical methods to manage health when a patient becomes ill.
+By evolutionary design, optimal health is universally desired
+(and should be provided) at all times. True health outcomes
+result from actions taken in every moment and place, not just
+medical intervention during sickness. Future advancements in
+health must continuously sense individual needs and rapidly
+provide the relevant resources so corrective actions ensure
+health stability. For example, optimal health for chronic dis-
+eases like type 2 diabetes (T2D) remains a challenge. Insulin
+
+licensed under
+
+This work is
+the Creative Commons Attribution-
+NonCommercial-NoDerivatives 4.0 International License. To view a copy
+of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or
+send a letter to Creative Commons, PO Box 1866, Mountain View, CA
+94042, USA.
+
+1
+
+Figure 1. P5 Cybernetic Health coordinates the elements of personalized,
+predictive and precision medicine through persuasion techniques that
+result in disease prevention.
+
+Figure 2. Cybernetic Control pairs the individual user and digital health
+assistance to enact real-world changes to optimize health
+
+resistance, obesity and other biological changes that lead to un-
+controlled T2D start many years before a formal diagnosis and
+treatment plan is given. These biological changes can be re-
+versed by lifestyle choices. If insulin resistance is caught early
+in a prediabetic state, the course of the disease is potentially re-
+versible [56]. Although biological scientiﬁc understanding has
+greatly progressed in the past few decades, diabetes and other
+lifestyle associated diseases continue to rapidly rise across the
+globe. Given this progress in research, we would expect the
+opposite. Historically, monitoring lifestyle factors has been
+difﬁcult, and computational power with effective methods to
+address the needs of each individual have been limited. Try-
+ing to produce changes in routine lifestyle habits is also a
+tremendous psychological hurdle.
+
+This work targets three signiﬁcant problems in current health
+care delivery through a cybernetic approach. First: Health sys-
+tems largely react to problems, rather than avoiding problems
+through preventive measures. Second: Gold-standard medi-
+cal practices depend on evidence-based medicine taken from
+population averages. A lack of individual contextual analysis
+results in compromised care and sub-optimal outcomes. Third:
+Access to medical guidance is limited due to poor informa-
+tion dissemination, and restricted physical time and space. If
+doctors give lifestyle suggestions to patients, they are hard to
+translate into everyday life decisions. When a need or ques-
+tion arises for health advice, such as "What should I eat?" or
+"Should I take this medicine now or later?", there is a large
+time delay to receive meaningful assistance. Patients usually
+scramble for unreliable information via web search engines
+when faced with such decisions. The difﬁculty of scaling
+physical systems, like hospitals and personnel, further limits
+high quality care. This is especially the case for under-served
+populations across the globe.
+P5 Cybernetic Health (P5C) transforms these three major hur-
+dles into opportunities (Figure 1). First: By analyzing individ-
+ual data with context, we can predict problems as they arise
+and give the best solutions. In the instance of diabetes, we
+begin to predict an increase in insulin resistance risk factors
+for increasing complications. This leads to actionable informa-
+tion for the patient. Second: We tackle the issue of traditional
+"evidence-based" medicine by combining sub-population and
+individual data dynamically into a system to give "enhanced
+real-time personalized evidence-based" medicine unique for
+each patient. For a diabetic patient, we give speciﬁc actions
+that would result in the best blood glucose management. Third:
+We reduce the delay of health advice through real-time sen-
+sors and speciﬁc feedback guidance loops, while retaining
+the ability to scale to millions of patients through a virtual
+platform.
+
+CYBERNETIC PRINCIPLES
+Cybernetic principles transformed the design of complex sys-
+tems [80]. Continuous measurements are a key component
+in closed loop feedback control systems. Airplanes, ovens,
+and other machines use these feedback loops to safely and
+efﬁciently operate. Imagine if the thermometer in an oven
+gave a reading once every year. How would the oven know
+to heat or turn off? The thermometer, heater, and other com-
+ponents of the oven must all be coordinated and continuously
+working for the machine to operate correctly. Similarly, the
+human body maintains homeostasis amongst a remarkable
+array of perturbations. Biological systems use an intricate play
+of real-time sensors and actuators within the body to do this.
+Cellular sensors collect personalized information based on the
+individual body or tissue changes. These signals affect outputs
+for corrective action, and are especially effective if early warn-
+ing signs are detected. These cybernetic mechanisms keep the
+human body naturally stable.
+Occasionally, this human system becomes unstable which re-
+sults in deteriorating health. With current day medical practice,
+the detection and corrective actions are greatly delayed, re-
+sulting in further unstable systems and further deteriorating
+
+health for the patient. Our vision is to reduce this latency of
+the health care system, by using continuous sensors that are
+speciﬁc to the individual, while enabling corrective actions to
+transform an unstable health condition back to full health sta-
+bility. In the operating room, anesthesiologists are beginning
+to develop closed-loop drug administration systems that will
+replace much of their own job during a surgery [59].
+For type 1 diabetics, mechanical devices can replace the bio-
+logical pancreas with a hormone pump and continuous glucose
+monitoring. Both of these examples are mechanical implemen-
+tations of cybernetics for health. Unique to our platform, we
+begin to mesh real world information into a virtual environ-
+ment that patients can use to peek into their live health status
+with persuasive guidance for optimal decision making. We
+call an application of this Health-Butler (HB).
+We chose to implement HB for T2D for two key reasons. First,
+diabetes is an increasing global health problem, with almost
+double the disease burden in the last 30 years that reaches 8.5
+percent of global population. It is a leading cause of blindness,
+kidney failure, heart attacks, stroke and lower limb amputation
+[14]. Second, T2D and the resulting complications are largely
+preventable if corrective action is taken promptly. These cor-
+rective measures are actionable by individuals through lifestyle
+factors such as nutrition, physical activity, stress management,
+and environmental exposure. By continuously monitoring the
+aforementioned factors, we can predict if the human system
+will start deviating from the homeostatic set point, allowing
+HB to intervene at the right time and place.
+
+P5 Cybernetic Health Concept
+Leading medical professionals have advocated for integrating
+more technology into health care [72]. Future health care
+systems will intertwine lifestyle data with medical knowledge
+to develop a new paradigm that optimizes individual health.
+We have developed a 5 component system to bring this vision
+to reality.
+First, we use a multi-layer modeling system to understand how
+to build an increasingly accurate personalized model. Second,
+using this dynamic model connected with real time sensors
+allows us to predict evolving situations that an individual may
+encounter. Third, we use the predictions in conjunction with
+validated expert medical knowledge to give the most precise
+solutions to avoid emerging problems. Fourth, we effectively
+persuade the individual as an actuator in the system by op-
+timizing their preferences, convenience, and speciﬁc health
+needs. Fifth, we give feedback on how the patient’s actions
+have quantitatively affected their health. The realization of this
+personalized, predictive, precise, persuasive, and preventive
+system depends upon the coordination of available and future
+technologies. We call this above approach P5C (Figure 1).
+
+RELATED WORK
+Clinical and medical research in personalized and preventive
+medicine struggles to gain traction. Patients continue to re-
+ceive sparse feedback on how to best face disease burdens in
+their unique daily life circumstances. Medications prevail as
+the primary tool to manage diabetes, because they are easy
+to physically scale and have standardized instructions for all
+
+2
+
+patients. Currently, live exchange of personalized feedback
+from physical human(doctor) to human(patient) on lifestyle
+changes, although beneﬁcial, is extremely costly in time and
+resources.[61]
+There is a signiﬁcant demand for this type of virtual plat-
+form. Patients have a much higher probability of making
+better lifestyle choices that would combat diabetes if given
+guidance [63]. Unfortunately, modern (2016) smartphone
+tracking applications have not shown any beneﬁt in improving
+glucose control [58]. Physicians continue to vocalize this void
+in matching glycemic patterns with lifestyle history [28].
+Health monitoring research has quickly grown with pervasive
+computing methods. There are some research groups who have
+focused on lifestyle monitoring of diabetic patients. Smart-
+phones have been used for data collection (e.g. GPS, wiﬁ,
+activity) to power machine learning and symbolic reasoning
+to recognize lifestyle activities of diabetic patients [44]. Daily
+life data of diabetic pregnant women has been integrated with
+their network of health care institutions [4]. Other groups have
+focused on health-related data monitoring for chronic disease
+care. Waki et al. implemented a smartphone self-management
+system which consisted of 4 modules; 1) data transmission,
+2) evaluation, 3) communication, and 4) dietary evaluation,
+which resulted in improved HbA1c in 3 months [77]. Mukher-
+jee et al. provided an environment for caregivers to monitor
+patient data in real-time [52]. Katz et al. and Mamykina et al.
+designed mobile systems to merge and analyze data streamed
+from multiple sensors to give user recommendations [38, 45].
+Banos et al. explored existing personalized health data ap-
+plications to develop a framework, called Mining Minds, to
+assimilate health data in order to better serve patients [5]. How-
+ever, to the best of our knowledge, there is no joint research
+between medical and computing ﬁelds that cover the scope of
+cybernetics to coordinate the elements of personalized, predic-
+tive and precision medicine through persuasion techniques to
+result in disease prevention (Figure 1).
+Computing work in this ﬁeld has primarily focused on giving
+the user ﬁgures and statistics of past data. This is true for both
+hardware and software in personal health. Hardware such as
+the Fitbit, and health software like Apple’s HealthKit only
+function to acquire and accumulate data. This does not fulﬁll
+the function of providing timely and personalized health ad-
+vice in a predictive manner. Most importantly current digital
+health mechanisms are rudimentary in detecting context for
+each individual. Second, recommendation engines that are
+used in health applications ignore mechanisms to maintain
+retention and trust of the user. Users quickly get alert fatigue
+from poor recommendations. To sustain users, applications
+must give users autonomy, cater to their desires and conve-
+nience, while also informing them in an encouraging man-
+ner. Additionally, many lifestyle data parameters are gathered
+through manual mechanisms. For example, popular nutrition
+tracking applications ask users to manually enter information.
+This further causes a high loss in user retention, while having
+poor accuracy of input values [40]. Users desire low data entry
+burden, with high functionality to help reach their goals [40].
+
+Figure 3. Cybernetic systems apply in all time scales of health from acute
+to chronic diseases. Here are just a few examples of components that can
+have both acute and chronic effects on health homeostasis. Other than
+genetics, most of these factors are controllable to some degree.
+
+HEALTHBUTLER APPLICATION
+To illustrate the delivery of P5C through HB, we describe how
+a T2D patient named "Bruce Uberschweet", uses the system
+to optimally manage his health condition in both positive
+and negative scenarios. This will include analysis to better
+control blood sugars and reduce drug dependency through
+improved metabolism [49]. Bruce is looking for lunch on his
+commute to work on Monday and knows that HB always gives
+him the fastest access point to tasty and nutritious food. An
+intelligent recommendation engine takes into consideration his
+real-time personal tastes, logistical convenience, and current
+health needs to provide him a curated list of speciﬁc dishes
+that he can easily pre-order. He can also clearly see how each
+dish affects his diabetes so he can feel empowered to choose
+what is good for himself (Figure 4). After attending a wedding
+on Sunday, HB predicts a rising insulin resistance based on
+his previous lifestyle data, and gives him immediate actions to
+take in order to address the worsening condition. It simpliﬁes
+his next steps such as booking an urgent appointment with his
+doctor to change his medication dose (Figure 4). These are two
+examples of how HB is actively engaged in predicting Bruce’s
+health status, merging in with his daily life in an unobtrusive
+and useful way. Bruce can actively see how his external world
+and internal body are interacting through HB.
+
+P5 CYBERNETIC SYSTEM FRAMEWORK
+Producing the exemplary application of HB requires the coor-
+dination of multiple modules in the P5C system. Each compo-
+nent is integrated into the system architecture in (Figure 5) to
+produce the front end user interface of HB.
+
+3
+
+Objective Self (OS) began to build a comprehensive human
+model using heterogeneous data sources for each individual
+[31].
+
+Figure 6. As data availability increases over time, we are able to build
+more accurate models of individuals. In ancient times, anecdotal oral
+and diary traditions documented life. With increasingly quantitative
+data we can build increasingly accurate models of human life.
+
+P5C builds upon these concepts to build a more comprehensive
+understanding of an individual. Smartphones can recognize
+many events in our daily life [54, 55, 18, 6]. The timeline of
+these life events that can be referred to as a personal chroni-
+cle (personicle) [33], and in the near future will be gathered
+lifelong, from the ’womb to tomb’. P5C is primarily focused
+on changing the lifestyle of a person to bring about clinically
+relevant positive health outcomes. Patient data is segregated
+into four levels of increasingly personalized rules (Figure 7).
+The cybernetic system will target the optimally desired health
+state. In the ﬁrst level, we apply universal general rules to
+build a skeleton individual based on medical and biological
+expert knowledge. Second, we incorporate speciﬁc knowledge
+that applies to sub-categories of people, such as, gender, ethnic
+background and more. This layer is applied as a function to
+the individual at a speciﬁc time and place. Third, we take into
+consideration ﬁrm variables about the person, such as genetics,
+age, home location, socioeconomic status etc. Fourth, we build
+dynamic individual models using the above three rule layers
+in addition to an event mining platform that ingests individual
+sensor data in real-time. The fourth layer captures the user’s
+personicle based on life activities, food intake, medical and
+physiological parameters, emotional status and environmental
+conditions to build the live user OS. In the future, additional
+data streams can easily be incorporated into this data mining
+platform.
+
+ActivitySense
+Lifelogging through sensors makes it possible to record the to-
+tality of an individual’s experiences [29]. Personalized lifelog
+raw data is then extracted by HB to semantic-level activities
+in real-time. These real-time events allow for intuitive anal-
+ysis of a dynamic human life. Life activity events for health
+computation are parallel to objects in a picture for intelligent
+visual computing. To build realistic systems, we can never
+completely capture everything due to the lack of standard data
+formats and the complexity of life [62]. Therefore, the range of
+our semantic activity also needs to be reﬁned in some number
+
+Figure 4. Left: Nutrition guidance is catered to the user’s preferences,
+needs, and available resources. Center: Easy one-touch food and mood
+tracking. Right: real-time health status is shown, with direct actions to
+take for help.
+
+Figure 5. System Architecture of P5 Cybernetic Health
+
+A. Personalization
+Allopathic medicine provides solutions based on averages
+from large clinical trials. This method improved population
+health dramatically in the last century, but is now hitting a
+bottleneck. Various diseases are on the rise despite the latest
+advances in biomedical science. Physicians and researchers
+do not have the capacity to maintain and analyze detailed
+records for every individual. With the recent advances in
+sensors, smartphones, and pervasive technology, it is becom-
+ing possible to record data to create a digital imprint of each
+user,resulting in the concept of quantiﬁed self [66]. For exam-
+ple, mobile applications such as Google Fit, Moves [51], or
+Fitbit, are actively recording user life data. Dey et al. started
+building a conceptual framework, named Context Toolkit and
+AWARE, for developing quantiﬁed self applications that un-
+derstand context [13, 18]. Creating individual models became
+the next logical step in personalized systems. For example,
+
+4
+
+item from HB, it is automatically recorded into the system,
+with no extra user burden. On a broader scale, this decision
+making support shifts consumers towards healthier menus, and
+persuades businesses to offer healthier food options. [78, 47]
+
+MoodSense
+This measures the user’s mood at a particular time. Relating
+this to life events is vital for making effective recommenda-
+tions based on what the user enjoys or dislikes (described in
+later sections). We get an estimate of the user’s emotional
+state using two types of inputs: 1. Active/Explicit input al-
+lows the user to directly mark a moment or an event on their
+timeline with their emotional state (Figure 4). We can use
+this application to correlate the emotional state with events
+(co occurring and delayed) and if the correlation is signiﬁcant
+then we can associate that emotional state with the events.
+2. Passive/Implicit input allows us to monitor the emotional
+state of the user by keeping track of their various interactions
+with environment and people. This includes their social media
+content and text communication. Similar emotion detection
+studies show strong promise with these methods [71, 25].
+
+MedicalSense
+Incorporating medical data into OS is essential to make in-
+formed health decisions. For diabetic patients, we collect
+blood glucose values through bluetooth glucose meters, their
+medication compliance with bluetooth pill boxes, and their
+pre-existing health conditions data from the hospital electronic
+health records. As continuous glucose monitoring becomes
+technologically advanced, patients will be able to report their
+blood sugar values without any invasive interventions [2].
+
+EnviroSense
+Environmental factors continuously affect the health of every
+individual. Having the ability to measure the local environ-
+ment of each individual, we will give insight into how they
+are being affected by factors the user is otherwise unaware
+of. In diabetes, air and water pollution have been shown to
+increase the risk of diabetes [15, 9, 16, 7]. Long term exposure
+to particulate matter in the air can activate pathophysiological
+responses that can induce insulin resistance [9, 17]. While
+public data regarding the quality of the environment is readily
+available, it is not incorporated and tracked at the individual
+level.
+We are using an open source software platform, called
+EventShop to ingest and assimilate different data streams [57,
+67, 64]. It combines different environmental data streams
+ranging from climate data, air quality, pollen counts, and
+micro-blogs (like Instagram and Twitter) to understand how
+the environment is evolving. For each individual, the envi-
+ronment stream will be stored by obtaining this information
+from EventShop. Additionally, we use available data from
+open-sources such as Yelp, Google Maps, and government
+websites to understand what resources are available to a user
+at any given location and time. These data sources will be used
+in the need-to-resource matching for daily life such as food
+suggestions, activity recommendations, emergency hospital
+directions and more.
+
+Figure 7. We integrate increasingly personalized layers of data modeling
+to build an objective self.
+
+of meaningful activities rather than recognizing all possible
+things. Quantitative information of time use, frequency, inten-
+sity of stress, enjoyment, and other affective states are most
+meaningful to medical researchers [37]. HB currently targets
+17 standard semantic level activities which include: socializ-
+ing, relaxing, prayer, eating, exercising, home events(watching
+TV, preparing food, sleeping, housework), shopping, conver-
+sations, computer/e-mail/Internet usage, working, commuting,
+and important diabetes-related activities, such as the use of the
+toilet and hospital visits. High blood sugar increases urination
+frequency in diabetic patients.
+Some research groups have been working on semantic-based
+life event recognition. Routinely visited locations such as
+home, work, or school can be tracked and these can indicate
+pursued activities such as leisure, working, or traveling [41].
+Contextual information can be processed together to infer
+everyday activities on a high level such as eating, cooking,
+walking, or talking etc [79]. Mobile Lifelogging tracks activity
+[51, 19] but also detects high-level life events [42, 54].
+
+FoodSense
+Patients suffering from obesity, diabetes, cardiac disease and
+other chronic conditions continue to have difﬁculty following
+nutritional guidelines. Primary reasons include the failure to
+address individual differences, resources planning, and high
+burden of manual data entry [53]. A quantitative diary of
+food intake may be helpful in regulating dietary habits, but
+this type of a system is still not pervasive [11]. Patients that
+measure food in conjunction with glucose and insulin only
+see a slight beneﬁt [23]. An essential requirement is to have
+a personalized and objective approach that requires minimal
+user input. Many companies and researchers try to encourage
+people to manually enter information whenever they eat. The
+"Accu-Chek 360" by Roche uses 7 glucose time points a day
+for 3 days and has been shown to only be slightly beneﬁcial to
+clinicians and in most cases, however, only partial qualitative
+information was reported. FoodSense captures and analyzes
+photos or transactions of food to create a quantitative nutrition
+diary along with emotions in one touch. Using these pictures
+we use open deep-learning techniques by Google and Clarifai
+for food recognition in photos [10]. Nutritional parameters
+for each person are analyzed based on their personal health
+status [28, 81] to give them the most relevant suggestions
+on guidance. Bruce receives his lunch recommendations on
+HB from this analysis, in conjunction with all his other data
+(Figure 4). For example, Bruce exercised before he received
+his nutritional recommendations which gave him options that
+are suited for glycogen replenishment. When he purchases the
+
+5
+
+We can create a behavior proﬁle for the user with the input
+from the above modules, which can be referred to as habit
+waveform.
+The habit waveform represents a user’s behavior averaged
+over a large period of time, and it is continuously affected by
+the person’s actions and environment. We can view this as a
+control system where the habit waveform represents a person’s
+equilibrium or steady state and all the events can be viewed
+as an impulse provided to the system. Our goal is to modify
+the steady state over a period of time to a conﬁguration known
+to represent healthier lifestyle and minimize the effects of the
+events/impulses which are detrimental to the health of the user.
+
+B. Prediction
+We use data driven analysis and pattern mining algorithms
+to ﬁnd event patterns in a personicle to build individual OS
+models. These models estimate and predict how future events
+will affect the habits waveform and variables of interest.
+Event relationship operators formulate compound events and
+compute co-occurrences which are then tested with a new
+set of data [32, 34, 36]. This framework extends traditional
+complex event processing [8] signiﬁcantly by including space,
+multiple event streams, with point and interval events to enable
+real world data analysis.
+In using the event based computational paradigm, our analysis
+follows very intuitively from raw data to events to situations,
+which can be directly related to physiological measurements
+(Figure 8). Thus we are extracting live raw data to ﬁnd a direct
+relationship between events of the user and their physiolog-
+ical condition (situations). This allows for clinically valid
+interpretations that feed into the recommendation engine.
+Merged event streams in a personicle [33] produce a stream of
+time-indexed events, e.g., high fat meal eaten at 3pm Monday
+or 40 minutes of exercise at 2pm on Saturday or high blood
+glucose level at 5pm Thursday. Statistical models [30] are
+used to identify recurring patterns in a sequence of events.
+By ﬁtting such models it is possible to identify sequences of
+events that may predict high likelihood of an adverse medi-
+cal event. Fitting the model to an individual’s event stream
+data is a challenge that may require weeks of observations.
+Bayesian hierarchical models [27] can be used to leverage
+information from a population of users to give upfront mean-
+ingful analysis until the data from a single user is sufﬁcient.
+This approach provides an intuitive data-determined degree of
+synergistic sharing between individual and population infor-
+mation. Parameters of models that ﬁt separate individuals can
+be described by a population distribution where recurring pat-
+terns are shared while some remain unique to each individual
+[30].
+Essentially, our system initially provides strong population
+data driven assistance while becoming increasingly personal-
+ized as data accumulates. We can also use these event patterns
+to identify the food preferences of a person. Clustering and
+factor analysis are used to identify eating habits using em-
+pirical methods[1] in addition to using deﬁned diet quality
+scores[76]. In the example of diet, once we have identiﬁed
+the preferences that are relevant, we create the personalized
+
+Figure 8. Observations are signals gathered from sensors. Events bring
+semantics to the raw data. Situations give a cognitive understanding of
+the current and past states. We use this to predict future states of the
+system.
+
+food habit waveform to illustrate the degree to which a user
+consumes particular food groups. Similar analysis is done
+for activities as well which gives us the historical habits of
+the person. Life habits coupled with the MoodSense data
+identiﬁes preferred activities. For example, the person may
+be stuck in trafﬁc everyday while commuting to work (a life
+habit), but using the emotional response we can ascertain they
+do not prefer waiting in trafﬁc. User preference prediction
+identiﬁes activities/food items which are most likely to be
+executed. We focus this prediction to trigger positive changes
+in the user’s health. As we will see in the persuasive aspect of
+the system, food events/activities which have a positive impact
+on the user’s health and satisfy the above constraints are the
+most appropriate suggestions for the user.
+Aside from this, we can use the event history of the user to
+identify anomalies in their behavior. Some of these anoma-
+lies may represent medically signiﬁcant behavior changes, for
+example if we can identify sudden mood shifts using Mood-
+Sense, there is a high likelyhood of hyper or hypoglycemia.
+This activates the system to provide emergency relief services.
+We also use the personalized data to predict developing insulin
+resistance over time. An accumulation of low activity, high fat
+and sugar foods, with associated lethargy indicates the individ-
+ual is not on track to improve their glucose sensitivity. After
+Bruce’s attended the wedding on Saturday, a combination of
+these factors trigger the alert and actions based on a predicted
+increase in insulin resistance (indicated a deteriorating diabetic
+condition) (Figure 4).
+
+C. Precision
+A lack of data on personal lifestyle in relation to biomarkers
+has been a struggle in the quest to provide the most precise
+treatments for patients [75]. President Barack Obama also
+began the Precision Medicine Initiative to begin following var-
+ious cohorts of patients to understand what constitutes better
+treatments for some over others [21]. Researchers are also
+trying to link genetic factors to diabetes outcomes, but they
+are confounded in their research due to a lack of high ﬁdelity
+lifestyle data [73].
+By predicting the probability of physiologic events, we can
+send the most appropriate control signals to the user to take
+corrective action to maintain their health status before it starts
+
+6
+
+becoming unstable. We develop an algorithm that incorpo-
+rates various factors such as the severity of the adverse event
+along with the likelihood of occurrence. To prevent alarm
+fatigue, we dispatch the control signal only after the threshold
+of maintaining optimal health is crossed. Precise diagnostic
+tools, medications and other medical interventions are also
+suggested to the physician as to reduce waste of resources and
+ensure better outcomes. Most importantly, giving the most
+precise treatment for an individual relies on the generation of
+actionable interventions [75]. To produce effective changes
+in diabetes status, glycemic patterns need to be accurately
+related to a continuously monitored lifestyle [28]. This al-
+lows for a clear understanding of how different factors affect
+a patient’s blood glucose. Early lifestyle corrections are a
+primary method to prevent microvascular complications of
+diabetes, but include potential non-intuitive actions such as
+having a moderate amount of alcohol in the diet [75] or switch-
+ing to a ﬂexitarian diet (reduced meat intake) [12]. Speciﬁc
+exercises improve insulin resistance over others, especially
+aerobic training over resistance training [75] [46]. Certain
+patients are at higher risk of hypoglycemia from medications,
+and thus may have a less stringent glucose target to prevent
+severe hypoglycemic episodes, while also needing to be more
+informed of potential factors that may cause hypoglycemia
+[82]. Furthermore, exercising to lose weight is not necessarily
+the best therapy for poor glucose control [22]. Some clinical
+testing methods, such as monoﬁlament testing, to check for
+diabetic peripheral neuropathy can also be easily executed
+by family or friends near to the patient. P5C uses a host of
+veriﬁed medical data in conjunction with physicians to direct
+precise diagnostic, treatment or control actions [74]. HB will
+suggest these actions in addition to prompting a doctors visit
+when predicted glucose control and insulin resistance from
+lifestyle data is not in the normal range (Figure 4. We deliver
+these non-intuitive signals to the user to take action via HB.
+Ultimately, merging individual quantiﬁed models with expert
+knowledge, translation of medical research to help the unique
+case of each individual is accelerated.
+
+D. Persuasion
+A 2016 review of modern smart phone food tracking has not
+shown beneﬁts for glucose control [58]. This highlights the
+need for considering the user’s preferences while making rec-
+ommendations. The incentives also need to be aligned for the
+patient to take positive actions [28]. The goal of our system is
+to induce gradual habit changes via suggestions which cater
+to user’s preferences and cause incremental improvements in
+their long term habits and health. Recommendations are a
+cost function of preferences along with health impact. Healthy
+options which are diametrically opposite to the person’s pref-
+erences have a high cost as the user is unlikely to act on the
+suggestions. Thus we align their preferences by inducing
+minimal changes which are good for their health (Figure 9).
+Concepts from persuasive technology help us in generating
+recommendations that are most suited for the individual[24,
+3]. According to Fogg’s Behavior Model [20], there are three
+factors which determine behavior: motivation, ability and
+trigger.
+
+Figure 9. 1. The upper right quadrant of Ability represents options that
+are both healthy and preferred for a given user. Natural triggers (such
+as hunger) cause an increase in motivation to look for food. 2. As the
+motivation increases, the user mobilizes to access resources to fulﬁll the
+motivation, generally aligned with their preferences. HB tilts the Ability
+to optimize for convenience, preferences and health factors in real-time.
+3. As the user is presented with choices, we use a synthetic trigger to
+increase the probability of the optimized action.
+
+Motivation refers to the individual’s willingness to follow
+through with the suggestion. There are three factors which
+can affect motivation for any activity/event:
+
+Preference/Instant gratiﬁcation motivates the events
+which the user enjoys and would always prefer to perform
+(if the other factors permit it). These recommendations
+take into account the user’s preferences, which increases
+the probability of follow through for the given suggestion.
+This is calculated based on past events similar to the recom-
+mendations with a positive emotional response. Goals/Fear
+motivate the events which the user doesn’t necessarily like
+but are important for achieving a long term goal or to avoid
+an outcome. Waiting in trafﬁc while commuting to work
+is an example of this type of motivation. These events
+can be determined from frequent patterns in event history
+and include events which are repeated even regardless of
+emotional response. Social/External pressure motivate
+the events where external pressure from other people maybe
+a factor. This factor controls signiﬁcant portions of social
+behavior and hence may inﬂuence the user to pursue activ-
+ities which they usually would not pursue. We use social
+media connections along with social media activity to un-
+
+7
+
+derstand which events are inﬂuenced by other people or
+social groups.
+
+Ability represents the accessibility in performing the sug-
+gested behavior. This factor is an interplay of the indi-
+vidual’s surroundings and their intrinsic capability. When
+ranking the recommendations, we will integrate the infor-
+mation about environment from Eventshop (as speciﬁed
+in EnviroSense) and the event history of the person. This
+will let us know whether the person’s ability and the envi-
+ronmental constraints required for the event are satisﬁed or
+not, and matches their needs to the available resources. For
+example, we would only suggest driving to get a healthy
+lunch if Bruce had access to a car (intrinsic capability), and
+the trafﬁc conditions (surrounding resources) allowed him
+to travel in time for his next meeting.
+
+Triggers are reminders or suggestions personalized to the
+individual’s needs to accomplish the task[20]. Two broad
+categories of triggers include: 1. Natural triggers from phys-
+iological events occurring in the body, such as hunger. 2.
+Synthetic triggers are provided by the system and aimed
+at facilitating the occurrence of an event. These can be in
+form of a notiﬁcation on a smartphone or an intervention
+from a friend or relative. Synthetic triggers are synergistic
+when coupled with relevant natural triggers. For example,
+a notiﬁcation about healthy food options when the person
+is hungry. In our system, synthetic triggers in the form of
+parsed dish menus are used to enhance the person’s ability
+by recommending items which are similar to the person’s
+preferred activities but have a positive impact on the user’s
+health (in our case, food items similar to what user likes
+but comparatively healthier). This helps us match the user’s
+needs to the available resources and generate recommenda-
+tions which meet the criteria of the behavior model. Bruce’s
+lunch menu on HB follows from this analysis (Figure 4).
+
+The variance in recommendations are calibrated based on the
+different types of events in the user’s history. HB caters to the
+range of events that hover in the vicinity of user event history.
+This increases the effectiveness of recommendations.
+
+E. Prevention
+By preventing negative outcomes, we accomplish several tasks.
+Users are given direct feedback to understand actions they
+are taking are working to beneﬁt themselves. This keeps
+user motivation up and encourages further participation in
+ownership of their own health. Prevention also depends on
+informing the individual of risks regarding their choices. In
+the USA, calories are printed on menus of large franchise
+restaurants by law. This allows consumers to have direct
+basic information on what they are consuming. Similarly, the
+practice of having cancer warning signs on cigarette packages
+or labeling alcohol warnings for pregnant women are designed
+to inform the consumer of their choice. HB and any other
+system derived from the P5C concept focus on informing the
+user in a personalized fashion.
+Preventing problems and managing health information bene-
+ﬁts quality of life. Morbidity attached to disease management
+is a large factor or reduced quality of life. Giving patients
+
+the ability to prevent the progression of their disease has been
+shown to improve quality of life [43]. As a bonus, correc-
+tive actions through lifestyle factors positively affect multiple
+comorbidities at the same time. These interventions reduce
+diabetes, dyslipidemia, and prevent cardiovascular disease [39,
+50, 39]. Prevention involves early detection from continu-
+ous monitoring. Most importantly, earlier diagnosis makes
+treatment through lifestyle interventions much more effective.
+Continuous monitoring also allows the medical team to mod-
+ify treatment more appropriately through tighter coordination.
+Ultimately, the prevention of deteriorating health conditions
+keeps the individual in the steady state of optimal health. This
+is the original goal of cybernetic systems, which aligns per-
+fectly with the goals of an optimal health system.
+
+CURRENT STATUS
+At the time of writing this project we have several modules
+fully working, some under active construction, and a couple
+that will begin construction soon (Figure 10). Our functional
+active closed-loop system will be ultimately deployed in the
+hospital setting. The construction status for the system mod-
+ules follows from the integration as follows.
+1. Realtime data: Heterogeneous data sources from real-world
+events, such as social sources (e.g. Twitter, Facebook
+and Flickr), environmental sources (e.g. ﬂood, hurricane,
+asthma, ﬂu, population, pollution, and weather), camera,
+and trafﬁc etc [26, 57].
+
+2. Eventshop: Providing operators for data stream ingestion,
+visualization, integration, situation characterization, and
+sending out alerts [65].
+
+3. Resource aggregation: Situation recognition obtaining ac-
+tionable insights from observed spatio-temporal data [65,
+26, 57, 68, 70].
+
+4. Realtime data: Heterogeneous data sources from human-
+related sensor data by smartphone and wearable sensors
+(e.g. activity, step, GPS, venue, call, calendar, wiﬁ connec-
+tion, smartphone application, photo, ambient light, ambient
+sound etc.) [33, 55, 54].
+
+5. Personicle: Identifying semantic-level life events using het-
+erogeneous data sources and creating a chronicle of life
+events [33, 54].
+
+6. Quantiﬁed model: Comprehensive human model using ob-
+jective quality data from heterogeneous data sources for
+individuals [31].
+
+7. Evolving situation: Human behavior analysis with causal
+modeling across multimedia data streams [34, 32, 36, 35].
+
+8. Matching: Merging environmental situation and personal
+
+situation [67, 69].
+
+9. Recommendation: We are actively engaged in developing a
+
+recommendation engine.
+
+10. Reporting and 11. Expert Knowledge: We will begin inte-
+
+grating this aspect soon.
+
+8
+
+ACKNOWLEDGMENTS
+We thank Jonathan Lam for his design and user interface con-
+tributions. This research is partially funded by the National
+Institute of Health (NIH, United States of America) as part of
+the Medical Scientist Training Program (MSTP) and the Car-
+diovascular Applied Research and Entrepreneurship (CARE)
+grant under #T32GM008620-15. Additionally funding is pro-
+vided by the UC Irvine Donald Bren School of Information
+and Computer Science.
+
+REFERENCES
+1. 2004. Empirically Derived Eating Patterns Using Factor
+or Cluster Analysis: A Review. Nutrition Reviews 62, 5
+(2004), 177–203.
+
+2. Alphabet 2017. Verily Life Sciences. (2017).
+
+https://verily.com/.
+
+3. S. M Arteaga, M. Kudeki, and A. Woodworth. 2009.
+
+Combating obesity trends in teenagers through persuasive
+mobile technology. ACM SIGACCESS Accessibility and
+Computin 94 (2009), 17–25.
+
+4. S. A Ballegaard, T. R Hansen, and M. Kyng. 2008.
+
+Healthcare in everyday life: designing healthcare services
+for daily life. In Proceedings of the SIGCHI Conference
+on Human Factors in Computing Systems. ACM,
+1807–1816.
+
+5. O. Banos, M. B Amin, W. A. Khan, T. Ali, M. Afzal,
+
+B. H. Kang, and S. Lee. 2015. Mining Minds: an
+innovative framework for personalized health and
+wellness support. In Proceedings of the 9th International
+Conference on Pervasive Computing Technologies for
+Healthcare. ICST.
+
+6. G. Biegel and V. Cahill. 2004. A framework for
+
+developing mobile, context-aware applications. In
+Pervasive Computing and Communications, 2004.
+PerCom 2004. Proceedings of the Second IEEE Annual
+Conference on. IEEE, 361–365.
+
+7. Elvira Vaclavik Bräuner, Rikke Baastrup Nordsborg,
+
+Zorana Jovanovic Andersen, Anne Tjønneland, Steffen
+Loft, and Ole Raaschou-Nielsen. 2014. Long-term
+exposure to low-level arsenic in drinking water and
+diabetes incidence: a prospective study of the diet, cancer
+and health cohort. Environmental health perspectives 122,
+10 (10 2014), 1059–1065. DOI:
+http://dx.doi.org/10.1289/ehp.1408198
+
+8. A. Buchmann and B. Koldehofe. 2009. Complex event
+processing. IT-Information Technology Methoden und
+innovative Anwendungen der Informatik und
+Informationstechnik 51, 5 (2009), 241–242.
+
+9. Hong Chen, Richard T Burnett, Jeffrey C Kwong, Paul J
+
+Villeneuve, Mark S Goldberg, Robert D Brook, Aaron
+van Donkelaar, Michael Jerrett, Randall V Martin,
+Jeffrey R Brook, and Ray Copes. 2013. Risk of Incident
+Diabetes in Relation to Long-term Exposure to Fine
+Particulate Matter in Ontario, Canada. Environmental
+Health Perspectives 121, 7 (4 2013), 804–810. DOI:
+http://dx.doi.org/10.1289/ehp.1205958
+
+Figure 10. A visualization of our progress to build P5C.
+
+CONCLUSIONS AND FUTURE CHALLENGES
+Cybernetic principles lay the foundation of building health
+systems that are responsive in keeping individuals at optimal
+health over the course of a lifetime. Our conceptual foundation
+of P5C is constructed with the most fundamental principles
+in control theory while incorporating the ability to seamlessly
+integrate both present and future technological advancements.
+This is an absolute necessity to transform the archaic practices
+of current day health care, especially in light of how many
+diseases complications are preventable. The most important
+concept we describe is how these parts integrate to form a
+true closed-loop system. These closed-loop systems have been
+reﬁned in mechanical systems over decades and in biological
+systems for millions of years. This also ties together the span
+of our health ecosystem to work in synergy. It is absolutely
+necessary to use these principles to bridge the virtual and real
+world together to move human health forward.
+Each individual block of P5C (personalized, predictive, pre-
+cision, persuasion, prevention) for HB is under active devel-
+opment to be completed for beta testing in patients by March
+2017. Real health progress relies on an interdisciplinary effort
+between hospital clinicians, engineers, computer scientists,
+and bioscience researchers. Our work focuses on the transla-
+tion of interdisciplinary academic progress into real systems
+that patients will beneﬁt from. HB is just one incarnation of
+P5C in a hospital focused application that we are launching
+with the UCI Health Diabetes Center and a cornerstone of the
+interdisciplinary UCI Institute for Future Health. There will
+be various technical challenges during large scale deployment
+of any P5C system. Consideration of how various countries
+have different habit patterns, regulations, medical systems,
+sensor and network connectivity, and environments is essen-
+tial. Tackling the reliability of sensor data is essential for
+systems like this to properly function. Integration of natural
+language processing for medical literature will also improve
+the ability to quickly disseminate actionable information to
+the masses. Security and privacy are of utmost concern in all
+circumstances for patients and providers. These challenges
+are constantly being addressed as P5C systems grow.
+
+9
+
+10. Clarifai 2017. Clarifai Food Recognition. (2017).
+
+http://blog.clarifai.com/.
+
+11. A. Darby, M. W. Strum, E. Holmes, and J. Gatwood.
+
+2016. A Review of Nutritional Tracking Mobile
+Applications for Diabetes Patient Use. Diabetes
+Technology {\&} Therapeutics 18, 3 (3 2016), 200–212.
+12. E. J. Derbyshire. 2017. Flexitarian Diets and Health: A
+Review of the Evidence-Based Literature. Frontiers in
+Nutrition 3 (1 2017), 55.
+
+13. A. K Dey, G. D Abowd, and D. Salber. 2001. A
+
+conceptual framework and a toolkit for supporting the
+rapid prototyping of context-aware applications.
+Human-computer interaction 16, 2 (2001), 97–166.
+
+14. Diabetes 2016. Diabetes. (2016).
+
+www.who.int/mediacentre/factsheets/fs312/en/.
+
+15. I. C Eze, M. Imboden, A. Kumar, A. von Eckardstein, D.
+Stolz, M. W Gerbase, N. Künzli, M. Pons, F. Kronenberg,
+C. Schindler, and others. 2016. Air pollution and diabetes
+association: Modiﬁcation by type 2 diabetes genetic risk
+score. Environment International 94 (2016), 263–271.
+16. I. C Eze, E. Schaffner, E. Fischer, T. Schikowski, M.
+
+Adam, M. Imboden, M. Tsai, D. Carballo, A. von
+Eckardstein, N. Künzli, and others. 2014. Long-term air
+pollution exposure and diabetes in a population-based
+Swiss cohort. Environment International 70 (2014),
+95–105. DOI:
+http://dx.doi.org/10.1016/j.envint.2014.05.014
+
+17. Ikenna Collins Eze et al. 2015. Association between
+
+Ambient Air Pollution and Diabetes Mellitus in Europe
+and North America: Systematic Review and
+Meta-Analysis. Environmental Health Perspectives (1
+2015). DOI:http://dx.doi.org/10.1289/ehp.1307823
+
+18. D. Ferreira, V. Kostakos, and A. K Dey. 2015. AWARE:
+mobile context instrumentation framework. Frontiers in
+ICT 2 (2015), 6.
+
+19. Fitbit 2017. Fitbit. (2017). https://www.fitbit.com/app.
+20. B. Fogg. 2009. A behavior model for persuasive design.
+
+Proceedings of the 4th International Conference on
+Persuasive Technology - Persuasive ’09 (2009),
+40:1—-40:7.
+
+21. J. E Fradkin, M. C Hanlon, and G. P Rodgers. 2016. NIH
+Precision Medicine Initiative: Implications for Diabetes
+Research. Diabetes Care 39, 7 (2016).
+
+22. Marion J. Franz, Jackie L. Boucher, Stephanie
+
+Rutten-Ramos, and Jeffrey J. VanWormer. 2015.
+Lifestyle Weight-Loss Intervention Outcomes in
+Overweight and Obese Adults with Type 2 Diabetes: A
+Systematic Review and Meta-Analysis of Randomized
+Clinical Trials. Journal of the Academy of Nutrition and
+Dietetics 115, 9 (9 2015), 1447–1463. DOI:
+http://dx.doi.org/10.1016/j.jand.2015.02.031
+
+23. K. Friedman, J. Noyes, and C. G Parkin. 2013. 2-Year
+
+Follow-Up to STeP Trial Shows Sustainability of
+Structured Self-Monitoring of Blood Glucose Utilization:
+Results from the STeP Practice Logistics and Usability
+Survey (STeP PLUS). Diabetes Technology &
+Therapeutics 15, 4 (4 2013), 344–347.
+
+24. T. Fritz, E. M Huang, G. C Murphy, and T. Zimmermann.
+2014. Persuasive Technology in the Real World: A Study
+of Long-Term Use of Activity Sensing Devices for
+Fitness. Proceedings of the 32nd annual ACM conference
+on Human factors in computing systems - CHI ’14 (2014),
+487–496.
+
+25. M. Gamon and S. Counts. 2010. Happy , Nervous or
+
+Surprised ? Classiﬁcation of Human Affective States in
+Social Media. (2010), 435–438.
+
+26. M. Gao, V. K Singh, and R. Jain. 2012. Eventshop: from
+
+heterogeneous web streams to personalized situation
+detection and control. In Proceedings of the 4th Annual
+ACM Web Science Conference. ACM, 105–108.
+
+27. A. Gelman, J. B Carlin, H. S Stern, and D. B Rubin. 2014.
+
+Bayesian data analysis. Vol. 2. Chapman & Hall/CRC
+Boca Raton, FL, USA.
+
+28. S. Goyal, P. Morita, G. F Lewis, C. Yu, E. Seto, and J. A
+Cafazzo. 2016. The Systematic Design of a Behavioural
+Mobile Health Application for the Self-Management of
+Type 2 Diabetes. Canadian Journal of Diabetes 40, 1 (2
+2016), 95–104. DOI:
+http://dx.doi.org/10.1016/j.jcjd.2015.06.007
+
+29. C. Gurrin, A. F Smeaton, and A. R Doherty. 2014.
+
+Lifelogging: Personal big data. Foundations and trends in
+information retrieval 8, 1 (2014), 1–125.
+
+30. K. Heins and H. Stern. 2014. A Statistical Model for
+
+Event Sequence Data.. In AISTATS. 338–346.
+
+31. R. Jain and L. Jalali. 2014. Objective self. MultiMedia,
+
+IEEE 21, 4 (2014), 100–110.
+
+32. L. Jalali. 2016. Interactive Event-driven Knowledge
+
+Discovery from Data Streams. (2016).
+
+33. L. Jalali, D. Huo, H. Oh, M. Tang, S. Pongpaichet, and R.
+Jain. 2014. Personicle: Personal Chronicle of Life Events.
+In Workshop on Personal Data Analytics in the Internet of
+Things (PDA@ IOT) at the 40th International Conference
+on Very Large Databases (VLDB), Hangzhou, China.
+34. L. Jalali and R. Jain. 2015. Bringing deep causality to
+
+multimedia data streams. In Proceedings of the 23rd ACM
+international conference on Multimedia. ACM, 221–230.
+
+35. L. Jalali and R. Jain. 2016. A framework for event
+
+co-occurrence detection in event streams. arXiv preprint
+arXiv:1603.09012 (2016).
+
+36. L. Jalali, H. Oh, R. Moazeni, and R. Jain. 2016. Human
+
+Behavior Analysis from Smartphone Data Streams. In
+International Workshop on Human Behavior
+Understanding. Springer, 68–85.
+
+10
+
+37. D. Kahneman, A. B Krueger, D. A Schkade, N. Schwarz,
+
+and A. A Stone. 2004. A survey method for
+characterizing daily life experience: The day
+reconstruction method. Science 306, 5702 (2004),
+1776–1780.
+
+38. D. Katz. 2016. Investigating the viability of automated,
+
+intuitive, and contextual insights for chronic disease
+self-management using ubiquitous computing
+technologies. In Proceedings of the 2016 ACM
+International Joint Conference on Pervasive and
+Ubiquitous Computing: Adjunct. ACM, 423–428.
+
+39. M. Khavandi, F. Duarte, H. N Ginsberg, and G.
+
+Reyes-Soffer. 2017. Treatment of Dyslipidemias to
+Prevent Cardiovascular Disease in Patients with Type 2
+Diabetes. Current Cardiology Reports 19, 1 (1 2017), 7.
+40. Paul Krebs and Dustin T Duncan. 2015. Health App Use
+
+Among US Mobile Phone Owners: A National Survey.
+JMIR mHealth and uHealth 3, 4 (11 2015), e101. DOI:
+http://dx.doi.org/10.2196/mhealth.4924
+
+41. Lin Liao, Dieter Fox, and Henry Kautz. 2007. Extracting
+
+places and activities from gps traces using hierarchical
+conditional random ﬁelds. The International Journal of
+Robotics Research 26, 1 (2007), 119–134.
+
+42. Life Cycle 2017. Life Cycle - Track Your Time
+
+Automatically. (2017). https://itunes.apple.com/us/app/
+life-cycle-track-your-time/id1064955217?mt=8.
+43. W. Łuczy´nski, B. Głowi´nska-Olszewska, and A.
+
+Bossowski. 2016. Empowerment in the Treatment of
+Diabetes and Obesity. Journal of Diabetes Research 2016
+(2016), 1–9.
+
+44. M. Luštrek, B. Cvetkovi´c, V. Mirchevska, Ö. Kafalı, A. E
+
+Romero, and K. Stathis. 2015. Recognising lifestyle
+activities of diabetic patients with a smartphone. In
+Pervasive Computing Technologies for Healthcare
+(PervasiveHealth), 2015 9th International Conference on.
+IEEE, 317–324.
+
+45. L. Mamykina, A. M Smaldone, and S. R Bakken. 2015.
+
+Adopting the sensemaking perspective for chronic
+disease self-management. Journal of biomedical
+informatics 56 (2015), 406–417.
+
+46. Elisa CorrÃła Marson, Rodrigo Sudatti Delevatti,
+
+Alexandre Konig Garcia Prado, Nathalie Netto, and Luiz
+Fernando Martins Kruel. 2016. Effects of aerobic,
+resistance, and combined exercise training on insulin
+resistance markers in overweight or obese children and
+adolescents: A systematic review and meta-analysis.
+Preventive Medicine 93 (12 2016), 211–218. DOI:
+http://dx.doi.org/10.1016/j.ypmed.2016.10.020
+
+48. Kathleen M. McElwaine, Megan Freund, Elizabeth M.
+
+Campbell, Kate M. Bartlem, Paula M. Wye, and John H.
+Wiggers. 2015. Systematic review of interventions to
+increase the delivery of preventive care by primary care
+nurses and allied health clinicians. Implementation
+Science 11, 1 (12 2015), 50. DOI:
+http://dx.doi.org/10.1186/s13012-016-0409-3
+
+49. R. W McGarrah, C. A Slentz, and W. E Kraus. 2016. The
+
+Effect of Vigorous- Versus Moderate-Intensity Aerobic
+Exercise on Insulin Action. Current Cardiology Reports
+18, 12 (12 2016), 117.
+
+50. Joon Ho Moon, Soo Heon Kwak, and Hak C. Jang. 2017.
+
+Prevention of type 2 diabetes mellitus in women with
+previous gestational diabetes mellitus. The Korean
+Journal of Internal Medicine 32, 1 (1 2017), 26–41. DOI:
+http://dx.doi.org/10.3904/kjim.2016.203
+
+51. Moves 2017. Moves. (2017). https://moves-app.com/.
+52. S. Mukherjee, K. Dolui, and S. K Datta. 2014. Patient
+health management system using e-health monitoring
+architecture. In Advance Computing Conference (IACC),
+2014 IEEE International. IEEE, 400–405.
+
+53. MyFitnessPal 2017. (2017). www.myfitnesspal.com.
+54. H Oh. 2015. A Life Event Detection System Using Real
+
+Time Heterogeneous Context Monitoring and Formal
+Concept Analysis. Master’s thesis. University of
+California, Irvine, Irvine,CA.
+
+55. H. Oh, L. Jalali, and R. Jain. 2015. An intelligent
+
+notiﬁcation system using context from real-time personal
+activity monitoring. In Multimedia and Expo (ICME),
+2015 IEEE International Conference on. IEEE, 1–6.
+
+56. Leigh Perreault and Kristine Færch. 2014. Approaching
+Pre-diabetes. Journal of Diabetes and its Complications
+28, 2 (3 2014), 226–233. DOI:
+http://dx.doi.org/10.1016/j.jdiacomp.2013.10.008
+
+57. S. Pongpaichet, V. K Singh, M. Gao, and R. Jain. 2013.
+EventShop: recognizing situations in web data streams.
+In Proceedings of the 22nd International Conference on
+World Wide Web. ACM, 1359–1368.
+
+58. J. Porter, C. E Huggins, H. Truby, and J. Collins. 2016.
+The Effect of Using Mobile Technology-Based Methods
+That Record Food or Nutrient Intake on Diabetes Control
+and Nutrition Outcomes: A Systematic Review. Nutrients
+8, 12 (12 2016), 815.
+
+59. J. Rinehart and C. Canales. 2015. Closed-Loop
+Pharmacology in Anesthesia and Critical Care.
+International Anesthesiology Clinics 53, 2 (21 2015),
+91–101.
+
+47. McDonald 2016. McDonald Cuts Preservatives From
+
+McNuggets as Part of Health Kick. (2016).
+https://www.bloomberg.com/news/articles/2016-08-01/
+mcdonald-s-removing-preservatives-from-mcnuggets-in-health-push.
+
+60. M. Sagner, A. McNeil, P. Puska, C. Auffray, N. D Price,
+L. Hood, C. J Lavie, Z. Han, Z. Chen, S. K. Brahmachari,
+and others. 2016. The P4 Health Spectrum â ˘A¸S A
+Predictive, Preventive, Personalized and Participatory
+Continuum for Promoting Healthspan. Progress in
+Cardiovascular Diseases (8 2016).
+
+11
+
+61. A Schmitt, A Reimer, B Kulzer, T Haak, D Ehrmann, and
+
+N Hermanns. 2016. How to assess diabetes distress:
+comparison of the Problem Areas in Diabetes Scale
+(PAID) and the Diabetes Distress Scale (DDS). Diabetic
+Medicine 33, 6 (6 2016), 835–843. DOI:
+http://dx.doi.org/10.1111/dme.12887
+
+62. A. J Sellen and S. Whittaker. 2010. Beyond total capture:
+a constructive critique of lifelogging. Commun. ACM 53,
+5 (2010), 70–77.
+
+63. D. Sherifali, V. Viscardi, J Bai, and R M. U. Ali. 2016.
+
+Evaluating the Effect of a Diabetes Health Coach in
+Individuals with Type 2 Diabetes. Canadian Journal of
+Diabetes 40, 1 (2 2016), 84–94.
+
+64. Vivek K. Singh, Mingyan Gao, and Ramesh Jain. 2012.
+
+Situation Recognition: An Evolving Problem for
+Heterogeneous Dynamic Big Multimedia Data. In
+Proceedings of the 20th ACM International Conference
+on Multimedia (MM ’12). ACM, New York, NY, USA,
+1209–1218. DOI:
+http://dx.doi.org/10.1145/2393347.2396421
+
+65. V. K Singh and R. Jain. 2016. Situation Recognition
+
+Using Eventshop. Springer.
+
+66. M. Swan. 2013. The quantiﬁed self: Fundamental
+
+disruption in big data science and biological discovery.
+Big Data 1, 2 (2013), 85–99.
+
+67. M. Tang, P. Agrawal, and R. Jain. 2015a. Habits vs
+
+environment: What really causes asthma?. In Proceedings
+of the ACM Web Science Conference. ACM, 30.
+
+68. M. Tang, P. Agrawal, S. Pongpaichet, and R. Jain. 2015b.
+
+Geospatial interpolation analytics for data streams in
+eventshop. In Multimedia and Expo (ICME), 2015 IEEE
+International Conference on. IEEE.
+
+69. M. Tang, S. Pongpaichet, and R. Jain. 2016a. Research
+
+Challenges in Developing Multimedia Systems for
+Managing Emergency Situations. In Proceedings of the
+2016 ACM on Multimedia Conference. ACM, 938–947.
+
+70. M. Tang, X. Wu, P. Agrawal, S. Pongpaichet, and R. Jain.
+
+2016b. Integration of Diverse Data Sources for Spatial
+PM2. 5 Data Interpolation. IEEE Transactions on
+Multimedia (2016).
+
+71. Y. R Tausczik and J. W Pennebaker. 2010. The
+Psychological Meaning of Words : LIWC and
+Computerized Text Analysis Methods. (2010).
+
+72. E. Topol. 2015. The patient will see you now: the future
+
+of medicine is in your hands. Basic Books.
+
+73. Type 2 Diabetes Genetics 2017. Type 2 Diabetes Genetics.
+
+(2017). http://www.type2diabetesgenetics.org/.
+
+74. UpToDate 2017. UpToDate. (2017).
+
+https://www.uptodate.com/contents/search.
+
+75. W. M. Valencia and H. Florez. 2017. How to prevent the
+microvascular complications of type 2 diabetes beyond
+glucose control. BMJ (Clinical research ed.) 356 (1
+2017), i6505.
+
+76. P. MCM. Waijers, E. JM. Feskens, and M. C. Ocké. 2007.
+A critical review of predeﬁned diet quality scores. British
+Journal of Nutrition 97, 2 (2007), 219–31.
+
+77. Kayo Waki, Hideo Fujita, Yuji Uchimura, Koji Omae,
+
+Eiji Aramaki, Shigeko Kato, Hanae Lee, Haruka
+Kobayashi, Takashi Kadowaki, and Kazuhiko Ohe. 2014.
+DialBetics A Novel Smartphone-based Self-management
+Support System for Type 2 Diabetes Patients. Journal of
+diabetes science and technology 8, 2 (2014), 209–215.
+
+78. walmart 2015. The New Organic Walmart Is Eating
+
+Whole Foods. (2015).
+https://www.bloomberg.com/news/articles/2015-05-14/
+whole-foods-walmart-costco-steal-growth-in-organic-groceries.
+
+79. Peng Wang and Alan F Smeaton. 2012. Semantics-based
+
+selection of everyday concepts in visual lifelogging.
+International Journal of Multimedia Information
+Retrieval 1, 2 (2012), 87–101.
+
+80. N. Wiener. 1948. Cybernetics: Control and
+
+communication in the animal and the machine. Wiley
+New York.
+
+81. F. G Wood, E. Alley, S. Baer, and R. Johnson. 2015.
+Interactive Multimedia Tailored to Improve Diabetes
+Self-Management. The Nursing clinics of North America
+50, 3 (9 2015), 565–76.
+
+82. J. Yun and S. Ko. 2016. Risk Factors and Adverse
+
+Outcomes of Severe Hypoglycemia in Type 2 Diabetes
+Mellitus. Diabetes & Metabolism Journal 40, 6 (12
+2016), 423.
+
+12
+
+

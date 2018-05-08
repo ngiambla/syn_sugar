@@ -1,0 +1,15 @@
+ In order to overcome the aforementioned challenges and retain the original information in bipartite networks, proposing an accu- rate centrality measure in such networks seems essential [31,41].
+ Centrality measures has attracted a lot of atten- tions as a tool to analyze various kinds of networks (e.g. social, information, and biological networks) [20, 29].
+ In this section, we consider a set of well-known centrality measures including Degree, Closeness, Be- tweenness, Eigenvector and PageRank, all of them re- deﬁned for bipartite networks.
+ This is equal to [9,20]: c∗ i = c∗ j = n2 + 2(n1 − 1) n1 + 2(n2 − 1) i ∈ V1 j ∈ V2 (4) (5) ci ; ; cj For the bipartite network shown in Figure 1, nor- malized Closeness centrality of the nodes A, B, C and D are respectively equal to 0.35, 0.61, 0.52 and 0.68.
+ It speciﬁes that node D is the most central node which says that Closeness centrality cannot help us very much in the objective to ﬁnding more behavioral representa- tive nodes in bipartite social networks.
+ For the bipartite network shown in Figure 1, nor- malized Betweenness centrality of the nodes A, B, C and D are respectively equal to 0, 0.45, 0.71 and 0.71.
+ Deﬁnition 1 A metric space is a set X that has a notion of the distance function d(x, y) between every pair of points x, y ∈ X.
+ Suppose the vector Lx = (l1, . . . , l∆) be the non-normalized dis- tribution of li for all adjacent neighbors of x.
+ Suppose Lx = (l1, . . . , l∆) and Ly = (h1, . . . , h∆) are positive real distribution vectors of nodes x and 2 DH (Lx(cid:107)Ly), y.
+ We examine how we can obtain re- quired information for ﬁnding similar nodes to a spe- ciﬁc node x as the expected value and variance of the Hellinger distance.
+ Suppose that in a bipartite artiﬁcial network with |V1| = n1 nodes on one side and |V2| = n2 nodes on the other side, nodes in V1 is connected to nodes in V2 using Erd¨os-R´enyi model G(m, p).
+ To ﬁnd a threshold for positioning similar and closer nodes to node x, we must obtain expectation and variance of the Hellinger distance between x and the other nodes in node set V1.
+ Before obtaining these values, we men- tion the following lemma to derive equal expression of Hellinger distance and diﬀerence between typical mean and geometric mean.
+ HellRank: A Hellinger-based Centrality Measure for Bipartite Social Networks 9 3.3.2 Generalization to Weighted Bipartite Networks The introduced distance metric function can be ex- tended to weighted networks.
+ Furthermore, as HellRank measure is proper for detection of more behavioral representa- tive users in bipartite social network, we can use this measure in Recommender Systems.

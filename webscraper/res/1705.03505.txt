@@ -1,0 +1,15 @@
+ Abstract: Hospital acquired infections are a serious threat to the health and well-being of patients and medical staff within clinical units.
+ Many of these infections arise as a consequence of medical personnel that come into contact with contaminated persons, surfaces or equipment and then with patients, without following proper hygiene procedures.
+ Annually, infections are accountable for 37 000 deaths in Europe and 99 000 deaths in the USA (World Health Organization, 2011).
+ The wireless sensor network custom designed for the system is depicted in Section 3, where all as- pects related to its hardware and software components are covered.
+ There are sev- eral automated solutions to reduce infections caused by improper hand hygiene, most of which use con- tinuous surveillance and immediate notiﬁcation in case non-compliance is detected (Shhedi et al., 2015).
+ Our development approach is bottom-up, and starts with modelling some of the less complex workﬂows, which involve only medical staff and patients.
+ The GP starts a conversation with the patient, in order to learn about their medical history, current treatment and reason for the visit.
+ Sections 3 and 4 describe how the wireless sensor network is used for monitor- ing and how the workﬂow engine monitors the exe- cution of hygiene-relevant events.
+ The main reason for this is that the system is envisaged as an additional aid for medical personnel that ensures their safety from pos- sible infection.
+ The system is designed on the princi- ple that medical personnel are responsible and aware of the detailed actions they must undertake to ensure their own, as well as their patients’ safety.
+ The intermediate step of the workﬂow concern- ing patient examination starts when the system has detected that hand hygiene compliance is achieved.
+ The two activities are exclusive: if an alert is generated, the workﬂow instance is stopped and the recorded hygiene breach is recorded.
+ This component provides the required features that allow for the creation, update and deletion of clinical workﬂows monitored by the system.
+ The workﬂow engine interprets events, such as inputs from deployed sensors (e.g. hand washing detected), and acts upon them accord- ing to a predeﬁned process.
+ The work- ﬂow engine keeps track of the state of process executions and manages creation and progress of process executions. 4.

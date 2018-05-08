@@ -1,0 +1,15 @@
+ For the accurate detection of trafﬁcking ad- vertisements, we designed and trained a deep multimodal model called the Human Trafﬁcking Deep Network (HTDN).
+ The number of cases reported rose from 3,279 in 2012 to 7,572 in 2016—more than doubling over the course of ﬁve years (Hotline, 2017).
+ Put plainly, sex trafﬁcking is modern-day slavery and is one of the top priorities of law enforcement agencies at all levels.
+ Leveraging state-of-the-art machine learning approaches in Natural Language Processing and computer vision to detect and re- port advertisements suspected of trafﬁcking is the main focus of our work.
+ In other words, we strive to ﬁnd the victims and perpetrators of trafﬁcking who hide in plain sight in the massive amounts of data online.
+ While previous methods (Dubrawski et al., 2015) have used simplistic classiﬁers, we build an end-to-end-trained multimodal deep model called the Human Trafﬁcking Deep Network (HTDN).
+ The HTDN uses information from both text and images to extract cues of human trafﬁcking, and shows outstanding performance compared to pre- viously used models.
+ Figure 1: Distribution of advertisements in Trafﬁcking-10k dataset across United States and Canada. each consist of text and zero or more images.
+ The text in the dataset is in plain text format, derived by stripping the HTML tags from the raw source of the ads.
+ One expert has over a year of experience, and the other two have over ﬁve years of experience in the human trafﬁcking domain.
+ The average number of images in an ad- vertisement is 5.9; the median is 5, the minimum is 0, and the maximum is 90.
+ The length of suspected advertisements is 134 unigrams; the standard deviation is 39, the mini- mum is 12, and the maximum is 666.
+ Our proposed language network, Fl, takes as input a sequence of word vectors w = [w1, . . . , wt], and outputs a neural language representation hl.
+ This creates a joint multimodal tensor called hm = hl ⊗ hv, LanguageNetworkFld0ll@rto...gr8skype···LSTM···LSTM···LSTM···LSTMhl∈R300Traﬃckingembedding.........300σVisualNetworkFvˆı1ˆı2ˆı3ˆı4ˆı5TraﬃckingVGG.........200σ200σ200σhv∈R5×200ConvolutionalDecisionNetworkFdconvhm∈R5×200×300⊗5×200×300maxpoolingconv5×100×150maxpooling150linear...P[τ|hm;Wd]σ Figure 4: 2D t-SNE representation of different input features for baseline models.
+ For language we only use Fl component of the pipeline and for visual we use Fv, using both pre- trained a VGG and ﬁnetuned T-VGG.

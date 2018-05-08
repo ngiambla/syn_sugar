@@ -1,0 +1,15 @@
+ To convert this to our setting, let Rt 2 (and 2); this occurs with some probability p (and 1− p) and deﬁnes our parameters η1 = p > 1− p = η2.3 rt 1 < rt Note that in the adoption step, we can replace εt i′2 by a continuous random variable ξ.
+ Then 2] and α = P [ξ > rt β = P [ξ > rt i js are i.i.d., ξ has zero mean and is symmetric, hence α < β and our results apply.
+ For ﬁxed 0 ≤ δ ≤ 1 and for all 0 ≤ x ≤ 1, eδx ≤ 1 + (eδ − 1)x. i=1 γi.
+ Let η1 > η2 ≥ ··· ≥ ηm, let 2 < β ≤ e e+1 (and hence 0 < δ ≤ 1), and let 6µ ≤ δ2.
+ Let P0 be the uniform distribution on {1, . . . , m} and {Pt}T t=1 be the probability distributions produced by the inﬁnite population distributed learning dynamics with stochastic rewards {Rt}T δ2 , the average expected regret after T steps is t=1.
+ Then for T ≥ ln m j=1 EhPt−1 t=1 ∑m j Rt T ∑T 1 Furthermore, 1 T ∑T t=1 E(cid:2)Pt−1 1 The proof of Theorem 4.3 appears in Section 5 Regret∞(T ) = η1 − (cid:3) ≥ 1− 3δ η1−η2 . 1 T · T ∑ t=1 m ∑ j=1 j Rt EhPt−1 ji ≤ 3δ. 4.3 Main Result: Regret of the Distributed Learning Dynamics in Finite Populations 2 < β ≤ e Theorem 4.4 (Regret of the Distributed Learning Process in Finite Populations).
+ The proof follows from Chernoﬀ-Hoeﬀding bound (Theorem 4.1), noting that γ ≥ µ m from (2), and taking a union bound over all j ∈ [m].
+ Since j=1 EhQt−1 δT + 2δ + 5T δ′′ + 6mT ji− 6T 2m Lemma 4.5, we obtain that η1 −(cid:0)1 + 5Tδ′′(cid:1) 1 is when it does not.
+ Rearranging, we obtain η1 − 1 δ′′ :=q 240m ln N (1−β)µN ≤q c ln N j=1 EhQt−1 δ2 , 5T δ′′ ≤ m NT ≤ ln m ji ≤ ln m (1−β)µ.
+ Thus, when T = ln m N for c = 240m δ2 √c ln N √N t=1 ∑m t=1 ∑m T ∑T T ∑T j Rt j Rt that ln 5 .
+ Hence, when N is such (4) (5) N ln N ≥ 2 ln 5 cm δ2 δ′′2 and N 10 ≥ 6m ln m δ3 , then RegretN(T ) = η1 − 1 T T ∑ t=1 m ∑ j=1 This concludes the proof of Theorem 4.4 when T = ln m δ2 . 4.3.2 Large T j Rt EhQt−1 ji ≤ 5δ.
+ Let P0 δ2 η1 ≥ η2 ≥ ··· ≥ ηm, let 1 {1, . . . , m} and {Pt}T wards {Rt}T j=1 EhPt−1 t=1 ∑m ∑T ji ≤ 3δ. j Rt The proof closely follows from that of Theorem 4.3, and we omit the details.
+ This δ2 12 5 Proof of Theorem 4.3 Let us deﬁne the potential function ΦT := ∑m j=1 W T j , and recall that eδ = β 1−β.
+ Then, ΦT = = = 0≤RT j ≤1 , Fact 4.2 ≤ = 0≤RT j ≤1 ≤ m ∑ k=1 µ m ∑ j=1 W T j (1− β) m j=1 (1− µ)W T−1 ∑ j + µ m j j W T−1 k ! eδRT m(cid:17) eδRT m(cid:17)(cid:16)1 + (eδ − 1)RT j(cid:17) j! m(cid:17) RT j + µ µ m m ∑ ∑ j + (1− β)ΦT−1 j=1(cid:16)(1− µ)PT−1 j=1(cid:16)(1− µ)PT−1 (1− β)ΦT−1 (1− β)ΦT−1 1 + (eδ − 1) j=1(cid:16)(1− µ)PT−1 (1− β)ΦT−1 1 + µ(eδ − 1) + (1− µ)(eδ − 1) j + ∑ m m ∑ j=1 PT−1 j RT j! .
+ Combining the lower bound and upper bound and taking logarithms we obtain Thus, δ T ∑ t=1 Rt 1 ≤ ln m + T ln 1 + µ(eδ − 1) 1− µ ! + δ′ T ∑ t=1 m ∑ j=1 Pt−1 j Rt j. δ T ∑ t=1 1 − δ′ Rt T ∑ t=1 m ∑ j=1 Pt−1 j Rt j ≤ ln m + T ln 1 + µ(eδ − 1) 1− µ ! .

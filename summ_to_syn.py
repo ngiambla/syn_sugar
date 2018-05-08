@@ -25,6 +25,7 @@ def eval(ref, summ):
 	ref 	= convert(ref)
 	summ 	= convert(summ)
 
+
 	scores = r.get_scores([ref], [summ])
 	return scores
 

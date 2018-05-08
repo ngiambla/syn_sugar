@@ -1,0 +1,15 @@
+ It is therefore not surprising that there is an arms race between publishers and advertisers, on one hand, and ad-blocking tools (or ‘ad-blockers’), on the other1.
+ In this paper, we study a number of popular ad-blockers and analyze their performance in desktop and mobile settings for a large number of webpages.
+ In one study, the New York Times analyzed the top 50 news websites2 and found that more than half of all data came from ads.
+ They then look deeper into the individual default and possible con(cid:27)gurations of these ad-blockers and study the changes in blocking capabilities with the di(cid:29)erent settings.
+ The HAR (HTTP Archive File) is a JSON-formatted (cid:27)le that captures the interactions between the browser and the website, including network requests, types and size of objects, and load times.
+ We load the same URL in six browser modes, all simultaneously: a vanilla mode (no ad-blocker), and one mode for each of (cid:27)ve ad- blockers.
+ Figures 1 and 2 show the results for the desktop and mobile versions of the Top150 webpages; and Figure 3 for the GDELT webpages.
+ Speci(cid:27)- cally, to measure the impact of potentially privacy invading requests when using no ad-blocker, we manually examined the tracking pa- rameters from the request headers and found nine frequently used tracking parameters that accompanied a large set of requests.
+ Figure 4 shows the fraction of requests containing one, two and three tracking parameters in a request when using an ad-blocker, again normalized over the vanilla mode.
+ When web- pages from the GDELT dataset are loaded in the vanilla mode (no ad-blockers), we (cid:27)nd more than 3,260 webpages (10.8%) with ex- plicit attempts to determine if any ad-blocking tool is used.
+ When AdBlock or AdblockPlus is activated, the number of webpages rises to 10,097 and 10,226 (33%), respectively, indicating that a large portion of webpages actively track the usage of these ad-blockers.
+ When the other tools are used, the number of webpages with such requests is not as high; 15, 9, 8% of the webpages for Ghostery, Privacy Badger, and uBlock respectively.
+ Unsurprisingly, the most popular domains found in A are googlesyndication.com and doubleclick.net, in accordance to previous studies, and blocked (characterized as ads) by all tools.
+ A more interesting question is to identify the “extra” E requests that incur exclusively at the presence by ad-blockers and to look for potential leakages in information14.
+ Our preliminary (cid:27)ndings indicate that though ad-blockers block external ads and third party trackers to varying degrees, they intro- duce various tracking services of their own.

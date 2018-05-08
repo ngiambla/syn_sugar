@@ -97,7 +97,7 @@ class Scraper(object):
     """
 
     def __init__(self, category, date_from=None, date_until=None, t=30, filters={}):
-        self.cat = cats[category]
+        self.cat = category
         self.t = t
         DateToday = datetime.date.today()
         if date_from is None:
@@ -154,7 +154,10 @@ class Scraper(object):
                     if save_record:
                         ds.append(record)
 
-            token = root.find(OAI + 'ListRecords').find(OAI + 'resumptionToken')
+            try:
+                token = root.find(OAI + 'ListRecords').find(OAI + 'resumptionToken')
+            except:
+                break
             if token is None or token.text is None or k==5:
                 break
             else:

@@ -1,608 +1,171 @@
 ~$[ Syntactic Sugar ]$~
 ** Results **: 
 
-[+528]   L’estimation des coefﬁcient de pondération, dite codage par- cimonieux (sparse coding en anglais), est un problème non convexe et NP-difﬁcile à cause de la contrainte de type ℓ0 pour imposer la parcimonie.[1416.63974788]
-[+625]   Le présent article vise à résoudre d’une manière exacte le problème de l’apprentissage de dictionnaire, c’est à dire en considérant la norme ℓ0 sans aucune relaxation.[1227.19776192]
-[+782]   La section 3 montre la per- tinence de la méthode proposée en débruitage d’image, et la dernière section conclut l’article. 2 Représentation parcimonieuse 2.2 Optimisation globale du problème 2.1 Énoncé du problème Soit Y = [y1, . . . , yℓ] ∈ Rn×ℓ, une matrice contenant ℓ signaux yi, i = 1, . . . , ℓ, de dimension n.[1233.85999356]
-[+1028]   Une manière classique d’aborder ce problème (1) d’estimation jointe de D et X consiste à utiliser une procédure de relaxation alternée en deux phases [1].[857.207307597]
-[+1418]   L’idée est d’associer à tous les éléments xi du vecteur x, une variable binaire zi égale à 0 si xi = 0 et égale à un sinon.[1017.41353435]
-[+1586]   Supposons que l’on connaisse un réel M > 0 suf- ﬁsamment grand, de sorte que, si x⋆ est solution du problème (2), alors kx⋆k∞ < M .[1675.32916755]
-[+2076]   Cette solution peut être utilisée comme une bonne initialisation des variables à optimiser et du para- mètre M , permettant aux solveurs d’accéder plus rapidement au minimum globale du problème [2].[844.732273319]
-[+2122]   Elle est construite à partir de l’opé- rateur proximal associé à la contrainte kxk0 6 T : proxT : Rp −→ Rp x 7−→ proxT (x) = arg min kuk06T 1 2 ku − xk2.[1675.23239112]
-[+2215]   L’algorithme de descente de gradient proximal consiste alors à mettre en œuvre, pour un pas ρ, les itérations suivantes [3] : xk+1 ∈ proxT(cid:0)xk − ρDT (Dxk − y)(cid:1).[1919.39505391]
-[+2264]   Soulignons que, comme pour la plupart des méthodes itéra- tives, il existe de nombreuses variantes de l’algorithme permet- tant d’accélérer la convergence.[1458.09208108]
-[+2286]   Connaissant x⋆ le point de convergence de l’algorithme proximal, il est possible d’en déduire une initialisation pour le vecteur z et le paramètre M .[2015.93111472]
-[+2311]   Par exemple, pour un ε > 0 donné, on peut initialiser z avec zj = 0 si |x⋆ j | 6 ε et zj = 1 sinon.[2915.33362762]
-[+2338]   La constante M peut être choisie telle que M = (1 + α)kx⋆k∞ avec α > 0 choisi le plus petit possible.[2616.20859933]
-[+2445]   Nous avons construit la matrice Y des données d’appren- tissage à l’aide des cinq images simultanément en utilisant, comme dans la littérature [6], des imagettes de taille 8 × 8 se chevauchant.[1091.69441342]
-[+2491]   Nous avons ﬁxé expérimentalement le nombre d’atomes du dictionnaire à p = 100 et le coefﬁcient de parci- monie à T = 20.[1090.87331585]
-[+2514]   Nous avons testé différents niveaux de bruit additif gaussien sur les images en utilisant trois différents ni- veaux de bruit avec des valeurs d’écart type σ = 10, 20 et 50.[2028.87583726]
-[+2575]   Pour la phase de codage parcimonieux, nous avons comparé notre approche MIQP avec les deux méthodes références de la littérature, K-SVD [6] et la méthode proximale [3], toutes choses égales par ailleurs.[1789.98491387]
-[+2700]   Nous avons aussi ﬁxé α = 1,5 pour des raisons de stabilité. 1. http://sipi.usc.edu/database/database.php?volume=misc La TABLE 1 résume nos résultats.[1502.02769489]
-[+2830]   Cependant, pour un faible niveau de bruit (σ = 10), notre méthode ne réussit pas à améliorer les résultats de K-SVD alors que, pour un niveau intermédiaire (σ = 20) les résultats sont plus contrastés et dépendent de l’image considérée.[829.590385479]
-[+3079]   Pour arriver à ce résultat, nous avons proposé deux techniques d’accélération du traitement des MIQP, la reformulation des contraintes pour mieux structurer le problème, et l’initialisation efﬁcace de la procédure grâce à un algorithme proximal.[1043.88734513]
+[+172]   Such a digital grid requires a tight integration of the physical layer (energy and power) with digital and cyber information to allow an open and real time market akin to the world of e-commerce.[30.7743259008]
+[+228]   Driven by the decreasing cost in distributed solar, energy storage, electric vehicle, on site generation and microgrids, the high penetration of Distributed Energy Resource (DER) is shifting challenges substantially towards the edge of grid from the control point of view.[9.96527571889]
+[+268]   The envisioned Digital Grid must facilitate the open competition and open innovation needed to accelerate of the adoption of new DER technologies while satisfying challenges in grid stability, data explosion and cyber security.[103.398608492]
+[+301]   The American Recovery and Reinvestment Act of 2009 was an unprecedented action to stimulate the economy and to modernize our nation’s energy and communication infrastructure and enhance energy independence.[73.0506655262]
+[+653]   On the demand side, changes are needed due to the same reason as above, to accommodate intermittency and Electricity Market and Regulatory Policy 1 Mynatt et al. (2017) “A National Research Agenda for Intelligent Infrastructure” CCC Led Whitepapers http://cra.org/ccc/resources/ccc-led-whitepapers/, last accessed April 12, 2017. 1 Data Analytics Grid Stability and Resiliency under High DER Penetration uncertainty in renewable generation.[9.48326524869]
+[+914]   Since the Digital Grid is fundamentally supporting high DER penetration with very dynamic bidirectional power flows affected by the real- time market participation, the grand challenges in control is to achieve voltage and frequency stability, as well as intelligent protection.[23.9494804257]
+[+1051]   New transmission technologies such as the High Voltage Direct Current (HVDC) must be further developed and installed to connect highly dynamic distribution grids with strong regional interconnection to balance of the system demand and supply. 3.[35.6407634112]
+[+1097]   Compared to the traditional Supervisory Control and Data Acquisition (SCADA) systems available for operations, these future data sources could provide vastly richer information about the state of the grid.[40.0660878357]
+[+1194]   The unique characteristics of the new information available to operations create a number of challenges, including: extensive geo-spatial distribution, temporal diversity, internal organizational boundaries, disparate underlying physical sources and a wide range of data quality.[11.003967639]
+[+1303]   The push to adopt the existing open Internet and high-performance computing technologies would not be enough to meet the requirement of collecting and processing very large volumes of real-time data.[28.0885065258]
+[+1435]   Cyber vulnerabilities of the power grid exist in numerous facilities, including Supervisory Control and Data Acquisition (SCADA) systems that power grids rely upon for monitoring and control of the physical grid.[31.8171679145]
+[+1485]   About 65 million smart meters and other sensing devices, with capabilities for data collection for billing, outage reporting, and customers’ choice, have been installed at the customer locations.[11.9928164299]
+[+1543]   Such attacks resemble the October 2016 attack on the eastern U.S., in which smart devices such as wireless cameras were compromised and used to disrupt Internet access to millions of users.[72.6844436095]
+[+1574]   Ensuring resilience of the power grid to cyber threats will require a sustained and coordinated research effort towards understanding the vulnerabilities of cyber- attacks on the grid, providing defense mechanisms that can ameliorate the impact of attacks and ensure continued operation and efficient recovery from attacks when and where they occur.[27.4160465905]
+[+1689]   Create a DOE led investment program to US industry and electric power companies to manufacture and upgrade the edge of the grid into a Digital Grid, such as the Smart Transformer manufacturing and deployment.[68.4780534412]
 
  Baked Goods: 
 
-~$[une véritable approche ℓ0 pour l’apprentissage de dictionnaire 
-yuan liu%%lst%% stéphane canu%%lst%% paul honeine%%lst%% su ruan 
-normandie univ%%lst%% insa rouen%%lst%% unirouen%%lst%% unihavre%%lst%% litis%%scn%% 
-avenue de l’université%%lst%% 76801 saint%%dsh%%Étienne%%dsh%%du%%dsh%%rouvray cedex%%lst%% france 
-yuan%%per%%liu@insa%%dsh%%rouen%%per%%fr%%lst%% stephane%%per%%canu@insa%%dsh%%rouen%%per%%fr 
-paul%%per%%honeine@univ%%dsh%%rouen%%per%%fr%%lst%% su%%per%%ruan@univ%%dsh%%rouen%%per%%fr 
-7 
+~$[digital grid%%cln%% transforming %%#%% electric power grid %%#%% %%#%% 
+innovation engine ]f[ %%#%% united states 
+aranya chakrabortty ]^[ alex huang 
+north carolina state university 
+%%#%% electric power grid %%#%% %%#%% %%#%% %%#%% largest ]^[ %%#%% complex infrastructures %%#%% built %%#%% mankind%%per%%]$~ ~$[modern 
+civilization depends %%#%% %%#%% ]f[ industry production%%lst%% human mobility%%lst%% ]^[ comfortable living%%per%%]$~ ~$[however%%lst%% %%#%% critical 
+technologies %%#%% %%#%% %%#%% 60 hz transformers %%#%% developed %%#%% %%#%% beginning %%#%% %%#%% 20th century ]^[ %%#%% changed 
+%%#%% little %%#%% %%cmp_t%%%%per%%1 %%#%% traditional unidirectional power %%#%% %%#%% generation %%#%% %%#%% customer %%#%% %%#%% 
+transmission%%dsh%%distribution grid %%#%% %%#%% changed nominally%%lst%% ]b[ %%#%% %%#%% %%#%% meets %%#%% %%#%% %%#%% %%#%% 21st century market 
+energy customers%%per%%]$~ ~$[on %%#%% hand%%lst%% 128m %%#%% residential customers pay $15b/per month ]f[ %%#%% utility bill%%lst%% ]y[ %%#%% 
+%%#%% %%#%% option %%#%% select %%#%% energy supplier%%per%%]$~ ~$[in %%#%% world %%#%% %%#%% %%#%% traditional industries %%#%% transformed %%#%% 
+digital internet technology (amazon%%lst%% ebay%%lst%% uber%%lst%% airbnb)%%lst%% %%#%% traditional electric energy market %%#%% lagging 
+significantly behind%%per%%]$~ ~$[a move towards %%#%% true digital grid %%#%% needed%%per%%]$~ ~$[such %%#%% digital grid requires %%#%% tight integration %%#%% %%#%% 
+physical layer (energy ]^[ power) %%#%% digital ]^[ cyber information %%#%% allow %%#%% %%#%% ]^[ real time market akin %%#%% %%#%% 
+world %%#%% e%%dsh%%commerce%%per%%]$~ ~$[another major factor %%#%% %%#%% pushing ]f[ %%#%% radical transformation %%#%% %%#%% rapidly changing 
+patterns %%#%% energy resources ownership ]^[ load flow%%per%%]$~ ~$[driven %%#%% %%#%% decreasing cost %%#%% distributed solar%%lst%% energy 
+storage%%lst%% electric vehicle%%lst%% %%#%% site generation ]^[ microgrids%%lst%% %%#%% %%#%% penetration %%#%% distributed energy resource 
+(der) %%#%% shifting challenges substantially towards %%#%% edge %%#%% grid %%#%% %%#%% control %%#%% %%#%% view%%per%%]$~ ~$[the envisioned 
+digital grid %%#%% facilitate %%#%% %%#%% competition ]^[ %%#%% innovation %%#%% %%#%% accelerate %%#%% %%#%% adoption %%#%% %%#%% 
+der technologies %%#%% satisfying challenges %%#%% grid stability%%lst%% data explosion ]^[ cyber security%%per%%]$~ 
+~$[the american recovery ]^[ reinvestment act %%#%% 2009 %%#%% %%#%% unprecedented action %%#%% stimulate %%#%% economy ]^[ %%#%% 
+modernize %%#%% nation’s energy ]^[ communication infrastructure ]^[ enhance energy independence%%per%%]$~ ~$[under %%#%% act%%lst%% 
+%%#%% %%#%% department %%#%% energy ]^[ %%#%% electricity industry %%#%% jointly invested %%#%% 99 cost%%dsh%%shared projects involving 
+%%#%% %%cmp_ta%% 200 participating electric utilities ]^[ %%#%% organizations %%#%% modernize %%#%% electric grid%%lst%% improve inter%%dsh%% 
+operability%%lst%% ]^[ collect %%#%% unprecedented level %%#%% data %%#%% smart grid operations ]^[ benefits%%per%%]$~ ~$[a %%#%% ]^[ substantial 
+investment %%#%% %%#%% %%#%% develop %%#%% %%#%% digital grid%%per%%]$~ ~$[radical reductions %%#%% %%#%% cost %%#%% sensors%%lst%% communication%%lst%% 
+information processing%%lst%% cyber%%dsh%%security%%lst%% ]^[ %%#%% regulatory policies %%#%% electricity markets %%#%% needed%%per%%]$~ ~$[federal 
+leadership %%#%% essential %%#%% break %%#%% logjam ]^[ encourage %%#%% approaches%%per%%]$~ ~$[the key %%#%% designing programs %%#%% drive 
+change ]b[ leave plenty %%#%% %%#%% ]f[ ideas %%#%% unexpected sources%%per%%]$~ 
+~$[challenges ]^[ potential solution 
+%%#%% %%#%% %%#%% challenges %%#%% transform %%#%% power grid %%#%% %%#%% digital grid%%per%%]$~ ~$[the primary ones %%#%% listed %%#%% follows%%cln%% 
+1%%per%%]$~ 
+~$[low marginal costs coupled %%#%% %%#%% initial capital costs %%#%% characteristic %%#%% traditional power generation%%per%%]$~ ~$[today 
+%%#%% ratio %%#%% running cost ]^[ capital cost %%#%% falling rapidly %%#%% %%#%% introduction %%#%% renewable generation%%lst%% %%#%% 
+%%#%% flexibility %%#%% resources %%#%% %%#%% storage ]^[ demand response%%per%%]$~ ~$[standard economic theory predicts %%#%% price %%#%% 
+power %%#%% collapse %%#%% %%#%% setting%%lst%% %%#%% %%#%% indeed %%#%% %%#%% today%%per%%]$~ ~$[wholesale prices ]f[ electric power %%#%% %%#%% u%%per%%s%%per%% ]^[ 
+%%#%% %%#%% %%#%% %%#%% world %%#%% frequently %%#%% below operating cost%%lst%% ]^[ %%#%% negative prices %%#%% commonly observed%%per%%]$~ 
+~$[this trend ]^[ price volatility %%#%% discourage capital investment%%lst%% %%#%% %%#%% %%#%% ferc ]^[ local authorities %%#%% 
+searching ]f[ market designs %%#%% %%#%% encourage long%%dsh%%term investment%%per%%]$~ ~$[a holistic approach %%#%% market design %%#%% 
+accommodates %%#%% surplus ]^[ shortage %%#%% renewables%%lst%% combines %%#%% %%#%% %%#%% generation assets %%#%% %%#%% %%#%% 
+storage%%lst%% ]^[ includes design guidelines ]^[ incentives %%#%% enable short%%dsh%%term benefits %%#%% improved grid performance 
+]^[ long%%dsh%%term benefits %%#%% sustainability ]^[ economic stability %%#%% highly warranted%%per%%]$~ ~$[innovations %%#%% wholesale markets 
+%%#%% %%#%% %%#%% accompanied %%#%% %%#%% %%#%% retail markets %%#%% accommodate multiple dg owners ]^[ aggregators%%per%%]$~ 
+~$[on %%#%% demand side%%lst%% changes %%#%% %%#%% due %%#%% %%#%% %%#%% reason %%#%% above%%lst%% %%#%% accommodate intermittency ]^[ 
+electricity market ]^[ regulatory policy 
+1 mynatt et al%%per%% (2017) “a national research agenda ]f[ intelligent infrastructure” ccc led whitepapers 
+http://cra%%per%%org/ccc/resources/ccc%%dsh%%led%%dsh%%whitepapers/%%lst%% last accessed april 12%%lst%% 2017%%per%% 
 1 
-0 
+data analytics 
+grid stability ]^[ resiliency %%#%% %%#%% der penetration 
+uncertainty %%#%% renewable generation%%per%%]$~ ~$[the standard practice %%#%% generation following load %%#%% %%#%% %%#%% shed%%lst%% ]^[ loads %%#%% 
+%%#%% %%#%% %%#%% dispatchable %%#%% well%%per%%]$~ ~$[this approach leads %%#%% %%#%% generalized concept %%#%% demand response%%lst%% %%#%% %%#%% %%#%% 
+%%#%% integrated %%#%% %%#%% functioning %%#%% electricity markets%%per%%]$~ ~$[direct load control ]^[ transactive control%%lst%% %%#%% %%#%% 
+methods %%#%% %%#%% %%#%% demand response %%#%% %%#%% highly promising methods %%#%% %%#%% help %%#%% shaping demand ]s[ %%#%% %%#%% 
+coordinate fluctuations %%#%% renewables%%per%%]$~ ~$[research %%#%% %%#%% %%#%% ensure %%#%% consumer engagement %%#%% enhance %%#%% 
+%%cmp_ta%% disrupt reliability %%#%% %%#%% grid%%per%%]$~ ~$[further%%lst%% automation %%#%% demand response %%#%% required %%#%% ensure grid reliability ]^[ 
+%%#%% %%#%% ensure %%#%% %%#%% participant receives %%#%% benefits %%#%% %%#%% promised%%per%%]$~ ~$[for example%%lst%% strict bounds %%#%% indoor 
+temperature ]^[ humidity %%#%% %%#%% maintained%%per%%]$~ ~$[market rules %%#%% required %%#%% ensure %%#%% players receive transparent 
+incentives ]f[ services provided %%#%% %%#%% grid%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% residential consumers %%#%% %%#%% little understanding %%#%% 
+power systems ]v[ %%#%% %%#%% own fuse box%%per%%]$~ ~$[given %%#%% %%#%% %%#%% %%#%% aforementioned innovations require real%%dsh%%time ]^[ 
+reliable communication%%lst%% %%#%% cyber%%dsh%%physical approach %%#%% essential %%#%% realize %%#%% efficient electricity market%%per%% 
+2%%per%%]$~ 
+~$[the envisioned digital grid %%#%% %%#%% realized %%#%% %%#%% comprise %%#%% grid reliability ]^[ resilience%%per%%]$~ ~$[since %%#%% digital grid 
+%%#%% fundamentally supporting %%#%% der penetration %%#%% %%#%% dynamic bidirectional power flows affected %%#%% %%#%% real%%dsh%% 
+time market participation%%lst%% %%#%% grand challenges %%#%% control %%#%% %%#%% achieve voltage ]^[ frequency stability%%lst%% %%#%% %%#%% %%#%% 
+intelligent protection%%per%%]$~ ~$[to address %%#%% issues %%#%% %%#%% %%#%% %%#%% %%#%% severe intermittence issue %%#%% %%#%% der ]^[ %%#%% lack %%#%% 
+traditional system inertia%%lst%% %%#%% digital grid %%#%% %%#%% %%#%% development ]^[ installation %%#%% %%#%% %%#%% generation %%#%% smart 
+transformers %%#%% %%#%% universal cyber%%dsh%%physical system interface%%lst%% %%#%% %%#%% provide %%#%% %%#%% system inertia ]^[ provide 
+autonomous voltage%%lst%% frequency ]^[ protection%%per%%]$~ ~$[it %%#%% %%#%% %%#%% %%#%% secured communication ]^[ software %%#%% %%#%% %%#%% 
+block%%dsh%%chain %%#%% participate %%#%% %%#%% real time energy market ]f[ resource sharing (a key attribute %%#%% %%#%% digital grid) %%#%% 
+aggregating %%#%% der%%lst%% load ]^[ storage devices%%per%%]$~ ~$[new transmission technologies %%#%% %%#%% %%#%% %%#%% voltage direct 
+current (hvdc) %%#%% %%#%% %%#%% developed ]^[ installed %%#%% connect highly dynamic distribution grids %%#%% strong 
+regional interconnection %%#%% balance %%#%% %%#%% system demand ]^[ supply%%per%% 
+3%%per%%]$~ 
+~$[availability %%#%% smart grid data %%#%% expected %%#%% increase precipitously%%per%%]$~ ~$[compared %%#%% %%#%% traditional supervisory control 
+]^[ data acquisition (scada) systems available ]f[ operations%%lst%% %%#%% future data sources %%#%% provide vastly richer 
+information %%#%% %%#%% state %%#%% %%#%% grid%%per%%]$~ ~$[transforming %%#%% raw data %%#%% contextual information %%#%% support operations 
+requires %%#%% data platforms ]^[ analytics capable %%#%% extracting useful information%%per%%]$~ ~$[this %%#%% information %%#%% enable 
+utilities to%%cln%% 1) create %%#%% control paradigms %%#%% operate %%#%% grid closer %%#%% system limits%%lst%% lowering %%#%% cost %%#%% operation 
+%%#%% sacrificing reliability%%scn%% 2) improve asset utilization ]^[ management %%#%% transmission ]^[ distribution 
+systems%%scn%% ]^[ 3) integrate %%#%% levels %%#%% renewable generation%%per%%]$~ ~$[the unique characteristics %%#%% %%#%% %%#%% information 
+available %%#%% operations create %%#%% number %%#%% challenges%%lst%% including%%cln%% extensive geo%%dsh%%spatial distribution%%lst%% temporal diversity%%lst%% 
+internal organizational boundaries%%lst%% disparate underlying physical sources ]^[ %%#%% wide range %%#%% data quality%%per%%]$~ ~$[despite 
+extensive investments %%#%% various %%#%% technologies%%lst%% utilities %%#%% lack sufficient infrastructure ]^[ understanding %%#%% %%#%% 
+%%#%% approaches %%#%% manage %%#%% data%%per%%]$~ ~$[major challenges ]f[ utilities %%#%% include data quality%%lst%% data volume%%lst%% data 
+velocity%%lst%% ]^[ especially data variety%%lst%% %%#%% %%#%% %%#%% %%#%% issues %%#%% address %%#%% %%#%% %%#%% dimensions%%per%% 
+4%%per%%]$~ 
+~$[currently %%#%% %%#%% %%#%% biggest roadblocks ]f[ grid modernization %%#%% %%#%% %%#%% information technology (it) infrastructure 
+]f[ today%%sqt%%s grid %%#%% rigid ]^[ low capacity%%per%%]$~ ~$[the push %%#%% adopt %%#%% existing %%#%% internet ]^[ high%%dsh%%performance 
+computing technologies %%#%% ]n[ %%#%% %%#%% %%#%% meet %%#%% requirement %%#%% collecting ]^[ processing %%#%% large volumes 
+%%#%% real%%dsh%%time data%%per%%]$~ ~$[secondly%%lst%% %%#%% impact %%#%% unreliable ]^[ insecure communication ]^[ computation infrastructures %%#%% 
+grid operations %%#%% ]n[ %%#%% understood%%per%%]$~ ~$[typically%%lst%% %%#%% internet %%#%% provide %%#%% required latency ]^[ packet loss 
+performance ]f[ grid operation %%#%% %%#%% data%%dsh%%rates%%per%%]$~ ~$[moreover%%lst%% %%#%% network performance %%#%% highly random%%lst%% ]^[ 
+%%cmp_tf%%%%lst%% difficult %%#%% model accurately%%per%%]$~ ~$[few studies %%#%% %%#%% conducted %%#%% leverage emerging %%#%% technologies %%#%% 
+%%#%% cloud computing%%lst%% software defined networking (sdn)%%lst%% ]^[ network function virtualization (nfv)%%lst%% %%#%% accelerate %%#%% 
+development%%per%%]$~ ~$[with %%#%% recent revolution %%#%% networking technology%%lst%% %%#%% %%#%% communication mechanisms %%#%% %%#%% 
+%%#%% %%#%% degrees %%#%% freedom %%#%% programmability ]^[ virtualization ]f[ tomorrow%%sqt%%s grid%%per%% 
+5%%per%%]$~ 
+~$[cyber vulnerabilities %%#%% %%#%% power grid exist %%#%% numerous facilities%%lst%% including supervisory control ]^[ data 
+acquisition (scada) systems %%#%% power grids rely %%#%% ]f[ monitoring ]^[ control %%#%% %%#%% physical grid%%per%%]$~ ~$[the 
+increasing penetration %%#%% wind turbines%%lst%% solar arrays%%lst%% ]^[ energy storage devices creates potential %%#%% targets ]f[ 
+cyber intrusions%%per%%]$~ ~$[about 65 million smart meters ]^[ %%#%% sensing devices%%lst%% %%#%% capabilities ]f[ data collection ]f[ 
+billing%%lst%% outage reporting%%lst%% ]^[ customers’ choice%%lst%% %%#%% %%#%% installed %%#%% %%#%% customer locations%%per%%]$~ ~$[these low%%dsh%%cost devices 
+%%#%% communication technologies ]f[ smart grid 
+cyber%%dsh%%physical security 
 2 
-%%#%% 
-%%#%% 
-%%#%% 
-2 
-1 
-] 
-%%#%% 
-%%#%% 
-%%per%% 
-%%#%% 
-%%#%% 
-[ 
-1 
-%%#%% 
-7 
+%%#%% targets ]f[ attackers%%lst%% %%#%% %%#%% compromise large numbers %%#%% meters ]^[ %%#%% %%#%% meters %%#%% mount attacks%%per%%]$~ ~$[such 
+attacks resemble %%#%% october 2016 attack %%#%% %%#%% eastern u%%per%%s%%per%%%%lst%% %%#%% %%#%% smart devices %%#%% %%#%% wireless cameras %%#%% 
+compromised ]^[ %%#%% %%#%% disrupt internet access %%#%% millions %%#%% users%%per%%]$~ ~$[ensuring resilience %%#%% %%#%% power grid %%#%% cyber 
+threats %%#%% require %%#%% sustained ]^[ coordinated research effort towards understanding %%#%% vulnerabilities %%#%% cyber%%dsh%% 
+attacks %%#%% %%#%% grid%%lst%% providing defense mechanisms %%#%% %%#%% ameliorate %%#%% impact %%#%% attacks ]^[ ensure continued 
+operation ]^[ efficient recovery %%#%% attacks %%#%% ]^[ %%#%% %%#%% occur%%per%%]$~ ~$[the cyber vulnerabilities %%#%% grid 
+components %%#%% %%#%% characterized ]^[ mitigated%%per%%]$~ ~$[privacy %%#%% sensitive power system data %%#%% %%#%% %%#%% preserved %%#%% 
+efficient data protection ]^[ encryption techniques%%per%%]$~ 
+~$[actions ]^[ recommendations 
+based %%#%% %%#%% preceding discussion%%lst%% %%#%% offer %%#%% following recommended actions%%cln%% 
+1%%per%%]$~ 
+~$[create %%#%% multi%%dsh%%university based national consortium %%#%% digital grid %%#%% jointly study %%#%% critical cyber%%dsh%%physical 
+challenges based %%#%% %%#%% competitive solicitation%%per%%]$~ 
+~$[create %%#%% doe led investment program %%#%% %%#%% industry ]^[ electric power companies %%#%% manufacture ]^[ 
+upgrade %%#%% edge %%#%% %%#%% grid %%#%% %%#%% digital grid%%lst%% %%#%% %%#%% %%#%% smart transformer manufacturing ]^[ 
+deployment%%per%%]$~ 
+~$[enhance funding ]f[ programs %%#%% %%#%% %%#%% nsf’s cyber physical system (cps) program %%#%% focus %%#%% research 
+%%#%% associated %%#%% %%#%% digital grid%%per%%]$~ 
+~$[develop realistic ]^[ comprehensive testbeds ]f[ evaluations %%#%% control ]^[ cyber%%dsh%% security %%#%% %%#%% %%#%% 
+impractical %%#%% conduct %%#%% %%#%% power grid itself%%per%%]$~ 
+~$[promote education ]^[ workforce development initiatives %%#%% train existing power engineers ]^[ grid 
+operators %%#%% cyber%%dsh%%physical systems%%lst%% data analytics%%lst%% internet%%dsh%%of%%dsh%%things%%lst%% cyber%%dsh%%security %%#%% %%#%% %%#%% educate 
+%%#%% %%#%% generation %%#%% researchers ]^[ practitioners %%#%% %%#%% design ]^[ operation %%#%% secure ]^[ resilient power 
+systems%%per%% 
+2%%per%% 
+3%%per%% 
+4%%per%% 
+5%%per%% 
+6%%per%%]$~ 
+~$[form %%#%% task force %%#%% federal regulatory agencies %%#%% study %%#%% policy changes %%#%% ]f[ creating %%#%% transactive 
+energy market supported %%#%% %%#%% digital grid infrastructure%%per%%]$~ 
+~$[acknowledgements 
+%%#%% authors %%#%% %%#%% %%#%% acknowledge %%#%% following individuals ]f[ %%#%% contribution %%#%% %%#%% paper%%per%% 
+• sean meyn%%lst%% university %%#%% florida 
+• anuradha annaswamy%%lst%% mit 
+• kevin tomsovic%%lst%% university %%#%% tennessee 
+• 
+joe h%%per%%]$~ ~$[chow%%lst%% rensselaer polytechnic institute 
+• chen%%dsh%%ching liu%%lst%% washington state university 
+• radha poovendran%%lst%% university %%#%% washington%%lst%% seattle 
+%%#%% material %%#%% based %%#%% %%#%% supported %%#%% %%#%% national science foundation %%#%% grant no%%per%% (1136993)%%per%%]$~ ~$[any 
+opinions%%lst%% findings%%lst%% ]^[ conclusions ]v[ recommendations expressed %%#%% %%#%% material %%#%% %%#%% %%#%% %%#%% authors ]^[ %%#%% ]n[ 
+necessarily reflect %%#%% views %%#%% %%#%% national science foundation%%per%% 
 3 
-9 
-5 
-0 
-%%per%% 
-9 
-0 
-7 
-1 
-%%cln%% 
-%%#%% 
-%%#%% 
-%%#%% 
-%%#%% 
-%%#%% 
-résumé – ces derniers temps%%lst%% les modèles parcimonieux ont suscité un vif intérêt de %%#%% leur capacité à sélectionner automatiquement un 
-modèle simple parmi une grande collection%%per%%]$~ ~$[ils se sont notamment révélés être utiles pour l’apprentissage de dictionnaire%%per%%]$~ ~$[la manière classique 
-d’exprimer la parcimonie dans ce cadre%%lst%% consiste à utiliser la norme ℓ0 qui permet de compter%%lst%% et donc de contrôler%%lst%% le nombre de composantes 
-d’un modèle%%per%%]$~ ~$[malheureusement%%lst%% les problèmes d’optimisation associés s’avèrent être %%#%% convexes et np%%dsh%%difﬁciles%%lst%% ce qui %%#%% justiﬁé la recherche 
-de relaxations pour obtenir une bonne approximation de la solution globale du problème%%per%%]$~ ~$[a l’inverse%%lst%% nous montrons dans cet article que%%lst%% en 
-dépit de sa complexité%%lst%% ce problème l’apprentissage de dictionnaire avec la norme ℓ0 peut aujourd’hui être traité efﬁcacement%%per%%]$~ ~$[l’idée est de 
-reformuler le problème comme un programme quadratique mixte en nombres entiers (miqp) et d’utiliser un logiciel d’optimisation pour obtenir 
-l’optimum global du problème%%per%%]$~ ~$[la principale difﬁculté de cette approche étant le temps de calcul%%lst%% nous proposons deux méthodes pour le réduire%%per%%]$~ 
-~$[l’application de notre méthode d’apprentissage de dictionnaire miqp à un problème de débruitage d’images démontre sa faisabilité%%per%%]$~ 
-~$[abstract – sparse representation learning %%#%% recently gained %%#%% %%#%% success %%#%% signal ]^[ image processing%%lst%% %%cmp_ta%%ks %%#%% recent advances %%#%% 
-dictionary learning%%per%%]$~ ~$[to %%#%% end%%lst%% %%#%% ℓ0%%dsh%%norm %%#%% %%#%% %%#%% %%#%% control %%#%% sparsity level%%per%%]$~ ~$[nevertheless%%lst%% optimization problems based %%#%% %%#%% ℓ0%%dsh%%norm 
-%%#%% non%%dsh%%convex ]^[ np%%dsh%%hard%%per%%]$~ ~$[for %%#%% reasons%%lst%% relaxation techniques %%#%% %%#%% attracting %%#%% attention %%#%% researchers%%lst%% %%#%% priorly targeting 
-approximation solutions (e%%per%%g%%per%% ℓ1%%dsh%%norm%%lst%% pursuit strategies)%%per%%]$~ ~$[on %%#%% contrary%%lst%% %%#%% paper considers %%#%% exact ℓ0%%dsh%%norm optimization problem ]^[ 
-proves %%#%% %%#%% %%#%% %%#%% solved effectively%%lst%% despite %%#%% %%#%% complexity%%per%%]$~ ~$[the proposed method reformulates %%#%% problem %%#%% %%#%% mixed%%dsh%%integer quadratic 
-program (miqp) ]^[ %%#%% %%#%% global optimal solution %%#%% applying existing optimization software%%per%%]$~ ~$[because %%#%% main difﬁculty %%#%% %%#%% approach %%#%% 
-%%#%% computational time%%lst%% %%#%% techniques %%#%% introduced %%#%% improve %%#%% computational speed%%per%%]$~ ~$[finally%%lst%% %%#%% method %%#%% applied %%#%% image denoising 
-%%#%% %%#%% %%#%% feasibility ]^[ relevance %%cmp%%d %%#%% %%#%% state%%dsh%%of%%dsh%%the%%dsh%%art%%per%% 
-1 introduction 
-l’apprentissage de représentations parcimonieuses %%#%% été lar%%dsh%% 
-gement considéré avec succès dans les domaines du traitement 
-du signal%%lst%% des images et en vision%%lst%% notamment pour des ap%%dsh%% 
-plications de débruitage d’image [6%%lst%% 3]%%lst%% d’inpainting [11] et 
-de classiﬁcation [15]%%lst%% pour n’en citer que quelques%%dsh%%unes%%per%%]$~ ~$[il 
-consiste à modéliser les données par une combinaison linéaire 
-de quelques éléments d’un dictionnaire%%per%%]$~ ~$[au delà d’un diction%%dsh%% 
-naire prédéﬁni%%lst%% nous considérons ici l’apprentissage du diction%%dsh%% 
-naire pour une représentation adaptée aux données disponibles%%per%%]$~ 
-~$[l’apprentissage nécessite alors l’estimation jointe des élé%%dsh%% 
-ments du dictionnaire et de leur coefﬁcient de pondération%%per%%]$~ ~$[en 
-opérant une procédure d’optimisation alternée%%lst%% les éléments du 
-dictionnaire peuvent être estimés facilement à chaque itération 
-par moindres carrés ou descente de gradient stochastique [11]%%per%%]$~ 
-~$[l’estimation des coefﬁcient de pondération%%lst%% dite codage par%%dsh%% 
-cimonieux (sparse coding en anglais)%%lst%% est un problème %%#%% 
-convexe et np%%dsh%%difﬁcile à cause de la contrainte de type ℓ0 pour 
-imposer la parcimonie%%per%%]$~ ~$[aﬁn de surmonter cette difﬁculté%%lst%% deux 
-principales approches ont été mises en œuvre pour relaxer la 
-contrainte ℓ0%%per%%]$~ ~$[la première considère une solution approchée 
-par poursuite séquentielle [6%%lst%% 9]%%per%%]$~ ~$[la seconde approche opère en 
-remplaçant la norme ℓ0 par sa relaxation convexe %%cln%% la norme ℓ1%%per%%]$~ 
-~$[les méthodes les plus connues sont la méthode bayésienne 
-[13]%%lst%% la méthode k%%dsh%%svd [1] et la méthode proximale [3]%%per%%]$~ 
-~$[le présent article vise à résoudre d’une manière exacte le 
-problème de l’apprentissage de dictionnaire%%lst%% c’est à dire en 
-considérant la norme ℓ0 sans aucune relaxation%%per%%]$~ ~$[pour ce faire%%lst%% 
-nous reformulons le problème d’optimisation pour le résoudre 
-par programme quadratique mixte en nombres entiers (miqp)%%per%%]$~ 
-~$[ainsi%%lst%% les récentes avancées théoriques en optimisation sont%%dsh%% 
-elles exploitées avec les améliorations d’implémentation qui 
-les accompagnent%%per%%]$~ ~$[nous proposons aussi deux techniques pour 
-réduire le coût calculatoire%%lst%% d’une %%#%% avec la mise en %%#%% de 
-nouvelles contraintes pour renforcer la formulation et d’autre 
-%%#%% en initialisant par une méthode proximale%%per%%]$~ ~$[nous mon%%dsh%% 
-trons que ces différentes contributions permettent la résolu%%dsh%% 
-tion exacte de l’apprentissage parcimonieux pour le débruitage 
-d’images%%per%%]$~ ~$[les résultats obtenues corroborent une récente étude 
-sur la tolérance élevée de miqp à la présence du bruit [4]%%per%%]$~ 
-~$[l’article est organisé comme suit%%per%%]$~ ~$[le problème de représen%%dsh%% 
-tation parcimonieuse est présenté et la méthode d’optimisation 
-exacte est décrite dans la section 2%%per%%]$~ ~$[la section 3 montre la per%%dsh%% 
-tinence de la méthode proposée en débruitage d’image%%lst%% et la 
-dernière section conclut l’article%%per%% 
-2 représentation parcimonieuse 
-2%%per%%2 optimisation globale du problème 
-2%%per%%1 Énoncé du problème 
-soit %%#%% = [y1%%lst%% %%per%% %%per%% %%per%% %%lst%% yℓ] ∈ rn×ℓ%%lst%% une matrice contenant ℓ 
-signaux yi%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% ℓ%%lst%% de dimension n%%per%%]$~ ~$[on suppose que 
-%%#%% = %%#%% + %%#%% où %%#%% et %%#%% sont deux matrices modélisant respec%%dsh%% 
-tivement les %%#%% d’information et de bruit inconnu%%lst%% contenues 
-des signaux%%per%%]$~ ~$[la représentation parcimonieuse de %%#%% %%lst%% consiste à 
-trouver une matrice %%#%% = [x1%%lst%% %%per%% %%per%% %%per%% %%lst%% xℓ] ∈ rp×ℓ parcimonieuse 
-(i%%per%%e%%per%%%%lst%% avec seulement quelques termes %%#%% nuls) et un diction%%dsh%% 
-naire %%#%% = [d1%%lst%% %%per%% %%per%% %%per%% %%lst%% dp] ∈ rn×p tels que %%#%% = dx%%per%%]$~ ~$[les 
-éléments di%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% p%%lst%% sont appelés atomes et %%#%% appartient 
-à l’espace %%#%% = {d ∈ rn×p%%lst%% dt 
-%%#%% dj ≤ 1%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% p}%%per%%]$~ ~$[l’esti%%dsh%% 
-mation jointe de %%#%% et de %%#%% peut s’écrire comme un problème 
-de minimisation du risque empirique régularisé %%cln%% 
-1 
-ℓ 
-min 
-d∈d 
-x∈rp×ℓ 
-ℓ 
-xi=1(cid:0) 1 
-2 kyi − dxik2 
-2 + λΩ(xi)(cid:1)%%per%% 
-(1) 
-le premier terme représente l’erreur de reconstruction et le se%%dsh%% 
-cond la régularisation%%lst%% qui comprend un opérateur de régula%%dsh%% 
-risation Ω(xi)%%per%%]$~ ~$[le paramètre λ > 0 contrôle le compromis 
-entre la ﬁdélité aux données et la parcimonie%%per%%]$~ ~$[une manière 
-classique d’aborder ce problème (1) d’estimation jointe de %%#%% 
-et %%#%% consiste à utiliser une procédure de relaxation alternée en 
-deux phases [1]%%per%%]$~ ~$[la première phase%%lst%% dite de codage parcimo%%dsh%% 
-nieux (sparse coding)%%lst%% consiste à estimer %%#%% en supposant %%#%% 
-connu%%per%%]$~ ~$[les méthodes les plus utilisées sont celle de gauss sei%%dsh%% 
-del [14] et de descente de gradient [10]%%per%%]$~ ~$[la seconde phase%%lst%% dite 
-d’apprentissage de dictionnaire%%lst%% consiste à estimer %%#%% en suppo%%dsh%% 
-sant %%#%% connu%%per%%]$~ ~$[les algorithmes les plus utilisés sont ceux des 
-moindres carrés et de descente de gradient stochastique [11]%%per%%]$~ 
-~$[dans ce travail nous nous intéressons au cas où la régularisa%%dsh%% 
-tion est de type ℓ0%%lst%% (Ω(x) = kxk0)%%lst%% ce qui permet de contrôler 
-explicitement le nombre de termes %%#%% nuls du vecteur x%%per%%]$~ ~$[en 
-pratique%%lst%% deux formulations de minimisation sous contraintes 
-analogues à (1) peuvent être utilisées%%per%%]$~ ~$[la première s’écrit%%lst%% pour 
-un %%#%% > 0 majorant le nombre de composantes %%#%% nulles %%cln%% 
-2 avec kxik0 6 t%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% n%%per%% 
-2 kyi − dxik2 
-(2) 
-1 
-min 
-d∈d 
-xi∈rp 
-la seconde s’écrit%%lst%% pour ε > 0 représentant le niveau de bruit %%cln%% 
-(3) 
-kxik0 avec 1 
-2 6 ε%%lst%% %%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% n%%per%% 
-2 kyi − dxik2 
-min 
-d∈d 
-xi∈rp 
-quelle que soit la formulation choisie%%lst%% (1)%%lst%% (2) ou (3)%%lst%% dans le 
-cadre de l’approche de minimisation alternée que nous nous 
-proposons d’utiliser%%lst%% à cause de la la norme ℓ0%%lst%% le problème 
-d’optimisation lié à la phase de codage parcimonieux est non%%dsh%% 
-convexe et np%%dsh%%difﬁcile%%per%%]$~ ~$[constatant cette difﬁculté%%lst%% la plupart 
-des travaux dans le domaine proposent de relaxer le problème 
-en remplaçant la norme ℓ0 par un terme convexe comme la 
-norme ℓ1 [11] ou d’utiliser un algorithme approché comme ce%%dsh%% 
-lui de poursuite [6]%%per%%]$~ ~$[dans cet article%%lst%% nous proposons un nouvel 
-algorithme basé sur la programmation quadratique mixte bi%%dsh%% 
-naire%%lst%% permettant de résoudre de manière exacte le problème de 
-codage parcimonieux avec la norme ℓ0 associé à l’équation (2)%%per%% 
-2%%per%%2%%per%%1 programmation quadratique mixte (miqp) 
-une manière de traiter la norme ℓ0 qui apparaît dans la phase 
-de sparse coding associée au problème d’optimisation (2)%%lst%% 
-consiste à réécrire le problème sous une forme standard que 
-l’on sait résoudre avec les logiciels d’optimisation d’aujour%%dsh%% 
-d’hui%%per%%]$~ 
-~$[cette réécriture peut s’effectuer grâce à l’introduction de va%%dsh%% 
-riables binaires%%per%%]$~ ~$[l’idée est d’associer à tous les éléments xi du 
-vecteur x%%lst%% une variable binaire zi égale à 0 si xi = 0 et égale 
-à un sinon%%per%%]$~ ~$[cela revient à imposer la relation logique suivante%%lst%% 
-composante par composante 
-zi = 0 ⇐⇒ xi = 0%%lst%% 
-(4) 
-%%#%% l’aide de cette nouvelle variable binaire%%lst%% la contrainte de par%%dsh%% 
-cimonie kxk0 6 %%#%% peut s’exprimer sous la forme 
-%%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% p%%per%% 
-%%#%% 
-xi=1 
-zi 6 t%%lst%% 
-(5) 
-de sorte que le problème de sparse coding associé à (2) se ré%%dsh%% 
-écrive %%cln%% 
-min 
-x∈rp 
-z∈{0,1}p 
-avec 
-1 
-2 ky − dxk2 
-2 
-zi = 0 ⇔ xi = 0%%lst%% 
-1t 
-%%#%% %%#%% 6 t%%lst%% 
-%%#%% = 1%%lst%% %%per%% %%per%% %%per%% %%lst%% %%#%% 
-(6) 
-où 1p est un vecteur de 1 de dimension p%%per%%]$~ 
-~$[si la relation logique (4) est traitée par certains logiciels%%lst%% il 
-est parfois préférable de l’éliminer explicitement%%per%%]$~ ~$[ce peut être 
-réalisé par l’intermédiaire de l’introduction d’une contrainte de 
-type %%#%% %%#%% %%per%%]$~ ~$[supposons que l’on connaisse un réel %%#%% > 0 suf%%dsh%% 
-ﬁsamment grand%%lst%% de sorte que%%lst%% si x⋆ est solution du problème 
-(2)%%lst%% alors kx⋆k∞ < %%#%% %%per%%]$~ ~$[dans ce cas%%lst%% imposer les contraintes 
-(4) revient à poser 
-− zim 6 xi 6 zim%%lst%% 
-(7) 
-la formulation %%#%% %%#%% du problème (2) est donc%%lst%% pour %%#%% > 0 
-et %%#%% > 0 donnés %%cln%% 
-%%#%% ∈ 1%%lst%% %%per%% %%per%% %%per%% %%lst%% p%%per%% 
-min 
-x∈rp 
-z∈{0,1}p 
-avec 
-1 
-2 ky − dxk2 
-2 
-−zm 6 %%#%% 6 zm 
-1t 
-%%#%% %%#%% 6 t%%per%% 
-(8) 
-selon [4]%%lst%% la contrainte dans (8) est équivalent à celle de (2)%%per%%]$~ 
-~$[de plus%%lst%% %%#%% doit satisfaire la propriété d’unique representa%%dsh%% 
-tion property [7] qui assure l’unicité de la solution%%per%%]$~ ~$[analysons 
-maintenant ce problème d’optimisation%%per%%]$~ ~$[d’abord%%lst%% sa fonction 
-objectif est quadratique%%per%%]$~ ~$[ensuite%%lst%% il comporte deux types des 
-variables %%#%% et %%#%% respectivement continues et entières %%cln%% c’est ce 
-qu’on appelle un problème d’optimisation mixte en nombre 
-binaires (ou plus généralement en nombre entiers)%%per%%]$~ ~$[enﬁn%%lst%% les 
-contraintes%%lst%% quand à elles%%lst%% sont linéaires%%per%%]$~ ~$[ce type de problème 
-est connu sous le nom de programme quadratique mixte en 
-nombre binaires ou en anglais mixed binary (integer) quadratic 
-programming (miqp)%%per%%]$~ ~$[ce problème miqp (8) peut être résolu 
-exactement sur les images qui nous intéressent en utilisant un 
-logiciel d’optimisation comme cplex ou gurobi%%per%% 
-2%%per%%2%%per%%2 l’introduction de contraintes complémentaires 
-en programmation mixte%%lst%% il est bien connu qu’une « bonne » 
-formulation des contraintes peut grandement accélérer les per%%dsh%% 
-formances d’un solveur [12]%%per%%]$~ ~$[notamment%%lst%% si dans le meilleur 
-des cas %%#%% arrive à exprimer des contraintes déﬁnissant l’en%%dsh%% 
-veloppe convexe du domaine admissible%%lst%% alors la solution op%%dsh%% 
-timale d’un programme mixte est la même que celle de sa re%%dsh%% 
-laxation continue [8]%%per%%]$~ ~$[malheureusement%%lst%% l’obtention de cette 
-enveloppe convexe est un problème np%%dsh%%difﬁcile%%per%%]$~ ~$[en revanche%%lst%% 
-l’enveloppe convexe des contraintes sur les variables continues 
-%%#%% = nx ∈ rp (cid:12)(cid:12) %%#%% ∈ {0%%lst%% 1}p%%lst%% 
-%%#%% 
-xj=1 
-zj ≤ t%%lst%% |xj | ≤ zjt,o%%lst%% 
-peut s’exprimer à l’aide des normes un et inﬁnies de %%#%% comme %%cln%% 
-nx ∈ rp (cid:12)(cid:12) kxk1 6 %%#%% m%%lst%% ||xk∞ 6 mo%%per%%]$~ 
-~$[nous proposons d’ajouter ces contraintes au problème (8) pour 
-obtenir le problème suivant équivalent mais mieux structuré %%cln%% 
-min 
-x∈rp 
-z∈{0,1}p 
-avec 
-1 
-2 ky − dxk2 
-2 
-−zm 6 %%#%% 6 zm 
-%%#%% %%#%% 6 %%#%% 
-1t 
-kxk1 6 %%#%% %%#%% 
-||xk∞ 6 m%%per%% 
-(9) 
-cette formulation permet au solveur d’obtenir la même solu%%dsh%% 
-tion que (8)%%lst%% mais plus rapidement%%per%%]$~ 
-~$[il reste que les performances des solveurs sur cette formu%%dsh%% 
-lation sont très sensibles au choix de la constante %%#%% %%per%%]$~ ~$[nous al%%dsh%% 
-lons maintenant voir comment régler ce paramètre en utilisant 
-une procédure proximale du premier ordre permettant en plus%%lst%% 
-d’obtenir une bonne initialisation des variables à optimiser%%per%% 
-2%%per%%2%%per%%3 initialisation par la méthode du gradient proximal 
-l’algorithme du gradient proximal est une méthode du pre%%dsh%% 
-mier ordre permettant d’obtenir rapidement une solution lo%%dsh%% 
-cale du problème (2)%%per%%]$~ ~$[cette solution peut être utilisée comme 
-une bonne initialisation des variables à optimiser et du para%%dsh%% 
-mètre %%#%% %%lst%% permettant aux solveurs d’accéder plus rapidement 
-au minimum globale du problème [2]%%per%%]$~ ~$[l’approche proximale 
-consiste à minimiser itérativement une succession de majora%%dsh%% 
-tions de la fonction objectif%%per%%]$~ ~$[elle est construite à partir de l’opé%%dsh%% 
-rateur proximal associé à la contrainte kxk0 6 %%#%% %%cln%% 
-proxt %%cln%% rp −→ rp 
-%%#%% 7−→ proxt (x) = arg min 
-kuk06t 
-1 
-2 ku − xk2%%per%%]$~ 
-~$[il est facile de voir que la solution de ce problème est donnée 
-par les %%#%% plus grandes valeurs absolues des composantes du 
-vecteur x%%lst%% soit 
-proxt (x) = (cid:26) xj 
-0 
-si %%#%% ∈ {(1)%%lst%% %%per%% %%per%% %%per%% %%lst%% (t )} 
-sinon%%lst%% 
-où (j) est la suite d’indices tels que |x(1)| > · · · > |x(p)|%%per%%]$~ 
-~$[l’algorithme de descente de gradient proximal consiste alors à 
-mettre en œuvre%%lst%% pour un pas ρ%%lst%% les itérations suivantes [3] %%cln%% 
-xk+1 ∈ proxt(cid:0)xk − ρdt (dxk − y)(cid:1)%%per%%]$~ 
-~$[lorsque le pas ρ est bien choisi%%lst%% il est %%#%% de démontrer 
-que l’algorithme proximal converge vers un minimum local%%per%%]$~ 
-~$[soulignons que%%lst%% comme pour la plupart des méthodes itéra%%dsh%% 
-tives%%lst%% il existe de nombreuses variantes de l’algorithme permet%%dsh%% 
-tant d’accélérer la convergence%%per%%]$~ 
-~$[connaissant x⋆ le %%#%% de convergence de l’algorithme 
-proximal%%lst%% il est %%#%% d’en déduire une initialisation pour 
-le vecteur %%#%% et le paramètre %%#%% %%per%%]$~ ~$[par exemple%%lst%% pour un ε > 0 
-donné%%lst%% %%#%% peut initialiser %%#%% avec zj = 0 si |x⋆ 
-%%#%% | 6 ε et 
-zj = 1 sinon%%per%%]$~ ~$[la constante %%#%% peut être choisie telle que 
-%%#%% = (1 + α)kx⋆k∞ avec α > 0 choisi le plus petit possible%%per%%]$~ 
-~$[par la résolution exacte de (2) pour déterminer le codage par%%dsh%% 
-cimonieux%%lst%% la convergence de notre algorithme peut être assuré 
-selon l’analyse conduite dans [1]%%per%% 
-3 résultats expérimentaux 
-le ]b[ de nos expériences est de %%cmp%%r les performances 
-de notre méthode miqp avec celles des algorithme de réfé%%dsh%% 
-rence sur une tâche de débruitage%%per%%]$~ ~$[nous avons travaillé sur cinq 
-images naturelles de bonne qualité fréquemment utilisées et ex%%dsh%% 
-traites de miscellaneous volumes %%#%% %%#%% usc%%dsh%%sipi image data%%dsh%% 
-base 1 (barbara%%lst%% cameraman%%lst%% elaine%%lst%% lena et men)%%per%%]$~ 
-~$[nous avons construit la matrice %%#%% des données d’appren%%dsh%% 
-tissage à l’aide des cinq images simultanément en utilisant%%lst%% 
-comme dans la littérature [6]%%lst%% des imagettes de taille 8 × 8 se 
-chevauchant%%per%%]$~ ~$[notre matrice %%#%% %%#%% donc pour dimension %%#%% = 64 
-et ℓ > 3,5×104%%per%%]$~ ~$[nous avons ﬁxé expérimentalement le nombre 
-d’atomes du dictionnaire à %%#%% = 100 et le coefﬁcient de parci%%dsh%% 
-monie à %%#%% = 20%%per%%]$~ ~$[nous avons testé différents niveaux de bruit 
-additif gaussien sur les images en utilisant trois différents ni%%dsh%% 
-veaux de bruit avec des valeurs d’écart type σ = 10%%lst%% 20 et 50%%per%%]$~ 
-~$[pour chaque expérience%%lst%% nous avons utilisé la procédure de re%%dsh%% 
-laxation alternée et nous avons itéré 30 fois les deux phases 
-successives de codage parcimonieux et d’apprentissage de dic%%dsh%% 
-tionnaire%%per%%]$~ 
-~$[pour la phase de codage parcimonieux%%lst%% nous avons comparé 
-notre approche miqp avec les deux méthodes références de 
-la littérature%%lst%% k%%dsh%%svd [6] et la méthode proximale [3]%%lst%% toutes 
-choses égales par ailleurs%%per%%]$~ ~$[nous avons aussi comparé deux mé%%dsh%% 
-thodes de reconstruction %%cln%% la méthode directe où l’image est re%%dsh%% 
-construite par dx et l’approche proposée par elad et al%%per%% [6] où 
-elle est estimée par une combinaison linéaire entre %%#%% et dx%%per%%]$~ 
-~$[nous avons réalisé nos expériences en matlab sur un pc dell 
-t5500 à 8 cœurs%%per%%]$~ ~$[le nombre d’itérations maximal de la mé%%dsh%% 
-thode proximale %%#%% été ﬁxé à 200%%per%%]$~ ~$[nous avons utilisé gurobi 
-7%%per%%0 pour résoudre les miqp avec un temps d’exécution maxi%%dsh%% 
-mal de 50 secondes%%lst%% un nombre d’itération maximal de 200%%per%%]$~ 
-~$[nous avons aussi ﬁxé α = 1,5 pour des raisons de stabilité%%per%% 
-1%%per%% http://sipi%%per%%usc%%per%%edu/database/database%%per%%php?volume=misc 
-la table 1 résume nos résultats%%per%%]$~ ~$[la première remarque est 
-que%%lst%% pour un fort niveau de bruit (σ = 50) et sur toutes les 
-images testées%%lst%% notre méthode miqp donne de meilleurs résul%%dsh%% 
-tats (le rapport signal sur bruit est plus grand) que les autres 
-approches de codage parcimonieux (k%%dsh%%svd et l’algorithme 
-proximal seul)%%per%%]$~ ~$[l’amélioration peut être quantiﬁée en moyenne 
-par une augmentation de 1,79 par rapport à la méthode proxi%%dsh%% 
-male et de 3,73 par rapport à k%%dsh%%svd%%lst%% soit un gain de près de 20 
-%%%per%%]$~ ~$[cela reste vrai quelle que soit la méthode de reconstruction 
-utilisée%%per%%]$~ ~$[nous avons aussi constaté que la méthode de recons%%dsh%% 
-truction proposée par [6] donne systématiquement de meilleurs 
-résultats%%per%%]$~ ~$[cependant%%lst%% pour un faible niveau de bruit (σ = 10)%%lst%% 
-notre méthode ne réussit pas à améliorer les résultats de k%%dsh%%svd 
-alors que%%lst%% pour un niveau intermédiaire (σ = 20) les résultats 
-sont plus contrastés et dépendent de l’image considérée%%per%%]$~ ~$[nous 
-constatons que miqp %%#%% tendance à moins bien se comporter sur 
-des images de bonne qualité%%per%%]$~ ~$[d’une certaine manière%%lst%% miqp 
-montre une meilleure capacité à éliminer le bruit via la parci%%dsh%% 
-monie que les autres approches%%per%%]$~ 
-~$[quand nous comparons les résultats obtenus par chaque mé%%dsh%% 
-thode pour différents niveaux de bruit%%lst%% nous constatons aussi 
-que ce sont ceux de miqp qui diminuent le plus lentement 
-que les autres méthodes lorsque σ augmente%%per%%]$~ ~$[soulignons enﬁn 
-que%%lst%% contrairement aux algorithmes de référence de la littéra%%dsh%% 
-ture [6%%lst%% 5%%lst%% 3] pour lesquels le niveau de bruit doit être connu%%lst%% 
-la méthode proposée débruite l’image sans des connaissance %%#%% 
-priori autre que le niveau de parcimonie souhaité%%per%% 
-4 conclusion 
-dans cet article nous avons proposé%%lst%% pour résoudre un pro%%dsh%% 
-blème de débruitage%%lst%% une véritable modélisation ℓ0 de la par%%dsh%% 
-cimonie et la reformulation du problème associé sous la forme 
-d’un programme quadratique mixte en nombre entiers (miqp)%%per%%]$~ 
-~$[nous avons montré que les logiciels d’optimisation disponibles 
-aujourd’hui pouvaient donner la solution globale du problème 
-en un temps raisonnable%%lst%% ce qui nous %%#%% permis de traiter des 
-problèmes de débruitage sur de vraies images par une méthode 
-itérative d’apprentissage de dictionnaire%%lst%% exigeant à chaque ité%%dsh%% 
-ration la résolution de plus de 35 000 miqp%%per%%]$~ ~$[pour arriver à 
-ce résultat%%lst%% nous avons proposé deux techniques d’accélération 
-du traitement des miqp%%lst%% la reformulation des contraintes pour 
-mieux structurer le problème%%lst%% et l’initialisation efﬁcace de la 
-procédure grâce à un algorithme proximal%%per%%]$~ 
-~$[nos résultats démontent d’abord la faisabilité de notre ap%%dsh%% 
-proche%%per%%]$~ ~$[les progrès conjugués des logiciels%%lst%% du matériel et de la 
-modélisation (notre compréhension de la nature du problème)%%lst%% 
-permettent aujourd’hui d’utiliser la programmation mixte en 
-nombre entiers pour résoudre des problèmes de traitement 
-d’image%%per%%]$~ ~$[cela ouvre la porte à une nouvelle approche des pro%%dsh%% 
-blèmes de modélisation de la parcimonie%%lst%% puisqu’il est mainte%%dsh%% 
-nant %%#%% de la gérer explicitement grâce aux programmes 
-mixtes dont %%#%% est en mesure de calculer la solution globale%%lst%% en 
-dépit de leur caractère %%#%% convexe et np difﬁcile%%per%%]$~ 
-~$[table 1%%cln%% résultats en terme de rapport signal sur bruit (psnr) 
-avec reconstruction standard de l’image (à gauche) et avec la 
-reconstruction proposée dans elad et al%%per%% [6] (à droite)%%per%%]$~ ~$[les 
-meilleurs résultats de chaque expérience sont en rouge%%per%% 
-❍ 
-σ 
-❍ 
-❍image 
-❍ 
-barbara 
-cameraman 
-elaine 
-lena 
-%%#%% 
-method 
-psnr 
-psnr [6] 
-10 
-20 
-50 
-10 
-20 
-50 
-k%%dsh%%svd 
-proximal 
-miqp 
-k%%dsh%%svd 
-proximal 
-miqp 
-k%%dsh%%svd 
-proximal 
-miqp 
-k%%dsh%%svd 
-proximal 
-miqp 
-k%%dsh%%svd 
-proximal 
-miqp 
-32,15 
-31,49 
-26,42 
-29,53 
-28,80 
-25,90 
-32,93 
-33,14 
-30,88 
-33,61 
-34,08 
-30,82 
-31,95 
-31,62 
-28,47 
-27,48 
-27,36 
-25,72 
-26,45 
-26,75 
-25,25 
-27,45 
-28,99 
-29,09 
-27,91 
-29,52 
-29,07 
-27,36 
-28,20 
-27,38 
-19,71 
-20,71 
-22,73 
-19,46 
-21,11 
-22,30 
-19,73 
-22,87 
-24,20 
-19,79 
-22,12 
-24,20 
-19,68 
-21,26 
-23,59 
-33,6 
-32,98 
-27,91 
-31,02 
-30,30 
-27,39 
-34,42 
-34,63 
-32,38 
-35,10 
-35,57 
-32,31 
-33,45 
-33,11 
-29,97 
-28,25 
-28,13 
-26,50 
-27,23 
-27,53 
-26,03 
-28,52 
-29,77 
-29,87 
-28,69 
-30,30 
-29,85 
-28,14 
-28,98 
-28,16 
-20,03 
-21,03 
-23,05 
-19,78 
-21,43 
-22,62 
-20,05 
-23,19 
-24,52 
-20,11 
-22,44 
-24,52 
-20,00 
-21,58 
-23,91 
-références 
-[1] m%%per%%]$~ ~$[aharon%%lst%% m%%per%%]$~ ~$[elad%%lst%% ]^[ a%%per%%]$~ ~$[bruckstein%%per%% k%%dsh%%svd %%cln%% %%#%% algorithm ]f[ designing over%%dsh%% 
-complete dictionaries ]f[ sparse representation%%per%%]$~ ~$[ieee transactions %%#%% signal pro%%dsh%% 
-cessing%%lst%% 54(11) :4311–4322%%lst%% 2006%%per%% 
-[2] a%%per%%]$~ ~$[atamtürk ]^[ m%%per%%]$~ ~$[w%%per%%]$~ ~$[savelsbergh%%per%%]$~ ~$[integer%%dsh%%programming software systems%%per%%]$~ ~$[an%%dsh%% 
-nals %%#%% operations research%%lst%% 140(1) :67–124%%lst%% 2005%%per%% 
-[3] c%%per%%]$~ ~$[bao%%lst%% h%%per%%]$~ ~$[ji%%lst%% y%%per%%]$~ ~$[quan%%lst%% ]^[ z%%per%%]$~ ~$[shen%%per%%]$~ ~$[l0 norm based dictionary learning %%#%% proxi%%dsh%% 
-mal methods %%#%% global convergence%%per%%]$~ ~$[in proceedings %%#%% %%#%% ieee conference %%#%% 
-computer vision ]^[ pattern recognition%%lst%% pages 3858–3865%%lst%% 2014%%per%% 
-[4] s%%per%%]$~ ~$[bourguignon%%lst%% j%%per%%]$~ ~$[ninin%%lst%% h%%per%%]$~ ~$[carfantan%%lst%% ]^[ m%%per%%]$~ ~$[mongeau%%per%%]$~ ~$[exact sparse approxi%%dsh%% 
-mation problems via mixed%%dsh%%integer programming %%cln%% formulations ]^[ computational 
-performance%%per%%]$~ ~$[ieee transactions %%#%% signal processing%%lst%% 64(6) :1405–1419%%lst%% 2016%%per%% 
-[5] h%%per%%]$~ ~$[p%%per%%]$~ ~$[dang ]^[ p%%per%%]$~ ~$[chainais%%per%%]$~ ~$[towards dictionaries %%#%% optimal size %%cln%% %%#%% bayesian %%#%% 
-parametric approach%%per%%]$~ ~$[journal %%#%% signal processing systems%%lst%% pages 1–12%%lst%% 2016%%per%% 
-[6] m%%per%%]$~ ~$[elad ]^[ m%%per%%]$~ ~$[aharon%%per%%]$~ ~$[image denoising via sparse ]^[ redundant representations 
-%%#%% learned dictionaries%%per%%]$~ ~$[ieee transactions %%#%% image processing%%lst%% 15(12) :3736– 
-3745%%lst%% 2006%%per%%]$~ 
-~$[i%%per%%]$~ ~$[f%%per%%]$~ ~$[gorodnitsky ]^[ b%%per%%]$~ ~$[d%%per%%]$~ ~$[rao%%per%%]$~ ~$[sparse signal reconstruction %%#%% limited data 
-using focuss %%cln%% %%#%% re%%dsh%%weighted minimum norm algorithm%%per%%]$~ 
-~$[ieee transactions %%#%% 
-signal processing%%lst%% 45(3) :600–616%%lst%% 1997%%per%% 
-[7] 
-[8] k%%per%%]$~ ~$[l%%per%%]$~ ~$[hoffman ]^[ t%%per%%]$~ ~$[k%%per%%]$~ ~$[ralphs%%per%%]$~ ~$[integer ]^[ combinatorial optimization%%per%%]$~ ~$[in ency%%dsh%% 
-clopedia %%#%% operations research ]^[ management science%%lst%% pages 771–783%%per%%]$~ ~$[sprin%%dsh%% 
-ger%%lst%% 2013%%per%% 
-[9] p%%per%%]$~ ~$[honeine%%per%%]$~ ~$[analyzing sparse dictionaries ]f[ online learning %%#%% kernels%%per%%]$~ ~$[ieee 
-transactions %%#%% signal processing%%lst%% 63(23) :6343–6353%%lst%% december 2015%%per%% 
-[10] j%%per%%]$~ ~$[mairal%%lst%% f%%per%%]$~ ~$[bach%%lst%% j%%per%%]$~ ~$[ponce%%lst%% et al%%per%%]$~ ~$[sparse modeling ]f[ image ]^[ vision processing%%per%%]$~ 
-~$[foundations ]^[ trends r(cid:13) %%#%% computer graphics ]^[ vision%%lst%% 8(2%%dsh%%3) :85–283%%lst%% 2014%%per%% 
-[11] j%%per%%]$~ ~$[mairal%%lst%% f%%per%%]$~ ~$[bach%%lst%% j%%per%%]$~ ~$[ponce%%lst%% ]^[ g%%per%%]$~ ~$[sapiro%%per%%]$~ ~$[online dictionary learning ]f[ sparse 
-%%#%% proceedings %%#%% %%#%% 26th annual international conference %%#%% machine 
-coding%%per%% 
-learning%%lst%% pages 689–696%%per%%]$~ ~$[acm%%lst%% 2009%%per%% 
-[12] a%%per%%]$~ ~$[neumaier ]^[ o%%per%%]$~ ~$[shcherbina%%per%%]$~ ~$[safe bounds %%#%% linear ]^[ mixed%%dsh%%integer linear 
-programming%%per%%]$~ ~$[mathematical programming%%lst%% 99(2) :283–296%%lst%% 2004%%per%% 
-[13] b%%per%%]$~ ~$[a%%per%%]$~ ~$[olshausen ]^[ d%%per%%]$~ ~$[j%%per%%]$~ ~$[field%%per%%]$~ ~$[sparse coding %%#%% %%#%% overcomplete basis set %%cln%% %%#%% 
-strategy employed %%#%% v1 %%qsn%%]$~ ~$[vision research%%lst%% 37(23) :3311–3325%%lst%% 1997%%per%% 
-[14] j%%per%%]$~ ~$[a%%per%%]$~ ~$[tropp ]^[ a%%per%%]$~ ~$[c%%per%%]$~ ~$[gilbert%%per%%]$~ ~$[signal recovery %%#%% random measurements via or%%dsh%% 
-thogonal matching pursuit%%per%%]$~ ~$[ieee transactions %%#%% information theory%%lst%% 53(12) :4655– 
-4666%%lst%% 2007%%per%% 
-[15] q%%per%%]$~ ~$[zhang ]^[ b%%per%%]$~ ~$[li%%per%%]$~ ~$[discriminative k%%dsh%%svd ]f[ dictionary learning %%#%% %%#%% recognition%%per%%]$~ 
-~$[in computer vision ]^[ pattern recognition (cvpr)%%lst%% 2010 ieee conference on%%lst%% 
-pages 2691–2698%%per%%]$~ ~$[ieee%%lst%% 2010%%per%% 

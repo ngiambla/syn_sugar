@@ -1,0 +1,20 @@
+  the lack of reliable data in developing countries is a major obstacle to
+sustainable development, food security, and disaster relief. poverty data, for
+example, is typically scarce, sparse in coverage, and labor-intensive to
+obtain. remote sensing data such as high-resolution satellite imagery, on the
+other hand, is becoming increasingly available and inexpensive. unfortunately,
+such data is highly unstructured and currently no techniques exist to
+automatically extract useful insights to inform policy decisions and help
+direct humanitarian efforts. we propose a novel machine learning approach to
+extract large-scale socioeconomic indicators from high-resolution satellite
+imagery. the main challenge is that training data is very scarce, making it
+difficult to apply modern techniques such as convolutional neural networks
+(cnn). we therefore propose a transfer learning approach where nighttime light
+intensities are used as a data-rich proxy. we train a fully convolutional cnn
+model to predict nighttime lights from daytime imagery, simultaneously learning
+features that are useful for poverty prediction. the model learns filters
+identifying different terrains and man-made structures, including roads,
+buildings, and farmlands, without any supervision beyond nighttime lights. we
+demonstrate that these learned features are highly informative for poverty
+mapping, even approaching the predictive performance of survey data collected
+in the field.

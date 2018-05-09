@@ -1,0 +1,963 @@
+6
+1
+0
+2
+ 
+r
+p
+A
+5
+2
+ 
+ 
+ 
+]
+M
+M
+.
+s
+c
+[
+ 
+ 
+2
+v
+7
+1
+8
+1
+0
+.
+3
+0
+5
+1
+:
+v
+i
+X
+r
+a
+YFCC100M: The New Data in Multimedia Research
+Bart Thomee
+Yahoo Labs
+San Francisco, CA, USA
+bthomee@yahoo-inc.com
+Benjamin Elizalde 
+CMU
+Mountain View, CA, USA
+bmartin1@andrew.cmu.edu
+David A. Shamma
+Yahoo Labs
+San Francisco, CA, USA
+aymans@acm.org
+Karl Ni 
+In-Q-Tel
+Menlo Park, CA, USA
+kni@iqt.org
+Gerald Friedland
+ICSI
+Berkeley, CA, USA
+fractor@icsi.berkeley.edu
+Douglas Poland
+LLNL
+Livermore, CA, USA
+poland1@llnl.gov
+Damian Borth 
+DFKI
+Kaiserslautern, Germany
+damian.borth@dfki.de
+Li-Jia Li 
+Snapchat
+Venice, CA, USA
+lijiali.vision@gmail.com
+The photograph and our understanding of photography is
+ever changing and has transitioned from a world of unpro-
+cessed rolls of C-41 sitting in a fridge 50 years ago to sharing
+photos on the 1.5  screen of a point and shoot camera 10
+years back. And today the photograph is again something
+di erent. The way we take photos is fundamentally di er-
+ent. We can view, share, and interact with photos on the
+device they were taken on. We can edit, tag, or   lter  pho-
+tos directly on the camera at the same time the photo is
+being taken. Photos can be automatically pushed to various
+online sharing services, and the distinction between photos
+and videos has lessened. Beyond this, and more importantly,
+there are now lots of them. To Facebook alone more than 250
+billion photos have been uploaded and on average it receives
+over 350 million new photos every day [6], while YouTube re-
+ports that 300 hours of video are uploaded every minute [22].
+A back of the envelope estimation reports 10% of all photos
+in the world were taken in the last 12 months, and that was
+calculated already more than three years ago [8].
+Today, a large number of the digital media objects that
+are shared have been uploaded to services like Flickr or In-
+stagram, which along with their metadata and their social
+ecosystem form a vibrant environment for  nding solutions
+to many research questions at scale. Photos and videos pro-
+vide a wealth of information about the universe, covering
+entertainment, travel, personal records, and various other
+aspects of life in general as it was when they were taken.
+Considered collectively, they represent knowledge that goes
+ This work was done while Benjamin Elizalde was at ICSI.
+  This work was done while Karl Ni was at LLNL.
+  This work was done while Damian Borth was at ICSI.
+  This work was done while Li-Jia Li was at Yahoo Labs.
+Publication rights licensed to ACM. ACM acknowledges that this contribution was au-
+thored or co-authored by an employee, contractor or af liate of the United States gov-
+ernment. As such, the United States Government retains a nonexclusive, royalty-free
+right to publish or reproduce this article, or to allow others to do so, for Government
+purposes only.
+Communications of the ACM 0001-0782/2016/2 $15.00
+http://dx.doi.org/10.1145/2812802
+Copyright is held by the owner/author(s).
+beyond what is captured in any individual snapshot and
+provide information on trends, evidence of phenomena or
+events, social context, and societal dynamics. Consequently,
+collections of media are useful for qualitative and quantita-
+tive empirical research in many domains. However, scienti c
+endeavors in  elds like social computing and computer vi-
+sion have generally relied on independently collected mul-
+timedia datasets, which complicates research growth and
+synergy. There is the need for a more substantial dataset
+for researchers, engineers, and scientists around the globe.
+To meet the call for scale, openness, and diversity in aca-
+demic datasets, we take the opportunity in this article to
+present a new multimedia dataset containing 100 million
+media objects and explain the rationale behind its creation.
+We discuss the implications it has for science, research, en-
+gineering and development, and demonstrate its usefulness
+towards tackling a broad range of problems in various do-
+mains. With the release of our dataset comes the opportu-
+nity to advance research, giving rise to new challenges and
+solving existing ones.
+1. SHARING DATASETS
+Datasets are critical for research and exploration [16] as,
+rather obviously, data is required for performing experiments,
+validating hypotheses, analyzing designs, and building ap-
+plications. Over the years a plurality of multimedia datasets
+have been put together for research and development. In Ta-
+ble 1 we present a summary of the most popular datasets
+at present. Most of them, however, actually cannot truly be
+called multimedia datasets due to only containing a single
+type of media, rather than a mixture of modalities, such as
+photos, videos, and audio. Datasets range from the one-o 
+instances that have been exclusively created for supporting
+the work presented in a single paper or demo ( short-term
+datasets ) to those that have been created with multiple re-
+lated or separate endeavors in mind ( long-term datasets ).
+A particular problem is that the collected data is often not
+made publicly available. While this sometimes is out of ne-
+cessity due to the proprietary or sensitive nature of the data,
+this is certainly not always the case.
+The question of sharing data for replication and growth
+has arisen several times in the past 30 years alone [2, 7, 18]
+Table 1: Popular multimedia datasets used over the years by the research community. When various versions of a particular
+collection were available, we generally only included the most recent one. PASCAL, TRECVID, MediaEval and ImageCLEF
+are/were yearly recurring benchmarks that consist of one or more challenges of which each has its own dataset; in the table
+we report the total number of media objects aggregated over all datasets part of the most recent edition of each benchmark.
+and has been brought into discussion in ACM s SIGCHI [20].
+This  sharing discussion  reveals many of the underlying
+complexities with sharing, both with regards to the data
+(e.g. what exactly is considered data) and to the sharing
+point of view (e.g. incentives and disincentives for doing so).
+For example, one might be reluctant to share data freely,
+as it has a value from the often substantial amount of time,
+e ort, and money that was invested in collecting it.
+Another barrier to sharing arises when data is harvested
+for research under a general umbrella of  academic fair use 
+without regards towards its licensing terms. Beyond the le-
+gal corporate issues, this clearly may violate the copyright
+of the owner of the data that, in many User-Generated Con-
+tent (UGC) sites like Flickr, remains with the creator. The
+Creative Commons (CC), a nonpro t organization that was
+founded in 2001, seeks to build a rich public domain of  some
+rights reserved  media, sometimes referred to as the copyleft
+movement. Their licenses allow media owners to communi-
+cate how they would like their media to be rights reserved.
+For example, an owner can indicate that a photo may be
+used only for non-commercial purposes or whether someone
+is allowed to remix it or turn it into a collage. Depending
+on how the licensing options are chosen, CC licenses can
+be applied that are more restrictive (e.g. CC Attribution-
+NonCommercial-NoDerivs or CC-BY-NC-ND license) or less re-
+strictive (e.g. CC Attribution-ShareAlike or CC-BY-SA) in
+nature. A public dataset with clearly marked licenses that
+do not overly impose restrictions on how the data is used,
+such as those o ered by CC, would therefore be suitable for
+use by both academia and industry.
+We underscore the importance of sharing perhaps even
+its principal argument is that it ensures data equality for
+research. While the availability of data alone may not nec-
+essarily be su cient for the exact reproduction of scien-
+ti c results (since the original experimental conditions also
+would need to be replicated as closely as possible, which
+may not always be possible), research should start with pub-
+licly sharable and legally usable data that is  exible and
+rich enough to promote new advancements, rather than with
+data that only serves as a one time collection for a speci c
+task and that cannot be shared. Shared datasets can play a
+singular role in achieving research growth and in facilitat-
+ing synergy within the research community that is otherwise
+di cult to attain.
+2. THE YFCC100M DATASET
+We created the Yahoo Flickr Creative Commons 100 Mil-
+lion Dataset1 (YFCC100M) as part of the Yahoo Webscope
+program. This dataset is the largest public multimedia col-
+lection that has ever been released, comprising a total of
+100 million media objects, of which approximately 99.2 mil-
+lion are photos and 0.8 million are videos, all of which have
+been uploaded to Flickr between 2004 and 2014 and pub-
+lished under a CC commercial or non-commercial license.
+The dataset is currently distributed via Amazon AWS as a
+12.5GB compressed archive containing only metadata. How-
+ever, as is the case with many datasets, the YFCC100M is
+constantly evolving, and over time we will release various
+expansion packs containing data not yet present in the col-
+lection. For instance, several visual and aural features ex-
+tracted from the data have already been made available2.
+The actual photos and videos are further currently being
+uploaded to the cloud to ensure the dataset will remain ac-
+cessible and intact for years to come; like the metadata, the
+photo and video data can then be mounted as a read-only
+network drive. Our dataset overcomes many of the issues af-
+fecting existing datasets, for instance in terms of modalities,
+metadata, licensing, and principally volume we will discuss
+the strengths and limitations of our collection in more detail
+below.
+2.1 Metadata
+Each media object included in the dataset is represented by
+its metadata in the form its Flickr identi er, the user that
+created it, the camera that took it, the time at which it
+was taken and when it was uploaded, the location where it
+was taken (if available), and the CC license it was published
+under. In addition, the title, description and tags are also
+available, as well as direct links to its page and its content
+on Flickr. Social features, comments, favorites, and follow-
+ers/following data are not included in the dataset as, by
+their nature, these change on a day to day basis. They can,
+however, be easily obtained by querying the Flickr API3,
+and over time we will make snapshots of such social features
+available for download. We are further working towards re-
+leasing the Exif metadata of the photos and videos as an
+expansion pack.
+Tags. There are 68,552,616 photos and 418,507 videos in
+the dataset that have been annotated with user tags (or key-
+words). The tags make for a rich and diverse set of entities
+related to people (baby, family), animals (cat, dog), loca-
+tions (park, beach), travel (nature, city), to name just the
+top few. A total of 3,343,487 photos and 7,281 videos carry
+machine tags (labels that have been automatically added by
+1The dataset is available at https://bit.ly/yfcc100md.
+2The features are available at https://bit.ly/yfcc100mf.
+3https://www.flickr.com/services/api/
+Figure 1: Number of captured and uploaded media objects
+per month in the YFCC100M dataset during the period
+2000-2014. We can see the number of uploads closely fol-
+lowing the number of captures, with more recently uploads
+even exceeding captures as older media also is uploaded.
+Figure 2: Global coverage of a sample of one million photos
+from the YFCC100M dataset. One Million Creative Com-
+mons Geo-tagged Photos by David Shamma c b d https:
+//flic.kr/p/o1Ao2o.
+a camera, computer, application, or some other automated
+system).
+Timespan. Although our dataset contains media uploaded
+between the inception of Flickr in 2004 and the creation
+of the dataset in 2014, the actual time span during which
+they were captured is much longer. Some scans of books and
+newspapers have even been backdated to the early 19th cen-
+tury when they were originally published. However, we note
+that camera clocks are not always set to the correct date
+and time, and some photos and videos even erroneously re-
+port they were captured in the distant past or in the future.
+Figure 1 plots the moments of capture and upload of photos
+and videos during the period 2000-2014, which accounts for
+99.6% of the media objects in the dataset.
+Locations. There are 48,366,323 photos and 103,506 videos
+in the dataset that have been annotated with a geographic
+coordinate, either manually by the user or automatically via
+GPS. The cities in which more than 10,000 unique users
+captured media are London, Paris, Tokyo, New York, San
+Francisco, and Hong Kong. Overall, the dataset spans 249
+di erent territories (countries, islands, etc.) in the world,
+and also includes photos and videos taken in international
+waters and airspace, see Figure 2.
+Table 2: Top 25 cameras and photo counts
+in the
+YFCC100M dataset. We have merged the entries for the
+Canon models that have di erent names in the European
+(e.g. EOS 650D), American (e.g. EOS Rebel T4i) and Asian
+(e.g. EOS Kiss X6i) markets.
+Make Model
+Canon EOS 400D
+Canon EOS 350D
+Nikon D90
+Canon EOS 5D Mark II
+Nikon D80
+Canon EOS 7D
+Canon EOS 450D
+Nikon D40
+Canon EOS 40D
+Canon EOS 550D
+Nikon D7000
+Nikon D300
+Nikon D50
+Canon EOS 500D
+Nikon D700
+Apple
+Nikon D200
+Canon EOS 20D
+Canon EOS 50D
+Canon EOS 30D
+Canon EOS 60D
+iPhone 4S
+Apple
+Apple
+iPhone
+Nikon D70
+Canon EOS 5D
+iPhone 4
+Photos
+2,539,571
+2,140,722
+1,998,637
+1,896,219
+1,719,045
+1,526,158
+1,509,334
+1,358,791
+1,334,891
+1,175,229
+1,068,591
+1,053,745
+1,032,019
+1,031,044
+942,806
+922,675
+919,688
+843,133
+831,570
+820,838
+772,700
+761,231
+743,735
+742,591
+699,381
+Cameras. Table 2 shows that the top 25 cameras used
+in the dataset are overwhelmingly digital single lens re ex
+(DSLR) models with the exception of the Apple iPhone.
+Considering that the most popular cameras in the Flickr
+community at the moment primarily consist of various iPhone
+models4, this bias in our data is likely due to CC licenses
+attracting a certain subcommunity of photographers that
+di ers from the overall Flickr user base.
+Licenses. The licenses themselves vary by CC type with
+approximately 31.8% of the dataset marked appropriate for
+commercial use and 17.3% having been assigned the most
+liberal license that only requires the photographer that took
+the photo to be attributed, see Table 3.
+2.2 Content
+The dataset includes a diverse collection of complex real
+world scenes, ranging from 200,000 street life-blogged pho-
+tos by photographer Andy Nystrom, Figure 3(a), to snap-
+shots of day to day life, holidays and events, Figure 3(b).
+To understand more about the visual content represented in
+the dataset, we used a deep learning approach to  nd the
+presence of a variety of concepts, such as people, animals,
+objects, food, events, architecture, and scenery. Speci cally,
+we applied an o -the-shelf deep convolutional neural net-
+work [13] with 7 hidden layers, 5 convolutional layers and
+2 fully connected ones. The penultimate layer of the convo-
+lutional neural network output was employed as the image
+4https://www.flickr.com/cameras/
+Table 3: A breakdown of the 100 million photos and videos
+by their kind of c Creative Commons license, as b By At-
+tribution, d No Derivatives, a Share Alike, and n Non-
+Commercial.
+License
+Photos
+Videos
+c b
+17,210,144
+c b a
+9,408,154
+c b d
+4,910,766
+c b n
+12,674,885
+c b n a 28,776,835
+c b n d 26,225,780
+137,503
+72,116
+37,542
+102,288
+235,319
+208,668
+Total
+99,206,564
+793,436
+feature representation to train the visual concept classi ers.
+We used Ca e [11] to train 1,570 classi ers, each being a
+binary SVM, using 15 million photos taken from the entire
+Flickr corpus; positive examples were crowd labeled or hand-
+picked based on targeted search/group results, while nega-
+tive examples were drawn from a general pool. We tuned the
+classi ers such that they achieved at least 90% precision on
+a held-out test set. In Table 4 we show the top 25 detected
+concepts in both photos and videos (using the  rst frame).
+We see a diverse collection of visual concepts being detected,
+from outdoor to indoor images, sports to art, nature to ar-
+chitecture. As we realize the detected visual concepts may
+be valuable to the community, we recently released them as
+one of our expansion packs.
+Flickr makes little distinction between a photo and a video;
+however, videos do play a role both on Flickr and in this
+dataset. While photos encode their content primarily through
+visual means, videos also convey this through audio and mo-
+tion. Only 5% of the videos in our dataset do not have an au-
+dio track. From a manual examination of over 120 randomly
+selected geotagged videos having audio, we found that most
+of their audio tracks were very diverse. Namely, 60% of the
+videos were home-video style with little ambient noise; 47%
+of the videos had heavy ambient noise such as people chat-
+ting in the background, sound of tra c, and wind blowing
+into microphone; 25% of the sampled videos contained mu-
+sic, either played in the background of the recorded scene, or
+inserted at the editing phase; 60% of the videos did not con-
+tain any form of human speech at all, and even for the ones
+that contained human speech; 64% were from multiple sub-
+jects and crowds in the background speaking to one another,
+often at the same time. The vocabulary of approximately
+280,000 distinct user tags used for the video annotations
+indeed shows that those describing audio content (music,
+concert, festival) and motion content (timelapse, dance,
+animation) are more frequently applied to videos than to
+photos. When we compare the videos in the dataset to those
+taken from YouTube in the time period 2007 2012, we note
+that YouTube videos are on average longer (Flickr: 39 sec.,
+YouTube: 214 sec.). This is likely due to the initial handling
+of videos on Flickr where their length until recently was re-
+stricted to a maximum of 90 seconds; recent videos uploaded
+to Flickr indeed tend to be longer.
+2.3 Representativeness
+To create the dataset, we did not perform any speci c  l-
+tering besides excluding photos and videos that had been
+(a) IMG 9793: Streetcar (Toronto Transit) by
+Andy Nystrom c b n d https://flic.kr/p/
+jciMdz.
+(b) Celebrating our 6th wedding anniversary in
+Villa Mary by Rita & Tomek c b n a https:
+//flic.kr/p/fCXEJi.
+Figure 3: Two photos of real world scenes from photographers in the YFCC100M dataset.
+marked as  screenshot  or  other  by the Flickr user. We did,
+however, include as many videos as possible, because videos
+form a small percentage of media uploaded to Flickr and a
+random selection would have led to relatively few videos to
+be selected. We further included as many photos as possible
+that were associated with a geographic coordinate to en-
+courage spatiotemporal research. Together these photos and
+videos form approximately half of the dataset, and the re-
+mainder is composed of CC photos randomly selected from
+the entire pool of photos on Flickr.
+To investigate whether our dataset contains a representa-
+tive sample of real world photography, we collected an ad-
+ditional random sample of 100 million public Flickr photos
+and videos, irrespective of their license, that were uploaded
+during the same time period as those in our dataset. We
+then compared the relative frequency with which content
+and metadata were present in our dataset and in the ran-
+dom sample. We found that the average di erence in rela-
+tive frequencies between two corresponding visual concepts,
+cameras, timestamps (year and month) and locations (coun-
+tries) was only 0.02%, with an overall standard deviation of
+0.1%. The maximum di erence we observed was 3.5%, due
+to more videos in the YFCC100M having been captured in
+the United States than in the random sample (46.2% vs.
+42.7%). While we found little individual di erences between
+the relative frequency of use of any two corresponding cam-
+eras in our dataset and in the random sample, at most 0.5%,
+we did observe the earlier mentioned tendency towards more
+professional DSLR cameras in the YFCC100M rather than
+regular point-and-shoot cameras. This notwithstanding, our
+dataset appears to overall exhibit similar characteristics to
+photos and videos present in the entire Flickr corpus.
+2.4 Features and Annotations
+Computing features for 100 million media items is a time-
+consuming and computationally expensive task. Not every-
+one has access to a distributed computing cluster, and just
+performing light processing of all the photos and videos on a
+single desktop machine may already take several days. From
+our experience with organizing benchmarks on image an-
+notation and location estimation we noticed that accompa-
+nying the datasets with precomputed features reduced the
+burden on the participating teams, allowing them to focus
+on solving the task at hand rather than on processing the
+data. As mentioned earlier, we are currently computing a
+wide variety of visual, aural, textual and motion features for
+the dataset, and already have released several of them. The
+visual features span the gamut of global (e.g. Gist), local
+(e.g. SIFT) and texture (e.g. Gabor) descriptors, the aural
+features include power spectrum (e.g. MFCC) and frequency
+(e.g. Kaldi) descriptors, the textual features refer to closed
+captions extracted from the videos, and the motion features
+include dense trajectories and shot boundaries. These fea-
+tures, being computed descriptors of the photos and videos,
+will be licensed without any restrictions under the CC0 (c z)
+license. Real world data does not have well-formed annota-
+tions, which presents the sensemaking of the dataset itself
+as an area of investigation. Annotations, such as bounding
+boxes, segmentations of objects and faces, and image cap-
+tions are not yet available for the YFCC100M at present,
+although generating and releasing them is on our roadmap.
+2.5 Ecosystem
+Our dataset has already given rise to an ecosystem of di-
+verse challenges and benchmarks, similar to how ImageNet,
+PASCAL and TRECVID have been used by the commu-
+nity. For example, the MediaEval Placing Task [3], an annual
+benchmark in which participants develop algorithms for es-
+timating the geographic location where a photo or video was
+taken, is currently based on our dataset. To support research
+in multimedia event detection the YLI-MED corpus [1] was
+recently introduced, which consists of 50,000 handpicked
+videos from the YFCC100M that belong to events similar
+to those de ned in the TRECVID MED challenge. Approx-
+imately 2,000 videos were categorized as depicting one of
+ten target events, and 48,000 as belonging to none of these
+events. Each video was further annotated with additional
+attributes like language spoken and whether the video has a
+musical score. The annotations also include degree of anno-
+tator agreement and average annotator con dence scores for
+the event categorization of each video. The authors stated
+that the main motivation for the creation of the YLI-MED
+corpus was to provide an open set without the license re-
+strictions imposed on the original TRECVID MED dataset,
+Table 4: The top 25 of 1,570 visually detected concepts in
+the YFCC100M dataset. Photos and videos are counted as
+many times as they contain visual concepts.
+Concept
+Photos
+Videos
+outdoor
+indoor
+people
+nature
+architecture
+landscape
+monochrome
+sport
+building
+vehicle
+plant
+blackandwhite
+animal
+groupshot
+sky
+water
+text
+road
+blue
+tree
+hill
+shore
+car
+head
+art
+44,290,738
+14,013,888
+11,326,711
+9,905,587
+6,062,789
+5,121,604
+4,477,368
+4,354,325
+4,174,579
+3,869,095
+3,591,128
+2,585,474
+2,317,462
+2,271,390
+2,232,121
+2,089,110
+2,074,831
+1,796,742
+1,658,929
+1,641,696
+1,448,925
+1,439,950
+1,441,876
+1,386,667
+1,391,386
+266,441
+127,387
+56,664
+47,703
+11,289
+28,222
+18,243
+25,129
+7,693
+13,737
+11,815
+10,351
+9,236
+4,392
+11,488
+15,426
+5,623
+12,808
+10,273
+6,808
+6,075
+8,602
+4,067
+8,984
+2,248
+while it for instance also could serve as additional annotated
+data to improve the performance of current event detectors.
+Other venues in which our dataset currently features are
+the ACM Multimedia 2015 Grand Challenge on Event De-
+tection and Summarization, as well as the ACM Multimedia
+2015 MMCommons Workshop; the latter kicks o  the devel-
+opment of a research community around annotating all 100
+million photos and videos. Certainly, the utility of the data-
+set will grow as more features and annotations are produced
+and shared, whether by ourselves or by others.
+2.6 Strengths and Limitations
+We speci cally note the following strengths ( ) and limita-
+tions ((cid:9)) of the YFCC100M dataset:
+  Design. Our dataset di ers in its design from most mul-
+timedia collections. The collection of photos, videos, and
+metadata in our dataset has been curated to be compre-
+hensive and representative of real world photography, ex-
+pansive and expandable in coverage, free and legal to use,
+and as such intends to consolidate and supplant many of
+the existing datasets currently in use. We emphasize that
+our dataset does not challenge collections that are di erent
+and unique (e.g. PASCAL, TRECVID, ImageNet, COCO),
+but we instead aspire to make it the preferred choice for
+researchers, developers and engineers with small and large
+multimedia needs that can be easily satis ed by our dataset,
+rather than having them needlessly collect their own data.
+  Equality. The dataset ensures data equality for research,
+which facilitates reproducing, verifying and extending scien-
+ti c experiments and results.
+  Volume. The dataset, spanning 100 million media ob-
+jects, is the largest public multimedia collection to have ever
+been released.
+  Modalities. In contrast with most existing collections,
+our dataset includes both photos and videos, making it a
+truly multimodal multimedia collection.
+  Metadata. Each media item is represented by a sub-
+stantial amount of metadata. The dataset includes metadata
+that is often absent in existing datasets, such as machine
+tags, geotags, timestamps, and cameras. While social meta-
+data is not included due to their ever-changing nature, it
+can be easily obtained by querying the Flickr API.
+  Licensing. The vast majority of available datasets in-
+clude media whose licenses do not allow them to be used
+without explicit permission from the rights holder. While
+fair use exceptions may be invoked depending on the nature
+of use, these will generally not be applicable to research and
+development performed by industry and/or for commercial
+gain. For example, a university spin-o  o ering a mobile
+product recognition application that displays matching Im-
+ageNet images for each detected product will not only violate
+the ImageNet license agreement, but also very likely copy-
+right law. Our dataset overcomes this issue providing rules
+on how the dataset should be used to comply with licensing,
+attribution and copyright.
+(cid:9) Annotations. Our collection at present re ects the data
+as it is in the wild ; there are lots of photos and videos, but
+they are currently associated with limited metadata and an-
+notations. We note that our dataset may not and/or can-
+not o er every single kind of content, metadata and anno-
+tations present in existing collections (e.g. object segmenta-
+tions as in COCO, broadcast videos as in TRECVID), al-
+though we believe that our e orts and those that spring from
+the ecosystem currently being constructed around the data-
+set will o er more depth and richness to the existing content,
+as well as new material, making it more complete and useful
+over time. While a lack of annotations clearly forms a limi-
+tation of our dataset, we also see this as a challenge. At the
+scale of 100 million media objects there are enough meta-
+data labels for training and prediction of some attributes,
+e.g. geographic coordinates, and there exist opportunities
+to create new methods for labeling and annotation through
+explicit crowdsourced work or through more modern tech-
+niques using social community behaviors. In addition, given
+the plurality of existing Flickr datasets and the size of our
+dataset, some overlaps are to be expected, such that existing
+annotations directly transfer over to our dataset. Of particu-
+lar note is COCO of which a third is present (about 100,000
+images) in the YFCC100M. Over time we will also release
+the intersections with known datasets as expansion packs.
+We envision that the intersection with existing datasets al-
+lows researchers to expand upon what is known and actively
+researched.
+2.7 Guidelines and Recommendations
+Although we listed volume as a strength of our dataset, at
+the same time it can also pose a weakness when having
+insu cient computational power, memory and/or storage
+available. The compressed metadata of all 100 million me-
+dia objects requires 12.5GB of hard disk space and, at the
+default pixel resolution used on Flickr, the photos take up
+approximately 13.5TB and the videos 3.0TB. While the en-
+tire dataset metadata and/or content can be processed
+in a matter of minutes to hours on a distributed computing
+cluster, it may take a few hours to days to do on a single
+machine. Naturally, the YFCC100M can still be used for ex-
+periments by only focusing on a subset of the data. Also,
+di erent  elds of research, engineering and science have dif-
+ferent data requirements and evaluation needs, and all 100
+million media objects in the dataset are not likely to be
+needed for each and every study. We do note that in the
+computer science literature it is uncommon for a paper to
+describe in enough detail how the dataset they used in their
+evaluations was created, e ectively preventing others from
+faithfully replicating or comparing against the achieved re-
+sults. One clear challenge for the future is ensuring that
+subsets of the dataset used in experiments can be accurately
+reproduced. To this end, we suggest researchers to forego ar-
+bitrary selections from our dataset when forming a subset
+for use in their evaluations, but rather to use a principled
+approach that can be succinctly described. Such selection
+logic should examine one or both of the following two as-
+pects of the dataset, namely that (i) the photos and videos
+in the dataset are already randomized, and (ii) the data-
+set consists of 10 consecutively numbered  les. As such, a
+selection logic could be as simple as
+ We used the videos in the  rst four metadata
+ les for training, those in the following three  les
+for development, and those in the last three for
+testing. 
+or more complicated as
+ From all photos taken in the United States, we
+selected the  rst 5 million and performed 10-fold
+cross-validation. 
+Alternatively, the created subset can be made available for
+download described as a set of object identi ers that in-
+dex into the dataset. As an example, the organizers of the
+MediaEval Placing Task made, in addition to the training
+and test sets, the visual and aural features they extracted
+from the content available for download. We envision the
+research community to also follow this way of using and
+sharing the dataset.
+2.8 Future Directions
+Our dataset provides opportunities for large-scale unsuper-
+vised learning, semi-supervised learning and learning with
+noisy data. Beyond this, the YFCC100M o ers the oppor-
+tunity to advance research, give rise to new challenges and
+solve existing ones. For instance, we note the following chal-
+lenges in which our dataset may play a leading role:
+AI and Vision. Large datasets have played a critical role
+in advancing computer vision research. ImageNet [5] itself
+led the way into the development of advanced machine learn-
+ing techniques like deep learning [13]. The computer vision
+as a  eld now seeks to do visual recognition by learning and
+benchmarking from large-scale data. The YFCC100M data-
+set provides new opportunities for this e ort by developing
+new approaches that harness more than just the pixels. For
+instance, new semantic connections can be made by inferring
+them through relating groups of visually co-occurring tags
+in images depicting similar scenes, where such e orts hith-
+erto have been hampered by the lack of a su ciently large
+dataset. Our expansion pack containing the detected visual
+concepts in the photos and videos can assist with address-
+ing this challenge. However, visual recognition goes beyond
+image classi cation and involves obtaining a deeper under-
+standing of images. Object localization, object interaction,
+face recognition, image annotation, are all important corner-
+stone challenges that will lead the way to retelling the story
+of an image: what is happening in the image and why was
+this image taken. Flickr, having a rich diverse collection of
+image types, provides the groundwork for total scene under-
+standing [14] in computer vision and arti cial intelligence,
+a crucial task that can be expanded upon with our dataset,
+and even more so once additional annotations are released
+by ourselves and by others.
+Spatiotemporal Computing. Beyond pixels, we empha-
+size time and location information as key components for re-
+search that aims at understanding and summarizing events.
+Starting with location, the geotagged photos and videos,
+about half of the dataset, provide a comprehensive snap-
+shot of photographic activity over space and time. In the
+past, geotagged media has been used to address a variety
+of research endeavors, such as location estimation [9], event
+detection [15],  nding canonical views of places [4], and vi-
+sual reconstruction of the world [17]. Even understanding
+styles and habits have been used to reverse lookup authors
+online [10]. Geotagged media in the YFCC100M dataset can
+help push the boundaries in these research areas even fur-
+ther.
+More data brings new discoveries and insights, yet it si-
+multaneously also makes searching, organizing and present-
+ing the data and  ndings more di cult. The cameraphone
+has enabled people to capture more photos and videos than
+they can e ectively organize. One challenge for the future is
+therefore devising algorithms that are able to automatically
+and dynamically create albums for use on personal comput-
+ers, cloud storage or mobile devices, where desired media
+and moments of importance can be easily surfaced based
+on simple queries. Harnessing the spatiotemporal context at
+capture time and at query time will take a central role in
+successfully addressing this challenge.
+The previous challenge speaks towards social computing
+e orts aimed at understanding events in unstructured data
+through the rei cation of the photo with space and time.
+While GPS-enabled devices are capable of embedding the
+precise time, location and orientation of capture in the meta-
+data of a photo, in many instances this information is un-
+available or out of date: seconds, hours or sometimes even
+months. In addition, people frequently forget to adjust the
+camera clock to the correct timezone when traveling. These
+kinds of issues pose problems for the accuracy of any kind of
+spatiotemporal data analysis, and new challenges in compu-
+tational photography therefore include devising algorithms
+that can either  x or are resilient against the erroneous.
+Digital Culture and Preservation. What we know to be
+UGC has grown from simple video uploads and bulletin
+board systems; life online has come to re ect culture. These
+large online collections tell a larger story about the world
+around us, from consumer reviews [21] that speak to how
+people engage with the spaces around them to 500 years
+of scanned book photos and illustrations [12] that describe
+how concepts and objects have been visually depicted over
+time. Beyond archived collections, the photostreams of in-
+dividuals represents many facets of recorded visual informa-
+tion, from remembering moments and storytelling to social
+communication and self-identity [19]. This presents a grand
+challenge of sensemaking and understanding digital archives
+from non-homogeneous sources. Photographers and curators
+alike have contributed to the larger collection of Creative
+Commons images, yet little is known on how such archives
+will be navigated and retrieved, or how new information can
+be discovered therein. Our dataset o ers avenues of com-
+puter science research in multimedia, information retrieval,
+and data visualization in addition to the larger questions of
+digital libraries and preservation.
+3. CONCLUSIONS
+Data is one of the core components of research and develop-
+ment. In the  eld of multimedia, datasets are usually created
+with a single purpose in mind, and as such lack reusability.
+Additionally, datasets generally are not or may not be freely
+shared with others, and as such lack reproducibility, trans-
+parency and accountability. To overcome this conundrum,
+we have released one of the largest datasets ever created,
+consisting of 100 million media objects published under a
+Creative Commons license. Our dataset has been curated to
+be comprehensive and representative of real world photog-
+raphy, expansive and expandable in coverage, free and legal
+to use, and intends to consolidate and supplant many ex-
+isting collections. Our dataset encourages the improvement
+and validation of research methods, reduces the e ort of ac-
+quiring data, and stimulates innovation and potential new
+data uses. We have further provided rules on how the data-
+set should be used to comply with licensing, attribution and
+copyright, and o ered guidelines on how to maximize com-
+patibility and promote reproducibility of experiments with
+existing and future work.
+Acknowledgements
+We would like to thank Jordan Gimbel and Kim Capps-
+Tanaka at Yahoo, Pierre Garrigues, Simon Osindero, and
+the rest of the Flickr Vision & Search team, Carmen Carrano
+and Roger Pearce at LLNL, as well as Julia Bernd, Jaeyoung
+Choi, Luke Gottlieb and Adam Janin at ICSI. We are fur-
+ther thankful to ICSI for making their data publicly avail-
+able in collaboration with Amazon. Portions of this work
+were performed under the auspices of the U.S. Department
+of Energy by LLNL under Contract DE-AC52-07NA27344,
+and supported by the National Science Foundation by ICSI
+under Award Number 1251276.
+References
+[1] Bernd, J., Borth, D., Elizalde, B., Friedland, G.,
+Gallagher, H., Gottlieb, L. R., Janin, A., Karabash-
+lieva, S., Takahashi, J., and Won, J. The YLI-MED
+corpus: Characteristics, procedures, and plans.
+CoRR
+abs/1503.04250 (2015).
+[2] Borgman, C. L. The conundrum of sharing research data.
+Journal of the American Society for Information Science
+and Technology 63, 6 (2012), 1059 1078.
+[3] Choi, J., Thomee, B., Friedland, G., Cao, L., Ni, K.,
+Borth, D., Elizalde, B., Gottlieb, L., Carrano, C.,
+Pearce, R., and Poland, D. The placing task: A large-
+scale geo-estimation challenge for social-media videos and
+images. In Proceedings of the ACM International Workshop
+on Geotagging and Its Applications in Multimedia (2014).
+[4] Crandall, D. J., Backstrom, L., Huttenlocher, D., and
+Kleinberg, J. Mapping the world s photos. In Proceedings
+of the IW3C2 International Conference on World Wide Web
+(2009), pp. 761 770.
+[5] Deng, J., Dong, W., Socher, R., Li, L., Li, K., and Fei-
+Fei, L. ImageNet: A large-scale hierarchical image database.
+In Proceedings of the IEEE Conference on Computer Vision
+and Pattern Recognition (2009), pp. 248 255.
+[6] Facebook, Ericsson, and Qualcomm. A focus on e ciency.
+Tech. rep., Facebook Inc., 2013.
+[7] Fienberg, S. E., Martin, M. E., Straf, M. L., et al.
+Sharing research data. National Academy Press, 1985.
+[8] Good, J.
+How many photos have ever been taken?
+https://web.archive.org/web/20150203215607/http:
+//blog.1000memories.com/94-number-of-photos-ever-
+taken-digital-and-analog-in-shoebox, September 2011.
+Accessed July, 2015.
+[9] Hays, J., and Efros, A. A. IM2GPS: estimating geographic
+information from a single image. In Proceedings of the IEEE
+Conference on Computer Vision and Pattern Recognition
+(2008).
+[10] Hecht, B., Hong, L., Suh, B., and Chi, E. H. Tweets from
+Justin Bieber s heart: the dynamics of the location  eld in
+user pro les. In Proceedings of the SIGCHI Conference on
+Human Factors in Computing Systems (2011), pp. 237 246.
+[11] Jia, Y., Shelhamer, E., Donahue, J., Karayev, S., Long,
+J., Girshick, R. B., Guadarrama, S., and Darrell, T.
+Ca e: convolutional architecture for fast feature embedding.
+In ACM Multimedia (2014), pp. 675 678.
+[12] Kremerskothen, K. Welcome the internet archive
+to the commons.
+https://blog.flickr.net/2014/08/29/
+welcome-the-internet-archive-to-the-commons/, August
+2014. Accessed July, 2015.
+[13] Krizhevsky, A., Sutskever, I., and Hinton, G. E.
+Im-
+ageNet classi cation with deep convolutional neural net-
+works. In Advances in Neural Information Processing Sys-
+tems (2012), pp. 1097 1105.
+[14] Li, L., Socher, R., and Fei-Fei, L. Towards total scene
+understanding: classi cation, annotation and segmentation
+in an automatic framework.
+In Proceedings of the IEEE
+Conference on Computer Vision and Pattern Recognition
+(2009), pp. 2036 2043.
+[15] Rattenbury, T., Good, N., and Naaman, M. Towards au-
+tomatic extraction of event and place semantics from Flickr
+tags.
+In Proceedings of the ACM International Confer-
+ence on Research and Development in Information Retrieval
+(2007), pp. 103 110.
+[16] Renear, A. H., Sacchi, S., and Wickett, K. M. De ni-
+tions of dataset in the scienti c and technical literature. In
+Proceedings of the Annual Meeting of the American Society
+for Information Science and Technology (2010), pp. 1 4.
+[17] Snavely, N., Seitz, S., and Szeliski, R. Photo tourism:
+exploring photo collections in 3D. ACM Transactions on
+Graphics 25, 3 (2006), 835 846.
+[18] Swan, A., and Brown, S. To share or not to share: publi-
+cation and quality assurance of research data outputs. Tech.
+rep., Research Information Network, 2008.
+[19] Van Dijck, J. Digital photography: communication, iden-
+tity, memory. Visual Communication 7, 1 (2008), 57 76.
+[20] Wilson, M. L., Chi, E. H., Reeves, S., and Coyle, D.
+RepliCHI: The Workshop II.
+In Proceedings of the Inter-
+national Conference on Human Factors in Computing Sys-
+tems, Extended Abstracts (2014), pp. 33 36.
+[21] Yelp dataset
+challenge.
+http://yelp.com/dataset_
+challenge/. Accessed July, 2015.
+[22] Youtube press statistics.
+http://youtube.com/yt/press/
+statistics.html. Accessed July, 2015.

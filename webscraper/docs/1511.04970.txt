@@ -1,0 +1,508 @@
+Bruno Gon alves  
+David S nchez 
+Learning about Spanish dialects through Twitter 
+ 
+Abstract: This paper maps the large-scale variation of the Spanish language by employing a corpus 
+based  on  geographically  tagged  Twitter  messages.  Lexical  dialects  are  extracted  from  an  analysis  of 
+variants of tens of concepts. The resulting maps show linguistic variation on an unprecedented scale across 
+the globe. We discuss the properties of the main dialects within a machine learning approach and find that 
+varieties spoken in urban areas have an international character in contrast to country areas where dialects 
+show a more regional uniformity.  
+ 
+Resumen: En este trabajo, cartografiamos la variaci n a gran escala del idioma espa ol usando un 
+corpus basado en mensajes geolocalizados de Twitter. Se extraen las formas dialectales l xicas a partir del 
+an lisis  de  decenas  de  variantes.  Los  mapas  resultantes  muestran  una  variaci n  ling  stica  en  todo  el 
+planeta con una escala que no tiene precedentes. Examinamos las propiedades de los principales dial cticos 
+empleando  t cnicas  de  aprendizaje  autom tico  y  hallamos  que  las  variedades  habladas  en   reas  urbanas 
+poseen  un  car cter  internacional,  a  diferencia  de  las  zonas  rurales,  donde  los  dialectos  presentan  una 
+uniformidad m s regional. 
+Keywords: Spanish variation, Twitter, geolocation, lexical dialectology 
+Palabras clave: variaci n del espa ol, Twitter, geolocalizaci n, dialectolog a l xica 
+ 
+ 
+ 
+ 
+ 
+1. Introduction1 
+ 
+As all social animals, humans depend on communication to live, grow, and thrive and as 
+society grows ever more complex so does the need to communicate effectively. The evolutionary 
+answer to this need was the development of languages, first in spoken and later in written form. 
+                                                 
+1  BG  thanks  the  Moore  and  Sloan  Foundations  for  support  as  part  of  the  Moore-Sloan  Data  Science 
+Environment at NYU.  
+Disclaimer:  This  product  was  made  utilizing  the  LandScan  2007  High  Resolution  global  Population  Data  Set 
+copyrighted  by  UT-Battelle,  LLC,  operator  of  Oak  Ridge  National  Laboratory  under  Contract  No.  DE-AC05-
+00OR22725 with the United States Department of Energy. The United States Government has certain rights in this 
+Data Set. Neither UT-BATTELLE, LLC NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY 
+OF THEIR EMPLOYEES, MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL 
+LIABILITY  OR  RESPONSIBILITY  FOR  THE  ACCURACY,  COMPLETENESS,  OR  USEFULNESS  OF  THE 
+DATA SET. 
+ 
+1 
+Language allows us to clearly express our thoughts and feelings, transmit knowledge, coordinate 
+large groups of individuals and ultimately achieve our societal and individual goals. For a given 
+language to be able to play its fundamental social role it must continuously evolve and adapt to 
+serve  the  needs  of  its  population.  As  a  result,  new  forms,  registers,  dialects  and  even  whole 
+languages emerge and fade from existence.  
+Over  the  years,  linguists  have  strived  to  study  and  analyze  all  aspects  of  variation  and 
+change in language (Chambers / Trudgill 1998), both oral (Labov / Sharon / Boberg 2005) and 
+written (Bauer 2004) using surveys, interviews, specially crafted corpora, etc. Studies that relied 
+predominantly on written records have focused on more formal types of language use, leaving 
+the  vernacular  as  a  little  explored  and  understood  domain.  The  recent  massification  of  online 
+social  networking  and  microblogging  services  resulted  in  an  unprecedented  wealth  of  written 
+content produced by large swaths of the population in many different contexts. Not surprisingly, 
+these new Internet corpora have attracted the attention of linguists of diverse backgrounds and 
+opened the doors to new and innovative studies on how language use varies both geographically 
+and over time (Nguyen et al. 2015) in different languages. Twitter is an excellent example. For 
+instance,  using  this  tool  we  (Gon alves  /  S nchez  2014)  find  two  global  varieties  of  Spanish; 
+Einsenstein et al. (2014) propose a latent variable model for English geographic lexical diffusion 
+and change; Doyle (2014) discusses the differences between Twitter-based linguistic maps and 
+results from more traditional approaches; Ibrahim / Abdou / Gheith (2014) use standard Arabic 
+and Egyptian dialectal Arabic tweets in a sentiment analysis; Kulkarni / Perozzi / Skiena (2015) 
+examine  semantic  and  syntactic  variation  of  English  with  a  massive  online  dataset;  Estrada 
+Arr ez / de Benito Moreno (2016) investigate language innovations in online social networks. 
+In this work, we build on our previous efforts (Gon alves / S nchez 2014) and use Twitter to 
+empirically  define  Spanish  geographically  consistent  dialects.  Based  on  a  machine  learning 
+analysis  we  found  that  Spanish  is  globally  split  into  two  large  lexical  clusters.  Cluster    
+corresponds to the speech used in largely populated areas (an international variety) while cluster 
+  is mostly encountered in rural areas and is thus related to local varieties. Here, using a greatly 
+expanded  set  of  tweets  and  an  independent  list  of  words  we  verify  the  existence  of  these 
+superdialects and recompute the dialect isoglosses. 
+ 
+ 
+ 
+2 
+2. Methods 
+ 
+Using  the  Twitter  Gardenhose  we  collected  an  unbiased  sample  of  all  tweets  produced 
+between May 2010 and June 2015. See Mocanu et al. (2013), Gon alves / S nchez (2014) and 
+Ronen et al. (2014) for further results on Twitter datasets. From these, we selected the subset of 
+tweets containing geolocation information and used the Google s Compact Language Detection 
+(McCandless  2012)  library  to  identify  all  tweets  written  in  Spanish.  The  resulting  dataset 
+contains  106  million  geolocated  tweets  written  in  Spanish.  As  shown  in  Figure  1,  the 
+overwhelming  majority  of  Spanish  tweets  are  located  in  Spain  and  Spanish  speaking  Latin-
+American  countries  (Moreno  Fern ndez  /  Otero  Roth  2007)  with  the  remaining  tweets  being 
+attributable to regions with large expat communities or large tourist attractions.  
+ 
+Figure 1: Geographical distribution of Spanish tweets in our dataset. 
+ 
+ 
+ 
+The next step is to define a corpus. We focus on word choice (lexical differences) because 
+this level of language is more easily accessed in our database. The advantage of using lexical 
+variation is methodological as studying phonetic variation (Penny 2000) in written corpora poses 
+many  practical  challenges.  See,  e.g.,  Cahuzac  (1980)  for  a  lexical  analysis  that  leads  to  clear 
+divisions of Hispanic America. Our corpus is built from the Varilex database (Ueda / Takagaki / 
+ 
+3 
+Ruiz Tinoco 1993). Varilex contains thousands of words and expressions grouped by concepts. 
+The  different  correspondences  for  a  given  concept  are  registered  in  many  Spanish-speaking 
+locations. We selected a list of 46 common concepts containing 331 lexical features (the full list 
+is shown in the Appendix below) and isolated 4 million instances in which these words appeared 
+in our dataset of 106 million geolocated tweets in Spanish. The selection of these concepts is 
+aimed at examining only geographical distinctions, whilst also minimizing semantic ambiguities 
+and register variations. Each instance was mapped to a 25 x25  geographical cell (we have in 
+total  3629  non-empty  cells)  for  which  the  dominant  word  for  each  concept  was  determined. 
+Maps  for  each  concept  were  generated  by  drawing  a  circle  centered  at  each  cell  with  a  color 
+given  by  the  dominant  word  and  an  area  that  scales  with  how  many  times  that  word  was 
+observed in that cell.  
+Finally, we built a cell x word matrix, M, where element Mcw is 1 if word w is the dominant 
+term  for  a  given  concept  in  cell  c  and  0,  otherwise.  This  matrix  summarizes  all  the  relevant 
+lexico-geographical information that is necessary to fully characterize the spatial variation of the 
+Spanish language. 
+ 
+ 
+3. Results and discussion 
+ 
+Figure 2 shows the two maps corresponding to the concepts  to miss [someone]  (left) and 
+ cold   (right).  From  this  figure  it  becomes  immediately  clear  that  some  forms  are  clearly 
+dominant in some regions only to be supplanted by other forms elsewhere. For example, echar 
+de menos is the dominant form in European Spanish while extra ar is the more common form in 
+the Spanish spoken in America. On the other hand, the geographical distribution of the words 
+corresponding to  cold  is much more varied with resfr o being common in the R o de la Plata 
+region,  especially  around  Buenos  Aires,  gripa  being  dominant  in  Mexico  and  Colombia  and 
+several other forms coexisting in the Iberian Peninsula.  
+ 
+ 
+ 
+ 
+4 
+Figure 2: Geographical distribution of words for the concepts  to miss [someone]  (left) 
+and  cold, influenza  (right). 
+ 
+ 
+ 
+ 
+It is worth highlighting the fine spatial detail that we are able to obtain with this approach. In 
+Fig.  3  we  zoom  in  on  the  geolocations  for  the  words  belonging  to  the  concept   cold   used  in 
+Spain. While resfriado dominates in Southern Spain the situation is more diverse in the Northern 
+part (Fern ndez-Ord  ez 2012). Clearly, the final distribution is not only geolectal but can also 
+include register competition. However, we note that our findings are consistent with the results 
+found  in  Varilex,  so  the  outcome  of  our  methodology  is  encouraging  despite  its  obvious 
+limitations. Furthermore, in contrast to Varilex our generated maps are not restricted to a few 
+towns but show a geographical continuum for the use of the lexical units. In addition, the maps 
+are based on an automatic analysis of thousands of tweets including the different words. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+5 
+Figure 3: Geographical distribution of words for the concept  cold  in Spain. 
+ 
+ 
+ 
+The immense amount of data allows us to address a statistical analysis of our results. Our 
+aim  is  to  unveil  the  internal  structure  of  the  variation  for  the  Spanish  used  in  Twitter.  The 
+different  dialects  and  varieties  should  naturally  emerge  from  the  analysis.  Many  linguistic 
+criterions at different levels have been suggested in order to establish well-defined zones with 
+dialect similarities. Here, we follow a machine learning approach that consists of trying to find 
+regularities in our data (Murphy 2012).  The basic idea is to group cells in K  clusters that are 
+mathematically  similar  to  each  other.  This  similarity  in  our  data  has  a  linguistic  origin  and  is 
+encoded in M. We therefore use a K-means algorithm applied to the matrix M. However, M is too 
+large.  We  can  obtain  a  more  manageable  arrangement  by  reducing  the  M  size  keeping  at  the 
+same  time  95%  of  the  variance  (i.e.,  the  meaningful  correlations).  The  difficulty  now  is  to 
+establish an optimal value of K that balances the complexity and a relatively small number of 
+clusters. This value is found from the metric f(k) (Pham / Dimov / Nguyen 2005).  
+We  find  that  the  cells  split  into  two  well-defined  clusters  or  macrovarieties,  which  we 
+represent in the map of Fig. 4 (red dots: superdialect  ; blue dots: superdialect  ). Surprisingly, 
+the clusters are not localized around a definite region. Both groups are present in all Spanish-
+speaking countries (except Cuba, for which we have no Twitter data). There have been previous 
+proposals that put forward a bipartition of Spanish into two superdialects. The criterion has been 
+mainly  phonetic.  For  instance,  depending  on  the  realization  of  the  implosive  /-s/  Fern ndez 
+Sevilla  (1980)  and  Montes  Giraldo  (1982)  have  established  two  large  Spanish  varieties:  the 
+ 
+6 
+Southern,  atlantic  or  lowland  dialect  and  the  Central,  interior  or  highland  dialect.  Both 
+superdialects  are  at  the  same  time  present  in  Europe  and  America  and  have  no  geographical 
+continuity,  as  in  our  case.  Nevertheless,  the  nature  of  our  superdialects  is  entirely  different 
+because our analysis is based on the variation of word choice. 
+Let us examine in closer detail the properties of our two clusters. In the inset of Fig. 4 we 
+plot the statistical distribution of population estimated for each superdialect. Clearly, cluster   
+has on average more population than cluster  . We confirm this result by checking that many red 
+dots in Fig. 4 correspond to cities and large urban areas (indicated in the figure). We emphasize 
+that this conclusion agrees with our previous work (Gon alves / S nchez 2014) but is obtained 
+from  a  completely  different  corpus.  The  extension  of  the  two  superdialects  slightly  differs  as 
+compared  with  our  earlier  analysis  since  the  Twitter  dataset  is  now  larger.  In  any  case,  the 
+presence of the two superdialects obtained through independent datasets shows the robustness of 
+our conclusion. 
+What  is  the  nature  of  each  superdialect?  The  answer  should  be  found  in  the  influence  of 
+cities in the evolution of language. Urban areas have a pivotal role in the globalization process of 
+Spanish (L pez Morales 2001). The driving force is multiple (mass media, travellers, emigrants, 
+Internet), which tends to a uniformization of the active lexicon eliminating specific words and 
+expressions with a marked regional character. We can assume that the pan-Hispanic interurban 
+variety enjoys social prestige among Twitter users. We have checked that superdialect   presents 
+most of the words in our corpus whereas superdialect   is linguistically more heterogeneous, as 
+expected for rural areas. We assign to superdialect   an international Spanish variety understood 
+and propagated mostly in the main urban centers and likely related to official media. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+7 
+Figure 4: After a cluster analysis, cells represented in Fig. 1 fall into two large clusters or 
+superdialects, represented by red (superdialect  ) and blue (superdialect  ) dots. The inset 
+highlights the population differences between the two clusters. 
+ 
+ 
+ 
+ 
+We  continue  our  geographical  delineation  of  the  various  dialects  spoken  in  Twitter  by 
+further subdividing superdialect  . We identify three distinct regional dialects, as shown in Fig 5, 
+corresponding, respectively, to the Iberian Peninsula (in blue), North America, Central America 
+and  the  Northern  part  of  South  America  (in  orange)  and  the  Southern  Cone  (in  green). 
+Surprisingly,  we  also  find  one  fourth  regional  dialect  (in  yellow)  whose  extension  is  less 
+confined and which can be found scattered throughout South America with a predominance in 
+the interior of Argentina, where it coexists with the green dialect, and locations along the Andes 
+ 
+8 
+mountain range (South, Central and North Andes), where we observe a contact with the orange 
+cluster. These diatopically opposable options are truly dialects understood as regional varieties. 
+The dialect division of Hispanic America is a topic of ongoing debate; for a review, see Moreno 
+Fern ndez (1993). However, our results agree with the most recent proposals (Quesada Pacheco 
+2014). The orange dialect spans the south of the United States, Mexico, Central America and the 
+Caribbean countries whereas the green variety comprises the Rio de la Plata region in Argentina, 
+Uruguay and Paraguay. The former dialect has been more influenced over the years by a closer 
+relationship  with  the  European  metropolis  (see  also  the  blue  dots  in  the  Mexican  plateau).  In 
+contrast, the Rioplatense Spanish has its own personality due to later settlement of the region and 
+less  contact  with  the  prestigious  norm  radiating  from  Spain  during  the  colonial  age.  It  is 
+interesting to note that the strongly mixed character of Chile suggests that this country could, in 
+fact,  build  up  a  different  region  by  itself,  in  agreement  with  recent  schemes  (Cahuzac  1980). 
+Future  work,  which  should  increase  the  size  of  the  dataset  and  reduce  the  noise  levels,  might 
+detect more clearly this language variety and also shed more light on the nature of the yellow 
+dialect, which now appears to be quite dispersed. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+9 
+Figure 5: Geographical distribution of language varieties corresponding to superdialect  . 
+Note the separation between European and American dialects and the division of the latter 
+into three main blocks. 
+ 
+ 
+4. Conclusions 
+ 
+As technology permeates more and more aspects of our daily lives, our ability to observe 
+human behavior through different lenses also increases. In particular, the advent of large-scale 
+online social media services implies that we can, for the first time in history, perform a detailed 
+analysis of how language is used informally around the world. In this manuscript we extend our 
+previous efforts in employing user-generated content to analyze the diatopic structure of modern 
+day Spanish language at the lexical level. Using a completely new list of concepts and related 
+words and a much larger geolocated Twitter corpus, we recover a more detailed geographical 
+ 
+10 
+picture of the two superdialects identified and characterize the regional variations observed. The 
+robustness of our results points the way towards a deeper understanding of vernacular language 
+and opens the doors to more detailed empirical studies of language usage and evolution across 
+the world. This study is one further step towards a large-scale approach to linguistics and we 
+believe  that  similar  studies  on  other  languages  will  undoubtedly  allow  us  to  start  to  glimpse 
+common mechanisms in language evolution and differentiation.  
+ 
+References 
+ 
+Bauer, Laurie (2004):  Inferring variation and change from public corpora , in: Chambers J. K. / 
+Trudgill  Peter  /  Schilling-Estes  Natalie  (eds.):  The  handbook  of  language  variation  and 
+change. Oxford: Backwell Publishing, 97-114. 
+Cahuzac, Philippe (1980):  La divisi n del espa ol de Am rica en zonas dialectales. Soluci n 
+etnoling  stica o sem ntico-dialectal , in: Ling  stica Espa ola Actual 2, 385-461. 
+Chambers, J. K. / Trudgill, Peter (1998): Dialectology. Cambridge: Cambridge University Press. 
+Doyle, Gabriel (2014):  Mapping dialectal variation by querying social media , in: Proceedings 
+of  the  14th  Conference  of  the  European  Chapter  of  the  Association  for  Computational 
+Linguistics (EACL). < http://web.stanford.edu/~gdoyle/papers/doyle-2014-eacl.pdf>.  
+Einsenstein, Jacob / O Connor, Brendan / Smith, Noah A. / Xing, Eric P. (2014):  Diffusion of 
+Lexical Change in Social Media , in: PLoS ONE 9, e113114. 
+Estrada Arr ez, Ana /de Benito Moreno, Carlota (2016):  Variaci n en las redes sociales: datos 
+twilectales , in: Revista Internacional de Ling  stica Iberoamericana 28. 
+Fern ndez-Ord  ez,  In s  (2012):   El  norte  peninsular  y  su  papel  en  la  historia  de  la  lengua 
+espa ola ,  in:  G mez  Seibane,  Sara  /  Sinner,  Carsten  (eds.):  Estudios  sobre  tiempo  y 
+espacio en el espa ol norte o. San Mill n de la Cogolla (La Rioja): CILENGUA, 23-68. 
+Fern ndez Sevilla, Julio (1980):  Los fonemas implosivos en espa ol , in: Thesaurus: Bolet n de 
+Instituto Caro y Cuervo 35, 3, 456-505. 
+Gon alves, Bruno / S nchez, David (2014):  Crowdsourcing Dialect Characterization Through 
+Twitter , in: PLoS ONE 9, e112074. 
+ 
+11 
+Ibrahim,  Hossam  S.  /  Abdou,  Sherif  M.  /  Gheith,  Mervat  (2015):   Sentiment  Analysis  for 
+Modern  Standard  Arabic  and  Colloquial ,  in:  International  Journal  on  Natural  Language 
+Computing 4, 631394. 
+Kulkarni, Vivek / Perozzi, Bryan / Skiena, Steven (2015):  Freshman or Fresher? Quantifying 
+the  Geographic  Variation  of  Internet  language .  <http://arxiv.org/abs/1510.06786>  (9 
+November 2015). 
+Landscan 2007 = Bright, Eddie A. / Coleman, Phil R. / King, Amy L. / Rose, Amy N. (2008): 
+Landscan 2007 Dataset. <http://web.ornl.gov/sci/landscan/index.shtml> (27 October 2015). 
+Labov,  William  /  Sharon,  Ash  /  Boberg,  Charles  (2005):  Atlas  of  North  American  English. 
+Phonetics, Phonology and Sound Change. Berlin / New York: De Gruyter. 
+L pez  Morales,  Humberto  (2001):   Tendencias  actuales  del  l xico  hispanoamericano ,  in: 
+Revista de Occidente 240, 5-24. 
+McCandless,  Michael 
+(2012): 
+Chromium 
+Compact 
+Language 
+Detector. 
+<http://code.google.com/p/chromium-compact-language-detector> (27 October 2015). 
+Mocanu,  Delia  /  Baronchelli,  Andrea  /  Perra,  Nicola  /  Gon alves,  Bruno  /  Zhang,  Qian  / 
+Vespignani, Alessandro (2013):  The Twitter of Babel: Mapping World Languages through 
+Microblogging Platforms , in: PLoS ONE 8: e61981. 
+Montes  Giraldo,  Jos   Joaqu n  (1982):   El  espa ol  de  Colombia.  Propuesta  de  clasificaci n 
+dialectal , in: Thesaurus: Bolet n del Instituto Caro y Cuervo 37, 1, 23-92. 
+Moreno  Fern ndez,  Francisco  /  Otero  Roth,  Jaime  (2007):  Atlas  de  la  lengua  espa ola  en  el 
+mundo. Barcelona: Ariel.  
+Moreno Fern ndez, Francisco (1993): La divisi n dialectal del espa ol de Am rica. Alcal  de 
+Henares: Universidad de Alcal  de Henares. 
+Murphy,  Kevin  P.  (2012):  Machine  Learning:  A  Probabilistic  Perspective.  Cambridge  (MA): 
+MIT Press. 
+Nguyen,  Dong  /  Seza  Do ru z,  A.  /  Ros ,  Carolyn  P.  /  de  Jong,  Franciska  (2015): 
+ Computational  Sociolinguistics:  A  Survey .  <http://arxiv.org/abs/1508.07544>  (30  August 
+2015). 
+Penny, Ralph (2000): Variation and change in Spanish. Cambridge: Cambridge University Press. 
+Pham, Duc Troung / Dimov, Stefan S. / Nguyen, Cuong Du (2005):  Selection of K in K-means 
+clustering , in: Journal of Mechanical Engineering Science 219, 1, 103-119. 
+ 
+12 
+Quesada Pacheco, Miguel  ngel (2014):  Divisi n dialectal del espa ol de Am rica seg n sus 
+hablantes. An lisis dialectol gico perceptual , in: Bolet n de Filolog a 49, 2, 257-309. 
+Ronen, Shahar / Gon alves, Bruno / Hu, Kevin Z. / Vespignani, Alessandro / Pinker, Steven / 
+Hidalgo, C sar A. (2014):  Links that speak: the global language network and its association 
+with global fame , in: Procceedings of the National Academy of Scienes of the United States 
+of America 111, 52, E5616-E5622. 
+del 
+mundo. 
+espa ol 
+Ueda, Hiroto / Takagaki, Toshihiro / Ruiz Tinoco, Antonio (1993): VARILEX, Variaci n l xica 
+<http://lecture.ecc.u-
+del 
+University 
+tokyo.ac.jp/~cueda/varilex/> (5 November 2015). 
+ 
+ 
+Appendix 
+ 
+Here follows the list of concepts and words used included in our dataset. The Varilex code 
+of 
+Tokyo. 
+number (Ueda / Takagaki / Ruiz Tinoco 1993) is shown in brackets. 
+ 
+ 
+Concept 
+ Slice of cheese  [B009] 
+ Demijohn  [B011] 
+ Washer  [B038] 
+ Plaster  [B046] 
+ Attic  [B051] 
+ Wardrobe  [B055] 
+Lexical features 
+l mina de queso, lasca de queso, loncha de 
+queso, lonja de queso, rebanada de queso, 
+rodaja de queso, slice de queso, tajada de queso, 
+queso de sandwich, queso en lonchas, queso en 
+rebanadas, queso en slice, queso americano, 
+tranchetes 
+bid n, bombona, botella grande, garrafa, 
+garraf n, tambuche, candungo, pomo pl stico 
+lavadora, lavarropa, lavarropas, m quina 
+de lavar 
+banda adhesiva, curita, esparadrapo, tirita 
+ tico, altillo, azotea, buhardilla, guardilla, 
+penthouse, mansarda, tabanco 
+armario, closet, placard, ropero, 
+guardarropas 
+ 
+13 
+ Braces, suspenders  [B077] 
+ Ring  [B097] 
+ Tape recorder  [B111] 
+ Blind man s buff  [B119] 
+ Merry-go-round  [B134] 
+ Loudspeaker  [B153] 
+ Flower pot  [B170] 
+ Fans  [C001] 
+ Waiter  [C014] 
+ School  [C029] 
+ Amusement  [C028] 
+ Stay  [C030] 
+ Miss  [C031] 
+ Cheek  [C058] 
+ Monkey  [C060] 
+ Mosquito  [C061] 
+ Chance  [C065] 
+breteles, bruteles, suspensores, tiradores, 
+tirantes 
+anillo, argolla, aro, sortija, cintillo 
+cassette, casete, grabador, grabadora, 
+magnetof n, tocacintas, magnet fono 
+escondidas, gallina ciega, gallinita ciega, 
+gallito ciego, pita ciega, gallo ciego 
+caballitos, calesita, carrusel, tiovivo, 
+machina 
+altavoz, altoparlante, altovoz, amplificador, 
+meg fono, parlante, magnavoz 
+maceta, macetero, matera, matero, tiesto, 
+macetera, plantera 
+afici n, aficionados, fan ticos, fanaticada, 
+forofos, hinchada, hinchas, seguidores 
+camarero, barman, mesero, mesonero, 
+mozo, camarero 
+colegio, escuela, centro escolar, scuela 
+distracciones, diversi n, entretenci n, 
+entretenimiento, pasatiempo 
+estada, estad a, estancia 
+equivocaci n, error, falencia, fallo 
+cachetes, carrillos, galtas, mejillas, 
+mofletes, p mulo 
+chango, chimpanc , macaco, mono, mico, 
+simio, chongo 
+c nife, mosco, mosquito, zancudo 
+bicoca, chance, ocasi n, oportunidad 
+ 
+14 
+ Parcel, package  [C066] 
+encomienda, paquete postal 
+ Sponsor  [C072] 
+ Banana  [C080] 
+ Dust  [C082] 
+ Bar  [C107] 
+ Earthquake  [C109] 
+ Shooting  [C112] 
+ Glance  [C116] 
+ Greasy  [C156] 
+ Beautiful  [C159] 
+ Cold  [C182] 
+ Cellophane tape  [E007] 
+ Crane  [E013] 
+ Fruit cup  [E017] 
+ Gas station  [E018] 
+auspiciador, auspiciante, esp nsor, 
+patrocinador, patrocinante, propiciador, 
+sponsor 
+banana, banano, cambur, guineo, pl tano, 
+tombo 
+nube de polvo, polvadera, polvareda, 
+polvazal, polvero, polvoreda, polvor n, terral, 
+terregal, tierral, tolvanera 
+bar, boliche, cantina, cervecer a, pulper a, 
+taberna, tasca, expendio, piquera 
+movimiento tel rico, movimiento s smico, 
+remez n, se smo, sismo, temblor de tierra, 
+terremoto 
+abaleo, balacera, baleada, tiroteo 
+ojeada, miradita, vistazo 
+engrasado, grasiento, grasoso, mantecoso, 
+seboso 
+bella, bonita, hermosa, linda, preciosa 
+catarro, constipado, coriza, gripa, gripe, 
+resfr o, resfriado, trancazo 
+celo, celof n, cinta adhesiva, cinta scotch, 
+cintex, scotch, teip, d rex, diurex, cinta pegante 
+gr a, guinche, tecle 
+ensalada de frutas, macedonia, cleric , 
+c ctel de frutas, tuttifruti, tutifruti 
+bomba de gasolina, bomba de nafta, 
+estaci n de servicio, gasolinera, bencinera, 
+bomba de bencina, gasoliner a, surtidor de 
+gasolina 
+ 
+15 
+ Interview  [E020] 
+ Obstinate  [E026] 
+ Peanut  [E027] 
+ Scratch  [E032] 
+ Sweetener  [E036] 
+ Thaw  [E039] 
+ Miss  [F125] 
+ Park  [D037] 
+ 
+entrevistar, reportear, interviuvar 
+cabez n, cabezudo, cabeza dura, cabezota, 
+obstinado, porfiado, terco, testarudo, tozudo 
+cacahuate, cacahuete, man , cacahu , 
+cacaomani 
+ara azo, ara  n, aru etazo, aru  n, 
+raju o, ray n, rasgu o, rasgu  n 
+edulcorante, endulzante, endulcina, 
+endulzador, sacarina 
+descongelar, deshielar 
+echar de menos, extra ar, a orar 
+aparcar, estacionar, parquear 
+ 
+16 

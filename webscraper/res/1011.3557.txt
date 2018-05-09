@@ -1,0 +1,11 @@
+ The folksonomy learning problem has been addressed in recent work [17] using a bottom-up approach to heuristically construct the folk- sonomy.
+ PROBABILISTIC INTEGRATION OF STRUCTURED DATA A key idea of folksonomy learning through sapling inte- gration is to merge similar nodes from di erent saplings.
+ The local similarity between two nodes i and j, localSim(i, j), is based on the intrinsic features of i and j, such as their tag distributions.
+ To reduce the com- putational complexity, we assume that nodes with dif- ferent stemmed names belong to di erent concepts, and as a result, their similarity is 0.
+ Root-to-Root similarity Two saplings A and B are likely to describe the same concept if their root nodes rA and rB have similar names and some of their leaf nodes also have similar names.
+ Structural similarity between two leaf nodes is de ned as follows: structSimLL(lA, lB) (5) = 1 Z 1 ((Xi,j (name(lA i ), name(lB j ))) 1).
+ We omit E, I and S factors to simplify the diagram. (b) Factor graph representation of RAP. the rst constraint.
+ We then used the leaf node names of these saplings to identify other saplings whose root names were similar to these names, and so on, for two iterations.
+ We used the following similarity func- tions: (1) local : only local similarity; and (2) hybrid : local and structural similarity; and (3) class-hybrid : lo- cal and structural similarity using class labels.
+ Results We measure how using structural information, either through structural similarity or through structural con- straints, a ects the quality of the learned folksonomy.
+ We studied two di erent ways to incorporate structural information into the inference process, and applied the approach to the folksonomy learning problem.

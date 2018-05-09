@@ -1,0 +1,1361 @@
+7
+1
+0
+2
+ 
+l
+u
+J
+ 
+8
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+3
+v
+3
+9
+4
+8
+0
+.
+2
+1
+5
+1
+:
+v
+i
+X
+r
+a
+Unveiling Correlations via Mining Human-Thing Interactions
+in the Web of Things
+A
+Lina Yao, UNSW Australia
+Quan Z. Sheng, Macquarie University
+Anne H.H. Ngu, The Texas State University
+Xue Li, The University of Queensland
+Boualem Benattalah, UNSW Australia
+With recent advances in radio-frequency identi cation (RFID), wireless sensor networks, and Web services,
+physical things are becoming an integral part of the emerging ubiquitous Web. Finding correlations among
+ubiquitous things is a crucial prerequisite for many important applications such as things search, discovery,
+classi cation, recommendation, and composition. This article presents DisCor-T, a novel graph-based ap-
+proach for discovering underlying connections of things via mining the rich content embodied in the human-
+thing interactions in terms of user, temporal and spatial information. We model these various information
+using two graphs, namely a spatio-temporal graph and a social graph. Then, random walk with restart
+(RWR) is applied to  nd proximities among things, and a relational graph of things (RGT) indicating implicit
+correlations of things is learned. The correlation analysis lays a solid foundation contributing to improved
+effectiveness in things management and analytics. To demonstrate the utility of the proposed approach, we
+develop a  exible feature-based classi cation framework on top of RGT and perform a systematic case study.
+Our evaluation exhibits the strength and feasibility of the proposed approach.
+Categories and Subject Descriptors: H.3.5 [Information Storage and Retrieval]: Online Information Ser-
+vices; H.4.0 [ Information Systems]: General
+General Terms: Design, Algorithms, Experimentation
+Additional Key Words and Phrases: Web of Things, correlation discovery, random walk with restart
+ACM Reference Format:
+ACM Trans. Intell. Syst. Technol. V, N, Article A (January YYYY), 25 pages.
+DOI:http://dx.doi.org/10.1145/0000000.0000000
+1. INTRODUCTION
+Since its birth in early 1990s, the World Wide Web has been the heart of the research,
+development, and innovation in the world. Indeed, it has changed our world and so-
+ciety so quickly and profoundly over the last two decades by sharing knowledge and
+connecting people. Very recently, the World Wide Web is beginning to connect ordi-
+nary things in the physical world, also called  Web of Things  (WoT) [Christophe et al.
+Lina Yao s research has been supported by ARC Discovery Early Career Researcher Award DE160100509.
+Quan Z. Sheng s research has been partially supported by Australian Research Council (ARC) Future Fel-
+lowship FT140101247 and Discovery Project Grant DP140100104. Authors addresses: L. Yao and B. Be-
+natallah, School of Computer Science and Engineering, the University of New South Wales, NSW 2052,
+Australia; email: {lina.yao, boualem}@cs.unsw.edu.au; Q. Z. Sheng, Department of Computing, Macquarie
+University, NSW 2109, Australia; email: michael.sheng@mq.edu.au; A. H. H. Ngu, Department of Computer
+Science, Texas State University, TX 78666-4616, USA; email: angu@txstate.edu; X. Li, School of ITEE, the
+University of Queensland, Queensland, 4072, Australia; email: xueli@itee.uq.edu.au.
+Permission to make digital or hard copies of part or all of this work for personal or classroom use is granted
+without fee provided that copies are not made or distributed for pro t or commercial advantage and that
+copies show this notice on the  rst page or initial screen of a display along with the full citation. Copyrights
+for components of this work owned by others than ACM must be honored. Abstracting with credit is per-
+mitted. To copy otherwise, to republish, to post on servers, to redistribute to lists, or to use any component
+of this work in other works requires prior speci c permission and/or a fee. Permissions may be requested
+from Publications Dept., ACM, Inc., 2 Penn Plaza, Suite 701, New York, NY 10121-0701 USA, fax +1 (212)
+869-0481, or permissions@acm.org.
+c(cid:13) YYYY ACM 2157-6904/YYYY/01-ARTA $15.00
+DOI:http://dx.doi.org/10.1145/0000000.0000000
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:2
+2011a; Guinard et al. 2011; Mathew et al. 2013; Barnaghi et al. 2013; Yao et al. 2015].
+As indicated by the inventor of the World Wide Web, Tim Berners-Lee,  it isnt the
+documents which are actually interesting; it is the things they are about! 1. WoT aims
+to connect everyday objects, such as coats, shoes, watches, ovens, washing machines,
+bikes, cars, even humans, plants, animals, and changing environments, to the Internet
+to enable communication/interactions between these objects. Being widely regarded as
+one of the most important technologies that is going to change our world in the coming
+decade, the ultimate goal of WoT is to enable computers to see, hear and sense the real
+world.
+While such a ubiquitous WoT environment offers the capability of integrating in-
+formation from both the physical world and the virtual one leading to tremendous
+business and social opportunities (e.g., ef cient supply chains, independent living of
+elderly persons, and improved environmental monitoring), it also presents signi cant
+challenges [Ferscha 2012; Baresi et al. 2015; Vitali and Pernici 2014; Sheng et al.
+2008]. With many things connected and interacted over the Web, there is an urgent
+need to ef ciently index, organize, and manage these things for object search, recom-
+mendation, and mash-up, and effectively reveal interesting patterns from things.
+Before effectively and ef ciently classifying, managing and recommending ubiqui-
+tous things, a fundamental task is to discover relations among things. Indeed,  nding
+implicit correlations among things is a much more challenging task than  nding rela-
+tions for documents, web pages, and people, due to the following unique characteristics
+of things on the Web.
+  Lack of uniform features. Things are diverse and heterogeneous in terms of func-
+tionality, access methods or descriptions. Some things have meaningful descriptions
+while many others do not [Christophe et al. 2011b; Yao et al. 2013]. As a result, it is
+quite challenging to discover the implicit correlations among heterogeneous things.
+Things cannot be easily represented in a meaningful feature space. They usually
+only have very short textual descriptions and lack a uniform way of describing the
+properties and the services they offer [Kindberg et al. 2002].
+  Lack of structural interconnections. Correlations among things are not obvious
+and are dif cult to discover. Unlike social networks of people, where users have ob-
+servable links and connections, things often exist in isolated settings and the explicit
+interconnections between them are typically limited. Such high level structural in-
+terconnection information (e.g., a water tap and a cutting board are likely to be used
+together when cooking) are implicit in general [Yao et al. 2013].
+  Contextual uncertainty. Things are tightly bound to contextual information (e.g.,
+location, time, status), as well as user behaviors (e.g., activities involving things), as
+things usually provide functionality-oriented services (e.g., washing vegetables for a
+water tap). Unfortunately, contextual information associated with things is highly
+dynamic (e.g., the location of a moving person changes all the time) and has no obvi-
+ous, easily indexable properties, which is unlike those static, human-readable texts
+in the case of documents [Guinard et al. 2011; Yao et al. 2016]. Capturing discrimina-
+tive contextual information carried by things therefore is of paramount importance
+in effective things management.
+Some research efforts have proposed to explore things similarity and relations from
+semantic Web perspective [Mietz et al. 2013; Christophe et al. 2011a]. In such cases,
+explicit relations of things can be characterized by using keyword-based, textual-level
+calculations. However, physical things also hold implicit relations due to their more
+1http://ercim-news.ercim.eu/en72/keynote/the-web-of-things
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:3
+distinctive structures and connections in terms of functionalities (i.e., usefulness), as
+well as non-functional attributes (i.e., availability). Different things provide differ-
+ent functionalities (e.g., microwave and printer), and might be of interest to differ-
+ent groups of people. With recent development of technologies such as radio frequency
+identi cation (RFID), wireless sensors, and Web services, human-thing interactions
+can be easily recorded and obtained (e.g., RFID readings). These interactions are not
+completely random. They carry rich information that can be harnessed and utilized
+to uncover the implicit relations. Although correlations between things are implicit,
+we argue that they can be captured by exploring regularities of user interactions with
+similar things.
+This work targets mining useful information for unveiling implicit correlations
+of things from contextual information of human-thing interactions. Our proposed
+method, DisCor-T ([ disk@uti], discovering correlations of things), should be effective
+in capturing and re ecting the hidden structure of things from things usage events in
+the modeling stage, and ef cient in inferring the related things in the inferring stage.
+Speci cally, we present a novel approach that converts the things usage events into
+a relational graph of things (RGT) by extracting three dimensional contextual infor-
+mation contained in the events history. The RGT graph underpins many important
+applications. We particularly present an application scenario to show its bene ts in
+serving things clustering and annotation. To the best of our knowledge, no previous
+work has systematically studied mining the relationships of ubiquitous objects in WoT.
+The main contributions of our work can be summarized as follows:
+  We study the problem of managing ubiquitous things in the emerging Web of Things
+environment, which have unique characteristics (e.g., short descriptions, diverse, dy-
+namic and noisy). We propose to investigate human-thing interactions from three
+contextual aspects: user, temporal, and spatial. Accordingly, we develop two graph
+presentations that approximate corresponding relationships from user-thing inter-
+actions. These graphs lay the foundation for uncovering latent correlations among
+things.
+  We develop an algorithm for discovering latent correlations among things by apply-
+ing Random Walk with Restart over the two contextual graphs. The learned correla-
+tions are used to construct the relational graph of things (RGT), which can help in
+a number of important applications on things management. In particular, we focus
+on a systematic case study on things annotation to showcase the effectiveness of our
+approach.
+  We establish a testbed environment where things are tagged by RFID and sensors,
+and things usage events are collected in real-time. Using this real-world data with
+ 20,000 records collected from the testing environment over a period of four months,
+we conduct extensive experimental studies to demonstrate the feasibility of our pro-
+posed approach.
+The remainder of the paper is organized as follows. In Section 2, we present some
+background information related to our work including motivating applications and
+formal de nitions of the research problems. We then introduce the details of our pro-
+posed methodology DisCor-T in Section 3. We further demonstrate the bene ts of our
+approach by designing a feature-based things annotation method in Section 4. We re-
+port the implementation and experimental studies in Section 5. Finally, we review the
+related work in Section 6 and give some concluding remarks in Section 7.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:4
+2. BACKGROUND
+In this section, we  rst describe several application scenarios underpinned by the tech-
+niques discussed in this paper. We then formally formulate the research problems tar-
+get by our work.
+2.1. Motivating Applications
+Discovering underlying similarities except keyword-based similarity can allow for
+more meaningful and accurate things recommendation, classi cation and even con-
+tribute to context-aware activity recognition. We brie y discuss some of areas where
+things contextual similarity can be applicable.
+  Recommendation. Things recommendation is a crucial step for promoting and tak-
+ing full advantage of the Web of Things (WoT), where it bene ts the individuals,
+businesses and society on a daily basis in terms of two main aspects. On the one
+hand, it can deliver relevant things to users based on users preferences and inter-
+ests. On the other hand, it can also serve to optimize the time and cost of using WoT
+in a particular situation.
+The underlying correlations of things can enhance the performance of generalized
+recommendation systems in the Web of Things in terms of two main points. Firstly,
+due to the sparsity of thing-user interactions, widely used collaborative  ltering rec-
+ommendation systems fail to  nd similar users or things, since these methods as-
+sume that two users have invoked at least some things in common. Moreover, users
+who have never used any things can not be fed good results in the  rst place (i.e.,
+the cold start problem). Secondly, physical things have more distinctive structures
+and connections in terms of functionalities in real life (i.e., usefulness), as well as
+non-functionalities (i.e., availability), which are saliently highlighted in contextual
+information of human-thing interactions.
+  Searching. Developing ef cient searching approaches is a crucial challenge with
+rapid increase of vast amount of things connected to the Web. Our approach adds one
+additional dimension to assist and reinforce current search techniques. For instance,
+existing semantic-based solutions do not make full use of the rich information con-
+tained in users  historical interactions with things (e.g., implicit relations of different
+things). Our approach can effectively capture such information, which can be inte-
+grated into existing search solutions for better performance. In particular, the latent
+connections between things/objects can be leveraged to predict which things might
+possibly co-occur for the search.
+  Context-aware Activity Recognition. Recognizing human activities from sensor
+readings has recently attracted much research interest in pervasive computing due to
+its potential in many applications, such as assisted living of older people and health-
+care. This task is particularly challenging because human activities are often per-
+formed in a not only simple (i.e., sequential), but also complex (i.e., interleaved or
+concurrent) manner in real life.
+Our proposed approach provides a new useful means to infer human activities by
+taking advantages of reasoning relationships of globally unique object instances. For
+example, dense sensing-based activity monitoring learns human activities by detect-
+ing and analyzing human-object interactions. By discovering correlations of objects,
+we can cluster and organize things into different structured groups based on their
+underlying relationships. In many cases, an activity could involve multiple relevant
+things including not only the things with similar functionalities but also things with
+complementary functionalities, which can be effectively uncovered by our proposed
+approach. Pairwise things with strong correlations indicate either they have similar
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:5
+functionalities (i.e., microwave and roaster) or they have a higher likelihood to be
+used together. For instance, a water tap and a chopping board are both in use when
+we prepare meals, since most of the time we need to wash cooking ingredients (e.g.,
+vegetables) before cutting them.
+2.2. Problem Statement and De nitions
+The only data source used in our work is human-thing interactions, namely things
+usage events. Each event happens when a person interacts with a particular thing,
+which carries three kinds of information: location, timestamp, and user. Each usage
+event record can be de ned as a quadruplet ThingID, UserID, Timestamp, Location
+described as follows.
+DEFINITION 1 (THINGS USE LOG). Each thing use log happens when a person in-
+teracts with a particular thing. Let O = {o1, ..., on}, U = {u1, ..., um}, Ts = {ts1, ..., tsp}
+and Loc = {loc1, ..., locq} represent the set of things, users, timestamps and locations, re-
+spectively. A usage event of a thing oi, denoted by h   H = {h1, ..., hi} = {< o, u, ts, loc >
+|o   O   u   U   ts   Ts   loc   Loc}, indicates that user u has used a particular thing
+o located in a speci c location loc.
+The problem targeted in this article can be therefore formulated as discovering the
+latent correlations among things by exploiting observable human-thing interactions
+with the goal of automatically distinguishing strong correlations of things from the
+weak ones. As illustrated in Figure 1, each node denotes a thing (represented as a
+ball) in a three-dimensional space of identity, spatiality, and temporality. Things are
+discrete without distinctive and explicit correlations (Figure 1 (a)). However, our pro-
+posed approach can derive latent connections among these things and form a relational
+graph of things, where their implicit relatedness can be revealed (Figure 1 (b)). There-
+fore, our goal can be formulated as follows in Problem 1.
+PROBLEM 1 (THINGS IMPLICIT CORRELATION DISCOVERY).
+Given a set of
+human-thing interactions of quadruplets (thing, user, timestamp and location), discov-
+ering the latent correlations between things.
+To complete this goal, there are two sequential subproblems we need to solve, which
+are de ned as subproblem 1 and subproblem 2 respectively.
+SUBPROBLEM 1 (MODELING). Given a collection of things usage events H, con-
+struct two graphical models Gm capturing relations between things and their spatial-
+temporal information, and Gu capturing relations between things and users.
+SUBPROBLEM 2 (INFERRING). Given the constructed graphs induced from things
+usage events collection H, infer the similarities among things.
+3. PROPOSED METHODOLOGY
+Our approach for correlation discovery of things involves two main stages correspond-
+ing to two subproblems de ned in Section 2.2. The overall algorithm is shown in Algo-
+rithm 1. We  rstly extract two types of graphs, namely the location-time-thing graph
+(Figure 2(a)) and the user-thing graph (Figure 2(b)). The graphs are deduced from
+thing usage events, which re ect object and its three related information in terms
+of spatio-temporal and social aspects. Then we perform random walk on these two
+graphs respectively to inference relationships of pairwise things, and sum them up as
+the overall pairwise correlations of things.
+The  rst stage centers around building two graphs from things usage events. As
+illustrated in Figure 2, the spatio-temporal graph in Figure 2 (a) captures the relations
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:6
+(a)
+(b)
+Fig. 1.
+different things/objects, and the size represents the usage frequency.
+(a) Things usage and contextual attributes (b) Correlation discovery. Different colors of balls denote
+Fig. 2. Two graphs induced from things usage events: (a) spatio-temporal graph Gm (b) social graph Gu.
+between things and their temporal and geographical in uence, while the social graph
+in Figure 2 (b) captures the social in uence among users on interacting things. The
+technical details on how to construct these graphs will be described in Section 3.1 and
+Section 3.2 respectively. In the second stage, our goal is to derive the pairwise relevance
+scores for things. To achieve this, a random walk with restart (RWR) [Xia et al. 2009] is
+performed on the two constructed graphs. A relevance score is produced for any given
+node to any other node in the graph, presented as a converged probability. The value of
+the relevance score re ects the correlation strength between a pair of things. Based on
+the relevance scores, a top-k correlation graph of things can be constructed, upon which
+many advanced things management problems such as annotation and clustering can
+be solved by tapping the wealth of literature in graph algorithms. The technical details
+on this part can be found in Section 3.3.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:7
+ALGORITHM 1: DisCor-T
+Input: Sequences of things usage events H (De nition 1), User friendship matrix Fu
+Output: Correlation matrix of things R
+%%% Stage 1: Graphs Construction (Section 3.1 and Section 3.2) %%%
+/*Detecting periodical connection between time and location*/
+for each location loci   Loc do
+Finding time periods for li and store as pi;
+Constructing edges between li and pi;
+end
+Constructing spatio-temporal graph Gm;
+Constructing social graph Gu;
+%%% Stage 2: Inferencing correlations via traversing graphs Gm and Gu (Section 3.3) %%%
+Obtaining transition probability matrix Pm and Pu deduced from corresponding weight matrix
+Wm and Wu respectively;
+Implementing Random Walk with Restart (RWR) over Gm and Gu to derive things correlation
+matrix Rm and Ru respectively;
+Calculating weighted linear combination correlation matrix of things R =  Rm +  Ru.
+3.1. Spatio-Temporal Graph Construction
+A spatio-temporal graph such as the one shown in Figure 2(a) re ects the temporal
+pattern and spatial information hidden in the things usage events. In our approach,
+the spatial and temporal information of things usage events is treated as inseparable
+since they are mutually in uential on detecting the correlations among things. Un-
+like virtual resources such as web pages, music or images, physical things such as
+restaurants and cookware usually provide more distinguished functionalists, and are
+more connected with people s daily lives. Some such distinctive features of physical
+things are their physical locations and functioning times. For example, kitchenware
+are more frequently used during dining times and they have higher likelihood to stay
+in a kitchen or similar locations (e.g., a dinning room). We speci cally explore the
+integrity between spatial and temporal information in the ubiquitous things environ-
+ment via  nding the periodical pattern between time and locations.
+Generally, the timing of access of similar things may be similar. For example, restau-
+rants are likely to be visited by people during lunch or dinner times. For the spatial
+information, we also argue in this paper that geographical in uence to user activities
+cannot be ignored, i.e., a user tends to interact with the nearby things rather than the
+distant ones [Ye et al. 2011]. For example, if a user is at her of ce, she has a higher
+probability of using of ce facilities such as telephone, desktop computer, printer, and
+seminar rooms.
+A spatio-temporal graph has three sets of nodes, namely locations, things, and times-
+tamps. It contains one type of intra-relation (i.e., representing similarities between lo-
+cations) and three types of inter-relations between locations, things, and timestamps.
+Edges between times and things can be obtained from usage events, say, the weight of
+edge < loc, o >  EY and < ts, o >  EZ is proportional to the number of times objects
+o is used in a location loc and at timestamp ts. The inter-relation between location
+and time < loc, ts >  EX, indicates the periodical patterns. Formally, we de ne the
+spatio-temporal graph Gm as the following:
+DEFINITION 2 (SPATIO-TEMPORAL GRAPH). A spatio-temporal graph is denoted
+by Gm =< Vm, Em >. Here Vm = Loc   Ts   O where Loc, Ts and O are the sets
+of locations, timestamps and things respectively. Edges Em = ELoc   EX   EY   EZ,
+where ELoc = {(loc, loc(cid:48)) : (loc, loc(cid:48))   Loc   Loc} and the weight of each edge
+Eloc(i, i(cid:48))   ELoc is associated with the similarity between location i and i(cid:48). EX =
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:8
+{(loc, ts) : (loc, ts)   Loc   Ts} and the weight of each edge EX (i, j)   EX is associ-
+ated with a binary value, referring to whether location loci has periodic relationship
+with time interval tsj. EY = {(loc, o) : (loc, o)   Loc   O} and the weight of each edge
+EY (i, j)   EY is associated with the frequency that thing oj in location loci is accessed.
+EZ = {(ts, o) : (ts, o)   Ts   O} and the weight of each edge EZ(i, j)   EZ is associated
+with the frequency that thing oj is accessed in time interval tsi.
+The corresponding weight matrix Wm of graph Gm can be formulated as:
+where each of the entries in Equation 1 can be obtained as the following. WLoc indi-
+cates the similarity of each pair of locations. Given two locations, we measure their
+similarity using the Jaccard coef cient between the sets of things used at each loca-
+tion:
+  WLoc WX WY
+X WTs WZ
+Y WT
+Z WO
+WT
+WT
+  
+Wm =
+WLoc(i, j) =
+| o
+i    o
+j|
+i    o
+| o
+j|
+(1)
+(2)
+i and  o
+where  o
+j denote the set of used things at location i and location j respectively.
+WTs and WO should be 0 since we do not consider the relationships between times-
+tamps and the ones between things. WY and its transpose WT
+Y are integers, indicating
+Z are
+how often a thing is accessed at a location. Similarly, WZ and its transpose WT
+integers, which indicate how often a thing is accessed at a particular time.
+For de ning relationship between time stamps and locations and their correspond-
+ing weight WX of graph Gm, we propose periodic patterns between locations and
+timestamps. Given a sequence of locations Loc = {loc1, ..., locn}, our aim is to  nd
+their corresponding time period. To obtain relationship between time and location, we
+analyze the potential periods for each location and  nd the periodical pattern between
+locations and timestamps. A periodic pattern represents the repeat of certain usage
+event at a speci c location with certain time interval(s).
+Periodic patterns can be extracted by analyzing things usage events. In particular,
+we build a time series dataset for each location where the elements of the time series
+data are the number of time slots (e.g., 0 for the period of 0:00-1:00; 1 for 1:00-2:00
+and so on) that a thing at a location is invoked. We can clearly observe such periodic
+pattern from the example relating to a kettle in the kitchen from Figure 3 (a) and its
+periodogram in Figure 3 (b).
+Given a sequence of locations, we adopt the Discrete Fourier Transform (DFT)
+method to detect the time periods in this discrete time-series sequence [Vlachos et al.
+2004]. For each location, we de ne an integer sequence A = {a1a2...an}, where ai=1 if
+the thing is used at this location at time i, and 0 otherwise. Essentially, this sequence
+can be transformed into a sequence of n complex numbers X(f ) from the time domain
+to the frequency domain:
+X(fk/N ) =
+1 
+N
+N 1(cid:88)
+n=0
+  j2 kn
+N , k = 0, ..., N   1
+ane
+(3)
+where k/N denotes the frequency that each coef cient captures. As a result, DFT
+transforms the original sequences as a linear combination of the complex sinusoids
+. The Fourier coef cients represent the amplitude of each of these
+ej2 f n/N 
+sf (n) =
+sinusoids after sequences S is projected on them.
+N
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:9
+(a)
+(b)
+Fig. 3.
+used 12 times at 10am); (b) Periodogram of the kettle usage
+(a) Usage history of a kettle in the kitchen area over 24 hours within one week (e.g., the kettle was
+We aim at capturing the general shape of time-series data (e.g., thing usage over
+time) as  economically  as possible. To do so, we propose to use a spartan representa-
+tion2 from which one could reconstruct the signal using just its dominant frequencies
+(i.e., the ones that carry most of the signal energy). A popular way to identify the
+power content of each frequency is by calculating the power spectral density (PSD) of
+the sequence which indicates the signal power at each frequency in the spectrum. A
+well known estimator of the PSD is the periodogram. The periodogram P is a vector
+comprised of the squared magnitude of the Fourier coef cients X(fk/N ):
+(cid:24) N   1
+(cid:25)
+2
+P (fk/N ) = ||X(fk/N )||2, k = 0, 1, ...,
+(4)
+N
+k   1
+). Interested readers are referred to [Vlachos et al. 2004].
+The k dominant frequencies appear as peaks in the periodogram (and correspond to
+the coef cients with the highest magnitude). In order to specify which frequencies
+are important, we need to set a threshold and identify those frequencies higher than
+this threshold. Each element of the periodogram provides the power at frequency k/N
+or, equivalently, at period N/k. That is, coef cient X(fk/N ) corresponds to periods
+N
+, ...,
+[
+k
+When obtaining the periodgram of each location, we can decide their corresponding
+peak points based on preset threshold. From the periodgram, we can  nd the location
+and its corresponding time range. One bene t of using the periodogram is that we can
+visually identify the peaks as the k most dominant periods (period =1/frequency). For
+automatically returning the important periods for a set of location sequences, we can
+simply set a threshold in the power spectrum to distinguish the dominant periods. In
+Section 5.1, we describe how to extract location and time relationship from the usage
+events.
+3.2. Social Graph Construction
+Users  relations (e.g., friendships) can have signi cant impact on things usage pat-
+terns. Personal tastes are correlated. Research in [Kameda et al. 1997] shows that
+friendships and relations between users play a substantial role in human decision
+making in social networks. For instance, people usually turn to a friend s advice about
+2Inspired by the frugal lifestyle of the ancient Spartans, a spartan representation means an economic way
+of representing a dataset in a smaller size [?].
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:10
+a commodity (e.g., hair straighter) or a restaurant before they go for them. For ex-
+ploring the impact social links between users on things  correlation discovery, we also
+construct a social graph, which is an augmented bipartite graph representing user in-
+teractions with things based on things usage events. As shown in Figure 2 (b), such a
+graph contains two sets of entities, users U and things O. There is one type of intra-
+relation between users (also called social connections) and one type of inter-relations:
+edges between users and things that can be obtained from usage events. Formally, the
+social graph is de ned as the following:
+DEFINITION 3 (SOCIAL GRAPH). A social graph, denoted by Gu =< Vu, Eu >, is an
+augmented undirected bipartite graph. Here Vu = U O where U, O are the sets of users
+and things respectively. Edges Eu = EU   EM, where EU = {(u, u(cid:48)) : (u, u(cid:48))   U   U}
+denotes the user social links (friendship) and each edge EU (i, i(cid:48))   EM is associated
+i. EM = {(u, o) : (u, o)   U   O}. In
+with the similarity between user ui and user u(cid:48)
+this graph, each edge between users and things EM (i, j)   EM is associated with the
+frequency that thing oj is accessed by user ui.
+(cid:21)
+The corresponding weight matrix Wu of graph Gu can be formulated as:
+(cid:20)WU WM
+Wu =
+WT
+M WO
+(5)
+(6)
+The entries in Equation 5 can be obtained as follows: WM and its transpose WT
+M
+should be proportional to the number of times of a thing being used by the users. WO
+should be zero since we do not consider relationships between things. The weight WU
+of edges EM indicates the user similarity in uenced by the social links between users,
+re ecting the homophily meaning that similar users may have similar interests. We
+use the cosine similarity to calculate WU as follows:
+(cid:80)
+WU(i, j) =
+e cos(b(i),b(j))
+k  (i) e cos(b(i),(b(k))
+b(i)   b(j)
+||b(i)||||b(j)||,  (i) is the set of the user i s friends (i.e., j    (i)),
+where cos(b(i), b(j)) =
+b(i) is the binary vector of things used by user i, ||   || is the L-2 norm of vector b( ), and
+  is a parameter that re ects the preference for transitioning to a user who interacted
+with the same things.
+3.3. Correlation Inference
+After the two graphs Gm and Gu are constructed, we can perform the random walk
+with restart (RWR) [Xia et al. 2009] to derive the correlation between each pair of
+things. RWR provides a good relevance score between two nodes in a graph, and has
+been successfully used in many applications such as automatic image captioning, rec-
+ommendation systems, and link prediction. The goal of using RWR in our work is to
+ nd other things that have top-k highest relevance scores for a given thing. The val-
+ues of the relevance scores imply the strength of the correlations among things. In the
+following, we focus on using RWR on the spatio-temporal graph Gm for discovering
+correlations between things.
+We assume the random walker starts from a thing node oi on Gm. The random
+walker iteratively transits to other nodes which have edges with oi, with the probabil-
+ity proportional to the edge weight between them. At each step, oi also has a restart
+probability c to return to itself. We can obtain the steady-state probability of oi vis-
+iting other vertex  i when the RWR process is converged. The RWR process can be
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:11
+formulated as
+ i = (1   c)P i + cei
+(7)
+where  i   RN 1, and weight matrix from graph Gm is Wm   RN N(Section 3.1),
+ei   RN 1 with i-th entry is 1, all other entries are 0. Equation 7 can be further
+formulated as:
+(8)
+where I is an identity matrix and Pm   RN N is the transition matrix, which can be
+obtained based on weight matrix Wm of Gm by row normalization:
+ i = c(I   (1   c)Pm) 1ei = Qei
+m
+(9)
+Pm = WmD 1
+where Dm is a diagonal matrix with Dm(i, i) = (cid:80)
+In Equation 8, Q = c(I  (1  c)Pm) 1 = c(cid:80) 
+j Wm(i, j). The random walker on
+thing oi traverses randomly along its edges to the neighboring nodes based on the
+transition probability Pm(i, j), j   N (i), and the probability of taking a particular
+edge <oi,oj> is proportional to the edge weight over all the outgoing edges from oi
+based on Equation 9.
+t=0(1  c)tPt de nes all the steady-state
+probabilities of random walk with restart. Pt is the t-th order transition matrix, whose
+elements pt
+ij can be interpreted as the total probability for a random walker that begins
+at node i and ends at node j after t iterations, considering all possible paths between
+i and j. Since in our case we only consider relevance score between two things, if
+we vary the value of t, we can explicitly explore relationship between two things at
+different scales. The steady-state probabilities for each pair of nodes can be obtained
+by recursively processing Random Walk and Restart until convergence. The converged
+probabilities give us the long-term visiting rates from any given node to any other
+node. This way, we can obtain the relevance scores of all pairs of thing nodes, denoted
+by Rm(oi, oj)   Rm, oi, oj   O. It should be noted that the results can be calculated
+more ef ciently by using the Fast Random Walk with Restart implementation [Tong
+et al. 2006] via low-rank approximation and graph partition.
+Similarly, the transition probability matrix Pu for the social graph Gu can be ob-
+the relevance scores of things on this graph Ru(oi, oj)   Ru, oi, oj   O.
+calculated using
+The overall relevance score (i.e., the correlation value) of any pair of things can be
+(11)
+where     [0, 1] and     [0, 1], which are regulatory factors affecting the weight on the
+social in uence and the spatio-temporal in uence.
+R(oi, oj) =  Rm(oi, oj) +  Ru(oi, oj)
+With obtained correlation values, we could construct a top-k correlation graph of
+things by connecting each thing with the things that have top-k overall correlation
+values R(oi, oj). Formally, the graph is de ned as the following:
+DEFINITION 4 (RELATIONAL GRAPH OF THINGS (RGT)). RGT is denoted by G =
+i denote the top-k set of correlative things to oi.
+i }, where e(x, i) is an edge from ox to oi. Each edge is
+(O, E). For each thing oi   O, let Ok
+E = {e(x, i)| oi   T, ox   Ok
+associated with a weight wox,oi with the correlation value Rox,oi.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+tained using:
+where Du is a diagonal matrix with Du(i, i) =(cid:80)
+Pu = WuD 1
+u
+(10)
+j Wu(i, j). Accordingly, we can obtain
+A:12
+4. APPLICABILITY OF DISCOR-T: THINGS CLASSIFICATION
+The top-k correlation graph G is essentially a graph representing the relationships
+among things. For instance, from our experiment, we found that the top four things
+most close to a three-seated sofa are modular sofa, leather chair, high chair, and
+wooden chair. Using the constructed G, many problems centered around things man-
+agement (e.g., things discovery, search and recommendation) can be solved and ex-
+plored further by exploiting existing graph algorithms. In this section, we will show-
+case the feasibility and effectiveness of our proposed DisCor-T by detailing one im-
+portant research problem, automatic things annotation, which will be used later to
+evaluate the performance of our proposed approach to correlation discovery.
+Automatically predicting appropriate tags (i.e., category labels) for unlabeled things
+can save manual labeling workload, and has important research signi cance. Although
+some things have been labeled with useful tags (e.g., cooking, office), which are cru-
+cial for assisting users in searching and exploring new things, as well as recommending
+them, some other things may not have any meaningful labels at all. Furthermore, a
+thing might be associated with multiple categories. For instance, a microwave oven
+can be categorized in Cooking and also Home Appliance.
+The aim of things annotation is that when given a new thing, the classi er automat-
+ically decides whether this thing belongs to the category of the corresponding labels.
+The algorithm can be divided into two stages: i) extracting features from the top-k cor-
+relation graph G and things, and ii) performing multi-label classi cation of things. We
+extract three kinds of features FL, FS and FC from RGT in terms of label property,
+link structures and node attributes respectively.
+Extracting feature FL. This feature represents the label probabilities for unknown
+things, which can be computed using generative Bayesian rules from G, where each
+unknown thing o  is to be assigned one or multiple labels lk   L = {l1, ..., lk}. We
+propose to formulate our solution as posterior probability P r(lk|o ). Once we know
+these probabilities, it is straightforward to assign oi the label having the top-K largest
+probabilities,
+P r(lk|o ) =
+(cid:80)K
+P r(o |lk)P r(lk)
+j=1 P r(x|lj)P r(lj)
+  P r(o |lk)p(lk)
+(12)
+where the prior distribution probability P r(lk) can be easily calculated from the train-
+ing dataset. Let olk = olk
+be the training dataset, having Mk things with label
+k. Then P r(o |lk) can be calculated using:
+1 , ..., olk
+Mk
+Mk(cid:88)
+m=1
+Mk(cid:88)
+m=1
+=
+1
+Z   Mk
+P r(o |lk) =
+1
+Z
+P r(o |olk
+m, lk)P r(olk
+m|lk)
+P r(o |olk
+m, lk)
+(13)
+where Z is a normalizing constant and the conditional probability P r(o |olk
+m, lk) indi-
+cates the relevance score between testing thing o  and things in the training dataset
+m, lk)    o  denotes the steady state probability between o  and olk =
+m. P r(o |olk
+olk
+, which can be obtained from Equation 8 in our RWR process. The distri-
+1 , ..., olk
+olk
+Mk
+m|lk) is set as a uniform distribution 1/Mk. The probability p(o |lk) can be
+bution p(olk
+predicted in Equation 13, and the labels with different posterior probabilities can be
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+assigned to the testing thing. As a result, we can get the label probabilities for each
+testing object.
+A:13
+Extracting latent feature FS. With RGT, we can easily extract the features of things
+from RGT indicating the things relationship with different communities on G. In re-
+ality, things usually hold multiple relations. For instance, a thing might be shared
+among its owner, owner s friends, co-workers, or family members. It might also be con-
+nected to other things based on functionality or non-functionality attributes. Detecting
+such relations from RGT, which can be used as a structural feature for things annota-
+tion, is naturally related to the task of modularity-based community detection [Leicht
+and Newman 2008]. Modularity is to evaluate the goodness of a partition of undi-
+rected graphs. The reason that we choose this method is that modularity has been
+shown to be an effective quantity to measure community structure in many complex
+networks [Tang and Liu 2009].
+Modularity Q is like a statistical test that the null model is a uniform random graph
+model, where one vertex connects to others with uniform probability. It is a measure of
+how far the interaction deviates from a uniform random graph with the same degree
+distribution. Modularity is de ned as:
+(cid:20)
+(cid:88)
+ij
+Q =
+1
+2m
+Aij   didj
+2m
+(cid:21)
+ (si, sj)
+(14)
+Where Aij is the adjacent matrix on the graph RGT, m is the number of edges of
+the matrix, di and dj denote the in-degree of vertex i and out-degree of vertex j, and
+ (sti, stj ) are the Kronecker delta function that takes the value 1 if node ti and tj belong
+to the same community, 0 otherwise. A larger modularity Q indicates denser within-
+group interaction. So that, the modularity-based algorithm aims to  nd a community
+structure such that Q is maximized. In [Newman 2006], Newman proposes an ef cient
+solution by reformulating Q as:
+Q =
+ST BS
+1
+2m
+(15)
+where S is the binary matrix indicating which community each node belongs to. B is
+the modularity function, is de ned as the following:
+Bij = Aij   didj
+2m
+(16)
+Since our relational graph of things (RGT) is a weighted and directed graph, we need
+to make some modi cations on Q to solve the equation. This involves two steps.
+In the  rst step, we extend B to directed graphs. Based on [Leicht and Newman
+2008], we rewrite the modularity matrix B as the following:
+ij = Aij   din
+B(cid:48)
+i dout
+j
+2m
+(17)
+i dout
+where din
+are the in-degrees and out-degrees of all the nodes on the RGT graph.
+In the second step, we extend B(cid:48) to weighted graphs. To do so, we conduct further
+modi cation based on Equation 17. It can be rewritten further as below:
+j
+ij = Wij   win
+B(cid:48)(cid:48)
+i wout
+j
+2m
+(18)
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+i and wout
+A:14
+where Wij is the sum of weights of all edges in the RGT graph replacing the adjacency
+matrix A, win
+are the sum of the weights of incoming edges adjacent to vertex
+ti and the outgoing edges adjacent to vertex tj on the RGT graph respectively. After
+these two steps, it should be noted that different from undirected situation, B(cid:48)(cid:48) is not
+symmetric. To use the spectral optimization method proposed by Newman in [Newman
+2006], we restore symmetry by adding B  to its own transpose [Leicht and Newman
+2008], thereby the new Qnew is:
+j
+Qnew =
+1
+4m
+ST (B(cid:48)(cid:48) + B(cid:48)(cid:48)T )S
+(19)
+We then is able to calculate all the eigenvectors corresponding to the top-k positive
+eigenvalue of B(cid:48)(cid:48) + B(cid:48)(cid:48)T and assign communities based on the elements of the eigen-
+vector [Newman and Girvan 2004]. We take the obtained modularity vectors as the
+latent features, which indicate things relationships to communities (i.e., a larger value
+means a closer relationship with a community).
+Extracting feature FC. It is the set of content-based features extracted from thing
+descriptions. We convert the keywords vectors into tf-idf format, which assigns each
+term x a weight in a thing s description d. tf   idf (x, d) = tf (x, d)   idf (x), where
+tf (x, d), the number of times word x occurs in the corresponding thing s description d,
+, where |N|
+and idf is the inverse text frequency which is de ned as : idf (x) = log
+is the number of texts in our dataset, and df (x) is the number of texts where the word
+x occurs at least once.
+|N|
+df (x)
+Based on our experience in ontology bootstrapping for Web services [Segev and
+Sheng 2012], we exploit Term Frequency/Inverse Document Frequency (TF/IDF) a
+common method in IR for generating a robust set of representative keywords from a
+corpus of documents to analyze things  descriptions. It should be noted that the com-
+mon implementation of TF/IDF gives equal weights to the term frequency and inverse
+document frequency (i.e., w = tf   idf). We choose to give higher weight to the idf value
+(i.e., w = tf   idf 2). The reason behind this modi cation is to normalize the inherent
+bias of the tf measure in short documents.
+Finally, the set of feature vectors for the N things in the dataset  v = [(cid:126)v1, ..., (cid:126)vN ] where
+(cid:126)vi   Rm is the feature vector for each thing, m is the size of vocabulary we produced.
+(cid:126)v
+For better performance, we perform a cosine normalization for tf-idf vectors:  v =
+||(cid:126)v||2
+[Salton and Buckley 1988].
+Building a discriminative classi er. After obtaining the features based on attributes
+of G and things, we combine the features (FL + FS + FC) together and feed them into
+a discriminative classi er.
+Our method is a very  exible feature-based method, where the structural features
+can be put into any discriminative classi er for classi cation. In this paper, we evalu-
+ate our method on SVM and Logistic regression. Speci cally, we adopt LibSVM [Chang
+and Lin 2011] for one-vs-rest classi cation.
+Discussion. The high and real-time streams of interactions between human and
+ubiquitous things call for online processing techniques that are suitable to large scale
+datasets and can rapidly update to re ect constantly evolving contextual similarities
+due to changing conditions of things (e.g., social networks, status, locations etc). Our
+proposed model can be easily extended to deal with large scale IoT data streams with
+online-processing and incremental techniques due to the following characteristics of
+the model:
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:15
+  We characterize each thing as a discriminative feature descriptor including static
+features (e.g., content-based features) and easily integrated dynamic features (e.g.,
+locations, and instantaneous status of things). The feature vectors can be continu-
+ously updated with users  interactions over things in a real-time manner. It should
+be noted that we focus on training an of ine model with mixture of static and dy-
+namic features, which is possible to be leveraged for online learning. For instance,
+the model can be integrated in an incremental learning framework that is able to
+continuously update and learn from newly observed data.
+  Our proposed model does not require any explicit input from users. All the contex-
+tual information is automatically obtained from users  social networks, localization
+techniques and sensor technologies in a non-obtrusive way.
+  The process of contextual similarity calculation works based on the random walk
+techniques, which has been successfully used in large-scale online search engines.
+This type of techniques can be easily parallelized (e.g., using Hadoop framework for
+improving performance) and processed in real time.
+5. EVALUATION
+In this section, we  rstly describe our experimental settings, and then showcase
+the applicability and performance of our proposed technology based on feature-based
+things annotation. We also report the experimental results.
+5.1. Data Acquisition
+Due to the lack of experimental public data sets, we set up a testbed that consists of
+several different places in the  rst author s home (e.g., bedroom, bathroom, garage,
+kitchen etc), where approximate 127 physical things (e.g., couch, laptop, microwave,
+fridge etc.) are monitored by attaching RFID and sensors. Table I presents the statis-
+tics of things used in this paper. This task greatly bene ts from our extensive experi-
+ence in a large RFID research project [Wu et al. 2012; Wu et al. 2013]. Figure 4 shows a
+research prototype we developed that provides an environment where users can check
+and control things in real time via a Web interface3. Figure 5 (a) shows some RFID
+devices and sensors used in the implementation and Figure 5 (b) shows part of the
+kitchen setting in our testbed. In our implementation, things are exposed on the Web
+using RESTful Web services, which can be discovered and accessed from a Web-based
+interface. Figure 6 shows the architecture of our testbed.
+Table I. Dataset
+No.
+1
+2
+3
+4
+5
+6
+Category
+Entertainment
+Of ce
+Cooking
+Transportation
+Medicine/Medical
+Home Appliances
+# Things
+28
+20
+25
+11
+10
+33
+# Labels
+118
+51
+103
+24
+18
+83
+To collect the records of things usage events, we need to  gure out i) how to detect
+a usage event when it is happening; and ii) how to retrieve this thing s corresponding
+three contextual information.
+There are two ways to detect usage events of things with two identi cation technolo-
+gies used, namely senor-based state changes and RFID-based mobility detection.
+3https://www.youtube.com/watch?v=q5dZDZ3PZ9Y
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:16
+Fig. 4. Web-based prototype interface
+(a)
+(b)
+Fig. 5.
+(a) some sensors and RFID devices; (b) WoT-enabled microwave oven
+Sensor-based state changes. The usage of a thing instrumented with sensors is re-
+ ected by the changes of the thing s status. When the status is changed, the corre-
+sponding thing is used. For example, when the status of a microwave oven is turned
+from idle to working, we see that this oven is being used. For such event detections, we
+adopt sensors to track the state changes of things.
+RFID-based mobility detection. We determine whether the RFID-enabled things are
+in use via detecting their mobility. The movement of a thing indicates that the thing
+is being used. For example, if a coffee mug is moving, it is likely that the mug is being
+used. For such detections, we adopt a generic method based on comparing descriptive
+statistics of the Received Signal Strength Indication (RSSI) values from RFID readers
+in consecutive sliding windows [Parlak et al. 2011]. The statistics obtained from two
+consecutive windows are expected to differ signi cantly when a thing is mobile. A
+threshold can be set to determine whether this difference is related to a mobility and
+can be regarded as a valid usage event.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:17
+Fig. 6. System architecture of the testbed
+Each usage event is associated with identity (user), temporal (timestamp) and spa-
+tial (location) information. To obtain the user information, in our current work, we use
+a manual labeling method where each participant needs to mark and record their ac-
+tivities. For the temporal information, we choose to divide the time of one day into 24
+equal intervals. Each interval is one hour. If the timestamps of a usage event collected
+is 9:07am, it will be assigned into the temporal cluster between 9:00am to 10:00am.
+It should be noted that other equal intervals (e.g., half hour for an interval) are also
+applicable to our approach.
+To get the localization information, which indicates where a thing is when it is used.
+In the localization step, our aim is to identify the coarse-grain locations, the zone
+where the object lies. We need to consider two situations for things, static and mobile.
+For static things (e.g., refrigerator, microwave oven), the location information of such
+things is prior knowledge. For mobile things (e.g., RFID-tagged coffee mug), we provide
+coarse-grain or  ne-grain location information. For the coarse-grain method, since the
+Received Signal Strength Indication (RSSI) signal received from a tagged thing re-
+veals its proximity to an RFID reader antenna. We divide an area into multiple zones
+and each zone is covered with a mutually exclusive set of RFID antennas. The zone
+scanned by the antenna with the maximum RSSI is taken to be the thing s location.
+For the  ne-grain method, it is determined by comparing the signal descriptors from
+a thing at unknown location to a previously constructed radio map or  ngerprints. We
+use the Weighted k Nearest Neighbors algorithm (w-kNN), where we  nd the most
+similar  ngerprints and compute a weighted average of their 2D positions to estimate
+the unknown tag location [Ni et al. 2004].
+To conduct experimental studies, we manually labeled 127 things with 397 different
+labels. It should be noted that some things belong to multiple categories, therefore hav-
+ing multiple labels. For example, a Wii device belongs to category label Entertainment
+as well as Home Appliance. This dataset serves as the ground-truth dataset in our
+experiments for performance evaluation. Ten volunteers participated in the data col-
+lection phase by interacting with RFID tagged things for a period of four months,
+generating 20,179 records on the interactions of the things tagged in the experiments.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:18
+5.2. Metrics
+We use micro-F1 and macro-F1 as evaluation measures. The F1 measure is the har-
+P   R
+monic mean of P recision (P) and Recall (R), which can be calculated as: F1 = 2
+.
+P + R
+The Micro-F1 is de ned as:
+M icro   F 1 =
+2(cid:80)c
+(cid:80)n
+j=1
+i=1  yc
+(cid:80)n
+i +(cid:80)c
+(cid:80)c
+j=1
+i=1  yc
+i yc
+i
+(cid:80)n
+j=1
+i=1 yc
+i
+(20)
+(21)
+where n is the number of testing data, c denotes the number of category labels, yi
+is the true label vector of the i-th sample, yj
+i = 1 if the instance belongs to category j,
+ 1 otherwise.  yi is the predicted label vector. The micro-F1 measure weights equally
+on all samples, thus favoring the performance on common category labels. Macro-F1
+is calculated as mean arithmetical value for F1 on each label. It measures weights
+equally on all the category labels regardless of how many samples belong to it, thus
+favoring the performance on rare category labels. Macro-F1 is de ned as:
+M acro   F 1 =
+2(cid:80)n
+n2|c|((cid:80)n
+i=1  yc
+i=1  yc
+i +(cid:80)n
+i yc
+i
+i=1 yc
+i )
+5.3. Experimental Results
+In this section, we study the performance of our proposed DisCor-T approach based on
+things annotation described in Section 4. In particular, we will report the evaluation
+results for things annotations in terms of i) sensitivity analysis on varying weight
+value   and   in Equation 11; ii) overall performance with different con gurations of
+features, and iii) impact on introducing spatio-temporal integrity in our approach.
+5.3.1. Parameters Tuning. This experiment aims at studying the impact of tuning pa-
+rameters   and   in Equation 11 on different categories of things. We varied the  
+from 0.1 to 0.9 increment with 0.1 each time, while   was varied from 0.9 to 0.1 decre-
+ment with 0.1 each time, and implemented our annotation algorithm on the produced
+graph to evaluate the annotation performance. The results on the six categories of
+things are shown in Figure 7.
+We can see some interesting patterns from the  gures. For instance, with bigger
+temporal-spatial weight   and smaller social weight  , the annotation algorithm has
+better performance on Cooking and Home Appliance categories. It means both of these
+categories are sensitive to the temporal-spatial information but not the user aspect,
+i.e., the impact of   on classi cation of these categories is very limited. The possi-
+ble reason is that things in these categories are connected by tight contextual rele-
+vance for their regular users. As a result, there presents little improvement when in-
+creasing the weight of the user aspect. On the contrary, we observe that for categories
+Entertainment and Transportation, the user aspect shows obvious impact since better
+performance is obtained when   increases. The possible reason is that these categories
+show some obvious convergence for common users. For the categories of Office and
+Medicine/Medical, they do not possess obvious preference over social or contextual
+(temporal-spatial) information. For example, it is hard to  nd a common time for peo-
+ple to receive initial treatment of injuries or illnesses at work place, which usually
+happen randomly. We also can observe that the performance is not sensitive to vary-
+ing   across all the categories. The reason might lie in the number of users is not big
+enough to carry discriminative information to differentiate the impact of social graph.
+Conducting more experiments using large-scale real world WoT data will be one of our
+future works.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:19
+Fig. 7. Parameters tuning measured by MicroF1 and MacroF1 with different   and   on six categories
+Table II.   and   con guration
+Category
+ 
+Entertainment
+0.6
+0.5
+Of ce
+0.2
+Cooking
+0.6
+Transportation
+0.5
+Medicine/Medical
+House Appliances
+0.1
+ 
+0.4
+0.5
+0.8
+0.4
+0.5
+0.9
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:20
+(a)
+(b)
+Fig. 8. Overall performance comparison: (a) Micro-F1, (b) Macro-F1
+Table III. Performance comparison with STI and without STI
+Category
+Entertainment
+Of ce
+Transportation
+Without STI
+With STI
+Category
+Without STI
+With STI
+Micro-F1 Macro-F1 Micro-F1 Macro-F1 Micro-F1 Macro-F1
+0.6954
+0.7226
+0.7201
+0.7667
+0.6333
+0.6613
+0.6533
+0.6818
+0.7442
+0.7854
+Medical/Medicine
+0.6232
+0.6648
+Home Appliance
+Cooking
+Micro-F1 Macro-F1 Micro-F1 Macro-F1 Micro-F1 Macro-F1
+0.7634
+0.7987
+0.5900
+0.6004
+0.8351
+0.8876
+0.8113
+0.8589
+0.7213
+0.7451
+0.6121
+0.6162
+5.3.2. Overall Performance. This experiment evaluates the performance of things anno-
+tation described in Section 3.3. We randomly removed the category tags of a certain
+percentage, ranging from 10% to 50%, of things from each category of the ground-truth
+dataset. These things were used to test our approach while the rest were used as the
+training set. We iterated  ve times for each training percentage and took the averaged
+value as the  nal result. Our algorithm produces a vector of probabilities, representing
+the assignment probabilities of all labels for an unknown object. In our experiments,
+we ranked these probabilities and chose the top k labels to compare with the ground
+truth labels. The k value was set to the number of ground truth labels for each un-
+known object and it varies from object to object. The parameters   and   were set as
+0.5 each.
+We particularly compared the annotation performance by using i) the features ob-
+tained from G, ii) the features obtained from thing descriptions (i.e., content features
+FC), and iii) the combination of the both. Each process was repeated 10 times and the
+average results were recorded. Similar observations were obtained for different test-
+ing percentages. Figure 8 shows the result when we removed 30% of things from each
+category of the ground-truth dataset.
+Descriptions of things are normally short and noisy, it is therefore not surprising
+that the performance based on content features only is worse than the one based on
+implicit structural features (i.e., FL + FS) in most categories. The consistent good per-
+formance from the latent features also indicates that our top-k correlation graph G is
+able to capture the correlations among things well. From the  gure, we can see that
+by combining the two together, the performance of all six categories is increased and
+is the best consistently among the three.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:21
+5.3.3. Impact of Integrating Spatio-Temporal Information. As indicated in Section 3.1, user
+interactions with physical things usually present strong spatial-temporal correlations.
+In our approach, we treat spatial and temporal information of things usage events
+inseparable and believe that this integration would offer better performance in discov-
+ering correlations among things.
+To validate this idea, we constructed two independent graphs based on time and
+location information from things usage events. Then random walk with restart (RWR)
+was performed in these two graphs separately. Together with the constructed social
+graph, a relational graph of things was constructed as described in Section 3.3. We
+label this approach as No-STI (without spatio-temporal integration) and our approach
+as STI. In this experiment, we focus on studying the impact of the setting of   = 1 and
+  = 0, which indicates that we only derive R based on the spatial-temporal graph (see
+Equation 11), and we also compare it with our previous work [Yao and Sheng 2012],
+where we constructed two independent graphs based on time and location information,
+and then sum them up to get the overall relevance. In this way, the spatio-temporal
+information are treated independently.
+We performed things annotation by using features obtained from two different re-
+lational graphs of things and Table III shows the results when we removed 30% of
+things from each category of the ground-truth dataset. The table clearly shows that the
+annotation performance is enhanced for almost all categories by introducing spatio-
+temporal integrity and Medical/Medicine is the only exception. The reason is that user
+interactions with things in this category do not have strong connections with spatio-
+temporal patterns. In other words, people usually do not show periodic patterns when
+accessing medical related things (e.g., only when they are sick).
+6. RELATED WORK
+In this section, we review some existing research efforts that are closely related to our
+work.
+6.1. Relational Learning
+Relational learning refers to the classi cation in a context where things or entities
+present multiple relations [Tang and Liu 2009]. One main technique on relational
+learning is based on the Markov assumption, where the labels of a node in a rela-
+tional network are determined by the labels of nodes in its neighborhood. Collective
+inference [Angelova and Weikum 2006; Jensen et al. 2004] and semi-supervised learn-
+ing on graphs [Zhu et al. 2003] work on this assumption, which is constructed based on
+the relational features of labeled data, followed by an iterative process (e.g., relaxation
+labeling method) to determine class labels for unlabeled data. In [Ye et al. 2011], Ye et
+al. applied this methodology in location-based social networks for deriving label prob-
+abilities for places. The authors used the collective classi cation method that learns
+labels from the neighborhood, which only includes the nodes that hold the top-k rele-
+vance with the prediction node. Collective inference and semi-supervised learning on
+graphs are limited in capturing local dependencies of nodes in the relational network.
+Some improvement on semi-supervised learning algorithms focused on the depen-
+dency between labels [Liu et al. 2006], while some other work tried to capture the
+long-distance relevance of nodes. For example, [Miller et al. 2009] proposed a nonpara-
+metric latent feature models for link prediction.In [Neville and Jensen 2005], Neville
+and Jensen used clustering algorithm to  nd cluster membership and  x the latent
+group variables for inference.
+There are several works aiming to explore the relations in a heterogeneous network.
+For instance, Kong et al. [Kong et al. 2012] proposed a meta-path based collective
+classi cation approach, which exploits the multi-type dependencies of linked objects
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:22
+via interconnecting with different linkage paths. Sun et al. [Sun et al. 2012] developed
+a meta-path based approach for relation prediction by considering target relation and
+topological information. These approaches are either not suitable for networks, such
+as Web of Things (WoT) that contains a large number of things, where computational
+costs for inference are prohibitive, or not fully taking rich contextual information into
+account.
+In our work, we extend the model to the relational network of things where a thing s
+usage history not only indicates user and temporal information, but also location in-
+formation. As a result, a better performance in deriving latent features from the rela-
+tional network of things can be achieved. In particular, we explore the relation between
+spatial information and temporal information by exploring the periodical pattern in
+human interactions on things.
+6.2. Ubiquitous Things Searching
+Finding related and similar things is a key service and the most straightforward
+method of  nding related things is the traditional keyword-based search, where user
+querying keyword is matched with the extracted description of things including textual
+descriptions on thing s functionalities and non-functional properties. For example, in
+Microsearch [Tan et al. 2010] and Snoogle [Wang et al. 2008], each sensor is attached
+to a connected object, which carries a keyword-based description of each object. Follow-
+ing an ad hoc query consisting of a list of keywords, the system returns a ranked list
+of the top k entities matching this query. As we pointed out, this method can not work
+well for ubiquitous things due to unique characteristics, e.g., insuf cient description of
+things, inconsistency of the meaning of the textual information, more importantly this
+solution does not make use of implicit inter-correlations between things and their rich
+contextual information.
+Another mainstream solution is via semantic Web related techniques. Such solutions
+typically use the meta data annotation (e.g., details related to a sensor such as sensor
+type, manufacturer, capability and contextual information), then use a query language
+to search related available things [Mietz et al. 2013; Christophe et al. 2011a]. Online
+sensors such as Pachube4, GSN [Aberer et al. 2006], Microsoft SensorMap [Nath et al.
+2007] and linked sensor middleware [Le-Phuoc et al. 2011] support search for sensors
+based on textual metadata that describes the sensors (e.g., type and location of a sen-
+sor, functional and non-functional attributes, object to which the sensor is attached),
+which is manually entered by the person who deploys the sensor. Other users can then
+search for sensors with certain metadata by entering appropriate keywords. Unfortu-
+nately, these ontology and their use are rather complex and it is uncertain whether
+end users can provide correct descriptions of sensors and their deployment context
+without the help from experts. In other words, such methods require extensive prior
+knowledge. There are efforts to provide a standardized vocabulary to describe sensors
+and their properties such as SensorML5 and the Semantic Sensor Network Ontology
+(SSN)6, but not widely adopted.
+The above solutions are time-consuming and require expert knowledge. For example,
+the descriptions of things and their corresponding characteristics and ontology need to
+be prede ned under a uniform format such as Resource Description Framework (RDF)
+or Schema.org7. In addition, the methods do not make full use of the rich information
+on users historical interactions with things, which may imply containing implicit re-
+4https://pachube.com/
+5http://www.opengeospatial.org/standards/sensorml
+6http://www.w3.org/2005/Incubator/ssn/ssnx/ssn
+7http://schema.org/
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+lations of different entities. For example, if some users have the similar usage pattern
+on certain things, it may indicate some close connections among these things. Existing
+solutions can not capture such information well. We propose to extract the underlying
+connections between things by exploiting the human-thing interactions in ubiquitous
+environment. Our method not only takes rich contextual information of human-thing
+interactions into account, but also utilizes the historical pattern by analyzing past
+human-thing interactions.
+A:23
+7. CONCLUSION
+Recent advances in radio-frequency identi cation (RFID), wireless sensor networks,
+and Web services have made it possible to bridge the physical and digital worlds to-
+gether, where ubiquitous things are becoming an integral part of our daily lives. De-
+spite the exciting potential of this prosperous era, there are many challenges that
+persist. In this paper, we propose a novel model that derives latent correlations among
+things by exploiting user, temporal, and spatial information captured from things us-
+age events. This correlation analysis can help solve many challenging issues in man-
+aging things such as things search, recommendation, annotation, classi cation and
+clustering. The experimental results demonstrate the utility of our approach.
+We view the work presented in this paper as a  rst step towards effective manage-
+ment of things in the emerging Web of Things (WoT) era. There are a few interesting
+directions that we plan to work in the future:
+  Real-time things status update. In real situation, physical things are more dynamic
+compared to traditional Web resources. Examples of such dynamic features include
+availability, and changing attributes (e.g., geographical information, status). We plan
+to improve our model so that it can adaptively propagate up-to-date information from
+things correlations network and make more accurate recommendations.
+  Scalability. We plan to improve the scalability of our approach by adopting con-
+straints in searching a local area. This can be realized by applying generalized clus-
+tering algorithms on hypergraphs. The search space can be signi cantly pruned in
+this way. We also plan to evaluate the improved approach using real-world large-scale
+WoT datasets. We notice that some parameters (e.g.,   and  ) in our approach need
+to be tuned in a category speci c way. This might be a burden to apply the algorithm
+to other WoT datasets. We will investigate ways to reduce the workload of parameter
+tuning e.g., by some meta-feature based methods or multi-task learning [Lee et al.
+2007; Zhang and Yeung 2011].
+  Thing-to-Thing communications. Our current model works based on human-thing
+interactions to extract the latent connections between things. The communications
+between things are getting more prevalent with development of communication tech-
+nologies, which represent a rich source to exploit for making our current model more
+robust. Extending our model by analyzing and exploring the thing-to-thing commu-
+nications is another future work.
+REFERENCES
+Karl Aberer, Manfred Hauswirth, and Ali Salehi. 2006. A Middleware for Fast and Flexible Sensor Network
+Deployment. In Proc. of the 32nd Intl. Conference on Very Large Data Bases. 1199 1202.
+Ralitsa Angelova and Gerhard Weikum. 2006. Graph-based Text Classi cation: Learn from Your Neighbors.
+In Proc. of the 29th Annual Intl. ACM SIGIR Conference on Research and Development in Information
+Retrieval. 485 492.
+Luciano Baresi, Luca Mottola, and Schahram Dustdar. 2015. Building Software for the Internet of Things.
+IEEE Internet Computing 19, 2 (2015), 6 8.
+Payam Barnaghi, Amit Sheth, and Cory Henson. 2013. From Data to Actionable Knowledge: Big Data Chal-
+lenges in the Web of Things. IEEE Intelligent Systems 28, 6 (Nov 2013), 6 11.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:24
+Chih-Chung Chang and Chih-Jen Lin. 2011. LIBSVM: a Library for Support Vector Machines. ACM Trans-
+actions on Intelligent Systems and Technology (TIST) 2, 3 (2011), 27.
+Benoit Christophe, Vincent Verdot, and Vincent Toubiana. 2011a. Searching the Web of Things. In Proceed-
+ings of the 5th International Conference on Semantic Computing (ICSC). IEEE, 308 315.
+Benoit Christophe, Vincent Verdot, and Vincent Toubiana. 2011b. Searching the Web of Things. In Proc. of
+ICSC. 308 315.
+Alois Ferscha. 2012. 20 Years Past Weiser: What s Next? IEEE Pervasive Computing 11, 1 (2012), 52 60.
+Dominique Guinard, Vlad Trifa, Friedemann Mattern, and Erik Wilde. 2011. From the Internet of Things
+to the Web of Things: resource-oriented architecture and best practices. In Architecting the Internet of
+Things. Springer, 97 129.
+D. Jensen, J. Neville, and B. Gallagher. 2004. Why Collective Inference Improves Relational Classi cation.
+In Proc. of the 10th ACM SIGKDD Intl. Conference on Knowledge Discovery and Data Mining. 593 598.
+Tatsuya Kameda, Yohsuke Ohtsubo, and Masanori Takezawa. 1997. Centrality in Sociocognitive Networks
+and Social In uence: An Illustration in a Group Decision-Making Context. Journal of Personality and
+Social Psychology 73, 2 (1997), 296.
+Tim Kindberg, John Barton, Jeff Morgan, Gene Becker, Debbie Caswell, Philippe Debaty, Gita Gopal, Mar-
+cos Frid, Venky Krishnan, Howard Morris, John Schettino, Bill Serra, and Mirjana Spasojevic. 2002.
+People, Places, Things: Web Presence for the Real World. Mobile Networks and Applications 7, 5 (2002),
+365 376.
+Xiangnan Kong, Philip S Yu, Ying Ding, and David J Wild. 2012. Meta Path-based Collective Classi cation
+in Heterogeneous Information Networks. In Proceedings of the 21st ACM International Conference on
+Information and Knowledge Management. ACM, 1567 1571.
+Danh Le-Phuoc, Hoan Nguyen Mau Quoc, Josiane Xavier Parreira, and Manfred Hauswirth. 2011. The
+Linked Sensor Middleware Connecting the Real World and the Semantic Web. In Proceedings of the
+Semantic Web Challenge.
+Su-In Lee, Vassil Chatalbashev, David Vickrey, and Daphne Koller. 2007. Learning a Meta-level Prior for
+Feature Relevance from Multiple Related Tasks. In Proceedings of the 24th International Conference on
+Machine Learning. ACM, 489 496.
+Elizabeth A Leicht and Mark EJ Newman. 2008. Community Structure in Directed Networks. Physical
+Review Letters 100, 11 (2008), 118703.
+Yi Liu, Rong Jin, and Liu Yang. 2006. Semi-supervised Multi-label Learning by Constrained Non-negative
+Matrix Factorization. In Proceedings of the 21st National Conference on Arti cial Intelligence (AAAI 06).
+421 426.
+Sujith S. Mathew, Yacine Atif, Quan Z. Sheng, and Zakaria Maamar. 2013. The Web of Things: Challenges
+and Enabling Technologies. In Internet of Things and Inter-cooperative Computational Technologies for
+Collective Intelligence, D. Varvaigou R. Hill M. Li N. Bessis, F. Xhafa (Ed.). Springer, 1 23.
+Richard Mietz, Sven Groppe, Kay R omer, and Dennis P sterer. 2013. Semantic Models for Scalable Search
+in the Internet of Things. Journal of Sensor and Actuator Networks 2, 2 (2013), 172 195.
+K.T. Miller, T.L. Grif ths, and M.I. Jordan. 2009. Nonparametric Latent Feature Models for Link Prediction.
+In Proceedings of the 23rd Annual Conference on Neural Information Processing Systems (NIPS 09).
+1276 1284.
+Suman Nath, Jie Liu, and Feng Zhao. 2007. Sensormap for Wide-area Sensor Webs. IEEE Computer 40, 7
+(2007), 90 93.
+Jennifer Neville and David Jensen. 2005. Leveraging Relational Autocorrelation with Latent Group Models.
+In Proceedings of the 4th International Workshop on Multi-relational Mining. ACM, 49 55.
+Mark E.J. Newman. 2006. Finding Community Structure in Networks Using the Eigenvectors of Matrices.
+Physical review E 74, 3 (2006), 036104.
+Mark E.J. Newman and Michelle Girvan. 2004. Finding and Evaluating Community Structure in Networks.
+Physical Review E 69, 2 (2004), 026113.
+L.M. Ni, Y. Liu, Y.C. Lau, and A.P. Patil. 2004. LANDMARC: Indoor Location Sensing Using Active RFID.
+Wireless Networks 10, 6 (2004), 701 710.
+Siddika Parlak, Ivan Marsic, and Randall S Burd. 2011. Activity Recognition for Emergency Care Using
+RFID. In Proceedings of the 6th International Conference on Body Area Networks. 40 46.
+Gerard Salton and Christopher Buckley. 1988. Term-weighting Approaches in Automatic Text Retrieval.
+Information Processing & Management 24, 5 (1988), 513 523.
+Aviv Segev and Quan Z. Sheng. 2012. Bootstrapping Ontologies for Web Services. IEEE Transactions on
+Services Computing 5, 1 (2012), 33 44.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.
+A:25
+Quan Z. Sheng, Xue Li, and Sherali Zeadally. 2008. Enabling Next-Generation RFID Applications: Solutions
+and Challenges. IEEE Computer 41, 9 (2008), 21 28.
+Yizhou Sun, Jiawei Han, Charu C Aggarwal, and Nitesh V Chawla. 2012. When Will It Happen?: Relation-
+ship Prediction in Heterogeneous Information Networks. In Proceedings of the Fifth ACM International
+Conference on Web Search and Data Mining. ACM, 663 672.
+Chiu C Tan, Bo Sheng, Haodong Wang, and Qun Li. 2010. Microsearch: A Search Engine for Embedded
+Devices used in Pervasive Computing. ACM Transactions on Embedded Computing Systems (TECS) 9,
+4 (2010), 43.
+Lei Tang and Huan Liu. 2009. Relational learning via latent social dimensions. In Proceedings of the 15th
+ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. ACM, 817 826.
+Hanghang Tong, Christos Faloutsos, and Jia-Yu Pan. 2006. Fast Walk with Restart and Its Applications. In
+Proceedings of the the 6th International Conference on Data Mining (ICDM 06). Hong Kong, China.
+Monica Vitali and Barbara Pernici. 2014. A Survey on Energy Ef ciency in Information Systems. Interna-
+tional Journal of Cooperative Information Systems 23, 3 (2014).
+Michail Vlachos, Christopher Meek, Zografoula Vagena, and Dimitrios Gunopulos. 2004. Identifying Simi-
+larities, Periodicities and Bursts for Online Search Queries. In Proceedings of the 2004 ACM SIGMOD
+International Conference on Management of Data. ACM, 131 142.
+Haodong Wang, Chiu Chiang Tan, and Qun Li. 2008. Snoogle: A Search Engine for the Physical World. In
+Proceedings of the 27th Conference on Computer Communications (INFOCOM 2008). IEEE.
+Yanbo Wu, Quan Z. Sheng, Damith Ranasinghe, and Lina Yao. 2012. PeerTrack: A Platform for Tracking
+and Tracing Objects in Large-scale Traceability Networks. In Proceedings of the 15th International
+Conference on Extending Database Technology (EDBT).
+Yanbo Wu, Quan Z. Sheng, Hong Shen, and Sherali Zeadally. 2013. Modeling Object Flows from Distributed
+and Federated RFID Data Streams for Ef cient Tracking and Tracing. IEEE Transactions on Parallel
+and Distributed Systems 24, 10 (2013), 2036 2045.
+Jing Xia, Doina Caragea, and William Hsu. 2009. Bi-relational Network Analysis Using a Fast Random
+Walk with Restart. In Proceedings of the 9th IEEE International Conference on Data Mining (ICDM 09).
+IEEE, 1052 1057.
+Lina Yao and Quan Z Sheng. 2012. Exploiting Latent Relevance for Relational Learning of Ubiquitous
+Things. In Proceedings of the 21st ACM International Conference on Information and Knowledge Man-
+agement (CIKM 2012). 1547 1551.
+Lina Yao, Quan Z. Sheng, and Schahram Dustdar. 2015. Web-based Management of the Internet of Things.
+IEEE Internet Computing 19, 4 (July/August 2015), 60 67.
+Lina Yao, Quan Z. Sheng, Byron Gao, Anne H.H. Ngu, and Xue Li. 2013. A Model for Discovering Corre-
+lations of Ubiquitous Things. In Proceedings of IEEE International Conference on Data Mining (ICDM
+2013).
+Lina Yao, Quan Z. Sheng, Anne H.H. Ngu, and Xue Li. 2016. Things of Interest Recommendation by Lever-
+aging Heterogeneous Relations in the Internet of Things. ACM Transactions on Internet Technology
+(TOIT) 16, 2 (2016), 9.
+Mao Ye, Dong Shou, Wang-Chien Lee, Peifeng Yin, and Krzysztof Janowicz. 2011. On the Semantic Annota-
+tion of Places in Location-based Social Networks. In Proceedings of the 17th ACM SIGKDD International
+Conference on Knowledge Discovery and Data Mining. ACM, 520 528.
+Yu Zhang and Dit Yan Yeung. 2011. Multi-Task Learning in Heterogeneous Feature Spaces. In 25th AAAI
+Conference on Arti cial Intelligence and the 23rd Innovative Applications of Arti cial Intelligence Con-
+ference, AAAI-11/IAAI-11, San Francisco, CA, United States, 7-11 August 2011, Code 87049, Proceedings
+of the National Conference on Arti cial Intelligence.
+Xiaojin Zhu, Zoubin Ghahramani, and John Lafferty. 2003. Semi-Supervised Learning using Gaussian
+Fields and Harmonic Functions. In Proc. of the 20th Intl. Conference on Machine Learning (ICML 03).
+912 919.
+ACM Transactions on Intelligent Systems and Technology, Vol. V, No. N, Article A, Publication date: January YYYY.

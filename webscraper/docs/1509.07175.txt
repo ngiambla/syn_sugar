@@ -1,0 +1,1486 @@
+7
+1
+0
+2
+ 
+b
+e
+F
+2
+ 
+ 
+ 
+]
+L
+C
+.
+s
+c
+[
+ 
+ 
+5
+v
+5
+7
+1
+7
+0
+.
+9
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Exploration and Exploitation of Victorian Science
+in Darwin s Reading Notebooks
+Jaimie Murdocka,b, Colin Allena,c,d, Simon DeDeoa,b,e,f, 
+aProgram in Cognitive Science, Indiana University, Bloomington, IN 47405, USA
+bSchool of Informatics and Computing, Indiana University, 919 E. 10th Street,
+Bloomington, IN 47408, USA
+cDepartment of History and Philosophy of Science and Medicine,
+Indiana University, Bloomington, IN 47405, USA
+dSchool of Humanities and Social Sciences, Xi an Jiaotong University, Xi an, China
+eDepartment of Social and Decision Sciences, Carnegie Mellon University, 5000 Forbes
+Avenue, BP 208, Pittsburgh, PA 15213, USA
+fSanta Fe Institute, 1399 Hyde Park Road, Santa Fe, NM 87501, USA
+Abstract
+Search in an environment with an uncertain distribution of resources involves
+a trade-o  between exploitation of past discoveries and further exploration.
+This extends to information foraging, where a knowledge-seeker shifts be-
+tween reading in depth and studying new domains. To study this decision-
+making process, we examine the reading choices made by one of the most
+celebrated scientists of the modern era: Charles Darwin. From the full-text
+of books listed in his chronologically-organized reading journals, we gener-
+ate topic models to quantify his local (text-to-text) and global (text-to-past)
+reading decisions using Kullback-Liebler Divergence, a cognitively-validated,
+information-theoretic measure of relative surprise. Rather than a pattern of
+surprise-minimization, corresponding to a pure exploitation strategy, Dar-
+win s behavior shifts from early exploitation to later exploration, seeking
+unusually high levels of cognitive surprise relative to previous eras. These
+shifts, detected by an unsupervised Bayesian model, correlate with major
+intellectual epochs of his career as identi ed both by qualitative scholarship
+and Darwin s own self-commentary. Our methods allow us to compare his
+ To whom correspondence should be addressed.
+Email addresses: jammurdo@indiana.edu (Jaimie Murdock),
+colallen@indiana.edu (Colin Allen), simon@santafe.edu (Simon DeDeo )
+Preprint submitted to Cognition
+February 3, 2017
+consumption of texts with their publication order. We  nd Darwin s con-
+sumption more exploratory than the culture s production, suggesting that
+underneath gradual societal changes are the explorations of individual syn-
+thesis and discovery. Our quantitative methods advance the study of cog-
+nitive search through a framework for testing interactions between individ-
+ual and collective behavior and between short- and long-term consumption
+choices. This novel application of topic modeling to characterize individual
+reading complements widespread studies of collective scienti c behavior.
+Keywords: Cognitive search, information foraging, topic modeling,
+exploration-exploitation, history of science, scienti c discovery
+1. Introduction
+The general problem of  information foraging  (Pirolli & Card, 1999) in
+an environment about which agents have incomplete information has been
+explored in many  elds, including cognitive psychology (Todd et al., 2012;
+Hills et al., 2015), neuroscience (Cohen et al., 2007), economics (March,
+1991; Azoulay-Schwartz et al., 2004),  nance (Uotila et al., 2009), ecology
+(Stephens & Krebs, 1986; Eliassen et al., 2007), and computer science (Sut-
+ton & Barto, 1998). In all of these areas, the searcher aims to enhance future
+performance by surveying enough of existing knowledge to orient themselves
+in the information space.
+Individual scientists and scholars can be viewed as conducting a cognitive
+search (Todd et al., 2012) in which they must balance exploration of ideas that
+are novel to them against exploitation of knowledge in domains in which they
+are already expert (Berger-Tal et al., 2014). Researchers have studied the
+exploration-exploitation trade-o  in cognitive search at timescales of minutes
+up to years and decades. Laboratory experiments on visual attention are one
+example of this balancing act on short timescales (Chun & Wolfe, 1996), while
+studies of the recombination of patented technologies demonstrate long-term
+group behavior (Youn et al., 2015). New advances in the digitization of
+historical archives enable longitudinal study of how individuals explore and
+synthesize the work of their contemporaries and predecessors over the course
+of a lifetime.
+2
+Major Events in Charles Darwin s Life (1809-1882)
+12 Feb 1809 Born in Shrewsbury, England
+22 Oct 1825 Matriculates at University of Edinburgh
+15 Oct 1827 Admitted to Christ s College, Cambridge
+27 Dec 1831 Departs England aboard the HMS Beagle
+2 Oct 1836 Return to England aboard the HMS Beagle
+July 1837 First entries in reading notebooks
+Aug 1839 Publication of The Voyage of the Beagle (1st edition)
+May 1842 Writes the 1st Essay on Species
+4 July 1844 Writes the 2nd Essay on Species
+Aug 1845 Publication of The Voyage of the Beagle (2nd edition)
+1 Oct 1846 Begins barnacle project
+19 Feb 1851 Publishes  rst volume of barnacle work
+9 Sep 1854 Begins sorting notes on natural selection
+14 May 1856 Starts writing  large work  on species
+24 Nov 1859 Publication of The Origin of Species (1st edition)
+13 May 1860 Last entry in reading notebooks
+24 Feb 1871 Publication of The Descent of Man
+19 Feb 1872 Publication of The Origin of Species (6th and  nal edition)
+21 Apr 1882 Dies at Down House in Kent, England
+Table 1: Timeline. Major events in Charles Darwin s life, including those marked on
+Fig. 1. This paper focuses on the critical period of his work from 1837 to 1860, leading to
+the publication of The Origin of Species. See Berra (2009) for an expanded chronology.
+As one of the most successful and celebrated scientists of the modern
+era, Charles Darwin s scienti c creativity has been the subject of numerous
+narrative and qualitative studies (Gruber & Barrett, 1974; Johnson, 2010;
+Van Hulle, 2014).
+In part, these studies are possible because Darwin left
+his biographers careful records of his intellectual and personal life. These
+include records of the books he read from 1837 to 1860, a critical period which
+culminated in the publication of The Origin of Species. Table 1 summarizes
+key events in Darwin s life.
+This article presents the  rst quantitative analysis of an important sci-
+entist s reading diaries, tracking how Darwin navigated the exploration-
+exploitation trade-o  in choosing what to read. We link Darwin s reading
+records with the full text of the original volumes. We then use probabilistic
+3
+topic models (Blei et al., 2003; Blei, 2012b) to represent the original text of
+each book Darwin read as a mixture of topics. We use information theory
+to measure the surprise, or unpredictability, of the next book that Darwin
+chose to read, compared to his past history of reading.
+We present three key  ndings:
+1. Darwin s reading patterns switch between both exploitation and ex-
+ploration throughout his career. This is in contrast to a pure surprise-
+minimization strategy that consistently exploits content within a local
+region before moving on. The general trend, as Darwin s career devel-
+ops, is towards increasing exploration.
+2. In comparison to the publication order of the texts Darwin read, Dar-
+win s reading order shows higher average surprise. This indicates that
+the order in which the books were written by the scienti c community
+is less surprising than the order in which Darwin read them.
+3. Darwin s strategies fall into three long-term epochs, or behavioral modes
+characterized by distinct patterns of surprise-seeking. These epochs
+correspond to three biographically signi cant periods: Darwin s post-
+Beagle studies, his extensive work on barnacles, and a  nal period
+leading to his synthesis of natural selection in the Origin of Species.
+While the bulk of empirical studies in cognitive science are concerned
+with measuring population-level e ects due to experimental manipulations,
+case studies play an important role in driving cognitive theorizing, experi-
+mentation, and modeling. For example, the case of the memory-impaired
+patient H.M. has driven many advances in cognitive neuroscience and com-
+putational models of memory (reviewed in Squire & Wixted (2011)). Other
+case studies, such as that of the frontal-lobe injury in Phineas Gage, provide
+important contrasts for later studies (reviewed in Macmillan (2000)).
+Detailed longitudinal investigations of a single individual may involve re-
+peated trials and changing strategies that cannot be observed in laboratory
+experiments involving a single task. Cognitive science could be enriched
+by using longitudinal studies such as ours to design laboratory studies with
+higher ecological validity. However, it is a challenging task to design labora-
+tory studies of (for example) reading choices that take into account a subjects
+extensive prior history of reading decisions.
+An advantage of taking Charles Darwin as a case study is the the exten-
+sive attention that he has received from historians and biographers since his
+death. These studies provide a novel means for validating our mathematical
+4
+tools. We will present a number of theoretical and empirical reasons why our
+methods measure cognitively-relevant features of a reader s experience. At
+the same time, the fact that our results also recover key features of Darwin s
+intellectual life provides additional support for the reliability of our methods.
+We cannot claim Darwin s information foraging behavior is typical for
+either scientists or the population-at-large; however, our analytic methods
+may be applied to other case studies to  nd population-level generalizations,
+provided there is access to the full text of each reading.
+Our approach contrasts with previous uses of topic modeling to analyze
+the large-scale structure of scienti c disciplines (Gri ths & Steyvers, 2004;
+Hall et al., 2008; Blei & La erty, 2007; Cohen Priva & Austerweil, 2015) and
+the humanities (Mohr & Bogdanov, 2013; Blei, 2012a; Jockers, 2013), which
+are each created through the collective e ects of individual-level behavior.
+Previous models of historical records have focused on language use as an in-
+dication of larger shifts in style (Hughes et al., 2012; Underwood & Sellers,
+2012), learnability (Hills & Adelman, 2015), or content (Michel et al., 2011;
+Goldstone & Underwood, 2014; Klingenstein et al., 2014) of signi cant por-
+tions of publications in a  eld, including a study of Cognition itself (Cohen
+Priva & Austerweil, 2015).
+These works model the collective state of all published works at a partic-
+ular date, but obscure the role of individual foraging behavior. By focusing
+on a single individual for whom ample records exist, we gain access to what
+Tria et al. (2014) describe as  the interplay between individual and collective
+phenomena where innovation takes place .
+2. Materials and Methods
+2.1. Darwin s Reading Records
+Darwin was a meticulous record-keeper starting in April 1838, he kept
+a notebook of  books to be read  and  books read . These records span the
+23 years from 1837 to 1860, tracking his reading choices from just after his
+return to England aboard the HMS Beagle to just after the publication of
+The Origin of Species. We located the full-text of 665 of the 687 (96.7%)
+English non- ction mentioned in these reading notebooks through a variety
+of online digital libraries. See Appendix A for details of corpus curation.
+5
+2.2. Probabilistic Topic Models
+We model these texts using using Latent Dirichlet Allocation (LDA; Blei
+et al. (2003); Blei (2012b)), a type of probabilistic topic model. LDA is a
+generative model that represents each document as a bag of words generated
+by a mixture of topics. LDA topic models have been extensively used to
+analyze human-generated text across many domains (Gri ths & Steyvers,
+2004; Blei & La erty, 2007; Mohr & Bogdanov, 2013; Blei, 2012a; Jockers,
+2013). Furthermore, topic models predict the behavior of human subjects
+in a variety of word association and disambiguation tasks (Gri ths et al.,
+2007). Topic models allow us to describe Darwin s reading as taking place in a
+(k 1)-dimensional space, the simplex, where a particular volume is described
+as a probability distribution, (cid:126)p, over k topics. To test the robustness of our
+results, we vary the number of topics, k. In the main body of the paper,
+we report for k = 80 because we found that our results were robust to
+alternative values of k and to di ering random seeds for each; see Appendix
+E.1 for k = {20, 40, 60}. Darwin s  semantic voyage  is the path he takes
+through this space from text to text.
+2.3. Cognitive Surprise and Kullback-Leibler Divergence
+We use probabilistic topic models to quantify the structure of the texts.
+Characterizing Darwin s reading choices then becomes the problem of com-
+paring distributions over topics. Our goal is to quantify surprise: the extent
+to which a new reading either satis es, or violates, the expectations a reader
+would have based on what came before. A high-surprise reading indicates
+that the reader has chosen a book that contains a new mixture of topics
+compared to what came before.
+In our model, (cid:126)p and (cid:126)q are topic distributions over texts or an aggrega-
+tion of texts. The reader is modeled in an information-theoretic fashion as
+building e cient mental representations of these distributions. Our task is
+then to quantify his exploratory behavior as he moves from one distribution
+to another.
+To compare two distributions in this way we use the Kullback-Leibler
+(KL) divergence,  rst introduced by Kullback & Leibler (1951). It is de ned
+by
+k(cid:88)
+i=1
+6
+DKL((cid:126)q|(cid:126)p) =
+qi log2
+qi
+pi
+,
+(1)
+where (cid:126)p is the distribution over topics that the reader has encountered before,
+and (cid:126)q the new distribution of topics that the reader encounters next. (In this
+paper, we consider two choices for (cid:126)p: 1) the distribution over topics for the
+just previous book, and 2) the average over all books in the reader s past.
+Meanwhile, (cid:126)q will always refer to a distribution over topics for the next book
+a reader encounters.)
+KL divergence can be thought of as a measure of surprise associated with
+a change in representation of a learner who encounters the unexpected in
+ways that require her to alter the way she represents the world. An agent
+expecting observations to be draw from probability distribution (cid:126)p will have
+those expectations violated if it arrives according to a di erent distribution (cid:126)q.
+KL divergence quanti es the surprise in a particularly natural fashion; to aid
+the reader unfamiliar with this quantity, we present two ways to understand
+the mathematical structure of KL in Appendix B:  rst in terms of  coding
+failure  and second in terms of the rate of accumulation of Bayesian evidence
+against one distribution and in favor of the other.
+The use of KL to measure cognitive surprise has had a number of re-
+cent successes. Vision researchers have used KL to track surprise in a visual
+scene: the places on the screen where new events most violate the viewer s
+previous assumptions; KL then accurately captures attention attractors in
+visual search tasks (Demberg & Keller, 2008; Itti & Baldi, 2009). More gen-
+erally, KL has seen wide use in the cognitive sciences; Resnik (1993), for
+example, proposed the KL divergence as a measure of selectional preferences
+in language (reviewed in Light & Grei  (2002)). It has found use in many
+successful models of linguistic discrimination, including syntactic comprehen-
+sion (Hale, 2001; Levy, 2008), speech recognition (Calamaro & Jarosz, 2015;
+Martin et al., 2013) and word sense disambiguation (Resnik, 1997).
+2.4. Text-to-text and Text-to-past Surprise
+We use KL in two distinct ways. We measure the text-to-text surprise:
+given a distribution over topics for the text Darwin just read, how surprised is
+he upon encountering the next volume s topic distribution? Text-to-text sur-
+prise is a local measure. We also measure the text-to-past surprise: given all
+of the volumes that Darwin has encountered so far, how surprised is Darwin
+by the text that comes next? Text-to-past surprise is a global measure.
+If we de ne  i as the topic distribution for document i, then text-to-text
+(T 2T ) and text-to-past (T 2P ) surprise are de ned as
+T 2T (i) = DKL( i| i 1),
+(2)
+7
+(cid:32)
+T 2P (i) = DKL
+ i
+(cid:80)i 1
+j=0  j
+i
+(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)
+(cid:33)
+.
+(3)
+Text-to-text surprise and text-to-past surprise provide complementary
+windows onto Darwin s decision-making. Local decision-making, meaning
+the choice of the next text to read given the current one, is captured by
+text-to-text surprise. Global decision-making, the choice of which text to
+read given the entire history of reading to date, is captured by text-to-past
+surprise. Low surprise, in either case, is a signal of exploitation, while high
+surprise indicates larger jumps to lesser-known topics, and thus of explo-
+ration. These measures can be easily generalized to arbitrary text-to-N sur-
+prise measures, representing the choice of the next reading given the history
+of readings within the past N volumes or time periods.
+We characterize Darwin s decision process by the combination of text-
+to-text and text-to-past surprise. Exploration, indicated by high surprise,
+happens when a searcher is moving across a space not previously explored.
+Exploitation, indicated by low surprise, happens when a searcher has a sus-
+tained focus on material they are already familiar with.
+These local and global behaviors do not have to align. For example,
+text-to-text surprise may be high (local exploration) at the same time that
+text-to-past surprise is low (global exploitation). This can happen if Darwin s
+readings interleave di erent topics that he has already seen. If, for example,
+Darwin alternates between readings in philosophy with readings in travel
+narratives, then each local jump will have high KL (a travel narrative is
+dominated by topics that are rare in a philosophical text, and vice-versa)
+and Darwin s readers will appear as a local exploration. However, once this
+pattern of alternation has been established, the average over past texts will
+include both philosophical and travel narrative topics, lowering the text-to-
+past surprise, and driving the system back towards global exploitation.
+Conversely, text-to-text surprise can also be low while text-to-past sur-
+prise is high. This can happen if Darwin has recently begun a novel, but
+focused, investigation. In this situation, he focuses on a particular subset of
+topics that are under-represented in his overall history. If Darwin begins by
+focusing on philosophical texts, and then switches to travel narratives, his
+second (and subsequent) travel narrative readings will have low text-to-text
+surprise; but the average over past texts will be dominated by a long history
+of philosophical readings, leaving the text-to-past surprise high until he has
+accumulated so many readings of the latter type that they dominate the past
+8
+average.
+2.5. Cultural Production and Null Reading Models
+Our methods also allow us to understand how Darwin selectively re-orders
+the products of his culture. To do this, we measure text-to-text and text-to-
+past surprise using the publication order of the texts that Darwin read. We
+can then ask questions about the extent to which Darwin s encounters with
+the products of his culture were more or less exploratory than the order in
+which they were produced. Does Darwin s reading order reduce the surprise
+relative to the publication order, or does it increase it?
+All results are relative to a null reading model that holds Darwin s origi-
+nal reading dates  xed and re-samples without replacement from his original
+reading list. The title selection at each reading date is constrained to those
+titles published before that date. In contrast to a null that includes permuta-
+tions that neglect publication date, this restricted null captures the dynamics
+of publication in which a new work can unexpectedly change the information
+space. We are unable to resolve publication dates to less than a year; this
+occasionally implies an ambiguity in creation date for texts in the corpus
+that have the same year of publication. To solve this, we average our results
+over all possible within-year orders.
+We compare the production and consumption of texts by considering only
+the texts Darwin recorded himself as reading. This allows us to make a direct
+comparison between the average surprise of the publication order and reading
+order within that set. But the production of these texts, of course, occurs in a
+much larger context, and it is reasonable to ask about the books that Darwin
+considered reading but did not, or an even more complete representation
+of the state of Victorian science constructed using all the scienti c books
+available to him in Kent and London during these years. Here we focus on
+the books he chose to read, and the space he actually explored, partly for
+practical reasons and partly because we are interested in the decisions he
+made to order the texts, rather than the decision of whether to read them at
+all.
+2.6. Bayesian Epoch Estimation
+In the foraging literature, individuals are often assumed to persist in sus-
+tained periods of either exploration or exploitation. We call this an epoch. We
+are particularly interested in whether or not these epochs align with impor-
+tant events in Darwin s life. By using Bayesian models to infer epoch breaks,
+9
+we can determine whether the data support a qualitative interpretation of
+the quantitative model.
+Bayesian epoch estimation (BEE) models an epoch as a Gaussian dis-
+tribution of relative surprise, in either the text-to-text or text-to-past case,
+with  xed mean and variance. Each epoch is de ned by a beginning point
+(which is also either the end of the previous epoch, or the start of the data),
+an average level of surprise, and the variance around that average. For each
+time-series, the model then contains 3n 1 parameters, where n is the number
+of epochs.
+Epoch switches are independently selected for the text-to-text and text-
+to-past measures. Each transition can then be interpreted as a change in
+Darwin s exploration and exploitation behavior at the local or global level.
+When a new epoch has higher average surprise than the one before, for
+example, we can understand Darwin as moving to a more exploration-based
+strategy.
+Our one externally-set parameter is the total number of epochs, n. As n
+rises, it becomes easier and easier to  t the data; at some point, we encounter
+the over- tting problem, and in the extreme case we have as many parameters
+as we have data points. For each choice of n, our model returns a likelihood:
+the probability that the observed data were generated by the (best  tting)
+choice of parameters for that model. As n rises, so does the log-likelihood.
+To determine the best- t number of epochs, we use a simple model-
+complexity penalty, Akaike Information Criterion (AIC) (Akaike, 1974), to
+verify that the selected model is preferred, despite the addition of new pa-
+rameters. The AIC penalizes a model s log-likelihood by the total number of
+parameters in the model; adding more epochs, in other words, must justify
+itself by a su ciently large increase in goodness of  t. The AIC can be un-
+derstood as an information-theoretic and Bayesian version of the chi-squared
+test, which attempts to maximize a model s predictive power (Burnham &
+Anderson, 2003).
+To  x attention on the longest timescales in Darwin s life, we set the
+minimum epoch length to  ve years. See Appendix E for further discussion
+of the BEE model, for the likelihood space of epoch breaks for Darwin s
+readings, and for our AIC analysis.
+10
+3. Results
+3.1. Exploration and Exploitation
+Over the 647 records in our corpus, Darwin s reading order led to a below-
+null average surprise, where the null is the average surprise of 1,000 permuta-
+tions of Darwin s reading order, constrained by each book s publication date
+(see Section 2.4).
+On average, the KL divergence from text to text in the corpus is 10.78
+bits compared to a null expectation of 11.41 bits (p (cid:28) 10 3). Meanwhile,
+Darwin s text-to-past average surprise is 2.96 bits in the data versus 2.98 bits
+in the null (p = 0.02). Darwin s average surprise, in both text-to-text and
+text-to-past, is lower than expected from a null model. While our rejection of
+this simple null model provides little new insight into the cognitive process of
+a reader s decision-making which we expect to have some correlation from
+book to book it is a crucial test of the sensitivity of our methods themselves.
+A surprise-minimizing path is one that orders the texts so as to minimize
+the total sum of text-to-text, or text-to-past, surprise. Finding this shortest
+path amounts to a variant of the  traveling salesman problem , which is fa-
+mously di cult to solve (reviewed in Cook (2011)). The greedy shortest path
+algorithm attempts to approximate the surprise-minimizing path by starting
+with the  rst text that Darwin read, and choosing as the next one to read
+the one with smallest KL divergence from the  rst, and so on, minimizing
+at each step either the text-to-text, or text-to-past KL depending on which
+quantity one is interested in.
+While Darwin s path is lower in surprise than the null, it is far larger
+than many paths that can be found: the greedy shortest-path algorithm,
+for example, can reduce the text-to-text average surprise to 2.11 bits and
+text-to-past average surprise to 2.97 bits. Table S6 shows the raw local text-
+to-text and global text-to-past KL divergence data, along with the greedy
+shortest path single-visit traversals of the KL distance matrix.
+The null, actual, and greedy shortest-path results show that Darwin has
+a focused reading strategy despite not following a pattern of pure surprise-
+minimization. Interestingly, the greedy shortest path is slightly longer than
+the path Darwin took in the global measure. This highlights how preference
+for exploration at the local scale i.e., not taking the closest book in topic
+space at each step can lead to an unexpectedly e cient path in the global
+measure. See Appendix D for an alternative rank-order analysis reinforcing
+this null-model testing.
+11
+Darwin s order
+Null (1,000 permutations)
+(p-value)
+Greedy shortest path
+Local
+text-to-text
+(bits/step)
+11.41   0.28
+10.78
+(cid:28) 10 3
+2.11
+Global
+text-to-past
+(bits/step)
+2.96
+2.98+0.04 0.02
+0.02
+2.97
+Table 2: Exploration habitsf. Average text-to-text (local) and text-to-past (global) KL
+Divergence (bits/step) over the reading path. Text-to-past KL is lower, as Darwin s read-
+ing spreads out to cover the topic space and lowers the information-theoretic surprise of
+subsequent books. Darwin s reading strategy is simultaneously more exploitative than
+would be expected of a random reader while also not following a strategy of pure surprise-
+minimization. Note that Darwin s order displays lower global surprise than the greedy
+shortest path, which demonstrates that selecting the next most similar book is not the
+best overall strategy for minimizing average global surprise over time.
+3.2. Readings over Time
+While Darwin is on average more exploitative, this is not necessarily true
+at any particular reading date. Darwin s surprise accumulates at di erent
+rates depending on time, as can be seen in Fig. 1 for the text-to-text case
+(top panel) and the text-to-past case (bottom panel). These  gures plot the
+cumulative surprise relative to the null, so that a negative (downward) slope
+indicates reading decisions by Darwin that produce below-null instantaneous
+surprise (exploitation). Conversely, a positive (upward) slope indicates deci-
+sions that are more surprising than the null (exploration).
+Over the entire corpus, as we know from the previous section, Darwin s
+cumulative surprise is below the null expectation, showing an overall bias
+towards both local and global exploitation. Tracking the slopes in these
+charts over time, however, allows us to see how Darwin moves between low-
+surprise and high-surprise choices on a range of timescales. The interaction
+of these decision rules at the text-to-text and text-to-past levels characterize
+Darwin s behavior.
+3.3. Individual and Collective
+While many studies see scienti c innovations as following large-scale cul-
+tural trends (Sun et al., 2013), individuals can also be understood as ahead of
+their time, pursuing connections and ideas before they are recognized by the
+12
+Figure 1: Epochs of exploration and exploitation in Darwin s reading choices.
+Text-to-text (top) and text-to-past (bottom) cumulative surprise over the reading path,
+in bits. More negative (downward) slope indicates lower surprise (exploitation); more
+positive (upward) slope indicates greater surprise (exploration). The three epochs, iden-
+ti ed by an unsupervised Bayesian model, are marked as alternating shaded regions with
+key biographical events marked as dashed lines and labeled in the top graph. The  rst
+epoch shows global and local exploitation (lower surprise). The second epoch shows local
+exploitation and global exploration (increased surprise, in text-to-past only). The third
+epoch shows local and global exploration (higher surprise in both cases).
+13
+Figure 2: Darwin s reading order more exploratory than the culture s produc-
+tion. Text-to-text (top) and text-to-past (bottom) cumulative surprise over the reading
+order (solid) and the publication order (dashed). More negative (downward) slope indi-
+cates lower surprise (exploitation); more positive (upward) slope indicates greater surprise
+(exploration). In both cases, Darwin s cumulative surprise is higher than the publication
+order; in the second case, very signi cantly so. We mark the positions of three biographi-
+cally signi cant books: Charles Lyell s Principles of Geology (3rd ed., 1837; read in 1837),
+Thomas Malthus s An Essay on the Principle of Population (1803; read on October 3,
+1838), and Robert Chambers s Vestiges of the Natural History of Creation (1844; read
+on November 20, 1844). Darwin s juxtaposition of Lyell and Malthus, for example, is
+characteristic of how Darwin s reading strategies reordered the products of his culture.
+14
+culture as a whole (Johnson, 2010; Bliss et al., 2014). By ordering Darwin s
+readings by publication date, rather than reading date, we see how the cul-
+ture gradually accumulates and assimilates content. We then compare how
+the culture produced these texts to how Darwin, in his reading, consumed
+them.
+Whether surprise is higher in the reading order or the publication order
+is a substantive empirical question. There are good reasons to imagine that
+the reading order will be lower in text-to-text and text-to-past surprise than
+the publication order but equally plausible reasons for the opposite.
+Consider,  rst, the idea that the reading order surprise is the lower of the
+two. Informally, this would suggest that reader has been at least partially
+successful at reordering the large number of texts into a more systematic se-
+quence,  nding similarities between chronologically distant texts and making
+sense of a disordered, distributed discovery process. A reader like Darwin,
+particularly early in his career when bene ting from more senior mentors,
+might be expected to attempt to do something similar.
+However, equally reasonable arguments work for the opposite direction,
+where reading order is more surprising than the publication order. In this
+case, the reader is  remixing  the products of the past, sampling texts from
+di erent periods in such as way as to juxtapose thematically distant readings.
+While society accumulates themes gradually, in an exploitation regime, the
+reader is in an exploration regime, bringing them into unexpected contact.
+While both possibilities appear a priori plausible, the data decisively
+favor the second. Figure 2 shows the text-to-text and text-to-past cumulative
+surprise for Darwin s reading order (solid line) compared to the publication
+date order (dashed line). Since volumes are published and read at di erent
+times, the x-axis is now ordinal (i.e., by position in the reading or publication
+sequence), rather than temporal (i.e., by date read or published). This allows
+us to compare his reading order to the publication order independent of time.
+Compared to Darwin s reading practices, cultural production has lower
+rates of surprise. While cumulative text-to-text surprise for Darwin often
+shows either  at or positive (above-null text-to-text surprise) slope, the
+publication order path is less explorative in both text-to-text and text-to-
+past cases. These  ndings, both at high levels of statistical signi cance
+(p (cid:28) 10 3), provide strong evidence for the remixing hypothesis.
+15
+3.4. Strategy Shifts between Biographically Signi cant Epochs
+Between 1837 and 1860, Darwin s three major intellectual projects are
+re ected in his publication history. First, he began assembling his research
+journals on the geology and zoology from the voyage of the HMS Beagle.
+The last of these nine volumes was published in 1846. A second epoch can
+be dated from 1 October 1846 when, while assembling the last of his Beagle
+notes, Darwin discovered a gap in the taxonomic literature concerning the
+living and fossil cirripedia (or barnacles) (Darwin, 1838-1851a). After a
+period of intense work, he published four volumes on the taxon from 1851
+to 1854. A  nal epoch begins with his journal entry on 9 September 1854,
+marking the day he began sorting his notes for a major work on species
+(Darwin, 1838-1851b). The revolutionary Origin of Species was published
+on 24 November 1859. These dates de ne three intellectual epochs: (1) from
+the beginning of records in 1837 to 30 September 1846; (2) from 1 October
+1846 to 8 September 1854; and (3) from 9 September 1854 to the end of
+records in 1860.
+We use the text-to-text and text-to-past models to characterize the ex-
+ploration and exploitation of Darwin s reading behavior in each epoch. In
+instances where Darwin s average KL-divergence is above the null (more pos-
+itive), Darwin is more exploratory. In instances where Darwin s average KL-
+divergence is below the null (more negative), Darwin is more exploitative.
+The degree to which he is in either mode is shown by the magnitude of the
+number. Table 3 shows these values.
+Darwin s three biographical epochs are characterized by major shifts in
+both text-to-text and text-to-past surprise. Darwin begins, in epoch one, in
+an exploitation mode in both text-to-text and text-to-past. His turn to the
+barnacles in 1846 is marked by a shift from exploitation towards exploration
+at the text-to-past level (global shift to new area), and an intensi cation
+of his exploitation strategy at the local, text-to-text level (increased focus
+in this new area).
+In the third epoch, when Darwin  began sorting his
+notes for Species Theory  (Darwin, 1838-1851b), text-to-past remains in the
+exploration mode; text-to-text now shifts to exploration as well.
+3.5. Unsupervised Detection of Strategy Shifts
+In addition to using Darwin s personally-speci ed epochs, we use a Bayesian
+model (Bayesian Epoch Estimation [BEE], see Methods) to estimate epoch
+breaks from text-to-text and text-to-past surprise alone. This process de-
+termines in ection points for Darwin s behavior without reference to outside
+16
+Start date
+Text-to-text
+Text-to-past
+Beagle writings
+2 October 1836
+Barnacles
+Synthesis
+1 October 1846
+9 September 1854
+-0.68
+-0.09
+-0.96
+-0.06
+0.32
+0.26
+Table 3: Information-theoretic correlates of biographically signi cant events. In
+this  rst table, we measure the relative surprise of Darwin s reading order by reference
+to dates derived from qualitative biographical work. The  rst major epoch of Darwin s
+intellectual life identi ed in this fashion corresponds to his post-Beagle work, when his
+readings were mostly in natural history and geology. Both text-to-text and text-to-past
+surprise remain low a regime of simultaneous local and global exploitation. The second
+epoch, when Darwin turns to a study of barnacles, shows an increase in text-to-past
+surprise (new topics; exploration) coupled with a decrease in text-to-text surprise (smaller
+jumps within these new topics; exploitation). The third epoch, when Darwin begins to
+collect his notes for his  Species Theory , is characterized by a rise in both text-to-text
+and text-to-past surprise. Now Darwin is neither repeatedly returning to well-covered
+topics (as in epoch one), nor turning his attention to a new, but narrow, range (as in
+epoch two), but rather ranging widely over new, previously understudied topics.
+biographical facts, allowing us to determine the extent to which the intellec-
+tual epochs identi ed by traditional, qualitative scholarship align with purely
+information-theoretic features of his reading.
+For text-to-text surprise, we  nd the boundary at 16 September 1854 (log-
+likelihood relative to not having a boundary:  L = 2.61; 14 times as likely
+as not having a boundary). This is within 1 week of his journal entry on 9
+September 1854 marking the start of his synthesis. For text-to-past surprise,
+we  nd the boundary at 27 May 1846 ( L = 6.17; 479 times as likely). The
+di erence between the automatically-selected date and his recorded start
+date on 1 October 1846 suggests the need for further investigation of what
+our results suggest was a period of relative uncertainty for Darwin about his
+research plans.
+The exploration-exploitation characteristics of these epochs are shown in
+Table 4. The close proximity of these automatically-detected breaks and the
+biographically signi cant epochs of the previous section con rm the central
+role of information-theoretic surprise in tracing the evolution of Darwin s
+search strategies.
+Both the text-to-text and text-to-past models make highly simplifying as-
+17
+Start date
+Text-to-text
+Text-to-past
+Beagle writings
+2 October 1836
+Barnacles
+Synthesis
+27 May 1846
+16 September 1854
+-0.78
+-0.11
+-0.76
+-0.02
+0.21
+0.24
+Table 4: Biographically signi cant events are detectable by unsupervised learn-
+ing. Even in the absence of qualitative information about Darwin s life, our Bayesian
+model, based only on text-to-text and text-to-past surprise measurements  nds with
+only slight di erences the three historically-noted epochs of Table 3: (1) from the start
+of our records in 1837 until text-to-past surprise changes from exploitation to exploration
+in Spring 1846, (2) from Spring 1846 until text-to-text surprise changes from exploita-
+tion to exploration in Autumn 1856, and (3) from Autumn 1856 to the end of our data,
+when both (local) text-to-text and (global) text-to-past selection behaviors are in the
+exploration state. The automatically-selected and biographical epochs agree on these
+characterizations, with small variance in the second epoch s start date.
+sumptions about the nature of Darwin s reading. The text-to-text case makes
+the most severe assumption of all: that Darwin s reading choices are condi-
+tional solely on the book just read. If Darwin s reading choices are strongly
+in uenced by longer term memory (as seems likely), and it is these patterns
+which de ne the true epoch boundaries, it is natural that evidence for epoch
+boundaries in the text-to-text BEE model is weaker than the text-to-past
+case. In addition, our BEE makes the simplifying assumption that succes-
+sive surprise values are independent draws from the distribution associated
+with that epoch.
+4. Discussion
+Models of cultural change often understand innovation as a multi-level
+combinatoric process, in which bundles of ideas are subject to cultural pro-
+cesses analogous to natural selection (Jacob, 1977; Wagner & Rosen, 2014).
+These evolutionary analogies typically consider change at the population
+level, as new ideas are created, spread, and modi ed by the crowd. A variety
+of recent studies covering conceptual formation in science, technology, and
+the humanities have taken this population-level perspective, including work
+on the recombination of patents (Youn et al., 2015), novelties (Tria et al.,
+2014), and citations (Gar eld, 1979). Sociological studies of scienti c prac-
+tice have investigated how disciplines (Sun et al., 2013) or  communities of
+practice  (Bettencourt & Kaiser, 2015) are formed.
+18
+The mechanisms driving cultural innovation at the population-level can-
+not, however, be fully understood without taking into account the cognitive
+processes that operate at the level of individual scientists. We have taken a
+step towards modeling these individual-level processes by studying the infor-
+mation foraging behavior of one preeminent scientist, using an information-
+theoretic framework applied to probabilistic topic models of his reading be-
+havior. The information-theoretic measure we use to quantify surprise, KL
+divergence, connects both analytically and empirically to linguistics (Cala-
+maro & Jarosz, 2015; Hale, 2001; Levy, 2008; Light & Grei , 2002; Martin
+et al., 2013; Resnik, 1993) and visual search (Demberg & Keller, 2008; Itti
+& Baldi, 2009). The LDA topic models that generate this information space
+also have cognitive correlates (Gri ths et al., 2007).
+Our methods allow us to zoom in on Darwin s individual-level process
+to identify major epochs in his reading strategies. Over time, Darwin shifts
+towards increasing exploration as he prepares to write the Origin. Interest-
+ingly, the overall order we  nd empirically exploitation then exploration 
+is in contrast to many of predictions derived from mathematical accounts
+of how optimal agents navigate the exploration-exploitation dilemma (Git-
+tins, 1979). These generally predict that individuals begin with exploration
+(see, e.g., Berger-Tal et al. (2014)), shifting later to exploitation as they gain
+information about the environment.
+Our results may be consistent with the standard models, if Darwin s
+early exploitation was guided by an earlier exploration phase prior to 1837.
+Or, it may be the case that the early phase of exploitation was necessary
+for Darwin to gain su cient abilities or con dence to explore in a reliable
+fashion later. Finally, it is worth noting that some evidence in favor of these
+standard models can still be found in the short-term switch towards greater
+exploitation at the text-to-text surprise from the  rst to the second epoch.
+This suggests that these models may be useful at shorter timescales in an
+individual s life.
+Our use of Charles Darwin allows us to validate our methods by ref-
+erence to the extensive qualitative literature on his intellectual life. Hav-
+ing presented a general information-theoretic framework for describing the
+exploitation-exploration trade-o , we can now look at other searchers to see
+if other strategies exist for managing the exploitation-exploration trade-o s.
+Expanding these results beyond the Darwin test case will be essential to pro-
+viding new empirical constraints on theories of how individuals explore the
+cultures of their time.
+19
+Reading records exist not only for elites, like Charles Darwin, but also for
+the general public. The maintenance of personal reading diaries is widespread,
+as evidenced by the more than 30,000 records in the UK Reading Experience
+Database (1450 1945),1 and the 50 million registered users of Goodreads.2
+Further studies will be accelerated by advances in information retrieval tech-
+niques to  nd the full text for each entry in these reading diaries. These
+large-scale surveys can be complemented by in-depth studies of the  com-
+monplace books  left by historical  gures. These books record quotes, read-
+ings, and interactions that may become useful in their later intellectual life,
+and include Marcus Aurelius (Aurelius, 2012), Francis Bacon (Bacon, 1883),
+John Locke (Locke, 1706), and Thomas Je erson (Wilson, 2014).
+Our method also allows us to compare the individual and the collective.
+We have found, in particular, that Darwin followed a path through the texts
+that was more exploratory than the order in which the culture produced
+them. Our work reveals an important distinction between these two levels of
+analysis; underneath gradual cultural changes are the long leaps and explo-
+ration comprising an individual s consumption, combination, and synthesis.
+Our cognitive analysis of these records builds upon decades of archival
+scholarship and innovations in the digital humanities. Darwin s industry ex-
+tends beyond the bounds of the data we use here, however. During the Beagle
+voyage, he kept a library of 180 to 275 titles (Burkhardt & Smith, 1989). His
+retirement library contains 1,484 titles (Rutherford, 1908). Darwin s hand-
+written marginalia in 743 of these books is currently being digitized by the
+Biodiversity Heritage Library. This retirement library contains many texts
+not included in our study of his reading records, which only last through
+1860. Finally, an extensive network of correspondents also contributed to
+Darwin s knowledge. The Darwin Correspondence Project3 contains over
+15,000 letters to and from Darwin before 1869. A complete understanding
+of his information foraging will necessarily seek to understand this separate
+social process.
+Darwin s sustained engagement with the products of his culture is remark-
+able. He averaged one book every ten days for twenty-three years, including
+works of  ction and foreign-language texts which are not part of the present
+1http://www.open.ac.uk/Arts/reading/
+2https://www.goodreads.com/about/us (accessed 2016 July 14)
+3https://www.darwinproject.ac.uk/
+20
+analysis. For some months in our data, Darwin appears to be reading one
+book every two days, a fact even he was astonished by:
+When I see the list of books of all kinds which I read and ab-
+stracted, including whole series of Journals and Transactions, I
+am surprised at my industry.
+  Autobiography of Charles Darwin, p. 119.
+Darwin not only consumed information, it consumed him. In the words of
+Herbert Simon:  what information consumes is rather obvious: it consumes
+the attention of its recipients  (1971). Even the most ambitious individu-
+als must confront and manage the limits of their own biology in allocating
+attention.
+Standard theories for how individuals balance the exploration-exploitation
+tradeo  draw on classic work in the statistical sciences (Gittins, 1979) and
+machine-learning (Thrun, 1992), and often focus on determining mathemat-
+ically optimal strategies for di erent environments (Cohen et al., 2007). Our
+work provides both new tools for the study of how individuals in the real
+world approach these problems, and new results on an exemplar individual.
+5. Conclusion
+Charles Darwin s well-documented reading choices show evidence of both
+exploration and exploitation of the products of his culture. Rather than
+follow a pure surprise-minimization strategy, Darwin moves from exploitation
+to exploration, at both the local and global level, in ways that correlate with
+biographically-signi cant intellectual epochs in his career. These switches
+can be detected with a simple unsupervised Bayesian model. Darwin s path
+through the books he read is signi cantly more exploratory than the culture s
+production of them.
+To what extent the patterns we identify in Darwin, and his relationship to
+culture as a whole, hold for other scientists in other eras is an open question.
+The development of an individual is in part the history of what they choose
+to read, and it is natural to ask what patterns these choices have in common.
+The methods we have developed and tested here represent the  rst ap-
+plication of topic modeling and cognitively-validated measures, such as KL
+divergence, to a single individual. These domain general methods can be
+used to study the information foraging patterns of any individual for whom
+appropriate records exist, and to look for common patterns across both time
+and culture.
+21
+Acknowledgments
+We thank Peter M. Todd for extensive comments on a draft of this
+manuscript, as well as David Kaiser, Caitlin Fausey, Vanessa Ferdinand, and
+Jim Lennox for their feedback on presentations of this work. We also thank
+the audiences at various locations where the ideas in this paper were pre-
+sented, especially within the Indiana University Cognitive Science Program.
+JM and SD thank the Santa Fe Institute for their hospitality while this work
+was completed. We thank Tom Murphy for assistance with corpus curation
+and Robert Rose for programming assistance. Tools for corpus preparation
+and modeling were produced by Robert Rose and JM while supported by the
+National Endowment for the Humanities Digging Into Data Challenge (NEH
+HJ-50092-12, CA, co-PI). JM and CA were supported by an Indiana Univer-
+sity (IU) O ce of the Vice Provost for Research (OVPR) Faculty Research
+Support Program (FRSP) Seed Funding Grant and Bridge Funding Grant.
+JM was also supported by an IU Cognitive Science Program Supplemental
+Research Fellowship. Finally, we thank the anonymous reviewers and the
+editor for their constructive comments and honest inquiries.
+22
+Supporting Information
+This supporting information provides additional information about the
+corpus curation, null model justi cation, alternative KL analyses, details on
+Bayesian Epoch Estimation, and a  nal section on model robustness. The
+ rst section presents detailed characterization of Darwin s reading corpus,
+preparation methods, and software. We next introduce the Kullback-Leibler
+Divergence measure (KL) used in our analyses, and we discuss two interpre-
+tations of the measure, from information theory and from Bayesian statistics.
+We then provide further justi cation of the null model, noting that any rep-
+resentation of Victorian science will be impoverished. Next, we present a
+more detailed analysis of the greedy shortest-path through Darwin s texts,
+showing that he indeed does not follow a surprise-minimization strategy. We
+also show the rank-order distribution of each move in Darwin s reading order
+compared to the null models, indicating that while Darwin does not follow
+pure surprise minimization, he does select the nearest neighbor more often
+than chance. Finally, we explicitly detail the Bayesian epoch estimation and
+further justify the independent selection of epoch break points. We show the
+AIC analysis, and then repeat the entire analysis for 3 alternative models
+with k = 20, 40, 60 topics.
+Appendix A. Corpus Characterization
+Despite our use of a digital library, it is important to remember that
+books are originally physical artifacts (see Fig. S3). Victorian publishing
+practices often spread a single title over multiple volumes for portability and
+ease of use. In this paper, we use volume to refer to each physical artifact.
+Each individual entry of Darwin s notebooks is referred to as a title. In the
+case of books, a title gathers together one or more volumes. In the case of
+journal articles, a title is merely a subpart of a particular volume. We model
+at the level of a catalog record, which corresponds to a title in almost all
+cases, except for journals, where it corresponds to the aggregate of all issues
+listed as read across entries in the notebooks.
+Darwin also read French, German, and Latin texts. We reduced the
+corpus to English-only to reduce cross-linguistic e ects in the model (Boyd-
+Graber & Blei, 2009). Additionally, we focused only on non- ction texts.
+An examination of the in uence of  ction on Darwin is a topic for further
+exploration.
+23
+There are 647 catalog records and 1057 volumes corresponding to the 665
+titles modeled in this study. Some volumes in the corpus alignment were
+unable to be matched to the exact edition listed by the DCP, and thus there
+is occasionally a di erence between the volume Darwin read and the volume
+whose text we use for topic modeling. Table S5 shows the summary of the
+items which were located and remain missing.
+Our publication dates are those listed by the Darwin Correspondence
+Project (DCP); the DCP uses the publication date of the volume, if found in
+Darwin s library, otherwise the date of  rst publication. The reading order
+is determined by dates listed in the reading notebook. When multiple titles
+are listed at a particular date, we use their natural ordering in the notebooks
+  titles written at the top of the page are assumed to be read before those
+Figure S3: Darwin s Reading Notebooks. Page 3a of Darwin s  rst notebook (DAR 119),
+during which he began to track the exact dates. Note the reading of Malthus s On Popu-
+lation on October 3, 1838. Photo courtesy of Cambridge University Libraries.
+24
+Total
+- Fiction
+- Non-English
+English Non- ction
+Located Non-located Total
+915
+- 80
+- 148
+687
+104
+- 1
+- 85
+22
+811
+- 79
+- 63
+665
+Table S5: Corpus Composition: Composition of the Reading List in terms of  ction, non-
+ ction, English, and non-English texts. Located titles refers to the number identi ed in
+the HathiTrust (http://hathitrust.org/), Internet Archive (http://archive.org/),
+and Project Gutenberg (http://gutenberg.org/). Non-located texts were unavailable
+in the HathiTrust, Internet Archive, or Project Gutenberg as of December 1, 2015.
+at the bottom.
+We use the InPhO Topic Explorer (Murdock & Allen, 2015) for tokeniza-
+tion and modeling of texts. First, plain-text editions downloaded from the
+HathiTrust, the Internet Archive, and Project Gutenberg are normalized by
+merging cross-line hyphens into single words, normalizing into ASCII using
+the Python library Unidecode, removing all words containing punctuation
+and numerals (often due to OCR errors), and lower-casing all words. Then,
+words appearing in the English stopwords corpus from the Natural Language
+Toolkit (NLTK) (Bird et al., 2009) are removed. Finally, words occurring less
+than 30 and more than 15,000 times were excluded from the corpus. After
+this pre-processing, the corpus consisted of 40,822,136 tokens drawn from
+77,611 unique tokens. We made no attempt to apply stemming or clean up
+OCR errors, other than the  ltering of words occurring fewer than 30 times.
+Fig. S4 shows the density of Darwin s readings modeled. Notice the large
+jump in 1840 corresponds to a period when he was reading entire series of
+journals, each article of which was a separate title in his notebook. Also,
+note that Fig. S4 shows both the density of the selection modeled and the
+entire reading notebook list.
+Fig. S5 indicates that as Darwin s readings progress he begins reading
+more recently published, contemporary sources. We also show the regression
+for the un-modeled texts, showing that his total reading also progressed
+toward contemporary sources, although at a slower rate.
+25
+Figure S4: Reading Density   Reading density, smoothed over a 6-month window. The
+dashed line shows the 665 titles here modeled, while the thin solid line represents all 915
+titles in the reading notebooks.
+26
+Figure S5: Publication vs. Reading Dates   Scatter plot of the publication and reading
+dates of the titles in Darwin s reading list. The 665 modeled titles are shown with dots,
+while the remaining 250 titles are shown as xs. The solid line indicates when the reading
+date and publication date are equal. The dashed line indicates a linear regression over
+the dots (r2 = 0.1992), and the dotted line indicates a linear regression over the dots and
+xs combined (r2 = 0.1147). The appearance of older materials in 1856-57 corresponds
+to Darwin s literature review of pigeon breeding, conducted as a case study in arti cial
+selection and included in The Origin of Species.
+27
+Appendix B. An Introduction to Kullback-Leibler Divergence
+Kullback-Leibler Divergence (KL) will be our a measure of  cognitive sur-
+prise  in higher-order linguistic search processes: as we say in the main text,
+a way to measure the extent to which a learner encounters the unexpected
+in ways that require them to alter the way they represent the world. To see
+why KL is particularly useful for this, it is worth returning to one of the
+canonical interpretations of information theory: as a way to quantify the ef-
+ ciency with which a process can be represented. Consider, for example, the
+children s game  Twenty Questions : one player (the  parent ) chooses a
+noun at random. The other player (the  child ) must then attempt to guess
+the noun, by asking a series of questions that the parent can only answer
+ yes  or  no .
+One way to play the game is, of course, for the child herself to guess nouns
+at random:  is it a car?   is it a tree? . But there are usually better ways
+to play the game: the child might begin by asking  is it something that can
+be dead or alive? , narrowing down the possibilities more quickly.
+It is also clear that which questions are better to ask depends upon how
+the parent chooses the noun to begin with: the probability pi for each noun
+i. If, for example, a (somewhat lazy) parent chooses the word  car  90% of
+the time,  is it a car?  will be a particularly e ective opening question for
+the child. Furthermore, if the child is playing well, she will use a branching
+script: which question to ask next will generally depend upon the answers
+to all the questions that came before; if we know that the noun is something
+that can be dead or alive, we know to skip the car questions.
+How e cient can the child be? More formally, what is the average number
+of yes/no questions the child has to ask, if she is using one of the best possible
+scripts? Remarkably, this is related to the Shannon entropy of the probability
+distribution (cid:126)p:
+H((cid:126)p) =   N(cid:88)
+pi log2 pi.
+(B.1)
+i=1
+In particular, the average number of questions Q that the child has to ask,
+if she is using an optimal script, lies somewhere between
+H((cid:126)p)   Q   H((cid:126)p) + 1,
+(B.2)
+a result known as Shannon s source coding theorem, and proven in Shannon
+(1948). For an informal introduction to this result, see DeDeo (2016); the
+28
+upper limit in Eq. B.2 can be made arbitrarily close to H((cid:126)p) if the child is
+allowed to play multiple games simultaneously.
+Let us now imagine that the child has developed an optimal script for
+one of her parents. What happens when she uses this script playing against
+the other?
+If the two parents have similar patterns of noun choice, she may do well.
+But if the patterns di er if the  rst parent s distribution, (cid:126)p is very di erent
+from the second parent s distribution, (cid:126)q then her script could fail very badly.
+This is true even if there exists an optimal script for (cid:126)q that is just as e cient
+(for (cid:126)q) as the original script was for (cid:126)p.4
+It so turns out that this coding failure can also be quanti ed. In particu-
+lar, if the child builds an optimal script for distribution (cid:126)p, but then encounters
+the parent with distribution (cid:126)q, she will, on average, ask more questions than
+she needs to. The average number of excess questions is related to the KL
+divergence, which is is de ned as
+k(cid:88)
+i=1
+DKL((cid:126)q|(cid:126)p) =
+qi log2
+qi
+pi
+.
+(B.3)
+This becomes an exact measure of coding failure when, as before, the child
+is playing multiple, simultaneous games.
+It is worth noting that KL is a directed measure: the divergence from (cid:126)p
+to (cid:126)q is, generically, di erent from the divergence from (cid:126)q to (cid:126)p. If one builds
+a script for a (cid:126)p biased towards some subset of topics, but encounters a more
+uniform (cid:126)q, the coding will fail more badly than if (cid:126)p were uniform and (cid:126)q highly
+biased. KL, in other words, is not a measure of distance between texts, but
+a way to quantify the ordered processing that happens as learning unfolds
+over time.
+A second interpretation of KL divergence comes from Bayesian statis-
+tics. Imagine an agent observing a process and trying to decide whether her
+4If, for example, the  rst parent chooses from one of three words, {A, B, C}, with
+probabilities {1/2, 1/4, 1/4}, the child can ask  is it A?  as her  rst question, and  is
+it B?  as her second; on average, she will  nish the game in 1.5 questions. Confronted
+with the second parent, whose probabilities are {1/4, 1/2, 1/4}, however, she will take on
+average 1.75 questions before  nishing the game even though an optimal script exists
+that requires only 1.5. The KL divergence approximates this coding failure (and becomes
+exact in certain natural limits); here, in fact, the KL divergence from the  rst parent to
+the second is precisely the coding failure, 0.25 bits, or  excess questions .
+29
+observations are drawn from (cid:126)p or (cid:126)q, when her priors are equally split be-
+tween the two possibilities. Given a single observation, of type i, the relative
+log-likelihood of distribution (cid:126)q compared to distribution (cid:126)p is just
+ L = log
+qi
+pi
+.
+(B.4)
+If the true distribution is (cid:126)q, the average rate at which this relative log-
+likelihood increases is simply
+N(cid:88)
+qi L.
+(B.5)
+i=1
+On substituting Eq. B.4 into Eq. B.5, we recover the KL divergence equation
+Eq. B.3. This provides a second interpretation for KL: the rate at which
+log-evidence for the true distribution accumulates over time. When the new
+distribution is very di erent from the one that came before ( more surpris-
+ing ), evidence for that di erence will accumulate quickly.
+Appendix C. Null Model Justi cation
+A more complete representation of the state of Victorian science (i.e.
+Darwin s entire search space) would require the null model to be constructed
+against all the books available to him in Kent and London during these
+years, rather than books Darwin actually read. To construct and model such
+a corpus would be a monumental task, and would be circumscribed by the
+subsequent curatorial decisions that have shaped present access to digitized
+Victorian era texts.
+Fortunately, the null model based on Darwin s own reading list provides
+a more rigorous test of our results. This is because text-to-text surprise over
+the entire set of published books is expected to be greater, thus accentuating
+the di erence between data and null for Darwin s lower-surprise trajectory.
+Similarly, text-to-past surprise should be greater in a null model constructed
+against a broader set of books. This is because whether the prior state of
+the  null  reader based on one text or many, the model of the larger corpus
+provides more opportunities for long range jumps.
+Appendix D. Text-to-text and text-to-past KL
+Table S6 shows the raw local text-to-text and global text-to-past KL
+divergence data, along with the greedy shortest path single-visit traversals
+30
+of the KL distance matrix. While Darwin s average text-to-text surprise is
+lower than expected from a null model, it is far larger than many paths that
+can be found: a greedy shortest-path algorithm, for example, can reduce the
+text-to-text average surprise to 2.14 bits and text-to-past average surprise to
+2.86 bits.
+Measured
+Null
+(p-value)
+Greedy Shortest Path
+Local
+(bits/step)
+11.41   0.28
+10.78
+(cid:28) 10 3
+2.11
+Global
+(bits/step)
+2.96
+2.98+0.04 0.02
+0.02
+2.97
+Table S6: Exploration habits. Average text-to-text (local) and text-to-past (global) KL
+Divergence (bits/step) over the reading path. Text-to-past KL is much lower, as Darwin s
+reading spreads out to cover topic space and lowers the information-theoretic surprise of
+subsequent books. Darwin s reading strategy is simultaneously more exploitative than
+would be expected of a random reader while also not following a strategy of pure surprise-
+minimization.
+Appendix D.1. Rank Distribution
+In addition to the information-theoretic measures described in the paper,
+descriptive statistics also capture Darwin s explore-exploit behavior. For
+each volume, we look at the rank of the KL divergence to the next volume
+by reading order compared to all other volumes in the corpus, as shown in
+Fig. S6. We can compare this to a null model, as described in the Methods.
+Interestingly, Darwin is 8 times more likely than the null model to pick the
+nearest neighbor, indicating that explorations are overall rarer than exploita-
+tions, and emphasizing that exploitations do indeed occur on a text-to-text
+basis.
+Appendix E. Bayesian Epoch Estimation
+Our generative model for Bayesian epoch estimation has 3n   1 param-
+eters. There are (n   1) parameters to describe the end points of the  rst
+n   1 epochs, and 2n parameters to describe the mean and variance of the
+text-to-text (or text-to-past) surprise within each epoch. We estimate these
+parameters using an approximate maximum-likelihood procedure. Within
+31
+Figure S6: Rank Distribution. Rank distribution of DKL( i,  i+1) for Darwin s reading
+notebooks relative to a null-model permutation of his reading order, as indicated by the
+dashed line, with 95% con dence intervals shown. The lines are logarithmically binned,
+showing clearly that Darwin is 8 times more likely to select the nearest KL neighbor, as
+opposed to volumes further away, which are selected 0.85 times as likely than the null.
+each epoch i, we assume the surprise is constant and Gaussian distributed
+i . We write the 3n   1 parameters
+with a particular mean  i and variance  2
+as a vector (cid:126)v; then the distribution over (cid:126)v given the data s, equal to a list of
+surprises, {si}, is
+(cid:17)
+1 + ln(2    2
+i)
++ C,
+log P ((cid:126)v|s) = log P (s|(cid:126)v) + C =   n(cid:88)
+(cid:16)
+(ei+1   ei   1)
+2
+i=1
+(E.1)
+where ei is the start point of epoch i and C depends on the prior. The start
+point of the  rst epoch, e1, is  xed to be volume zero; given our conventions,
+en+1 is  xed to be the  nal volume plus one. The sigma estimator,   2
+i, is
+32
+the standard maximum likelihood estimator of the variance,
+  2
+i =
+1
+ei+1   ei   1
+(sk     i)2 ,
+ei+1 1(cid:88)
+ei+1 1(cid:88)
+k=ei
+and   i is de ned as
+  i =
+1
+ei+1   ei   1
+sk.
+k=ei
+(E.2)
+(E.3)
+To do Fisher maximum-likelihood estimation, we ignore the e ect of the prior
+P ((cid:126)v) on the maximum; equivalently, we do maximum a posteriori estimation
+and assume that P ((cid:126)v) is  at over the region of interest.
+The results for a 2-epoch independent selection model are shown in Fig-
+ure S7. Note the alternative maxima in the text-to-past model.
+Appendix E.1. Epoch Model Selection
+To verify that our model is not over- tting, we use the Akaike Information
+Criterion (Akaike, 1974); we increase the number of epochs until the increase
+in the log-likelihood is less than the complexity penalty, equal to the number
+of parameters.
+For the two- and three-epoch models we compare this likelihood to the a
+single-epoch null model of 2 parameters - mean and variance for text-to-text
+or text-to-past surprise over the whole data-set. Our 2-epoch model has 5
+parameters. A 3-epoch model has 8 parameters.
+This AIC analysis further emphasizes the relative strength of evidence for
+text-to-text and text-to-past epoch boundaries (see Results). Evidence for
+boundaries in the text-to-text BEE model is naturally weaker than the text-
+to-past case. The text-to-text model assumes decisions are made solely by
+the last read text, as opposed to longer term memory, which seems more plau-
+sible. In addition, our text-to-past BEE makes the simplifying assumption
+that successive surprise values are independent draws from the distribution
+associated with that epoch. Because memory accumulates over time, this
+assumption, at best, only approximates the text-to-past case.
+The results of our AIC analysis are shown in Table S7.
+Appendix F. Model Robustness
+The  model checking problem  is an enduring problem for applied topic
+modeling (Blei, 2012b), but recent work on selection of a  reference model 
+33
+Breaks
+[0, 646]
+Null T2T
+1-epoch T2T
+2-epoch T2T [0, 383, 548, 646]
+[0, 548, 646]
+Null P2T
+1-epoch P2T
+2-epoch P2T [0, 422, 547, 646]
+[0, 325, 646]
+[0, 646]
+k
+2
+5
+8
+2
+5
+8
+AIC
+3911.61
+3912.38
+3914.67
+2035.18
+2028.83
+2021.93
+relative LAIC
+1.0
+0.68
+0.21
+1.0
+23.82
+750.70
+Table S7: AIC Model Selection. The likelihood for each 1-epoch selection is shown in
+Figure S7. The AIC of the independent selection for a 2-epoch model is also shown.
+Note that the AIC for text-to-past selects for epoch breaks, but not for text-to-text (see
+Results).
+in the social sciences provided guidance to selecting a value of k = 80 for
+the number of topics to use in our analysis (Roberts et al., 2015). More
+speci cally, setting k = 80 produced a set of topics subjectively deemed
+more interpretable than the lower values of k suggested by more  objective 
+measures of model  t to data.
+In addition to the k = 80 topics results shown in the main paper, the
+same analyses are also shown below for k = 20, 40, 60 in Figs. S9, S10, S11,
+respectively.
+Epoch breaks are also noted in the  gure captions. All topic models agree
+on a break in 1854, but the k = 40 model does not detect an earlier break in
+the text-to-past case, rather selecting volume 548. The k = 60 model seems
+to be an outlier from the other values of k.
+34
+Figure S7: Two-epoch model   Fisher maximum-likelihood estimation for a 2-epoch BEE
+model over the text-to-text and text-to-past k = 80 models of 647 of Darwin s readings.
+The darker line indicates the window of the 5-year minimum epoch length. Note the phase
+transition at the 325th volume in the text-to-past case (bottom) and the 548th volume in
+the text-to-text case (top). Note also that the text-to-past case comes close to transition
+at the 548th volume as well, indicating the strength of the transition to exploration in the
+third epoch on both local and global scales.
+35
+Figure S8: Bayesian Epoch Estimation   Analysis of Figures S7 repeated for k =
+{20, 40, 60}. Left (k = 20)   The text-to-text epoch break is volume 280 (1 January
+1845). The text-to-past epoch break is volume 555 (27 December 1854). Center (k = 40)
+  The text-to-text epoch break is volume 548 (16 September 1854). The text-to-past
+epoch break is volume 547 (4 September 1854). Note that while a division point in 1845 is
+not selected in k = 40 the text-to-past likelihood shows a local maxima at approximately
+volume 300. Right (k = 60)   The text-to-text epoch break is volume 282 (1 March
+1845). The text-to-past epoch break is volume 547 (4 September 1854).
+36
+Figure S9: Cumulative and Cultural Surprise (k = 20)   Analysis of Figures 1 (left) and 2
+(right) repeated for k = 20. Left: Average text-to-text (top left) and text-to-text (bottom
+left) cumulative surprise over the reading path and over the publication history, measured
+as the cumulative KL divergence (bits). As Darwin drops below zero in these plots, his
+choices are producing surprises lower than expected in the null. Right: Average text-to-
+text (top) and text-to-past (bottom) cumulative surprise over the reading order (solid)
+and over the publication order (dashed), measured in bits.
+37
+Figure S10: Cumulative and Cultural Surprise (k = 40)   Analysis of Figures 1 (left)
+and 2 (right) repeated for k = 40. Left: Average text-to-text (top left) and text-to-past
+(bottom left) cumulative surprise over the reading path and over the publication history,
+measured as the cumulative KL divergence (bits). The k = 40 model does not select an
+epoch boundary in 1846, resulting in a very short 1-volume epoch. Right: Average text-
+to-text (top) and text-to-past (bottom) cumulative surprise over the reading order (solid)
+and over the publication order (dashed), measured in bits.
+38
+Figure S11: Cumulative and Cultural Surprise (k = 60)   Analysis of Figures 1 (left) and 2
+(right) repeated for k = 60. Left: Average text-to-text (top left) and text-to-past (bottom
+left) cumulative surprise over the reading path and over the publication history, measured
+as the cumulative KL divergence (bits). Right: Average text-to-text (top) and text-to-past
+(bottom) cumulative surprise over the reading order (solid) and over the publication order
+(dashed), measured in bits.
+39
+References
+References
+Akaike, H. (1974). A New Look at the Statistical Model Identi cation. Au-
+tomatic Control, IEEE Transactions on, 19 , 716 723. doi:10.1109/TAC.
+1974.1100705.
+Aurelius, M. (2012). Meditations. Mineola, NY, USA: Dover Publications.
+Translated by George Long.
+Azoulay-Schwartz, R., Kraus, S., & Wilkenfeld, J. (2004). Exploitation
+vs. Exploration: Choosing a Supplier in an Environment of Incom-
+plete Information. Decision Support Systems, 38 , 1 18. doi:10.1016/
+S0167-9236(03)00061-7.
+Bacon, F. (1883). The Promus of Formularies and Elegancies. Longman,
+Greens and Company.
+Berger-Tal, O., Nathan, J., Meron, E., & Saltz, D. (2014). The Exploration-
+Exploitation Dilemma: A Multidisciplinary Framework. PLoS ONE , 9 .
+doi:10.1371/journal.pone.0095693.
+Berra, T. M. (2009). Charles Darwin: The Concise Story of an Extraordinary
+Man. Baltimore, MD: John Hopkins University Press.
+Bettencourt, L. M., & Kaiser, D. I. (2015). Formation of Scienti c Fields
+as a Universal Topological Transition. arXiv eprint, 1504.00319v1 . SFI
+Working Paper 2015-03-009.
+Bird, S., Loper, E., & Klein, E. (2009). Natural Language Processing with
+Python. OReilly Media Inc.
+Blei, D. (2012a). Topic Modeling and Digital Humanities. Journal of Digital
+Humanities, 2 , 8 11.
+Blei, D. M. (2012b). Probabilistic Topic Models. Communications of the
+ACM , 55 , 77 84. doi:10.1145/2133806.2133826.
+Blei, D. M., & La erty, J. D. (2007). A Correlated Topic Model of Science.
+The Annals of Applied Statistics, (pp. 17 35). doi:10.1214/07-AOAS114.
+40
+Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet Allocation.
+The Journal of Machine Learning Research, 3 , 993 1022.
+Bliss, N. T., Peirson, B. E., Painter, D., & Laubichler, M. D. (2014). Anoma-
+lous Subgraph Detection in Publication Networks: Leveraging Truth. In
+48th Asilomar Conference on Signals, Systems and Computers (pp. 2005 
+2009). doi:10.1109/ACSSC.2014.7094823.
+Boyd-Graber, J., & Blei, D. M. (2009). Multilingual Topic Models for Un-
+aligned Text.
+In Proceedings of the Twenty-Fifth Conference on Uncer-
+tainty in Arti cial Intelligence UAI  09 (pp. 75 82). Arlington, Virginia,
+United States: AUAI Press. URL: http://dl.acm.org/citation.cfm?
+id=1795114.1795124.
+Burkhardt, F., & Smith, S. (1989). Books on the Beagle.
+In Dar-
+win Correspondence Project. URL: https://www.darwinproject.ac.uk/
+books-on-the-beagle.
+Burnham, K. P., & Anderson, D. R. (2003). Model selection and multi-
+model inference: a practical information-theoretic approach. New York,
+NY, USA: Springer Science & Business Media.
+Calamaro, S., & Jarosz, G. (2015). Learning General Phonological Rules
+From Distributional Information: A Computational Model. Cognitive Sci-
+ence, 39 , 647 666. doi:10.1111/cogs.12167.
+Chun, M. M., & Wolfe, J. M. (1996). Just Say No: How are Visual Searches
+Terminated when there is No Target Present? Cognitive Psychology, 30 ,
+39 78. doi:10.1006/cogp.1996.0002.
+Cohen, J. D., McClure, S. M., & Yu, A. J. (2007). Should I Stay or Should
+I Go? How the Human Brain Manages the Trade-o  between Exploita-
+tion and Exploration. Philosophical Transactions of the Royal Society B:
+Biological Sciences, 362 , 933 942. doi:10.1098/rstb.2007.2098.
+Cohen Priva, U., & Austerweil, J. L. (2015). Analyzing the history of Cogni-
+tion using Topic Models. Cognition, 135 , 4 9. doi:10.1016/j.cognition.
+2014.11.006.
+Cook, W. (2011). In Pursuit of the Traveling Salesman: Mathematics at the
+Limits of Computation. Princeton University Press.
+41
+Darwin, C.
+(1838-1851a).
+Darwin s
+ Journal 
+(1809-1881).
+URL:
+http://darwin-online.org.uk/content/frameset?viewtype=
+text&itemID=CUL-CUL-DAR158.1-76.-&pageseq=62
+Accessed on: 4 December 2015.
+CUL-DAR158.
+Darwin, C.
+(1838-1851b).
+Darwin s
+ Journal 
+(1809-1881).
+URL:
+http://darwin-online.org.uk/content/frameset?viewtype=
+text&itemID=CUL-CUL-DAR158.1-76.-&pageseq=46
+Accessed on: 4 December 2015.
+CUL-DAR158.
+Darwin, C. (1887). The Life and Letters of Charles Darwin, including an
+Autobiographical Chapter . John Murray.
+DeDeo, S. (2016).
+Information theory for intelligent people.
+http://
+santafe.edu/~simon/it.pdf. Last Accessed: 2016-08-08.
+Demberg, V., & Keller, F. (2008). Data from Eye-tracking Corpora as Ev-
+idence for Theories of Syntactic Processing Complexity. Cognition, 109 ,
+193   210. doi:10.1016/j.cognition.2008.07.008.
+Eliassen, S., J rgensen, C., Mangel, M., & Giske, J. (2007). Exploration or
+Exploitation: Life Expectancy Changes the Value of Learning in Foraging
+Strategies. Oikos, 116 , 513 523. doi:10.1111/j.2006.0030-1299.15462.
+x.
+Gar eld, E. (1979). Citation Indexing   Its Theory and Application in Sci-
+ence, Technology, and Humanities. John Wiley & Sons, Inc.
+Gittins, J. C. (1979). Bandit processes and dynamic allocation indices. Jour-
+nal of the Royal Statistical Society. Series B (Methodological), (pp. 148 
+177).
+Goldstone, A., & Underwood, T. (2014). The Quiet Transformations of
+Literary Studies: What Thirteen Thousand Scholars Could Tell Us. New
+Literary History, 45 , 359 384. doi:10.1353/nlh.2014.0025.
+Gri ths, T. L., & Steyvers, M. (2004). Finding Scienti c Topics. Proceedings
+of the National Academy of Sciences, 101 , 5228 5235. doi:10.1073/pnas.
+0307752101.
+42
+Gri ths, T. L., Steyvers, M., & Tenenbaum, J. B. (2007). Topics in semantic
+representation. doi:10.1037/0033-295X.114.2.211.
+Gruber, H. E., & Barrett, P. H. (1974). Darwin on Man: A Psychological
+Study of Scienti c Creativity. EP Dutton.
+Hale, J. (2001). A Probabilistic Earley Parser as a Psycholinguistic Model.
+In Proceedings of the second meeting of the North American Chapter of the
+Association for Computational Linguistics on Language technologies (pp.
+1 8). Association for Computational Linguistics. doi:10.3115/1073336.
+1073357.
+Hall, D., Jurafsky, D., & Manning, C. D. (2008). Studying the history of ideas
+using topic models. In Proceedings of the Conference on Empirical Methods
+in Natural Language Processing EMNLP  08 (pp. 363 371). Stroudsburg,
+PA, USA: Association for Computational Linguistics. URL: http://dl.
+acm.org/citation.cfm?id=1613763.
+Hills, T. T., & Adelman, J. S. (2015). Recent evolution of learnability in
+American English from 1800 to 2000. Cognition, 143 , 87 92. doi:10.1016/
+j.cognition.2015.06.009.
+Hills, T. T., Todd, P. M., Lazer, D., Redish, A. D., & Couzin, I. D. (2015).
+Exploration Versus Exploitation in Space, Mind, and Society. Trends in
+Cognitive Sciences, 19 , 46 54. doi:10.1016/j.tics.2014.10.004.
+Hughes, J. M., Foti, N. J., Krakauer, D. C., & Rockmore, D. N. (2012).
+Quantitative Patterns of Stylistic In uence in the Evolution of Literature.
+Proceedings of the National Academy of Sciences, 109 , 7682 7686. doi:10.
+1073/pnas.1115407109.
+Itti, L., & Baldi, P. (2009). Bayesian Surprise Attracts Human Attention.
+Vision Research, 49 , 1295 1306. doi:10.1016/j.visres.2008.09.007.
+Jacob, F. (1977). Evolution and Tinkering. Science, 196 , 1161 1166. doi:10.
+1126/science.860134.
+Jockers, M. (2013). Macroanalysis: Digital Methods and Literary History.
+Topics in the Digital Humanities. University of Illinois Press.
+43
+Johnson, S. (2010). Where Good Ideas Come From: The Natural History of
+Innovation. Penguin UK.
+Klingenstein, S., Hitchcock, T., & DeDeo, S. (2014). The Civilizing Process
+in Londons Old Bailey. Proceedings of the National Academy of Sciences,
+111 , 9419 9424. doi:10.1073/pnas.1405984111.
+Kullback, S., & Leibler, R. (1951). On information and su ciency. Annals
+of Mathematical Statistics, 22 , 79 86. doi:10.1214/aoms/1177729694.
+Levy, R. (2008). Expectation-based Syntactic Comprehension. Cognition,
+106 , 1126   1177. doi:10.1016/j.cognition.2007.05.006.
+Light, M., & Grei , W. (2002). Statistical models for the induction and use
+of selectional preferences. Cognitive Science, 26 , 269 281. doi:10.1207/
+s15516709cog2603_4.
+Locke, J. (1706). A New Method of Making Common-Place-Books. Printed
+for J. Greenwood, bookseller, at the end of Cornhil, next Stocks-Market.
+Macmillan, M. (2000). Restoring Phineas Gage: A 150th Retrospective.
+Journal of the History of the Neurosciences, 9 , 46 66. doi:10.1076/
+0964-704X(200004)9:1;1-2;FT046.
+March, J. G. (1991). Exploration and Exploitation in Organizational Learn-
+ing. Organization Science, 2 , 71 87. doi:10.1287/orsc.2.1.71.
+Martin, A., Peperkamp, S., & Dupoux, E. (2013). Learning Phonemes
+With a Proto-Lexicon. Cognitive Science, 37 , 103 124. doi:10.1111/j.
+1551-6709.2012.01267.x.
+Michel, J.-B., Shen, Y. K., Aiden, A. P., Veres, A., Gray, M. K., Team,
+T. G. B., Pickett, J. P., Hoiberg, D., Clancy, D., Norvig, P., Orwant, J.,
+Pinker, S., Nowak, M. A., & Aiden, E. L. (2011). Quantitative Analysis of
+Culture Using Millions of Digitized Books. Science, 331 , 176 182. doi:10.
+1126/science.1199644.
+Mohr, J. W., & Bogdanov, P. (2013). Introduction   Topic Models: What
+They are and Why They Matter. Poetics, 41 , 545   569. doi:10.1016/j.
+poetic.2013.10.001.
+44
+Murdock, J., & Allen, C. (2015). Visualization Techniques for Topic Model
+Checking. Proceedings of 29th Association for the Advancement of Arti -
+cial Intelligence (AAAI-15), .
+Pirolli, P., & Card, S. (1999). Information Foraging. Psychological Review ,
+106 , 643 675. doi:10.1037/0033-295X.106.4.643.
+Resnik, P. (1997). Selectional preference and sense disambiguation. In Pro-
+ceedings of the ACL SIGLEX Workshop on Tagging Text with Lexical Se-
+mantics: Why, What, and How (pp. 52 57). Washington, DC.
+Resnik, P. S. (1993). Selection and Information: A Class-based Approach to
+Lexical Relationships. IRCS Technical Reports Series, (p. 200).
+Roberts, M., Stewart, B., & Tingley, D. (2015). Navigating the Local Modes
+In Data Analytics in Social
+of Big Data: The Case of Topic Models.
+Science, Government, and Industry. New York: Cambridge University
+Press.
+Rutherford, H. W. (1908). Catalogue of the library of Charles Darwin now
+in the Botany School, Cambridge. Cambridge University Press. Compiled
+by H. W. Rutherford, of the University Library; with an Introduction by
+Francis Darwin.
+Shannon, C. E. (1948). A mathematical theory of communication. Bell
+System Technical Journal , 27 , 379 423.
+Simon, H. A. (1971). Designing Organizations for an Information-rich World.
+Computers, communication, and the public interest, 37 , 40 41.
+Squire, L. R., & Wixted, J. T. (2011). The cognitive neuroscience of human
+memory since h.m. Annual Review of Neuroscience, 34 , 259 288. doi:10.
+1146/annurev-neuro-061010-113720.
+Stephens, D. W., & Krebs, J. R. (1986). Foraging Theory. Princeton Uni-
+versity Press.
+Sun, X., Kaur, J., Milojevic, S., Flammini, A., & Menczer, F. (2013). Social
+Dynamics of Science. Sci. Rep., 3 . URL: 10.1038/srep01069.
+Sutton, R. S., & Barto, A. G. (1998). Introduction to Reinforcement Learn-
+ing. MIT Press Cambridge.
+45
+Thrun, S. (1992). The role of exploration in learning control. In D. White,
+& D. Sofge (Eds.), Handbook for Intelligent Control: Neural, Fuzzy and
+Adaptive Approaches. Florence, Kentucky: Van Nostrand Reinhold.
+Todd, P. M., Hills, T. T., & Robbins, T. W. (Eds.) (2012). Cognitive Search:
+Evolution, Algorithms, and the Brain. Cambridge, MA: MIT Press.
+Tria, F., Loreto, V., Servedio, V. D. P., & Strogatz, S. H. (2014). The
+Dynamics of Correlated Novelties. Scienti c Reports, 4 . doi:10.1038/
+srep05890.
+Underwood, T., & Sellers, J. (2012). The Emergence of Literary Diction.
+Journal of Digital Humanities, 1 .
+Uotila, J., Maula, M., Keil, T., & Zahra, S. A. (2009). Exploration, Ex-
+ploitation, and Financial Performance: Analysis of S&P 500 Corporations.
+Strategic Management Journal , 30 , 221 231. doi:10.1002/smj.738.
+Van Hulle, D. (2014). Modern Manuscripts: The Extended Mind and Creative
+Undoing from Darwin to Beckett and Beyond . Historicizing Modernism.
+Bloomsbury Academic.
+Wagner, A., & Rosen, W. (2014). Spaces of the Possible: Universal Darwin-
+ism and the Wall between Technological and Biological Innovation. Journal
+of the Royal Society, Interface, 11 , 20131190 . doi:10.1098/rsif.2013.
+1190.
+Wilson, D. (2014). Je erson s Literary Commonplace Book . Papers of
+Thomas Je erson, Second. Princeton University Press.
+Youn, H., Strumsky, D., Bettencourt, L. M., & Lobo, J. (2015). Invention as
+a Combinatorial Process: Evidence from US Patents. Journal of the Royal
+Society, 12 , 1 8. doi:10.1098/rsif.2015.0272.
+46

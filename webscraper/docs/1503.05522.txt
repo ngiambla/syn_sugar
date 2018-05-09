@@ -1,0 +1,801 @@
+6
+1
+0
+2
+ 
+n
+a
+J
+ 
+5
+2
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+2
+v
+2
+2
+5
+5
+0
+.
+3
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Mapping bilateral information interests using the activity of Wikipedia editors
+Fariba Karimi,1,   Ludvig Bohlin,2 Anna Samoilenko,1 Martin Rosvall,2 and Andrea Lancichinetti2
+1Leibniz Institute for the Social Sciences, Cologne, Germany
+2Integrated Science Lab, Department of Physics, Ume a University, SE-901 87 Ume a, Sweden
+ABSTRACT We live in a global village where electronic communication has
+eliminated the geographical barriers of information exchange. The road is now
+open to worldwide convergence of information interests, shared values, and
+understanding. Nevertheless, interests still vary between countries around the
+world. This raises important questions about what today s world map of in-
+formation interests actually looks like and what factors cause the barriers of
+information exchange between countries. To quantitatively construct a world
+map of information interests, we devise a scalable statistical model that iden-
+ti es countries with similar information interests and measures the countries 
+bilateral similarities. From the similarities we connect countries in a global
+network and  nd that countries can be mapped into 18 clusters with similar
+information interests. Through regression we  nd that language and religion
+best explain the strength of the bilateral ties and formation of clusters. Our
+ ndings provide a quantitative basis for further studies to better understand
+the complex interplay between shared interests and con ict on a global scale.
+The methodology can also be extended to track changes over time and capture
+important trends in global information exchange.
+Introduction
+ We live in a global world  has become a clich  (Kose and Oz-
+turk, 2014). Historically, the exchange of goods, money, and in-
+formation was naturally limited to nearby locations, since global-
+ization was effectively blocked by spatial, territorial, and cultural
+barriers (Cairncross, 2001). Today, new technology is overcom-
+ing these barriers and exchange can take place in an increasingly
+international arena (Friedman, 2000). Nevertheless, geographi-
+cal proximity still seems to be important for the trade of goods
+(Fagiolo et al., 2010; Kaluza et al., 2010; Overman et al., 2003;
+Serrano et al., 2007) as well as for mobile phone communication
+(Lambiotte et al., 2008) and scienti c collaboration (Pan et al.,
+2012). However, since the Internet allows information to travel
+more easily and rapidly than goods, it remains unclear what are
+the effective barriers of global information exchange. As infor-
+mation exchange requires shared interests, we therefore need to
+better understand global connections in interest, and the factors
+that form these connections.
+Although globalization of information has been discussed ex-
+tensively in the research literature (Friedman, 2000; ?; ?), cur-
+rently there is no method to quantitatively map bilateral informa-
+tion interests from large-scale data. Without such a method, it
+becomes dif cult to justify qualitative statements about, for ex-
+ample, the complex interplay between shared values and con ict
+on a global scale. We use data mining and statistical analysis to
+device a measure of bilateral information interests, and use this
+measure to construct a world map of information interests.
+To study interests on a global scale, we use the free online ency-
+clopedia Wikipedia, which has evolved into one of the largest col-
+laborative repositories of information in the history of mankind
+(Mesgari et al., 2014). The free online encyclopedia consists
+of almost 300 language editions, with English being the largest
+ Electronic address: fariba.karimi@gesis.org
+one1. This multi-lingual encyclopedia captures a wide spectrum
+of information in millions of articles. These articles undergo a
+peer-reviewed editing process without a central editing authority.
+Instead, articles are written, reviewed, and edited by the public.
+Each article edit is recorded, along with a time-stamp, and, if
+the editor is unregistered, the computer s IP address. The IP ad-
+dress makes it possible to connect each edit to a speci c location.
+Therefore we can use Wikipedia editors as sensors for mapping
+information interest to speci c countries.
+In this paper, we use co-editing of the same Wikipedia article
+as a proxy for shared information interests. To  nd global con-
+nections, we look at how often editors from different countries
+co-edit the same articles. To infer connections of shared inter-
+est between countries, we develop a statistical model and repre-
+sent signi cant correlations between countries as links in a global
+network. Structural analysis of the network suggests that inter-
+ests are polarized by factors related to geographical proximity,
+language, religion and historical background. We quantify the
+effects of these factors using regression analysis and  nd that in-
+formation exchange indeed is constrained by the impact of social
+and economic factors connected to shared interests.
+Methodology
+Relating information interests to geographical location
+As one of the largest and most linguistically diverse repositories
+of human knowledge, Wikipedia has become the world s main
+platform for archiving factual information (Mesgari et al., 2014).
+One important feature of Wikipedia is that every edit made to an
+article is recorded. Thanks to this detailed data, Wikipedia pro-
+vides a unique platform for studying different aspects of informa-
+tion processes, for example, semantic relatedness of topics (Auer
+and Lehmann, 2007; Radinsky et al., 2011), collaboration (Kee-
+gan et al., 2012; Kimmons, 2011; T r k et al., 2013), social roles
+of editors (Welser et al., 2011), and the geographical locations of
+Wikipedia editors (Lieberman and Lin, 2009).
+In this work, we used data from Wikipedia dumps2 to select
+2
+a random sample from the English Wikipedia edition, which is
+the largest and most widespread language edition. In total, the
+English edition has around 10 million articles, including redirects
+and duplicates. Since retrieving the editing histories of all arti-
+cles is computationally demanding, we randomly sampled more
+than six million articles from this set. For each English article,
+we retrieved the complete editing history of the same article in all
+language editions that the English Wikipedia page links to. Fi-
+nally we merged all language editions together to create a global
+editing history for each article. For each edit, the editing history
+includes the text of the edit, its time-stamp, and, for unregistered
+editors, the IP address of the editor s computer. From the IP ad-
+dress associated with the edit, we retrieved the geolocation of the
+corresponding editor using an IP database 3. For the purpose of
+spatial analysis, we limited the analysis to edits from unregistered
+editors, because data on the location for most of the registered
+Wikipedia editors are unavailable. The resulting dataset contains
+more than six million (6,285,753) Wikipedia articles and about
+140 million edits in total. We use these edits to create interest
+pro les for countries.
+Inferring shared interests from edit co-occurrence
+We identify the interest pro le of a country by aggregating the ed-
+its of all Wikipedia editors whose IPs are recorded in the country.
+If an article is co-edited by editors located in different countries,
+we say that the countries share a common interest in the infor-
+mation of the article.
+In other words, we connect countries if
+their editors co-edit the same articles. Indirectly, we let individu-
+als who edit Wikipedia represent the population of their country.
+While Wikipedia editors in a country certainly do not represent a
+statistically unbiased sample, there is a higher tendency that they
+edit contents that are related to the country in which they live
+(Hecht and Gergle, 2010b). Therefore, we approximate the inter-
+est pro le of a country with collective editing behavior of editors
+in that country.
+Inferring the location of all editors on the country level is non-
+trivial. Although we have data on all edits, we do not know the
+location of registered editors because their IPs are not recorded.
+One proposed approach to tackle this problem makes use of circa-
+dian rhythms of editing activity to infer the location of the editors
+(Yasseri et al., 2012). This method approximates the longitude of
+a location but provides little information about its latitude. There-
+fore, we must limit the analysis to the activity of unregistered ed-
+itors with recorded IP addresses. This will arguably affect the re-
+sults. Not only do registered editors contribute to 70% of all 140
+million edits, they also have somewhat different behavior. For
+example, many of the most active registered users take on admin-
+istrative functions, develop career paths, or specialize in covering
+selected topics (Arazy et al., 2015). On the other hand, some
+unregistered editors are involved in vandalism, but often their ac-
+tivity nevertheless indicates their interest.4 While we can only
+speculate about how including registered editors would affect the
+results, unregistered editors can nevertheless provide useful infor-
+mation about shared interests between countries.
+From the co-editing data, we create a network that represents
+countries as nodes and shared interests as links. The naive ap-
+proach is to use the raw counts of co-edits between countries as
+weighted links. The problem with this approach is that it is bi-
+ased toward the number of editors in each country. Some coun-
+tries may be strongly connected, not because of evident shared
+interests but merely as a result of a large community of active
+Figure 1 Illustration of the interest model. The left panel shows the
+time-ordered edit sequence of four Wikipedia articles, with edits com-
+ing from di erent countries represented as colored pins. Note that pins
+represent country edits, and therefore they can be repeated. The result-
+ing empirical network, calculated by multiplying raw co-edits counts, is
+at the bottom. In the right panel, we illustrate the null model with the
+same four articles, and the resulting network at the bottom. In the null
+model, the average editing activity of the countries is preserved, but the
+order of the edits is reshu ed within and across articles. As a result of
+the  ltering, some links are removed in the interest model.
+Wikipedia editors. To address this problem, we propose a statisti-
+cal validation method that  lters out connections that could exist
+only due to size effects or noise. The  ltering method assumes
+a multinomial distribution and determines the expected number
+of co-occurring edits from the empirical data.
+In other words,
+we infer signi cant links in a bipartite system in which countries
+are in one set and articles are in the other set. There are other
+existing methods to evaluate the signi cant correlation between
+entities in bipartite systems. For example, Zweig and Kaufmann
+(2011) proposed a systematic approach to one-mode projections
+of bipartite graphs for different motifs. In another work, Tum-
+minello et al. (2011) used the hypergeometric distribution and
+measured the p-value for each subset of the bipartite network.
+Moreover, Lancichinetti et al. (2015) proposed a community de-
+tection method to classify topics to articles more ef ciently, and
+Serrano et al. (2009) used a disparity  ltering method to infer sig-
+ni cant weights in networks. Finally, Ronen et al. (2014) adopted
+a statistical approach to determine signi cant links between lan-
+guages in various written documents. However, the model that
+we use has the advantages that it makes it easy to account for size
+variation inside an article and to compute the z-scores for analyz-
+ing the country-based editor activity.
+Interest model
+In this section we outline the formalisation of the model. We link
+countries based on their co-occurring edits over all Wikipedia ar-
+ticles. For a speci c article a, we calculate the link weight be-
+tween all pairs of countries that edited the article, as follows: if
+editors in country i have edited an article ka
+i times, and editors in
+country j have edited the same article ka
+j times, then the countries 
+empirical link weight, wa
+i j, is calculated as:
+wa
+i j = ka
+i ka
+j .
+(1)
+Since the total number of articles is over six million, most country
+pairs have co-edited at least one article. Therefore, the aggrega-
+tion of all articles results in numerous links between countries,
+and the countries with relatively large editing activities become
+highly central. Accordingly, we cannot know if the link exists by
+chance, or because countries actually tend to edit the same arti-
+cles more frequently than expected. To determine which links are
+statistically signi cant, we compare the empirically observed link
+weights with the weight given by a null model. In the null model,
+we assume that each edit comes from a country randomly picked
+proportionally to its total number of edits. More speci cally, the
+random assignments are performed by drawing the countries from
+a multinomial distribution. That is, for each edit, country i is se-
+ a ka
+M ,
+lected proportional to its cumulative editing activity, pi =
+i
+where M is the total number of edits for all articles. Note that each
+edit is sampled independently from all other edits, and that the
+cumulative edit activity of a country in the null model on average
+will be the same as the observed one. This null model preserves
+the average level of activity of the countries, but randomizes the
+temporal order and the articles that countries edit. Figure 1 shows
+an example of this reshuf ing scheme with four articles.
+From the null model, we can analytically compute the expected
+i j, that two countries i and j edit the same article a
+probability,  a
+(detailed derivation in the Methods):
+ a
+i j = na(na   1)pi p j,
+(2)
+where na is the total number of edits in article a.
+To compare the empirical and expected link values, we com-
+pute standardized values, so called z-scores. For countries i and j
+and article a, the z-score za
+i j is de ned as
+i j    a
+wa
+  a
+i j
+za
+i j =
+i j
+,
+(3)
+where the standard deviation   a
+tion.
+i j, is computed in the Method sec-
+The z-scores are useful for comparisons of weights, since they
+account for the large variations that exist in the articles  edit his-
+tories. We then sum over all articles to  nd the cumulative z-score
+for countries i and j
+zi j =  
+a
+wa
+i j    a
+  a
+i j
+i j
+.
+(4)
+Using the Bonferroni correction, we consider a link to be sig-
+ni cant if the probability of observing the total z-score is less than
+0.05/N, where N is the number of countries. Since the total z-
+score is a sum over many independent variables, we can approx-
+3
+imate the expected total z-score distribution with a normal distri-
+bution. The normal distribution has average value 0 and standard
+deviation  L, where L is the number of Wikipedia articles. Thus,
+the threshold for the signi cant link weight is t = 3.52 L, where
+3.52 is derived from the condition that P(z > 3.52) = 0.05/N,
+where N = 234 countries and P is the standard Gaussian distribu-
+tion (with zero average and unit variance). If the total z-score is
+larger than the threshold, we create a link between countries i and
+j with weight (cid:102)wi j according to
+(cid:40)
+zi j  t
+0
+(cid:102)wi j =
+if zi j > t
+if zi j   t.
+(5)
+In summary, the interest model maintains the average level of
+activity of the countries and randomizes the articles that they edit.
+By comparing results from the interests model and empirical val-
+ues, we can identify signi cant links between countries.
+Clustering countries with similar interests
+To investigate the effective barriers of global information ex-
+change, we  rst identify large-scale structures among the thou-
+sands of links between countries. In this way, we can highlight the
+groups of countries that share interest in the same information. To
+reveal such groups among the pairwise connections, we use a net-
+work community detection method based on random walks as a
+proxy for interest  ows. While the community-detection method
+we use is good at breaking chains of links, we may connect some
+countries primarily based on strong connections with common
+countries and not between themselves. Nevertheless, simplify-
+ing and highlighting important structures provide a valuable map
+to investigate the large-scale structure of global information ex-
+change.
+In our clustering approach, we  rst build a network of coun-
+tries connected with the signi cant links we  nd in our  ltering.
+To identify groups of countries, we envision an editor game in
+which editors from different countries are active in sequence. In
+this relay race, a country exchanges information to another coun-
+try proportional to the weight of the link between the countries.
+Accordingly, the sequence of countries forms a random walk and
+certain sets of countries with strong internal connections will be
+visited for a relatively long time. This process is analog to the
+community-detection method known as the map equation (Ros-
+vall et al., 2009; Rosvall and Bergstrom, 2008). Here we use the
+map equation s associated search algorithm Infomap (Edler and
+Rosvall, 2015) to identify the groups of countries we are looking
+for and to reveal the large-scale structure.
+Results and discussion
+We will discuss the results at four levels of detail, from the big
+picture to the detailed dynamics, and highlight different potential
+mechanisms for barriers of information exchange. First, we will
+show a global map of countries with shared information inter-
+ests, and continue with the interconnections between the clusters.
+Then we will consider each cluster separately and examine the in-
+terconnections between countries within the clusters. Finally, we
+will apply multiple regression analysis to examine explanatory
+variables to the highways and barriers of information exchange.
+The world map of information interests
+The world map of information interests suggests that cultural and
+geopolitical features can explain the division of countries. Be-
+4
+Figure 2 World map of information interests. Countries that belong to the same cluster have the same color. Countries colored with gray do not
+belong to any cluster. The map suggests that the division of countries can be explained by a combination of cultural and geopolitical features.
+Figure 3 World network of information interests. The size of the nodes represents the total z-score of the clusters. The links represent connections
+between clusters obtained from the cluster analysis with Infomap, the thicker the line, the stronger the connection. Clusters are colored in the same
+way as in Fig. 2. The upper left corner shows the most signi cant connections between countries in the Central European cluster.
+tween the 234 countries, we identi ed 2,847 signi cant links that
+together form a network of article co-edits. By clustering the net-
+work, we identi ed 18 clusters of strongly connected countries
+(see Supplementary Table for a detailed list of countries in each
+cluster). The resulting network is illustrated as a map in Fig. 2,
+where countries of the same cluster share the same color. The map
+suggests that the division of countries can be explained by a com-
+bination of cultural and geopolitical features. For example, the
+United States and Canada share a long geographical border and
+extensive mutual trade, and are clustered together despite the fact
+that other English-speaking countries are not. Moreover, religion
+is a plausible driver for the formation of the cluster of countries in
+the Middle East and North Africa, as well as the cluster of Russia
+and the Orthodox Eastern-European countries (?). Another factor
+in the formation of shared information interests is language. For
+example, countries in Central and South America are divided into
+two clusters with Portuguese and Spanish as common languages
+in each cluster, respectively. Colonial history can also shape simi-
+larity in interests, as in the cluster of Portugal, Angola and Brazil,
+as well as the cluster of former Soviet Union countries (?). Over-
+all, there is strong empirical evidence that geographical proxim-
+ity, common religion, shared language, and colonial history can
+explain the division of countries.
+To examine the connections between clusters, we looked at
+the network structure at the cluster level. The network in Fig.3
+shows the connections between the clusters of countries illus-
+trated in Fig. 2 with the same color coding. Connections tend to
+be stronger between clusters of geographically proximate coun-
+tries also at this level. Interestingly, the Middle East cluster in
+turquoise has the largest link strengths to other clusters, forming
+a hub that connects East and West, North and South. Interpret-
+ing the strong connections as potential highways for information
+exchange, the Middle East is not only a melting pot of ideas, but
+also plays an important role in the spread of information.
+To get better insights into how the clusters are shaped, we
+zoomed into the country networks within clusters. In the upper
+left corner of Fig. 3, we show the strongest connections within
+the Central European cluster. It suggests that countries are linked
+based on the overlap of the of cial languages (Hale, 2014). For
+example, Belgium has three of cial languages, Dutch, French and
+German. Indeed, Belgium is connected closely with the Nether-
+lands, France, and Luxembourg. We observed the same pattern in
+other clusters, and the triad of Switzerland, Germany, and Aus-
+tria is another example of strongly linked countries with a shared
+language.
+Just to illustrate what interests can form the bilateral connec-
+tions, we looked at a number of concrete examples. First, we
+ranked the articles according to their signi cant z-scores for each
+pair of countries. Then we looked at the top-ranked articles and
+here report the results for two European country pairs: Germany 
+Austria in the European cluster and Sweden Norway in the Scan-
+dinavian cluster. The articles with the most signi cant co-edits
+relate to local and regional interests, including sports, media, mu-
+sic, and places (see Supplementary Table). For example, the top-
+ranked articles in the Germany Austria list include an Austrian
+singer who is also popular in Germany, and an Austrian football
+player who is playing in the German league. The top-ranked ar-
+ticles in the Sweden Norway list shows a similar pattern of lo-
+cally related topics, for example, a host of a popular TV show
+simultaneously aired in Sweden and Norway, a Swedish football
+manager who has been successful both in Sweden and Norway,
+5
+and a music genre that is nearly exclusive to Scandinavian coun-
+tries. Altogether, the top articles suggest that an important factor
+for co-editing is related interests, which in turn may be an effect
+of shared language, religion, or colonial history, as well as geo-
+graphical proximity or large volume of trade between countries.
+Regression analysis of the highways and barriers of infor-
+mation exchange
+To quantify the impact of social and economic factors behind the
+shared interests, we performed a Multiple Regression Quadratic
+Assignment Procedure (MRQAP) analysis.
+This method is
+speci cally suited when there are collinearity and autocorrelation
+in the data (Dekker et al., 2007; Krackhardt, 1988). We performed
+the MRQAP using the netlm function in the sna R package
+(Butts, 2008). The dependent variables in the regression model
+were the signi cant z-scores that we obtained from the data. Our
+independent variables were geographical proximity, trade (Sub-
+ramanian and Wei, 2007), colonial ties5, shared language6, and
+shared religion7, as suggested by the analysis of the map of in-
+formation interests (see the Supplementary Information S2 for a
+more detailed description of the data).
+All independent variables show signi cant correlation with the
+data (see Table 1). To observe the variation between differ-
+ent independent matrices, we examined them in different mod-
+els.
+In model R0, we examined the in uence of shared lan-
+guage, which explains 13% of our observation. In model R1, we
+added shared religion, which increases the power of the model
+to 19%. In model R2, we included the geographical proximity.
+It slightly increases the R-squared and has negative relation to
+the observed z-scores, since short distance corresponds to high
+proximity. In models R3 and R4, respectively, we added colonial
+ties and trade. Including all these explanatory variables into the
+regression model enabled us to increase the explanatory power
+of the model to 22%. The correlation of each variable with the
+observed z-scores can be inferred from the t-statistic. Shared lan-
+guage shows the strongest association, followed by shared reli-
+gion, geographical proximity, colonial ties, and volume of trade
+(see Table 1).
+The in uence of language on shared interests is not surpris-
+ing.
+It is well known that interests are formed by cultural ex-
+pression and public opinion, and language is an important plat-
+form for these expressions (Usunier and Lee, 2005). That the
+relation between language and interests is important has also
+been demonstrated by the surprisingly small overlap between lan-
+guages in Wikipedia (Callahan and Herring, 2011; Hecht and Ger-
+gle, 2010a) and the variation in the editing of controversial topics
+(Yasseri et al., 2014).
+Moreover, the in uence of religion is in line with the Hunt-
+ington s thesis that the source of division between people in the
+post-Cold War period is primarily rooted in cultural differences
+and religion (Huntington et al., 1993). Similar results were found
+in other studies that analyzed Twitter and email communication
+worldwide (State et al., 2015).
+Overall, the analysis reveals that information exchange is con-
+strained by the impact of social and economic factors connected
+to shared interests. In other words, globalization of the technol-
+ogy does not bring globalization of the information and interests.
+Language, religion, geographical proximity, historic background,
+and trade are potential driving factors to polarize the informa-
+tion interests. These results coincide with earlier works that high-
+light the impact of the colonization, immigration, economics, and
+Table 1 Results of the multiple regression analysis. Signi cant edit co-occurrences (z-scores) form the dependent variable matrix, which we regress
+on the independent matrices in di erent models. Values in parenthesis are t-statistics. The features are ordered by importance, from shared language
+to trade. Country pairs = 62,001. Values marked with an asterisk have a p-value less than 0.01
+6
+R0
+0.41
+R1
+0.3
+0.91  (69) 0.82  (64)
+2.76  (46)
+Intercept
+Shared language
+Shared religion
+Log distance
+Colonial tie
+Log trade
+R3
+2.33
+0.75  (58)
+2.6  (43)
+R2
+2.33
+0.77  (60)
+2.6  (44)
+R4
+2.28
+0.74  (57)
+2.44  (40)
+-0.23  (-23) -0.23  (-23) -0.23  (-23)
+4.35  (21)
+0.03  (10)
+4.5  (22)
+Adjusted R-squared
+F-statistic
+dF
+0.13
+7,774
+30,874
+0.19
+3,590
+30,873
+0.20
+2,610
+30,872
+0.21
+2,110
+30,871
+0.22
+1,716
+30,870
+politics on the cultural similarities and diversities (Bleich, 2005;
+Castells, 2011; Feldman-Bianco, 2001; Gelfand et al., 2011; Hen-
+nemann et al., 2012; Risse, 2001; T gil, 1995).
+Conclusions
+By simplifying and highlighting the important structure in the
+myriad edits of Wikipedia, we provide a world map of shared
+information interests. We  nd that information interests despite
+globalization are diverse, and that the highways and barriers of
+information exchange are formed by social and economic factors
+connected to shared interests. In descending order, we  nd that
+language, religion, geographical proximity, historic background,
+and trade explain the diversity of interests. While technological
+advances in principle have made it possible to communicate with
+anyone in the world, these social and economic factors limit us
+from doing so and information interests remain diverse. Ques-
+tions remain how different social and economic factors affect dif-
+ferent regions, how they relate to con icts on a global scale, and
+how the impact of these factors changes over time. It would there-
+fore be interesting to extend the methodology to track changes
+over time.
+Method
+To  nd connections in interest, we measure the co-occurring edits
+of two countries in the same articles. We quantify the connection
+with an empirical weight that is computed as the product of the
+countries  edit activities in the article. For a Wikipedia article a, if
+the total edit activity of country i is denoted by ka
+i , and for country
+j is ka
+j, then we calculate the empirical weight, wa
+i j, according to
+i j = ka
+wa
+i ka
+j .
+(6)
+As the total edit activity of countries differs, the probability that
+countries appear together in a certain article varies. If the total
+number of edits for all articles is M, then the expected proportion
+of edits for country i is
+pi =
+ a ka
+i
+M
+.
+(7)
+This is the probability of country i making a random edit over-
+all, and this is the null model we use to  lter noisy connections
+in the interest model. Assume that there is a total of c countries,
+and a total of n edits for article p. Let xk denote the number of
+edits from country k. Then the probability of any particular com-
+bination of edits for the various countries follows a multinomial
+distribution
+n!
+x1!...xc!
+px1
+1 ...pxc
+c ,where
+c
+ 
+i=1
+xi = n.
+(8)
+With the above distribution, we can compute the expected proba-
+bility of the co-occurrence of two countries i and j in an article
+i j =  
+ a
+1...k
+xix j
+n!
+x1!...xn!
+px1
+1 ...pxn
+n
+(9)
+Following the multinomial theorem, we can now calculate the
+mean, variance and covariance matrices for the occurrence of a
+country pair. The mean value of the co-occurrence of two coun-
+tries becomes
+ a
+i j = na(na   1)pi p j.
+(10)
+Using the multinomial theorem multiple times, one can also com-
+pute the variance:
+(  a
+i j)2 =na(na   1)pi p j((6  4na)pi p j + (na   2)(pi + p j) + 1).
+(11)
+Thus, the standard deviation of the pair,   a
+i j, is the square root
+of equation (11). This equation enters into the de nition of the
+z-score in equation (4). The sum of the z-scores is then approxi-
+mated with a Gaussian distribution. This approximation is well
+justi ed by the large number of articles.
+In practice, already
+1,000 articles give a good approximation, as shown by the nu-
+merical simulations in the Supplementary Information.
+References
+Arazy, O., Ortega, F., Nov, O., Yeo, L., and Balila, A. (2015). Func-
+tional roles and career paths in wikipedia. In Proceedings of the 18th
+ACM Conference on Computer Supported Cooperative Work & Social
+Computing, pages 1092 1105. ACM.
+Auer, S. and Lehmann, J. (2007). What have innsbruck and leipzig in
+common? extracting semantics from wiki content. In The Semantic
+Web: Research and Applications, pages 503 517. Springer.
+Bleich, E. (2005). The legacies of history? colonization and immigrant
+integration in Britain and France. Theory Soc., 34(2):171 195.
+Butts, C. T. (2008). Social network analysis with sna.
+Journal of
+Statistical Software, 24(6):1 51.
+Cairncross, F.
+(2001).
+The Death Of Distance: How The
+Communications Revolution Is Changing Our Lives. Harvard Busi-
+ness Press.
+Callahan, E. S. and Herring, S. C. (2011). Cultural bias in wikipedia
+content on famous persons. J. Assoc. Inf. Sci. Technol., 62(10):1899 
+1915.
+Castells, M. (2011). The Power Of Identity: The Information Age:
+Economy, Society, And Culture, volume 2. John Wiley & Sons.
+Dekker, D., Krackhardt, D., and Snijders, T. A. (2007).
+Sensitiv-
+ity of mrqap tests to collinearity and autocorrelation conditions.
+Psychometrika, 72(4):563 581.
+Edler, D. and Rosvall, M. (2015). The infomap software package. http:
+//www.mapequation.org.
+Fagiolo, G., Reyes, J., and Schiavo, S. (2010). The evolution of the world
+trade web: a weighted-network analysis. J. Evol. Econ., 20(4):479 
+514.
+Feldman-Bianco, B. (2001). Brazilians in Portugal, Portuguese in Brazil:
+Constructions of sameness and difference 1. Identities. Glob. Stud.,
+8(4):607 650.
+Friedman, T. L. (2000). The Lexus And The Olive Tree: Understanding
+Globalization. Macmillan.
+Gelfand, M. J., Raver, J. L., Nishii, L., Leslie, L. M., Lun, J., Lim, B. C.,
+Duan, L., Almaliach, A., Ang, S., Arnadottir, J., et al. (2011). Differ-
+ences between tight and loose cultures: A 33-nation study. Science,
+332(6033):1100 1104.
+Hale, S. A. (2014). Multilinguals and wikipedia editing. In Proc. Conf.
+on Web Science, pages 99 108. ACM.
+Hecht, B. and Gergle, D. (2010a). The tower of babel meets web 2.0:
+user-generated content and its applications in a multilingual context.
+In Proc. SIGCHI Conf. on Human Factors in Computing Systems,
+pages 291 300. ACM.
+Hecht, B. J. and Gergle, D. (2010b). On the "localness" of user-generated
+content. In Proceedings of the 2010 ACM Conference on Computer
+Supported Cooperative Work, CSCW  10, pages 229 232, New York,
+NY, USA. ACM.
+Hennemann, S., Rybski, D., and Liefner, I. (2012). The myth of global
+science collaboration collaboration patterns in epistemic communi-
+ties. Journal of Informetrics, 6(2):217 225.
+Huntington, S. P. et al. (1993). The clash of civilizations?
+Kaluza, P., K lzsch, A., Gastner, M. T., and Blasius, B. (2010). The com-
+plex network of global cargo ship movements. J. R. Soc. Interface.,
+7(48):1093 1103.
+Keegan, B., Gergle, D., and Contractor, N. (2012). Do editors or ar-
+ticles drive collaboration?: multilevel statistical network analysis of
+wikipedia coauthorship. In Proc. ACM Conf. on Computer Supported
+Cooperative Work, pages 427 436. ACM.
+Kimmons, R. M. (2011). Understanding collaboration in wikipedia. First
+Monday, 16(12).
+Glob. Econ., page 7.
+Kose, M. A. and Ozturk, E. O. (2014). A world of change. The Future
+Krackhardt, D. (1988). Predicting with networks: Nonparametric mul-
+tiple regression analysis of dyadic data. Social networks, 10(4):359 
+381.
+Lambiotte, R., Blondel, V. D., de Kerchove, C., Huens, E., Prieur, C.,
+Smoreda, Z., and Van Dooren, P. (2008). Geographical dispersal of
+mobile communication networks. Phys. A, 387(21):5317 5325.
+Lancichinetti, A., Sirer, M. I., Wang, J. X., Acuna, D., K rding, K.,
+and Amaral, L. A. N. (2015). High-reproducibility and high-accuracy
+method for automated topic classi cation. Phys. Rev. X, 5:011007.
+Lieberman, M. D. and Lin, J. (2009). You are where you edit: Locating
+wikipedia contributors through edit histories. In ICWSM.
+Mesgari, M., Okoli, C., Mehdi, M., Nielsen, F.  ., and Lanam ki, A.
+(2014).  The sum of all human knowledge : A systematic review
+of scholarly research on the content of wikipedia. J. Assoc. Inf. Sci.
+Technol.
+Overman, H. G., Redding, S., and Venables, A. (2003). The Economic
+Geography Of Trade, Production And Income: A Survey Of Empirics.
+7
+Blackwell Publishing.
+Pan, R. K., Kaski, K., and Fortunato, S. (2012). World citation and
+collaboration networks: uncovering the role of geography in science.
+Sci. Rep., 2.
+Radinsky, K., Agichtein, E., Gabrilovich, E., and Markovitch, S. (2011).
+A word at a time: computing word relatedness using temporal se-
+mantic analysis. In Proc. Internat. Conf. on World Wide Web, pages
+337 346. ACM.
+Risse, T. (2001). A European identity? Europeanization and the evolu-
+tion of nation-state identities. In Cowles, M. G., Caporaso, J. A., and
+Risse-Kappen, T., editors, Transforming Europe: Europeanization and
+Domestic Change. Cornell University Press Ithaca, NY.
+Ronen, S., Gon alves, B., Hu, K. Z., Vespignani, A., Pinker, S., and
+Hidalgo, C. A. (2014). Links that speak: The global language network
+and its association with global fame. Proc. Natl Acad. Sci. USA.
+Rosvall, M., Axelsson, D., and Bergstrom, C. T. (2009). The map equa-
+tion. EPJ ST., 178(1):13 23.
+Rosvall, M. and Bergstrom, C. T. (2008). Maps of random walks on
+complex networks reveal community structure. Proc. Natl Acad. Sci.
+USA, 105(4):1118 1123.
+Serrano, M.  ., Bogu  , M., and Vespignani, A. (2007). Patterns of dom-
+inant  ows in the world trade web. J. Econ. Interac. Coor., 2(2):111 
+124.
+Serrano, M.  ., Bogu  , M., and Vespignani, A. (2009). Extracting the
+multiscale backbone of complex weighted networks. Proc. Natl Acad.
+Sci. USA, 106(16):6483 6488.
+State, B., Park, P., Weber, I., and Macy, M. (2015). The mesh of civi-
+lizations in the global network of digital communication. PLoS ONE,
+10(5):e0122543.
+Subramanian, A. and Wei, S.-J. (2007). The wto promotes trade, strongly
+but unevenly. Journal of international Economics, 72(1):151 175.
+T gil, S. (1995). Ethnicity And Nation Building In The Nordic World.
+SIU Press.
+T r k, J., I iguez, G., Yasseri, T., San Miguel, M., Kaski, K., and
+Kert sz, J. (2013). Opinions, con icts, and consensus: modeling
+social dynamics in a collaborative environment. Phys. Rev. Lett.,
+110(8):088701.
+Tumminello, M., Miccich , S., Lillo, F., Piilo, J., and Mantegna, R. N.
+(2011). Statistically validated networks in bipartite complex systems.
+PLoS ONE, 6(3):e17994.
+Usunier, J.-C. and Lee, J. (2005). Marketing Across Cultures. Pearson
+Education.
+Welser, H. T., Cosley, D., Kossinets, G., Lin, A., Dokshin, F., Gay, G.,
+In Proc.
+and Smith, M. (2011). Finding social roles in wikipedia.
+iConference, pages 122 129. ACM.
+Yasseri, T., Spoerri, A., Graham, M., and Kert sz, J. (2014). The
+most controversial topics in wikipedia: A multilingual and geograph-
+ical analysis. In Fichman, P. & Hara, N., editor, Global Wikipedia:
+International and cross-cultural issues in online collaboration. Row-
+man & Little eld.
+Yasseri, T., Sumi, R., and Kert sz, J. (2012). Circadian patterns of
+wikipedia editorial activity: A demographic analysis. PloS one,
+7(1):e30091.
+Zweig, K. A. and Kaufmann, M. (2011). A systematic approach to the
+one-mode projection of bipartite graphs. Social Network Analysis and
+Mining, 1(3):187 218.
+Acknowledgements
+We thank Alcides V. Esquivel, Daniel Edler, Claudia Wagner,
+Markus Strohmaier and Micheal Macy for valuable discussions.
+We also thank the Wikimedia Foundation for providing free ac-
+cess to the data. F.K., L.B., A.L. and M.R. were supported by the
+Swedish Research Council grant 2012-3729.
+interests.
+Additional information
+The authors declare that
+they have no competing  nan-
+cial
+Correspondence and requests for materials
+should be addressed to F.K. (fariba.karimi@gesis.org). The
+datasets generated during and/or analysed during the cur-
+rent study are available in the  google sites  repository,  
+https://sites.google.com/site/mappingbilateralwiki/ .
+8

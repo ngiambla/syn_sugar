@@ -1,0 +1,1583 @@
+7
+1
+0
+2
+ 
+l
+u
+J
+ 
+3
+1
+ 
+ 
+]
+A
+M
+.
+s
+c
+[
+ 
+ 
+2
+v
+9
+5
+3
+4
+0
+.
+4
+0
+6
+1
+:
+v
+i
+X
+r
+a
+Complexity of Manipulation with Partial Information in
+Voting
+Palash Dey
+Tata Institute of Fundamental Research, Mumbai
+palash.dey@tifr.res.in
+Neeldhara Misra
+Y. Narahari
+Indian Institute of Technology, Gandhinagar
+Indian Institute of Science, Bangalore
+mail@neeldhara.com
+hari@csa.iisc.ernet.in
+January 2, 2018
+Abstract
+The Coalitional Manipulation problem has been studied extensively in the literature for many
+voting rules. However, most studies have focused on the complete information setting, wherein
+the manipulators know the votes of the non-manipulators. While this assumption is reason-
+able for purposes of showing intractability, it is unrealistic for algorithmic considerations. In
+most real-world scenarios, it is impractical to assume that the manipulators to have accurate
+knowledge of all the other votes. In this work, we investigate manipulation with incomplete
+information. In our framework, the manipulators know a partial order for each voter that is
+consistent with the true preference of that voter.
+In this setting, we formulate three natural
+computational notions of manipulation, namely weak, opportunistic, and strong manipulation.
+We say that an extension of a partial order is viable if there exists a manipulative vote for that ex-
+tension. We propose the following notions of manipulation when manipulators have incomplete
+information about the votes of other voters.
+1. WEAK MANIPULATION: the manipulators seek to vote in a way that makes their preferred
+candidate win in at least one extension of the partial votes of the non-manipulators.
+2. OPPORTUNISTIC MANIPULATION:
+the manipulators seek to vote in a way that makes
+their preferred candidate win in every viable extension of the partial votes of the non-
+manipulators.
+3. STRONG MANIPULATION: the manipulators seek to vote in a way that makes their preferred
+candidate win in every extension of the partial votes of the non-manipulators.
+We consider several scenarios for which the traditional manipulation problems are easy (for
+instance, Borda with a single manipulator). For many of them, the corresponding manipulative
+questions that we propose turn out to be computationally intractable. Our hardness results often
+hold even when very little information is missing, or in other words, even when the instances are
+very close to the complete information setting. Our results show that the impact of paucity of
+information on the computational complexity of manipulation crucially depends on the notion
+of manipulation under consideration. Our overall conclusion is that computational hardness
+continues to be a valid obstruction to manipulation, in the context of a more realistic model.
+Keywords: voting, manipulation, incomplete information, algorithm, computational complexity
+1
+1 Introduction
+In many real life and AI related applications, agents often need to agree upon a common decision
+although they have different preferences over the available alternatives. A natural tool used in these
+situations is voting. Some classic examples of the use of voting rules in the context of multiagent
+systems include Clarke tax [ER91], collaborative  ltering [PHG00], and similarity search [FKS03],
+etc. In a typical voting scenario, we have a set of candidates and a set of voters reporting their
+rankings of the candidates called their preferences or votes. A voting rule selects one candidate as
+the winner once all voters provide their votes. A set of votes over a set of candidates along with
+a voting rule is called an election. A central issue in voting is the possibility of manipulation. For
+many voting rules, it turns out that even a single vote, if cast differently, can alter the outcome.
+In particular, a voter manipulates an election if, by misrepresenting her preference, she obtains an
+outcome that she prefers over the  honest  outcome. In a cornerstone impossibility result, Gibbard
+and Satterthwaite [Gib73, Sat75] show that every unanimous and non-dictatorial voting rule with
+three candidates or more is manipulable. We refer to [BCE+15] for an excellent introduction to
+various strategic issues in computational social choice theory.
+Considering that voting rules are indeed susceptible to manipulation, it is natural to seek ways
+by which elections can be protected from manipulations. The works of Bartholdi et al. [BITT89,
+BIO91] approach the problem from the perspective of computational intractability. They exploit
+the possibility that voting rules, despite being vulnerable to manipulation in theory, may be hard to
+manipulate in practice. Indeed, a manipulator is faced with the following decision problem: given
+a collection of votes P and a distinguished candidate c, does there exist a vote v that, when tallied
+with P, makes c win for a ( xed) voting rule r? The manipulation problem has subsequently been
+generalized to the problem of COALITIONAL MANIPULATION by Conitzer et al. [CSL07], where one
+or more manipulators collude together and try to make a distinguished candidate win the election.
+The manipulation problem, fortunately, turns out to be NP-hard in several settings. This established
+the success of the approach of demonstrating a computational barrier to manipulation.
+However, despite having set out to demonstrate the hardness of manipulation, the initial results
+in [BITT89] were to the contrary, indicating that many voting rules are in fact easy to manipulate.
+Moreover, even with multiple manipulators involved, popular voting rules like plurality, veto, k-
+approval, Bucklin, and Fallback continue to be easy to manipulate [XZP+09]. While we know that
+the computational intractability may not provide a strong barrier [PR06, PR07, FKN08, XC08a,
+XC08b, FHH10, Wal10, Wal11, IKM12, Dey15, DMN15b, DMN16, DMN15a, DN14, DN15] even for
+rules for which the coalitional manipulation problem turns out to be NP-hard, in all other cases the
+possibility of manipulation is a much more serious concern.
+1.1 Motivation and Problem Formulation
+In our work, we propose to extend the argument of computational intractability to address the
+cases where the approach appears to fail. We note that most incarnations of the manipulation
+problem studied so far are in the complete information setting, where the manipulators have com-
+plete knowledge of the preferences of the truthful voters. While these assumptions are indeed the
+best possible for the computationally negative results, we note that they are not re ective of typ-
+ical real-world scenarios. Indeed, concerns regarding privacy of information, and in other cases,
+the sheer volume of information, would be signi cant hurdles for manipulators to obtain complete
+information. Motivated by this, we consider the manipulation problem in a natural partial infor-
+2
+mation setting. In particular, we model the partial information of the manipulators about the votes
+of the non-manipulators as partial orders over the set of candidates. A partial order over the set
+of candidates will be called a partial vote. Our results show that several of the voting rules that
+are easy to manipulate in the complete information setting become intractable when the manipu-
+lators know only partial votes. Indeed, for many voting rules, we show that even if the ordering
+of a small number of pairs of candidates is missing from the pro le, manipulation becomes an in-
+tractable problem. Our results therefore strengthen the view that manipulation may not be practical
+if we limit the information the manipulators have at their disposal about the votes of other voters
+[CWX11].
+We introduce three new computational problems that, in a natural way, extend the question of
+manipulation to the partial information setting. In these problems, the input is a set of partial votes
+P corresponding to the votes of the non-manipulators, a non-empty set of manipulators M, and a
+preferred candidate c. The task in the WEAK MANIPULATION (WM) problem is to determine if there
+is a way to cast the manipulators  votes such that c wins the election for at least one extension of
+the partial votes in P. On the other hand, in the STRONG MANIPULATION (SM) problem, we would
+like to know if there is a way of casting the manipulators  votes such that c wins the election in
+every extension of the partial votes in P.
+We also introduce the problem of OPPORTUNISTIC MANIPULATION (OM), which is an  interme-
+diate  notion of manipulation. Let us call an extension of a partial pro le viable if it is possible
+for the manipulators to vote in such a way that the manipulators  desired candidate wins in that
+extension. In other words, a viable extension is a YES-instance of the standard COALITIONAL MANIP-
+ULATION problem. We have an opportunistic manipulation when it is possible for the manipulators
+to cast a vote which makes c win the election in all viable extensions. Note that any YES-instance
+of STRONG MANIPULATION is also an YES-instance of OPPORTUNISTIC MANIPULATION, but this may
+not be true in the reverse direction. As a particularly extreme example, consider a partial pro le
+where there are no viable extensions: this would be a NO-instance for STRONG MANIPULATION, but
+a (vacuous) YES-instance of OPPORTUNISTIC MANIPULATION. The OPPORTUNISTIC MANIPULATION
+problem allows us to explore a more relaxed notion of manipulation: one where the manipula-
+tors are obliged to be successful only in extensions where it is possible to be successful. Note that
+the goal with STRONG MANIPULATION is to be successful in all extensions, and therefore the only
+interesting instances are the ones where all extensions are viable.
+It is easy to see that YES instance of STRONG MANIPULATION is also a YES instance of OPPOR-
+TUNISTIC MANIPULATION and WEAK MANIPULATION. Beyond this, we remark that all the three
+problems are questions with different goals, and neither of them render the other redundant. We
+refer the reader to Figure 1 for a simple example distinguishing these scenarios.
+All the problems above generalize COALITIONAL MANIPULATION, and hence any computa-
+tional intractability result for COALITIONAL MANIPULATION immediately yields a corresponding
+intractability result for WEAK MANIPULATION, STRONG MANIPULATION, and OPPORTUNISTIC MA-
+NIPULATION under the same setting. For example, it is known that the COALITIONAL MANIPULA-
+TION problem is intractable for the maximin voting rule when we have at least two manipula-
+tors [XZP+09]. Hence, the WEAK MANIPULATION, STRONG MANIPULATION, and OPPORTUNISTIC
+MANIPULATION problems are intractable for the maximin voting rule when we have at least two
+manipulators.
+3
+Figure 1: An example of a partial pro le. Consider the plurality voting rule with one manipulator.
+If the favorite candidate is A, then the manipulator simply has to place A on the top of his vote
+to make A win in any extension. If the favorite candidate is B, there is no vote that makes B win
+in any extension. Finally, if the favorite candidate is C, then with a vote that places C on top, the
+manipulator can make C win in the only viable extension (Extension 2).
+1.2 Related Work
+A notion of manipulation under partial
+information has been considered by Conitzer et
+al. [CWX11]. They focus on whether or not there exists a dominating manipulation and show
+that this problem is NP-hard for many common voting rules. Given some partial votes, a dom-
+inating manipulation is a non-truthful vote that the manipulator can cast which makes the win-
+ner at least as preferable (and sometimes more preferable) as the winner when the manipulator
+votes truthfully. The dominating manipulation problem and the WEAK MANIPULATION, OPPOR-
+TUNISTIC MANIPULATION, and STRONG MANIPULATION problems do not seem to have any apparent
+complexity-theoretic connection. For example, the dominating manipulation problem is NP-hard
+for all the common voting rules except plurality and veto, whereas, the STRONG MANIPULATION
+problem is easy for most of the cases (see Table 1). However, the results in [CWX11] establish the
+fact that it is indeed possible to make manipulation intractable by restricting the amount of infor-
+mation the manipulators possess about the votes of the other voters. Elkind and Erd elyi [EE12]
+study manipulation under voting rule uncertainty. However, in our work, the voting rule is  xed
+and known to the manipulators.
+Two closely related problems that have been extensively studied in the context of incomplete
+votes are POSSIBLE WINNER and NECESSARY WINNER [KL05]. In the POSSIBLE WINNER problem,
+we are given a set of partial votes P and a candidate c, and the question is whether there ex-
+ists an extension of P where c wins, while in the NECESSARY WINNER problem, the question
+is whether c is a winner in every extension of P. Following the work in [KL05], a number
+of special cases and variants of the POSSIBLE WINNER problem have been studied in the litera-
+ture [CLMM10, BBF10, BRR11, BRR+12, GNNW14, XC11, DL13, NW14, BFLR12, ML15]. The
+ avor of the WEAK MANIPULATION problem is clearly similar to POSSIBLE WINNER. However, we
+emphasize that there are subtle distinctions between the two problems. A more elaborate compar-
+ison is made in the next section.
+4
+1.3 Our Contribution
+Our primary contribution in this work is to propose and study three natural and realistic general-
+izations of the computational problem of manipulation in the incomplete information setting. We
+summarize the complexity results in this work in Table 1. Our results provide the following inter-
+esting insights on the impact of lack of information on the computational dif culty of manipulation.
+We note that the number of undetermined pairs of candidates per vote are small constants in all
+our hardness results.
+(cid:66) We observe that the computational problem of manipulation for the plurality and veto vot-
+ing rules remains polynomial time solvable even with lack of information, irrespective of the
+notion of manipulation under consideration [Proposition 1, Theorem 11 and 15, and Obser-
+vation 4]. We note that the plurality and veto voting rule also remain vulnerable under the
+notion of dominating manipulation [CWX11].
+(cid:66) The impact of absence of information on the computational complexity of manipulation is
+more dynamic for the k-approval, k-veto, Bucklin, Borda, and maximin voting rules. Only
+the WEAK MANIPULATION and OPPORTUNISTIC MANIPULATION problems are computationally
+intractable for the k-approval [Theorem 1 and 5], k-veto [Theorem 2 and 6], Bucklin [Theo-
+rem 3 and 10], Borda [Observation 3 and Theorem 7], and maximin [Observation 3 and The-
+orem 8] voting rules, whereas the STRONG MANIPULATION problem remains computationally
+tractable [Theorem 11 to 14].
+(cid:66) Table 1 shows an interesting behavior of the Fallback voting rule. The Fallback voting rule is
+the only voting rule among the voting rules we study here for which the WEAK MANIPULATION
+problem is NP-hard [Theorem 3] but both the OPPORTUNISTIC MANIPULATION and STRONG
+MANIPULATION problems are polynomial time solvable [Theorem 13 and Observation 4]. This
+is because the OPPORTUNISTIC MANIPULATION problem can be solved for the Fallback voting
+rule by simply making manipulators vote for their desired candidate.
+(cid:66) Our results show that absence of information makes all the three notions of manipulations
+intractable for the Copeland  voting rule for every rational     [0, 1] \ {0.5} for the WEAK
+MANIPULATION problem [Observation 3] and for every     [0, 1] for the OPPORTUNISTIC
+MANIPULATION and STRONG MANIPULATION problems [Theorem 4 and 9].
+Our results (see Table 1) show that whether lack of information makes the manipulation prob-
+lems harder, crucially depends on the notion of manipulation applicable to the situation under
+consideration. All the three notions of manipulations are, in our view, natural extension of manip-
+ulation to the incomplete information setting and tries to capture different behaviors of manipula-
+tors. For example, the WEAK MANIPULATION problem maybe applicable to an optimistic manipula-
+tor whereas for an pessimistic manipulator, the STRONG MANIPULATION problem may make more
+sense.
+Organization of the paper: We de ne the problems and introduce the basic terminology in the
+next section. We present our hardness results in Section 3. In Section 4, we present our polynomi-
+ally solvable algorithms. Finally we conclude with future directions of research in Section 5.
+5
+WM, (cid:96) = 1 WM OM, (cid:96) = 1 OM SM, (cid:96) = 1
+SM
+Plurality
+Veto
+k-Approval
+k-Veto
+Bucklin
+Fallback
+Borda
+maximin
+Copeland 
+P
+P
+NP-complete
+coNP-hard
+P
+NP-complete
+coNP-hard
+P
+P
+NP-hard
+coNP-hard
+Table 1: Summary of Results ((cid:96) denotes the number of manipulators). The results in white follow
+immediately from the literature (Observation 1 to 3). Our results for the Copeland  voting rule
+hold for every rational     [0, 1]\{0.5} for the WEAK MANIPULATION problem and for every     [0, 1]
+for the OPPORTUNISTIC MANIPULATION and STRONG MANIPULATION problems.
+2 Preliminaries
+In this section, we begin by providing the technical de nitions and notations that we will need in
+the subsequent sections. We then formulate the problems that capture our notions of manipulation
+when the votes are given as partial orders, and  nally draw comparisons with related problems
+that are already studied in the literature of computational social choice theory.
+2.1 Notations and De nitions
+Let V = {v1, . . . , vn} be the set of all voters and C = {c1, . . . , cm} the set of all candidates. If not
+speci ed explicitly, n and m denote the total number of voters and the total number of candidates
+respectively. Each voter vi s vote is a preference (cid:31)i over the candidates which is a linear order over
+C. For example, for two candidates a and b, a (cid:31)i b means that the voter vi prefers a to b. We
+denote the set of all linear orders over C by L(C). Hence, L(C)n denotes the set of all n-voters 
+preference pro le ((cid:31)1, . . . ,(cid:31)n). A map r :  n,|C| N+L(C)n    2C \ { } is called a voting rule. For
+some preference pro le (cid:31)  L(C)n, if r((cid:31)) = {w}, then we say w wins uniquely and we write
+r((cid:31)) = w. From here on, whenever we say some candidate w wins, we mean that the candidate w
+wins uniquely. For simplicity, we restrict ourselves to the unique winner case in this paper. All our
+proofs can be easily extended in the co-winner case.
+A more general setting is an election where the votes are only partial orders over candidates.
+A partial order is a relation that is re exive, antisymmetric, and transitive. A partial vote can be
+extended to possibly more than one linear vote depending on how we  x the order of the unspeci-
+ ed pairs of candidates. For example, in an election with the set of candidates C = {a, b, c}, a valid
+partial vote can be a (cid:31) b. This partial vote can be extended to three linear votes namely, a (cid:31) b (cid:31) c,
+6
+a (cid:31) c (cid:31) b, c (cid:31) a (cid:31) b. In this paper, we often de ne a partial vote like (cid:31) \A, where (cid:31)  L(C)
+and A   C   C, by which we mean the partial vote obtained by removing the order among the pair
+of candidates in A from (cid:31). Also, whenever we do not specify the order among a set of candidates
+while describing a complete vote, the statement/proof is correct in whichever way we  x the order
+among them. We now give examples of some common voting rules.
+(cid:66) Positional scoring rules: An m-dimensional vector (cid:126)  = ( 1,  2, . . . ,  m)   Rm with  1 (cid:62)
+ 2 (cid:62) . . . (cid:62)  m and  1 >  m naturally de nes a voting rule   a candidate gets score  i
+from a vote if it is placed at the ith position, and the score of a candidate is the sum of the
+scores it receives from all the votes. The winners are the candidates with maximum score.
+Scoring rules remain unchanged if we multiply every  i by any constant   > 0 and/or add
+any constant  . Hence, we assume without loss of generality that for any score vector (cid:126) , there
+exists a j such that  j    j+1 = 1 and  k = 0 for all k > j. We call such a (cid:126)  a normalized score
+vector. For (cid:126)  = (m   1, m   2, . . . , 1, 0), we get the Borda voting rule. With  i = 1  i (cid:54) k
+and 0 else, the voting rule we get is known as k-approval. For the k-veto voting rule, we have
+ i = 0  i (cid:54) m   k and  1 else. Plurality is 1-approval and veto is 1-veto.
+(cid:66) Bucklin and simpli ed Bucklin: Let (cid:96) be the minimum integer such that at least one can-
+didate gets majority within top (cid:96) positions of the votes. The winners under the simpli ed
+Bucklin voting rule are the candidates having more than n/2 votes within top (cid:96) positions. The
+winners under the Bucklin voting rule are the candidates appearing within top (cid:96) positions of
+the votes highest number of times.
+(cid:66) Fallback and simpli ed Fallback: For these voting rules, each voter v ranks a subset Xv   C
+of candidates and disapproves the rest of the candidates [BS09]. Now for the Fallback and
+simpli ed Fallback voting rules, we apply the Bucklin and simpli ed Bucklin voting rules re-
+spectively to de ne winners. If there is no integer (cid:96) for which at least one candidate gets more
+than n/2 votes, both the Fallback and simpli ed Fallback voting rules output the candidates
+with most approvals as winners. We assume, for simplicity, that the number of candidates
+each partial vote approves is known.
+(cid:66) Maximin: For any two candidates x and y, let D(x, y) be N(x, y)   N(y, x), where N(x, y)
+(respectively N(y, x)) is the number of voters who prefer x to y (respectively y to x). The
+election we get by restricting all the votes to x and y only is called the pairwise election
+between x and y. The maximin score of a candidate x is miny(cid:54)=x D(x, y). The winners are the
+candidates with maximum maximin score.
+(cid:66) Copeland . The Copeland  score of a candidate x is |{y (cid:54)= x : DE(x, y) > 0}| +  |{y (cid:54)= x :
+DE(x, y) = 0}|, where     [0, 1]. That is, the Copeland  of a candidate x is the number of
+other candidates it defeats in pairwise election plus   times the number of other candidates it
+ties with in pairwise elections. The winners are the candidates with the maximum Copeland 
+score.
+2.2 Problem De nitions
+We now formally de ne the three problems that we consider in this work, namely WEAK MANIPU-
+LATION, OPPORTUNISTIC MANIPULATION, and STRONG MANIPULATION. Let r be a  xed voting rule.
+We  rst introduce the WEAK MANIPULATION problem.
+7
+De nition 1. r-WEAK MANIPULATION
+Given a set of partial votes P over a set of candidates C, a positive integer (cid:96) (> 0) denoting the number
+of manipulators, and a candidate c, do there exist votes (cid:31)1, . . . ,(cid:31)(cid:96)   L(C) such that there exists an
+extension (cid:31)  L(C)|P| of P with r((cid:31),(cid:31)1, . . . ,(cid:31)(cid:96)) = c?
+To de ne the OPPORTUNISTIC MANIPULATION problem, we  rst introduce the notion of an (r, c)-
+opportunistic voting pro le, where r is a voting rule and c is any particular candidate.
+De nition 2. (r, c)-Opportunistic Voting Pro le
+Let (cid:96) be the number of manipulators and P a set of partial votes. An (cid:96)-voter pro le ((cid:31)i)i [(cid:96)]   L(C)(cid:96) is
+called an (r, c)-opportunistic voting pro le if for each extension P of P for which there exists an (cid:96)-vote
+pro le ((cid:31)(cid:48)
+(cid:16)
+P   ((cid:31)i)i [(cid:96)]
+i)i [(cid:96)]   L(C)(cid:96) with r
+(cid:16)
+P  (cid:0)(cid:31)(cid:48)
+(cid:17)
+i [(cid:96)]
+i
+= c, we have r
+(cid:1)
+(cid:17)
+= c.
+In other words, an (cid:96)-vote pro le is (r, c)-opportunistic with respect to a partial pro le if, when
+put together with the truthful votes of any extension, c wins if the extension is viable to begin with.
+We are now ready to de ne the OPPORTUNISTIC MANIPULATION problem.
+De nition 3. r-OPPORTUNISTIC MANIPULATION
+Given a set of partial votes P over a set of candidates C, a positive integer (cid:96) (> 0) denoting the number
+of manipulators, and a candidate c, does there exist an (r, c)-opportunistic (cid:96)-vote pro le?
+We  nally de ne the STRONG MANIPULATION problem.
+De nition 4. r-STRONG MANIPULATION
+Given a set of partial votes P over a set of candidates C, a positive integer (cid:96) (> 0) denoting the number
+of manipulators, and a candidate c, do there exist votes ((cid:31)i)i (cid:96)   L(C)(cid:96) such that for every extension
+(cid:31)  L(C)|P| of P, we have r((cid:31), ((cid:31)i)i [(cid:96)]) = c?
+We use (P, (cid:96), c) to denote instances of WEAK MANIPULATION, OPPORTUNISTIC MANIPULATION,
+and STRONG MANIPULATION, where P denotes a pro le of partial votes, (cid:96) denotes the number of
+manipulators, and c denotes the desired winner.
+For the sake of completeness, we provide the de nitions of the COALITIONAL MANIPULATION
+and POSSIBLE WINNER problems below.
+De nition 5. r-COALITIONAL MANIPULATION
+Given a set of complete votes (cid:31) over a set of candidates C, a positive integer (cid:96) (> 0) denoting the number
+of manipulators, and a candidate c, do there exist votes ((cid:31)i)i (cid:96)   L(C)(cid:96) such that r
+=
+c?
+(cid:16)(cid:31), ((cid:31)i)i [(cid:96)]
+(cid:17)
+De nition 6. r-POSSIBLE WINNER
+Given a set of partial votes P and a candidate c, does there exist an extension (cid:31) of the partial votes in
+P to linear votes such that r((cid:31)) = c?
+2.3 Comparison with Possible Winner and Coalitional Manipulation
+For any  xed voting rule, the WEAK MANIPULATION problem with (cid:96) manipulators reduces to the
+POSSIBLE WINNER problem. This is achieved by simply using the same set as truthful votes and
+introducing (cid:96) empty votes. We summarize this in the observation below.
+8
+Observation 1. The WEAK MANIPULATION problem many-to-one reduces to the POSSIBLE WINNER
+problem for every voting rule.
+Proof. Let (P, (cid:96), c) be an instance of WEAK MANIPULATION. Let Q be the set consisting of (cid:96) many
+copies of partial votes { }. Clearly the WEAK MANIPULATION instance (P, (cid:96), c) is equivalent to the
+POSSIBLE WINNER instance (P   Q, c).
+However, whether the POSSIBLE WINNER problem reduces to the WEAK MANIPULATION problem
+or not is not clear since in any WEAK MANIPULATION problem instance, there must exist at least
+one manipulator and a POSSIBLE WINNER instance may have no empty vote. From a technical
+point of view, the difference between the WEAK MANIPULATION and POSSIBLE WINNER problems
+may look marginal; however we believe that the WEAK MANIPULATION problem is a very natural
+generalization of the COALITIONAL MANIPULATION problem in the partial information setting and
+thus worth studying. Similarly, it is easy to show, that the COALITIONAL MANIPULATION problem
+with (cid:96) manipulators reduces to WEAK MANIPULATION, OPPORTUNISTIC MANIPULATION, and STRONG
+MANIPULATION problems with (cid:96) manipulators, since the former is a special case of the latter ones.
+Observation 2. The COALITIONAL MANIPULATION problem with (cid:96) manipulators many-to-one reduces
+to WEAK MANIPULATION, OPPORTUNISTIC MANIPULATION, and STRONG MANIPULATION problems
+with (cid:96) manipulators for all voting rules and for all positive integers (cid:96).
+Proof. Follows from the fact that every instance of the COALITIONAL MANIPULATION problem is also
+an equivalent instance of the WEAK MANIPULATION, OPPORTUNISTIC MANIPULATION, and STRONG
+MANIPULATION problems.
+Finally, we note that the COALITIONAL MANIPULATION problem with (cid:96) manipulators can be
+reduced to the WEAK MANIPULATION problem with just one manipulator, by introducing (cid:96) 1 empty
+votes. These votes can be used to witness a good extension in the forward direction. In the reverse
+direction, given an extension where the manipulator is successful, the extension can be used as the
+manipulator s votes. This argument leads to the following observation.
+Observation 3. The COALITIONAL MANIPULATION problem with (cid:96) manipulators many-to-one reduces
+to the WEAK MANIPULATION problem with one manipulator for every voting rule and for every positive
+integer (cid:96).
+Proof. Let (P, (cid:96), c) be an instance of COALITIONAL MANIPULATION. Let Q be the set of consisting of
+(cid:96) 1 many copies of partial vote {c (cid:31) others}. Clearly the WEAK MANIPULATION instance (P Q, 1, c)
+is equivalent to the COALITIONAL MANIPULATION instance (P, (cid:96), 1).
+This observation can be used to derive the hardness of WEAK MANIPULATION even for one ma-
+nipulator whenever the hardness for COALITIONAL MANIPULATION is known for any  xed number
+of manipulators (for instance, this is the case for the voting rules such as Borda, maximin and
+Copeland). However, determining the complexity of WEAK MANIPULATION with one manipulator
+requires further work for voting rules where COALITIONAL MANIPULATION is polynomially solvable
+for any number of manipulators (such as k-approval, Plurality, Bucklin, and so on).
+9
+3 Hardness Results
+In this section, we present our hardness results. While some of our reductions are from the POS-
+SIBLE WINNER problem, the other reductions in this section are from the EXACT COVER BY 3-SETS
+problem, also referred to as X3C. This is a well-known NP-complete [GJ79] problem, and is de ned
+as follows.
+De nition 7 (Exact Cover by 3-Sets (X3C)). Given a set U and a collection S = {S1, S2, . . . , St} of t
+subsets of U with |Si| = 3  i = 1, . . . , t, does there exist a T   S with |T| =
+3 such that  X TX = U?
+We use X3C to refer to the complement of X3C, which is to say that an instance of X3C is a YES
+instance if and only if it is a NO instance of X3C. The rest of this section is organized according to
+the problems being addressed.
+|U|
+3.1 Weak Manipulation
+To begin with, recall that the COALITIONAL MANIPULATION problem is NP-complete for the
+Borda [DKNW11, BNW11], maximin [XZP+09], and Copeland  [FHS08, FHHR09, FHS10] vot-
+ing rules for every rational     [0, 1] \ {0.5}, when we have two manipulators. Therefore, it follows
+from Observation 3 that the WEAK MANIPULATION problem is NP-complete for the Borda, maximin,
+and Copeland  voting rules for every rational     [0, 1] \ {0.5}, even with one manipulator.
+For the k-approval and k-veto voting rules, we reduce from the corresponding POSSIBLE WIN-
+NER problems. While it is natural to start from the same voting pro le, the main challenge is in
+undoing the advantage that the favorite candidate receives from the manipulator s vote, in the
+reverse direction.
+We begin with proving that the WEAK MANIPULATION problem is NP-complete for the k-approval
+voting rule even with one manipulator and at most 4 undetermined pairs per vote.
+Theorem 1. The WEAK MANIPULATION problem is NP-complete for the k-approval voting rule even
+with one manipulator for any constant k > 1, even when the number of undetermined pairs in each
+vote is no more than 4.
+Proof. For simplicity of presentation, we prove the theorem for 2-approval. We reduce from the
+POSSIBLE WINNER problem for 2-approval which is NP-complete [XC11], even when the number of
+undetermined pairs in each vote is no more than 4. Let P be the set of partial votes in a POSSIBLE
+WINNER instance, and let C = {c1, . . . , cm, c} be the set of candidates, where the goal is to check if
+there is an extension of P that makes c win. For developing the instance of WEAK MANIPULATION,
+we need to  reverse  any advantage that the candidate c obtains from the vote of the manipulator.
+Notice that the most that the manipulator can do is to increase the score of c by one. Therefore,
+in our construction, we  arti cially  increase the score of all the other candidates by one, so that
+despite of the manipulator s vote, c will win the new election if and only if it was a possible winner
+in the POSSIBLE WINNER instance. To this end, we introduce (m + 1) many dummy candidates
+d1, . . . , dm+1 and the complete votes:
+wi = ci (cid:31) di (cid:31) others, for every i   {1, . . . , m}
+Further, we extend the given partial votes of the POSSIBLE WINNER instance to force the dummy
+candidates to be preferred least over the rest - by de ning, for every vi   P, the corresponding
+10
+partial vote v(cid:48)
+i as follows.
+i = vi   {C (cid:31) {d1, . . . , dm+1}}.
+v(cid:48)
+This ensures that all the dummy candidates do not receive any score from the modi ed partial votes
+corresponding to the partial votes of the POSSIBLE WINNER instance. Notice that since the number
+of undetermined pairs in vi is no more than 4, the number of undetermined pairs in v(cid:48)
+i is also no
+more than 4. Let (C(cid:48), Q, c) denote this constructed WEAK MANIPULATION instance. We claim that
+the two instances are equivalent.
+| vi   P}. Notice that this is well-de ned since vi and v(cid:48)
+In the forward direction, suppose c is a possible winner with respect to P, and let P be an
+extension where c wins. Then it is easy to see that the manipulator can make c win in some
+extension by placing c and dm+1 in the  rst two positions of her vote (note that the partial score
+of dm+1 is zero in Q). Indeed, consider the extension of Q obtained by mimicking the extension P
+on the  common  partial votes, {v(cid:48)
+i have
+exactly the same set of incomparable pairs. In this extension, the score of c is strictly greater than
+the scores of all the other candidates, since the scores of all candidates in C is exactly one more
+than their scores in P, and all the dummy candidates have a score of at most one.
+In the reverse direction, notice that the manipulator puts the candidates c and dm+1 in the top
+two positions without loss of generality. Now suppose the manipulator s vote c (cid:31) dm+1 (cid:31) others
+makes c win the election for an extension Q of Q. Then consider the extension P obtained by
+restricting Q to C. Notice that the score of each candidate in C in this extension is one less than
+their scores in Q. Therefore, the candidate c wins this election as well, concluding the proof.
+i
+The above proof can be imitated for any other constant values of k by reducing it from the
+POSSIBLE WINNER problem for k-approval and introducing (m + 1)(k   1) dummy candidates.
+We will use Lemma 1 in subsequent proofs which has been used before [BRR11, DMN15b,
+DMN16].
+Lemma 1. Let C = {c1, . . . , cm} (cid:93) D, (|D| > 0) be a set of candidates, and (cid:126)  a normalized score vector
+of length |C|. Then, for any given X = (X1, . . . , Xm)   Zm, there exists     R and a voting pro le such
+that the (cid:126) -score of ci is   + Xi for all 1 (cid:54) i (cid:54) m, and the score of candidates d   D is less than  .
+Moreover, the number of votes is O(poly(|C|  
+(cid:80)
+m
+i=1
+|Xi|,  )).
+Note that the number of votes used in Lemma 1 is polynomial in m if   and |Xi| is polynomial
+in m for every i   [m], which indeed is the case in all the proofs that use Lemma 1. We next show
+that the WM problem is NP-complete for the k-veto voting rule.
+Theorem 2. The WEAK MANIPULATION problem for the k-veto voting rule is NP-complete even with
+one manipulator for any constant k > 1.
+Proof. We reduce from the POSSIBLE WINNER problem for the k-veto voting rule which is known to
+be NP-complete [BD09]. Let P be the set of partial votes in a POSSIBLE WINNER problem instance,
+and let C = {c1, . . . , cm, c} be the set of candidates, where the goal is to check if there is an extension
+that makes c win with respect to k-veto. We assume without loss of generality that c s position is
+ xed in all the partial votes (if not, then we  x the position of c as high as possible in every vote).
+We introduce k + 1 many dummy candidates d1, . . . , dk, d. The role of the  rst k dummy can-
+didates is to ensure that the manipulator is forced to place them at the  bottom k  positions of her
+vote, so that all the original candidates get the same score from the additional vote of the manip-
+ulator. The most natural way of achieving this is to ensure that the dummy candidates have the
+11
+same score as c in any extension (note that we know the score of c since c s position is  xed in
+all the partial votes). This would force the manipulator to place these k candidates in the last k
+positions. Indeed, doing anything else will cause these candidates to tie with c, even when there is
+an extension of P that makes c win.
+To this end, we begin by placing the dummy candidates in the top k positions in all the partial
+votes. Formally, we modify every partial vote as follows:
+w = di (cid:31) others, for every i   {1, . . . , k}
+At this point, we know the scores of c and di, for every i   {1, . . . , k}. Using Lemma 1, we add
+complete votes such that the  nal score of c is the same with the score of every di and the score of
+c is strictly more than the score of d. The relative score of every other candidate remains the same.
+This completes the description of the construction. We denote the augmented set of partial votes
+by P.
+We now argue the correctness. In the forward direction, if there is an extension of the votes that
+makes c win, then we repeat this extension, and the vote of the manipulator puts the candidate di
+at the position m + i + 2; and all the other candidates in an arbitrary fashion. Formally, we let the
+manipulator s vote be:
+v = c (cid:31) c1 (cid:31)     (cid:31) cm (cid:31) d (cid:31) d1 (cid:31)     (cid:31) dk.
+By construction c wins the election in this particular setup.
+In the reverse direction, consider a
+vote of the manipulator and an extension Q of P in which c wins. Note that the manipulator s vote
+necessarily places the candidates di in the bottom k positions   indeed, if not, then c cannot win
+the election by construction. We extend a partial vote w   P by mimicking the extension of the
+corresponding partial vote w(cid:48)   P, that is, we simply project the extension of w(cid:48) on the original
+set of candidates C. Let Q denote this proposed extension of P. We claim that c wins the election
+given by Q. Indeed, suppose not. Let ci be a candidate whose score is at least the score of c in the
+extension Q. Note that the scores of ci and c in the extension Q are exactly the same as their scores
+in Q, except for a constant offset   importantly, their scores are offset by the same amount. This
+implies that the score of ci is at least the score of c in Q as well, which is a contradiction. Hence,
+the two instances are equivalent.
+We next prove, by a reduction from X3C, that the WEAK MANIPULATION problem for the Bucklin
+and simpli ed Bucklin voting rules is NP-complete even with one manipulator and at most 16
+undetermined pairs per vote.
+Theorem 3. The WEAK MANIPULATION problem is NP-complete for Bucklin, simpli ed Bucklin, Fall-
+back, and simpli ed Fallback voting rules, even when we have only one manipulator and the number
+of undetermined pairs in each vote is no more than 16.
+Proof. We reduce the X3C problem to WEAK MANIPULATION for simpli ed Bucklin. Let (U =
+{u1, . . . , um}, S := {S1, S2, . . . , St}) be an instance of X3C, where each Si is a subset of U of size
+three. We construct a WEAK MANIPULATION instance based on (U, S) as follows.
+Candidate set: C = W   X   D   U   {c, w, a, b}, where |W| = m   3, |X| = 4, |D| = m + 1
+We  rst introduce the following partial votes P in correspondence with the sets in the family as
+follows.
+W (cid:31) X (cid:31) Si (cid:31) c (cid:31) (U \ Si) (cid:31) D \ ({X   ({c}   Si)}) , i (cid:54) t
+12
+Notice that the number of undetermined pairs in every vote in P is 16. We introduce the following
+additional complete votes Q:
+(cid:66) t copies of U (cid:31) c (cid:31) others
+(cid:66) m/3   1 copies of U (cid:31) a (cid:31) c (cid:31) others
+(cid:66) m/3 + 1 copies of D (cid:31) b (cid:31) others
+The total number of voters, including the manipulator, is 2t + 2m/3 + 1. Now we show equivalence
+of the two instances.
+In the forward direction, suppose we have an exact set cover T   S. Let the vote of the
+manipulator v be c (cid:31) D (cid:31) others. We consider the following extension P of P.
+On the other hand, if Si   S \ T, then we have:
+W (cid:31) Si (cid:31) c (cid:31) X (cid:31) (U \ Si) (cid:31) D
+W (cid:31) X (cid:31) Si (cid:31) c (cid:31) (U \ Si) (cid:31) D
+We claim that c is the unique simpli ed Bucklin winner in the pro le (P, W, v). Notice that the
+simpli ed Bucklin score of c is m + 1 in this extension, since it appears in the top m + 1 positions
+in the m/3 votes corresponding to the set cover, t votes from the complete pro le Q and one vote
+v of the manipulator. For any other candidate ui   U, ui appears in the top m + 1 positions once
+in P and t + m
+3   1 times in Q. Thus, ui does not get majority in top m + 1 positions making its
+simpli ed Bucklin score at least m + 2. Hence, c is the unique simpli ed Bucklin winner in the
+pro le (P, W, v). Similarly, the candidate w1 appears only t times in the top m + 1 positions. The
+same can be argued for the remaining candidates in D, W, and w.
+In the reverse direction, suppose the WEAK MANIPULATION is a YES instance. We may assume
+without loss of generality that the manipulator s vote v is c (cid:31) D (cid:31) others, since the simpli ed
+Bucklin score of the candidates in D is at least 2m. Let P be the extension of P such that c is the
+unique winner in the pro le (P, Q, v). As every candidate in W is ranked within top m + 2 positions
+in t + m
+3 votes in P. In those votes, all the
+candidates in Si are also within top m + 2 positions. Now if any candidate in U is within top m + 1
+positions in P more than once, then c will not be the unique winner. Hence, the Si s corresponding
+to the votes where c (cid:31) X in P form an exact set cover.
+3 + 1 votes in Q, for c to win, c (cid:31) X must hold in at least m
+The reduction above also works for the Bucklin voting rule. Speci cally, the argument for the
+forward direction is exactly the same as the simpli ed Bucklin above and the argument for the
+reverse direction is as follows. Every candidate in W is ranked within top m + 2 positions in
+3 + 1 votes in Q and c is never placed within top m + 2 positions in any vote in Q. Hence, for
+t + m
+c to win, c (cid:31) X must hold in at least m
+3 votes in P. In those votes, all the candidates in Si are also
+within top m positions. Notice that c never gets placed within top m positions in any vote in (P, Q).
+Now if any candidate x   U is within top m positions in P more than once, then x gets majority
+within top m positions and thus c cannot win.
+The result for the Fallback and simpli ed Fallback voting rules follow from the corresponding
+results for the Bucklin and simpli ed Bucklin voting rules respectively since every Bucklin and
+simpli ed Bucklin election is also a Fallback and simpli ed Fallback election respectively.
+13
+3.2 Strong Manipulation
+We know that the COALITIONAL MANIPULATION problem is NP-complete for the Borda, maximin,
+and Copeland  voting rules for every rational     [0, 1] \ {0.5}, when we have two manipulators.
+Thus, it follows from Observation 2 that STRONG MANIPULATION is NP-hard for Borda, maximin,
+and Copeland  voting rules for every rational     [0, 1] \ {0.5} for at least two manipulators.
+For the case of one manipulator, STRONG MANIPULATION turns out to be polynomial-time solv-
+able for most other voting rules. For Copeland , however, we show that the problem is co-NP-hard
+for every     [0, 1] for a single manipulator, even when the number of undetermined pairs in each
+vote is bounded by a constant. This is achieved by a careful reduction from X3C. The following
+lemma has been used before [McG53].
+Lemma 2. For any function f : C   C    Z, such that
+1.  a, b   C, f(a, b) =  f(b, a).
+2.  a, b, c, d   C, f(a, b) + f(c, d) is even,
+there exists a n-voters  pro le such that for all a, b   C, a defeats b with a margin of f(a, b). Moreover,
+   (cid:88)
+{a,b} C C
+n is even and n = O
+|f(a, b)|
+  
+We have following intractability result for the STRONG MANIPULATION problem for the
+Copeland  rule with one manipulator and at most 10 undetermined pairs per vote.
+Theorem 4. STRONG MANIPULATION is co-NP-hard for Copeland  voting rule for every     [0, 1]
+even when we have only one manipulator and the number of undetermined pairs in each vote is no
+more than 10.
+Proof. We reduce X3C to STRONG MANIPULATION for Copeland  rule. Let (U = {u1, . . . , um}, S =
+{S1, S2, . . . , St}) is an X3C instance. We assume, without loss of generality, t to be an even integer
+(if not, replicate any set from S). We construct a corresponding WEAK MANIPULATION instance for
+Copeland  as follows.
+Candidate set C = U   {c, w, z, d}
+Partial votes P:
+ i (cid:54) t, (U \ Si) (cid:31) c (cid:31) z (cid:31) d (cid:31) Si (cid:31) w \ {{z, c}   (Si   {d, w})}
+Notice that the number of undetermined pairs in every vote in P is 10. Now we add a set Q of
+complete votes with |Q| even and |Q| = poly(m, t) using Lemma 2 to achieve the following margin
+of victories in pairwise elections. Figure 2 shows the weighted majority graph of the resulting
+election.
+(cid:66) DQ(d, z) = DQ(z, c) = DQ(c, d) = DQ(w, z) = 4t
+(cid:66) DQ(ui, d) = DQ(c, ui) = 4t  ui   U
+(cid:66) DQ(z, ui) = t  ui   U
+14
+3   2
+(cid:66) DQ(c, w) = t   2m
+(cid:66) DQ(ui, ui+1 (mod  )m) = 4t  ui   U
+(cid:66) DQ(a, b) = 0 for every a, b   C, a (cid:54)= b, not mentioned above
+4t
+d
+c
+4t
+4t
+4t
+t   2m
+3   2
+4t
+uj
+4t
+uj+1
+w
+t
+4t
+z
+Figure 2: Weighted majority graph of the reduced instance in Theorem 4. The weight of all the
+edges not shown in the  gure are 0. For simplicity, we do not show edges among {u1, . . . , um}.
+We have only one manipulator who tries to make c winner. Notice that the number of votes in
+the STRONG MANIPULATION instance (P   Q, 1, c) including the manipulator s vote is odd (since |P|
+and |Q| are even integers). Therefore, DP  Q {v }(a, b) is never zero for every a, b   C, a (cid:54)= b in
+every extension P  of P and manipulators vote v  and consequently the particular value of   does
+not play any role in this reduction. Hence, we assume, without loss of generality,   to be zero from
+here on and simply use the term Copeland instead of Copeland .
+Now we show that the X3C instance (U, S) is a YES instance if and only if the STRONG MANIPU-
+LATION instance (P  Q, 1, c) is a NO instance (a STRONG MANIPULATION instance is a NO instance if
+there does not exist a vote of the manipulator which makes c the unique winner in every extension
+of the partial votes). We can assume without loss of generality that manipulator puts c at  rst
+position and z at last position in her vote v.
+Assume that the X3C instance is a YES instance. Suppose (by renaming) that S1, . . . , S m
+forms
+an exact set cover. We claim that the following extension P of P makes both z and c Copeland
+co-winners.
+3
+Extension P of P:
+, (U \ Si) (cid:31) c (cid:31) z (cid:31) d (cid:31) Si (cid:31) w
+i (cid:54) m
+3
++ 1, (U \ Si) (cid:31) d (cid:31) Si (cid:31) w (cid:31) c (cid:31) z
+i (cid:62) m
+3
+We have summarize the pairwise margins between z and c and the rest of the candidates from
+the pro le (P   Q   v) in Table 2. The candidates z and c are the co-winners with Copeland score
+(m + 1).
+15
+C \ {z} DP Q v(z, )
+c
+w, d
+ui   U
+(cid:62) 3t
+(cid:54)  3t
+1
+C \ {c}
+z, ui   U
+DP Q v(c, )
+(cid:62) 3t
+w
+d
+ 1
+(cid:54)  3t
+Table 2: DP Q v(z, ) and DP Q v(c, )
+For the other direction, notice that Copeland score of c is at least m + 1 since c defeats d and
+every candidate in U in every extension of P. Also notice that the Copeland score of z can be at
+most m + 1 since z loses to w and d in every extension of P. Hence the only way c cannot be the
+unique winner is that z defeats all candidates in U and w defeats c.
+3 extensions of P. We claim that the sets Si in the remaining of
+the extensions where c (cid:31) w forms an exact set cover for (U, S). Indeed, otherwise some candidate
+ui   U is not covered. Then, notice that ui (cid:31) z in all t votes, making D(z, ui) =  1.
+This requires w (cid:31) c in at least t  m
+3.3 Opportunistic Manipulation
+All our reductions for the co-NP-hardness for OPPORTUNISTIC MANIPULATION start from X3C. We
+note that all our hardness results hold even when there is only one manipulator. Our overall
+approach is the following. We engineer a set of partial votes in such a way that the manipulator is
+forced to vote in a limited number of ways to have any hope of making her favorite candidate win.
+For each such vote, we demonstrate a viable extension where the vote fails to make the candidate
+a winner, leading to a NO instance of OPPORTUNISTIC MANIPULATION. These extensions rely on
+the existence of an exact cover. On the other hand, we show that if there is no exact set cover,
+then there is no viable extension, thereby leading to an instance that is vacuously a YES instance of
+OPPORTUNISTIC MANIPULATION. Our  rst result on OPPORTUNISTIC MANIPULATION shows that the
+OPPORTUNISTIC MANIPULATION problem is co-NP-hard for the k-approval voting rule for constant
+k (cid:62) 3 even when the number of manipulators is one and the number of undetermined pairs in each
+vote is no more than 15.
+Theorem 5. The OPPORTUNISTIC MANIPULATION problem is co-NP-hard for the k-approval voting
+rule for constant k (cid:62) 3 even when the number of manipulators is one and the number of undetermined
+pairs in each vote is no more than 15.
+Proof. We reduce X3C to OPPORTUNISTIC MANIPULATION for k-approval rule.
+Let (U =
+{u1, . . . , um}, S = {S1, S2, . . . , St}) is an X3C instance. We construct a corresponding OPPORTUNISTIC
+MANIPULATION instance for k-approval voting rule as follows. We begin by introducing a candidate
+for every element of the universe, along with k   3 dummy candidates (denoted by W), and special
+candidates {c, z1, z2, d, x, y}. Formally, we have:
+Candidate set C = U   {c, z1, z2, d, x, y}   W.
+Now, for every set Si in the universe, we de ne the following total order on the candidate set,
+which we denote by P(cid:48)
+i:
+W (cid:31) Si (cid:31) y (cid:31) z1 (cid:31) z2 (cid:31) x (cid:31) (U \ Si) (cid:31) c (cid:31) d
+16
+Using P(cid:48)
+i, we de ne the partial vote Pi as follows:
+Pi = P(cid:48)
+i
+\ ({{y, x, z1, z2}   Si}   {(z1, z2), (x, z1), (x, z2)}).
+We denote the set of partial votes {Pi : i   [t]} by P and {P(cid:48)
+i : i   [t]} by P(cid:48). We remark that the
+number of undetermined pairs in each partial vote Pi is 15.
+We now invoke Lemma 1 from [DMN16], which allows to achieve any pre-de ned scores on the
+candidates using only polynomially many additional votes. Using this, we add a set Q of complete
+votes with |Q| = poly(m, t) to ensure the following scores, where we denote the k-approval score of
+a candidate from a set of votes V by sV( ): sQ(z1) = sQ(z2) = sQ(y) = sQ(c)   m/3; sQ(d), sQ(w) (cid:54)
+sQ(c)   2t  w   W; sQ(x) = sQ(c)   1; sP(cid:48) Q(uj) = sQ(c) + 1  j   [m].
+Our reduced instance is (P  Q, 1, c). The reasoning for this score con guration will be apparent
+as we argue the equivalence. We  rst argue that if we had a YES instance of X3C (in other words,
+there is no exact cover), then we have a YES instance of OPPORTUNISTIC MANIPULATION. It turns
+out that this will follow from the fact that there are no viable extensions, because, as we will show
+next, a viable extension implies the existence of an exact set cover.
+To this end,  rst observe that the partial votes are constructed in such a way that c gets no
+additional score from any extension. Assuming that the manipulator approves c (without loss of
+generality), the  nal score of c in any extension is going to be sQ(c) + 1. Now, in any viable
+extension, every candidate uj has to be  pushed out  of the top k positions at least once. Observe
+that whenever this happens, y is forced into the top k positions. Since y is behind the score of c by
+only m/3 votes, Si s can be pushed out of place in only m/3 votes. For every uj to lose one point,
+these votes must correspond to an exact cover. Therefore, if there is no exact cover, then there is
+no viable extension, showing one direction of the reduction.
+On the other hand, suppose we have a NO instance of X3C   that is, there is an exact cover. Let
+{Si : i   [m/3]} forms an exact cover of U. We will now use the exact cover to come up with two
+viable extensions, both of which require the manipulator to vote in different ways to make c win.
+Therefore, there is no single manipulative vote that accounts for both extensions, leading us to a
+NO instance of OPPORTUNISTIC MANIPULATION.
+First, consider this completion of the partial votes:
+i = 1, W (cid:31) y (cid:31) x (cid:31) z1 (cid:31) z2 (cid:31) Si (cid:31) (U \ Si) (cid:31) c (cid:31) d
+2 (cid:54) i (cid:54) m/3, W (cid:31) y (cid:31) z1 (cid:31) z2 (cid:31) x (cid:31) Si (cid:31) (U \ Si) (cid:31) c (cid:31) d
+m/3 + 1 (cid:54) i (cid:54) t, W (cid:31) Si (cid:31) y (cid:31) z1 (cid:31) z2 (cid:31) x (cid:31) (U \ Si) (cid:31) c (cid:31) d
+Notice that in this completion, once accounted for along with the votes in Q, the score of c is tied
+with the scores of all uj s, z1, x and y, while the score of z2 is one less than the score of c. Therefore,
+the only k candidates that the manipulator can afford to approve are W, the candidates c, d and z2.
+However, consider the extension that is identical to the above except with the  rst vote changed to:
+W (cid:31) y (cid:31) x (cid:31) z2 (cid:31) z1 (cid:31) Si (cid:31) (U \ Si) (cid:31) c (cid:31) d
+Here, on the other hand, the only way for c to be an unique winner is if the manipulator ap-
+proves W, c, d and z1. Therefore, it is clear that there is no way for the manipulator to provide
+a consolidated vote for both these pro les. Therefore, we have a NO instance of OPPORTUNISTIC
+MANIPULATION.
+17
+We next move on to the k-veto voting rule and show that the OPPORTUNISTIC MANIPULATION
+problem for the k-veto is co-NP-hard for every constant k (cid:62) 4 even when the number of manipula-
+tors is one and the number of undetermined pairs in each vote is no more than 15.
+Theorem 6. The OPPORTUNISTIC MANIPULATION problem is co-NP-hard for the k-veto voting rule for
+every constant k (cid:62) 4 even when the number of manipulators is one and the number of undetermined
+pairs in each vote is no more than 15.
+Proof. We reduce X3C to OPPORTUNISTIC MANIPULATION for k-veto rule. Let (U = {u1, . . . , um}, S =
+{S1, S2, . . . , St}) is an X3C instance. We construct a corresponding OPPORTUNISTIC MANIPULATION
+instance for k-veto voting rule as follows.
+Candidate set C = U   {c, z1, z2, d, x, y}   A   W, where A = {a1, a2, a3}, |W| = k   4
+For every i   [t], we de ne P(cid:48)
+i as follows:
+ i (cid:54) t, c (cid:31) A (cid:31) (U \ Si) (cid:31) d (cid:31) Si (cid:31) y (cid:31) x (cid:31) z1 (cid:31) z2 (cid:31) W
+i, we de ne partial vote Pi = P(cid:48)
+\ ({{y, x, z1, z2}   Si}   {(z1, z2), (x, z1), (x, z2)}) for every
+Using P(cid:48)
+i   [t]. We denote the set of partial votes {Pi : i   [t]} by P and {P(cid:48)
+i : i   [t]} by P(cid:48). We note that
+the number of undetermined pairs in each partial vote Pi is 15. Using Lemma 1, we add a set Q
+of complete votes with |Q| = poly(m, t) to ensure the following. We denote the k-veto score of a
+candidate from a set of votes W by sW( ).
+i
+(cid:66) sP(cid:48) Q(z1) = sP(cid:48) Q(z2) = sP(cid:48) Q(c)   m/3
+(cid:66) sP(cid:48) Q(ai) = sP(cid:48) Q(uj) = sP(cid:48) Q(w) = sP(cid:48) Q(c)  ai   A, uj   U, w   W
+(cid:66) sP(cid:48) Q(y) = sP(cid:48) Q(c)   m/3   1
+(cid:66) sP(cid:48) Q(x) = sP(cid:48) Q(c)   2
+We have only one manipulator who tries to make c winner. Now we show that the X3C instance
+(U, S) is a YES instance if and only if the OPPORTUNISTIC MANIPULATION instance (P   Q, 1, c) is a
+NO instance.
+In the forward direction, let us now assume that the X3C instance is a YES instance. Suppose
+(by renaming) that S1, . . . , Sm/3 forms an exact set cover. Let us assume that the manipulator s vote
+v disapproves every candidate in W   A since otherwise c can never win uniquely. We now show
+that if v does not disapprove z1 then, v is not a c-optimal vote. Suppose v does not disapprove z1.
+Then we consider the following extension P of P.
+i = 1, c (cid:31) A (cid:31) (U \ Si) (cid:31) d (cid:31) y (cid:31) z1 (cid:31) x (cid:31) z2 (cid:31) Si (cid:31) W
+2 (cid:54) i (cid:54) m/3, c (cid:31) A (cid:31) (U \ Si) (cid:31) d (cid:31) y (cid:31) z1 (cid:31) z2 (cid:31) x (cid:31) Si (cid:31) W
+m/3 + 1 (cid:54) i (cid:54) t, c (cid:31) A (cid:31) (U \ Si) (cid:31) d (cid:31) Si (cid:31) y (cid:31) x (cid:31) z1 (cid:31) z2 (cid:31) W
+We have the following scores sP Q(c) = sP Q(z1) = sP Q(z2) + 1 = sP Q(x) + 1 = sP Q(uj) +
+1  uj   U. Hence, both c and z1 win for the votes P Q {v}. However, the vote v(cid:48) which disapproves
+a1, a2, a3, z1 makes c a unique winner for the votes P   Q   {v(cid:48)}. Hence, v is not a c-optimal vote.
+Similarly, we can show that if the manipulator s vote does not disapprove z2 then, the vote is not
+18
+c-optimal. Hence, there does not exist any c-optimal vote and the OPPORTUNISTIC MANIPULATION
+instance is a NO instance.
+In the reverse direction, we show that if the X3C instance is a NO instance, then there does not
+exist a vote v of the manipulator and an extension P of P such that c is the unique winner for the
+votes P  Q  {v(cid:48)} thereby proving that the OPPORTUNISTIC MANIPULATION instance is vacuously YES
+(and thus every vote is c-optimal). Notice that, there must be at least m/3 votes P1 in P where the
+corresponding Si gets pushed in bottom k positions since sP(cid:48) Q(uj) = sP(cid:48) Q(c)  ai   A, uj   U.
+However, in each vote in P1, y is placed within top m   k many position and thus we have |P1|
+is exactly m/3 since sP(cid:48) Q(y) = sP(cid:48) Q(c)   m/3   1. Now notice that there must be at least one
+candidate u   U which is not covered by the sets Sis corresponding to the votes P1 because
+the X3C instance is a NO instance. Hence, c cannot win the election uniquely irrespective of the
+manipulator s vote. Thus every vote is c-optimal and the OPPORTUNISTIC MANIPULATION instance
+is a YES instance.
+We show next similar intractability result for the Borda voting rule too with only at most 7
+undetermined pairs per vote.
+Theorem 7. The OPPORTUNISTIC MANIPULATION problem is co-NP-hard for the Borda voting rule
+even when the number of manipulators is one and the number of undetermined pairs in every vote is
+no more than 7.
+Proof. We reduce X3C to OPPORTUNISTIC MANIPULATION for the Borda rule.
+Let (U =
+{u1, . . . , um}, S = {S1, S2, . . . , St}) is an X3C instance. Without loss of generality we assume that
+m is not divisible by 6 (if not, then we add three new elements b1, b2, b3 to U and a set {b1, b2, b3}
+to S). We construct a corresponding OPPORTUNISTIC MANIPULATION instance for the Borda voting
+rule as follows.
+Candidate set C = U   {c, z1, z2, d, y}
+For every i   [t], we de ne P(cid:48)
+i as follows:
+ i (cid:54) t, y (cid:31) Si (cid:31) z1 (cid:31) z2 (cid:31) (U \ Si) (cid:31) d (cid:31) c
+Using P(cid:48)
+i
+i, we de ne partial vote Pi = P(cid:48)
+\ ({({y}   Si)   {z1, z2}}   {(z1, z2)}) for every i   [t]. We
+denote the set of partial votes {Pi : i   [t]} by P and {P(cid:48)
+i : i   [t]} by P(cid:48). We note that the number of
+undetermined pairs in each partial vote Pi is 7. Using Lemma 1, we add a set Q of complete votes
+with |Q| = poly(m, t) to ensure the following. We denote the Borda score of a candidate from a set
+of votes W by sW( ).
+(cid:66) sP(cid:48) Q(y) = sP(cid:48) Q(c) + m + m/3 + 3
+(cid:66) sP(cid:48) Q(z1) = sP(cid:48) Q(c)   3(cid:98)m/6(cid:99)   2
+(cid:66) sP(cid:48) Q(z2) = sP(cid:48) Q(c)   5(cid:98)m/6(cid:99)   3
+(cid:66) sP(cid:48) Q(ui) = sP(cid:48) Q(c) + m + 5   i  i   [m]
+(cid:66) sP(cid:48) Q(d) (cid:54) sP(cid:48) Q(c)   5m
+19
+We have only one manipulator who tries to make c winner. Now we show that the X3C instance
+(U, S) is a YES instance if and only if the OPPORTUNISTIC MANIPULATION instance (P Q, 1, c) is a NO
+instance. Notice that we can assume without loss of generality that the manipulator places c at the
+ rst position, d at the second position, the candidate ui at (m + 5   i)th position for every i   [m],
+and y at the last position, since otherwise c can never win uniquely irrespective of the extension of
+P (that it, the manipulator s vote looks like c (cid:31) d (cid:31) {z1, z2} (cid:31) um (cid:31) um 1 (cid:31)     (cid:31) u1 (cid:31) y).
+In the forward direction, let us now assume that the X3C instance is a YES instance. Suppose
+(by renaming) that S1, . . . , Sm/3 forms an exact set cover. Let the manipulator s vote v be c (cid:31) d (cid:31)
+z1 (cid:31) z2 (cid:31) um (cid:31)     (cid:31) u1 (cid:31) y. We now argue that v is not a c-optimal vote. The other case where
+the manipulator s vote v(cid:48) be c (cid:31) d (cid:31) z2 (cid:31) z1 (cid:31) um (cid:31)     (cid:31) u1 (cid:31) y can be argued similarly. We
+consider the following extension P of P.
+1 (cid:54) i (cid:54) (cid:98)m/6(cid:99), z2 (cid:31) y (cid:31) Si (cid:31) z1 (cid:31) (U \ Si) (cid:31) d (cid:31) c
+(cid:100)m/6(cid:101) (cid:54) i (cid:54) m/3, z1 (cid:31) y (cid:31) Si (cid:31) z2 (cid:31) (U \ Si) (cid:31) d (cid:31) c
+m/3 + 1 (cid:54) i (cid:54) t, y (cid:31) Si (cid:31) z1 (cid:31) z2 (cid:31) (U \ Si) (cid:31) d (cid:31) c
+We have the following Borda scores sP Q {v}(c) = sP Q {v}(y) + 1 = sP Q {v}(z2) + 6 =
+sP Q {v}(z1) = sP Q {v}(ui) + 1  i   [m]. Hence, c does not win uniquely for the votes P  Q  {v}.
+However, c is the unique winner for the votes P  Q  {v(cid:48)}. Hence, there does not exist any c-optimal
+vote and the OPPORTUNISTIC MANIPULATION instance is a NO instance.
+In the reverse direction, we show that if the X3C instance is a NO instance, then there does not
+exist a vote v of the manipulator and an extension P of P such that c is the unique winner for the
+votes P   Q   {v(cid:48)} thereby proving that the OPPORTUNISTIC MANIPULATION instance is vacuously
+YES (and thus every vote is c-optimal). Notice that the score of y must decrease by at least m/3 for
+c to win uniquely. However, in every vote v where the score of y decreases by at least one in any
+extension P of P, at least one of z1 or z2 must be placed at top position of the vote v. However,
+the candidates z1 and z2 can be placed at top positions of the votes in P at most m/3 many times
+while ensuring c does not lose the election. Also, even after manipulator places the candidate ui at
+(m + 5   i)th position for every i   [m], for c to win uniquely, the score of every ui must decrease
+by at least one. Hence, altogether, there will be exactly m/3 votes (denoted by the set P1) in any
+extension of P where y is placed at the second position. However, since the X3C instance is a NO
+instance, the Sis corresponding to the votes in P1 does not form a set cover. Let u   U be an
+element not covered by the Sis corresponding to the votes in P1. Notice that the score of u does
+not decrease in the extension P and thus c does not win uniquely irrespective of the manipulator s
+vote. Thus every vote is c-optimal and thus the OPPORTUNISTIC MANIPULATION instance is a YES
+instance. Thus every vote is c-optimal and the OPPORTUNISTIC MANIPULATION instance is a YES
+instance.
+For the maximin voting rule, we show intractability of OPPORTUNISTIC MANIPULATION with one
+manipulator even when the number of undetermined pairs in every vote is at most 8.
+Theorem 8. The OPPORTUNISTIC MANIPULATION problem is co-NP-hard for the maximin voting rule
+even when the number of manipulators is one and the number of undetermined pairs in every vote is
+no more than 8.
+20
+Proof. We reduce X3C to OPPORTUNISTIC MANIPULATION for the maximin rule.
+Let (U =
+{u1, . . . , um}, S = {S1, S2, . . . , St}) is an X3C instance. We construct a corresponding OPPORTUNISTIC
+MANIPULATION instance for the maximin voting rule as follows.
+Candidate set C = U   {c, z1, z2, z3, d, x, y}
+For every i   [t], we de ne P(cid:48)
+i as follows:
+ i (cid:54) t, Si (cid:31) x (cid:31) d (cid:31) y (cid:31) (U \ Si) (cid:31) z1 (cid:31) z2 (cid:31) z3
+i, we de ne partial vote Pi = P(cid:48)
+i
+Using P(cid:48)
+the set of partial votes {Pi : i   [t]} by P and {P(cid:48)
+undetermined pairs in each partial vote Pi is 8. We de ne another partial vote p as follows.
+\ ({({x}   Si)   {d, y}}) for every i   [t]. We denote
+i : i   [t]} by P(cid:48). We note that the number of
+p = (z1 (cid:31) z2 (cid:31) z3 (cid:31) others ) \ {(z1, z2), (z2, z3), (z1, z3)}
+Using Lemma 2, we add a set Q of complete votes with |Q| = poly(m, t) to ensure the following
+pairwise margins (notice that the pairwise margins among z1, z2, and z3 does not include the partial
+vote p). Figure 3 shows the weighted majority graph of the resulting election.
+(cid:66) DP(cid:48) Q {p}(d, c) = 4t + 1
+(cid:66) DP(cid:48) Q {p}(x, d) = 4t + 2m/3 + 1
+(cid:66) DP(cid:48) Q {p}(y, x) = 4t   2m/3 + 1
+(cid:66) DP(cid:48) Q {p}(d, uj) = 4t   1  uj   U
+(cid:66) DP(cid:48) Q(z1, z2) = DP(cid:48) Q(z2, z3) = DP(cid:48) Q(z3, z1) = 4t + 2
+(cid:66) |DP(cid:48) Q {p}(a, b)| (cid:54) 1 for every a, b   C not de ned above.
+We have only one manipulator who tries to make c winner. Now we show that the X3C instance
+(U, S) is a YES instance if and only if the OPPORTUNISTIC MANIPULATION instance (P   Q   {p}, 1, c)
+is a NO instance. Notice that we can assume without loss of generality that the manipulator s vote
+prefers c to every other candidate, y to x, x to d, and d to uj for every uj   U.
+In the forward direction, let us now assume that the X3C instance is a YES instance. Suppose
+(by renaming) that S1, . . . , Sm/3 forms an exact set cover. Notice that the manipulator s vote must
+prefer either z2 to z1 or z1 to z3 or z3 to z2. We show that if the manipulator s vote v prefers z2
+to z1, then v is not a c-optimal vote. The other two cases are symmetrical. Consider the following
+extension P of P and p of p.
+1 (cid:54) i (cid:54) m/3, d (cid:31) y (cid:31) Si (cid:31) x (cid:31) (U \ Si) (cid:31) z1 (cid:31) z2 (cid:31) z3
+m/3 + 1 (cid:54) i (cid:54) t, Si (cid:31) x (cid:31) d (cid:31) y (cid:31) (U \ Si) (cid:31) z1 (cid:31) z2 (cid:31) z3
+p = z2 (cid:31) z3 (cid:31) z1 (cid:31) others
+From the votes in P   Q   {v, p}, the maximin score of c is  4t, of d, x, uj  uj   U are  4t   2,
+of z1, z3 are at most than  4t   2, and of z2 is  4t. Hence, c is not the unique maximn winner.
+21
+4t + 1
+d
+c
+4t   1
+uj
+z1
+4t + 2
+z3
+4t + 2
+4t + 2
+4t + 2m/3 + 1
+z2
+y
+x
+4t   2m/3 + 1
+Figure 3: Weighted majority graph of the reduced instance in Theorem 8. Solid line and dashed
+line represent pairwise margins in P(cid:48) Q {p} and P(cid:48) Q respectively. The weight of all the edges not
+shown in the  gure are within  1 to 1. For simplicity, we do not show edges among {u1, . . . , um}.
+However, the manipulator s vote c (cid:31) z1 (cid:31) z2 (cid:31) z3 (cid:31) other makes c the unique maximin winner.
+Hence, v is not a c-optimal vote.
+For the reverse direction, we show that if the X3C instance is a NO instance, then there does
+not exist a vote v of the manipulator and an extension P of P such that c is the unique winner for
+the votes P  Q  {v(cid:48)} thereby proving that the OPPORTUNISTIC MANIPULATION instance is vacuously
+YES (and thus every vote is c-optimal). Consider any extension P of P. Notice that, for c to win
+uniquely, y (cid:31) x must be at least m/3 of the votes in P; call these set of votes P1. However, d (cid:31) x in
+every vote in P1 and d (cid:31) x can be in at most m/3 votes in P for c to win uniquely. Hence, we have
+|P1| = m/3. Also for c to win, each d (cid:31) uj must be at least one vote of P and d (cid:31) uj is possible
+only in the votes in P1. However, the sets Sis corresponding to the votes in P1 does not form a set
+cover since the X3C instance is a NO instance. Hence, there must exist a uj   U for which uj (cid:31) d
+in every vote in P and thus c cannot win uniquely irrespective of the vote of the manipulator. Thus
+every vote is c-optimal and the OPPORTUNISTIC MANIPULATION instance is a YES instance.
+Our next result proves that the OPPORTUNISTIC MANIPULATION problem is co-NP-hard for the
+Copeland  voting rule too for every     [0, 1] even with one manipulator and at most 8 undeter-
+mined pairs per vote.
+Theorem 9. The OPPORTUNISTIC MANIPULATION problem is co-NP-hard for the Copeland  voting
+rule for every     [0, 1] even when the number of manipulators is one and the number of undetermined
+pairs in each vote is no more than 8.
+Proof. We reduce X3C to OPPORTUNISTIC MANIPULATION for the Copeland  voting rule. Let (U =
+{u1, . . . , um}, S = {S1, S2, . . . , St}) is an X3C instance. We construct a corresponding OPPORTUNISTIC
+MANIPULATION instance for the Copeland  voting rule as follows.
+Candidate set C = U   {c, z1, z2, z3, d1, d2, d3, x, y}
+For every i   [t], we de ne P(cid:48)
+i as follows:
+22
+Using P(cid:48)
+i, we de ne partial vote Pi = P(cid:48)
+ i (cid:54) t, Si (cid:31) x (cid:31) y (cid:31) c (cid:31) others
+of partial votes {Pi : i   [t]} by P and {P(cid:48)
+pairs in each partial vote Pi is 8. We de ne another partial vote p as follows.
+p = (z1 (cid:31) z2 (cid:31) z3 (cid:31) others ) \ {(z1, z2), (z2, z3), (z1, z3)}
+i
+\({({x} Si) {c, y}}) for every i   [t]. We denote the set
+i : i   [t]} by P(cid:48). We note that the number of undetermined
+Using Lemma 2, we add a set Q of complete votes with |Q| = poly(m, t) to ensure the following
+pairwise margins (notice that the pairwise margins among z1, z2, and z3 does not include the partial
+vote p). Figure 4 shows the weighted majority graph of the resulting election.
+(cid:66) DP(cid:48) Q {p}(uj, c) = 2  uj   U
+(cid:66) DP(cid:48) Q {p}(x, y) = 2m/3
+(cid:66) DP(cid:48) Q {p}(c, y) = DP(cid:48) Q {p}(x, c) = DP(cid:48) Q {p}(di, c) = DP(cid:48) Q {p}(zk, c) =
+DP(cid:48) Q {p}(uj, x) = DP(cid:48) Q {p}(x, zk) = DP(cid:48) Q {p}(di, x) = DP(cid:48) Q {p}(y, uj) =
+DP(cid:48) Q {p}(di, y) = DP(cid:48) Q {p}(y, zk) = DP(cid:48) Q {p}(zk, uj) = DP(cid:48) Q {p}(uj, di) =
+DP(cid:48) Q {p}(zk, d1) = DP(cid:48) Q {p}(zk, d2) = DP(cid:48) Q {p}(d3, zk) = 4t  i, k   [3], j   [m]
+(cid:66) DP(cid:48) Q {p}(uj, u(cid:96)) =  4t for at least m/3 many u(cid:96)   U
+(cid:66) DP(cid:48) Q(z1, z2) = DP(cid:48) Q(z2, z3) = DP(cid:48) Q(z3, z1) = 1
+(cid:66) |DP(cid:48) Q {p}(a, b)| (cid:54) 1 for every a, b   C not de ned above.
+We have only one manipulator who tries to make c winner. Now we show that the X3C instance
+(U, S) is a YES instance if and only if the OPPORTUNISTIC MANIPULATION instance (P   Q   {p}, 1, c)
+is a NO instance. Since the number of voters is odd,   does not play any role in the reduction and
+thus from here on we simply omit  . Notice that we can assume without loss of generality that the
+manipulator s vote prefers c to every other candidate and x to y.
+In the forward direction, let us now assume that the X3C instance is a YES instance. Suppose
+(by renaming) that S1, . . . , Sm/3 forms an exact set cover. Suppose the manipulator s vote v order
+z1, z2, and z3 as z1 (cid:31) z2 (cid:31) z3. We will show that v is not a c-optimal vote. Symmetrically, we
+can show that the manipulator s vote ordering z1, z2, and z3 in any other order is not c-optimal.
+Consider the following extension P of P and p of p.
+1 (cid:54) i (cid:54) m/3, y (cid:31) c (cid:31) Si (cid:31) x (cid:31) others
+m/3 + 1 (cid:54) i (cid:54) t, Si (cid:31) x (cid:31) y (cid:31) c (cid:31) others
+p = z1 (cid:31) z2 (cid:31) z3 (cid:31) others
+From the votes in P  Q  {v, p}, the Copeland score of c is m + 4 (defeating y, zk, uj  k   [3], j  
+[m]), of y is m+3 (defeating zk, uj  k   [3], j   [m]), of uj is at most 2m/3+4 (defeating x, di  i   [3]
+and at most 2m/3 many u(cid:96)   U), of x is 5 (defeating c, y, zk  l   [3]), of d1, d2 is 2 (defeating y
+and c), of d3 is 5 (defeating y, c, zk  k   [3]). of z3 is m + 3 (defeating di, uj i   [3], j   [m])
+for every k   [3], of z3 is m + 2 (defeating d1, d2, uji   [3], j   [m]), z2 is m + 3 (defeating
+23
+uj
+2
+c
+y
+2m/3
+x
+z1
+1
+1
+z2
+1
+z3
+d1
+d2
+d3
+Figure 4: Weighted majority graph of the reduced instance in Theorem 9. Solid line and dashed
+line represent pairwise margins in P(cid:48)   Q   {p} and P(cid:48)   Q respectively. The weight of all the edges
+not shown in the  gure are within  1 to 1. The weight of all unlabeled edges are 4t. For simplicity,
+we do not show edges among {u1, . . . , um}.
+24
+d1, d2, z3, uji   [3], j   [m]), z1 is m + 4 (defeating d1, d2, z2, z3, uji   [3], j   [m]). Hence, c
+co-wins with z1 with Copeland score m + 4. However, the manipulator s vote c (cid:31) z3 (cid:31) z2 (cid:31) z1
+makes c win uniquely. Hence, v is not a c-optimal vote and thus the OPPORTUNISTIC MANIPULATION
+instance is a NO instance.
+For the reverse direction, we show that if the X3C instance is a NO instance, then there does
+not exist a vote v of the manipulator and an extension P of P such that c is the unique winner for
+the votes P  Q  {v(cid:48)} thereby proving that the OPPORTUNISTIC MANIPULATION instance is vacuously
+YES (and thus every vote is c-optimal). Consider any extension P of P. Notice that, for c to win
+uniquely, c must defeat each uj   U and thus c is preferred over uj in at least one vote in P; we
+call these votes P1. However, in every vote in P1, y is preferred over x and thus |P1| (cid:54) m/3 because
+x must defeat y for c to win uniquely. Since the X3C instance is a NO instance, there must be a
+candidate u   U which is not covered by the sets corresponding to the votes in P1 and thus u is
+preferred over c in every vote in P. Hence, c cannot win uniquely irrespective of the vote of the
+manipulator. Thus every vote is c-optimal and the OPPORTUNISTIC MANIPULATION instance is a YES
+instance.
+For the Bucklin and simpli ed Bucklin voting rules, we show intractability of the OPPORTUNIS-
+TIC MANIPULATION problem with at most 15 undetermined pairs per vote and only one manipulator.
+Theorem 10. The OPPORTUNISTIC MANIPULATION problem is co-NP-hard for the Bucklin and simpli-
+ ed Bucklin voting rules even when the number of manipulators is one and the number of undetermined
+pairs in each vote is no more than 15.
+Proof. We reduce X3C to OPPORTUNISTIC MANIPULATION for the Bucklin and simpli ed Bucklin
+voting rules. Let (U = {u1, . . . , um}, S = {S1, S2, . . . , St}) is an X3C instance. We assume without
+loss of generality that m is not divisible by 6 (if not, we introduce three elements in U and a set
+containing them in S) and t is an even integer (if not, we duplicate any set in S). We construct
+a corresponding OPPORTUNISTIC MANIPULATION instance for the Bucklin and simpli ed Bucklin
+voting rules as follows.
+Candidate set C = U   {c, z1, z2, x1, x2, d}   W, where |W| = m   3
+For every i   [t], we de ne P(cid:48)
+i as follows:
+Using P(cid:48)
+i
+ i (cid:54) t, (U \ Si) (cid:31) Si (cid:31) d (cid:31) x1 (cid:31) x2 (cid:31) z1 (cid:31) z2 (cid:31) others
+i, we de ne partial vote Pi = P(cid:48)
+\ ({({d}   Si)   {x1, x2, z1, z2}}   {(z1, z2)}) for every
+i   [t]. We denote the set of partial votes {Pi : i   [t]} by P and {P(cid:48)
+i : i   [t]} by P(cid:48). We note that the
+number of undetermined pairs in each partial vote Pi is 15. We introduce the following additional
+complete votes Q:
+(cid:66) t/2   (cid:98)m/6(cid:99)   1 copies of W (cid:31) z1 (cid:31) z2 (cid:31) x1 (cid:31) c (cid:31) others
+(cid:66) t/2   (cid:98)m/6(cid:99)   1 copies of W (cid:31) z1 (cid:31) z2 (cid:31) x2 (cid:31) c (cid:31) others
+(cid:66) 2(cid:100)m/6(cid:101) copies of W (cid:31) z1 (cid:31) z2 (cid:31) d (cid:31) c (cid:31) others
+(cid:66) (cid:98)m/6(cid:99) copies of W (cid:31) z1 (cid:31) d (cid:31) x1 (cid:31) c (cid:31) others
+(cid:66) (cid:98)m/6(cid:99) copies of W (cid:31) z1 (cid:31) d (cid:31) x2 (cid:31) c (cid:31) others
+25
+(cid:66) 2(cid:100)m/6(cid:101)   1 copies of U (cid:31) x1 (cid:31) others
+(cid:66) One U (cid:31) c (cid:31) others
+We have only one manipulator who tries to make c winner. Now we show that the X3C instance
+(U, S) is a YES instance if and only if the OPPORTUNISTIC MANIPULATION instance (P Q, 1, c) is a NO
+instance. The total number of voters in the OPPORTUNISTIC MANIPULATION instance is 2t + 2m/3 + 1.
+We notice that within top m + 1 positions of the votes in P(cid:48)   Q, c appears t + m/3 times, z1 and z2
+appear t + (cid:98)m/6(cid:99) times, x1 appears t/2 + m/3   1 times, x2 appears t/2   1 times, every candidate in
+W appears t + m/3   1 times, every candidate in U appears t + m/3 + 1 times. Also every candidate
+in U appears t + m/3 + 1 times within top m positions of the votes in P  Q. Hence, for both Bucklin
+and simpli ed Bucklin voting rules, we can assume without loss of generality that the manipulator
+puts c, every candidate in W, x1, x2, and exactly one of z1 and z2.
+In the forward direction, let us now assume that the X3C instance is a YES instance. Suppose
+(by renaming) that S1, . . . , Sm/3 forms an exact set cover. Suppose the manipulator s vote v puts
+c, every candidate in W, x1, x2, and z1 within top m + 1 positions. We will show that v is not
+c-optimal. The other case where the manipulator s vote v(cid:48) puts c, every candidate in W, x1, x2, and
+z2 within top m + 1 positions is symmetrical. Consider the following extension P of P:
+1 (cid:54) i (cid:54) (cid:98)m/6(cid:99), (U \ Si)d (cid:31) x1 (cid:31) x2 (cid:31) z2 (cid:31) Si (cid:31)(cid:31) z1 (cid:31) others
+(cid:100)m/6(cid:101) (cid:54) i (cid:54) m/3, (U \ Si)d (cid:31) x1 (cid:31) x2 (cid:31) z1 (cid:31) Si (cid:31)(cid:31) z2 (cid:31) others
+m/3 + 1 (cid:54) i (cid:54) t, (U \ Si) (cid:31) Si (cid:31) d (cid:31) x1 (cid:31) x2 (cid:31) z1 (cid:31) z2 (cid:31) others
+For both Bucklin and simpli ed Bucklin voting rules, c co-wins with z1 for the votes in P   Q   {v}.
+However, c wins uniquely for the votes in P  Q  {v(cid:48)}. Hence, v is not a c-optimal vote and thus the
+OPPORTUNISTIC MANIPULATION instance is a NO instance.
+For the reverse direction, we show that if the X3C instance is a NO instance, then there does
+not exist a vote v of the manipulator and an extension P of P such that c is the unique winner for
+the votes P  Q  {v(cid:48)} thereby proving that the OPPORTUNISTIC MANIPULATION instance is vacuously
+YES (and thus every vote is c-optimal). Consider any extension P of P. Notice that, for c to win
+uniquely, every candidate must be pushed out of top m + 1 positions in at least one vote in P; we
+call these set of votes P1. Notice that, |P1| (cid:62) m/3. However, in every vote in P1, at least one of
+z1 and z2 appears within top m + 1 many positions. Since, the manipulator has to put at least
+one of z1 and z2 within its top m + 1 positions and z1 and z2 appear t + (cid:98)m/6(cid:99) times in the votes
+in P(cid:48)   Q, we must have |P1| (cid:54) m/3 and thus |P1| = m/3, for c to win uniquely. However, there
+exists a candidate u   U not covered by the Sis corresponding to the votes in P1. Notice that u gets
+majority within top m positions of the votes and c can never get majority within top m + 1 positions
+of the votes. Hence, c cannot win uniquely irrespective of the vote of the manipulator. Thus every
+vote is c-optimal and the OPPORTUNISTIC MANIPULATION instance is a YES instance.
+4 Polynomial Time Algorithms
+We now turn to the polynomial time cases depicted in Table 1. This section is organized in three
+parts, one for each problem considered.
+26
+4.1 Weak Manipulation
+Since the POSSIBLE WINNER problem is in P for the plurality and the veto voting rules [BD09], it
+follows from Observation 1 that the WEAK MANIPULATION problem is in P for the plurality and veto
+voting rules for any number of manipulators.
+Proposition 1. The WEAK MANIPULATION problem is in P for the plurality and veto voting rules for
+any number of manipulators.
+Proof. The POSSIBLE WINNER problem is in P for the plurality and the veto voting rules [BD09].
+Hence, the result follows from Observation 1.
+4.2 Strong Manipulation
+We now discuss our algorithms for the STRONG MANIPULATION problem. The common  avor in all
+our algorithms is the following: we try to devise an extension that is as adversarial as possible for
+the favorite candidate c, and if we can make c win in such an extension, then roughly speaking,
+such a strategy should work for other extensions as well (where the situation only improves for c).
+However, it is challenging to come up with an extension that is globally dominant over all the others
+in the sense that we just described. So what we do instead is we consider every potential nemesis
+w who might win instead of c, and we build pro les that are  as good as possible  for w and  as
+bad as possible  for c. Each such pro le leads us to constraints on how much the manipulators can
+afford to favor w (in terms of which positions among the manipulative votes are safe for w). We
+then typically show that we can determine whether there exists a set of votes that respects these
+constraints, either by using a greedy strategy or by an appropriate reduction to a  ow problem.
+We note that the overall spirit here is similar to the approaches commonly used for solving the
+NECESSARY WINNER problem, but as we will see, there are non-trivial differences in the details. We
+begin with the k-approval and k-veto voting rules.
+Theorem 11. The STRONG MANIPULATION problem is in P for the k-approval and k-veto voting rules,
+for any k and any number of manipulators.
+Proof. For the time being, we just concentrate on non-manipulators  votes. For each candidate
+c(cid:48)   C \ {c}, calculate the maximum possible value of smax
+NM (c, c(cid:48)) = sNM(c(cid:48))   sNM(c) from non-
+manipulators  votes, where sNM(a) is the score that candidate a receives from the votes of the
+non-manipulators. This can be done by checking all 4 possible score combinations that c and c(cid:48) can
+get in each vote v and choosing the one which maximizes sv(c(cid:48))   sv(c) from that vote. We now  x
+the position of c at the top position for the manipulators  votes and we check if it is possible to place
+NM (c, c(cid:48))+ sM(c(cid:48))  sM(c)
+other candidates in the manipulators  votes such that the  nal value of smax
+is negative which can be solved easily by reducing it to the max  ow problem which is polynomial
+time solvable.
+We now prove that the STRONG MANIPULATION problem for scoring rules is in P for one manip-
+ulator.
+Theorem 12. The STRONG MANIPULATION problem is in P for any scoring rule when we have only
+one manipulator.
+27
+Proof. For each candidate c(cid:48)   C \ {c}, calculate smax
+NM (c, c(cid:48)) using same technique described in
+the proof of Theorem 11. We now put c at the top position of the manipulator s vote. For each
+candidate c(cid:48)   C \ {c}, c(cid:48) can be placed at positions i   {2, . . . , m} in the manipulator s vote which
+NM (c, c(cid:48)) +  i    1 negative. Using this, construct a bipartite graph with C \ {c} on left and
+makes smax
+{2, . . . , m} on right and there is an edge between c(cid:48) and i iff the candidate c(cid:48) can be placed at i in
+the manipulator s vote according to the above criteria. Now solve the problem by  nding existence
+of perfect matching in this graph.
+Our next result proves that the STRONG MANIPULATION problem for the Bucklin, simpli ed
+Bucklin, Fallback, and simpli ed Fallback voting rules are in P.
+Theorem 13. The STRONG MANIPULATION problem is in P for the Bucklin, simpli ed Bucklin, Fall-
+back, and simpli ed Fallback voting rules, for any number of manipulators.
+Proof. Let (C, P, M, c) be an instance of STRONG MANIPULATION for simpli ed Bucklin, and let m
+denote the total number of candidates in this instance. Recall that the manipulators have to cast
+their votes so as to ensure that the candidate c wins in every possible extension of P. We use
+Q to denote the set of manipulating votes that we will construct. To begin with, without loss of
+generality, the manipulators place c in the top position of all their votes. We now have to organize
+the positioning of the remaining candidates across the votes of the manipulators to ensure that c is
+a necessary winner of the pro le (P, Q).
+To this end, we would like to develop a system of constraints indicating the overall number of
+times that we are free to place a candidate w   C \ {c} among the top (cid:96) positions in the pro le Q.
+In particular, let us  x w   C \ {c} and 2 (cid:54) (cid:96) (cid:54) m. Let  w,(cid:96) be the maximum number of votes of Q
+in which w can appear in the top (cid:96) positions. Our  rst step is to compute necessary conditions for
+ w,(cid:96).
+We use Pw,(cid:96) to denote a set of complete votes that we will construct based on the given partial
+votes. Intuitively, these votes will represent the  worst  possible extensions from the point of view
+of c when pitted against w. These votes are engineered to ensure that the manipulators can make
+c win the elections Pw,(cid:96) for all w   C \ {c} and (cid:96)   {2, . . . , m}, if, and only if, they can strongly
+manipulate in favor of c. More formally, there exists a voting pro le Q of the manipulators so that
+c wins the election Pw,(cid:96)   Q, for all w   C \ {c} and (cid:96)   {2, . . . , m} if and only if c wins in every
+extension of the pro le P   Q.
+We now describe the pro le Pw,(cid:96). The construction is based on the following case analysis,
+where our goal is to ensure that, to the extent possible, we position c out of the top (cid:96)   1 positions,
+and incorporate w among the top (cid:96) positions.
+(cid:66) Let v   P be such that either c and w are incomparable or w (cid:31) c. We add the complete vote
+v(cid:48) to Pw,(cid:96), where v(cid:48) is obtained from v by placing w at the highest possible position and c at
+the lowest possible position, and extending the remaining vote arbitrarily.
+(cid:66) Let v   P be such that c (cid:31) w, but there are at least (cid:96) candidates that are preferred over w in
+v. We add the complete vote v(cid:48) to Pw,(cid:96), where v(cid:48) is obtained from v by placing c at the lowest
+possible position, and extending the remaining vote arbitrarily.
+(cid:66) Let v   P be such that c is forced to be within the top (cid:96)   1 positions, then we add the
+complete vote v(cid:48) to Pw,(cid:96), where v(cid:48) is obtained from v by  rst placing w at the highest possible
+position followed by placing c at the lowest possible position, and extending the remaining
+vote arbitrarily.
+28
+(cid:66) In the remaining votes, notice that whenever w is in the top (cid:96) positions, c is also in the top
+(cid:96)   1 positions. Let P 
+w,(cid:96) denote this set of votes, and let t be the number of votes in P 
+w,(cid:96).
+We now consider two cases. Let d(cid:96)(c) be the number of times c is placed in the top (cid:96)   1 positions
+in the pro le Pw,(cid:96)   Q, and let d(cid:96)(w) be the number of times w is placed in the top (cid:96) positions in
+the pro le Pw,(cid:96). Let us now formulate the requirement that in Pw,(cid:96)   Q, the candidate c does not
+have a majority in the top (cid:96)   1 positions and w does have a majority in the top (cid:96) positions. Note
+that if this requirement holds for any w and (cid:96), then strong manipulation is not possible. Therefore,
+to strongly manipulate in favor of c, we must ensure that for every choice of w and (cid:96), we are able
+to negate the conditions that we derive.
+The  rst condition from above simply translates to d(cid:96)(c) (cid:54) n/2. The second condition amounts
+to requiring  rst, that there are at least n/2 votes where w appears in the top (cid:96) positions, that is,
+d(cid:96)(w) +  w,(cid:96) + t > n/2. Further, note that the gap between d(cid:96)(w) +  w,(cid:96) and majority will be  lled
+by using votes from P 
+w,(cid:96) to  push  w forward. However, these votes contribute equally to w and
+c being in the top (cid:96) and (cid:96)   1 positions, respectively. Therefore, the difference between d(cid:96)(w) +
+ w,(cid:96) and n/2 must be less than the difference between d(cid:96)(c) and n/2. Summarizing, the following
+conditions, which we collectively denote by ((cid:63)), are suf cient to defeat c in some extension: d(cid:96)(c) (cid:54)
+n/2, d(cid:96)(w) +  w,(cid:96) + t > n/2, n/2   d(cid:96)(w) +  w,(cid:96) < n/2   d(cid:96)(c).
+From the manipulator s point of view, the above provides a set of constraints to be satis ed as
+they place the remaining candidates across their votes. Whenever d(cid:96)(c) > n/2, the manipulators
+place any of the other candidates among the top (cid:96) positions freely, because c already has majority.
+On the other hand, if d(cid:96)(c) (cid:54) n/2, then the manipulators must respect at least one of the following
+constraints:  w,(cid:96) (cid:54) n/2   t   d(cid:96)(w) and  w,(cid:96) (cid:54) d(cid:96)(c)   d(cid:96)(w).
+Extending the votes of the manipulator while respecting these constraints (or concluding that
+this is impossible to do) can be achieved by a natural greedy strategy   construct the manipulators 
+votes by moving positionally from left to right. For each position, consider each manipulator and
+populate her vote for that position with any available candidate. We output the pro le if the process
+terminates by completing all the votes, otherwise, we say NO.
+We now argue the proof of correctness. Suppose the algorithm returns NO. This implies that
+there exists a choice of w   C \ {c} and (cid:96)   {2, . . . , m} such that for any voting pro le Q of the
+manipulators, the conditions in ((cid:63)) are satis ed. (Indeed, if there exists a voting pro le that violated
+at least one of these conditions, then the greedy algorithm would have discovered it.) Therefore,
+no matter how the manipulators cast their vote, there exists an extension where c is defeated. In
+particular, for the votes in P \ P 
+w,(cid:96), this extension is given by Pw,(cid:96). Further, we choose n/2    w,(cid:96)  
+d(cid:96)(w) votes among the votes in P 
+w,(cid:96) and extend them by placing w in the top (cid:96) positions (and
+extending the rest of the pro le arbitrary). We extend the remaining votes in P 
+w,(cid:96) by positioning
+w outside the top (cid:96) positions. Clearly, in this extension, c fails to achieve majority in the top (cid:96)   1
+positions while w does achieve majority in the top (cid:96) positions.
+On the other hand, if the algorithm returns YES, then consider the voting pro le of the manipu-
+lators. We claim that c wins in every extension of P   Q. Suppose, to the contrary, that there exists
+an extension R and a candidate w such that the simpli ed Bucklin score of c is no more than the
+simpli ed Bucklin score of w in R. In this extension, therefore, there exists (cid:96)   {2, . . . , m} for which
+w attains majority in the top (cid:96) positions and c fails to attain majority in the top (cid:96)   1 positions.
+However, note that this is already impossible in any extension of the pro le Pw,l   P 
+w,(cid:96), because
+of the design of the constraints. By construction, the number of votes in which c appears in the top
+(cid:96)   1 positions in R is only greater than the number of times c appears in the top (cid:96)   1 positions in
+29
+any extension of Pw,l   P 
+w,(cid:96) (and similarly for w). This leads us to the desired contradiction.
+for some w   C \ {c} and (cid:96) < m, then we make  w,(cid:96) = . The proof of correctness for the Bucklin
+For the Bucklin voting rule, we do the following modi cations to the algorithm. If d(cid:96)(c) > d(cid:96)(w)
+voting rule is similar to the proof of correctness for the simpli ed Bucklin voting rule above.
+For Fallback and simpli ed Fallback voting rules, we consider the number of candidates each
+voter approves while computing  w,(cid:96). We output YES if and only if  w,(cid:96) (cid:62) 0 for every w   C \ {c}
+and every (cid:96) (cid:54) m, since we can assume, without loss of generality, that the manipulator approves
+the candidate c only. Again the proof of correctness is along similar lines to the proof of correctness
+for the simpli ed Bucklin voting rule.
+We next show that the STRONG MANIPULATION problem for the maximin voting rule is
+polynomial-time solvable when we have only one manipulator.
+Theorem 14. The STRONG MANIPULATION problem for the maximin voting rules are in P, when we
+have only one manipulator.
+Proof. For the time being, just concentrate on non-manipulators  votes. Using the algorithm for
+NW for maximin in [XC11], we compute for all pairs w, w(cid:48)   C, N(w,w(cid:48))(w, d) and N(w,w(cid:48))(c, w(cid:48))
+for all d   C \ {c}. This can be computed in polynomial time. Now we place c at the top position
+in the manipulator s vote and increase all N(w,w(cid:48))(c, w(cid:48)) by one. Now we place a candidate w at
+the second position if for all w(cid:48)   C, N(cid:48)
+(w,w(cid:48))(w, d) < N(w,w(cid:48))(c, w(cid:48)) for all d   C \ {c}, where
+N(cid:48)
+(w,w(cid:48))(w, d) = N(w,w(cid:48))(w, d) of the candidate d has already been assigned some position in the
+manipulator s vote, and N(cid:48)
+(w,w(cid:48))(w, d) = N(w,w(cid:48))(w, d) + 1 else. The correctness argument is in the
+similar lines of the classical greedy manipulation algorithm of [BITT89].
+4.3 Opportunistic Manipulation
+For the plurality, Fallback, and simpli ed Fallback voting rules, it turns out that the voting pro le
+where all the manipulators approve only c is a c-opportunistic voting pro le, and therefore it is
+easy to devise a manipulative vote.
+Observation 4. The OPPORTUNISTIC MANIPULATION problem is in P for the plurality and Fallback
+voting rules for a any number of manipulators.
+For the veto voting rule, however, a more intricate argument is needed, that requires building
+a system of constraints and a reduction to a suitable instance of the maximum  ow problem in a
+network, to show polynomial time tractability of OPPORTUNISTIC MANIPULATION.
+Theorem 15. The OPPORTUNISTIC MANIPULATION problem is in P for the veto voting rule for a
+constant number of manipulators.
+Proof. Let (P, (cid:96), c) be an input instance of OPPORTUNISTIC MANIPULATION. We may assume without
+loss of generality that the manipulators approve c. We view the voting pro le of the manipulators
+as a tuple (na)a C\{c}   (N   {0})m 1 with
+a C\{c} na = (cid:96), where the na many manipulators
+disapprove a. We denote the set of such tuples as T and we have |T| = O((2m)(cid:96)) which is poly-
+nomial in m since (cid:96) is a constant. A tuple (na)a C\{c}   T is not c-optimal if there exists another
+a)a C\{c}   T and an extension P of P with the following properties. We denote the veto
+tuple (n(cid:48)
+score of a candidate from P by s( ). For every candidate a   C \ {c}, we de ne two quantities w(a)
+and d(a) as follows.
+(cid:80)
+30
+(cid:66) s(c) > s(a) for every a   C \ {c} with na = n(cid:48)
+(cid:66) s(c) > s(a) n(cid:48)
+a for every a   C\{c} with na (cid:62) n(cid:48)
+a = 0 and we de ne w(a) = s(c)   1, d(a) = 0
+a and we de ne w(a) = s(c) n(cid:48)
+a  1, d(a) =
+0
+(cid:66) s(a)   na (cid:62) s(c) > s(a)   n(cid:48)
+a for every a   C \ {c} with na < n(cid:48)
+a and we de ne w(a) =
+s(c)   n(cid:48)
+a, d(a) = s(a)   na
+We guess the value of s(c). Given a value of s(c), we check the above two conditions by reducing
+this to a max  ow problem instance as follows. We have a source vertex s and a sink t. We have a
+vertex for every a   C (call this set of vertices Y) and a vertex for every vote v   P (call this set of
+vertices X). We add an edge from s to each in X of capacity one. We add an edge of capacity one
+from a vertex x   X to a vertex y   Y if the candidate corresponding to the vertex y can be placed
+at the last position in an extension of the partial vote corresponding to the vertex x. We add an
+edge from a vertex y to t of capacity w(a), where a is the voter corresponding to the vertex y. We
+also set the demand of every vertex y d(a) (that is the total amount of  ow coming into vertex y
+must be at least d(a)), where a is the voter corresponding to the vertex y. Clearly, the above three
+conditions are met if and only if there is a feasible |P| amount of  ow in the above  ow graph. Since
+s(c) can have only |P| + 1 possible values (from 0 to P) and |T| = O((2m)(cid:96)), we can iterate over
+all possible pairs of tuples in T and all possible values of s(c) and  nd a c-optimal voting pro le if
+there exists a one.
+5 Conclusion
+We revisited many settings where the complexity barrier for manipulation was non-existent, and
+studied the problem under an incomplete information setting. Our results present a fresh perspec-
+tive on the use of computational complexity as a barrier to manipulation, particularly in cases that
+were thought to be dead-ends (because the traditional manipulation problem was polynomially
+solvable). To resurrect the argument of computational hardness, we have to relax the model of
+complete information, but we propose that the incomplete information setting is more realistic,
+and many of our hardness results work even with very limited incompleteness of information.
+Our work is likely to be the starting point for further explorations. To begin with, we leave
+open the problem of completely establishing the complexity of strong, opportunistic, and weak
+manipulations for all the scoring rules. Other fundamental forms of manipulation and control do
+exist in voting, such as destructive manipulation and control by adding candidates. It would be
+interesting to investigate the complexity of these problems in a partial information setting.
+Another exciting direction is the study of average case complexity, as opposed to the worst
+case results that we have pursued. These studies have already been carried out in the setting of
+complete information [PR06, FP10, Wal10]. Studying the problems that we propose in the average-
+case model would reveal further insights on the robustness of the incomplete information setting
+as captured by our model involving partial orders.
+Our results showed that the impact of paucity of information on the computational complexity
+of manipulation crucially depends on the notion of manipulation under consideration. We also ar-
+gued that different notions of manipulation may be applicable to different situations, maybe based
+of how optimistic (or pessimistic) the manipulators are. One important direction of future research
+31
+is to run extensive experimentations on real and synthetic data to know how people manipulate in
+the absence of complete information.
+Acknowledgement
+Palash Dey wishes to gratefully acknowledge support from Google India for providing him with a
+special fellowship for carrying out his doctoral work. Neeldhara Misra acknowledges support by
+the INSPIRE Faculty Scheme, DST India (project IFA12-ENG-31).
+References
+[BBF10]
+Yoram Bachrach, Nadja Betzler, and Piotr Faliszewski. Probabilistic possible winner
+determination. In International Conference on Arti cial Intelligence (AAAI), volume 10,
+pages 697 702, 2010.
+[BCE+15] Felix Brandt, Vincent Conitzer, Ulle Endriss, J er ome Lang, and Ariel D Procaccia. Hand-
+book of computational social choice, 2015.
+[BD09]
+Nadja Betzler and Britta Dorn. Towards a dichotomy of  nding possible winners in
+In Mathematical Foundations of Computer Science
+elections based on scoring rules.
+(MFCS), pages 124 136. Springer, 2009.
+[BFLR12] Dorothea Baumeister, Piotr Faliszewski, J er ome Lang, and J org Rothe. Campaigns for
+lazy voters: truncated ballots. In International Conference on Autonomous Agents and
+Multiagent Systems, AAMAS 2012, Valencia, Spain, June 4-8, 2012 (3 Volumes), pages
+577 584, 2012.
+[BIO91]
+John Bartholdi III and James B. Orlin. Single transferable vote resists strategic voting.
+Soc. Choice Welf., 8(4):341 354, 1991.
+[BITT89]
+John Bartholdi III, C.A. Tovey, and M.A. Trick. The computational dif culty of manip-
+ulating an election. Soc. Choice Welf., 6(3):227 241, 1989.
+[BNW11] Nadja Betzler, Rolf Niedermeier, and Gerhard J Woeginger. Unweighted coalitional
+In IJCAI, volume 11, pages 55 60,
+manipulation under the borda rule is NP-hard.
+2011.
+[BRR11]
+Dorothea Baumeister, Magnus Roos, and J org Rothe. Computational complexity of
+two variants of the possible winner problem. In The 10th International Conference on
+Autonomous Agents and Multiagent Systems (AAMAS), pages 853 860, 2011.
+[BRR+12] Dorothea Baumeister, Magnus Roos, J org Rothe, Lena Schend, and Lirong Xia. The
+possible winner problem with uncertain weights. In ECAI, pages 133 138, 2012.
+[BS09]
+Steven J Brams and M Remzi Sanver. Voting systems that combine approval and pref-
+erence. In The mathematics of preference, choice and order, pages 215 237. Springer,
+2009.
+32
+[CLMM10] Yann Chevaleyre, J er ome Lang, Nicolas Maudet, and J er ome Monnot. Possible winners
+In Proc. International
+when new candidates are added: The case of scoring rules.
+Conference on Arti cial Intelligence (AAAI), 2010.
+[CSL07]
+Vincent Conitzer, Tuomas Sandholm, and J er ome Lang. When are elections with few
+candidates hard to manipulate? J. ACM, 54(3):14, 2007.
+[CWX11]
+[Dey15]
+Vincent Conitzer, Toby Walsh, and Lirong Xia. Dominating manipulations in voting
+with partial information. In International Conference on Arti cial Intelligence (AAAI),
+volume 11, pages 638 643, 2011.
+Palash Dey. Computational complexity of fundamental problems in social choice theory.
+In Proc. 2015 International Conference on Autonomous Agents and Multiagent Systems,
+pages 1973 1974. International Foundation for Autonomous Agents and Multiagent
+Systems, 2015.
+[DKNW11] Jessica Davies, George Katsirelos, Nina Narodytska, and Toby Walsh. Complexity of
+and algorithms for borda manipulation. In Proc. International Conference on Arti cial
+Intelligence (AAAI), pages 657 662, 2011.
+[DL13]
+Ning Ding and Fangzhen Lin. Voting with partial information: what questions to ask?
+In Proc. 12th International Conference on Autonomous Agents and Multi-agent Systems
+(AAMAS), pages 1237 1238. International Foundation for Autonomous Agents and
+Multiagent Systems, 2013.
+[DMN15a] Palash Dey, Neeldhara Misra, and Y. Narahari. Detecting possible manipulators in
+elections. In Proc. 2015 International Conference on Autonomous Agents and Multiagent
+Systems, AAMAS 2015, Istanbul, Turkey, May 4-8, 2015, pages 1441 1450, 2015.
+[DMN15b] Palash Dey, Neeldhara Misra, and Y. Narahari. Kernelization complexity of possi-
+In Proc. 2015 Interna-
+ble winner and coalitional manipulation problems in voting.
+tional Conference on Autonomous Agents and Multiagent Systems, AAMAS 2015, Istan-
+bul, Turkey, May 4-8, 2015, pages 87 96, 2015.
+[DMN16]
+Palash Dey, Neeldhara Misra, and Y. Narahari. Kernelization complexity of possible
+winner and coalitional manipulation problems in voting. Theor. Comput. Sci., 616:111 
+125, 2016.
+[DN14]
+[DN15]
+[EE12]
+Palash Dey and Y Narahari. Asymptotic collusion-proofness of voting rules: the case
+of large number of candidates. In Proc. 13th International Conference on Autonomous
+Agents and Multiagent Systems (AAMAS), pages 1419 1420. International Foundation
+for Autonomous Agents and Multiagent Systems, 2014.
+Palash Dey and Y Narahari. Asymptotic collusion-proofness of voting rules: The case
+of large number of candidates. Studies in Microeconomics, 3(2):120 139, 2015.
+Edith Elkind and G abor Erd elyi. Manipulation under voting rule uncertainty. In Proc.
+11th International Conference on Autonomous Agents and Multiagent Systems (AAMAS),
+pages 627 634. International Foundation for Autonomous Agents and Multiagent Sys-
+tems, 2012.
+33
+[ER91]
+Eithan Ephrati and Jeffrey S Rosenschein. The Clarke tax as a consensus mechanism
+among automated agents. In Proc. Ninth International Conference on Arti cial Intelli-
+gence (AAAI), pages 173 178, 1991.
+[FHH10]
+Piotr Faliszewski, Edith Hemaspaandra, and Lane A Hemaspaandra. Using complexity
+to protect elections. Commun ACM, 53(11):74 82, 2010.
+[FHHR09] Piotr Faliszewski, Edith Hemaspaandra, Lane A. Hemaspaandra, and J org Rothe. Llull
+and copeland voting computationally resist bribery and constructive control. J. Artif.
+Intell. Res., 35:275 341, 2009.
+[FHS08]
+[FHS10]
+[FKN08]
+[FKS03]
+[FP10]
+[Gib73]
+[GJ79]
+Piotr Faliszewski, Edith Hemaspaandra, and Henning Schnoor. Copeland voting: Ties
+In Proc. 7th International Conference on Autonomous Agents and Multiagent
+matter.
+Systems (AAMAS), pages 983 990. International Foundation for Autonomous Agents
+and Multiagent Systems, 2008.
+Piotr Faliszewski, Edith Hemaspaandra, and Henning Schnoor. Manipulation of
+In Proc. 9th International Conference on Autonomous Agents
+copeland elections.
+and Multiagent Systems (AAMAS), pages 367 374. International Foundation for Au-
+tonomous Agents and Multiagent Systems, 2010.
+Ehud Friedgut, Gil Kalai, and Noam Nisan. Elections can be manipulated often.
+In
+IEEE 49th Annual IEEE Symposium on Foundations of Computer Science (FOCS), pages
+243 249. IEEE, 2008.
+Ronald Fagin, Ravi Kumar, and D. Sivakumar. Ef cient similarity search and classi -
+cation via rank aggregation. In Proc. 2003 ACM SIGMOD International Conference on
+Management of Data, SIGMOD  03, pages 301 312, New York, NY, USA, 2003. ACM.
+Piotr Faliszewski and Ariel D Procaccia. Ai s war on manipulation: Are we winning?
+AI Magazine, 31(4):53 64, 2010.
+Allan Gibbard. Manipulation of voting schemes: a general result. Econometrica, pages
+587 601, 1973.
+Michael R Garey and David S Johnson. Computers and Intractability, volume 174.
+freeman New York, 1979.
+[GNNW14] Serge Gaspers, Victor Naroditskiy, Nina Narodytska, and Toby Walsh. Possible and
+In Proc. 13th International Conference on
+necessary winner problem in social polls.
+Autonomous Agents and Multiagent Systems (AAMAS), pages 613 620. International
+Foundation for Autonomous Agents and Multiagent Systems, 2014.
+[IKM12] M. Isaksson, G. Kindler, and E. Mossel. The geometry of manipulation - a quantitative
+proof of the gibbard-satterthwaite theorem. Combinatorica, 32(2):221 250, 2012.
+[KL05]
+Kathrin Konczak and J er ome Lang. Voting procedures with incomplete preferences. In
+Proc. International Joint Conference on Arti cial Intelligence-05 Multidisciplinary Work-
+shop on Advances in Preference Handling, volume 20, 2005.
+34
+[McG53]
+David C McGarvey. A theorem on the construction of voting paradoxes. Econometrica,
+pages 608 610, 1953.
+[ML15]
+[NW14]
+[PHG00]
+[PR06]
+[PR07]
+[Sat75]
+[Wal10]
+[Wal11]
+[XC08a]
+[XC08b]
+[XC11]
+Vijay Menon and Kate Larson. Complexity of manipulation in elections with partial
+votes. CoRR, abs/1505.05900, 2015.
+Nina Narodytska and Toby Walsh. The computational impact of partial votes on strate-
+In Proc. 21st European Conference on Arti cial Intelligence, 18-22 August
+gic voting.
+2014, Prague, Czech Republic - Including Prestigious Applications of Intelligent Systems
+(PAIS 2014), pages 657 662, 2014.
+David M. Pennock, Eric Horvitz, and C. Lee Giles. Social choice theory and recom-
+mender systems: Analysis of the axiomatic foundations of collaborative  ltering.
+In
+Proc. Seventeenth National Conference on Arti cial Intelligence and Twelfth Conference
+on on Innovative Applications of Arti cial Intelligence, July 30 - August 3, 2000, Austin,
+Texas, USA., pages 729 734, 2000.
+Ariel D Procaccia and Jeffrey S Rosenschein. Junta distributions and the average-
+case complexity of manipulating elections. In Proc. Fifth International Conference on
+Autonomous Agents and Multiagent Systems (AAMAS), pages 497 504. ACM, 2006.
+Ariel D. Procaccia and Jeffrey S. Rosenschein. Average-case tractability of manipulation
+in voting via the fraction of manipulators. In Proc. 6th International Joint Conference
+on Autonomous Agents and Multiagent Systems (AAMAS 2007), Honolulu, Hawaii, USA,
+May 14-18, 2007, page 105, 2007.
+Mark Allen Satterthwaite. Strategy-proofness and Arrow s conditions: Existence and
+correspondence theorems for voting procedures and social welfare functions. J. Econ.
+Theory, 10(2):187 217, 1975.
+Toby Walsh. An empirical study of the manipulability of single transferable voting. In
+Proc. 19th European Conference on Arti cial Intelligence (ECAI), pages 257 262, 2010.
+Toby Walsh. Where are the hard manipulation problems? J. Artif. Intell. Res., pages
+1 29, 2011.
+Lirong Xia and Vincent Conitzer. Generalized scoring rules and the frequency of coali-
+tional manipulability. In Proc. 9th ACM conference on Electronic Commerce (EC), pages
+109 118. ACM, 2008.
+Lirong Xia and Vincent Conitzer. A suf cient condition for voting rules to be frequently
+manipulable. In Proc. 9th ACM conference on Electronic Commerce (EC), pages 99 108.
+ACM, 2008.
+Lirong Xia and Vincent Conitzer. Determining possible and necessary winners under
+common voting rules given partial orders. volume 41, pages 25 67. AI Access Founda-
+tion, 2011.
+35
+[XZP+09] Lirong Xia, Michael Zuckerman, Ariel D Procaccia, Vincent Conitzer, and Jeffrey S
+Rosenschein. Complexity of unweighted coalitional manipulation under some common
+voting rules. In Proc. 21st International Joint Conference on Arti cial Intelligence (IJCAI),
+volume 9, pages 348 352, 2009.
+36

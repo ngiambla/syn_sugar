@@ -1,0 +1,455 @@
+A Mathematical Approach to the Study of the United States Code
+Michael J. Bommarito II
+Center for the Study of Complex Systems, University of Michigan, Ann Arbor
+Department of Political Science, University of Michigan, Ann Arbor
+Department of Financial Engineering, University of Michigan, Ann Arbor
+Daniel M. Katz
+Center for the Study of Complex Systems, University of Michigan, Ann Arbor
+Department of Political Science, University of Michigan, Ann Arbor
+University of Michigan Law School
+0
+1
+0
+2
+ 
+r
+a
+ 
+M
+2
+2
+ 
+ 
+]
+R
+I
+.
+s
+c
+[
+ 
+ 
+1
+v
+6
+4
+1
+4
+.
+3
+0
+0
+1
+:
+v
+i
+X
+r
+a
+Abstract
+The United States Code (Code) is a document containing over 22 million words that represents a large and important
+source of Federal statutory law. Scholars and policy advocates often discuss the direction and magnitude of changes
+in various aspects of the Code. However, few have mathematically formalized the notions behind these discussions or
+directly measured the resulting representations. This paper addresses the current state of the literature in two ways.
+First, we formalize a representation of the United States Code as the union of a hierarchical network and a citation
+network over vertices containing the language of the Code. This representation re ects the fact that the Code is a
+hierarchically organized document containing language and explicit citations between provisions. Second, we use this
+formalization to measure aspects of the Code as codi ed in October 2008, November 2009, and March 2010. These
+measurements allow for a characterization of the actual changes in the Code over time. Our  ndings indicate that in
+the recent past, the Code has grown in its amount of structure, interdependence, and language.
+Keywords: United States Code, hierarchical network, citation network, language, computational legal studies
+1. Formalizing the Code
+The United States Code (Code) is a document con-
+taining over 22 million words that represents a large and
+important source of Federal statutory law. The Code is a
+concise and conveniently organized compilation of all rati-
+ ed legislation and treaties, and is often the  rst source of
+information for lawyers, judges, and legal academics.1 The
+Code is compiled through a process known as codi cation,
+which is carried out by the O ce of the Law Revision
+Counsel (LRC), an organization within the U.S. House
+of Representatives. The LRC s goal in this codi cation
+process is to transform the incremental and chronological
+Statutes at Large into the Code, a current snapshot of the
+law that is organized into hierarchical categories.2
+Email addresses: mjbommar@umich.edu (Michael J. Bommarito
+II), dmartink@umich.edu (Daniel M. Katz)
+1The complete set of all rati ed legislation and treaties is known
+as the Statutes at Large. As a legal technicality, the Code is only
+prima facie evidence of Federal law. In the event of a discrepancy,
+the Statutes at Large are the  nal authority. Furthermore, additional
+sources such as the Code of Federal Regulations contains clari ca-
+tions issued by other Federal agencies or bodies.
+22 U.S.C.  285-  285g outlines the purpose, policy and functions
+of the O ce of Law Revision Counsel.
+This hierarchical organization is an important quali-
+tative feature of the Code. At the  rst level of the hi-
+erarchy, the Code is divided into 49 titles that represent
+the broadest categories of law. Well-known titles include
+the Tax Code, formally known as Title 26 - Internal Rev-
+enue Code, Title 20 - Education, and Title 18 - Crimes
+and Criminal Punishment. Each title is also hierarchi-
+cally subdivided into some combination of subtitles, chap-
+ters, subchapters, parts, subparts, sections, subsections,
+paragraphs, subparagraphs, clauses, or subclauses. Out of
+these vertex types, only sections, subsections, paragraphs,
+subparagraphs, clauses and subclauses can contain the ac-
+tual substantive legal text.
+The text within these vertices can also contain explicit
+citations to other portions of the Code. These citations
+may be used to reference de nitions, highlight qualifying
+conditions, or point to well-understood processes.
+It is
+critical to recognize that these citations are not restricted
+by the organizational hierarchy. For example, sections
+within Title 26, the Tax Code, can and do contain ci-
+tations to Title 18, the Criminal Code. Thus, though the
+LRC attempts to organize the Code into a cleanly divided
+hierarchical network, there is also a citation network em-
+Preprint submitted to Elsevier
+March 23, 2010
+bedded within the Code that is not constrained by this
+hierarchy.
+Based on the characterization above, we can formulate
+a mathematical representation of the Code as a graph G =
+(V, E) with an associated  text  function T (v). V is the
+set of vertices composed of all titles, subtitles, chapters,
+subchapters, parts, subparts, sections, subsections, para-
+graphs, subparagraphs, clauses, and subclauses. These
+vertices can also be divided into two subsets: (1) vertices
+that do contain text, written V T , and (2) vertices that do
+not contain text, written V N . For vertices v   V T that do
+contain text, the associated  text  function T (v) returns
+an ordered tuple containing the tokens within the text of
+vertex v. For vertices v   V N that do not contain text,
+T (v) =  . The set of edges E can likewise be divided
+into two subsets: (1) edges that encode the hierarchical
+organization of the Code, written EH , and (2) edges that
+record the citation network within the Code, written EC.
+For convenience, we can then write the edge-induced sub-
+graphs GH and GC that represent the hierarchical network
+and citation network of the Code respectively.
+For the remainder of this study, we fold the subtree
+under each section vertex back into its respective section
+vertex. For example, the text and citations from 26 U.S.C.
+ 501(c)(3) are merged up into 26 U.S.C.  501. While this
+choice trades o  some amount of detail in order to compare
+the properties of T (v) across snapshots, we believe there
+are several compelling justi cations supporting this choice.
+By focusing on sections, we ensure that all leaf vertices of
+the hierarchy are of the same type. This makes a number of
+network calculations much simpler and easier to interpret
+than otherwise. Furthermore, unlike other vertices in V T ,
+sections are the only type of vertex that is guaranteed to
+contain complete grammatical units. This makes section
+vertices the natural unit of analysis for any statements
+regarding the language within the Code.
+Though our attention throughout the remainder of the
+paper is on the Code as a mathematical object, it is worth-
+while to note that there are many important objects that
+exhibit characteristics which are qualitatively similar to
+the Code. For example, Internet web pages are hierar-
+chically structured by IANA country code, domain, sub-
+domain, and directory structures. These web pages also
+contain large amounts of language and explicit interdepen-
+dence in the form of hyperlinks. Therefore, the analysis
+carried out in this paper could also be applied to web pages
+on the Internet or any similar document. In summary, our
+representation of the Code can therefore be more gener-
+ally described as a formalization of a document with hi-
+erarchical structure, explicit interdependence, and a
+signi cant amount of language.
+2. Measuring the Code
+We can measure aspects of this representation of the
+Code by constructing it from empirical data. To do so, we
+have obtained XML snapshots of the Code at three points
+in time: October 2008, November 2009, and March 2010.
+This data was provided by the Cornell Legal Information
+Institute ([3]). It is important to understand that the rate
+of legislation and treaty-making exceeds the LRC s rate of
+codi cation. Furthermore, the LRC codi cation schedule
+is based on titles, not on the chronology of the Statues at
+Large. As a result, we cannot make compare the rate of
+growth of di erent sections or titles of the Code with this
+data. We can, however, make statements with respect to
+aggregate changes in the Code.
+(a) GH
+(b) G
+Figure 1: Network Visualization of the Code, Oct. 2008. Top: Hi-
+erarchical network, Reingold-Tilford circular layout ([10]). Bottom:
+Hierarchical network with citation network overlay in red.
+Figure 1 o ers two visualizations of the snapshot of the
+Code as of October 2008. In panel (a), the hierarchical net-
+work GH is shown branching out from the rooting node.
+In panel (b), the section-to-section citation network is im-
+posed in red onto the hierarchical network in (a). Note
+2
+that all citations are from one leaf of the hierarchical net-
+work to another leaf of the hierarchical network. This is
+a consequence of our above choice to combine any subsec-
+tions and their text into their respective section vertices.
+Date
+Oct 2008
+Nov 2009
+Mar 2010
+|V (G)|
+57947
+59684
+59988
+|E(G)|
+140154
+144758
+145908
+|V (GC )|
+33503
+34473
+34674
+|E(GC )|
+82208
+85075
+85921
+Table 1: Summary of Code snapshots.
+Figure 1 clearly demonstrates that the Code is a large
+object. Table 1 shows a summary of the size of the Code
+and its edge-induced citation network for each snapshot.
+We do not need to write |V (GH )| and |E(GH )| separately,
+since |V (GH )| = |V (G)| and |V (GH )| = |E(GH )| + 1 by
+construction.
+This table gives us the  rst opportunity to examine
+changes in the Code. In assessing such changes, it is impor-
+tant to note that the lag associated with the LRC codi ca-
+tion schedule complicates the relationship between passage
+of individuals pieces of legislation and their subsequent re-
+ ection in the Code. Despite this limitation, we can still
+consider aggregate net changes in the Code over our win-
+dow of data.
+We  rst focus on the hierarchical structure of the Code
+as represented by GH . Between October 2008 and Novem-
+ber 2009, approximately 4.29 vertices were added to the
+Code each day, and between November 2009 and March
+2010, approximately 2.71 vertices were added to the Code
+each day. It is important to note that vertex creation can
+be the product of (1) reorganization of existing hierarchy
+and its embedded language or (2) the codi cation of new
+legislation. In the  rst case, the total amount of language
+in the Code is often relatively unchanged. In the second
+case, however, new language from legislation must be in-
+troduced and the total amount of language in the Code
+increases.3 Regardless of which dynamic is responsible,
+these rates show that the Code has experienced robust
+growth in its hierarchical structure in recent years.
+In order to assess changes in the interdependence of
+the Code, we now examine GC and its corresponding de-
+gree distribution.4 Table 1 shows that both |V (GC)| and
+|E(GC)| have been growing at a rapid pace. Between Octo-
+ber 2008 and November 2009, approximately 2.4 sections
+entered the citation network and approximately 7.08 new
+citations were added per day.5 Between November 2009
+3In some cases, new legislation replaces old legislation by repeal-
+ing existing language and structure in the Code and replacing it with
+new language and structure. The  vertex creation  rates above are
+thus more accurately labeled as  net vertex creation  rates.
+4Readers interested in properties of the degree distribution alone
+should refer to [1].
+5Sections may  enter  the citation network in two ways: (1) by
+being newly created and containing citations in their original form
+or (2) by having previously existed but either receiving their  rst
+citation or being amended to cite another section for the  rst time.
+Figure 2: Log-Log Degree Distribution for GC over Time. Plotted
+with Matlab code from [2].
+and March 2010, approximately 1.79 sections entered the
+citation network per day and approximately 7.55 new cita-
+tions were added per day. These numbers clearly indicate
+that the recent trend is positive.
+Figure 2 shows the region of the log-log degree distribu-
+tion that exhibits change across these snapshots. Though
+a power-law distribution is soundly rejected for all three
+snapshots, the standard deviation and skewness of the de-
+gree distributions increase from 2008 to 2009 and 2009
+to 2010 ([2]). Furthermore, the maximum degree also in-
+creased from 2008 to 2009 and 2009 to 2010. Based on
+these simple measurements of the Code, it is clear that the
+Code is growing both in the size of its hierarchical struc-
+ture and in the amount of conceptual interdependence.
+We next turn our attention to the language contained
+within the Code. Though our mathematical representa-
+tion of the Code relegates this language to the function
+T , we should remember that language and its organiza-
+tion are the components most commonly invoked in the
+popular discourse surrounding the Code. The  rst step
+in this analysis is to examine the change in the amount
+of language in the Code over time. Table 2 allows us to
+assess these changes by comparing the language contained
+within the snapshots of the Code over time. The numbers
+given in this table represent the average size of each sec-
+tion, i.e., |T (v)|, and the total size of the Code as measured
+by  words. 6
+Just as Table 1 above shows that structure of the Code
+is growing, Table 2 shows that the amount of language in
+the Code is growing. This growth is at a rate of approx-
+imately 2,730 words per day between October 2008 and
+November 2009 and 2,706 words per day between Novem-
+ber 2009 and March 2010. Furthermore, since the average
+word count per section is also increasing over these time
+6Here,  words  correspond to those strings tokenized by the Penn
+Treebank and are not necessarily restricted to words that might be
+found in a dictionary ([5]).
+3
+periods, the rate of increase in language surpasses the rate
+of growth in the number of sections. In other words, the
+language in the Code is growing both through the addi-
+tion of new sections containing new text and through the
+lengthening of existing sections.
+Year Word Count per Section Total Word Count
+2008
+2009
+2010
+22,823,405
+23,919,248
+24,224,985
+468.16
+476.03
+479.85
+Table 2: Word Count per Section and Total Word Count over Time.
+Underlying each row in Table 2 is an entire distribution
+of word counts per section. Examining the change in these
+distributions over time can better explain the changes ev-
+idenced in the Table. Figure 3 shows the distribution of
+word count per section for the Code as of October 2008.
+This  gure shows that section sizes are fairly normally dis-
+tributed around the mean size of 468.16 words per section
+with a standard deviation of 1,031.2.
+Figure 4: Changes in the Distribution of Section Sizes by log10 Word
+Count from 2008 over Time.
+may contain either a single word repeated over and over
+or it may contain 100 di erent words each used once. In
+order to capture di erences such as these, we next inves-
+tigate the Shannon entropy of the word distribution for
+each section of the Code ([9]). Entropy values will allow
+us to distinguish between the above cases, with the for-
+mer example having much lower entropy than the latter
+example.
+In many ways, the entropy of the section word distri-
+bution can be related to some of the characterizations of
+complexity o ered by legal scholars ([4] [8] [7]). If we as-
+sume that words map to distinct concepts, then this mea-
+sure corresponds to the uncertainty or variance in the con-
+cept distribution. Concept variance is important because,
+all else equal, it is more di cult for an individual to un-
+derstand a set of concepts with high variance than one
+comprised of homogeneous material. However, there is
+a signi cant di erence between complexity and di culty
+and we should be careful to explain entropy as  concept
+variance  ([6]).
+v   V T , we need to calculate
+In order to calculate the section entropy for a section
+W ={w : w   T (v)}
+H =   (cid:88)
+p(w) log2 p(w)
+w W
+where p(w) is the proportion of tokens in T (v) that are
+w. By calculating H for all v   V T , we can observe the
+actual distribution of section entropy.
+Figure 5 shows the distribution of section entropy in
+October 2008. The distribution is relatively normal with
+a right lean. The mean section entropy is 5.89 with a stan-
+dard deviation of 0.81, and the maximum section entropy
+is 8.65. As a comparison, the  rst two paragraphs of this
+paper have an entropy of approximately 6.7.
+Figure 6 plots the distribution of changes in the section
+entropy distributions over time. The circles and pluses cor-
+respond to the change in the section size distribution from
+4
+Figure 3: Distribution of Section Sizes by log10 Word Count in Oc-
+tober 2008.
+The di erences between the distributions are shown in
+Figure 4. The circles and pluses show the change in the
+section size distribution from October 2008 to November
+2009 and from October 2008 to March 2010 respectively.
+This  gure shows that the changes are relatively small
+and primarily contained in the bulk of the distribution
+in sections between 10 and 1,000 words. Furthermore, the
+overall trend in changes indicates an increasing number of
+sections at sizes between 102 and 103.5. The maximum sec-
+tion size did increase from 43,183 words in October 2008
+to 44,962 words in November 2009. These observations
+imply that the average section size is increasing due to a
+larger number of sections in this region, not because of a
+drastic change in the sizes of sections contained within the
+Code.
+Language can change in ways that are not captured by
+word counts. One important factor that is not captured
+by the number of words alone is the distribution of these
+words. For example, a section with a word count of 100
+Furthermore, the sections of the Code have become more
+explicitly interdependent.
+In future work, we hope to obtain snapshots of the
+Code over a longer period of time. By obtaining data
+for at least one LRC codi cation cycle, we could evaluate
+both aggregate changes over longer windows and changes
+in speci c sections or titles of the Code. This would al-
+low us to directly evaluate claims made by both policy
+advocates and scholars. Furthermore, we hope to more
+seriously address the concept of  legal complexity  by de-
+veloping a complexity measure based on this mathematical
+representation of the Code.
+Figure 5: Distribution of Section Entropy in October 2008.
+4. Acknowledgments
+We would like to thank the Center for the Study of
+Complex Systems (CSCS) at the University of Michigan
+for a fruitful research environment. This work was par-
+tially supported by an NSF IGERT fellowship through the
+Center for the Study of Complex Systems (CSCS) at the
+University of Michigan, Ann Arbor. We would also like
+to thank Dave Shetland at the Cornell Legal Information
+Institute and Joel Slemrod, J.J. Prescott, and Abe Gong
+at the University of Michigan for their assistance and feed-
+back.
+[1] M.J. Bommarito II, D. M. Katz. Properties of the Code Citation
+Network. http://arxiv.org/abs/0911.175.
+[2] A. Clauset, C.R. Shalizi, M.E.J. Newman. Power-law distribu-
+tions in empirical data. SIAM Review, Vol. 51:4, pp. 661-703,
+2009. http://arxiv.org/abs/0706.1062.
+[3] Cornell University Law School, Legal Information Institute.
+http://www.law.cornell.edu/.
+[4] S.B. Long, J. Swingen. An Approach to the Measurement of Tax
+Law Complexity. Journal of the American Taxation Association,
+Vol. 8, pp. 22-36, 1987.
+[5] M. Marcus. The Penn Treebank: A Revised Corpus Design for
+Extracting Predicate Argument Structure. Proceedings of the
+ARPA Human Language Technology Workshop, Princeton, NJ,
+March 1994.
+[6] S.E. Page. Uncertainty, Di culty, and Complexity. Journal of
+Theoretical Politics, Vol. 20:2, pp. 115-149, 2008.
+[7] L. Rook Laying Down the Law: Cannons for Drafting Complex
+Legislation. Oregon Law Review, Vol. 72, pp. 663-688, 1993.
+[8] P. Schuck Legal Complexity: Some Causes, Consequences and
+Cures. Duke Law Journal, Vol. 42, pp. 1-52, 1992.
+[9] C. Shannon. A Mathematical Theory of Communication. Bell
+System Technical Journal, Vol. 27, pp. 379-423, 1948.
+[10] E. Reingold, J. Tilford. Tidier Drawing of Trees. IEEE Trans-
+actions on Software Engineering, Vol. SE-7:2, pp. 223-228, 1981.
+Figure 6: Changes in the Distribution of Section Entropy from 2008
+over Time.
+October 2008 to November 2009 and from October 2008 to
+March 2010 respectively. This  gure shows a strong trend
+away from the October 2008 snapshot for both November
+2009 and March 2010. The proportion of sections with
+entropy between 4.5 and 6 has decreased nearly symmetri-
+cally with the increase in sections with entropy between 6
+and 8. Furthermore, the trend is more pronounced in the
+March 2010 snapshot than in the November 2009 snap-
+shot. These observations imply that there is a shift from
+less conceptual variance per section to more conceptual
+variance per section, implying an increase in  legal com-
+plexity  over our window of observation.
+3. Conclusion & Future Work
+In this paper, we o er a mathematical formalization
+of the United States Code that incorporates its impor-
+tant qualitative features including hierarchical structure,
+explicit interdependence, and language. We use this repre-
+sentation to measure the changes in the Code in the period
+between October 2008 and March 2010. These measure-
+ments imply that in the recent past the Code has become
+larger both in its hierarchical structure and its language.
+5

@@ -1,0 +1,10 @@
+ Here we describe a streaming framework for online detection and clustering of memes in social media, speci cally Twitter.
+ As a result, our sys- tem can build clusters of semantically, structurally, and topically related tweets.
+ On the other hand, social media are also used to disseminate misleading information such as rumors and spam [13, 20, 37].
+ In other words, our proposed approach bene ts from protomemes as a pre-aggregation step and then it clusters them to identify memes.
+ In such a case, the algorithm assumes unlimited access to all data points as well as boundless memory and processing resources.
+ In all cases, without loss of generality, we assume the stream to start at time t = 0 and discretize time into steps of xed duration t.
+ The closest cluster is chosen based on the distance between the arriving point and the centroid of the cluster.
+ This is due to the characteristic fast-paced churning time of the topics of discussion in social media.
+ In our framework, we proposed to rely on mention and retweet di usion sets, which can be inferred in real time from the observed data.
+ Also, our system provides better performance by pre-clustering based on protomemes and by metadata-driven measures of similarity between clusters.

@@ -1,0 +1,10 @@
+ Each entry of the matrix is chosen independently to be +q 3 k , 0, q 3 tively [1]. k with probability 1 , + 1 k} [1]. 3 , 1 6 , 2 6 , respec- 4.
+ Each entry in is drawn randomly and independently from Normal distribution with mean 0 and variance 2, where the variance of the noise depends on 2-sensitivity of the projection matrix P and the privacy parameters and .
+ By choosing satisfying the condition in Theorem 1, the algorithm guarantees ( , )- di erential privacy. 3.1.5 Recover distance algorithm We next describe our algorithm for estimating the squared distance between two users, given their sketches released in a privacy-preserving manner using Algorithm 1.
+ Algorithm 2 (RecoverDistancePP) computes the squared 2 distance between the transformed representations in the k dimensional space, and then discounts for the systemic positive distortion of the distance due to noise addition.
+ Algorithm 2 RecoverDistancePP Input: n k matrix Z published in a privacy-preserving manner; Noise parameter ; Indices a, b of the desired users.
+ Recall that R q2 ln( 1 1 2(cid:19) dz 1 2 2kY zk2 exp(cid:18) 1 2 2kY zk2 2(cid:19) exp( ) dz exp( ) Pr[Y + Din].
+ In Figure 1 we depict the exact relationship between the privacy parameters and , and the variance of the noise needed, by plotting three curves of feasible ( , ) pairs for three choices of .
+ Although Algorithm 1 is stated as applied to n user vectors simultaneously, we will analyze its utility in preserving squared distances between a particular xed pair of users.
+ Deviations are bounded, i.e., with probability 1 ( JL + 2 + N ), the following holds: (cid:12)(cid:12)dist2 PP(x, y) kx yk2 2(cid:12)(cid:12) JLkx yk2 when JL < 1/2, JL 2 exp( k 2 JL/6), 2 2 exp( 2 2 ) and N exp( 2 N ) N . 2 + 4 2 k 2 + 4 2 2 2 + 4 (1 + JL) Nkx yk2, (4) dist2 = k(x y)P + k2 PP(x, y) = k x yk2 Proof.
+ Recall that Var[dist2 PP(x, y)] = 2kx yk4 2/k + 8 2 PPkx yk2 2 + 8 4 PPk, where PP = (pln(1/ )/ ) and k is the target dimension of the projection matrix.

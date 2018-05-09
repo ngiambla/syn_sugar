@@ -1,0 +1,2811 @@
+Work Capacity of Freelance Markets: Fundamental
+Limits and Decentralized Schemes
+Avhishek Chatterjee, Lav R. Varshney, and Sriram Vishwanath
+1
+6
+1
+0
+2
+ 
+n
+a
+J
+ 
+5
+1
+ 
+ 
+]
+A
+M
+.
+s
+c
+[
+ 
+ 
+2
+v
+3
+2
+0
+0
+0
+.
+8
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Abstract
+Crowdsourcing of jobs to online freelance markets is rapidly gaining popularity. Most crowdsourcing platforms
+are uncontrolled and offer freedom to customers and freelancers to choose each other. This works well for unskilled
+jobs (e.g., image classi cation) with no speci c quality requirement since freelancers are functionally identical. For
+skilled jobs (e.g., software development) with speci c quality requirements, however, this does not ensure that the
+maximum number of job requests is satis ed. In this work we determine the capacity of freelance markets, in terms
+of maximum satis ed job requests, and propose centralized schemes that achieve capacity. To ensure decentralized
+operation and freedom of choice for customers and freelancers, we propose simple schemes compatible with the
+operation of current crowdsourcing platforms that approximately achieve capacity. Further, for settings where the
+number of job requests exceeds capacity, we propose a scheme that is agnostic of that information, but is optimal
+and fair in declining jobs without wait.
+freelance markets, capacity, queuing theory, decentralized algorithms
+Index Terms
+I. INTRODUCTION
+Methods and structures for information processing have been changing. Enabled by the proliferation of modern
+communication technologies, globalization and specialization of workforces has led to the emergence of new
+decentralized models of informational work. Moreover, the millennial generation now entering the workforce often
+favors project-based or job-based work, as in crowdsourcing and social production [2], [3], rather than long-term
+commitments [4]. Indeed over the last decade, more than 100  human clouds  have launched with a variety of
+structures. These platforms serve clients by harnessing external crowds, and global enterprises similarly harness
+their internal crowds [5] [7], making use of human cognitive surplus for information processing [8].
+Platforms follow different collective intelligence models [9], [10], and require different strategies for allocating
+informational work to workers. In crowdsourcing contest platforms like InnoCentive and TopCoder, there is self-
+selection: work is issued as an open call and anyone can participate in any job; the best submission wins the reward
+[11] [14]. In microtask crowdsourcing platforms like Amazon Mechanical Turk, any worker is assumed able to
+do any job and so  rst-come- rst-serve strategies are often used; level of reliability may be considered in optimal
+allocation [15]. In freelance markets like oDesk and Elance, however, specialized jobs must be performed by skilled
+workers: allocation requires careful selection from the large pool of variedly-skilled freelancers.
+Freelance market platforms serve as spot markets for labor by matching skills to tasks, often performing on-
+demand matching at unprecedented scales. For example, oDesk had 2.5 million workers and nearly 0.5 million clients
+in 2013 [10]. Herein we study allocation and scheduling of informational work within these kinds of platforms, via
+a queuing framework. We aim to establish fundamental limits through a notion of work capacity, and also develop
+decentralized algorithms, which are easily-computed, that nearly achieve these performance limits.
+Freelancers may have one or more skills (that are known, cf. [16]) and jobs may have multiple parts, called tasks,
+that require separate skills. Due to job skill requirement variety and limited freelancer ability, it is often not possible
+Part of the material in this paper was presented at IEEE INFOCOM, Hong Kong, April-May 2015 [1].
+A. Chatterjee is with the Department of Electrical and Computer Engineering, The University of Texas at Austin, Austin, TX 78712 USA.
+(e-mail: avhishek@utexas.edu).
+L. R. Varshney is with the Department of Electrical and Computer Engineering and the Coordinated Science Laboratory, University of
+Illinois at Urbana-Champaign, Urbana, IL 61801 USA. (e-mail: varshney@illinois.edu).
+S. Vishwanath is with the Department of Electrical and Computer Engineering, The University of Texas at Austin, Austin, TX 78712
+USA. (e-mail: sriram@austin.utexas.edu).
+2
+to  nd a freelancer that meets all requirements for a job: a job may have to be divided among freelancers. Moreover,
+a task in a job may require so much time that even the task may have to be divided among multiple freelancers.
+There are reputation systems within freelance market platforms, so freelancers have a reputation level as well as
+minimum acceptable hourly rate and skills, which allow worker categorization. Some freelancers are adaptable in
+terms of hours available to spend on a particular type of task, whereas others pre-specify hours available for each
+kind of task. Here we consider the non-adaptable setting where, for example, a freelancer may be available for 20
+hours (per week) of any C++ or Java programming, or may be available for 10 hours (per week) of C++ and 10 hours
+of Java. Studying limits for adaptable freelancers and designing centralized schemes (and their approximations) are
+similar, but the distributed schemes require a different approach.
+The objective of the platform is to  nd a good allocation of jobs (and tasks) to freelancers. Since working on a
+task requires synchronization among freelancers, work can only start when the whole task has been allocated. On
+the other hand, for some jobs there are interdependencies between different tasks [17] and hence, for these jobs all
+tasks must be allocated before the job starts. Moreover, some jobs may require all parts to be done by freelancers
+with the same level of expertise for uniform quality and money spent. These considerations lead to concepts of
+decomposability and  exibility that are central to our development.
+In the ethos of self-selection, it is desirable for crowd systems to not be centrally controlled, but rather for jobs
+and freelancers to choose each other. Currently, this may happen randomly or greedily. This is clearly not optimal,
+as the following example illustrates. Consider two types of jobs (single task) and two categories of freelancers. A
+type 1 job can be served by either of the worker categories (example, lower reputation requirement) whereas type 2
+jobs can only be served by category 2 workers. If freelancers and jobs are allocated arbitrarily then it may happen
+that type 1 uses many category 2 freelancers and many type 2 jobs remain unserved.
+Optimal centralized allocation of informational tasks under the constraints of crowd systems is related to hard
+combinatorial problems such as the knapsack problem. Compared to scheduling problems in computer science [18],
+communication networks [19], [20], and operations research [21], crowd systems face challenges of freedom of
+self-selection, need for decentralized operation, and uncertainty in resource availability.
+Prior works in the information theory, networking, and queueing literatures are similar to our work in terms of
+theoretical framework, performance metrics, and the nature of performance guarantees, but are not directly related.
+The notion of capacity of a resource-shared system where jobs are queued until they are served and the notion of a
+capacity-achieving resource allocation scheme for this kind of system came to prominence with the work of Tassiulas
+and Ephremides [22], [23]. The capacity concept and capacity-achieving schemes were subsequently developed for
+applications in communication networks [19], [20], [24], [25], cloud computing [26], online advertising [27], [28],
+and power grids [29], among others. With the advent of cloud services, large-scale systems have attracted signi cant
+research interest: resource allocation schemes and their performance (queueing delays, backlogs, etc.) in the large-
+scale regimes have been studied [30] [33].
+In this paper, our goal is to understand the fundamental limits (capacity) of freelance markets and ways to
+achieve this ultimate capacity. We  rst develop a centralized scheme for achieving these maximum allocations
+where a central controller makes all job allocation decisions. Given the potential large scale of platforms, we also
+discuss low-complexity approximations of the centralized scheme that almost achieve the limit. Finally, with an eye
+towards giving  exibility to customers (job requesters) in choosing freelancers, we propose simple decentralized
+schemes with minimal central computation that have provable performance guarantees. Further, since job arrival
+and freelancer availability processes are random (and sometimes non-stationary), we also address ways to adapt
+when the system is operating outside its capacity limits.
+II. SYSTEM MODEL
+We  rst provide formal de nitions of the nature of informational work and workers, and establish notation.
+Freelancers (or agents) are of L categories. In each category l   [L], there are M l types of agents depending
+on their skill sets and available hours. There are S skills among agents of all categories and types. An agent of
+category l and type i has a skill-hour vector hl
+Jobs posted on the platform are of N types. Each type of job j   [N ] needs a skill-hour service rj, i.e. rj,s
+hours of skill s. A part of a job of type j involving skill s is called a (j, s)-task if rj,s > 0, which is the size of
+this task.
+i,s available hours for work involving skill s   [S].
+i, i.e. hl
+3
+A job of type j can only be served by agents of categories l   N (j)   [L]. This restriction is captured by a
+bipartite graph G = ([N ], [L], E), where a tuple (j, l) /  E   [N ]   [L] implies that category l agents cannot serve
+jobs of type j.
+On the platform, jobs are allocated at regular time intervals to available agents, these epochs are denoted by
+t   {1, 2, . . .}. Jobs that arrive after epoch t has started are considered for allocation in epoch t + 1, based on
+agents available at that epoch. Unallocated jobs (due to insuf cient number of skilled agents) are considered again
+in the next epoch.
+Jobs arrive according to a ZN
+number of jobs of type j that arrive in scheduling epoch t.
+The stochastic process of available agents at epoch t is U(t) = (U1(t), U2(t), . . . , UL(t)). For each agent
++ -valued stochastic process A(t) = (A1(t), A2(t), . . . , AN (t)), where Aj(t) is the
+M l(t)(cid:1) denotes the number of available agents of different types at epoch
+2(t), . . . , U l
+category l, Ul(t) =(cid:0)U l
+1(t), U l
+t.
+We assume processes A(t) and U(t) are independent of each other and that each of these processes is independent
+and identically distributed for each t.1 We also assume that each of these processes has a bounded (Frobenius norm)
+covariance matrix. Let  ( ) be the distribution of U(t), and let   = E[A(t)] and  l = E[Ul(t)] for l   [L] be the
+means of the processes.
+At any epoch t, only an integral allocation of a task (say (j, s)) is possible. A set of tasks t1, t2, . . . , tn of size
+r1, r2, . . . , rn of skill s can be allocated to agents 1, 2, . . . , m only if available skill-hours for skill s of these agents
+h1, h2, . . . , hm satisfy
+n(cid:88)
+m(cid:88)
+vip   hi,
+vqj   rj, j   [n], i   [m]
+for some {vpq   0}.
+Whether different tasks of a job can be allocated at different epochs and across different categories of agents
+p=1
+q=1
+depend on the type of the job.
+De nition 1. A type of job j is called non-decomposable (decomposable) if different tasks comprising it are (are
+not) constrained to be allocated at the same epoch.
+De nition 2. A type of job j is called in exible ( exible) if different tasks as well parts of tasks comprising it are
+(are not) constrained to be allocated to the same category of agents.
+In a system with only decomposable jobs, given a set of {ul = (ul
+M l) : l   [L]} agents (that is, ul
+i
+agents of category l and of type i within that category), a number aj,s of (j, s)-tasks can be allocated only if there
+exist non-negative {zl
+j,s : (l, j, s)   [L]   [N ]   [S]} satisfying
+2, . . . , ul
+1, ul
+(cid:88)
+(cid:88)
+l
+j [N ]
+zl
+j,s = aj,s, zl
+j,srj,s   (cid:88)
+zl
+i [M l]
+j,s = 0 if (j, l) /  E, for all j   [N ], s   [S],
+i,s, for all l   [L], s   [S].
+ihl
+ul
+(1)
+On the other hand, given a set of {ul = (ul
+decomposable jobs, aj jobs of type j (for each j) can be allocated only if there exist non-negative {zl
+[L]   [N ]} satisfying
+M l) : l   [L]} agents in a system with only non-
+j,s : (l, j)  
+1, ul
+2, . . . , ul
+(1) and aj,s = aj for all j, s.
+(2)
+Intuitively, the conditions imply that required skill-hours for the set of jobs is less than the available skill-hours
+of agents. The {zl
+j,s} capture a possible way of dividing tasks across multiple category of agents, as they can be
+interpreted as the number (possibly fraction) of (j, s)-tasks allocated to l-category agents. Note that conditions (1)
+and (2) are necessary for allocations of decomposable and non-decomposable jobs respectively. These conditions
+only imply that there exist possible ways of splitting jobs and tasks across different categories of agents to ensure
+integral number of tasks (jobs) are allocated in case of decomposable (non-decomposable) jobs.
+1Most of our results can be extended to stationary ergodic processes.
+4
+For a system with only  exible jobs, different parts of a task can be allocated to different categories and a category
++ . Thus  exible and decomposable
+can be allocated parts of tasks. Hence, {zl
+(non-decomposable) jobs need to satisfy condition (1) (condition (2)) which we refer to as FD (FND).
+j,s} can possibly take any value in RLN S
+For in exible jobs, a necessary condition the allocation must satisfy is that each category gets the same integral
+number of (j, s)-tasks for all s, j, i.e.,
+j,s   Z+ s.t. zl
+zl
+j,s = zl
+j,s(cid:48) for all s, s(cid:48), j.
+(3)
+An allocation of in exible and decomposable (non-decomposable) jobs needs to satisfy conditions (1) (condition
+(2)) and (3), which we refer to as ID (IND).
+For simplicity, in this work we focus on systems with only a single one of these four classes of jobs.2 For brevity
+we use the same abbreviations to refer to class of job, as we use for the necessary conditions. Thus, we have FD,
+FND, ID, and IND systems.
+agents is as follows:  (N ) =(cid:80)N
+a job generally requires more diversity than a single agent possesses, implying M =(cid:80)
+seen in practice, we assume  j(N ) =  (1), j   [N ] and (cid:80)
+In crowd systems, the scaling of number of job and agent types, rate of job arrivals, and number of available
+j=1  j scales faster than N, i.e.  (N ) =  (N ) or limN   N/ (N ) = 0 and the
+number of skills S scale slower than N, i.e. S = o(N ). In practice, a job requires at most a constant number of
+skills d, implying there are  (Sd) possible job types. On the other hand, the number of skills of an agent d(cid:48) < d as
+). L = O(1),
+as it relates to variation in reputation levels and hourly rates, and so M = o(N ). Beyond these system scalings
+j:rj,s>0  j(N ) =   (N c) for all s   [S], for some
+l M l = O(Sd(cid:48)
+c > 0. In the sequel, we assume these scaling patterns and refer to them as crowd-scaling.
+III. CAPACITY, OUTER REGION, AND CENTRALIZED ALLOCATION
+In this section we study the limits of a freelance market with centralized allocation and present a centralized
+algorithm that achieves the limit. We also discuss a simpler upper bound for the capacity region in terms of  rst-order
+statistics of the system. These results on ultimate system limits and ways to achieve them are not only important in
+their own right, but also serve as benchmarks for later discussion of decentralized schemes that provably achieve
+nearly the same limits.
+To formally characterize the maximal supportable arrival rate of jobs we introduce some more notation. For each
+j   [N ], let Qj(t) be the number of unallocated jobs that are in the crowd system just after allocation epoch t  1.
+As de ned above, Aj(t) is the number of jobs of type j that arrive between starts of epochs t  1 and t. Let Dj(t)
+be the number of jobs of type j that have been allocated to agents at epoch t; we call a job allocated only when
+all parts have been allocated. Thus the evolution of the process Qj(t) can be written as:
+Qj(t + 1) = Qj(t) + Aj(t)   Dj(t).
+(4)
+Note that at any epoch t, at most Qj(t) + Aj(t) type j jobs can be allocated, as this is the total number of type j
+jobs at that time and hence Dj(t)   Qj(t) + Aj(t), implying Qj(t)   0.
+Notation and Convention. We denote the interior and the closure of a set C by  C and  C, respectively. When
+we say   = ( 1,  2, . . . ,  N )       RN S
++ we mean  S = (( 1,  1, . . . , S times) , ( 2,  2, . . . , S times) , . . .)    .
+Also, whenever we say     ( ) (cid:48) for  (cid:48)   RN
+De nition 3. An arrival rate   is stabilizable if there is a job allocation policy P under which Q(t) = (Qj(t), j   [N ])
+has a  nite expectation, i.e., lim supt   E[Qj(t)] <  , for all j. The crowd system is called stable under this
+policy.
+De nition 4. C , a closed subset of RN
+agent-availability process if any      C  is stabilizable and any   /  C  is not stabilizable.
++ is the capacity region of a crowd system for a given distribution   of the
++ , we mean for any     RN
++ ,      (cid:48)   ( ) S    .
+2Extension to combinations of multiple classes is not much different but requires more notation.
+A. Capacity Region and Outer Region
+agents u =(cid:0)ul
+Let us characterize the capacity regions of different classes of crowd systems. For any given set of available
+i : 1   i   M l, 1   l   L(cid:1), we de ne the set of different types of tasks (aj,s) that can be allocated
+in a crowd system. Note that the necessary conditions to be satis ed for tasks to be allocated are speci c to the
+class of crowd system.
+5
+Using the explicit conditions (1), (2), and (3) for tasks (jobs) to be allocated, we de ne CFD(u), CFND(u),
+CID(u), and CIND(u) as the set of tasks that can be allocated in FD, FND, ID, and IND systems respectively for
+given availability u. We denote these sets generically by C(u) and refer to conditions FD, IFD, FND, and IND
+generically as crowd allocation constraint or CAC.
+(cid:110)
+(aj,s   Z+) :  (cid:16)
+(cid:17)
+zl
+j,s
+satisfying CAC
+,
+and C(u) is the convex hull of C(u).
+C(u) :=
+The following theorem generically characterizes capacity regions of different crowd systems.
+Theorem 5. Given a distribution   of agent-availability, i.e.,  (u) = Pr (U(t) = u), for a   /   C( ) there exists
+no policy under which the crowd system is stable, where
+(cid:111)
+    .
+     =
+(cid:88)
+u ZM
++
+(cid:88)
+l
+C( ) =
+ (u) (u) : M =
+M l,  (u)   C(u)
+For FD, FND, and IND systems, for any      C( ) there exists a policy such that the crowd system is stable.
+Proof: See Appendix II.A.
+This implies that for FD, FND, and IND systems capacity region C  =  C( ) and for ID systems C     C( )
+(possibly strict). Note that the conditions FD, FND, ID, and IND (generically CAC) are necessary conditions for a
+valid allocation. The above theorem implies these conditions are also suf cient, except for ID systems. In Sec. V,
+we present an alternate characterization of the capacity region for in exible systems.
+Note C( ) depends on the distribution of agent availability  , but it is hard to obtain this distribution for large
+and quickly-evolving systems in practice. Hence, a characterization in terms of simpler system statistics is of use.
+Below is a characterization of a region beyond which no arrival rate can be stabilized. Borrowing terminology from
+multiterminal Shannon theory, we call this the outer region.
+For any set J   [N ], de ne N (J) = {l   [L] :  j   J s.t. (j, l)   E} and the closed subset of RN
++ ,
+     :  J   [N ], s,
+(cid:88)
+j J
+ jrj,s   (cid:88)
+(cid:88)
+l N (J)
+i M l
+Cout
+  =
+    .
+ihl
+ l
+i,s
+Theorem 6. For any distribution   with mean  , C    Cout
+  .
+Proof: See Appendix II.B.
+ 
+ 
+because Cout
+In general, C  is a strict subset of Cout
+only captures the balance of skill-hours in the crowd-
+system, i.e. average skill-hours requirement is no more than average availability, but partial allocation of a task is
+not acceptable in a crowd system. Moreover, for non-decomposable jobs all tasks of a job have to be allocated
+simultaneously. Hence, meeting an average skill-hour balance criterion may be far from being suf cient for stability.
+For in exible systems the requirements are even stricter, which is likely to increase the gap between the outer region
+and the true capacity region. In Sec. V we present a tighter outer region for in exible systems.
+  may be non-empty when C  is empty. For example, consider a simple non-decomposable
+crowd system with N = L = 1 and M 1 = S = 2. Let each job require 1 hour of both skills, type i agents have
+only 1 hour available for skill i and none for other skills, U1(t) be uniformly distributed on {(0, 10), (10, 0)}, and
+  = (4, 4). Then clearly     Cout
+  , but note that at any time there is only one type of skill available, hence no job
+can be allocated. This implies C  =  .
+In certain scenarios Cout
+6
+B. Centralized Allocation
+Though there exists a policy for each      C  that stabilizes the system, these policies may differ based on
+  and may depend on the job-arrival and agent availability statistics. Changing policies based on arrival rate and
+statistics is not desirable in practical crowd systems due to the signi cant overhead. Below we describe a centralized
+statistics-agnostic allocation policy which stabilizes any      C . Later we discuss computational cost of this policy
+for different classes of crowdsourcing system and present simpler distributed (or almost distributed) schemes with
+provable performance guarantees under some mild assumptions.
+To describe the scheme we introduce some more notation. Let Qj,s(t) be the number of s-tasks (skill s) of type
+j jobs just after the allocation epoch t  1 and let Dj,s(t) be the number of s-tasks (skill s) of type j jobs allocated
+at epoch t. Then
+Qj,s(t + 1) = Qj,s(t) + Aj(t) 1 (rj,s > 0)   Dj,s(t).
+Note that for all t, due to the CAC condition on allocation, Dj,s(t)   C(U(t)). Moreover, there is an additional
+restriction that Dj,s(t)   Qj,s(t) + Aj(t), as there are Qj,s(t) + Aj(t) part s of job type j in the system at that
+time, which in turn implies Qj,s(t)   Z+ for all t. Note that as Dj,s(t)   C(U(t)), for non-decomposable systems
+Qj,s = Qj,s(cid:48) for all j, s, s(cid:48), whereas for decomposable systems they may differ.
+Algorithm 1 MaxWeight Task Allocation (MWTA)
+Input: {Qj,s(t) : j   [N ], s   [S]}, A(t) and U(t) at t
+Output: Allocation of jobs to agents
+MaxWeight
+(cid:16)
+(cid:17)
+ zl
+j,s(t) : l, j, s
+(cid:16)
+(cid:17)
+= arg
+max
+j,s Z+:l,j,s)
+(zl
+zl
+j,s
+satisfy CAC with aj,s =  j,s(t) j, s.
+(cid:88)
+j,s
+Qj,s(t) j,s
+s.t.
+Task Allocation
+for j = 1 : N do
+Order j-type jobs arbitrarily, Oj
+for s = 1 : S do
+Use order Oj among non-zero (j, s)-tasks
+l = 1
+while l   L and(cid:80)l 1
+Allocate [(cid:80)l 1
+j,s : (cid:80)l
+k=1 zk
+j,s < Qj,s(t) + Aj(t) do
+k=1 zl
+k=1 zk
+k] (j, s) tasks to category l. Here tasks [x : x + y] are task set I =
+{(cid:100)x(cid:101),   (cid:98)x + y(cid:99)} (in the ordering Oj), ((cid:100)x(cid:101)   x) fraction of task (cid:100)x(cid:101) and 1 + x + y   (cid:100)x + y(cid:101) fraction
+of task (cid:100)x + y(cid:101).
+l   l + 1
+end while
+Order agents of category l arbitrarily
+for s = 1 : S do
+Agents pick maximum (as per availability constraint) tasks (or part) in order from (cid:80)
+j min(zl
+j,s, Qj,s(t) +
+end for
+end for
+for l = 1 : L do
+Aj(t))rj,s hours
+end for
+end for
+We propose the MaxWeight Task Allocation (MWTA) policy, Alg. 1, to allocate tasks to agents at epoch t
+based only on the knowledge of Q(t), A(t), and U(t), and therefore statistics-agnostic. It is based on MaxWeight
+matching [19], [20].
+j,s} that satis es CAC. The following theorem
+implies that MWTA allocates tasks optimally. The proof of the theorem is based on adapting the proof of optimality
+It is apparent that the MaxWeight part of the algorithm  nds a {zl
+7
+of the MaxWeight algorithm under the constraints and assumptions of crowd systems. It implicitly relies on the
+following result.
+Proposition 7. For any u and Q, and {zl
+feasible allocation for FD, FND, and IND systems.
+j,s} satisfying CAC, the Task Allocation part of MWTA (Alg. 1) gives a
+Proof: See Appendix II.C.
+Theorem 8. MWTA (Alg. 1) stabilizes FD, FND, or IND crowd systems for any arrival rate      C  (for respective
+C ).
+Proof: See Appendix II.D.
+IV. SINGLE-CATEGORY SYSTEMS AND DECENTRALIZED ALLOCATIONS
+There is effectively a single category of agents in many platforms with a large population of new freelancers,
+whose reputations are based on evaluation tests for skills and who are paid at a  xed rate. Hence designing ef cient
+allocation schemes for single-category systems are of particular interest, as this population of agents are signi cant
+in ever-evolving crowd systems. Insights drawn from single-category systems are also useful in controlling multi-
+category systems, Sec. V.
+j,s = aj,s   Z+ and hence the feasibility condition (1) reduces
+uihi,s for all s   [S], aj,s   Z+,
+For a single category system (L = 1), note that z1
+aj,srj,s  (cid:88)
+(cid:88)
+to:
+j
+i
+(cid:80)
+with condition (2) additionally requiring aj,s = aj,s(cid:48) for all j, s, s(cid:48). Thus, C(u) is the set of {aj,s} satisfying the
+above conditions for respective classes of jobs and C( ) is the weighted (by  (u)) sum of convex hulls of C(u)s,
+here C  =  C( ).
+(cid:80)
+  has a simple characterization as well. As for any j   [N ], (j, 1)   E, and N (J) = 1 for all J   [N ],
+Cout
+(cid:110)
+  :(cid:80)
+i [M ]  ihi,s. Thus it is suf cient to satisfy the inequality for J = [N ], and hence,
+l N (J)
+Cout
+i [M ]  ihi
+  =
+The MaxWeight computation in MWTA for single-category systems turns out to be the following integer linear
+i,s = (cid:80)
+j [N ]  jrj  (cid:80)
+i [M l]  l
+(cid:111)
+ihl
+.
+program (ILP), which is related to knapsack problems.
+(5)
+(cid:88)
+ j,srj,s  (cid:88)
+j,s
+arg max
+{ j,s:j,s}
+s.t. (cid:88)
+Qj,s j,s
+uihi,s s   [S],
+j
+i
+ j,s =  j,s(cid:48), s, s(cid:48), j (only for ND)
+For decomposable and non-decomposable systems, this is a single knapsack and multi-dimensional knapsack
+problem [34], respectively, and hence NP-hard. There exist fully polynomial time approximations (FPTAS) for
+single knapsack, whereas for multi-dimensional knapsack only polynomial time approximations (PTAS) are possible
+1     C }. Also, note
+[34]. With this approximation, say 1   , the MWTA policy stabilizes (1   ) C  = {  :  
+that for large crowd systems each  i is large and hence stabilizing any   with   + 1    C  is almost optimal. The
+above ILP can be relaxed to obtain a linear program, an allocation based on which achieves this approximation
+(see Appendix I.A for details).
+A. Decentralized Allocations
+Now we show that due to the structure of the crowd allocation problem and the fact that crowd systems are large,
+simple allocation schemes with minimal centralized control achieve good performance under mild assumptions
+on arrival and availability processes. Interestingly, though the centralized optimal allocation requires solving a
+knapsack problem at each epoch and greedy schemes are known to be sub-optimal for knapsack problems [34], we
+propose two simple greedy schemes that are almost optimal with good performance guarantees. One of them, called
+8
+GreedyAgent allocation provably performs well for decomposable systems and offers the freedom of selection to
+freelancers. Another, called GreedyJob allocation has provable performance guarantees for both decomposable and
+non-decomposable systems while allowing customers (job requesters) the freedom of selection. Thus, in some sense,
+this shows that though greedy algorithms can be suboptimal for an arbitrary allocation instant (at each epoch), for
+a dynamical system over long time, its performance is good.
+Algorithm 2 GreedyAgent Allocation
+Input: A(t)
+Output: Job to agent allocations
+A: set of agents, T : set of tasks
+while A and T non-empty do
+Agents in A contend (pick random numbers) and a wins
+for each skill with non-zero skill hour do
+a picks as many integral tasks as it can pick
+if a has remaining available hour then
+a Picks from remaining parts of the partially allocated task
+if a has remaining available hour then
+a picks part of any unallocated task
+end if
+Remove fully allocated tasks from T
+end if
+end for
+A = A\{a}
+end while
+Tasks with partial allocations are not allocated
+In GreedyAgent allocation (Alg. 2), agents themselves  gure out the allocation via contention, without any central
+control. Agents need no knowledge about the agent population, but do need information on the available pool of
+jobs and have to agree on certain norms. In most freelance market platforms, this information is readily available,
+and so an algorithm like this is natural. As expected, this scheme may not be able to stabilize any arrival rate in
+ C  for any ergodic job-arrival and agent-availability processes, but it has good theoretical guarantees under some
+mild assumptions on the job arrival and agent availability processes.
+De nition 9. A random variable X is Gaussian-dominated if E[X 2]   E[X]2 + E[X] and for all     R,
+E[e (X E[X])]   exp
+De nition 10. A random variable X is Poisson-dominated if for all     R, E[e (X E[X])]   e
+(cid:110) ((E[X 2] E[X]2) 2
+E[X](e    1).
+(cid:111)
+2
+Note that these domination de nitions imply that the variation of the random variable around its mean is dominated
+in a moment generating function sense by that of a Gaussian or Poisson random variable.3 Such a property is
+satis ed by many distributions including Poisson and binomial that are used to model arrival processes for many
+systems, e.g., telephone networks, internet, call centers, and some freelance markets [5], [6]. It is not hard to
+show that sub-Gaussian distributions (standard in machine learning [36]) that are symmetric around their mean, are
+Gaussian-dominated.
+The following theorem gives a guarantee on the performance of GreedyAgent, under mild restrictions on the job-
+arrival and agent-availability processes. Independence assumptions are not too restrictive for large crowd systems,
+where jobs and agents may come from different well-separated geographies or organizational structures.
+Theorem 11. If the arrival processes {Aj(t)} and the agent availability processes {Ui(t)} are i.i.d. across time
+and independent across types (jobs and agents) and all these processes are Gaussian-dominated (and/or Poisson-
+dominated), then for any given     (0, 1], there exists an N  such that GreedyAgent allocation stabilizes any
+3Domination in this sense is used in bandit problems [35].
+(cid:111)
+unallocated tasks is O(S log N ) with probability 1   o(cid:0) 1
+arrival rate     (1    )Cout
+N   N . Moreover, for any arrival rate in (1    )Cout
+1       Cout
+  :=
+(cid:110)
+  :
+ 
+1
+(cid:1).
+N 2
+for any single-category decomposable crowd system with
+  , at steady state, after an allocation epoch, the number of
+9
+Proof: See Appendix II.E.
+As C    Cout
+  , this implies that the greedy scheme stabilizes an arbitrarily large fraction of the capacity region,
+under the assumptions on the arrival and availability processes. As S = o(N ), more speci cally O(N c) for c < 1,
+the above bound on number of jobs imply that there are o(N ) unallocated tasks at any time. This in turn implies
+that unallocated tasks per type (average across types) is o(1), i.e., vanishingly small number of tasks per type are
+unallocated as the system scales.
+In GreedyAgent, there is no coordination among agents while picking tasks within jobs. Hence in a non-
+decomposable system, many tasks may be picked by agents but only few complete jobs are allocated. As more and
+more jobs accumulate, the chance of this happening increases, resulting in more accumulation. This can result in
+the number of accumulated jobs growing without bound, as formalized below.
+Proposition 12. There exists a class of non-decomposable crowd systems with Poisson-dominated (as well as
+Gaussian-dominated) distributions of arrival and availability, such that the system is not stable under GreedyAgent
+allocation.
+Proof: See Appendix II.F.
+Hence, we propose another simple greedy scheme that works for both decomposable and non-decomposable
+systems. The GreedyJob allocation scheme (Alg. 3) is completely distributed and hence a good  t for crowd
+systems. GreedyJob has similar performance guarantees for both decomposable and non-decomposable systems as
+GreedyAgent has for decomposable systems only.
+Algorithm 3 GreedyJob Allocation
+Input: U(t)
+Output: Job to agent allocations
+J : set of all jobs
+while Available skill-hours of agents and J (cid:54)=   do
+Jobs in J contend (pick random numbers) and J wins
+if J  nds agents to allocate all tasks then
+Allocate to those agents
+else
+J does not allocate anything
+end if
+J = J \{J}
+end while
+i  ihi,s  (cid:80)
+Theorem 13. If the arrival processes {Aj(t)} and the agent availability processes {Ui(t)} are i.i.d. across time and
+independent across types (jobs and agents), all these processes are Gaussian-dominated (and/or Poisson-dominated)
+i  ihi,s(cid:48)| is O(subpoly(N )), then for any given     (0, 1],  N  such that GreedyJob
+for any single-category crowd-system
+  , at steady state, after an allocation epoch, total number
+and  s, s(cid:48),|(cid:80)
+(cid:111)
+of unallocated jobs (adding all types) is O(log N ) with probability 1   o(cid:0) 1
+allocation stabilizes any arrival rate     (1   )Cout
+with N   N . Moreover, for any arrival rate in (1  )Cout
+1       Cout
+  :=
+(cid:1).
+(cid:110)
+  :
+ 
+1
+N 2
+Proof: See Appendix II.G.
+In Sec. V we propose a decentralized scheme for multi-category systems that uses the two single-category
+decentralized schemes as building blocks. At the end of Sec. V we brie y discuss the suitability of these decentralized
+schemes for crowd systems in terms of implementability on crowd platforms.
+10
+V. MULTI-CATEGORY SYSTEMS
+Sec. III characterized the capacity region and developed an optimal centralized scheme for crowd systems in,
+whereas Sec. IV discussed simple decentralized schemes for single-category systems. Here we return to multi-
+category systems, brie y discussing computational aspects of MWTA, followed by an alternate approach to the
+capacity and outer region of in exible systems that yields a simple optimal scheme. We also present a decentralized
+scheme based on insights from the optimal scheme and the decentralized allocations in Sec. IV.
+The MWTA scheme, which is throughput optimal for FD, FND, and IND systems, involves solving an NP-hard
+problem for multi-category systems. For multi-category systems this is from the general class of packing integer
+programs, for which constant factor approximation algorithms exist under different assumptions on the problem
+parameters [37]. These assumptions do not generally hold for MaxWeight allocation under the CAC constraint.
+Rather, we follow the same steps of LP relaxation and obtain a scheme that stabilizes any   for   + 1    C , since
+for large systems this is better than any arbitrarily close approximation scheme (as       as N    ).
+A. In exible System
+Below we present a characterization of the capacity region of in exible systems in terms of the bipartite graph
+G = (V, E), which captures the restriction of job-agent allocations.
+Theorem 14. Any   can be stabilized if      CI, where
+     =
+(cid:88)
+    ,
+CI =
+is the capacity region of a single category system with an agent availability distribution  l =  (cid:0)U l
+where C(l)
+Moreover, no   /   CI can be stabilized, i.e., for in exible systems the capacity region C  =  CI.
+l [L]
+ l
+ l
+ (l) :  (l)   C(l)
+j = 0 for all (j, l) /  E
+,  l
+i : i   [M l](cid:1).
+Proof: See Appendix II.H.
+This theorem has the following simple consequence. Consider separate pools of agents for each different category,
+cf. [7], which has agent-availability distributions { l : l   [L]}. Each such pool (category) of agents l can stabilize
+job-arrival rates in  C(l)
+. Thus if the job arrival process of each job type j can be split in such a way that pool
+j : j}    C(l)
+(category) l of agents sees an arrival rate  l
+,
+the system would be stable.
+j > 0 only if (j, l)   E, while ensuring that { l
+j, where  l
+ l
+ l
+In a server farm where jobs can be placed on any of the server queues, the join-shortest-queue (JSQ) policy
+stabilizes any stabilizable rate [20]. JSQ gives an arriving job to the server with the shortest queue and each server
+serves jobs in FIFO order. For multi-category crowd systems, we can draw a parallel between servers and agent
+pools. In addition we have constraints on job placement given by G and also have to do allocations of jobs among
+the agents in the pool optimally (unlike JSQ we do not have FIFO/LIFO speci ed). Thus we have to adapt JSQ
+appropriately based on our insights about optimal operation of crowd systems.
+We propose a statistics-agnostic scheme, JLTT-MWTA (Alg. 4) that has two parts: JLTT (join least total task)
+directs arrivals to appropriate pools of agents and MWTA allocates jobs in each pool separately. Letting Ql
+j,s(t) be
+the number of unallocated (j, s)-tasks in lth pool just after epoch t   1, JLTT uses these quantities to direct jobs
+to appropriate pools whereas MWTA uses them to allocate tasks within each pool.
+The JLTT part is computationally light. The central controller only needs to know Q(t) and has to pick the
+j,s) pools of agents to direct jobs (type j). To perform MWTA in each pool, a PTAS,
+(cid:80)
+minimally loaded (minl
+FPTAS, or LP relaxation scheme can be used.
+s Ql
+Unlike JSQ, where service discipline in each server is  xed and the goal is to place the jobs optimally, we have
+jobs with multi-dimensional service requirements from time-varying stochastic servers (agent-availability) and have
+to place jobs as well as discipline the service in each random and time-varying virtual pool. Thus optimality of
+JSQ cannot be claimed in our case. But as stated below, JLTT division followed by MWTA allocation is indeed
+optimal.
+Theorem 15. JLTT-MWTA stabilizes any      CI.
+Proof: See Appendix II.I.
+11
+Algorithm 4 JLTT-MWTA: Divide and Allocate
+Input: A(t), U(t), Q(t)
+Output: Job division and allocation
+Create pool l with category l agents ( l   [L])
+JLTT: Join Least Total Task
+for each (j, s) do
+Count number of unallocated (j, s)-tasks in pool l: Ql
+Divide Aj(t)1(rj,s > 0) tasks equally among pools arg minl:(j,l) E
+j,s(t)
+end for
+In each pool l run MWTA for single-category system
+(cid:80)
+s Ql
+j,s(t)
+An important aspect of JLTT-MWTA is that job allocations within each pool can happen independently of each
+other. The central controller only has to make a decision on how to split the jobs based on the current system
+state information. This allows a more distributed allocation along the lines of following hierarchical organizational
+structure [38]. First, the central controller divides jobs for different agent-pools based on {Ql
+j,s}. Then in each agent
+pool, allocations are according to GreedyJob allocation, which works for both decomposable and non-decomposable
+single-category systems. The distributed scheme that we propose here is an improvisation of the above JLTT scheme
+followed by GreedyJob allocation in each pool. We call it Improvised JLTT and GreedyJob Allocation (Alg. 5).
+Algorithm 5 Improvised JLTT and GreedyJob Allocation
+Input: A(t), U(t), Q(t)
+Output: Job division and allocation
+Improvised JSQ for each job-type j and each skill s:
+j(t)
+n = 0
+N l
+j = Ql
+While n < Aj(t)
+Send 1 task to the category l  with lowest
+index among arg minl:(j,l) E N l
+j
+Increase N l 
+End While
+j and n each by 1
+Allocations within each pool l:
+Run GreedyJob allocation
+j values.
+j,s = Ql
+First note that unlike JLTT-MWTA, here we only maintain number of unallocated jobs and do not maintain
+number of unallocated tasks for each skill s. This is because as GreedyJob allocation is used as allocation scheme
+in each pool, Ql
+j,s(cid:48) for all s, s(cid:48).
+This algorithm is also simple to implement. The central controller only needs to track the number of unallocated
+j. For any arriving job of type j, the central controller sends
+j are reset
+j. This continues until the next epoch, when the N l
+j(t)) from the previous epoch and set N l
+j = Ql
+j and updates N l
+jobs (Ql
+the job to the pool with minimum N l
+to new Ql
+Recall that Sec. I gave a simple example of a fully distributed scheme where jobs pick agents greedily (from
+the set of feasible agents as per G) and showed it was not a good scheme. Improvisation of JLTT is proposed for
+a better performance guarantee, while GreedyJob in each pool is proposed for implementability and freedom of
+selection for customers. It is not hard to prove Improvised JLTT followed by MWTA is optimal for any arrival and
+availability process satisfying the assumptions of Sec. II. Below we present performance guarantee for Improvised
+JLTT and GreedyJob allocation.
+To present performance guarantees of the distributed scheme we give an outer region CO for the system, along
+the lines of the alternative characterization CI of the capacity region C  for in exible systems.
+Theorem 16. In exible crowd systems cannot be stabilized for   /  CO, where CO =
+and Cout
+is the outer region for the single category system comprising the lth category (pool) of agents with
+(cid:110)
+  :   =(cid:80)
+ l
+l [L]  (l) where  (l)   Cout
+ l
+(cid:111)
+,
+12
+ l = E(cid:2)Ul(cid:3).
+Proof: See Appendix II.J.
+For job allocation in server farms, extant performance guarantees are mostly for symmetric load, i.e., symmetric
+(almost) service and job arrival rates and regular graphs, cf. [30], [31]. Unlike server farms, symmetric load (in
+terms of skill-hours) is not guaranteed in crowd systems by symmetric arrival rates and graphs. This is because
+different types of jobs have different skill and hour requirements. The following guarantee for crowd systems is
+for bounded asymmetry (sub-polynomial variation) in agent availability, complete graph, asymmetric job arrival
+rates, and asymmetric job requirements (extendable to regular graphs with additional assumptions on symmetry of
+job arrival rates and requirements). Note that because of the in exibility constraint, a multi-category system with
+a complete graph is not equivalent to a single-category system.
+Theorem 17. Without loss of generality assume the same ordering of agent types in each category, i.e., M l =
+i (t)}
+M l(cid:48)
+are i.i.d. across time and independent across types (jobs and agents), all these processes are Gaussian-dominated
+i,s(cid:48))| are O (subpoly(N )) and G is
+complete bipartite, then for any given     (0, 1],  N  such that Improvised JLTT and Greedy-job stabilizes any
+    (1   )CO :=
+and the maximum number of unallocated jobs (across all types) is O(log N )
+i for all l, l(cid:48), i. If the arrival processes {Aj(t)} and the agent availability processes {U l
+i | and maxl,s,s(cid:48) |(cid:80)
+i maxl,l(cid:48) | l
+i,s   hl
+i    l(cid:48)
+i = hl(cid:48)
+= M/L and hl
+(and/or Poisson-dominated),(cid:80)
+1       CO(cid:111)
+(cid:1).
+with probability 1   o(cid:0) 1
+(cid:110)
+  :
+i  l
+i(hl
+1
+N 2
+Proof: See Appendix II.K.
+The proofs of Thm. 11, 13, and 17 are all based on constructing queue-processes (different for the algorithms)
+that stochastically dominate the number of unallocated jobs, and bounding the steady state distributions of these
+processes using Loynes  construction and moment generating function techniques.
+B. Implementation of Decentralized Schemes on Crowd Platforms
+We have described the allocation schemes at the level of system abstraction and discussed their performance.
+These schemes can be easily implemented on crowd platforms as well.
+GreedyAgent allocation is completely decentralized, only requiring agents to abide by a norm for picking partial
+tasks, which can be enforced by randomized vigilance and penalizing norm violators in reputation. If the payments
+are the same, as it generally is in single-category systems where all jobs require same quality, there is no incentive
+for agents to deviate from the norm.
+Any arbitrary contention method among agents will work for the algorithm, and hence the crowdsourcing platform
+only needs to ensure that no two allocations are done simultaneously (as practiced in airlines booking). Multiple
+allocations can also be allowed by the platform if they do not con ict. Here the platform has to ensure that an
+agent can place requests only for an amount of tasks it can actually perform, given the constraints on available
+hours. Also, only one agent can request for a task or a certain part of it. Once the agent has been declined, it can
+place request(s) for task(s) of the same or lesser hours. This can either be enforced by appropriate modi cation
+of the portals by keeping tracks of total hours of requests placed or by vigilance. GreedyJob can also be easily
+implemented on a crowd platform. The platform has to ensure that jobs request agents and not the other way
+around. One way to implement this is to allow jobs to place requests for agents while ensuring they do not request
+more than the required service. Also, the platform has to ensure that skill-hour requests of no two jobs collide.
+This again can be ensured by serializing the requests as above. Agents are expected to accept a requested task, as
+there is no difference between tasks involving same skill since payments are the same. This can also be ensured
+by linking agent rating to rate of task-request acceptance.
+It is apparent that GreedyJob offers choice to customers and GreedyAgent offers choice to agents. By allowing
+a customer (or an agent) to decline an approaching agent (or a customer) request and to explore more options,
+only one option at a time, the platform can provide freedom of choice to agents and customers under both schemes
+while operating at capacity.
+In case of multi-category systems, the platform only needs to direct arriving jobs to the appropriate pool of
+agents, based on current backlog; the rest of the allocation happens as per GreedyJob. Directing a job to a category
+of agents can be implemented in a crowd platform by making the job visible only to freelancers of that category and
+13
+vice versa (similar to  ltering done by search engines and online social networks) or through explicit hierarchical
+organization into pools [38].
+VI. BEYOND THE CAPACITY REGION
+We have now characterized the capacity (and outer) regions of different classes of crowd systems, shown the
+existence of computationally feasible centralized schemes that achieve these regions, and presented simple distributed
+schemes with minimal centralized intervention and good performance guarantees for any arrival rate within the
+capacity region. In crowd systems, however, arrival rates may not be within the capacity region, since the platform
+may have little or no control on resource (freelancer) planning, unlike traditional communication networks or cloud
+computing systems. Hence, an important aspect of crowd systems is to turn down job requests. Indeed, deciding to
+decline a job must be done as soon as the job arrives because dropping a job after  rst being accepted adversely
+affects the reputation of the crowd platform.
+Here, we propose a centralized scheme for a crowd system to decline jobs on arrival in a way that is fair
+across all job types. Our scheme is statistics-agnostic and works even for independent but non-stationary arrival
+and availability processes.
+We solve the following problem: given an arrival rate  , design a statistics-agnostic policy to accept (1    ) 
+jobs on average and allocate them appropriately such that   is the minimum for which the crowd system is stable.
+Note that if      C , the minimum   is 0, else, it is strictly positive. We want to design a statistics-agnostic policy
+without the knowledge of   and C . As a benchmark, we consider the following problem for  > 0, when   and
+C  are known.
+min     [0, 1]
+s.t. (1    )  + 1   C .
+(6)
+Given   , optimum of (6), (1     )  is within  of the optimal rate of accepted jobs for which the system is
+stabilizable.
+As we want a scheme that is agnostic of   and C , we propose the following simple scheme, for   > 0 and
+j,s(t) is the number of unallocated accepted (j, s)-tasks ((j, s)-tasks directed to category l) in the system.
+ Ql
+ (t) = arg min
+  [0,1]
+(cid:40)
+ (cid:80)
+j Aj(t)     (cid:80)
+ (cid:80)
+j Aj(t)     (cid:80)
+(cid:40)
+For accepted jobs run
+j,s:rj,s>0
+j,s:rj,s>0 minl  Ql
+ Qj,s(t)Aj(t)
+(I)
+j,s(t)Aj(t) (II)
+Job is accepted w.p. 1    (t), accepted jobs  A(t) (I & II)
+MWTA
+JLtT-MWTA (II)
+(I)
+(7)
+Steps marked by I (II) are applicable for FD, FND and IND (ID and IND) systems.
+Theorem 18. Crowd system with jobs accepted and allocated according to (7) is stable and (cid:80)
+(cid:80)T
+ Aj(t)] can be made arbitrarily small for an appropriately chosen  , for all suf ciently large T .
+E[(cid:80)
+j  j(1     )  
+1
+T
+j
+t=1
+Proof: See Appendix II.L.
+(cid:80)T
+This theorem demonstrates that by following the job acceptance and allocation method (7), the crowd system
+can be stabilized while ensuring the average number of accepted jobs per allocation epoch is arbitrarily close to
+the optimal number of accepted jobs per allocation period. Note that as all jobs (across all types) are accepted with
+the same probability, the above result also implies that (1     ) j   1
+E[  Aj(t)] is small. It can be shown
+that the above scheme works for time-varying systems (E[A(t)] =  (t) and U    t()) as well guaranteeing small
+, where   (t) is the solution of (6) for   =  (t) and C  = C t.
+limT   1
+T
+j
+sectionConclusion
+Human information processing, structured through freelance markets, is an emerging structure for performing
+informational work by capturing the cognitive energy of the crowd. It is important to understand the fundamental
+limits and optimal designs for such systems.
+ j(t)(1     (t))   E[  Aj(t)]
+(cid:80)T
+(cid:80)
+(cid:16)
+(cid:17)
+t=1
+T
+t=1
+14
+In this work we provide a characterization of the work capacity of crowd systems and present two statistic-agnostic
+job allocation schemes MWTA ( exible jobs) and JLTT-MWTA (in exible jobs) to achieve limits. To ensure low
+computational load on the crowd platform provider and freedom of choice for job requesters, we present simple
+decentralized schemes, GreedyAgent, GreedyJob, and Improvised JLTT-GreedyJob that (almost) achieve capacity
+with certain performance guarantees. These decentralized schemes are easy to implement on crowd platforms,
+require minimal centralized control, and offer freedom of self-selection to customers: all desirable qualities for
+any crowd platform. Due to quick evolution and unpredictability of freelancer resources, crowd systems may often
+operate outside capacity, which inevitably results in huge backlogs. Backlogs hurt the reputation of the platform,
+and so we also propose a scheme that judiciously accepts or rejects jobs based on the system load. This scheme
+is fair in accepting jobs across all types and accepts the maximum number of jobs under which the system can be
+stable.
+REFERENCES
+[1] A. Chatterjee, L. R. Varshney, and S. Vishwananth,  Work capacity of freelance markets: Fundamental limits and decentralized schemes, 
+in Proc. 2015 IEEE INFOCOM, Apr. 2015, pp. 1769 1777.
+[2] D. Tapscott and A. D. Williams, Wikinomics: How Mass Collaboration Changes Everything, expanded ed. New York: Portfolio
+Penguin, 2006.
+Press, 2006.
+Institute, 2011.
+[3] Y. Benkler, The Wealth of Networks: How Social Production Transforms Markets and Freedom. New Haven, CT: Yale University
+[4] D. Bollier, The Future of Work: What It Means for Individuals, Businesses, Markets and Governments. Washington, DC: The Aspen
+[5] D. F. Bacon, E. Bokelberg, Y. Chen, I. A. Kash, D. C. Parkes, M. Rao, and M. Sridharan,  Software economies,  in Proc. FSE/SDP
+Workshop Future Softw. Eng. Research (FoSER 2010), Nov. 2010, pp. 7 12.
+[6] M. Vukovic and O. Stewart,  Collective intelligence applications in IT services business,  in Proc. IEEE 9th Int. Conf. Services Comput.
+(SCC), Jun. 2012, pp. 486 493.
+[7] L. R. Varshney, S. Agarwal, Y.-M. Chee, R. R. Sindhgatta, D. V. Oppenheim, J. Lee, and K. Ratakonda,  Cognitive coordination of
+global service delivery,  arXiv:1406.0215v1 [cs.OH]., Jun. 2014.
+[8] C. Shirky, Cognitive Surplus: Creativity and Generosity in a Connected Age. Penguin, 2010.
+[9] T. W. Malone, R. Laubacher, and C. Dellarocas,  The collective intelligence genome,  MIT Sloan Manage. Rev., vol. 51, no. 3, pp.
+[10] K. J. Boudreau and K. R. Lakhani,  Using the crowd as an innovation partner,  Harvard Bus. Rev., vol. 91, no. 4, pp. 60 69, Apr.
+[11] D. DiPalantino and M. Vojnovi c,  Crowdsourcing and all-pay auctions,  in Proc. 10th ACM Conf. Electron. Commer. (EC 09), Jul.
+[12] N. Archak and A. Sundararajan,  Optimal design of crowdsourcing contests,  in Proc. Int. Conf. Inf. Syst. (ICIS), 2009, p. 200.
+[13] K. J. Boudreau, N. Lacetera, and K. R. Lakhani,  Incentives and problem uncertainty in innovation contests: An empirical analysis, 
+Manage. Sci., vol. 57, no. 5, pp. 843 863, May 2011.
+[14] G. V. Ranade and L. R. Varshney,  To crowdsource or not to crowdsource?  in Proc. AAAI Workshop Human Comput. (HCOMP 12),
+[15] D. R. Karger, S. Oh, and D. Shah,  Budget-optimal task allocation for reliable crowdsourcing systems,  Oper. Res., vol. 62, no. 1, pp.
+[16] C.-J. Ho and J. W. Vaughan,  Online task assignment in crowdsourcing markets,  in Proc. 26th AAAI Conf. Artif. Intell., Jul. 2012,
+[17] D. V. Oppenheim, L. R. Varshney, and Y.-M. Chee,  Work as a service,  in Advanced Web Services, A. Bouguettaya, Q. Z. Sheng, and
+F. Daniel, Eds. Springer, 2014, pp. 409 430.
+[18] J. Kleinberg and  E. Tardos, Algorithm Design. Addison-Wesley, 2005.
+[19] M. J. Neely, Stochastic Network Optimization with Application to Communication and Queueing Systems. Morgan & Claypool
+[20] R. Srikant and L. Ying, Communication Networks: An Optimization, Control and Stochastic Networks Perspective.
+Cambridge
+21 31, Spring 2010.
+2013.
+2009, pp. 119 128.
+Jul. 2012, pp. 150 156.
+1 24, Jan.-Feb. 2014.
+pp. 45 51.
+Publishers, 2010.
+University Press, 2014.
+[21] M. L. Pinedo, Scheduling: Theory, Algorithms, and Systems. Springer, 2012.
+[22] L. Tassiulas and A. Ephremides,  Stability properties of constrained queueing systems and scheduling policies for maximum throughput
+in multihop radio networks,  IEEE Trans. Autom. Control, vol. 37, no. 12, pp. 1936 1948, Dec. 1992.
+[23]   ,  Dynamic server allocation to parallel queues with randomly varying connectivity,  IEEE Trans. Inf. Theory, vol. 39, no. 2, pp.
+[24] A. Eryilmaz, R. Srikant, and J. R. Perkins,  Stable scheduling policies for fading wireless channels,  IEEE/ACM Trans. Netw., vol. 13,
+[25] M. J. Neely and E. Modiano,  Capacity and delay tradeoffs for ad hoc mobile networks,  IEEE Trans. Inf. Theory, vol. 51, no. 6, pp.
+[26] S. T. Maguluri, R. Srikant, and L. Ying,  Stochastic models of load balancing and scheduling in cloud computing clusters,  in Proc.
+2012 IEEE INFOCOM, Mar. 2012, pp. 702 710.
+466 478, Mar. 1993.
+no. 2, pp. 411 424, Apr. 2005.
+1917 1937, Jun. 2005.
+15
+[27] I. Menache, A. Ozdaglar, R. Srikant, and D. Acemoglu,  Dynamic online-advertising auctions as stochastic scheduling,  in Proc.
+Workshop Econ. Netw. Syst. Comput. (NetEcon  09), Jul. 2009.
+[28] B. Tan and R. Srikant,  Online advertisement, optimization and stochastic networks,  IEEE Trans. Autom. Control, vol. 57, no. 11, pp.
+2854 2868, Nov. 2012.
+[29] S. Chen, P. Sinha, and N. B. Shroff,  Scheduling heterogeneous delay tolerant tasks in smart grid with renewable energy,  in Proc.
+51st IEEE Conf. Decision Control, Dec. 2012, pp. 1130 1135.
+[30] J. N. Tsitsiklis and K. Xu,  Queueing system topologies with limited  exibility,  in Proc. ACM SIGMETRICS Int. Conf. Meas. Model.
+Comput. Syst., Dec. 2013, pp. 167 178.
+[31] M. Bramson, Y. Lu, and B. Prabhakar,  Randomized load balancing with general service time distributions,  in Proc. ACM SIGMETRICS
+Int. Conf. Meas. Model. Comput. Syst., Jun. 2010, pp. 275 286.
+[32] V. Shah and G. de Veciana,  Performance evaluation and asymptotics for content delivery networks,  in Proc. 2014 IEEE INFOCOM,
+[33] D. Wang,  Computing with unreliable resources: Design, analysis and algorithms,  Ph.D. thesis, Massachusetts Institute of Technology,
+Apr.-May 2014, pp. 2607 2615.
+Cambridge, MA, Jun. 2014.
+[34] H. Kellerer, U. Pferschy, and D. Pisinger, Knapsack Problems. Springer, 2004.
+[35] S. Bubeck and N. Cesa-Bianchi,  Regret analysis of stochastic and nonstochastic multi-armed bandit problems,  Found. Trends Mach.
+[36] R. Keshavan, A. Montanari, and S. Oh,  Matrix completion from noisy entries,  in Advances in Neural Information Processing Systems
+Learn., vol. 5, no. 1, pp. 1 122, Dec. 2012.
+22. Cambridge, MA: MIT Press, 2009, pp. 952 960.
+[37] C. Chekuri and S. Khanna,  On multidimensional packing problems,  SIAM J. Comput., vol. 33, no. 4, pp. 837 851, 2004.
+[38] S. Agarwal, S. Kenkre, V. Pandit, and B. Sengupta,  Studying the evolution of skill pro les in distributed, specialization driven service
+delivery systems through work orchestration,  in Proc. SRII Global Conf. 2011, Apr. 2011, pp. 201 213.
+APPENDIX I
+A. Computation for Centralized Allocation
+For a single category system (L = 1), note that z1
+(cid:88)
+aj,srj,s  (cid:88)
+j
+i
+j,s = aj,s   Z+ and hence the feasibility condition (1) becomes
+uihi,s for all s   [S], aj,s   Z+,
+with condition (2) additionally requiring aj,s = aj,s(cid:48) for all j, s, s(cid:48). Thus, C(u) is the set of {aj,s} satisfying the
+above conditions for respective classes of jobs (as well as systems) and C is the weighted (by  (u)) sum of convex
+hulls of C(u)s.
+  has a simple characterization as well. As for any j   [N ], (j, 1)   E, and N (J) = 1 for all J   [N ],
+Cout
+l N (J)
+i [M ]  ihi,s. Thus it is suf cient to satisfy the inequality for J = [N ], and hence,
+s =(cid:80)
+i [M l]  l
+(cid:80)
+(cid:80)
+ihl,i
+ jrj   (cid:88)
+ ihi
+i [M ]
+    .
+Cout  =
+j [N ]
+(cid:88)
+     :
+(cid:88)
+aj,srj,s  (cid:88)
+j,s
+Qj,s j,s
+arg max
+ j,s:j,s
+s.t. (cid:88)
+The MaxWeight computation in MWTA for single-category decomposable systems turns out to be the following
+integer linear program (ILP), which is related to knapsack problems.
+uihi,s s   [S],
+(8)
+j
+i
+poly(cid:0) 1
+(cid:1) computations. Moreover, there exists faster greedy algorithms that achieve 1
+This problem is an integer program, hence it is not clear whether this problem can be solved ef ciently at all
+instants. In fact, it is a so-called unbounded knapsack problem for a given u and Q. This problem is known to
+be NP-hard [34]. There is a pseudo-polynomial algorithm based on dynamic programming which solves it exactly,
+but the runtime may depend on Qj,s. This dynamic programming-based algorithm can be converted into a fully
+polynomial time approximation schemes (FPTAS) which achieves any (1   ) approximation of the problem in
+2 approximation and can be
+converted into a polynomial time approximation scheme (PTAS) that achieves (1   ) approximation in poly(n
+ )
+computations. Thus we can conclude that though the MWTA algorithm is computationally hard for single-category
+decomposable system, there exist ef cient approximation schemes. It is not hard to show (Prop. 19 below) that an
+algorithm that gives (1   ) approximation of the optimization problem in MWTA can stabilize any   for which
+(1 )   CD
+  .
+ 
+
+1
+16
+given by,
+For single-category non-decomposable systems, feasibility condition (2) of an allocation of aj jobs of type j is
+(cid:88)
+ajrj,s  (cid:88)
+uihi,s s   [S], aj   Z+.
+uihi,s and aj,s = aj s
+    .
+i
+Hence the stabilizable region changes accordingly to
+j
+C  =
+ (u) (u) :  (u)   CN D(u)
+(cid:40)(cid:88)
+u
+CN D(u) = conv
+(cid:88)
+j
+,
+(cid:41)
+ajrj,s  (cid:88)
+(cid:33)
+i
+   aj,s   Z+ :
+(cid:32)(cid:88)
+(cid:88)
+ j,srj,s  (cid:88)
+s
+j
+Qj,s j,s
+arg max
+ j,s:j
+s.t. (cid:88)
+where conv{ } is the convex hull.
+Hence, in this case, the MWTA allocation needs to solve
+uihi,s,  j,s =  j,s(cid:48), for all s, s(cid:48)   [S],
+(9)
+j
+i
+and then divide the allocated jobs arbitrarily among agents while meeting their per skill time-availability, as there
+is only one category of agents.
+This problem is also a knapsack-like integer program, with an additional constraint that the number of (j, s)-items
+has to be the same as the number of (j, s(cid:48))-items for all j, s and s(cid:48). Such a problem is called a multi-dimensional
+knapsack problem. This problem is also NP-hard. Moreover, provably there cannot exist a fully polynomial time
+approximation scheme for this problem [34].
+For a multi-dimensional knapsack problem, there exists an approximation scheme that achieves an approximation
+factor equal to the dimension d [34]. This approximation scheme can be converted into a PTAS with complexity
+O (N  ) and an approximation factor of 1   , where   is strictly increasing with dimension and 1
+ . In the case of
+our setting, the number of skills S (dimension) is large and may scale with N, hence this scheme is not suitable.
+Though the total number of skills S can scale with N, in most cases the number of skill-parts that a type j
+job has is a constant, i.e., rj has most coordinates as 0. Thus it is apparent from the objective function that the
+optimal choice of  j,s is 0 for the corresponding coordinates s. This allows us to rewrite the optimization problem
+as another multi-dimensional knapsack problem with constant dimensions given by maxj |{s : rj,s > 0}|.
+For this problem we can use the PTAS to obtain arbitrarily close approximation and hence can stabilize a
+rate-region arbitrarily close to CN D. But the complexity of this algorithm is very high as complexity scales
+super-exponentially (N k) with the approximation factor (unlike decomposable systems where we have an FPTAS,
+polynomial in 1
+ ).
+Note that our goal is not to solve (9) optimally, but to have a fast allocation scheme that can stabilize a large
+fraction of CN D. In this regard we can take a different approach that exploits basic characteristics of a crowd
+system. Since N and  j(N ) for j   [N ] are large in most crowd systems, if an allocation scheme stabilizes any
+rate   for   + c1   C, then it stabilizes
+such a scheme would stabilize almost all of C. Motivated by this, we propose the following allocation scheme,
+which is a modi cation of (9).
+(cid:17)C. Note that as  i(N ) scales with N, this implies that
+(cid:32)(cid:88)
+(cid:88)
+xjrj,s  (cid:88)
+{ xj, j} = arg max
+xj R:j
+j
+uihi,s, for all s,
+s.t. (cid:88)
+1   maxi
+(cid:33)
+(cid:16)
+(10)
+Qj,s
+xj
+1
+ i(N )
+s
+and allocate   j = (cid:98) xj(cid:99) jobs of type j to the agents, splitting arbitrarily while meeting time-availability constraints.
+j
+i
+s Qj,s)  xj   (cid:80)
+j ((cid:80)
+Note that since in (10), the variables are relaxed to R from Z, (cid:80)
+j ((cid:80)
+j ((cid:80)
+s Qj,s)   j  (cid:80)
+  j = (cid:98) xj(cid:99)    xj   1, hence(cid:80)
+j ((cid:80)
+Qj,s(t)   j,s(t)  (cid:88)
+s Qj,s)  zj. Again,
+The following proposition guarantees that a proposed LP-relaxation scheme stabilizes any   with   + 1   CN D.
+Proposition 19. Let P be an allocation scheme that at epoch t does an allocation { (t)} instead of {   (t)} of
+the MWTA allocation scheme, which satis es
+s Qj,s) ( zj   1).
+Qj,s(t) j,s(t) +
+(cid:88)
+(cid:88)
+Qj,s(t) ,
+17
+or,
+j,s
+(cid:88)
+j,s
+j,s
+Qj,s(t)   j,s(t)  (cid:88)
+j,s
+(1   )
+j,s
+Qj,s(t) j,s(t),
+stabilizes any rate     C if   +  1   C or
+1
+1      C respectively.
+Proof: This proof follows the same steps as the proof of Thm. 8. We  rst prove the result for an allocation
+Qj,s(t) j,s(t) +
+Qj,s(t) .
+(cid:88)
+j,s
+with
+(cid:88)
+j,s
+Qj,s(t)   j,s(t)  (cid:88)
+  (cid:88)
+     E
+Qj,s(t)
+j,s
+as follows:
+E [L (Q(t + 1))   L (Q(t))|Q(t)]
+  (cid:88)
+  E
+Qj,s(t)Aj(t)|Q(t)
+j,s
+j,s
+We can bound the last term as above, because (   j,s    )2     2
+(cid:16)   j,s(t)    
+  (cid:88)
+A2
+  
+  (cid:88)
+   + E
+j (t) + (   j,s    )2(cid:17)|Q(t)
+(cid:16)
+(cid:17)|Q(t)
+  
+  (cid:88)
+     E
+Qj,s(t)   j,s(t)|Q(t)
+j,s +  2. Thus,
+j,s
+  (cid:88)
+k  kdk =  (u) for  k > 0,(cid:80)
+j,s Qj,s(t) j   E(cid:104)(cid:80)
+j,s
+E [L (Q(t + 1))   L (Q(t))|Q(t)]   B + E
+Qj,s(t)(Aj(t) +  )|Q(t)
+Now note that if   is such that   +  1   C, then we can write it in terms of convex combinations of d   C(u)
+j,s
+j,s
+and follow the same steps as in the proof of Thm. 8.
+Similarly for the other case of constant factor approximation we have:
+     E
+Qj,s(t)   j,s(t)(1   )|Q(t)
+  
+  (cid:88)
+j,s
+E [L (Q(t + 1))   L (Q(t))|Q(t)]   B + E
+Qj,s(t)Aj(t)|Q(t)
+j,s     2
+j,s.
+as (1   )2   2
+(1  ) (u) (u) and(cid:80)
+j,s, (cid:80)
+(cid:80)
+If     (1 )C, then by de nition of C and (1 )C, there exist  (u)   C(u) and {dk(u)   C(u)} such that,    
+j,s Qj,s(t)   j,s(t)  
+. Then following the proof of Thm. 8, the result
+(cid:105)
+j,s Qj,s(t)   j,s(t)|Q(t)
+k  k = 1. As for any dk for a given u,(cid:80)
+j,s Qj,s(t)dk
+follows.
+In this appendix, we present proofs of the main results in Secs. III V. As mentioned earlier, most of these results
+extend to systems with stationary and ergodic arrival and availability processes, but here we only present results
+for i.i.d. processes.
+APPENDIX II
+18
+A. Proof of Theorem 5
+(cid:0) (cid:48)(u)   C(u) : u   ZM
++
+Here we only prove the converse part, i.e.,   /  C cannot be stabilized by any policy. For the direct part, it is
+suf cient to prove there exists a scheme that stabilizes any     C, and so the proof of Thm. 8 below is suf cient.
+First we prove that C is a convex subset of RN
++ . If  ,  (cid:48)   C, then there exist (cid:0) (u)   C(u) : u   ZM
+(cid:1) and
++
+(cid:1) such that(cid:88)
+ (u) (u) =  , (cid:88)
+ (u) (cid:48)(u) =  (cid:48).
+Thus for any     [0, 1],
+u
+   + (1    ) (cid:48) =
+(cid:88)
+u
+ (u)(  (u) + (1    ) (cid:48)(u).
+Note that C(u) is convex since it is the convex hull of C(u); hence   (u) + (1    ) (cid:48)(u)   C(u), which in turn
+implies    + (1    ) (cid:48)   C. This proves convexity of C.
+Thus  C is a closed convex set. Hence for any  O /   C, there exists a hyperplane hT x = c that separates  C and
+ O, i.e., there exists an  > 0 for any      C such that hT  O   hT   + .
+u
+Hence under any policy:
+E(cid:2)hT Q(t + 1)(cid:3) = E(cid:2)hT (Q(t) + A(t)   D(t))(cid:3)
+= E(cid:2)hT |Q(t) + A(t)    (t)|+(cid:3)
+where  (t) is the number of possible departure under the scheme if there were in nite number of jobs of each
+type, and | |+ is shorthand for max( , 0). As |x|+ is a convex function of x, hT |Q(t) + A(t)    (t)|+ is a convex
+function of Q(t), A(t), and  (t). Thus by Jensen s inequality:
+E(cid:2)hT |Q(t) + A(t)    (t)|+(cid:3)   hT |E [Q(t)] + E [A(t)]   E [ (t)]|+
+Note that any   is a  (u)-combination of some { (u)   C(u)} and any  (u) is some convex combination of
+elements of C(u). Also, from the allocation constraints it is apparent that if a   C(u) then also a(cid:48)   C(u) if
+a(cid:48)   a. These two imply that for any      C, if there exists a  (cid:48)     (component-wise) and  (cid:48)   0, then  (cid:48)    C.
+That is C is coordinate convex. This in turn implies that for any  O /   C there exists an h (cid:54)= 0   RN
++ such that
+hyperplane separation holds for this h. Thus for h   0:
+E(cid:2)hT Q(t + 1)(cid:3)   hT |E [Q(t)] + E [A(t)]   E [ (t)]|+
+|hjE [Qj(t)] + hjE [Aj(t)]   hjE [ j(t)]|+
+(hjE [Qj(t)] + hjE [Aj(t)]   hjE [ j(t)])
+=
+(cid:88)
+ (cid:88)
+  E(cid:2)hT Q(t)(cid:3) + hT E(cid:2) O(cid:3)   sup
+  E(cid:2)hT Q(t)(cid:3) + 
+    C
+j
+j
+hT  
+Thus we have E(cid:2)hT Q(t + 1)(cid:3)    . As h   0, this implies there exists j such that E[Qj(t)]     as t    .
+Hence, the system is not stable.
+B. Proof of Theorem 6
+Consider the dynamics of Qj,s(t), the unallocated (j, s) tasks at the end of epoch t.
+Qj,s(t + 1) = |Qj,s(t) + Aj(t)   Dj,s(t)|+
+  Qj,s(t) + Aj(t)   Dj,s(t)
+  t(cid:88)
+k=0
+(Aj(t)   Dj,s(t)) .
+As rj,s   0,
+19
+E [Aj(t)rj,s   rj,sDj,s(t)]
+( jrj,s   rj,sE [Dj,s(t)])
+E [rj,sQj,s(t + 1)]   t(cid:88)
+t(cid:88)
+k=0
+=
+k=0
+Consider any set J   [N ], then at any epoch t, to schedule a certain number of tasks of type (j, s), the system
+needs that much available usable skill-hours. This follows from conditions (1) and (2) and can be written as:
+This in turn implies
+hl
+i,sU l
+i,s.
+(cid:88)
+(cid:88)
+i [M l]
+hl
+i,s l
+i,s.
+l N (J)
+i [M l]
+j J
+j J
+l N (J)
+(cid:88)
+rj,sDj,s(t)   (cid:88)
+rj,sE [Dj,s(t)]   (cid:88)
+(cid:88)
+  (cid:88)
+     t(cid:88)
+  (cid:88)
+  t(cid:88)
+(cid:105)
+j J
+k=0
+  (cid:88)
+Hence,
+E
+j J
+rj,sQj,s(t + 1)
+ jrj,s  (cid:88)
+ jrj,s   (cid:88)
+For any   /   Cout, by de nition there exists a J   [N ] such that (cid:80)
+Thus in that case, lim supt   E(cid:104)(cid:80)
+j J
+j J
+k=0
+  
+  
+rj,sE [Dj,s(t)]
+(cid:88)
+hl
+i,s l
+i,s
+l N (J)
+i [M l]
+j J  jrj,s  (cid:80)
+(cid:80)
+i,s > 0.
+=  . Note that since J is  nite and so is maxj rj,s, there
+exists a j   J such that lim supt   E [Qj,s(t + 1)] =  . This shows the system is not stable for   /   Cout and
+proves C    Cout.
+j J rj,sQj,s(t + 1)
+i [M l] hl
+l N (J)
+i,s l
+(11)
+C. Proof of Proposition 7
+We consider FD, FND, and IND cases separately.
+FD: The MaxWeight part chooses zl
+j,s to be integral which implies that integral number of tasks can be allocated
+if done appropriately. As hours are allocated from tasks in order, a task later in the order only gets allocated
+(partially or fully) after the tasks before it are fully allocated. This leads to no partially-allocated tasks.
+FND) and hence if an s-task of a job is chosen then also s(cid:48) is chosen for rj,s, rj,s(cid:48) > 0.
+j,s such that aj,s = aj,s(cid:48) (as it satis es
+FND: Same ordering is used for all (j, s) tasks and MaxWeight chooses zl
+IND: Same ordering is used for all (j, s) tasks, allocations to different categories are in same order (l = 1 to L)
+j,s(cid:48) for all l, l(cid:48) (as it satis es IND), hence if a task of a job is
+j,s = zl
+and MaxWeight chooses zl
+allocated to category l then so are the other tasks.
+j,s such that zl
+D. Proof of Theorem 8
+Note that MaxWeight chooses an allocation {   j,s(t)}. But, the maximum number of (j, s)-tasks that can be served
+is Qj,s(t)+Aj(t). By Prop. 7, Task Allocation does a feasible allocation for FD, FND, and IND systems. Also, note
+that in the Task Allocation algorithm, the number of allocated (j, s)-tasks is  Dj,s = min
+.
+(cid:16)   j,s(t), Qj,s(t) + Aj(t)
+(cid:17)
+20
+j,s
+(cid:16)
+j,s
+j,s(t)
+j,s(t)
+= E
+  E
+  E
+= E
+|Q(t)
+|Q(t)
+j,s
+j,s
+j,s
+j,s
+j,s Q2
+j,s.
+(cid:19)
+(cid:19)
+  
+  
+j,s(t + 1)   Q2
+Qj,s(t)Aj(t)|Q(t)
+We bound the last term  rst.
+Qj,s(t)   j,s(t)|Q(t)
+Qj,s(t) + Aj(t)    Dj,s
+Qj,s(t) + Aj(t)     j,s
+(cid:0)Q2
+(cid:18)(cid:16)
+(cid:18)(cid:16)
+E [L (Q(t + 1))   L (Q(t))|Q(t)]
+  (cid:88)
+  (cid:88)
+  (cid:88)
+  (cid:88)
+  (cid:88)
+(cid:16)
+Consider the usual Lyapunov function L (Q) =(cid:80)
+  
+j,s(t)(cid:1)|Q(t)
+(cid:17)2   Q2
+(cid:17)2   Q2
+  (cid:88)
+     E
+   =
+(cid:17)|Q(t)
+(cid:88)
+ (cid:88)
+ (cid:88)
+ (cid:88)
+   + E
+  (cid:88)
+  
+(cid:17)2
+    (cid:88)
+  2  
+  2  
+    (cid:88)
+(cid:32)(cid:88)
+(cid:33)
+(cid:17)2(cid:21) M (M + 1)
+(cid:20)(cid:16)
+To bound the  rst term, note that if   + 1   C, then there exist { (u)   C(u)} such that  j  (cid:80)
+for all j   [J]. Again note that as C(u) is the convex hull of C(u),  (u) =(cid:80)
+and  k   0 with(cid:80)
+  (cid:88)
+This is a constant B <   independent of Q, as E[A2
+j ] +
+(cid:16)
+j ] and E(cid:104)(cid:0)U l
+j ] +
+maxl,i,s hl
+i,s
+min(rj,s > 0)
+Qj,s(t)Aj(t)|Q(t)
+  (cid:88)
+are  nite for all j, l, i.
+k  k = 1. So,
+A2
+j (t) +   2
+j,s
+A2
+j (t) +   2
+j,s
+E[A2
+j ] + E
+min(rj,s > 0)
+min(rj,s > 0)
+E[A2
+j ] +
+(cid:1)2(cid:105)
+hl
+i,s
+U l
+i
+E
+max
+l,i
+rj,s   j,s
+rj,s   j,s
+Qj,s(t) j
+E
+(cid:17)2
+j,s
+j,s
+j,s
+j,s
+E[A2
+E[A2
+1
+1
+E
+j,s
+i,l
+s
+(cid:16)
+E
+j,s
+U l
+i
+2
+j,s
+i
+(cid:17)|Q(t)
+E
+j,s
+  
+(12)
+(13)
+u  (u) (u)  
+k  kdk(u) for some {dk(u)   C(u)}
+j,s
+j,s
+   =
+(cid:88)
+ (cid:88)
+ (cid:88)
+(cid:88)
+ (cid:88)
+  (cid:88)
+= E
+=
+j,s
+u
+u
+Qj,s(t) j   
+Qj,s
+(cid:88)
+(cid:88)
+u
+j,s
+Qj,s(t)
+ (u)
+ (u)
+Qj,s(t)
+j,s
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+k
+k
+j,s
+ (u) max
+d(u) C(u)
+(cid:88)
+(cid:88)
+j,s
+j,s
+Qj,s
+Qj,s
+(cid:88)
+j,s
+Qj,s
+ kdk
+ kdk
+j (u)   
+j (u)   
+Qj,s(t)dj,s(u)   
+     
+(cid:88)
+Qj,s.
+Qj,s(t)   j,s(t)|Q(t)
+j,s
+j,s
+21
+(cid:88)
+j,s
+Qj,s.
+Thus, we have a bound on the Lyapunov drift,
+E [L (Q(t + 1))   L (Q(t))|Q(t)]   B   
+Hence,
+E [L (Q(T ))   L (Q(0))]   BT   
+T 1(cid:88)
+(cid:88)
+As L(Q(0)) <   and L(Q)   0 for all Q, we have that for all T ,
+T 1(cid:88)
+(cid:88)
+1
+T
+E[Qj,s(t)]   B
+
++
+L(0)
+T
+<  
+This in turn implies lim supt  (cid:80)
+Again note that Qj(t)  (cid:80)
+that for all (j, s) with rj,s > 0, lim supt   E[Qj,s(t)] <  .
+lim supt   E[Qj(t)] <   for all j   [N ].
+t=0
+j,s
+j,s
+wj,sE[Qj,s(t)].
+t=0
+j,s
+E[Qj,s(t)] <  , otherwise the time-average cannot be  nite. This implies
+s Qj,s, as there can be unallocated jobs with more than one part unallocated. Hence,
+E. Proof of Theorem 11
+In the GreedyAgent algorithm, as each agent with available skill-hours greedily chooses to serve a task, no (j, s)
+task of size r can remain unallocated if there is an agent (or agents) with s skill-hour (total) of at least r. Since at
+each allocation epoch a task should either be allocated totally or not at all (i.e., x < r hours cannot be allocated),
+it may happen that some agent hours are wasted, as that does not meet the task allocation requirement.
+Note that since any job requirement is less than  r = maxj,s rj,s, at most  r agent-skill-hours can be wasted.
+Let Hs(t) be the process of unallocated job-hours for skill s after the allocation at epoch t. Then for all t,
+i
+(cid:88)
+j
+Ui(t)hi,s +  r
+.
+Hs(t + 1)  
+For     R, then,
+(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)Hs(t) +
+This implies that process Gs(t) given by Gs(t + 1) =
+(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)(cid:12)+
+Aj(t)rj,s  (cid:88)
+(cid:12)(cid:12)(cid:12)Gs(t) +(cid:80)
+j Aj(t)rj,s  (cid:80)
+Gs(t) has dynamics of a queue with arrival process Xs(t) =(cid:80)
+i Ui(t)hi,s. Let Aj( ) = E(cid:2)e Aj(t)(cid:3) and Ui( ) = E(cid:2)e Ui(t)(cid:3) for j   [N ] and i   [M ].
+(cid:80)
+e  Ys(t)(cid:105)
+e Xs(t)(cid:105) E(cid:104)
+= E(cid:104)
+j Aj(t)rj,s+ r(cid:105) E(cid:104)
+= E(cid:104)
+e (cid:80)
+e  (cid:80)
+E(cid:104)
+(cid:105)(cid:89)
+= e  r(cid:89)
+(cid:89)
+= e  r(cid:89)
+    r +
+e (Xs(t) Ys(t))(cid:105)
+log Aj( rj,s) +
+E [Ui(t)hi,s]
+Ui(  hi,s)
+Aj( rj,s)
+E(cid:104)
+i
+(cid:88)
+(cid:88)
+e Aj(t)rj,s
+= exp
+(cid:105)
+i Ui(t)hi,s
+j
+j
+i
+   .
+log Ui(  hi,s)
+(cid:12)(cid:12)(cid:12)+
+bounds Hs(t).
+j Aj(t)rj,s +  r and departure process Ys(t) =
+i Ui(t)hi,s +  r
+(14)
+First consider the Gaussian-dominated case. Since the process variance is no more than the mean and the moment
+generating function of the variance is upper-bounded by that of a zero-mean Gaussian:
+j
+i
+log Aj( rj,s)    j rj,s +  j
+log Ui(  hi,s)     j hi,s +  j
+( rj,s)2
+2
+( hi,s)2
+2
+.
+22
+Note that for any two functions k1x2 and k2x, limx 0 k2x/k1x2 =  , and hence for any    (0, 1) there exists
+i,s > 0, for all i, j, s
+x  > 0 such that for all x < x , k1x2/k2x < . Hence for any    (0, 1), there exist   
+such that for all   <    = mini,j,s(  
+j,s,   
+j,s,   
+i,s,
+log Aj( rj,s)    j  rj,s(1 + )
+log Ui(  hi,s)     i hi,s(1   )
+Note that since N, S, and M are  nite and   
+(15)
+(16)
+i,s > 0, for all i, j, s,    > 0. Moreover, note that    does
+not depend on  ,   since the ratio of the linear and quadratic terms in the log moment generating functions are
+independent of   and  .
+ k
+k! , for the Poisson-dominated case we have
+As e    1 =(cid:80) 
+j,s,   
+k=1
+log Aj( rj,s)    j
+log Ui(  hi,s)    j
+(cid:88)
+(cid:88)
+k
+k
+( rj,s)k
+k!
+(  hi,s)k
+k!
+Again, by the same argument, we can have a    for which (26) and (27) are satis ed. Thus, for all   <    we
+have:
+    r +
+(cid:88)
+(cid:32)
+(cid:32)
+ r  (cid:88)
+ 
+j
+ j  rj,s(1 + )  (cid:88)
+(cid:33)(cid:33)
+i
+ ihi,s(    )
+  
+ i hi,s(1   )
+(18)
+(19)
+E(cid:104)
+e (Xs(t) Ys(t))(cid:105)   exp
+  exp
+j(1    ) jrj,s and (cid:80)
+i  ihi,s(    )     (cid:80)
+E(cid:104)
+Since (cid:80)
+i  ihi,s >(cid:80)
+all j, we have  r  (cid:80)
+Note (28) follows from the fact     (1   )Cout. As  > 0 can be chosen arbitrarily small, we can have     > 0.
+j  jrj,s scales with  (N ), for suf ciently large    with  j      for
+i  ihi,s(    ), for some   > 0. Thus, we have for some   > 0,
+i
+.
+(17)
+e (Xs(t) Ys(t))(cid:105)   exp (  K) ,
+where K scales with  .
+Now by Loynes  construction:
+Hence,
+k= 
+Gs(t) = max
+  <t
+t(cid:88)
+Pr (Gs > g)   E(cid:2)e Gs(cid:3)
+  e  gE(cid:104)
+ (cid:88)
+ (cid:88)
+  e  g
+e g
+  =1
+  e  g
+(Xs(t)   Ys(t)).
+t=0(Xs(t) Ys(t))(cid:105)
+(cid:80) 
+e (Xs(t) Ys(t))(cid:105)(cid:17) 
+e  max 
+(cid:16)E(cid:104)
+exp (    K)
+  =1
+  e  g
+1
+1   exp (  K)
+.
+23
+This in turn implies
+(cid:16)
+Pr
+max
+s
+Gs > c log N
+(cid:17)   S Pr (Gs > c log N )
+  Se  c log N
+1   exp (  K)
+  S
+N  c
+1   exp (  K)
+Note that the total number of unallocated jobs in the system is upper-bounded by (minj,s:rj,s>0 rj,s) 1(cid:80)
+s Gs,
+as any unallocated job has at least minj,s:rj,s>0 rj,s skill-hours unallocated. Hence the total number of unallocated
+tasks in the system, Q, satis es:
+1
+.
+Pr (Q > cS log N )   Pr
+  Pr
+(cid:32)(cid:88)
+(cid:18)
+s
+max
+s
+Gs > c min
+j,s:rj,s>0
+rj,sS log N
+(cid:33)
+(cid:19)
+Note that    > 0 does not depend on  , so
+that   c minj,s:rj,s>0 rj,s > 3 and hence, Pr (Q > cS log N )   o(N 2).
+Gs > c min
+rj,s log N
+j,s:rj,s>0
+1 exp(  K) is O(1). As S = O(N ), we can choose a c > 0 such
+N  c minj,s:rj,s>0 rj,s
+1
+S
+1
+1   exp (  K)
+.
+F. Proof of Proposition 12
+We prove this proposition by constructing a simple (but general) system and show that the system is not stable
+Consider N = 1, M = 2, and S > 1 being even. Let r = 1, h1 = (1, 1,    S
+2 terms, 0, 0,    ) and h2 =
+via a domination argument with a Markov chain that is not positive recurrent.
+(0, 0,    S
+2 terms, 1, 1,    ). Let the arrival to the system be i.i.d. with
+(1        ) , w.p. (1   )
+2 ,
+w.p. ,
+(cid:40)
+S
+such that (1 +  )   (1  ) = 0, resulting in mean arrival rate (1   ) and variance <  . One possible construction
+is to take  = 1
+2  and   accordingly. The agent-availability process is considered to be U1 = U 2 =  . Note that
+both arrival and agent availability processes are Gaussian-dominated as well as Poisson-dominated.
+First, consider the case where greedy picking of tasks by the agents may be adversarial. Each agent picks all the
+tasks that it can take from the job and so agents of different types pick from a different half of the S skill-parts.
+Thus if there are   2  jobs, in worst case (where adversary gives the job to the agent) agents of type 1 may pick
+2 job-parts of   jobs, while agents of type 2 pick parts of other   jobs. Hence no job is actually allocated at that
+allocation epoch. By the next epoch at least (1    )  jobs have come and if the agents pick jobs in an adversarial
+manner, again no job is actually allocated. Thus the number of unallocated jobs keep growing after it hits 2  once.
+Note that since there is a positive probability of   2  arrivals, with strictly positive probability, the number of
+unallocated jobs grows without bound.
+Next, we prove the case where greedy picking of the tasks by the agents is random, i.e., an agent picks all S/2
+parts of a randomly selected job (without replacement). As arrivals and availability are i.i.d., we can describe the
+number of unallocated jobs by a Markov chain Q(t). Note that for Q    , Pr(Q   0) = 1. On the other hand,
+0 < Pr(0   Q) < 1 for Q < 2 .
+Consider any Q = n  for n > 1. Note that Pr(Q   x) = for x < (n   1)  as no more than   jobs can be
+scheduled, because there are   agents of each type. Again,
+Pr (Q decreases at least by 1)   1  
+1  
+ 
+Q +       
+because there are at least (1    )  arrivals and each type picks   agents randomly and this is the probability that
+the picked sets have a non-empty intersection. Again, as there are 2  arrivals w.p.    we have
+(cid:18)
+(cid:18)
+(cid:19) 
+(cid:19) 
+.
+Pr (Q increases by at least  )   
+1  
+ 
+Q + 2 
+Since
+(cid:17) 
+(cid:17)  .
+
+n+1
+1   1
+1   1
+(cid:16)
+1  (cid:16)
+(cid:17) 
+(cid:17)     
+n+1
+ (n + 1) =  (n)
+(cid:16)
+1  (cid:16)
+
+n+1
+1   1
+1   1
+n+1
+24
+Based on computation of transition probabilities for each transition, it follows that for all k   1, the probability
+of Q decreasing by at least 1 as well as the probability of Q decreasing by k is decreasing with Q, whereas the
+probability of Q increasing by k increases.
+Hence, we can dominate the above chain by another chain  Q on  Z+ with transition probabilities
+Pr ( n    (n + 1)) = 
+1   1
+Pr ( (n + 1)    n) = 1  
+(cid:18)
+(cid:18)
+(cid:19) 
+(cid:19) 
+.
+n + 1
+1   1
+n + 1
+Now the chain  Q(t) is a birth-death chain. If it has a  nite (summable over states) invariant, then that is unique.
+We  rst assume that the invariant is   and then show that it is not summable to prove that it is not positive
+recurrent.4 As this is a birth-death chain the invariant measure must satisfy:
+as n     for any  nite   > 0, this shows that   is not  nite.
+G. Proof of Theorem 13
+unserved hours of skills s over all jobs.
+Consider the different types of unallocated jobs. These are given by {Qj(t) : j   [N ]}.
+Consider the following processes: for each s   [S], Qs(t) = (cid:80)
+We now construct another process  Q s.t. it dominates the process(cid:80)
+ Q, then the same bound applies for(cid:80)
+each time t, (cid:80)
+At time t,(cid:80)
+s Qs. So, if we can show upper-bound on
+s Qs. Hence, in turn we get a bound for {Qj(t)} (as min{rj,s > 0} =  (1)
+Towards constructing a suitable  Q we make the following observation about the dynamics of Qs and {Qj}. At
+j Aj,1(t)rj,s amount of s skill hour is brought to add to Qs. Also, this queue gets some service
+by the assumption that {rj,s} do not scale with the system size).
+j:rj,s>0 Qjrj,s which represent the number of
+m Um(t)hm,s s-skill hour of service is brought by the agents.
+depending on the available agent hours.
+For a job to be allocated, all tasks of it must  nd an allocation. Hence, for a job in type j-job to  nd an allocation
+it must get rj,s hours of service from each skill s. Thus at any time t any skill s queue gets a service of at least
+where  r = max{rj,k,s}. This is because of the following. For each skill(cid:80)
+min
+s [S]
+Umhm,s    r,
+m
+s Umhm,s hour is available. Note that
+(cid:80)
+a job can be allocated if all its tasks  nd allocations, coverse of which is also true. That is if all tasks of a step
+found allocation then the step can be allocated. As mins [S]
+s Umhm,s hours of service is brought by the agents
+s Umhm,s   r of s-skill hours are served (because a maximum of  r can be wasted,
+for each skill, at least mins [S]
+as no task is of size more than  r).
+Also, note that the amount of required service brought to the queue Qs at time t is upper-bounded by
+(cid:80)
+(cid:88)
+(cid:88)
+j
+max
+s [S]
+Aj(t)rj,s
+4An alternate proof follows from noting that if we take a Lyapunov  Q itself, then it has bounded jumps and it is easy to check that after
+certain Q > 0 the drift is strictly positive, and invoke the Foster-Lyapunov (converse) theorem for irreducible chain with bounded absolute
+drift.
+Consider a process  Qs with evolution
+25
+(cid:88)
+j
+Aj(t)rj,s
+ Qs(t + 1) = max(  Qs(t) + max
+s [S]
+(cid:88)
+m
+  min
+s [S]
+Umhm,s +  r, 0).
+Note that given  Qs(t0)   Qs(t0) at some t0, the same holds true for all t   t0. This is because for x, a, b   0 and
+x(cid:48), a(cid:48), b(cid:48)   0, with x   x(cid:48), a   a(cid:48) and b   b(cid:48)
+max(x + a   b, 0)   max(x(cid:48) + a(cid:48)   b(cid:48), 0),
+and hence, the monotonicity propagates over time.
+s Qs it is suf cient to bound(cid:80)
+s
+Thus, to bound(cid:80)
+which bounds(cid:80)
+let us consider
+s Qs.
+From the evolution:
+ Q := S  Q1,
+ Q(t + 1) = max(  Q(t) + S max
+s [S]
+(cid:88)
+j
+Aj(t)rj,s   S min
+s [S]
+(cid:88)
+m
+Umhm,s +  r, 0)
+ Qs(t). Note that each of  Qs has exactly same evolution, so
+we can write the Loynes  construction for this process which has the same distribution as this process (and for
+simplicity we use the same notation, as we are interested in the distribution).
+(cid:88)
+Let us de ne Xs(t) and Ys(t) as follows: Xs(t) :=(cid:80)
+  t 0
+assuming that the process started at   .
+ Q1(0) = max
+  0
+(cid:88)
+(S max
+s [S]
+j
+(cid:88)
+Umhm,s +  r),
+Aj(t)rj,s   S min
+s [S]
+m
+j Aj(t)rj,s and Ys(t) :=(cid:80)
+m Umhm,s. Then,
+(20)
+(21)
+(22)
+Now, for any   > 0
+Now,
+ Q1(0) = max
+  0
+S(max
+s
+Xs(t)   min
+s
+Ys(t) +  r).
+(cid:88)
+  t 0
+Pr(
+Qj,1 >  rq)   Pr(
+(cid:88)
+(cid:88)
+j
+Qs
+s
+1 > q)
+  Pr(  Q1(0) > q)
+= Pr(   Q1(0) >  q)
+= Pr(exp(   Q1(0)) > exp( q))
+  E[exp(  q)]E[exp(   Q1(0))].
+  max
+(cid:88)
+(cid:88)
+  0
+  t 0
+  t 0
+ (cid:88)
+  0
+E[exp(   Q1(0))] = E[exp( S
+(max
+s
+Xs(t)   min
+s
+Ys(t) +  r)
+E[exp( S
+(max
+s
+Xs(t)   min
+s
+Ys(t) +  r))],
+  )]
+where the inequality in (22) follows because for any random variables {Zj}, exp( Zj) are positive random variables
+and sum of positives are more than their maximum.
+Next, we bound the term within the summation over     0 in (22).
+E[exp( S
+(max
+s
+Xs(t)   min
+s
+E[exp( (max
+s
+Xs(t)   min
+s
+Ys(t) +  r)))].
+(23)
+Ys(t) +  r))]   (cid:89)
+  t 0
+(cid:88)
+  t 0
+26
+s,s(cid:48)
+(24)
+E(cid:104)
+  t 0 in (23),
+Inequality (24) is due to the same reason as (22).
+e S(Xs(t) Ys(cid:48) (t)+ r)(cid:105)
+Inequality in (23) follows because Xs(t), Ys(t) are i.i.d. over time.
+E(cid:104)
+e (Xs(t) Ys(cid:48) (t))(cid:105)
+Next we bound the term within the product(cid:81)
+Let Aj( ) = E(cid:2)e Aj(t)(cid:3) and Um( ) = E(cid:2)e Um(t)(cid:3) for j   [N ] and m   [M ]. For     R, then,
+E(cid:104)
+e S(maxs Xs(t) mins Ys(t)+ r)(cid:105)  (cid:88)
+e  Ys(cid:48) (t)(cid:105)
+e Xs(t)(cid:105) E(cid:104)
+= E(cid:104)
+= E(cid:104)
+j Aj(t)rj,s+ r(cid:105) E(cid:104)
+(cid:105)
+e  (cid:80)
+e (cid:80)
+(cid:105)(cid:89)
+E(cid:104)
+E(cid:104)
+e  Ui(t)hi,s(cid:48)(cid:105)
+= e  r(cid:89)
+= e  r(cid:89)
+(cid:89)
+    r +
+Note that as      C, by the de nition of CO, (cid:80)
+(cid:80)
+m  mhm,s  
+m  mhm,s(cid:48)|   subpoly(N ) which is used in the following.
+First consider the Gaussian-dominated case. Since the process variance is no more than mean and the moment
+m  mhm,s and by assumption |(cid:80)
+(cid:88)
+j  jrj,s <  (cid:80)
+log Aj( rj,s) +
+log Ui(  hi,s(cid:48))
+Ui(  hi,s(cid:48))
+   .
+Aj( rj,s)
+(cid:88)
+e Aj(t)rj,s
+i Ui(t)hi,s
+= exp
+(25)
+j
+j
+i
+j
+i
+i
+generating function of the variance is upper-bounded by that of a zero-mean Gaussian:
+log Aj( rj,s)    j rj,s +  j
+log Ui(  hi,s)     j hi,s +  j
+( rj,1,s)2
+2
+( hi,s)2
+.
+2
+Note that for any two functions k1x2 and k2x, limx 0 k2x/k1x2 =  , and hence for any    (0, 1) there exists
+i,s > 0, for all i, j, s
+x  > 0 such that for all x < x , k1x2/k2x < . Hence for any    (0, 1), there exist   
+such that for all   <    = mini,j,s(  
+j,s,   
+Note that since N, S, and M are  nite and   
+(26)
+(27)
+i,s > 0, for all i, j, s,    > 0. Moreover, note that    does
+not depend on  ,   since the ratio of the linear and quadratic terms in the log moment generating functions are
+independent of   and  .
+ k
+k! , for the Poisson-dominated case we have
+As e    1 =(cid:80) 
+j,s,   
+k=1
+j,s,   
+i,s,
+log Aj( rj,1,s)    j  rj,s(1 + )
+log Ui(  hi,s)     i hi,s(1   )
+log Aj( rj,s)    j
+(cid:88)
+(cid:88)
+k
+( rj,s)k
+k!
+(  hi,s)k
+Again, by the same argument, we can have a    for which (26) and (27) are satis ed. As |(cid:80)
+o(N  ), for all   > 0, and(cid:80)
+i  ihi,s =  (N c), c > 0, for all   <    we have:
+log Ui(  hi,s)    j
+k!
+k
+E(cid:104)
+e (Xs(t) Ys(cid:48) (t))(cid:105)   exp
+     r +
+(cid:88)
+(cid:32)
+(cid:32)
+ r  (cid:88)
+ 
+j
+i
+ j  rj,s(1 + )  (cid:88)
+(cid:33)(cid:33)
+i
+ ihi,s(    2)
+  exp
+.
+(28)
+i  ihi,s(cid:48)| =
+i  ihi,s (cid:80)
+  
+ i hi,s(1   ) +   o( i hi,s)
+Note (28) follows from the fact     (1   )Cout. As  > 0 can be chosen arbitrarily small, we can have    2 > 0.
+j  jrj,1,s scales with  (N ), for suf ciently large    with  j      for
+i  ihi,s(    ), for some   > 0. Thus, we have for some   > 0,
+Since(cid:80)
+i  ihi,s >(cid:80)
+j(1    ) jrj,s and(cid:80)
+i  ihi,s(    )     (cid:80)
+all j, we have  r  (cid:80)
+E(cid:104)
+where K(N ) scales with N no slower than(cid:80)
+e S(maxs Xs(t) mins Ys(t))(cid:105)   S2 exp (  SK(N )) .
+e S(Xs(t) Ys(cid:48) (t))(cid:105)   exp (  SK(N )) ,
+s:rj,1,s>0  j(N ) =  (N c), c > 0.
+E(cid:104)
+Thus,
+(29)
+27
+Hence, from (22), (23), and (24) we have that
+(cid:88)
+s
+E[exp( 
+ Qs(0))] = E[exp( S  Q1(0))]
+= E[exp(   Q(0))]
+ (cid:88)
+S|2 | exp(  SK(N )| |)
+  0
+  c(cid:48),
+because S2 < exp(  SK(N )) for all suf ciently large N.
+Note that though we proved E[exp( Q(t))] < c(cid:48) for t = 0, this holds for any  nite t with exactly the same
+proof. Hence,
+Pr(Q > c log N )   Pr(  Q > c log N )   c(cid:48)e c   log N ,
+which gives the result for an appropriate choice of c.
+H. Proof of Theorem 14
+Note that the set {  :   =(cid:80)
+To prove that any     CL is stabilizable it is suf cient to invoke Thm. 15 whose proof is below. To show that
+ O /  CI is not stabilizable, we take an approach similar to the proof of Thm. 5.
+ } is convex. Also, if  (cid:48)     (component-wise) for some   belonging to
+the set, then  (cid:48)   CI. That is, CI is coordinate convex. Hence for any   /  closure of CL, there exists a hyperplane
+h   0 that strictly separates it from CL, i.e., for any { l   Cl}, for some  > 0
+l  l,  l   Cl
+Note that at any epoch t, number of j jobs allocated  j(t) = (cid:80)
+l
+ l + 
+allocated to category l agents. Following similar steps as in the proof of Thm. 5, the result follows.
+l  l
+j(t), where  l
+j(t) is the number of j jobs
+hT  O   hT(cid:88)
+Let Ql,j,s(t) be the number of unallocated (j, s) tasks in the lth pool and Aj(t) be the number of arrived jobs
+l Al,j = Aj(t). At any pool l MaxWeight
+I. Proof of Theorem 15
+is followed and  Dl,j,s(t) is the number of allocated (j, s) tasks in pool l.
+of type j. Let Al,j(t) be the number of jobs that are sent to pool l and(cid:80)
+Consider a Lyapunov function L(Q) =(cid:80)
+   + E
+  (cid:88)
+     E
+E [L (Q(t + 1))   L (Q(t))|Q(t)]
+Ql,j,s(t)   l,j,s(t)|Q(t)
+Ql,j,s(t)Al,j(t)|Q(t)
+  (cid:88)
+l,j,s Q2
+l,j,s. Then:
+  E
+l,j,s
+l,j,s
+(cid:17)|Q(t)
+   (30)
+A2
+l,j(t) +   2
+l,j,s
+(cid:16)
+  (cid:88)
+l,j,s
+28
+The last term can be bounded by noting:
+A2
+l,j(t) +   2
+l,j,s
+Al,j(t) +   l,j,s
+(cid:17)  2
+  2
+(cid:88)
+(cid:16)
+l,j,s
+  (cid:88)
+  (cid:88)
+  (cid:88)
+j,s
+(cid:17)  
+=
+ 
+j,s
+  B(cid:48) <  .
+Aj(t) +
+Aj(t) +
+  l,j,s
+l,j,s
+1
+min(rj,s > 0)
+  2
+hl
+i,sU l
+i,s
+(cid:88)
+l,i,s
+(31)
+(32)
+(cid:88)
+(cid:16)
+l,j,s
+  (cid:88)
+l,j,s
+E
+Note (31) follows similarly as (12), whereas (32) follows because the arrival and agent-availability processes have
+bounded second moments.
+To bound the  rst term:
+Ql,j,s(t)Al,j(t)|Q(t)
+Ql,j,s(t)
+Al,j(t)|Q(t)
+  
+Aj(t)Ql,j,s(t)|Q(t)
+(cid:33)
+  
+s
+l,j
+ l
+j
+ j
+  E
+   = E
+(cid:32)(cid:88)
+  (cid:88)
+  (cid:88)
+  (cid:88)
+ (cid:88)
+   =
+  (cid:88)
+(cid:88)
+l,j,s
+E
+  
+   ,
+(33)
+(34)
+(35)
+On the other hand,
+E
+  (cid:88)
+where (33) is because of the fact JLTT-MWTA sends all arrivals of type j to the pool l with minimum(cid:80)
+j,s
+l
+Ql,j,s(t) l
+j
+s Ql,j,s(t).
+Ql,j,s(t)   l,j,s(t)|Q(t)
+Ql,j,s(t)   l,j,s(t)|Ql(t)
+l,j,s
+l
+j,s
+j,s
+(cid:88)
+Ql,j,s(t) l
+j
+This in turn implies
+  (cid:88)
+  (cid:88)
+     E
+Ql,j,s(t)   l,j,s(t)|Ql(t)
+because at epoch t each pool l runs MaxWeight based on only Ql(t) and {   l,j,s : j, s} is independent of
+{Al(cid:48),j(t), Ql(cid:48),j,s(t) : l(cid:48) (cid:54)= l} given Ql(t).
+ rst term of (12). If   +    CL, then  l + 
+have
+For every l, we can compute the difference between the lth term of (34) and that of (35), which is similar to the
+L   Cl, hence following the same steps as in the proof of Thm. 8 we
+       
+(cid:88)
+Following similar steps as in proof of Thm. 8, we obtain lim supt  (cid:80)
+plies that for all j, s, l, lim supt   E [Ql,j,s(t)] <  . This proves the theorem since for all j, Qj(t)  (cid:80)
+It is suf cient to prove that CI   CO. Consider any     CI, then by de nition of CI,   =(cid:80)
+  =(cid:80)
+all l,  l   Cl. By the characterization of the outer region of single category systems Cl   Cout
+, for all l. Thus by de nition of CO,     CO, which completes the proof.
+E [Ql,j,s(t)] <  , which in turn im-
+l,s Ql,j,s(t).
+E [L (Q(t + 1))   L (Q(t))|Q(t)]   B(cid:48)   
+L
+l  l, where for
+. Thus
+,  l   Cout
+J. Proof of Theorem 16
+Ql,j,s(t).
+Ql,j,s(t).
+l  l for  l   Cout
+l
+l,j,s
+l,j,s
+L
+j,s
+j,s
+l
+l
+K. Proof of Theorem 17
+29
+Consider the dynamics of Q 
+We  nd a high-probability bound on the number of unallocated jobs of type j and then bound the maximum
+number of jobs across type. To bound the number of unallocated jobs, we use stochastic domination based on the
+nature of the method of splitting job arrivals across different pools.
+j (t) = maxl Ql,j(t). Let Aj,l(t) be the number of jobs of type j that were directed
+to pool l. In the Improvised JSQ step, jobs are sent one-by-one with minimum backlog and hence, the queue l 
+with Ql 
+L . On
+the other hand, just before allocation at epoch t + 1, the total number of j-jobs in l  cannot be less than the number
+of jobs in any other l by more than 1. This is because of the Improvised JSQ which allocates jobs one-by-one to
+the lowest backlogged (N l
+j (t) gets the minimum number of jobs. Since minimum is less than average, Aj,l (t)   Aj(t)
+j) queue at that time. Hence, we have
+j (t) = Q 
+j (t) + (cid:100) Aj(t)
+Q 
+L (cid:101) + 1   Qj,l(t) + Aj,l(t).
+i (t).
+i U i(t)hi,s. Hence,
+agent-availability by U i(t) = minl U l
+We can follow similar steps by noting that for   > 0:
+Qs(t + 1) = |Qs(t) + X s(t)   Y s(t) +  r|+ .
+Consider the following dynamics Qj(t), j   [N ]. Arrivals for each j are according to (cid:100) Aj(t)
+For this we proceed along the lines of the proof of Thm. 13, replacing arrivals by Aj(t) = (cid:100) Aj(t)
+in nite)  l,j is monotonic in Ul, i.e., if Ul   U(cid:48)l (component-wise)  l,j    (cid:48)
+useful below.
+Given Ql,j, for GreedyJob the number of jobs that can be allocated (assuming number of queued jobs to be
+l,j for all j. This property will be
+L (cid:101) + 1 and agent-
+i (t). This is a single-category system and allocations in this system are
+availability is according to U i(t) = minl U l
+according to GreedyJob. As U i(t)   U l
+i (t) for all i, l, the number of allocations (assuming queues to be in nite)
+satis es  j(t)    l,j(t). This implies that for each type j Qj(t) dominates Q 
+j (t) as the  rst queue at any epoch
+has more number of jobs to be allocated and less number of possible allocations (as  j is smaller). Thus, it is
+suf cient to bound Qj(t).
+L (cid:101) + 1 and
+j Aj(t)rj,s and the
+Hence, for each skill s, the queue of unallocated skill-hours H s(t) is the arrival X s(t) =(cid:80)
+possible amount that can be drained is Y s(t) =(cid:80)
+= E(cid:104)
+e  Y s(cid:105)
+e  (cid:80)
+= E(cid:104)
+(cid:80)
+(cid:20)
+e   minl
+e  (cid:80)
+E(cid:104)
+ (cid:88)
+e  (cid:80)
+e X s(cid:105)   e ( 1
+E(cid:104)
++1) r(cid:89)
+(cid:105)
+(cid:105)
+(cid:21)
+(cid:105)
+Aj(t)(cid:105)
+(cid:105)   elog L+O(subpoly(N ))E(cid:104)
+(cid:88)
+e  (cid:80)
+(37)
+L   subpoly(N )   Cout. Thus, we can
+i | = subpoly(N ) for all i,     (1    )CO implies that  
+For Gaussian-dominated as well as Poisson-dominated cases, following similar steps we can obtain that for a
+Since maxl.l(cid:48) | l
+use the same steps as we did for single-category systems.
+   > 0 (independent of  ) and suf ciently large  ,
+E(cid:104)
+e  (cid:80)
+Making the assumption on agent arrival rates,
+On the other hand,
+E(cid:104)
+E(cid:104)
+i    l(cid:48)
+i minl U l
+i (t)hi,s
+i U 1
+i (t)hi,s
+i U l
+i (t)hi,s
+i U l
+i (t)hi,s
+i U l
+i (t)hi,s
+.
+= E
+max
+l
+i U l
+i (t)hi,s
+l
+L
+ rj,s
+L
+e
+.
+j
+(36)
+E(cid:104)
+e (X s Y s)(cid:105)   e   K( )+log L+O(subpoly(N ))
+large such that    K( ) + log L + O (subpoly(N )) is strictly negative and E(cid:2)e (X s Y s)(cid:3) < 1. The rest follows
+Note that K( ) increases as  (mini  i) =  (N c) for some c > 0, L = O(1), hence there exists   suf ciently
+similarly as the proof of Thm. 11.
+l
+(cid:105)
+30
+L. Proof of Theorem 18
+(cid:17)
+(cid:16)
+(cid:16)
+=
+(cid:88)
+  (cid:88)
+(cid:88)
+=
+j,s:rj,s>0
+We  rst consider FD, FND, and IND systems.
+Let  Aj(t) be the number of accepted jobs of type j between starts of epochs t   1 and t. Let   j,s(t) be the
+number of allocated (j, s) tasks by the MaxWeight part of MWTA before the execution of Task Allocation. Let
+ Dj,s(t) be the number of allocated (j, s) tasks at allocation epoch t at the end of Task Allocation. Then:
+j,s(t + 1)    Q2
+j,s(t)
+(  Qj,s(t) +  Aj(t)    Dj,s(t))2    Q2
+j,s(t)
+(cid:88)
+(cid:16)  Q2
+j,s:rj,s>0
+j,s(t)
+j,s:rj,s>0
+Qj,s(t)
+(cid:88)
+(  Qj,s(t) +  Aj(t)     j,s(t))2    Q2
+(cid:16)  Aj(t)     j,s(t)
+(cid:17)
+the fact that the arrival processes have bounded second moment. The value E(cid:104)(cid:80)
+   (cid:88)
+Expectation of the second summation (conditioned on Q(t)) can be bounded by noting that  A2
+j,s(t)
+(cid:105)
+j (t)   A2
+j (t) and
+can be bounded
+similarly as in the proof of Thm. 8. Hence, we consider the expectation of the second term to be bounded by B
+independent of Q.
+j,s(t + 1)    Q2
+j,s:rj,s>0  2
+j (t) +  2
+j,s:rj,s>0
+j,s:rj,s>0
+j,s(t)
+(cid:17)
+E
++
+(cid:17)
+(cid:17)
+(cid:16)  A2
+j,s(t)
+  
+(cid:17)|Q(t)
+(cid:16)  Aj(t)     j,s(t)
+(cid:16)
+  
+(cid:17)|Q(t)
+Qj,s(t)
+(1    (t))Aj(t)     j,s(t)
+Qj,s(t)
+(cid:17)|Q(t), A(t)
+j Aj(t)
+ 
+j Aj(t)
+ 
+j Aj(t)
+ 
++
++
++
+(cid:16)
+(cid:16)
+(cid:16)
+j,s:rj,s>0
+j,s:rj,s>0
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+j,s:rj,s>0
+Qj,s(t)
+Qj,s(t)
+Qj,s(t)
+(cid:16)
+j,s:rj,s>0
+j,s:rj,s>0
+(cid:16)  Q2
+   (cid:88)
+  E
+   (cid:88)
+    (t)(cid:80)
+  E
+    (t)(cid:80)
+  E
+    (t)(cid:80)
+  E
+     (cid:80)
+  E
+j,s:rj,s>0
+  B + E
+  B + E
+  B + E
+  B + E
+  B + E
+  B + E
+  B +
+1
+ 
+(1     )Aj(t)     j,s(t)
+|Q(t), A(t)
+j Aj(t)
+ 
++
+(cid:88)
+E[(      (t))
+j,s:rj,s>0
+Aj(t)] + E
+j
+(cid:88)
+where (39) follows as  (t) minimizes  (cid:80)
+E[(      (t))
+  B +
+1
+ 
+j
+Qj,s(t)
+   (cid:88)
+j,s:rj,s>0
+Qj,s(t)
+(cid:16)
+   (cid:88)
+j Aj(t)     (cid:80)
+j,s:rj,s>0
+Aj(t)] + E
+(1     )Aj(t)     j,s(t)
+(cid:16)
+Qj,s(t)
+(1     ) j(t)     j,s(t)
+(cid:17)|Q(t)
+j,s:rj,s>0
+ Qj,s(t)Aj(t).
+(1    (t))Aj(t)     j,s(t)
+j Aj(t)
+ 
+|Q(t), A(t)
+(1    (t))E[Aj(t)]     j,s(t)
+j Aj(t)
+ 
+|Q(t), A(t)
+(1    (t))Aj(t)     j,s(t)
+j Aj(t)
+ 
+|Q(t), A(t)
+   Q(t)
+  
+(cid:17)    (t)(cid:80)
+(cid:17)    (t)(cid:80)
+(cid:17)    (t)(cid:80)
+(cid:17)    (t)(cid:80)
+  
+(cid:17)|Q(t)
+j Aj(t)
+ 
+  |Q(t)
+  
+   Q(t)
+  
+  
+  |Q(t)
+  
+  |Q(t)
+(38)
+(39)
+  
+31
+Qj,s(t)
+      
+(cid:88)
+   (cid:88)
+(cid:105)
+ j   E
+j,s:rj,s>0
+j
+j,s:rj,s>0
+   .
+Qj,s(t)
+<   which implies the crowd
+j,s:rj,s>0 Qj,s(t)
+< C for some C <  .
+As (1     )  + 1   C, following the same steps as in the proof of the Thm. 8:
+E
+E
+1
+ 
+(cid:16)
+j,s(t)
+j,s:rj,s>0
+j,s:rj,s>0
+Qj,s(t)
+(cid:16)  Q2
+Thus we can write
+j,s(t + 1)    Q2
+   (cid:88)
+   (cid:88)
+(1     ) j(t)     j,s(t)
+As       (t)   1, we have
+(cid:17)|Q(t)
+(cid:17)     B +
+(cid:88)
+Following again the same steps we show that lim supt   E(cid:104)(cid:80)
+system is stable. Hence, we can assume that E(cid:104)(cid:80)
+(cid:105)
+(cid:17)     BT +
+T(cid:88)
+(cid:88)
+   T(cid:88)
+   = E
+Now consider the ID setting and use the Lyapunov function(cid:80)
+(cid:16)  Q2
+(cid:88)
+   T(cid:88)
+j,s(T )    Q2
+T(cid:88)
+   (cid:88)
+which in turn implies
+j,s:rj,s>0 Qj,s(t)
+(1    (t))
+(1    (t))
+ j   1
+T
+(1     )
+(cid:88)
+j,s(0)
+Aj(t)
+j,s:rj,s>0
+1
+ 
+t=1
+t=1
+t=1
+j
+E
+E
+j
+j
+t=1
+j
+can be bounded by
+E[(      (t))
+Aj(t)],
+(cid:88)
+j
+ Q2
+j,s(0)
+Aj(t)    B +
+ 
+T
+j,s:rj,s>0
+(cid:88)
+   .
+(cid:88)
+ Aj(t)
+Since B is a constant depending on arrival and availability statistics,   and T can be chosen to be small and large
+respectively to ensure that the left side is arbitrarily small. The desired result follows by noting that
+Also note that since the only requirement is the independence of A(t) and U(t) across time, the proof directly
+extends to settings with non-stationary arrival and availability processes.
+l,j,s Q2
+l,j,s. Similar to before, the Lyapunov drift
+Note that(cid:80)
+as  Aj(t) =(cid:80)
+l,j,s:rj,s>0
+Ql,j,s(t)
+B + E
+   .
+(cid:17)|Q(t)
+   (cid:88)
+l,j,s:rj,s>0 Ql,j,s(t)  Al,j(t) is equal to(cid:88)
+ Al,j(t) and JLTT ensures that the jobs are sent to the category with minl ((cid:80)
+   (cid:88)
+   (cid:88)
+   (cid:88)
+(cid:16)  Al,j(t)     l,j,s(t)
+(cid:32)(cid:88)
+(cid:33)
+  
+(cid:16)  Al,j(t)     l,j,s(t)
+(cid:17)|Q(t)
+(cid:33)
+(cid:32)(cid:88)
+ Aj(t)   (cid:88)
+ Aj(t)   (cid:88)
+Ql,j,s(t)   l,j,s(t)|Q(t)
+   ,
+Ql,j,s(t)
+Ql,j,s(t)
+Ql,j,s(t)
+Ql,j,s(t)
+ Aj(t),
+  E
+l,j,s:rj,s>0
+l,j,s:rj,s>0
+l,j,s:rj,s>0
+= E
+l,j:rj,s>0
+min
+min
+E
+s
+s
+l
+l
+l
+ l
+j
+ j
+l,j:rj,s>0
+j,s:rj,s>0
+Ql,j,s(t)   l,j,s(t)|Q(t)
+  
+where (1     )  =(cid:80)
+FD/FND/IND settings, i.e., the MWTA proof for (1     ) l + 1   Cl for each l.
+l(1     ) l for  l + 1   Cl. The remainder of the proof is similar to the approach for the
+s Ql,j,s(t)). So we have

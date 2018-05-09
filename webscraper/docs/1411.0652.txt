@@ -1,0 +1,956 @@
+4
+1
+0
+2
+ 
+v
+o
+N
+3
+ 
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+1
+v
+2
+5
+6
+0
+.
+1
+1
+4
+1
+:
+v
+i
+X
+r
+a
+Clustering memes in social media streams
+Mohsen JafariAsbagh
+Filippo Menczer
+Emilio Ferrara
+Onur Varol
+Alessandro Flammini
+School of Informatics and Computing.
+Indiana University. Bloomington IN (USA)
+Abstract
+The problem of clustering content in social media has pervasive appli-
+cations, including the identi cation of discussion topics, event detection,
+and content recommendation. Here we describe a streaming framework
+for online detection and clustering of memes in social media, speci cally
+Twitter. A pre-clustering procedure, namely protomeme detection,  rst
+isolates atomic tokens of information carried by the tweets. Protomemes
+are thereafter aggregated, based on multiple similarity measures, to obtain
+memes as cohesive groups of tweets re ecting actual concepts or topics of
+discussion. The clustering algorithm takes into account various dimen-
+sions of the data and metadata, including natural language, the social
+network, and the patterns of information di usion. As a result, our sys-
+tem can build clusters of semantically, structurally, and topically related
+tweets. The clustering process is based on a variant of Online K-means
+that incorporates a memory mechanism, used to  forget  old memes and
+replace them over time with the new ones. The evaluation of our frame-
+work is carried out by using a dataset of Twitter trending topics. Over a
+one-week period, we systematically determined whether our algorithm was
+able to recover the trending hashtags. We show that the proposed method
+outperforms baseline algorithms that only use content features, as well as
+a state-of-the-art event detection method that assumes full knowledge of
+the underlying follower network. We  nally show that our online learning
+framework is  exible, due to its independence of the adopted clustering
+algorithm, and best suited to work in a streaming scenario.
+1
+Introduction
+Social media have become one of the main platforms for communication and
+information sharing. Popularity, high message exchange rate, social network
+structure, and accessibility across di erent devices make Twitter, in particular,
+ideal for spreading news [4, 30], discussing politics and social issues [16, 17,
+1
+39, 48, 51], and reaching out to groups or individuals with similar interests
+[52]. On the other hand, social media are also used to disseminate misleading
+information such as rumors and spam [13, 20, 37]. The ability to automatically
+detect, in real time, patterns of information di usion or topics of conversation
+is of great interest. This task cannot be accomplished by classifying each single
+piece of content observed in real time on the platform; the classes cannot be
+predetermined because new memes constantly appear in the social stream, and
+labeling tweets for training is not feasible due to the large volume of content
+produced.
+The alternative proposal pursued in this article is to design an unsupervised
+framework to cluster tweets based on similarity measures that account for con-
+tent as well as other metadata features. A single tweet may not contain su cient
+information to identify a topic of conversation, due to its brevity. Topic model-
+ing techniques have proved ine ective in this task due to the sparsity of textual
+content [28]. Metadata may help overcome this problem, as shown in other con-
+texts [35]. For example, in an attempt to mitigate the 140-character limitation,
+users may include URLs to provide external resources. Yet, most tweets don t
+contain URLs, and URLs may be abused to promote irrelevant content. An-
+other form of metadata is the mention, a mechanism to include a speci c user
+in a conversation. A mention can be either a direct reply to a user or a way
+of drawing her/his attention to the contents of the tweet. Mentions start with
+the @ character, followed by the user screen name. They can be exploited by
+spammers to grab someone s attention. Users also enrich tweets with hashtags
+to identify topics of conversation. Hashtags are user-de ned terms starting with
+the # character, and have been used as proxies for topics on Twitter [50, 54].
+Relying on hashtags alone as indicators of a topic has some limitations as well
+[19]. For instance, they can be used to refer to a broad subject (e.g., #tcot
+captures many conservative discussions on Twitter); or, two or more di erent
+hashtags can be used to refer to the same topic (e.g., #A ordableCareAct and
+#ObamaCare both talk about the Patient Protection and A ordable Care Act
+of 2010). Furthermore, users can adopt an organic hashtag to inject content
+into an ongoing conversation [15].1
+In our approach, we combine content and di erent sources of metadata to infer
+semantic similarity between groups of tweets. We adopt the term meme to
+denote sets of topically coherent tweets. A meme represents an idea or a concept
+that can spread from person to person in the social network. The goal of our
+unsupervised learning framework is to meaningfully cluster tweets from a social
+stream into potentially overlapping sets, each of which corresponds to a meme.
+We leverage the various forms of metadata entities present in each tweet along
+with its content to bootstrap the clustering process. Speci cally, we pre-aggregate
+tweets into initial sets based on shared metadata entities (URLs, mentions, and
+hashtags) and phrases   sequences of word in the tweet text, excluding meta-
+1Example of hashtag injections include hijacked campaigns such as those by McDonald
+and the NYPD [6, 14].
+2
+In the remainder of the paper we refer to these initial sets as
+data entities.
+protomemes.
+Our approach is based on the assumption that a protomeme represents a suitable
+atomic unit for the clustering algorithm, namely a semantically homogeneous
+set of tweets. On the other hand, there is a many-to-many relationship between
+tweets and protomemes: each tweet can contain more than one entity. As
+a result, protomemes don t commit the algorithm to assigning a tweet to a
+single cluster. From a practical point of view, a protomeme allows to build a
+textual representation that is less sparse than that of a single tweet. Protomemes
+yield higher accuracy in reconstructing political rumors in a static clustering
+scenario [19].
+Although protomemes consist of a group of related tweets, they are an oversim-
+pli ed representation of a meme, and therefore they cannot often capture all
+nuances of a topic. Protomemes can be too speci c and only capture a particu-
+lar aspect of a conversation, whereas a meme can have a more complex structure
+and may aggregate multiple perspectives into a single concept. Therefore, we
+assume that putting together protomemes in a meaningful way may yield sets
+of tweets which represent sophisticated memes better than any individual pro-
+tomeme. In other words, our proposed approach bene ts from protomemes as
+a pre-aggregation step and then it clusters them to identify memes.
+Traditional clustering algorithms have been devised to perform in an o ine sce-
+nario or stationary/static data. In such a case, the algorithm assumes unlimited
+access to all data points as well as boundless memory and processing resources.
+This scenario is far from reality: in the case of social media data, for example,
+posts arrive at varying rates and in a streaming fashion. In this situation, there
+is only a limited amount of time and resources available to process newly arrived
+data before they swamp the whole system. To operate in such an environment,
+it is essential to bear in mind that we can only a ord one pass over the data or a
+few passes over a subset of the data. Problems of this sort have been studied in
+the area of data stream mining [3, 23], and they fall in the broader  eld of online
+learning [2, 9, 12, 22]. Data stream clustering algorithms process a sequence of
+data points arriving over time. Various such algorithms have been proposed
+in the literature [24, 25, 44, 46]. Online K-means [5, 56] is one well-known al-
+gorithm suitable for this purpose. While running, the algorithm maintains K
+clusters and it assigns each incoming data point to the closest cluster based on
+the distance between the new point and the centroid of the cluster. Here, we
+tailor this algorithm to take into account the notion of protomemes and our pro-
+posed similarity measures. This will allow us to design a system for clustering
+a social stream of content into memes.
+3
+Contributions and Outline
+In this paper, we propose a framework to extract content- and network-based
+features from Twitter data and use them to cluster the stream of tweets. A
+summary of the present contributions follows:
+  We use the notion of protomemes [19] as the result of our pre-aggregation
+step to group together tweets sharing some common information token.
+We test the hypothesis that protomemes provide the clustering algorithm
+with useful atomic units.
+  We de ne various similarity measures between protomemes, based on con-
+tent, metadata, and network features of Twitter data. We also introduce
+di erent ways to combine these similarity measures.
+  We design a stream clustering framework able to group protomemes to-
+gether in topically cohesive clusters. Our method requires only one pass
+on the data, therefore is suitable to work with di erent online learning
+algorithms. We implement it by using a variant of Online K-means that
+works with protomemes and incorporates a sliding window mechanism.
+  We evaluate the performance of the proposed system on a stream of tweets.
+We show that our method outperforms two baseline algorithms, one solely
+based on tweet content and one based on tweet content plus the under-
+lying social network structure. Our results demonstrate the advantage of
+adopting protomemes and various metadata features for meme clustering
+in social stream.
+2 Online Clustering Framework
+In the following we propose a general framework for clustering memes in social
+media data streams. Our system can be applied to any social media system
+that supports directed relationships among users, and that generates a stream
+of messages produced by them. Twitter, Google Plus, and Tumblr are examples
+of such platforms. Hence, we will take the former as use case and we will
+adopt Twitter terminology to describe our platform. Twitter users can engage
+in directed social relationships. One user can follow others (followees), and,
+in turn, be followed by her/his own followers. Following is commonly used
+to receive other users  posts (tweets) in one s news feed. Each user can also
+address others directly, by mentioning their screen names in her/his tweets.
+Finally, users can re-broadcast (retweet) messages from other users to make
+them visible by their followers.
+Next, let us  rst de ne the notion of protomeme as the basic building block
+of our clustering framework. We then introduce various similarity measures
+4
+between protomemes, and explain the data model that incorporates protomemes
+and allows us to design our meme stream clustering framework.
+2.1 Protomemes
+We recently proposed the notion of protomemes as a simple way of grouping
+single messages into bigger blocks [19, 43]. Our assumption is that these blocks
+yield topically cohesive groups and therefore represent natural units that can
+be aggregated into broader memes. To identify protomemes we simply group
+together tweets that share one instance of entities from the following types:
+Hashtags: Twitter users can incorporate in the text of their tweets one or more
+hashtags, textual tokens pre xed by hash marks (#), which identify the
+topic of the message.
+In a sense, hashtags leverage the wisdom of the
+crowd [26, 38]: broad topics of interest emerge from the tagging activity
+of many users.
+Mentions: We say that a tweet mentions a user when it includes the target
+user s screen name preceded by the  @  symbol, thus addressing that spe-
+ci c user.
+URLs: Tweets may include links to external sources of information. A URL is
+the Web address identifying a linked resource.
+Phrases: We de ne the textual content of a tweet that remains after remov-
+ing hashtags, mentions, URLs, stop words, and punctuation, and after
+stemming words [41] as a phrase. Phrases may help capture semantically
+equivalent variations of textual messages.
+To demonstrate these di erent protomeme types, consider the following ex-
+ample:  Tell your friends: #Obamacare is helping young people a ord health
+insurance. (via @OFATruthTeam) pic.twitter.com/s9QHilsSjO. 
+This tweet contains the hashtag #Obamacare, the mention @OFATruthTeam,
+the URL pic.twitter.com/s9QHilsSjO, and the phrase Tell friends help
+young people afford health insurance. Each of these elements represents
+a di erent protomeme entity. All tweets containing the same entity will be
+grouped together. This way of de ning protomemes also allows a single tweet to
+belong to multiple protomemes; the example above belongs to four protomemes.
+In the remainder of the paper we will interchangeably use the term protomeme
+to refer to a set of tweets sharing the same entity, or to the entity itself.
+In practice, the pre-aggregation step to extract protomemes requires only the
+application of a regular expression to the tweets in the data stream, which can
+be accomplished in real time [43]. Therefore, protomeme extraction can be
+achieved e ciently in a streaming scenario while requiring only a single pass on
+the data.
+5
+Figure 1: Relations among protomemes, tweets, users, and tweet content. There
+is a many-to-many relationship between memes and tweets. A user may be
+connected to a tweet as its author, by being mentioned in the tweet, or from
+retweeting the message.
+Next, we de ne various similarity measures between protomemes to further
+aggregate tweets and identify broader memes.
+2.2 Metadata and Similarity Measures
+Fig. 1 illustrates the mutual relations between protomemes, the tweets they
+contain, their content, the users who post them, and the underlying follower
+network. We can de ne similarity measures between protomemes (or any sets
+of tweets) by considering the projections of the protomemes onto spaces induced
+by these features.
+Let us provide a few preliminary de nitions. Let p be a protomeme, and pf a
+vector representation of p according to feature f. We can now de ne a set of
+similarity measures based on content and metadata.
+Common user similarity Su between protomemes p and q is the cosine sim-
+ilarity
+(1)
+Su(p, q) =
+pu   qu
+||pu||||qu||
+6
+where pu and qu are the vectors representing the number of tweets in p and q,
+respectively, produced by each user.
+Content similarity Sc between p and q is the cosine similarity
+Sc(p, q) =
+pc   qc
+||qc||||qc||
+(2)
+where pc and qc are the vectors representing the term frequency (TF) weights
+assigned to each word of the two documents obtained by concatenating all the
+tweets in p and q, respectively.2
+Common tweet similarity St between p and q is the cosine similarity
+St(p, q) =
+|p   q|(cid:112)|p||q| .
+(3)
+(4)
+We wish to introduce a fourth similarity measure based on the social network
+of users involved in a set of tweets (see illustration of the follower network in
+Fig. 1). Since we assume that information about the follower social network
+is not available to the clustering algorithm, let us exploit mention and retweet
+metadata as proxies for the underlying network and community structure whose
+role in information di usion is crucial [40]. Let Np = Up   Mp   Rp be the
+di usion set of p, where Up is the set of authors of tweets in p, Mp is the set
+of users mentioned in tweets in p, and Rp is the set of authors of tweets with
+retweets in p.3 The di usion set is a subset of the neighbors of users involved
+in the protomeme on the mention and retweet networks.
+Network similarity Sn between p and q is the cosine similarity between their
+di usion sets
+Sn(p, q) =
+|Np   Nq|
+(cid:112)|Np||Nq| .
+These four similarity measures can be combined to obtain a single similarity
+value between two protomemes. One common approach is to generate a linear
+combination of similarity measures in the form of a weighted average [45, 55].
+Formally, we have
+SL(p, q) =
+ kSk(p, q)
+(5)
+with the constraint that (cid:80)
+k  k = 1, allowing for a normalized combination
+such that SL(p, q)   [0, 1] (given that  k Sk   [0, 1]). The set of parameters
+2Term vectors might or might not include retweets; in all our experiments we include
+retweets. Our framework does not make any assumption on the language of the tweets either,
+therefore it is  exible to work with multiple languages.
+3Note that Rp is not necessarily a subset of Up when only a sample of the tweets are
+considered in the stream; the sample may include a retweeted message but not the original
+one.
+(cid:88)
+k
+7
+ 1, . . . ,  n yields an n-dimensional parameter space. Searching this space is
+necessary to identify the combination(s) of similarity measures that provide the
+optimal clustering performance. This is not a trivial task.
+A second approach is to choose the highest value among all similarity measures
+when computing the pairwise similarity between two protomemes. The rationale
+is that the relatedness of two protomemes may be best captured by di erent di-
+mensions on a per-case base: for example, the similarity of a pair of protomemes
+might be best described by their content, while that of two other protomemes
+may be better re ected, for instance, by the social network dimension. Taking
+the maximum value of similarity among the four dimensions would account for
+such heterogeneity. Given a set of similarity measures S1, . . . , Sn, the maximum
+pairwise similarity is formally de ned as
+Smax(p, q) = max
+k
+{Sk(p, q)}.
+(6)
+The maximum pairwise similarity has an advantage over the linear combina-
+tion, namely is that it does not need any parameter space exploration. More
+importantly, we found in previous work [19] that the maximum pairwise sim-
+ilarity provides performance as good as the best linear combination in meme
+clustering. Hence, our next experiments will be based on maximum pairwise
+similarity.
+2.3 Data Processing Model
+The model assumption in data stream clustering is that, due to the large amount
+of incoming data, the system cannot store all of it in memory [3, 23]. Addition-
+ally, a data stream evolves with time and patterns in recent data are more rele-
+vant for the clustering algorithm than those in older data. An established way
+to de-emphasize older data is to represent the stream trough a window-based
+model. There are three well-known window models in the literature: landmark
+window, damped window, and sliding window [42]. In all cases, without loss of
+generality, we assume the stream to start at time t = 0 and discretize time into
+steps of  xed duration  t.
+A landmark window contains all data points from t = 0 until the present time
+t = T . This model is not feasible for fast-growing data streams.
+A damped window model assigns a weight to each data point in the data stream.
+It uses a decay function based on time, which gives more weight to recent data
+points. The most commonly used function attributes to an event occurring at
+time t an exponentially decreasing weight w(t) = 2  (T t), where   > 0. The
+higher the value of  , the higher the importance of more recent data.
+A sliding window has a  xed length of (cid:96) steps and at each moment T it contains
+only the data points received during last (cid:96) steps, giving them equal importance.
+The window interval is W = (T   (cid:96) t, T ]. Algorithms that adopt this model
+8
+either ignore data points older than T   (cid:96) t, or consider a summary of them.
+The sliding window is a simple yet e ective model in data stream processing.
+Due to its simplicity and generality, we choose this data processing model in
+our clustering algorithm.
+2.4 Protomeme Stream Clustering
+Online K-means [5, 56] is a simple data stream clustering algorithm based on
+iterative K-means for stationary data. In general, Online K-means starts with
+K randomly chosen initial cluster seeds and every new point arriving in the
+stream is assigned to the closest existing cluster. The closest cluster is chosen
+based on the distance between the arriving point and the centroid of the cluster.
+A cluster centroid has the same features as the data points and the value of each
+feature is averaged across the data points that are members of the cluster.
+This general algorithm does not take into account the fact that new concepts
+might appear in the stream, which are di erent from what has been observed
+before. These new concepts should represent new clusters; assigning them to
+the existing clusters might jeopardize the quality of clustering. To overcome this
+problem, one suggested approach [1] is to check whether the distance from the
+closest cluster centroid is an outlier in comparison to the other closest distances
+that have been observed so far.
+If not, the new data point is added to the
+nearest cluster. Otherwise, the least recently updated cluster is replaced by a
+new cluster with the new point as the only member. The least recently updated
+cluster is the one to which no new points have been assigned for the longest
+time. The outlier detection function uses a history of closest distances from
+previously observed data points to determine whether a given distance is an
+outlier. Every time a data point arrives in the stream, its distance to the closest
+centroid is added to the list. This method assumes that the distances follow
+a normal distribution. If the new distance exceeds the historical average by n
+standard deviations or more, where n is a parameter, the new point is deemed
+an outlier.
+The proposed clustering algorithm, that we call Protomeme Stream Clustering
+(PSC), works as follows:
+1. At the beginning of each step, the sliding window is advanced by  t and
+protomemes are extracted from arriving tweets in the stream, i.e., those in
+the new time step (T    t, T ]. Each protomeme is treated as a data point
+to be clustered. Before any of these new points are assigned, all clusters
+are examined and data points with time stamps older than T   (cid:96) t (i.e.,
+those that are no longer in the sliding window) are removed. From now
+on, we will refer to these points as old. If a cluster consists only of old
+points, it becomes empty and is removed from the list of clusters.
+2. Since we are using protomemes as a pre-aggregation step, in our algorithm
+we tend to assign the same protomemes to the same clusters whenever
+9
+possible. If an arriving protomeme matches any of the ones present in any
+of the existing clusters, we assign it to that cluster and continue to the
+next protomeme. Otherwise, we move to the next step.
+3. A new protomeme is assigned to the closest cluster or to a new cluster
+based on the outcome of the outlier test. The protomeme is assigned to a
+new cluster if its distance from the nearest centroid d >   + n , where  
+and   are the mean and standard deviation, respectively, of the values in
+the historical list of closest distance values. The historical distance values
+in the list are kept since the beginning of the clustering process.
+All the steps of the PSC clustering algorithm are depicted in Fig. 2.
+3 Evaluation
+In this section we present the experimental procedure carried out to evaluate
+the performance of our clustering algorithm on a real dataset. First we describe
+the dataset on which we performed the experiments. Then we introduce the
+metric used to assess the quality of clustering.
+3.1 Ground Truth Dataset
+For the purpose of evaluation, we use a dataset collected from Twitter, comprised
+of trending hashtags between 23 and 29 March 2013. The data was obtained
+by monitoring and recording the trends appearing on the Twitter platform at
+regular intervals of 10 minutes. A detailed analysis of geographic and temporal
+trend di usion based on this data is reported in prior work [21]. We extracted
+all tweets containing those trending hashtags from a 10% sample of the full
+stream of public tweets, for a time interval of 7 days before and 3 days after the
+trending point. The trending hashtags represent the ground truth memes  
+we assume that tweets sharing a trending hashtag should be clustered together,
+even by an algorithm that does not have any knowledge of this cluster label.
+Figure 3 shows a stream graph of the volume of tweets per hour, for the 10 most
+popular trending hashtags in our dataset.
+3.2 Evaluation Metric
+To assess the quality of algorithmic cluster assignments, we adopt a measure
+based on Normalized Mutual Information (NMI) [18]. The NMI assumes the
+availability of a ground truth that represents the correct clusters. Let A be
+the correct cluster assignment, and suppose that it contains cA clusters. Let
+B be the output of a clustering algorithm operating on the same data and
+producing cB clusters. We can de ne a cA   cB confusion matrix N, whose
+10
+Figure 2: PSC stream clustering algorithm. (A) The window is shifted, old pro-
+tomemes are removed, and new protomemes are extracted. (B) If an incoming
+protomeme exists, it is assigned to the same cluster. (C1 and C2) If an incoming
+protomeme is new, it is assigned to the closest cluster if it is not an outlier (C1),
+otherwise it replaces the least recently updated (LRU) cluster (C2).
+11
+Figure 3: Tweet volume time series for the top 10 hashtags in the trending
+dataset. For each trending hashtag we report the total number of tweets with
+that hashtag in our 10% Twitter sample (in parenthesis). Each bin is one hour.
+rows correspond to the clusters in A and whose columns represent clusters in
+B. Each entry Nij of this confusion matrix reports the number of elements of
+the correct i-th cluster that also happen to be present in the j-th cluster found
+by the clustering algorithm. Formally, the Normalized Mutual Information is
+de ned as
+(cid:19)
+(7)
+ 2
+Nij log
+cB(cid:88)
+cA(cid:88)
+(cid:18) Ni 
+j=1
+i=1
+N
+(cid:19)
+(cid:18) NijN
+cB(cid:88)
+Ni N j
+N j log
+(cid:19)
+(cid:18) N j
+N
++
+j=1
+NMI(A, B) =
+cA(cid:88)
+i=1
+Ni  log
+where Ni  (resp., N j) is the sum of the elements in the i-th row (resp., j-th
+column) of the confusion matrix, and N is the sum of all elements of N. The
+output of this measure is normalized between zero (when the clusters in the
+two solutions are totally independent), and one (when they exactly coincide).
+Therefore, the higher the value of NMI, the better the quality of the clusters
+found by the algorithm.
+Measures based on mutual information have been proved to best capture di er-
+ent facets of a clustering process, such as how well a clustering algorithm re ects
+the number, size, and composition of clusters with respect to the ground truth,
+as opposed to traditional information retrieval and data mining measures, like
+12
+accuracy or purity, which usually produce biased evaluations [36]. Our investi-
+gation with accuracy, precision, recall, and F1 con rmed the limitations of these
+measures, all of which report indistinguishable results due to the dominance of
+true negatives. Purity, on the other hand, is by de nition biased toward reward-
+ing the presence of tiny clusters, which tend to be pure. For these reasons, NMI
+has been recently adopted in the evaluation of tasks such as event detection in
+social media [7].
+Due to the fact that our algorithm can produce overlapping clusters of pro-
+tomemes, we adopt a variant of NMI, called LFK-NMI after its authors [31],
+that is best suited to measure the quality of overlapping clusters thanks to a
+slightly di erent normalization criterion. In the remainder of the paper, we shall
+refer to LFK-NMI as NMI for simplicity.
+4 Results
+Let us now discuss the details of the PSC algorithm implementation and the
+values of the parameters for its con guration. We also introduce two baseline
+clustering algorithms against which to compare PSC.
+4.1 Experiment Setup
+Our experiments aim at assessing whether protomemes and our metadata-driven
+features and similarity measures bring an observable advantage in the task of
+clustering memes from social streams. To this end, we compare our framework
+against two baseline clustering algorithms that are also based on Online K-
+means, but operate directly on individual tweets and with di erent features and
+similarities. The description of the two baselines follows.
+Baseline B1: This con guration is an implementation of the Online K-means
+clustering of simple tweets along with outlier handling as explained earlier.
+The only feature used in this algorithm is text content. The Term Fre-
+quency (TF) vector of each tweet is used to compute the content similarity
+between tweets and aggregate them.
+Baseline B2: This con guration is an implementation of the event detection
+system recently proposed by Aggarwal and Subbian [1], which is a tweet
+clustering algorithm based on a combination of content and network fea-
+tures. To the best of our knowledge, this approach represents the current
+state of the art in streaming clustering of tweets.
+It relies on the full
+knowledge of the follower network of all users present in the dataset. Such
+information provides a very signi cant advantage, but it also creates a
+practical challenge in that it is very time-consuming to obtain, making
+the algorithm infeasible in real-time, streaming scenarios. To compute
+tweet similarity, the original algorithm adopts TF-IDF, but we use TF
+13
+in our implementation as it provides better performance on our dataset.
+This algorithm is also based on Online K-means and incorporates the same
+outlier handling procedure. To make use of this algorithm for compari-
+son, we extracted in batch the follower network of all users present in our
+dataset.
+As described in previous sections, all our Online K-means algorithms (PSC and
+baselines) have four parameters:
+K: initial number of clusters,
+ t: time step by which the window advances,
+(cid:96): length of sliding window, in time steps,
+n: number of standard deviations from the mean to identify outliers.
+For all the algorithms, we set  t = 60 minutes, (cid:96) = 6 steps, and n = 2. There-
+fore a sliding window has duration (cid:96) t = 360 minutes. To set K for online
+K-means, we computed the average number of hashtags across all sliding win-
+dows, yielding K = 11 initial clusters. To evaluate the clustering solutions, we
+treat the trending hashtags as the actual (ground truth) cluster labels. There-
+fore, while extracting protomemes as data points to be clustered, we remove
+these trending hashtags from the set of protomemes, and from the text of the
+tweets as well. This prevents any bias in favor of our algorithm, and makes the
+clustering task very challenging. The evaluation score is computed at the end
+of each window, to which we will refer as evaluation period.
+4.2 Performance Evaluation
+Fig. 4 plots cumulative NMI over all the evaluation periods. Each point on the
+x axis represents a six-hour sliding window terminating at the indicated hour.
+To compute NMI correctly for each evaluation period, it is essential to have the
+same set of tweets in the ground truth and evaluated clusters. Therefore, we
+only use tweets and their labels in the ground truth for the same period of time.
+As explained earlier, whenever a cluster becomes empty after removing old data
+points, we remove it from the list of clusters. In a real world scenario, we might
+decide to ignore these clusters because they have not been updated during the
+last (cid:96) time steps; for evaluation purposes we keep them in a separate list and
+account for them when assessing the quality in the present window, then delete
+them afterwards.
+Our algorithm performs consistently better than the two baselines. The per-
+formance improvement is more apparent after the online clustering has been
+carried out for an extended time. Fig. 4 shows that after about half of the
+running time, PSC provides a consistent improvement in cluster quality with
+respect to the baselines. This is due to the characteristic fast-paced churning
+time of the topics of discussion in social media. The inset of Fig. 4 demonstrates
+14
+Figure 4: Performance of di erent clustering algorithms as a function of the
+evaluation period. For each algorithm, the NMI values at each step are aver-
+aged across  ve runs. These values are then accumulated over the course of
+the experiment. The inset plots the time-averaged NMI, with error bars corre-
+sponding to  1 standard error.
+that the di erences in NMI among PSC and the baseline algorithms are statis-
+tically signi cant. On average PSC outperforms B1 and B2 by 49% and 26%,
+respectively.
+NMI is a quantitative measure that captures the overlap between the algorith-
+mic clusters and the classes in the ground truth. It reports a single-number
+summary, but it does not provide any details about the resemblance between
+clusters and classes in terms of their numbers and size. For instance, if there
+is a huge class in the ground truth along with several small ones, an algorithm
+can achieve high NMI by assigning all the data points to a single cluster.
+To investigate the performance in greater detail, let us consider the confusion
+matrix containing the Jaccard coe cient between the set of tweets of every
+cluster in the solution and in the ground truth, respectively. Fig. 5 shows
+the confusion matrices for the three algorithms. The rows and columns in
+these matrices represent the clusters in the solution and classes in the ground
+truth, respectively. The number next to each row (resp., column) shows the
+number of tweets in each cluster (resp., class). These matrices are computed
+at an evaluation period in which all three algorithms display local maxima in
+NMI. Although this period does not represent the best quality for any of the
+algorithms, it has the advantage that the ground truth classes are the same for
+all three algorithms, which is crucial for performance comparison.
+A good clustering solution will have a confusion matrix with a dark colored cell
+(high value of Jaccard Coe cient) in each row or column. The perfect clustering
+would show only dark cells on the diagonal of a square confusion matrix. As
+15
+Figure 5: Overlap (Jaccard coe cient) between ground truth classes and clus-
+ters detected by PSC (left), B2 (middle), and B1 (right).
+Fig. 5 illustrates, PSC does a good job at capturing the actual clusters in the
+data; we observe greater confusion in the clusters generated by the two baseline
+algorithms. In particular, our method is able to recover 8 clusters whose overlap
+with the ground truth cluster is above 60%, while both the baseline methods
+identify at most 3 clusters faithfully resembling the ground truth. Although
+the performance of the clustering methods  uctuates over time, PSC is able
+to outperform the state of the art and discover memes in a streaming scenario
+with reasonable accuracy. Our method also introduces great bene ts in terms
+of computational cost: PSC processes streaming data points online, and its
+cost is linear in terms of the size of the input, similarly to the classic Online
+K-means [23]. Other methods require quadratic time and memory (for example
+hierarchical clustering [19]), or access and storage of external information (e.g.,
+B2 relies on the availability of the full follower network [1]).
+4.3 Parameter Tuning
+The stream clustering methods we presented here are all based on the setting
+of two parameters: the sliding window length (cid:96) and the step size  t. We now
+investigate how the choice of such parameters a ects the overall clustering per-
+formance. Let us explore the parameter space de ned over the two dimensions of
+window length and step size. Figure 6 shows three heatmaps that illustrate how
+the clustering quality of each algorithm, measured by NMI, is a ected by vary-
+ing (cid:96) (represented on the y-axis) and  t (on the x-axis). All three algorithms
+achieve the best performance with the shortest time window ((cid:96) = 4 hours) and
+the smallest step size ( t = 30 min). This is somehow intuitive: the hetero-
+geneity of data points (and, therefore, memes) collected with shorter windows
+is lower, and smaller steps allow to react more responsively to the fast-paced
+churning time of memes emerging on social platforms. With this parameter con-
+ guration, PSC outperforms both baselines, obtaining an average NMI score of
+0.23, an increment of 43.75% over B1 and 15% over B2.
+16
+Figure 6: Performance (measured by NMI) for varying sliding window length (cid:96)
+and step size  t of PSC (left), B1 (center) and B2 (right).
+As the window length and/or step size grow, the performance of all cluster-
+ing methods worsens. However, the performance deterioration of PSC is very
+limited if compared with B1 and (especially) B2: the di erence between best
+and worst PSC performance is 34.78% (from an average NMI of 0.23 down to
+0.15), whereas for B1 the decrease amounts for 43.75% (from 0.16 down to 0.09)
+and for B2 is 80% (from 0.20 down to 0.04). This analysis shows that PSC
+is a more robust and  exible solution for stream clustering in social media, as
+it depends less on the optimal tuning of window size and step. Even if the
+computational resources are scarce, requiring coarser granularity, PSC displays
+reasonable accuracy and performs better than existing state-of-the-art methods.
+4.4 Success and Fail Scenarios
+Understanding when stream clustering performs well and when it fails is a chal-
+lenging task. Here we try to identify what dynamics a ect the outcome of the
+clustering process. We  rst focus on the temporal dimension: previous work
+shows that circadian rhythms of day-night activity a ect the patterns of con-
+tent generation and the volume of tweets (and memes) observed in social media
+[27]. We hypothesize that di erent rates of content production might deter-
+mine how e ective the clustering is: Figure 7 illustrates the performance of the
+three clustering algorithms over time. The background gray bands show the
+day-night cycle over a week-long period. All algorithms exhibit  uctuations in
+performance corresponding with the circadian clock: highs correspond to peek
+hours, where more content is generated and, therefore, more information is avail-
+able to describe memes and their clusters; lows correspond with nightly hours,
+when the production of content is slowed and the clustering is based on fewer
+data points. PSC is consistently the best performing algorithms, as it reaches
+the highest peaks in clustering accuracy and the mildest dips. Over time, PSC
+seems to build on the accumulation of information over time to produce better
+results, as evident from the second part of the time series in Figure 7. The other
+methods don t exhibit any bene t as time unfolds.
+17
+Figure 7: Clustering quality over time (measured by NMI) achieved by PSC,
+B1 and B2. The gray bands in the background show the day-night cycle, with
+midnight in white.
+Let us explore a few examples of successful and unsuccessful stream meme clus-
+tering. Our goal is to identify other dynamics that might a ect the quality of
+the clusters at the level of the single meme. To determine the quality of cluster-
+ing of a single meme over time, let us introduce a new measure, called maximum
+cluster ratio (MCR), de ned as follows:
+M CR(p) =
+maxc C(Nc(p))
+N (p)
+(8)
+where N (p) is the total number of tweets exhibiting trending hashtag p, and
+Nc(p) is the number of tweets with hashtag p in cluster c   C. This measure
+allows us to determine how well the algorithm is capturing a target meme over
+time; the higher the MCR, the better.
+Figure 8 shows two scenarios: on the left, we display two memes (#nyias and
+#rallycry) whose clustering is of consistently high quality (high MCR); on the
+right, two examples of less successful clustering (#blackberry10 and #thehost)
+exhibit lower values of MCR. From our per case analysis a few considerations
+emerge: PSC performs generally better with shorter-lived memes (like #nyias),
+and with memes whose content is produced mostly during day-time hours, as
+opposed to memes with sustained audience (see #thehost); moreover, when con-
+tent is abundant the performance is steady and the clustering of single memes
+is consistent and high quality (see #rallycry), while when the volume of tweets
+associated with a memes is smaller the clustering quality can  uctuate (for
+example, see #blackberry10). Another interesting fact is that the algorithm
+18
+Figure 8: Examples of two successful (left) and failed (right) attempts of captur-
+ing trending hashtag clusters over time with PSC. Clustering quality is measured
+by maximum cluster ratio. The size of the circles is proportional to the total
+number of tweets with that hashtag at a given point in time.
+performs generally better with organic and grassroots memes (like in the ex-
+amples on the left) rather than with memes related to promoted content. This
+di erence might be attributed to the crucially di erent characteristics that such
+memes exhibit in terms of content generation and di usion [21].
+5 Related Work
+Problems related to clustering in social media platforms include the identi -
+cation of topics or memes [33, 47, 53], and event detection in social streams
+[8, 11, 32, 34, 49]. Meme and topic identi cation techniques usually empha-
+size the terms and keywords as signatures of the content. Detection methods
+usually take into account temporal features and keywords occurrence to identify
+trending conversation, whereas to detect events happening in the physical world
+they mostly rely on temporal and geographical information. The present work,
+to the best of our knowledge, is the  rst to formalize the problem of clustering
+memes from online social media streams.
+Leskovec et al. [33] presented memetracker, a platform for tracking memes origi-
+nated in online media such as mainstream news sites and Weblogs. Memetracker
+can group together short, distinctive phrases that act as signatures of speci c
+topics. The system can also identify small variations of them. It then creates
+groups of news on related topics that can be tracked over time to de ne patterns
+of di usion in the news cycle. Memetracker assumes that the memes identi ed
+by aggregation on the basis of textual similarity are disjoint and correct: no
+systematic evaluation of the quality of the retrieved memes is provided. Our
+work instead focuses on the assessment of the quality of the meme clustering
+process, and allows for overlapping memes.
+The problem of tracking news for meme extraction has been tackled also by
+Simmons et al.
+[47]. Based on the memetracker dataset, the authors investi-
+gated whether information evolves and mutates while being consumed by social
+19
+media users. Our de nition of protomemes is rooted on the  ndings of both
+Leskovec et al. [33] and Simmons et al. [47], expanding on the aggregation of
+meme variants based not only on textual similarity, but also on other network
+and meta-data features.
+Our framework shares some similarities also with another line of research on
+event detection systems. Aggarwal and Subbian [1] presented a clustering algo-
+rithm that exploits both content- and network-based features to detect events
+in social streams. We adapted their algorithm to work in the context of meme
+clustering, to use it as a baseline. Unfortunately, the algorithm assumes preex-
+isting knowledge about the follower network of Twitter users. In a streaming
+scenario, such information is expensive to obtain, especially when encountering
+popular users. In our framework, we proposed to rely on mention and retweet
+di usion sets, which can be inferred in real time from the observed data. Also,
+our system provides better performance by pre-clustering based on protomemes
+and by metadata-driven measures of similarity between clusters.
+Becker et al. [7] formulated the clustering problem for event detection on social
+media by de ning a set of features and a supervised approach to combine them.
+The authors de ned three types of features: textual (e.g., title, description,
+tags), time/date, and location. They proposed an ensemble clustering approach
+based on labeled data to combine the similarity revealed by each group of fea-
+tures. However, they did not consider the social network underlying social media
+platforms. The same authors presented an event classi cation system designed
+for Twitter [8].
+It incorporates a clustering module that exploits temporal,
+social, and topical features.
+Finally, Thom et al. [49] developed a system for interactive analysis of location-
+based micro-blog messages, which can assist in the detection of real-world events
+in real time. This approach bene ts from an online clustering algorithm based on
+X-means, a variation of K-means, to detect spatio-temporal dense topic clusters
+with a single term in common. The clustering algorithm extracts the terms from
+the messages and attaches a geolocation and a timestamp to each term. Then,
+comparison of Euclidean distance with a prede ned threshold is used to assign
+each term to the closest cluster centroid or to a new cluster.
+6 Conclusions
+In this work we proposed a framework to deal with the problem of clustering
+memes in social media streams, Twitter in particular. Our system is based on
+a pre-clustering procedure, called protomeme detection, aimed at identifying
+atomic tokens of information contained in each tweet. This strategy only re-
+quires text processing, therefore is particularly e cient and well suited for a
+streaming scenario. Memes are thereafter obtained by aggregating protomemes
+on the basis of the similarity among them, computed by ad-hoc measures de-
+20
+ ned according to various dimensions including content, the social network, and
+information di usion patterns. Such measures only adopt information that can
+be extracted in a streaming fashion from observed data, and they allow to build
+clusters of topically related tweets. The meme clustering is carried out by using
+a variant of Online K-means, which integrates a memory mechanism to keep
+track of the least recently updated memes. We used a dataset comprised of
+trending hashtags on Twitter to systematically evaluate the performance of our
+algorithm and we showed that our method outperforms a baseline that only uses
+tweet text, as well as one that assumes full knowledge of the underlying social
+network.
+One crucial feature of our system is that it can be extended to work with any
+clustering algorithm based on similarity (or distances). In this paper, for ex-
+ample, we chose to present Online K-means because of its simplicity; however,
+during our design we also tested other methods including density-based and hi-
+erarchical data stream clustering algorithms (e.g., DenStream [10] and LiarTree
+[29]). Although a complete benchmark and tuning of these alternative meth-
+ods was out of the scope of our analysis, we collected evidence of the ease of
+extension of our framework to di erent algorithms.
+In the future one could extend the set of features incorporated by our clustering
+framework, considering for instance entities such as images. Furthermore, our
+preliminary analysis suggests that the introduction of time series as features may
+yield signi cant performance improvements. Our long-term plan is to integrate
+the meme clustering framework with a meme classi er to distinguish engineered
+types of social media communication from spontaneous ones. This platform
+will adopt supervised learning techniques to classify memes and determine their
+legitimacy, with the aim to detect misinformation and deception campaigns
+in their early stages. The platform will be optimized to work with the real-
+time, high-volume streams of messages typical of Twitter and other online social
+media.
+References
+[1] C. Aggarwal and K. Subbian. Event detection in social streams. In Pro-
+ceedings of SIAM International Conference on Data Mining, 2012.
+[2] S. Albers and S. Leonardi. Online algorithms. ACM Computing surveys,
+31(3), 1999.
+[3] B. Babcock, S. Babu, M. Datar, R. Motwani, and J. Widom. Models
+and issues in data stream systems. In Proceedings of the twenty- rst ACM
+SIGMOD-SIGACT-SIGART symposium on Principles of database systems,
+pages 1 16. ACM, 2002.
+[4] E. Bakshy, J. Hofman, W. Mason, and D. Watts. Everyone s an in uencer:
+quantifying in uence on twitter. In Proceedings of the 4th ACM Interna-
+21
+tional Conference on Web Search and Data Mining, pages 65 74. ACM,
+2011.
+[5] A. Banerjee and J. Ghosh. Frequency-sensitive competitive learning for
+scalable balanced clustering on high-dimensional hyperspheres. Neural Net-
+works, IEEE Transactions on, 15(3):702 719, 2004.
+[6] BBC. NYPD Twitter campaign  back res  after hashtag hijacked. http:
+//www.bbc.com/news/technology-27126041, 2014.
+[7] H. Becker, M. Naaman, and L. Gravano. Learning similarity metrics for
+event identi cation in social media.
+In Proceedings of the 3rd ACM In-
+ternational Conference on Web Search and Data Mining, pages 291 300.
+ACM, 2010.
+[8] H. Becker, M. Naaman, and L. Gravano. Beyond trending topics: Real-
+world event identi cation on twitter. In Proceedings of the 5th International
+AAAI Conference on Weblogs and Social Media, 2011.
+[9] A. Blum. On-line algorithms in machine learning. Springer, 1998.
+[10] F. Cao, M. Ester, W. Qian, and A. Zhou. Density-based clustering over
+an evolving data stream with noise. In In 2006 SIAM Conference on Data
+Mining, pages 328 339, 2006.
+[11] M. Cataldi, L. D. Caro, and C. Schifanella. Personalized emerging topic
+detection based on a term aging model. ACM Transactions on Intelligent
+Systems and Technology (TIST), 5(1):7, 2013.
+[12] N. Cesa-Bianchi. Prediction, learning, and games. Cambridge University
+Press, 2006.
+[13] C. Chew and G. Eysenbach. Pandemics in the age of twitter: content
+analysis of tweets during the 2009 h1n1 outbreak. PLoS One, 5(11):e14118,
+2010.
+[14] CNBC. #McFail? McDonald s Twitter Campaign Gets Hijacked. http:
+//www.cnbc.com/id/46132132, 2013.
+[15] M. Conover, J. Ratkiewicz, M. Francisco, B. Gon alves, F. Menczer, and
+A. Flammini. Political polarization on twitter. In ICWSM, 2011.
+[16] M. D. Conover, C. Davis, E. Ferrara, K. McKelvey, F. Menczer, and
+A. Flammini. The geospatial characteristics of a social movement com-
+munication network. PloS one, 8(3):e55957, 2013.
+[17] M. D. Conover, E. Ferrara, F. Menczer, and A. Flammini. The digital
+evolution of Occupy Wall Street. PloS one, 8(5):e64679, 2013.
+[18] L. Danon, A. D az-Guilera, J. Duch, and A. Arenas. Comparing commu-
+nity structure identi cation. Journal of Statistical Mechanics: Theory and
+Experiment, 2005(09):P09008, 2005.
+22
+[19] E. Ferrara, M. JafariAsbagh, O. Varol, V. Qazvinian, F. Menczer, and
+A. Flammini. Clustering memes in social media.
+In Proceedings of the
+2013 IEEE/ACM International Conference on Advances in Social Networks
+Analysis and Mining, pages 548 555. IEEE/ACM, 2013.
+[20] E. Ferrara, O. Varol, C. Davis, F. Menczer, and A. Flammini. The rise of
+social bots. arXiv preprint arXiv:1407.5225, 2014.
+[21] E. Ferrara, O. Varol, F. Menczer, and A. Flammini. Traveling trends: social
+butter ies or frequent  iers? In Proceedings of the  rst ACM conference
+on Online social networks, pages 213 222. ACM, 2013.
+[22] A. Fiat and G. Woeginger. Online algorithms: The state of the art. Springer
+Heidelberg, 1998.
+[23] M. M. Gaber, A. Zaslavsky, and S. Krishnaswamy. Mining data streams:
+a review. ACM Sigmod Record, 34(2):18 26, 2005.
+[24] J. Gama and M. M. Gaber. Learning from data streams. Springer, 2007.
+[25] J. Gama, P. P. Rodrigues, E. J. Spinosa, and A. C. P. L. F. de Carvalho.
+Knowledge discovery from data streams. Chapman & Hall/CRC Boca Ra-
+ton, 2010.
+[26] S. Golder and B. Huberman. Usage patterns of collaborative tagging sys-
+tems. Journal of information science, 32(2):198 208, 2006.
+[27] S. A. Golder and M. W. Macy. Diurnal and seasonal mood vary with work,
+sleep, and daylength across diverse cultures. Science, 333(6051):1878 1881,
+2011.
+[28] L. Hong and B. Davison. Empirical study of topic modeling in twitter. In
+Proceedings of the 1st Workshop on Social Media Analytics, pages 80 88.
+ACM, 2010.
+[29] P. Kranen, F. Reidl, F. S. Villaamil, and T. Seidl. Hierarchical clustering
+for real-time stream data with noise. In Proc. of the 23nd International
+Conference on Scienti c and Statistical Database Management (SSDBM
+2011), Portland, Oregon, USA, pages 405 413, Heidelberg, Germany, 2011.
+Springer.
+[30] H. Kwak, C. Lee, H. Park, and S. Moon. What is twitter, a social network
+or a news media? In Proceedings of the 19th International Conference on
+World Wide Web, pages 591 600. ACM, 2010.
+[31] A. Lancichinetti, S. Fortunato, and J. Kert sz. Detecting the overlapping
+and hierarchical community structure in complex networks. New Journal
+of Physics, 11(3):033015, 2009.
+[32] J. Lehmann, B. Gon alves, J. Ramasco, and C. Cattuto. Dynamical classes
+of collective attention in twitter. In Proceedings of the 21st International
+Conference on World Wide Web, pages 251 260, 2012.
+23
+[33] J. Leskovec, L. Backstrom, and J. Kleinberg. Meme-tracking and the dy-
+namics of the news cycle. In Proceedings of the 15th ACM SIGKDD In-
+ternational Conference on Knowledge Discovery and Data Mining, pages
+497 506. ACM, 2009.
+[34] A. Marcus, M. Bernstein, O. Badar, D. Karger, S. Madden, and R. Miller.
+Twitinfo: aggregating and visualizing microblogs for event exploration. In
+Proceedings of the 2011 Annual Conference on Human Factors in Comput-
+ing Systems, pages 227 236. ACM, 2011.
+[35] Q. Mei, D. Cai, D. Zhang, and C. Zhai. Topic modeling with network
+regularization. In Proceedings of the 17th international conference on World
+Wide Web, pages 101 110. ACM, 2008.
+[36] M. Meil . Comparing clusterings   an information based distance. Journal
+of Multivariate Analysis, 98(5):873 895, 2007.
+[37] P. Metaxas and E. Mustafaraj. From obscurity to prominence in minutes:
+Political speech and real-time search. In Proceedings of Web Science: Ex-
+tending the Frontiers of Society On-Line, 2010.
+[38] P. Mika. Ontologies are us: A uni ed model of social networks and se-
+mantics. Web Semantics: Science, Services and Agents on the World Wide
+Web, 5(1):5 15, 2007.
+[39] A. Morales, J. Losada, and R. Benito. Users structure and behavior on
+an online social network during a political protest. Physica A: Statistical
+Mechanics and its Applications, 2012.
+[40] A. Nematzadeh, E. Ferrara, A. Flammini, and Y.-Y. Ahn. Optimal
+network modularity for information di usion. Physical Review Letters,
+113(8):088701, 2014.
+[41] M. Porter. An algorithm for su x stripping. Program, 14(3), 1980.
+[42] S. Pramod and O. Vyas. Data stream mining: A review on windowing
+approach. Global Journal of Computer Science and Technology Software &
+Data Engineering, 12(11):26 30, 2012.
+[43] J. Ratkiewicz, M. Conover, M. Meiss, B. Gon alves, S. Patil, A. Flammini,
+and F. Menczer. Truthy: mapping the spread of astroturf in microblog
+streams. In Proceedings of the 20th International Conference Companion
+on World Wide Web, pages 249 252. ACM, 2011.
+[44] M. Sayed-Mouchaweh and E. Lughofer. Learning in non-stationary envi-
+ronments. Springer, 2012.
+[45] H. Sayyadi, M. Hurst, and A. Maykov. Event detection and tracking in
+social streams. In Proceedings of the 3rd International AAAI Conference
+on Weblogs and Social Media, 2009.
+24
+[46] S. Shalev-Shwartz. Online learning and online convex optimization. Foun-
+dations and Trends in Machine Learning, 4(2):107 194, 2011.
+[47] M. Simmons, L. A. Adamic, and E. Adar. Memes online: Extracted, sub-
+tracted, injected, and recollected. In Proceedings of the 5th International
+AAAI Conference on Weblogs and Social Media. AAAI, 2011.
+[48] M. Skoric, N. Poor, Y. Liao, and S. Tang. Online organization of an o ine
+protest: From social to traditional media and back. In Proceedings of the
+44th Hawaii International Conference on System Sciences, 2011.
+[49] D. Thom, H. Bosch, S. Koch, M. Worner, and T. Ertl. Spatiotemporal
+anomaly detection through visual analysis of geolocated twitter messages.
+Visualization Symposium, IEEE Paci c, 0:41 48, 2012.
+[50] O. Tsur and A. Rappoport. What s in a hashtag?: content based prediction
+of the spread of ideas in microblogging communities. In Proceedings of the
+ fth ACM international conference on Web search and data mining, pages
+643 652. ACM, 2012.
+[51] O. Varol, E. Ferrara, C. L. Ogan, F. Menczer, and A. Flammini. Evolution
+of online user behavior during a social upheaval. In Proceedings of the 2014
+ACM conference on Web science, pages 81 90. ACM, 2014.
+[52] S. Wu, J. Hofman, W. Mason, and D. Watts. Who says what to whom
+on twitter. In Proceedings of the 20th International Conference on World
+Wide Web, pages 705 714. ACM, 2011.
+[53] L. Xie, A. Natsev, J. R. Kender, M. Hill, and J. R. Smith. Visual memes
+in social media: tracking real-world news in youtube videos. In Proceedings
+of the 19th ACM International Conference on Multimedia, pages 53 62.
+ACM, 2011.
+[54] L. Yang, T. Sun, M. Zhang, and Q. Mei. We know what@ you# tag:
+does the dual role a ect hashtag adoption?
+In Proceedings of the 21st
+international conference on World Wide Web, pages 261 270. ACM, 2012.
+[55] W. Yih and V. Qazvinian. Measuring word relatedness using heterogeneous
+In Proceedings of Annual Conference of the North
+vector space models.
+American Chapter of ACL, 2012.
+[56] S. Zhong. E cient online spherical k-means clustering. In Neural Networks,
+2005. IJCNN 05. Proceedings. 2005 IEEE International Joint Conference
+on, volume 5, pages 3180 3185. IEEE, 2005.
+25

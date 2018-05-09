@@ -1,0 +1,1461 @@
+An analytical framework to nowcast well-being using mobile
+phone data
+Luca Pappalardo *    Maarten Vanhoof     Lorenzo Gabrielli    
+Zbigniew Smoreda     Dino Pedreschi *   Fosca Giannotti  
+6
+1
+0
+2
+ 
+r
+a
+ 
+M
+6
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+1
+v
+9
+7
+2
+6
+0
+.
+6
+0
+6
+1
+:
+v
+i
+X
+r
+a
+Abstract An intriguing open question is whether mea-
+surements made on Big Data recording human activi-
+ties can yield us high- delity proxies of socio-economic
+development and well-being. Can we monitor and pre-
+dict the socio-economic development of a territory just
+by observing the behavior of its inhabitants through
+the lens of Big Data? In this paper, we design a data-
+driven analytical framework that uses mobility mea-
+sures and social measures extracted from mobile phone
+data to estimate indicators for socio-economic devel-
+opment and well-being. We discover that the diversity
+of mobility, de ned in terms of entropy of the individ-
+ual users  trajectories, exhibits (i) signi cant correla-
+tion with two di erent socio-economic indicators and
+(ii) the highest importance in predictive models built
+to predict the socio-economic indicators. Our analyti-
+cal framework opens an interesting perspective to study
+human behavior through the lens of Big Data by means
+of new statistical indicators that quantify and possibly
+ nowcast  the well-being and the socio-economic devel-
+opment of a territory.
+Keywords Complex Systems   Human Mobility  
+Social Networks   Economic development
+*Department of Computer Science
+University of Pisa, Italy
+E-mail: lpappalardo@di.unipi.it
+ Institute of Information Science and Technologies (ISTI)
+National Research Council (CNR), Italy
+E-mail: fosca.giannotti@isti.cnr.it
+ SENSE
+Orange Labs, France
+E-mail: zbigniew.smoreda@orange.com
+1 Introduction
+Big Data, the masses of digital breadcrumbs produced
+by the information technologies that humans use in
+their daily activities, allow us to scrutinize individual
+and collective behavior at an unprecedented scale, de-
+tail, and speed. Building on this opportunity we have
+the potential capability of creating a digital nervous
+system of our society, enabling the measurement, mon-
+itoring and prediction of relevant aspects of the socio-
+economic structure in quasi real time [21]. An intrigu-
+ing question is whether and how measurements made
+on Big Data can yield us high- delity proxies of socio-
+economic development and well-being. Can we moni-
+tor and possibly predict the socio-economic develop-
+ment of our societies just by observing human behavior,
+for example human movements and social relationships,
+through the lens of Big Data?
+This fascinating question, also stimulated by the
+United Nations in recent reports [2,3], has attracted
+the interest of researchers from several disciplines, who
+started investigating the relations between human be-
+havior and economic development based on large ex-
+perimental datasets collected for completely di erent
+purposes [15, 34]. As a  rst result along this line a sem-
+inal work exploited a nationwide mobile phone dataset
+to discover that the diversity of social contacts of the in-
+habitants of a municipality is positively associated to a
+socio-economic indicator of poverty, independently sur-
+veyed by the o cial statistics institutes [15]. This result
+suggests that social behavior, to some extent, is a proxy
+for the economic status of a given territory. However,
+little e ort has been put in investigating how human
+mobility a ects, and is a ected by, the socio-economic
+development of a territory. Theoretical works suggest
+that human mobility is related to economic well-being,
+as it could nourish economic and facilitate  ows of peo-
+2
+Luca Pappalardo *  et al.
+ple and goods, whereas constraints in the possibilities to
+move freely can diminish economic opportunities [29].
+So, it is reasonable to investigate the role of human mo-
+bility with respect to the socio-economic development
+of a given territory.
+Our paper provides a twofold contribution. First,
+we design a data-driven analytical framework that uses
+Big Data to extract meaningful measures of human be-
+havior and estimate indicators for the socio-economic
+development. The analytical framework we propose is
+repeatable on di erent countries and geographic scales
+since it is based on mobile phone data, the so-called
+CDR (Call Detail Records) of calling and texting ac-
+tivity of users. Mobile phone data, indeed, can be re-
+trieved in every country due to their worldwide di usion
+[7]: there are 6.8 billion mobile phone subscribers today
+over 7 billion people on the planet, with a penetration
+of 128% in the developed world and 90% in developing
+countries. CDR data have proven to be a hi-  proxy for
+individuals  movements and social interactions [22,37].
+Second, we apply the analytical framework on large-
+scale mobile phone data and quantify the relations be-
+tween human mobility, social interactions and economic
+development in France using municipality-level o cial
+statistics as external comparison measurements. We  rst
+de ne four individual measures over mobile phone data
+which describe di erent aspects of individual human be-
+havior: the volume of mobility, the diversity of mobility,
+the volume of sociality and the diversity of sociality.
+Each individual measure is computed for each of the
+several million users in our dataset based on their loca-
+tions and calls as recorded in the mobile phone data. In
+a second stage, we aggregate the four individual mea-
+sures at the level of French municipalities and explore
+the correlations between the four aggregated measures
+and two external indicators of socio-economic develop-
+ment. We  nd that the aggregated mobility diversity of
+individuals resident in the same municipality exhibits a
+superior correlation degree with the socio-economic in-
+dicators and we con rm these results against two di er-
+ent null models, an observation that allows us to reject
+the hypothesis that our discovery occurred by chance.
+Next, we build regression and classi cation mod-
+els to predict the external socio-economic indicators
+from the population density and the social and mobil-
+ity measures aggregated at municipality scale. We show
+that the diversity of human mobility adds a signi cant
+predictive power in both regression and classi cation
+models, far larger than the diversity of social contacts
+and demographic measures such as population density,
+a factor that is known to be correlated with the inten-
+sity of human activities [38,54]. The importance of this
+ nding is twofold. On one side, it o ers a new stimulus
+to social research: diversity is a key concept not only for
+natural ecosystems but also for the social ecosystems,
+and can be used to understand deeply the complexity
+of our interconnected society. On the other side, our re-
+sults reveal the high potential of Big Data in providing
+representative, relatively inexpensive and readily avail-
+able measures as proxies of economic development. Our
+analytical framework opens an interesting perspective
+to engineer o cial statistics processes to monitor hu-
+man behavior through mobile phone data. New statis-
+tical indicators can be de ned to describe and possibly
+ nowcast  the economic status of a territory, even when
+such measurements would be impossible using tradi-
+tional censuses and surveys [2,3].
+The paper is organized as follows. Section 2 revises
+the scienti c literature relevant to our topic, Section 3
+describes in detail the data-driven analytical framework
+we propose. In Section 4, Section 5 and Section 6 we
+apply our analytical framework on a nationwide mobile
+phone dataset covering several weeks of call activity in
+France. We introduce the mobile phone data in Sec-
+tion 4.1, the measures of individual mobility behavior
+and individual social behavior in Section 4.2, and the
+computations of the measures on a nation-wide mobile
+phone dataset in Section 4.3. In Section 5 we describe
+the results of the correlation analysis and validate them
+against two null models. In Section 6 we present and
+validate predictive models for socio-economic develop-
+ment. In Section 7 we discuss the results and  nally
+Section 8 concludes the paper describing the opportu-
+nities and the challenges that arise from our research.
+2 Related work
+The interest around the analysis of Big Data and the
+possibility to compile them into a comprehensive pic-
+ture of human behavior have infected all branches of
+human knowledge, from sports [11] to economy [42].
+However, two aspects in particular attracted the in-
+terest of scientists in the last decade, due the striking
+abundance of data in those contexts: human mobility
+and social networks.
+Studies from di erent disciplines document a stun-
+ning heterogeneity of human travel patterns [22,39],
+and at the same time observe a high degree of pre-
+dictability [51,16]. The patterns of human mobility have
+been used to build generative models of individual hu-
+man mobility and human migration  ows [28, 48], meth-
+ods for pro ling individuals according to their mobility
+patterns [40], to discover geographic borders according
+to recurrent trips of private vehicles [47], or to predict
+the formation of social ties [10,53], and classi cation
+An analytical framework to nowcast well-being using mobile phone data
+3
+Fig. 1 The data-driven analytical framework. Starting from mobile phone data (a) mobility and social measures are computed
+for each individual in the dataset (b). Each individual is then assigned to the territory where she resides (c) and the individual
+measures are aggregated at territorial level (d). Starting from the aggregated measures predictive models are constructed (e)
+in order to estimate and predict the socio-economic development of the territories (f).
+models to predict the kind of activity associated to indi-
+viduals  trips on the only basis of the observed displace-
+ments [31,27,46]. In the context of social network anal-
+ysis the observation of social interactions data provided
+by emails, mobile phones, and social media allowed to
+reveal the complexity underlying the social structure
+[6]: hubs exist in our social networks who strongly con-
+tribute to the so-called small world phenomenon [5],
+and social networks are found to have a tendency to
+partition into social communities, i.e. clusters of densely
+connected sets of individuals [17].
+The last few years have also witnessed a growing
+interest around the usage of Big Data to support of-
+ cial statistics in the measurement of individual and
+collective well-being [12,52]. Even the United Nations,
+in two recent reports, stimulate the usage of Big Data to
+investigate the patterns of phenomena relative to peo-
+ple s health and well-being [2][3]. The vast majority of
+works in the context of Big Data for o cial statistics
+are based on the analysis of mobile phone data, the so-
+called CDR (Call Detail Records) of calling and texting
+activity of users. Mobile phone data, indeed, guaran-
+tee the repeatability of experiments on di erent coun-
+tries and geographical scales since they can be retrieved
+nowadays in every country due to their worldwide dif-
+fusion [7]. A set of recent works use mobile phone data
+as a proxy for socio-demographic variables. Deville et
+al., for example, show how the ubiquity of mobile phone
+data can be exploited to provide accurate and detailed
+maps of population distribution over national scales and
+any time period [14]. Brea et al. study the structure of
+the social graph of mobile phone users of Mexico and
+propose an algorithm for the prediction of the age of
+mobile phone users [9]. Another recent work uses mo-
+bile phone data to study inter-city mobility and develop
+a methodology to detect the fraction of residents, com-
+muters and visitors within each city [19].
+A lot of e ort has been put in recent years on the
+usage of mobile phone data to study the relationships
+between human behavior and collective socio-economic
+development. The seminal work by Eagle et al. analyzes
+a nationwide mobile phone dataset and shows that, in
+the UK, regional communication diversity is positively
+associated to a socio-economic ranking [15]. Gutierrez
+et al. address the issue of mapping poverty with mo-
+bile phone data through the analysis of airtime credit
+purchases in Ivory Coast [24]. Blumenstock shows a pre-
+liminary evidence of a relationship between individual
+wealth and the history of mobile phone transactions
+[8]. Decuyper et al. use mobile phone data to study
+food security indicators  nding a strong correlation be-
+tween the consumption of vegetables rich in vitamins
+and airtime purchase [13]. Frias-Martinez et al. analyze
+the relationship between human mobility and the socio-
+economic status of urban zones, presenting which mo-
+bility indicators correlate best with socio-economic lev-
+els and building a model to predict the socio-economic
+level from mobile phone traces [18]. Pappalardo et al.
+4
+Luca Pappalardo *  et al.
+analyze mobile phone data and extract meaningful mo-
+bility measures for cities, discovering interesting cor-
+relation between human mobility aspects and socio-
+economic indicators [41]. Lotero et al. analyze the ar-
+chitecture of urban mobility networks in two Latin-
+American cities from the multiplex perspective. They
+discover that the socio-economic characteristics of the
+population have an extraordinary impact in the layer
+organization of these multiplex systems [33]. Amini et
+al. use mobile phone data to compare human mobility
+patterns of a developing country (Ivory Coast) and a
+developed country (Portugal). They show that cultural
+diversity in developing regions can present challenges
+to mobility models de ned in less culturally diverse re-
+gions [4]. Smith-Clarke at al. analyze the aggregated
+mobile phone data of two developing countries and ex-
+tract features that are strongly correlated with poverty
+indexes derived from o cial statistics census data [49].
+Other recent works use di erent types of mobility data,
+e.g. GPS tracks and market retail data, to show that
+Big Data on human movements can be used to sup-
+port o cial statistics and understand people s purchase
+needs. Pennacchioli et al. for example provide an em-
+pirical evidence of the in uence of purchase needs on
+human mobility, analyzing the purchases of an Italian
+supermarket chain to show a range e ect of products:
+the more sophisticated the needs they satisfy, the more
+the customers are willing to travel [43]. Marchetti et
+al. perform a study on a regional level analyzing GPS
+tracks from cars in Tuscany to extract measures of hu-
+man mobility at province and municipality level,  nding
+a strong correlation between the mobility measures and
+a poverty index independently surveyed by the Italian
+o cial statistics institute [34].
+Despite an increasing interest around this  eld, a
+view on the state-of-the-art cannot avoid to notice that
+there is no a uni ed methodology to exploit Big Data
+for o cial statistics. It is also surprising that widely
+accepted measures of human mobility (e.g. radius of
+gyration [22] and mobility entropy [51]) have not been
+used so far. We overcome these issues by providing an
+analytical framework as support for o cial statistics,
+which allows for a systematic evaluation of the relations
+between relevant aspects of human behavior and the
+development of a territory. Moreover, our paper shows
+how standard mobility measures, not exploited so far,
+are powerful tools for o cial statistics purposes.
+3 The Analytical Framework
+Our analytical framework is a knowledge and analyti-
+cal infrastructure that uses Big Data to provide reliable
+measurements of socio-economic development, aiming
+at satisfying the increasing demand by policy makers
+for continuous and up-to-date information on the geo-
+graphic distribution of poverty, inequality or life condi-
+tions. Figure 1 describes the structure of the methodol-
+ogy we propose. The analytical framework is based on
+mobile phone data, which guarantee the repeatability
+of the process on di erent countries and geographical
+scales. Mobile phone data are indeed ubiquitous and
+can be retrieved in every country due to their worldwide
+di usion: nowadays the penetration of mobile phones is
+of 128% in developed countries and 90% in develop-
+ing countries, with 6.8 billion mobile phone subscribers
+today over 7 billion people on the planet [7]. In partic-
+ular the call detail records (CDR), generally collected
+by mobile phone operators for billing and operational
+purposes, contain an enormous amount of information
+on how, when, and with whom people communicate.
+This wealth of information allows to capture di erent
+aspects of human behavior and stimulated the creativ-
+ity of scientists from di erent disciplines, who demon-
+strated that mobile phone data are a high quality proxy
+for studying individual mobility and social ties [22,37].
+Starting from the collected mobile phone data (Fig-
+ure 1(a)) a set of measures are computed which grasp
+the salient aspects of individuals  mobility and social
+behavior (Figure 1(b)). This step is computationally
+expensive when the analytical framework is applied on
+massive data such as the CDRs of an entire country
+for a long period. To parallelize the computations and
+speed up the execution a distributed processing plat-
+form can be used such as Hadoop or Spark. A wide set
+of mobility and social measures can be computed dur-
+ing this phase, and the set can be enlarged with new
+measures as soon as they are proven to be correlated
+with socio-economic development aspects of interest. In
+Section 4.2 we propose, as an example, a set of standard
+measures of individual mobility and sociality and show
+how they can be computed on mobile phone data.
+As generally required by policy makers, o cial statis-
+tics about socio-economic development are available at
+the level of geographic units, e.g. regions, provinces,
+municipalities, districts or census cells. Therefore, the
+individuals in the dataset have to be mapped to the
+corresponding territory of residence, in order to per-
+form an aggregation of the individual measures into a
+territorial measure (Figure 1(c) and 1(d)). When the
+city of residence or the address of the users are avail-
+able in the data, this information can be easily used
+to assign each individual to corresponding city of resi-
+dence. Unfortunately these socio-demographic data are
+generally not available in mobile phone data for privacy
+and proprietary reasons. This issue can be solved, with
+a certain degree of approximation, by inferring the in-
+An analytical framework to nowcast well-being using mobile phone data
+5
+formation from the data source. In literature the phone
+tower where a user makes the highest number of calls
+during nighttime is usually considered her home phone
+tower [44]. Then with standard Geographic Information
+System techniques it is possible to associate the phone
+tower to its territory (see Section 4.3).
+The obtained aggregated measures are compared
+with the external socio-economic indicators to perform
+correlation analysis, learn and evaluate predictive mod-
+els (Figure 1(e)). The predictive models can be aimed
+at predicting the actual value of socio-economic de-
+velopment of the territory, e.g. by regression models
+(Section 6.1), or to predict the class of socio-economic
+development, i.e. the level of development of a given
+geographic unit as done by classi cation models (Sec-
+tion 6.2). Finally, the estimates and the predictions pro-
+duced by the models are the output of the analytical
+framework (Figure 1(f)). The measures, the territorial
+aggregation and the predictive models of the analyti-
+cal framework can be updated every time new mobile
+phone data become available, providing policy makers
+with up-to-date estimates of the socio-economic situ-
+ation of a given territory, in contrast with indicators
+produced by o cial statistics institutes with are gener-
+ally released after months or even once a year.
+In the following sections we apply the proposed an-
+alytical framework on a large-scale nation-wide mobile
+phone dataset and describe its implementation step by
+step: from the de nition of measures on the data (Sec-
+tions 4.1 and 4.2), to their computation and territorial
+aggregation (Section 4.3), and the construction of pre-
+dictive models (Sections 5.1, 6.1 and 6.2).
+4 Measuring Human Behavior
+We now discuss steps (a), (b) and (c) in Figure 1, pre-
+senting the experimental setting which consists in the
+computation of the individual measures on the data and
+their aggregation at territorial level. First, we describe
+the mobile phone data we use as proxy for individual be-
+havior, together with details about data preprocessing
+(Section 4.1). Then we de ne the individual measures
+capturing diverse aspects of individual mobility and so-
+cial behavior (Section 4.2). Finally we show how we
+compute the individual measures and aggregate them
+at municipality level (Section 4.3).
+4.1 Mobile phone data
+We have access to a set of Call Detail Records (CDR)
+gathered for billing purposes by Orange mobile phone
+operator, recording 215 million calls made during 45
+days by 20 million anonymized mobile phone users.
+CDRs collect geographical, temporal and interaction in-
+formation on mobile phone use and show an enormous
+potential to empirically investigate human dynamics on
+a society wide scale [26]. Each time an individual makes
+a call the mobile phone operator registers the connec-
+tion between the caller and the callee, the duration of
+the call and the coordinates of the phone tower commu-
+nicating with the served phone, allowing to reconstruct
+the user s time-resolved trajectory. Table 1 illustrates
+an example of the structure of CDRs.
+(a)
+timestamp
+tower
+2007/09/10 23:34
+2007/10/10 01:12
+2007/10/10 01:43
+...
+36
+36
+38
+...
+caller
+4F80460
+2B01359
+2B19935
+callee
+4F80331
+9H80125
+6W1199
+...
+...
+(b)
+latitude
+49.54
+48.28
+48.22
+...
+tower
+36
+37
+38
+...
+longitude
+3.64
+1.258
+-1.52
+...
+Table 1 Example of Call Detail Records (CDRs). Every time
+a user makes a call, a record is created with timestamp, the
+phone tower serving the call, the caller identi er and the callee
+identi er (a). For each tower, the latitude and longitude co-
+ordinates are available to map the tower on the territory (b).
+In order to focus on individuals with reliable statis-
+tics, we carry out some preprocessing steps. First, we
+select only users with a call frequency higher than the
+threshold f = N/45 > 0.5, where N is the number
+of calls made by the user and 45 days is the length of
+our period of observation, we delete all the users with
+less than one call every two days (in average over the
+observation period).
+Second, we reconstruct the mobility trajectories and
+the social network of the  ltered users. We reconstruct
+the trajectory of a user based on the time-ordered list
+of cell phone towers from which she made her calls dur-
+ing the period of observation (see Figure 2). We then
+translate the CDR data into a social network represen-
+tation by linking two users if at least one reciprocated
+pair of calls exists between them during the period of
+observation (i.e. A called B and B called A). This pro-
+cedure eliminates a large number of one-way calls, most
+of which correspond to isolated events and do not repre-
+6
+Luca Pappalardo *  et al.
+4.2 Measure De nition
+We introduce two measures of individual mobility be-
+havior and two measures of individual social behavior,
+dividing them into two categories: measures of volume,
+and measures of diversity (see Table 4.2).
+sociality
+mobility
+individual measures
+SV
+social volume
+SD
+social diversity
+M V
+mobility volume
+mobility diversity M D
+Fig. 2 The detailed trajectory of a single user. The phone
+towers are shown as grey dots, and the Voronoi lattice in
+grey marks approximate reception area of each tower. CDRs
+records the identity of the closest tower to a mobile user; thus,
+we can not identify the position of a user within a Voronoi
+cell. The trajectory describes the user s movements during 4
+days (each day in a di erent color). The tower where the user
+made the highest number of calls during nighttime is depicted
+in bolder grey.
+sent meaningful communications [37]. Figure 3 shows a
+fraction of the social network centered on a single user.
+The resulting dataset contains the mobility trajectories
+of 6 million users and a call graph of 33 million edges.
+Fig. 3 A fraction of the call graph centered on a single user
+u. Nodes represent users, edges indicate reciprocated calls
+between the users, the size of the edges is proportional to the
+total number of calls between the users during the 45 days.
+demographic
+development
+socio-economic indicators
+population density
+deprivation index
+per capita income
+P D
+DI
+P CI
+Table 2 Measures and indicators used in our study. Social
+volume, social diversity, mobility volume and mobility diver-
+sity are individual measures computed on mobile phone data.
+Population density, deprivation index, and per capita income
+are external socio-economic indicators provided by INSEE.
+We de ne two measures that capture aspects of indi-
+vidual social interactions: social volume (SV ), the num-
+ber of social contacts of an individual; and social diver-
+sity (SD), the diversi cation of an individual s calls
+over the social contacts. Within a social network, we
+can express the volume of social interactions by count-
+ing the amount of links an individual possesses with
+others. This simple measure of connectivity is widely
+used in network science and is called the degree of an
+individual [36]. In a call graph the degree of an indi-
+vidual is the number of di erent individuals who are in
+contact by mobile phone calls with her. We can there-
+fore see the degree as a proxy for the volume of sociality
+for each individual:
+SV (u) = degree(u)
+(1)
+The degree distribution is well approximated by a power
+law function denoting a high heterogeneity in social net-
+works with respect to the number of friendships [30,37].
+The social diversity of an individual u quanti es the
+topological diversity in a social network as the Shannon
+entropy associated with her communication behavior
+[15]:
+(cid:80)k
+SD(u) =  
+v=1 puv log(puv)
+log(k)
+where k is the degree of individual u, puv =
+v=1 Vuv
+and Vuv is the number of calls between individual u and
+individual v during the period of observation. SD is a
+(2)
+Vuv(cid:80)k
+An analytical framework to nowcast well-being using mobile phone data
+7
+measure for the social diversi cation of each individ-
+ual according to its own interaction pattern. In a more
+general way, individuals who always call the same few
+contacts reveal a low social diversi cation resulting in
+lower values for SD, whereas individuals who distribute
+their call among many di erent contacts show high so-
+cial diversi cation, i.e. higher SD. The distribution of
+SD across the population is peaked, as measured in
+GSM and landlines data [15].
+very regular movement pattern possess a mobility di-
+versity close to zero and their whereabouts are rather
+predictable. Conversely, individuals with a high mobil-
+ity diversity are less predictable. It is known that the
+distribution of the mobility diversity is peaked across
+the population and very stable across di erent social
+groups (e.g. age and gender) [51].
+Starting from the mobility trajectories of an indi-
+vidual, we de ne two measures to describe individual
+mobility: mobility volume (M V ), the typical travel dis-
+tance of an individual, and mobility diversity (M D),
+the diversi cation of an individual s movements over
+her locations. The radius of gyration [22] provides with
+a measure of mobility volume, indicating the charac-
+teristic distance traveled by an individual (see Figure
+4). In detail, it characterizes the spatial spread of the
+phone towers visited by an individual u from the tra-
+jectories  center of mass (i.e. the weighted mean point
+of the phone towers visited by an individual), de ned
+as:
+(cid:115) 1
+(cid:88)
+N
+i L
+M V (u) =
+ni(ri   rcm)2
+(3)
+of phone tower i, N = (cid:80)
+where L is the set of phone towers visited by the in-
+dividual u, ni is the individual s visitation frequency
+i L ni is the sum of all the
+single frequencies, ri and rcm are the vectors of coordi-
+nates of phone tower i and center of mass respectively.
+It is known that the distribution of the radius of gyra-
+tion reveals heterogeneity across the population: most
+individuals travel within a short radius of gyration but
+others cover long distances on a regular basis, as mea-
+sured on GSM and GPS data [22, 39].
+Besides the volume of individual mobility, we de ne
+the diversity of individual mobility by using Shannon
+entropy of individual s trips:
+M D(u) =  
+e E p(e) log p(e)
+(cid:80)
+(4)
+log N
+(a)
+(b)
+Fig. 4 The radius of gyration of two users in our
+dataset. The  gure shows the spatial distribution of phone
+towers (circles). The size of circles is proportional to their vis-
+itation frequency, the red location indicates the most frequent
+location L1 (the location where the user makes the highest
+number of calls during nighttime). The cross indicates the
+position of the center of mass, the black dashed line indicates
+the radius of gyration. User A has a small radius of gyra-
+tion because she travels between locations that are close to
+each other. User B has high radius of gyration because the
+locations she visits are far apart from each other.
+where e = (a, b) represents a trip between an origin
+phone tower and a destination phone tower, E is the
+set of all the possible origin-destination pairs, p(e) is
+the probability of observing a movement between phone
+towers a and b, and N is the total number of trajec-
+tories of individual u (Figure 5). Analogously to SD,
+M D is high when a user performs many di erent trips
+from a variety of origins and destinations; M D is low
+when a user performs a small number of recurring trips.
+Seen from another perspective, the mobility diversity of
+an individual also quanti es the possibility to predict
+individual s future whereabouts. Individuals having a
+(a)
+(b)
+Fig. 5 The mobility entropy of two users in our
+dataset. Nodes represent phone towers, edges represent trips
+between two phone towers, the size of nodes indicates the
+number of calls of the user managed by the phone tower, the
+size of edges indicates the number of trips performed by the
+user on the edge. User X has low mobility entropy because
+she distributes the trips on a few large preferred edges. User
+Y has high mobility entropy because she distributes the trips
+across many equal-sized edges.
+8
+4.3 Measure computation
+We implement step (b) in Figure 1 by computing the
+four behavioral measures for each individual on the  l-
+tered CDR data. Due the size of the dataset, we use the
+MapReduce paradigm implemented by Hadoop to dis-
+tribute the computation across a cluster of coordinated
+nodes and reduce the time of computation. We  nd no
+relationship between the mobility and the social mea-
+sures at individual level: the correlation between SV
+and M V , as well as the correlation between the SD
+and the M D, are close to zero. This suggests that the
+mobility measures and the sociality measures capture
+di erent aspects of individual behavior.
+We apply step (c) in Figure 1 by aggregating the
+individual measures at the municipality level through
+a two-step process: (i) we assign to each user a home
+location, i.e. the phone tower where the user performs
+the highest number of calls during nighttime (from 10
+pm to 7 am) [44]; (ii) based on these home locations, we
+assign each user to the corresponding municipality with
+standard Geographic Information Systems techniques.
+Figure 6 shows the spatial distribution of Orange users
+in French municipalities. We aggregate the SV , SD,
+M V and M D at municipality level by taking the mean
+values across the population of users assigned to that
+municipality. We obtain 5, 100 municipalities each one
+with the associated four aggregated measures.
+5 Correlation Analysis
+Here we realize step (d) in Figure 1 and study the
+interplay between human mobility, social interactions
+and socio-economic development at municipality level.
+First, in Section 5.1 we introduce the external socio-
+economic indicators and investigate their correlation
+between the behavioral measures aggregated at munici-
+pality level. Then in Section 5.2 we compare the results
+with two null models to reject the hypothesis that the
+correlations appear by chance.
+5.1 Human Behavior versus Socio-Economic
+Development
+As external socio-economic indicators, we use a dataset
+provided by the French National Institute of Statistics
+and Economic Studies (INSEE) about socio-economic
+indicators for all the French municipalities with more
+than 1,000 o cial residents. We collect data on pop-
+ulation density (P D), per capita income (P CI), and
+a deprivation index (DI) constructed by selecting fun-
+damental needs associated both with objective and sub-
+Luca Pappalardo *  et al.
+Fig. 6 The spatial distribution of users over French munic-
+ipalities with more than 1,000 o cial residents. Each user is
+assigned to a municipality according to the geographic posi-
+tion of her home location. The color of municipalities, in a gra-
+dient from blue to red, indicates the number of Orange users
+assigned to that municipality. We observe that the number of
+users in the municipalities varies according to the density of
+the municipality.
+jective poverty [45]. The deprivation index is constructed
+by selecting among variables re ecting individual expe-
+rience of deprivation: the di erent variables are com-
+bined into a single score by a linear combination with
+speci c choices for coe cients (see Appendix). There-
+fore deprivation index is a composite index: the higher
+its value, the lower is the well-being of the munici-
+pality. Preliminary validation showed a high associa-
+tion between the French deprivation index and both
+income values and education level in French munici-
+palities, partly supporting its ability to measure socio-
+economic development [45].
+We investigate the correlations between the aggre-
+gated measures and the external socio-economic indica-
+tors  nding two main results. First, the social volume
+is not correlated with the two socio-economic indica-
+tors (Figure 7(c) and (d)), while mobility volume is
+correlated with per capita income (Figure 7(b)). Sec-
+ond, we  nd that mobility diversity is a better predictor
+for socio-economic development than social diversity.
+Figure 7(e)-(h) shows the relations between diversity
+measures and socio-economic indicators. For mobility
+diversity clear tendencies appear: as the mean mobil-
+ity diversity of municipalities increases, deprivation in-
+An analytical framework to nowcast well-being using mobile phone data
+9
+(a)
+(b)
+(c)
+(d)
+(e)
+(f)
+(g)
+(h)
+Fig. 7 The relation between the aggregated diversity measures and the socio-economic indicators: (a) mobility volume vs
+deprivation index; (b) mobility volume vs per capita income; (b) social volume vs deprivation index; (d) social volume vs per
+capita income; (e) mobility diversity vs deprivation index; (f) mobility diversity vs per capita income; (g) social diversity vs
+deprivation index; (h) social diversity vs per capita income. The color of a point indicates, in a gradient from blue to red, the
+density of points around it. We split the municipalities into ten equal-sized groups according to the deciles of the measures
+on the x axis. For each group, we compute the mean and the standard deviation of the measures on the y axis and plot them
+through the black error bars.   indicates the Pearson correlation coe cient between the two measures. In all the cases the
+p-value of the correlations is < 0.001.
+dex decreases, while per capita income increases (Fig-
+ure 7(e) and (f)). Social diversity, in contrast, exhibits
+a weaker correlation with the deprivation index than
+mobility diversity and no correlation with per capita
+income (Figure 7(g) and (h)).
+Figure 8 provides another way to observe the rela-
+tions between the diversity measures and socio-economic
+development. We split the municipalities in ten deciles
+according to the values of deprivation index. For each
+decile we compute the distributions of mean mobility
+diversity and mean social diversity across the munici-
+palities in that decile. For mobility diversity, the deciles
+of the economic values increase while the mean de-
+creases and the variance increases, highlighting a change
+of the distribution in the di erent groups. This is con-
+sistent with the observation made in the plots of Figure
+7(e). Conversely, for social diversity distribution we do
+not observe a signi cant change in the mean and the
+variance. The observed variation of the mobility diver-
+sity distribution in the di erent deciles is an interest-
+ing  nding when compared to previous works such as
+Song et al. [50] which states that mobile predictability
+is very stable across di erent subpopulations delineated
+by personal characteristics like gender or age group.
+Figure 7 and 8 suggest us that the diversity of human
+mobility aggregated at municipality level is better as-
+sociated with the socio-economic indicators than socio-
+demographic characteristics. The relation between mo-
+bility diversity and deprivation index is stronger and
+more evenly distributed over the di erent levels of de-
+privation index for municipalities.
+5.2 Validation against Null Models
+In order to test the signi cance of the correlations ob-
+served on the empirical data, we compare our  ndings
+with the results produced by two null models.
+In null model NM1, we randomly distribute the users
+over the French municipalities. We  rst extract uni-
+formly N users from the dataset and assign them to
+a random municipality with a population of N users.
+10
+Luca Pappalardo *  et al.
+6 Predictive Models
+In this section we instantiate step (e) building and val-
+idating both regression models (Section 6.1) and clas-
+si cation models (Section 6.2) to predict the external
+socio-economic indicators from the aggregated measures.
+6.1 Regression Models
+To learn more about the relationship between the ag-
+gregated measures and the socio-economic indicators
+we implement two multiple regression models M1 and
+M2. We use deprivation index as dependent variable
+in model M1, per capita income as dependent variable
+for model M2, the four aggregated measures and popu-
+lation density as regressors for both models. We deter-
+mine the regression line using the least squared method.
+The model M1 for deprivation index produces a coef-
+ cient of determination R2 = 0.43, meaning that the
+regressors explain the 43% of the variation in the depri-
+vation index. The model M2 for per capita income ex-
+plains the 25% of the variation in the per capita income
+producing a a coe cient of determination R2 = 0.25.
+Table 3 and Table 4 show the coe cients of the regres-
+sion equations, the standard error of the coe cients
+and the p-values of the regressors for model M1 and
+model M2 respectively. For both model M1 and M2 we
+have veri ed the absence of multicollinearity between
+the regressors, the normality and the homoskedasticity
+of regression residuals.
+Model M1 (deprivation index), R2 = 0.4267
+PD
+MD
+SD
+MV
+SV
+intercept
+coe cients
+0.247
+-2.980
+-2.153
+0.002
+0.006
+4.078
+std. error
+0.005
+0.0575
+0.2027
+0.0002
+0.0027
+0.1281
+p-value
+< 2   10 16
+< 2   10 16
+< 2   10 16
+5.35   10 16
+0.013
+< 2   10 16
+Table 3 The linear regression model M1 for deprivation in-
+dex. The coe cients column speci es the value of slope calcu-
+lated by the regression. The std. error column measures the
+variability in the estimate for the coe cients. The p-value
+column shows the probability the variable is not relevant.
+We quantify the contribution of each regressor to
+the multiple regression model by computing a relative
+importance metric [23]. Figure 10 shows the relative im-
+portance of regressors produced by the LMG method
+[32] for both model M1 and model M2. We observe
+that mobility diversity gives the highest contribution
+to the regression, accounting for the 54% and 65% of
+the importance for M1 and M2 respectively, while so-
+cial diversity provides a little contribution (0.7% for M1
+(a)
+(b)
+Fig. 8 The distribution of mobility diversity (a) and social
+diversity (b) in the deciles of deprivation index. We split the
+municipalities into ten equal-sized groups computed accord-
+ing to the deciles of deprivation index. For each group, we
+plot the distributions of mean mobility diversity and mean
+social diversity. The blue dashed curve represent a  t of the
+distribution, the red dashed line represents the mean of the
+distribution.
+We then aggregate the individual diversity measures of
+the users assigned to the same municipality. We repeat
+the process 100 times and take the mean of the aggre-
+gated values of each municipality produced in the 100
+experiments.
+In null model NM2, we randomly shu e the values
+of the socio-economic indicators over the municipali-
+ties. We perform this procedure 100 times and take, for
+each municipality, the mean value of the socio-economic
+indicators computed over the 100 produced values. In
+contrast with empirical data, we  nd no correlation in
+the null models between the diversity measures and the
+socio-economic indicators, neither for mobility diversity
+nor for social diversity (Figure 9). Such a clear di er-
+ence between the correlations observed over empirical
+data and the absence of correlations in observations on
+randomized data allows us to reject the hypothesis that
+our  ndings are obtained by chance.
+An analytical framework to nowcast well-being using mobile phone data
+11
+(a)
+(b)
+(c)
+(d)
+(e)
+(f)
+(g)
+(h)
+Fig. 9 The relation between the socio-economic indicators and the diversity measures computed on null model NM1 (a-d)
+and null model NM2 (e-h). The color of a point indicates, in a gradient from blue to red, the density of points around it. We
+split the municipalities into ten equal-sized groups according to the deciles of the measures on the x axis. For each group, we
+compute the mean and the standard deviation of the measure on the y axis (the black error bars).
+Model M2 (per capita income), R2 = 0.25
+p-value
+< 2   10 16
+< 2   10 16
+7.82   10 13
+< 2   10 16
+3.56   10 8
+< 2   10 16
+coe cients
+781.94
+22,773.47
+18,451.79
+63.116
+191.16
+-18,933.66
+std. error
+74.84
+729.05
+2,569.05
+3.64
+34.62
+1,624.36
+PD
+MD
+SD
+MV
+SV
+intercept
+Table 4 The linear regression model M2 for per capita in-
+come. The coe cients column speci es the value of slope cal-
+culated by the regression. The std. error column measures
+the variability in the estimate for the coe cient. The p-value
+column shows the probability the variable is not relevant.
+and 0.3% for M2). Population density provides an im-
+portant contribution in both models, mobility volume
+is an important variable to model M2 only (20% of the
+variance).
+To validate the models we implement a cross vali-
+dation procedure by performing 1,000 experiments. In
+each experiment we divide the dataset of municipalities
+into a training set (60%) and a test set (40%), compute
+model M1 and model M2 on the training set, and ap-
+ply the obtained models on the test set. We evaluate
+the performance of the models on the test set using the
+(a)
+(b)
+Fig. 10 The relative importance of the aggregated measures
+in the multiple regression models M1 (a) and M2 (b). We use
+the Lindeman, Merenda and Gold (LMG) method to quan-
+tify an individual regressor s contribution to the model. We
+observe that mobility diversity is the most important variable
+in the model with a contribution of about 54% and 65% for
+model M1 and M2 respectively.
+root mean square error RM SE =(cid:112)(cid:80)n
+i ( yi   yi)2)/n,
+where  yi is the value predicted by the model and yi
+the actual value in the test set, and computing the
+CV(RMSE), i.e. the RMSE normalized to the mean of
+the observed values. Figure 11 shows the variation of
+12
+R2 and CV (RM SE) across the 1,000 experiments. We
+observe that the prediction error of the models is stable
+across the experiments (Figure 11(a) and (c)), and that
+the error in the prediction is lower for model M1 (depri-
+vation index). Finally, we compare the actual values of
+Luca Pappalardo *  et al.
+(a)
+(b)
+(c)
+(d)
+Fig. 11 Validation of regression models. We perform 1,000
+experiments learning the model on a training set (60%) and
+evaluating it on a a test set (40%). (a) The distribution of
+the adjusted coe cient of determination R2 across the ex-
+periments for model M1. (b) The distribution of the root
+mean square error (RMSE) across the experiments for model
+M1. (c) The distribution of the adjusted R2 across the ex-
+periments for model M2. (d) The distribution of RMSE for
+model M2.
+socio-economic indicators and the values predicted by
+the models by computing the relative error, i.e. for each
+municipality i we compute ( yi   yi)/y. We observe that
+the mean relative error computed across the municipal-
+ities is close to zero for both model M1 and model M2
+(Figure 12).
+6.2 Classi cation Models
+Here, instead of predicting the value of deprivation or
+per capita income of municipalities we want to classify
+the level of socio-economic development of municipali-
+ties. To this purpose we build two supervised classi ers
+C1 and C2 that assign each municipality to one of three
+(a)
+(b)
+Fig. 12 The distribution of the relative error ( yi   y)/y
+across the French municipalities for regression models M1 (a)
+and M2 (b).
+possible categories: low level, medium level or high level
+of deprivation index (classi er C1) or per capita income
+(classi er C2). To transform the two continuous mea-
+sures deprivation index and per capita income into dis-
+crete variables we partition the range of values using the
+33th percentile of the distribution. This produced, for
+each variable to predict, three equal-populated classes.
+We perform the classi cation using Random Forest clas-
+si ers on a training set (60% of the dataset) and val-
+idate the results on a test set (40% of the dataset).
+Classi er C1 for deprivation index reaches an overall
+accuracy of 0.61, while the overall accuracy of classi er
+C2 for per capita income is 0.54, against a random case
+accuracy of 0.33. Table 5 shows precision, recall and
+overall accuracy reached by classi er C1 and classi er
+C2 on the three classes of socio-economic development.
+We also evaluate the importance of every aggregated
+measure in classifying the level of socio-economic devel-
+opment of municipalities, using the Mean Decrease Gini
+measure. Similarly to the Relative Importance metrics
+for the regression models, in both classi er C1 and clas-
+si er C2 the mobility diversity has the highest impor-
+tance, followed by population density (Figure 13).
+7 Discussion of Results
+The implementation of the analytical framework on mo-
+bile phone data produces three remarkable results.
+First, the usage of the measures of mobility and
+social behavior together with the standard and com-
+monly available socio-demographic information actu-
+ally adds predictive power with respect to the external
+socio-economic indicators. Indeed, while a univariate
+regression that predicts deprivation index from popula-
+tion density is able to explains only the 11% of the vari-
+ance, by adding the four behavioral measures extracted
+An analytical framework to nowcast well-being using mobile phone data
+13
+sons. Mobile phone providers do not generally release,
+for privacy reasons, information about the call inter-
+actions between users, i.e. the social dimension. Our
+result shows that this is a marginal problem since the
+social dimension has a lower impact to the quality of
+the models than the mobility dimension (Figures 10
+and 13). Hence, the implementation of our analytical
+framework guarantees reliable results even when, as of-
+ten occurs because of privacy and proprietary reasons,
+the social dimension is not available in the data.
+The interpretation of the observed relation between
+mobility diversity and socio-economic indicators is, with-
+out a doubt, two-directed. It might be that a well-
+developed territory provides for a wide range of activ-
+ities, an advanced network of public transportation, a
+higher availability and diversi cation of jobs, and other
+elements that foster mobility diversity. As well as it
+might be that a higher mobility diversi cation of indi-
+viduals lead to a higher socio-economic development as
+it could nourish economy, establish economic opportu-
+nities and facilitate  ows of people and goods. In any
+case this information is useful for policy makers, be-
+cause a change in the diversi cation of individual move-
+ments is linked to a change into the socio-economic sta-
+tus of a territory.
+Third remarkable result is that our regression and
+classi cation models exhibit good performance when
+used to predict the socio-economic development of other
+municipalities, whose data where not used in the learn-
+ing process (Figure 11 and Table 5). This result is evi-
+dent from the cross validation procedure: the accuracy
+and the prediction errors of the models are not depen-
+dent on the training and test set selected. The models
+hence give a real possibility to continuously monitor
+the socio-economic development of territories and pro-
+vide policy makers with an important tool for decision
+making.
+(a)
+(b)
+Fig. 13 The mean decrease in Gini coe cient of the variables
+used to learn the classi ers, for deprivation index (a) and per
+capita income (b). The mean decrease in Gini coe cient is a
+measure of how each variable contributes to the homogeneity
+of nodes and leaves in the resulting random forest.
+Model C1: accuracy = 0.61
+low deprivation
+medium deprivation
+high deprivation
+recall
+0.6230
+0.4970
+0.7089
+precision
+0.6657
+0.4918
+0.6721
+Model C2, accuracy = 0.54
+low income
+medium income
+high income
+recall
+0.6098
+0.3590
+0.6552
+precision
+0.5700
+0.3993
+0.6376
+Table 5 Statistics by class for classi er C1 (deprivation in-
+dex) and classi er C2 (per capita income). The recall is the
+number municipalities for which the classi er predicts the
+correct class divided by the number of municipalities in that
+class. The precision is the number of municipalities for which
+the classi er predicts the correct class divided by the number
+of municipalities the classi er predicts to be in that class. We
+observe that the classes  low  and  high  are the best predicted
+classes.
+from mobile phone data we can explain the 42% of the
+variance (see Table 3). This outcome suggests that mo-
+bile phone data are able to provide precise and realis-
+tic measurements of the behavior of individuals in their
+complex social environment, which can be used within a
+knowledge infrastructure like our analytical framework
+to monitor socio-economic development.
+Second, the diversi cation of human movements is
+the most important aspect for explaining the socio-
+economic status of a given territory, far larger than the
+diversi cation of social interactions and demographic
+features like population density. This result, which is
+evident from both the correlations analysis and the
+contribution of mobility diversity in the models (Fig-
+ures 7, 10 and 13), is also important for practical rea-
+8 Conclusions and Future works
+In this paper we design an analytical framework that
+uses mobile phone data to extract meaningful measures
+of human behavior and estimate indicators for socio-
+economic development. We apply the analytical frame-
+work on a nationwide mobile phone data covering sev-
+eral weeks and  nd that the diversi cation of human
+movements is the best proxy for indicators of socio-
+economic development. We know that bio-diversity is
+crucial to the health of natural ecosystems, that the
+diversity of opinion in a crowd is essential to answer
+di cult questions [20] and that the diversity of social
+contacts is associated to socio-economic indicators of
+14
+Luca Pappalardo *  et al.
+well-being [15]. The story narrated in this paper sug-
+gests that diversity is a relevant concept also in mobility
+ecosystems: the diversity of human mobility may be a
+reliable indicator of the variety of human activities, and
+a mirror of some aspects of socio-economic development
+and well-being.
+We are aware that the computation of individual
+measures on CDR data (step (a) and (b) in Figure 1)
+present privacy issues. An important next step will be
+to incorporate a privacy-by-design approach. We intend
+to use a method to assess the privacy risk of users in
+order to detect risk cases where the privacy of users
+is violated and apply privacy enhancing techniques for
+data anonymization [35].
+In our experiments we compare the measures of mo-
+bility and sociality with two external socio-economic in-
+dicators: per capita income and deprivation index. Per
+capita income is a simple indicator indicating the mean
+income of individuals resident in a given municipality,
+without any information about the distribution of the
+wealth and the inequality. In contrast deprivation in-
+dex is a composite indicator obtained as linear combi-
+nation of several di erent variables regarding economic
+and ecological aspects (see Appendix). It would be in-
+teresting, as future work, to investigate the relation be-
+tween the behavioral measures and the socio-economic
+development in a multidimensional perspective, using
+the single variables composing the deprivation index to
+understand which are the aspects of socio-economic de-
+velopment that best correlate with the measures of hu-
+man behavior. This multidimensional approach is fos-
+tered by recent academic research and a number of
+concrete initiatives developed around the world [25, 1]
+which state that the measurement of well-being should
+be based on many di erent aspects besides the mate-
+rial living standards (income, consumption and wealth):
+health, education, personal activities, governance, so-
+cial relationships, environment, and security. All these
+dimensions shape people s well-being, and yet many of
+them are missed by conventional income measures. Of-
+ cial statistics institutions are incorporating questions
+to capture people s life evaluations, hedonic experiences
+and priorities in their own surveys (see for example
+the Italian BES project developed by Italian National
+Statistics Bureau [1]). When these measures will be-
+come available, they will allow us to re ne our study on
+the relation between measures extracted from Big Data
+and the socio-economic development of territories.
+In the meanwhile, experiences like ours may con-
+tribute to shape the discussion on how to measure some
+of the aspects of socio-economic development with Big
+Data, such as mobile phone call records, that are mas-
+sively available everywhere on earth. If we learn how to
+use such a resource, we have the potential of creating a
+digital nervous system in support of a generalized and
+sustainable development of our societies. This is crucial
+because the decisions policy makers (and we as individ-
+ual citizens) make depend on what we measure, how
+good our measurements are and how well our measures
+are understood.
+Appendix
+As described in [45], the value of deprivation index for
+French municipalities is calculated in the following way:
+deprivation =0.11   Overcrowding
++ 0.34   No access to electric heating
++ 0.55   Non-owner
++ 0.47   Unemployment
++ 0.23   Foreign nationality
++ 0.52   No access to a car
++ 0.37   Unskilled worker-farm worker
++ 0.45   Household with 6 + persons
++ 0.19   Low level of education
++ 0.41   Single-parent household.
+Fig. 14 Distribution of deprivation index (a) and per capita
+income (b) across French municipalities.
+Acknowledgements The authors would like to thank Or-
+ange for providing the CDR data, Giovanni Lima and Pier-
+paolo Paolini for the contribution developed during their mas-
+ter theses. We are grateful to Carole Pornet and colleagues
+for providing the socio-economic indicators and for comput-
+ing the deprivation index for the French municipalities.
+This work has been partially funded by the following Eu-
+ropean projects: Cimplex (grant agreement 641191), PETRA
+(grant agreement 609042), SoBigData RI (grant agreement
+654024).
+An analytical framework to nowcast well-being using mobile phone data
+15
+References
+1. Bes: il benessere equo e sostenibile in italia. Technical
+report, ISTAT, 2014.
+2. A world that counts: mobilizing the data revolution for
+sustainable development. Technical report, United Na-
+tions, 2014.
+3. Indicators and a monitoring framework for the sustain-
+able development goals. Technical report, United Na-
+tions, 2015.
+4. A. Amini, K. Kung, C. Kang, S. Sobolevsky, and C. Ratti.
+The impact of social segregation on human mobility in
+developing and urbanized regions. EPJ Data Science, 3,
+2014.
+5. L. Backstrom, P. Boldi, M. Rosa, J. Ugander, and S. Vi-
+gna. Four degrees of separation. In Proceedings of the
+4th Annual ACM Web Science Conference, WebSci  12,
+pages 33 42, New York, NY, USA, 2012. ACM.
+6. A.-L. Barabasi. Linked: The new science of networks.
+Perseus Publishing, 2002.
+7. V. D. Blondel, A. Decuyper, and G. Krings. A survey
+of results on mobile phone datasets analysis, 2015. cite
+arxiv:1502.03406.
+8. J. Blumenstock. Calling for better measurement: Esti-
+mating an individual s wealth and well-being. In ACM
+KDD (Data Mining for Social Good), 2014.
+9. J. Brea, J. Burroni, M. Minnoni, and C. Sarraute. Har-
+nessing mobile phone social network topology to infer
+users demographic attributes.
+In Proceedings of the
+8th Workshop on Social Network Mining and Analysis,
+SNAKDD 14. ACM, 2014.
+10. E. Cho, S. A. Myers, and J. Leskovec. Friendship and mo-
+bility: user movement in location-based social networks.
+In Proceedings of the 17th ACM SIGKDD International
+Conference on Knowledge Discovery and Data Mining,
+KDD 11, pages 1082 1090. ACM, 2011.
+11. P. Cintia, L. Pappalardo, D. Pedreschi, F. Giannotti, and
+M. Malvaldi. The harsh rule of the goals: data-driven per-
+formance indicators for football teams. In Proceedings of
+the 2015 IEEE International Conference on Data Sci-
+ence and Advanced Analytics, DSAA 15. EEE, 2015.
+12. P. J. H. Daas, M. J. Puts, and B. Buelens. Big data
+and o cial statistics. In The 2013 New Techniques and
+Technologies for Statistics conference, 2013.
+13. A. Decuyper, A. Rutherford, A. Wadhwa, J. Bauer,
+G. Krings, T. Gutierrez, V. D. Blondel, and M. A.
+Luengo-Oroz. Estimating food consumption and poverty
+indices with mobile phone data. CoRR, abs/1412.2595,
+2014.
+14. P. Deville, C. Linard, S. Martin, M. Gilbert, F. R.
+Stevens, A. E. Gaughan, V. D. Blondel, and A. J. Tan-
+dem. Dynamic population mapping using mobile phone
+data. Proceedings of the National Academy of Sciences
+(PNAS), 111(45):15888 15893, 2014.
+15. N. Eagle, M. Macy, and R. Claxton. Network diversity
+and economic development. Science, 328(5981):1029 
+1031, May 2010.
+16. N. Eagle and A. S. Pentland. Eigenbehaviors: identifying
+structure in routine. Behavioral Ecology and Sociobiol-
+ogy, 63(7):1057 1066, 2009.
+17. S. Fortunato. Community detection in graphs. Physics
+Reports, 486(3-5):75   174, 2010.
+18. V. Frias-martinez, V. Soto, J. Virseda, and E. Frias-
+martinez. Can cell phone traces measure social devel-
+opment? In Third Conference on the Analysis of Mobile
+Phone Datasets, NetMob, 2013.
+19. B. Furletti, L. Gabrielli, F. Giannotti, L. Milli, M. Nanni,
+D. Pedreschi, R. Vivio, and G. Garofalo. Use of mobile
+phone data to estimate mobility  ows. measuring urban
+population and inter-city mobility using big data in an
+integrated approach. In 47th SIS Scienti c Meeting of
+the Italian Statistica Society, Cagliari, 06/2014 2014.
+20. F. Galton. Vox populi. Nature, 75(7), 1907.
+21. F. Giannotti, D. Pedreschi, A. Pentland, P. Lukowicz,
+D. Kossmann, J. L. Crowley, and D. Helbing. A planetary
+nervous system for social mining and collective aware-
+ness. EPJ Special Topics, 214:49 75, 2012.
+22. M. C. Gonz alez, C. A. Hidalgo, and A.-L. Barab asi. Un-
+derstanding individual human mobility patterns. Nature,
+453(7196):779 782, June 2008.
+23. U. Groemping. Relative importance for linear regression
+in r: The package relaimpo. Journal of Statistical Soft-
+ware, 17(1):1 27, 2006.
+24. T. Gutierrez, G. Krings, and V. D. Blondel. Evaluating
+socio-economic state of a country analyzing airtime credit
+and mobile phone datasets. CoRR, abs/1309.4496, 2013.
+25. D. Helbing and S. Balietti. How to create an innovation
+accelerator. EPJ Special Topics, (195):101 136, 2011.
+26. C. A. Hidalgo and C. Rodriguez-Sickert. The dynamics
+of a mobile phone network. Physica A: Statistical Me-
+chanics and its Applications, 387(12):3017   3024, 2008.
+27. S. Jiang, J. F. Jr, and M. Gonz alez. Clustering daily
+patterns of human activities in the city. Data Mining
+and Knowledge Discovery, 25:478 510, 2012.
+28. D. Karamshuk, C. Boldrini, M. Conti, and A. Pas-
+sarella. Human mobility models for opportunistic net-
+works.
+IEEE Communications Magazine, 49(12):157 
+165, 2011.
+29. M.-P. Kwan. Gender, the home-work link, and space-
+time patterns of nonemployment activities. Economic
+Geography, 75(4):370 394, 1999.
+30. J. Leskovec and E. Horvitz. Planetary-scale views on a
+large instant-messaging network. In WWW, pages 915 
+924. ACM, 2008.
+31. L. Liao, D. J. Patterson, D. Fox, and H. Kautz. Learn-
+ing and inferring transportation routines. Artif. Intell.,
+171(5-6):311 331, Apr. 2007.
+32. R. Lindeman, P. Merenda, and R. Gold.
+Introduction
+to bivariate and multivariate analysis. Scott, Foresman,
+1980.
+33. L. Lotero, A. Cardillo, R. Hurtado, and J. Gomez-
+Gardenes. Several multiplexes in the same city: The role
+of socioeconomic di erences in urban mobility. Available
+at SSRN 2507816, 2014.
+34. S. Marchetti, C. Giusti, M. Pratesi, N. Salvati, F. Gi-
+annotti, D. Pedreschi, S. Rinzivillo, L. Pappalardo, and
+L. Gabrielli. Small area model-based estimators using big
+data sources. Journal of O cial Statistics, 31(2), 2015.
+35. A. Monreale, S. Rinzivillo, F. Pratesi, F. Giannotti, and
+D. Pedreschi. Privacy-by-design in big data analytics and
+social mining. EPJ Data Science, 2014.
+36. M. E. J. Newman. The structure and function of complex
+networks. SIAM Review, 45(2):167 256, 2003.
+37. J. Onnela, J. Saramaki, J. Hyvonen, G. Szabo, D. Lazer,
+K. Kaski, J. Kertesz, and A. L. Barabasi. Structure and
+tie strengths in mobile communication networks. Proc.
+Natl. Acad. Sci. USA, 104(18):7332 7336, 2007.
+38. W. Pan, G. Ghoshal, C. Krumme, M. Cebrian, and
+A. Pentland.
+Urban characteristics attributable to
+density-driven tie formation. Nature Communications,
+4, 2013.
+39. L. Pappalardo, S. Rinzivillo, Z. Qu, D. Pedreschi, and
+F. Giannotti. Understanding the patterns of car travel.
+EPJ Special Topics, 215(1):61 73, 2013.
+16
+Luca Pappalardo *  et al.
+40. L. Pappalardo, F. Simini, S. Rinzivillo, D. Pedreschi,
+F. Giannotti, and A.-L. Barab asi. Returners and explor-
+ers dichotomy in human mobility. Nature Communica-
+tions, 6(8166), 2015.
+41. L. Pappalardo, Z. Smoreda, D. Pedreschi, and F. Gian-
+notti. Using big data to study the link between human
+mobility and socio-economic development.
+In Proceed-
+ings of the IEEE International Conference on Big Data,
+2015.
+42. D. Pennacchioli, M. Coscia, S. Rinzivillo, F. Giannotti,
+and D. Pedreschi. The retail market as a complex system.
+EPJ Data Science, 3(1):33, 2014.
+43. D. Pennacchioli, M. Coscia, S. Rinzivillo, D. Pedreschi,
+and F. Giannotti. Explaining the product range e ect
+in purchase data. In Proceedings of the IEEE Interna-
+tional Conference on Big Data, IEEE Big Data 2015,
+pages 648 656, 2013.
+44. S. Phithakkitnukoon, Z. Smoreda, and P. Olivier. Socio-
+geography of human mobility: A study using longitudinal
+mobile phone data. PLoS ONE, 7(6):e39253, 06 2012.
+45. C. Pornet, C. Delpierre, O. Dejardin, P. Grosclaude,
+L. Launay, L. Guittet, T. Lang, and G. Launoy. Con-
+struction of an adaptable european transnational ecolog-
+ical deprivation index: the french version. Journal of Epi-
+demiol Community Health, 66(11):982 9, 2012.
+46. S. Rinzivillo, L. Gabrielli, M. Nanni, L. Pappalardo,
+D. Pedreschi, and F. Giannotti. The purpose of motion:
+Learning activities from individual mobility networks.
+In Proceedings of the 2014 International Conference on
+Data Science and Advanced Analytics, DSAA 14, 2014.
+47. S. Rinzivillo, S. Mainardi, F. Pezzoni, M. Coscia, D. Pe-
+dreschi, and F. Giannotti. Discovering the geographi-
+cal borders of human mobility. K unstliche Intelligenz,
+26(3):253 260, 2012.
+48. F. Simini, M. C. Gonz alez, A. Maritan, and A.-L.
+Barab asi. A universal model for mobility and migration
+patterns. Nature, 484(7392):96 100, 2012.
+49. C. Smith-Clarke, A. Mashhadi, and L. Capra. Poverty
+on the cheap: Estimating poverty maps using aggregated
+mobile communication networks. In Proceedings of the
+SIGCHI Conference on Human Factors in Computing
+Systems, pages 511 520. ACM, 2014.
+50. C. Song, T. Koren, P. Wang, and A.-L. Barab asi. Mod-
+elling the scaling properties of human mobility. Nature
+Physics, 6(10):818 823, Sept. 2010.
+51. C. Song, Z. Qu, N. Blumm, and A.-L. Barab asi.
+Science,
+Limits of predictability in human mobility.
+327(5968):1018 1021, 2010.
+52. P. Struijs and P. J. H. Daas. Quality approaches to
+big data in o cial statistics. In European conference on
+Quality in O cial Statistics, 2014.
+53. D. Wang, D. Pedreschi, C. Song, F. Giannotti, and A.-L.
+Barab asi. Human mobility, social ties, and link predic-
+tion. In Proceedings of the 17th ACM SIGKDD Inter-
+national Conference on Knowledge Discovery and Data
+Mining, KDD  11, pages 1100 1108, New York, NY, USA,
+2011. ACM.
+54. X.-Y. Yan, C. Zhao, Y. Fan, Z. Di, and W.-X. Wang. Uni-
+versal predictability of mobility patterns in cities. Jour-
+nal of The Royal Society Interface, 11(100), 2014.

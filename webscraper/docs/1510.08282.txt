@@ -1,0 +1,931 @@
+Ideal Composition of a Group for Maximal Knowledge Building in Crowdsourced
+Environments
+Anamika Chhabra, S. R. S. Iyengar and Jaspal S. Saini
+anamika.chhabra@iitrpr.ac.in, sudarshan@iitrpr.ac.in, jaspal.singh@iitrpr.ac.in
+Department of Computer Science and Engineering
+Indian Institute of Technology Ropar, India
+6
+1
+0
+2
+ 
+y
+a
+M
+1
+1
+ 
+ 
+ 
+]
+C
+H
+.
+s
+c
+[
+ 
+ 
+2
+v
+2
+8
+2
+8
+0
+.
+0
+1
+5
+1
+:
+v
+i
+X
+r
+a
+Abstract
+Crowdsourcing has revolutionized the process of knowledge
+building on the web. Wikipedia and StackOver ow are wit-
+ness to this uprising development. However, the dynamics be-
+hind the process of crowdsourcing in the domain of knowl-
+edge building is an area relatively unexplored.
+It has been
+observed that an ecosystem exists in the collaborative knowl-
+edge building environments (KBE)(Chhabra, Iyengar, Saini, &
+Bhat, 2015), which puts users of a KBE into various categories
+based on their expertise. Classical cognitive theories indicate
+triggering among the knowledge units to be one of the most
+important reasons behind accelerated knowledge building in
+collaborative KBEs. We use the concept of ecosystem and the
+triggering phenomenon to highlight the necessity for the right
+mix of users in a KBE. We provide a hill climbing based algo-
+rithm which gives the ideal mixture of users in a KBE, given
+the amount of triggering that takes place among the users of
+various categories. The study will help the portal designers to
+accordingly build suitable crowdsourced environments.
+Keywords: Crowdsourcing; knowledge building; ecosystem;
+triggering
+Introduction
+Due to the introduction of Web 2.0 and Web 3.0 (Lassila
+& Hendler, 2007; Hendler, 2009), a collection of tools for
+collaboration, integration and interaction have become avail-
+able on the internet (Bryant, 2006). Accessing knowledge on
+any given topic is not a dif cult task nowadays. The online
+knowledge building systems have become successful largely
+because of crowdsourcing. It is a technique provided by Web
+2.0 which is used to gather information from the people in
+the crowd.
+In a crowdsourced knowledge building system,
+the knowledge-generation process is outsourced to a commu-
+nity of users (Doan, Ramakrishnan, & Halevy, 2011). Some
+of the knowledge building systems effectively exploiting the
+bene ts of crowdsourcing are Wikipedia, StackOver ow and
+Quora. These systems aggregate the human knowledge on
+various topics and have been successful in making use of
+the immense potential of the masses. Many of these sys-
+tems also make use of various incentivizing mechanisms to
+motivate users to participate more in the knowledge building
+process (Anderson, Huttenlocher, Kleinberg, & Leskovec,
+2013). Due to the ease of access of internet, the process
+of knowledge building has further evolved (Saxton, Oh, &
+Kishore, 2013). Even knowledge seekers are participating in
+the knowledge building process by for example, asking ques-
+tions (Wang, Gill, Mohanlal, Zheng, & Zhao, 2013; Hanra-
+han, Convertino, & Nelson, 2012). These questions then trig-
+ger other users to add their knowledge to the system (Dierkes,
+Child, & Nonaka, 2003; Anderson, Huttenlocher, Kleinberg,
+& Leskovec, 2014). Prime examples include StackOver ow
+and Quora. Also, group knowledge building by a mixture
+of experts and non-experts has mostly replaced individual
+knowledge building by experts (Kittur & Kraut, 2008; Gal-
+ton, 1907; Surowiecki, Silverman, et al., 2007). All this has
+inspired us to look into the dynamics of group knowledge
+building. We begin by addressing the following set of ques-
+tions: Why is it that groups perform better than individuals in
+knowledge building? In order to have the best knowledge
+building experience, should we take care of certain things
+while forming groups? In general, does the composition of
+the group matter?
+Figure 1: The Triggering Phenomenon (a) A knowledge
+building system consisting of three categories getting trig-
+gered by each other (b) The triggering matrix T
+To investigate these questions, our analysis is based on the
+existence of ecosystem (Chhabra, Iyengar, Saini, Bhat, & Ku-
+mar, 2015) in crowdsourced KBEs, Luhmann s theory of au-
+topoietic systems (Seidl, 2004; Luhmann, 1995) and Piaget s
+theory of equilibration (Piaget, 1977, 1976). We also follow
+on the classical literature on the triggering phenomenon oc-
+curring among the knowledge frames. In (Chhabra, Iyengar,
+Saini, & Bhat, 2015), the authors observed the existence of
+ecosystem among the users of a knowledge building system,
+and based on that, divided them into various categories. Each
+of these categories possesses a different skill set and partic-
+ipates in the knowledge building process in a different man-
+ner. Following Luhmann s theory, we propose that groups in
+a knowledge building system perform better, because these
+categories create an enormous amount of perturbation among
+each other. This perturbation leads to triggering of more ideas
+into the KBE. The theory when applied to modern knowledge
+building systems gives an insight into why people participate
+in these crowdsourced systems. The perturbation that is cre-
+ated on seeing some content on these systems inspires them
+to contribute more. According to Piaget s theory, this phe-
+nomenon of triggering will go on until the state of equili-
+bration, after which the triggering reduces. This theory ex-
+plains the reasons behind the slowing growth of content on
+Wikipedia with time (Suh, Convertino, Chi, & Pirolli, 2009;
+Lam & Riedl, 2011).
+The paper provides a thorough investigation of the crowd-
+sourced knowledge building process in terms of ecosystem
+and triggering. We differentiate between the knowledge that
+the users add to the system without looking at each others 
+ideas and the knowledge that they add when they come across
+the content posted by others. We see that the latter constitutes
+a considerable part of the knowledge built by a crowdsourced
+system. The proposed model helps in understanding the rea-
+son behind the bene ts that a group provides, as compared to
+individual knowledge building. We further show that it is im-
+portant to have the right mix of users in a knowledge building
+portal for it to be more effective. For example, even the users
+who have good knowledge of the subject matter, might not
+add their knowledge to the system unless they are instigated.
+Hence, it is equally important to have a good number of users
+in the system who can ask meaningful questions. This way,
+even people having less knowledge about the subject partici-
+pate in the knowledge building process.
+Outline. The remainder of the paper is organized as fol-
+lows: In section 2, we discuss related work on knowledge
+building. Section 3  rst explains certain classical theories
+which have inspired the development of the current model
+along with the model and then gives an algorithm to  nd the
+ideal distribution of users given the triggering matrix. In sec-
+tion 4, we conclude and discuss directions for future work.
+Related Work
+In the past, most of the models on knowledge building have
+focused on various characteristics that a KBE should possess.
+However, the characteristics of users that are participating in
+the knowledge building process have not been well under-
+stood.
+Nonaka (1994) explains that the knowledge creation hap-
+pens through a constant dialogue between tacit knowledge1
+and explicit knowledge2. The author developed a theoretical
+framework which provides an analytical perspective on vari-
+ous dimensions of knowledge creation. Gerry Stahl (2000)
+provides a conceptual framework for collaborative KBEs
+which consists of important phases that should be supported
+by any computer-based KBE. The model given by the au-
+thor explains the relationship of collaborative group processes
+to individual cognitive processes. Scardamlia and Brieter
+1It is codi ed knowledge which is transmittable in some formal
+language
+2It is the knowledge that human beings possess and acquire
+4Internalization is the process of taking the information from the
+through their experience over time
+(1994) in their work consider learners also as the members of
+knowledge building community. They emphasized the impor-
+tance of a community effort rather than individual effort for
+accelerated knowledge building. Cress et al. (2008) provide
+a theoretical framework for describing the process of learn-
+ing and knowledge building and the way these two processes
+in uence each other. They make use of Luhmann theory and
+Piaget s theory of equilibration and propose two processes
+externalization3 and internalization4 as the basis of interac-
+tion between the social and the cognitive system. Minsky
+(1977) and Rumelhart (1991) consider the knowledge units as
+frames. Norman (1981) and Just et. al (1980) assert that the
+frames are linked together and one frame may trigger other
+frames. When a frame is triggered, all the frames linked to it
+are triggered. Fisher and Lipson (1985) state that for a given
+frame to come into the system, suitable triggering conditions
+are required.
+A study which is conducted in the context of a right mix of
+users in the domain of problem solving has been performed
+by Scott (2004; 2008). The author states that a group of ran-
+domly selected people outperforms a group of best perform-
+ing people. This is due to the fact that these random people
+bring diverse knowledge into the system and hence are able to
+perform better while solving a problem. On contrary, the best
+performing agents bring in similar type of knowledge to the
+system and hence might not be able to solve the problem that
+well. However, Thompson (2014) came up with a counter pa-
+per to Scott s work recently claiming that his paper does not
+provide any foundation for the argument that diversity actu-
+ally trumps ability. Krause et al. (2011) argue that adding
+diversity to a group can be more advantageous than adding
+expertise to the group. Erickson et. al (2012) provide a frame-
+work to select the crowd matching organizational needs. The
+authors state that different tasks require different crowds with
+different skills and knowledge. Kobern et. al (Kobren, Tan,
+Ipeirotis, & Gabrilovich, 2015) observe in their recent work
+that intelligently assigning tasks to the users signi cantly in-
+creases the value of a crowdsourced system.
+The Triggering Model
+This section  rst introduces the motivation behind the model
+by presenting classical
+theories which explain the phe-
+nomenon of triggering among the knowledge units and a brief
+of the existence of ecosystem in crowdsourced environments.
+It then describes the types of KUs followed by the problem
+statement. The Triggering Model and the algorithm are ex-
+plained afterwards.
+Motivation
+This subsection introduces Luhmann theory, Piaget s theory
+of equilibration and the previous work on ecosystem.
+3Externalization is a process by which users add their knowledge
+to the system
+system
+Elementary Theories on Cognition and Triggering Luh-
+manns theory describes a knowledge building system as an
+autopoietic system 5. It states that once started, further ideas
+(or cognitions) are produced by existing ideas of the same
+system. The existing ideas create perturbations in the cogni-
+tive system of users, which then trigger more ideas.The the-
+ory clearly distinguishes cognitive systems from the KBE. We
+apply the same concept to the knowledge building process,
+where users are the cognitive systems who build knowledge
+in the KBE. The changes in the environment lead to irritations
+in the cognitive systems. The theory further talks about the
+concept of structural coupling, which is the relation between
+cognitive systems and the environment. It states that although
+environment can create irritations in all the cognitive systems
+(users here), it might not be able to trigger all of them. The ac-
+tual systems that can get triggered due to these perturbations
+are determined by the structural coupling of these systems to
+the environment. Also, different cognitive systems may have
+different structural coupling.
+The question arises whether this phenomenon of triggering
+goes on inde nitely, or does it reach some threshold point.
+Piagets Model of equilibration states that people contribute
+to the knowledge building process because of cognitive con-
+ icts (perturbations as per Luhmann Model), which means
+that when they see some information that is incongruent to
+their existing knowledge, it creates a disturbance in their
+mind. This disturbance leads them to add their knowledge
+to the system. This knowledge addition then leads to the
+equilibration between the systems knowledge and the users
+knowledge. We further build on this theory explaining that
+initially, there is a huge need for equilibration, hence enor-
+mous amount of knowledge gets added to the system. How-
+ever, as time passes, users knowledge starts matching with the
+knowledge of the system, and hence, there is less disturbance.
+This provides some support for slowing growth of knowledge
+building in the KBEs with time.
+Lateral thinking and triggering process (Rumelhart, 1991)
+are the main reasons for generation of ideas in a collaborative
+KBE. Triggering is a procedure by which an idea or a com-
+ment spearheads the generation of another idea or a thought
+(Just & Carpenter, 1980). It is associated with how an idea
+or a comment becomes an impetus for the generation of other
+ideas. The generation of knowledge units in terms of trig-
+gering has also been explained in the information processing
+theory (Norman, 1981; Seidl, 2004). This theory character-
+izes human knowledge as a series of Knowledge Frames. The
+frames are related to each other by various conditions. When
+a frame is triggered by stimuli, other frames, which are linked
+to this frame, may also be triggered. The frames play an im-
+portant role in guiding the way for creating and retrieving
+more knowledge.
+Ecosystem and Formation of Categories
+In (Chhabra,
+Iyengar, Saini, & Bhat, 2015), the authors conducted exper-
+5Autopoietic system refers to a system which once started, keeps
+recreating and maintaining itself.
+iments on a custom-made annotation system CAS and ob-
+served that people showed expertise in performing mainly
+one kind of activity while participating in the knowledge
+building process.
+The existence of ecosystem was ob-
+served in Wikipedia and StackOver ow as well. This phe-
+nomenon divides all the users into various categories based
+on their expertise. For example, the categories observed in
+CAS (Crowdsourced Annotation System) were Articulators,
+Probers, Solvers and Explorers. There were different cate-
+gories observed in the case of Wikipedia and StackOver ow.
+These observations led to the conclusion that ecosystem is a
+characteristic of crowdsourced KBEs. The categories formed
+in the ecosystem trigger each other with different triggering
+factors. Figure 1 shows the triggering phenomenon occurring
+in a three category system.  i j is the triggering factor, which
+quantizes the number of knowledge units of category i that
+will be generated per user of category i due to one knowledge
+unit of category j. This gives rise to a triggering matrix stor-
+ing the triggering factors for all the categories. The triggering
+matrix for a three category scenario is shown in  g. 1(b). We
+intuitively believe that some values in this matrix will be low,
+high or some will even be zero, depending on whether one
+category is a prerequisite for the generation of KUs of another
+category or not. For example, in CAS, a question triggers
+users in  Solver  category more than it may trigger the users
+in  Pointer  category. We call triggering within categories
+ Intra-triggering  and across categories as  Inter-triggering .
+The values of intra-triggering are perceived to be less than
+those of inter-triggering due to the similarity of traits among
+the users of same category. The self loops of categories in the
+diagram represent intra-triggering.
+A collaborative knowledge building system, due to the
+presence of ecosystem, provides an ideal environment for the
+triggering process to take place. The users in one category
+trigger the users in all other categories. Due to this triggering
+process only, these collaborative environments are able to re-
+alize  the whole is greater than sum of its parts  phenomenon.
+Sources of Knowledge Units in a Knowledge
+Building System
+We can classify all the knowledge generated in the system on
+the basis of whether it is an outcome of group dynamics or
+not. The total generated knowledge can be divided into two
+categories: (i) Internal Knowledge and (ii) Triggered Knowl-
+edge.
+Internal Knowledge
+Internal knowledge is a subset of the
+user s knowledge which is added to the system independent
+of the effect of group dynamics. This is precisely the knowl-
+edge that the user would have added to the system if she had
+been participating in the knowledge building process individ-
+ually (and not in a group). Hence, addition of internal knowl-
+edge to the system consists of only the process of externaliza-
+tion. As an example, consider the following experiment: If a
+user is asked to name all the countries in the world (which
+are more than 190 in total), assume, she is able to come up
+with 40-50 of these countries. These generated knowledge
+units are what we consider as her internal knowledge. Please
+note that in this case, it may so happen that the user knows
+some more countries  names, but currently she does not re-
+call them. These names are not a part of internal knowledge
+since they never got added to the system.
+Please note that different users may have overlapping in-
+ternal knowledge. This hints us towards the fact that there
+exits an upper bound on the internal knowledge contribution
+of a particular category, i.e. after a certain threshold number
+of users of category i, adding more users to this category will
+not lead to more internal knowledge contribution of the cate-
+gory. This shows that the  law of diminishing bene ts  holds
+here rather than the  law of large numbers . This information
+may help us to  nd an upper bound on the maximum number
+of users in a particular category.
+Triggered Knowledge This is the kind of knowledge that
+gets added to the system as a result of the group dynamics.
+When people participate in the knowledge building process as
+a group, they get triggered on seeing each others  ideas and
+hence, generate more knowledge. This knowledge is called
+triggered knowledge. Addition of triggered knowledge to the
+system is a process, in which  rst internalization and then
+externalization takes place. The users  rst internalize the
+knowledge from the system, and then externalize their own
+knowledge to thee system. This externalized knowledge can
+further be of two types:
+1. First type consists of the knowledge that the user had in
+her cognitive system already, but she gets reminded of it
+only after getting triggered by some other user s idea. In
+our previous example on countries  names, for example, it
+may so happen that on hearing about some country of Eu-
+rope, she gets reminded of some other countries  names
+from Europe. This type of knowledge is called  Recol-
+lected Knowledge .
+2. The other type consists of the new knowledge which was
+not in users  cognitive system already. This type of knowl-
+edge has also been referred to as Emergent Knowledge
+(Cress & Kimmerle, 2008). For example, consider the sce-
+nario where a user knows these two facts: (a) There are in-
+ nite Fermat Numbers. (b) Every number can be uniquely
+decomposed into a product of prime numbers (Fundamen-
+tal Theorem of Arithmetic). Now consider that she comes
+across another fact which was added to the system by some
+other user, which is, (c) Every two Fermat Numbers are co-
+prime to each other. The user combines her existing knowl-
+edge ((a) and (b)) and the knowledge internalized from the
+system ((c)) and comes up with a new knowledge, for ex-
+ample, that there are in nite prime numbers. This new
+deduced knowledge when added to the system, also falls
+under the category of triggered knowledge.
+Problem Statement
+Problem: Given the number of users, the number of cat-
+egories, the total internal knowledge of the users and the
+amount of triggering taking place among the categories, can
+we output an ideal number of users for each category that
+leads to the maximum knowledge building and hence accel-
+erates the knowledge building process?
+To motivate the discussion of the problem, let us assume
+a simplistic two-category scenario as shown in the  gure 2.
+As we can see that when the users of category B add a KU
+to the system, the users of category A are triggered to a very
+less extent (i.e. 0.1). So does this mean that we should keep
+as less as possible number of users in category A However,
+we also see that whenever users of category A add a KU to
+the system, it triggers the users of category B to a great ex-
+tent (i.e. 0.9). Now, if it is given that we can take only 100
+total users in the system, how many users should we assign
+to both the categories so that the total knowledge generated
+is maximum. Surprisingly, in this case, 50 users in each of
+the categories will lead to the maximum knowledge building
+if it is given that all the users have same amount of internal
+knowledge. In general if we are given the amount by which
+various categories trigger each other, can we  nd out an ideal
+number of users that should be assigned to each category for
+maximum knowledge building?
+Figure 2: A Simplistic two-category Case
+To get an answer to the problem explained above, we
+will  rst build a model of crowdsourced knowledge building
+which makes use of the triggering phenomenon, ecosystem
+and the two types of knowledge units (internal and triggered).
+With the help of this model, we will show that different distri-
+butions of users across categories gives rise to varying amount
+of total knowledge produced. We will then develop an algo-
+rithm that takes the triggering matrix as input and gives the
+ideal distribution of users leading to the maximal knowledge
+building.
+The Model
+Consider a knowledge building system (KBS) consisting of n
+users. We assume that ecosystem exists in the KBS i.e. each
+users tends to be an expert mainly in one particular type of
+activity. Further we consider a stricter version of the above
+scenario where each user belongs to only one category i.e. a
+user will generate only one type of knowledge units, although
+it can trigger users to generate varied types of knowledge
+units. This assumption has been made to reduce the com-
+plexity of the model. In practice, it may happen that the users
+contribute to rest of the categories to a small extent. Given
+that the current model mainly concentrates on the triggering
+phenomenon in KBS, incorporation of this small amount of
+contribution of knowledge to the other categories will make
+the model extremely complex, and may be considered in the
+next version of the model. We assume that all the n users
+enter the knowledge building system at time t = 0. For exam-
+ple, in settings like NB (Zyto, Karger, Ackerman, & Mahajan,
+2012) and CAS (Chhabra, Iyengar, Saini, & Bhat, 2015), all
+the users are usually present in the system at the start of the
+knowledge building process. Throughout the text, we will be
+using the words  type  and  category  interchangeably.
+Let ni be the number of users in category i and m be the
+number of categories such that,
+m
+ 
+i=1
+ni = n
+Let ri be the internal knowledge contribution of a user of cat-
+egory i. For simplicity, we assume that all the users of a
+category add same amount of internal knowledge to the sys-
+tem. This assumption has been taken so that the model can
+concentrate on explaining the most important feature which
+is triggering among the categories. This assumption, how-
+ever, can be easily relaxed without signi cant changes to the
+model. The users of a category will add their internal knowl-
+edge to the system in discrete time stamps depending on the
+type of knowledge building system under consideration. In
+some cases, they may add it in the beginning. In other cases,
+they may keep adding it gradually to the system as some func-
+tion of time. Let ri(t) be the internal knowledge contribution
+of a user of category i at time t such that,
+ 
+ 
+t=0
+ri(t) = ri
+Let  i j be the number of knowledge units (KUs) of type i
+that get triggered due to one KU of type j. Now, our aim is
+to calculate the total number of KUs of type i that get added
+to the KBS at time t. Let ki(t) represent that number. We
+consider that the number of KUs of a category that get added
+at time t are directly dependent on the following parameters:
+1. The number of KUs of all the categories6 that get added to
+the system at time t   1. This is because of the fact that all
+the categories  KUs will trigger new KUs of the considered
+category at the next time step.
+2. The triggering factors from all other categories to the con-
+sidered category.
+3. The number of users in the considered category. More the
+number of users, more the KUs generated7.
+6Including the category under consideration, due to some amount
+of intra-triggering
+7Upto a certain threshold, after which diminishing bene ts ap-
+pear due to overlap of knowledge of users of the same category
+4. The internal knowledge of the users of the considered cat-
+egory.
+These parameters give rise to the following expression for
+ki(t),
+ki(t) = ni( i1k1(t 1)+ i2k2(t 1)+   + imkm(t 1))+niri(t)
+(cid:32) m
+ 
+j=1
+i.e.,
+ 0 (cid:54) i (cid:54) m
+ki(t) = ni
+(cid:33)
+ i jk j(t   1) + ri(t)
+(1)
+The above expression gives us the number of KUs of cate-
+gory i that get added to the system. We are now interested to
+similarly compute the KUs of all the categories that get added
+to the system at time t.
+Let K(t) represent the column vector consisting of the knowl-
+edge generated by various categories at time t as its elements.
+     
+     
+k1(t)
+k2(t)
+...
+km(t)
+k(t) =
+Let T be the triggering matrix, N be a diagonal matrix stor-
+ing the number of users in each category and R(t) be the col-
+umn matrix storing the function by which each category users
+add their internal knowledge to the system. The matrices T ,
+N and R(t) are shown as below:
+T =
+        
+N =
+     
+        
+     
+ 11
+ 21
+...
+ m1
+ 12
+ 22
+   
+   
+   
+   
+ 1m
+ 2m
+...
+ mm
+n1
+n2
+0
+R(t) =
+0
+...
+1
+     
+     
+r1(t)
+r2(t)
+...
+rm(t)
+nm
+Given the above notations, we can write equation 1 as:
+K(t) = N(T K(t   1) + R(t))
+(2)
+where K(t), N, T and R(t) are the matrices as de ned above.
+The above equation gives us a recursive formula for  nding
+the total number of KUs added to the system at time t. Our
+aim now is to calculate the total KUs of each category added
+to the system, when N, T and R are given, where R is de ned
+as below:
+Theorem 1 Given the matrices N, T and R, the net knowl-
+edge in the system at the end of the Knowledge building pro-
+cess is given by,
+     
+     
+r1
+r2
+...
+rm
+R =
+where ris represent total internal knowledge of category i. We
+will soon show that the total knowledge generated in the sys-
+tem is independent of the function r(t) for any category, i.e.
+in whichever way the users may add their internal knowledge
+to the system, the total knowledge generated in the system
+over a suf ciently long period of time in all cases comes out
+to be equal.
+Lemma 1 The total knowledge generated in the system at
+time t is given by:
+K(t) =
+(NT )iNR(t   i)
+t
+ 
+i=0
+Proof. Substituting the value of K(t   1) in equation 2, we
+get,
+K(t) = N(T (NT K(t   2) + NR(t   1)) + R(t))
+K(t) = (NT )2K(t   2) + (NT )NR(t   1) + NR(t)
+Continuing like this, we get,
+K(t) = (NT )tK(0) + (NT )t 1NR(1)+
+(NT )t 2NR(2) +    + (NT )0NR(t)
+Since at time t = 0, no triggering happens, and the total
+knowledge of the system is given by the internal knowledge
+of all the users, we take K(0) = NR(0), which gives us,
+K(t) = (NT )tNR(0) +    + (NT )0NR(t)
+K(t) =
+(NT )NR(t   i)
+t
+ 
+i=0
+In order to get the total KUs ever generated in the KBS, we
+consider another matrix K as follows:
+     
+     
+k1
+k2
+...
+km
+K =
+where kis are scalar values storing the total number of KUs of
+category t ever generated in the KBS.
+(3)
+assuming
+K = (I   NT ) 1NR
+ (NT ) < 1
+where I is an Identity Matrix of the order m  m.
+Proof. Lemma2 gives the KUs generated at time t for all the
+categories. Summation of K(t) over the time period from 0 to
+  gives,
+(cid:33)
+(NT )iNR(t   i)
+ 
+i=0
+(NT )iNR(t   i)
+(cid:32) t
+ 
+ 
+t=0
+K =
+K =
+K =
+ 
+ 
+t=0
+t
+ 
+i=0
+t
+ 
+i=0
+(NT )iNR, where R is as de ned in (3)
+If the spectral radius of (NT ) is less than 1,  t
+verges to (I   NT ) 1, i.e.
+i=0(NT )i con-
+K = (I   NT ) 1NR,
+where I is an Identity matrix.
+In the above proof,  (NT ) has been taken to be less than
+1. This is because we are assuming a bounded system.
+If
+we take   to be greater than or equal to 1, then the term
+ t
+i=0(NT )i becomes increases exponentially, which is not a
+practical scenario.
+The above theorem shows that the total knowledge in the
+system is independent of the distribution of R(t) i.e. whether
+the entire internal knowledge of users enters the system at t =
+0 or it enters in discrete time, the net knowledge in the system
+remains unchanged. The theorem also helps computing the
+triggered knowledge contribution in the knowledge building,
+as shown by the corollary that follows.
+Corollary 1 The contribution of triggered knowledge to the
+total knowledge of the system is given by N.T.K
+Proof. From Theorem 1,
+K = (I   NT ) 1NR
+=  (I   NT )K = NR
+The contribution of triggered knowledge in K is equal to K  
+NR, where NR is the total internal knowledge added to the
+system.
+=  K   NT K = NR
+=  K   NR = NT K
+Algorithm 1 Hill Climbing Algorithm For Ideal Distribution
+of Users across Categories
+Input: Number of users n, Number of categories m, Trigger-
+ing Matrix T and Internal Knowledge matrix R.
+Output: Ideal Distribution Matrix N
+across different categories, such that  m
+1. Pick a random distribution N = [n1,n2, . . . ,nm] of users
+2. Consider all the 2 (cid:0)m
+(cid:1) = m(m  1) neighbouring distribu-
+i=1 ni = n
+2
+tions (Nb) of D, de ned as:
+Nb = [ ]
+f or i = 1 : m
+f or j = 1 : m
+I f i (cid:54)= j :
+D = (n1,n2, . . . ,ni   1, . . . ,n j + 1, . . . ,nm)
+Nb.append(D)
+3. Calculate KNb[ j]   1 (cid:54) j (cid:54) m(m 1) based on the following
+formula:
+K = (I   NT ) 1NR
+where KNb[ j] represents the net knowledge in the system
+with the distribution Nb[ j]
+Choose i such that KNb[i] = max
+KNb[ j]
+j
+4. If KNb[i] > KN then N = Nb[i] and we repeat steps 2 to 4
+else:
+return N //The ideal skill set distribution
+Figure 4: The execution of Hill Climbing Algorithm: mov-
+ing from one distribution to another neighboring distribution,
+leading to the perfect one
+Figure 3: The convex plot of net knowledge (K) generated
+across all the possible distributions
+The corollary indicates that the ratio of triggered knowledge
+to the total knowledge is directly proportional to the trigger-
+ing matrix T . This means that the total knowledge that a sys-
+tem is able to produce depends on how much the users of the
+system are able to trigger each other.
+In order to know the shape of the surface curve when we
+change the number of users across the categories, we simu-
+lated the results of Theorem 1 by taking the following pa-
+rameters:
+n = 100
+  0.001 0.003
+0.001
+0.008
+0.03
+0.03
+m = 3
+T =
+  
+0.0004
+0.005
+0.003
+For simplicity, the internal knowledge (R) for all the cate-
+gories was taken to be equal. It was observed that the sur-
+face plot comes out to be a convex plot which exhibits a
+peak corresponding to a particular distribution of users. Fig-
+ure 3 shows the plot where the axes for the represent n1, n2
+and K (n3 is taken as (n   n1   n2)). The maxima of the
+curve was found at K = 3081.40849516 with the distribution
+[39,30,31].
+Hill Climbing Algorithm For Ideal Skillset
+Distribution
+Since we obtained a convex surface plot with respect to the
+distributions, we can develop a hill climbing algorithm which
+starts from any random distribution and gradually moves to-
+wards the ideal distribution of users which leads to an accel-
+erated knowledge building. We now provide a  Hill Climbing
+Algorithm  (See Algorithm 1) for  nding the ideal skill set
+distribution across categories.
+For veri cation, we simulated the proposed algorithm on
+the same speci cations as de ned above. Figure 4 shows how
+the algorithm moves from an initial distribution (which is in-
+put to the algorithm) to ideal distribution i.e. the distribution
+which produces maximum knowledge in the given KBE. The
+ nal output of the algorithm ([39,30,31]) is coherent with re-
+sults obtained from the previous simulation, supporting the
+correctness of the proposed algorithm.
+Conclusion and Future Work
+This paper is a step towards understanding the dynamics of
+knowledge building in a crowdsourced environment. We con-
+sider the variance of expertise present in the crowd and divide
+them into categories.
+In line with the previous research in
+cognitive sciences, we consider triggering among the knowl-
+edge frames to be the reason behind better performance of
+the groups than individuals. Through a model, we explain the
+interplay of these categories taking into account the varied
+amount of triggering that takes place among them. We then
+compare this triggered knowledge with the knowledge that
+would have been added to the system in the absence of inter-
+action among the users. We  nd that triggered knowledge is
+a signi cant part of the total knowledge produced.
+We emphasize the importance of a right mix of skill set
+present across the categories in order to accelerate the knowl-
+edge building process. We observe that as we keep changing
+the distribution of users across categories, we get different
+amount of knowledge produced with respect to time. In that
+context, we try to  nd the ideal distribution which acceler-
+ates the knowledge building process to the best possible ex-
+tent. We computationally observe that the knowledge curve
+with respect to the distribution of users is a convex curve, the
+peak of which gives the ideal distribution. We further de-
+velop a Hill Climbing Algorithm which starts from any ran-
+dom distribution and outputs the ideal distribution for the best
+knowledge building experience. We believe that this study
+will inform the portal designers to take better decisions while
+developing a KBE. For example, knowing the number of cat-
+egories in the system and the triggering among them, they
+can use various incentivizing mechanisms to encourage the
+participation of users in different categories. This theory can
+also help explain why some KBEs like Wikipedia have  our-
+ished while some others like could not proliferate.
+In future, the proposed model may be veri ed for various
+KBEs like Wikipedia, Quora, StackOver ow etc. The model
+could also be tested by changing the existing distribution of
+users in a KBE, and observing the impact of this change to-
+wards the acceleration/deceleration in the knowledge build-
+ing process. In the model, all the users were assumed to be
+present in the system at the start of the knowledge building
+process, which may not always be the case. Therefore the
+model may be further improvised to account for this parame-
+ter.
+References
+Anderson, A., Huttenlocher, D., Kleinberg, J., & Leskovec, J.
+(2013). Steering user behavior with badges. In Proceedings
+of the 22nd international conference on world wide web
+(pp. 95 106).
+Anderson, A., Huttenlocher, D., Kleinberg, J., & Leskovec, J.
+(2014). Engaging with massive online courses. In Proceed-
+ings of the 23rd international conference on world wide
+web (pp. 687 698).
+Bryant, T. (2006). Social software in academia. Educause
+quarterly, 29(2), 61.
+Chhabra, A., Iyengar, S., Saini, P., & Bhat, R. S. (2015). Pres-
+ence of an ecosystem: a catalyst in the knowledge building
+process in crowdsourced annotation environments. Pro-
+ceedings of the 2015 International Conference on Ad-
+vances in Social Networks Analysis and Mining (ASONAM
+2015).
+Chhabra, A., Iyengar, S., Saini, P., Bhat, R. S., & Kumar,
+V. (2015). Ecosystem: A characteristic of crowdsourced
+environments. arXiv preprint arXiv:1502.06719.
+Cress, U., & Kimmerle, J. (2008). A systemic and cognitive
+view on collaborative knowledge building with wikis. In-
+ternational Journal of Computer-Supported Collaborative
+Learning, 3(2), 105 122.
+Dierkes, M., Child, J., & Nonaka, I. (2003). Handbook of
+organizational learning and knowledge. Oxford University
+Press.
+Doan, A., Ramakrishnan, R., & Halevy, A. Y. (2011). Crowd-
+sourcing systems on the world-wide web. Communications
+of the ACM, 54(4), 86 96.
+Erickson, L., Petrick, I., & Trauth, E. (2012). Hanging with
+the right crowd: Matching crowdsourcing need to crowd
+characteristics.
+Fisher, K., & Lipson, J. I.
+Information processing
+interpretation of errors in college science learning. Instruc-
+tional Science, 14(1), 49 74.
+(1985).
+Galton, F. (1907). Vox populi (the wisdom of crowds). Na-
+ture, 75, 450 451.
+Hanrahan, B. V., Convertino, G., & Nelson, L. (2012). Mod-
+eling problem dif culty and expertise in stackover ow. In
+Proceedings of the acm 2012 conference on computer sup-
+ported cooperative work companion (pp. 91 94).
+Hendler, J.
+111 113.
+(2009). Web 3.0 emerging. Computer, 42(1),
+Hong, L., & Page, S. E.
+(2004). Groups of diverse prob-
+lem solvers can outperform groups of high-ability problem
+solvers. Proceedings of the National Academy of Sciences
+of the United States of America, 101(46), 16385 16389.
+Just, M. A., & Carpenter, P. A. (1980). A theory of read-
+ing: from eye  xations to comprehension. Psychological
+review, 87(4), 329.
+Kittur, A., & Kraut, R. E. (2008). Harnessing the wisdom
+of crowds in wikipedia: quality through coordination. In
+Proceedings of the 2008 acm conference on computer sup-
+ported cooperative work (pp. 37 46).
+Kobren, A., Tan, C. H., Ipeirotis, P., & Gabrilovich, E.
+(2015). Getting more for less: Optimized crowdsourc-
+ing with dynamic tasks and goals. In Proceedings of the
+24th international conference on world wide web (pp. 592 
+602).
+Krause, S., James, R., Faria, J. J., Ruxton, G. D., & Krause, J.
+(2011). Swarm intelligence in humans: diversity can trump
+ability. Animal Behaviour, 81(5), 941 948.
+Lam, S. K., & Riedl, J. (2011). The past, present, and future
+of wikipedia. Computer, 44(3), 87 90.
+Lassila, O., & Hendler, J.
+(2007). Embracing  web 3.0 .
+Internet Computing, IEEE, 11(3), 90 93.
+Luhmann, N. (1995). Social systems. Stanford University
+Press.
+Minsky, M. (1977). Frame-system theory. Thinking: Read-
+ings in cognitive science, 355 376.
+Nonaka, I.
+(1994). A dynamic theory of organizational
+knowledge creation. Organization science, 5(1), 14 37.
+Norman, D. A. (1981). Categorization of action slips. Psy-
+chological review, 88(1), 1.
+Page, S. E.
+(2008). The difference: How the power of di-
+versity creates better groups,  rms, schools, and societies.
+Princeton University Press.
+Piaget, J. (1976). Piagets theory. Springer.
+Piaget, J. (1977). The development of thought: Equilibration
+of cognitive structures.(trans a. rosin). Viking.
+Rumelhart, D. E.
+(1991). Understanding understanding.
+Memories, thoughts and emotions: Essays in honor of
+George Mandler, 257 275.
+Saxton, G. D., Oh, O., & Kishore, R. (2013). Rules of crowd-
+sourcing: Models, issues, and systems of control. Informa-
+tion Systems Management, 30(1), 2 20.
+Scardamalia, M., & Bereiter, C. (1994). Computer support
+for knowledge-building communities. The journal of the
+learning sciences, 3(3), 265 283.
+Seidl, D. (2004). Luhmanns theory of autopoietic social sys-
+tems.
+Stahl, G.
+(2000). A model of collaborative knowledge-
+building. In Fourth international conference of the learning
+sciences (Vol. 10, pp. 70 77).
+Suh, B., Convertino, G., Chi, E. H., & Pirolli, P. (2009). The
+singularity is not near: slowing growth of wikipedia.
+In
+Proceedings of the 5th international symposium on wikis
+and open collaboration (p. 8).
+Surowiecki, J., Silverman, M. P., et al. (2007). The wisdom
+of crowds. American Journal of Physics, 75(2), 190 192.
+Thompson, A. (2014). Does diversity trump ability? Notices
+of the AMS, 61(9).
+Wang, G., Gill, K., Mohanlal, M., Zheng, H., & Zhao, B. Y.
+(2013). Wisdom in the social crowd: an analysis of quora.
+In Proceedings of the 22nd international conference on
+world wide web (pp. 1341 1352).
+Zyto, S., Karger, D., Ackerman, M., & Mahajan, S. (2012).
+Successful classroom deployment of a social document an-
+notation system. In Proceedings of the sigchi conference
+on human factors in computing systems (pp. 1883 1892).

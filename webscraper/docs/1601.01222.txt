@@ -1,0 +1,971 @@
+Noname manuscript No.
+(will be inserted by the editor)
+Fractal social organization as a foundation to
+pervasive social computing services
+Vincenzo De Florio
+7
+1
+0
+2
+ 
+r
+a
+ 
+M
+7
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+2
+v
+2
+2
+2
+1
+0
+.
+1
+0
+6
+1
+:
+v
+i
+X
+r
+a
+Abstract Pervasive social computing is a promising
+approach that promises to empower both the individual
+and the whole and thus candidates itself as a foundation
+to the  smarter  social organizations that our new tur-
+bulent and resource-scarce worlds so urgently requires.
+In this contribution we  rst identify those that we con-
+sider as the major requirements to be ful lled in order
+to realize an e ective pervasive social computing envi-
+ronment. We then conjecture that our service-oriented
+community and fractal social organization ful ll those
+requirements and therefore constitute an e ective strat-
+egy to design pervasive social computing environments.
+In order to motivate our conjecture, in this paper we
+discuss a model of social translucence and discuss frac-
+tal social organization as a referral service empowering
+a social system s parts and whole.
+1 Introduction
+Several are the de nitions of pervasive social computing
+(PSC) that may be found in the literature. Those def-
+initions provide di erent pictures of what PSC is and
+which challenges it is meant to tackle. A key di erence
+is that some de nitions propose PSC as an approach
+to augment the individual while others put the accent
+on the social dimension. A related major di erence is
+given by the challenges that PSC is to tackle. Those
+challenges range from the creation of an  an integrated
+computing environment, which promises to augment
+ ve facets of human intelligence: physical environment
+awareness, behavior awareness, community awareness,
+interaction awareness, and content awareness  to the
+Global Brain Institute and Evolution, Complexity and COg-
+nition research group
+Vrije Universiteit Brussel, Belgium
+E-mail: vincenzo.de orio@gmail.com
+de nition of an approach  born for addressing new sit-
+uations and new challenges in the age of integrated cy-
+ber and physical worlds . Our modern times have in-
+deed introduced several new situations that challenge
+our ability to sustain our societies and economies [16].
+Those situations and challenges may be synthetically
+expressed as the advent of Anthropocene the time of
+man as the pivotal element for the progress and the
+evolution of our ecosystems. In the times of Anthro-
+pocene, it is man the main factor who is responsible
+for the emergence of ecosystem stability or instability;
+it is man s action that can lead either to balance and
+sustainability or to rapid resource exhaustion, chaos,
+and unsustainability. The ever growing human popula-
+tion; a physical world more and more depleted of its
+resources; and the widespread of the pure individual-
+centric, competitive-oriented model, all themes master-
+fully discussed by Hardin in his  Tragedy of the Com-
+mons  [25], provide us with a pessimistic vision to our
+future. The negative role of man in this context were
+brilliantly rendered by famous cartoonist and comic
+artist Walt Kelly for the 1970 edition of Earth Day,
+in which his character Pogo after observing the dev-
+astating e ect of pollution on their habitat concludes:
+ We have met the enemy, and he is us! 
+I believe such a pessimistic conclusion should be
+coupled with other facts of opposite sign. Our modern
+times are providing us with unprecedented possibilities
+for more pro table and sustainable forms of social ac-
+tion. As observed by [4], the  pervasiveness of handheld
+devices and the enormous popularity of social network-
+ing websites  set the conditions to the emergence of
+novel, more e cient and cost-e ective ways to orga-
+nize our services. Moreover, a technology  relentlessly
+pushing down communication costs  [26] provides us
+with the opportunity to evolve our  static, local orga-
+nization of an obsolete yesterday  [8] and realize and
+2
+Vincenzo De Florio
+Fig. 1 To be added. Copyright Okefenokee Glee & Perloo, Inc. Used by permission.
+experiment with novel, dynamic, and distributed forms
+of organization. Our stance in the present contribution
+is that PSC may be interpreted also as the technologi-
+cal foundation for the de nition of the above-mentioned
+novel, dynamic, and distributed forms of organization.
+In fact, PSC arti cially augments several  facets of
+human intelligence  [37] and realizes a quasi-ubiquitous
+ communication channel  that, in the classic de nition
+by Kenneth Boulding [6], turns a set of roles into a
+social organization, namely the most advanced known
+system class in his general systems classi cation.
+This paper discusses fractal social organization (FSO)
+as an architecture for the design of PSC services. We
+ rst discuss social organizations in the framework of
+PSC in Sect. 2. FSO is then introduced in Sect. 3. Next,
+in Sect. 4, we discuss the relation between FSO and
+PSC. Our conclusions and a view to are  nally given in
+Sect. 5.
+2 Social organizations
+One of the  rst and most renowned de nitions of social
+system was provided in 1956 by Kenneth Boulding in
+his now classic article [6]:
+After 70 years from its formulation, Boulding s de ni-
+tion is still actual and deserving analysis. The de nition
+includes four parts:
+A set: This highlights the fact that social actors are
+usually grouped into sets, de ned by some measure
+of physical or logical proximity. In fact this is a sub-
+set of those social actors that are relatively close
+to each other according to the above measure. The
+term locality has been used to refer to the locus de-
+ ned by the physical or logical measure of proxim-
+ity [4]. In the case of a pervasive social system this
+implies that this set is relatively dense and popu-
+lated.
+of roles: Quoting again from [6],
+ The unit of such systems is not perhaps the
+person the individual human as such but
+the  role  that part of the person which is
+concerned with the organization or situation
+in question. 
+Shifting the attention from the actor to the role in-
+troduces another source of dynamic behavior: a so-
+cial system is one in which roles may mutate with
+time and the context, leading to complex dynamical
+recon gurations.
+ it is tempting to de ne social organizations, or
+almost any social system, as a set of roles tied
+together with channels of communication. 
+tied together: This part of the de nition highlights
+the fact that in a social  whole  the parts are joined
+together by some aggregative force. This force may
+Fractal social organization as a foundation to pervasive social computing services
+3
+be due to cultural, anthropological, or physiologi-
+cal reasons. Symbiotic or other mutualistic relation-
+ships; a ection; sharing of the same ideals or aims;
+lineage; and, in general, the individual returns pro-
+duced by the social union strenghten the cohesion of
+the parts with the social whole. A dual, disgregative,
+force exists, which corresponds to the strength of the
+negative returns that are experienced by the social
+parts. If the perceived disadvantages resulting from
+the social union outweight the perceived advantages,
+the parts shall loosen up from the whole, disinte-
+grating the social system into its constituent units.
+Because of this,  tying the roles together  means
+also the ability to accentuate the  centripetal  so-
+cial force and to dump the  centrifugal  force. A
+technique to achieve this is social translucence: a
+socially translucent object, service, system, or user,
+is one for which the returns associated with social
+interactions are made apparent [24].
+with channels of communication: It is once again
+Boulding who observes how
+ Communication and information processes
+are found in a wide variety of empirical sit-
+uations, and are unquestionably essential in
+the development of organization, both in the
+biological and the social world. 
+Several aspects should be highlighted here. First,
+ communication  is here much more than sharing
+data it is sharing structured, semantically described
+information [4] that provide snapshots of the in-
+dividual and social context: capabilities, policies,
+availabilities, location data, as well as viewpoints
+about experienced facts. Secondly, nowadays pow-
+erful and pervasive  communication channels  are
+driven by a technology that o er ever more com-
+plex services while  relentlessly pushing down com-
+munication costs  [26]. Third, the  pervasiveness of
+handheld devices and the enormous popularity of
+social networking websites  [4] contribute to the cre-
+ation of a quasi-ubiquitous and world-wide  commu-
+nication channel  that in practice arti cially aug-
+ments several  facets of human intelligence  [37].
+It is the ambition of pervasive social computing (PSC)
+to realize such social system or better, using Boulding s
+terminology, to realize such social organization. PSC
+provides a  communication channel  that energizes ag-
+gregative forces with the following extra advantages:
+one s task. It is then the PSC environment that iden-
+ti es actors best-matching the sought roles. PSC
+thus shifts the responsibility for handling social ser-
+vices from the user to the  channel . It is the chan-
+nel that is charged with the task to manage the
+highly dynamic set of roles made available by the
+actors.
+Empowering the Parts: PSC  socially augments  the
+individual with   ve facets of human intelligence:
+physical environment awareness, behavior awareness,
+community awareness, interaction awareness, and
+content awareness  [37]. As a side-e ect, this also
+strengthens the social  whole  because of the extra
+advantages deriving from the augmented awareness.
+Empowering the Whole: PSC also empowers the union
+of the parts, making it possible to address  new sit-
+uations and new challenges in the age of integrated
+cyber and physical worlds  [37]. More than this,
+PSC favors the emergence of a coherent and pur-
+poseful  social behavior  from a set of mostly inde-
+pendent individual behaviors. A new  social individual  
+the social system then raises from the union of
+the parts [17]. The classic behavioral classi cation
+of [31] or their extensions such as the one introduced
+in [14,13] may then be used to characterize the  sys-
+temic class  of the social system. One of the chal-
+lenges of PSC is to foster the emergence of advanced
+forms of collective intelligence in PSC-empowered
+social systems.
+Our stance here is that three are the key require-
+ments to be ful lled in order to realize an e ective PSC
+environment:
+1. The de nition of an e ective  communication chan-
+nel : a  server  taking the shape of, e.g., a middle-
+ware [4] able to o er PSC services to the constituent
+actors of a social system identi ed by a given locus.
+2. The de nition of an e ective  second-order  com-
+munication channel able to o er PSC services to a
+set of servers as de ned in 1.
+3. The de nition of a mechanism to  tie together  and
+e ectively organize a nested compositional hierar-
+chy of communication channels.
+In what follows we conjecture that our service-oriented
+Social translucence: thanks to the PSC environments,
+the users can more easily  see through  and  far-
+ther , which allows them to identify opportunities
+resulting from social unions [24,26,21].
+Referral Service: As exempli ed in [4], through PSC
+one does not look for roles; rather, one advertises
+community (SoC) [17,18] and fractal social organiza-
+tion [15,10,11,12] ful ll the above three requirements
+and therefore constitute an e ective  strategy  to de-
+sign PSC environments. in next secton we introduce
+SoC s and FSO s in terms of the three above-mentioned
+PSC requirements.
+4
+Vincenzo De Florio
+3 Service-oriented communities and fractal
+social organizations
+We have concluded last section by identifying those that
+we consider to be the three key requirements to PSC. In
+what follows we  map  those three requirements onto
+the concepts of SoC and FSO.
+3.1 Service-oriented communities as PSC channels
+A SoC may be described as the practical organiza-
+tion of a social system according to the classic de -
+nition recalled in Sect. 1:  a set of roles tied together
+via channels of communication . Figure 2 provides a
+high-level view to the structure of the SoC and high-
+lights its relation with social systems and PSC. In a
+SoC, a set of roles played by human beings and cyber-
+physical systems in physical or logical proximity are
+tied together via a social computing engine (SCE). By
+means of a publish/subscribe mechanism, said engine is
+made aware of: the dynamic assignments of roles; the
+availability of the corresponding actors; their engage-
+ment policies; their location; the occurrence of events;
+resource state changes; requests for service; and other
+contextual information. The SCE receives said informa-
+tion as semantically described services, which are then
+stored into a service registry. The arrival of new service
+descriptions triggers a semantic match with the records
+already stored in the registry. This is done in order
+to identify roles able to ful ll the requests for services
+waiting to be answered. Once roles are identi ed, a noti-
+ cation is sent to the corresponding actors. In so doing,
+social translucence is realized: actors become aware of
+the  win-wins  the mutually rewarding relationships
+that they may enact and exploit. At the same time,
+the SCE makes it possible to optimize the tasks of the
+ parts  (the social actors) and those of the  whole  (the
+social system). New arrivals are also matched against
+service role protocols, namely sequences of actions that
+are activated by the veri cation of a guard expressing
+the availability of one or more roles. One such protocol,
+e.g., instructs what to do when an accelerometer   res ,
+publishing the fact that an associated elderly person is
+suspected to have fallen [20]. SCE also realizes a sim-
+ple form of e-referral [27,32,5]: instead of contacting
+possible actors  on a one-to-one basis  [4], requesting
+actors just  advertise  their requests. We refer to such
+service as  simple  because the range of possible candi-
+date roles is limited to those in proximity of each other.
+SoC s have been used in the past to realize cyber-
+physical societies such as the mutual assistance com-
+munity (MAC) [35]. In a MAC, social translucence is
+sought by identifying mutualistic relationships through
+the use of semantic service description and matching [34].
+One such relationship is the so-called  participant  ser-
+vice mode, which was exempli ed in [33] and modeled
+in [21].
+3.2 Fractal social organization
+FSO may be concisely de ned as the organization of
+a nested compositional hierarchy (NCH) of SoC s. In
+order to better explain this concept, we need to describe
+two elements: how the NCH is structured and how it is
+organized.
+The NCH structuring is obtained by allowing an
+SoC to be a member of a greater SoC. This means that
+sets of roles are included into greater sets of roles. For
+simplicity, those sets may be visualized as loci, or con-
+tainers, structured as a Matryoshka doll. The idea is
+exempli ed in Fig. 3. In that picture we have a set of
+layers representing di erent classes of loci for instance
+rooms, houses, and buildings. The only di erence be-
+tween the loci lies in a simple compositional rule: a
+building can contain houses, human beings and cyber-
+physical systems; houses can contain rooms, human be-
+ings and cyber-physical systems; and rooms may only
+contain human beings and cyber-physical systems. This
+may be generalized by stating that a level-k SoC can
+only include level-j SoC s, with j and k integers such
+that 0   k < j and the assumption that a level-0 SoC
+corresponds to an individual member a human being
+or a cyber-physical system.
+The second element we need to clarify is the organi-
+zation of the SoC hierarchy. In order to do so, we now
+introduce a number of symbols and de nitions.
+De nition 1 Given any FSO f , let us refer to SoCf (k)
+as to the set of all the level k SoC s of f . When f may
+be omitted without introducing ambiguity, we shall use
+symbol SoC(k).
+De nition 2 Given any FSO f , for any SoC s   f ,
+we shall refer to  (s) as to the parent of s, namely the
+SoC of f that includes s among its members.
+De nition 3 Given any FSO f , let us de ne mf =
+maxk SoCf (k). When f may be omitted without intro-
+ducing ambiguity, we shall use symbol n to refer to the
+root level of f .
+De nition 4 Let us de ne as request for services the
+following guarded action:
+a : r1, r2, . . . , rn,
+(1)
+in which r1, r2, . . . , rn are role identi ers and n   0 is
+an integer.
+Fractal social organization as a foundation to pervasive social computing services
+5
+Fig. 2 General structure of a service-oriented community. Rectangles represent actors and roles. Actors/roles publish context
+information (roles, facts, and services) via the publish() method. The top rectangle is the social computing engine, which
+manages the PSC services (translucence, referral, and empowering) via semantic description and matching (represented as the
+blue triangle). Candidate roles are informed via notify(). If the corresponding actors agree to commit to a social service, they
+bind() together and the service is started.
+De nition 5 Given any SoC s, We shall say that re-
+quest for service a is enabled when it is in the service
+registry of the SCE of s.
+De nition 6 Given any FSO f , any SoC s   f , and
+any request for service a that was enabled in s, we shall
+say that a is active when all of its role identi ers have
+been associated to actors of f .
+Note that, in De nition 6, we refer to the actors of
+f , not s. This means that those actors may belong to
+any of the SoC s of f .
+De nition 7 An association of roles to actors shall be
+called in what follows as  enrollment . A  local enroll-
+ment  shall be one in which all roles are found in the
+present SoC. Otherwise, we shall use the term  global
+enrollment. 
+As in sociocracy [7], also in FSO we have two orga-
+nizational rules:
+Double membership: For any 0 < k < m and for any
+s   SoC(k), let us call  (s) the SCE of s. The double
+membership rule states that  (s) is at the same time
+a member of s and a member of  (s).
+Exception: Being the SCE of s,  (s) receives noti ca-
+tions published by all the members of s. When an
+incoming noti cation corresponds to a request for
+services a de ned as in (1),  (s) initiates a local
+enrollment, trying to identify a set of local actors
+to be associated with the roles necessary to enable
+a. This is done by checking the current state of
+the system registry, which maintains an up-to-date
+state of all the members of s. The exception rule
+states that, whenever  (s) cannot identify in s all
+the roles necessary to ful ll a, it will raise an excep-
+tion by publishing a and its missing roles to  (s).
+In other words, a failed local enrollment is turned
+into a global enrollment.
+In what follows, we illustrate how the the SoC and
+the FSO ful ll the key requirements to the realization of
+an e ective PSC environment that we have introduced
+in Sect. 2.
+4 SoC s and FSO s as foundation for PSC
+environments
+As we mentioned in Sect. 2, PSC constitutes a  com-
+munication channel  (sensu Boulding s model) that is
+characterized by the following major services: social
+translucence; referral services; and the empowering of a
+6
+Vincenzo De Florio
+Fig. 3 Exempli cation of a 3-layer FSO. PSC loci are in this case smart rooms, smart houses, and a  smart building . Top
+vertex represent SCE s, which manage their SoC and at the same time are members of their parent SoC.
+system s parts and whole. In what follows we highlight
+how SoC and FSO support those services.
+4.1 Social translucence
+As already mentioned, social translucence is obtained
+in SoC s by identifying mutualistic relationships and
+by making the involving parties aware of the existence
+of those relationships. In order to better explain this
+concept we now introduce a number of de nitions.
+De nition 8 (Social action) Let D and R be two
+social systems. Behaviors may take place in either sys-
+tem as speci ed by behavior sets BD and BR. Then the
+following bijective function:
+  : BD   BR
+(2)
+maps behaviors in BD into corresponding behaviors in
+BR.
+As an example, if D and R are respectively the an-
+imalia and plantae kingdoms, then   shall map behav-
+iors produced by animals (for instance, respiration) into
+behaviors experienced by plants (for instance, produc-
+tion of carbon dioxide); and if D and R are respectively
+the plantae and the animalia kingdoms, then   shall
+map behaviors produced by plants (for instance, pho-
+tosynthesis) into behaviors experience by animals (for
+instance, production of oxygen).
+De nition 9 Let S be a social system in which be-
+haviors may take place as speci ed by behavior set BS
+. Then the following function:
+ S : BS   IS
+(3)
+maps behaviors in BS into a semantic interpretation/evaluation
+of the signi cance of those behaviors for S. We assume
+that said interpretation may be associated at least with
+one of the following three classes: positive, neutral, and
+negative, meaning respectively that the mapped action
+is evaluated as being bene cial, insigni cant, or disad-
+vantageous. Integers 1, 0, and -1 will be used to repre-
+sent the above three classes respectively.
+As an example, if S is the animal kingdom, then a
+behavior such as b = production of oxygen  would be
+considered as bene cial, and therefore  S(b) = 1.
+We can now de ne a mutualistic precondition:
+De nition 10 (Mutualistic precondition) Let D
+and R, BD and BR, and ID and IR be de ned as above.
+Fractal social organization as a foundation to pervasive social computing services
+7
+Then the following conditions are called the mutualistic
+precondition (MP) between D and R:
+ b   BD :  D(b)   0    R( (b)) > 0
+(4)
+ c   BR :  R(c)   0    D(  1(c)) > 0
+The  rst formula, (4), states that there exists a be-
+havior in BD that is interpreted as positive or neutral,
+though its occurrence produces positive returns for R.
+The second formula, (5), expresses a dual condition: an
+action c that is either neutral or positive in R translates
+in a bene cial action   1(c).
+Animal respiration and plant photosyntesis are be-
+haviors that ful ll MP.
+De nition 11 (Mutualistic relationship) A mutu-
+alistic relationship between two social systems D and
+R is de ned as the social behavior occurring when D
+and R enact individual behaviors that correspond to
+the mutualistic preconditions (4) and (5). When a mu-
+tualistic relation exists between D and R, we shall write
+D
+ 
+R.
+What possibly happens in nature is that the positive
+returns triggered by a certain behavior of D stimulate
+in R the production of a dual behavior. The positive
+interpretation of the latter in D further stimulates the
+production of the former actions, which consolidates the
+mutualistic relationship between D and R (viz. D
+R).
+ 
+De nition 12 (Chain of mutualistic relationships)
+Mutualistic relationships may take place also between
+three or more social systems; a typical case that occurs
+in nature is that of chains of mutualistic relationships:
+(cid:33)
+ Si( i(b))   0
+(cid:32)t 1(cid:94)
+(cid:32)t 1(cid:94)
+i=0
+ b   S0 :
+ c   St :
+(6)
+   St( t(b)) > 0
+(cid:33)
+ St 1 i(  i(c))   0
+   S0 (  t(c)) > 0.
+i=1
+(7)
+The  rst formula, (6), states that there exists a
+chain of behaviors that are interpreted as positive or
+neutral by a corresponding chain of social systems; and
+that the last behavior in the chain produces positive re-
+turns for the social system at the end of the chain. The
+second formula, (5), expresses a dual condition: there
+exists a chain of behaviors that  moves  from the end
+of the chain towards its beginning; all those behaviors
+are positive or neutral, except at the beginning of the
+chain, for which the behavior is bene cial.
+ 
+When (6) and (7) both hold for a set of social sys-
+tems S, we shall indicate this by means of symbol
+S.
+The same symbol shall be used also for any other form
+of mutualistic relationship experienced by a set of so-
+cial systems S, including the one introduced in De ni-
+tion 11.
+(5)
+The above de nitions and symbols allow us to con-
+struct the following semi-formal de nition of social translu-
+cence.
+ 
+De nition 13 (Social translucence) Given a set of
+S holds, social translucence
+social systems S for which
+is the property to making all involved social systems
+aware that
+ 
+S holds.
+Achieving social translucence thus means that the
+SCE of a SoC makes use of the notify() method of
+Fig. 2 to spread awareness of the existence of a  be-
+haviour  (in fact, a service request) that, once enacted,
+would result in a mutualistic relationship. In case of
+global enrollment, the  rst notify() would trigger sub-
+sequent notify() s across the nodes of the involved
+SoC s until all the enrolled social systems are made
+aware of the bene ts of the social union expressed by
+the service request.
+4.2 Empowering the parts and the whole through
+e-referral
+As mentioned before, a major advantage of FSO and the
+SON mechanism is given by an e-referral approach that
+extends the scope of the one provided by SoC s. When
+a request for services a is enabled, the corresponding
+actors become a new temporary SoC whose lifespan in
+limited to the duration of a. If enabling a request for
+services required exceptions in other words, when the
+enrollment is global the new temporary SoC is made
+of agents from di erent communities. In that case, the
+new community brings together nodes from di erent
+layers of the FSO hierarchy. Because of this, we call
+such a new SoC a social overlay network (SON). The
+rigidity of existing organizations is thus replaced by an
+agile and dynamic PSC environment that exploits and
+promotes cooperation between PSC loci that represent
+societal services at di erent scales.
+The need for such enhanced cooperation may be
+proved by considering two cases: a  rst one focusing
+on crisis management organizations, and a second one
+related to healthcare. The  rst case is one in which a
+single event with a global scope a ects several social
+organizations at the same time.
+The second case is one in which a single event re-
+quires a complex, composite, and coherent response from
+8
+Vincenzo De Florio
+a number of social organizations. In the rest of this sec-
+tion we shall brie y discuss those two cases in Sect. 4.2.1
+and Sect. 4.2.2.
+4.2.1 Crisis management organizations
+A practical case where FSO s and their SON s may be
+particularly of use is that of crisis management and re-
+covery. As observed in [22,13], disastrous events such as
+the Katrina hurricane [9] disrupt several concentric  so-
+cial layers  at the same time typically local, regional,
+national, and federal emergency response organizations.
+A major problem that was experienced during the Ka-
+trina crisis was that those organizations may be loosely
+coordinated and non-cooperating. Con icting goals and
+con icting actions; multiple uncoordinated e orts that
+resulted in wasting resources and in some cases masked
+each other out; the inability to share promptly and dy-
+namically the organizational assets according to the
+experienced needs; and the inability to make use of
+spontaneous (that is, non-institutional) responders [22],
+where some of the reasons that slowed down and de-
+graded considerably the e ectiveness of the response to
+Katrina:
+[Responders]  would have been able to do more if
+the tri-level system (city, state, federal) of emer-
+gency response was able to e ectively use, col-
+laborate with, and coordinate the combined pub-
+lic and private e orts  [30].
+Similar delays and ine ciencies [28] were experienced
+also in other cases1.
+A major technique advocated as a solution to orga-
+nizational delays and e ciencies in disaster recovery is
+so-called community resilience. According to RAND [30],
+community resilience is
+A measure of the sustained ability of a com-
+munity to utilize available resources to respond
+to, withstand, and recover from adverse situa-
+tions. [. . . ] Resilient communities withstand and
+recover from disasters. They also learn from past
+disasters to strengthen future recovery e orts.
+In [29], an FSO for crisis management enabling com-
+munity resilience was proposed. By means of multi-
+agent simulations it was shown of two SoC s may share
+knowledge and resources in the course of a crisis. The
+crisis in this case was modeled as a number of houses
+catching  re. Timely intervention was necessary in or-
+der to contain the damage. Said simulation proved that
+cooperation between  re  ghters organizations and  non-
+institutional  responders (individuals in proximity) con-
+siderably reduces the amount of burned down houses.
+4.2.2 Inter-organizational cooperation in healthcare
+Regardless of its nature, any system is a ected by its de-
+sign assumptions. Our societies are no exception. The
+emergence of sought properties such as economic and
+social welfare for all; sustainability with respect to nat-
+ural ecosystems; and especially manageability and re-
+silience, highly depends on the way social organizations
+are designed. A typical case in point is given by tra-
+ditional healthcare organizations. A common assump-
+tion characterizing those organizations is the adoption
+of a strict client-server model. The major consequence
+of said assumption is the lack of server-side orchestra-
+tion of responses to the users  requests. In other words,
+it is the responsibility of the client to identify which
+server to bind to; it is the user that needs to know,
+e.g., which emergency service to invoke; which hospital
+to call  rst; which civil organization to refer to, and so
+on. Referral services do exist, though they mainly cover
+very speci c and simple cases (typically, the seamless
+transfer of patient information from a primary to a sec-
+ondary practitioner [27]). Moreover, typically such ser-
+vices possess an incomplete view of the available re-
+sources. Furthermore, to the best of our knowledge,
+none of the existing referral services provides a compos-
+ite response to complex requests such that the action,
+knowledge, and assets of multiple servers are automati-
+cally or semi-automatically combined and orchestrated.
+Even electronic referral systems in use today are mostly
+limited [32] and only provide prede ned services in spe-
+ci c domains2. As a consequence, in the face of complex
+servicing requests calling for the joint action of multiple
+servers, the client is basically left on its own. Societal or-
+ganizations do not provide unitary responses nor assist
+the client in composing and managing them. Reasons
+for this may be found in lack of awareness and also in
+the  convenient  shift of responsibility for failures from
+the server to the client3.
+Through the above considerations it becomes appar-
+ent that new and better assumptions are called for by
+2 Interesting examples of such systems include SHINE [2]
+and SHINE OS+ [3].
+1 See for instance the case of Hurricane Andrew [1]. Two
+eloquent quotes by Dr. Kate Hale, Dade County s emergency
+management director during Andrew s crisis, were  They
+keep saying we re going to get supplies. For God s sake, where
+are they? ;  Where in the hell is the cavalry on this one?  .
+3 As observed by [36], an example of said shift of responsi-
+bility may be found in car industry with respect to aviation
+industry. A matter for re ection is the fact that the shift of
+responsibility regrettably translates in an inferior safety cul-
+ture.
+Fractal social organization as a foundation to pervasive social computing services
+9
+social organizations. In particular, the increasing com-
+plexity of modern times require that societal organiza-
+tions assume responsibility for becoming the enablers
+of collectively intelligent responses. Those organization
+should function as a catalyst of mutualistic coopera-
+tion among the role players at all levels, from the cit-
+izens to the governing institutions. By means of the
+organization, knowledge should  ow among the players
+highlighting needs, assets, requirements, and opportu-
+nities. The organization should assist in the process of
+self-orchestrating a response, making it easier for all
+parties involved to coordinate themselves, exchange in-
+formation, and take the right and timely decisions.
+Said new model has been studied in the two pa-
+pers [19,20]. There, we introduced two e-referral ser-
+vices based on our FSO s. The  rst service makes use
+of FSO exceptions and SON s to self-orchestrate a com-
+posite response for the user. By means of multi-agent
+simulations we proved that this considerably shortens
+the average time an individual in need of care has to
+wait until s/he receives the necessary treatment, in-
+creases the amount of treated patients, and reduces the
+number of patients that could not timely receive their
+treatment. A major conclusion is the empowerment of
+the individuals and of society as a whole.
+The second service again uses simulated FSO s and
+their SON s to tackle the well-known problem of falls
+identi cation. In order to improve the quality of falls
+detection systems, a cloud of volunteers is used as an
+extra  detection layer  to verify whether alarms actu-
+ally correspond to falls or are false positives. Major
+conclusions are that FSO s dynamic hierarchical orga-
+nization optimally orchestrates all participating entities
+thus overcoming the sti ness of the traditional organi-
+zations. Major returns include an improvement of social
+costs and a better use of the social resources (empower-
+ment of the whole) as well as a reduction of the average
+time to respond to identi ed falls (empowerment of the
+parts).
+5 Conclusions
+We have recalled the major characteristics of SoC and
+FSO, and shown that they correspond to the major re-
+quirements of pervasive social computing: social translu-
+cence, e-referral, and the empowerment of a social sys-
+tem s parts and whole. In particular, we have mapped
+social translucence with the social computing engine of
+SoC s, and we have discussed FSO-based e-referral ser-
+vices in the crisis management and healthcare manage-
+ment domains. Thanks to the FSO organizational rules
+and FSO s nested compositional hierarchy, the adver-
+tising of service requests extends beyond the originat-
+ing locus. This makes it possible to achieve  inter-loci 
+cooperation though the mechanism we called  social
+overlay networks.  We showed how the ability to com-
+pose social overlay networks constitute a mechanism
+to achieve complex e-referral services and enable social
+cooperation between co-existing organizations. By re-
+calling results achieved through multi-agent simulation,
+we suggested how FSO-based pervasive social comput-
+ing replaces the rigidity of existing organizations with
+an agile and dynamic PSC environment that exploits
+cooperation between PSC loci that represent societal
+services at di erent scales. In our future work we hope
+to move from simulation to real-life experimentation
+extending systems such as the FSO middleware of [23,
+12]. A major challenge shall be to prove the resilience
+of those systems [13,14], namely improving the quality
+of social organizations while preserving key aspects of
+their identity.
+References
+1. Adair, B.: 10 years ago, her angry plea got hurricane
+St. Petersburg Times. Available online
+aid moving.
+at http://www.sptimes.com/2002/webspecials02/andrew/
+day3/story1.shtml (20 August 2002) 8
+2. Anonymous:
+Secured
+health
+exchange
+and
+online
+http://www.gsma.com/connectedliving/wp-content/
+uploads/2012/05/Smart-mHealth.pdf (2012) 8
+(SHINE).
+information
+Available
+network
+at
+3. Anonymous: SHINE OS+. Available online at http://
+www.shine.ph (2015) 8
+4. Ben Mokhtar, S., Capra, L.: From pervasive to social
+In: Proceed-
+computing: Algorithms and deployments.
+ings of the 2009 International Conference on Pervasive
+Services, ICPS  09, pp. 169 178. ACM, New York, NY,
+USA (2009). DOI 10.1145/1568199.1568229. URL http:
+//doi.acm.org/10.1145/1568199.1568229 1, 2, 3, 4
+5. Boudreau, M.:
+eReferral: A health
+ver bullet?
+line
+at
+ereferral-a-health-it-silver-bullet
+ber 2014) 4
+IT sil-
+Orion Health Blog. Available on-
+https://www.orionhealth.com/us/blog/
+Septem-
+(17
+6. Boulding, K.: General systems theory the skeleton of
+science. Management Science 2(3) (1956) 2
+7. Buck, J., Endenburg, G.: The
+self-organization.
+ter, Rotterdam, The Netherlands
+http://www.governancealive.com/wp-content/uploads/
+2009/12/CreativeForces_9-2012_web.pdf 5
+creative
+forces of
+rep., Sociocratic Cen-
+URL
+(2012).
+Tech.
+8. Buckminster-Fuller, R.: Synergetics: Explorations in
+the Geometry of Thinking. Macmillan, New York
+(1975). URL https://fullerfuture.files.wordpress.
+com/2013/01/buckminsterfuller-synergetics.pdf 1
+9. Colten, C.E., Kates, R.W., Laska, S.B.: Community re-
+silience: Lessons from new orleans and hurricane katrina.
+Tech. Rep. 3, Community and Regional Resilience Insti-
+tute (CARRI) (2008) 8
+10. De Florio, V.: On the
+software and organisational
+ciplinary Science Reviews 38(2)
+constituent attributes of
+Interdis-
+URL
+resilience.
+(2013).
+10
+Vincenzo De Florio
+http://www.ingentaconnect.com/content/maney/isr/
+2013/00000038/00000002/art00005 3
+11. De Florio, V.: Quality Indicators for Collective Systems
+Resilience. Emergence: Complexity & Organization 16(3)
+(2014) 3
+12. De Florio, V.: Fractally-organized connectionist net-
+works: Conjectures and preliminary results. In: F. Daniel,
+O. Diaz (eds.) Proc. of the 1st Workshop on PErva-
+sive WEb Technologies, trends and challenges (PEWET
+2015), ICWE 2015 Workshops, 15th International Con-
+ference on Web Engineering (ICWE 2015), Lecture Notes
+in Computer Science, vol. 9396, pp. 1 12. Springer
+Int.l Publishing, Switzerland (2015). DOI 10.1007/
+978-3-319-24800-4 5 3, 9
+13. De Florio, V.: On environments as systemic exoskele-
+tons: crosscutting optimizers and antifragility enablers.
+Journal of Reliable Intelligent Environments 1(2 4), 61 
+73 (2015). DOI 10.1007/s40860-015-0006-2. URL http:
+//dx.doi.org/10.1007/s40860-015-0006-2 3, 8, 9
+14. De Florio, V.: On resilient behaviors in computational
+systems and environments. Journal of Reliable Intel-
+ligent Environments pp. 1 14 (2015). DOI 10.1007/
+s40860-015-0002-6. URL http://dx.doi.org/10.1007/
+s40860-015-0002-6 3, 9
+15. De Florio, V., Bakhouya, M., Coronato, A., Di Marzo
+Serugendo, G.: Models and concepts for socio-technical
+complex systems: Towards fractal social organizations.
+Systems Research and Behavioral Science 30(6) (2013) 3
+16. De Florio, V., Blondia, C.: On the requirements of new
+software development. International Journal of Business
+Intelligence and Data Mining 3(3) (2008) 1
+17. De Florio, V., Blondia, C.: Service-oriented communi-
+ties: Visions and contributions towards social organiza-
+tions. In: R. Meersman, T. Dillon, P. Herrero (eds.) On
+the Move to Meaningful Internet Systems: OTM 2010
+Workshops, Lecture Notes in Computer Science, vol. 6428,
+pp. 319 328. Springer Berlin / Heidelberg (2010). DOI
+http://dx.doi.org/10.1007/978-3-642-16961-8 51 3
+18. De Florio, V., Coronato, A., Bakhouya, M., Di Marzo
+Serugendo, G.: Service-oriented communities: Models
+and concepts towards fractal social organizations.
+In:
+Proceedings of the 8th International Conference on sig-
+nal, image technology and internet based systems (SITIS
+2012). IEEE (2012) 3
+19. De Florio, V., Pajaziti, A.: How resilient are our soci-
+eties? analyses, models, and preliminary results. In: Com-
+plex Systems (WCCS), 2015 Third World Conference on.
+IEEE (2015) 9
+20. De Florio, V., Pajaziti, A.: Tapping into the wells of so-
+cial energy: A case study based on falls identi cation. In:
+Proceedings of the Third Conference on Complex Sys-
+tems (WCCS-15). IEEE (2015) 4, 9
+21. De Florio, V., Sun, H., Bakhouya, M.: Mutualistic rela-
+tionships in service-oriented communities and fractal so-
+cial organizations. In: Complex Systems (WCCS), 2014
+Second World Conference on, pp. 756 761. IEEE (2014)
+3, 4
+22. De Florio, V., Sun, H., Blondia, C.: Community resilience
+engineering: Re ections and preliminary contributions.
+In: I. Majzik, M. Vieira (eds.) Software Engineering for
+Resilient Systems, Lecture Notes in Computer Science, vol.
+8785, pp. 1 8. Springer International Publishing (2014).
+DOI 10.1007/978-3-319-12241-0 1. URL http://dx.doi.
+org/10.1007/978-3-319-12241-0_1 8
+23. De Florio, V., Sun, H., Buys, J., Blondia, C.: On the im-
+pact of fractal organization on the performance of socio-
+technical systems. In: Proceedings of the 2013 Interna-
+tional Workshop on Intelligent Techniques for Ubiquitous
+Systems (ITUS 2013). IEEE, Vietri sul Mare, Italy (2013)
+9
+24. Erickson, T., Kellogg, W.A.: Social translucence: An ap-
+proach to designing systems that support social pro-
+cesses. ACM Transactions on Computer-Human Inter-
+action 7, 59 83 (2000) 3
+25. Hardin, G.: The tragedy of the commons.
+Science
+162(3859), 1243 1248 (1968). DOI 10.1126/science.162.
+3859.1243. URL http://dieoff.org/page95.htm 1
+26. Kellogg, W.A.: Research and emerging trends in social
+computing. In: Collaborative Technologies and Systems,
+2005. Proceedings of the 2005 International Symposium
+on, pp. 1 4 (2005). DOI 10.1109/ISCST.2005.1553274 1,
+3
+27. Kim, Y., Chen, A., Keith, E., Yee HalF., J., Kushel, M.:
+Not perfect, but better: Primary care providers  expe-
+riences with electronic referrals in a safety net health
+system.
+Journal of General Internal Medicine 24(5),
+614 619 (2009). DOI 10.1007/s11606-009-0955-3. URL
+http://dx.doi.org/10.1007/s11606-009-0955-3 4, 8
+28. Miskel, J.F.: Disaster Response and Homeland Security:
+What Works, What Doesn t. Stanford University Press,
+Stanford, CA (2008). URL http://www.sup.org/books/
+title/?id=16470 8
+29. Pajaziti, A.: Models and representations for fractal so-
+cial organizations. Master s thesis, Dept. of Computer
+Science, University of Antwerp (2015) 8
+30. RAND: Community resilience (2014). Available at URL
+http://www.rand.org/topics/community-resilience.html
+8
+31. Rosenblueth, A., Wiener, N., Bigelow, J.: Behavior, pur-
+pose and teleology. Philosophy of Science 10(1), 18 
+24 (1943). URL http://www.journals.uchicago.edu/doi/
+abs/10.1086/286788 3
+32. Shaw, L., de Berker, D.: Strengths and weaknesses of
+electronic referral: comparison of data content and clin-
+ical value of electronic and paper referrals in dermatol-
+ogy. British Journal of General Practitioners 57, 223 224
+(2007) 4, 8
+33. Sun, H., De Florio, V., Gui, N., Blondia, C.: Participant:
+A new concept for optimally assisting the elder people.
+In: Proceedings of the 20th IEEE International Sym-
+posium on Computer-Based Medical Systems (CBMS-
+2007). IEEE Computer Society, Maribor, Slovenia (2007)
+4
+34. Sun, H., De Florio, V., Gui, N., Blondia, C.: Service
+matching in online community for mutual assisted living.
+In: Signal-Image Technologies and Internet-Based Sys-
+tem, 2007. SITIS  07. Third International IEEE Confer-
+ence on, pp. 427  433 (2007). DOI 10.1109/SITIS.2007.99
+4
+35. Sun, H., De Florio, V., Gui, N., Blondia, C.: The miss-
+ing ones: Key ingredients towards e ective ambient as-
+sisted living systems. Journal of Ambient Intelligence
+and Smart Environments 2(2) (2010) 4
+36. Verhulst, E.: Zen and the art of safety engineer-
+ing. Available online at http://www.slideshare.net/
+ericverhulst1/zen-and-the-art-of-safety-engineering
+(2012) 8
+37. Zhou, J., Sun, J., Athukorala, K., Wijekoon, D., Yliant-
+tila, M.: Pervasive social computing: augmenting  ve
+facets of human intelligence. Journal of Ambient Intelli-
+gence and Humanized Computing 3(2), 153 166 (2012).
+DOI 10.1007/s12652-011-0081-z. URL http://dx.doi.
+org/10.1007/s12652-011-0081-z 2, 3

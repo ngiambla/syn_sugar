@@ -13,6 +13,8 @@ import math_utils as mutils
 
 from ingredients import ingredients
 from bcolors import bcolors
+from random import randint
+
 
 class garnish:
 
@@ -86,6 +88,7 @@ class garnish:
 
 		ingredient_freq_map 	= 	{}
 		ingredient_free_map 	= 	{}
+		max_ingredient_map		= 	{}
 
 		_ingredients_all		=	_ingredients.get_ingredients()
 		_number_of_ingredients 	= 	len(_ingredients_all)
@@ -132,24 +135,26 @@ class garnish:
 
 		for _label in sentence_map:
 
-			sfs2 	= 	[]
-			sfs 	= 	[]
-			low_map = 	[]
-
+			sfs2 						= []
+			sfs 						= []
+			low_map 					= []
+			max_ingredient_map[_label] 	= 0
 
 			for i in range(_label, sentence_length_map[_label]+_label):
 				low_map.append(ingredient_free_map[i].lower())
-
 				if _ingredients_all[i] != "%%#%%":
+					if len(ingredient_free_map[i]) > max_ingredient_map[_label]:
+						max_ingredient_map[_label] = len(ingredient_free_map[i])
 					sfs2.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
 					sfs.append(ingredient_freq_map[ingredient_free_map[i]]/len(ingredient_free_map))
+
 				else:
 					sfs2.append(0)
 
 			freq_vec_map[_label]  				=  	sfs2
 			freq_vec_map_gb[_label] 			= 	sfs
 			sentence_low_map[_label] 			= 	low_map
-			sentence_entropy_map[_label] 	= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
+			sentence_entropy_map[_label] 		= 	100*mutils.entropy(sfs)/(sentence_length_map[_label])
 
 
 			vec=[]
@@ -213,33 +218,31 @@ class garnish:
 
 				for _j_label in sentence_vec_map:
 					if sentence_entropy_map[_j_label] > curr_limit: 
-
-						curr_limit = curr_limit*2
-						miss_count = 0
-
 						if  _j_label not in seen_labels:
+
+							curr_limit = curr_limit*2
+							miss_count = 0
 
 							b = freq_vec_map[_j_label]
 							wb = sentence_low_map[_j_label]
 							
-							#sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)*mutils.jaccard_index(wa,wb)))
-							sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)))
+							sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)*mutils.jaccard_index(wa,wb)))
 
 							sim_i  	= int(sim_i)
 							if sim_i not in sen_pairs: 
 								sen_pairs[sim_i] = {}
 
 							if _i_label not in sen_pairs[sim_i]:
-								sen_pairs[sim_i][_i_label]=sentence_entropy_map[_i_label]
+								sen_pairs[sim_i][_i_label]=sentence_entropy_map[_i_label]*max_ingredient_map[_i_label]
 
 							if _j_label not in sen_pairs[sim_i]:
-								sen_pairs[sim_i][_j_label]=sentence_entropy_map[_j_label]
+								sen_pairs[sim_i][_j_label]=sentence_entropy_map[_j_label]*max_ingredient_map[_j_label]
 
 							count=count+1
 							self.display_progress_check(1, count, cols)
 					else:
 						miss_count=miss_count+1
-						if miss_count < len(sentence_vec_map)*0.10:
+						if miss_count < len(sentence_vec_map)*0.50:
 							curr_limit = curr_limit*0.05
 							miss_count = 0
 
@@ -307,11 +310,11 @@ class garnish:
 				if len(sorted_bins[_bin]) > 0 and _bin > 0:
 					for sim_j in sorted(sorted_bins[_bin], reverse=True):
 						for label in sorted_bins[_bin][sim_j]:
-							if label in fields:
+							if label in fields:							
 								if label not in summary_map:
-									summary_map[label] = ((sim_j*10)/(1+_bin))*fields[label]
+									summary_map[label] = ((sim_j*10)/(1+_bin*10))*fields[label]
 								else:
-									summary_map[label] = summary_map[label] + ((sim_j*10)/(1+_bin))*fields[label]
+									summary_map[label] = summary_map[label] + ((sim_j*10)/(1+_bin*10))*fields[label]
 
 
 		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
@@ -319,7 +322,7 @@ class garnish:
 		l_summary_map = {}
 
 		for _label in k_summary_map:
-			if len(l_summary_map) < 15:
+			if len(l_summary_map) < (3 + randint(0, 1)): #was 0-3
 				l_summary_map[_label[0]]=_label[1]
 			else:
 				break

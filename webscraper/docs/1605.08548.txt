@@ -1,0 +1,1208 @@
+Journeys & Notes:
+Designing Social Computing for Non-Places
+Justin Cranshaw
+Microsoft Research
+Redmond, WA, USA
+justincr@microsoft.com
+Andr s Monroy-Hern ndez
+Microsoft Research
+Redmond, WA, USA
+amh@microsoft.com
+S. A. Needham
+California, USA
+needhamsa@hotmail.com
+6
+1
+0
+2
+ 
+y
+a
+M
+7
+2
+ 
+ 
+ 
+]
+C
+H
+.
+s
+c
+[
+ 
+ 
+1
+v
+8
+4
+5
+8
+0
+.
+5
+0
+6
+1
+:
+v
+i
+X
+r
+a
+ABSTRACT
+In this work we present a mobile application we designed and
+engineered to enable people to log their travels near and far,
+leave notes behind, and build a community around spaces in
+between destinations. Our design explores new ground for
+location-based social computing systems, identifying oppor-
+tunities where these systems can foster the growth of on-line
+communities rooted at non-places. In our work we develop,
+explore, and evaluate several innovative features designed
+around four usage scenarios: daily commuting, long-distance
+traveling, quanti ed traveling, and journaling. We present the
+results of two small-scale user studies, and one large-scale,
+world-wide deployment, synthesizing the results as potential
+opportunities and lessons learned in designing social comput-
+ing for non-places.
+Author Keywords
+location-based systems; mobile; urban computing;
+non-places; place versus space; check-ins;
+ACM Classi cation Keywords
+H.5.m. Information Interfaces and Presentation (e.g. HCI):
+Miscellaneous
+Figure 1. (Left) The Home screen. Here users can review their history,
+add a new journey, and check-in to a previous journey. (Right) The Jour-
+ney screen. Once a user has checked-in to a journey, they can see stats
+about past visitors and interact with notes that others have left behind.
+INTRODUCTION
+The distinction between space and place has long provided an
+important theoretical framework for guiding the critical study
+and design of social computing systems, mobile location-
+based services, and online communities [20, 18]. Spaces are
+best thought of as purely abstract they are bounded or un-
+bounded geographic areas or domains without any speci c
+cultural signi cance. Places, on the other hand, are spaces
+that are imbued with a history, human social context, and cul-
+tural meaning [19, 25, 39, 5, 2]. By understanding the pro-
+cesses that turn a space into a place, one is empowered with
+conceptual tools for understanding how to develop successful
+online communities and collaborative systems.
+Permission to make digital or hard copies of part or all of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for pro t or commercial advantage and that copies bear this notice and the full cita-
+tion on the  rst page. Copyrights for third-party components of this work must be
+honored. For all other uses, contact the owner/author(s). Copyright is held by the au-
+thor/owner(s).
+CHI 2016, May 7 12, 2016, San Jose, California, USA.
+ACM 978-1-4503-3362-7/16/05.
+http://dx.doi.org/10.1145/2858036.2858573
+However, it is also important to understand the characteristics
+of non-places in the physical world:
+those physical spaces
+ which cannot be de ned as relational, or historical, or con-
+cerned with identity [4]." In his 1995 treatise on the sub-
+ject, anthropologist Marc Aug  argues that the cultural and
+technological forces of modernity are pushing us to spend
+increasingly more of our time in non-places, describing a
+world where  people are born in the clinic and die in a hos-
+pital, where transit points and temporary abodes are prolif-
+erating under luxurious or inhuman conditions (hotel chains
+and squats, holiday clubs and refugee camps, shanty towns
+threatened with demolition or doomed to festering longevity);
+where a dense network of means of transport which are also
+inhabited spaces is developing; where the habitu  of super-
+markets, slot machines, and credit cards communicates word-
+lessly, through gestures, with an abstract, unmediated com-
+merce [4]."
+By understanding non-places and the impact technology has
+on their production, we can hope future technologies will mit-
+igate or reverse the societal trends that Aug  describes. This
+work aims to take a step in that direction.
+We are motivated by the question of how location-based so-
+cial computing can enhance the meaning, symbolization, and
+cultural relations experienced at physical non-places. We ask,
+how can place-making efforts in the digital world augment the
+experience at physical non-places?
+To examine these questions through design, we draw our fo-
+cus on what Aug  calls the  archetype of non-place,  the
+spaces occupied by the traveller [4]. As Aug  describes  the
+plurality of places  that the traveller passes through creates
+a  discontinuity between the spectator-traveller and the land-
+scape he is contemplating or rushing through,  preventing the
+him (or her) from perceiving this landscape as a place, and
+ from being fully present in it [4].  Journeys taken by trav-
+ellers often start and end at non-places (for example at bus
+terminals, airports, or subway stations), and are played out
+on the place-less  elds of modern transport-infrastructure (in
+cars stuck in highway traf c, in cramped airplanes, or packed
+train cars), touching the daily lives of billions of individuals.
+The main contributions of this work are:
+  The design and implementation of Journeys & Notes, an
+Android app that lets people check-in to their journeys.
+  Two 1-week-long user studies (6 people, and 15 people) of
+how people adopted the system, and how their use of the
+system impacted their perceptions of travel and non-places.
+  A large-scale  eld study on 9,435 participants providing
+insight into usage patterns, and the types of messages peo-
+ple write on their journeys.
+BACKGROUND AND RELATED WORK
+Check-in apps emerged around 2003 to enable a virtual social
+experience anchored around physical places [26]. These apps
+allow users to broadcast their presence at venues, that is, the
+places they go to. Venues include restaurants, bars, of ces,
+apartment buildings, homes, museums, parks, movie theatres,
+shops, and caf s. Dodgeball, GoWalla, Foursquare and now
+Swarm are some of the apps that embodied this concept of
+checking-in to a venue. More recently, Facebook has adopted
+this as a feature that people can use to attach a location to
+their posts.
+Designers of social computing technologies have grappled
+with the concept of places for quite some time. In 1996, Har-
+rison and Dourish [20] argued for the importance in distin-
+guishing between  places" and  spaces," with a special em-
+phasis on the virtual. Ten years later, Dourish [18] restates
+these concepts in the context of spatial technologies.
+Places often create communities around them [34, 30]. Place
+check-in apps have begun to leverage and augment these
+venue-based communities [27, 37]. Conversely, non-places
+are not typically conceptualized as vibrant spaces where
+communities take root. However, we have observed in-
+stances where online communities anchored at non-places
+have shown signs of emergence.
+Previous work has explored the design of technologies to con-
+nect people with one another while riding public transporta-
+tion. For instance, researchers developed Trainroulette, an
+app to promote  situated in-train social interaction between
+passengers  [10]. The researchers found that people were
+interested in knowing who shares the rides with them, but
+wanted to do it semi-anonymously (exposing only certain as-
+pects of their identity). Similarly, Belloni and colleagues
+[6] explored the use of mobile technologies in  transitional
+spaces.  Their work focused on the design of a location-based
+friend  nder that displays any of the user s friends that are
+in the same subway train. The researchers found that users
+wanted the ability to  invisibly  log in to the system. This
+need for identity opaqueness inspired the design of our app s
+identity system.
+Other work has looked at designing applications to increase
+social engagement with the physical world. Rosner et al. de-
+signed an application that let people convert free form doo-
+dles to sharable walking routes on maps [35]. Cranshaw et
+al. designed an online community of people documenting
+their experiences at places through sharable city guides [16].
+Overall, a meta-analysis of pervasive technology and public
+transport [9] proposed the development of applications that
+not facilitate only more ef cient journeys, but also more en-
+joyable ones that people look forward to. This is what we set
+out to do.
+SCENARIO-BASED DESIGN FOR NON-PLACES
+Our investigation of non-places as an unexplored domain in
+social computing began with an informal survey of how exist-
+ing social computing systems and apps are being used or re-
+purposed for use in non-places. In surveying this landscape,
+we considered all-purpose social networks such as Facebook,
+check-in apps like Foursquare,  tness apps like Strava, track-
+ing apps such as Moves, travel apps such as TripAdvisor, and
+commuting apps such as Waze. As we considered each tech-
+nology, we thought about how the features and usage scenar-
+ios of these existing services might be adapted by the non-
+place traveller, perhaps to help foster a disappearing sense of
+community, or to augment a transient space with virtual ex-
+periences of place.
+Inspired by formal design methodologies such scenario-based
+design [12, 11, 29, 36] and persona-based design [33, 13,
+8], we synthesized our  ndings into a set of four scenar-
+ios that we felt represent broad yet diverse archetypes of the
+non-place traveller, while speaking to the opportunities, chal-
+lenges, and implications of life in non-places. Here we high-
+light how these scenarios helped inform our design process,
+offering a lens through which we can empathize with the
+lives, emotions, and social computing needs of a non-place
+traveller.
+The Everyday Commuter
+Whether they travel by car, by bus, by train, by bike, or by
+foot, the one thing most everyday commuters have in com-
+mon is the regularity of their trips. Especially in larger urban
+cores, this often translates to either time spent in the car stuck
+The Quanti ed Traveller
+Counting   a cousin to logging, tracking, following, and
+recording   requires extreme consideration and attention to
+detail. The quanti ed traveller might count calories, steps,
+rides, smiles, records, sodas, hellos, sighs, words spoken,
+liters drunk, grams consumed, emails sent, texts sent, etc.  
+you know, the things that prove useful when compiling the
+annual report.
+The quanti ed-self movement seeks to empower individuals
+with increased capabilities for tracking and expressing their
+personal activities. Some of the initial commercial successes
+in this space have been glori ed step counters, allowing peo-
+ple to estimate how much they walk in a given day. Recent
+quanti ed-self applications are starting analyze the trips peo-
+ple take. For example, Strava is a smartphone app for compet-
+itive bicyclists and runners that tracks their routes and times
+[14]. It goes well beyond simple GPS path tracking, however,
+implementing a leaderboard that shows the best recorded
+times on all road segments. Moves is another quanti ed-self
+smartphone application that builds a beautiful visual journal
+of the users  activities by automatically identify the venues
+that they stop at and the modes of transit used to take them
+between venues.
+The Journaling Traveller
+The journaling traveller documents the details they feel are
+often overlooked, carrying their stories with them   on fronts
+of notebooks, side pockets, marking events on calendars.
+Documenting the world as they see it drives the Journaling
+traveller to write at length about how their neighborhood is
+changing, about the gentleman who walks the park every
+morning at 7:19am, and about the most recent paint change
+on the sushi restaurant next door.
+Documenting journeys is an age-old tradition. One of the ear-
+liest travelogues recorded is the one by the Greek geographer
+Pausanias from second century A.D. Today, the explosion of
+social media applications has motivated people to document
+every aspect of their lives, and journeys are not an excep-
+tion. People document them with photos on Instagram, or by
+writing long and detailed notes on Yelp or TripAdvisor about
+their journeys. Journaling-speci c mobile applications like
+Day One have millions of people using them diligently every
+day. All of this shows the desire both for journaling travels
+and for mobile apps to do so.
+JOURNEYS & NOTES SYSTEM DESIGN
+In this section we describe the key elements of the Journeys
+& Notes system design. We link speci c designs and com-
+ponents to the various facets of social life in non-places that
+motivated them, often using our four scenarios as a connect-
+ing point of reference.
+Overview
+Journeys & Notes extends the concept of a check-in [26, 15]
+beyond  xed-point venues, allowing users to check-in to the
+journeys they take. By specifying the endpoints of their jour-
+ney and their mode of travel, users unlock a virtual social ex-
+perience where they interact with other travellers also on the
+Figure 2.
+way.(Right) Facebook group for meeting tango dancers at airports.
+(Left) Swarm venue for a recurring traf c jam in a high-
+in traf c, or sharing the same bus or train with many of the
+same familiar strangers they see each day.
+Recently, apps such as Waze [38] have successfully har-
+nessed the excess capacity of people s free time during peak
+commuting hours by using people s smartphones to crowd-
+sourcing traf c conditions. Although its goal is utilitarian,
+Waze built an online mobile social community around com-
+muting drivers stuck together in traf c, all just trying to  nd
+a way around. This shows how social computing can be de-
+signed with the needs of the everyday commuter in mind.
+The Frequent Flyer
+Red-eye to London. Dinner at an airport bar in Istanbul. Just
+enough time for a coffee before the early  ight to Fez. The
+frequent  yer knows airports. There are no familiar strangers
+in the airport, only familiar types   the business traveller, the
+retiree, the honeymooning couple, the college student return-
+ing home, the jet-setting socialite   the frequent  yer can spot
+them all with barely a glance.
+Airports are among the most highly checked-in-to venue
+types in Foursquare and Facebook. Sometimes,  yers check-
+in on departure to let friends know they ll be out of town. Oth-
+ers check-in to boast about the interesting places they re trav-
+elling to. Checking-in upon arrival in an unfamiliar place of-
+fers the opportunity for serendipitously bumping into nearby
+social connections. A Facebook group called Airport Tango1
+has over 8,000 members. Whenever a group member has
+some layover time in an airport, they post to the group looking
+to connect with other members so they can dance the Tango
+while they wait for their  ights (see Figure 2 Right). Simi-
+larly, Foursquare users often create fake venues to check in
+while stuck in traf c jams (see Figure 2 Left). Check-in apps
+and other forms of social computing are regularly being used
+by travellers to make airports a little more social.
+1https://www.facebook.com/groups/348726108583892/
+Figure 4. Nearby journeys are bundled together to create a community.
+J is the check-in journey of distance d, which de nes a community ra-
+10 . Only notes J(cid:48)
+dius of r   d
+2 starts within r
+of J and ends within r of J.
+2 are visible to J, becauseJ(cid:48)
+(e.g. a named points of interest, like  The Statue of Lib-
+erty") or street addresses. The system geolocates the user s
+input, resolving the endpoints to a coordinate by referencing
+the Foursquare API (for venues) and the Bing API (for ad-
+dresses). To enable ease of free text input on a mobile device,
+as the user types their endpoints the system generates  typea-
+head" auto-suggestions of nearby venues and addresses based
+on the current device location [3].
+Journey Check-ins
+The central experience of Journeys & Notes is the journey
+check-in, the process by which users expresses their presence
+on a particular journey. To check-in to a journey, a user must
+give their origin and destination (determining which journey
+they are on), and they must choose their mode of travel from
+a menu of travel icons (See Figure 5 Left).
+When a user checks-in to a journey, they are taken to the Jour-
+ney screen, where they are greeted by a randomized  wel-
+come" message that we crafted to reinforce the user check-in
+behavior, and adding variety, playfulness, and gami cation
+aspects to the user experience. We designed three types of
+welcome messages. The  rst type shows high level statis-
+tics about the journey, including any notable milestones, how
+many times the user has travelled the journey, and how many
+other people have travelled on the journey too. The second
+message type presents a travel-related haiku for the user s en-
+joyment. The third type shows  fun facts" about the jour-
+ney (for example how long would it take a bird to travel the
+whole distance). In later sections, we will delve into the de-
+sign and motivation for showing these messages. Figure 6
+(Right) shows one example of the welcome screen.
+Journey Community
+The Journey page is a forum that asynchronously connects
+users on similar journeys, allowing people to leave behind
+notes for their fellow travellers to read, and to read and re-
+spond to the notes left behind by others. These notes are
+only visible when a user is on that journey, creating an ex-
+plicit bond between the virtual content of the journey, and the
+physical journey itself.
+This design augments the space of the traveller with a persis-
+tent community, complete with affordances to interact with
+this community outside of the physical realities of the non-
+place. This design is one of the most direct vehicles by which
+we hope to impact the experience of non-places.
+Figure 3. (Left) The Notes view. Users can leave a note behind on their
+journey for others to see. (Right) The Stats view. Users can see summary
+stats of all the journeys they have taken, grouped by mode of transit.
+journey, discover notes that others travellers have left along
+the way, and they can leave behind their own notes for others
+to  nd.
+The app is comprised of two main screens: the Home screen,
+and the Journey screen. From the home screen (see Figure 1
+Left), there are four possible actions that the user might take:
+(1) they can check-in to a new journey; (2) they can review
+their previous journeys, possibly checking-in to one of them;
+(3) they can return to see details of their current journey; and
+(4) they can review statistics about all their journeys by mode
+of transit (see Figure 1 Right).
+When the users tap the  new journey" area, they are prompted
+to specify the origin, destination, and mode of transit to com-
+plete their journey check-in. When checking-in to a previous
+journey, the user is only required to specify the mode of tran-
+sit (see Figure 5 Left). Previous journeys are presented on the
+Home screen as a visual list of cards for each journey, depict-
+ing the origin, destination, and summary statistics about past
+mode-of-transit choices on that journey. If a user is currently
+checked-in to a journey, they will see  current journey" sec-
+tion on the home screen, with a card depicting the details of
+the journey they re checked into. In all cases, these actions
+take the users to the Journey screen for their current journey.
+Journeys
+A journey is fully speci ed by its endpoints   the origin and
+destination of the user s trip. In the system, endpoints are lit-
+erally points on the map (latitude and longitude coordinates),
+so that two users will be on identical journeys if they start at
+the same location and  nish at the same location, independent
+of the paths they take while en-route. The user provides their
+journey endpoints in a text  eld by specifying either a venue
+Figure 5. (Left) Supported modes of travel. (Right) The number of jour-
+ney check-ins by transit mode observed during the  eld deployment.
+Cars (34%), Airplanes (17%), Trains (14%), Buses (12%), and Pedes-
+trians (7%) comprise the majority of check-ins.
+Each check-in journey de nes its own forum members based
+on the journey endpoints. Roughly speaking, all other jour-
+neys that start near the check-in journey s origin, and end
+near its destination are bundled together to de ne the jour-
+ney s forum. We scale this bundling so that the longer a
+distance covered by the check-in journey (as the crow  ies),
+the wider the community of bundled journeys. Speci cally,
+if the check-in journey J = (a, b) travels from point a to
+point b and is distance d, we de ne the community radius
+r = (d/c) to be a constant fraction of the distance for some
+c > 1. As d varies, we further restrict r so that it has
+ xed minimum and maximum values   and  . Then the
+community of journeys bundled with check-in journey J is
+C(J) = {J(cid:48) = (a(cid:48), b(cid:48)) : d(a, a(cid:48))   r and d(b, b(cid:48))   r}. In
+our implementation we set c to 10,   to 100 yards, and   to
+30 miles. That is, J is bundled with other journeys that start
+within a radius equal to 1/10th of its distance and end within
+1/10th of its distance (with an additional minimum radius
+constraint of 100 yards and maximum radius of 30 miles).
+This is outlined with an example in Figure 4.
+Having a community radius that scales with the length of the
+journey allows Journeys & Notes to be equally useful for the
+long distance business trips, where you would want to encom-
+pass the entire cites or each end, and for the many intra-city
+adventures of the everyday commuter, where radius should
+capture just a block or a neighborhood.
+Mode of Travel
+Asking users to select the mode of travel in order to check-in
+to a journey serves three very different purposes. First, by
+forcing travellers to think of their mode of transportation as
+not just a means to the end of their journey, but as a critical
+part of their identity in the online community (their avatar),
+we are turning role of the mode of travel on its head, from
+something that encourages individuality and disorientation in
+the physical world, to symbol that breeds sociality and pres-
+ence in the online community.
+Second, their mode of travel provides an important piece of
+contextual information that can be used to help foster online
+community growth. To surface this information, we use the
+mode of travel icon as the user s avatar in the journey fo-
+rum. This increases travellers  awareness of other possible
+Figure 6. (Left) The note compose window. Tapping the toggle in the
+top right switches between anonymity and pseudonymity. Tapping the
+sub-header will step through the  ve different note sections. (Right) A
+welcome pop-up appears immediately after a user checks-in to a journey.
+modes of travel to get where they are going; for example,
+drivers become more aware of the cycling community that
+exists along their commute. It also encourages communities
+to form within a given mode of travel; for example, bus rid-
+ers can quickly scan posts from other bus avatars and identify
+with other bus riders  travelling experience.
+Finally, data about how people get to where they are going
+is extremely valuable civic data that could be used to better
+inform city transit planning. Collecting these data at a large
+scale is very dif cult for cities and organizations. Develop-
+ing a scalable approach for approximating or modelling trans-
+portation patterns within a city could lead to signi cant civic
+innovations.
+Notes
+Leaving notes on a journey is relatively straightforward. Sim-
+ply tapping a "compose" button opens up a note builder
+popover window, which guides users to constructing their
+notes. Notes are plain text and are restricted to 250 charac-
+ters. The compose view is shown in Figure 6. The author has
+the option to categorize the note with one of  ve categories:
+Notes & Visitors, Secrets & Stories, Love & Hate, Missed
+Connections, and Tips & Tricks. By scaffolding the compose
+window with note topic sections, our goal is to gently focus
+the discussion, so that people are not turned away by the cold
+start problem of a blank page with no inspiration for what to
+write.
+Notes appear in the Journey page in a feed displayed in re-
+verse chronological order. Different categories receive differ-
+ent color treatments, allowing for visual information  ltering
+when browsing the feed. When a note in the feed is tapped,
+it opens up a detail view for that note, which displays any
+well over a million possibly fake but convincing bird com-
+mon names (e.g. scarlet crested wren). We felt having bird
+names as pseudonyms was a whimsical and playful design
+that might appeal to users like the journaling traveller, who
+sees beauty in the simple things around her. Figure 7 il-
+lustrates the new user on-boarding screens, highlighting the
+pseudonym assignment.
+Much of our thinking about identity and anonymity was in-
+ uenced by the needs and experiences of the city-dwelling
+public transit enthusiast, such as the everyday commuter sce-
+nario. Many who live in large cities have high regard for the
+anonymity that comes with city life, a somewhat paradoxical
+byproduct of sharing a small physical area with a great many
+people [21]. They also value the structure and regularity of
+the daily commute   in particular the familiar strangers, those
+faces in the crowd that they recognize and who may even oc-
+cupy a signi cant portion of their lives, yet whom they have
+never had any deep interactions with.
+Stanley Milgram was one of the  rst to write about the role
+of familiar strangers in urban milieu. He describes the phe-
+nomenon as a distinct category of relationship, providing sup-
+port and value, and also requiring maintenance in the same
+way that family, friends, or colleagues do [28]. Like Paulos
+and Goodman s Jabberwocky [31], our design of Journeys
+& Notes does not attempt to alter existing familiar stranger
+norms or relationships. Rather, we hope to accentuate famil-
+iar strangers by building technology that enables new interac-
+tions and experiences that highlight their unique role in urban
+life.
+Speci cally, our decision to use assigned pseudonyms was
+intended to preserve urban anonymity. For the everyday
+commuters who regularly share close quarters with many of
+the same fellow travellers every day on their bus, train, or
+shuttle commutes, we believe it is important to maintain the
+same feelings of anonymity in the application as is experi-
+enced in the physical world. Our use of persistent random
+pseudonyms, in contrast to pseudonyms that are refreshed
+with each new post [24], allows users to maintain familiar
+stranger relationships in the application by noticing and fol-
+lowing the posts of familiar pseudonyms that they might rec-
+ognize from journeys past.
+as place based check-in applications use
+Quanti ed-Self and Gami cation
+Just
+self-
+quanti cation and gami cation as motivating forces that drive
+usage [26, 40, 15], we believe there are similar opportunities
+for non-place based check-ins. First, inspired by a similar
+feature Foursquare used to have, we give people the title of
+ trailblazer  when they are the  rst to check-in to a journey
+that no one else has checked-in to before. Our goal is to en-
+courage people to explore new journeys for themselves and
+for the system as a whole. Furthermore, inspired by the ex-
+amples we described in our scenario like Waze and Strava,
+we decided to incorporate journey-based statistics about the
+user. We surface these statistics to the user in a summary
+panel on the Journey page. We  rst maintain simple counts
+for the number of times the user has taken each trip. Addi-
+tionally, we maintain counts for the number of times the user
+Figure 7. (Left) Journeys & Notes loading screen. (Right) A random
+pseudonym given to a  rst time user.
+comments that have been left, and exposes an interface for
+composing a comment on the selected note.
+Note are not only the primary means by which people inter-
+act with their fellow travellers (by reading the notes of others,
+and leaving comments behind), but simply by virtue of be-
+ing asked to write about it, notes encourage the traveller to
+be mindful of the journey, and create a sense of history and
+culture from the previous travellers.
+Pseudonymity and Anonymity
+There are three de ning aspects of our design around user
+pro les and identity:
+(1) users are given random system-
+assigned usernames, or pseudonyms, the  rst time they use
+Journeys & Notes; (2) pseudonyms are persistent, they can-
+not be changed, and they are visible on all the notes they leave
+behind; and (3) when users are composing a note, they can
+decide (with the switch of a radio button) to make the note
+completely anonymous, thereby not associating that note with
+their pseudonym.
+Our pseudonyms are derived from naming schemes devel-
+oped for bird species common names. Although there
+are only about 10,000 species of birds [1], we devel-
+oped a method for creating a suitably large name-space of
+pseudonyms that sound like bird names, but may not be,
+by expanding on typical structure used in naming strategies.
+Each species common name must feature the common name
+of the family (e.g. sparrow, wren, warbler). However, the
+family name is typically modi ed by (1) attributes describ-
+ing the physical characteristics (e.g. yellow-rumped cacique);
+(2) geographic terms denoting where the bird can be found
+(e.g.
+the Eurasian nuthatch); or (3) landscapes or habitats
+where the bird roosts (e.g. mountain pygmy owl). By tak-
+ing the Cartesian product of the constituent sets of descrip-
+tors in each of these three cases, we created a name space of
+has checked-in with each mode of transit, both in total and for
+each journey. We also measure cumulative miles traveled (as
+the crow  ies) for each mode of transit, again both in total and
+for each journey. The total cumulative mode of transit stats is
+displayed on the user pro le page, see Figure 3 (Right).
+Design Aesthetics and Poetic Elements
+The idea of leaving a digital note behind on a journey evokes
+feelings of hiding a message in a bottle and tossing it out to
+sea   the action itself is poetic   writing a message not
+knowing who, if anyone, will ever see it. From the visual
+design language of the application, to the use of bird names
+as pseudonyms, to the natural imagery scattered throughout,
+we ve tried to imbue much of the poetics of this moment into
+the look, feel, and voice of the application. These poetic ele-
+ments encourage travellers to be mindful and present in their
+surroundings, perhaps nudging them to notice aspects about
+the journey that they otherwise might have missed.
+The most overt invocation of poetics in our design was our use
+of haikus to welcome users to a journey and priming them,
+to think about the type of content they might leave behind
+as notes. We hired three creative writers on oDesk2 to pro-
+duce haikus exploring the core concept of the app: the jour-
+ney through non-places. Each writer composed 15 haikus,
+three haikus inspired by each of the  ve note sections.
+Here is one inspired by Missed Connections:
+Motor hum, grease smell
+and there you are again, but
+long, the road between
+Seeded Content
+We also hired a number of writers who were familiar with
+a number of major metropolitan areas of the United States
+to seed the app with pre-existing 896 notes as one way to
+bootstrap engagement. We asked the writers to write notes
+for common journeys of people in those metro areas. Below
+is an example of a note written by one of these writers:
+ Every day during my lunch break I take a run from the
+bottom of Boston street up the hill and I draw a chalk
+line to see where I am after 10 minutes. I m inching my
+way up, guys, anyone wanna race?"
+Implementation
+Journeys & Notes is implemented as a client (Android ap-
+plication) and server (REST API), where the server s role is
+exclusively to persist the actions of the user to a remote data-
+store, facilitating sharing and interaction across multiple dis-
+tributed clients. The datastore is implemented with a spatially
+enabled PostGIS/PostgreSQL database, allowing for ef cient
+execution of queries with spatial joins. Our REST API is im-
+plemented in Python with the Flask framework. We will not
+go into any further details about the system architecture.
+USER STUDIES
+We conducted two rounds of small scale user studies of indi-
+viduals who used Journeys & Notes for one week with a total
+2http://odesk.com
+of 21 participants. In study 1, we recruited 6 participants from
+the Seattle area through TaskRabbit3. We conducted an hour
+long, in-person pre-study interview with each participant, to
+get a sense of their normal everyday transportation patterns,
+how they got around the city, and what they typically perceive
+as they travel. After this discussion we gave them an overview
+of how to use Journeys & Notes. They were asked to use
+Journeys & Notes for one week, to check-in on each journey
+they take, and to leave 3 notes behind on their journeys per
+day. After this week, we conducted another in-person, 1 hour
+long post-study interview. In study 2, we recruited 15 peo-
+ple from the Seattle area through Craigslist4 to use Journeys
+& Notes for one week with the same usage requirements of
+study 1 participants. In this round, however, our evaluation
+was through two online surveys (pre- and post-study), featur-
+ing several free response questions about their experience.
+Our goal was two-fold. First, we wanted to better understand
+the landscape of how people conceptualized the journeys they
+take and people they encounter along the way. Second, we
+wanted them to use Journeys & Notes for a week, so we could
+get a high level understanding of which aspects of the system
+people seemed to respond most to, and which were features
+were not as robust. The version of the app that we tested in
+these trials was more primitive than the one described above.
+It did not have as many quanti ed-self features that counted
+trips and mileage. We transcribed the interviews and iden-
+ti ed common themes and important insights that emerged,
+which we synthesize in the discussion below.
+Anonymity and Other People
+Because the content was sparse and geographically siloed
+across the city, participants had limited contact with others in
+the study, however there was some. One participant remarked
+laughing at posts he found from other people:  Some of the
+missed connections are really funny. There was one guy that
+lost his blue velvet jacket somewhere up there [laughter]...
+he was looking for it. He lost it on a bet. That was hi-
+larious!" Although most people did not post anything fully
+anonymously, some of those who came into contact with oth-
+ers  posts seemed more thoughtful about using fully anony-
+mous postings, often when saying things that they didn t want
+attributed to their pseudonym. One participant posted all of
+her content anonymously. She was a regular bus rider, and
+was concerned about people identifying patterns in her posts
+and being able to guess her real identity, so she decided to be
+entirely anonymous.
+Re ection, Curiosity, and Exploration
+By far the most common theme we heard from participants
+was that Journeys & Notes made them more re ective in dif-
+ferent ways. For example, one person felt having the transit
+icons so closely associated with his identity made him ques-
+tion his transportation choices:  I think I would try to bike
+more instead of drive. That was the powerful thing for me
+with the app since I didn t have any other contact [with oth-
+ers]. It really forced me to consider how I travel and if it was
+3http://taskrabbit.com
+4http://craigslist.org
+really necessary.
+I really liked it for that reason." Another
+participant felt that getting into the habit of writing while on a
+journey made him more aware of his commute and the world
+around him:  I can only use my experience, but I think any-
+one who wants to actively be more aware of their commute
+would enjoy this. It allows re ection on a part of the day that
+is often dismissed as a necessary evil best ignored." Similarly,
+another felt that,  Writers and thinkers would love it. It s a
+great way to be expressive. It might clue you in on things you
+had no idea about." This is particularly encouraging feedback
+in support of the journaling scenario for non-place based so-
+cial applications.
+Another participant felt the app piqued her curiosity:  the app
+just made me curious. It made me want to explore and look
+for people in the area. I really wanted to have a conversation
+with someone!" Similarly, someone else said:  When I did
+get to read other s posts I felt some sense of connection  
+like hey, other people are going through here and are sharing
+their experience. I liked the opportunity to pick up little se-
+crets about places." She continued:  Each time I logged in, I
+felt thoughtful and more conscious of my surroundings (ex-
+cept for having my head in my phone). But when I wasn t
+looking down, I was more aware of my surroundings because
+I wanted to write descriptively."
+In response to seeing the haikus, another participant said:  I
+did notice the Haikus!
+I liked them. They seemed to in-
+spire me more than anything. They build up this idea that
+just around the corner I might meet someone unexpected."
+Public Transport
+We heard from several participants that they felt the app was
+most useful for public transportation (and not driving, or
+walking, or biking). For example, one woman said:  I think
+the app is most useful for public transport, didn t log any trips
+I took by car or foot." This was echoed by several others. If
+we were designing the app from scratch, we would reconsider
+the decision to make it a general purpose transit app. We will
+expand more on this this feedback in the discussion section.
+Limitations
+Of course, not all participants enjoyed Journeys & Notes.
+Some were just too busy with other things they valued more
+to give it much time:  In transit, especially taking transit, I
+had other things I needed to pay attention to like not missing
+my stop and being alert to what was going on around me. I
+also don t like having my face buried in my phone on the bus
+because I think people do it to relieve social anxiety or out
+of boredom. I like being able to people watch- or gasp- even
+strike up a non-digitized exchange with someone."
+Others just didn t feel connected to what it was trying to
+achieve, and felt systems like Facebook are more complete:
+ At 53, I found nothing too interesting in it. You have Face-
+book and a few other things out there, so people check in
+there, though not me. I can see the bene t for entertainment
+of strangers commenting on stuff written by me, but since I
+was just outside Seattle, I saw no comments from anyone."
+Another thought it was too buggy to enjoy:  Why would any-
+one use it if this is what it is? What does it add to a trip? It
+is  ddly in alpha and doesn t look up addresses, and is yet
+populated with a lot of user content, so no, I d not use it as it
+lives now."
+Feature Requests
+One of the features that we had planned to add, but were
+not able to  nish before these studies, was a statistics and
+tracking feature about journeys (e.g. quanti ed-self). Inter-
+estingly, this was something that was speci cally requested:
+ Also, I think a cool feature to add would be distance and
+time measurements. Maybe the app keeps track of how long
+the journey takes the user, or the user can add that information
+in. This would give others on the same trip more information
+hence why they use the app in the  rst place! Also adding a
+distance counter could be cool and easy, especially since the
+locations are already in the database." This feedback moti-
+vated us to complete this exact feature in time for our release
+in the app store.
+LARGE SCALE FIELD DEPLOYMENT
+The app was publicly released in the Google Play store on
+October 22, 2014. Between then and September 20, 2015,
+there were 20,323 installations resulting in 23,697 user regis-
+trations (we purposefully do not maintain user identity across
+re-installs, resulting in duplicate registrations). During this
+time 9,435 people performed a total of 12,904 journey check-
+ins on 11,337 unique journeys. While most of these users
+performed just one journey check-in, there were 2,121 peo-
+ple with more than one check-in during this period, some with
+considerably more, with a maximum of 50 check-ins by one
+user observed. As one would expect, most journeys were rela-
+tively short with a long tail of very long journeys: the median
+distance was 54 kilometers (33 miles) and the mean distance
+was 1296 kilometers (805 miles).
+We can also see how these journeys are distributed across dif-
+ferent modes of transit (Figure 5 Right). While most people
+embarked on journeys on traditional modes of transit (Car,
+Airplane, Bus, Train, and Walking account for 84% of check-
+ins), people did engage with our more playful and atypical
+modes of transit. We observed 58 people take journeys by
+skateboard, 125 people checked-in with a horse, 21 travelled
+by wheelchair, and 363 by the fantastical rocket-ship.
+Analysis of Contributed Notes
+Along with those check-ins, 1,989 users wrote 2,777 notes on
+their journeys, and 203 replies to existing notes. As one might
+expect, most of these notes were left in the default, Notes &
+Visitors section (2,300 or 90%). Some users also ventured
+from the default section and left their posts in Tips & Tricks
+(122 or 5%), Love & Hate (51 or 2%), Secrets & Stories (45
+or 2%), or Missed Connections (16 or 1%).
+To explore how these 2,777 posts contributed to the  sense
+of place" of the journey, we asked 5 annotators to categorize
+each post along  ve dimensions: (1) is the post poetic? (2) is
+it factual? (3) is it personal or intimate? (4) is it about memo-
+ries of a past journey? and (5) is it about the present moment
+Category
+Poetic
+Factual
+Intimate
+About Past Journey
+About Current Journey
+Everyday Commuter
+Frequent Flyer
+Quanti ed Traveller
+Journaling Traveller
+  Number of posts
+77
+536
+15
+46
+816
+443
+76
+25
+373
+0.41
+0.22
+0.01
+0.06
+0.16
+0.21
+0.09
+0.02
+0.06
+Table 1. A summary of post labels given by  ve annotators, where  
+is the Fleiss  measure of inter-rater reliability, and the number of posts
+counts when at least two annotators agree.
+in this journey? We additionally wanted to identify posts that
+expressed the essence of the four personas that were critical to
+our design. We asked the annotators to also make judgements
+about whether the post author was (6) an everyday commuter,
+(7) a frequent  yer, (8) a quanti ed traveller, or (9) a journal-
+ing traveller. In this way, annotators labeled the data across
+9 categories, and they could tag each post with any, all, or
+none of these categories. Table 1 shows a summary of num-
+ber of post tagged in each category, including Fliess  Kappa
+scores for the annotations. Fliess    scores are computed, and
+in some cases indicate low agreement, perhaps re ecting the
+subjectivity of the task. We show approximate counts of each
+category type, by counting when at least two annotators agree
+on a labelling. Most posts were about the current journey
+(816), and the most exempli ed scenarios were the Everyday
+Commuter (443) and the Journaling Traveller (373).
+Below are some examples of notes written by users that ex-
+emplify the scenarios above. We only show posts from each
+category if at least two of the four annotators agreed the post
+belonged in that category.
+Poetic
+ From the shelter of my bus stop I watched the mist hug the
+walls of the building. Everything seemed to be wrapped in
+drops."
+ The train is empty. Seats creak. The guard approaches
+silently. Gliding like he has done for years. I have no ticket
+to show him. I am not here."
+Factual
+ Grab a taxi or the BTS to the Victory Monument. From
+there head to the north-east side of the roundabout (you ll see
+all the minbuses) and speak to the women there. It should
+cost 60 Baht to the centre of Ayutthaya."
+ During the weekday, is easier to get coach ticket from the
+terminal bersepadu selatan (TBS), southern bound bus termi-
+nal."
+Intimate
+ I m going to meet the love of my life for the  rst time, and
+if it doesn t work out I doubt I ll ever have the strength or
+will to overcome it. This is, regardless, a day of incredible
+happiness and growth. Optimism, more than anything."
+About a Past Journey
+ It is my second time back to TO after leaving it in 2005.
+This time marks as a special trip in memory of my one decade
+since graduated from U of T."
+ My journey from the Philippines to the USA was years ago.
+I migrated here with my family with hopes of a better future
+and life."
+About the Current Journey
+ Hi travelers, I m a trucker and giving this app a try, headed
+to Ohio!"
+ Got here just as the leasing of ce closed :-( Better luck to-
+morrow I hope but for right now, I m getting tacos."
+Everyday Commuter
+ Just another ride to work at the shack. One day soon this
+ride won t be necessary and instead go on to do bigger things.
+That day will come soon I hope."
+ My commute is farther from home than most people in his-
+tory travelled in their entire lives."
+Frequent Flyer
+ I feel elated. Airborne. Rising higher. Soaring like a bird.
+With massive metal wings. And lots of creatures inside. Peo-
+ple. Inside a bird. Odd."
+ Left FAT airport at 2pm. It s never a long line so it took only
+45 minutes to get in and in line for the plane. File out to SFO.
+Got there in 45 minutes."
+Journaling Traveller
+ Loved Prague.. could see living here with learning just a few
+words of Czech. On to Poland!"
+ Beautiful ambience, exotic wildlife, a calm weekend... What
+else do you want? The Boatbill strongly recommends this
+place."
+ Stopped by Carkeek Park to see the salmon."
+DISCUSSION
+We believe we have identi ed a rich new space, ripe for fu-
+ture HCI research: developing mobile and social computing
+systems for engaging people in non-places. To explore this
+domain, we created Journeys & Notes, a check-in app that
+augments journeys in the physical world with online places
+where people interact with other past, present, and future trav-
+ellers of the same their journey. Our intention was to design a
+system that might surface new experiences and address unmet
+needs of travellers passing through non-places. We grounded
+our design decisions around four archetypal scenarios where
+non-place travellers might encounter social computing: the
+everyday commuter, the frequent  yer, the journaling trav-
+eller, and the quanti ed traveller.
+Through two small scale user studies, and one  eld deploy-
+ment, our preliminary investigation shows evidence that so-
+cial computing can indeed imbue a transient physical space
+with basic characteristics of a place: elements of a history, a
+culture, a community, and mechanisms to foster a heightened
+sociality among those that pass through it.
+Our small scale interview studies revealed a broad range of
+reactions, both positive and negative, to individual features of
+the design. They also present strong evidence in support of
+the central premise of this work, that there is opportunity for
+social computing to grow online communities that are rooted
+at non-places. The most valuable aspect of Journeys & Notes
+that emerged from these interviews seemed to be the fact that
+through a small set of very basic interactions (check-in mech-
+anisms, and note compositions), the system could support a
+range of different uses: self-re ection, atemporal interactions
+with others, discovery of new places, self-tracking and com-
+munity building.
+Although the app-store release of Journeys & Notes has yet to
+successfully generate sustained usage or foster dense, anony-
+mous, hyper-local communication channels (see the limita-
+tions section below), it has nevertheless been successful at
+providing a window into the needs and thoughts of the non-
+place traveller. Because communication in Journeys & Notes
+is atemporal, the notes that people write are like messages in
+bottles tossed into the sea, composed for future travellers of
+the journey to read, regardless of whether anyone ever  nds
+them. The content of the messages examples above give
+us a fascinating glimpse into the range of different things
+people post about, and the potential place-making impacts
+such a communication channel might have in transient spaces.
+We take these messages as further evidence that Journeys &
+Notes speaks to interactions and scenarios that resonate with
+people, and yet are not fully explored by existing research or
+technologies. The richness and opportunity for social com-
+puting for non-places is clear.
+Limitations and Lessons Learned
+In our evaluations of the design, we uncovered a number of
+limitations and lessons that might be valuable to future re-
+searchers in this area. Many of these lessons stem from the
+tensions between being a low  delity research project, while
+also being a product available in an app market. On the sur-
+face Journeys & Notes appears somewhat polished, but as
+an experimental app, it lacked many features and details that
+product teams would typically invest in.
+In order to truly get sustained usage of the app, we would
+have needed to invest more into cracking the two-sided prob-
+lem of geographic sparsity hindering the discoverability of
+posts. A number of approaches might have helped. Instead
+of a world-wide release in an app store, we could have em-
+braced geographic-contagion model for the release, focusing
+on one dense geographic region to start and scaling out. We
+also would have needed to embraced device noti cations as
+a mechanism to inform people when other activity happens
+near them, or on the posts that they leave behind, thus increas-
+ing interactions, and discoverability of people and content.
+We also found that post-sections (e.g. missed-connections,
+tips & tricks, etc.) were barely used at all, likely because
+of a  awed UI design that made them dif cult to discover.
+While we included these as a way to nudge users to focus
+their conversation around  xed topics, in retrospect, people
+seemed post compelling and interesting content without using
+them, so they may not be necessary after all.
+There were a number of features that we explicitly chose
+not to support that ended up being requested by users. We
+wanted to create an ephemeral experience similar to other
+online communities [7], and designed our posts so that they
+were only visible when people were actually checked-in to
+their journeys. People didn t like this. Here s an example re-
+view written by one of our users:  i want to be able to delete
+a journey and review the notes I ve made. . . bc right now, i
+have to log in another journey to see my notes and it looks
+so messy now." We also wanted to design a text only experi-
+ence, but users today are so used to rich media, that there was
+a strong desire to see photos in posts.
+Some people, especially the quanti ed travellers, found it too
+much work to have to manually enter every journey. While
+we made it easy for people to check-in to previous journeys
+by simply clicking on them; other apps make it even easier.
+For example, the Moves app uses the geolocation features
+in smartphones to automatically log people s activities [17].
+While this auto logging opens up challenges for privacy and
+device battery-life, it is a feature some people expect to have.
+Future iterations should consider giving people this option.
+The system tried to capture all types of a journey s modalities,
+from bus to plane to skateboard. This reduces the possibility
+to optimize for one type of community; in retrospect, the sys-
+tem could have been created with one speci c community in
+mind, similar to what Waze has done by focusing on auto-
+mobiles. This need to focus on a speci c community was
+highlighted by one of the emails we received from one of our
+most avid users:  I think that you should work on a trucker
+version. Drivers could leave notes about truck stops, ware-
+houses, road hazards, places with truck parking and such. I
+think that it would be a hit. (. . . ) I am a truck driver. I have
+been driving for about 20 years."
+Future Research Opportunities
+This work opens the door to a number of different promis-
+ing areas of future research. By strengthening community
+structures around common commute paths, non-place com-
+munities could help  nally realize the original vision of peer-
+to-peer ride-sharing (not the  ride-for-hire" form of ride shar-
+ing popularized by Uber and Lyft). Beyond speci c end-user
+functionality, we also envisioned these type of systems being
+useful sources of civic data that communities can use to bet-
+ter understand mobility patterns, transit choices, and people s
+perceptions of their surrounding environments. We also be-
+lieve that developing technologies speci cally for non-places
+can help meet the challenges of rebuilding and strengthen-
+ing communities in the 21st century. The increased occupa-
+tion of non-places, and the growing communities these non-
+places contain, makes them increasingly central to social de-
+velopment and interaction, and properly designed technolo-
+gies can transform Milgram s familiar strangers into knowl-
+edge sharing and human contact even in an asynchronous and
+pseudonymous fashion.
+REFERENCES
+1. 2015. List of birds by common name. (July 2015).
+https://en.wikipedia.org/w/index.php?title=
+List_of_birds_by_common_name&oldid=672667630
+Page Version ID: 672667630.
+2. John Agnew. 2011. Space and place. The SAGE
+handbook of geographical knowledge (2011), 316 330.
+3. Chris Aniszczyk. 2013. Twitter Typeahead.js: You
+Autocomplete Me. (2013).
+https://blog.twitter.com/2013/
+twitter-typeaheadjs-you-autocomplete-me
+4. Marc Aug . 1995. Non-Places: An Introduction to
+Supermodernity (2 edition ed.). Verso, London ; New
+York.
+5. Gaston Bachelard and Maria Jolas. 1994. The poetics of
+space. Vol. 330. Beacon Press.
+6. Nicolas Belloni, Lars Erik Holmquist, and Jakob
+Tholander. 2009. See you on the subway: exploring
+mobile social software. In CHI 09 Extended Abstracts
+on Human Factors in Computing Systems. ACM,
+4543 4548.
+7. Michael S Bernstein, Andr s Monroy-Hern ndez, Drew
+Harry, Paul Andr , Katrina Panovich, and Greg Vargas.
+2011. 4chan and/b: An Analysis of Anonymity and
+Ephemerality in a Large Online Community. (2011).
+8.  sa Blomquist and Mattias Arvola. 2002. Personas in
+action: ethnography in an interaction design team. In
+Proceedings of the second Nordic conference on
+Human-computer interaction. ACM, 197 200.
+9. Tiago Camacho, Marcus Foth, and Andry
+Rakotonirainy. 2012. Pervasive technology and public
+transport: Opportunities beyond telematics. IEEE
+Pervasive Computing 12, 1 (2012), 18 25.
+10. Tiago Camacho, Marcus Foth, and Andry
+Rakotonirainy. 2013. Trainroulette: promoting situated
+in-train social interaction between passengers. In
+Proceedings of the 2013 ACM conference on Pervasive
+and ubiquitous computing adjunct publication. ACM,
+1385 1388.
+11. J.M. Carroll. 2000a. Five reasons for scenario-based
+design. Interacting with Computers 13, 1 (2000), 43 60.
+DOI:
+http://dx.doi.org/10.1016/S0953-5438(00)00023-0
+12. John M Carroll. 2000b. Making use: scenario-based
+design of human-computer interactions. MIT press.
+13. Yen-ning Chang, Youn-kyung Lim, and Erik Stolterman.
+2008. Personas: From Theory to Practices. In
+Proceedings of the 5th Nordic Conference on
+Human-computer Interaction: Building Bridges
+(NordiCHI  08). ACM, New York, NY, USA, 439 442.
+DOI:http://dx.doi.org/10.1145/1463160.1463214
+14. Paolo Cintia, Luca Pappalardo, and Dino Pedreschi.
+2013. "Engine Matters": A First Large Scale Data
+Driven Study on Cyclists  Performance. In Proceedings
+of the 2013 IEEE 13th International Conference on
+Data Mining Workshops (ICDMW  13). IEEE Computer
+Society, Washington, DC, USA, 147 153. DOI:
+http://dx.doi.org/10.1109/ICDMW.2013.41
+15. Henriette Cramer, Mattias Rost, and Lars Erik
+Holmquist. 2011. Performing a check-in: emerging
+practices, norms and con icts  in location-sharing using
+foursquare. In Proceedings of the 13th International
+Conference on Human Computer Interaction with
+Mobile Devices and Services. ACM, 57 66.
+16. Justin B Cranshaw, Kurt Luther, Patrick Gage Kelley,
+and Norman Sadeh. 2014. Curated city: capturing
+individual city guides through social curation. In
+Proceedings of the SIGCHI Conference on Human
+Factors in Computing Systems. ACM, 3249 3258.
+17. Kim-Mai Cutler. 2013. No Fitbit Or Fuelband
+Necessary. The Moves App Tracks Your Steps From
+The iPhone. (2013). http://social.techcrunch.com/
+2013/01/24/moves-app-activity-tracker/
+18. Paul Dourish. 2006. Re-space-ing Place: "Place" and
+"Space" Ten Years on. In Proceedings of the 2006 20th
+Anniversary Conference on Computer Supported
+Cooperative Work (CSCW  06). ACM, New York, NY,
+USA, 299 308. DOI:
+http://dx.doi.org/10.1145/1180875.1180921
+19. J Nicholas Entrikin. 1991. The betweenness of place:
+Towards a geography of modernity. (1991).
+20. Steve Harrison and Paul Dourish. 1996. Re-place-ing
+Space: The Roles of Place and Space in Collaborative
+Systems. In Proceedings of the 1996 ACM Conference
+on Computer Supported Cooperative Work (CSCW  96).
+ACM, New York, NY, USA, 67 76. DOI:
+http://dx.doi.org/10.1145/240080.240193
+21. Jane Jacobs. 1961. The death and life of great American
+cities. Random House, New York.
+22. Yoojung Kim, Changhoon Oh, Taeyoung Lee, Donghun
+Lee, Joongseek Lee, and Bongwon Suh. 2015. Travel Q:
+Questifying Micro Activities Using Travel Photos to
+Enhance Travel Experience. In Proceedings of the 33rd
+Annual ACM Conference Extended Abstracts on Human
+Factors in Computing Systems. ACM, 1507 1512.
+23. Robert E Kraut, Paul Resnick, Sara Kiesler, Moira
+Burke, Yan Chen, Niki Kittur, Joseph Konstan, Yuqing
+Ren, and John Riedl. 2012. Building successful online
+communities: Evidence-based social design. Mit Press.
+24. Nicole Lee. 2014. Shh, it s a Secret: The allure of the
+anonymous internet. (2014). http://www.engadget.
+com/2014/04/16/secret-anonymous-internet/
+25. Henri Lefebvre. 1991. The production of space. Vol.
+142. Oxford Blackwell.
+26. Janne Lindqvist, Justin Cranshaw, Jason Wiese, Jason
+Hong, and John Zimmerman. 2011. I m the mayor of
+my house: examining why people use foursquare - a
+social-driven location sharing application. In
+Proceedings of the 2011 annual conference on Human
+factors in computing systems (CHI  11). ACM, New
+York, NY, USA, 2409 2418. DOI:
+http://dx.doi.org/10.1145/1978942.1979295
+27. Joseph F McCarthy, Shelly D Farnham, Yogi Patel,
+Sameer Ahuja, Daniel Norman, William R Hazlewood,
+and Josh Lind. 2009. Supporting community in third
+places with situated social software. In Proceedings of
+the fourth international conference on Communities and
+technologies. ACM, 225 234.
+28. S Milgram. 1977. The Individual in a Social World:
+Essays and Experiments. Longman Education, London.
+29. Lene Nielsen. 2002. From User to Character: An
+Investigation into User-descriptions in Scenarios. In
+Proceedings of the 4th Conference on Designing
+Interactive Systems: Processes, Practices, Methods, and
+Techniques (DIS  02). ACM, New York, NY, USA,
+99 104. DOI:
+http://dx.doi.org/10.1145/778712.778729
+30. Ray Oldenburg. 1989. The great good place: caf s,
+coffee shops, community centers, beauty parlors,
+general stores, bars, hangouts, and how they get you
+through the day.
+31. Eric Paulos and Elizabeth Goodman. 2004. The familiar
+stranger: anxiety, comfort, and play in public places. In
+Proceedings of the SIGCHI conference on Human
+factors in computing systems (CHI  04). ACM, New
+York, NY, USA, 223 230. DOI:
+http://dx.doi.org/10.1145/985692.985721
+32. Jenny Preece. 2000. Online communities: Designing
+usability and supporting socialbilty. John Wiley & Sons,
+Inc.
+33. John Pruitt and Jonathan Grudin. 2003. Personas:
+practice and theory. In Proceedings of the 2003
+conference on Designing for user experiences. ACM,
+1 15.
+34. Robert D. Putnam. 1995. Bowling Alone: America s
+Declining Social Capital. Journal of Democracy 6, 1
+(1995), 65 78. DOI:
+http://dx.doi.org/10.1353/jod.1995.0002
+35. Daniela K Rosner, Hidekazu Saegusa, Jeremy Friedland,
+and Allison Chambliss. 2015. Walking by Drawing. In
+Proceedings of the 33rd Annual ACM Conference on
+Human Factors in Computing Systems. ACM, 397 406.
+36. Mary Beth Rosson and John M Carroll. 2009. Scenario
+based design. Human-computer interaction. Boca
+Raton, FL (2009), 145 162.
+37. Raz Schwartz. 2014. Online place attachment. Mobility
+and Locative Media: Mobile Communication in Hybrid
+Spaces (2014), 85.
+38. Thiago H. Silva, Pedro O. Melo, Aline Carneiro Viana,
+Jussara M. Almeida, Juliana Salles, and Antonio A.
+Loureiro. 2013. Traf c Condition Is More Than Colored
+Lines on a Map: Characterization of Waze Alerts. In
+Proceedings of the 5th International Conference on
+Social Informatics - Volume 8238 (SocInfo 2013).
+Springer-Verlag New York, Inc., New York, NY, USA,
+309 318. DOI:
+http://dx.doi.org/10.1007/978-3-319-03260-3_27
+39. Yi-Fu Tuan. 1977. Space and place: The perspective of
+experience. U of Minnesota Press.
+40. Ahmet Zeynep, Henriette Cramer, Lars Erik Holmquist,
+and Mattias Rost. 2011. Gami cation and
+location-sharing: some emerging social con icts. In
+Proceedings of the Workshop on Gami cation, CHI
+2011. ACM.

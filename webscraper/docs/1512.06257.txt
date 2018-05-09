@@ -1,0 +1,1185 @@
+Noname manuscript No.
+(will be inserted by the editor)
+Up in the Air: When Smart Homes Meet Internet of
+Things
+Lina Yao, Quan Z. Sheng, Boualem
+Benatallah, Schahram Dustdar, Xianzhi
+Wang, Ali Shemshadi and Anne. H. H.
+Ngu  
+the date of receipt and acceptance should be inserted later
+Abstract Over the past few years, activity recognition techniques have at-
+tracted unprecedented attentions. Along with the recent prevalence of perva-
+sive e-Health in various applications such as smart homes, automatic activ-
+ity recognition is being implemented increasingly for rehabilitation systems,
+chronic disease management, and monitoring the elderly for their personal
+well-being. In this paper, we present WITS, an end-to-end web-based in-home
+monitoring system for convenient and e cient care delivery. The core com-
+ponents consist of a novel shared-structure dictionary learning approach com-
+bined with rule-based reasoning for continuous daily activity tracking and
+abnormal activities detection. WITS also exploits an Internet of Things (IoT)
+middleware for the scalable and seamless management and learning of the in-
+formation produced by ambient sensors. We further develop a user-friendly
+interface, which runs on both iOS and Andriod, as well as in Chrome, for
+the e cient customization of WITS monitoring services without programming
+e orts. This paper presents the architectural design of WITS, the core algo-
+rithms, along with our solutions to the technical challenges in the system
+implementation.
+1 Introduction
+The world population is aging rapidly due to the increasing life expectancy and
+declining birth rate. The global share of elder people (aged 60 years or over)
+has increased from 9.2 percent in 1990 to 11.7 percent in 2013. It is expected
+that this trend will continue, reportedly reaching 21.1 per cent by 20501. In
+Lina Yao
+School of Computer Science and Engineering
+E-mail: lina.yao@unsw.edu.au
+1 http://www.un.org/en/development/desa/population/publications/pdf/ageing/
+WorldPopulationAgeing2013.pdf
+7
+1
+0
+2
+ 
+l
+u
+J
+ 
+8
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+3
+v
+7
+5
+2
+6
+0
+.
+2
+1
+5
+1
+:
+v
+i
+X
+r
+a
+2Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+the meantime, the human lifespan has increased as a result of increased health
+awareness and improved quality of food and medicine. Yet, the elderly are
+susceptible to various types of injuries and accidents and consequently require
+more medical care facilities. The increasing expenditures on health care for
+the elderly result in great  nancial impacts, urging healthcare providers to
+develop novel technologies with good usability and cost-e ectiveness, such as
+smart homes, to address issues like monitoring the status of the elderly or
+chronically ill patients in their own homes. Such techqnologies are essential to
+the elderly for them to live independently and safely [16][7][23].
+A typical smart home is equipped with sensors, wherein cameras, IR sen-
+sors, ambient sound, heat, as well as contact sensors are mounted on furnitures
+and used in the home environment in a non-intrusive manner. The sensors
+continuously collect data about the location and activity of the subjects in
+the environment without interfering with residents  daily activities. Such data
+would be a valuable asset to understand people s behaviors and their well-
+beings [17][6][2]. For example, in the following scenario, by monitoring the
+daily behavior routine of an old person, an assistant service can track how
+completely and consistently his daily routine is performed and on this basis to
+determine whether and when intervention or assistance is needed, e.g., whether
+the person is falling in bathroom, whether the person frequently forgets to take
+medicine or turn o  the oven (which are early signs of dementia that harms
+his cognitive health), or whether the person has spent too much watching TV
+instead of doing exercises.
+Over the years, signi cant research e orts have been contributed to devel-
+oping smart home systems for monitoring the activities of daily living (ADLs).
+These e orts can be used to infer broader patterns such as common daily
+routines. However, several challenges remain concerning the interoperability
+among sensors and heterogeneous information, a ordability, and accuracy. The
+rising of the Internet of Things (IoT) pushes the ambient intelligence forward
+by expanding the scale and scope of the healthcare domain signi cantly. IoT
+also bring new opportunities by facilitating the collection and re ection of
+diverse information in the physical world.
+We propose a novel Web-based personal-wellness monitoring system to ob-
+serve and quantify the residents  activities and abnormalities at homes. The
+proposed project is based upon our previous work on Internet of Things-aware
+smart homes [30,28], one of the stepping stones along a pathway of innovations
+that enable o -site specialists to observe and diagnose patients or residents 
+wellness reliably and accurately in real-time. It is especially important for spe-
+cial groups of people, such as old adults with physical and cognitive limitations
+or postpartum women, for whom it is often inconvenient or impossible to take
+outdoor activities.
+In this paper, we present WITS, Web-based Internet of Things Smart
+home, as an end-to-end solution to facilitate the development of smart home
+applications. We propose to develop a hybrid recognition framework, which
+leverages multi-task learning, dictionary learning, and rule-based reasoning to
+observe and quantify the changes in the readings of sensors deployed in home
+Up in the Air: When Smart Homes Meet Internet of Things
+3
+environments, so as to continuously track residents  daily behaviors and detect
+any abnormal events for early and timely medical assistance. We develop a
+scalable IoT middleware that connects the physical world and the cyber world
+to overcome the home interactivity and interoperability issues.
+WITS makes contributions by addressing three major challenges.
+How to seamlessly integrate the heterogeneous contexts of a smart
+home with better interoperability? There have been many insights pro-
+posed to boost smart home systems [16]. However, most of current systems
+are still hampered by interoperability issues [8]. We propose to address this
+challenge by developing an IoT middleware, which provides the necessary in-
+frastructure to transparently and seamlessly glue heterogeneous resources and
+services together, by accessing sensors and actuators across di erent protocols,
+platforms, and locations over the Internet stack. Our IoT middleware makes
+smart home interactivity a reality, and enables smart homes to become more
+a ordable and accessible with better interoperability between IoT-enabled ob-
+jects, user devices, and cloud services by leveraging the Web architecture.
+Compared to existing IoT middlewares [26][22][19], our work not only deals
+with the interoperability issue as many smart home systems but also o ers an
+e ective way to describe diverse objects for provisioning disparate information
+ ow in smart home systems.
+How to e ectively recognize user activities and detect abnormali-
+ties by utilizing easily-accessible sensory data streams? The proposed
+system employs a series of core algorithms to recognize and track people s
+daily routines of activities and to further identify abnormalities. The objec-
+tive is to discern activity patterns from the home sensory data by considering
+multidimensional contexts. However, it has not been fully investigated how to
+interprete human behaviors from the massive, user-generated, heterogeneous,
+multi-modal, and context-relevant sensory data [3][17][5][29], as a result of
+several challenging issues. The  rst issue is how to deal with intra-class activ-
+ity variability. Since every people may have their distinct behavior patterns,
+the same activity may be performed di erently by di erent people. In many
+cases, the same person may perform the same activity di erently, due to var-
+ious factors such as the stress, fatigue, or emotion of the person, or even the
+surrounding environment. The second issue is how to handle unseen samples
+e ectively. It is usually hard to obtain a large set of activity behaviors ow-
+ing to the di culty of gathering su cient training samples from multi-domain
+contexts (time-consuming and tedious annotating). The third challenge is that
+most approaches require intensive training and assume all of the training sam-
+ples are annotated and available in advance. Yet such assumptions are often
+impractical for real-world applications, as in many cases, unlabeled new data
+keeps coming continuously.
+To tackle above challenges, we propose a novel method that leverages the
+joint advantages of multi-task learning [9] and dictionary learning [1] for au-
+tomatic activity recognition. Both of thea bove techniques have proven suc-
+cessful in a wide range of areas [10][27][25]. Dictionary learning can generate a
+4Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+compact and discriminative manifesto of features, and multi-task learning can
+achieve good performance by learning multiple tasks that share commonalities
+simultaneously. Since such learning methods generally require more ground-
+truth data than we can obtain for complex activity inference, we introduce
+rule-based reasoning to help handle the unseen data. We speci cally propose
+a joint framework to derive both activity-speci c dictionaries (i.e., people-
+independent knowledge) and person-speci c dictionaries, where intrinsic re-
+lationships have invariant properties and are less sensitive and variant with
+di erent subjects. Such properties can be used as signatures to pro le activi-
+ties and to support more accurate activity recognition via rule-based reasoning
+based on multi-type contextual information (e.g., symbolic location and object
+use) .
+How to manage the personalized smart home in a more friendly
+way? Another key challenge to smart homes is how to create customizable
+services in an e ective and user-friendly manner. This involves designing an
+easy use and powerful interface for accessing, exchanging, and manipulating
+information from the smart homes, which is what most of the existing smart
+home systems lack, to pursue the user satisfactions.
+To address this challenge, we develop a user-friendly graphical interface
+using the Trigger-Action Programming (TAP) model to achieve value-added
+service customization. This model allows users to con gure higher-level rules
+via a Web browser by integrating the inferred contexts, e.g., user locations,
+activities and objects in use, without programming e ort. Various services
+and their semantic information are abstracted as universal services in WITS
+and represented as icons on the graphical interface. Through this easy-to-use
+Web interface, users can specify and manage complex rules and build their
+personalized smart home applications in a Drag-and-Drop manner. Compared
+to the existing e orts that adopt TAP [21,24], WITS can support advanced
+rule customization with better scalability and  exibility.
+The remainder of this paper is organized as follows. We  rst review the
+related work. Next, we overview the WITS system, followed by the core algo-
+rithms for activity recognition. We then describe our system implementation
+including software, hardware, and interface design, and  nally, we conclude
+the paper by pointing out possible future directions.
+2 Related Work
+Over the years, signi cant research e orts have been contributed to smart
+home systems such as the Aware Home [13], House n in MIT [12], CASAS [20],
+and Adaptive House [18]. All these e orts focus on people s direct interactions
+with the technologies and help to infer broad patterns such as common daily
+routines such as facilitating the study of di erent smart home technologies
+in more depth and in contexts that closely resemble the real-world domestic
+spaces. However, several challenges remain: 1) heavily reliance on people s
+involvement such as the wearing of battery-powered sensors, which may not
+Up in the Air: When Smart Homes Meet Internet of Things
+5
+Table 1: IoT Middleware Comparison
+Categories
+Prototypes
+Smart Energy Webnergy
+Tagging Ob-
+jects
+IoT Middleware
+Web
+EPCIS
+Adapter
+Zetta
+Kaa IoT Platform
+w3c/web of things
+ThngSpeak
+EVRYTHNG
+OpenIoT
+S
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+P
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SmartHomes
+Smart
+openHAB
+Eclipse
+Home
+OpenDomo
+FreeDomotic
+Calaos
+MisterHouse
+Wosh
+IoTivity
+RaZberry
+The Things Sys-
+tem
+PrivateEyePi
+IoTSyS
+House n
+CASAS
+WITS
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Functionality
+Interface
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+RM RE CAR SN MSS M W RDL
+JSON
+ 
+XML
+JSON
+XML
+ 
+ 
+JSON
+TDL
+LD
+ 
+JSON
+SSN
+Spec-
+i ca-
+tion
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Implementation
+PL
+Java
+API
+REST
+REST
+REST
+ 
+REST
+REST
+REST
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SOA
+REST
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java
+ 
+ 
+ 
+Perl
+C++
+ 
+JavaScript
+node.js
+ 
+ 
+ 
+ 
+REST
+Python
+Java
+ 
+ 
+C#/Java
+ 
+ 
+ 
+ 
+XML
+JSON
+JSON
+JSON
+ 
+ 
+ 
+ 
+JSON
+Hybrid
+project
+S: Security (authentication, https etc) P: Privacy (access control etc.) RM: Real-time Monitoring RE: Rule Engine CAR:
+Complex Activity Reasoning MSS: Multi-source Support
+SN: Social Network (Twitter etc.) M: Mobile interface W: Web
+ : Func-
+interface RDL: Resource Description Language PL: Programming Language API:application programming interface
+tion enabled
+ : Not Available/Not Applicable
+be practical in real-world situations; 2) lacking a synthetic way of deploying
+ubiquitous available sensors and taking advantage of disparate services o ered
+by smart homes; and 3) lacking a user-friendly interface for end users to access
+and create personal rules for smart home automation.
+In addition, most existing IoT middlewares allow users to add sensors as
+they desire and o er users tools (simple App or Web browser) to view the
+sensor-collected raw data. However, Neither of them is able to support smart
+home applications very well because they usually provided limited functional-
+ities in terms of helping user develop complex functionality, interacting with
+other applications, or interpreting the data into reusable high level services.
+Some systems even limit end-users on the types and the numbers of sensors
+that they can use.In order to achieve scalability and usability, our proposed
+system not only monitors the data collected from sensor in real-time but also
+automatically converts the data into actionable information using intelligent
+event generator or according to users prede ned conditions. This enables IoT
+applications to be developed based on high-level contexts that are independent
+6Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+Fig. 1: Overview of the WITS System Work ow
+of low-level physical properties of the sensors or devices. A thorough compar-
+ison of 22 existing IoT middleware systems and research prototypes including
+our proposed WITS is shown in Table 1. bidding adieu to
+3 WITS Overview
+WITS consists of three main components, namely Sensing Management, Con-
+text Management, and Rule Management, as shown in Figure 1.
+The Sensing Management component manages all types of sensors (includ-
+ing RF tags and ambient sensors), collects and processes the raw data, and
+provides a universal API for higher-level programs to retrieve the status of
+physical entities. This component works in a scalable, plug-and-play fashion,
+where new sensors can be easily plugged-in and old sensors can be easily re-
+moved. Several software components are included in this part for  ltering and
+cleaning raw sensor data, and adapting such data for high-level applications.
+Since some devices work with more than one sensor and the sensor readings
+may come asynchronously, a data access processor is used to allow the system
+to provide data synchronously, which lays the foundation of interoperability
+for smart home applications [8].
+WITS allows physical entities to be mapped to virtual resources to achieve
+a seamless integration of physical environment with organization business pro-
+cesses. In WITS, we exploit the schema.org, a recent initiative (launched in
+2011 by Bing, Google, and Yahoo!) for di erent data semantics to be un-
+derstood by both human users and machines. The universal RESTful API
+provided in our design enables higher level programs to retrieve the status of
+physical things with speci ed addresses, without needing to know where and
+how to  nd the physical sensors associated with the objects.
+Up in the Air: When Smart Homes Meet Internet of Things
+7
+This module is also in charge of data preprocessing. The physical activity
+and movement sensory data may contain noise, which deteriorates the clus-
+tering quality. To alleviate the disturbance from noise, we adopt the Hodrick-
+Prescott  lter [11], a well-known trend analysis method in economics, to smooth
+the sensory data stream. This  lter separates the time-series RSSI data into
+growth component gt and cyclical components ct. The objective function is
+T(cid:88)
+T 1(cid:88)
+c2
+t +  
+((gt+1   gt)   (gt   gt 1))2
+(1)
+t=1
+t=2
+where   is the smoothing parameter. The programming problem is to minimize
+the objective over all gt|T
+1 . The incoming sensor readings are divided into data
+segments of length  t= 10 seconds. This time slice duration is long enough to
+be discriminative yet still short enough to provide accurate labeling results.
+The information of each segment is then transformed into 12 types of statistical
+features such as Min, Max, Mean, Root Mean Square, Variance, Standard De-
+viation, Kurtosis, Skewness, Entropy, Median, Zero Crossing Rate, and Mean
+Cross Rate.
+The Context Management component aims at capturing contextual events.
+A typical smart home scenario involves three atomic contexts, namely basic
+human activities (e.g., getting up, walking, or lying on the bed), indoor lo-
+calization (e.g., in bedroom or kitchen), and human-object interactions (e.g.,
+using kettle or turning on light). Accordingly, a Event Detector employs a
+set of machine learning algorithms to analyze the signal  uctuations, in order
+to detect three contextual events, namely user activities, symbolic location
+information (room-level position), and object use events.
+WITS focuses on extracting and aggregating contextual events in a pipeline
+manner automatically. It extracts contextual information (e.g., temporal and
+spatial information), and then indexes and stores all the events with their
+related information in a database for data mining purposes. In WITS, users can
+focus on the functionalities of applications without worrying about issues such
+as connecting to the database, opening connections, querying with speci ed
+languages, or handling the results. For example, in the context of aged care,
+doctors can access various personal data like pulse rate, blood pressure of a
+old person, whether the old person is taking medicine on time, or whether the
+person stays in a certain place for too long to make better decisions
+The Rule Management component supports complex activity reasoning
+with the Rule Engine and high-level customizable composition to realize context-
+aware home automation. It derives underlying knowledge from the hetero-
+geneous and uncertain historical context to supervise the service customiza-
+tion and enables the system to generate new context-aware automation rules
+(stored in the Rule Repository) and to adapt to dynamic context environ-
+ments. In particular, an ontology-based knowledge base, Context Ontology, is
+used to represent the key contexts and their interrelations in smart home en-
+vironments. It provides the formal semantics to describe context knowledge
+about objects, relationships and domain constraints, and is assisted with rule
+8Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+matching to support the sharing and integration of structured context infor-
+mation.
+3.1 Activity Recognition
+This section details the core techniques and algorithms for activity recognition
+in WITS.
+3.1.1 Model Formulation
+Intuitively, it is reasonable to assume some local commonalities under the
+intra-class variabilities shared by all the activities. For example, the same ac-
+tivities performed by di erent people should share some commonality, e.g.,
+walking forward and standing both shares a torso perpendicular-like motion.
+These intrinsic relationships have invariant properties and are less sensitive
+to di erent people. Thus, they can be used as a signature to pro le each ac-
+tivity style in activity recognition. Instead of uncovering the shared common
+space across activities using the original feature space or learning dictionaries
+from each activity separately, we aim at leveraging both the advantages of
+dictionary learning and multi-task learning by extracting the underlying K
+style-speci c dictionaries (person-independent), which are the more compact
+and discriminative representations of activities under a multi-task learning
+framework. We integrate them along with a collection of activity-speci c dic-
+tionaries (person-dependent) in a joint framework
+k   Rm
+is a m dimensional feature vector of sensory data, nk is the number of sam-
+ples in the k th task, and k   [1, K] tasks corresponding to K activity styles.
+We assume a shared structure between di erent activities Q   Rm sd, where
+sd < m is the dimensionality of the subspace to project the original feature
+space into a low dimensional subspace. Furthermore, we consider the relation-
+ships between these weight vectors imposed by the neighbourhood structure
+of sensory data points that characterize each type of activity and de ne the
+following objective function:
+k ] be the sensor samples, where xi
+Let Xk   Rnk m = [x1
+k, ..., xnk
+k, x2
+J (Xk, Ck, Dk, D, Q) =
+||Xk   CkDk||2
+F
++  1
+K(cid:88)
+(cid:123)(cid:122)
+k=1
+2
+||Ck||1
+(cid:125)
+(cid:124)
+(cid:125)
+(cid:123)(cid:122)
+3
+Wa,b||(Ck)a.   (Ck)b.||2
+F
+(cid:125)
+(2)
+(cid:123)(cid:122)
+(cid:88)
+1
+a,b
+K(cid:88)
+(cid:124)
+k=1
++  2
+(cid:124)
+(cid:124)
+K(cid:88)
+K(cid:88)
+k=1
+k=1
++  3
+||XkQ   CkD||2
+(cid:123)(cid:122)
+4
+F
+(cid:125)
+Up in the Air: When Smart Homes Meet Internet of Things
+9
+where Dk   Rd m is the activity dictionary (d   m), and Ck   Rnk l cor-
+responds to the sparse representation coe cients of Xk. D   Rd sd is the
+activity style dictionary learned in the shared subspace and Dj. in the con-
+straints denotes the j-th row of D. There are four terms in the right side of
+the equation:
+1. Reconstruction Error on Individual Dictionary. The reconstruction
+error (the  rst term) for a usual/normal activity should be a small value
+because the learned dictionary represents knowledge in the previously seen
+sensory data. A small reconstruction error indicates the information within
+the newly observed data segment has appeared in early available samples.
+2. Sparsity Regularization. Since the dictionary is learned to maximize
+the sparsity of reconstruction vectors for normal activities (along with a fairly
+small reconstruction error), it is necessary to impose sparsity for reconstruct-
+ing normal events. The sparsity regularization (the second term) ensures that
+reconstruction vectors are sparse for normal activities while dense for un-
+usual/abnormal activities.
+3. Smoothness Regularization. The smoothness regularization (the third
+term) is calculated based on the fact that neighboring sensory variations are
+more likely to be involved in a same categorical behavior, where W   Rnk nk
+denotes the adjacency matrix of [x1
+xnk
+k ]. We use the cosine similarity to measure the a nity.
+k, ...,
+(cid:112)(cid:80)
+Wa,b =
+k(a, i)(cid:112)(cid:80)
+Ck(a, :)   Ck(b, :)
+i C2
+i C2
+k(b, i)
+(3)
+4. Reconstruction Error on Shared Dictionary. The reconstruction error
+of the shared dictionary (the fourth term) manifests the underlying common-
+alities between the people who perform the same activities with multi-task
+learning. The term is used to resist the noisy data and reduce the misclas-
+si cation caused by inter-person variability. It should be small for normal
+activities, while big for abnormal activities.
+3.1.2 Optimization
+The objective function (Equation 2) quanti es the normality of activity in
+every data segment Xk with any reconstruction weight vector Ck, any people-
+speci c dictionary Dk, and activity-speci c dictionary D. The lower J is, the
+more likely Xi is generated by normal behavior. We obtain the optimal weight
+k, D , Q ) by solving the following optimization
+vectors C 
+k and dictionaries (D 
+10Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+problem:
+(C 
+k, D , D 
+k, Q) = arg min
+Dk,Ck,Q,D
+K(cid:88)
+k=1
+J(Xk, Ck, D, Dk, Q)
+s.t.Q(cid:62)Q = I
+j. (cid:54)= 1, j = 1, ..., l
+j. (cid:54)= 1, j = 1, ..., l
+(Dk)j.(Dk)(cid:62)
+Dj.D(cid:62)
+(4)
+Since there exists (cid:96)1 minimization, we use alternate optimization algorithm
+to  nd a local optimum. In particular, we alternatively minimize one variable
+while  xing the other three parameters. For example, with a learned dictio-
+nary D , given a newly observed activity X(cid:48), the algorithm learns the opti-
+mal reconstruction weight C(cid:48)
+k, Q(cid:48), D )
+measures the normality of X(cid:48). X(cid:48) is detected as unusual if its corresponding
+J(X(cid:48), C(cid:48)
+Learning D with Dk, Ck and Qs  xed. With the dictionary D  xed, the
+optimization problem turns into:
+k, Q(cid:48), D ) is larger than a certain threshold.
+k, Q(cid:48), and D(cid:48). Consequently, J(X(cid:48), C(cid:48)
+||XkQ   CD||s.t. Dj.D(cid:62)
+j.   1, j = 1, ..., l
+(5)
+K(cid:88)
+k 1
+min
+D
+The constraint in Equation 5 is to prevent the terms in D from being arbitrarily
+large, which would lead to small values of coe cients. The above optimization
+problem is a least square problem with quadratic constraints, which can be
+solved using Lagrange dual. We adopt the e cient Algorithm 2 in [15].
+Leaning Dk with D, Ck and Q  xed. To compute Dk, the optimization
+problem is as follows.
+||Xk   CkDk||2
+F s.t.(Dk)j.(D(cid:62)
+k )j.   1, j = 1, ..., l
+(6)
+min
+Dk
+This problem can also be solved in closed-form using the same algorithm [15].
+Learning Q with Dk, Ck and D  xed. The optimization problem is as
+follows:
+||XkQ   CkD||2
+F s.t. Q(cid:62)Q = I
+(7)
+We derive D = (C(cid:62)C) 1C(cid:62)XQ according to the Lagrange dual and replace
+D in above Equation 7, which can be rewritten as:
+tr(Q(cid:62)X(cid:62)(I   C(C(cid:62)C) 1C(cid:62))XkQ)
+(8)
+K(cid:88)
+k=1
+min
+P
+K(cid:88)
+k=1
+min
+P
+The optimal P is composed of eigenvectors of the matrix X(cid:62)(I C(C(cid:62)C) 1C(cid:62))X
+corresponding to the s smallest eigenvectors.
+Up in the Air: When Smart Homes Meet Internet of Things
+11
+Learning Ck with Dk, Q and D  xed. Equation 2 is equivalent to the
+following optimization problem:
+K(cid:88)
+||Xk   CkDk||2
+F +  1
+||Ck||1
+k=1
+Wa,b||(Ck)a.   (Ck)b.||2
+F
+(9)
+min
+Ck
++  2
+(cid:88)
+k=1
+K(cid:88)
+K(cid:88)
+K(cid:88)
+k=1
+a,b
+||XkQ   CkD||2
+F
++  3
+k=1
+As the above equation contains (cid:96)1 minimization, it is a non-convex problem.
+We adopt the feature-sign search algorithm [14], which considers the non-
+zero elements of coe cients to convert this objective function into a standard,
+unconstrained quadratic optimization problem, to solve the (cid:96)1 regularization
+problem. After obtaining the optimal dictionaries D  and D 
+k, given a test
+sample X(cid:48), the activity label of X(cid:48) can be obtained by computing its sparse
+coe cient  Ck and the minimal reconstruction error.
+In addition, the proposed method can detect unusual activities (e.g., falls)
+after learning the optimal behavior-speci c dictionary and person-speci c dic-
+tionary. Assume that we have instances of all the normal activities, then we
+can detect a test instance whose patterns deviate from the learned model as
+an anomaly as long as a activity label is assigned to the test instance. For
+example, given a newly observed sensor data segment X(cid:48) and current dic-
+tionaries D  and D 
+k and computed sparse coe cients C(cid:48)
+k, a test instance
+is detected as unusual activity segment if the following criterion is satis ed:
+J(X(cid:48), C(cid:48), Q(cid:48), D ) > , where  is a threshold de ned by users.
+3.2 Coupling with Rule-based Reasoning
+Compared to basic activities like walking, sitting and lying, which purely rely
+on signal  uctuations and do not consider any contextual information (e.g.,
+location information or object use), we combine such contextual information
+to derive a series of complex activities. A complex activity is de ned as a set
+of activities, multiple objects, and symbolic locations involved in a complex
+activity. For example, cooking is a complex activity, including a series of ac-
+tions like walking, moving arms, standing etc, and a set of objects such as
+chop-board, knives, and oven. Since cooking usually involves a large number
+of di erent objects which are shared across multiple activities, object usage
+information and symbolic information (e.g., kitchen or living room) can help
+discriminate between activities such as making a toast or making a co ee.
+Such distinctions can be important for applications such as health monitoring
+or memory aids.
+Since it is often di cult, even impossible in some cases, to obtain su cient
+training data with involving such a broad range of contexts, we further develop
+12Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+a rule-based approach that leverages heterogeneous information such as object
+uses and location information (e.g., room presents) to recognize complex activ-
+ities. The rule-based method can also help handle the unexpected cases, such
+as the unexpected changes in a context or an unseen activity that arrives after
+training the model, and improve the performance in the activity recognition.
+We propose to couple shared structure learning with a rule-based method to
+provide a de nitive solution to activity recognition. It has the following advan-
+tages: 1) capturing the explicit patterns without training e orts; 2) improving
+the overall performance by correcting the learning mistakes and handling un-
+seen cases; 3) covering cases that a pure learning method cannot handle, e.g.,
+inferring complex activities based on actions and resident s locations.
+To improve the usability of the system, we use the Trigger-Action Pro-
+gramming (TAP) programming paradigm for users to create rules. TAP is a
+simple programming model applied in smart home applications, in which the
+user associates a trigger with an action, such that the action can be automati-
+cally executed when the trigger event occurs. The most popular TAP interface
+is an online service called if-this-then-that (IFTTT). IFTTT allows users to
+create programs that can automatically perform actions like sending alerts or
+changing settings of a smart home when certain events or conditions occur.
+The Visual Rule Programming Interface component of WITS not only en-
+ables end-users to create rules for smart home automation but also o ers a
+rule-based reasoning for high-level service (or resource) composition under
+Trigger-Action Programming paradigm through a Web-based rule editing in-
+terface. in our system, a rule consists of two parts: a trigger and an action. A
+trigger is a composition of a set of boolean expressions. An action is a set of set-
+tings of entities. As shown in the sub  gure of Figure 3, Toilet.Occupied=true
+  Duration = 30mins, an action, SendAlert, will be triggered to send an alert
+to the corresponding agent (e.g., a caregiver). Compared to previous work that
+applies TAP in smart home applications, which only support a limited number
+of logical operators, our system has three advantages: i) it supports richer log-
+ical operators to help end-users creat more complex rules [21], ii) it supports
+a broader range of triggers such as human activities, changes of object status,
+and human mobility [24], and iii) it tolerates ambiguous status and events and
+allows  exible conjunctions of events and actions. All captured events can be
+treated as triggers or actions, leading to  exible rule customization.
+4 Implementation and Evaluation
+4.1 Experimental Setup
+Hardware. Since it is time-consuming to deploy a large number of tags and
+also not practical to tag some objects because of their material (e.g., metal)
+or usage (e.g., objects used in a microwave oven), we propose to use only some
+key objects for a speci c set of activities by augmenting the object usage with
+a complementary sensing technique (i.e., accelerometers). Locations of tags
+Up in the Air: When Smart Homes Meet Internet of Things
+13
+Table 2: Illustrative Examples of De ned Rules
+Index
+Rule 1
+Rule 2
+Rule 3
+Rule 4
+Rule 5
+Rule 6
+Trigger
+Kitchen.Presence == True  
+Cooktop.ON == True   Chopt-
+able.Use == True
+Sleeping == True
+Toilet.Occupied == True   Du-
+ration   30mins
+Falling == True
+Porch.Presence == True  
+Time is [8:00pm 8:00am]
+Couch.Occupied == True  
+TV.ON == True
+Actions
+Making Sandwich is
+detected
+Turn o  lights
+Sending an alarm to
+caregiver
+Sending an alarm to
+caregiver
+Turn on front door
+light
+Watching TV
+include doors, cupboards, refrigerator, dishwasher, etc (see Figure 2). The
+detailed con gurations of the system like tag density, the shape of the sensor
+arrangement, sampling rate, have been thoroughly studied in our previous
+work [29,31].
+Fig. 2: Deployment of sensing units inside the kitchen area of the house
+Data Processing. The data collection and processing of WITS are fully
+implemented using the Microsoft .NET framework, and data are analyzed
+using MATLAB 2014a. The data collection module is developed with deploying
+based on the developer SDK and open APIs provided by Alien2, Arduino3,
+Rasberry Pi4 and Phidgets5.
+Graphical UI Modules. WITS provides a holistic interface for the real-
+time monitoring, which is a scene-based graphical interface as illustrated in
+Figure 3. It works like an extended Harry Potter s Maurander s Map, wherein
+users can vividly observe what is happening. We also develop a graphical
+interface for rule customization. The detected events are associated with icons.
+Therefore, end-users only need to drag and drop the icons to set up their
+own personal rules (Figure 3). This Web interface represents a new direction
+in integrating information from both the physical and virtual worlds, which
+2 http://www.alientechnology.com/
+3 https://www.arduino.cc/
+4 https://www.raspberrypi.org/
+5 http://www.phidgets.com/
+14Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+Fig. 3: WITS system: Event Timeline shows what is going on in the house, e.g., which
+room is the person in, what activity is performing and which object is used. The sub  gure
+shows the Rule Composer interface. For example, for editing a rule like  send an alarm
+when a person stays in toilet over 30 minutes . A user only needs to drag the person, toilet
+and clock icons to the Trigger subpanel, the alarm icon to the Action subpanel and then
+performs some simple adjustments (e.g., adjust the clock slider to set the time period).
+brings things, locations and activities together over a  exible IoT middleware,
+helping people be aware of their surrounding environments and thereby making
+better decisions. The practical experiences gained from this IoT framework
+provide insights into how IoT can be applied to support critical real-world
+applications such as assisted living of the elderly.
+4.2 Evaluation
+We evaluate our approach by examining the accuracy of recognizing both
+low-level activities (inferred from signal  uctuations) and high-level activities
+(inferred from low-level activities, along with object usage and location in-
+formation (Section 3.2)). The detailed activities evaluated are summarized in
+Table 3.
+We compare our method with a series of existing methods, including the
+widely-used sensor-based activity recognition methods such as k nearest neigh-
+bour (kNN), Support Vector Machine (SVM) with linear kernel, Conditional
+Random Field (CRF), Multinomial Logistic Regression with (cid:96)1 (MLGL1),
+Random Forest (RF), as well as some closely-related work such as RMTL
+[4] (which integrates low-rank and group sparsity for multi-task learning) and
+RSAR [29] (which integrates graph manifold learning and shared structure
+learning). We obtained the observations from the results as shown in Figure 4:
+Up in the Air: When Smart Homes Meet Internet of Things
+15
+Table 3: Activities Used in Our Experiments
+Index
+1
+2
+3
+4
+5
+6
+7
+8
+Recognizable Activities
+Basic Activities Complex Activities
+Sitting
+Standing
+Lying
+Walking
+Arm Movement
+Kicking
+Crouching
+Falling
+Taking Medicine
+Eating
+Watching TV
+Reading magazine
+Cleaning table
+Vaccuming
+Toileting
+Sleeping
+(a)
+(b)
+(c)
+(d)
+Fig. 4: (a) Comparison with other methods (b) Performance comparison on di erent dimen-
+sions of shared subspace; (c) Confusion matrix; (d) High-level activity reasoning accuracy
+over 7 days.
+  Our method outperforms all the compared methods (Figure 4(a)). With
+larger dimensions of latent space d, the performance of our method de-
+grades, especially when the size becomes bigger than 8 (Figure 4(b)).
+  The overall performance of the proposed approach is comparatively stable
+and consistent across all the activities (Figure 4 (c)), despite the recognition
+accuracy presents slight ups and downs.
+  Combining with symbolic locations and object use events, the average
+recognition accuracy of high-level activities is generally stable at around
+70% (Figure 4(d)).
+We conclude this section with a brief discussion on system latency, as fast
+activity detection and noti cation are critical for many applications, especially
+aged care applications. For example, we should send an alert to notify the
+16Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+caregivers as quickly as possible for medical assistance when a old person falls.
+Our system has 4   4.5 seconds recognition latency, due to three main reasons:
+  Our system evaluates subject s postures every 0.5 seconds using the latest
+2 seconds of the signal stream. In other words, if the current system time
+is at the timestamp t, our system will produce the predicted actions in the
+[t   2, t   1] seconds, and [t   1, t] seconds is used to backtrack check if
+the predicted label complies with prede ned rules. For instance, assume
+that the label is estimated as: lying in bed at [t   2, t   1] interval, if the
+predicted label in interval [t   1, t] is walking, our system will determine
+the prediction as still lying.
+  Signal collector is programmed with a timer to poll the signal variations
+with a prede ned order of transmission, which takes around 1 second to
+complete a new measurement with no workarounds.
+  Our system is integrated with a Web-based interface, which sends AJAX
+requests to services for the latest results and retrieve data fro databases
+to send back to the Web interface with updated DOM (document object
+model) elements. Completing such a querying process normally takes 300ms
+to 500ms.
+5 Conclusion and Future Work
+In this paper, we propose the design and development of WITS, an automatic
+IoT-based in-home monitoring system. We propose a novel hybrid activity
+recognition framework that integrates multi-task based dictionary learning
+and rule-based reasoning for better performance. An IoT middleware has been
+developed to provide an one-stop o er of interoperability, scalability, and ac-
+cessibility to the system. We have conducted extensive experiments to validate
+our proposed system and we anticipate our preliminary study and practical
+experience gained from this system can provide the foundation and inspiration
+for subsequent research on developing IoT applications for mainstream usage.
+In the future, we will enhance our activity recognition approach by incorpo-
+rating rich contexts for multi-person activity monitoring. As the evaluation in
+this paper is limited to a small testing scenario (i.e., the  rst author s home),
+we plan to perform a larger scale study of the WITS system by working with
+an aged care center.
+References
+1. M. Aharon, M. Elad, and A. Bruckstein. Svd: An algorithm for designing overcom-
+plete dictionaries for sparse representation. IEEE Transactions on signal processing,
+54(11):4311 4322, 2006.
+2. S. Bhattacharya, P. Nurmi, N. Hammerla, and T. Pl otz. Using unlabeled data in a
+sparse-coding framework for human activity recognition. Pervasive and Mobile Com-
+puting, 15:242 262, 2014.
+3. A. Bulling, U. Blanke, and B. Schiele. A tutorial on human activity recognition using
+body-worn inertial sensors. ACM Computing Surveys (CSUR), 46(3):33, 2014.
+Up in the Air: When Smart Homes Meet Internet of Things
+17
+4. J. Chen, J. Zhou, and J. Ye. Integrating low-rank and group-sparse structures for robust
+multi-task learning. In Proceedings of the 17th ACM SIGKDD international conference
+on Knowledge discovery and data mining, pages 42 50. ACM, 2011.
+5. L. Chen, J. Hoey, C. D. Nugent, D. J. Cook, and Z. Yu. Sensor-based activity recogni-
+tion. Systems, Man, and Cybernetics, Part C: Applications and Reviews, IEEE Trans-
+actions on, 42(6):790 808, 2012.
+6. D. J. Cook, M. Schmitter-Edgecombe, and P. Dawadi. Analyzing activity behavior and
+movement in a naturalistic environment using smart home techniques. IEEE Journal
+of Biomedical and Health Informatics, 19(6):1882 1892, 2015.
+7. P. N. Dawadi, D. J. Cook, and M. Schmitter-Edgecombe. Automated cognitive health
+assessment using smart home monitoring of complex tasks. Systems, Man, and Cyber-
+netics: Systems, IEEE Transactions on, 43(6):1302 1313, 2013.
+8. W. K. Edwards and R. E. Grinter. At home with ubiquitous computing: Seven chal-
+lenges. In Ubicomp 2001: Ubiquitous Computing, pages 256 272. Springer, 2001.
+9. A. Evgeniou and M. Pontil. Multi-task feature learning. Advances in neural information
+processing systems, 19:41, 2007.
+10. T. Guha and R. K. Ward. Learning sparse representations for human action recognition.
+IEEE Transactions on Pattern Analysis and Machine Intelligence, 34(8):1576 1588,
+2012.
+11. R. J. Hodrick and E. C. Prescott. Postwar us business cycles: an empirical investigation.
+Journal of Money, credit, and Banking, pages 1 16, 1997.
+12. S. Intille et al. Using a live-in laboratory for ubiquitous computing research. In Proc.
+of Intl. Conf. on Pervasive Computing (PERVASIVE). 2006.
+13. C. D. Kidd, R. Orr, G. D. Abowd, C. G. Atkeson, I. A. Essa, B. MacIntyre, E. Mynatt,
+T. E. Starner, and W. Newstetter. The aware home: A living laboratory for ubiquitous
+computing research. In Cooperative buildings. Integrating information, organizations,
+and architecture, pages 191 198. Springer, 1999.
+14. H. Lee, A. Battle, R. Raina, and A. Y. Ng. E cient sparse coding algorithms.
+In
+Advances in neural information processing systems, pages 801 808, 2006.
+15. J. Mairal, F. Bach, J. Ponce, and G. Sapiro. Online dictionary learning for sparse coding.
+In Proceedings of the 26th annual international conference on machine learning, pages
+689 696. ACM, 2009.
+16. S. Mennicken, J. Vermeulen, and E. M. Huang. From today s augmented houses to
+tomorrow s smart homes: new directions for home automation research.
+In Proceed-
+ings of the 2014 ACM International Joint Conference on Pervasive and Ubiquitous
+Computing, pages 105 115. ACM, 2014.
+17. B. Minor, J. R. Doppa, and D. J. Cook. Data-driven activity prediction: Algorithms,
+evaluation methodology, and applications. In KDD, pages 805 814, 2015.
+18. M. Mozer. Lessons from an adaptive house. PhD thesis, University of Colorado, 2004.
+19. A. Pintus, D. Carboni, and A. Piras. Paraimpu: a platform for a social web of things.
+In WWW, pages 401 404, 2012.
+20. P. Rashidi and D. J. Cook. Activity knowledge transfer in smart environments. Perva-
+sive and Mobile Computing, 7(3):331 343, 2011.
+21. T. Sohn and A. Dey. icap: an informal tool for interactive prototyping of context-aware
+applications. In CHI, pages 974 975, 2003.
+22. K. Taylor et al. Farming the web of things. IEEE Intelligent Systems, 28(6):12 19,
+2013.
+23. J. Tung, H. Snyder, J. Hoey, A. Mihailidis, M. Carrillo, and J. Favela. Everyday patient-
+care technologies for alzheimer s disease. IEEE Pervasive Computing, 12(4):80 83, 2013.
+24. B. Ur, E. McManus, M. Pak Yong Ho, and M. L. Littman. Practical trigger-action
+programming in the smart home. In CHI, pages 803 812, 2014.
+25. H. Wang, F. Nie, and H. Huang. Multi-view clustering and feature learning via struc-
+tured sparsity. In ICML (3), pages 352 360, 2013.
+26. E. Welbourne, L. Battle, G. Cole, K. Gould, K. Rector, S. Raymer, M. Balazinska, and
+G. Borriello. Building the internet of things using r d: the r d ecosystem experience.
+IEEE Internet Computing, 13(3):48 55, 2009.
+27. Y. Yan, E. Ricci, R. Subramanian, G. Liu, and N. Sebe. Multitask linear discriminant
+analysis for view invariant action recognition. IEEE Transactions on Image Processing,
+23(12):5599 5611, 2014.
+18Please give a shorter version with: \authorrunning and \titlerunning prior to \maketitle
+28. L. Yao, B. Benatallah, X. Wang, N. K. Tran, and Q. Lu. Context as a service: Realizing
+internet of things-aware processes for the independent living of the elderly. In Interna-
+tional Conference on Service-Oriented Computing, pages 763 779. Springer, 2016.
+29. L. Yao, F. Nie, Q. Z. Sheng, T. Gu, X. Li, and S. Wang. Learning from less for better:
+semi-supervised activity recognition via shared structure discovery. In Proceedings of
+the 2016 ACM International Joint Conference on Pervasive and Ubiquitous Computing,
+pages 13 24. ACM, 2016.
+30. L. Yao, Q. Z. Sheng, and S. Dustdar. Web-based management of the internet of things.
+IEEE Internet Computing, 19(4):60 67, 2015.
+31. L. Yao, Q. Z. Sheng, X. Li, S. Wang, T. Gu, W. Ruan, and W. Zou. Freedom: Online
+activity recognition via dictionary-based sparse representation of r d sensing data. In
+ICDM, pages 1087 1092, 2015.

@@ -1,0 +1,1194 @@
+Crowdsourcing the Robin Hood e ect in cities
+Thomas Louail,1,  Maxime Lenormand,2,  Juan Murillo Arias,3 and Jos e J. Ramasco1
+1Instituto de F  sica Interdisciplinar y Sistemas Complejos IFISC (CSIC-UIB),
+Campus UIB, 07122 Palma de Mallorca, Spain
+2Irstea, UMR TETIS, 500 rue JF Breton, FR-34093 Montpellier, France
+3BBVA Data & Analytics,Avenida de Burgos 16D, E-28036 Madrid, Spain
+Socioeconomic inequalities in cities are embedded in space and result in neighborhood e ects,
+whose harmful consequences have proved very hard to counterbalance e ciently by planning policies
+alone. Considering redistribution of money  ows as a  rst step toward improved spatial equity, we
+study a bottom-up approach that would rely on a slight evolution of shopping mobility practices.
+Building on a database of anonymized card transactions in Madrid and Barcelona, we quantify the
+mobility e ort required to reach a reference situation where commercial income is evenly shared
+among neighborhoods. The redirection of shopping trips preserve key properties of human mobility,
+including travel distances. Surprisingly, for both cities only a small fraction (  5%) of trips need
+to be altered to reach equality situations, improving even other sustainability indicators. The
+method could be implemented in mobile applications that would assist individuals in reshaping
+their shopping practices, to promote the spatial redistribution of opportunities in the city.
+The growth of economic inequality has raised con-
+cern and attention in recent years [1, 2].
+In cities
+these inequalities are embedded in space, as a result
+of entangled processes which include location choices
+of households and businesses, daily mobility, segrega-
+tion and closure attitudes, central planning, or global
+economic restructuring. Over the course of several
+decades their joint actions have given rise to segre-
+gated cities, characterized by uneven distributions of
+capital among their neighborhoods. While the inten-
+sity of socioeconomic inequalities vary from one city
+to another, the general observation that  some neigh-
+borhoods are poorer than others  has been made for
+cities with di erent age, in every continent, and for
+di erent periods in urban history [3 6]. An abundant
+literature has long depicted the neighborhood e ect [7]
+  the neighborhood impacts the life trajectories of the
+residents, even when controlling for their individual
+characteristics  , and highlighted its societal costs and
+enduring consequences [8 12].
+Over the last decade, increasing volumes of digi-
+tal geographic footprints have been produced by in-
+dividuals using mobile ICT devices, and these foot-
+prints have been increasingly analyzed by scientists
+as well. These data are not free of biases [13] or
+privacy concerns [14], but they undeniably consti-
+tute an important asset for understanding social phe-
+nomena in detailed spatio-temporal contexts [15 20].
+They also have the potential to reveal the informa-
+tion required to coordinate individuals  actions, so
+that large groups of people can tackle issues which
+are distributed and spatial by nature. This is par-
+ticularly true in the case of mobility networks, which
+already integrate such footprints in feedback mecha-
+nisms: people produce data when moving, and their
+travel decisions are partly guided by the data pro-
+duced by others. Examples include GPS navigation
+  Corresponding
+(thomas.louail@i sc.uib-csic.es,
+maxime.lenormand@irstea.fr) who contributed equally to
+this work.
+authors
+using real-time tra c data, local search and discovery
+of new places, or location-based dating applications.
+So far, these footprints have been mainly used in ap-
+plications intended to enhance individual satisfaction
+(time savings, discovery of a location, encounter of
+a partner), but they have also fostered spontaneous
+and large-scale solidarity movements during disasters
+(e.g. Facebook s safety check, or the use of dedicated
+Twitter hashtags). An important question is thus
+whether we can scale up, and address complex issues
+through distributed and coordinated approaches re-
+lying on such data. Here we refer to complex social
+issues for which improvements would necessarily occur
+on longer timescales. There is a need to relate smart
+technology with sustainability and spatial justice in
+cities [21], and this implies building upon the existing
+practices of individuals. In this work, we develop fur-
+ther this idea by focusing on a complex problem: the
+reduction of spatial inequality in large cities.
+The  Robin-Hood e ect  refers to a process through
+which capital is redistributed to reduce inequality. A
+spatial and city-scale implementation would then con-
+sist in taking from the rich neighborhoods to give
+to the poor. This role is normally played by the
+city s governance, and is essential to mitigate spa-
+tial inequality. However, studies in cities worldwide
+have demonstrated that top-down planning and  scal
+policies alone seem ine cient in signi cantly counter-
+balancing the numerous consequences of the neigh-
+borhood e ect [22, 23].
+It has also been long em-
+phasized that developing economic activity in disad-
+vantaged regions indirectly bene ts the surrounding
+populations, by fostering job opportunities, transport
+facilities and increased safety [24]. Here, we study
+an original approach to rebalance economic activity
+among the neighborhoods of a city. The scenarios we
+explore would not incur any additional environmental
+or monetary costs, but would instead require slight
+modi cations of daily shopping mobility practices.
+According to surveys, shopping and leisure trips ac-
+count for 15% to 20% of the individuals  daily trav-
+7
+1
+0
+2
+ 
+n
+u
+J
+ 
+9
+ 
+ 
+]
+h
+p
+-
+c
+o
+s
+.
+s
+c
+i
+s
+y
+h
+p
+[
+ 
+ 
+2
+v
+4
+9
+3
+8
+0
+.
+4
+0
+6
+1
+:
+v
+i
+X
+r
+a
+2
+Figure 1. Rewiring urban shopping trips. (a) Average income per business in the neighborhoods of Barcelona resulting from
+individual transactions. The average income has been normalized by the maximum value among neighborhoods. The data
+correspond to 2011 and is displayed by zip code in the metropolitan area. From this perspective, some neighborhoods are  ve
+times richer than others. (b) The general principle common to the iterative rewiring methods. At each step a transaction
+is randomly selected, along with the possible alternative businesses (highlighted in bold).
+If rewiring the transaction to one
+of them (randomly selected) decreases inequality between neighborhoods and matches the other constraints, then rewiring is
+performed.
+els [25]. Such trips virtually move money from one
+part of the city to another, and directly contribute to
+shape the spatial distribution of wealth across neigh-
+borhoods. By connecting areas, shopping trips also
+foster metropolitan integration and  social cohesion 
+[26], whilst the resulting money  ows are a key com-
+ponent of the development of territories [27]. Large
+metropolitan areas are characterized by mixed land
+use in many of their neighborhoods. Every time a
+resident has to buy usual products such as food, gas
+or clothes, he/she can actually choose among several
+stores and neighborhoods to do so, sometimes without
+even increasing his/her travel time.
+In the following we focus on the two largest Spanish
+cities, Madrid and Barcelona. Performing exploratory
+experiments, we demonstrate that they could be more
+evenly balanced thanks to the cumulative addition of
+small and reasonable changes in a limited fraction of
+their residents  shopping destinations. While there ex-
+ists various spatial indicators for quantifying territo-
+rial inequalities, static indicators fail to provide a clear
+picture of the collective e ort that would be required
+to reach a certain level of redistribution. With this in
+mind, we quantify the proportion of individual shop-
+ping trips that should be redirected in order to evenly
+share the commercial income between neighborhoods,
+the  rst step of a conceivable path toward a spatial
+redistribution of opportunities in the city. We show
+that alternative mobility scenarios not only allow to
+distribute money more evenly in space, but also to
+enhance the spatial mixing of residents through their
+shopping mobility, without increasing the total dis-
+tance traveled, nor changing the individuals  e ective
+purchases and mobility routines. The following of this
+paper is an exploration on how money  ows in cities
+could be more evenly distributed, if shopping spatial
+behavior was slightly restructured. In the following of
+this paper, we use zipcodes delimitation as proxies for
+neighborhoods. While zipcodes correspond to admin-
+istrative units which are very coarse-grained proxies
+for e ective neighborhoods, this choice was imposed
+by the spatial resolution of the available data.
+MATERIAL AND METHODS
+Data
+We use a dataset containing the metadata of
+one year of bank card payments from more than
+150, 000 anonymous users in over 95, 000 businesses
+of Barcelona and Madrid. Each transaction is time-
+stamped and contains the information collected by the
+bank on both the cardholder and the business.
+It
+also includes the customer s age and residence s zip-
+code, the business category and its geographical coor-
+dinates (see the Appendix for details and [28, 29] for
+other recent examples of research relying on similar
+data). From these data there are two obvious ways
+to estimate inequality among neighborhoods:  rst, in
+measuring the income of their residents   indirectly
+estimated through the amount of money spent during
+the year; second, in measuring the income resulting
+from the commercial activity of businesses located in
+these neighborhoods. The latter is particularly inter-
+esting because it results from the spatial organization
+of shopping trips, which may be much easier to alter
+than any other type of daily trips, notably commut-
+ing. The average commercial income of businesses in
+Barcelona s neighborhoods, resulting from shopping
+trips, is mapped on Figure 1a. This map reveals that
+according to this measure, some neighborhoods are
+indeed  ve times richer than others.
+Rewiring the shopping trips networks
+From the data for both cities we construct the bi-
+partite spatial network whose nodes are individuals
+and businesses, and whose edges stand for transac-
+tions (see Figure S2 in Appendix). We then per-
+form rewiring experiments,
+in which randomly se-
+lected transactions are redirected toward alternative
+businesses of the same category, but located elsewhere
+in the city (Figure 1b). The rewiring methods we im-
+plemented operate directly at the level of individual
+transactions (see Figure S2 in Appendix). A rewiring
+operation then consists in randomly selecting a trans-
+action tr,b (made by user r in business b), and an al-
+ternative business b   b, such than b  and b are of the
+same category (see in Appendix the details of the 16
+business categories), but located in di erent neighbor-
+hoods. The rewiring occurs only if the change ful lls a
+number of constraints which are expressed at the city
+level. The calculation of these constraints are based
+on the candidate con guration of the shopping trips
+network (i.e. after k+ 1 rewiring operations), the cur-
+rent con guration (after k rewiring operations) and
+the original shopping trips network.
+Four dimensions to assess the likelihood of the network s
+con guration
+We consider four dimensions to assess the di er-
+ent network con gurations from an economic, social
+and environmental point of view. Since our main
+objective is to rebalance the distribution of commer-
+cial income among the neighborhoods, we  rst focus
+on the economic dimension. We denote by Wk the
+wealth inequality among the city s neighborhoods after
+k rewiring operations. It is de ned as the distance to a
+reference homogeneous situation, where the commer-
+cial income resulting from purchases would be equally
+shared among all neighborhoods. We have:
+Wk= NQ
+i=1
+(wi
+k  w
+ )2,
+(1)
+where N is the number of neighborhoods, wi
+k is the
+average income of the businesses located in the neigh-
+borhood i after k rewiring operations, and w  rep-
+resents the wealth per neighborhood in the reference
+3
+con guration where commercial income is evenly dis-
+tributed across neighborhoods, such that
+ = 1
+N
+NQ
+i=1
+w
+wi
+k.
+(2)
+Another important aspect is related to the social
+nature of mobility in the city that might prevent some
+neighborhoods from ghettoization. To measure to
+what extent individuals residing in various neighbor-
+hoods mix in the city space as a result of their travels,
+for each neighborhood i we count the number of times
+k ) the residents of i traveled to each of the
+(si1
+k , ..., siN
+N neighborhoods (i included), after k rewiring oper-
+ations. Then, by averaging the vector of trips over all
+the neighborhoods, we compute a geographical diver-
+sity index Sk (after k rewiring operations),
+Sk= 1
+N
+NQ
+i=1
+k   s
+(sij
+i)2,
+NQ
+ 
+j=1
+(3)
+i represents the homogeneous distribution
+of visits originating from i and in direction to all neigh-
+borhoods,
+where s 
+i = 1
+ 
+N
+s
+NQ
+j=1
+sij
+k .
+(4)
+The third considered dimension is the distance trav-
+eled by individuals. Summing the distances traveled
+by individuals for all their shopping trips, we can com-
+pute Dk the total distance traveled, as measured af-
+ter rewiring k transactions. Details about the method
+used to estimate the shopping trips distances are avail-
+able in Appendix.
+Finally, we are also interested in individual mobility
+routines and the tendency of individuals to return to
+already visited places. For each individual we calcu-
+late an exploration rate  k. It is de ned as the num-
+ber of unique businesses he/she has visited divided by
+his/her total number of transactions, after k rewiring
+operations. Considering the empirical peaked distri-
+bution of  k among the population of customers (see
+Figure 3b), in the following we only consider the av-
+erage value   k.
+Rewiring constraints
+the shopping trips network (k+ 1 rewiring operations)
+As mentioned above, a candidate recon guration of
+will occur if and only if the proposed change respects a
+number of constraints regarding the current con gura-
+tion (k rewiring operations) and the original shopping
+trips network. We consider four constraints, each of
+them concerns one of the four economic, social and
+environmental dimensions described in the previous
+section,
+  A  rst constraint applies on the wealth distri-
+bution; it ensures that each destination change
+contributes to iteratively homogenize the distri-
+bution of commercial income across neighbor-
+hoods.
+  A constraint on the spatial mixing of individuals
+resulting from their shopping travels. In order to
+be accepted, a rewiring operation has to preserve
+the diversity of neighborhoods visited, hence the
+degree of spatial mixing of individuals residing
+in di erent neighborhoods.
+  A third constraint on the total distance traveled,
+to guarantee that each destination change does
+not result in increasing the total distance trav-
+eled. The distance associated to each individual
+transaction is calculated with regard to the in-
+dividual s main activity place at this moment of
+the day.
+  Finally, a constraint on the spatial exploration
+rate of individuals, to preserve the behavioral
+mobility routines measured in the population.
+All constrains have the same form and are satis ed
+4
+of the algorithm) can be uniform (denoted  Uniform 
+sampling hereafter) or proportional to their amount
+in the case of transactions and/or inversely propor-
+tional to the average income of the targeted neigh-
+borhood for the businesses (denoted  Weighted  sam-
+pling hereafter). Even more informed methods might
+be proposed, but for the sake of simplicity only simple
+random procedures are tested in the following.
+Algorithm 1 Rewiring the shopping trips network
+ation:
+Input: Shopping trips network obtained after k opera-
+tions
+1. Pick at random a candidate(k+ 1)th rewiring oper-
+ 
+3. if for each dimension X {W, S, D,   } we have
+2. Compute (Wk+1,Sk+1,Dk+1,  k+1)
+Pick at random a transaction tr,b
+Pick at random a business b
+Xk+1 Xk
+if Xk+1   X0,
+ X0
+otherwise,
+3. then Accept the rewiring operation
+3. else Return to step 1.
+if the following condition holds
+Xk+1 Xk
+if Xk+1   X0,
+ X0
+otherwise,
+RESULTS
+(5)
+Reachability of even spatial distributions
+where k denotes the number of rewiring operation,
+and   is a parameter positive or equal to zero. The
+general form of Equation 5 allows us to  x an objective
+upper bound for each dimension Xk with respect to
+its original value X0. Then as long as Xk is greater
+than  X0, each rewiring operation must decrease X.
+Once Xk is smaller than  X0, then rule 5 ensures that
+none of the following rewiring operations will increase
+Xk above  X0. An experiment is then de ned by a
+set of four values ( W ,  S,  D,     ) that specify the
+maximal value desired for each variable of interest.
+Algorithm
+The process is unambiguously speci ed by Algo-
+rithm 1. One should note that the products pur-
+chased and the amount of expenses of each individ-
+ual are preserved. This iterative process is run until
+the rewiring rate falls below a given threshold (see the
+Appendix for more details). Since the rewiring pro-
+cess is stochastic, all the results we discuss in the fol-
+lowing sections have been averaged over hundreds of
+replications. Numerous rewiring methods ful lling the
+aforementioned conditions could be proposed. How-
+ever, we favored a numerical approach because of the
+large number of transactions (  107) and also because
+of the constraints we impose to guarantee realistic and
+interesting properties.
+Besides, the random selection of (i) the transaction
+to rewire and (ii) of the candidate business (step 1.
+We  rst investigate the reachability of an even spa-
+tial distribution of the commercial income resulting
+from individual purchases, while the variables S, D
+and    remain in the range of their empirical val-
+ues. To address this question, we apply the rewiring
+method previously described with the four constraints
+of Equation 5 such as  W = 0,  S = 1,  D = 1 and
+  = 1. This constitutes our Reference scenario. Fig-
+ure 2a shows the evolution of inequality in the ur-
+ban area of Barcelona as a function of the fraction of
+rewired transactions, according to various sampling
+methods. Surprisingly, even with basic random sam-
+pling methods, it is possible to reduce spatial inequal-
+ity between neighborhoods by more than 80% while
+reassigning only 20% of individual transactions. All
+the methods produce the same qualitative behavior  
+an early regime of very fast decay, followed by a regime
+of slower decay. Weighted methods are naturally more
+e cient, and allow to reach spatial equity by redirect-
+ing a smaller fraction of transactions. In particular,
+a reduction of wealth inequality of 80% (Wk~W0) can
+be obtained by rewiring only 5% of the transactions if
+the sampling method is double weighted.
+The state of the other variables S, D and   is also
+monitored along the process, as shown in Figure 2b for
+a Uniform-Uniform sampling method. What makes
+the previous results remarkable is in fact that income
+redistribution is achieved without increasing the dis-
+tance traveled by individuals (D), nor changing their
+mobility routines (  ). Moreover, a positive side-e ect
+is to increase the frequency of encounters of individu-
+5
+Figure 2. Decreasing spatial inequality in the city by adapting daily shopping destinations. (a) Decrease of wealth
+inequality among neighborhoods as a function of the fraction of transactions rewired, for various rewiring methods. Four com-
+binations of choice heuristics are considered,  Uniform-Uniform ,  Uniform-Weighted ,  Weighted-Uniform  and  Weighted-
+Weighted . (b) Decrease of wealth inequality (Wk~W0) while preserving the spatial mixing index (Sk~S0), the total distance
+traveled (Dk~D0) and the exploration rate (  k~  0), as a function of the number of rewiring operations. Values have been
+averaged over hundreds of replications. The bars represent the minimum and the maximum values obtained but in most cases
+are too close to the average to be seen (see Figure S10-S11 in Appendix for Madrid).
+als living in di erent parts of the city   as indicated by
+the decrease of Sk~S0  , an e ect that could not be an-
+ticipated from the rewiring constraints alone ( S= 1).
+The increase of spatial mixing is the consequence of in-
+dividual shopping trips more evenly distributed in the
+city space, required to homogenize the income among
+neighborhoods. The behavior of S is non trivial, no-
+tably because one could imagine unrealistic solutions
+that would simultaneously even the spatial distribu-
+tion of business income and decrease the total dis-
+tance traveled, by rewiring most of the shopping trips
+to the closest neighborhood containing businesses of
+the relevant category. In this case the spatial mixing
+of individuals would decrease dramatically, and S the
+distance to an homogeneous mixing would increase.
+Here the decay of S~S0 guarantees that it is not the
+case.
+Preservation of human mobility properties
+We wish to control further the likelihood of the
+rewired shopping mobility networks, and ensure that
+they preserve the spatial properties of individual hu-
+man mobility. A small set of indicators have proved to
+be useful to describe the statistical and spatial prop-
+erties of human mobility [20]. These include the jump
+length between consecutive locations  r, the radius
+of gyration rg (with rg(i)=
+j=1(xj(i)  x (i))2,
+N N
+rg(i) is the characteristic travel distance of individual
+i with center of mass x (i) after N displacements),
+1
+as the ratio between the number of unique businesses
+visited and the total number of transactions.
+Figure 3. Observed and simulated distributions of human
+mobility indicators. The distribution of jump lengths  r,
+the radius of gyration rg, the tendency to return to already
+visited places ( ) and the individual average distance traveled
+(  d) are considered. Values measured on the empirical data
+are in blue, while those obtained after rewiring are in red.
+The calculation of  r and rg is based on the business  exact
+geographical coordinates. The simulated distributions plotted
+here correspond to one particular replication, see Figure S4
+for the robustness of the results and Figure S12 in Appendix
+for the same curves for Madrid.
+and the tendency to return to already visited places
+ . In our case, for each individual   is simply de ned
+Figure 3 shows their empirical and simulated values,
+plus the average distance  d traveled by each individual
+for each shopping trip (see the Appendix for details on
+the calculation of shopping trips distances). On each
+panel both curves overlap almost perfectly, indicating
+that the rewiring has no signi cant e ect on the key
+mobility properties. The simulated distributions of  d
+and rg are slightly more peaked than the empirical
+ones.
+We showed in a previous study that young adults
+tend to spend their money further from their neigh-
+borhood of residence [30]. Coherently their shopping
+trips are those that are the most a ected in the sim-
+ulated scenarios (see Figure S6 in Appendix). But
+the simulated scenarios also contain some question-
+able aspects. For example, elderly people are those
+whose displacements would increase the most (with
+regard to their current shopping travel distances   see
+Figure S5 in the Appendix).
+Multi-objective improvement
+We now perform multi-criteria rewiring experiments
+in order to measure to what extent redistribution can
+be achieved while improving simultaneously other im-
+portant aspects of urban mobility. To this end, we
+perform the series of experiments summarized in Ta-
+ble 1. The objective is to even the wealth distribu-
+tion among neighborhoods ( W = 0) and also improve
+either S, D or    without worsening the other two.
+Figure 4 gives the relative gains and losses upon the
+four indicators, and the last two columns of Table 1
+contain the asymptotic values obtained for the reduc-
+tion rate of wealth inequality, for Barcelona (B) and
+Madrid (M).
+the relative gain of (W0  W)~W0. The  rst value is for
+Experiments performed. Column W indicates
+Table 1.
+Barcelona (B) and the second for Madrid (M).
+Experiment
+(a) Reference
+ W  S  D      W (B/M)
+0
+0
+(c) 50% energy savings 0
+(d) 25% energy savings 0
+0
+(b) Spatial mixing 
+(e) Exploration rate 
+(f) Exploration rate   0
+96.4%~99.5%
+85.9%~78.1%
+87.4%~84.8%
+94.7%~98.8%
+1.25 96.8%~99.9%
+1.5 97.3%~100%
+1
+1
+0.75 1
+1
+1
+1
+1
+1
+1
+0.5 1
+0.75 1
+1
+1
+6
+Figure 4. Multi-criteria improvement of shopping mobil-
+ity. Each group of bars gives the relative gains or losses for
+the four indicators W , S, D and   . Experiments are described
+in Table 1. See Figure S13 in Appendix for Madrid.
+D. More surprisingly, experiment (b) indicates that
+it is also not possible to simultaneously improve the
+wealth redistribution and the spatial mixing of indi-
+viduals. The two indicators are based on di erent
+metrics (the amount of money spent per business for
+W and the number of trips for S), which imply dif-
+ferent reference egalitarian situations (see Figure S7
+in Appendix for more details). Optimization is thus
+a trade-o  between the various consequences of shop-
+ping mobility at the city scale. However, experiments
+(c) and (d) prove that it is possible to signi cantly de-
+crease the total distance traveled and in the same time
+to strongly reduce wealth inequality among neighbor-
+hoods, but not as much as in the reference experiment.
+Still, it is remarkable that experiment (d) results in
+an alternative mobility network such that the spatial
+inequality of the average business income is reduced
+by 95%, while the total distance associated to shop-
+ping mobility is reduced by 25%, the level of spatial
+mixing is preserved, as well as the individual mobility
+routines. Finally, experiments (e) and (f) show that
+even if residents deeply restructured their mobility
+routines, and typically started going to a new business
+each time they perform a new shopping trip, keep-
+ing control of the total distance traveled in the city
+would prevent from increasing the mixing of individu-
+als coming from di erent neighborhoods beyond 25%.
+The gains in terms of wealth redistribution would not
+be signi cant when compared to the reference exper-
+iment (a).
+These experiments proove that it is not always pos-
+sible to combine signi cant improvements on several
+dimensions simultaneously. This is not an issue with
+the method, but rather with the set of objectives
+which are somewhat opposite. Most individuals per-
+form their shopping trips near their residence   as
+highlighted by the empirical distributions in Figure
+3   and consequently it is not feasible to diversify
+the neighborhoods where an individual regularly trav-
+els to   in order to improve spatial mixing S   and
+at the same time decrease the total travel distance
+DISCUSSION
+Reducing urban segregation and increasing spatial
+justice are some of the major challenges faced by cities
+worldwide, and the digital footprints passively pro-
+duced by their residents constitute a promising re-
+source to help addressing these issues from the bot-
+tom. This study is a  rst attempt to quantify the re-
+lation between shopping mobility and the spatial dis-
+tribution of economic activity in the city. The alter-
+native shopping trips resulting from our experiments
+o er an interesting trade-o  between the preservation
+of essential aspects   the e ective purchases of individ-
+uals and households, and their mobility properties  
+and some reasonable changes in the places where they
+spend their money. The addition of small changes in
+the shopping destinations of individuals can dramat-
+ically impact the spatial distribution of money  ows
+in the city, and the frequency of encounters between
+residents of di erent neighborhoods, even if the total
+number of changes remains relatively small. These
+results have important consequences, and they lead
+in particular to the decisive question of the e ective
+implementation of alternative shopping travels, like
+those drawn by our experiments. While the decision
+process behind each individual redirection may appear
+intricate for a single person, one could easily imag-
+ine dedicated mobile applications, querying databases
+similar to the one we used in this paper. Their purpose
+would be to assist their users in a transition toward
+a more socially and spatially concerned shopping mo-
+bility.
+Limitations of the study
+However, one should keep in mind that individ-
+uals do not guide most of their travel decisions by
+philanthropy, but instead by balancing accessibility,
+price and business characteristics.
+Individuals  rst
+choose their casual shopping destinations with regard
+of transport facilities and travel time budget [31].
+Here as accessibility information we considered the
+Euclidean distance between neighborhoods. However,
+in urban environments the Euclidean distance is rarely
+a direct proxy for travel time [32], and some of the
+rewired shopping trips are unlikely to be performed
+in the real world. more accurate measures of travel
+time. In future studies transport APIs and road net-
+work data could be used instead to calculate more
+realistic travel distances between points in the city.
+Also, from a choice point of view, distance is not the
+only one determinant of shopping destination choices.
+The inequality might be also due to the inequality
+between businesses of the same category, which may
+di er substantially in terms of the price, product qual-
+ity, etc. The reader should also remind that prices of
+retail goods are not uniform across a city s neighbor-
+hoods, they may display strong spatial variation, af-
+fecting consumer choices and spatial behavior in com-
+plex ways.
+the simple pattern A  B  A, and we did not con-
+A  B  C  A) during which individuals join sev-
+We also assumed that every shopping trip follows
+sider the more complicated case of chained trips (e.g.
+eral trips associated with di erent purposes [33]. Des-
+tination choices for certain types of shopping travels
+are also motivated by reasons that are not only re-
+lated to the sole proximity (e.g. the local market is a
+place where residents can build a sense of community,
+7
+discuss the problems of the neighborhood, make so-
+cial contacts useful in everyday life). People also tend
+to choose the places where they spend money accord-
+ing to several other key factors, the price of products
+in the  rst place, but also according to some more
+personal appreciations, such as the  atmosphere  of
+neighborhoods and the feeling of well-being they pro-
+vide. In large cities, the neighborhoods strongly di er
+in the quality of their planning and architecture, in
+their public spaces, in their amenities and leisure op-
+portunities, commercial fabric, in their safety. Addi-
+tionally, the changes might be considered as problem-
+atic, since a profound spatial reorganization of shop-
+ping mobility in the city could have consequences on
+the spatial structure of employment in the  rst place
+(see Figures S8 and S9 in Appendix showing the evolu-
+tion of the number of clients and transactions per busi-
+ness), then on residences,  nally on their commercial
+o er and ambiance. This questions the likelihood and
+desirability of the objective con guration we chose, in
+which the average commercial income per business is
+evenly balanced across neighborhoods. Still it has the
+advantage to be unambiguously de ned, and consti-
+tutes an immediate, easy-to-think-with reference sit-
+uation
+For the sake of simplicity, we considered none of
+the aforementioned factors but they could be imple-
+mented in more involved frameworks derived from our
+work. A number of additional constraints, aiming
+at making the rewiring schemes more realistic from
+a spatial economy perspective, could be introduced in
+future scenarios. These include the preservation of the
+number of transactions and income per business (or at
+least a certain fraction of them); the restriction of the
+rewiring operations to certain business categories; lim-
+iting changes for certain socio-demographic categories
+of population (such as elderly people); or ensuring the
+temporal likelihood of the simulated scenarios (so that
+the rerouted shopping travels are homogeneously dis-
+tributed through time).
+Concluding remarks
+There are recent, encouraging examples of fast and
+wide adoptions of new daily practices, whose bene ts
+are essentially collective. Examples include garbage
+di erentiation [34], the increasing role of bicycle in
+urban transport and the development of bicycle shar-
+ing systems [35], or the open-source movement and
+the dedication of a growing number of individuals
+to collectively build free knowledge databases (e.g.
+Wikipedia, StackExchange, the free software move-
+ment).
+In these cases, the remuneration of partici-
+pants, if any, is essentially symbolic. The success of a
+spatial counterpart to these altruistic behaviors could
+rejuvenate the very meaning of the so-called sharing
+economy [21]. As citizens produce the data that doc-
+ument their location and activity patterns, in return
+these data could serve not only the speci c interest of
+the institution collecting them, but also support fair
+socio-economic initiatives. Our study brings evidence
+that these geographical footprints we passively pro-
+duce can support bottom-up responses to big societal
+issues, an expected feature of truly smart cities.
+ACKNOWLEDGEMENTS
+We wish to thank Julie Vall ee and Suma Desu
+for providing feedback on an early version of the
+manuscript. We also thank Jean-Loup Guillaume
+8
+for fruitful discussions on the rewiring problem.
+Partial  nancial support has been received from
+the Spanish Ministry of Economy (MINECO) and
+FEDER (EU) under the project INTENSE@COSYP
+(FIS2012-30634), and from the EU Commission
+through projects EUNOIA and INSIGHT. The work
+of TL has been funded under the PD/004/2015, from
+the Conselleria de Educaci on, Cultura y Universidades
+of the Government of the Balearic Islands and from
+the European Social Fund through the Balearic Is-
+lands ESF operational program for 2013-2017. JJR
+acknowledges funding from the Ram on y Cajal pro-
+gram of MINECO.
+[1] T. Piketty. Capital in the Twenty-First Century. Har-
+vard University Press, Cambridge, MA, USA, 2014.
+[2] J. E. Stiglitz. The Great Divide: Unequal Societies
+and What We Can Do About Them. W. W. Norton
+& Company, New York, 1 edition edition, 2015.
+[3] J.-L. Pinol. Histoire de l Europe urbaine. Seuil, Paris,
+France, 2003.
+[4] W. Goldsmith, E. J. Blakely, and B. Clinton. Separate
+Societies: Poverty and Inequality in U.S. Cities, 2nd
+Edition. Temple University Press, Philadelphia, Pa,
+2nd edition edition, 2010.
+[5] T. Cassiers and C. Kesteloot. Socio-spatial Inequal-
+ities and Social Cohesion in European Cities. Urban
+Studies, 49(9):1909 1924, 2012.
+[6] UN-HABITAT. State of African Cities Re-imagining
+sustainable urban transitions. State of Cities - Re-
+gional Reports. UN-Habitat, 2014.
+[7] J. Friedrichs, G. Galster, and S. Musterd. Neighbour-
+hood e ects on social opportunities: the European
+and American research and policy context. Housing
+Studies, 18(6):797 806, 2003.
+[8] Judith R. Blau and Peter M. Blau. Cost of Inequality -
+Metropolitan Structure and Violent Crime. American
+Sociological Review, 47:114 129, 1982.
+[9] Jeanne Brooks-Gunn, Greg Duncan, and J. Lawrence
+Aber, editors. Neighborhood Poverty, Volume 1: Con-
+text and Consequences for Children. Russell Sage
+Foundation, New York, 1997.
+[10] J. Vall ee, E. Cadot, F. Grillo, I. Parizot, and P. Chau-
+vin. The combined e ects of activity space and neigh-
+bourhood of residence on participation in preventive
+health-care activities: The case of cervical screening
+in the Paris metropolitan area (France). Health &
+Place, 16(5):838 852, 2010.
+[11] B. Womack. Across 110th street. United Artists, 1972.
+[12] R. Chetty and N. Hendren. The Impacts of Neigh-
+borhoods on Intergenerational Mobility: Childhood
+Exposure E ects and County-Level Estimates. Tech-
+nical report, Harvard Univ. Dept. of Economics, 2015.
+[13] K. Lewis. Three fallacies of digital footprints. Big
+Data & Society, 2(2):2053951715602496, 2015.
+[14] Y.-A. de Montjoye, L. Radaelli, V. K. Singh, and
+A. Pentland. Unique in the shopping mall: On the
+reidenti ability of credit card metadata.
+Science,
+347(6221):536 539, 2015.
+[15] D. Lazer, A. Pentland, L. Adamic, S. Aral, A.-L.
+Barab asi, D. Brewer, N. Christakis, N. Contractor,
+J. Fowler, M. Gutmann, T. Jebara, G. King, M. Macy,
+D. Roy, and M. V. Alstyne. Computational Social Sci-
+ence. Science, 323(5915):721 723, 2009.
+[16] N. Eagle, M. Macy, and R. Claxton. Network
+Science,
+Diversity and Economic Development.
+328(5981):1029 1031, 2010.
+[17] J.-P. Onnela, J. Saram aki, J. Hyv onen, G. Szab o,
+D. Lazer, K. Kaski, J. Kert esz, and A.-L. Barab asi.
+Structure and tie strengths in mobile communication
+networks. Proceedings of the National Academy of Sci-
+ences, 104(18):7332 7336, 2007.
+[18] X. Lu, L. Bengtsson, and P. Holme. Predictability of
+population displacement after the 2010 Haiti earth-
+quake. Proceedings of the National Academy of Sci-
+ences, 109(29):11576 11581, 2012.
+[19] L. Sun, K. W. Axhausen, D.-H. Lee, and X. Huang.
+Understanding metropolitan patterns of daily encoun-
+ters. Proceedings of the National Academy of Sciences,
+110(34):13774 13779, 2013.
+[20] M. C. Gonz alez, C. A. Hidalgo, and A.-L. Barab asi.
+Understanding individual human mobility patterns.
+Nature, 453(7196):779 782, 2008.
+[21] D. McLaren and J. Agyeman. Sharing Cities: A Case
+for Truly Smart and Sustainable Cities. Urban and In-
+dustrial Environments. MIT Press, Cambridge, MA,
+USA, 2015.
+[22] W. Ostendorf, S. Musterd, and S. De Vos. Social Mix
+and the Neighbourhood E ect. Policy Ambitions and
+Empirical Evidence. Housing Studies, 16(3):371 380,
+2001.
+[23] D. Satterthwaite and D. Mitlin. Reducing Urban
+Poverty in the Global South. Routledge, London ;
+New York, 2013.
+[24] R. Kanbur and A. J. Venables. Spatial Inequality and
+Development. Oxford University Press, 2005.
+[25] The American Association of State Highways and
+Transportation O cials (AASHTO). Commuting in
+America 2013, the national report on commuting pat-
+terns and trends. Technical report.
+[26] K. Miciukiewicz and G. Vigar. Mobility and Social
+Cohesion in the Splintered City: Challenging Techno-
+centric Transport Research and Policy-making Prac-
+tices. Urban Studies, 49(9):1941 1957, 2012.
+[27] J.-F. Ruault. L e et de la consommation de passage
+sur le d eveloppement et l int egration m etropolitaine
+des territoires en Ile-de-France. Paris Est, 2014.
+[28] Elena Alfaro Martinez, Maria Hernandez Rubio,
+Roberto Maestre Martinez, Juan Murillo Arias, Dario
+Patane, Amanda Zerbe, Robert Kirkpatrick, Miguel
+Stanislav
+Luengo-Oroz, and Amanda Zerbe. Measuring Eco-
+nomic Resilience to Natural Disasters with Big Eco-
+nomic Transaction Data. arXiv:1609.09340 [cs], 2016.
+arXiv: 1609.09340.
+[29] Yuji Yoshimura,
+Juan
+N. Bautista Hobin, Carlo Ratti, and Josep Blat.
+Urban association rules: uncovering linked trips for
+shopping behavior. arXiv:1610.00187 [physics], 2016.
+[30] M. Lenormand, T. Louail, O. G. Cant u-Ros, M. Pi-
+cornell, R. Herranz, J. Murillo Arias, M. Barthelemy,
+M. San Miguel, and J. J. Ramasco. In uence of so-
+ciodemographics on human mobility. Scienti c Re-
+ports, 5:10075, 2015.
+Sobolevsky,
+[31] W. W. Recker and L. P. Kostyniuk. Factors in uenc-
+ing destination choice for the urban grocery shopping
+trip. Transportation, 7(1):19 33, 1978.
+[32] R. Gallotti, A. Bazzani,
+and
+M. Barthelemy. A stochastic model of randomly accel-
+erated walkers for human mobility. arXiv:1509.03752
+S. Rambaldi,
+9
+[cond-mat, physics:physics], 2015.
+[33] C. M. Schneider, V. Belik, T. Couronn e, Z. Smoreda,
+and M. C. Gonz alez. Unravelling daily human mo-
+bility motifs. Journal of The Royal Society Interface,
+10(84):20130246, 2013.
+[34] G. M. Robinson and A. D. Read. Recycling behaviour
+in a London Borough: Results from large-scale house-
+hold surveys. Resources, Conservation and Recycling,
+45(1):70 83, 2005.
+[35] J. Dill and T. Carr. Bicycle Commuting and Fa-
+If You Build Them,
+cilities in Major U.S. Cities:
+Commuters Will Use Them. Transportation Re-
+search Record: Journal of the Transportation Re-
+search Board, 1828:116 123, 2003.
+[36] Instituto Nacional de Estad  stica (National Insti-
+tute for Statistics). Available: http://www.ine.es. Ac-
+cessed 2016 April 26.
+APPENDIX
+Data preprocessing
+The dataset contains information about 14 mil-
+lion bank card transactions made by customers of
+the Banco Bilbao Vizcaya Argentaria (BBVA) in the
+metropolitan areas of Barcelona and Madrid in 2011.
+For both case studies, we only consider the credit
+card payments whose amount was inferior to 1000 eu-
+ros, and which were made inside the metropolitan ar-
+eas, by bank customers that lived and worked in the
+metropolitan area in 2011. Each transaction is charac-
+terized by its amount (in euro currency) and the time
+when the transaction has occurred. Each transaction
+is also linked to a customer and a business. Customers
+are identi ed with an anonymized customer ID, con-
+nected with sociodemographic characteristics (gender,
+age and occupation) and their postcode of residence.
+In the same way, businesses are identi ed through
+an anonymized business ID, a business category id,
+and the geographical coordinates of the credit card
+terminal. Since we are primarily interested in daily
+shopping mobility, we chose to consider the business
+categories that account for the top 90% of the daily
+shopping trips (see Figure S1). The proportions of
+shopping trips associated to each of the 20 business
+categories we selected are available in Table S1.
+10
+Table S1. Proportion of shopping trips associated to each of
+the 20 business categories selected.
+Category
+Supermarket
+Hypermarket
+Gas Stations
+Restaurants
+Retail store
+Clothing store chain
+Clothing store
+Pharmacy, optical and orthopedics
+Department store
+Hair and beauty
+Electronics, computers and appliances
+Bars and caf e
+Shoe store
+Toys and sports articles
+Bookshop, music shop and stationery
+Fast food restaurants and chains
+Car dealership and garage
+Bazaar
+DIY store
+Hospitals, clinics and doctors
+Barcelona Madrid
+14.84
+12.09
+9.49
+6.73
+2.82
+4.67
+7.33
+3.81
+5.73
+2.72
+1.44
+1.60
+1.43
+1.33
+1.04
+2.38
+1.01
+1.06
+1.08
+0.88
+17.71
+10.25
+8.41
+8.20
+5.84
+5.48
+5.16
+4.52
+3.14
+2.88
+1.97
+1.85
+1.71
+1.43
+1.42
+1.13
+1.02
+1.01
+0.99
+0.91
+N spatial units/neighborhoods (here the units corre-
+spond to zip codes) and the network G is spatial: each
+resident and each business is located in one neighbor-
+hood. We denote Ri (resp. Bi) the set of residents
+(resp. businesses) located in the neighborhood i. The
+sets are disjointed and we have R= Ri and B= Bi,
+with i   1..N . Additionally the businesses are also
+they sell, and we have B= Bc, c  1..C. The edges
+by w(tk
+of the network represent the card transactions, hence
+implicitly the shopping trips. We note tk
+r,b the k-th
+transaction performed by resident r in business b, and
+r,b) its amount.
+partitioned in C categories according to the products
+Figure S1.
+as a function of the number of categories.
+metropolitan area of Barcelona; In red the one of Madrid
+Cumulative proportion of shopping trips
+In blue the
+Table S2. Summary statistics of the two metropolitan
+areas and of the two transactions networks.
+Formal description of the rewiring process
+From the data we extract G(R, B, T) the bipartite
+network of all credit card transactions performed by
+the city residents in businesses located in the city, dur-
+ing the entire year. R is the set of residents, B the set
+of businesses and T the set of transactions. Table S2
+contains the characteristic attributes of the network
+in the two cities studied. Each city is partitioned in
+97
+123
+Barcelona Madrid
+Statistics
+Number of neighborhoods
+Number of inhabitants (2009) 3,218,071 5,512,495
+Area (km2)
+Number of customers
+Number of businesses
+Number of transactions
+118,447
+55,148
+42,023
+40,618
+3,640,961 10,025,642
+634
+1,935
+The rewiring methods we implemented operate di-
+rectly at the micro scale of the individual transactions,
+and each rewiring operation tr,b  tr,b  consists in se-
+11
+lecting a business b   b, such than b  and b are of the
+hoods. The rewiring occurs only if b  ful lls a number
+same category c but are located in di erent neighbor-
+of additional constraints which are expressed at the
+macro-scale of the entire city.
+The network is rewired iteratively, i.e. transaction
+per transaction. A transaction tr,b is picked up ran-
+domly (uniform or weighted sampling, as described
+in the main text). A neighborhood is chosen among
+the set of all neighborhoods that contain some busi-
+nesses b  of the same category than b. Both the trans-
+nally, if the neighborhood change j  j  matches the
+action and the candidate business can be picked up
+through a uniform or weighted random sampling. Fi-
+four constraints, then the transaction/edge is rewired.
+The process stops when the rewiring rate falls below
+0.001.
+Estimation of shopping trips distances and
+identi cation of the users  main daytime activity
+location
+We made the assumption that to each transaction
+is implicitly associated a trip originating from either
+the main activity neighborhood during working time,
+or the neighborhood of residence, depending on the
+hour of the day and day of the week. The shopping
+trip distance is then de ned as the Euclidean distance
+between the centroids of the origin and destination
+neighborhoods.
+We already know the neighborhood of residence
+that we can assign as the place of main activity during
+night time (i.e between 7pm and 8am) on week days
+and Saturday and Sunday. In addition to the neigh-
+borhood of residence, for each individual we can deter-
+mine the neighborhood in which he/she was the most
+frequently located during the typical working hours of
+Figure S2. The bipartite network of transactions.
+working days, i.e. from 8pm to 7am, from Monday to
+Friday.
+ber of unique couples(day, hour) during which he/she
+To do so, for each individual we count the num-
+was located in each neighborhood. For our study we
+keep only the individuals for which credit card is a
+casual mode of payment, and for which we can then
+reasonably assume that their card purchases and cor-
+responding shopping trips are representative of their
+shopping mobility in general. Regarding the avail-
+able statistics for Spain on the share of credit card
+payments among all payments, we decided to keep in-
+dividuals whose data displayed at least N= 20 unique
+couples(day, hour) during the entire year. For each
+accounted for less than one third of the time  = 1~3
+ure S3c, the couple of value(N,  )=(20, 1~3) allow us
+of these individuals, we then determine the neighbor-
+hood in which they were the most frequently located
+during typical working hours.
+If this neighborhood
+in his/her entire set of locations, then the individual
+is discarded. As it can be seen in Figure S3a and Fig-
+to keep enough users and discard the users not show-
+ing enough regularity to estimate their main daytime
+activity location.
+Finally, we can estimate the commuting  ows be-
+tween neighborhoods and assess the accuracy of the
+results by comparing these  ows with those ob-
+tained from the 2011 Spanish census in Barcelona and
+Madrid [36]. The census data is at the municipal level,
+which implies that the neighborhoods must be aggre-
+gated at the municipality scale to be able to perform
+the comparative analysis. Figure S3b and Figure S3d
+show a scattered plot with the comparison between
+the  ows obtained with the two matrices. A good
+agreement between the two ODs is obtained.
+The source code of
+this method is available
+https://github.com/maximelenormand/
+at
+Most-frequented-locations.
+12
+Figure S3.
+Identi cation of the users  main daytime activity location in Barcelona ((a)-(b)) and Madrid ((c)-(d)).
+(a) and (c) Number of users according to N and  . (b) and (d) Comparison between the non-zero  ows obtained with the
+credit card dataset ((N,  )=(20, 1~3)) and the census data. The values have been aggregated at the municipality scale. The
+values have been normalized by the total number of commuters for both OD tables. Blue points are scatter plot for each pair
+of municipalities. The red line represents the x = y line.
+SUPPLEMENTARY FIGURES
+13
+Figure S4.
+Individual human mobility indicators  distributions obtained with ten replications of the algorithm. (a)
+Individual average distance traveled  d. (b) Exploration rate  . (c) Jump length distribution  r. (d) Radius of gyration rg.
+The boxplot is composed of the  rst decile, the lower hinge, the median, the upper hinge and the 9th decile.
+Figure S5. Relative error between the original users  mobility indicators and the ones obtained after the rewiring
+according to the age. (a) Individual average distance traveled  d. (b) Exploration rate  . (c) Radius of gyration rg. The
+relative error is equal to the ratio of the di erence between rewiring and original values and the original value. The boxplot is
+composed of the  rst decile, the lower hinge, the median, the upper hinge and the 9th decile.
+14
+Figure S6. Probability density functions of the individual percentage of rewired transactions. (a) Total. (b) By Gender.
+(c) By age. (d) By occupation.
+15
+Figure S7.
+( W ,  S,  D,     )=(0,+ ,+ ,+ ). (b)( W ,  S,  D,     )=(+ , 0,+ ,+ ). (c)( W ,  S,  D,     )=(+ ,+ , 0,+ ).
+(d)( W ,  S,  D,     )=(+ ,+ ,+ , 0).
+Evolution of W, S, D and    as a function of the number of
+rewiring transactions.
+(a)
+16
+Figure S8. Probability density functions of the total amount of money spent by business in 2011, in Barcelona. (a)
+Comparison between the original distribution and the one obtained after applying the rewiring algorithm. (b) Distributions
+obtained with ten replications of the algorithm. The boxplot is composed of the  rst decile, the lower hinge, the median, the
+upper hinge and the 9th decile.
+Figure S9. Relative error between the original number of transactions and visitors and the ones obtained after the
+rewiring for each business. The relative error is equal to the ratio of the di erence between rewiring and original values and
+the original value. The boxplot is composed of the  rst decile, the lower hinge, the median, the upper hinge and the 9th decile.
+17
+Figure S10. Decrease of wealth inequality among neighborhoods as a function of the fraction of transactions rewired,
+for various heuristics (Madrid). Four heuristics are considered,  Uniform-Uniform ,  Uniform-Weighted ,  Weighted-
+Uniform  and  Weighted-Weighted .
+18
+Figure S11. Decrease of wealth inequality (Wk~W0) while preserving the spatial mixing index (Sk~S0), the distance
+traveled (Dk~D0) and the exploration rate (  k~  0) as a function of the number of rewiring operations (Madrid case).
+Values have been averaged over hundreds of replications. The bars represent the minimum and the maximum values obtained
+but in most cases they are too close to the average to be seen.
+19
+Figure S12. Observed and simulated distributions of human mobility indicators in Madrid. The distribution of jump
+lengths  r, the radius of gyration rg, the tendency to return to already visited places ( ) and the individual average distance
+traveled (  d) are considered. Values measured on the empirical data are in blue, while those obtained after rewiring are in red.
+The calculation of  r and rg is based on the business  exact geographical coordinates.
+20
+Figure S13. Multi-criteria improvement of shopping mobility in the city of Madrid. Each group of bars gives the relative
+gains or losses for the four indicators W , S, D and   .

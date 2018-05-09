@@ -1,0 +1,1221 @@
+Traveling Trends: Social Butter ies or Frequent Fliers?
+ 
+Emilio Ferrara
+Onur Varol
+Filippo Menczer
+Alessandro Flammini
+Center for Complex Networks and Systems Research
+School of Informatics and Computing, Indiana University, Bloomington, USA
+3
+1
+0
+2
+ 
+t
+c
+O
+0
+1
+ 
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+1
+v
+1
+7
+6
+2
+.
+0
+1
+3
+1
+:
+v
+i
+X
+r
+a
+ABSTRACT
+Trending topics are the online conversations that grab collec-
+tive attention on social media. They are continually chang-
+ing and often re ect exogenous events that happen in the
+real world. Trends are localized in space and time as they
+are driven by activity in speci c geographic areas that act
+as sources of tra c and information  ow. Taken indepen-
+dently, trends and geography have been discussed in recent
+literature on online social media; although, so far, little has
+been done to characterize the relation between trends and
+geography. Here we investigate more than eleven thousand
+topics that trended on Twitter in 63 main US locations dur-
+ing a period of 50 days in 2013. This data allows us to
+study the origins and pathways of trends, how they com-
+pete for popularity at the local level to emerge as winners
+at the country level, and what dynamics underlie their pro-
+duction and consumption in di erent geographic areas. We
+identify two main classes of trending topics: those that sur-
+face locally, coinciding with three di erent geographic clus-
+ters (East coast, Midwest and Southwest); and those that
+emerge globally from several metropolitan areas, coinciding
+with the major air tra c hubs of the country. These hubs
+act as trendsetters, generating topics that eventually trend
+at the country level, and driving the conversation across
+the country. This poses an intriguing conjecture, drawing a
+parallel between the spread of information and diseases: Do
+trends travel faster by airplane than over the Internet?
+Categories and Subject Descriptors
+[Human-centered computing]: Collaborative and social
+computing Social media; [Information systems]: World
+Wide Web Social networks; [Networks]: Network types 
+Social media networks
+ Corresponding author: ferrarae@indiana.edu
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for pro t or commercial advantage and that copies bear this notice and the full citation
+on the  rst page. Copyrights for components of this work owned by others than the
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+republish, to post on servers or to redistribute to lists, requires prior speci c permission
+and/or a fee. Request permissions from permissions@acm.org.
+COSN 13, October 7 8, 2013, Boston, Massachusetts, USA.
+Copyright is held by the owner/author(s). Publication rights licensed to ACM.
+ACM 978-1-4503-2084-9/13/10 ...$15.00.
+http://dx.doi.org/10.1145/2512938.2512956.
+Keywords
+Social media; Twitter; trends; geography; mobility
+1.
+INTRODUCTION
+Social media and online social networks have been widely
+adopted as proxies to study complex social dynamics, such
+as the spread of information and opinions [11, 16, 25, 29,
+53, 54] and the emergence of patterns of collective attention
+[5, 6, 26, 50]. Groundbreaking results emerged with the
+analysis of geographic metadata from social media, allowing
+for the study of human mobility patterns and social media
+demographics [20, 24, 31, 35, 45, 46, 8].
+It has been suggested that social media may overcome
+the spatio-temporal limitations of traditional communica-
+tion: technologically-mediated systems make it possible to
+ignore physical and geographic distances [12, 34]. This, how-
+ever, does not imply that communication patterns on social
+media are not a ected by physical distances and geographic
+borders [33, 36]. In this paper, we explicitly study the role
+played by geography in driving the main topics of discussion
+on Twitter: trending hashtags and phrases.
+Trends represent interesting collective communication phe-
+nomena: they are user-generated, continually changing and
+mostly ungoverned (although orchestrated hijacking attempts
+have already been observed [9, 40, 41]). So far, trends
+have been studied as a proxy to detect exogenous real-world
+events discussed in social media, [1, 3, 17, 43], emerging
+topics, or news of interest for the online community [10, 27].
+But trends are also strongly localized in space and time:
+the temporal and geographic dimensions play a crucial role
+to determine the success of a trend in terms of spreading
+and longevity. We argue that unveiling the spatio-temporal
+dynamics that drive trending conversations on social media
+is instrumental to many purposes: from designing successful
+advertising campaigns, to understanding virality and popu-
+larity that characterize some topics. In this paper we charac-
+terize the relation between trends and geography by tracking
+and analyzing trending topics on Twitter in 63 main loca-
+tions of the United States and at the country level, for a
+period of 50 days in 2013.
+Contributions and outline
+Here we study the distribution, origins, and pathways of
+trends; the dynamics underlying trend production and con-
+sumption in di erent geographic areas; and the competition
+among trends to achieve global popularity. In the remainder
+of the paper we make the following contributions:
+Table 1: The list of the 63 trend locations in the United States and the relative total number of trends
+(thousands) they generated in the period between April, 12th and the end of May 2013.
+Albuquerque
+Atlanta
+Austin
+Baltimore
+Baton Rouge
+Birmingham
+Boston
+Charlotte
+Chicago
+6.7
+5.1
+5.8
+5.8
+6.5
+6.1
+5.0
+5.2
+5.2
+Cincinnati
+Cleveland
+Colorado Springs
+Columbus
+Dallas-Ft. Worth
+Denver
+Detroit
+El Paso
+Fresno
+5.8
+5.4
+6.7
+6.0
+5.3
+6.1
+4.8
+6.5
+6.6
+Greensboro
+Harrisburg
+Honolulu
+Houston
+Indianapolis
+Jackson
+Jacksonville
+Kansas City
+Las Vegas
+Long Beach
+5.8
+Los Angeles
+6.3
+6.5
+Louisville
+5.1 Memphis
+5.9 Mesa
+6.8 Miami
+6.0 Milwaukee
+5.7 Minneapolis
+5.4
+Nashville
+6.5
+5.2
+5.9
+6.5
+6.6
+5.5
+5.8
+5.6
+6.0
+New Haven
+New Orleans
+New York
+Norfolk
+Oklahoma City
+Omaha
+Orlando
+Philadelphia
+Phoenix
+5.6
+6.2
+4.4
+6.0
+5.8
+6.4
+5.8
+5.1
+5.9
+Pittsburgh
+Portland
+Providence
+Raleigh
+Richmond
+Sacramento
+Salt Lake City
+San Antonio
+San Diego
+5.8
+6.4
+5.9
+5.3
+6.2
+5.9
+6.4
+5.8
+6.2 Washington
+San Francisco
+San Jose
+Seattle
+St. Louis
+Tallahassee
+Tampa
+Tucson
+Virginia Beach
+5.7
+6.6
+5.9
+5.7
+6.3
+5.6
+6.6
+6.8
+4.7
+  In  2.2 we describe a procedure to build a directed and
+weighted temporal dependence network to infer the
+trendsetting and trend-following relationships among
+locations.
+  In  3.1 we provide a statistical characterization of trends,
+describing how they are distributed in space and time.
+  In  3.2 we highlight a locality e ect in the trend shar-
+ing patterns: geographically close cities share similar
+trends. This e ect of locality yields the emergence of
+three geographic clusters in the US, namely East coast,
+Midwest, and Southwest. But we also uncover a sur-
+prising fourth cluster, representing metropolitan areas
+spread across the country.
+  The temporal dependence network is exploited to un-
+in  3.3 we re-
+veil the pathways that trends follow:
+construct and reveal the signi cant backbone of this
+network that carries the trends across the country.
+  In  3.4 we describe two di erent dynamics that govern
+popularity of trends at the country level, one for cities
+in each local geographic area and one for metropoli-
+tan areas. We conclude highlighting that the major
+metropolitan areas shape the country trends signi -
+cantly more than all other locations in the country.
+  Finally,
+in  4 we propose an interpretation for the
+trendsetting role of major metropolitan areas, by not-
+ing their correspondence with air tra c hubs and con-
+jecturing that trends travel through air passengers,
+just as infectious diseases.
+A more extensive literature review can be found in  5.
+2. EXPERIMENTAL SETUP
+In this section we discuss the methodology we followed
+to generate a dataset of Twitter trends, and the derived
+temporal dependence network that allows us to unveil the
+dynamics of trend production and consumption.
+2.1 Trends dataset
+To build our dataset we monitored in real-time all trends
+appearing on Twitter for a period of 50 days, starting from
+April, 12th until the end of May 2013.
+The Twitter homepage provides a trends box that con-
+tains the top 10 trending hashtags or phrases at any given
+moment, ranked according to their popularity. Oftentimes,
+a promoted trend is showed in 1st position   for our anal-
+ysis we disregarded promoted trends since their popularity
+is arti cially in ated by the advertisement.
+Each Twitter user can monitor the trends at the world-
+wide, country, or city level. Twitter has identi ed 63 loca-
+tions in the United States, displayed in Figure 4, for which it
+is possible to follow local trends. The full list of locations is
+reported in Table 1. It is worth noting that some areas are
+over-represented (for example the East coast and Califor-
+nia), while some states (namely, North and South Dakota,
+Montana, Wyoming, Idaho, and Alaska) are not represented
+at all.1
+We deployed a Web crawler to check at regular intervals
+of 10 minutes the trends of each of these 63 locations and,
+in addition, those at the country level. We ended up collect-
+ing 11,402 di erent trends overall: 4,513 hashtags and 6,889
+phrases. Table 1 also reports how many trends have been
+observed in each location.
+2.2 Trend pathway backbone network
+To investigate where trends usually start and how they
+propagate from city to city, we built a temporal dependence
+network of the 63 locations of the United States represented
+in our dataset.
+This network is directed and weighted: each node cor-
+responds to one of the 63 cities, and the weight of an arc
+eij from node i to node j is increased every time location
+i exhibits a trend before location j. The weight of arc eij
+therefore represents the extent to which city i precedes city
+j in adopting a trend: the higher the weight, the more often
+location i sets the trends that location j will later adopt.
+Due to the fact that the adopted dataset contains a large
+number of trending hashtags and phrases, the network ob-
+tained using the procedure described above is fully-connected.
+This makes the extraction of relevant connections hard, as
+each location is connected with all the others and only the
+weight of the connections vary.
+To ease the analysis we applied to this network an edge
+ ltering technique known as multiscale backbone extraction
+[48]. The goal of this procedure is to retain only those con-
+nections that are statistically signi cant, by removing all
+edges whose weight does not deviate su ciently from a null
+model. The signi cance level of an edge is determined by
+a threshold parameter  . Lowering   progressively removes
+edges and eventually causes the disruption of the network.
+We tuned   to obtain the backbone network with the mini-
+mum number of edges that su ces to maintain all 63 nodes
+connected (  = 0.3). The resulting multiscale backbone of
+the network is used for the analysis of pathways of trend dif-
+fusion, and to investigate trendsetting and trend-following
+dynamics (see  3.3).
+3. RESULTS
+The results of our analysis are discussed in this section:
+after a statistical description of trends, discussing how they
+are distributed in space and time ( 3.1), we explore their ge-
+ographic dimension, de ning what areas of the country share
+1This has to do with the fact that the activity on Twitter
+in those states is very low.
+We now focus on the spatio-temporal dimension of trends,
+aiming to determine how much time each trend spends in
+one or several locations. In particular, we calculate the av-
+erage lifetime of a trend (the average amount of time a given
+hashtag or phrase is trending somewhere) as a function of
+the number of cities in which it appears. Figure 2 (left panel)
+re ects the intuition that trends reaching more places live
+longer.
+Another way to determine the relation between the geo-
+graphic spread of trends and their temporal patterns is to
+measure their lifetime as a function of entropy, de ned as
+P j
+i log P j
+i , with P j
+i =
+,
+(1)
+i(cid:80)
+tj
+k tj
+k
+S j =  (cid:88)
+i
+Figure 1: Histogram of the number of trends ap-
+pearing in di erent number of places. Inset: y-axis
+reported in a log-scale.
+where tj
+i is the time topic j has been trending in location
+i. The entropy is low if the trending topic is concentrated
+in a few places, and maximal if the topic trends for equal
+durations of time in all places. Figure 2 (right panel) shows
+that for trends with low entropy (i.e., those concentrated in
+a single location), the expected lifetime is very short. The
+lifetime increases signi cantly ( ve-fold) for the maximum
+observed entropy. This analysis reveals a key ingredient for
+global trend popularity: the trending time of a topic is not
+only determined by its lifetime in a single location, but also
+by its geographic spread across many locations.
+3.2 Geography of trends
+Figure 2: Lifetime of a trend. Left: as function of
+the number of cities in which a trend has appeared.
+Right: as function of its entropy. In both plots, the
+dark blue line is the average across trends while the
+standard error is depicted in light blue.
+the same type of trends ( 3.2); then we further investigate
+the temporal dimension, discussing the pathways trends fol-
+low ( 3.3), and  nally we characterize the trendsetting and
+trend-following dynamics ( 3.4).
+3.1 Spatio-temporal trend analysis
+In our  rst experiment we aim to give a statistical char-
+acterization of trends:
+in particular, we start investigating
+in how many di erent cities trends appear. In Figure 1 we
+report the number of trends appearing in a given number
+of distinct locations. Trends follow a bimodal distribution,
+typically appearing either in one or few locations, or in all or
+most of them. We can identify three behaviors: (i) a large
+fraction of trends are localized and not sustained enough to
+spread from their originating place to others; (ii) another
+comparably large fraction of trends di use all over the cities
+generating a global phenomenon across the country; and
+(iii) the small remainder di use from the originating place
+to some other places, but fail to achieve global popularity.
+The lifetime of trends is broadly distributed: short-lived
+topics trending for less than 20 minutes amount for more
+than 68% of the total, and overall trends shorter than six
+hours cover more than 95% of our sample. Sporadically some
+trends happen to live a much longer time, with only 0.3%
+surviving for more than a day.
+Let us examine the geographic patterns of trends, namely
+whether geographically close cities share more similar trends
+than cities that are physically far apart. To determine if
+this locality e ect exists, we  rst isolate, for each location i,
+the set of trends Ti that appeared in that location. Then,
+for each pair of locations i and j we compute the pairwise
+Jaccard similarity
+(cid:84) Tj|
+(cid:83) Tj| .
+|Ti
+|Ti
+Sij =
+(2)
+The Jaccard similarity ranges between 0 and 1: the higher
+the value, the more similar the trends exhibited by two dif-
+ferent cities. These values of similarity are subsequently
+passed to a hierarchical clustering algorithm after being trans-
+formed in distances: dij = 1 Sij. This is done to determine
+whether it is possible to isolate clusters of locations that ex-
+hibit similar trends, and, if so, whether these locations are
+geographically close or spread all over the country. The re-
+sult is showed in Figure 3 and discussed next.
+3.2.1 Locality effects
+Figure 3 is constituted by two parts: a heat-map rep-
+resenting the pairwise Jaccard similarity among locations,
+and a dendrogram generated according to an agglomera-
+tive hierarchical clustering algorithm using complete link-
+age. Analyzing the dendrogram we can identify three dis-
+tinct clusters, whose members (reported in di erent colors:
+green, yellow and red) share a high internal similarity in
+the trends exhibited during the observation period. This
+cluster emerges applying a cut to the dendrogram for a dis-
+tance value of 0.5. We can also identify a fourth cluster (in
+purple, emerging with a dendrogram cut corresponding to a
+distance value of 0.75) that exhibits a lower internal simi-
+larity and whose members show a low similarity with those
+of other clusters. The four clusters are reported in Table 2,
+and displayed in Figure 4.
+Figure 3: Shared trend similarity and hierarchical clustering of the 63 locations.
+From the  gure we observe that the green, yellow and
+red clusters are somewhat geographically localized, while the
+purple one is spread more or less all over the country. In de-
+tail, the green cluster, with the highest internal similarity,
+roughly corresponds to the Southwest of the country. The
+yellow cluster follows, representing the Midwest and South.
+The red cluster, which is less localized, matches many lo-
+cations in the East coast and Midwest. The purple cluster
+includes several major metropolitan areas [51]; their e ect
+on trendsetting dynamics is discussed in  3.4 and a conjec-
+ture about their role is o ered in  4.
+Signi cance of geographic clustering
+3.2.2
+To determine the statistical signi cance of the clustering
+obtained by using the previous method we proceeded as fol-
+lows: we  rst computed the distribution of similarity values
+among all pairs of locations belonging to the same cluster
+(intra-cluster similarities); then, we did the same for the
+pairs belonging to di erent clusters (inter-cluster similari-
+ties). After that, we applied a kernel smoothing technique
+known as Kernel Density Estimation [22] to estimate the
+probability density functions for our similarity distributions,
+plotted in Figure 5 (the distribution of each cluster is rep-
+resented by its color corresponding to Table 2).
+We applied a t-test to determine if any given pair of distri-
+butions of intra- and inter-cluster similarity might originate
+Table 2: Clusters of cities according to trend simi-
+larity.
+Green
+Purple
+Yellow
+Red
+Long Beach
+Fresno
+Mesa
+Tucson
+Albuquerque
+Virginia Beach
+San Jose
+Colorado Springs
+Jackson
+Honolulu
+El Paso
+Omaha
+Memphis
+Salt Lake City
+Harrisburg
+New Orleans
+Baton Rouge
+Portland
+Tallahassee
+San Diego
+Kansas City
+Oklahoma City
+Birmingham
+Louisville
+Jacksonville
+Washington
+New York
+Detroit
+Boston
+San Francisco
+Cleveland
+Minneapolis
+Las Vegas
+Houston
+Charlotte
+Raleigh
+Los Angeles
+Dallas-Ft. Worth
+Chicago
+Philadelphia
+Miami
+Atlanta
+St. Louis
+San Antonio
+Milwaukee
+Tampa
+Pittsburgh
+New Haven
+Seattle
+Cincinnati
+Austin
+Orlando
+Baltimore
+Greensboro
+Nashville
+Norfolk
+Providence
+Denver
+Richmond
+Phoenix
+Sacramento
+Columbus
+Indianapolis
+from the same distribution, assessing that all distributions
+(and, therefore, the clusters) are signi cant at the 99% con-
+ dence level.
+We also compared the result of the hierarchical cluster-
+ing with that of two network clustering algorithms (namely,
+Infomap [42] and the  Louvain method  [4]) applied to the
+trend pathway backbone network (described in  2.2). We
+obtained consistent results in all cases: the only di erence
+Figure 4: geographic representation of the 63 locations and respective clusters.
+was that Seattle was placed in the purple cluster by both
+network clustering methods.
+3.3 Trend pathway analysis
+To establish where trends start and what pathways they
+follow to di use in the country, we analyze the multiscale
+trend pathway backbone network, built as described in  2.2
+and represented in Figure 6 by using a divided edge bundling
+technique [47]. This visualization strategy has been success-
+fully applied to other geographic networks such as the US
+airport tra c network (cf.
+In this node-link repre-
+sentation the edges are bundled taking into account direc-
+tions and weights. The thicker the bundle, the higher the
+sum of the weights of connections wrapped in the bundle.
+In our case, this yields a network visualization that high-
+lights the pathways followed by trends as they  ow across
+[47]).
+Figure 5: Kernel Density Estimation of intra- and
+inter-cluster similarity of the four clusters.
+the country. In this  gure the direction of edges represents
+the information  ow: the tails of the bundles (in blue) show
+where trends start, the heads of the bundles (in red) point
+to where the trends arrive. From Figure 6 we can draw two
+observations:  rst, the presence of a massive backbone that
+carries the trend  ow from the East coast to the West coast
+and vice-versa. Second, we observe a negligible North-South
+ ow, except for that connecting Florida to the East coast.
+Moreover, the fact that the East-to-West  ow is well bal-
+anced by the that in the opposite direction suggests that we
+are not simply observing an artifact of the time-zone e ect:
+the West coast contributes to shaping the country trends to
+a similar extent that the East coast does.
+In the backbone network the cities that often generate
+trends are those with higher fractions of outgoing edges
+(that is, those that spread their trends to most of the other
+cities); henceforth we will call them sources. Vice-versa, we
+will call sinks those cities with higher fraction of incoming
+edges. More precisely, since the network we deal with is
+weighted, we compute the weighted source-sink ratio  (n)
+for each node n as
+ (n) =
+sout(n)
+sin(n) + sout(n)
+,
+(3)
+where sin(n) (resp., sout(n)) is the in-strength (resp., out-
+strength) of that node. We report in Table 3 the top 5
+sources and the top 5 sinks of the backbone network. Four
+out of the  ve top sources (all but Cincinnati) also happen
+to be major metropolitan areas. On the other hand, all sinks
+belong to the Southwest and Midwest parts of the country.
+Los Angeles and New York (among our top sources) have
+also been reported in the top 5 hashtag producers worldwide
+in the recent work by Kamath et al. [23].
+Figure 6: Trend pathways in Twitter. Trends spread in the direction from blue to red.
+3.4 Trendsetters and trend-followers
+The source-sink analysis presented above triggered our in-
+terest in the dynamics of trend popularity. In the following
+we study trendsetting and trend-following patterns, driven
+by the following question: Are trending topics that become
+popular at the country level produced uniformly by all cities,
+or preferentially by some of them?
+To answer this question we selected from our dataset all
+those trends that at some point in time became trending at
+the country level. This left us with 1,724 hashtags and 2,768
+phrases that achieved the highest popularity in the United
+States, appearing in the top 10 trending topics at the coun-
+try level. We then selected the set of cities that exhibited
+each of these trends, and divided them in two categories:
+those cities in which the hashtag or phrase was trending
+before it became trending at the country level, and those
+cities that adopted it after it became trending at the coun-
+try level. This allows us to determine what are the cities that
+contribute more to shaping the trends at the country level,
+and what are the cities that are more in uenced by these
+global trends:
+in other words, we can identify trendsetters
+and trend-followers.
+Figure 7 shows the result of this analysis for the hashtags.
+We can immediately identify two di erent classes of cities:
+top 5 sources (i.e., trendsetters).
+Location
+Table 3: Left:
+Right: top 5 sinks (i.e., trend-followers).
+Location
+Los Angeles
+Cincinnati
+Washington
+Seattle
+New York
+ (n)
+0.806 Oklahoma City
+0.736 Albuquerque
+0.718 El Paso
+0.711 Omaha
+0.669 Kansas City
+Rank
+1st
+2nd
+3rd
+4th
+5th
+Rank
+63rd
+62nd
+61st
+60th
+59th
+ (n)
+0.101
+0.109
+0.235
+0.305
+0.352
+the majority of them (i.e., all those in the upper-left part
+of the main plot) appear to in uence country-level trends
+roughly to the same extent to which they are in uenced by
+the global trends; a second class of cities seem to have a
+much stronger trendsetting role toward the country.
+To assess if these two classes can be signi cantly distin-
+guished, we use the Expectation Maximization algorithm to
+learn an optimal Gaussian Mixture Model (GMM); to de-
+termine the appropriate number of components of the mix-
+ture we perform a 5-fold cross-validation using Bayesian and
+Akaike information criteria as quality measures, by varying
+the number of components from 1 to 10. The outcome of
+the cross-validation determines that the optimal number of
+components is two, according to both criteria, matching our
+expectations.
+The result of the GMM is showed in the inset of Fig-
+ure 7: each point is assigned to one of the two components
+yielding two di erent clusters composed respectively of 11
+trendsetting cities (red dots) and 52 trend-following cities
+(blue stars). The list of trendsetters includes (in ascending
+order of impact) Raleigh, Detroit, Philadelphia, Houston,
+New York, Dallas-Ft. Worth, Boston, Denver, Atlanta, Los
+Angeles, and Seattle. All of them are major metropolitan
+areas.
+To highlight the existence of these two di erent dynamics
+we applied a regression analysis approach by  tting two dif-
+ferent linear regressions to the points belonging to the classes
+of trendsetters (coe cient of determination R2 = 0.9455,
+p-value p = 3.9   10 7) and trend-followers (R2 = 0.7063,
+p < 10 10). This points out the proportionality that exists
+between incoming and outgoing trend  ows.
+We repeated this analysis by making the model even more
+realistic: for example, we introduced the e ect of the time
+lag, discounting the reward given to those cities that adopt a
+Figure 7: Trendsetting vs. trend-following cities. The x-axis shows the number of times a topic trending in
+a particular city later trends at the country level, while the y-axis shows the number of times of the reverse
+e ect. The inset shows a Gaussian Mixture Model highlighting the two di erent trendsetting dynamics;
+the contours represent the standard deviations of each Gaussian distribution. In the main plot, two linear
+regressions are reported with the corresponding coe cient of determination R2. City colors correspond to
+the cluster assignment in Table 2.
+trend later with respect to the initiators; also, we rewarded
+only the initiators of each trend, rather than any city that
+exhibits a given trend before the trending point at the coun-
+try level. Making the scenario more realistic did not a ect
+the outcome: in all cases we obtained comparable results.
+4. DISCUSSION
+The fourth, purple cluster identi ed in  3.2 deserves fur-
+ther discussion. Di erently from the others, this cluster is
+not geographically well de ned (cf. Figure 4)   it contains
+metropolitan areas spread all over the country. Is the e ect
+of city size su cient to explain why these metropolitan ar-
+eas are more in uential than others, in the sense that they
+produce more national trends? It is not obvious that large
+populations would lead to more national trends: while a
+larger city produces more tweets and possibly more topic
+competing for popularity, the number of trends for each city
+at a given time is bounded to ten, irrespective of the city
+size. In cities with larger content production, hashtags (or
+phrases) must appear in more tweets to be listed as a trend,
+whereas a lower number of tweets is su cient in cities with
+smaller content production. As a result, the e ect of sheer
+volume is discounted by construction in the de nition of
+Twitter trends.
+Why, then, do the metropolitan areas in the purple cluster
+play such a trendsetting role? A possible interpretation is
+o ered by noticing the presence in this cluster of some of the
+major airport hubs of the United States, such as Atlanta,
+Chicago, and Los Angeles. The list of top US airport hubs
+[52] is shown in Table 4, where we aggregated the tra c by
+metropolitan area. Surprisingly, 16 out of the 17 locations
+that constitute the cluster appear in the top 20 air tra c
+hubs   all of them but Cleveland. On the other hand,
+Table 4: Top 20 cities ranked according to the total
+volume of  ight tra c.
+City
+Total traffic
+Cluster
+New York (JFK, EWR, LGA)
+Atlanta (ATL)
+Chicago (ORD, MDW)
+Miami (MIA, FLL, PBI)
+purple
+purple
+purple
+purple
+Dallas-Ft. Worth (DFW, DAL)
+purple
+Washington (BWI, IAD, DCA)
+purple
+Los Angeles (LAX)
+Denver (DEN)
+purple
+red
+Charlotte/Raleigh (CLT, RDU)
+purple
+Houston (IAH, HOU)
+San Francisco (SFO)
+Las Vegas (LAS)
+Phoenix (PHX)
+Orlando (MCO)
+Seattle (SEA)
+Minneapolis (MSP)
+Detroit (DTW)
+Philadelphia (PHL)
+Boston (BOS)
+purple
+purple
+purple
+red
+red
+red
+purple
+purple
+purple
+purple
+Rank
+6th , 14th , 20th
+1st
+2nd, 25th
+12th , 21st, 54th
+4th , 45th
+22nd, 23rd , 26th
+3rd
+5th
+8th , 37th
+11th , 32nd
+7th
+9th
+10th
+13th
+15th
+16th
+17th
+18th
+19th
+24th
+54,374,758 
+45,798,809
+41,603,539 
+33,228,913 
+31,925,398 
+31,431,854 
+31,326,268
+25,799,832
+24,521,523 
+24,082,666 
+21,284,224
+19,941,173
+19,556,189
+17,159,425
+16,121,123
+15,943,751
+15,599,877
+14,587,631
+14,293,675
+9,579,836
+Salt Lake City (SLC)
+yellow
+(  ) Sum of the traffic volume of different airports in the same area.
+some cities in the cluster that do not belong in the top 30
+metropolitan areas by population (Charlotte, Raleigh, Las
+Vegas), do appear among the major air tra c hubs.
+The presence of major air tra c hubs among the special
+class of cities that act as trendsetters suggests an intriguing
+conjecture, drawing a parallel with the spread of diseases:
+Does information travel faster by airplane than over the In-
+ternet? In other words, do conversations and trends spread
+following social interaction dynamics, like social butter ies
+that pass from person to person at the local level, or do
+they di use using traveling people as vectors, similarly to
+epidemics that take advantage of human mobility [13, 2]?
+Further work is needed to explore this conjecture. One
+possibility would be to measure the correlation between trend
+overlap among pairs of cities and the corresponding air traf-
+ c.
+5. RELATED WORK
+Trends or aspects related to geography in socio-technical
+systems have been studied, directly or indirectly, in many
+recent studies. The present work is the  rst, to the best of
+our knowledge, that investigates the dynamics tightly bind-
+ing trends and geography in online social media.
+Geographic locations and physical distances have been
+found to be correlated to friendship behaviors in online so-
+cial networks [28], to determine patterns in human mobility
+networks [7, 20], and to a ect collaboration schemes in sci-
+ence networks [37].
+Recent studies took advantage of platforms such as Yelp
+and Foursquare, which provide customized services to their
+users based on their physical location (e.g., recommenda-
+tions of events or places), to study geographic user activity
+patterns [35, 44, 45, 46].
+Others have used platforms such as Twitter and Facebook,
+that enrich user pro les with geographic information and
+accompany user generated content with location-based data,
+to map users demographics [24, 31].
+Onnela et al.
+[36] noted that, although the probabil-
+ity of observing a tie between two individuals in a social
+network (in that case, a mobile phone call network) de-
+creases as a power law with physical distance, the geographic
+spread of social groups quickly increases with the size of
+the group; even groups of modest dimensions (  30 mem-
+bers) span across hundreds of kilometers, suggesting that, in
+technologically-mediated social systems, there exist distinc-
+tive social dynamics that govern the communication among
+individuals.
+The  ndings presented in this paper nicely dovetail with
+Onnela s work, in that we observe the existence of a class
+of cities, geographically spread across the country, that acts
+as trendsetters for all other locations. On the other hand,
+we highlight that also a locality e ect exists: geographically
+concentrated areas share similar contents and trends.
+The local versus global ( glocal ) nature of communica-
+tion has been observed before in other types of online con-
+versation [21].
+In our analysis of the Occupy Wall Street
+movement on Twitter [14, 15], we noted that geographically
+localized discussions aim at mobilizing resources (e.g., mar-
+shaling  nancial, material and human capital) while global
+discourse sets the goals of the movement and develops the
+narrative frames that reinforce collective purpose.
+The in uence of the locality e ect has been also recently
+pointed out for innovation adoption on Twitter: Toole et al.
+[49] noted that homophily and physical closeness facilitate
+the adoption of new technological artifacts, suggesting that
+the e ect of geographic location is critical to describe social
+dynamics in networked systems.
+Geographic factors have also been recently found crucial
+in the adoption of languages and dialects [33], and in the
+expression of sentiment [32, 38, 39] in online social media.
+Mocanu et al.
+[33] showed how social media data can be
+used to characterize language geography at di erent levels
+of granularity, to highlight patterns such as linguistic homo-
+geneity and linguistic mixture in multilingual regions.
+Similarly, the study by Mitchell et al. [32] suggests that
+the adoption of online social media content can be instru-
+mental to describe emotional, demographic and geographic
+characteristics of users of these socio-technical systems; in
+particular, they investigated Twitter users active in the US
+in terms of happiness and individual satisfaction.
+Another recent research line related to our work is that of
+the detection of emerging trends, topics, memes, and events
+in online social networks and social media [1, 3, 10, 17, 19,
+27, 30, 43]. Naaman et al.
+[34] characterized trends ac-
+cording to di erent dimensions, such as content, interac-
+tion, time-based and social features. These features were
+later used to classify trends, allowing for the identi cation
+of exogenous vs. endogenous trends and memes vs. retweet
+trends. In their analysis, the authors did not consider the
+geographic dimension, that is instead central in this work
+suggesting that it provides crucial information to character-
+ize trends on online social media.
+Finally, social media data can be used to make educated
+guesses on the outcome of real-word events, such as elec-
+tions or competitions [18]. Ciulla et al. [12] combined trends
+and geographic information of Twitter data to demonstrate
+that online social media can be exploited to predict social
+events in the real-world. They collected trending hashtag
+and phrases related to contestants of the popular TV show
+American Idol, mapping the fan base of each candidate to
+di erent geographic regions inside and outside the US, to
+identify spatial patterns in attention allocation and prefer-
+ences expressed on the online platform. These signals were
+then combined and used to predict voting behaviors of fans,
+achieving good accuracy.
+6. CONCLUSIONS
+In this work we investigated the spatial and geographic
+dynamics that govern trending topics in Twitter. We moni-
+tored trends from 63 di erent locations in the United States
+and, in addition, the trends at the country level, for a period
+of 50 days.
+We sought to understand how trends are distributed in
+space and time and how they spread from place to place.
+We investigated shared trends among cities,  nding that
+there exists a locality e ect whose presence allows for the
+identi cation of three broad geographic areas where trends
+di use locally more than globally. We also identi ed a fourth
+cluster of metropolitan areas that counterbalances this local-
+ity e ect. These cities, spread all over the country, act as
+sources of trends for other locations. They contribute much
+more than the others to shaping the global trends at the
+country level. We  nally observed that these metropolitan
+areas coincide with the major air tra c hubs of the coun-
+try, suggesting an intriguing conjecture based on a parallel
+between the spread of information and diseases: Do trends
+travel faster by airplane than over the Internet?
+Our  ndings have broad potential applications, that in-
+clude tailoring online content based on users geographic in-
+formation, or designing better algorithms for geographic-
+aware trend prediction.
+As for the future, our analysis opens new research ques-
+tions that will need further attention. An example is the role
+of tra c hubs in trend di usion. More in general, additional
+work is needed to understand how to identify locations that
+can be in uential for the spread of a given topic and how
+to e ectively convey the information  ow to determine the
+success of a given commercial campaign.
+Acknowledgments
+This work is supported by NSF (grant CCF-1101743), DARPA
+(grant W911NF-12-1-0037), and the McDonnell Foundation.
+The funders had no role in study design, data collection and
+analysis, decision to publish, or preparation of the manuscript.
+7. REFERENCES
+[1] C. Aggarwal and K. Subbian. Event detection in social
+streams. In Proceedings of SIAM International
+Conference on Data Mining, 2012.
+[2] D. Balcan, V. Colizza, B. Gon calves, H. Hu, J. J.
+Ramasco, and A. Vespignani. Multiscale mobility
+networks and the spatial spreading of infectious
+diseases. Proceedings of the National Academy of
+Sciences of the United States of America,
+106(51):21484 21489, 2009.
+[3] H. Becker, M. Naaman, and L. Gravano. Beyond
+trending topics: Real-world event identi cation on
+Twitter. In Proceedings of the 5th International AAAI
+Conference on Weblogs and Social Media, 2011.
+[4] V. D. Blondel, J.-L. Guillaume, R. Lambiotte, and
+E. Lefebvre. Fast unfolding of communities in large
+networks. Journal of Statistical Mechanics: Theory
+and Experiment, 2008(10):P10008, 2008.
+[5] J. Bollen, H. Mao, and X. Zeng. Twitter mood
+predicts the stock market. Journal of Computational
+Science, 2(1):1 8, 2011.
+[6] J. Bollen, A. Pepe, and H. Mao. Modeling public
+mood and emotion: Twitter sentiment and
+socio-economic phenomena. In Proceedings of the 5th
+International AAAI Conference on Weblogs and Social
+Media, pages 450 453, 2011.
+[7] D. Brockmann, L. Hufnagel, and T. Geisel. The
+scaling laws of human travel. Nature,
+439(7075):462 465, 2006.
+[8] A. Brodersen, S. Scellato, and M. Wattenhofer.
+Youtube around the world: geographic popularity of
+videos. In Proceedings of the 21st international
+conference on World Wide Web, pages 241 250. ACM,
+2012.
+[9] C. Budak, D. Agrawal, and A. El Abbadi. Structural
+trend analysis for online social networks. Proceedings
+of the VLDB Endowment, 4(10):646 656, 2011.
+[10] M. Cataldi, L. Di Caro, and C. Schifanella. Emerging
+topic detection on Twitter based on temporal and
+social terms evaluation. In Proceedings of the 10th
+International Workshop on Multimedia Data Mining,
+page 4. ACM, 2010.
+[11] M. Cha, H. Haddadi, F. Benevenuto, and K. P.
+Gummadi. Measuring user in uence in Twitter: The
+million follower fallacy. In Proceedings of the 4th
+International AAAI Conference on Weblogs and Social
+Media, 2010.
+[12] F. Ciulla, D. Mocanu, A. Baronchelli, B. Gon calves,
+N. Perra, and A. Vespignani. Beating the news using
+social media: the case study of American Idol. EPJ
+Data Science, 1(1):1 11, 2012.
+[13] V. Colizza, A. Barrat, M. Barth elemy, and
+A. Vespignani. The role of the airline transportation
+network in the prediction and predictability of global
+epidemics. Proceedings of the National Academy of
+Sciences of the United States of America,
+103(7):2015 2020, 2006.
+[14] M. D. Conover, C. Davis, E. Ferrara, K. McKelvey,
+F. Menczer, and A. Flammini. The geospatial
+characteristics of a social movement communication
+network. PloS ONE, 8(3):e55957, 2013.
+[15] M. D. Conover, E. Ferrara, F. Menczer, and
+A. Flammini. The digital evolution of Occupy Wall
+Street. PloS ONE, 8(5):e64679, 2013.
+[16] M. D. Conover, J. Ratkiewicz, M. Francisco,
+B. Gon calves, A. Flammini, and F. Menczer. Political
+polarization on Twitter. In Proceedings of the 5th
+International AAAI Conference on Weblogs and Social
+Media, 2011.
+[17] A. Crooks, A. Croitoru, A. Stefanidis, and
+J. Radzikowski. #Earthquake: Twitter as a
+distributed sensor system. Transactions in GIS,
+17:124 147, 2013.
+[18] J. DiGrazia, K. McKelvey, J. Bollen, and F. Rojas.
+More tweets, more votes: Social media as a
+quantitative indicator of political behavior. Available
+at SSRN: http://dx.doi.org/10.2139/ssrn.2235423,
+2013. Presented at 108th annual meeting of the
+American Sociological Association.
+[19] E. Ferrara, M. JafariAsbagh, O. Varol, V. Qazvinian,
+F. Menczer, and A. Flammini. Clustering memes in
+social media. In Proceedings of the 2013 IEEE/ACM
+International Conference on Advances in Social
+Networks Analysis and Mining, 2013.
+[20] M. C. Gonzalez, C. A. Hidalgo, and A.-L. Barabasi.
+Understanding individual human mobility patterns.
+Nature, 453(7196):779 782, 2008.
+[21] K. Hampton and B. Wellman. Neighboring in netville:
+How the internet supports community and social
+capital in a wired suburb. City & Community,
+2(4):277 311, 2003.
+[22] T. Hastie, R. Tibshirani, and J. J. H. Friedman. The
+elements of statistical learning. Springer New York,
+2001.
+[23] K. Y. Kamath, J. Caverlee, K. Lee, and Z. Cheng.
+Spatio-temporal dynamics of online memes: A study
+of geo-tagged tweets. In Proceedings of the 22nd
+International Conference on World Wide Web, pages
+667 677, 2013.
+[24] J. Kulshrestha, F. Kooti, A. Nikravesh, and K. P.
+Gummadi. Geographic dissection of the Twitter
+network. In Proceedings of the 6th International AAAI
+Conference on Weblogs and Social Media, 2012.
+[25] H. Kwak, C. Lee, H. Park, and S. Moon. What is
+Twitter, a social network or a news media? In
+Proceedings of the 19th International Conference on
+World Wide Web, pages 591 600. ACM, 2010.
+[26] J. Lehmann, B. Gon calves, J. Ramasco, and
+C. Cattuto. Dynamical classes of collective attention
+in Twitter. In Proceedings of the 21st International
+Conference on World Wide Web, pages 251 260, 2012.
+[27] J. Leskovec, L. Backstrom, and J. Kleinberg.
+Meme-tracking and the dynamics of the news cycle. In
+Proceedings of the 15th ACM SIGKDD International
+Conference on Knowledge Discovery and Data Mining,
+pages 497 506. ACM, 2009.
+[28] D. Liben-Nowell, J. Novak, R. Kumar, P. Raghavan,
+and A. Tomkins. Geographic routing in social
+networks. Proceedings of the National Academy of
+Sciences of the United States of America,
+102(33):11623 11628, 2005.
+[29] A. Marcus, M. Bernstein, O. Badar, D. Karger,
+S. Madden, and R. Miller. Twitinfo: aggregating and
+visualizing microblogs for event exploration. In
+Proceedings of the 2011 Annual Conference on Human
+Factors in Computing Systems, pages 227 236. ACM,
+2011.
+[30] M. Mathioudakis and N. Koudas. Twittermonitor:
+trend detection over the Twitter stream. In
+Proceedings of the 2010 International Conference on
+Management of Data, pages 1155 1158. ACM, 2010.
+[31] A. Mislove, S. Lehmann, Y.-Y. Ahn, J.-P. Onnela, and
+J. N. Rosenquist. Understanding the demographics of
+Twitter users. In Proceedings of the 5th International
+AAAI Conference on Weblogs and Social Media, 2011.
+[32] L. Mitchell, K. D. Harris, M. R. Frank, P. S. Dodds,
+and C. M. Danforth. The geography of happiness:
+Connecting Twitter sentiment and expression,
+demographics, and objective characteristics of place.
+PloS ONE, 8(5):e64417, 2013.
+[33] D. Mocanu, A. Baronchelli, N. Perra, B. Gon calves,
+Q. Zhang, and A. Vespignani. The Twitter of Babel:
+Mapping world languages through microblogging
+platforms. PloS ONE, 8(4):e61981, Jan. 2013.
+[34] M. Naaman, H. Becker, and L. Gravano. Hip and
+trendy: Characterizing emerging trends on Twitter.
+Journal of the American Society for Information
+Science and Technology, 62(5):902 918, 2011.
+[35] A. Noulas, S. Scellato, C. Mascolo, and M. Pontil. An
+empirical study of geographic user activity patterns in
+foursquare. Proceedings of the 5th International AAAI
+Conference on Weblogs and Social Media), 2011.
+[36] J.-P. Onnela, S. Arbesman, M. C. Gonz alez, A.-L.
+Barab asi, and N. A. Christakis. Geographic
+constraints on social network groups. PLoS ONE,
+6(4):e16939, 2011.
+[37] R. K. Pan, K. Kaski, and S. Fortunato. World citation
+and collaboration networks: uncovering the role of
+geography in science. Scienti c Reports, 2, 2012.
+[38] D. Quercia. Don t worry, be happy: The geography of
+happiness on facebook. In Proceedings of ACM Web
+Science 2013, 2013.
+[39] D. Quercia, L. Capra, and J. Crowcroft. The social
+world of Twitter: Topics, geography, and emotions. In
+Proceedings of the 6th International AAAI Conference
+on Weblogs and Social Media, 2012.
+[40] J. Ratkiewicz, M. Conover, M. Meiss, B. Gon calves,
+A. Flammini, and F. Menczer. Detecting and tracking
+political abuse in social media. In Proceedings of the
+5th International AAAI Conference on Weblogs and
+Social Media, 2011.
+[41] J. Ratkiewicz, M. Conover, M. Meiss, B. Gon calves,
+S. Patil, A. Flammini, and F. Menczer. Truthy:
+mapping the spread of astroturf in microblog streams.
+In Proceedings of the 20th International Conference
+Companion on World Wide Web, pages 249 252.
+ACM, 2011.
+[42] M. Rosvall and C. T. Bergstrom. Maps of random
+walks on complex networks reveal community
+structure. Proceedings of the National Academy of
+Sciences of the United States of America,
+105(4):1118 1123, 2008.
+[43] H. Sayyadi, M. Hurst, and A. Maykov. Event
+detection and tracking in social streams. In
+Proceedings of the 3rd International AAAI Conference
+on Weblogs and Social Media, 2009.
+[44] S. Scellato, C. Mascolo, M. Musolesi, and
+J. Crowcroft. Track globally, deliver locally: improving
+content delivery networks by tracking geographic
+social cascades. In Proceedings of the 20th
+International Conference on World Wide Web, pages
+457 466. ACM, 2011.
+[45] S. Scellato, C. Mascolo, M. Musolesi, and V. Latora.
+Distance matters: geo-social metrics for online social
+networks. Proceedings of the 3rd Workshop on Online
+Social Networks, 10, 2010.
+[46] S. Scellato, A. Noulas, R. Lambiotte, and C. Mascolo.
+Socio-spatial properties of online location-based social
+networks. Proceedings of the 5th International AAAI
+Conference on Weblogs and Social Media), pages
+329 336, 2011.
+[47] D. Selassie, B. Heller, and J. Heer. Divided edge
+bundling for directional network data. IEEE Trans.
+Visualization & Comp. Graphics, 17:2354 2363, 2011.
+[48] M.  A. Serrano, M. Bogu n a, and A. Vespignani.
+Extracting the multiscale backbone of complex
+weighted networks. Proceedings of the National
+Academy of Sciences of the United States of America,
+106(16):6483 6488, 2009.
+[49] J. L. Toole, M. Cha, and M. C. Gonz alez. Modeling
+the adoption of innovations in the presence of
+geographic and media in uences. PloS ONE,
+7(1):e29528, 2012.
+[50] L. Weng, A. Flammini, A. Vespignani, and
+F. Menczer. Competition among memes in a world
+with limited attention. Scienti c Reports, 2, 2012.
+[51] Wikipedia. Cities and metropolitan areas of the
+United States.
+http://en.wikipedia.org/wiki/Cities_and_
+metropolitan_areas_of_the_United_States, 2012.
+[52] Wikipedia. List of the busiest airports in the United
+States. http://en.wikipedia.org/wiki/List_of_
+the_busiest_airports_in_the_United_States, 2012.
+[53] S. Wu, J. Hofman, W. Mason, and D. Watts. Who
+says what to whom on Twitter. In Proceedings of the
+20th International Conference on World Wide Web,
+pages 705 714. ACM, 2011.
+[54] L. Xie, A. Natsev, J. R. Kender, M. Hill, and J. R.
+Smith. Visual memes in social media: tracking
+real-world news in Youtube videos. In Proceedings of
+the 19th ACM International Conference on
+Multimedia, pages 53 62. ACM, 2011.

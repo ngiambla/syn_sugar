@@ -1,0 +1,723 @@
+Human Computation (2015) 1:1:101-131
+c(cid:13) 2015, Hogg & Lerman. CC-BY-3.0
+ISSN: 2330-8001, DOI: 10.15346/hc.vxix.x
+Disentangling the Effects of Social Signals
+TAD HOGG, INSTITUTE FOR MOLECULAR MANUFACTURING
+KRISTINA LERMAN, USC INFORMATION SCIENCES INSTITUTE
+ABSTRACT
+Peer recommendation is a crowdsourcing task that leverages the opinions of many to identify interesting content online,
+such as news, images, or videos. Peer recommendation applications often use social signals, e.g., the number of prior
+recommendations, to guide people to the more interesting content. How people react to social signals, in combination with
+content quality and its presentation order, determines the outcomes of peer recommendation, i.e., item popularity. Using
+Amazon Mechanical Turk, we experimentally measure the effects of social signals in peer recommendation. Speci cally,
+after controlling for variation due to item content and its position, we  nd that social signals affect item popularity about half
+as much as position and content do. These effects are somewhat correlated, so social signals exacerbate the  rich get richer 
+phenomenon, which results in a wider variance of popularity. Further, social signals change individual preferences, creating
+a  herding  effect that biases people s judgments about the content. Despite this, we  nd that social signals improve the
+ef ciency of peer recommendation by reducing the effort devoted to evaluating content while maintaining recommendation
+quality.
+6
+1
+0
+2
+ 
+n
+a
+J
+ 
+7
+2
+ 
+ 
+]
+h
+p
+-
+c
+o
+s
+.
+s
+c
+i
+s
+y
+h
+p
+[
+ 
+ 
+2
+v
+4
+4
+7
+6
+.
+0
+1
+4
+1
+:
+v
+i
+X
+r
+a
+1.
+INTRODUCTION
+Every day people make a multitude of decisions about what to buy, what to read, where to eat, and what to watch. These
+decisions are often in uenced by the actions of others. The interplay between individual choices and collective action is
+responsible for much of the complexity of markets (Salganik et al., 2006) and social behaviors (Ratkiewicz et al., 2010). This
+is especially evident in peer production web sites, such as YouTube, Reddit, and Tumblr. To help users identify interesting
+items, these web sites often highlight a small fraction of their content based on the reactions of prior users. Such reactions
+include whether the user clicked on an item, downloaded it, or recommended it; actions that provide implicit opinions of
+content quality. Some web sites also allow users to explicitly rate content. The web sites may then showcase highly-rated
+or popular content on a special web page or rank order items according to these ratings. In addition, the web sites can use
+the ratings as a social signal by showing the users these ratings, e.g., the number of votes, likes or recommendations prior
+users gave to the content. This type of social signal re ects the opinions of the user community as a whole, and is distinct
+from signals a user might receive from friends. Understanding how social signals conveying information about community
+preferences in uence user behavior could enable web designers to predict behavior, optimize it, and steer it towards desired
+goals.
+The implicit (e.g., through ranking) and explicit (through social signals) information about others  preferences together affect
+people s decision-making processes, an interaction not resolved by previous experimental studies (Salganik et al., 2006;
+Lorenz et al., 2011; Muchnik et al., 2013). Moreover, social signals can have multiple effects. By conveying information
+about which items others found interesting or liked, such signals could simply direct a person s attention to items he or she
+may also  nd interesting (Krumme et al., 2012). Alternately, as with peer pressure and social norms, social signals could
+change individual s preferences, leading him or her to  nd some items more interesting than in the absence of social signals.
+In practice, these and other effects, such as novelty and content quality, combine to affect what content is recommended.
+We disentangled some of these effects through experiments on peer recommendation conducted using Amazon Mechanical
+Turk. We showed people a list of science stories and asked them to vote for, or recommend, ones they found interesting. We
+measured the degree to which displaying the number of prior votes, which acts as the social signal, affects the votes stories
+2 T. Hogg and K. Lerman / Human Computation (2015) 1:1
+receive, after controlling for their content and position within the list shown to users. We also studied how social signals
+affect individual behavior, speci cally, which stories people choose to evaluate and their preferences for them.
+After describing related work, we present our experimental design and a model used to estimate user behaviors we cannot
+measure directly. We then present the experimental results and summarize their implications for designing peer recommen-
+dation systems. The appendix provides details of the experiment setup, user responses to the social signals and evaluation of
+the model.
+2. RELATED WORK
+Social in uence helps a group to achieve consensus and adopt new ideas (Katz and Lazarsfeld, 1955; Rogers, 2003; Bond
+et al., 2012). However, it introduces a bias into judgements that may skew collective outcomes (Salganik et al., 2006; Lorenz
+et al., 2011; Muchnik et al., 2013). This bias creates an  irrational herding  effect (Muchnik et al., 2013) that ampli es small
+differences in individual response, leading to a  rich get richer  phenomenon. Experimental studies of cultural markets
+concluded that social in uence signals lead to large inequality and unpredictability of collective outcomes (Salganik et al.,
+2006; Salganik and Watts, 2009). However, before information about others  preferences, can in uence a person, he or she
+must  rst see it. Due to human cognitive biases, the presentation order of items strongly affects how people allocate attention
+to them (Payne, 1951; Buscher et al., 2009). In an earlier experimental study (Lerman and Hogg, 2014), we showed that
+ordering alone could explain much of the unpredictability and inequality of outcomes that is attributed to social in uence. In
+this study, we quantify the effects of social in uence through web-based experiments.
+Several previous studies attempted to quantify the effects of in uence of social signals by modeling online behavior data. In
+particular, some studies use observational data from well-established social media sites to estimate parameters of stochastic
+models that include various types of in uence on how users react to the presentation of content. For instance, studies of news
+aggregators (Hogg and Lerman, 2012; Stoddard, 2015) and product recommendation (Wang et al., 2014) used such models
+to identify contributions of position bias, social signals and the appeal of the content to popularity. These studies not only
+indicate relative importance of social signals, but are also useful in predicting the growth in popularity for new content based
+on the early responses to that content.
+These observational studies can identify correlations but do not directly test self-selection effects, causal in uences and
+counterfactual outcomes. Nevertheless, observational studies offer signi cant advantages of large scale and users performing
+real-world tasks on social media sites. Thus these studies complement randomized experiments, such as MusicLab (Salganik
+et al., 2006) and the experiments presented in this paper, which are smaller and present tasks in a more stylized setting.
+Identifying the extent to which the simpli ed scenarios of experiments generalize to actual web behavior is an important
+issue for evaluating experiments. When a suf cient number of observational and experimental studies are available on a
+particular question, comparison can directly test generalization, e.g., quantifying the effect of peer in uence on worker pro-
+ductivity (Herbst and Mas, 2015). A similar approach could apply to evaluating studies of social in uence in crowdsourcing
+once enough studies are available.
+3. EXPERIMENT DESIGN
+We studied peer recommendation with randomized experiments on Amazon Mechanical Turk (Mturk), which is a popular
+platform for experimental behavioral research (Bohannon, 2011; Mason and Suri, 2012; Crump et al., 2013; Kittur et al.,
+2013). Our experiments presented a list of science stories to people and asked them to vote for stories they found interesting.
+This voting is similar to  liking  or recommending items in social media web sites.
+We used science stories to have a single general topic area, thereby reducing variation that could arise from a mix of topic
+areas. In effect, the experiment mimics the behavior of a special interest subgroup of a web site presenting a wide variety of
+content types. Moreover, science articles are less time-sensitive than, say, current news or sports stories. This allowed us to
+run the experiment with different users over several months without measurable change in user response to the stories.
+The interface, shown in Fig. 1, displayed the title and summary of each story. The title was linked to the full story via its url.
+Thus people could read the full story by clicking on the title, but were not required to do so. We refer to such actions as  url
+clicks . For the in uence experiments, the interface displayed the number of prior votes each story received, starting from
+zero for all stories. This number provided the social signal. The user recruitment and vetting procedures are described in
+Appendix A.
+T. Hogg and K. Lerman / Human Computation (2015) 1:1
+3
+Figure 1. Screenshot of a web page shown during an experiment. The participant clicks on the button to the left of a
+story s summary to recommend that story. The buttons include the number of prior participants who recommended each
+story. The colored graphic next to the fourth story indicates the participant has recommended, or voted for, that story.
+Prior experiments (Lerman and Hogg, 2014) measured how story position affects how many votes it receives and compared
+several policies for ordering the stories. For the present study with the social signals, we used two of these ordering policies:
+  the  xed ordering showed all stories in the same order to everyone. This corresponds to the common practice on web sites
+of showing stories in the same, e.g., chronological, order to all users to emphasize recent additions.
+  the recency of activity ordering presented stories in chronological order of the latest vote they received, with the story with
+the most recently vote at the top of the list. This is similar to Twitter s policy of displaying the most recently tweeted or
+retweeted post at the top of the followers  streams.
+In addition, as a control condition without the social signal, the random ordering presented the stories in a new random order
+for each user, without showing the number of prior votes.
+The social signal shown to a given user depends on the actions of prior users. Thus repeating the experiment with same
+ordering policy with different users can produce different signals, which may also affect story order in the activity-based
+ordering. To evaluate the signi cance of this variation, we performed two independent, or  parallel worlds , experiments for
+each ordering policy. Each parallel world starts from the same initial state: each story starting with zero votes and shown in
+the same order as the  xed ordering.
+4. EFFECT OF CONTENT AND POSITION
+Stories vary in how interesting they are to users, and users vary in their effort to evaluate content. Most users in our
+experiments chose stories based solely on the title and summary. To quantify this behavior, we operationally de ne the
+appeal rs of a story s as the conditional probability a user votes for the story s given the user has viewed its title and
+summary: Pr(vote|view) = rs.
+Our experiments do not indicate which stories users view, so we cannot directly measure the probability a user views a story,
+Pr(view), and hence we do not directly estimate Pr(vote|view). Instead, we use a model to jointly estimate views and story
+appeal.
+4 T. Hogg and K. Lerman / Human Computation (2015) 1:1
+4.1. Stochastic Model of Voting
+To separate the effects of ordering and story content from that of social signals, we developed a model of user behavior in the
+absence of social in uence. To vote for a story, a user has to both see it and  nd it appealing. Our model accounts for these
+two factors: the probability to view the story at position p, Pr(view) = vp, and its appeal Pr(vote|view) = rs. The model
+jointly estimates these factors from the observed votes.
+The model makes several simplifying assumptions. Speci cally, we assume a homogeneous user population, with no sys-
+tematic differences between users in their preference for stories or how they navigate the list of stories. Therefore, the
+probability to view a story depends only on its position p in the list. Moreover, the probability a user votes for a story after
+viewing it depends only on the story s but not the user or the story s position in the list. While there may be variations
+among user preferences, e.g., for technology or medicine, we focus on average behavior of users as the primary effect for
+peer recommendation in our experimental context. The model does not include social signals and their effects on users.
+In addition, we assume that viewing each story is an independent choice by the user. This assumption was also used
+in a model of the Salganik et al. experiments (Krumme et al., 2012). This contrasts with models of list navigation (see
+e.g., (Huberman, 1998; Craswell et al., 2008)) which posit that users view stories in order in a list until they decide to quit,
+so that viewing a story at position p means all stories at prior positions were also viewed. While we do not observe such
+sequential navigation in user actions, there is signi cant dependence in acting on stories near a previously action, which our
+model does not capture. Another independence assumption is that users consider each viewed story independently. This
+contrasts, for example, to a dependence arising from users quitting after voting for a set number of stories, in which case,
+whether a user views a story depends on the number of votes that user has already made.
+Due to these assumptions, our model does not capture detailed behavior of individual users. Nevertheless, as shown in
+Appendix C, the model learned from one experiment correctly predicts the behavior of users in new experiments. Thus our
+simplifying assumptions allow understanding the aggregate effects of story ordering.
+Speci cally, when story s is presented to a user at position p in the list (where p ranges from 0 to S  1, where S = 100 is the
+number of stories), we model the probability  (s, p) that a user votes for the story as:
+ (s, p) = rsvp
+(1)
+where rs is the story appeal and vp its visibility at position p. As a reminder, appeal is de ned as the conditional probability
+the user votes for the story given he or she views it: rs = P(vote for s|view s). Similarly, visibility is de ned as the conditional
+probability the user views the story given that it is presented to him or her at position p: vp = P(view s|s presented at position p).
+We assume that vp does not depend on the particular story s.
+4.2. Parameter Estimation
+We did not directly observe values for vp and rs in the experiments. Instead we estimated them by maximum likelihood,
+a statistical method for identifying values for variables that best explain the data. We used data from the random ordering
+experiments to determine model parameters. Speci cally, with this model, the log-likelihood for user u to vote for a set Su
+of stories is
+Lu =  
+s Su
+log(rsvps,u) +  
+s / Su
+log(1  rsvps,u)
+(2)
+with story s shown to the user at position ps,u, where it has visibility vps,u. For a set of users U, the log-likelihood for all their
+votes is Lfull =  u U Lu.
+The values rs and vp enter the likelihood above as a product. Therefore, their values can be rescaled by an overall factor  
+without changing the likelihood: i.e., replacing rs    rs and vp   vp/  for all stories and positions does not change the
+likelihood. To constrain the parameters, we chose a value of   which gave v0 = 1.
+Numerically maximizing Lfull gives estimates for the model parameters, namely the appeal rs for each story and visibility
+vp for each position. Moreover, expanding Lfull around its maximum provides estimated con dence intervals for these
+parameters.
+To reduce  tting to noise, we used regularizers based on prior expectations that visibility changes smoothly with position in
+a list and the stories had similar appeal. We used 10-fold cross-validation to determine the amount of regularization (Abu-
+T. Hogg and K. Lerman / Human Computation (2015) 1:1
+5
+Figure 2. Model estimates of story (a) appeal (sorted by rank) and (b) visibility (as a function of position p). Error bars
+give the 95% con dence intervals. The value v0 in (b) is set to 1 for overall scaling, so it has zero con dence interval.
+(a)
+(b)
+Mostafa et al., 2012).
+Fig. 2(a) shows the rs estimates, indicating a  ve-fold variation in story appeal. This con rms that our experiment design
+qualitatively corresponds to the large variation in preferences for content seen on social media web sites (Hogg and Lerman,
+2012) and other domains, e.g., scienti c papers (Wang et al., 2013). Fig. 2(b) shows the estimates for the probability to
+view the story vp, which quanti es the position bias (Payne, 1951) in our experiments. This quantity decreases rapidly with
+position: a story at the top of a list gets about  ve times as much attention as a story in the middle of the list, consistent with
+direct measurements reported in (Lerman and Hogg, 2014). A few users focus on the end of the list, resulting in the increase
+in vp for the last few positions in the list.
+4.3. Url Clicks
+Some users put more effort into evaluating a story by clicking on its url to see the full story. In our experiments about 25%
+of the users clicked on at least one url. Voting for a story in this case involves two behaviors: the url click and the vote.
+The corresponding conditional probabilities are: Pr(click|view), the probability a user clicks on a story after viewing it, and
+Pr(vote|click), the probability a user votes for a story when seeing the full content by clicking its url.
+Since the experiments do not record which stories users view, we use the model to estimate Pr(view) and hence determine
+Pr(click|view) from observed url clicks. However, our experiments do record when users click on a story s url. In these cases,
+we know that the user viewed the story, clicked on the url, and then whether that user subsequently voted for it. This allows
+directly estimating Pr(vote|click) from the data. These estimates for the probabilities allow determining how users respond
+to variations in content. Speci cally, we  nd that users tend to click on appealing stories: the correlation of Pr(click|view)
+with Pr(vote|view) is 0.46, which is unlikely to arise if there were no correlation (p-value less than 10 4 with Spearman
+rank test). This suggests that users evaluate an item s appeal based on its title (Krumme et al., 2012) (and summary when
+available) and then decide to proceed further with the appealing items, either by getting more information about them from
+the full text or immediately recommending them. This underscores the value of   rst impressions : users generally devote
+less effort to items whose titles (and summaries) are less appealing. In particular, stories with the lowest quartile of appeal
+are, on average, less likely to get url clicks than stories with higher appeal.
+The signi cance of basing most decisions on just a title (and summary) of a story depends on how well the title re ects the
+full content. To evaluate this connection, we estimated Pr(vote|view) from all the url clicks in our experiments1. Appeal has
+42% correlation with Pr(vote|click), indicating user response to story titles also somewhat estimates their response to the
+full content.
+5. RESULTS
+The social signals, which show users how many votes the stories received from prior users, are highly variable. To determine
+how user votes respond to these social signals, we must account for other factors that signi cantly affect votes. We quantify
+the effect of two such factors: story s content and its position in the list shown to a user.
+1These experiments involved 3498 users, of whom 816 clicked on at least one url.
+6 T. Hogg and K. Lerman / Human Computation (2015) 1:1
+Figure 3. Ratio of actual to expected url clicks for stories shown with low or high social signals to users (excluding the
+ rst 50 users in each experiment). Error bars indicate 95% con dence intervals of the ratios. There were 28713 and
+32587 instances in the lower and higher groups, respectively.
+5.1. Social Signals and Individual Behavior
+Social signals could affect behavior in two ways. First, by conveying information about the preferences of others, social
+signals may affect which stories users attend to. Second, they may change individual preferences in users  evaluation
+of stories (Krumme et al., 2012). To discriminate between these possibilities, we compare which stories users choose to
+evaluate and, of those, which they vote for in experiments with and without social signals.
+Changes in Attention We cannot directly measure attention.
+Instead, we indirectly estimated it by measuring which
+stories users choose to evaluate by investing the effort in reading the full text of its article. Speci cally, we used url click
+data to examine how social signal changes Pr(click|view), the probability a user clicks on a story s url to read the full text of
+the story after viewing its title and summary. We used the model (Section 4.1) to adjust for position bias when determining
+Pr(click|view) in the absence of the social signal.
+For each in uence experiment we considered behavior starting after the 50th user, when there is a signi cant history of prior
+votes on the stories. For each user, we divided the stories into two groups: i) those whose signal is less than the median
+among the social signal values shown to that user, and ii) those with larger signals. Combining the expected and actual
+estimates of Pr(click|view) for these groups gives values grouped by the relative strength of the signal for each user.
+Fig. 3 shows the ratio between actual url clicks and those expected when there is no social in uence. The  gure shows two
+behaviors. First, the ratios are less than one, indicating users tend to click on fewer stories with social in uence compared to
+experiments without. This indicates a change in user effort, as discussed below. Second, the ratio is larger for larger signals,
+i.e., a user is relatively more likely to click on stories with larger social in uence signals. Furthermore, the correlation
+between Pr(click|view) with and without in uence is 0.48, which is nonzero (p-value less than 10 5 with Spearman rank
+test). This indicates that users tend to click on the same stories in the two treatments, but with considerable variation.
+Changes in Preferences We determine how social signals alter individual preferences for stories from changes in proba-
+bility to recommend a story conditioned on clicking on that story s url, Pr(vote|click). In the absence of social signals, users
+recommend half of the stories they click on, Pr(vote|click) = 50%. This probability is higher with social signals: 66%.
+This increase in average Pr(vote|click) could arise from either of two changes in user behavior. First, social in uence could
+change preferences, increasing Pr(vote|click) for stories users click on and leading to the larger average value we observe
+for those stories. Second, as described above, users click on fewer urls when there is an social signal. If the stories they do
+click on tend to be more interesting than those clicked on without social in uence, the average value of Pr(vote|click) for
+stories receiving clicks will be larger even if preferences do not change, i.e., if Pr(vote|click) values for each story remain
+the same. In this case, the change in average arises from the selection of stories users click on.
+We distinguished between these possibilities by examining, on a per-story basis, Pr(vote|click) estimated by the fraction of
+all url clicks for a story that produce a vote for that story. Fig. 4 shows that most stories are more likely to receive a vote after
+T. Hogg and K. Lerman / Human Computation (2015) 1:1
+7
+Figure 4. Fraction of users who vote on each story, given that the user has clicked on the story s url, for the experiments
+with and without social in uence. The dashed line corresponds to equal values for experiments with and without social
+in uence.
+Figure 5. Gini coef cient showing inequality of the total votes received by stories with different ordering policies.
+a click when there is an social signal. Quantitatively, comparing the Pr(vote|click) on a per-story basis shows a signi cant
+difference (pairwise t-test p-value 5  10 6). This indicates that changing preferences rather than selection gives rise to the
+larger average value of Pr(vote|click) for all stories.
+Moreover, the difference in preference increases for larger social signal values. Speci cally, for stories shown with in uence
+signals below and above the median, we have Pr(vote|click) = 65% and 75%, respectively, averaged over all stories. These
+differences in average values are signi cant on a per-story basis (pairwise t-test p-value is less than 10 4 for both cases). In
+other words, users are more likely to vote for a story they read when they see that it already received many votes.
+5.2. Social Signals and Collective Behavior
+We examined how social signals affect collective behavior in peer recommendation by comparing the outcomes, i.e., the
+number of votes stories receive, in the experiments with and without social in uence.
+Inequality of Outcomes Stories differ in appeal; hence, when attention is distributed uniformly (as in the random ordering
+policy), we expect their popularity to vary in proportion to their appeal. Orderings that direct user attention toward the same
+set of stories increase the inequality of popularity (Lerman and Hogg, 2014). Social signals can further focus user attention,
+increasing inequality even more.
+8 T. Hogg and K. Lerman / Human Computation (2015) 1:1
+We use the Gini coef cient to quantify the variation in popularity:
+(cid:12)(cid:12) fi   f j
+G =
+1
+2S  
+i, j
+(cid:12)(cid:12)
+(3)
+where S = 100 is the number of stories and fi is the fraction of all votes that story i receives, so  i fi = 1. Fig. 5 shows
+the values of the Gini coef cient in our experiments. The random ordering indicates the inequality due to variation in story
+appeal. The remaining conditions indicate the increase in inequality due to position bias and social signal. The  gure shows
+that social in uence increases inequality, for both the  xed and activity orderings.
+To quantify the signi cance of the increase in inequality, we focused on the experiments with  xed ordering and no social
+in uence. In this case, each user faces the same situation so each user s behavior is independent of choices made by other
+users. This lack of history-dependence allows estimating the distribution of Gini coef cients from bootstrap samples (with
+replacement) of the users in the experiment. Each sample, with the same number of users as the actual experiment but
+different distributions of votes among stories, gives a corresponding Gini coef cient. All of 1000 such samples had Gini
+coef cient less than both of the values for the  xed ordering with social in uence. Thus the Gini coef cients with in uence
+are unlikely to arise if, in fact, there were no increase in inequality due to the social signal.
+The activity ordering varies the story order based on user responses. Thus user behaviors are not independent and bootstrap
+samples, based on assuming independence, may not indicate the distribution of Gini coef cients that would arise without
+social in uence. Instead, we see there is very small difference in the Gini coef cients of the two parallel worlds for the
+activity ordering without social in uence (Fig. 5). By comparison, the observed values for activity with social in uence are
+considerably larger, suggesting those values are unlikely to arise if the social signal had no effect on inequality.
+Reproducibility of Outcomes For the activity ordering, the correlations between votes in the two parallel worlds are 0.78
+and 0.63 without and with social in uence, respectively. For the  xed ordering without social in uence we considered all
+users part of the same  world . Nevertheless, due to the lack of history-dependence in this ordering, arbitrarily splitting the
+users in this experiment into two subsets gives, in effect, parallel worlds for this ordering. This gave correlation 0.87 between
+the worlds, compared with 0.90 for the  xed ordering with social in uence. These correlations between parallel worlds with
+and without social signal are not signi cantly different (p-value 0.5 for Spearman rank test). Thus, social signal does not
+appear to signi cantly degrade the reproducibility of outcomes in peer recommendation.
+Strength of Social Signal and Outcomes To separate the effects of social signal from those of position bias and story
+appeal, we used the model (see Section 4.1) to estimate the expected number of votes stories would receive, based on their
+position and appeal, in the absence of a social signal. Comparing these estimates with the observed votes indicates how
+social signals change the outcomes of peer recommendation.
+Quantifying the response as a function of the size of the social signal requires identifying how users attend to social signals.
+One possibility is users respond independently to each signal s value. Alternatively, users could compare signals and focus
+on the rank of a story s signal among all, or a sample, of the values shown. Another possibility is that users respond to
+signals that deviate by at least several standard deviations from the average signal value. In our experiments, these measures
+of signal strength are highly correlated (over 80%) and give similar indication of relative importance of appeal, position bias,
+and social in uence. So our conclusions do not depend on which of these, or similar, measures most closely re ects user
+behavior.
+For de niteness, we focused on how votes depend on the signal value itself. Fig. 6 compares observed votes to the expected
+numbers of votes those stories would receive when there is no social signal. Speci cally, for each story s shown to a user
+at position p, we used the model to determine the probability for that user to recommend that story as rsvp, where vp is the
+probability to view a story at position p. We combined these values for all stories within each quartile of the full signal
+range in all social in uence experiments. For each quartile, this gave the actual number of votes, the expected number and
+the number of instances (i.e., number of times a story was shown to users with a signal in each quartile). The  gure shows
+the ratio of actual to expected votes, along with 95% con dence intervals estimated by treating each vote as an independent
+sample. Stories associated with signals in the bottom quartile get fewer votes than expected. Those with signals in the top
+quartile get about twice as many votes as those in the bottom quartile. This variation compares with the ratio of mean values
+in top and bottom quartiles of appeal (rs) and position bias (vp) of 3 and 4, respectively. Thus, social in uence is responsible
+T. Hogg and K. Lerman / Human Computation (2015) 1:1
+9
+Figure 6. Ratio of actual to expected votes for stories shown with each quartile of the social signal. Error bars indicate
+95% con dence intervals of the votes based on the number of instances in each quartile. There were 76110, 4273, 752
+and 165 instances in the bottom to top quartiles, respectively.
+for about half the variation of popularity as that created by the differences in story content and position.
+The increase in votes with the size of the social signal raises the question of how the effect changes with time. As more users
+view the stories, their votes increase the magnitude of the social signal, i.e., the number of prior votes for the stories. Thus
+the signals may exert a stronger effect over time. However, comparing responses by early ( rst 100) and late (subsequent)
+users in each experiment (see Appendix B), indicates that a larger range of signals does not lead to a signi cantly larger
+variation in response.
+Collective Ef ciency Social signals reduce the effort users devote to the recommendation task. One measure of effort is a
+user s session time, excluding the time required to read instructions and do the post-survey (Lerman and Hogg, 2014). With
+social signals, users spend, on average, about 40 seconds or 20% less time on the task than users without the social signals.
+This difference is signi cant (p-value less than 10 10 with Mann-Whitney test).
+Another measure of user effort is how often they click on a story s url. For the roughly 25% of users who click on at least
+one url, we  nd a signi cant difference in the number of stories they click on. Speci cally, without in uence, such users
+click on 4.3 url s, on average. With in uence, they click on just 2.5, a signi cant reduction (p-value less than 10 4 with
+Mann-Whitney test).
+A possible consequence of reduction in effort is degraded performance of peer recommendation. To evaluate this possibility,
+we measure performance by how well the outcomes of peer recommendation re ect the preferences of the user community.
+In our case, we de ne preferences for the stories by their appeal. Position bias signi cantly affects how well users identify
+appealing stories and magni es the inequality of outcomes beyond that expected from variations in story appeal (Lerman
+and Hogg, 2014). Fig. 5 shows that social in uence signals further increase inequality. This suggests that social signals, like
+position bias, could degrade the relation between outcomes and appeal. However, we  nd this is not the case. Speci cally,
+the correlation between number of votes and appeal is 0.77 and 0.79 for activity ordering, without and with social signals,
+respectively. For the  xed ordering, these correlations are 0.45 and 0.34. Both cases are consistent with social in uence
+having no effect on this correlation (p-value 0.7 for Spearman rank test). Therefore, social in uence increases the ef ciency
+of peer recommendation by attaining similar levels of performance as without in uence, but with less user effort.
+In summary, social signals have three effects: i) directing attention toward stories prior users voted for, ii) increasing user
+preference for the stories whose full content users examine, and iii) increasing the ef ciency of peer recommendation by
+focusing user evaluation effort on higher-appeal stories.
+6. CONCLUSION
+Our experiments quanti ed how social signals affect behavior and outcomes of crowdsourcing tasks, speci cally, in peer
+recommendation. Similar to other studies, we observe the  irrational herding effect  (Lorenz et al., 2011; Muchnik et al.,
+10 T. Hogg and K. Lerman / Human Computation (2015) 1:1
+2013), wherein a large social signal indicating popularity causes the participants to partially rely on the signal, rather than
+personal judgement, to determine whether the content is interesting.
+The stronger the social signals, the more likely the story receives more votes than expected from its appeal and position in
+the user interface. However, social signal was less important than story content or position: compared to the variation in
+attention stories received due to their position, social signals accounted for half as much variance. While these differences
+did not signi cantly change the reproducibility of outcomes, as compared to the no in uence condition, they did produce
+more unequal outcomes. In addition, social signals have bene ts that were not previously recognized. By reducing the
+evaluation effort, social signals increase the ef ciency of peer recommendation.
+Social signals changed not only which stories received attention, but also how they were evaluated. We found that people
+tended to vote for stories that many others already found interesting. The larger the  peer pressure , i.e., the larger the
+value of the social signal, the more likely users were to vote for the story after seeing its full content (with a url click). In
+addition, users devoted less effort (both in time and number of url clicks) to the task when provided with social signals. This
+suggests users rely, to some extent, on the social signal, rather than personal judgement, to determine whether the content
+is interesting. This herding effect (Lorenz et al., 2011; Muchnik et al., 2013) increased the inequality of number of votes
+among stories, well beyond that expected from variation in the appeal of the content itself and that due to position bias.
+In spite of larger inequality, social in uence did not signi cantly affect performance of peer recommendation as measured by
+correlation between outcomes and underlying story appeal. Moreover, this was achieved with substantially less user effort,
+as measured by the number of url clicks and votes. Thus, it appears that by focusing user attention on more appealing stories,
+social in uence helps make the system as a whole more ef cient.
+Our experiments contrast with other examples of social in uence. For instance, Net ix, YouTube or Amazon users make
+implicit recommendations by selecting items for their own use, rather than identifying items they think others may  nd
+interesting. The web sites then recommend items based on what similar people liked (Koren et al., 2009). In this setting,
+which was experimentally investigated by the MusicLab study (Salganik et al., 2006; Salganik and Watts, 2008), social
+in uence plays a largely informational role (Krumme et al., 2012). Another example is content whose value to a person
+depends on its adoption by many others, in which case a signal of prior adoption directly affects a person s evaluation of
+the desirability of the content. An example of such  bandwagon effect  is watching a popular TV show in order to discuss
+it with others the next day. An additional issue is the different types of social in uence discussed in the introduction. In
+particular, social in uence can depend on the user s relationship with the person providing the signal, e.g., a friend instead
+of the general user community.
+The experimental design using MTurk can be extended to address additional questions on how people respond to signals of
+prior users  preferences. For instance, experiments could identify which aspect of social signals users primarily attend to
+(e.g., absolute value, rank or variation from average value for the stories), by manipulating the value of the signal shown to
+users. That is, unlike the experiments reported here, with this manipulation the number of votes shown for a story would
+not necessarily be the actual number of votes it received. This experimental approach could examine behavior with different
+types of stories. These could include topics with more subjective or variable opinions than the science stories we considered.
+The stories could also include a mix of professional and amateur authors. In this way, the experiment could vary the type of
+content to match different types of web sites. Results of such experiments could help develop a model of recommendation
+incorporating social signal (cf. (Stoddard, 2015; Krumme et al., 2012)), and thereby suggest how peer recommendation
+performance would react to various choices for which signals to show users, and when. The results of these experiments
+may help the development of algorithms to control collective performance (Abeliuk et al., 2015).
+Acknowledgments
+This work was supported in part by Army Research Of ce under contract W911NF-15-1-0142, by the Air Force Of ce
+for Scienti c Research under contract FA9550-10-1-0569, and by the Defense Advanced Research Projects Agency under
+contract W911NF-12-1-0034.
+7. REFERENCES
+Abeliuk, A, Berbeglia, G, Cebrian, M, and Van Hentenryck, P. (2015). The bene ts of social in uence in optimized cultural markets. PloS one 10, 4 (2015).
+Abu-Mostafa, Y. S, Magdon-Ismail, M, and Lin, H.-T. (2012). Learning From Data. AMLBook.
+Bohannon, J. (2011). Social Science for Pennies. Science 334 (2011), 307.
+T. Hogg and K. Lerman / Human Computation (2015) 1:1
+11
+Bond, R. M, Fariss, C. J, Jones, J. J, Kramer, A. D. I, Marlow, C, Settle, J. E, and Fowler, J. H. (2012). A 61-million-person experiment in social in uence and political
+mobilization. Nature 489, 7415 (13 Sept. 2012), 295 298.
+Buscher, G, Cutrell, E, and Morris, M. R. (2009). What do you see when you re sur ng?: using eye tracking to predict salient regions of web pages. In Proc. the 27th Int.
+Conf. on Human factors in computing systems. New York, NY, USA, 21 30.
+Craswell, N, Zoeter, O, Taylor, M, and Ramsey, B. (2008). An experimental comparison of click position-bias models. In Proceedings of the international conference on
+Web search and web data mining (WSDM  08). 87 94.
+Crump, M. J. C, McDonnell, J. V, and Gureckis, T. M. (2013). Evaluating Amazon s Mechanical Turk as a Tool for Experimental Behavioral Research. PLos ONE 8
+(2013), e57410.
+Herbst, D and Mas, A. (2015). Peer effects on worker output in the laboratory generalize to the  eld. Science 350 (2015), 545 549.
+Hogg, T and Lerman, K. (2012). Social Dynamics of Digg. EPJ Data Science 1, 5 (June 2012).
+Huberman, B. A. (1998). Strong Regularities in World Wide Web Sur ng. Science 280, 5360 (April 1998), 95 97.
+Katz, E and Lazarsfeld, P. F. (1955). Personal in uence: The part played by people in the  ow of mass communications. The Free Press, New York.
+Kittur, A, Nickerson, J. V, Bernstein, M, Gerber, E, Shaw, A, Zimmerman, J, Lease, M, and Horton, J. (2013). The Future of Crowd Work. In Proceedings of the 2013
+Conference on Computer Supported Cooperative Work (CSCW  13). ACM, New York, NY, USA, 1301 1318.
+Koren, Y, Bell, R, and Volinsky, C. (2009). Matrix Factorization Techniques for Recommender Systems. Computer 42, 8 (2009), 30 37.
+Krumme, C, Cebrian, M, Pickard, G, and Pentland, S. (2012). Quantifying Social In uence in an Online Cultural Market. PLoS ONE 7, 5 (2012), e33785.
+Lerman, K and Hogg, T. (2014). Leveraging Position Bias to Improve Peer Recommendation. PLoS ONE 9, 6 (2014), e98914.
+Lorenz, J, Rauhut, H, Schweitzer, F, and Helbing, D. (2011). How social in uence can undermine the wisdom of crowd effect. Proceedings of the National Academy of
+Sciences 108, 22 (2011), 9020 9025.
+Mason, W and Suri, S. (2012). Conducting behavioral research on Amazon s Mechanical Turk. Behavior Research Methods 44 (2012), 1 23.
+Muchnik, L, Aral, S, and Taylor, S. J. (2013). Social In uence Bias: A Randomized Experiment. Science 341, 6146 (2013), 647 651.
+Payne, S. L. (1951). The Art of Asking Questions. Princeton University Press.
+Ratkiewicz, J, Fortunato, S, Flammini, A, Menczer, F, and Vespignani, A. (2010). Characterizing and Modeling the Dynamics of Online Popularity. Physical Review
+Letters 105, 15 (2010), 158701+.
+Rogers, E. M. (2003). Diffusion of Innovations, 5th Edition (5th ed.). Free Press.
+Salganik, M. J, Dodds, P. S, and Watts, D. J. (2006). Experimental Study of Inequality and Unpredictability in an Arti cial Cultural Market. Science 311, 5762 (2006),
+854 856.
+Salganik, M. J and Watts, D. J. (2008). Leading the Herd Astray: An Experimental Study of Self-ful lling Prophecies in an Arti cial Cultural Market. Social Psychology
+Quarterly 71, 4 (1 Dec. 2008), 338 355.
+Salganik, M. J and Watts, D. J. (2009). Web-Based Experiments for the Study of Collective Social Dynamics in Cultural Markets. Topics in Cognitive Science 1, 3 (2009),
+439 468.
+Stoddard, G. (2015). Popularity Dynamics and Intrinsic Quality in Reddit and Hacker News. In Ninth Intl. AAAI Conf. of Web and Social Media (ICWSM 2015).
+Wang, D, Song, C, and Barab si, A.-L. (2013). Quantifying Long-Term Scienti c Impact. Science 342, 6154 (2013), 127 132.
+Wang, T, Wang, D, and Wang, F. (2014). Quantifying Herding Effects in Crowd Wisdom. In Proceedings of the 20th ACM SIGKDD International Conference on
+Knowledge Discovery and Data Mining (KDD  14). ACM, New York, NY, USA, 1087 1096.
+A. USER RECRUITMENT AND VETTING
+We published experiments as tasks on Amazon Mechanical Turk to recruit participants for the study from a large pool of
+workers. Workers who accepted the task were instructed as follows:  We are conducting a study of the role of social media
+in promoting science. Please click  Start  button and recommend articles from the list below that you think report important
+scienti c topics. When you  nish, you will be asked a few questions about the articles you recommended. (Please remember,
+once you  nish the job, the system won t allow you to do it again).  Workers were paid $0.12 for completing the task and
+each person was allowed to participate in the experiment only once. The pay rate was comparable to similar tasks in other
+research studies (Kittur et al., 2013; Mason and Suri, 2012) and was set low to discourage gaming Mturk. University of
+Southern California s Institutional Review Board (IRB) reviewed the experiment design and designated it as  non-human
+subjects research. 
+Participants were shown a list of one hundred science stories, drawn from the Science section of the New York Times and
+science-related press releases from major universities (sciencenewsdaily.com), which included titles and summaries. The list
+was suf ciently long to require participants to scroll to see all stories. They could choose to recommend a story based on the
+short description or click on the link to view the full story. We recorded all actions, including recommendations and URL
+clicks, and the position of all stories each participant saw. After a vote, the button changed color to indicate the user voted
+12 T. Hogg and K. Lerman / Human Computation (2015) 1:1
+Figure 7. Ratio of actual to expected votes for stories shown with each quartile of the social in uence signal to the  rst
+100 users and the rest of the users in each experiment. Error bars indicate 95% con dence intervals of the votes based
+on the number of instances in each quartile. By comparison, Fig. 6 shows the same values but aggregated over all users.
+for that story. Participants were not allowed to undo their votes: subsequent clicks of the button brought up a message box
+reminding them to vote for a story only once. Although participants were not told ahead of time how many stories to vote
+for, if they tried to  nish the task before making  ve actions (either votes or URL clicks), a message box prompted them to
+recommend  ve stories.
+Upon  nishing the task, participants were asked to name two important themes in the stories they voted for and solve a
+simple arithmetic question. Only those who correctly answered the arithmetic question were considered to have completed
+the task and paid. Similar to earlier experiments (Lerman and Hogg, 2014), we used a multi-step strategy to reduce spam
+and to weed out unmotivated workers. First, we selected workers using quali cations provided by Mturk: they lived in the
+US, had completed at least 500 tasks on Mturk, and had a 90% or above approval rate. In addition, we ignored actions by
+participants who recommended more than 20 stories. Their votes did not affect the social signals or the order of stories.
+Table 1 summarizes the experiments, showing the number of participants (i.e., users), the number of votes, and url clicks for
+each condition. The random ordering policy is the control condition used to identify story appeal and the effect of position
+bias.
+Table 1. Summary of experiments. The history-dependent ordering (activity) and the social in uence treatments each
+have two independent experiments.
+ordering
+random
+ xed
+activity
+users
+199
+217
+votes
+1873
+1978
+url clicks
+164
+424
+286 & 193
+2586 & 1764
+246 & 247
+with social signal
+ xed
+activity
+TOTAL
+192 & 211
+200 & 210
+1572 & 2057
+1892 & 1959
+125 & 135
+113 & 144
+1708
+15681
+1598
+B. RESPONSE TO SOCIAL SIGNALS
+As experiments progress, the social signal values get larger and distributed more broadly. If users respond primarily to the
+magnitude of the signal, the effect of social signal would tend to become larger relative to other factors, e.g., position bias, as
+stories accumulate votes. To test this possibility, we compare response to the signal for the  rst 100 users in each experiment
+with those of the rest of the users. Speci cally, Fig. 7 shows the response measured by the ratio of actual to expected votes for
+each quartile of signal value occurring in our experiments. Early users encounter relatively small signals, in all cases within
+the bottom two quartiles of signal values appearing in the experiments. Nevertheless, such users have a similar change in
+T. Hogg and K. Lerman / Human Computation (2015) 1:1
+13
+response between the highest and lowest signals they encounter as shown by subsequent users who encounter the full range
+of signal values.
+C. MODEL EVALUATIONS
+To evaluate the model described in Section 4.1, we use it to predict the number of votes stories receive under different
+ordering policies in the no-in uence condition experiments. Speci cally, we use all no-in uence experiments other than
+those with the random ordering policy (which were used to estimate model parameters). This model test data contains votes
+by 1319 users (Lerman and Hogg, 2014).
+In addition to the  xed and activity orderings used in the social in uence experiments, this test data includes the remaining
+orderings from the prior experiments (Lerman and Hogg, 2014). The popularity ordering presented stories in decreasing
+order of the number of recommendations they had received. Popularity-based ordering is widely used by web sites to
+highlight interesting content. This ordering produced highly variable and unpredictable outcomes (Lerman and Hogg, 2014),
+because it tended to focus user attention on the same set of highly recommended stories, which became even more popular.
+The reverse policy inverted the order used with the  xed policy. For each of activity and popularity orderings, we conducted
+two  parallel world  experiments.
+We compare predictions of the model with three alternative baselines: APPEAL, POSITION BIAS and RANDOM.
+In the
+APPEAL model, position bias plays no role so users recommend stories based solely on how appealing they are. That is, the
+probability to recommend a story is independent of the position where that story is shown to a user, so Eq. ((1)) becomes
+ (s, p) = V rs, where V is a constant, equal to (cid:104)vp(cid:105), the average value of vp over all positions.
+In the POSITION BIAS model, users recommend stories based solely on their position, so  (s, p) = Rvp where R is a constant,
+equal to (cid:104)rs(cid:105), the average value of rs over all stories.
+In the RANDOM model, each story is equally likely to be recommended:  (s, p) is a constant value, independent of story s
+and the position p that story is shown to a user.
+These alternative models allow us to evaluate the relative importance of story appeal and position bias in producing the
+behavior observed in the experiments.
+Aggregate Response One measure of the model is how well it predicts the aggregate response, i.e., the total number
+of stories recommended by users under different ordering policies. We use relative error, the difference between actual
+and predicted recommendations, divided by the predicted recommendations, to measure prediction accuracy. The model
+overestimates the total response by about 10%, with somewhat larger error for the popularity ordering than for the others.
+Table 2. Relative error of the predicted number of votes.
+relative error
+ordering
+ xed
+reverse
+ 7% &  5%
+activity
+popularity  13% &  11%
+ 7%
+ 2%
+Response to Stories Fig. 8 compares predicted and actual number of votes on all stories under different ordering policies.
+When different users see story s at positions p1, p2, . . ., the expected number of votes, i.e., the model s prediction, is E(s) =
+ k  (s, pk) with  (s, p) given by Eq. ((1)).
+Table 3 quanti es the prediction accuracy for each ordering policy. This shows the model predicts the rank ordering of the
+number of recommendations fairly well. This could be useful for producing a ranked list of items, e.g.,  best sellers  or  top
+hits , rather than predicting their exact popularity. In addition, Table 3 shows the parallel worlds for the history-dependent
+orderings have consistent prediction errors.
+In terms of the quantitative accuracy, predictions are usually within about 30% of the observed values, with some bias toward
+predictions above the actual values. The errors are similar for all the interfaces, indicating the model can compare outcomes
+irrespective of presentation order.
+14 T. Hogg and K. Lerman / Human Computation (2015) 1:1
+Figure 8. Prediction vs. actual number of votes for the stories for each ordering policy. The line indicates where the
+predicted and actual numbers are the same.
+Table 3. Prediction accuracy of the full model. The second column gives the rank correlation between actual and
+predicted votes. The third column is the mean value of the relative error, i.e., absolute value of difference between actual
+and predicted votes, divided by the prediction. The last column is the fraction of stories whose votes are within two
+standard deviations of the predicted value. For comparison, if votes were independent, the central limit theorem gives
+95% for this fraction, which is close to the observed fractions.
+ordering
+ xed
+reverse
+activity
+popularity
+rank correlation
+relative error
+fraction
+0.85
+0.81
+0.40
+0.31
+0.90
+0.95
+0.85 & 0.86
+0.89 & 0.90
+0.25 & 0.22
+0.27 & 0.29
+0.98 & 0.98
+0.95 & 0.91
+number of standard deviations between the actual and expected values, i.e., |A(s)  E(s)|/(cid:112)V (s) for story s, where V (s) is
+Even if the model s predictions were accurate on average, there would be statistical errors. A quantitative measure is the
+the variance in number of recommendations predicted by the model. The variance V (s) arises from variations in votes given
+the values of  (s, ps), as well as from variation in the rs and vp values, indicated by the error bars in Fig. 2. Variations in
+rs and vp values are correlated, precluding evaluating V (s) by assuming independent variations. Instead we created 1000
+samples from an approximation to the joint distribution of these values, with each sample a set of rs, vp values for all stories
+and positions, respectively. Speci cally, the full distribution is proportional to the likelihood of the training set exp(Lfull).
+Our approximation is the multivariate normal distribution matching the quadratic expansion of Lfull around its maximum.
+This captures the correlation among the values and closely matches the full distribution around its maximum, i.e., for values
+contributing to most of the probability. We simulated a set of votes on the stories for each sample. For story s, the average
+number of votes in these samples is close to E(s) and their variance gives our estimate of V (s). Table 3 shows that over
+90% of stories are within two standard deviations of the prediction. Thus the model not only predicts the outcomes, but the
+variance from the model indicates the likely accuracy of the predictions.
+For comparison, Table 4 shows the relative errors for the three baseline models: APPEAL, POSITION BIAS and RANDOM. The
+two baselines that ignore position bias give larger errors, whereas the model accounting only for position bias gives similar
+error. This indicates position bias is a major contributor to the variation in number of recommendations stories receive.
+Which Stories Users Vote For Our model assumes a homogeneous user population and that users consider stories in-
+dependently. As discussed above, this simpli cation allows predicting how many votes a story receives, but prevents the
+Table 4. Mean value of relative error in popularity predicted using baseline models.
+T. Hogg and K. Lerman / Human Computation (2015) 1:1
+15
+model
+ordering
+ xed
+reverse
+activity
+popularity
+APPEAL
+POSITION BIAS
+RANDOM
+0.59
+0.55
+0.36
+0.40
+0.61
+0.55
+0.30 & 0.27
+0.47 & 0.45
+0.27 & 0.28
+0.24 & 0.23
+0.39 & 0.39
+0.61 & 0.62
+Table 5. Median fraction of user votes among the top predicted stories for each model.
+model
+FULL
+APPEAL
+POSITION BIAS
+RANDOM
+median
+0.27
+0.18
+0.27
+0.07
+95% con dence
+interval
+0.25
+0.17
+0.25
+0.07
+0.28
+0.20
+0.29
+0.08
+model from predicting the number of votes a speci c user will make. In particular, user choices differ signi cantly from
+independence since we prompt users to make at least 5 votes if they make too few and we restrict consideration to users with
+at most 20 votes (Lerman and Hogg, 2014).
+Nevertheless, the model does indicate which stories a user votes for when he or she makes a speci ed number of votes, m, for
+a speci c story ordering. Speci cally, Eq. ((1)) gives the probability for voting for each story. A simple measure of prediction
+quality is the fraction f of the user s m actual votes that are among m stories with the largest predicted vote probabilities. In
+(cid:1) ways to pick m stories from among the n = 100 stories in our experiments is equally
+the RANDOM model, each of the(cid:0)n
+m
+likely. The probability that exactly k of these choices match the user s actual m votes is
+(cid:19)(cid:18)n  m
+(cid:18)m
+(cid:19)
+(cid:18)n
+(cid:19)
+k
+m  k
+/
+m
+(4)
+Thus the expected value of the fraction f in the RANDOM model is m/n.
+Table 5 shows the median value of f for the model test set. Thus, accounting for story appeal to the user community identi es
+considerably more of users  votes than random-selection, and additionally accounting for position of stories shown to each
+user improves this prediction.

@@ -1,0 +1,851 @@
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+1
+The Spatial Ecology of War and Peace
+Weisi Guo1,2*, Xueke Lu2, Guillem Mosquera Do nate3, Samuel Johnson3
+7
+1
+0
+2
+ 
+n
+u
+J
+ 
+6
+2
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+3
+v
+3
+9
+6
+1
+0
+.
+4
+0
+6
+1
+:
+v
+i
+X
+r
+a
+Abstract Human  ourishing is often severely limited by per-
+sistent violence. Quantitative con ict research has found common
+temporal [1], [2] and other statistical patterns in warfare [3],
+but very little is understood about its general spatial patterns.
+While the importance of topology in geostrategy has long been
+recognized [4], [5], the role of spatial patterns in determining
+a region s vulnerability to con ict is not well understood. Here,
+we use network science to show that global patterns in war and
+peace are closely related to the relative position of cities in a
+global interaction network. We  nd that regions with between-
+ness centrality above a certain threshold are often engulfed in
+entrenched con ict, while a high degree correlates with peace.
+In fact, betweenness accounts for over 80% of the variance in
+number of attacks. This metric is also a good predictor of the
+distance to a con ict zone and can estimate the risk of con ict.
+We conjecture that a high betweenness identi es areas with
+fuzzy cultural boundaries [6], whereas high degree cities are in
+cores where peace is more easily maintained. This is supported
+by a simple agent-based model in which cities in uence their
+neighbours, which exhibits the same threshold behaviour with
+betweenness as seen in con ict data. These  ndings not only shed
+new light on the causes of violence, but could be used to estimate
+the risk associated with actions such as the merging of cities,
+construction of transportation infrastructure, or interventions in
+trade or migration patterns.
+I. INTRODUCTION
+Con ict has strong spatial components that are not fully
+understood and cannot be explained by current modeling tech-
+niques. Whilst war-torn countries face common socioeconomic
+and geopolitical challenges, different regions experiences dif-
+ferent orders of magnitude in violence. This paper presents
+an elegant network science framework for understanding the
+role of global spatial interactions on local violence intensity.
+Throughout history, most violent incidents have been between
+culturally or ethnically distinct groups [7], [8]. Whilst cultural
+diversity does not in itself cause violence, it can exasperate
+existing vulnerabilities, especially when there are neighbour-
+ing forces with competing interests [9]. In particular, con icts
+have been observed to occur at fuzzy cultural boundaries
+that nest between coherent cultural groups [6], [10] [12].
+Whilst data can be collected on ethnolinguistic and cultural
+fractionalization [13], understanding the interaction forces that
+support fuzzy cultural boundaries can provide mechanisms to
+mitigate violence in the long term. One way of collecting data
+on cultural communities is through social interaction networks
+[14], and interaction networks between communities have been
+used to model the projection of cultural in uence/threat [15].
+However, although it is known that physical geography under-
+pins community formation and in uence/threat projection in
+1The Alan Turing Institute, United Kingdom. 2School of Engineering,
+University of Warwick, United Kingdom. 3Warwick Mathematics Institute and
+Centre for Complexity Science, University of Warwick, United Kingdom.
+Fig. 1. Complex network of cities and cultural
+interaction links. a-
+i) Cities  spatial location is used to form an interaction network via the
+gravity law and a hard-disk constraint - the links enable the  ow of cultural
+in uence, a-ii) Top-down network model can detect high betweenness cities
+using shortest-path energy propagation, and a-iii) Bottom-up agent simulations
+can reveal fuzzy culture boundary cities and cohesive culture cores. The high
+betweenness metric relates to fuzzy culture and high degree relates to cohesive
+cultured cities. b) Global interaction network of cities v   V (colour indicates
+country and size indicates population). c) Example of high degree cities (size
+  D(v)) in Europe, which are far from any major con icts. d) Examples of
+high betweenness cities (size   B(v)) in the Middle East, which are close
+to major con icts and international terrorist groups.
+con icts [4], [14], there is no universal model able to quantify
+the role of spatial patterns in war and peace.
+In this study, we consider both non-state terrorism and
+conventional warfare from 2002 to 2014, for which there is
+spatially accurate reporting of violent events. We use a simple
+connectivity law to connect neighbouring cities as a proxy for
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+2
+multiplexed interactions. We go on to show that the spatial
+network of cities is closely related to violence, and propose a
+simple model to account for the phenomenon.
+II. RESULTS
+Using the spatial data from city locations worldwide, we
+infer a global
+interaction network via the gravity law, as
+shown in Fig. 1a-i (see Methods-B). This top-down network
+abstraction uses shortest-path energy propagation (Fig. 1a-ii
+  see Methods-C) to mirror the complex culture interactions
+simulated by the bottom-up agent-based model (Fig. 1a-iii
+  see Methods-D). We use two standard network measures:
+degree D (number of neighbouring connected cities) and
+betweenness B (number of shortest paths which pass through
+the city in question).
+We  nd a robust empirical relationship between con ict
+and network measures: high degree cities are peaceful and
+far from the nearest con ict zones, whereas high betweenness
+cities are often engulfed in persistent violence. Strikingly, there
+is a threshold effect such that only cities above a certain
+betweenness are at risk. These results seem consistent with
+the interpretation that dense cores of high degree nodes in the
+network correspond to culturally cohesive regions, while high
+betweenness nodes (which usually link such cores) signify
+fuzzy cultural boundaries associated with violence. Examples
+of the highest degree cities are in Western Europe and are
+far from the nearest con ict zones (Fig. 1c). Examples of the
+highest betweenness cities are in the Middle East, and have
+experienced high levels of terrorism and conventional violence
+(Fig. 1d). A simple agent-based model of cities which can
+adopt different states (cultures) and exert an in uence on the
+states of their neighbours reinforces this view: a similar pattern
+arises, such that nodes in the cores maintain their states while
+those above a threshold of betweenness tend to  ip at high
+frequency from state to state.
+A. Top-Down Network Results
+Con icts often occur across regions which include several
+cities. We therefore group cities into small zones z, each
+covering 0.5% of the global land surface area (500km radius).
+Fig. 2 shows scatter plots of the number of terrorist attacks
+A(z) against the network metrics, with panel plots for both
+the probability of being a major con ict zone, and the distance
+to the nearest major con ict zone. A major con ict zone
+is one that experiences persistent con ict, which is de ned
+as having suffered over 100 attacks between 2002 and 2014
+(equivalent to at least 78% of the years being under attack
+  see Supplementary Information (SI)). Isolated high pro le
+terrorist attacks (e.g. 9/11 in New York and 7/7 in London)
+do not necessarily indicate major con ict zones. This is
+because the death-toll variance for individual attacks depends
+on certain on-the-day factors, which do not re ect the general
+level of threat faced by a region (Fig. 2k).
+1) Degree and Betweenness Centrality: The results for de-
+gree and betweenness centrality indicate a threshold behaviour,
+whereby if the zone has high degree (D(z) > 104 links   see
+Fig. 2a-c) or low betweenness (B(z) < 107 shortest paths
+  see Fig. 2d-f), then there are very few attacks (<1/year).
+Conversely, if the zone has low degree (D(z) < 104) or high
+betweenness (B(z) > 107), then there is a high probability
+that the zones will experience major con ict (see Fig. 2a-
+f). We also show that the average distance from any zone to
+the nearest top-100 major con ict zone rises with increasing
+degree. High degree zones are at least 1200 km away from
+the nearest con ict zone, whereas high betweenness zones are
+usually less than 150 km away.
+2) Strategic Centrality: In order to further re ne the sta-
+tistical prediction of con ict, we de ne the strategic cen-
+trality of a zone z as S(z) = B(z)
+D(z), which normalizes the
+betweenness of a city by its number of neighbours. It captures
+the path importance of a city, since a low degree means
+fewer alternative paths. The results indicate that zones with a
+high strategic centrality suffer both a high number of attacks
+and a dispassionately high mortality rate (see Fig. 2g-i).
+The relationship again displays a threshold effect, which can
+nevertheless be approximated quite well with a power law
+for the purpose of prediction. The best- t power law for the
+number of attacks A  with respect to the strategic centrality
+of zones is given by log10(A (z)) (cid:39) a log10 S(z) + b, where
+the parameters are a = 4 and b =  9. The corresponding
+adjusted R-squared value is 0.82 for the top 250 populated
+zones. Different logistic regression algorithms can increase the
+R-squared value to 0.92, but it is worth noting that the linear
+regression is only to serve as a demonstration of predictive
+powers and not as an essential element of the network model
+itself. In general, the results show that strategic centrality is a
+better predictor of con ict than either degree or betweenness.
+A low strategic centrality zone (S(z) < 104) will experience
+almost no attacks. On the other hand, high strategic centrality
+zones (S(z) > 104) are on average less than 50 km away from
+the nearest major con ict zone. A summary of the  ndings
+can be found in the table in Fig. 2l. To demonstrate the wider
+applicability of the approach to conventional con icts (approx.
+150 over the time period compared to 30,000 terrorist and
+insurgency attacks), Fig. 2j shows conventional battle death-
+toll vs. strategic centrality, demonstrating a similar threshold
+behaviour.
+To con rm that these results are not spurious, we perform
+two analyses (see SI). First, we show that similar statistical
+results to Fig. 2 for different zone sizes and  ow weights,
+demonstrating model robustness. Second, we show that the
+network centrality metrics presented here are not proxies
+of key geopolitical or socioeconomic metrics. The results
+indicate that strategic centrality is a far superior predictor
+of con ict (adjusted R2 = 0.51) than any established geo-
+political or socioeconomic metric considered here (adjusted
+R2 = 0.00 0.13) and strategic centrality itself is not related to
+any of these indicators (adjusted R2 = 0.01 0.30). The results
+show that zones and their cities that are simply near the equator
+or between densely populated sub-continents do not always
+have a high betweenness or strategic centrality. Simpli ed
+country or county/state connection maps are therefore not as
+informative as city level network descriptions. The metrics
+developed in this paper cannot be obtained without considering
+the city network, and do not appear to be direct proxies for
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+3
+Fig. 2. Scatter plot of number of attacks versus the network metrics of the top populated zones z; with smaller panel plots on the probability of
+suffering a major attack and the distance distribution to the nearest major con ict site. Subplots are divided in accordance to the top 250, 500, and
+1000 populated zones (representing 15%, 27%, and 45% of the total modelled population). The colour gradient of the scatter plots indicate the mortality
+rate, with darker spots indicating a disproportionately higher mortality rate. Subplots a)-c) show the threshold relationship for the degree of a zone and the
+number of attacks   high degree (D(z) > 104) experiences almost no attacks and is > 1200 km away from the nearest major con ict. Subplots d)-f) show
+the threshold relationship for the betweenness of a zone   high betweenness (B(z) > 107) has a high probability of major con ict (P (A(z) > 100) >0.7),
+and is close to existing con ict zones (<150 km). Combining degree and betweenness, we propose strategic centrality S(z) = B(z)/D(z). Subplots g)-i)
+show the relationship between the strategic centrality and the number of attacks. The results indicate a strong correlation (R2 <0.82). A zone with high
+strategic centrality has a high probability of being in major con ict (P (A(z) > 100) >0.7) and is close to existing con ict zones (<50 km). Subplot j) shows
+conventional battle death-toll vs. strategic centrality, demonstrating a similar threshold behaviour. Mortality rates can be found in subplot k) and a summary
+of the  ndings can be found in subplot l).
+established socioeconomic or geo-political metrics.
+3) Effect of Cities Merging or Fragmenting: We further
+expand the analysis by considering how different aspects
+of city development would affect strategic centrality. We
+consider a high betweenness city that connects M cohesive
+city cores, each with N cities (see Methods-C and Fig. 5).
+Its strategic centrality is therefore proportional to (M   1)N.
+If the high betweenness city fragments from 1 to K smaller
+cities, its strategic centrality S(v) decreases in proportion to
+(M   1)N/2K, suggesting that the emergence of new cities
+around existing high betweenness cities, with connecting links
+to the cohesive cores, would effectively reduce vulnerability
+to con ict.
+B. Bottom-Up Agent-Based Simulation Results
+can determine to a large extent whether a city will converge
+in some way with its neighbours, or  nd itself torn between
+competing in uences. In order to study this mechanism, we
+propose a simple bottom-up agent-based model (ABM). This
+is an extension of a model previously used to show how
+governments can in uence each other with a view to achieving
+global cooperation on issues such as climate change [16]. We
+assume that each city is characterized at each moment by a
+ state , which could represent the reigning government or the
+dominant culture. Cities are connected by a spatial network,
+as in the empirical case above, and each city has the capacity
+to in uence the states of its neighbours. This in uence, which
+might represent cultural diffusion or military threat, is such
+that a city will tend to make its neighbours adopt the same
+state as itself.
+The empirical results described above suggest that cities
+exert an in uence on their neighbours, and that geography
+Each city s capacity Ci to project in uence scales linearly
+with its population and inversely with the number of neigh-
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+4
+Fig. 3. Agent-Based-Model (ABM) of cities that culturally in uence each
+other through the spatial network. In subplot a), we illustrate how two
+cities with culture A, and one city with culture C, exert a strong in uence on
+an in-between city with culture B; whilst that city exert weaker in uences in
+return. In subplot b), we show Monte Carlo simulation results for the agent-
+based model (ABM), where average  ip rate is plotted against betweenness;
+we can observe that many cities above a threshold of betweenness have a
+high  ip rate. In subplot c), we show that the initial conditions assign each
+city a random culture; and, in subplot d), cohesive culture cores are formed
+with fuzzy cultural boundaries (high culture  ip rate).
+bours currently in different states to itself (see Fig. 3a). At
+each time step of the simulation, cities update their states
+according to the sum in uence towards each possible state.
+This model is similar to others used to study social interaction,
+such as Axelrod s model for the dissemination of culture [17],
+or the well-known voter model [18]. The main difference is
+that in our model each agent must divide its in uence among
+all neighbours not in the same state, which is more realistic
+for the case of interacting cities.
+At the beginning of the simulation, each city is assigned
+a random state (see Fig. 3c). Over time their states are
+updated under each other s in uence until the whole network
+converges to quasi-stationarity, such that only a few states
+exist, each occupying a culturally cohesive core of nodes (see
+Fig. 3d). Such spatial patterns have been observed in empirical
+studies of human culture [14]. In between the aforementioned
+cohesive cores there exist isolated cities that constantly  ip
+between different states, akin to fuzzy cultural boundaries (see
+red boxes in Fig. 3d). A city s  ip rate (i.e. the number of
+state changes per simulation iteration) can be interpreted as
+the magnitude of the tension attempting to change a city s
+culture or government. We  nd that the  ip rate correlates
+strongly with betweenness B(v). Moreover, the modularity (a
+measure of how well-de ned a network s community structure
+is) associated with the clusters of equal state cities increases
+rapidly during the initial transient period and then settles at
+Fig. 4. High population zones that are either in existing persistent violence
+(red labels) or are vulnerable to future violence (yellow labels). In sub-plot
+a), we identify outliers zones that have a low number of attacks compared
+with peer zones with a similar level of strategic centrality. In the table, the
+current number of attacks accumulated in each zone A(z) between 2002 to
+2014 is presented along side the predicted number of attacks A (z). Three
+major areas of vulnerability have been identi ed: b) Saudi Arabia and Iran,
+c) southwestern China, and d) Central Americas.
+close to unity, indicating that the model detects the natural
+communities in the network. This is consistent with other
+dynamical models which have been found to re ect com-
+munity structure in the same way [19], [20]. Despite this
+model s simplicity, the fact that it displays the same threshold
+relationship between activity and betweenness as we have
+observed empirically supports the conjecture that it is the
+formation of fuzzy cultural boundaries between cohesive cores
+which mediates human con ict.
+C. Predictions
+One application of the model is to identify high risk areas
+that are currently relatively peaceful. Fig. 4 highlights cities
+whose strategic centrality predicts a signi cantly higher num-
+ber of terrorist attacks than currently experienced as of 2015
+(Fig. 4a). Two major geographic areas have been identi ed
+(yellow labels): i) Saudi Arabia, Iran, Turkey (Fig. 4b), and
+ii) southwestern China (Fig. 4c). Of particular interest is Saudi
+Arabia, which is surrounded by several major existing con ict
+zones, i.e. Yemen, Syria and Iraq (red labels). Fig. 4d shows
+that the prediction algorithm is also accurate for the American
+continent, where persistent violence between international
+criminal organizations dominates the genre of con ict. Island
+networks with a violent history such as Northern Ireland and
+the Southern Philippines can be detected as high strategic
+centrality by analyzing the surrounding islands as isolated
+interconnected sub-networks. Using this method of prediction,
+74% of the terrorist attacks in 2016 occurred within 50km of
+the high betweenness cities.
+D. Discussion
+Tolstoy once remarked that  individuals struggle between
+necessity and free-will, and the sum of individuals amounts
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+5
+to a general collective behaviour, which can explain war and
+peace.  We have shown that
+the collective behaviour can
+be modeled as as global spatial
+interaction of our cities,
+and is statistically related to human violence. In particular,
+the bottlenecks of a global network of cities often display
+persistent con ict. We conjecture that this empirical pattern
+ensues from the fact that such bottlenecks often correspond
+to the  fuzzy cultural boundaries  identi ed in the con ict
+literature as risk factors. To test this hypothesis we propose a
+simple agent-based model of cities which can in uence each
+other to adopt the same state as themselves (where states might
+represent the particular culture or government of the city). And
+indeed, in this model the cities in the cohesive cores of the
+network settle down to a single state, whereas the bottlenecks
+continue  ipping inde nitely between states. In fact, the  ip-
+rate exhibits the same threshold relationship to betweenness
+centrality as the number of attacks do in the con ict data.
+Together, these results support the view that human vio-
+lence is related to fuzzy cultural boundaries, which in turn
+re ect structural features of a network of interactions between
+populations. This is in keeping with previous  ndings: on the
+one hand, with the notion that fuzzy cultural boundaries cause
+ethno/cultural con icts [6] (see Fig. 2a-i); and on the other,
+with the fact that conventional battles take place in central
+locations as in Mackinder s The Pivot of History geopolitical
+theory [4], [5], [21] (see Fig. 2j). However, while our agent-
+based model suggests that cultural interaction of some kind
+is the most likely mechanism behind the empirical  ndings,
+other potential causal explanations should not be dismissed
+out of hand.
+Whilst it is true that the distribution of cities in any given
+region might be the result of complex historical dynamics, we
+should mention that the spatial bottlenecks are the result of
+intricate interactions among the whole connected world (i.e.
+the model loses predictive power when only a subset of nodes
+is considered). The statistical accuracy of our spatial network
+model does not in itself reveal causality, even if it serves
+as an elegant way of capturing the effects of such complex
+historical dynamics. However, unless history has caused both
+ancient and new cities to form in a particular spatial pattern
+leading to the observed close relationship between a city
+network and violence, it seems more likely that the simple
+cultural interaction model presented in the paper does indeed
+describe at least one dominant mechanism at work. But other
+mechanisms linking civilization-level network structure and
+ground-level human interactions should also be explored.
+transport
+As urban population grows,
+the emergence of new
+links, and other connected infrastructures
+cities,
+and international
+trade networks [22] as interdependent
+multiplexed networks presents humanity with an opportunity
+to improve topological resilience. Dynamic effects such as
+mass human migration as a response to war and climate
+change [23] also deserve attention, and we encourage others
+to investigate more deeply the role of spatial networks in the
+hope of informing policies and interacting with the politics
+of anthropocentric resilience.
+REFERENCES
+[1] D. Zhang, P. Brecke, H. Lee, Y. He, and J. Zhang,  Global climate
+change, war, and population decline in recent human history,  Proceed-
+ings National Academy of Sciences (PNAS), 2007.
+[2] S. Hsiang, K. Meng, and M. Cane,  Civil con icts are associated with
+the global climate,  Nature, 2011.
+[3] J. C. Bohorquez, S. Gourley, A. R. Dixon, M. Spagat, and N. F. Johnson,
+ Common ecology quanti es human insurgency,  Nature, vol. 462, Dec.
+2009.
+[4] R. Kaplan, The Revenge of Geography: What the Map Tells Us about
+Random House
+Coming Con icts and the Battle Against Fate.
+Publishing Group, 2012.
+[5] B. Blouet, Global Geostrategy. Taylor and Francis, 2005.
+[6] M. Lim, R. Metzler, and Y. Bar-Yam,  Global pattern formation and
+ethnic/cultural violence,  Science, vol. 317, Sep. 2007.
+[7] F. Denton and W. Phillips,  Some Patterns in the History of Violence, 
+The Journal of Con ict Resolution, 1968.
+[8] D. Horowitz, Ethnic Groups in Con ict. University of California Press,
+2000.
+[9] J. Esteban, L. Mayoral, and D. Ray,  Ethnicity and Con ict: Theory and
+Facts,  Science, vol. 336, 2012.
+[10] J. Legewie and M. Schaeffer,  Contested Boundaries: Explaining Where
+Ethnoracial Diversity Provokes Neighborhood Con ict,  American Jour-
+nal of Sociology, vol. 122, 2016.
+[11] J. Tullberg and B. Tullberg,  Separation or unity? A model for solving
+ethnic con icts,  Politics and Life Sciences, vol. 16, 1997.
+[12] C. Kaufmann,  When all else Fails: Ethnic Population Transfers and
+Partitions in Twentieth Century,  International Security, vol. 23, 1998.
+[13] A. Alesina, A. Devleeschauwer, W. Easterly, S. Kurlat, and R. Wacziarg,
+ Fractionalization,  Journal of Economic Growth, vol. 8, 2003.
+[14] V. Blondel, J. Guillaume, R. Lambiotte, and E. Lefebvre,  Fast un-
+folding of communities in large networks,  IOP Journal of Statistical
+Mechanics: Theory and Experiment, 2008.
+[15] P. Baudains and A. Wilson,  Con ict Modelling: Spatial Interaction as
+Threat,  Global Dynamics: Approaches from Complexity Science, 2016.
+[16] S. Johnson,  Escaping the tragedy of the commons through targeted
+punishment,  Royal Society Open Science, 2015.
+[17] R. Axelrod,  The dissemination of culture a model with local conver-
+gence and global polarization,  Journal of con ict resolution, vol. 41,
+no. 2, pp. 203 226, 1997.
+[18] T. M. Liggett, Stochastic interacting systems: contact, voter and exclu-
+sion processes.
+springer science & Business Media, 2013, vol. 324.
+[19] A. Arenas and A. Diaz-Guilera,  Synchronization and modularity in
+complex networks,  The European Physical Journal Special Topics, vol.
+143, no. 1, pp. 19 25, 2007.
+[20] S. Boccaletti, M. Ivanchenko, V. Latora, A. Pluchino, and A. Rapis-
+arda,  Detecting complex network modularity by dynamical clustering, 
+Physical Review E, vol. 75, no. 4, p. 045102, 2007.
+[21] P. Venier,  The geographical pivot of history and early twentieth century
+geopolitical culture,  The Geographical Journal, vol. 170, 2004.
+[22] S. Cranmer, E. Menninga, and P. Mucha,  Kantian fractionalization
+predicts the con ict propensity of the international system,  Proceedings
+of the National Academy of Sciences (PNAS), 2015.
+[23] I. Linkov and et al.,  Changing the resilience paradigm,  Nature Climate
+Change, vol. 4, 2014.
+[24] L. F. Richardson,  Frequency of Occurrence of Wars and other Fatal
+Quarrels,  Nature, vol. 148, 1941.
+[25] E. Dewey,  A study of possible cyclic patterns in human aggressiveness
+leading to national and international con icts,  Journal of Interdisci-
+plinary Cycle Research, 1971.
+[26] A. Zammit-Mangion, M. Dewar, V. Kadirkamanathan, and G. San-
+guinetti,  Point Process Modeling of the Afghan War Diary,  Proceed-
+ings of the National Academy of Sciences (PNAS), 2012.
+[27] P. Turchin, T. Currie, E. Turner, and S. Gavrilets,  War, space, and the
+evolution of old world complex societies,  Proceedings of the National
+Academy of Sciences (PNAS), 2013.
+[28] A. G. Wilson,  Boltzmann, Lotka and Volterra and Spatial Structural
+Evolution: an Integrated Methodology for Some Dynamical Systems, 
+Royal Society Interface, 2008.
+[29] P. Baudains, S. Zamazalova, M. Altaweel, and A. Wilson,  Modeling
+Strategic Decisions in the Formation of the Early Neo-Assyrian Empire, 
+J. of Quantitative History and Cultural Evolution, 2015.
+[30] NGI. (2007) National geospatial-intelligence agency: Cities location and
+population data.
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+6
+[31] GTD,
+ Global Terrorism Database,  National Consortium for
+to Terrorism (START):
+the Study of Terrorism and Responses
+http://www.start.umd.edu/gtd, Data File, 2013.
+[32] PRIO,  Data on Armed Con ict,  NCSCW and Uppsala Con-
+ ict Data Program (UCDP): https://www.prio.org/Data/Armed-Con ict/,
+Data File, 2015.
+[33] A. Montis, M. Barthlemy, A. Chessa, and A. Vespignani,  Structure of
+inter-cities traf c: a weighted network analysis,  Environ. Plan., vol. 34,
+2007.
+[34] W. Jung, F. Wang, and H. Stanley,  Gravity model
+in the Korean
+highway,  Europhysics Letters (EPL), vol. 81, 2008.
+[35] T. Opsahl, F. Agneessens, and J. Skvoretz,  Node centrality in weighted
+networks: Generalizing degree and shortest paths,  Social Networks,
+vol. 32, Jul. 2010.
+[36] S. Lammera, B. Gehlsena, and D. Helbing,  Scaling laws in the spatial
+structure of urban road networks,  Physica A: Statistical Mechanics and
+its Applications, 2006.
+[37] N. Ellemers,  The Group Self,  Science, vol. 336, 2012.
+Acknowledgments W.G. conceived the idea and sourced the
+data, W.G. and X.L. designed, constructed, and analyzed the
+complex network. G.M.D independently veri ed the complex
+network results. S.J., G.M.D. and W.G designed the agent
+based model for cultural interactions. G.M.D. simulated the
+results for the agent based model.
+and requests
+for materials
+The authors have no competing  nancial interests to report.
+should be
+Correspondence
+addressed to: weisi.guo@warwick.ac.uk
+Email address of X. Lu: luxueke9013@gmail.com
+Email
+donate@warwick.ac.uk
+Email address of S. Johnson: s.johnson.2@warwick.ac.uk
+address of G. Mosquera Do nate: g.mosequera-
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+7
+III. MATERIAL AND METHODS
+A. Background to Con ict Modeling
+Human con ict in one guise or another has shaped our
+world, enthralled historians for millennia, and continues to
+represent an existential threat to humanity. Here we focus
+on modeling modern con ict, including both terrorism and
+conventional warfare. Whilst machine predictors are unlikely
+to ever replace human experience and judgment, quantitative
+models are useful for producing risk assessments, aid decision
+making, and testing hypotheses.
+The quantitative models can be broadly divided into two
+categories. In the  rst category, statistical approaches can
+observe common ecological patterns [3], [24], and both long-
+term cyclic patterns [2], [7], [25] and short-term self-excitation
+mechanisms [26] have been well investigated. By training
+machine-learning algorithms on historical patterns, accurate
+predictions (70-80%) on new emerging con icts can be made.
+Such algorithms are used by commercial (e.g. Parus Analytics)
+and government (e.g. US Department of Defence - Integrated
+Crisis Early Warning System) organizations. However,
+the
+underlying algorithms are sensitive to data availability, lack
+detailed quantitative mechanisms for sociopolitical hypotheses
+testing, and as such  nd it dif cult to provide solutions. In the
+second category, Agent-Based Models (ABM) has the bene t
+of being able to simulating the impact of speci c sociopolitical
+causal mechanisms, such as culture clashes [6], climate change
+[1], or technology transfer [27]. However, ABMs require
+detailed con gurations for each geographic region, and are
+often too complex for creating a universal understanding of
+con ict. It is also worth mentioning spatial interaction models
+that sit in between the aforementioned approaches [28], and
+have proven predictive power in a variety of topics including
+threat projection between con icting parties [29]. Despite the
+accuracy of these modelling approaches, there lacks a bridge
+between them.
+B. Data Set and Network Construction
+The paper leverages on the following open data sets:
+1) City data: 7322 cities with their latitude, longitude, and
+population data from National Geospatial Intelligence
+Agency 1. The geospatial data includes cities that vary
+in population from mega-cities (several millions) to
+small towns. The data represents  25% of the world s
+total population and it includes over 2800 cities with
+a population over 100,000, yielding a suf ciently high
+city resolution. For the purpose of this paper, we shall
+call all settlements cities. Each city is also tagged with
+its country and province af liation.
+2) Con ict data: two data sets are used, (1) terrorism and
+insurgency violence, and (2) conventional warfare. For
+terrorism and insurgency violence: the Global Terrorism
+Database (GTD) [31] database is used, with over 30,000
+con ict
+incidents between 2002 to 2014. The GTD
+contains the number of attacks and death-toll, ranging
+1The dataset has been improved with population data and can be found at
+[30]
+from small-scale assassinations (1 death) to large-scale
+massacres (1000s dead). Most of the death-toll data is
+time stamped and geo-tagged (longitude and latitude).
+The GTD data is further processed to: (i)  ll in any
+missing longitude and latitude information, (ii) remove
+attacks with unknown location information (less than
+1%), and (iii) cluster the number of attacks and death-toll
+data to the nearest city in the geospatial data set (mean
+distance 27km). For conventional warfare: the PRIO -
+Uppsala Con ict Data Program (UCDP) database is used
+[32], with over 150 conventional battles. Most of the
+battles are tagged with the location. Further manual geo-
+tagging of GPS location was performed by the authors.
+3) Geopolitical and socioeconomic data: the 2014 GDP per
+capita and income inequality data from the World Bank
+and the International Monetary Fund, and the democracy
+index developed by the Economist Intelligence Unit
+(EIU).
+The aim of this paper is to develop an approximate global
+interaction model based on land connections between cities. It
+is well established that the interaction weight between cities
+(i.e., transport  ow volume) can be approximately measured
+by the gravity law. The general equation states that
+the
+symmetrical  ow between two cities i and j is proportional to
+the population of the two cities P and inversely proportional to
+the square of the Euclidean distance d, such that: Fij = PiPj
+dij
+[33], [34] (see Supplementary Information (SI) for further
+justi cation). As this would potentially create a land route
+between any two cities worldwide, we add a hard-disk radius
+of 500km as the constraint for the longest land route between
+any two settlements. This way, a multi-hop interaction network
+is created. Two further constraints are put in place: a) eliminate
+sea travel (> 50km), and b) in order to only consider major
+links and cities, we only consider cities with a population over
+10,000 people, which are less sensitive to population changes
+(83% of all cities in the data set). The latter 2 constraints are
+not strictly necessary to achieve similar statistical results. As
+a result, a global multi-hop interaction network is constructed
+(see Fig. 1b).
+2
+C. Top-Down Complex Network Analysis
+As con icts often happen over an area involving multiple
+cities, we are interested in the properties of a zone z. We
+de ne a zone as an area that has many cities, i.e., v   Vz.
+In the main paper, the results are presented for circular zones
+of 500km in radius, each representing 0.5% of the modeled
+global land surface area. Overlap of the zones is permitted and
+each zone is centred on a particular city. The paper is  rstly
+interested in two primary measures in network science: degree
+and betweenness. A city s degree is de ned as the number of
+links with neighbouring cities, D(v) = deg(v). The degree is
+unweighted to highlight the importance of the number of links
+(neighbours), as opposed to the importance of the neighbours
+or links. The total degree property of a zone z is de ned as
+the sum of all the degree values of each city inside the zone
+D(v).
+the shortest multi-hop path
+(number of links inside a zone), i.e., D(z) = (cid:80)
+Interaction routes often travel
+v Vz
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+8
+between a number of cities. Betweenness measures the number
+of shortest paths through a node (i.e., city). The shortest path
+of travelling between a city m to any other city n is de ned
+as the path with the least number of hops. The unnormalised
+betweenness of a city Bv is de ned as the number of shortest
+paths that pass through this city:
+B(v) =
+ mn(v),
+(1)
+(cid:88)
+m(cid:54)=n(cid:54)=v
+v Vz
+the zone), i.e., B(z) =(cid:80)
+where  m,n(v) is the shortest path between m and n that goes
+through city i. The total betweenness property of a zone z is
+de ned as the sum of all the betweenness values of each city
+inside the zone (number of shortest paths that pass through
+B(v). Unlike the unweighted
+degree, we are interested in the weight contribution of each
+link. This is because multi-hop interaction routes are likely to
+consider a balance between: i) the shortest path, and ii) one
+that also passes through major cities for increased pro t (i.e.,
+attracted to population P ). For the weighted network, one
+can de ne the weight of each link between 2 arbitrary cities
+i and j as inversely proportional to the expected  ow value
+[35]:
+wij = F   
+ij ,
+(2)
+where Fij is the  ow value and   = [0, 1] can offer full
+weighting (  = 1) or no weighting (  = 0). For example,
+if the  ow weight of a link is high, then the weight of the
+link (for shortest path calculation) is negligibly small and
+there is no minimum or maximum link weight. In this paper s
+main analysis and results section, we have selected to present
+the results for a balanced weighted betweenness centrality
+measure (  = 0.5), such that a balance exists between the
+weight of a link and the number of links. Nonetheless, we
+present the results for   = 0 (no weighting) and   = 1
+(full weighting) in the SI to demonstrate the robustness of
+the methodology.
+The strategic centrality for a zone z as S(z) = B(z)
+D(z), which
+normalises the betweenness of a city by the number of links. It
+is a measure of the number of shortest paths per link connected
+to a city (similar to link betweenness that is used to measure
+the importance of road networks [36]). A city with a high
+betweenness will have global interaction importance, while
+a low degree (more isolated) will increase its vulnerability to
+con ict. Let us consider a simple problem: what happens to the
+degree and betweenness properties of the relay nodes, when
+the number of relay nodes K changes. Let us at  rst consider
+a single relay node v in a zone z (scenario (a) in Fig. 5). The
+degree of the node or the zone is D1(v) = D1(z) = 2N if
+the relay node is connected to all N nodes in the cores. The
+betweenness of the node or the zone is B1(v) = B1(z) = N 2,
+if every shortest path passes through the relay node. Consider
+now the case the single node fragmenting into K relay nodes
+- see scenario (b), the degree value of each node becomes
+DK(v) = D1 + (K   1), of which there are K in the
+zone (i.e., D(z) = KD(v)). As for the betweenness, one
+needs to consider the average value across all relay nodes
+in the zone, as each single relay node will have a different
+number of shortest paths that pass through it. In total, the
+Fig. 5. A graph showing K relay nodes connecting M cores, each with
+N nodes. Scenario (a) shows a single relay node and Scenario (b) shows it
+fragmented into K relay nodes. The solid lines indicate the shortest path and
+the dashed lines indicate other paths (not shortest). Each relay node in a zone
+of K relay nodes has a degree DK (v) = M N + K   1, a betweenness
+(cid:1)N 2/K, and a strategic centrality SK   M N/2K. In
+BK (v) = (cid:0)M
+terms of cities, fragmentation of one city into many cities will reduce the
+betweenness and strategic centrality of any individual city and hence reduce
+its attraction to militants (i.e., fewer interaction routes). Fragmentation will
+also increase the number of neighbours and its degree, which reduces its
+vulnerability.
+2
+same BK(z) = B1 shortest paths pass through K relay nodes
+in zone z. Hence, the average betweenness in the relay nodes
+is E[BK(v)] = BK(z) = B1
+K . Note, no shortest paths between
+relay nodes exist, as all relay nodes are directly connected to
+each other. Strategic centrality is the same for each node and
+for the whole zone: SK(v) = SK(z) =
+K(D1+K 1).
+More generally, if there are M cores, each with N nodes, the
+degree of a relay node is:
+E[BK ]
+DK
+=
+B1
+and the betweenness of a relay node is:
+DK(v) = M N + (K   1),
+(cid:18)M
+(cid:19) N 2
+2
+K
+.
+BK(v) =
+(3)
+(4)
+(cid:18)M
+(cid:19)
+2
+Therefore, the strategic centrality of the K interconnecting
+relay nodes is
+SK =
+N 2
+K(M N + K   1)
+  (M   1)
+N
+2K
+,
+(5)
+for a larger number of core nodes compared to the relay nodes
+(N (cid:29) K). Therefore, increasing the number of relay nodes K
+will reduce the strategic importance of any one relay node, and
+increasing the number of core nodes (M   1)N will increase
+the relay nodes  strategic importance. The strategic centrality
+analysis is equally applicable on the individual node v level
+as well as the zone z level.
+D. Bottom-Up Agent-Based Simulation
+We model individual people behaving as a collective group
+when they share a common culture [37]. We consider cities
+in a network with adjacency matrix {Aij}. We also de ne a
+CURRENT PREPRINT VERSION (V3) JUNE 2017 (V1 APR 2016)
+9
+number of distinctive cultural states, and at any given time t,
+each city can be in any of S states: si(t) = {1, 2, 3...Q}.
+We now model the willingness for the people in cities to
+in uence other cities that it is connected to. The agent-based-
+model (ABM) simulates the cultural
+in uence interaction
+between cities, with each city exerting its cultural in uence
+to neighbouring cities until they agree on a common culture.
+This approach has been used before in a variety of ways,
+including fostering cooperation [16]. The steps in methodology
+and analysis for the ABM is listed below.
+(cid:80)
+Step 1 - No. of Dissimilar Neighbours: A way to de ne the
+number of connected cities with different cultures is: ni(t) =
+j Aij[1  si(t),sj (t)], where  si(t),sj (t) is the Kronecker delta
+function (i.e., dsi(t),sj (t) = 1 only if the cultures are identical
+si(t) = sj(t)).
+Step 2 - Projection of Cultural In uence: We assume
+that each city has a  nite capacity to exert
+in uence to
+neighbouring cities with a different culture. This capacity
+Cj could be related to total population, military strength,
+wealth...etc. In this paper, we assume it scales linearly with
+population. As such, the amount of in uence fj is shared
+amounts the nj connected cities with different cultures such
+that:
+fj =
+Cj
+nj(t)
+.
+(6)
+As such, city i is in uenced by culture from neighbouring
+cities j that have a culture sj = q. The weight of this cultural
+in uence is:
+(cid:88)
+hq
+i (t) =
+Aij q,sj (t)fj.
+(7)
+j
+Step 3 - Adoption of a Culture: Due to the in uence, city
+i will adopt a culture q at time t + 1 with probability:
+P (si   c)   [hq
+i (t)]r,
+(8)
+i (t).
+where r can be seen as a rationality factor. Low rationality
+(r = 0) leads to random cultural adoption and high rationality
+leads to switching to the cultural state q with the strongest
+in uence hq
+Step 4 - Monte Carlo Simulation: This simulation starts
+with populating each city uniformly and randomly, and then
+connecting them according to the hard disk radius. The edges
+of the simulation are spatially wrapped to remove boundary
+effects. At the start, each city has a random distinctive culture
+and converges after some time to form culturally cohesive
+city cores (see Fig. 1a-iii). Yet, there are many cities that do
+not converge on a singular culture and  ips between multiple
+cultures, or can otherwise be seen to be part of a fuzzy culture
+boundary (see Fig. 1a-iii). The process is repeated until results
+converge.
+Step 5 - Analysis: As re ected in the results (see Fig. 3b),
+the cities that converge on a high cultural  ip rate also have
+high network betweenness B(v) and the cities that converge to
+a cohesive culture with its neighbours also have a high degree
+D(v).

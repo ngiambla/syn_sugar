@@ -1,0 +1,771 @@
+Random Walks between Leaves of Random Networks
+Department of Computing and Mathematics, University of Plymouth, Drake Circus, Plymouth PL4 8AA, UK.
+(Dated: 10 July 2012)
+David Lancaster
+We consider random walks that start and are absorbed on the leaves of random networks and
+study the length of such walks. For the networks we investigate, Erd os-R enyi random graphs and
+Barab asi-Albert scale free networks, these walks are not transient and we consider various approaches
+to computing the probability of a given length walk. One approach is to label nodes according to
+both their total degree and the number of links connected to leaf nodes, and as a byproduct we
+compute the probability of a random node of a scale free network having such a label.
+2
+1
+0
+2
+ 
+l
+u
+J
+ 
+0
+3
+ 
+ 
+]
+n
+n
+-
+s
+i
+d
+.
+t
+a
+m
+-
+d
+n
+o
+c
+[
+ 
+ 
+1
+v
+4
+9
+9
+6
+.
+7
+0
+2
+1
+:
+v
+i
+X
+r
+a
+I.
+INTRODUCTION
+Random walks have played a signi cant role in physics over the last century and more recently their properties on
+random networks have received attention as they can model transport properties of complex systems. In this work we
+consider random walks that start on leaf nodes of the random network and are absorbed whenever they reach another
+leaf node. For certain types of network transport this is a natural restriction. For example, while di usion has been
+proposed to model communication tra c on the internet [1 3], the majority of such tra c is between hosts lying at
+the edge of the network and would be better modelled by the type of random walk we consider in this paper.
+Past studies of non-absorbing random walks on random networks [4 8] have often concentrated on the mean  rst
+passage or hitting times [9]. Typically, the mean  rst passage time scales with the size of the network and the walk
+is transient in the thermodynamic limit. In contrast, at least for the networks we have studied, we  nd that the
+probabilities of given path lengths between leaves are independent of the size of the network. Moreover, the walks
+we study are often short and techniques that rely on di usion reaching equilibrium are not obviously adaptable since
+the largest eigenvalue does not have time to become dominant. Besides averaging over networks of a given class, we
+average over many walks in order to  nd representative results for a given type of random network. For a long running
+non-absorbing random walk, the equilibrium node occupation probability is proportional to the degree of that node
+[4]. Even after averaging over walks, this is not the the case for walks between leaves as links from leaf nodes must
+be treated di erently. One way to do this is to consider an approach based on labelling nodes according to both
+their total degree k and the number of links l connecting to leaf nodes. We propose a technique in which the average
+occupation probabilities are proportional to the number of non-leaf links besides adapting other methods that appear
+in the literature.
+The networks we have chosen to study are the traditional Erd os and R enyi (ER) [10] random graphs and the scale
+free models due to Barab asi and Albert (BA)[11]. There is consensus that the scale free networks model real networks
+better than ER random graphs. On the other hand, random graphs are more analytically tractable, principally due
+to their lack of correlation between node degrees at each end of a link. Since it is essential that our networks have
+leaf nodes, we work in the sparse regime of the ER graphs and choose the simplest BA graph.
+Our main interest lies in the probability, pt, for a walk of length t between leaves. For short walks that can be
+enumerated, this probability can sometimes be computed exactly and displays di erences between even and odd length
+walks due to the possibility of being absorbed by the originating leaf node. We expend some e ort on these short
+walks, but are also interested in longer walks. For ER networks, the probability of longer walks decays exponentially
+but the correlations and lack of homogeneity of BA networks destroys this simple behaviour. Despite the hierarchical
+structure of the internet, data for the fraction of packets arriving at an edge node after a certain number of hops
+displays an exponential decay over a range up to about 30 hops. The most successful techniques to estimate the rate
+of decay of the probability for long walks are based on a modi ed assumption of the equilibrium occupation of nodes
+labelled by (k, l), the degree and the number of links to leaf nodes.
+We commence with some simple and instructive network models to develop intuition for the process. The next
+section covers Erd os and R enyi random graphs and we provide both analytic and simulation results. We then move
+on to discuss the problem on a scale free network: the m = 1 BA model with leaves. The conclusion returns to discuss
+the motivating example of the internet and summarises our results.
+II. SIMPLE NETWORKS
+2
+To commence, recall the random walk [12] on the half line in which the walker starts by taking a step to the right
+from the origin, and is absorbed if it returns there. At each subsequent (discrete) time step the probability of moving
+one step to the right is p and that for a step to the left is 1   p. The recursion relation for the occupancy probability
+can be solved with the help of a Fourier transform, and a generating function approach yields an expression for the
+ rst passage probabilities [9]. Paths that return to the origin always take an even number of steps and these paths
+typically involve many backtracks or reversals. Counting these paths amounts to a tree enumeration problem which is
+implicitly solved by the generating function computation. The  rst passage probabilities, rt, can be expressed using
+a Catalan number as.
+The sum over probabilities for all length paths is related to the generating function for Catalan numbers. This involves
+a square root and by taking the appropriate sign we  nd that the overall probability of return is given by.
+r2n = pt 1(1   p)n (2n   2)!
+n!(n   1)!
+(cid:88)
+(cid:26) 1
+p   1/2
+p > 1/2
+1 p
+p
+r2n =
+n=1
+(1)
+(2)
+(4)
+So if the walk is biased to the right, the overall probability that it will ever return is less than 1 and this behaviour
+is said to be transient. Of course, transience can only occur in the limit of an in nitely large network.
+  =  (1/2) log 4p(1   p).
+Asymptotically, for long paths, the probability of a path of a given length decays exponentially with the exponent
+lim
+t   rt =
+ 
+1
+4p
+ 
+(4p(1   p))t/2 =
+ 
+1
+4p
+ 
+e  t
+(3)
+The case p = 1/2 is special and gives rise to power law decay.
+The case on a  nite line with two boundaries or leaves is treated in [13], but this does not give rise to any new
+concepts.
+Now consider a Cayley tree. The degree of vertices is taken to be constant k and rather than follow the precise
+location of the random walk, we track the level within the tree. We assume a Cayley tree with a large number of
+levels, but start from the boundary level which is the only level containing leaves. The probability that the walk
+moves one level towards the root is p = 1/k while the probability it moves towards the boundary is 1  p. In terms of
+levels, the rest of the analysis is identical to that of the 1D random walk just considered, though in this case the real
+tree has many possible leaves and walks that start and end on di erent nodes are accounted for. For integer values
+of k, this walk will never be transient. The exponent   =  (1/2) log(4/k(1   1/k) does not depend on the size of the
+graph, provided it is large enough. Note that a non-absorbing random walk from the root of an in nite Cayley tree
+is transient with return probability 1/(k   1) for k   3 [6].
+The  nal simple network we consider is a modi cation of the random regular network to allow the presence of
+leaves. This network is constructed by  rst taking an ordinary random regular network in which all nodes have the
+same degree and links are connected along the lines of the con guration approach of Molloy and Reed[14]. Then, to
+each node, an additional l links are attached each ending in a leaf. Each of the non-leaf nodes then has total degree k
+with l links to leaves and k   l links to other non-leaf nodes. From the regularity of the problem it is straightforward
+to see that the probability of a random walk starting and ending on a leaf and making t steps is.
+(cid:18) k   l
+(cid:19)t 2
+pt =
+l
+k
+k
+Again the decay is exponential and the exponent   does not depend on the size of the graph. By summing these
+probabilities we  nd that the walk is never transient and that it has mean length 1 + k/l.
+This study of simple networks suggests that the probability of longer walks decays exponentially for homogeneous
+networks and that the exponent is not dependent on the size of the network. Imagine that a walk has survived until
+step t, then the probability,  , that it will survive one more step is just that of avoiding a leaf node.
+  = e   = 1   P (transition to a leaf node)
+(5)
+The decay is exponential when the transition probability does not depend on the length of the walk, and this is the
+case for homogeneous networks. We will estimate the transition probability for ER and BA networks in the following
+sections.
+III. ERD  OS-R ENYI RANDOM GRAPHS
+3
+It is more awkward to analyse random walks on networks in which the degree distribution is not  xed since the
+walk learns information about the structure of the network instance as it proceeds and this memory should be taken
+into account for backtracks. The most tractable models to consider are the Erd os and R enyi [10] (ER) random graphs
+due to both the absence of correlations between node degrees and their locally tree-like structure. Indeed, since this
+is the natural model, random walks on ER graphs have been studied extensively; but only relatively recently has
+the hitting time, which scales with the size of the graph, been computed [6]. One of the di culties with traditional
+random walks on ER graphs has been that the interesting issues of transience only occur if the walk takes place on
+the giant component which is only present above the percolation threshold at (cid:104)k(cid:105) = 1. Early work [5] avoided this
+di culty by working in the dense regime where with high probability, all nodes belong to the giant component. A
+mean  eld like approach [7] allows accurate estimates of the mean  rst passage time, but is more suited to numerical
+than analytic expression.
+FIG. 1: An enumeration of the three paths that contribute to a length 4 random walk between leaf nodes. Open circles represent
+leaf nodes and  lled circles are intermediate, non-leaf nodes. The contribution of each path is given in equation (8).
+In studying ER graphs we use the following notation. The probability of a node picked at random having degree k
+is Poisson distributed.
+nk =
+(cid:104)k(cid:105)k
+k!
+e (cid:104)k(cid:105)
+(6)
+The probability that the node at the end of randomly chosen link has degree k must include a factor for the number
+of links leading to that node.
+knk(cid:104)k(cid:105)
+(7)
+Short paths can be enumerated, for example there are three t = 4 length paths shown in  gure 1. By combining
+the probability of reaching a node with given degree with the random walk factor for leaving it, these paths are seen
+to contribute respectively.
+(cid:32)(cid:88)
+(cid:32)(cid:88)
+(cid:32)(cid:88)
+k=2
+k=2
+k=2
+knk(cid:104)k(cid:105)
+knk(cid:104)k(cid:105)
+knk(cid:104)k(cid:105)
+(k   1)
+k
+(cid:33)3
+(cid:33)(cid:32)(cid:88)
+(cid:33)(cid:32)(cid:88)
+k=2
+1
+k
+1
+k
+k=2
+n1(cid:104)k(cid:105)
+knk(cid:104)k(cid:105)
+knk(cid:104)k(cid:105)
+(cid:33)
+n1(cid:104)k(cid:105)
+(8)
+(k   1)(k   2)
+(cid:33)
+k
+(k   1)
+k2
+The sums can be written in terms of exponential integrals and are used to check numerical simulations. This diagram-
+matic approach is restricted to very short paths as no simple recursion exists and the number of diagrams increases
+rapidly.
+Numerical studies indicate that the walks between leaves that we consider in this paper have the same properties
+as on the simple models: they do not scale with the size of the system and their probability decays as shown in  gure
+2. For these leaf random walks there is no need to restrict the starting leaf nodes to be part of the giant component
+and we include the contribution from walks on the  nite clusters. Below the percolation transition, where only  nite
+4
+FIG. 2: The probability of a random walk between leaves of length t on an ER graph. Shown for various values of (cid:104)k(cid:105), the
+mean degree .
+clusters exist, the decay su ers strong  nite size e ects and is not exponential. Above the transition, the decay is
+exponential and in  gure 3 we show the exponent as a function of the mean degree parameter (cid:104)k(cid:105) of the model. These
+numerical results are obtained from following 10000 random walks on each of 100 graphs of size 8000. The number of
+random walks followed must be large both at small and large (cid:104)k(cid:105). At small (cid:104)k(cid:105) there are many possible leaf nodes to
+start from, though the walks tend to be short. At large (cid:104)k(cid:105) there are not so many leaf nodes, but the walks can take
+many di erent paths. These results do not change as the network size is increased suggesting that transience does
+not occur.
+FIG. 3: The decay exponent for random walks between leaves on an ER graph shown for various values of the mean degree
+parameter. The dotted line shows the rough estimate of the the exponent from equation (9). The continuous line is the result
+of a more sophisticated argument given at the end of section III A.
+The behaviour of the exponent at large (cid:104)k(cid:105) can be estimated following the argument in equation (5). For large (cid:104)k(cid:105)
+we ignore memory e ects and estimate the probability that a walk will survive one more step as.
+(cid:88)
+k=2
+  =
+knk(cid:104)k(cid:105) = 1   n1(cid:104)k(cid:105) = 1   e (cid:104)k(cid:105)
+(9)
+The exponent is thus   =   log(1  e (cid:104)k(cid:105)) or approximately e (cid:104)k(cid:105) for large (cid:104)k(cid:105). This estimate is shown in as a dotted
+line in  gure 3 and indeed matches the simulations for large (cid:104)k(cid:105). In a later section we improve this estimate.
+We now proceed to discuss more sophisticated approximations, with the aim of improving the prediction of walk
+survival probabilities in the region where the exact enumeration in not feasible, but the exponential behaviour has
+either not taken over, or the estimate above is not accurate.
+A. Labeling according to (k, l)
+5
+Since the identi cation of leaf nodes is crucial for the random walks we study in this paper, we  rst propose an
+approach based on labelling each node according to both its overall degree k and the number of links to leaf nodes l.
+For ER graphs it is straightforward to write the probability, qkl, that a node chosen at random has label (k, l).
+The sum over leaf links of course obeys.
+qkl =
+1   e (cid:104)k(cid:105)(cid:17)k l
+nk
+(cid:18)k
+(cid:19)
+l
+(cid:88)
+e l(cid:104)k(cid:105)(cid:16)
+k(cid:88)
+(cid:88)
+l=0
+qkl = nk
+(cid:104)l(cid:105) =
+lqkl = n1 = (cid:104)k(cid:105)e (cid:104)k(cid:105)
+(10)
+(11)
+(12)
+(15)
+The expectation value for the number of links to leaves found on a randomly chosen node is:
+In order to proceed, we  rst identify the probabilities with which a walk will  nd a (k, l) node. The probability, vkl,
+that the link from a randomly chosen leaf node connects to a (k, l) node is:
+k
+l
+vkl =
+lqkl(cid:104)l(cid:105) =
+lqkl
+(cid:104)k(cid:105)e (cid:104)k(cid:105)
+Similarly, the probability, wkl, that a randomly chosen link from a non-leaf node connects to a (k, l) node is:
+wkl =
+(k   l)qkl
+(cid:104)k(cid:105)   (cid:104)l(cid:105) =
+(k   l)qkl
+(cid:104)k(cid:105)(1   e (cid:104)k(cid:105))
+(13)
+(14)
+It is now possible to write down probabilities for given length paths using the simplest form of approximation in which
+there is no memory and backtracks are not accounted for. The separate contributions at each step of the walk from
+the transition probability to a given degree (k, l) node and from the random walk are clearly exposed.
+p1 = v11 = e (cid:104)k(cid:105)
+l
+k
+(k   l)
+(cid:88)
+(cid:88)
+k(cid:88)
+k(cid:88)
+p2 =
+vkl
+k=2
+l=1
+=
+(cid:0)1   e (cid:104)k(cid:105)(cid:1)2
+(cid:34)(cid:88)
+k(cid:88)
+(cid:104)k(cid:105)
+vkl
+k
+pt =
+=
+k=2
+l=1
+k=2
+l=1
+e (cid:104)k(cid:105)(1   e (cid:104)k(cid:105))(1   (cid:104)k(cid:105)   e (cid:104)k(cid:105))2
+(cid:104)k(cid:105)2
+(k   l)wkl
+(cid:35)t 3(cid:88)
+k(cid:88)
+(k   l)
+k
+(k   l)wkl
+(cid:20)
+1   e (cid:104)k(cid:105)(2(cid:104)k(cid:105)   1 + e (cid:104)k(cid:105))
+k=2
+(cid:21)t 3
+l
+k
+l=1
+(cid:104)k(cid:105)
+Where the  nal line is valid for any t   3. The predictions for paths of length 1 and 2 match the exact enumeration
+results and that for length 3 di ers from the exact result by a factor of (1  e (cid:104)k(cid:105)). However, the prediction contained
+in the last equation above, for the exponent of the decay is less successful. In the limit of large (cid:104)k(cid:105) this prediction
+di ers by a factor a 2 from equation (9) which suggested a value of e (cid:104)k(cid:105) and according to  gure 3 the earlier argument
+was correct. Moreover the failure extends to transience as the sum of probabilities is 1/2 in the large (cid:104)k(cid:105) limit which
+does not match numerical expectations. Given these inadequacies, we do not show a  gure with the predictions from
+this approximation and conclude that while neglecting both memory e ects and backtracks is possible for very short
+paths, it fails for longer paths even at large (cid:104)k(cid:105).
+We can reproduce the simple prediction given in equation (9) for the asymptotic decay exponent using the (k, l)
+formalism. Assuming that after some steps, the walk is on a node of unspeci ed degree, then according to equation
+(14) the probability that its next step takes it to a node with label (k, l) is wkl. In this case the probability that the
+walk is not absorbed in the next step is.
+(cid:88)
+k(cid:88)
+k=2
+l=0
+  =
+wkl = 1   e (cid:104)k(cid:105)
+(16)
+6
+So this argument yields precisely the same exponent as the rough one. We can obtain a better estimate of the exponent
+by assuming that when averaged over many leaf walks, the occupation probabilities take values similar to those
+attained by an non-absorbing walk in equilibrium. For traditional walks the equilibrium occupation probabilities are
+proportional to the number of incoming links: knk/(cid:104)k(cid:105) [4]. For leaf walks the natural generalisation of this equilibrium
+occupation probability is proportional to the number of non-leaf connections. So the wkl not only represent transition
+probabilities, but when properly normalised can represent the occupation probabilities of (k, l) nodes for k   2.
+Numerical investigations that track which sites are visited suggest that such an assumption is valid in the large (cid:104)k(cid:105)
+limit. With the appropriate normalisation to ensure the correct sum of occupation probabilities over non-leaf nodes,
+the estimate of the occupation probability of a (k, l) node is.
+wkl
+(1   e (cid:104)k(cid:105))
+=
+(k   l)qkl
+(cid:104)k(cid:105)(1   e (cid:104)k(cid:105))2
+(17)
+The probability of stepping from a (k, l) node to another non-leaf node is simply (k   l)/k, so overall the probability
+of surviving one step is.
+(cid:88)
+k(cid:88)
+k=2
+l=0
+qkl = 1   e (cid:104)k(cid:105)(cid:0)(cid:104)k(cid:105)   1 + e (cid:104)k(cid:105)(cid:1)
+(cid:104)k(cid:105)(1   e (cid:104)k(cid:105))
+(k   l)2
+k
+  =
+1
+(cid:104)k(cid:105)(1   e (cid:104)k(cid:105))2
+(18)
+In the limit of large (cid:104)k(cid:105) this reproduces the rough result for the exponent in equation (9), but as can be seen from
+the continuous line in  gure 2, this prediction matches the simulation results slightly better.
+B. Memoryless Approximation
+Since the paths are typically short compared to the size of the network, the spirit of this paper is to use methods
+that approximate the path enumeration to make it tractable. An interesting, though  awed, paper in this context is
+that of Masuda and Konno [8]. These authors write recursion formulae for the return probabilities of a non-absorbing
+walk to an arbitrary node using an approximation that takes memory into account within each backtrack, but regards
+each separate backtrack as a new path. The approximation is expected to be successful at large (cid:104)k(cid:105). Unfortunately
+the paper [8] does not take into account the factor of the number of links that weights the probability of  nding a
+certain degree node at the end of a randomly chosen link, and this compromises their results. Nonetheless the defect
+is simply remedied and their approach can be modi ed for our random walks between leaves.
+FIG. 4: Diagrammatic representation of the recursion used in the memoryless approximation. The top diagram is for the  rst
+passage probability without absorption, rn, and the lower diagram is for the probability of being absorbed at some other leaf,
+qn. The dashed lines represent these quantities and the solid lines are single steps between nodes. The open circles are leaf
+nodes and the solid circles are non-leaf nodes. The sum over partitions is represented with the dotted arc.
+By considering the top diagram shown in  gure 4 the probability of  rst passage to a node after 2t steps without
+being absorbed, rt, obeys the following recursion.
+(cid:88)
+{ti}(cid:80) ti=t
+a(cid:89)
+i=1
+rti
+ma+1
+7
+(19)
+t(cid:88)
+a=1
+rt+1 =
+The sum is over all integer partitions of t including all possible orderings of those partitions. The signi cance of
+the partitions is that they represent the length of each backtrack shown in  gure 4. In equation (19), this sum over
+partitions is decomposed into a sum over the number of lobes or backtracks in the diagram (corresponding to the
+order of the partition), and a sum over partitions into precisely this many lobes. The parameters ma are correctly
+given by.
+(cid:18)
+(cid:19)a 1
+(cid:88)
+k=2
+ma =
+nk(cid:104)k(cid:105)
+1   1
+k
+where the lower limit of the sum imposes the condition of no absorption and this is the constitutes the only di erence
+in computing rt with [8]. The form (19) illustrates the nature of the approximation as the memoryless nature consists
+in regarding each walk on a lobe as independent.
+A generating function approach is useful and we write for these  rst passage probabilities without absorption.
+R(x) =
+rtxt
+(21)
+Later, when paths that are not of even length are taken into account, we will need to consider R(x2). In terms of
+R(x) the recursion takes on a more convenient form than equation (19).
+R(x) = x
+ma+1 (R(x))a
+(22)
+The probability that a walk lasts t steps before being absorbed by a di erent leaf node, qt, also obeys a recursion
+relation shown diagrammatically in the lower part of  gure 4. The recursion is slightly di erent for even and odd
+values of t, but can be combined and is conveniently expressed in terms of the generating function.
+(cid:88)
+a=0
+(cid:88)
+t=1
+t=1
+(cid:88)
+(cid:88)
+(cid:18)
+a=0
+Q(x) =
+qtxt
+(cid:0)R(x2)(cid:1)a
+(cid:19)a 1
+Q(x) = q1x + xQ(x)
+sa+2
+(cid:88)
+k=2
+sa =
+knk(cid:104)k(cid:105)
+1   1
+k
+(20)
+(23)
+(24)
+(25)
+(27)
+(28)
+The  rst coe cient is q1 = n1/(cid:104)k(cid:105) which for ER graphs is simply e (cid:104)k(cid:105). The parameters sa are de ned as.
+In some cases, it could be argued that the lower limit of this sum ought to be increased, but to keep track of these
+cases would be against the spirit of the approximation. For ER graphs, the parameters sa and ma are related by.
+sa = sa 1   ma 1
+(26)
+While Masuda and Konno invert equation (22) to obtain explicit expressions for the  rst passage probabilities in
+terms of sums over partitions [15], we have found using the recursion relations themselves to be numerically convenient
+and speedy. Using algebraic manipulation software, the equation for the generating function (22) conveniently encodes
+all the separate equations for each coe cient and can be solved quickly and accurately. The solution for R(x) can then
+be used to provide values for the probabilities qt using the equation below. The combined probability of absorption
+after t steps is the sum of the contributions from rt and qt where the  rst term only contributes for even length paths.
+Q(x) =
+=
+q1x
+1   x(cid:80)
+q1x(cid:0)1   R(x2)(cid:1)
+a=0 sa+2 (R(x2))a = q1x
+(cid:88)
+1   x (s1   R(x2)/x2)
+= q1x
+j=0
+(cid:35)j
+(cid:88)
+(cid:34)
+(cid:88)
+(cid:0)R(x2)(cid:1)a
+(cid:35)j
+(cid:34)
+x(cid:0)s1   R(x2)/x2(cid:1)
+sa+2
+a=0
+j=0
+x
+(1   R(x2))
+The second line is speci c to ER graphs as it uses the relationship between parameters in equation (26). At x = 1
+this equation simpli es and by using the explicit forms of q1 = e (cid:104)k(cid:105) and s1 = 1   e (cid:104)k(cid:105) we  nd R(1) + Q(1) = 1. So
+at the level of this approximation, leaf walks are never transient on ER graphs. Since the approximation is expected
+to improve as (cid:104)k(cid:105) increases, and this is the regime in which transience is most likely to occur, the result provides
+strong evidence that transience does not occur. The result for the full generating function is helpful as it avoids the
+need to calculate the parameters sa, which is otherwise the most time consuming part of the solution. The alternative
+approach of solving the generating function R(x) by iteration and then obtaining the coe cients from residues, works
+for small t, but becomes slow and unstable at larger t.
+8
+FIG. 5: The probability for random walks between leaves on an ER graph shown for (cid:104)k(cid:105) = 3. Points with error bars are from
+simulation and the crosses are predictions from the memoryless approximation.
+Figure 5 shows the predictions of this memoryless approach against the results of simulations for a value of (cid:104)k(cid:105) = 3.
+Although this value is not very large, agreement is reasonable. The  rst three points are identical to the exact
+prediction but later points tend to track the curve for odd length walks. At larger values of (cid:104)k(cid:105) the agreement is even
+better. At (cid:104)k(cid:105) = 1, the predictions are successful for t < 10, but for longer paths, the theory fails to capture the
+observed behaviour.
+This approximation provides an improvement over the techniques used in the previous section as it contains in-
+formation about backtracking paths. For smaller values of (cid:104)k(cid:105), where backtracks and memory e ects become more
+important the approximation fails.
+IV. SCALE FREE NETWORKS
+Scale free networks (BA) [11] created though a growth process involving preferential attachment provide a popular
+alternative model of random networks. We consider the simplest version of this system which according to the
+classi cation of [11] is the m = 1 model with preferential attachment and with an initial network consisting of a pair
+of nodes connected by a link. The growth process leads to a directed network with (cid:104)k(cid:105) = 2 and with 2/3 of the nodes
+being leaves. The degree distribution is given by [17].
+nk =
+4
+k(k + 1)(k + 2)
+(29)
+Though if we take into account the age of nodes, older nodes tend to have larger degree while most leaf nodes are
+young. In general, these networks su er from strong  nite size e ects [18].
+Due to the way in which they are created, this kind of scale free network is not homogeneous, has strong correlations
+and in these respects is very di erent from the ER networks. The directed nature of the network is crucial in
+understanding the correlations The fraction of nodes of degree k that attach to an ancestor node of degree l (the
+degree of the ancestor, l, must be greater or equal to 2), is [17]
+ekl =
+4(l   1)
+k(k + 1)(k + l)(k + l + 1)(k + l + 2)
+12(l   1)
+k(k + l   1)(k + l)(k + l + 1)(k + l + 2)
++
+(30)
+9
+FIG. 6: The probability for random walks between leaves on a BA graph. Points with error bars are from simulation based on
+20000 walks on each of 100 graphs of size 100000. The continuous line is a prediction based on labelling nodes and is explained
+in the text.
+Random walks on this network have no knowledge of the direction of the links, but a full analysis of the walk should
+take this into account.
+Numerical results are shown in  gure 6. There is no evidence for transience as the longest walk observed is much
+smaller than the size of the network and shows no change as that size is varied. Exponential decay of the random walk
+probabilities is not apparent for this network. This is in contrast to ER networks above the percolation threshold.
+In  gure 2, the curves for graphs with (cid:104)k(cid:105) below the threshold, do not display exponential decay, but this should be
+attributed to a  nite size e ect from individual clusters. The BA network is simply connected and investigations of
+the dependence on network size allow us to rule out  nite size as a cause of the curvature. Longer paths are more
+likely than would be expected from a  xed exponential decay. This is due to the correlations and non homogeneous
+nature of the BA network. Krapivsky and Redner[17] compute the age dependence of the degree distribution and
+support the notion of a highly connected old core to the network with high degree nodes. Long paths access this old
+core and the random walks that access this region tend to stay there and are less likely to be absorbed.
+A. Labelling according to (k, l)
+The framework a orded by labelling nodes by (k, l) is helpful to make predictions for BA networks despite reserva-
+tions about its accuracy in the context of ER networks. In this section we compute the probability that a randomly
+selected node on this BA network has degree k and l links to leaf nodes. In fact, to simplify notation, we compute
+qkp where p = k   l is the number of links to non-leaf nodes. By considering the growth process, we  nd a recursion
+relation for the expected number of labeled nodes which when expressed as probabilities becomes.
+(2k   p + 2) qkp = (k   1) qk 1p + (k   p + 1) qkp 1
+(31)
+When combined with initial conditions q11 = n1 and qkk+1 = qk0 = 0 this di erence equations allows all higher terms
+to be computed. However, an explicit solution requires some work.
+Based on explorations for small values of k, p we partially disentangle the two indices by writing.
+qkp = Pp 1(k)
+(k   1)!
+(2k + 1)!!
+  Qp 2(k)
+(k   1)!
+(2k)!!
+Where Pn(k) and Qn(k) are polynomials in k of degree n. These obey the following di erence equations.
+(2k   p + 2) Pp 1(k) = (2k + 1) Pp 1(k   1) + (k   p + 1) Pp 2(k)
+(2k   p + 2) Qp 2(k) = (2k) Qp 2(k   1) + (k   p + 1) Qp 3(k)
+The  rst equation can be solved immediately to give.
+Pp 1(k) =
+2
+(p   1)!
+(k + p   2)!
+k!
+(cid:0)k + 2(p   1)2(cid:1)
+(32)
+(33)
+(34)
+(35)
+While the second equation has the more complicated solution.
+Qp 2(k) =
+4
+(k + 1)
+( 1)j
+(2j   1)(2j   3)
+1
+(j   1)!
+(k + p   2j + 1)!
+(p   2j)!(k   j + 1)!
+The resulting qkp match numerical values obtained from generating many BA networks. They also obey the following.
+j<1+k/2(cid:88)
+j=1
+k(cid:88)
+p=1
+k(cid:88)
+k(cid:88)
+p=1
+p=1
+qkp = nk =
+4
+k(k + 1)(k + 2)
+(k   p)qkp = e1k =
+2(k   1)(k + 6)
+(k   p)2qkp =
+k(k + 1)(k + 2)(k + 3)
+(k   1)(k3 + 13k2 + 42k   48)
+k(k + 1)(k + 2)(k + 3)(k + 4)
+10
+(36)
+(37)
+(38)
+(39)
+(40)
+(41)
+On BA networks there is only one connected component and there are no walks of length one step. The probability
+of a randomly selected leaf node connecting to a (k, p) node is.
+(k   p)
+n1
+qkp
+With this information we can now predict the probability of a walk of length 2 steps.
+(cid:88)
+k(cid:88)
+(cid:88)
+p=1
+k=2
+3
+2
+3
+2
+k=2
+1
+144
+p2 =
+=
+=
+(k   p)
+(k   p)
+k
+qkp
+n1
+k(cid:88)
+(k   p)2qkp
+1
+k
+(48 2   419) = 0.570219 . . .
+p=1
+The  rst line exposes the separate factors for the transition and for the random walk, while the second line shows that
+this can be expressed in terms of the sums computed above in equation (39). Numerical simulations on 100 graphs of
+size 105 observe 0.57   0.02,  tting the prediction well.
+We can proceed to estimate the probability of walks of length 3 and over by extending this argument. However,
+this requires knowledge of the correlations between the (k, p) values of linked nodes. We have not computed this four
+index quantity, but have made some estimates using the degree correlations in equation (30). These estimates are not
+accurate and we do not present them here.
+Even though  gure 6 clearly shows a curve, we can use (5) to estimate the survival probability. We expect the
+analogy of wkl, namely pqkp/(cid:104)p(cid:105), to represent the transition probability to a (k, l) site. Here the mean number of
+connections to non-leaf nodes is given by (cid:104)p(cid:105) = 4/3, so the probability of making a further step without absorption is.
+(cid:88)
+k(cid:88)
+k=2
+p=1
+pqkp(cid:104)p(cid:105) = 1   q11(cid:104)p(cid:105) =
+1
+2
+(42)
+The decay exponent that this argument suggests is therefore a constant   = log 2. We do not show this prediction in
+ gure 6 as it is not very accurate and we can obtain a better prediction following the reasoning used for ER networks
+and leading to the estimate of the survival probability given in equation (18). To do this we assume that pqkp/(cid:104)p(cid:105)
+can be regarded as an occupation probability for non-leaf nodes. A factor of 2 is needed for correct normalisation and
+probability of survival on the next step is.
+(cid:88)
+k(cid:88)
+k=2
+p=1
+  =
+2p2qkp
+k(cid:104)p(cid:105) =
+1
+96
+(48 2   419) = 0.570219 . . .
+(43)
+We have not discovered any reason for the appearance of exactly the same factor as in equation (42), and it seems to
+be a coincidence.
+If we assume that the argument holds for all length paths, and taking into account the lack of transience to
+normalise, we can predict the following form.
+(1    )
+ 2
+ t
+pt =
+(44)
+This form is shown in  gure 6 and is provides a surprisingly good  t for shorter paths. As explained above, longer
+paths are a ected by the correlations, enter the region of old nodes, and are more likely than this approximation
+predicts.
+B. Other approaches
+We have not attempted to extend the memoryless approximation along the lines of the one described in section
+III B for ER networks as the level of complication appears to be unwarranted. Such an approximation would have to
+take into account the correlations between node degrees and to do this needs to delve into the underlying directed
+nature of the BA graph. The return probabilities would depend on the degree of the originating node.
+V. CONCLUSION
+This study of the problem of random walks between leaf nodes of random networks was initiated by the desire to
+model internet tra c, but it turns out that these walks probe network structure in a way that is not possible for
+traditional non-absorbing walks. The mean  rst passage time is a natural observable for non-absorbing walks, but
+to characterise classes of graph it must be averaged over all pairs of nodes and this reduces the information it can
+provide about the non-homogeneity of a network. By contrast, the random walks between leaves studied here provide
+a natural subset of nodes over which the mean  rst passage time can be averaged and this can give information
+about the heterogeneity of the network and the extent to which edge nodes are connected to the rest of the network.
+The clearest example of the way that walks between leaves can probe network structure was the distinction between
+exponential decay of the probability distribution of the length of the walk on homogeneous ER networks and the non-
+exponential decay for heterogeneous BA networks. This however leads to a conundrum: the internet is hierarchical,
+yet the probability distribution of time-to-live (TTL) values captured on the internet does not display any systematic
+deviation from exponential. This may indicate limits to the utility of random walks representing internet tra c.
+Our analytic attempts to predict the probability of given length walks have relied on a variety of techniques. For
+short paths we have been able to enumerate, or devise approximations that allow such enumerations. For longer paths
+we have had some success with ER networks by assuming that the equilibrium occupation probabilities of a node are
+proportional to the number of its non-leaf links. Together with results for the proportion of (k, l) nodes, this approach
+gives some useful predictions for BA networks but does not capture the non-trivial decay of the walk due to intrinsic
+correlations in the network.
+Acknowledgment: I am indebted to Dr B. Ghita for collecting the TTL data for the internet that was the original
+motivation for this work.
+[1] B. Tadic and G. Rodgers, Packet Transport on Scale Free Networks, Advances in Complex Systems 5, 445 (2002).
+[2] B. Tadic and S. Thurner, Information Super-Di usion on Structured Networks, Physica A 332, 566 (2004).
+[3] Y. Zhang, S. Zhou, Z. Zhang, J. Guan, S. Zhou and G. Chen, Tra c Fluctuations on Weighted Networks, IEEE Circuits
+and Systems, 33, (2012).
+[4] J.D. Noh and H. Reiger, Random Walks on Complex Networks, Phys. Rev. Lett. 92, 118701 (2004).
+[5] V. Sood, S. Redner and D. ben-Avraham, First Passage Properties of the Erd os-R enyi Random Graphs, J. Phys A38
+109-123 (2005).
+[6] O.C. Martin and P. Sulc, Return probabilities and hitting times of random walks on sparse Erd os-R enyi graphs, Phys Rev
+E 81, 031111 (2010).
+[7] A. Baronchelli and V. Loreto, Ring structures and mean  rst passage time in networks, Phys. Rev. E 73, 026103 (2006) .
+[8] N. Masuda and N. Konno, Return times of random walk on generalized random graphs, Phys Rev E 69 066113 (2004).
+[9] S. Redner A guide to  rst-passage processes. Cambridge Univ. Press, New York, (2001).
+[10] B. Bollob as, Random Graphs, Academic Press, New York (1985).
+[11] R. Albert and A. L. Barab asi, Statistical Mechanics of Complex Networks, Rev. Mod. Phys., 74, 47 (2002).
+11
+[12] W. Feller An Introduction to Probability Theory and its Applications, Wiley, New York, (1950).
+[13] H.C. Gupta and Asha Seth, Random walk in the presence of absorbing barriers, Proc National Institute of Sciences of
+India, 32, 472-480, (1966).
+[14] M. Molloy and B. Reed, A critical point for random graphs with a given degree sequence, Random Structures and Algorithms
+6, 161-179 (1995).
+[15] Note that the combinatorial factor in Masuda and Konno s equation (17) is a Catalan number.
+[16] M. E. J. Newman, S. H. Strogatz, D. J. Watts Random graphs with arbitrary degree distributions and their applications
+Phys. Rev. E 64, 026118 (2001).
+[17] P.L. Krapivsky and S. Redner, Organization of growing random networks, Phys. Rev. E 63, 066123 (2001).
+[18] B Waclaw, I.M Sokolov, Finite size e ects in Barab asi-Albert growing networks, Phys. Rev. E 75, 056114 (2007).
+12

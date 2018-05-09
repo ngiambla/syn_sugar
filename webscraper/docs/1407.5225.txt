@@ -1,0 +1,558 @@
+XX
+The Rise of Social Bots
+EMILIO FERRARA, Indiana University
+ONUR VAROL, Indiana University
+CLAYTON DAVIS, Indiana University
+FILIPPO MENCZER, Indiana University
+ALESSANDRO FLAMMINI, Indiana University
+The Turing test aimed to recognize the behavior of a human from that of a computer algorithm. Such chal-
+lenge is more relevant than ever in today s social media context, where limited attention and technology
+constrain the expressive power of humans, while incentives abound to develop software agents mimicking
+humans. These social bots interact, often unnoticed, with real people in social media ecosystems, but their
+abundance is uncertain. While many bots are benign, one can design harmful bots with the goals of per-
+suading, smearing, or deceiving. Here we discuss the characteristics of modern, sophisticated social bots,
+and how their presence can endanger online ecosystems and our society. We then review current efforts
+to detect social bots on Twitter. Features related to content, network, sentiment, and temporal patterns of
+activity are imitated by bots but at the same time can help discriminate synthetic behaviors from human
+ones, yielding signatures of engineered social tampering.
+Categories and Subject Descriptors: [Human-centered computing]: Collaborative and social computing 
+Social media; [Information systems]: World Wide Web Social networks; [Networks]: Network types 
+Social media networks
+Additional Key Words and Phrases: Social media; Twitter; social bots; detection
+ACM Reference Format:
+Emilio Ferrara, Onur Varol, Clayton Davis, Filippo Menczer, and Alessandro Flammini. 2015. The Rise of
+Social Bots. X, X, Article XX ( 201X), 11 pages.
+DOI:http://dx.doi.org/10.1145/0000000.0000000
+The rise of the machines
+Bots (short for software robots) have been around since the early days of computers:
+one compelling example is that of chatbots, algorithms designed to hold a conversation
+with a human, as envisioned by Alan Turing in the 1950s [Turing 1950]. The dream
+of designing a computer algorithm that passes the Turing test has driven arti cial
+intelligence research for decades, as witnessed by initiatives like the Loebner Prize,
+awarding progress in natural language processing.1 Many things have changed since
+the early days of AI, when bots like Joseph Weizenbaum s ELIZA [Weizenbaum 1966],
+mimicking a Rogerian psychotherapist, were developed as demonstrations or for de-
+light.
+Today, social media ecosystems populated by hundreds of millions of individuals
+present real incentives  including economic and political ones  to design algorithms
+that exhibit human-like behavior. Such ecosystems also raise the bar of the challenge,
+as they introduce new dimensions to emulate in addition to content, including the so-
+cial network, temporal activity, diffusion patterns and sentiment expression. A social
+bot is a computer algorithm that automatically produces content and interacts with
+1www.loebner.net/Prizef/loebner-prize.html
+This work is supported in part by the National Science Foundation (grant CCF-1101743), DARPA (grant
+W911NF-12-1-0037), and the James McDonnell Foundation (grant 220020274). The funders had no role in
+study design, data collection and analysis, decision to publish, or preparation of the manuscript.
+Corresponding author: E. Ferrara (ferrarae@indiana.edu)
+Author s address: Center for Complex Networks and Systems Research. School of Informatics and Comput-
+ing. Indiana University Bloomington. 919 E. 10th Street, Bloomington, IN 47408, USA
+7
+1
+0
+2
+ 
+r
+a
+M
+6
+ 
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+4
+v
+5
+2
+2
+5
+.
+7
+0
+4
+1
+:
+v
+i
+X
+r
+a
+XX:2
+E. Ferrara et al.
+humans on social media, trying to emulate and possibly alter their behavior. Social
+bots have been known to inhabit social media platforms for a few years [Lee et al.
+2011; Boshmaf et al. 2013].
+Engineered social tampering
+What are the intentions of social bots? Some of them are benign and, in principle, in-
+nocuous or even helpful: this category includes bots that automatically aggregate con-
+tent from various sources, like simple news feeds. Automatic responders to inquiries
+are increasingly adopted by brands and companies for customer care. Although this
+type of bots are designed to provide a useful service, they can sometimes be harm-
+ful, for example when they contribute to the spread of unveri ed information or ru-
+mors. Analysis of Twitter posts around the Boston marathon bombing revealed that
+social media can play an important role in the early recognition and characterization
+of emergency events [Cassa et al. 2013]. But false accusations also circulated widely
+on Twitter in the aftermath of the attack, mostly due to bots automatically retweeting
+posts without verifying the facts or checking the credibility of the source [Gupta et al.
+2013].
+With every new technology comes abuse, and social media are no exception. A sec-
+ond category of social bots includes malicious entities designed speci cally with the
+purpose to harm. These bots mislead, exploit, and manipulate social media discourse
+with rumors, spam, malware, misinformation, slander, or even just noise. This may
+result in several levels of damage to society. For example, bots may arti cially in ate
+support for a political candidate [Ratkiewicz et al. 2011a]; such activity could endan-
+ger democracy by in uencing the outcome of elections. In fact, these kinds of abuse
+have already been observed: during the 2010 U.S. midterm elections, social bots were
+employed to support some candidates and smear their opponents, injecting thousands
+of tweets pointing to websites with fake news [Ratkiewicz et al. 2011a]. A similar case
+was reported around the Massachusetts special election of 2010 [Metaxas and Musta-
+faraj 2012]. Campaigns of this type are sometimes referred to as astroturf or Twitter
+bombs. The problem is not just in establishing the veracity of the information being
+promoted   this was an issue before the rise of social bots, and remains beyond the
+reach of algorithmic approaches. The novel challenge brought by bots is the fact that
+they can give the false impression that some piece of information, regardless of its ac-
+curacy, is highly popular and endorsed by many, exerting an in uence against which
+we haven t yet developed antibodies. Our vulnerability makes it possible for a bot to ac-
+quire signi cant in uence, even unintentionally [Aiello et al. 2012]. Sophisticated bots
+can generate personas that appear as credible followers, and thus are harder for both
+people and  ltering algorithms to detect. They make for valuable entities on the fake
+follower market, and allegations of acquisition of fake followers have touched several
+prominent political  gures in the US and worldwide.
+More examples of the potential dangers brought by social bots are increasingly re-
+ported by journalists, analysts, and researchers. These include the unwarranted con-
+sequences that the widespread diffusion of bots may have on the stability of markets.
+There have been claims that Twitter signals can be leveraged to predict the stock mar-
+ket [Bollen et al. 2011], and there is an increasing amount of evidence showing that
+market operators pay attention and react promptly to information from social media.
+On April 23, 2013, for example, the Syrian Electronic Army hacked the Twitter ac-
+count of the Associate Press and posted a false rumor about a terror attack on the
+White House in which President Obama was allegedly injured. This provoked an im-
+mediate crash in the stock market. On May 6, 2010 a  ash crash occurred in the U.S.
+stock market, when the Dow Jones plunged over 1,000 points (about 9%) within min-
+utes  the biggest one-day point decline in history. After a 5-month long investigation,
+The Rise of Social Bots
+XX:3
+the role of high-frequency trading bots became obvious, but it yet remains unclear
+whether these bots had access to information from the social Web [Hwang et al. 2012].
+The combination of social bots with an increasing reliance on automatic trading sys-
+tems that, at least partially, exploit information from social media, is ripe with risks.
+Bots can amplify the visibility of misleading information, while automatic trading sys-
+tem lack fact-checking capabilities. A recent orchestrated bot campaign successfully
+created the appearance of a sustained discussion about a tech company called Cynk.
+Automatic trading algorithms picked up this conversation and started trading heavily
+in the company s stocks. This resulted in a 200-fold increase in market value, bringing
+the company s worth to 5 billion dollars.2 By the time analysts recognized the orches-
+tration behind this operation and stock trading was suspended, the losses were real.
+The bot effect
+These anecdotes illustrate the consequences that tampering with the social Web may
+have for our increasingly interconnected society. In addition to potentially endanger-
+ing democracy, causing panic during emergencies, and affecting the stock market, so-
+cial bots can harm our society in even subtler ways. A recent study demonstrated the
+vulnerability of social media users to a social botnet designed to expose private infor-
+mation, like phone numbers and addresses [Boshmaf et al. 2013]. This kind of vul-
+nerability can be exploited by cybercrime and cause the erosion of trust in social me-
+dia [Hwang et al. 2012]. Bots can also hinder the advancement of public policy by creat-
+ing the impression of a grassroots movement of contrarians, or contribute to the strong
+polarization of political discussion observed in social media [Conover et al. 2011]. They
+can alter the perception of social media in uence, arti cially enlarging the audience of
+some people [Edwards et al. 2014], or they can ruin the reputation of a company, for
+commercial or political purposes [Messias et al. 2013]. A recent study demonstrated
+that emotions are contagious on social media [Kramer et al. 2014]: elusive bots could
+easily in ltrate a population of unaware humans and manipulate them to affect their
+perception of reality, with unpredictable results. Indirect social and economic effects of
+social bot activity include the alteration of social media analytics, adopted for various
+purposes such as TV ratings,3 expert  nding [Wu et al. 2013], and scienti c impact
+measurement.4
+Act like a human, think like a bot
+One of the greatest challenges for bot detection in social media is in understanding
+what modern social bots can do [Boshmaf et al. 2012]. Early bots mainly performed
+one type of activity: posting content automatically. These bots were as naive as easy
+to spot by trivial detection strategies, such as focusing on high volume of content gen-
+eration. In 2011, James Caverlee s team at Texas A&M University implemented a
+honeypot trap that managed to detect thousands of social bots [Lee et al. 2011]. The
+idea was simple and effective: the team created a few Twitter accounts (bots) whose
+role was solely to create nonsensical tweets with gibberish content, in which no human
+would ever be interested. However, these accounts attracted many followers. Further
+inspection con rmed that the suspicious followers were indeed social bots trying to
+grow their social circles by blindly following random accounts.
+2The Curious Case of Cynk, an Abandoned Tech Company Now Worth $5 Billion   mashable.com/2014/07/
+10/cynk
+3Nielsen s New Twitter TV Ratings Are a Total Scam. Here s Why.   defamer.gawker.com/
+nielsens-new-twitter-tv-ratings-are-a-total-scam-here-1442214842
+4altmetrics: a manifesto   altmetrics.org/manifesto/
+XX:4
+E. Ferrara et al.
+In recent years, Twitter bots have become increasingly sophisticated, making their
+detection more dif cult. The boundary between human-like and bot-like behavior is
+now fuzzier. For example, social bots can search the Web for information and media to
+ ll their pro les, and post collected material at predetermined times, emulating the
+human temporal signature of content production and consumption  including circa-
+dian patterns of daily activity and temporal spikes of information generation [Golder
+and Macy 2011]. They can even engage in more complex types of interactions, such
+as entertaining conversations with other people, commenting on their posts, and an-
+swering their questions [Hwang et al. 2012]. Some bots speci cally aim to achieve
+greater in uence by gathering new followers and expanding their social circles; they
+can search the social network for popular and in uential people and follow them or
+capture their attention by sending them inquiries, in the hope to be noticed [Aiello
+et al. 2012]. To acquire visibility, they can in ltrate popular discussions, generating
+topically-appropriate  and even potentially interesting  content, by identifying rele-
+vant keywords and searching online for information  tting that conversation [Freitas
+et al. 2014]. After the appropriate content is identi ed, the bots can automatically pro-
+duce responses through natural language algorithms, possibly including references to
+media or links pointing to external resources. Other bots aim at tampering with the
+identities of legitimate people: some are identity thieves, adopting slight variants of
+real usernames, and stealing personal information such as pictures and links. Even
+more advanced mechanisms can be employed; some social bots are able to  clone  the
+behavior of legitimate users, by interacting with their friends and posting topically
+coherent content with similar temporal patterns.
+A taxonomy of social bot detection systems
+For all the reasons outlined above, the computing community is engaging in the design
+of advanced methods to automatically detect social bots, or to discriminate between
+humans and bots. The strategies currently employed by social media services appear
+inadequate to contrast this phenomenon and the efforts of the academic community in
+this direction just started.
+In the following, we propose a simple taxonomy that divides the approaches pro-
+posed in literature into three classes: (i) bot detection systems based on social network
+information; (ii) system based on crowd-sourcing and leveraging human intelligence;
+(iii) machine learning methods based on the identi cation of highly-revealing features
+that discriminate between bots and humans. Sometimes a hard categorization of a de-
+tection strategy into one of these three categories is dif cult, since some exhibit mixed
+elements: we present also a section of methods that combine ideas from these three
+main approaches.
+Graph-based social bot detection
+The challenge of social bot detection has been framed by various teams in an adver-
+sarial setting [Alvisi et al. 2013]. One example of this framework is represented by
+the Facebook Immune System [Stein et al. 2011]: an adversary may control multiple
+social bots (often referred to as Sybils in this context) to impersonate different identi-
+ties and launch an attack or in ltration. Proposed strategies to detect sybil accounts
+often rely on examining the structure of a social graph. SybilRank [Cao et al. 2012]
+for example assumes that sybil accounts exhibit a small number of links to legiti-
+mate users, instead connecting mostly to other sybils, as they need a large number of
+social ties to appear trustworthy. This feature is exploited to identify densely inter-
+connected groups of sybils. One common strategy is to adopt off-the-shelf community
+detection methods to reveal such tightly-knit local communities; however, the choice of
+the community detection algorithm has proven to crucially affect the performance of
+The Rise of Social Bots
+XX:5
+the detection algorithms [Viswanath et al. 2011]. A wise attacker may counterfeit the
+connectivity of the controlled sybil accounts so that to mimic the features of the com-
+munity structure of the portion of the social network populated by legitimate accounts;
+this strategy would make the attack invisible to methods solely relying on community
+detection. To address this shortcoming, some detection systems, for example Sybil-
+Rank, also employ the paradigm of innocent by association: an account interacting
+with a legitimate user is considered itself legitimate. Souche [Xie et al. 2012] and Anti-
+Reconnaissance [Paradise et al. 2014] also rely on the assumption that social network
+structure alone separates legitimate users from bots. Unfortunately, the effectiveness
+of such detection strategies is bound by the behavioral assumption that legitimate
+users refuse to interact with unknown accounts. This was proven unrealistic by var-
+ious experiments [Stringhini et al. 2010; Boshmaf et al. 2013; Elyashar et al. 2013]:
+a large-scale social bot in ltration on Facebook showed that over 20% of legitimate
+users accept friendship requests indiscriminately, and over 60% accept requests from
+accounts with at least one contact in common [Boshmaf et al. 2013]. On other plat-
+forms like Twitter and Tumblr, connecting and interacting with strangers is one of the
+main features. In these circumstances, the innocent-by-association paradigm yields
+high false positive rates, and these are the worst types of errors: a service provider
+would rather fail to detect a social bot than inconvenience a real user with an erro-
+neous account suspension. Some authors noted the limits of the assumption of  nding
+groups of social bots or legitimate users only: real platforms may contain many mixed
+groups of legitimate users who fell prey of some bots [Alvisi et al. 2013], and sophisti-
+cated bots may succeed in large-scale in ltrations making it impossible to detect them
+solely from network structure information. This brought Alvisi et al. to recommend a
+portfolio of complementary detection techniques, and the manual identi cation of le-
+gitimate social network users to aid in the training of supervised learning algorithms.
+Crowd-sourcing social bot detection
+The possibility of human detection has been explored by Wang et al. [Wang et al.
+2013b] who suggest the crowd-sourcing of social bot detection to legions of workers.
+As a proof-of-concept, they created an Online Social Turing Test platform. The authors
+assumed that bot detection is a simple task for humans, whose ability to evaluate
+conversational nuances like sarcasm or persuasive language, or to observe emerging
+patterns and anomalies, is yet unparalleled by machines. Using data from Facebook
+and Renren (a popular Chinese online social network), the authors tested the ef -
+cacy of humans, both expert annotators and workers hired online, at detecting social
+bot accounts simply from the information on their pro les. The authors observed that
+the detection rate for hired workers drops off over time, although it remains good
+enough to be used in a majority voting protocol: the same pro le is shown to multiple
+workers and the opinion of the majority determines the  nal verdict. This strategy
+exhibits a near-zero false positive rate, a very desirable feature for a service provider.
+Three drawbacks undermine the feasibility of this approach:  rst, although the au-
+thors make a general claim that crowd-sourcing the detection of social bots might
+work if implemented since the early stage, this solution might not be cost-effective
+for a platform with a large pre-existing user base, like Facebook and Twitter. Second,
+to guarantee that a minimal number of human annotators can be employed to min-
+imize costs,  expert  workers are still needed to accurately detect fake accounts, as
+the  average  worker does not perform well individually. As a result, to reliably build
+a ground-truth of annotated bots, large social network companies like Facebook and
+Twitter are forced to hire teams of expert analysts [Stein et al. 2011], however such a
+choice might not be suitable for small social networks in their early stages (an issue
+at odds with the previous point). Finally, exposing personal information to external
+XX:6
+Class
+Network
+User
+Friends
+Timing
+Content
+Sentiment
+E. Ferrara et al.
+Table I. Classes of features employed by feature-based systems for social bot detection.
+Description
+Network features capture various dimensions of information diffusion patterns. Statistical features
+can be extracted from networks based on retweets, mentions, and hashtag co-occurrence. Examples
+include degree distribution, clustering coef cient, and centrality measures [Ratkiewicz et al. 2011b].
+User features are based on Twitter meta-data related to an account, including language, geographic
+locations, and account creation time.
+Friend features include descriptive statistics relative to an account s social contacts, such as median,
+moments, and entropy of the distributions of their numbers of followers, followees, and posts.
+Timing features capture temporal patterns of content generation (tweets) and consumption
+(retweets); examples include the signal similarity to a Poisson process [Ghosh et al. 2011], or the
+average time between two consecutive posts.
+Content features are based on linguistic cues computed through natural language processing, espe-
+cially part-of-speech tagging; examples include the frequency of verbs, nouns, and adverbs in tweets.
+Sentiment features are built using general-purpose and Twitter-speci c sentiment analysis algo-
+rithms, including happiness, arousal-dominance-valence, and emotion scores [Golder and Macy 2011;
+Bollen et al. 2011].
+workers for validation raises privacy issue [Elovici et al. 2013]. While Twitter pro les
+tend to be more public compared to Facebook, Twitter pro les also contain less infor-
+mation than Facebook or Renren, thus giving a human annotator less ground to make
+a judgment. Analysis by manual annotators of interactions and content produced by
+a Syrian social botnet active in Twitter for 35 weeks suggests that some advanced
+social bots may no longer aim at mimicking human behavior, but rather at misdirect-
+ing attention to irrelevant information [Abokhodair et al. 2015]. Such smoke screening
+strategies require high coordination among the bots. This observation is in line with
+early  ndings on political campaigns orchestrated by social bots, which exhibited not
+only peculiar network connectivity patterns but also enhanced levels of coordinated
+behavior [Ratkiewicz et al. 2011a]. The idea of leveraging information about the syn-
+chronization of account activities has been fueling many social bot detection systems:
+frameworks like CopyCatch [Beutel et al. 2013], SynchroTrap [Cao et al. 2014], and
+the Renren Sybil detector [Wang et al. 2013a; Yang et al. 2014] rely explicitly on the
+identi cation of such coordinated behavior to identify social bots.
+Feature-based social bot detection
+The advantage of focusing on behavioral patterns is that these can be easily encoded
+in features and adopted with machine learning techniques to learn the signature of
+human-like and bot-like behaviors. This allows to later classify accounts according
+to their observed behaviors. Different classes of features are commonly employed to
+capture orthogonal dimensions of users  behaviors, as summarized in Table I.
+One example of feature-based system is represented by Bot or Not?. Released in
+2014, it was the  rst social bot detection interface for Twitter to be made publicly avail-
+able to raise awareness about the presence of social bots.5 Similarly to other feature-
+based systems [Ratkiewicz et al. 2011b], Bot or Not? implements a detection algorithm
+relying upon highly-predictive features which capture a variety of suspicious behaviors
+and well separate social bots from humans. The system employs off-the-shelf super-
+vised learning algorithms trained with examples of both humans and bots behaviors,
+based on the Texas A&M dataset [Lee et al. 2011] that contains 15 thousand exam-
+ples of each class and millions of tweets. Bot or Not? scores a detection accuracy above
+95%,6 measured by AUROC via cross validation. In addition to the classi cation re-
+5As of the time of this writing, Bot or Not? remains the only social bot detection system with a public-facing
+interface: http://truthy.indiana.edu/botornot
+6Detecting more recent and sophisticated social bots, compared to those in the 2011 dataset, may well yield
+lower accuracy.
+The Rise of Social Bots
+XX:7
+Fig. 1. Common features used for social bot detection. (A) The network of hashtags co-occurring in the
+tweets of a given user. (B) Various sentiment signals including emoticon, happiness and arousal-dominance-
+valence scores. (C) The volume of content produced and consumed (tweeting and retweeting) over time.
+sults, Bot or Not? provides a variety of interactive visualizations that provide insights
+on the features exploited by the system (see Fig. 1 for examples).
+Bots are continuously changing and evolving: the analysis of the highly-predictive
+behaviors that feature-based detection systems can detect may reveal interesting pat-
+terns and provide unique opportunities to understand how to discriminate between
+bots and humans. User meta-data are considered among the most predictive features
+and the most interpretable ones [Hwang et al. 2012; Wang et al. 2013b]: we can suggest
+few rules of thumb to infer whether an account is likely a bot, by comparing its meta-
+data with that of legitimate users (see Fig. 2). Further work, however, will be needed to
+detect sophisticated strategies exhibiting a mixture of humans and social bots features
+(sometimes referred to as cyborgs). Detecting these bots, or hacked accounts [Zangerle
+and Specht 2014], is currently impossible for feature-based systems.
+Combining multiple approaches
+Alvisi et al. [Alvisi et al. 2013] recognized  rst the need of adopting complementary
+detection techniques to effectively deal with sybil attacks in social networks. The Ren-
+ren Sybil detector [Wang et al. 2013a; Yang et al. 2014] is an example of system that
+explores multiple dimensions of users  behaviors like activity and timing information.
+Examination of ground-truth clickstream data shows that real users spend compara-
+tively more time messaging and looking at other users  contents (such as photos and
+XX:8
+E. Ferrara et al.
+Fig. 2. User behaviors that best discriminate social bots from humans. Social bots retweet more than hu-
+mans and have longer user names, while they produce fewer tweets, replies and mentions, and they are
+retweeted less than humans. Bot accounts also tend to be more recent.
+videos), whereas Sybil accounts spend their time harvesting pro les and befriending
+other accounts. Intuitively, social bot activities tend to be simpler in terms of variety
+of behavior exhibited. By also identifying highly-predictive features such as invitation
+frequency, outgoing requests accepted, and network clustering coef cient, Renren is
+able to classify accounts into two categories: bot-like and human-like prototypical pro-
+ les [Yang et al. 2014]. Sybil accounts on Renren tend to collude and work together to
+spread similar content: this additional signal, encoded as content and temporal simi-
+larity, is used to detect colluding accounts. In some ways, the Renren approach [Wang
+et al. 2013a; Yang et al. 2014] combines the best of network- and behavior-based con-
+ceptualizations of Sybil detection. By achieving good results even utilizing only the last
+100 click events for each user, the Renren system obviates to the need to store and an-
+alyze the entire click history for every user. Once the parameters are tweaked against
+ground truth, the algorithm can be seeded with a  xed number of known legitimate
+accounts and then used for mostly unsupervised classi cation. The  Sybil until proven
+otherwise  approach (the opposite of the innocent-by-association strategy) baked into
+this framework does lend itself to detecting previously unknown methods of attack: the
+authors recount the case of spambots embedding text in images to evade detection by
+content analysis and URL blacklists. Other systems implementing mixed methods, like
+CopyCatch [Beutel et al. 2013] and SynchroTrap [Cao et al. 2014], also score compar-
+atively low false positive rates with respect to, for example, network-based methods.
+The Rise of Social Bots
+XX:9
+Master of puppets
+If social bots are the puppets, additional efforts will have to be directed at  nding
+their  masters.  Governments7 and other entities with suf cient resources8 have been
+alleged to use social bots to their advantage. Assuming the availability of effective
+detection technologies, it will be crucial to reverse-engineer the observed social bot
+strategies: who they target, how they generate content, when they take action, and
+what topics they talk about. A systematic extrapolation of such information may en-
+able identi cation of the puppet masters.
+Efforts in the direction of studying platforms vulnerability already started. Some
+researchers [Freitas et al. 2014], for example, reverse-engineer social bots reporting
+alarming results: simple automated mechanisms that produce contents and boost fol-
+lowers yield successful in ltration strategies and increase the social in uence of the
+bots. Others teams are creating bots themselves: Tim Hwang s [Hwang et al. 2012] and
+Sune Lehmann s9 groups continuously challenge our understanding of what strate-
+gies effective bots employ, and help quantify the susceptibility of people to their in u-
+ence [Wagner et al. 2012; Wald et al. 2013]. Briscoe et al. [Briscoe et al. 2014] studied
+the deceptive cues of language employed by in uence bots. Tools like Bot or Not? have
+been made available to the public to shed light on the presence of social bots online.
+Yet many research questions remain open. For example, nobody knows exactly how
+many social bots populate social media, or what share of content can be attributed to
+bots  estimates vary wildly and we might have observed only the tip of the iceberg.
+These are important questions for the research community to pursue, and initiatives
+such as DARPA s SMISC bot detection challenge, which took place in the Spring of
+2015, can be effective catalysts of this emerging area of inquiry.
+Bot behaviors are already quite sophisticated: they can build realistic social net-
+works and produce credible content with human-like temporal patterns. As we build
+better detection systems, we expect an arms race similar to that observed for spam in
+the past [Heymann et al. 2007]. The need for training instances is an intrinsic limi-
+tation of supervised learning in such a scenario; machine learning techniques such as
+active learning might help respond to newer threats. The race will be over only when
+the effectiveness of early detection will suf ciently increase the cost of deception.
+The future of social media ecosystems might already point in the direction of en-
+vironments where machine-machine interaction is the norm, and humans navigate a
+world populated mostly by bots. We believe there is a need for bots and humans to be
+able to recognize each other, to avoid bizarre, or even dangerous, situations based on
+false assumptions of human interlocutors.10
+ACKNOWLEDGMENTS
+The authors are grateful to Qiaozhu Mei, Zhe Zhao, Mohsen JafariAsbagh, and Prashant Shiralkar for
+helpful discussions.
+7Russian Twitter political protests  swamped by spam    www.bbc.com/news/technology-16108876
+8Fake Twitter accounts used to promote tar sands pipeline   www.theguardian.com/environment/2011/aug/
+05/fake-twitter-tar-sands-pipeline
+9You are here because of a robot   sunelehmann.com/2013/12/04/youre-here-because-of-a-robot/
+10That Time 2 Bots Were Talking, and Bank of America Butted In   www.theatlantic.com/technology/
+archive/2014/07/that-time-2-bots-were-talking-and-bank-of-america-butted-in/374023/
+XX:10
+E. Ferrara et al.
+REFERENCES
+Norah Abokhodair, Daisy Yoo, and David W. McDonald. 2015. Dissecting a social botnet: growth, content,
+and in uence in Twitter. In Proceedings of the 18th ACM Conference on Computer-Supported Coopera-
+tive Work and Social Computing. ACM.
+Luca Maria Aiello, Martina Deplano, Rossano Schifanella, and Giancarlo Ruffo. 2012. People are Strange
+when you re a Stranger: Impact and In uence of Bots on Social Networks. In Proc. 6th AAAI Interna-
+tional Conference on Weblogs and Social Media. AAAI, 10 17.
+Lorenzo Alvisi, Allen Clement, Alessandro Epasto, Silvio Lattanzi, and Alessandro Panconesi. 2013. Sok:
+The evolution of sybil defense via social networks. In 2013 IEEE Symposium on Security and Privacy.
+IEEE, 382 396.
+Alex Beutel, Wanhong Xu, Venkatesan Guruswami, Christopher Palow, and Christos Faloutsos. 2013. Copy-
+Catch: stopping group attacks by spotting lockstep behavior in social networks. In Proceedings of the
+22nd international conference on World Wide Web. International World Wide Web Conferences Steering
+Committee, 119 130.
+Johan Bollen, Huina Mao, and Xiaojun Zeng. 2011. Twitter mood predicts the stock market. Journal of
+Computational Science 2, 1 (2011), 1 8.
+Yazan Boshmaf, Ildar Muslukhov, Konstantin Beznosov, and Matei Ripeanu. 2012. Key challenges in defend-
+ing against malicious socialbots. In Proceedings of the 5th USENIX Conference on Large-scale Exploits
+and Emergent Threats, Vol. 12.
+Yazan Boshmaf, Ildar Muslukhov, Konstantin Beznosov, and Matei Ripeanu. 2013. Design and analysis of
+a social botnet. Computer Networks 57, 2 (2013), 556 578.
+Erica J Briscoe, D Scott Appling, and Heather Hayes. 2014. Cues to Deception in Social Media Communica-
+tions. In HICSS: 47th Hawaii International Conference on System Sciences. IEEE, 1435 1443.
+Qiang Cao, Michael Sirivianos, Xiaowei Yang, and Tiago Pregueiro. 2012. Aiding the Detection of Fake
+Accounts in Large Scale Social Online Services. In NSDI. 197 210.
+Qiang Cao, Xiaowei Yang, Jieqi Yu, and Christopher Palow. 2014. Uncovering Large Groups of Active Ma-
+licious Accounts in Online Social Networks. In Proceedings of the 2014 ACM SIGSAC Conference on
+Computer and Communications Security. ACM, 477 488.
+Christopher A Cassa, Rumi Chunara, Kenneth Mandl, and John S Brownstein. 2013. Twitter as a sentinel
+in emergency situations: lessons from the Boston marathon explosions. PLoS Currents: Disasters (July
+2013). DOI:http://dx.doi.org/10.1371/currents.dis.ad70cd1c8bc585e9470046cde334ee4b
+Michael Conover, Jacob Ratkiewicz, Matthew Francisco, Bruno Gonc alves, Filippo Menczer, and Alessandro
+Flammini. 2011. Political polarization on Twitter. In 5th International AAAI Conference on Weblogs and
+Social Media. 89 96.
+Chad Edwards, Autumn Edwards, Patric R Spence, and Ashleigh K Shelton. 2014. Is that a bot running the
+social media feed? Testing the differences in perceptions of communication quality for a human agent
+and a bot agent on Twitter. Computers in Human Behavior 33 (2014), 372 376.
+Yuval Elovici, Michael Fire, Amir Herzberg, and Haya Shulman. 2013. Ethical considerations when em-
+ploying fake identities in online social networks for research. Science and engineering ethics (2013),
+1 17.
+Aviad Elyashar, Michael Fire, Dima Kagan, and Yuval Elovici. 2013. Homing socialbots: intrusion on a
+speci c organization s employee using Socialbots. In Proceedings of the 2013 IEEE/ACM International
+Conference on Advances in Social Networks Analysis and Mining. ACM, 1358 1365.
+Carlos A Freitas, Fabr  cio Benevenuto, Saptarshi Ghosh, and Adriano Veloso. 2014. Reverse Engineering
+Socialbot In ltration Strategies in Twitter. arXiv preprint arXiv:1405.4927 (2014).
+Rumi Ghosh, Tawan Surachawala, and Kristina Lerman. 2011. Entropy-based Classi cation of  Retweeting 
+Activity on Twitter. In SNA-KDD: KDD workshop on Social Network Analysis.
+Scott A Golder and Michael W Macy. 2011. Diurnal and seasonal mood vary with work, sleep, and daylength
+across diverse cultures. Science 333, 6051 (2011), 1878 1881.
+Aditi Gupta, Hemank Lamba, and Ponnurangam Kumaraguru. 2013. $1.00 per RT #BostonMarathon #Pray-
+ForBoston: Analyzing fake content on Twitter. In eCrime Researchers Summit. IEEE, 1 12.
+Paul Heymann, Georgia Koutrika, and Hector Garcia-Molina. 2007. Fighting spam on social web sites: A
+survey of approaches and future challenges. Internet Computing, IEEE 11, 6 (2007), 36 45.
+Tim Hwang, Ian Pearce, and Max Nanis. 2012. Socialbots: Voices from the fronts. Interactions 19, 2 (2012),
+38 45.
+Adam DI Kramer, Jamie E Guillory, and Jeffrey T Hancock. 2014. Experimental evidence of massive-scale
+emotional contagion through social networks. Proceedings of the National Academy of Sciences (2014),
+201320040.
+The Rise of Social Bots
+XX:11
+Kyumin Lee, Brian David Eoff, and James Caverlee. 2011. Seven Months with the Devils: A Long-Term
+Study of Content Polluters on Twitter. In Proceedings of the 5th International AAAI Conference on We-
+blogs and Social Media. 185 192.
+Johnnatan Messias, Lucas Schmidt, Ricardo Oliveira, and Fabr  cio Benevenuto. 2013. You followed my bot!
+Transforming robots into in uential users in Twitter. First Monday 18, 7 (2013).
+Panagiotis T Metaxas and Eni Mustafaraj. 2012. Social media and the elections. Science 338, 6106 (2012),
+472 473.
+Abigail Paradise, Rami Puzis, and Asaf Shabtai. 2014. Anti-Reconnaissance Tools: Detecting Targeted So-
+cialbots. Internet Computing 18, 5 (2014), 11 19.
+Jacob Ratkiewicz, Michael Conover, Mark Meiss, Bruno Gonc alves, Alessandro Flammini, and Filippo
+Menczer. 2011a. Detecting and tracking political abuse in social media. In 5th International AAAI Con-
+ference on Weblogs and Social Media. 297 304.
+Jacob Ratkiewicz, Michael Conover, Mark Meiss, Bruno Gonc alves, Snehal Patil, Alessandro Flammini, and
+Filippo Menczer. 2011b. Truthy: mapping the spread of astroturf in microblog streams. In WWW: 20th
+International Conference on World Wide Web. 249 252.
+Tao Stein, Erdong Chen, and Karan Mangla. 2011. Facebook Immune System. In Proceedings of the 4th
+Workshop on Social Network Systems. ACM, 8.
+Gianluca Stringhini, Christopher Kruegel, and Giovanni Vigna. 2010. Detecting spammers on social net-
+works. In Proceedings of the 26th Annual Computer Security Applications Conference. ACM, 1 9.
+Alan M Turing. 1950. Computing machinery and intelligence. Mind 49, 236 (1950), 433 460.
+Bimal Viswanath, Ansley Post, Krishna P Gummadi, and Alan Mislove. 2011. An analysis of social network-
+based sybil defenses. ACM SIGCOMM Computer Communication Review 41, 4 (2011), 363 374.
+Claudia Wagner, Silvia Mitter, Christian K orner, and Markus Strohmaier. 2012. When social bots attack:
+Modeling susceptibility of users in online social networks. In WWW: 21th International Conference on
+World Wide Web. 41 48.
+Randall Wald, Taghi M Khoshgoftaar, Amri Napolitano, and Chris Sumner. 2013. Predicting susceptibil-
+ity to social bots on Twitter. In 2013 IEEE 14th International Conference on Information Reuse and
+Integration. IEEE, 6 13.
+Gang Wang, Tristan Konolige, Christo Wilson, Xiao Wang, Haitao Zheng, and Ben Y Zhao. 2013a. You Are
+How You Click: Clickstream Analysis for Sybil Detection. In USENIX Security. 241 256.
+Gang Wang, Manish Mohanlal, Christo Wilson, Xiao Wang, Miriam Metzger, Haitao Zheng, and Ben Y Zhao.
+2013b. Social turing tests: Crowdsourcing sybil detection. In NDSS. The Internet Society.
+Joseph Weizenbaum. 1966. ELIZA   a computer program for the study of natural language communication
+between man and machine. Commun. ACM 9, 1 (1966), 36 45.
+Xian Wu, Ziming Feng, Wei Fan, Jing Gao, and Yong Yu. 2013. Detecting Marionette Microblog Users for Im-
+proved Information Credibility. In Machine Learning and Knowledge Discovery in Databases. Springer,
+483 498.
+Yinglian Xie, Fang Yu, Qifa Ke, Mart  n Abadi, Eliot Gillum, Krish Vitaldevaria, Jason Walter, Junxian
+Huang, and Zhuoqing Morley Mao. 2012. Innocent by association: early recognition of legitimate users.
+In Proceedings of the 2012 ACM conference on Computer and communications security. ACM, 353 364.
+Zhi Yang, Christo Wilson, Xiao Wang, Tingting Gao, Ben Y Zhao, and Yafei Dai. 2014. Uncovering social
+network sybils in the wild. ACM Transactions on Knowledge Discovery from Data 8, 1 (2014), 2.
+Eva Zangerle and G  unther Specht. 2014.  Sorry, I was hacked  A Classi cation of Compromised Twitter
+Accounts. In SAC: the 29th Symposium On Applied Computing.
+Received June 201X; revised 201X; accepted 201X

@@ -1,0 +1,906 @@
+5
+1
+0
+2
+ 
+p
+e
+S
+4
+ 
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+1
+v
+8
+0
+6
+1
+0
+.
+9
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Network Structure and Resilience of Ma a Syndicates
+Santa Agrestea, Salvatore Catanesea,b, Pasquale De Meoc, Emilio Ferrarad, , Giacomo Fiumaraa
+aDept. of Mathematics and Informatics, University of Messina, Italy.
+bDept. of Mathematics and Informatics, University of Catania, Italy.
+cDept. of Ancient and Modern Civilizations, University of Messina, Italy.
+dInformation Sciences Institute, University of Southern California, Marina del Rey, CA, USA.
+Abstract
+In this paper we present the results of the study of Sicilian Ma a organization by using Social
+Network Analysis. The study investigates the network structure of a Ma a organization, de-
+scribing its evolution and highlighting its plasticity to interventions targeting membership and
+its resilience to disruption caused by police operations. We analyze two di erent datasets about
+Ma a gangs built by examining di erent digital trails and judicial documents spanning a period
+of ten years: the former dataset includes the phone contacts among suspected individuals, the
+latter is constituted by the relationships among individuals actively involved in various criminal
+o enses. Our report illustrates the limits of traditional investigation methods like tapping: crimi-
+nals high up in the organization hierarchy do not occupy the most central positions in the criminal
+network, and oftentimes do not appear in the reconstructed criminal network at all. However, we
+also suggest possible strategies of intervention, as we show that although criminal networks (i.e.,
+the network encoding mobsters and crime relationships) are extremely resilient to di erent kind
+of attacks, contact networks (i.e., the network reporting suspects and reciprocated phone calls)
+are much more vulnerable and their analysis can yield extremely valuable insights.
+Keywords: social network analysis, network science
+1. Introduction
+Sicilian Ma a (often known as Cosa Nostra) is a criminal organization which originated in
+Sicily and, after decades of emigration waves, it is now spread worldwide [1, 2, 3].
+Police investigations revealed that Ma a is a loose confederation of smaller syndicates (called
+ cosche ,  clan  or  Families ) such that each syndicate takes the control of a speci c territory
+(usually a town or a part of it) by organizing and overseeing illegal activities. Members of a
+Ma a syndicate can be both mobsters and associates (i.e., people like drug-dealers, murders or
+corrupted politicians who are not part of the syndicate but contribute to its illicit activities). Ma a
+syndicates show a strong hierarchical organization [2]: on the top of the organization we have a
+ boss , who is aided by an  underboss  and by various  liutenants  who head branches of the
+Ma a syndicate. The boss also commands a crew of  soldiers  (often known as picciotti) who
+commit acts of violence like intimidation, threats and murders.
+ Corresponding author
+Email address: ferrarae@isi.edu (Emilio Ferrara)
+Preprint submitted to Information Sciences
+September 8, 2015
+Due to its normative structure as well as strong ties with  nance, entrepreneurs and politi-
+cians, Ma a has now risen to prominence as a worldwide criminal organization by controlling
+many illegal activities like the trade of cocaine, money laundering or illegal military weapon
+tra cking [4].
+Understanding the structure of Ma a syndicates, unveiling the functional role of each of their
+members and quantify the ability of a Ma a syndicate to react to the detention of its members
+are crucial steps to e ectively  ght and dismantle Ma a syndicates. In the latest years, various
+researchers [2, 5, 6] illustrated the bene ts of using Social Network Analysis [7] to study the
+structure criminal organizations.
+The adoption of methods from Social Network Analysis in the study of criminal organiza-
+tions has strong theoretical and practical motivations: studies from sociological literature (known
+as social facilitation models [2]) point out that the membership of an individual to a crime gang
+enormously ampli es her/his tendency to criminal behaviors [8]. Destroying the network struc-
+ture associated with a criminal organization is central to prevent individuals from committing
+crimes and lower delinquency rates.
+The  rst step to analyze Ma a syndicates by means of Social Network Analysis tools is
+to collect a su ciently large data sample describing the various units composing the syndicate
+and their operations. Interactions among mobsters materialize under various forms: for instance
+two mobsters can be tied if they committed together the same crime or if they have been seen
+together in the same sighting. A powerful and well-known investigation method is tapping, i.e.,
+the procedure of recording information  ow among suspected criminals which has been sent
+using any type of electronic media, like phone calls (from both  xed lines and mobiles), emails,
+SMS messages and private communications over Social Media platforms. Tapping has proven
+to be e ective for preventing and solving many crimes like terrorism, drugs, kidnapping and
+political corruption.
+Tapping has been extensively used also in case of Ma a related investigations, but, if used
+alone, it may fail to reliably capture the structure of a Ma a syndicate: newspapers, for instance,
+report that the boss of Ma a syndicates often reveal their whereabouts to just few gang members
+and, in many cases, they issue orders and communications through handwritten notes known as
+pizzini. 1
+A promising investigation strategy requires to supplement information collected by tapping
+with data generated by other methods of investigation like video surveillance, use of informants
+and under-cover agents, interview to subjects, analysis of bank transactions and so on. By gluing
+together this piece of information, we can capture a more detailed picture of the structure of a
+Ma a syndicate. Unfortunately, the information cited above is the outcome of a long, expensive
+and often dangerous investigation process which often spans years, or, in certain cases, even
+decades.
+After examining several types of judicial documents spanning a ten years period (like judg-
+ments, verdicts, depositions and inquisitions, and so on) we built two datasets about Ma a gangs
+operating in the North of Sicily.
+We started by collecting phone calls among suspected individuals and this allowed us to
+build a network called contact network Ncon in which each individual was associated with a
+vertex and an edge between two vertices denotes the existence of at least one reciprocated phone
+call between the individuals associated with that vertices. The network Ncon contained 1, 716
+vertices and 8,481 edges.
+1See http://news.bbc.co.uk/2/hi/europe/4899512.stm
+2
+By means of further investigation, we were able to identify crime relationships: we say
+that a crime relationship exists between two individuals if they took part in the same criminal
+o ense or if they have been seen together during a sighting. Criminal relationships were then
+mapped on a second network called criminal network Ncri. The network Ncri contained only 104
+vertices and 2,596 edges: all but 6 individuals in the criminal network were also present in the
+contact network. This means that the original dataset contained almost all mobsters but there
+were mobsters who were part of the Ma a syndicate but who never used mobiles or  xed lines
+to communicate.
+The availability of these datasets o ered us the unprecedented opportunity of understanding
+the actual structure of a Ma a syndicate and to quantify how well it is able to react to police
+operations leading to the detention of some of its members.
+In a  rst stage of our research,
+we studied the structural properties of Ncri and Ncon. Our  rst goal was to understand whether
+meaningful di erences arise between the structural features of the two networks.
+Subsequently, we investigated and compared the robustness of Ncon and Ncri. We simulated
+a police operation leading to the arrest of a fraction f of individuals from the two networks and
+we studied how these perturbations impacted on the structure of both Ncon and Ncri. Individuals
+were selected either randomly or on the basis of their centrality in the network. To this end, we
+used three di erent centrality metrics, namely Degree Centrality (DC), Betwenness Centrality
+(BC) and Closeness Centrality (CC). We considered two type of operations, namely: (i) Parallel
+Attack, i.e., we assumed that a fraction f of individuals were simultaneously deleted from the
+network along with their connections and (ii) Sequential Attack. i.e., we supposed to iteratively
+neutralize individuals along with their connections from the network until a fraction f of indi-
+viduals has been neutralized. To measure the e ectiveness of each operation, we computed two
+parameters, namely the size of the Strongly Connected Component (SCC) of each network and
+the Average Path Length (APL) (de ned as the mean of shortest path lengths in the network).
+The main  ndings of our analysis can be summarized as follows:
+1. We found that 98 (out of 104) members of Ncon were also members of Ncri; there were also
+6 mobsters who appeared in Ncri but were not recorded in Ncon. This proves the presence
+in the contact network of few criminals who do not use phones to communicate because
+they consider phone calls unreliable and unsafe.
+2. The degree distribution in Ncon followed a power law k   with   = 2.5. By contrast, the
+degree distribution in Ncri was almost uniform and about 76.92% of Ncri a liates had a
+degree ranging between 15 and 85. With the help of police o cers, we observed that
+leaders in the Ma a syndicate were the individuals in Ncri showing the lowest degree.
+Therefore, the top elements in a Ma a syndicate do not occupy the most central positions
+in the criminal network.
+3. Social relationships were dense both in Ncon and Ncri. To this end, we computed the Av-
+erage Clustering Coe cient of each vertex as function of its degree and we found that it
+was always bigger than 0.6 (i.e., more than 5 times the value measured on social networks
+like Facebook [9, 10]). This is likely to depend on the recruiting policies of Ma a syndi-
+cates which impose the existence of intermediaries to enable an individual to join a Ma a
+syndicate.
+4. In case of a parallel police operation, we observe that targeted attacks are able to quickly
+destroy the strongly connected component of Ncon. In particular, DC has the most disrup-
+tive e ect on SCC. In contrast, Ncri showed an exceptional degree of robustness indepen-
+dently of the adopted centrality index.
+3
+5. In case of sequential police operations, the CC has the most disruptive e ect on SCC and
+this happens both in Ncon and in Ncri. CC is still the best option if the goal is to increase
+APL in Ncon; by contrast, DC yields the largest increase in APL if applied on Ncri.
+The plan of the paper is as follows: in Section 2 we discuss the related literature. In Section 3
+we provide some basic de nitions which will be largely used throughout the paper. In Section
+4 we describe the main structural features of both the Contact and the Criminal Network while
+Sections 5 and 6 are devoted to investigate the resilience of the Contact and Criminal networks
+under parallel and sequential attacks, respectively. Finally, in Section 7 we draw our conclusions
+and illustrate our future research plans.
+2. Related Literature
+In this section we review the scienti c literature related to our approach. We start discussing
+how Social Network Analysis techniques have been applied to study Ma a-related organizations
+(Section 2.1). We then illustrate approaches concentrating on how the power of a criminal orga-
+nization depends on the social relationships among its members (Section 2.2). One of the major
+contributions of our study, in fact, consists of exploring the e ects associated with the dismissal
+of one (or more) members of a criminal gang.
+2.1. Social Network Analysis and Ma a syndicates
+One of the early reports on the structure of Ma a syndicates dates back to 1876 and is due
+to the Italian deputy Leopoldo Franchetti [1], who depicted the Ma a as a criminal organization
+deeply rooted in Sicilian society. Franchetti argued that Ma a was impossible to destroy unless
+a deep change in Sicilian social institutions would occur.
+Such a study has deeply in uenced prosecuting magistrates, politicians, criminologists and
+sociologists committed to  ghting Ma a. Ma a syndicates are organized according to rigid
+normative structures, being perhaps the Ma a Decalogue the most popular code of conduct.
+According to that Decalogue, mobsters must respect each other: for instance, it is forbidden to
+appropriate money if it belongs to other members of the same syndicate or to other families. Ties
+among mobsters belonging to the same syndicate are very strong: in some cases they are related
+by blood and, in any case, the gang comes before their birth family.
+Because of the rich and strong web of relationships among mobsters, the analysis of the
+social structure of a Ma a syndicate is of great scienti c interest and it well explains why Social
+Network Analysis methods have been extensively applied to the study of Ma a syndicates.
+For instance, Morselli [6] studied the connections within a New York-based family (the Gam-
+bino family). The study focused on the career of one of its members, Saul Gravano. One of the
+main Morselli s  ndings is that Gravano s ability of building and extending over time his personal
+network of contacts was a key factor to climbing the Gambino s family organization. Natarajan
+[11] studied a dataset consisting of 2,408 wiretap conversations gathered during the prosecution
+of a heroin-dealing Ma a syndicate in New York. Starting from available data, the author built a
+network of phone calls, which revealed a group of 294 individuals forming the core of the crim-
+inal organization. Natarajan showed that most of the group members had very limited contacts
+with others in the group.
+Other relevant studies are reported by Sarnecki [12] (who applied Social Network Analysis
+to study co-o ending behaviors among Swedish teenagers) and by McGloin [3] (who analyzed
+the network structure of street gangs in Newark, New Jersey).
+4
+Social Network Analysis is not only a tool to describe the structure and functioning of a
+criminal organizations but it has been largely employed in the construction of crime prevention
+systems [13]. For instance, Xu and Chen [14] jointly applied Social Network Analysis with hi-
+erarchical clustering algorithms; the proposed approach worked in two stages:  rst, a criminal
+network was partitioned into subgroups by means of a clustering algorithm. Then, block model-
+ing techniques have been used to extract interaction patterns between these subgroups. A further
+application of Social Network Analysis to crime detection is reported in [15], which focused on
+money laundering.
+Social Network Analysis tools were  nally employed to identify leaders within a criminal
+organization. For instance, Mastrobuoni and Patacchini [2] used a dataset recording criminal
+pro les of 800 Ma a members active in the United States from 1950s to 1960s to investigate
+the structure of criminal ties between mobsters. Various features were considered like family
+relationships, legal and illegal activities, to predict the criminal rank of a mobster.
+In our previous work we focused on the joint application of Social Network Analysis tools
+and advanced Data Visualization techniques [5, 16]. We described a software system which
+was able to extract criminal organizations from a network recording mobile phone calls and we
+combined statistical network analysis primitives, community detection algorithms, and visual
+exploration tools, to unveil the structure of criminal networks hidden in communication data.
+This paper introduces many novelties with respect to the approaches cited above. In fact,
+our analysis focuses on two datasets which roughly cover the same time interval and refer to the
+same geographical area. The  rst dataset records phone calls while the second one is about crime
+relationships and, as will become clear in the following, the networks extracted from each dataset
+show deep di erences from a structural viewpoint. Our work highlights the limits of tapping as
+investigation method to  ght against Ma a gangs and it shows that the most prominent criminals
+do not occupy the most central positions in the criminal network. The procedure we followed
+to build the datasets in this paper essentially relies on the analysis of judicial documents like
+verdicts of depositions. An approach to collecting crime related data which is ortoghonal to ours
+is described by Furtado et al. [17]. In that paper, the authors describe WikiCrime, a Web applica-
+tion that enables its users to directly report crimes on a speci c geographical area and temporal
+window, or to search for a speci c crime occurred in the past. One of the core features of Wiki-
+Crime is its ability to give more transparency and di usion to criminal information and to prevent
+crimes. As claimed by the authors, WikiCrime is also e ective to reduce under reporting, i.e.,
+the fact that some crimes are not noti ed to law enforcement authorities. WikiCrime integrates
+a reputation module to verify the credibility of generated information: on the one hand, in fact,
+the collaboration of large masses of users enables to quickly and cheaply collect vast amount of
+data. On the other hand, the source of available data is often unknown and, therefore, it is hard
+to determine if the information is credible and accurate.
+Concluding, we point the interested reader to the informative and comprehensive review
+recently compiled by D Orsogna and Perc [18] that summarizes current e orts in computational
+modeling of crime from a statistical physics perspective.
+2.2. The power of criminal organizations and social interactions
+Many researchers studied what are the best policies to  ght (and hopefully dismantle) a
+criminal organization. Most of these studies highlight the importance of social relationships as a
+multiplier of the aptitude of single individuals to commit crimes. For instance, one of the early
+contribution is due to Sah [19], who proposed a crime model based on social interactions. The
+5
+key point of that study is that the severity of punishment perceived by an individual as a conse-
+quence of her/his illicit behaviors depends on her/his social setting. As a result some individuals
+(under the in uence of their peers, the social environment they live in and the institutions with
+whom their interact) may consider the punishment as not severe and this is more conducive to
+criminal actions. An interesting study by Gleaser et al. [20] classi ed individuals in a criminal
+network as conformist (if they simply imitate the behaviors of their peers) and non-conformist (if
+they decide on their own to commit/not commit crimes). The studies reported above highlight
+that the structure of social ties among members of the same community as well as the culture
+individuals have been exposed to may have a crucial impact on their tendency to commit crimes.
+The main question deriving from these studies is how to perturb a criminal network to reduce the
+aptitude of its members to commit crime.
+Ballester and collaborators [21] suggested a key-player policy which targets at removing the
+criminal who reduces the most the level of criminality in a gang. Such a policy was more e ective
+than traditional punishment policies. Borgatti [22] de ned a di erent approach for key-players
+ nding based on qualitative features of vertices rather than a mere quantitative evaluation of their
+centralities. Unfortunately, such an approach requires access to further information that might
+not be readily available to the investigators, or might be dangerous to collect in the context of
+criminal investigation.
+Liu et al. [23] analyzed delinquent networks of adolescents in the United States with the
+goal of detecting the criminal(s) who, once removed, generate the highest possible reduction in
+aggregate crime level. They found that in delinquent adolescent networks, key players are more
+likely to be male, have less educated parents, are less attached to religion and feel socially more
+excluded.
+In this paper we consider a similar problem, i.e., we focused on  nding what police strategy
+has the most disruptive e ect on the structure of a Ma a gang. Our analysis and the collaboration
+with experts from local law enforcement agencies highlight that, in Ma a syndicates, the key
+players are not the best connected mobsters: in fact, the criminals occupying leadership roles in
+Ma a gangs often prefer not to use phones to communicate. In addition, we observed that bosses
+were not concentrated on a speci c region of the criminal network but they were uniformly
+spread in the network. This encodes the fact that bosses often belong to di erent family units.
+As a consequence, the task of arresting bosses is extremely di cult and dangerous. As a further
+result, this paper shows that the criminal network (i.e., the network encoding mobsters and crime
+relationships) is extremely resilient to di erent kind of attacks while the contact network (i.e., the
+network recording suspected individuals and reciprocated phone calls) is much more vulnerable.
+3. Background
+In this section we brie y introduce centrality scores (Section 3.1), and then we illustrate the
+In the following we de ne a network N = (cid:104)V, E(cid:105) as a pair in which V is the set of vertices
+concept of network robustness (Section 3.2).
+and E is the set of edges. The symbol (cid:104)i, j(cid:105) denotes an edge in E.
+A network N can be represented through its adjacency matrix A, which is de ned as follows:
+Ai j = 1 if (and only if) there is an edge going from the vertex i to the vertex j, 0 otherwise. In
+the following we suppose that A is symmetric, i.e., if an edge (cid:104)i, j(cid:105) belongs to E, then the edge
+(cid:104) j, i(cid:105) belongs to E too.
+6
+3.1. Centrality in Networks
+The centrality of an individual, represented by a vertex i, in a network N is a measure of the
+importance of i in N. A large number of centrality indices has been considered in the literature
+(see [7] for an excellent review). In our study we focused on three centrality indices, namely: (i)
+Degree Centrality (hereafter, DC), (ii) Betwenness Centrality (BC) and (iii) Closeness Centrality
+(CC).
+We have chosen these indices because they have a clear geometrical interpretation and, then,
+the notion of importance they implement is easy to understand. These indices rely on comple-
+mentary philosophies: as for DC, in fact, it is based only on the local connectivity of a vertex
+and it requires to know only the number of neighbors of a vertex. More formally, given a vertex
+i, its degree centrality DC(i) is de ned as the number of edges incident onto i. The BC and CC
+indices are based on the concept of shortest path (also known as geodesic path) in a network:
+given an unweighted and undirected network and a pair of vertices i and j the shortest path con-
+necting i and j is the path consisting of the fewest number of edges. According to the literature
+[24], shortest paths are preferential pathways to convey and spread messages in a broad range of
+networks like biological or social networks.
+Some authors [25, 26, 27, 28] argued that the assumption that information travels along
+geodesic paths may not hold true in real scenarios: for instance, in case of large online social
+networks like Facebook, users are agnostic about the whole network topology and, therefore, they
+are not able to  nd shortest paths and use them to convey messages. In addition, the computation
+of shortest paths is computationally unfeasible even on moderately large networks.
+In case of criminal networks, however, we guess that geodesic paths are to be preferred to
+randomly generated paths (i.e., random walks). Criminal networks are much smaller than other
+types of social networks and we can a ord to compute geodesic paths. In addition, to ensure
+secrecy in the transmission of information, shortest paths are to be preferred to longer ones: it is
+known that criminals systematically try to expose sensitive information to a minimal number of
+trusted others.
+On the basis of these considerations, we claim that the importance of a vertex i depends on
+the fraction of shortest paths passing through i because this means that i is able to intercept a
+relevant portion of the information  owing through the network. This intuition naturally leads to
+introduce the Betweeness Centrality BC(i) of a vertex i which can be formally de ned as follows:
+let i, u and w be any three distinct vertices in a network and let  uw be the number of shortest
+paths from u to w;  nally, let  uw(i) be the number of the shortest paths from u to w passing
+through i. We de ne BC(i) as:
+(cid:88)
+BC(i) =
+i(cid:44)u(cid:44)w V
+ uw(i)
+ uw
+(1)
+Alternatively, we may classify i as important if its  distance  from other vertices in the net-
+work is small because this certi es the ability of i to communicate with other vertices and con-
+tribute to the information spreading. There are, of course, various possible de nitions of distance
+between network vertices. The simplest one perhaps consists of measuring the distance between
+two vertices i and j as the length SP(i, j) of the shortest path connecting them. Bearing in mind
+such a notion of distance, we de ne the Closeness Centrality CC(i) of i as the reciprocal of the
+sum of all geodesic distances from i to all other vertices in the network [29]:
+CC(i) =
+1(cid:80)
+u V SP(u, i)
+7
+(2)
+Some experiments devoted to study collaboration in social groups show that individuals per-
+ceived as leaders are those users who generally feature high closeness values [29].
+3.2. Network Robustness
+The study of network robustness (i.e., the ability of a network to react to the failure of some
+of its components [30, 7]) is strongly linked to studies about the reliability of many biological
+and arti cial systems.
+A system S , in fact, can often be modeled as a network N = (cid:104)V, E(cid:105) such that each vertex in
+V identi es one of the components of S while edges describe interactions among components.
+The system S is said to be robust if it can maintain its functions even if some of its components
+fail or they stop interacting [30].
+The robustness of S greatly depends on the topological structure of N and on the existence of
+multiple paths connecting two vertices in N. To gain an understanding, let us refer to a commu-
+nication network whose devices exchange messages by means of suitable physical links. In an
+extreme case, suppose that the network presents a star topology: if we would remove the center
+of the star (along with the edges coming out from it), we would disconnect the whole network.
+Another extreme example occurs if we consider a clique: in such a case the removal of an arbi-
+trary vertex would have no impact on the network functioning. Between these extreme cases, we
+observe that the malfunctioning of one or more components (or physical links) may not prevent
+a source component from correctly interacting with a target one because the source component
+could  nd alternative paths. This observation legitimates a popular approach to studying network
+robustness: we study the fragmentation processes taking place in the network by progressively
+deleting vertices from N along with their connections [30, 31]. Real networks often include a
+large, strongly connected component (hereafter SCC) retaining most of the network vertices. Af-
+ter deleting some vertices along with their incident links, other vertices could detach from SCC to
+form small clusters (or even remain isolated). Because of this fragmentation process, we expect
+the network to become less and less connected and this implies that the size of the SCC decreases.
+Analogously, the network diameter and the Average Path Length APL (i.e., the mean of pairwise
+shortest path lengths) should also increase, thus making communication between vertices more
+di cult. According to the literature [9], APL is a more robust parameter than diameter: in fact,
+the existence of a long shortest path in the network would imply a large network diameter even
+if vertices are, on average, only few hops away.
+Albert and collaborators [30] focused on the robustness of two classes of networks, namely:
+(i) homogeneous networks in which the probability P(k) that an arbitrary vertex has degree k
+exponentially decays for large values of k; and, (ii) heterogeneous networks, in which P(k) fol-
+lows a power law distribution. Examples of homogeneous networks are the Erd os-R enyi random
+graph or the small world model by Watts and Strogatz [7]. Examples of heterogeneous networks
+include the Internet [32], the World Wide Web [33], and in general most (large-scale) social [34],
+and techno-social systems [35]. In their experiments, the authors considered both arti cial and
+real networks (i.e., a sample of Web pages and hyperlinks connecting them) and empirically
+measured the size of the SCC and the diameter of the network if an increasingly larger fraction f
+of vertices was removed [30].
+Two vertex removal strategies were considered: in the former strategy, vertices were ran-
+domly selected while in the latter one the most connected vertices were progressively deleted
+from the network one by one.
+In case of homogeneous networks, no substantial variation in network diameter emerged if
+vertices were selected at random or in a decreasing order of connectivity.
+8
+A completely di erent behavior was observed for heterogeneous networks: the random re-
+moval of vertices had no e ect on the diameter while if the most connected vertices were deleted,
+then the diameter would quickly increase.
+An analogous study was later proposed by Broder et al. [31], which took a sample of the
+World Wide Web graph and removed Web pages on the basis of the number of their outgoing
+hyperlinks. Conforming to the previous study [30], the authors found that it was su cient to
+remove Web pages referred by at least other  ve pages to destroy the Web connectivity [31].
+4. The structure of Contact and Criminal Networks
+As pointed out in the introduction, we used two datasets (see Table 1) to analyse the structural
+properties of Ma a syndicates and their resilience to both random and targeted attacks. The  rst
+dataset describes phone calls among suspected criminals located in the North of Sicily. We
+re ned such a dataset by considering further methods of investigation (e.g., stakeout, search in
+private residence with a search warrant, access to personal bank account information and so on).
+In this way we built a second dataset recording actual mobsters and crime relationships between
+them: two mobsters are tied by an edge if they took part in the same criminal o ense). Both the
+two datasets refer to a Ma a syndicate operating in the North of Sicily.
+We call Contact Network Ncon = (cid:104)Xcon, Econ(cid:105) the network extracted from the  rst dataset
+} is the set of individuals (nodes) subject to tapping or found
+where Xcon = {x[con]
+in the phone call logs by law enforcement agencies and Econ   Xcon   Xcon is the set of edges that
+connect pair of nodes. The set of edges Econ is composed of all phone relationships (voice calls,
+SMS, MMS, etc.). In this work, the edges Econ are considered as undirected and unweighted,
+thus disregarding the orientation and the number of contacts between two any vertices.
+Criminal Network Ncri = (cid:104)Xcri, Ecri(cid:105) is the network obtained from the second dataset where
+Xcri = {x[cri]
+m } is the set of individuals subject to deepened investigations by law
+enforcement agencies by taking into account other kind of relationships among them. The set
+Ecri   Xcri   Xcri comprises relationships among components of Ncri not telephone-based such as
+joint bank transactions, complicity in a crime, and so on.
+. . . , x[con]
+. . . , x[cri]
+, x[con]
+, x[cri]
+1
+2
+1
+2
+n
+)   Nn n the adjacency matrix of N[con] given by:
+We call N[con] = (n[con]
+i j
+n[con]
+i j
+=
+if (cid:104)x[con]
+otherwise,
+i
+, x[con]
+j
+(cid:105)   E[con],
+0
+)   Nm m the adjacency matrix of N[cri] given by:
+(3)
+and, analogously, with N[cri] = (n[cri]
+i j
+(cid:40) 1
+(cid:40) 1
+n[cri]
+i j
+Now we de ne the aggregate network A[aggr] = (cid:104)Xaggr, Eaggr(cid:105) where Xaggr = Xcon
+(cid:83) Xcri,
+(cid:83) Ecri and the aggregated topological adjacency matrix associated A[aggr] = (a[aggr]
+(4)
+0
+=
+)  
+i j
+if (cid:104)x[cri]
+j
+otherwise,
+i
+, x[cri]
+(cid:105)   E[cri],
+Eaggr = Econ
+N|Xaggr| |Xaggr| given by:
+i j   n[cri]
+if n[con]
+otherwise,
+i j
+= 1,
+(5)
+(cid:40) 1
+0
+a[aggr]
+i j
+=
+of the unweighted network obtained from Ncon and Ncri by joining all pairs of nodes i and j
+which are connected by an edge in at least one network and neglecting the possible existence of
+multi-ties between a pair of nodes and the nature of each tie as well [36].
+9
+Network
+Contact Network (Ncon)
+Crime Network (Ncri)
+Aggregated (Aaggr)
+|V|
+1716
+104
+1722
+|E|
+8481
+2596
+11070
+(cid:104)k(cid:105)
+9.88
+49.92
+12.86
+APL Diameter
+6
+2,75
+3
+1.53
+2.73
+6
+SCC
+1
+1
+1
+Table 1: Some statistics about Ncon and Ncri. For each network we report the number of vertices (|V|), the number of
+edges (|E|), the average degree ((cid:104)k(cid:105)), the Average Path Length (APL), the diameter and the size of the strongly connected
+component (SCC). We also report the same statistics for the aggregate networks Aaggr obtained from Ncon and Ncri by
+joining all pairs of nodes i and j which are connected by an edge in at least one network.
+(b)
+(a)
+(c)
+Figure 1: Left panel: We report a graphical representation of Ncon: here a vertex is associated with a suspected mobster
+while an edge indicates that the two suspects called each other at least once. Yellow vertices correspond to bosses, green
+vertices identify lieutenants, and blue vertices identify associates that were later arrested by law enforcement agencies.
+The size of each vertex is proportional to its degree, and the same holds for the color coding: light yellow is associated
+to nodes having the minimum degree and red is used for nodes having the maximum degree. Center panel: Graphical
+representation of Ncri, namely mobsters and crime relationship between them (e.g., complicity in a crime, acquaintance,
+police inspections, bank transactions, etc.) Right panel: we show the aggregate network Naggr where we highlighted
+vertices corresponding to bosses of the criminal organization (yellow) together with vertices 13, 15, 26, 54, 76   Ncri not
+belonging to Ncon, corresponding to mobsters that were never tapped during investigations.
+In Table 1 we report some statistics about Ncon and Ncri. For each network we indicate the
+number of vertices (|V|) and the number of edges (|E|). We observe that Ncri contains only 104
+vertices while Ncon has 1, 716 vertices. However, Ncri contains 2,596 edges and, therefore, it is
+much denser than Ncon which contains only 8,481 edges. For this reason the average number of
+edges per vertex is only 9.88 in case of Ncon and it amounts to 49.92 in case of Ncri. This means
+that, on average, each vertex in Ncri is connected with half of the vertices of Ncri.
+In Figure 1(a) we provide a graphical representation of Ncon. The size of each vertex is
+proportional to its degree. We used di erent colors to pinpoint the role of mobsters in the Ma a
+syndicate:
+in yellow we report the leaders of the organization (the so-called  boss ). Green
+vertices represent lieutenants, i.e., the heads of a branch of a Ma a syndicate who commands
+a crew of soldiers (known as picciotti) and reports directly to the boss. Blue vertices represent
+actual mobsters, i.e., individuals who are known to be members of the syndacate. Blue vertices
+in the phone tra c network are not key network actors as they are spread all over the structure of
+the network, oftentimes in peripheral positions. In fact, both their position and ranking are often
+10
+not prominent.
+Figure 1(b) shows the criminal network of dataset Ncri. It is composed of 2590 links re-
+ferring to relationships other than telephone-based contacts among the vertices of the network
+(for example but not only, complicity in a crime, acquaintance, police inspections, bank trans-
+actions, etc.) found by the prosecutors during the investigations. Ncri includes the subset Icri =
+{13, 26, 84, 15, 76, 54} whose members are not present in Ncon. They are mobsters that were never
+tapped during investigations. The structure is characterized by two clusters (clans) tied together
+by the subset Lcri = {14, 15, 48, 49}   Ncri whose members are the so-called lieutenants (in
+green). As expected, the bosses (yellow vertices) of subset Bcri = {100, 101, 102, 103, 104} are
+situated between the two clusters, have a small number of links and at  rst look are not marginal.
+Figure 1(c) represents the aggregated network Aaggr which comprises the overall structure of
+the two networks in study. We highlighted the vertices representing the bosses Bcri (in yellow)
+together with the members of the subset Icri   Ncri not belonging to Ncon. The density of connec-
+tions among the elements of Ncri changes the structure of network Naggr. Indeed, the two clusters
+of Ncri appears in the center, so that a core is formed.
+From Table 1  which summarizes information about the datasets  and from the graph-
+ical representations shown in Figure 1, we can conclude that almost every member of crimi-
+nal network Ncri under arrest is also a member of network Ncon. Interestingly, telephone-based
+relationships among associates are rare in Ncon. Indeed only seven links were found, namely
+Ccri = {(90, 2), (104, 87), (50, 87), (28, 87), (33, 87), (19, 87), (23, 93)}.
+It is known that associates are aware of investigative techniques and are inclined to minimize
+direct telephone-based communications. Direct communications are accomplished by interme-
+diaries without a criminal record, above suspicion and unknown to law enforcement agencies.
+This feature is clearly illustrated in Figure 2(a) in which all telephone-based connections are
+shown among vertices Xcri and a subset of most central vertices belonging to Ncon. In our opin-
+ion this is one of the most strategic elements to assure the resilience of a network. In this way a
+criminal network is not exposed to destabilizing attacks of law enforcement agencies because it
+manages a very limited number of telephone-based contacts among the members of the network.
+Nevertheless communications are still spread via elements that are not directly ascribable to the
+network.
+Figure 2(b) shows the connections of network Ncri and those among the members of Bcri
+and Ncon.
+In this case some of the most central vertices of the network Ncon are implicated.
+The egonets of bosses {102, 103, 104} are shown in Figure 2(d). Finally, Figure 2(c) shows
+the subgraph Naggr which comprises of all the criminal and telephone-based connections of Ncri
+where we highlighted the vertices of the subset Icri.
+The analysis of vertices of bosses and their position within the structure of the network gives
+an important insight in the study of resilience of a criminal network. As we can see in Figure 3(a),
+bosses of the organization do not occupy important positions in the network Aaggr. Nevertheless
+they are connected to the most important vertices in terms of degree. Even in this case, relations
+among the most authoritative members of the organization are limited in time and amount. They
+manage the overall network indirectly via trusted people that not necessarily belong to the crim-
+inal network. In Figure 3(b) this concept is even more evident. Two subgraphs are shown which
+are obtained from the union of the egonets of the bosses of the set Bcri, precisely of the subgraph
+Bego1 = {101ego} (cid:83){103ego} e Bego2 = {100ego}(cid:83){102ego}(cid:83){104ego} in which the bosses are con-
+nected to very few strategic vertices to guarantee communications and  ow of orders towards all
+the members of the criminal network. Direct connections among the bosses of the set Bego1 and
+the set Bego2 within the network Aaggr (the bosses of the two groups never had telephone-based
+11
+(a)
+(c)
+(b)
+(d)
+Figure 2: Panel (a): We show all connections among the vertices belonging to Xcri together with a subset of Ncon having
+a high value of degree. Panel (b): We show the edges of the network Ncri together with the edges connecting the
+elements of Bcri and Ncon. Panel (c): We show all criminal and telephone-based connections of network Ncri and we
+highlight (zoom) vertices of subset Icri. Panel (d): We shown the egonets of bosses {102, 103, 104}  ltered via the tool
+LogAnalysis [16]. The black lines represent edges of set Ecrim, the grey lines represent edges of set Econ. Color codes:
+yellow vertices represent bosses, green vertices represent lieutenants, blue vertices represent associates. Red vertices
+denote members of the telephone-based network Ncon.
+communications among them, had meetings escaping the investigations, were never charged of
+the same crime, never left evidence of bank transactions, etc.). This is a further element of re-
+silience of the criminal network: the removal of a vertex from a subgroup has no consequences
+on the other subgroup. Nevertheless the bosses are tightly tied and occupy the uppermost posi-
+tion in the criminal organization. This is why in Figure 2(d) we decided to include even missing
+relations (not present in the datasets), in order to increase the meaning of the visualization.
+4.1. Analysis of the structural properties of contact and criminal networks
+The next step of our analysis consists of studying the structural properties of Ncri and Ncon.
+To perform our analysis we considered two main parameters:
+Degree Distribution. Given a vertex i in Ncon (resp., Ncri), we compute its degree ki in
+Ncon (resp., Ncri). From the analysis of the degree distribution it is possible to check if there
+are vertices in Ncon (resp., Ncri) which are much more connected than other or, vice versa, if the
+number of connections of each individual is roughly the same.
+12
+(a)
+(b)
+Figure 3: Left panel: Network Aaggr in which are highlighted the egonets of the bosses Bcri of the criminal network.
+Right panel: Subgraphs Bego1   Aaggr and Bego2   Aaggr of the egonets of the bosses obtained as the union of the egonets
+of every vertex of Bcri.
+Average Clustering Coe cient. Given a vertex i in Ncon (resp., Ncri), we de ne the neigh-
+borhood of level 1 N(i) associated with i as the set of vertices which are adjacent to i in Ncon
+(resp., Ncri).2 The average clustering coe cient ACCi of i is de ned as follows:
+ACCi =
+2   |{(cid:104)v, w(cid:105) : v   N(i), w   N(i)}|
+ki   (ki   1)
+Here, {(cid:104)v, w(cid:105) : v   N(i), w   N(i)} is the set of pairs of vertices v and w which are connected
+each other and, simultaneously, are both connected to i. The triplet formed by vertices i, v and w
+is also called closed triplet and, therefore, ACCi measures the number of closed triplets having a
+vertex in i out of the total number of triplets of vertices that contain i. The ACCi ranges in [0, 1]
+and if it is nearly equal to 1 then the neighbors of i tend to form a large number of triangles which
+favors the spreading of information.
+We begin our study by discussing the vertex degree distribution in both Ncon and Ncri. As for
+Ncon, we plotted the Cumulative Complementary Distribution Function CCDF which speci es,
+for a  xed threshold k, the probability that a randomly selected vertex has degree greater than k.
+We displayed the CCDF in Figure 4.1 on a log-log scale.
+Similarly to many other socio-technical systems, contacts among individuals in Ncon are
+rather sparse and unevenly distributed, with few vertices capturing most of the edges in Ncon.
+We used the statistical tool described in [37] and we found that the degree distribution followed
+a power law with   =  2.5 (p-value < 10 5).
+Because of Ncon is quite dense, we adopted a di erent graphical procedure to investigate
+vertex degree distribution. We ranked vertices in Ncri on the basis of their degree: in this way the
+2The vertex i is not considered in N(i).
+13
+Figure 4: The CCDF associated with the degree distribution ki in Ncon. We used a log-log scale and, in the same plot, we
+report the power law distribution best  tting the experimentally observed data.
+(cid:96)-th ranked vertex is the vertex showing the (cid:96)-th largest degree (see Figure 4.1).
+We noticed few individuals who were connected to almost all other individuals in Ncon but
+there was also a small number of individuals who were connected to few individuals and just one
+of them was isolated (i.e., there was a vertex with degree 0). The vast majority of vertices in Ncon
+had a degree ranging from 15 to 85.
+In Ncon we found few individuals who are well connected with many other individuals but
+the largest part of vertices shows a low degree. In contrast, in Ncri there were only 15 individuals
+with degree less than 40 and only 17 individuals with degree larger than 55. This suggests the
+possibility to partition individuals in Ncon in three disjoint classes on the basis of their degree,
+namely: (i) Class A, if ki   15, (ii) Class B, if 15 < ki   85 and (i) Class C, if ki > 85.
+With the aid of police o cers, we observed that individuals belonging to Class A did not had
+leadership roles in the gang but they often acted as intermediaries. Surprisingly enough, all the
+heads of the gang were members of Class C and this depends on the fact that leaders in Ncri
+are aware of risks and, therefore, they are in touch with just an handful of gang associates. The
+density of Ncri is likely to depend on the nature of many crimes: activities like drug tra cking or
+gambling impose mobsters to organize into gangs and coordinate their actions. This implies that
+the resulting network must be dense and it well explains why the average degree is roughly 50,
+i.e., any mobster is connected with half of the members of Ncri.
+We continue our analysis by focusing on the structure of the social relationships of a given
+individual in both Ncon an Ncri. Figure 4.1 shows the values of Average Clustering Coe cient as
+function of vertex degree for both Contact and Criminal Networks. In case of Ncri, ACC features
+generally low values and it is monotonically decreasing with the degree ki. We notice that ACC in
+Ncri is always bigger than 0.6 which is a surprisingly large value: many socio-technical systems
+and Web platforms like Facebook or MSN messenger, in fact, generally feature a value of ACC
+in the range of 0.01   0.14 [9, 10]. In addition, ACC achieves its peak for Class B users. Such
+a result can be paired up with our previous discussion: in Ncri there is a large fraction (which
+account for roughly 90% of the whole population) of individuals with degree ranging from 40 to
+60 and, at the same time, the contacts of these users are themselves well-connected each other.
+14
+Figure 5: We report the degree of each vertex vs. its rank: the vertex with rank (cid:96) is the vertex having the (cid:96)-th largest
+degree. We split vertices on the basis of their degree and we obtained three classes, namely Group A (0 ki   15), Group
+B (15 < ki   85) and Group C (ki > 85).
+The abundance of triangles in Ncri depends on the normative structure governing syndicates.
+In fact, past testimony [38] as well as documents found during the arrest of Ma a boss Salvatore
+Lo Piccolo showed that one of the  rst rule in the Ma a decalogue was as follows:  No one can
+present himself directly to another of our friends. There must be a third person to do it. 3
+5. Resilience of criminal and contact networks in a parallel police operation
+In this section we aim at studying the resilience of the contact and criminal networks at our
+disposal to both random and targeted attacks. The resilience of a contact/criminal network is a
+crucial parameter to quantify the ability of a Ma a syndicate to react to the arrest of some of
+its members. More in general, Ma a syndicates tend to structure themselves in an way that is
+resilient to police operations aiming at hindering or inhibiting temporarily or permanently the
+functions of any speci c member of the organization.
+To assess network robustness in presence of the dismissal of some of its members we rely on
+previous studies [30, 31] discussed in Section 3.2, and we consider two parameters: (i) the size
+of the largest strongly connected component SCC and (ii) the average path length APL.
+A large value of SCC implies that a pair of arbitrary selected individuals in Ncon (resp., Ncri)
+is able to  nd a path (going through other individuals) along which a message can be routed.
+Relatively small values of APL imply that, on average, a user has to go through a short chain of
+3See http://news.bbc.co.uk/2/hi/europe/7086716.stm
+15
+Figure 6: Top: Average Clustering Coe cient as function of ki in Ncon. Bottom: Average Clustering Coe cient as
+function of ki in Ncri.
+intermediaries to get in touch with any other individual and, in the crime context, a quick  ow of
+information is a crucial parameter to establish the survival of the organization itself.
+We considered two attack strategies:
+  Random attack strategy. We selected, uniformly at random, a fraction f of vertices from
+Ncon (Ncri) and removed them along with their incident connections. We then measured the
+corresponding variation of SCC and APL. To produce statistically robust results, we ran the
+procedure described above 100 times and computed the average of SCC and APL. In our
+experiment f varied from 1% to 25%.
+16
+(a)
+(b)
+Figure 7: Left panel: SCC vs.
+panel: SCC vs. the fraction f of removed vertices in Ncri in case of parallel police operation.
+the fraction f of removed vertices in Ncon in case of parallel police operation. Right
+  Targeted Attacks with DC, BC and CC strategies. We computed the centrality of each
+vertex by applying one of the three centrality indices introduced in Section 3.1, i.e., Degree
+Centrality (DC), Betwenness Centrality (BC) and Closeness centrality (CC). For each
+centrality index, we sorted vertices on the basis of their centrality score and deleted a
+fraction f of them from Ncon (Ncri) along with their connections. We then measured the
+corresponding variation of SCC and APL. Once again, f varied from 1% to 25%.
+The outcome of our experiments are graphically reported in Figures 7(a) -7(b).
+As for SCC, we observe that targeted attacks are able to quickly destroy the strongly connected
+component in case of Ncon. In particular, from Figure 7(a), DC has the most disruptive e ect on
+SCC and the removal of less than 5% of the most central vertices is enough to completely destroy
+the largest connected component. Random attacks yield a linear decrease in SCC and if f shifts
+from 5% to 25%, then SCC decreases of about 24%. BC and CC are respectively the second and
+third most e ective strategies, however they require, on average, a removal of between 15% and
+20% if vertices to e ectively disrupt SCC.
+Di erent conclusions can be drawn if we focus on Ncri (see Figure 7(b)). Such a network
+exhibits, in fact, an exceptional degree of robustness and, independently of the centrality index
+we decided to adopt, we observe that SCC always decreases in a linear fashion. Here, BC yields
+the largest decrease in SCC and the lines associated with DC and CC mostly overlap. This result
+illustrates that there are no obvious targeted strategies that e ectively disrupt a criminal network,
+at least by using parallel police operations.
+As a further experiment, we studied the variation of APL in Ncon and Ncri when an increasing
+fraction of vertices was deleted from these two graphs under both random and targeted attacks
+(see Figures 8(a) and 8(b)).
+We observe that random attacks are ine ective to increase the value of APL in case of Ncon.
+Indeed, in Ncon the most e ective strategy is, once again, DC: we need to neutralize only
+17
+(a)
+Figure 8: Left panel: APL vs.
+panel: APL vs. the fraction f of removed vertices in Ncri in case of parallel police operation.
+the fraction f of removed vertices in Ncon in case of parallel police operation. Right
+(b)
+the top 2% vertices from Ncon to nearly triplicate the APL. Yet using DC, if f > 4% the contact
+network breaks into separate components. Analogous observations hold if we use BC and CC to
+score vertices even if the breaking point roughly occurs again with f = 15   20%.
+Random attacks are, de facto, ine ective in augmenting APL in Ncri.
+Our experiments suggest that, in Ncon, it is su cient to neutralize a small fraction of vertices
+(around 5   7% if the DC strategy is adopted) to signi cantly reduce SCC and, simultaneously,
+increase APL. In contrast, due to its high density of crime ties, Ncri is much more resilient and
+therefore it is able to e ectively react to targeted attacks.
+6. Resilience of criminal and contact networks in a sequential police operation
+We conclude our study by focusing on a di erent type of police operation that we call se-
+quential scenario. In a sequential police operation, we wish to study how a criminal organization
+is able to re-organize itself when one (or more of its members) are neutralized. We suppose that
+mobsters are arrested one-by-one and we measure how each arrest impacts SCC and APL. This
+leads us to design the following experimental procedure: (i) We select a vertex according to the
+three centrality indices DC, BC and CC presented in Section 3.1; (ii) We neutralize the selected
+vertex by deleting it along with its incident connections. (iii) We calculate SCC and APL on the
+network obtained at the end of Step (ii). Steps (i)-(iii) are repeated until the top 30% vertices of
+Ncon (resp., Ncri) are neutralized.
+In Figures 9(a)-9(b) we plot the variation of SCC. We observe that CC has the most disruptive
+e ect on the reduction of SCC and this happens both in Ncon and in Ncri. In Figures 10(a) and
+10(b) we plot the variation of APL when an increasing fraction f of vertices is neutralized from
+Ncon and Ncri.
+From these  gures we observe that CC remains the best option to increase APL in Ncon; by
+contrast, the application of DC yields the largest increase in APL if applied on Ncri.
+18
+(a)
+(b)
+Figure 9: Left panel: SCC vs. the fraction f of removed vertices in Ncon in case of a sequential police operation. Right
+panel: SCC vs. the fraction f of removed vertices in Ncri in case of a sequential police operation.
+(a)
+(b)
+Figure 10: Left panel: APL vs. the fraction f of removed vertices in Ncon in case of a sequential police operation. Right
+panel: APL vs. the fraction f of removed vertices Ncri in case of a sequential police operation.
+To compare the e ectiveness of parallel and sequential police operations, we focus only on
+the results we achieved on Ncri.
+From our results, it seems that a sequential police operation has to be preferred to a parallel
+one: in fact, if we would remove the top 5% mobsters in a sequential police operation we would
+reduce the size of SCC up to 65%. In contrast, in case of a parallel police operation, we obtain a
+modest decrease in SCC of about 4.76% in case of a parallel operation. Similar results hold for
+19
+APL. From this discussion, it seems that sequential strategies should be preferred to parallel ones
+but, in practice, the identi cation of the best strategy to dismantle a Ma a gang is a really hard
+task. First of all, in fact, police investigation last many years because of the need to collect a
+large amount of evidence prior to arresting individuals. In most cases, law enforcement agencies
+raid Ma a meetings held to discuss crime strategy and, thus, the end e ect of this operation
+is that some high-caliber mobsters are captured. Therefore, parallel police operations are more
+realistic (and occurs much more frequently) than sequential ones. In addition, sequential police
+operations would achieve the best results if the Ma a syndicate would slowly react. In real cases,
+there are many events which may impose a Ma a network to re-organize: on the one hand, in
+fact, we recount police operations but, on the other hand, we have feuds, i.e. con icts between
+opposite gangs often culminating in the murder of some gang members.
+Ma a syndicates, as emerges from judicial documents, are able to instantaneously adapt
+themselves to external events both at the group level (i.e., the Ma a gang may reform their inter-
+nal organization by electing new bosses) and at the individual level (i.e., criminals may change
+their behavior or temporarily suspend illicit actions to avoid being targeted by law enforcement
+agencies).
+7. Conclusions
+In this work we presented an experimental analysis of the network structure and resilience of
+Ma a syndicates. Thanks to collaborations with law enforcement, we were capable of collect-
+ing a precious dataset of digital trails and judicial documents that span a period of ten years of
+investigations of real crimes committed by such syndicates in the North of Sicily. The frame-
+work we presented here consists of reconstructing two types of networks, namely a Contact and
+a Criminal one. The former was constructed from phone-based communications involving sus-
+pected individuals, while the latter is based on much stronger evidence of crimes involving actors
+connected to Ma a syndicates. The sets of actors greatly overlap yet our work highlighted the
+presence of a small number of high-end criminals who do not appear in the Contact network: this
+suggests that prominent bosses in Ma a syndicates may not adopt technology to remain o  the
+radars during police investigations. This shows the limits of traditional investigation techniques
+like tapping, and calls for the adoption of complementary methods that help shed light where
+data cannot reach.
+Given the unprecedented opportunity to adopt real data for our study, we here focused on in-
+vestigating the resilience properties of Contact and Criminal networks. We found that Criminal
+networks exhibits and exceptional robustness to targeted attacks, yet Contact networks are much
+more vulnerable. We showed that various targeted strategies yield di erent e ects of disrup-
+tion with di erent performance, however we provide quantitative evidence that sequential police
+operation should be preferred to parallel ones, although the latters are way more common and
+secure, as they expose law enforcement agencies to less risks and potential violent encounters.
+Our future research will focus on envisioning strategies of intervention that successfully com-
+plement the insights we obtained from this analysis, while from a computational perspective we
+aim at de ning new methods to identify and predict crimes in the context of Ma a syndicates.
+20
+References
+[1] S. Sonnino, L. Franchetti, La Sicilia nel 1876, G. Barb`era, 1877.
+[2] G. Mastrobuoni, E. Patacchini, Organized crime networks: An application of network analysis techniques to the
+american ma a, Review of Network Economics 11 (3).
+[3] J. McGloin, Policy and intervention considerations of a network analysis of street gangs, Criminology & Public
+[4] B. Cayli, Italian civil society against the ma a: From perceptions to expectations, International Journal of Law,
+Policy 4(3) (2005) 607 635.
+Crime and Justice 41 (1) (2013) 81 99.
+[5] E. Ferrara, P. De Meo, S. Catanese, G. Fiumara, Detecting criminal organizations in mobile phone networks, Expert
+Systems with Applications 41 (13) (2014) 5733 5750.
+[6] C. Morselli, Career opportunities and network-based privileges in the cosa nostra, Crime, Law and Social Change
+39 (4) (2003) 383 418.
+[7] M. Newman, Networks: an introduction, Oxford University Press, 2010.
+[8] T. Thornberry, M. Krohn, A. Lizotte, D. Chard-Wierschem, The role of juvenile gangs in facilitating delinquent
+behavior, Journal of research in Crime and Delinquency 30 (1) (1993) 55 87.
+[9] J. Ugander, B. Karrer, L. Backstrom, C. Marlow, The anatomy of the Facebook social graph, arXiv preprint
+arXiv:1111.4503.
+[10] S. A. Catanese, P. De Meo, E. Ferrara, G. Fiumara, A. Provetti, Crawling facebook for social network analysis
+purposes, in: Proceedings of the international conference on web intelligence, mining and semantics, ACM, 2011,
+p. 52.
+[11] M. Natarajan, Understanding the structure of a large heroin distribution network: A quantitative analysis of quali-
+tative data, Journal of Quantitative Criminology 22 (2) (2006) 171 192.
+[12] J. Sarnecki, Delinquent networks: Youth co-o ending in Stockholm, Cambridge University Press, 2001.
+[13] H. Chen, W. Chung, J. Xu, G. Wang, Y. Qin, M. Chau, Crime data mining: a general framework and some examples,
+Computer 37 (4) (2004) 50 56.
+[14] J. Xu, H. Chen, CrimeNet explorer: a framework for criminal network knowledge discovery, ACM Transactions
+on Information Systems (TOIS) 23 (2) (2005) 201 226.
+[15] R. Drezewski, J. Sepielak, W. Filipkowski, The application of social network analysis algorithms in a system
+supporting money laundering detection, Information Sciences 295 (2015) 18 32.
+[16] S. Catanese, E. Ferrara, G. Fiumara, Forensic analysis of phone call networks, Social Network Analysis and Mining
+3 (1) (2013) 15 33.
+[17] V. Furtado, L. Ayres, M. D. Oliveira, E. Vasconcelos, C. Caminha, J. DOrleans, M. Belchior, Collective intelligence
+in law enforcement The WikiCrimes system, Information Sciences 180 (1) (2010) 4 17.
+[18] M. R. D Orsogna, M. Perc, Statistical physics of crime: A review, Physics of life reviews 12 (2015) 1 21.
+[19] R. Sah, Social osmosis and patterns of crime, Journal of Political Economy 99 (6) (1991) 1272 1295.
+[20] E. Glaeser, B. Sacerdote, J. Scheinkman, Crime and social interactions, The Quarterly journal of economics 111 (2)
+[21] C. Ballester, A. Calv o-Armengol, Y. Zenou, Who s who in networks. wanted: the key player, Econometrica 74 (5)
+(1996) 507 548.
+(2006) 1403 1417.
+Theory 12 (1) (2006) 21 34.
+[22] S. Borgatti, Identifying sets of key players in a social network, Computational and Mathematical Organization
+[23] X. Liu, E. Patacchini, Y. Zenou, L. Lee, Criminal networks: Who is the key player?
+[24] L. Freeman, A set of measures of centrality based on betweenness, Sociometry 40 (1977) 35 41.
+[25] M. Newman, A measure of betweenness centrality based on random walks, Social networks 27 (1) (2005) 39 54.
+[26] T. Alahakoon, R. Tripathi, N. Kourtellis, R. Simha, A. Iamnitchi, K-path centrality: A new centrality measure in
+social networks, in: Proc. of the 4th Workshop on Social Network Systems, ACM, 2011, p. 1.
+[27] P. De Meo, E. Ferrara, G. Fiumara, A. Ricciardello, A novel measure of edge centrality in social networks,
+[28] P. De Meo, E. Ferrara, G. Fiumara, A. Provetti, Enhancing community detection using a network weighting strategy,
+Knowledge-based systems 30 (2012) 136 150.
+Information Sciences 222 (2013) 648 668.
+[29] A. Bavelas, A mathematical model for group structures, Human organization 7 (3) (1948) 16 30.
+[30] R. Albert, H. Jeong, A. Barab asi, Error and attack tolerance of complex networks, Nature 406 (6794) (2000) 378 
+382.
+[31] A. Broder, R. Kumar, F. Maghoul, P. Raghavan, S. Rajagopalan, R. Stata, A. Tomkins, J. Wiener, Graph structure
+in the Web, Computer Networks 33 (1) (2000) 309 320.
+[32] M. Faloutsos, P. Faloutsos, C. Faloutsos, On power-law relationships of the internet topology, in: ACM SIGCOMM
+computer communication review, Vol. 29, ACM, 1999, pp. 251 262.
+[33] A.-L. Barab asi, R. Albert, Emergence of scaling in random networks, Science 286 (5439) (1999) 509 512.
+21
+[34] C. Castellano, S. Fortunato, V. Loreto, Statistical physics of social dynamics, Reviews of modern physics 81 (2)
+(2009) 591.
+[35] Y. Moreno, R. Pastor-Satorras, A. Vespignani, Epidemic outbreaks in complex heterogeneous networks, The Euro-
+pean Physical Journal B-Condensed Matter and Complex Systems 26 (4) (2002) 521 529.
+[36] F. Battiston, V. Nicosia, V. Latora, Structural measures for multiplex networks, Phys. Rev. E 89 (2014) 032804.
+[37] J. Alstott, E. Bullmore, D. Plenz, powerlaw: a python package for analysis of heavy-tailed distributions, PloS one
+9 (1) (2014) e85777.
+[38] P. Maas, The Valachi papers, Panther, 1968.
+22

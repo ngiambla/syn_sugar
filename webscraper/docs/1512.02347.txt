@@ -1,0 +1,574 @@
+Medikal Alanda Kullan lan Giyilebilir Teknolojiler: 
+Uygulamalar, Kar  la  lan Sorunlar ve   z m  nerileri 
+Medical Wearable Technologies: Applications, Problems and 
+Solutions 
+Erkan Bostanc  1 
+1 Bilgisayar M hendisli i B l m  
+Ankara  niversitesi 
+ebostanci@ankara.edu.tr  
+ 
+ 
+ 
+ 
+ 
+ zet e 
+te his  ve 
+Bu  makalede  t p  alan nda  da  giderek  yayg n  bir   ekilde 
+kullan lmaya  ba layan  giyilebilir 
+teknolojiler   zerinde 
+durulmu tur.  Ak ll   saatlerden,  ak ll   g zl klere;  elektronik 
+tekstilden,  veri  eldivenlerine  kadar  bir ok  teknolojik   r n 
+ e itli  hastal klar n 
+tedavisinde   nemli  rol 
+oynamaktad r.  Bu  teknolojiler  ile  kar  m za    kacak  yeni 
+tehditler  de   zerinde  durulmas   gereken   nemli  bir  konudur. 
+Veri gizlili inden, b y k veri sorununa kadar farkl  tehditler 
+hayat m za  giren  bu  yeni  teknolojinin  bir  yan  etkisi  olarak 
+kar  m za    kmaktad r.  Makalede  giyilebilir  teknolojilerin 
+uygulama  alanlar ,  kar  la  lan  sorunlar  hem  teknik  hem  de 
+etik  bir  bak    a  s yla  irdelenmi   ve  olas   tehditlere  kar   
+  z m  nerileri sunulmu tur. 
+ 
+Anahtar  Kelimeler     giyilebilir 
+uygulamalar; tehditler ve   z mler. 
+teknolojiler;  medikal 
+Abstract 
+The focus of this paper is on wearable technologies which are 
+increasingly being employed in the medical field. From smart 
+watches  to  smart  glasses,  from  electronic  textile  to  data 
+gloves;  several  gadgets  are  playing  important  roles  in 
+diagnosis  and  treatment  of  various  medical  conditions.  The 
+threats  posed  by  these  technologies  are  another  matter  of 
+concern that must be seriously taken  into  account.  Numerous 
+threats  ranging  from  data  privacy  to  big  data  problems  are 
+facing  us  as  adverse  effects  of  these  technologies.  The  paper 
+analyses  the  application  areas  and  challenges  of  wearable 
+technologies  from  a  technical  and  ethical  point  of  view  and 
+presents solutions to possible threats.  
+ 
+Keywords     wearable  technologies;  medical  applications; 
+threats and solutions. 
+1.  Giri  
+Geli en  teknolojilerle  birlikte,  kullan c lar n  zihinlerinde 
+yerle ik 
+kendisini  masa st  
+bilgisayarlardan ak ll  telefonlara, tabletlere ve en nihayetinde 
+b rakmaktad r.  Kullan c  
+de 
+teknolojilere 
+giyilebilir 
+art k 
+bilgisayar 
+alg s  
+fark ndal   n n  da  artmas na  ba l   olarak  geni   bir   r n 
+yelpazesiyle  pazarda   nemli  bir  yer  edinen  bu  teknolojinin 
+giderek  artan  bir   ekilde  hayatlar m zda  yer  edinmesinin  art k 
+i ten  bile  olmad     yap lan  pazar  ara t rmalar yla  ortaya 
+konmaktad r.   rnek  olarak,  Juniper  ara t rma   irketinin 
+raporuna [1] g re 2013  y l n n  sonunda  8  milyar  dolar  olarak 
+verilen  sat    has lat n n  2019  y l na  53,2  milyar  dolara 
+ula mas  bekleniyor. 
+Her  ne  kadar  genel  olarak  e lence  sekt r   yukar da 
+bahsedilen  b y k  b t eler  i erisinde  aslan  pay na  sahip  olsa 
+da  medikal  alanda  kullan lan  giyilebilir  teknolojilerin  giderek 
+daha  b y k   nem  kazanmas    ok  uzun  bir  bekleme 
+gerektirmeyecek.   zellikle  de  Avrupa   lkelerinde  ya lanan 
+n fusun artmas na kar  n bak m  sa layacak personel say s n n 
+az  olmas ,  doktorlar n  hastalar n  durumlar n   hastane  d   nda 
+da uzun s reler boyunca takip edebilme ihtiyac  [2] ve bunun 
+sonucunda  da  evde  yap labilecek   z  bak m  faaliyetlerinin 
+artmas  gibi  nemli nedenlerin [3] yan  s ra bilin  d zeyi artan 
+kullan c lar n  kendi  sa l k  durumlar n   takip  etme  istekleri  bu 
+teknolojilere olan ihtiyac  art rmaktad r. 
+Medikal  anlamda  genel  olarak  sa l k  durumunu  izleme, 
+tan   koyma  ve  tedavi  gibi  ana  ba l klar  alt na  alabilece imiz 
+giyilebilir  teknolojiler  hem  klinik  (nab z,   eker  seviyesi)  hem 
+de  davran  sal  (y r me,  merdiven    kma)  veri 
+toplama 
+amac yla  kullan lmakta 
+[4]  ve  bir ok  farkl   uygulama 
+ rne iyle  kar  m za    kmaktad r.   la lar n  al naca    zamanlar  
+hat rlat c   sistemlerden,  diyabet  hastalar na  belirli  zamanlarda 
+[5];  biyokimyasal 
+ins lin  enjekte  edebilen 
+alg lay c lardan 
+[6]  ve 
+g  lendirilmesinde 
+sistemlere  ve  hatta 
+Alzheimer  hastalar   i in  geli tirilen  hat rlat c   g zl klere  [8] 
+kadar  bir ok  alanda  kar  m za    kan  uygulamalar  [9],  asl nda 
+yak n  gelecekte  daha  fazla  neler  yap labilece ine  dair   nemli 
+ipu lar  ortaya koymaktad r. 
+[3]  motor  hareketlerin 
+[7]  kullan lan 
+sistemlere 
+takibi 
+Geli en 
+teknolojilerin   nemli  uygulamalara  olanak 
+tan mas   olduk a   nemli  oldu u  gibi  bir  yandan  da  bu 
+teknolojilerle  birlikte  kar  m za    kan  yeni  sorunlar n  bu  yeni 
+uygulamalarda  kullan lan  teknolojileri  de  etkileyebilece i 
+ zerinde  dikkatlice  d   n lmesi  gereken  bir  konudur  10. 
+ nternete  ba l   her  sistemde  kar  la  labilecek  sald r lar n  bu 
+durumda   l mc l  sonu lara  yol  a abilece i  g z  ard  
+edilemeyece i  gibi  bir ok 
+taraf ndan 
+olu turulacak devasa bilgi birikiminin ki ilerin mahremiyetiyle 
+ters  d  meyecek   ekilde  ve  etik  de erler       nda  ara t rma 
+farkl   alg lay c  
+ama l   nas l  kullan laca    gibi  sorular  hen z  tam  olarak 
+cevaplanm   de il. 
+Bu  makalede  medikal  alanda  kullan mlar   giderek 
+yayg nla an  giyilebilir 
+teknolojilere   rnekler  verilerek 
+g n m z teknolojisinin geldi i nokta ortaya konacakt r. Farkl  
+giyilebilir teknolojilerin kullan ld    uygulama alanlar  B l m 
+2'de  anlat l rken,  bu  uygulamalarla  birlikte  ortaya    kan  yeni 
+tehditler  dolay s yla  kar  la  lan  sorunlara  B l m  3 'te 
+de inilecektir.  B l m  4'te  de  bu  sorunlara  getirilebilecek 
+  z m  nerileri sunulacak ve makale sonu land r lacakt r. 
+ 
+2.  Uygulama  rnekleri  
+Kablosuz  teknolojiler  sayesinde  alg lay c   boyutlar n n  da 
+k   lmesinin (Mikro Elektro Mekanik Sistemler, MEMS) yan  
+s ra  d   k  g    gerektiren  ba lant lar  ve  g m l   i letim 
+sistemlerinin  geli tirilmesi  ile  birlikte  alg lay c   teknolojisi 
+yeni bir boyut kazanm   ve art k v cudun farkl  b lgelerinden 
+gelen  bilgileri 
+toplayan  alg lay c lardan  olu an  a lar 
+olu turulmaya ba lanm  t r [9].  
+b y k 
+Yap lan 
+ al  malar n 
+ o unlu unun 
+kalp 
+hareketlerinin  takibi   zerine  oldu u  g ze   arpmaktad r  [11]. 
+Geli tirilen  giyilebilir  sistemler  ile  kalp  ritmi  ve  oksijen 
+seviyelerinin   l  lebilmesi  sa lanm  t r.  Wang  v.d.  [12] 
+taraf ndan  geli tirilen  kulak  memesine  tak lan  ve   oklu  LED 
+lambalar ve fotodiyotlar kullanan PPG (Photoplethysmogram) 
+sistemi ile parmaktan yap lan  l  mlere g re %10 daha g  l  
+sinyaller  al nabildi i  ve  b ylece   ok  hassas   l  mler 
+yap labildi i  belirtilmi tir.  Suzuki  v.d. 
+[13]  geli tirilen 
+SILMEE  sisteminde  ise  yama   eklinde  g  se  yerle tirilebilen 
+bir alg lay c dan gelen EKG, nab z ve v cut s cakl    bilgileri 
+batarya s resi olarak belirtilen 24 saat boyunca IEEE 802.15.6 
+Bluetooth 
+telefona 
+aktar labilmektedir.  Yak n  zamanda  geli tirilen  ak ll   saatlerle 
+de nab z ve oksimetri  l  mleri yap labilmektedir [14]. 
+ zerinden 
+ba lant s  
+ak ll  
+bir 
+Institute 
+Massachusetts 
+of  Technology 
+(MIT)'de 
+geli tirilen MIThril sistemi [3] ile bir RS-232 ara y z  ile kalp 
+ritmi, kan  ekeri, oksimetri ve karbondioksit seviyesi takibinin 
+yan  
+ l  mleri 
+yap labilmektedir. 
+ham 
+ l  mlerden  makine    renme  y ntemleri 
+istatistiksel 
+modeller  olu turulmu   ve  bu  veriler  kullan larak    kar mlar 
+yap lmas na olanak sa lanm  t r.  
+elektro-ensefalografi 
+alg lay c lardan 
+(EEG) 
+Farkl  
+gelen 
+s ra 
+ile 
+MIThril  sisteminin  Parkinson  hastalar   i in  hipokinezi  ve 
+diskinezi  durumlar n n  takibi  ve  analizi  i in  de  kullan ld    
+belirtilmektedir.  Yine  Parkinson  hastalar ndaki  semptomlar  
+incelenmesi  amac yla  geli tirilen 
+farkl   bir  giyilebilir 
+sistemdeki  [6]  eylemsizlik  alg lay c lar ndan  gelen  veriler 
+destek vekt r makineleri arac l   yla s n fland r larak diskinezi 
+ve bradikinezi durumlar n n de erlendirilmesi sa lam  t r. 
+[15] 
+sistem 
+sayesinde  hem 
+Romatoid  Artrit  hastalar   i in  geli tirilen  ve  bir  veri 
+te his 
+eldiveni  kullanan 
+tedavide  kullan lan  egzersizlerin 
+yap labilmekte  hem  de 
+yap lma  do rulu u  kontrol  edilebilmektedir.  Eldivenlerde 
+bulunan  fiber  optik  e me  alg lay c lar   parmak  hareketleri 
+rahat  bir   ekilde  modellenebilmektedir.  Te his  a amas nda 
+eldeki   ekil  bozuklu unun  ve  parmak  eklemlerindeki  sertli i 
+derecesinin  yan nda  eklemlerdeki   i me  ve  parmaklardaki 
+konumsal  kayma  miktar n n   l  m   yap labilirken;  tedavi 
+ama l   kullan mda  ise  geli tirilen  kullan c   dostu  ara  y z  ile 
+ nerilen  egzersizlerin  hangi  do rulukta  yap ld     kontrol 
+edilebilmektedir. 
+Elektronik  tekstil   zerine  yap lan   al  malar  da  giyilebilir 
+teknolojiyi b y k oranda  desteklemektedir  [9].  Park  v.d.  [16] 
+taraf ndan  geli tirilen  ak ll   ti  rtte  farkl   alg lay c lar  ve 
+bunlardan  gelen  verileri  kaydeden  bir  cihaz  bulunmaktad r. 
+Yak n  zamanda  Patel  v.d.  [17]  taraf ndan  haz rlanan  derleme 
+bu konuda bir ok farkl  uygulama  rne i sunmaktad r. Benzer 
+taraf ndan  geli tirilen 
+ ekilde  Kaliforniya   niversitesi 
+Electrozyme 
+sisteminde 
+elektrokimyasal  bir  d vme 
+ter  analizi 
+yap labilmekte  ve  elektrolit  dengesi,  laktat  birikimi  gibi 
+ l  mler yap labilmektedir. 
+biolinq) 
+[18] 
+ile  kullan c n n 
+(yeni 
+ad  
+takan 
+Giyilebilir  teknolojilerin  t bbi  e itim  ama l   kullan m   da 
+ ne   kan konular aras nda yer almaktad r. Goodwin v.d. [19] 
+taraf ndan  yap lan   al  mada  Google  Glass 
+t p 
+  rencilerine  sim le  edilmi   omuz  tak lmas   (distosi)  ve  ters 
+do um  gibi  acil  obstetrik  durumlar  g sterilmi tir.  Deneyler 
+sonras nda yap lan anketlerde kat lan   rencilerin t m  benzer 
+sim lasyonlar n  acil  obstetrik  bak m  s recini  iyile tirece ini 
+belirtmi tir.  Ba ka  bir   al  mada  [20]  ise  t p  e itimi  s ras nda 
+yeni  stajyerlerin  kar  la abildikleri  acil  durumlarda  yard mc  
+olmas   i in  kullan lan  bir  Google  Glass  ile  yanl    te hislerin 
+ nlenmesi  ve  hasta  g venli inin  sa lanmas   amac yla  farkl  
+senaryolar  denenmi tir.  Google  ve  Novartis  Alcon  ortakl    
+taraf ndan  geli tirilen  ak ll   kontak  lens  sayesinde  [21]  hem 
+v cut 
+invazif  olmayan  bir  y ntemle 
+ l  lebilecek  hem  de  lensin  otomatik  odaklama   zelli i 
+sayesinde presbitlik sorununun  n ne ge ilecektir. 
+seviyesi 
+ eker 
+ lkemizde de ara t rmac lar n dikkatini  ekmeye ba layan 
+bu  konuda  son  derece   nemli   al  malar  y r t lmektedir. 
+Duru  v.d.  [22]  taraf ndan  yap lan   al  mada  Zigbee  kablosuz 
+haberle me  teknolojisi  kullan larak  kalp  at m  ritmi  ve  v cut 
+s cakl     uzak  bir  bilgisayara  g nderilerek  bu  al nan  verinin 
+g rselle tirilmesi sa lanm  t r. Yap lan ba ka bir  al  mada [7] 
+ise  engellilerin  bir  ev  ortam  
+i inde  Microsoft  Kinect 
+alg lay c s n n 
+insan  v cudunu 
+takip  edebilme   zelli ini 
+kullanarak  belirli  komutlar  vermesi  ve  bu  sayede  lambalar n 
+yanmas ,  s cakl   n  ayarlanmas   ve  kap lar n  kapat lmas   gibi 
+sa lanm  t r. 
+i lemleri 
+Alg lay c   ama l   kullan lmak   zere  elektronik 
+tekstiller 
+geli tirilmesi   zerine  y r t len  projeler  [23]  konunun   nemi 
+ zerindeki fark ndal    ortaya koymaktad r. 
+ ekilde  yapabilmeleri 
+rahat  bir 
+ 
+3.  Kar  la  lan Sorunlar  
+teknolojilerin  kullan ld    
+Verilen   rneklerde  de  g r ld      zere  b y k  bir  ilgi 
+uyand ran  giyilebilir 
+sa l k 
+uygulamalar nda bilgi g venli inin  nemi son derece b y kt r 
+ve  b yle  bir  uygulama  alan nda  kar  la  labilecek  g venlik 
+tehditlerinin  de  iyi  bir   ekilde  irdelenip  gerekli   nlemlerin 
+al nmas  gerekmektedir.  stelik bu teknolojiler genel olarak da 
+mobil  sistemlerin  (farkl   donan mlar   zerinde   al  an  ayn  
+i letim sistemleri) bir t revi olarak kar  m za   kt   ndan  ayn  
+sorunlar  daha  geni   bir  etki  alan nda  daha  b y k  bir  etki 
+yaratabilecek bir duruma gelmi tir. 
+Veri  reten ve bir ba lant   zerinden bu veriyi aktaran her 
+sistem  gibi  giyilebilir 
+teknolojilerin  de  kar  la t     veri 
+gizlili i,  k t   ama l   yaz l mlar  ve  ba lant   ba  ml l     gibi 
+ zerinde  durulmas   gereken  tehditler  bu  teknolojilerin  zay f 
+y nleri olarak kar  m za   kmaktad r [10]. Ayr ca g n m z n 
+pop ler  sorunlar ndan  olan  b y k  veri  sorunu  ve   retilen 
+veriyi  verimli  bir   ekilde  i leyecek  entegre  ara lar n  olmay    
+da  nemli sorunlar aras ndad r [4]. 
+3.1.  Veri Gizlili i 
+Bir ok  uygulamada   ne    kan  veri  gizlili i  giyilebilir 
+teknolojilerin  t bbi  alanda  kullan lmas yla  yeni  bir  boyut 
+kazanmaktad r.  Klinik  muayene  veya  te his  esnas nda   zen 
+g sterilen  hastan n  mahremiyet  hakk na  sayg   ve 
+t bbi 
+de erlendirmenin  gizlilik  i erisinde  y r t lmesi  [24]  gibi 
+ilkelerin   zellikle  de  a a  daki 
+hassasiyet  gerektiren 
+b l mlerde  bahsedilecek 
+tehditlerden  dolay   bu  yeni 
+teknolojilerin  kullan m   s ras nda  da  g z  ard   edilmemesi 
+gerekmektedir. 
+Bahsedilecek  Internet  tabanl   sald r lar n  yan   s ra   rnek 
+olarak,  son  derece  masumane  niyetlerle,  nab z   l  m   yapan 
+bir  giyilebilir  teknoloji  kullanmas    nerilen  bir  hastan n   zel 
+hayat n n  doktoru  taraf ndan  takip  edilebilece inin  bilinci 
+hasta  zerinde nas l bir etki olu turaca  n n d   n lmesi [25], 
+bu durumun hastan n fark ndal    olmad    durumlarda doktor 
+taraf ndan takip edilmesinin do rulu u irdelenmelidir. 
+3.2.  K t  Ama l  Yaz l mlar 
+Trojanlardan 
+istenmeyen  reklamlara  kadar  geni   bir 
+yelpazede  [26]  incelenebilen  k t   ama l   yaz l mlar  mobil 
+teknolojilerle birlikte benzer i letim sistemleri (Android, IOS) 
+ zerine   al  an  giyilebilir  teknolojileri  tehdit  etmektedir. 
+Hedef 
+hizmetlerden 
+faydalanmas n   engelleme  (sunucuyu  me gul  ederek)  gibi 
+faaliyetlerde bulunan k t  ama l  yaz l mlar n ne t r sald r lar 
+i in  kullan laca    asl nda  bilgisayar  korsanlar n n  hayal 
+g c ne kalm  t r. 
+sistemden 
+ alma, 
+bilgi 
+belirli 
+Jay  Freedman  tablet  bilgisayarlar  ve  cep  telefonlar   i in 
+geli tirdi i yaz l m ile Android tabanl  Google Glass  zerinde 
+y netici izinlerine sahip olmu tur [27] ve bunu arkada lar  ile 
+ak am yeme i yerken iki saat i inde yapabildi ini belirtmi tir. 
+Bu   ekilde  sald r lan  bir  ak ll   g zl k  ile  y r t len  bir  t bbi 
+operasyon  d   n ld   nde,  ak ll   g zl   n  kameras   ile 
+ ekilen  hastalara  ait  g r nt lerin  izinsiz  olarak   nternette 
+i ten  bile  de ildir.  K t   ama l   yaz l mlarla 
+yay lmas  
+giyilebilir 
+t r 
+sald r lar 
+yap labilece ine dair daha bir ok  rnek verilebilir. 
+teknolojiler 
+ zerinden 
+ne 
+3.3.  Ba lant  Ba  ml l    
+i in  kulland klar   bu 
+Veri aktar m , g ncelleme gibi  nemli nedenlerle kablosuz 
+olarak   nternete  ba lanan  giyilebilir  teknolojiler  verimlilikleri 
+art rmak 
+teknoloji   zerinden  yeni 
+sald r lara da kendilerini a  k bir hale getirmektedir. G vensiz 
+ba lant lar  kullan ld   nda  maruz  kal nan  iki  t r  sald r   t r  
+bulunmaktad r:  aradaki  adam  (man-in-the-middle)  ve  paket 
+koklama (sniffing). 
+Aradaki  adam  t r nde  sald r larda  sald rgan  birbirleri  ile 
+direk  olan  haberle tiklerini  d   nen  iki  ileti im  u   noktas  
+aras na  girer  ve  b y k   o unlukla  da  bu  ileti imde  aktar lan 
+veriyi  de i tirir.  Koklama  t r   sald r larda  da  a    zerinde 
+g nderilen paketler sald rgan taraf ndan incelenir ve bu sayede 
+ ifreleme ile korunmayan hassas bilgiler ele ge irebilir. 
+3.4.  B y k Veri Sorunu 
+B y k  veri  sorununu,  g n m zde  kullan lan  teknolojiler 
+taraf ndan   retilen  veri  ile  art k  klasik  veri  i leme  s re leri 
+(veri toplama, arama, gizlilik, g rselle tirme, analiz vs.) ile ba  
+edilememesi  olarak  tan mlayabiliriz.  Teknolojinin  kullan ld    
+hemen  her  alanda  kar  m za    kmaya  ba layan  b y k  veri 
+sorunu t p alan ndaki uygulamalarda da kendi g stermektedir. 
+ ok  say daki  giyilebilir  teknolojiler  taraf ndan  her  an 
+ retilen  b y k  miktarlardaki  verinin  g venli i  ve  gizlili i  de 
+g z   n nde  bulundurularak 
+toplan p,  saklanmas na  ve 
+incelenebilmesine  olanak  tan yacak  sistemler  gerekmektedir. 
+Toplanan  verilerden  elde  edilen    kar mlar n  doktorlar 
+taraf ndan   nerilecek 
+tedavi  y ntemlerinde  yol  g sterici 
+olmas  beklenmektedir. 
+3.5.  Analiz Ara lar n n Uyumsuzlu u 
+Giyilebilir 
+teknolojiler 
+taraf ndan   retilen  verilerin 
+doktorlar taraf ndan incelenerek yorumlanmas  ve bu verilerin 
+katma  de erinin  ara t r lmas   gerekmektedir.  Kullan lan  veri 
+formatlar nda  bir  standartla man n  yetersiz   l  de  olu u  veya 
+olmay     bu  verilerin  incelenmesinde  kullan lacak  entegre 
+sistemlerin geli tirilmesinde bir sorun olu turmaktad r.  
+Bir  di er  sorun  ise  geli tirilecek  entegre  sistemlerin  hali 
+haz rda  bulunan  otomasyon  sistemleriyle  uygun  bir   ekilde 
+ al  mas   gerekti idir.  Hasta   zl k  bilgileri  ile  giyilebilir 
+teknolojilerden  gelen  verinin  entegre  bir  sistem  i erisinde 
+doktor taraf ndan g r lebilmesi ve muayene s ras nda konulan 
+te hisin  de  bu  sistemde  iyi  bir   ekilde  harmanlanabilmesi 
+gerekmektedir. 
+ 
+4.    z m  nerileri ve Sonu lar 
+Nab z  ve  v cut  ate i   l en  sistemlerden,  hat rlat c  
+g zl klere; rehabilitasyon ama l  kullan lan ak ll  tekstillerden 
+ak ll  d vmelere kadar geni  bir yelpazede  r nlerle kar  m za 
+  kan  giyilebilir  teknolojilerin  yak n  gelecekte  hayat m zda 
+daha  geni   bir  yer  tutmas   art k  uzak  de il.  Bu  teknolojilerin 
+t p  alan nda  da  kullan lmaya  ba lanmas yla  klinik  d     te his 
+kolayla acak,  hasta   z  bak m   desteklenecek,  t bbi  e itim 
+faaliyetleri desteklenecek ve b ylece giderler azalacak ve olas  
+yanl    te his  sonucu  olu abilecek  hasta  ma duriyetinin  de 
+ n ne ge ilecektir.  
+Bir ok  faydas n n  yan nda  bu  teknolojilerin  daha  yayg n 
+kullan m yla  kar  la  labilecek  veri  gizlili i,  k t   ama l  
+yaz l mlar,  olu an  b y k  miktarlardaki  verinin  i lenmesi  ve 
+var  olan  sistemlerle  entegrasyon  gibi  tehditlerin  de   zerinde 
+durulmas  ve bu tehditlerin giyilebilir teknolojinin yararlar n n 
+ n ne ge mesi  nlenmesi gerekmektedir. 
+Kar  la  lan  veya  ortaya    kmas    ng r len  sorunlar  i in 
+de a a  daki  nlemler al narak tehditler en aza indirgenebilir: 
+  Giyilebilir  teknolojilerde  kullan lan  i letim  sistemlerinde 
+di er  mobil  cihazlarda  kullan lanlarla  ayn   de il  fakat 
+bunlar n  zelle tirilmi  versiyonlar n n kullan lmas  fayda 
+sa layacakt r. Bu sayede cihazlarda yeni yaz l m y kleme, 
+g vensiz  ba lant lara  izin  verme  veya  t bbi  veri  toplayan 
+program n d   nda herhangi bir program  al  t rmama gibi 
+yetki k s tlamalar  yap labilir. 
+ 
+  Bir ok  farkl   sistemin   retece i  t bbi  veriler  i in  yeni  bir 
+standart  bi im  geli tirilmesi  gerekebilir.  Bu  sayede 
+kullan lan verinin homojenli i art r larak farkl  sistemlerin 
+entegrasyonu ortak veri bi imi  zerinde yap labilir. 
+ 
+  Olu acak  b y k  miktarlardaki  verilerin  i lenmesi  (b y k 
+veri  sorunu)  i in  de   zelle tirilmi   sunucular   zerinde 
+yap lacak  paralel  hesaplamalar  yol  g sterici  olacakt r. 
+ zellikle de grafik kartlar   zerinden hesaplama yapmaya 
+olanak tan yan teknolojiler ile bu darbo az a  labilir. 
+ 
+  Veri gizlili i ile ilgili olarak da gizlili i sa layacak teknik 
+altyap n n sa lanmas n n ( ifreleme protokolleri) yan  s ra 
+ilgili  mevzuat n,  bu  teknolojilerin  getirebilece i  yeni 
+durumlar  da  g z   n nde  bulundurularak,  g zden 
+ge irilmesi  ve  yeni  maddeler 
+ile  g ncellenmesi 
+gerekebilir. 
+ 
+giyilebilir 
+bu 
+b y k 
+faydalar 
+teknolojiler, 
+uygulamalarda 
+sa layaca   
+T bbi 
+ ng r len 
+teknolojilerin 
+kullan m nda  ortaya    kabilecek  tehdit  unsurlar n n  da   n ne 
+ge ilmesiyle, daha sa l kl  bireylerden olu acak bir sa l kl  ve 
+mutlu  bir  toplum  olmam z  yolunda  bizlere   nemli  katk lar 
+sa layacakt r. 
+ 
+5.  Kaynak a 
+[1]  J. Moar,  Wearables:smart chic or smart hype?  Juniper 
+Research Ltd., 2014. 
+[2]  P.  Bonato,   Wearable  sensors/systems  and  their  impact 
+on  biomedical  engineering,   Engineering  in  Medicine 
+and  Biology  Magazine,  IEEE,  vol.  22,  no.  3,  pp.  18 20, 
+May 2003. 
+[3]  A.  Pentland,   Healthwear:  medical  technology  becomes 
+wearable,   Studies  in  health  technology  and  informatics, 
+vol. 118, pp. 55 65, 2005. 
+[4]  H.  Lewy,   Wearable  technologies:  future  challenges  for 
+in  healthcare  services,   Healthcare 
+implementation 
+Technology Letters, vol. 2, pp. 2 5(3), 2015. 
+[5]  R.  M.  Bergenstal,  W.  V.  Tamborlane,  Ahmann  et  al., 
+ Effectiveness of sensor-augmented insulin-pump therapy 
+in  type  1  diabetes,   New  England  Journal  of  Medicine, 
+vol. 363, no. 4, pp. 311 320, 2010. 
+[6]  S. Patel, K. Lorincz, R. Hughes et al.,  Monitoring motor 
+fluctuations  in  patients  with  parkinson s  disease  using 
+wearable 
+in 
+Biomedicine,  IEEE  Transactions  on,  vol.  13,  no.  6,  pp. 
+864 873, 2009. 
+Information  Technology 
+sensors,  
+[7]  U.  Kantekin,  U.  Aytekin,  C.  P.  Uzunoglu,  and  S. 
+Cekli, Smart home automation system for disabilities,  in 
+TIPTEKNO, 2014, pp. 117 119. 
+[8]  B. K. Wiederhold,  Time to port augmented reality health 
+apps  to  smart  glasses?   Cyberpsychology,  Behavior,  and 
+Social Networking, vol. 16, no. 3, pp. 157 158, 2013. 
+[9]  P.  Bonato,   Advances  in  wearable  technology  and  its  
+medical  applications,   in  Engineering  in  Medicine  and 
+Biology  Society  (EMBC),  2010  Annual  International 
+Conference of the IEEE, 2010, pp. 2021 2024. 
+[10] A. Hughes,  Threat assessment of wearable technology,  
+UTICA College, 2014. 
+[11]  K.  Hung,  Y.  Zhang,  and  B.  Tai,   Wearable  medical 
+devices  for  tele-home  healthcare,   in  Engineering  in 
+Medicine  and  Biology  Society,  2004.  IEMBS 04.  26th 
+Annual  International  Conference  of  the  IEEE,  vol.  2, 
+2004, pp. 5384  5387. 
+[12] L.  Wang,  B.  Lo,  and  G.-Z.  Yang,   Multichannel 
+reflective  ppg  earpiece  sensor  with  passive  motion 
+cancellation,   Biomedical  Circuits  and  Systems,  IEEE 
+Transactions on, vol. 1, no. 4, pp. 235 241, Dec 2007. 
+[13] T.  Suzuki,  H.  Tanaka,  S.  Minami,  H.  Yamada,  and  T. 
+Miyata,   Wearable  wireless  vital  monitoring  technology 
+for  smart  health  care,   in  Medical  Information  and 
+Communication  Technology 
+(ISMICT),  2013  7th 
+International Symposium on, 2013, pp. 1 4. 
+[14]  Oxitone smart watch,  http://oxitone.com/, accessed: 27- 
+07-2015. 
+[15]  J.  Connolly,  K.  Curran,  J.  Condell,  and  P.  Gardiner, 
+ Wearable  rehab  technology  for  automatic  measurement 
+of  patients  with  arthritis,   in  Pervasive  Computing  
+Technologies for Healthcare (PervasiveHealth), 2011 5th 
+International Conference on, 2011, pp. 508 509. 
+[16] S.  Park  and  S.  Jayaraman,   e-health  and  quality  of  life: 
+the role of the wearable motherboard,  Wearable Ehealth 
+Systems  for  Personalised  Health  Management:  State  of 
+the  Art  and  Future  Challenges,  vol.  108,  pp.  239 252, 
+2004. 
+[17] S.  Patel,  H.  Park,  P.  Bonato,  L.  Chan,  and  M.  Rodgers, 
+ A  review  of  wearable  sensors  and  systems  with 
+application in rehabilitation,  J Neuroeng Rehabil, vol. 9, 
+no. 12, pp. 1 17, 2012. 
+[18]  Electrozyme  smart 
+accessed: 27-07-2015. 
+tattoo,   http://www.biolinq.me/, 
+[19] J. Goodwin, R. A. Elkattah, and M. Olsen,  Wearable 
+technology in obstetrical emergency simulation: A pilot 
+study,  International Journal of Health Sciences Education, 
+vol. 2, no. 2, p. 3, 2014. 
+[20] S. Vallurupalli, H. Paydak, S. Agarwal, M. Agrawal, and 
+C.  Assad-Kottner,   Wearable  technology  to  improve 
+education  and  patient  outcomes 
+in  a  cardiology 
+fellowship  program-a  feasibility  study,   Health  and 
+Technology, vol. 3, no. 4, pp. 267 270, 2013. 
+[21]   Alcon 
+smart 
+contact 
+lens,  
+http://www.alcon.com/newscenter/news-item.aspx?id= 
+307, accessed: 27-07-2015. 
+[22] A.  Duru  and  G.  Ertas,   Wireless  monitoring  of  body 
+temperature and heart beat rate at home healthcare based 
+on  zigbee  technology,   in  TIPTEKNO,  2014,  pp.  117 
+119. 
+[23] B.  Yalcinkaya  and  D.  Yilmaz,   Elektronik  tekstillerin, 
+tekstil  endustrisindeki  yeri  ve  giyilebilir 
+tekstilde 
+kullanilan iletken lifler,  Tekstil Teknolojileri Elektronik 
+Dergisi, vol. 5, no. 1, pp. 61 71, 2011. 
+[24] N.  Aydin,   Hasta  haklar n n  hukuki  boyutu  ve  korunma 
+yollar ,   Dumlupinar  Universitesi  Sosyal  Bilimler 
+Enstitusu Dergisi, 2008. 
+[25]  T.  Xue-rui,  L.  Ying,  Y.  Da-zhong,  and  C.  Xiao-jun, 
+ Changes  of  blood  pressure  and  heart  rate  during  sexual 
+activity  in  healthy  adults,   Blood  pressure  monitoring, 
+vol. 13, no. 4, pp. 211 217, 2008.  
+[26] A.  P.  Felt,  M.  Finifter,  E.  Chin,  S.  Hanna,  and  D. 
+Wagner,   A  survey  of  mobile  malware  in  the  wild,   in 
+Proceedings  of  the  1st  ACM  workshop  on  Security  and 
+privacy in smartphones and mobile devices, 2011, pp. 3 
+14. 
+[27]  Google  glass  has  already  been  hacked  by  jailbreakers,  
+http://www.forbes.com/sites/andygreen/2013/04/26/googl
+eglass-has-already-been-hacked-by-jailbreakers/, 
+accessed:27-07-2015. 
+ 
+ 
+ 
+ 
+ 

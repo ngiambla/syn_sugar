@@ -1,0 +1,1040 @@
+6
+1
+0
+2
+ 
+r
+p
+A
+1
+2
+ 
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+2
+v
+5
+2
+0
+9
+0
+.
+0
+1
+5
+1
+:
+v
+i
+X
+r
+a
+A Model for Social Network Formation:
+Ef ciency, Stability and Dynamics
+L. Elisa Celis,  Ecole Polytechnique F ed erale de Lausanne
+Aida Sadat Mousavifar, University of Tehran
+We introduce a simple network formation model for social networks. Agents are nodes, connecting to another agent by
+building a directed edge (or accepting a connection from another agent) has a cost, and reaching (or being reached by) other
+agents via short directed paths has a bene t; in effect, an agent wants to reach others quickly, but without the cost of directly
+connecting each and every one. We prove that asynchronous edge dynamics always converge to a stable network; in fact, for
+nontrivial ranges of parameters this convergence is fast. Moreover, the set of  xed points of the dynamics form a nontrivial
+class of networks. For the static game, we give classes of ef cient networks for nontrivial parameter ranges and further study
+their stability. We close several problems, and leave many interesting ones open.
+1. INTRODUCTION
+Online social networks such as Facebook and Twitter are now an ubiquitous part of modern life.
+Moreover, given the prevalence of economic situations in which the network of relationships be-
+tween agents play an important role in outcomes, it is essential to rigorously understand how net-
+works form and what network structures are likely to emerge. Large interdisciplinary sub elds that
+combine economics, sociology, mathematics and computer science in the study of social networks
+are emerging (see [Carrington et al. 2005] for a survey). While many models for social network
+exist, most are either stochastic (i.e., probabilistic models) or are learned models (i.e., constructed
+by  tting a set of parameters). The game theoretic approaches to network formation that exist are
+largely motivated by games where network infrastructure is being built and costs are shared amongst
+agents (see, e.g., [Nisan et al. 2007] Chapter 19), and do not necessarily capture natural properties
+of online social networks. We introduce a simple directed network model that has a natural interpre-
+tation with respect to many online social networks. In this model the agents are nodes in the network
+and the model is de ned by three key parameters:
+(1) the cost cs of directly connecting to another agent (i.e., making a friend request),
+(2) the cost c(cid:96) of accepting a connection another agent (i.e., con rming a friend request), and
+(3) the distance k (i.e., the maximum path length) that suf ces for gaining utility from an indirect
+connection to another agent.
+Agents trade off decisions between the cost of maintaining edges against the rewards (in terms of
+connectivity) from doing so. Allowing cs, c(cid:96) > 0 captures many online social networks such as
+Facebook and LinkedIn in which one agent initiates a connection request and the other choses to
+accept or decline. When c(cid:96) = 0, the model captures other online social networks such as Twitter in
+which a connection can be made unilaterally. The distance k captures the maximum path distance
+that suf ces for deriving utility from (indirect) connections; a generalization of this model can fur-
+ther allow target sets T(v) which de nes the set of agents that v would like to reach within distance
+k.1
+In particular, we study natural dynamics in which agents periodically make asynchronous deci-
+sions on whether to add or sever edges. We show that irrespective of the initial network, the dynamic
+process converges; in fact when cs, c(cid:96) > 0 the convergence is fast. Furthermore, the  xed points
+of this process form a nontrivial class of networks.2 We further study the static game, and prove
+that for a nontrivial range of parameters a  ower graph is ef cient and stable, and a Kautz graph
+is symmetric-ef cient. We leave open the technically challenging question of whether symmetric
+networks that are also stable exist for nontrivial parameter ranges. Finally, we study the extremal
+1See Section 7 for a discussion   in this paper we only consider T (v) = V for all agents v.
+2This is in stark contrast to related settings in which the only  xedpoints are cycles and empty graphs [Bala and Goyal 2000].
+properties of stable networks and show that the price of anarchy can be arbitrarily bad, although the
+price of stability is 1.
+Lastly, this model allows us to de ne a multi-dimensional generalized clustering coef cient which
+relates to the stability of the network; this could be of independent interest in the study of social
+networks [Wasserman and Faust 1994].
+2. PRELIMINARIES
+Let V be a set of agents with n = |V |.
+DEFINITION 1 (BIDIRECTED NETWORK). A bidirected network G = (V, Es, E(cid:96)) is a graph
+with vertex set V with two types of directed edges; speaking edges suv   Es,3 and listening edges
+(cid:96)vu   E(cid:96).4
+Note that suv exists independently of (cid:96)uv; both, one, or none may be present in the network. When
+clear from context, with some abuse of notation, we drop the s/(cid:96) demarkations and simply refer to
+edges uv   E. We let ds+
+G(v) = |{w|svw   Es}| denote the number of outgoing speaking edges
+G(v) = |{w|swv   Es}| denote the number of incoming speaking edges to v. The
+of v, and let ds 
+analogous de nition is used for listening out-degree (d(cid:96)+
+G(v)) and in-degree (d(cid:96) 
+G(v)).
+DEFINITION 2 (SPEAKING AND LISTENING REACHABILITY). We say there is a speaking
+path of length k from v to u if there exists a set of directed edges svv1, sv1v2, . . . , svku   Es and
+edges (cid:96)uvk , (cid:96)vkvk 1, . . . , (cid:96)v1v   E(cid:96). We say that a vertex u that has a speaking path of length at
+G,k(v)   V be the set of all such vertices.
+most k from v is k-speaking-reachable from v, and let Rs
+G,k(v)   V are
+Listening paths, listening reachability, and the set of listening-reachable vertices R(cid:96)
+de ned in an analogous manner.
+With some abuse of notation, when k is clear from context we drop it from the notation above. Note
+that if u is speaking-reachable from v then v is listening-reachable from u.
+2.1. Our Model
+Each agent v   V has a strategy Sv = (Ss
+v   V .
+v) corresponds to the set of vertices that v connects
+Thinking of agents as vertices, Ss
+to by building speaking (respectively listening) edges svu (respectively (cid:96)vu). Thus, the strategy
+v}
+vector S = (S1, . . . , Sn) de nes a bidirected graph G = (V, Es, E(cid:96)) where Es = {vu|u   Ss
+v}. With some abuse of notation, we often refer to G as the set of strategies
+and E(cid:96) = {vu|u   S(cid:96)
+and will use G and S interchangeably.
+v), which consists of subsets of agents Ss
+v (respectively S(cid:96)
+v, S(cid:96)
+v, S(cid:96)
+The utility of v is given by
+UG(v) = U s
+G,k(v) + U (cid:96)
+G,k(v)
+where
+G,k(v) = |Rs
+U s
+G,k(v)|   cs   ds+
+G(v)| and U (cid:96)
+G,k(v) = |R(cid:96)
+G,k(v)|   c(cid:96)   d(cid:96)+
+G(v)
+are the utilities derived from speaking and listening respectively. The costs cs and c(cid:96) capture the
+cost of maintaining speaking and listening edges respectively.
+A natural special case is that in which one of the costs is 0 (without loss of generality c(cid:96) = 0). For
+such a model, an agent can always set S(cid:96)
+v = V without loss to her utility. Hence, the strategy space
+boils down to Ss
+v. Moreover, we can consider only the speaking portion of the utility UG,k(v) =
+G,k(v) without loss of generality. In such cases we drop all s/(cid:96) demarkations and simply think of
+U s
+a directed graph G = (V, E) = (V, Es). This special case, when we further assume that k =  , is
+equivalent to the network model in [Bala and Goyal 2000].
+3An edge suv can be thought of as u initiating contact with v.
+4A listening edge (cid:96)vu can be thought of as v accepting contact from u.
+Fig. 1. Example network depicting addable edges (green), removable edges (red) and existing edges that are not removable
+(black) for k = 2, c = cs = 1.5 and c(cid:96) = 0; note that we only depict speaking edges (one can assume that all listening
+edges are present).
+2.2. Dynamics
+In this paper we only consider dynamics that are asynchronous (i.e., one agent updates at a time)
+and stochastic (i.e., agents update in a random order). A shorthand notation for the network obtained
+by adding (alternatively, deleting) the edge vw from an existing network G is G + vw (alternatively,
+G   vw). Similarly, we let G + Sv be the network obtained by adding all vu edges where u   Sv
+to G. The following de nition is convenient for a variety of our de nitions and results.
+DEFINITION 3 (ADDABLE AND REMOVABLE EDGES). We say an edge uv   G is removable
+if UG uv(u) > UG(u). Similarly, we say an edge uv (cid:54)  G is addable if UG+uv(u) > UG(u).
+See Figure 2.2 for an example of a network where the addable and removable edges are depicted.
+We can then de ne the edge dynamics as follows:
+DEFINITION 4 (EDGE DYNAMICS). In each round, one potential (speaking or listening) edge
+vw is selected at random. Without loss of generality, assume it is a speaking edge. If svw   Es then
+the edge is deleted if and only if it is removable. Alternatively, if svw /  Es then the edge is added if
+and only if it is addable. The analogous de nition is used for listening edges.
+The bulk of our convergence results concern edge dynamics. In some cases they also apply to a
+natural vertex dynamics (see De nition 25).
+REMARK 5. Note that we do not consider best-response dynamics in which, in each time step,
+a vertex v is selected at random and she updates update her strategy Sv in order to maximize her
+utility (potentially by changing multiple edges simultaneously) with respect to the current strategies
+S v of the other agents. Indeed, our results do not extend naturally to this setting. For some special
+cases of our model, if the dynamics are performed synchronously, the results from [Bala and Goyal
+2000] apply.
+2.3. Stability and Ef ciency
+Denote by S v by the (n   1)-dimensional vector of the strategies played by all agents other than
+v. With some abuse of notation we use (Sv, S v) and S and G interchangeably as is convenient.
+DEFINITION 6 (STABILITY). A strategy vector S is said to be stable if for all agents v and each
+potential strategy S(cid:48)
+v   V , we have that
+USv,S v (v)   US(cid:48)
+v,S v (v).
+This is equivalent to saying that S is a Nash equilibrium.
+In other words, no agent v has any incentive to change her strategy from Sv to S(cid:48)
+v, assuming that
+all other agents stick to their current strategies. Observe that such a solution is self-enforcing in the
+sense that once the agents are playing such a solution, no one has any incentive to deviate. In fact,
+for our model, something stronger holds:
+PROPOSITION 7. A strategy vector is stable if and only if no edge is addable or removable.
+Pairwise stability is a common strengthening of the notion of stability. It is natural in social networks
+where, effectively, a link between two agents is formed only if both endpoints are in agreement, but
+either can unilaterally delete an edge. In our model, an agent s utility is never decreased by an
+incoming edge, hence there is no difference between stability and pairwise stability. However, in
+the bidirected case (when cs, c(cid:96) > 0), an extended notion of pairwise stability where a speaking
+edge and its corresponding listening edge are consider in conjunction is natural.
+DEFINITION 8 (BIDIRECTED PAIRWISE STABILITY). A strategy vector S is said to be bi-
+pairwise stable if for all pairs of agents u, v
+US suv (u)   US(u), US (cid:96)uv (u)   US(u),
+and if
+US+suv+(cid:96)vu (u) > US(u) then US+suv+(cid:96)vu(v) < US(v).
+For the remainder of this paper we refer to this notion as pairwise stability.
+Often, notion of fairness or global optimality are important considerations. The utilitarian objec-
+tive welfare of a set of strategies is the collective utility of all of the agents; i.e., for the strategy set
+G, it is  (G) =(cid:80)
+v UG(v).
+DEFINITION 9 (EFFICIENCY AND SYMMETRY). We say a set of strategies S, and the network
+G it de nes, is ef cient if it maximizes  (G). It is symmetric if UG(v) = UG(u) for all u, v   V , and
+is asymmetric otherwise. It is symmetric-ef cient if it maximizes  (G) over to the set of symmetric
+networks.
+Note that, a priori, ef ciency, symmetry, and stability need not be satis ed simultaneously. One aim
+of this work is to explore these relationships for our model.
+If G is bi-pairwise stable then G is stable.
+2.4. Preliminary Observations
+Before stating our main results, we make a few preliminary observations which will become useful
+in later proofs.
+LEMMA 10.
+PROOF. For sake of contradiction, assume that G is pairwise stable but is not stable. Since G
+is pairwise stable so for any speaking edge svw   Es we have UG(v)   UG svw (v) and for any
+listening edge (cid:96)vw   E(cid:96) we have UG(v)   UG (cid:96)vw (v). Hence, G has no removable edge. And
+because we assume that G is not stable so there must exist a speaking edge svw (cid:54)  Es where
+UG(v) < UG+svw or a listening edge (cid:96)vw (cid:54)  E(cid:96) where UG(v) < UG+(cid:96)vw (v) which contradicts the
+de nition of pairwise stability.
+DEFINITION 11 (COMPLETE EDGES). With some abuse of notation, we say a speaking edge
+svw is complete if
+svw   Es   (cid:96)wv   E(cid:96)
+We say a listening edge (cid:96)vw is complete if
+(cid:96)vw   E(cid:96)   swv   Es.
+In any stable or ef cient network, if cs, c(cid:96) > 0, all edges are complete. Hence, despite allowing
+unilateral actions, agreement naturally emerges.
+LEMMA 12.
+If cs > 0, c(cid:96) > 0, then for any stable, pairwise stable, or ef cient network G all
+speaking and listening edges are complete.
+PROOF. We will prove the contrapositive. Assume that there exist vertices v, w   V such that
+svw   Es and (cid:96)wv /  E(cid:96). Since (cid:96)wv /  E(cid:96), if for any node z we have z   Rs
+G,k(v), then, by the
+de nition of reachability, there exists a path from v to z that does not use edge svw. Thus there is no
+G,k(v) and z (cid:54)  Rs
+G,k(v)|,
+node z such that z   Rs
+G svw,k(v). In other words |Rs
+G(v)  1, so
+and the positive component of the utility is the same for v. However, ds+
+the negative component of the utility is reduced by cs in G   svw. Thus, UG svw (v) = UG(v) + cs
+and, since cs > 0, we conclude that UG svw (v) > UG(v). Hence, G is could not be stable or
+pairwise stable. Moreover, deleting svw does not affect on the utility of other vertices so  (G  
+svw) >  (G). Hence G is not ef cient. The proof follows analogously for (cid:96)vw.
+G svw,k(v)| = |Rs
+G svw
+(v) = ds+
+3. RELATED WORK
+Due to the vast range of applications; from sociology to commerce, biology and physics, with
+drastically different underlying properties, many models have been developed and studied in depth
+(see [Newman 2003] for a survey). Starting with G(n, p) [Bollob as 2001; Erdos and R enyi 1960],
+stochastic models have often taken a forefront. Depending on the observed graph properties, differ-
+ent models take the forefront, such as preferential attachment models [Barab asi and Albert 1999]
+for speci c degree distributions, or small-worlds models [Watts and Strogatz 1998] for capturing
+social networks. An alternate approach, is to take an existing network and  t a model using tech-
+niques from machine learning. For example, a the authors of [Karandikar et al. 2008] attempt to
+understand the Twitter network by  tting a stochastic model. However, while stochastic and learned
+models can explain on a macro level what is occurring in a network, on a micro level, i.e., looking at
+individual nodes and its edges, they remain uninformative; the motivation as to why a node would
+maintain an edge is abstracted away. We instead consider game theoretic models of a network in
+which each node is a sel sh agent and decided if and whom to connect to based on her utility.
+There has been a lot of very interesting work on network formation (see [Jackson 2005] and
+[Nisan et al. 2007] Chapter 19 for nice surveys coming out of the Economics and Algorithmic
+Game Theory literature respectively). Myerson was the  rst to consider such models (see, e.g.,
+[Aumann and Myerson 1988; Myerson 1977]). However, formulated the problem as a cooperative
+game where agents worked together towards a common goal; in our setting we assume agents have
+individual, or sel sh, goals. In another line of work, global connection games (see [Nisan et al.
+2007]) are studied in which agents are not nodes in the network, rather vested parties in (individual)
+global connectivity properties of the game.
+More closely related models consider sel sh agents that are nodes in undirected networks. [Jack-
+son and Wolinsky 1996] introduced a model for the study of the (static) stability of undirected net-
+works. Also known as the local connection game (see [Nisan et al. 2007]), nodes have discounted
+(based on path length) rewards for being connected to another agent, and cost for making a link.
+Their goal was to understand the relationship between stability and ef ciency, which led to further
+results in this direction (see, e.g., [Dutta and Mutuswami 1997; Jackson 2003]). The authors of
+[Watts 2003] consider edge dynamics for this undirected model. This is further studied by [Jackson
+and Watts 2002] where it is shown that the stochastic best response dynamics may not converge;
+this is in contrast to our model which will always converge to a stable network.
+Directed networks allow one individual to connect to another without the consent of the sec-
+ond individual, and thus applications are to settings such as Twitter following, while undirected
+network capture social networks where links are reciprocal, such as Facebook friendship. The dif-
+ference between directed and undirected graphs is not just a technicality when it comes to modeling.
+In undirected networks, edges are implicitly reciprocal, hence consent is required from both end-
+points; thus, undirected models are suitable for many forms of economic and social relationships.
+For directed networks, however, a vertex can link directly to another without reciprocally; thus,
+directed models are more suitable for capturing interactions that are passive in one direction, as
+with the consumption of public content. Not only are the applications and modeling considerations
+distinct, but they can lead to dramatic differences in the resulting graphs, their properties, and their
+ef ciency.
+The closest related work to our setting, by Bala and Goyal [Bala and Goyal 2000], studies the
+stability, ef ciency, and dynamics of directed networks. In fact, their can be viewed as a special
+case of ours when c(cid:96) = 0 and k =  . However, their dynamics differ signi cantly from ours; they
+use lazy simultaneous best-response dynamics while we consider asynchronous stochastic edge
+dynamics. Due to the nature of their update, their process always converges to either a cycle or the
+empty network. Not only are our dynamics more natural because coordination is not required and
+connections are evaluated on an individual basis, but the class of networks that are  xed points of
+our dynamics is nontrivial.
+4. DYNAMICS
+In studying the dynamics, different approaches are required for the special case where c(cid:96) = 0
+(i.e., the graph is directed) and more general bidirected setting (where cs, c(cid:96) > 0). In the latter, an
+agent s hand is often forced; as reachability can only occur via paths of complete edges, u never has
+incentive to add an edge suv if (cid:96)vu is not present (a layman s interpretation is to say that one cannot
+accept a connection that is not initiated). This, in effect, speeds convergence and makes our work
+easier. We consider both settings in Sections 4.1 and 4.2 respectively.
+4.1. The Directed Setting (c(cid:96) = 0)
+In this section we consider the setting where c(cid:96) = 0. Recall that in this case we can assume S(cid:96) = V
+and the model reduces to that for a directed graph with only speaking edges. Moreover, for the
+directed setting, our results only hold for k =  . Hence, for ease of notation we drop all s, (cid:96) and k
+demarkations, e.g., G = (V, E) = (V, Es), c = cs, UG = U s
+G,k, and uv = suv.
+THEOREM 13. The edge dynamics for k =   converge to a stable graph.
+It is a priori not clear that any dynamics should converge, or that any interesting structure could
+emerge at a  xed point of the dynamics.5 On the other hand, as is evident in our proof, a nontrivial
+class of networks are  xedpoints of the edge dynamics. The entire proof of convergence is rather
+technical and requires an in-depth case analysis which we have split out into individual lemmas for
+the reader s clarity.
+PROOF OF THEOREM 13. In order to prove convergence, it suf ces to show that for any initial
+graph G1, there exists a  nite sequence of graphs G1, . . . , Gs such that Gi (cid:54)= Gj for any i (cid:54)= j and
+Gi and Gi+1 differ by a single edge that is either addable or removable in Gi such that Gs is stable.
+In other words, there is a path to convergence from any state which only uses addable or removable
+edges. If this path is  nite, there is some (albeit tiny) probability, which is bounded away from 0,
+that this sequence of edges is selected. Hence, it suf ces to construct such a sequence. We construct
+it as follows:
+(1) Recursively delete removable edges one at a time until no removable edge remains.
+(2) If there is no addable edge then we have reached a stable graph.
+(3) Otherwise, partition the graph into maximal strongly connected components; the component-
+level graph must be a directed acyclic graph (Lemma 16). We call a component a root if it
+has no incoming edge, and a leaf if it has no outgoing edge. It is often convenient for us to
+restrict to the components of size > c, which we call large-components; roots and leaves are then
+de ned within the large-component graph. Note that there must be at least one large component,
+otherwise we contradict the fact that an edge is addable (Lemma 17).
+(4) For each root Ti of the large-component graph, designate a special vertex ri. Note that for any
+(large or small) component C such that Ti (cid:54)  RG(C), the edge xri is addable for any x   C
+(Lemma 18); hence, the edges speci ed in steps 5-7 must be addable.
+(5) If some leaf Li (cid:54)= Ti exists in the large-component graph rooted at Ti, add the edge (cid:96)iri for some
+(cid:96)i   Li and go back to step 1.
+5E.g., recall that the authors of [Bala and Goyal 2000]  nd that synchronous best-response dynamics must converge to either
+the cycle or the empty graph under the same conditions.
+(6) Otherwise, all large-components have no edges between them in the large-component graph. If
+there are more than one large components, let T1, T2 be any two large-components such that
+T1 (cid:54)  RG(T2). Add the edge r2r1. If T2 (cid:54)  RG+r2r1 (T1), also add the edge r1r2. Go back to
+step 1.
+a leaf, add the edge sjr1 for some sj   Sj and go back to step 1.
+(7) Otherwise, there is exactly one large-component T1. If there exists a small component Sj that is
+(8) Again, there is exactly one large-component T1, and this set T1 is reachable from every compo-
+nent (otherwise we would be in step 7). Moreover, there must be at least one small component
+Sk that is a root and in which |RG(Sk) \ T1| > c (Lemma 22). Let tkrk be an edge that reaches
+T1 on a path from Sk, i.e., rk   T1 and tk (cid:54)  T1, and tk   RG(Sk). Add the edge rksk for some
+sk   Sk and go back to step 1.
+We prove in Lemma 15 that the only addable edges are between two different components; hence
+only inter-component edges must be addable; the above steps cover all possible types of addable
+edges in sequence until none remain.
+After step 5+1 (alternatively 6+1), the number of large components that existed before step 5
+(alternatively 6) is reduced by at least one (see Lemma 19 and Lemma 20 respectively). Hence, we
+will reach step 7 in  nitely many rounds.
+In step 7 there is exactly one large component (see also Lemma 17), and the number components
+without a direct edge to T1 is reduced by one. Moreover, after step 7 there are no removable edges,
+so the number of large components and the size of the largest component does not change in step
+7+1 (Lemma 21). Thus, we never go back to steps 5 or 6, and after  nitely many rounds, we will
+move on to step 8.
+In step 8 again there is exactly one large component. In step 8+1 the the number of large com-
+ponents does not increase, thus, we never go back to step 5 or 6. While we may go back to step 7,
+however, every time we complete step 8 we have removed at least one edge from being addable at
+any point in the future (Lemma 14). Hence, we can remain in steps 7 and 8 for  nitely many rounds,
+and the process will terminate in step 2.
+LEMMA 14. After step 8, we removed at least one edge from being addable at any point in the
+future. Moreover, the number of large components does not increase.
+PROOF. By the same argument as in the proof of Lemma 19, we know that step 8 + 1 cannot
+It now suf ces to argue that T (cid:48)(cid:48)
+1 be the largest component in G(cid:48)(cid:48) (after step 8+1). We reserve T (cid:48)
+We prove that the edge rksk cannot be added again in the future. Let T1 be the largest component
+1 and
+increase the number of large components.
+in G (before step 8) and let T (cid:48)(cid:48)
+G(cid:48) for an intermediary graphs.
+1 , or rksk was removed in step 1
+(after we added it in step 8), in which case |RG(cid:48)(cid:48) (sk)\ T (cid:48)(cid:48)
+1 | < c. Since steps 7 and 8 cannot increase
+RG(cid:48)(cid:48) (sk) for any future G(cid:48)(cid:48), the edge rksk will never become addable again.
+(cid:54)  RG(cid:48)(cid:48) (sk). Let xy be the  rst removable edge such
+that T (cid:48)
+1, and in particular
+x   RG(cid:48)(sk) and T1 (cid:54)  RG(cid:48) xy(x). However, |T1| > c, hence xy is not removable which gives a
+contradiction.
+1 (cid:54)  RG(cid:48) xy(sk); hence, xy must have been on every path from sk to T (cid:48)
+1   RG(cid:48)(cid:48)(sk); hence either sk   T (cid:48)(cid:48)
+For sake of contradiction, assume T (cid:48)(cid:48)
+1
+LEMMA 15.
+components of G.
+If vw is an addable edge in G, then v and w belong to different strongly connected
+PROOF. An edge vw is addable if UG+vw(v) > UG(v), in other words |RG+vw(v)   RG(v)|  
+c. Assume that v and w belong to same strongly connected component. Thus RG(v) = RG(w), and
+hence RG+vw(v) = RG(v). Therefore the positive component of the utility for v does not increase,
+while the negative component would decrease. Hence no such vw edge is addable.
+LEMMA 16.
+In step 3, the component-level graph is a directed acyclic graph.
+PROOF. Assume for sake of contradiction, that some set of two or more components form a
+cycle in the component-level graph. Then, for every x, y in the cycle, there must be some path from
+x to y as there is a path between any two vertices within every component, and a path between
+any two components via the cycle. Hence, the cycle in fact forms a strongly connected component
+contradicting the maximality of the partition.
+LEMMA 17. Any leaf must either be an isolated vertex (with no parent) or is of size at least c;
+in particular a leaf that is not a root must be of size at least c. Moreover, in step 3, there exists a
+component of size at least c.
+PROOF. If there is an edge ab such that |RG(b)| < c, then by removing ab, the positive compo-
+nent of the utility decreases by less than c while the negative component decreases by c. Hence, ab
+is removable, and would have been eliminated in step 1. Thus, any edge ab must have |RG(b)|   c.
+Consider a component B, and consider any edge ab such that b   B. If some such edge exists, then
+RG(b) = RG(B), and hence |RG(B)|   c as shown above. If no such edge exists, then B must be
+an isolated vertex.
+In step 3, there exists some edge ab that is addable. From Lemma 15, we know that a and b must be
+in different components A, B. By assumption, we know that |B| < c, however, |RG(b) \ RG(a)|  
+c. Thus, there must be at least one other component that is reachable from B. Thus, the component
+graph has at least one leaf, and, from above, that leaf must be of size at least c. Thus, there exists at
+least one component of size at least c.
+In step 4, given any component C such that Ti (cid:54)  RG(C), for any x   C the edge
+LEMMA 18.
+xri is addable.
+PROOF. Let Ti be a root of the large-component graph; trivially |Ti|   c. If Ti is not reachable
+from a component C, then, for any x   C we know |RG+xri(x) \ RG(x)|   |RG(ri) \ RG(x)|  
+|Ti|   c. Thus, xri is addable.
+LEMMA 19. After adding an edge as in step 5 and then completing step 1, the number of large
+components at the beginning of step 5 has reduced by at least 1.
+PROOF. Clearly, adding edges cannot increase the number of components. Moreover, since Li is
+a leaf of Ti, and Li and Ti there is clearly a path from every ri   Ti to every xi   Li in the original
+graph. Using the new edge (cid:96)iri, there is now also a path from every xi   Li to every ri   Ti. Hence
+this reduces the number of large components by at least one.
+Let G(cid:48) be the current graph (after adding (cid:96)iri, and removing an unknown number of edges). We
+must now show that, after deleting an edge, the number of large components has not increased.
+Let xy be a removable edge in G(cid:48) and let X be the component that contains x. If y (cid:54)  X, then
+removing xy does not increase the number of components of G(cid:48). Assume y   X. Let S be the set
+of vertices that are reachable from x only through xy. Thus, S   X and X \ S will form two new
+strongly connected components after the removal of xy. Because xy is removable, we know that
+|RG(cid:48) xy(x) \ RG(cid:48)(x)| < c. Note that we have exactly de ned S = RG(cid:48) xy(x) \ RG(cid:48)(x). Hence,
+|S   X|   |S| < c. Thus we have not increased the number of large connected components in G(cid:48).
+Thus, overall, the number of large components reduces by at least one.
+LEMMA 20. After adding an edge as in step 6 and then completing step 1, the number of large
+components at the beginning of step 6 reduces by at least one.
+PROOF. Clearly, adding edges cannot increase the number of components. Moreover, after
+adding r2r1 (and if necessary r1r2), the two large components T1, T2 are in the same large compo-
+nent in the new graph. Hence, the number of large components has reduced by at least one.
+By the same argument as in the proof of Lemma 19, we see that after deleting edges, the number
+of large components does not increase, and hence, overall, the number of large components has
+reduced by at least one.
+LEMMA 21. After adding an edge as in step 7 and then completing step 1, the number of large
+components at the beginning of step 7 does not increase and the number of components without a
+direct edge to T1 decreases by one.
+PROOF. Note that, at the beginning of step 7 there is a single large component (otherwise we
+would be in step 5 or 6). Clearly, adding the edge reduces the number of components without a
+direct edge to T1, and adding edges cannot increase the number of components or create more roots.
+We now show that no edge is removable when we go to step 1, everything that holds after step 7
+must also hold after step 7+1.
+Let G be the graph at the beginning of step 7. For sake of contradiction, assume that xy is
+a removable edge; thus, |RG+sj r1 xy(x) \ RG+sj r1 (x)| < c. Since sjr1 was addable in G, we
+know that xy (cid:54)= sjr1. Additionally, since sj was an isolated vertex in G we know that it has no
+other edge and hence x (cid:54)= sj. Moreover, since sj was an isolated vertex in G, we know it has no
+incoming edge, and hence x (cid:54)  RG+sjr1(z) for any z (cid:54)= x. Thus, RG+sj r1 xy(x) = RG xy(x) and
+RG+sj r1 (x) = RG(x), and this implies that |RG xy(x)\RG(x)| < c, and hence xy was removable
+in G. This gives a contradiction, as no such xy exists at the beginning of step 7 (as it would have
+been removed in the previous step 1).
+LEMMA 22. There is exactly one large-component T1, this set T1 is reachable from every
+component, and there must be at least one small component Sk with no incoming edge such that
+|RG(Sk) \ T1| > c.
+PROOF. Exactly one large-component T1, since at least one large component exists (Lemma 17)
+and if two or more exists we would be in step 5 or 6. Moreover, T1 is reachable from every compo-
+nent, otherwise we would be in step 7. Lastly, we know that there must be some small component
+Sk such that |RG(Sk)\ T1| > c, otherwise no edge addable. In particular, any rsk edge with r   T1
+and sk   Sk is addable.
+One important question that remains open is the time until convergence; in particular, we con-
+jecture that the convergence time is fast. In effect, this is equivalent to showing that there are many
+short paths to convergence. Proving this, however, remains a challenging technical open problem.
+4.2. The Bidirected Setting (cs, c(cid:96) > 0)
+We now go back to the bidirected setting. As observed above, the convergence is less surprising;
+as edges that are not complete are easily deleted. This is formalized in the following lemma, which
+will be useful for our result:
+LEMMA 23.
+If cs, c(cid:96) > 0 and there exist vertices v, w   V such that svw /  Es, (cid:96)wv /  E(cid:96),
+then the edge and vertex dynamics will not add either edge back.
+PROOF. We will prove the contrapositive. Assume that some such svw is added back. We know
+that (cid:96)wv /  E(cid:96). Thus, by the de nition of reachability, there is no path from v to any arbitrary
+node z which passes through svw. Hence, z   Rs
+(v). Therefore,
+|Sk
+G(v) + 1 so UG+svw (v) = UG(v)   cs and
+G(v)| = |Sk
+since cs > 0 thus UG+svw (v) < UG(v). Therefore agent v does not gain by adding svw and wo not
+add it for ever. The similar proof used for listening edges.
+G,k(v) if and only if z   Sk
+(v)|. However, ds+
+(v) = ds+
+G+svw
+G+svw
+G+svw
+Using this lemma, we give a very different proof than the one for the directed setting. In addition
+to working for arbitrary k, this proof also allows us to conclude that the convergence is fast.
+THEOREM 24. If cs, c(cid:96) > 0, then the edge dynamics, vertex dynamics (see De nition 25) con-
+verge to a stable graph in (expected) polynomial time in the number of nodes.
+PROOF. We will prove the theorem for edge dynamics; the analogous proof for vertex dynamics
+follows from Lemma 26. Let pG be the number of complete edges (see De nition 11) and let mG
+be the number of edges in network G. We will prove the theorem by induction on pG + mG.
+Base Case:. Suppose that pG + mG = 0, thus pG = 0, mG = 0 so G is empty and by Lemma
+34, the empty graph is stable.
+ 
+1
+  1
+n
+n   1
+Inductive step:. For sake of contradiction, assume that the dynamics do not converge to a stable
+graph. Thus, since the number of possible networks is  nite, there must exist a sequence of networks
+that we cycle over. If there exists v, w   V such that svw   Es and (cid:96)wv /  E(cid:96), then with probability
+at least 1
+, the edge svw is chosen. By Lemma 26, this edge is removable for v. Therefore,
+2
+the number of edges is reduced, so pG svw + mG svw = pG + mG   1. Thus by the induction
+hypothesis, G   svw converges to a stable network. Similarly, if svw /  Es and (cid:96)wv   E(cid:96) an
+analogous proof follows.
+Otherwise, for all v, w   V , if svw   Es then (cid:96)wv   E(cid:96) and if (cid:96)vw   E(cid:96) then swv   Es. Since G
+is not stable, there must exist an edge which addable or removable. By Lemma 23 we know that no
+removed edge will be added again. Hence, the only possible change is to remove an edge. Suppose
+that svw is an existing removable edge for v. The probability of selecting svw and (cid:96)wv consecutively
+(cid:18) 1
+(cid:19)2
+1
+ 
+  1
+n
+2
+n   1
+is at least
+. Moreover, we know that if svw and (cid:96)wv are selected in sequence then
+both will be removed as svw is removable, and then (cid:96)wv will be removable by Lemma 26. Thus, for
+new graph we have that pG svw (cid:96)vw + mG svw (cid:96)vw = pG + mG   3.
+The convergence happens in expected polynomial time because the probabilities, as computed
+above, shows that after O(n4) moves in expectation, the value of pG + mG will decrease. We know
+that pG + mG = O(n2). Thus, after at most O(n6) moves in expectation we will reach a stable
+network.
+DEFINITION 25 (VERTEX DYNAMICS).
+In each round, a vertex v is selected at random, and
+two options are selected at random 1) speaking or listening and 2) adding or deleting. Without
+loss of generality, assume speaking and deleting was selected. Then, all removable svw   Es are
+deleted. Similarly, if speaking and adding is selected, then all addable svw /  Es are added. The
+analogous de nitions are used for listening edges.
+LEMMA 26. Suppose that cs > 0. If there exists a vertex w   V such that svw   Es, (cid:96)wv /  E(cid:96),
+then if v is selected to remove a speaking edge, she will select some such svw to remove. The
+analogous statement holds for listening edges.
+PROOF. When agent v decides to delete a speaking edge, it chooses an edge which has the least
+gain for it since by removing it, the lost be minimal. We know that the pro t of existence a speaking
+edge is made by providing speaking reachability. Moreover since (cid:96)wv /  E(cid:96) and by the de nition
+of reachability, there is no path from v to arbitrary node z that passes through svw so the gain of it
+zero. Therefore removing svw has the least lost for v and is the best strategy among removing all
+possible speaking edges.
+5. STABILITY AND EFFICIENCY
+In this section we construct classes of ef cient and stable networks. We  rst consider nontrivial
+ranges of parameters k > 1 and cs, c(cid:96)   n   1 (see Section 5.1 for a discussion of extremal
+parameter ranges and networks). For this range of parameters, we see interesting networks emerge
+in the study of ef cient and stable networks.
+REMARK 27. For ease of notation, in the  rst part of this section we consider only the directed
+version of our model (i.e., without loss of generality, c(cid:96) = 0). However, all results and proofs
+follow immediately for the bidirectional case by replacing the directed graphs in question by the
+analogous bidirected graph where each directed edge is replaced by a complete bidirected edge. In
+the statement of the theorems, constraints on c apply to both cs and c(cid:96).
+The  rst network we consider, called balanced  ower graph, is de ned for k   2
+Fig. 2. A balanced  ower graph with n = 26 vertices and k = 10. This is ef cient and stable for c < 5.
+ 
+constructed as follows: Make a directed cycle of length(cid:4)k/2(cid:5) + 1 . Select one node from this set
+and call it the center. As long as at least(cid:4)k/2(cid:5) nodes remain, select them, and, along with the center
+node, form another directed cycle. Repeat until fewer than(cid:4)k/2(cid:5) nodes remain; then remove one
+until you have(cid:4)k/2(cid:5)   1 nodes and form them into the  nal petal. We denote by q the number of
+hence q  (cid:4)k/2(cid:5). Note that the balanced  ower graph has diameter at most k. See Figure 2 for an
+non-central node from each petal (severing its edges and connecting its predecessor and successor)
+ 
+petals. Note at most one node is removed from each petal in balancing since since k   2
+n and is
+n, and
+example.
+ 
+THEOREM 28. For any 4   k   2
+graph (see Figure 2) is
+n and 3   n, the social welfare of the balanced  ower
+Moreover, if 1   c <(cid:4)k/2(cid:5)   1 the balanced  ower graph is ef cient and pairwise stable.
+2
+n(n   1)   c
+  c(n   1)
+Before we prove the theorem, in order to show pairwise stability, a useful lemma is stated:
+If G be stable and strongly connected, then G is pairwise stable.
+LEMMA 29.
+PROOF. Since G is stable, it contains no removable edge. As G is strongly connected, for any
+vertex v, the positive component of UG(v) is 2(n   1) and cannot be increased. Hence, there is no
+addable pair in G. Thus, G is pairwise stable.
+PROOF OF THEOREM 28. The social welfare of the balanced  ower graph is
+n(n   1)   c
+  c(n   1)
+as the utility of the center node is (n   1)   cq = (n   1)   c
+nodes is (n   1)   c. Hence, the social welfare is
+, and the utility of all other
+(n   1)   ((n   1)   c) + (n   1)   c
+= n(n   1)   c
+  c(n   1)
+(cid:38)
+(cid:5) (cid:39)
+n   1
+(cid:4) k
+(cid:38)
+n   1
+2
+(cid:5) (cid:39)
+(cid:4) k
+(cid:5) (cid:39)
+(cid:4) k
+2
+n   1
+(cid:38)
+(cid:24)
+(cid:5)(cid:25)
+n 1(cid:4) k
+(cid:38)
+2
+(cid:5) (cid:39)
+n   1
+(cid:4) k
+2
+Let us now prove that the  ower graph G is stable. By Lemma 29, this will give pairwise stability.
+We must show that for all agents v, and alternate strategy s(cid:48)
+v   V , we have
+USv,S v (v)   US(cid:48)
+v,S v (v).
+u| < q that is u s best response. Note that S(cid:48)
+least one petal. Since each petal has at least(cid:4)k/2(cid:5)   1 non-center nodes and c <(cid:4)k/2(cid:5)   1, adding
+First, consider a vertex v that is not the center; since all vertices are reachable from v by paths of
+length at most k, the positive component of the utility cannot be increased. Hence, utility can only
+be improved by lowering the cost; however, |Sv| = 1, and if |S(cid:48)
+v| =  , then v(cid:48)s utility is 0, which is
+strictly less than UG(v). Thus, v does not have an alternate strategy that can improve her utility.
+Now consider the center vertex u. Again, all vertices are reachable from u by paths of length at
+most k, so the positive component of the utility cannot be increased, and the negative component can
+only be decreased by decreasing the number of outgoing edges from u. For sake of contradiction,
+assume there is some |S(cid:48)
+u must disconnect u from at
+u| < q
+the edge from u to the petal to S(cid:48)
+can be a best response. Hence, the balanced  ower graph is stable.
+Now we prove that the balanced  ower graph is ef cient. First, consider the graph that would arise
+if we simply connected the remainder nodes into a small petal without balancing. This is what is
+known as simply a  ower graph. It is known that, for any n and 2   k   n, the  ower graph attains
+the fewest number of edges of any connected graph on n nodes with diameter k (see Theorems 1
+and 2 in [Hirschberg and Wong 1979]). Note that our balanced  ower graph has the same number
+of edges as the  ower graph; hence it also attains the fewest number of edges of any connected
+graph on n nodes with diameter k. Therefore, the balanced  ower graph is optimal amongst the set
+of strongly connected graphs.
+u would increase the utility; this contradicts the fact that |S(cid:48)
+Hence, it suf ces to show that a graph that is not strongly connected cannot be ef cient. We
+prove the contrapositive. Assume there is a graph that is not strongly connected; we show that we
+can combine any two maximal strongly connected components into a single strongly connected
+component that is at least as ef cient. Take two strongly connected of size a   1 and n   a   1.
+Clearly, from above, the social welfare of each component can only improve by making it a balanced
+ ower, and this does not affect the social welfare of the remaining graph. Since it is possible that
+one component is connected to the other (but not vice versa), without loss of generality the social
+welfare of this graph is at most
+a(a   1)   c
+  c(a   1) + (n   a)(n   1)   c
+  c(n   a   1)
+(cid:38)
+(cid:4)k/2(cid:5)(cid:39)
+a   1
+(cid:4)k/2(cid:5) (cid:39)
+n   a   1
+(cid:38)
+(cid:33)
+(cid:32)(cid:38)
+(cid:4)k/2(cid:5)(cid:39)
+n   1
+  n(n   1)   a(n   a)   c
+  2
+  cn
+= n(n   1)   c
+  c(n   1) + c   a(n   a)
+(cid:38)
+(cid:38)
+n   1
+(cid:4)k/2(cid:5)(cid:39)
+(cid:4)k/2(cid:5)(cid:39)
+n   1
+  n(n   1)   c
+where the last inequality follows as c <(cid:4)k/2(cid:5)   1  (cid:4) 
+  c(n   1) +
+n   (n   1),
+n(cid:5)   1    
+n   3, this is less than the social welfare attained by the balanced  ower.
+ 
+n and 1   a   n   1. For
+REMARK 30. In fact, for any 2   k, the (unbalanced)  ower graph which leaves the last petal
+ 
+at it s size without rebalancing is also ef cient; the constraint is due to the fact that for k > 2
+n
+balancing as described above may not be possible. We could, instead, de ne a recursive balancing
+process that continues to steal vertices (possibly several from the same petal) until a balanced  ower
+Fig. 3. Kautz graph with 24 vertices, outdegree 2 and diameter 4. This is a symmetric-ef cient graph for n = 24, k = 4,
+and c < 10, and is stable for c < 1.
+is reached for some k(cid:48) < k; ef ciency follows directly, as does stability for a reduced c which is a
+function of n and k.
+While the above graphs are ef cient, they are highly asymmetric with a single node taking on
+most of the cost. Hence, we now turn our attention towards symmetric graphs, and consider a second
+class of graphs, known as Kautz graphs [Elspas et al. 1968; Imase and Itoh 1983] (see Figure 3).
+d is a directed graph with (d + 1)dD 1 vertices. The vertices are labeled by
+strings x0 . . . xD 1 of length D with xi   {0, . . . , d} with xi (cid:54)= xi+1. The set of edges is de ned
+by
+The Kautz graph K D
+{(x0, x1 . . . xD, x1 . . . xDxD+1)| xi   {0, . . . , d} and xi (cid:54)= xi+1}.
+Clearly, the graph has outdegree d, (d + 1)dD edges, and diameter D + 1.
+Kautz graphs arose in the study of the following question: Given a graph with n nodes and m
+edges, what is the smallest possible diameter k? Through a series of works, it was shown that Kautz
+graphs are asymptotically optimal with respect to this question (see [Miller and  Sir an 2005] for a
+survey).
+In our case, we can rephrase the question as follows: Given a graph with n nodes and diameter
+k, what is the smallest possible number of edges m? Clearly, such a graph would maximize social
+welfare restricted to the set of strongly connected graphs; we can extend this result to all graphs.
+THEOREM 31. For any k   4, n   16, and c < n/logk(n) the Kautz graph K k 1
+logk(n) (see
+Figure 3) is asymptotically symmetric-ef cient6 and its social welfare is
+Moreover, for c   1 the Kautz graph is pairwise stable.
+n((n   1)   clogk(n)).
+PROOF OF THEOREM 31. The Kautz graph is strongly connected and all vertices have the same
+degree; hence it is symmetric. Each vertex is connected to all others and each has degree dn =
+logk(n), hence each vertex contributes (n   1)   c logk(n) to the social welfare.
+As discussed in the main body of the text, the Kautz graph is known to asymptotically have the
+fewest number of edges necessary in order to have a graph of size n with maximum diameter k
+(see [Miller and  Sir an 2005] for a survey), and hence it is asymptotically optimal amongst the set
+6Generally, we assume that logk(n)   Z, and then can make a statement about asymptotic as n     for a  xed k on the
+set of well-de ned n.
+of strongly connected graphs. Analogously to the Proof of Theorem 28 (see the last paragraph), we
+can bootstrap this result in order to prove ef ciency amongst the set of all graphs by showing that
+the social welfare of a graph that is not strongly connected is (asymptotically) at most the social
+welfare of the corresponding Kautz graph for this range of parameters.
+We prove the contrapositive. Assume there is a graph that is not strongly connected; take two
+strongly connected components of size a   1 and b = n   a; we show that the Kautz graph of size
+n has at least as much social welfare as this graph. Clearly, from above, the social welfare of each
+component can only improve by making it a Kautz graph, and this does not affect the social welfare
+of the remaining graph. Then, (since the two components may be connected) the social welfare is at
+most
+a(a   1)   cada + (n   a)(n   1)   c(n   a)dn a
+(cid:16)
+(cid:17)
+(cid:16)
+(cid:17)
+logk(aa(n   a)n a)
+(cid:33)
+logk((n   1)n 1)
+nn
+(cid:32)
+(n   1)n 1
+  (n   1)
+= n(n   1)   a(n   a)   c
+  n(n   1)   (n   1)   c
+  n(n   1)   c logk(nn) + c logk
+  n(n   1)   c logk(nn)
+where the last inequality follows for any constant c and k and large enough n. This is the social
+welfare of the Kautz graph; hence the Kautz graph is asymptotically symmetric-ef cient.
+We now prove stability. By Lemma 29, this also gives pairwise stability. Clearly, no strategy S(cid:48)
+such that |S(cid:48)
+x   Sx.
+x|   |Sx| can improve the utility of x. Hence we  rst consider strategies S(cid:48)
+Let x = x0, . . . , xD and y = y0, . . . , yD be two nodes such that there is there is no i such that
+xi = yD i 1, . . . , xD = y0, . . . , yi. Hence, the distance from x to y must be exactly k in the Kautz
+graph. Consider any edge xz such that z0 (cid:54)= y0. It must again hold that there is no i such that
+zi = yD i 1, . . . , zD = y0, . . . , yi; otherwise there would have been some such i for x. Hence,
+the distance from x to y is k + 1 if we remove edge xx(cid:48) where x(cid:48) = x1, . . . , xD, y0. Hence, the
+strategy Sx \ xx(cid:48) does not improve x s utility since the cost reduces by at most 1 while at least one
+node becomes unreachable. Note that, for every allowable y0, some such vertex y exists. Hence, no
+x   Sx improves x s utility. Lastly, for sake of contradiction, assume there is an optimal
+strategy S(cid:48)
+x| < |Sx|. Then, there must be some allowable y0 to which x does not build
+x such that |S(cid:48)
+strategy S(cid:48)
+an edge. However, as we just observed, S(cid:48)
+x + xy0 improves the utility of x. This contradicts the
+optimality of S(cid:48)
+x. Hence, this concludes the proof.
+x
+REMARK 32. We leave open the question of whether Kautz graphs are stable for any c > 1,
+and more generally, the question of characterizing optimal symmetric stable graphs.
+5.1. Price of Stability and Price of Anarchy
+We can further observe some properties of the extremal ranges of the parameters where the stable
+and ef cient graph structures are not as interesting. These results also lead to the following obser-
+vation.
+COROLLARY 33. The price of anarchy is 0 and the price of stability is 1.
+This follows from the de nition of the price of anarchy and price of stability by combining Propo-
+sitions 34 and 35 for the former and Propositions 36 and 35 for the latter.
+PROPOSITION 34.
+If cs   1 or c(cid:96)   1 then the empty graph is pairwise stable. Moreover, if
+cs > n   1 or c(cid:96) > n   1 then the only stable graph (and hence the only pairwise stable graph) is
+the empty graph.
+PROOF OF PROPOSITION 34. Assume without loss of generality that cs   1. We will prove the
+contrapositive. Assume that G is not pairwise stable. Since the graph is empty, there are no possible
+edges to remove. Thus, there must exists a pair of vertices v, w such that U s
+G(v)
+and U (cid:96)
+G(v),
+(v) = U s
+G+svw+(cid:96)wv
+and thus cs < 1.
+Now, suppose that cs > n   1. Note that in a stable network, the utility for any vertex v is at
+least 0 since this can always by attained by taking the strategy Sv =  . Assume that a graph G is
+nonempty. Thus, there must exist at least one vertex v such that ds+(v) > 0. Let v be such a vertex.
+Then U s
+G(v)|   cs   ds+(v)   (n   1)   cs < 0. Thus, G is not stable.
+(v) > U s
+G(v) + 1   cs > U s
+G(w). This implies that U s
+G(v) = |Rs
+(w)   U (cid:96)
+G+svw+(cid:96)vw
+G+svw+(cid:96)wv
+If k =  , and 0 < cs   n   1, 0 < c(cid:96)   n   1, then the cycle is the only
+PROPOSITION 35.
+ef cient network.
+PROOF. For ease of notation, we drop k =   from the subscripts. For an arbitrary node v, if
+ds+
+G(v) = 0 then there does not exist a speaking path from v to rest of the network, and hence
+G(v)|   cs   ds+
+G(v) = |Rs
+G(v)   1, then the rest of network may be
+G(v) = 0. Otherwise, if ds+
+U s
+reachable from v. Hence, |Rs
+G(v)|   n   1 where equality occurs if and only if all other nodes are
+reachable from v. Therefore
+G(v) = |Rs
+U s
+G(v)   (n   1)   cs,
+G(v)|   cs   ds+
+and we know that cs < (n   1). Hence, in the case of equality, the utility is improved over the
+setting where ds+
+G(v) = 0. Similarly, it follows that
+G(v)   (n   1)   c(cid:96).
+U (cid:96)
+Thus we can conclude that
+so
+ (G) =
+(cid:88)
+UG(v) = U s
+G(v) + U (cid:96)
+G(v)   (n   1)   (cs + c(cid:96))
+UG(v)   n   ((n   1)   (cs + c(cid:96)))
+v
+By the de nition of ef ciency, a network is ef cient if it maximizes   thus if we be able to  nd a
+network say G such that  (G) = n  ((n  1)  (cs + c(cid:96))) then we could conclude that G is ef cient.
+Now we consider cycle C to compute  (C). A cycle C is a closed path v1, v2, . . . vn, vn+1 such
+that vn+1 = v1, for all 1   i   n svivi+1   Es, (cid:96)vi+1vi   E(cid:96). Thus by the de nition of reachability
+G, (v)| = n   1. Moreover for
+for any v, w   C, v   Rs
+any node v   C we have ds+
+G, (w) so |Rs
+C(v) = 1. Therefore
+(n   1)   (cs + c(cid:96))) = n   ((n   1)   (cs + c(cid:96))).
+G, (w), v   R(cid:96)
+(cid:88)
+C(v) = d(cid:96)+
+G(v)| = |R(cid:96)
+(cid:88)
+UG(v) =
+ (G) =
+v
+v
+G(v) = d(cid:96)+
+G(v)| = |R(cid:96)
+G(v) = 1, |Rs
+Now we prove that cycle is the unique ef cient network. By contradiction assume that there
+exists another ef cient network G (cid:54)= C where  (G) = n   ((n   1)   (cs + c(cid:96))). According to
+the  rst part of proof, the only condition for holding this equality is that for all v   V it holds that
+G(v)| = n   1, thus G is connected in other words, for all
+ds+
+v, w   V , we have that v   Rs
+G(w) = 1. Moreover since the speaking outdegree
+of each node is one, so if we only consider speaking edges, we will have one cycle on the nodes.
+Now we want to show that listening edges are exactly in opposite direction of speaking edges. If
+not, there must exist pair (v, w) such that svw   Es, (cid:96)wv /  E(cid:96) thus by the same proof used in
+proposition 12, node v could improve her utility by removing svw and this action dos not change
+other nodes  utility. This improvement in social welfare contradicts with ef ciency of G.
+G(w) and v   R(cid:96)
+PROPOSITION 36. For k =  , if 0   cs   n   1 and 0   c(cid:96)   n   1, then the cycle C is
+pairwise stable.
+PROOF. We  rst prove stability, and then use Lemma 29 to show that pairwise stability must
+also hold. Using the same proof presented in Proposition 35, we know that for all v   V , we have
+|Rs
+G(v)| = |R(cid:96)
+C(v) = d(cid:96)+
+C(v) = 1. To prove the stability of C we must show
+v   V , we have
+that for all agents v and any alternate strategy S(cid:48)
+USv,S v (v)   US(cid:48)
+v,S v (v).
+G(v)| = n   1 and ds+
+There are only four possible moves for node vi.
+(1) Adding sviw such that w (cid:54)= vi+1
+(2) Removing svivi+1
+(3) Adding (cid:96)viw such that w (cid:54)= vi+1
+(4) Removing (cid:96)vivi+1.
+Now we show that after any such change, the utility of vi will decrease. Without loss of generality,
+consider a change to a speaking edge. We know that |Rs
+C(v)| = n   1 which is the
+maximum possible, so by adding a new speaking edge we could not gain; however we will loose
+cs thus UC+sviw (vi) = UC(vi)   cs and since cs > 0 so UC+sviw (vi) < UC(vi). In the case
+C(vi) = 0 thus for all w   V, w (cid:54)= vi we have
+of deleting, if we remove a speaking edge, then ds+
+w /  Rs
+C(vi)| = 0. Therefore, UC sviw (vi) = UC(vi) + cs   (n   1), and since
+cs < (n   1) so UC sviw (vi) < UC(vi). The same reasoning used for listening edges. Hence the
+cycle is stable. By Lemma 29, it is also pairwise stable.
+C(vi) so |Rs
+C(v)| = |R(cid:96)
+We conclude this section with a characterization of all ef cient and stable networks for k = 1.
+The proof follows directly from the de nitions.
+PROPOSITION 37. Assume k = 1. If cs, c(cid:96) > 1 then the empty graph is ef cient and is the only
+stable graph. If cs, c(cid:96)   1 then the complete graph is ef cient; if cs < 1 or cs < 1 then the complete
+graph is the only only stable graph. If cs = c(cid:96) = 1, then all graphs are ef cient and stable.
+6. THE GENERALIZED CLUSTERING COEFFICIENT
+There is a wide literature on networks and their social and economic properties (see [Easley and
+Kleinberg 2010]). A clustering coef cient is a measure of the degree to which nodes in a graph
+tend to be highly interconnected in small clusters. While clustering is high in many real-world
+networks, evidence suggests that social networks in particular are highly clustered [Holland and
+Leinhardt 1971; Watts and Strogatz 1998]. Many (1-dimensional) measures of clustering have been
+de ned [Luce and Perry 1949; Opsahl 2013; Opsahl and Panzarasa 2009; Watts and Strogatz 1998].
+These clustering coef cients capture statistics about local connections; i.e., vertices that are apart
+by at most two edges. Our k-dimensional clustering coef cient generalizes these approaches by
+considering clustering between vertices that are at most k + 1 edges apart.
+Inspired by our model, we de ne a generalized clustering coef cient below. We let f (G, c, k)  
+[0, 1] be the percentage of removable edges in G for the model speci ed by c   R+, k  
+{2, 3, . . . , }. We can de ne an analogous local version f (v, c, k)   [0, 1] as the percentage of
+removable edges going out from v. These functions implicitly de ne clustering coef cients as a
+function of our model parameters. In particular, we de ne two speci c such clustering coef cients
+which we believe are of general interest.
+De nition 6.1. The generalized (global) clustering coef cient of dimension k of a graph G to
+be the k-dimensional vector g where
+gi(G) = f (G, 1, i + 1, T ( ) = V ).
+Similarly, the generalized (local) clustering coef cient of dimension k of a vertex v to be the k-
+dimensional vector h where
+hi(G) = f (v, 1, i + 1, V ).
+For any c   1, an edge uv is removable if and only if there is a path of length at most k from
+u to v that does not use uv. Hence, the 1-dimensional generalized clustering coef cient makes a
+statement about the number of edges uv that participate in at least one closed triangle.
+REMARK 38. Our de nition of clustering is closely related to the class of clustering coef cients
+which de ned to be the percentage of (potential) triangles that are closed by an edge [Watts and
+Strogatz 1998]. We instead measure the percentage of edges that close at least one triangle. Sim-
+ilarly, we can generalize the original de nition to higher k: it would measure the percentage of
+(potential) cycles of length at most k that are closed, while we measure the percentage of edges
+completing at least one cycle of length at most k.
+7. DISCUSSION & FUTURE WORK
+For the directed setting (c(cid:96) = 0), we show that for k =  , asynchronous stochastic edge dynamics
+converge to a stable network; moreover these  xed points can have non-trivial network structure.
+Our proof does not generalize to the case of k <  , and we leave open the question of whether these
+dynamics converge in that setting. Proving bounds on the time to convergence and understanding
+the regions of attraction would also be of interest as they inform the distribution of networks we
+would expect to see from a generative version of this model.
+For the bidirected setting, we show that for arbitrary k the edge dynamics exhibit fast converge.
+Moreover, vertex dynamics (in which multiple addable or removable edges are modi ed) are also
+fast to converge. However, developing an understanding of asynchronous best-response dynamics
+remains open as an interesting line for future work; our results do not generalize as there is no reason
+why a best response would be limited to only changing addable and removable edges (given two
+With respect to the static game, we give classes of ef cient networks (for k (cid:46)  
+addable edges, it is not necessarily optimal to add both).
+n) and
+symmetric-ef cient networks (for 4   k). While the former are stable for any cs, c(cid:96) (cid:46) k/2, the
+latter are only stable for cs, c(cid:96)   1; for the latter we rely on a long line of work from combinatorics,
+and determining whether any symmetric stable network exists appears to be a deep and technically
+challenging open problem.
+Lastly, a natural generalization of our model is to de ne target sets T s(v), T (cid:96)(v)   V and con-
+G,k(v)   T s(v)|   cs   ds+
+sider utilities
+G,k(v) = |Rs
+U s
+G(v).
+Such a model captures agents who participate in a larger network, but are only interested in connect-
+ing to some subset of nodes. Understanding the stability and ef ciency of networks under certain
+classes of target sets would be of interest.
+G,k(v)   T (cid:96)(v)|   c(cid:96)   d(cid:96)+
+and U (cid:96)
+G,k(v) = |R(cid:96)
+G(v)
+References
+R. Aumann and R. Myerson. 1988. An application of the Shapley value. In Endogenous formation
+of links between players and coalitions. Cambridge Univ. Press, Cambridge, UK.
+V. Bala and S. Goyal. 2000. Self-organization in communication networks. Econometrica (2000).
+Albert-L aszl o Barab asi and R eka Albert. 1999. Emergence of scaling in random networks. science
+286, 5439 (1999), 509 512.
+B ella Bollob as. 2001. Random Graphs. Cambridge University Press: Cambridge, UK.
+Peter J Carrington, John Scott, and Stanley Wasserman. 2005. Models and methods in social net-
+work analysis. Vol. 28. Cambridge university press.
+Bhaskar Dutta and Suresh Mutuswami. 1997. Stable networks. Journal of Economic Theory 76, 2
+(1997), 322 344.
+David Easley and Jon Kleinberg. 2010. Networks, crowds, and markets: Reasoning about a highly
+connected world. Cambridge University Press.
+Bernard Elspas, William H Kautz, and James Turner. 1968. THEORY OF CELLULAR LOGIC
+NETWORKS AND MACHINES. Technical Report. DTIC Document.
+Paul Erdos and Alfr ed R enyi. 1960. On the evolution of random graphs. Bulletin of the International
+Statistical Institute 38, 4 (1960), 343 347.
+D. S. Hirschberg and C. K. Wong. 1979. Upper and Lower Bounds for Graph-Diameter Problems
+with Application to Record Allocation. Journal of Combinatorial Theory (1979).
+Paul W Holland and Samuel Leinhardt. 1971. Transitivity in structural models of small groups.
+Makoto Imase and Masaki Itoh. 1983. A design for directed graphs with minimum diameter. IEEE
+Matthew O Jackson. 2003. The stability and ef ciency of economic and social networks. In Net-
+Comparative Group Studies (1971).
+Trans. Comput. 8 (1983), 782 784.
+works and Groups. Springer, 99 140.
+Matthew O Jackson. 2005. A survey of network formation models: stability and ef ciency. Group
+Formation in Economics: Networks, Clubs, and Coalitions (2005), 11 49.
+Matthew O Jackson and Alison Watts. 2002. The evolution of social and economic networks.
+Journal of Economic Theory 106, 2 (2002), 265 295.
+Matthew O Jackson and Asher Wolinsky. 1996. A strategic model of social and economic networks.
+Journal of economic theory 71, 1 (1996), 44 74.
+Amit Karandikar, Akshay Java, Anupam Joshi, Tim Finin, Yaacov Yesha, and Yelena Yesha. 2008.
+Second Space: A Generative Model for the Blogosphere.. In ICWSM.
+R Duncan Luce and Albert D Perry. 1949. A method of matrix analysis of group structure. Psy-
+chometrika 14, 2 (1949), 95 116.
+Mirka Miller and Jozef  Sir an. 2005. Moore graphs and beyond: A survey of the degree/diameter
+problem. Electronic Journal of Combinatorics 61 (2005), 1 63.
+Roger B. Myerson. 1977. Graphs and cooperation in games. Mathematics of Operations Research
+(1977).
+(2003), 167 256.
+Mark EJ Newman. 2003. The structure and function of complex networks. SIAM review 45, 2
+Noam Nisan, Tim Roughgarden, Eva Tardos, and Vijay V. Vazirani. 2007. Algorithmic Game The-
+ory. Cambridge University Press. 411 443 pages.
+Tore Opsahl. 2013. Triadic closure in two-mode networks: Rede ning the global and local clustering
+coef cients. Social Networks 35, 2 (2013), 159 167.
+Tore Opsahl and Pietro Panzarasa. 2009. Clustering in weighted networks. Social networks 31, 2
+Stanley Wasserman and Katherine Faust. 1994. Social network analysis: Methods and applications.
+Alison Watts. 2003. A dynamic model of network formation. In Networks and Groups. Springer,
+Duncan J Watts and Steven H Strogatz. 1998. Collective dynamics of  small-world networks. nature
+(2009), 155 163.
+Vol. 8. Cambridge university press.
+337 345.
+393, 6684 (1998), 440 442.

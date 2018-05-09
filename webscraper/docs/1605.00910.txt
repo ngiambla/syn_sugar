@@ -1,0 +1,389 @@
+Design Guidelines for the User-Centred Collaborative Citizen
+Science Platforms
+Human Computation (2016) x:x:x-y
+c(cid:13) 2016, xyz & xyz.
+ISSN: 2330-8001, DOI: xyz
+POONAM YADAV, IMPERIAL COLLEGE LONDON
+JOHN DARLINGTON, IMPERIAL COLLEGE LONDON
+6
+1
+0
+2
+ 
+ABSTRACT
+y
+a
+M
+3
+ 
+1
+v
+0
+1
+9
+0
+0
+ 
+ 
+]
+C
+H
+.
+s
+c
+[
+ 
+ 
+Online Citizen Science platforms are good examples of socio-technical systems where technology-enabled interactions oc-
+cur between scientists and the general public (volunteers). Citizen Science platforms usually host multiple Citizen Science
+projects, and allow volunteers to choose the ones to participate in. Recent work in the area has demonstrated a positive
+feedback loop between participation and learning and creativity in Citizen Science projects, which is one of the motivating
+factors both for scientists and the volunteers. This emphasises the importance of creating successful Citizen Science plat-
+forms, which support this feedback process, and enable enhanced learning and creativity to occur through knowledge sharing
+and diverse participation. In this paper, we discuss how scientists  and volunteers  motivation and participation in uence the
+design of Citizen Science platforms. We present our summary as guidelines for designing these platforms as user-inspired
+socio-technical systems. We also present the case-studies on popular Citizen Science platforms, including our own Citizen-
+Grid platform, developed as part of the CCL EU project, as well as Zooniverse, World Community Grid, CrowdCrafting and
+EpiCollect+ to see how closely these platforms follow our proposed guidelines and how these may be further improved to
+incorporate the creativity enabled by the collective knowledge sharing.
+.
+5
+0
+6
+1
+:
+v
+i
+X
+r
+a
+INTRODUCTION
+1.
+In recent years, Citizen Science (CS) has opened new territories of scienti c collaboration by involving the general public.
+Internet-based Citizen Science projects attract volunteer participants from diverse communities and bene t both scientists
+and volunteers. Due to the potential bene ts, new projects are being regularly created. This invokes a need for the online
+Citizen Science platforms that can host different projects and allow volunteers to choose and participate. Examples of
+such platforms include CitizenGrid (Yadav and Darlington, 2015; Yadav et al., 2016b) that is developed as part of the CCL
+EU project, Zooniverse (Zooniverse, 2015) and others.
+It is interesting to investigate what are the other bene ts these
+platforms bring to both scientists and volunteers from a motivational perspective. Therefore, in this paper, we analyse both
+scientist s and volunteer s participation cycles in a Citizen Science project, starting from their initial motivation. We present
+both scientists  and volunteers  participation steps in Section 2. In Section 3 we present the design guidelines for a user-
+centred Socio-technical collaborative Citizen Science platform, based on our understanding gained from the analysis. In
+Section 4, we study the already existing Citizen Science platforms with respect to the proposed guidelines to see how closely
+the platforms follow the guidelines and discuss how these may be further improved to incorporate the creativity based on
+collective knowledge sharing. In Section 5, we present other similar online platforms that are used for listing the Citizen
+Science projects and present the conclusions and a summary in Section 6.
+2. USERS  PARTICIPATION
+Citizen Science platforms are collaborative online spaces where scienti c projects can be hosted to allow scientists to inform
+about their research and invite participants to contribute to it, while the general public (citizen scientists/ volunteers) can
+2 P. Yadav, and J. Darlington / Human Computation (2016) x:x
+select and participate in the projects that  t their interests.
+Recent work in the area has revealed a positive feedback loop between participation and learning and creativity in Citizen
+Science projects, which is one of the motivating factors both for scientists and the volunteers to participate in the Citizen
+Science projects interactively. This emphasises the importance of creating successful Citizen Science platforms, which
+support this feedback process, and enable enhanced learning and creativity to take place both for the scientists and the
+volunteers.
+In the context of this paper, the scientists seek through CS projects, various forms of public contribution to solve scienti c
+problems they are working on. The volunteers are the general public who voluntarily contribute to these CS projects. In
+order to derive platform design guidelines that would take both types of users into consideration, we follow the user-centred
+design approach by analysing both the participation of the scientists and the volunteers in any type of Citizen Science project.
+2.1. Analysis of Scientists  Participation Cycle
+The Scientists  participation cycle as shown in Figure 1 consists of the following steps: motivation, initial participation, con-
+tinuous participation and evaluation and impact. The initial motivation de nes the Scientist s interest in creating a Citizen
+Science project or converting a science project to Citizen Science Project. Once they are motivated, they look for the avail-
+able support tools and techniques for creating and hosting the project online (Yadav and Darlington, 2016a). Scientists also
+need monitoring tools of the volunteers  participation in order to enhance project outreach and engagement. The other tools
+they require for continuous monitoring for volunteers participation to enhance project outreach and engagement. The Sci-
+entists  participation cycle as shown in Figure 1 consists of the following steps: motivation, initial participation, continuous
+participation and evaluation and impact; we describe each step here in detail. The initial motivation de nes the Scientist s
+interest in creating or converting a science project to a Citizen Science Project. Once they are motivated, they look for the
+available support tools and techniques for creating and project online hosting. The other tools they require for continuous
+monitoring for volunteers participation to enhance project outreach and engagement.
+2.1.1.
+Initial Motivations
+Scientists may have one or more motivations to be involved in the citizen science projects. Some of these motivations are:
+(1) seeking help (contribution) in their research work; (2) seeking involvement of general public on global research issues
+for public awareness; (3) promoting and supporting the scienti c literacy; (4) promoting their own research work (Jennett,
+2013; Land-Zandstra et al., 2015; Nov et al., 2011; Tweddle et al., 2012). There could be various others reasons that make
+scientists seek help from the general public. The one reason could be the nature of the research problem, for example, if it
+requires diversity contribution from a large number of participants. The other reason could be the unaffordable cost of the
+resources that are required to conduct research (both human and computing resources).
+Figure 1. Scientist s Participation Cycle in a Citizen Science Project.
+P. Yadav, and J. Darlington / Human Computation (2016) x:x
+3
+2.1.2.
+Initial Participation
+Once the scientist is motivated to start a new CCS project, there are some factors that decide whether they would like to
+go further or not. These factors are categorised as technical,  nancial and legal. The main technical factors are: (1) The
+availability of frameworks and design tools to help forge an online Citizen Science project out from the initial science project;
+(2) The availability of platforms for hosting and deployment of the CS projects; (3) The process of handling the security and
+trust issues, privacy, and data quality issues (Melissa Gedney, 2015; Lea Shanley, 2015; Gellman, 2015). The  nancial
+factors relate to the affordable costs (in terms of time, man-power and resources), whereas the legal factors consider the
+process involved in handling the intellectual properties (IP) rights, and privacy and security related legal issues.
+2.1.3. Continuous Participation
+Once the CS project is deployed online, there are a number of factors they consider to keep continuing their participation
+in the project. These factors are: (1) The availability of tools for analysing the volunteer s participation in the project; (2)
+Available help and support for changing or updating the various components of the project; (3) The  exibility in changing
+the project without disturbing the volunteers who are already participating in the project; (4) Possibilities of interactive
+discussions with the volunteers.
+2.1.4. Evaluation and Impact
+The metrics, which measures the impact of the project, are de ned corresponding to the project goals and outcomes. In
+general, a project requires some frameworks and tools for measuring the impact of the project qualitatively or quantitatively.
+The frameworks and tools are required to: (1) measure the user engagement and participation; (2) measure the learning and
+creativity in short and long term; (3) measure the volunteer s contribution; (4) measure the project s outreach and publicity;
+(5) measure the project s comparative performance.
+2.2. Analysis of Volunteers  Participation Cycle
+In recent years, a number of research studies have been conducted to understand the volunteers involvement in Citizen
+Science (Jennett, 2013; Land-Zandstra et al., 2015; Nov et al., 2011; Tweddle et al., 2012). Figure 2 shows the volunteers
+participation cycle in a Citizen Science project, starting from initial motivation to continuous participation.
+2.2.1.
+Initial Motivation
+The well-known motivations (Tweddle et al., 2012; Nov et al., 2011) are: (1) willingness and desire to contribute in sci-
+ence; (2) desire to learn science by involving in Citizen Science; (3) for fun and enjoyment through game playing or other
+interactive project participation.
+Figure 2. Volunteer s Participation Cycle in a Citizen Cyber Science Project.
+4 P. Yadav, and J. Darlington / Human Computation (2016) x:x
+2.2.2.
+Initial Participation
+Once volunteers are interested in contributing in a Citizen Science project, their initial participation are based on the following
+factors: (1) easy discovery of interesting Citizen Science projects; (2) ease and simplicity of launching the project; (3) quick,
+easy and secure project s initial setup.
+2.2.3. Continuous Participation
+The volunteers continuous participation depends on their expectations that come from their initial motivations. The three
+main points that in uence volunteer s long-term engagement meant are: (1) volunteers receive feedback and appreciation for
+their participation (Jennett and Cox, 2014); (2) volunteers can measure or observe what they are learning while participating
+in the project; (3) if the project meets volunteers  fun and enjoyment expectations (Jackson et al., 2015).
+3. THE COLLABORATIVE PLATFORM S DESIGN GUIDELINES
+The goal of Citizen Science platforms is to bring together a number of Citizen Science projects for volunteers participation.
+The platforms could provide these different functionalities, such as (1) project portal where volunteers can  nd their favourite
+project by searching or selecting from dashboard, menus, etc.; (2) host complete project or project clients; (3) launch and run
+project servers. All Internet-based Citizen Science (Virtual Citizen science) projects are not similar and may fall into different
+project categories and have different deployment scenarios, for example volunteer computing and human-computation CS
+projects (Yadav and Darlington, 2014, 2016b). Moreover, Citizen Science platforms are also designed for either one or more
+project categories. Therefore, the design guidelines we present here are generic and are based on our experiences gained
+from building the CitizenGrid Platform and could be applied to any Citizen Science platform regardless the project categories
+the platform supports.
+1. Cost Effective: This is an important consideration for a setting up Citizen Science projects, since most are started by an
+academic or a public institution with a limited initial grants. The use of open source technologies in the platform/project
+development or free to use services is an important consideration for the platform usability, having a wider scienti c
+community in mind.
+2. Easy to Create Project: The easy, simple and quick project creation and deployment process allows scientists to deploy
+and maintain their project themselves (DIY: do-it-yourself feature).
+3. Multi-categories Projects: If a Citizen Science platform supports multi-categories/types of projects, it would make it
+easier for the scientists to advertise, host, and maintain different types of Citizen Science projects at the same place. For
+example, this would allow  exibility to host and deploy volunteer thinking, volunteers computing and game-based Citizen
+Science projects. This feature helps volunteers to discover and participate in different types of projects on one platform.
+4. Comparative Project Performance: This feature provides scientists the comparative summary report of their project,
+including volunteers engagement and participation report, volunteers learning and creativity report, project overall impact
+and volunteer contribution report.
+5. Easy Maintenance: For long-term projects, it is a very important design consideration. The platform should allow easy
+project  le updates - adding new  les, deleting, synching new information without causing problems to participating
+volunteers.
+6. Security and Trust: The platform should adhere security requirements that are required for the standard web platforms.
+7. Scientists and Volunteers Interaction: This is important for users engagement and long-term participation. The interac-
+tion can be achieved by user forums, online videos for help and tutorials, real-time message exchange systems, etc.
+8. Simple Project Participation: The volunteers who contribute in the Citizen Science projects advertised on the platforms
+have varied computing skills levels ranging from novice to expert. The devices they use to access the platforms are also
+heterogeneous in terms of hardware capabilities and software. Therefore, it is very necessary that platform make the
+project simple and easily accessible to them.
+P. Yadav, and J. Darlington / Human Computation (2016) x:x
+5
+4. CASE STUDIES
+In this section we analyze already existing platforms World Community Grid (World Community Grid, 2015), Citizen-
+Grid (Yadav and Darlington, 2015; CitizenGrid, 2015; Simpson et al., 2014), Zooniverse (Zooniverse, 2015; Tinati et al.,
+2015), Epicollect+ (Epicollect, 2015; Aanensen et al., 2014), and CrowdCrafting (Crowdcrafting, 2014). All platforms are
+free to use and allow easy project creation. CitizenGrid, Epicollect and Zooniverse, CrowdCrafting are open source and
+supports do-it-yourself (DIY) new project creation process. In this section, we analyse all these platforms with respect to the
+design guidelines we presented above and present summary in Table 1.
+CitizenGrid: CitizenGrid allows do-it-yourself hosting of the project and simplify the process of hosting and deployment
+of the project by supporting Virtual Machine based client distribution. The CitizenGrid allows  exibility to use any of
+the task management and distribution frameworks from the list: Copilot (Predrag Buncic, 2011), LiveQ (Charalampidis,
+2015), or BOINC (BOINC, 2015) and allows project discovery and search mechanism by free text search for volunteers. On
+CitizenGrid interface volunteers can see their participation history and scientists can see projects  comparative performance,
+and easily maintain their project by changing the project new  les etc.. However, in current version any change in the client
+part requires volunteers to restart the client again. CitizenGrid team consists of four members and have hosted 4 real projects,
+e.g., RedWire (Redwire, 2015) and Cern Virtual Atom Smasher Game (VAS, 2015; Yadav et al., 2016a) and advertised nearly
+50 already existing volunteer computing and thinking projects. CitizenGrid doesn t maintain social network account but hold
+a YouTube channel and a regular meet up event for one-to-one interaction and have nearly 25 registered users.
+World Community Grid: World Community Grid platform hosts volunteer computing (VC) projects e.g., Uncovering
+Genome Mysteries (Uncovering Genome Mysteries, 2015) or Mapping Cancer Markers (Princess Margaret Cancer Centre,
+2013) and CERN Test4Theory (LHC@home 2.0, 2015). The World Community Grid uses BOINC (Boinc, 2015) middleware
+framework for the projects task management and distribution. World Community Grid s project support-team provides full
+support for hosting and maintaining the scientist volunteer computing project, if the platform team approves the project. The
+platform hosts 5 active projects currently with 26 projects in total. World Community Grid is very popular platform with
+social networking platforms followers (Facebook: 22196 and Twitter: 7.6 K (on 28th December 2015) ).
+Zooniverse: Zooniverse platform allows do-it-yourself hosting of volunteer cognition and thinking (VT) projects. In volun-
+teer cognition and thinking projects, where volunteers only need to use their time, cognitive power and knowledge to analyse
+data. Zooniverse is currently hosting 42 projects (on 28th December 2015) with a very user friendly interface, however, there
+is no option for searching a project by name or category. The projects comparative performances are not available to the
+project scientists, however, information is made available through research publications (Tinati et al., 2015). The Zooniverse
+development and maintenance team consists of nearly 20 members and funded by a number of research grants. Zooniverse is
+very popular platform with social networking platforms followers (Facebook: 24551 and Twitter: 13.5 K (on 28th December
+2015) ) and maintains active blogs   daily Zooniverse for a quick daily update and Zooniverse blogs. Addition to this, the
+platform maintenance team maintains an interactive talk forum as shown in Figure 3 for volunteers  interactions. This is very
+important feature which motivates volunteers to stay connected with the project. The detail analysis of the interaction has
+been presented in the research articles (Tinati, 2014). The volunteer participation in volunteer cognition projects is marked
+as creative, learning oriented and interactive (Jennett and Cox, 2014).
+Epicollect+: The Epicollect+ (Epicollect, 2015; Aanensen et al., 2014) platform allows data collection and aggregation
+platform. It is supported by the mobile client app, which makes it easy for volunteers to support and participate in the
+data collection projects. It allows scientists to setup the do-it-yourself data collection projects, for example, photos and text
+based survey, etc. Epicollect+ have two components: a mobile app and a web server app. The EpiCollect+ mobile app
+allows scientists to load a single or multiple projects and provides the interface for volunteers to gather the data. All data
+can be subsequently synched with a central server and, furthermore, data can be retrieved onto the mobile devices from the
+central server and viewed as tables or maps. The web server app provides facility of hosting the server for project data, by
+providing server software and instructions for setting up a database and web application for scientists to house and view the
+data collected by any number of mobile devices.
+CrowdCrafting: CrowdCrafting hosts human computation projects as well as data collection projects such as image classi-
+ cation, transcription, geocoding and uses Epicollect+ for the mobile clients. CrowdCrafting has a very appealing interface
+6 P. Yadav, and J. Darlington / Human Computation (2016) x:x
+Figure 3. Zooniverse Interactive Forum (screenshot taken on 27th December 2015) (Zooniverse, 2015) .
+with easy project discovery in seven categories: featured, social, art, humanities, biology, economics, and science and allows
+do-it-yourself (DIY) project creation process.
+Table 1. Citizen Science Online Platforms
+Cost Effective
+Easy Project Creation Multi-Categories Comparative
+Easy
+Security & Interaction
+Simple
+GUIDELINES
+Free-to-use Open-source General
+Performance Maintenance
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+Trust
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+Participation
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+ 
+ 
+(cid:88)
+ 
+ 
+  : Partially Supported
+PLATFORMS
+CitizenGrid
+World Community
+Zooniverse
+Epicollect
+CrowdCrafting
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+ 
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+(cid:88)
+DIY
+(cid:88)
+ 
+(cid:88)
+(cid:88)
+(cid:88)
+Projects
+VC&VT
+VC
+VT
+DC
+DC
+ 
+ 
+ 
+ 
+ 
+5. RELATED WORK
+Design guidelines for online platform play central role in human-computer-interface (HCI) research. Apart from the platform
+discussed in previous section, in recent year, there are a number of Citizen Science Portals such as Scistarter (SciStarter,
+2014), Citizen Science Search (University, 2014), and Wikipedia (Wikipedia, 2014) are developed. These portals list a
+number of Citizen Science projects for easy project discovery. SciStarter is a web-portal for Citizen Science projects that
+maintains a catalogue of nearly 700 projects and provides different search criteria such as outdoor/indoor projects, featured
+projects and projects suitable for students and children, etc. SciStarter itself does not host projects, instead, direct volunteers
+to the individual project websites where potential volunteers can  nd out more about a project and participate. Citizen
+Science Search website offers "keyword" based text search and list only a limited number of selected projects. Wikipedia
+lists and displays many Citizen Science application and projects with their brief description along with project links.
+6. CONCLUSIONS
+In this paper, we presented the design guidelines for user-inspired Citizen Science collaborative platforms by analysing the
+participation steps of scientists and volunteers in a Citizen Science project. We discussed how scientists  and volunteers 
+motivation and participation in uence the design of these platforms. We also presented the case-studies on popular Citizen
+Science platforms such as Zooniverse, CitizenGrid, World Community Grid, EpiCollect and CrowdCrafting to see how
+closely these platforms matches our proposed guidelines. These case studies are helpful in understanding how closely these
+platforms follow our proposed guidelines and how these may be further improved to incorporate the creativity based on
+collective knowledge sharing.
+P. Yadav, and J. Darlington / Human Computation (2016) x:x
+7
+7. REFERENCES
+Aanensen, D, Huntley, D, Menegazzo, M, Powell, C, and Spratt, B. (2014). EpiCollect+: linking smartphones to web applications for complex data collection projects.
+F1000Res 3 (2014). DOI:http://dx.doi.org/10.12688/f1000research.4702.1
+BOINC (2015). Middleware Supported Projects List. (2015). http://boinc.berkeley.edu/projects.php [Accessed on 23rd April 2014].
+Charalampidis, I. (2015). An interactive volunteering computing batch system source-code (Github). (2015). https://github.com/wavesoft/LiveQ [Accessed on 26th May
+2015].
+CitizenGrid (2015). Github Source-code. (2015). https://github.com/ImperialCollegeLondon/citizengrid [Accessed 26th May 2015].
+Crowdcrafting (2014). Middleware Platform for Citizen Science Projects. (2014). http://crowdcrafting.org [Accessed on 20th March 2014].
+Epicollect (2015). A Middleware platform for Citizen Science Data Collection Projects. (2015). http://www.epicollect.net [Accessed on 23rd April 2014].
+Gellman, R. (2015). Crowdsourcing, Citizen Science, and the Law: Legal Issues Affecting Federal Agencies. (2015). https://www.wilsoncenter.org/sites/default/ les/
+CS_Legal_Barriers_Gellman.pdf [Accessed on 23rd December 2015].
+Jackson, C, Osterlund, C, Mugar, G, Hassman, K, and Crowston, K. (2015). Motivations for Sustained Participation in Crowdsourcing: Case Studies of Citizen Science
+on the Role of Talk. In 48th Hawaii International Conference on System Sciences (HICSS 15). 1624 1634. DOI:http://dx.doi.org/10.1109/HICSS.2015.196
+Jennett, C. (May 2013). Creativity in Citizen Cyber-Science: All for one and one for all, May, 2013, Paris, France.. In ACM WebSci.
+Jennett, C and Cox, A. (2014). 8 guidelines for designing virtual citizen science projects. In Citizen + X Workshop: Volunteer-Based Crowdsourcing in Science, Public
+Health and Government, HCOMP. AAAI.
+Land-Zandstra, A. M, Devilee, J. L. A, Snik, F, Buurmeijer, F, and van den Broek, J. M. (2015). Citizen science on a smartphone: Participants  motivations and learning.
+Public Understanding of Science 1, 16 (2015). DOI:http://dx.doi.org/10.1177/0963662515602406
+Lea Shanley (2015). Federal Crowdsourcing and Citizen Science. (2015). http://www.digitalgov.gov/communities/federal-crowdsourcing-and-citizen-science/ [Accessed
+on 22nd December 2015].
+LHC@home 2.0 (2015). Test4Theory project. (2015). http://lhcathome2.cern.ch/test4theory/ [Accessed on 23rd April 2014].
+Melissa Gedney (2015). Barriers and Accelerators to Crowdsourcing and Citizen Science in Federal Agencies: An Exploratory Study. (2015). http://wilsoncommonslab.
+org/2014/09/07/an-exploratory-study-on-barriers/ [Accessed on 22nd December 2015].
+Nov, O, Arazy, O, and Anderson, D. (2011). Dusting for Science: Motivation and Participation of Digital Citizen Science Volunteers. In Proceedings of the iConference
+(iConference 11). ACM, New York, NY, USA, 68 74. DOI:http://dx.doi.org/10.1145/1940761.1940771
+Predrag Buncic, A. H. (2011). Co-pilot: The distributed Job Execution Framework. Technical Report. Portable Analysis Environment using Virtualization Technology
+(WP9), CERN.
+Princess Margaret Cancer Centre, I. L. S. D. C. (2013). Mapping Cancer Markers. (2013). http://www.cs.toronto.edu/~juris/MCM.htm [Accessed on 27th December
+2015].
+Redwire (2015). A mixing game platform. (2015). http://redwire.io/game/list [Accessed on 19th April 2015].
+SciStarter (2014). Citizen Science Applications Web Portal and Catalogue. (2014). http://scistarter.com [Accessed on 23rd April 2014].
+Simpson, C, Yadav, P, Cohen, J, and Darlington, J. (2014). CitizenGrid: A platform for simpli ed access to and development of citizen science and Volunteer Computing
+Applications. In Poster and demo, CloudScape VI,. Brussels, Belgium.
+Tinati, R, Van Kleek, M, Simperl, E, Luczak-R sch, M, Simpson, R, and Shadbolt, N. (2015). Designing for Citizen Data Analysis: A Cross-Sectional Case Study of a
+Multi-Domain Citizen Science Platform. In Proceedings of the 33rd Annual ACM Conference on Human Factors in Computing Systems (CHI  15). ACM, New York,
+NY, USA, 4069 4078. DOI:http://dx.doi.org/10.1145/2702123.2702420
+Tweddle, J, Robinson, L, Pocock, M, and Roy, H. (2012). Guide to citizen science: developing, implementing and evaluating citizen science to study biodiversity and the
+environment in the UK. In NERC/Centre for Ecology and Hydrology. [Accessed on 10th April 2015].
+Uncovering Genome Mysteries (2015). (2015). http://www.genomemysteries.org/ [Accessed on 10th April 2015].
+University, H. (2014). Citizen Science Search platform. (2014). http://koenigstuhl.geog.uni-heidelberg.de/citizenscience/ [Accessed on 23rd April 2014].
+VAS (2015). Virtual Atom Smasher. (2015). http://test4theory.cern.ch/vas/ [Accessed on 20th June 2015].
+Wikipedia, . (2014). Citizen Science Projects List. (2014). http://en.wikipedia.org/wiki/List_of_citizen_science_projects [Accessed on 23rd April 2014].
+World Community Grid (2015). (2015). http://www.worldcommunitygrid.org/ [Accessed on 10th April 2015].
+Yadav, P, Charalampidis, I, Cohen, J, Darlington, J, and Grey, F. (2016)a. A Collaborative Citizen Science Platform to Bring Together Scientists, Volunteers, and Game
+Players. IEEE Transactions On Computational Social Systems (2016). Manuscript under review.
+Yadav, P, Cohen, J, and Darlington, J. (2016)b. CitizenGrid: A middleware platform for Citizen Cyberscience Applications. Transaction On Parallel And Distributed
+Systems (2016). Manuscript under preparation.
+Yadav, P and Darlington, J. (2014). Computation Platform Deployment Scenarios. Technology Enhanced Creative Learning in the  eld of Citizen Cyberlab ( FP7-317705
+) Project Report D3.3. Imperial College London, http://citizencyberlab.eu/research/publications-and-reports/. [Accessed on 12th April 2015].
+Yadav, P and Darlington, J. (2015). CitizenGrid Platform: Online Service and API. Technology Enhanced Creative Learning in the  eld of Citizen Cyberlab ( FP7-317705
+) Project Report D3.5. Imperial College London, http://citizencyberlab.eu/research/publications-and-reports/. [Accessed on 12th April 2015].
+8 P. Yadav, and J. Darlington / Human Computation (2016) x:x
+Yadav, P and Darlington, J. (2016)a. Conceptual Frameworks for Building Online Citizen Science Projects. Human Computation Journal (2016). Manuscript under
+preparation.
+Yadav, P and Darlington, J. (2016)b. Deployment Scenarios of Virtual Citizen Science Projects: A Survey. Human Computation Journal (2016). Manuscript under
+preparation.
+Zooniverse (2015). The human-computation based Citizen Science project hosting platform. (2015). https://www.zooniverse.org [Accessed on 10th April 2015].

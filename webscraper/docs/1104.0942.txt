@@ -1,0 +1,1935 @@
+The Role of Social Networks in Online Shopping:
+Information Passing, Price of Trust, and Consumer Choice
+Stephen Guo
+Stanford University
+Stanford, CA, USA
+sdguo@cs.stanford.edu
+Mengqiu Wang
+Stanford University
+Stanford, CA, USA
+mengqiu@cs.stanford.edu
+Jure Leskovec
+Stanford University
+Stanford, CA, USA
+jure@cs.stanford.edu
+1
+1
+0
+2
+ 
+r
+p
+A
+5
+ 
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+1
+v
+2
+4
+9
+0
+.
+4
+0
+1
+1
+:
+v
+i
+X
+r
+a
+ABSTRACT
+While social interactions are critical to understanding consumer be-
+havior, the relationship between social and commerce networks has
+not been explored on a large scale. We analyze Taobao, a Chinese
+consumer marketplace that is the world s largest e-commerce web-
+site. What sets Taobao apart from its competitors is its integrated
+instant messaging tool, which buyers can use to ask sellers about
+products or ask other buyers for advice. In our study, we focus on
+how an individual s commercial transactions are embedded in their
+social graphs. By studying triads and the directed closure process,
+we quantify the presence of information passing and gain insights
+into when different types of links form in the network.
+Using seller ratings and review information, we then quantify a
+price of trust. How much will a consumer pay for transaction with
+a trusted seller? We conclude by modeling this consumer choice
+problem: if a buyer wishes to purchase a particular product, how
+does (s)he decide which store to purchase it from? By analyzing
+the performance of various feature sets in an information retrieval
+setting, we demonstrate how the social graph factors into under-
+standing consumer behavior.
+Categories and Subject Descriptors: H.2.8 Database Manage-
+ment: Database Applications   Data mining
+General Terms: Measurement; Experimentation.
+Keywords: E-Commerce, Viral Marketing, Recommender Sys-
+tems, Triadic Closure, Price of Trust.
+1.
+INTRODUCTION
+Use of personal social networks to gather information is fun-
+damental to purchasing behavior [6]. It is something so common
+in our daily routine that we usually do not even make a note of
+it. When we make a purchase from a retail store, we often speak
+beforehand to the shopkeeper about suitable products. When we
+need to purchase something we are unfamiliar with, we consult our
+friends and family for advice. When we purchase a popular new
+product, we have an urge to tell everyone we know about it.
+Although personal social networks are implicit in the of ine shop-
+ping experience, their introduction to the online world is a relatively
+Permission to make digital or hard copies of all or part of this work for
+personal or classroom use is granted without fee provided that copies are
+not made or distributed for pro t or commercial advantage and that copies
+bear this notice and the full citation on the  rst page. To copy otherwise, to
+republish, to post on servers or to redistribute to lists, requires prior speci c
+permission and/or a fee.
+EC  11, June 5-9, 2011, San Jose, California, USA.
+Copyright 2011 ACM 978-1-4503-0261-6/11/06 ...$10.00.
+new phenomenon. E-commerce websites, such as Amazon, eBay
+and Epinions, have successfully integrated product reviews, rec-
+ommendations, search and product comparison, but they have been
+much slower at adopting social networking features as a part of
+customer experience. Recommendation engines and product com-
+parison sites help consumers discover new products and receive
+more accurate evaluations, however they cannot completely sub-
+stitute for the personalized recommendations and information that
+one receives from a friend or relative. Basic behavioral psychol-
+ogy drives consumers to value and trust their friends  purchasing
+decisions more than anonymous opinions. For example, a Lucid
+Marketing survey found that 68% of individuals consulted friends
+and relatives before purchasing home electronics [3].
+Understanding how social networks are used and how they shape
+purchasing decisions is one of the fundamental interests of e-commerce.
+Only recently have social networks been used in e-commerce ap-
+plications to some success. For example, group purchasing compa-
+nies such as Groupon and LivingSocial allow consumers to come
+together to buy products in bulk and save money, while social shop-
+ping sites such as Kaboodle provide consumers the ability to share
+shopping lists with each other. The use of social networks in online
+shopping provides marketers and businesses with new revenue op-
+portunities, while providing consumers with product information
+and both economic and social rewards for sharing [11].
+Present work. When discussing the relationship between elec-
+tronic commerce and social networks, various questions come to
+mind. How do friends in uence consumer purchasing decisions
+and product adoption? What factors in uence the success of word-
+of-mouth product recommendations? How does social in uence
+and reputation affect commercial activity? In this paper, we will ad-
+dress these questions through a detailed study of the world s largest
+e-commerce website Taobao.
+The fundamental process we focus upon throughout this study is
+what we term information passing: an individual purchases a prod-
+uct, then messages a friend, what is the likelihood that the friend
+will then purchase the product? Where will he purchase it from?
+Understanding the  ow of social in uence in commerce networks
+is an important question. For example, information passing pro-
+vides insight into how companies can structure online viral market-
+ing campaigns to target consumers. It can also be used to optimize
+algorithms within product recommendation engines. However im-
+portant information passing is to electronic commerce, it still has
+not been well studied on a large scale due to the inaccessibility of
+suitable data.
+To facilitate our research, we obtained a dataset describing the
+behavior of one million users in the world s largest e-commerce
+network Taobao. Taobao connects buyers and sellers, and pro-
+vides an integrated instant messaging platform for communication
+among all its users. By modeling Taobao as a network of three
+types of edges (trades, messages, contacts), we are able to directly
+study how social communication and commercial transactions are
+interrelated in an online setting. Our study provides insights into
+three main aspects of the social-commercial relationship: informa-
+tion passing, the price of trust, and consumer choice prediction.
+We begin our study of social commerce by quantifying the pres-
+ence of information passing through analysis of triadic closure pro-
+cesses. We show that the in uence of information passing is di-
+rectly proportional to message strength, and is inversely propor-
+tional to product price, as well as the time between the purchase
+and the recommendation. Additionally, we explain how informa-
+tion passing varies greatly between different product categories.
+We then investigate the general edge formation process in the con-
+text of directed triadic closure, and demonstrate that the forma-
+tion of triad-closing message and trade edges is highly dependent
+upon user roles (buyer or seller). Our results indicate that informa-
+tion passing via buyer-buyer communication is one of the primary
+drivers of purchasing.
+A subtle point regarding information passing is that the spread
+of product recommendations, through word-of-mouth, inherently
+relies upon a notion of buyer-buyer trust. Trust, from the perspec-
+tive of social psychology, can be de ned as perceived credibility
+or benevolence to the target [7]. In the context of electronic mar-
+ketplaces, buyer-seller trust, most directly encapsulated by seller
+reputations and ratings, are the natural concept to study. A funda-
+mental idea behind the nature of trust is its price. How much extra
+will a buyer pay for transaction security with a highly-rated seller?
+Although an intuitive idea, initial studies did not  nd evidence for
+a price of trust [25], and only recently has a price of trust been es-
+tablished in small, controlled, and single product settings [26, 13,
+23]. In our study, we analyze transaction information across over
+10,000 products. Using the overall customer satisfaction (i.e., aver-
+age rating) of the seller, we observe a small but super-linear effect
+of the seller rating upon the price premium they can charge and still
+engage in transactions.
+To further study the relationship between social networks and
+consumer behavior, we then consider the question,  How does an
+online consumer decide upon a seller to purchase from when there
+are many sellers offering the same product?  We model this ques-
+tion of consumer choice through a machine learning task and pre-
+dict which particular seller a buyer will purchase from, given that
+the sellers all offer the same relevant product. Utilizing primarily
+social networking features, we construct a model that can predict,
+for the case of a buyer choosing from among 10 possible sellers, the
+correct seller 42% of the time, approximately 4 times better than
+baseline. We also contrast a variety of feature sets (both graph-
+based and product/seller metadata), and demonstrate that the social
+graph is the most important feature in predicting consumer choice.
+In particular, the social graph is a far better determinant of con-
+sumer behavior than metadata features such as seller reputation or
+product price. Our results nicely connect to Granovetter s work,
+which argues that economic transactions are embedded in dynamic
+social networks, and that an individual s social graph dictates how
+they choose sellers to transact with [10].
+Further Related Work. For all of the importance of social net-
+works in consumer shopping, though, their use in electronic com-
+merce still is not well understood. Previous research examined the
+use of social networks in e-commerce, but has mostly focused upon
+one aspect of the use of social networks, such as product recom-
+mendations [12, 17, 2], product recommendation engines [29, 28],
+or have been based upon a limited set of data [4, 15].
+Network
+Contact
+Message
+Trade
+Nodes
+663,346
+750,158
+1,000,000
+Edges Avg Deg Avg CCF
+0.0135
+0.0194
+0.0086
+3,208,043
+3,908,339
+1,337,497
+9.67
+5.21
+1.34
+Table 1: Dataset statistics.
+The electronic marketplace eBay is perhaps the most well stud-
+ied e-commerce website. Various aspects of eBay including auc-
+tion ef ciency [14], product recommendations [31], seller strate-
+gies [8], and summarization [22], have been studied. Closely re-
+lated to our work on consumer choice prediction, Wu and Bolivar
+created a model to predict item purchase probability [30]. The pri-
+mary difference here is that we utilize the social networks of the
+buyers and sellers, along with product and user metadata, to per-
+form consumer choice prediction, whereas they consider only seller
+and product information.
+Our study of information passing and triadic closure builds upon
+classical works by Rapoport [24] and Granovetter [9]. Triadic clo-
+sure has been explored in various settings: community growth [1],
+link prediction [21], signed networks [19], and social [18] and in-
+formation [27] network evolution. In contrast, we demonstrate the
+existence of implicit recommendation behavior in a network not
+speci cally designed for information passing.
+The paper proceeds as follows.
+In section 2, we describe the
+Taobao dataset. In section 3, we analyze dyadic relationships in the
+network. In section 4, we provide a detailed analysis of information
+passing and directed triadic closure processes.
+In section 5, we
+quantify a price for trust. And last, in section 6, we model the
+consumer choice prediction problem.
+2. TAOBAO NETWORK
+The data we use in this study comes from the Chinese web-
+site Taobao, one of the world s largest electronic marketplaces,
+with over 370 million registered users at the end of 2010. Al-
+though transactions on Taobao can be either business-to-consumer,
+business-to-business, or consumer-to-consumer, the bulk of the prod-
+ucts are sold by online storefronts operated by small businesses or
+individuals. Perhaps the most unique aspect of Taobao is its inte-
+grated in-browser instant messaging platform, which allows us to
+correlate users  communication patterns and purchasing behavior.
+Any user can purchase goods from other users, add other users onto
+their contact list, and message other users. Note that non-contacts
+can message each other as well.
+Our data is composed of all activities of the set of the  rst one
+million users that engaged in at least one commercial transaction
+during September 1 through October 28, 2009. For each of these
+users, we have all information regarding their transactions with
+other users in the set, where a transaction is speci ed by a prod-
+uct identi er, price, quantity, and timestamp. We also obtained the
+contact lists and timestamps of messages exchanged between these
+users during the two month observation period. Note that we do
+not have the contents of the messages exchanged.
+We model the Taobao network as a multigraph composed of di-
+rected trade edges, directed message edges, and undirected con-
+tact/friendship edges.1 Table 1 shows the basic statistics of the
+Taobao network when each edge type is viewed as a separate net-
+work. The 3,908,339 directed message edges are equivalent to
+1The multigraph is modeled such that if there are multiple trades
+or messages from one user to another, we aggregate it all into a
+single directed edge, with supplementary message and trade infor-
+mation being associated with that edge. There can be up to 5 edges
+between a pair of users (2 directed trades, 2 directed messages, 1
+undirected contact).
+l
+e
+m
+u
+o
+V
+ 
+e
+d
+a
+r
+T
+ 10
+ 9
+ 8
+ 7
+ 6
+ 5
+ 4
+ 3
+ 2
+ 1
+ 0
+100
+Message+Trade
+Message
+101
+102
+103
+104
+Message Volume
+Figure 1: Trade Volume versus Message Volume. Message is
+computed over all pairs of users that exchange at least one mes-
+sage. Message+Trade is computed over all pairs of users that
+exchange at least one message and one trade.
+ 50
+ 45
+ 40
+ 35
+ 30
+ 25
+y
+a
+D
+ 
+e
+d
+a
+r
+T
+ 
+n
+o
+ 
+s
+e
+g
+a
+s
+s
+e
+M
+ 20
+100
+101
+102
+103
+104
+105
+Price
+s
+e
+g
+a
+s
+s
+e
+M
+g
+o
+L
+ 
+ 2.5
+ 2
+ 1.5
+ 1
+ 0.5
+ 0
+-0.5
+-1
+-1.5
+-2
+-2.5
+-6
+-4
+-2
+ 0
+ 2
+ 4
+ 6
+Days Relative to Trade
+Figure 2: Buyer-Seller Messages vs. Transaction Price (left),
+relative to Trade Date (right).
+2,241,729 undirected message edges, as messages are often recip-
+rocated during discourse between a pair of users. In contrast, the
+1,337,497 directed trade edges are equivalent to 1,336,502 undi-
+rected trade edges, as purchases are almost never reciprocated.
+Throughout the rest of this paper, when we refer to a node as a
+ buyer  or  seller,  we are speaking about its role in a particular
+transaction. Thus, we do not a priori label the nodes as buyers or
+sellers, but we use these terms to aid explanation. As a point of
+reference, 968,149 users make at least one purchase, 69,494 users
+make at least one sale, and 37,643 users make both a purchase and
+sale during the observation period. The products purchased and
+sold by these users are classi ed by Taobao into 82 categories.
+3. DYADIC RELATIONSHIPS
+To facilitate our goal of understanding how commercial transac-
+tions are embedded in the social networks of buyers and sellers, we
+ rst examine dyadic relationships in Taobao. In particular, we are
+interested in determining if messaging activity is correlated with
+trading activity. We graph trade volume versus message volume
+across pairs of users in Figure 1, and  nd that there is a positive in-
+creasing relationship between message volume and trade volume.
+Ignoring all pairs of users that only message and do not trade, we
+see an even more pronounced increasing relationship, displayed in
+the Message+Trade curve. The positive correlation between mes-
+saging and trading activity across dyads is supportive of our hy-
+pothesis that commercial activity is embedded in social networks.
+We will investigate the relationship between communication and
+commerce in much greater detail in our study of triadic structures.
+Focusing upon the subset of dyads between pairs of users who
+have historically transacted, our question of interest is,  Do buy-
+ers talk to sellers more about expensive products?  We expect that
+expensive products are talked about more, but how much more are
+they talked about? To answer this question, we count the number
+of messages sent from buyer to seller on transaction date, assuming
+d
+o
+o
+h
+i
+l
+i
+e
+k
+L
+ 
+e
+d
+a
+r
+T
+ 0.2
+ 0.18
+ 0.16
+ 0.14
+ 0.12
+ 0.1
+ 0.08
+ 0.06
+ 0.04
+ 0.02
+ 0
+100
+Msg Req
+Standard
+101
+102
+Mutual Contacts
+Figure 3: Given that B1  rst purchased from S1 and then
+talked to B2, will B2 purchase from S1? (left) and Mutual Con-
+tacts (right).
+that at least one message is exchanged, and plot it versus product
+price (in Chinese Yuan, CNY), displayed in Figure 2(left). We  nd
+that the number of messages sent is relatively constant for products
+of price below 100 CNY, then increases logarithmically for prod-
+ucts of higher price. This relationship can be explained by messag-
+ing being one of the primary tools in Taobao through which a buyer
+can minimize transaction risk.
+In order to minimize transaction risk, one would expect that buy-
+ers speak to sellers often before transaction to inquire about prod-
+uct details. How often do buyers speak to sellers before and after
+trades? We graph the number of buyer-seller messages versus trade
+date in Figure 2(right). As expected, most messages occur on the
+day of transaction, likely being product negotiation. What we  nd
+particularly interesting is that post-trade messages are signi cantly
+more common than pre-trade messages. In the Taobao system, buy-
+ers have an option of using an escrow service, where the seller  rst
+ships the product, and payment is exchanged after the buyer exam-
+ines the product. The observed post-trade messages are likely dis-
+cussion regarding product satisfaction and payment con rmation.
+4.
+INFORMATION PASSING
+From our study of dyadic buyer-seller relationships, we learn that
+messaging activity is correlated with trading activity across pairs of
+users. However, dyadic relationships are only the tip of the iceberg
+when thinking about the interplay between communication and pur-
+chasing decisions in a social commerce network. Imagine the fol-
+lowing situation: a buyer notices a deal offered at an electronic
+store, makes a purchase, then messages his friend about the deal.
+Will the friend also make a purchase from the same store? How
+large is the in uence of the buyer?
+We quantify and investigate this economic diffusion behavior
+which we term information passing, illustrated in Figure 3(left).
+More formally, if buyer B1 purchases from seller S1 and then talks
+to user B2, will user B2 then purchase from seller S1 as well?2 In
+the subsequent sections, we analyze information passing through
+the study of (1) local mutual neighborhoods in static networks, (2)
+information passing in dynamic networks, (3) in uences upon in-
+formation passing, and (4) directed triadic closure.
+Information Passing and Triadic Closure. We begin our study
+of information passing by examining local neighborhoods in each
+edge type network (trade, message, contact) of a static endtime
+snapshot of Taobao. We are interested in understanding how the
+mutual relationships in one static network are correlated with the
+edge likelihood in another static network. Of particular interest is
+2Again, we assign buyer and seller roles with respect to particular
+transactions. So user B2 can be a seller and user S1 can be a buyer
+in some other transactions.
+the question of how social proximity is correlated with trade likeli-
+hood between a pair of users, where social proximity is measured
+by the number of mutual contacts between the pair. If we demon-
+strate that there is correlation between social proximity and trade
+likelihood, then information passing processes, as shown in Fig-
+ure 3(left), are likely present in Taobao.
+We  nd that the more mutual contacts a pair of users has, the
+greater the likelihood that they engaged in a commercial trans-
+action, labeled as Standard in Figure 3(right). If we restrict our
+attention to only users who have exchanged at least one message
+(Msg Req), then for a given number of mutual contacts, the trans-
+action probability is noticeably greater than before.3 From these
+results, we can infer that trades are more likely to be embedded
+in the dense subgraphs of communication networks. This implies
+that social proximity and trade likelihood are correlated, and are a
+signal that information passing and product recommendation may
+be present in the Taobao network. In general, a direct relationship
+in one network is not only embedded in the local neighborhood of
+that relationship, but is also positioned in the context of networks
+with other edge types. This suggests that edges in one network can
+be used to help understand the link formation process in another.
+Building on this idea, we next perform a similar experiment in a
+dynamic triadic closure setting.
+Information Passing. Following our examination of the static net-
+work, we study network relationships in the dynamic network. In
+particular, we look at how the message and contact networks in u-
+ence the trade network by checking for the presence of information
+passing, as displayed in Figure 3(left).
+To quantify information passing in the Taobao network, we mea-
+sure the information passing success rate of the network, which we
+de ne as Prob(B2 buys from S1 at t2 +   | B1 buys from S1 at t1
+and B1 messages B2 at t2, t2 > t1).4
+Before computing the information passing success rate for the
+Taobao network, we require a random baseline for comparison. For
+our baseline, we compute the information passing success rate of
+an edge-rewired version of the Taobao network, where the edge-
+rewired network is constructed by randomly rewiring all 3 types of
+edges in the original network, while leaving node degrees and edge
+creation times unchanged.
+We compute the information passing success rate over 3,906,354
+node pair instances in the original network and observe a probabil-
+ity of 0.00203.
+In contrast, the information passing success rate
+of the rewired network is computed to be 0.00006. The observed
+probability of recommendation success is two orders of magnitude
+more likely than the random baseline, implying that information
+passing in Taobao is statistically signi cant and non-random.
+Having veri ed the presence of information passing by checking
+for edge formation in the forward direction, we con rm the pres-
+ence of information passing in the reverse direction. Suppose that
+B1 buys from S1 at time t1 and B2 buys from the same S1 at time
+t1 + , we measure the number of messages exchanged between B1
+and B2 in the time intervals Before [t1    ,t1], Between [t1,t1 +  ],
+and After [t1 +  , t1 + 2 ] the purchases of B1 and B2. One
+expects that if information passing is present, then most messages
+exchanged betweeen the two buyers occur after B1 purchases, but
+before B2 purchases. Table 2 shows the messages for the 3 time pe-
+3To compare, the likelihood that a pair of direct contacts have trans-
+acted historically is 0.089.
+4We only consider the time t2 corresponding to the  rst message
+from B1 to B2 after t1. We also add a requirement of     2
+days, i.e., B2 makes a purchase soon after talking to B1, to dampen
+the effects of regular purchases that occur irrelevant to messaging
+behavior.
+Days between purchases
+1
+2
+3
+4
+5
+Before Between After
+4.76
+7.76
+7.44
+10.79
+21.18
+4.16
+7.78
+8.60
+7.34
+21.87
+5.29
+14.29
+10.52
+15.90
+30.70
+Table 2: Messages between two buyers relative to their trade
+dates with the same seller.
+riods versus  , averaged over all instances. We see that the largest
+proportion of messages exchanged between the buyers occur be-
+tween their corresponding trade dates. For example, when the buy-
+ers transact two days apart, twice as many messages are exchanged
+Between the purchase dates, as compared to Before or After. Since
+messages exchanged Between are more likely to be recommenda-
+tions, this is additional evidence that information passing is present
+in the Taobao network.
+Through examination of both forward and backward processes,
+we demonstrate that information passing is present in the Taobao
+network.
+In particular, we show that the observed information
+passing success rate is two orders of magnitude more likely than
+a random baseline. Prior studies providing evidence of information
+passing have been primarily conducted in product recommendation
+networks [17]. Our work shows that information passing, involv-
+ing both buyer-buyer and buyer-seller relationships, occurs implic-
+itly in Taobao, where the communication tool is primarily intended
+for buyer-seller communication. This result is signi cant because
+it illustrates how of ine consumer behavior, asking or informing a
+personal social network about products, is also manifested implic-
+itly in online social commerce networks.
+In uences upon Information Passing. Having demonstrated the
+existence of information passing in the Taobao network, the next
+question is,  What factors in uence the success rate of information
+passing?  In the following experiments, we examine how informa-
+tion passing success varies with respect to 4 variables: communica-
+tion strength, time difference, product price, and product category.
+Perhaps the primary in uence upon the success of information
+passing is the amount of communication between the initial buyer,
+B1, and his messaging partner, B2. One can hypothesize that the
+stronger the communication between the two users, the more likely
+that B2 will also purchase the product from the seller that sold to
+B1. Counting the number of messages exchanged within time win-
+dow [t1    , t1 +  ], the Standard curve of Figure 4(left) shows the
+probability of closure with   = 3 days. As expected, the stronger
+the communication between the two users, the more likely that B2
+will be in uenced by B1. Adding a requirement to consider only
+users B2 who have never purchased from S1 historically (FirstBuy
+Req), we get a slightly lower, but still similar likelihood curve.
+Note that an alternative possible explanation for these  ndings
+is that both B1 and B2 are active users in Taobao who commu-
+nicate with other users frequently, make more purchases, and are
+thus more likely to purchase from the same sellers. However, we
+demonstrate this hypothesis is incorrect by performing an experi-
+ment where we keep the communication network and the number
+of purchases of a buyer unchanged, but randomize the sellers (i.e.,
+buyers buy from random sellers). We  nd that the increased com-
+munication between the two users does not correlate with the in-
+formation passing success rate (Random curve of Figure 4(left)),
+meaning that the stronger the communication, the stronger the ef-
+fect of information passing.
+The results from this experiment lead to several observations.
+First, messaging generally increases purchasing behavior in the
+Taobao network. Second, information passing is present in the net-
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+ 
+e
+g
+n
+a
+i
+r
+T
+l
+ 0.04
+ 0.035
+ 0.03
+ 0.025
+ 0.02
+ 0.015
+ 0.01
+ 0.005
+ 0
+100
+Standard
+FirstBuy Req
+Random
+101
+102
+103
+Number of Exchanged Messages
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+ 
+e
+g
+n
+a
+i
+r
+T
+l
+ 0.0024
+ 0.0022
+ 0.002
+ 0.0018
+ 0.0016
+ 0.0014
+ 0.0012
+ 0.001
+ 0.0008
+ 0.0006
+Standard
+FirstBuy Req
+ 0
+ 10
+ 30
+ 20
+ 40
+Time Difference
+ 50
+ 60
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+ 
+e
+g
+n
+a
+i
+r
+T
+l
+ 0.006
+ 0.0055
+ 0.005
+ 0.0045
+ 0.004
+ 0.0035
+ 0.003
+ 0.0025
+ 0.002
+ 0.0015
+ 0.001
+ 0.0005
+100
+101
+102
+103
+Price
+Figure 4: Triadic Closure Probability given Message Strength (left), Time Difference in Days (middle), and Price in CNY (right).
+work. Additionally, communication leads to purchases, and social
+network structure provides a surprisingly strong signal indicating
+which seller a buyer will purchase from. This latter result will be
+quite useful later when we study consumer choice prediction.
+In addition to counting the number of messages exchanged be-
+tween buyers, one should also consider the time difference, t2   t1,
+between the initial trade and message from B1 to B2. We expect
+that the larger the time difference between the initial purchase and
+message, the lower the in uence of the message upon the purchas-
+ing behavior of B2. As shown in Figure 4(middle), the probability
+of information passing success steadily decreases with time. We
+observe the same effect regardless of whether we require the trade
+(B2, S1) to be a  rst time trade (FirstBuy Req) or any trade (Stan-
+dard). This implies that social product recommendation and in u-
+ence spreading is most effective when utilized immediately after
+initial product adoption or purchase.
+Although communication between B1 and B2 is a signi cant in-
+ uence upon information passing, the characteristics of the product
+itself also affect the success of information passing. We can imag-
+ine that the most important product attribute to consider is the price
+(in Chinese Yuan, CNY) of the initial purchase. As displayed in
+Figure 4(right), we  nd that the information passing success rate
+decreases with product price for the price range from 1 CNY to
+15 CNY, then increases slightly for products priced above 15 CNY.
+The large closure probability at a price of 1 CNY is due to the pop-
+ularity and virality of virtual goods, such as game credits.
+In addition to product price, we also consider the category of the
+product itself when measuring the information passing success rate.
+We  nd that a few categories exhibit recommendation success rates
+much higher than other categories, while many categories exhibit
+nearly no information passing at all. For example, the category
+women s clothing exhibits a success rate of over 20%, while the
+category home decorations exhibits a success rate of 1.47%. A
+major possible in uence for the variability of these numbers are the
+regular group-purchasing deals offered by large stores on Taobao,
+which provide  nancial incentives for consumers to convince their
+friends to join them in purchases.
+In summary, our experiments demonstrate that the success of in-
+formation passing is directly proportional to the communication
+strength between the initial buyer and their message partner, in-
+versely proportional to the time difference between the purchase
+and initial recommendation, inversely proportional to product price,
+and highly category speci c. It is clear that in uencing an individ-
+ual to purchase a product is a complex affair. We believe these
+results are informative and can provide guidance to viral marketing
+campaigns when trying to promote product recommendation and
+adoption among online users.
+Directed Triadic Closure. Our previous study of local information
+passing processes can be seen as a special case of the more general
+directed triadic closure problem. We next investigate the process of
+directed triadic closure on a global scale. In the following study, we
+answer various questions regarding triadic closure including: What
+types of triads are more likely to be formed? What types of edges
+are more likely to close triads?
+For our task, we focus upon the link formation process in the
+context of triadic closure for the message and trade networks. In
+particular, consider a triple of nodes U, X, V , where  rst pairs U, X
+and V, X interact via messaging or trading, and then a triangle clos-
+ing edge U   V or V   U forms. We are interested in how the
+type of interaction (message vs. trade) and the direction of inter-
+action (i.e., U   X vs. X   U) affects the formation of the
+triad-closing edge between U and V .
+Let us de ne a Directed Con guration Set (U; X; V) as a situ-
+ation where an edge forms between U and X at time t1, then an
+edge forms between V and X at time t2 (t2>t1). We are interested
+in the probability that a triad-closing edge forms between nodes U
+and V at a time t3 (t3>t2). There are 16 possible Directed Con-
+ guration Sets, displayed in the  rst column of Table 3: the left
+node represents U, middle node X and right node V . For the triad-
+closing edge, we use the following shorthand notation: mi is the
+message edge (V,U), while mo is the message edge in the oppo-
+site direction (U,V). Similarly, ti is the trade edge (V,U), while to
+denotes the trade edge in the opposite direction (U,V). We use the
+term instance to refer to a particular example of a con guration set.
+Now in Table 3, we examine various properties of con guration
+sets. In particular, we are interested in knowing,  How many times
+does a particular con guration set get closed with a third edge?
+And what is the type of that edge?  For easier reasoning about var-
+ious con guration sets, we denote hypothetical buyer/seller desig-
+nations for the middle node X in the last column of Table 3. For
+example, if the con guration contains a purchase by X and no sale,
+then we say that X has a  buyer  role. Similarly, if the con gura-
+tion contains a sale by X and no purchase, then we say that X has a
+ seller  role. In all other cases, the role of X is ambiguous.
+To begin our study of directed triadic closure,  rst observe that
+there is little brokerage or reselling in the network, as the two
+con gurations where X both  buys  and  sells  have the lowest
+unique node X as well as instance counts (Columns # Uniq. X, #
+Instances). This is indicative of the general bipartite structure of
+Taobao, where users primarily take on either buyer or seller roles.
+Another important observation is that con gurations where X has
+a  seller  role are represented approximately 100 times more often
+than con gurations where X has a  buyer  role. The number of
+unique buyers exceeds the number of unique sellers in these con-
+ gurations, as shown in Column # Uniq. X, implying that activity
+levels for sellers are much higher than those for buyers. The large
+difference in activity levels is likely due to how individuals actu-
+ally use Taobao. Buyers browse Taobao casually and interact with
+others primarily when interested, whereas sellers spend their day
+speaking with potential clients. Given the bipartiteness of Taobao
+and the general activity level of sellers, we can imagine that seller
+nodes are local  star  structures in the Taobao graph.
+Dir. Con g Set
+# Instances
+# Uniq. X
+P(close)
+P(t|close)
+P(m|close)
+s(to)
+s(ti)
+X  role 
+590,635
+469,755
+410,951
+516,941,038
+2,661,874
+2,738,167
+253,840,924
+252,983,480
+3,106,078
+276,047,807
+3,174,237
+272,424,037
+420,018,116
+280,943,201
+276,848,803
+272,535,699
+235,088
+28,046
+27,302
+45,741
+382,690
+428,334
+45,318
+45,931
+421,888
+46,475
+475,074
+47,524
+403,220
+436,865
+442,548
+469,549
+0.4146
+0.3925
+0.3319
+0.0018
+0.5034
+0.5470
+0.0048
+0.0050
+0.5103
+0.0070
+0.5019
+0.0070
+0.0289
+0.0458
+0.0438
+0.0467
+0.4027
+0.3295
+0.3636
+0.1242
+0.3191
+0.3220
+0.1308
+0.1299
+0.3309
+0.1595
+0.3324
+0.1598
+0.1386
+0.1369
+0.1409
+0.1398
+0.5973
+0.6705
+0.6364
+0.8758
+0.6809
+0.6780
+0.8692
+0.8701
+0.6691
+0.8405
+0.6676
+0.8402
+0.8614
+0.8631
+0.8591
+0.8602
+69.19
+3.09
+18.75
+-18.11
+41.26
+41.94
+-9.28
+-9.26
+126.17
+-0.59
+141.02
+-0.04
+52.92
+56.03
+67.61
+68.69
+63.39
+16.87
+6.13
+-18.30
+101.61
+118.83
+-5.40
+-5.03
+61.89
+2.09
+65.23
+2.63
+63.96
+75.16
+70.19
+80.00
+B
+S
+B
+B
+S
+S
+B
+S
+B
+S
+Table 3: Directed Con guration Set (U; X; V), where X is the middle node, U is the left node, V is the right node. # Instances =
+number of instances. # Uniq. X = number of unique X nodes over all instances. P(close) = 100 * probability of a triad-closing third
+edge. P(t|close) = proportion of triads closed by a trade. P(m|close) = proportion of triads closed by a message. s(to) = surprise for
+directed trade edge (U, V). s(ti) = surprise for directed trade edge (V, U). X  role  = hypothesized role of X.
+Following our comparison of con guration instance counts, we
+consider the question,  When will an instance of a Directed Con-
+ guration Set be closed by a third edge?  We compute the proba-
+bility of the con guration (U; X; V) being closed by an edge (U,V).
+Observe that con gurations where X is a buyer have much higher
+closure probabilities (average 0.0051) than con gurations where X
+is a seller (average 0.000046). The large difference in closure prob-
+abilities is due to the fact that triads with middle buyers primarily
+consist of two buyers and one seller, with the required third edge
+being a buyer-seller edge. In contrast, triads with middle sellers
+likely contain one seller and two buyers, with the required third
+edge being a buyer-buyer edge. Since the Taobao network is essen-
+tially a bipartite network of buyers and sellers, buyer-seller edges
+occur much more often than buyer-buyer edges, leading to triadic
+closure for buyers being over 100 times more likely than for sellers.
+Triad-Closing Edge Type Distribution. After computing the in-
+stance counts and triad-closing probabilities of each Directed Con-
+ guration Set, we next examine the distribution of edge types clos-
+ing each type of con guration. For each of the 16 con gurations ci,
+we count the number of instances that are closed by messages and
+trades in each direction. Column P(m|close) of Table 3 shows that
+messages close most of the triads in the network. However, mes-
+sages are also approximately 3 times as common as trade edges in
+the data. Therefore, we need to compute expectations for each of
+the 4 possible triad-closing edge types (mi, mo, ti, and to).
+We de ne a node s generative baseline as the proportion of its
+out-edges that are trades. We assume that when a node A creates
+an edge, it generates a trade edge with a probability equal to its
+generative baseline, denoted by pt(A). For the con guration ci, the
+expected number of triads that are closed by a trade from U to V is
+equal to PU  ci
+pt(U ), where the summation is over all instances
+of the con guration ci. Similarly, the expected number of triads
+that are closed by a trade from V to U is PV  ci
+pt(V ). View-
+ing each instance of edge generation as a separate Bernoulli trial,
+we derive an expression for surprise [20] to indicate the number of
+signed standard deviations by which an observed edge type count
+differs from expected. For the con guration ci, the surprise of the
+triad-closing edge (U,V) being a trade is sto = #observed PU  ci
+, where #observed is the number of instances of ci that are closed
+by a trade edge (U,V). Similarly, we compute the surprise sti of the
+triad-closing edge (V,U) being a trade. These trade surprise values
+are listed in Columns s(to), s(ti) of Table 3.5
+ PU  ci
+pt(U )
+[pt(U ) (1 pt(U ))]
+After computing these edge type surprises, we can compare ob-
+served triad-closing edge counts with expected edge counts from
+our generative baseline. Our  rst observation regarding directed
+edge surprises is that for con gurations where X is a buyer, the
+triad-closing edge being a trade edge is observed signi cantly more
+than expected, as shown in Table 3. An explanation for this is that
+con gurations with middle buyers primarily consist of two buyers
+and one seller, with the required third edge being a buyer-seller
+edge. Since Taobao is essentially a bipartite network, trade sur-
+prises for such con gurations vary from 40 to 140 standard devia-
+tions more than expected.
+For con gurations where X is a buyer and only one of U and V
+is a seller, s(to) and s(ti) differ by a factor of 2. In particular, the
+trade surprise of the edge directed toward the seller is twice as large
+as the other direction. This is an example of how the role of each of
+the nodes in a con guration in uence both the edge type and edge
+direction probabilities of the triad-closing third edge.
+In contrast, for con gurations where X is a seller, both trade
+surprises, s(to) and s(ti), are negative. As previously mentioned,
+when X is a seller, U and V are likely to be both buyers. Since
+buyers rarely purchase from each other on Taobao, this leads to
+messages being observed more than expected between U and V .
+Our analysis of edge type surprises indicates the signi cance of
+user roles in dictating edge formation in the Taobao network. Mes-
+sage edges close the majority of the triads in Taobao due to their
+relative proportion among all network edges. However, the relative
+proportion of triad-closing edges being a message edge is primarily
+dictated by the user role of the middle node X.
+5We do not explicitly compute the surprises for directed message
+edges since pm(X) = 1  pt(X), implying that s(mo) = -s(to) and
+s(mi) = -s(ti).
+Power: 1.747*x18.504-1
+)
+%
+(
+ 
+v
+e
+D
+ 
+e
+c
+i
+r
+P
+ 
+g
+v
+A
+ 1.2
+ 1
+ 0.8
+ 0.6
+ 0.4
+ 0.2
+ 0
+-0.2
+-0.4
+-0.6
+-0.8
+ 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99  1
+Seller Rating
+Figure 5: Per Item: Average price deviation from median (%)
+vs seller rating(%).
+Power: 1.665*x15.749-1
+ 1
+ 0.8
+ 0.6
+ 0.4
+ 0.2
+ 0
+-0.2
+)
+%
+(
+ 
+v
+e
+D
+e
+c
+i
+r
+ 
+ 
+P
+g
+v
+A
+-0.4
+ 0.94  0.95  0.96  0.97  0.98  0.99
+ 1
+Seller Rating
+Figure 6: Aggregated Per Seller: Average price deviation from
+median (%) vs seller rating(%).
+5. PRICE OF TRUST
+The prior study of information passing relies upon the spread of
+in uence through buyer-buyer communication, which can be seen
+as an implicit form of buyer-buyer trust. We next examine a more
+explicit form of buyer-seller trust encapsulated by seller ratings.
+In the context of electronic marketplaces, buyers are unsure about
+seller trustworthiness, so buyers put their trust into seller ratings
+and reviews, and are willing to pay a premium to sellers with good
+reputations [26]. How much extra will a buyer pay for transaction
+with a highly rated seller?
+Data Preparation. To answer this question, we use the large Taobao
+transaction dataset to study how good seller reputations are re-
+warded on Taobao and quantify a price for trust. To facilitate our
+experiments, we perform a web crawl of the Taobao website to ob-
+tain product and seller metadata associated with the transactions
+in our original dataset. Each transaction in Taobao is rated by the
+buyer, so we use the percentage of positive reviews that each seller
+has received in the past as a proxy for seller reputation and trust-
+worthiness. Henceforth, we shall refer to that ratio as seller rating.
+With this rating information, we compare sellers of the same
+product and determine how their sale prices differ. The dif cult
+step of the experimental setup is identi cation of all product list-
+ings in our dataset which correspond to the same products. We
+develop a high precision method targeted toward speci c types of
+products and use our method to identify and group together prod-
+uct listings referring to the same product into product clusters. The
+resulting dataset for our study of trust consists of 382,980 items,
+11,293 product clusters (corresponding to unique product types),
+and 6,199 unique sellers. Each of these product clusters contains a
+set of items which correspond to the same exact product.
+Figure 7: Buyer-Seller Cluster. Given that S1 and S2 both sell
+exactly the same product that the buyers buy, predict the cor-
+rect seller for each buyer B1, B2, B3.
+Quantifying Trust. With our product cluster dataset, we study the
+relationship between seller rating and the price at which a seller can
+transact. For each product cluster, for each listing within a cluster,
+we compute % deviation from median cluster price. We plot the av-
+erage price deviation from the median per listing versus seller rat-
+ing in Figure 5, and  t the data with a power function (R2 of 0.80).
+From the super-linear  t, we see that a higher rating is associated
+with a seller selling his products at a premium compared to most of
+his peers. Another interesting observation is that a seller rating of
+97.1% corresponds to transaction at the median cluster price. The
+lack of negative reviews in such data has been observed in other
+e-commerce data such as eBay [25], and has been hypothesized to
+be the result of a  high-courtesy  social norm.
+Next, we aggregate the average price difference of all items sold
+by a seller and plot that against seller rating, shown in Figure 6. The
+primary difference between this plot and the previous one is that we
+now aggregate all the different instances of a seller s transactions
+within the same cluster, and compare the sellers in a cluster against
+each other.6 We  nd that a power function  ts our data particularly
+well (R2 of 0.87). Looking across all sellers, the elasticity of prod-
+uct price with respect to seller rating is a small, positive quantity,
+indicating that there is a direct relationship between seller rating
+and increased sales price.
+One possible explanation for our  ndings is that highly rated sell-
+ers incur higher costs associated with their products, hence they can
+sell their products at a price premium. For example, highly rated
+sellers may provide better services, such as replying to messages
+from customers in a timely fashion, or shipping products more fre-
+quently. An alternative explanation is that buyers are willing to
+pay more to highly rated sellers to minimize transaction risk, thus
+sellers who maintain good reputations are  nancially rewarded. Al-
+though higher seller ratings are correlated with higher sales prices,
+the small magnitude of the elasticity indicates that buyer purchas-
+ing decisions are likely in uenced by other variables, such as the
+social network in which the purchases are embedded. This leads us
+to consider the scenario of consumer choice prediction.
+6. CONSUMER CHOICE PREDICTION
+In order to demonstrate the power of network structure, we now
+consider the problem of consumer choice prediction. Imagine the
+following situation: a user comes to Taobao and issues an exact
+query for the product (s)he aims to buy. There is a list of k sellers
+selling the exact product the buyer is going to buy. Which seller
+will the buyer purchase the item from? The seller with the lowest
+price? The most trusted seller? The seller who interacted with the
+buyer s friends in the past?
+6There is large variation between activity levels among different
+sellers, so we only display those who have sold at least 15 items.
+Given that our prior experiments have demonstrated the impor-
+tance of the social network and the strong presence of information
+passing, we aim to investigate the role that social and communica-
+tion networks play in consumer decision making [5]. If the social
+network has no in uence upon buyer behavior, then we expect that
+buyers will purchase from sellers that offer the lowest price. How-
+ever, as we will see, it is exactly the social network information
+that gives the strongest signal in predicting which seller a buyer
+will make a purchase from.
+For this consumer choice prediction task, we use the product
+cluster data described previously in our study of trust. Each prod-
+uct cluster consists of a set of transactions between different pairs
+of people, but corresponding to the exact same product. We convert
+each product cluster into a bipartite subgraph composed of buyer
+and seller nodes, as shown in Figure 7, where the buyers and sellers
+have all either bought or sold the same particular product. We will
+term these bipartite subgraphs buyer-seller clusters, and henceforth
+shall perform prediction with these clusters.
+Typically a seller will transact with multiple buyers in the same
+cluster, while a buyer purchases the product from a single seller in
+the cluster. Both buyers and sellers can be included in more than
+one buyer-seller cluster if they buy or sell multiple types of prod-
+ucts. We restrict our focus to buyer-seller clusters with at least 2
+and no more than 10 sellers. Overall, our prediction data is com-
+posed of 9,950 clusters, with a per-cluster average of 5.91 buyers
+and 3.l3 sellers.
+It is important to understand that, by construc-
+tion, all sellers offer a product for sale that is exactly relevant to the
+buyer s interests. The task now is, within a cluster, given a particu-
+lar buyer, rank the sellers such that the seller the buyer is going to
+buy from is ranked as high as possible.
+Problem Statement: For each buyer-seller cluster Ci, there is an
+associated set Bi of buyers and set Si of sellers. For each cluster
+Ci, for each buyer Bij in Bi, predict which seller(s) from Si the
+buyer Bij will purchase their product(s) from.
+We model this prediction problem as a ranking problem, where
+for each buyer Bij in cluster Ci, we wish to generate a ranking of
+the sellers Sik, such that the true seller from whom Bij actually
+purchased the product has the highest rank (i.e., score). Since the
+positive and negative examples for our problem come in sets, it
+is natural to use a ranking based machine learning approach.
+In
+particular, we use the Support Vector Machine SVM-rank [16].
+For consumer choice prediction, we use a base set of 23 features
+that describe product, buyer and seller metadata. We also use fea-
+tures that describe the buyer-seller interactions and network struc-
+ture. Table 4 lists the features we use in our experiments, along
+with the networks they are computed on.7
+Experimental Setup and Evaluation. Our data consists of 58,812
+sets of training examples (i..e, buyer-seller pairs where a buyer can
+buy the same product from multiple sellers). We split the data into
+75% train and 25% test sets. The SVMs were trained with linear
+kernels and loss functions were chosen to minimize the number of
+incorrect constraints. Since we typically have one positive example
+per buyer decision, this is equivalent to optimizing Precision@1.
+As a point of comparison for our models, we construct three sim-
+ple rule-based baselines:
+  Random baseline - rank the sellers randomly
+  MinPrice baseline - rank the sellers by increasing price.
+  MostMsg baseline - rank the sellers by decreasing buyer-seller
+message volume. Defaults to Random if no message edge is present.
+7For each buyer decision, network features are computed from the
+snapshot of the network which existed the day prior to the true pur-
+chase date. This is necessary to properly model buyer decisions.
+Feature Set
+P@1 MRR MR
+2.00
+0.56
+All Features
+0.55
+2.02
+Only Network
+2.62
+0.33
+Only Meta
+2.13
+0.50
+Meta + Msgs
+2.34
+0.43
+Meta + Trades
+Meta + Contacts
+2.40
+0.42
+0.56
+2.00
+Meta + Direct
+2.58
+0.34
+Meta + Indirect
+2.11
+MostMsg
+0.50
+Random 0.31
+2.90
+0.29
+2.77
+MinPrice
+0.72
+0.72
+0.57
+0.69
+0.64
+0.63
+0.72
+0.58
+0.69
+0.53
+0.54
+Table 5: Customer choice prediction results.
+We evaluate the models and baselines using the following three
+metrics:8
+better)
+ranked seller is actually the true seller. (Higher is better)
+  Precision at Top 1 (P@1) - Fraction of times that the top
+  Mean Rank (MR)- Average Rank of the true seller. (Lower is
+  Mean Reciprocal Rank (MRR) - Average Reciprocal Rank
+( 1
+Rank ) of the true seller. (Higher is better)
+Experimental Results. Table 5 gives an overview of our experi-
+mental results where we compare the models using various feature
+sets and the baselines. First, we note that the model trained on all
+23 features gives a 79% improvement over the P@1 of the Random
+baseline and a 38% improvement over Random s MRR. The model
+also gives a 13% improvement over the MostMsg baseline and a
+93% improvement over the MinPrice baseline. For all our evalu-
+ation metrics, the model displays signi cantly better performance
+than the 3 baselines. It is interesting to note the poor performance
+of MinPrice compared to MostMsg. This suggests that commu-
+nication links and the social graph are essential to understanding
+how consumers make purchasing decisions in social commerce net-
+works. Note that a natural explanation for the importance of the
+social graph can be that a buyer  rst messages a seller, then imme-
+diately trades with him. However, we control for this by discarding
+all communication on and after the trade date.
+To evaluate prediction performance in more detail, we graph
+the P@1 and MRR of the Full model (labeled as SVM) and the
+3 baselines versus the number of sellers in the buyer-seller cluster
+(i.e., how many different sellers a buyer can choose from) in Fig-
+ures 8(a),(e). As expected, the performance of all models and base-
+lines decreases as the number of sellers in the cluster increases. Ob-
+serve that the performance gap between the Full model and MostMsg,
+the strongest baseline, widens as the number of sellers to choose
+from increases and prediction becomes more dif cult. If we look at
+the proportional P@1 improvement of the Full model over MostMsg,
+we see only a 4.5% improvement when there are 2 sellers, but a
+39.5% improvement when there are 10 sellers. In particular, we
+would like to highlight the Full model s strong P@1 of 42.1% for
+the challenging prediction task with 10 sellers. In general, the full
+power of the model is not realized until the prediction problem be-
+comes dif cult for simple rule-based heuristics.
+Different Feature Sets. Having constructed a successful predic-
+tive model, we now ask,  What features are most valuable when
+modeling consumer choice?  In the following set of experiments,
+we contrast the performance of SVM models trained on different
+sets of graph and metadata features in order to better understand
+how consumers make purchasing decisions.
+8Performance was also evaluated with several other standard rank-
+ing metrics. Results are similar, so hence not displayed.
+Feature Type
+Product Metadata Features
+Direct Network Features
+Indirect Network Features
+Feature Name
+Fractional Price Rank
+Fractional Rating Rank
+Historical Sold
+Inventory Sold
+Insurance
+Buyer-Seller Interactions
+Time Since Last Transaction
+Fractional Message Rank
+Nodal Trade Volumes
+Number of mutual partners
+Seller Clustering Coef cients
+Mutual Densities
+Seller PageRanks
+Feature Description
+Seller ranking using their median product price
+Seller ranking using their rating percentage
+Num. of all products sold by seller. 1) fractional rank 2) log of value
+Quantity already sold in the particular product listing.
+If the product is insured by the seller
+1) Trade volume 2) Message volume 3) Are they contacts?
+Computed for both message and trade networks
+Seller ranking using number of buyer-seller messages
+Number of trades for buyer and seller in the 2 month observation period
+Number of nodes who have messaged or transacted with both buyer and seller
+Computed for both message and contact networks
+Frac. of edges between the set of nodes mutual with both buyer and seller
+Computed for static endtime networks
+T M C
+X X
+X X
+X
+X
+X
+X
+X
+X X
+X
+X
+X
+X
+X
+Table 4: Feature Set. T, M, C denote if the feature is computed on the trade, message, and contact networks, respectively.
+1
+ 
+t
+a
+ 
+i
+i
+n
+o
+s
+c
+e
+r
+P
+ 0.8
+ 0.7
+ 0.6
+ 0.5
+ 0.4
+ 0.3
+ 0.2
+ 0.1
+ 0
+ 2
+Aggregated
+SVM
+MostMsg
+Random
+MinPrice
+1
+ 
+t
+a
+ 
+i
+i
+n
+o
+s
+c
+e
+r
+P
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+Sellers per Cluster
+ 0.8
+ 0.7
+ 0.6
+ 0.5
+ 0.4
+ 0.3
+ 0.2
+ 0.1
+ 0
+ 2
+SVM
+Messages
+Trades
+Contacts
+1
+ 
+t
+a
+ 
+i
+i
+n
+o
+s
+c
+e
+r
+P
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+Sellers per Cluster
+ 0.8
+ 0.7
+ 0.6
+ 0.5
+ 0.4
+ 0.3
+ 0.2
+ 0.1
+ 0
+ 2
+SVM
+Direct
+Indirect
+1
+ 
+t
+a
+ 
+i
+i
+n
+o
+s
+c
+e
+r
+P
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+Sellers per Cluster
+ 0.8
+ 0.7
+ 0.6
+ 0.5
+ 0.4
+ 0.3
+ 0.2
+ 0.1
+ 0
+ 2
+SVM
+Graph
+Metadata
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+Sellers per Cluster
+(a) P@1: SVMs vs Baselines
+(b) P@1: Edge Types
+(c) P@1: Direct vs Indirect
+(d) P@1: Graph vs Metadata
+k
+n
+a
+R
+ 
+l
+i
+a
+c
+o
+r
+p
+c
+e
+R
+n
+a
+e
+M
+ 
+ 0.9
+ 0.8
+ 0.7
+ 0.6
+ 0.5
+ 0.4
+ 0.3
+ 0.2
+Aggregated
+SVM
+MostMsg
+Random
+MinPrice
+k
+n
+a
+R
+ 
+l
+i
+a
+c
+o
+r
+p
+c
+e
+R
+n
+a
+e
+M
+ 
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+ 0.9
+ 0.8
+ 0.7
+ 0.6
+ 0.5
+ 0.4
+ 0.3
+ 0.2
+SVM
+Messages
+Trades
+Contacts
+k
+n
+a
+R
+ 
+l
+i
+a
+c
+o
+r
+p
+c
+e
+R
+n
+a
+e
+M
+ 
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+ 0.9
+ 0.8
+ 0.7
+ 0.6
+ 0.5
+ 0.4
+ 0.3
+ 0.2
+SVM
+Direct
+Indirect
+k
+n
+a
+R
+ 
+l
+i
+a
+c
+o
+r
+p
+c
+e
+R
+n
+a
+e
+M
+ 
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+ 0.9
+ 0.8
+ 0.7
+ 0.6
+ 0.5
+ 0.4
+ 0.3
+ 0.2
+SVM
+Graph
+Metadata
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+Sellers per Cluster
+Sellers per Cluster
+Sellers per Cluster
+Sellers per Cluster
+(e) MRR: SVMs vs Baselines
+(f) MRR: Edge Types
+(g) MRR: Direct vs Indirect
+(h) MRR: Graph vs Metadata
+Figure 8: Consumer choice prediction performance. The social graph is the most important feature in predicting which seller a
+buyer will purchase from.
+When doing prediction, are network features as valuable as meta-
+data features such as product price and seller rating? We  rst com-
+pare the performance of a SVM trained on network (graph) fea-
+tures versus a SVM trained on metadata (seller pro le and product
+description) features. We  nd that the P@1 of the graph features
+SVM is only slightly worse than the Full model, whereas the meta-
+data features SVM is not much better than Random, as displayed
+in Table 5. Most notably, there is a large performance gap between
+the graph features SVM compared to the metadata features SVM,
+as illustrated in Figures 8(d),(h). This implies that prediction using
+only seller and product information is inadequate, the social and
+trade networks in the neighborhood of the buyer and seller must be
+taken into account. Buyers likely do not just use seller pro le and
+product information when making purchasing decisions.
+Given that network features are essential when predicting con-
+sumer choice, what type of network features are more valuable for
+prediction: direct features or indirect features (i.e., clustering coef-
+ cients, PageRanks)? For this experiment, we train SVM models
+on direct and indirect network features, the different graph feature
+classes we use are listed in Table 4. Note that when comparing
+direct and indirect network features, we include all metadata fea-
+tures in both sets. Figures 8(c),(g) illustrate the large performance
+gap between the Meta + Direct SVM vs the Meta + Indirect SVM,
+labeled as Direct and Indirect respectively in the  gures. We ob-
+serve that direct graph information provided by buyer-seller edges
+is signi cantly more valuable than the collective information pro-
+vided by other edges in the local neighborhoods. This is not sur-
+prising because powerful information content is present in direct
+edges. Historical buyer-seller message volume can be indicative of
+an existing social relationship or historical product queries, while
+historical buyer-seller trade volume can be indicative of customer
+loyalty and trust with the seller.
+Which network (contact, message, trade) is most useful for pre-
+dicting consumer choice? In this section, we contrast SVM mod-
+els trained on each of the separate Taobao networks. We include
+all metadata features with each set of network features in this ex-
+periment as well, prediction results are displayed in Table 5. The
+performance of the 3 network feature sets versus the number of
+sellers in the cluster are displayed in Figures 8(b),(f). Our experi-
+ment demonstrates that the message network is the most valuable
+network to utilize when predicting consumer choice. One possi-
+ble explanation for this  nding is that historical message volume is
+an indicator of familiarity between buyer and seller, i.e., an exist-
+ing trust relationship between buyer and seller. Historical message
+volume can also indicate previous potential purchase interest.
+We also observe that prediction with the trade network is slightly
+better than that with the contact network. This suggests that cus-
+tomer loyalty, the primary trade network feature we use, is a more
+important indicator of consumer choice than the network of con-
+tacts. Our explanation for this is that, inherently, contact links are
+less valuable than trade or message links in such social networks.
+It takes little effort to add someone to a friends list, as it is a one-
+time operation. In contrast, maintaining a conversation requires an
+investment of time and mutual interest on the part of both parties.
+Forming a trade link is arguably the most costly as it requires cur-
+rency and an actual transaction to make the connection.
+Per-Category Performance. After performing prediction with a
+single SVM ranking model, the next question to ask is,  Can we
+perform better prediction through the use of multiple models?  To
+answer this question, we segment all historical transactions in our
+dataset into their respective product categories, and train separate
+SVM ranking models for each category. The results of our model
+testing are displayed as Aggregated in Figure 8(a),(e). As expected,
+the aggregated performance of the category SVMs is slightly better
+than the single Full SVM, with a P@1 of 0.58 compared to 0.56.
+Our study of consumer choice prediction demonstrates that in so-
+cial commerce sites such as Taobao, user communication and social
+activity is the primary in uence upon consumer choice. Utilizing
+primarily social networking features, we are able to construct an
+SVM model that can predict, for the case of a buyer choosing from
+among 10 possible sellers, the correct seller 42% of the time, ap-
+proximately 4 times better than random. When faced with a selec-
+tion of substitute goods offered by different sellers, buyers will not
+just choose their preferred seller through simple heuristics regard-
+ing price or rating. We can imagine that buyers utilize many sources
+of information (seller history, advice of friends, seller s messages),
+and each buyer processes the information in their own way in order
+to make a personal purchasing decision. Although we cannot say
+with certainty what buyers are thinking, we can de nitively state
+that the social graph in which the buyer and seller are embedded is
+the best feature to look at when predicting consumer choice.
+7. CONCLUSION
+Our work analyzes the activities of one million users of the Chi-
+nese social commerce site Taobao. Through the study of directed
+closure rules, we empirically verify that implicit information pass-
+ing is present in the Taobao network, and show that communica-
+tion between buyers is a fundamental driver of purchasing activ-
+ity. We then investigate the directed triadic closure process and
+explain how link formation is highly dependent upon the distribu-
+tion of buyer/seller roles for the nodes of a social commerce net-
+work. Third, we use Taobao review data to demonstrate how high
+seller ratings are associated with product price premiums, and thus
+quantify a price for trust. Finally, we develop a machine learning
+model to accurately predict consumer choice, and demonstrate that
+the social network is the most important feature in predicting how
+consumers choose their transaction partners.
+We hope that our study will motivate future research into so-
+cial shopping, as well as give impetus to established e-commerce
+companies to add more social networking features. Future areas
+of related study include: analysis of user browsing data to develop
+re ned consumer choice models for social commerce, study of in-
+formation passing while factoring in both buyer-buyer and buyer-
+seller trust relationships, and viral marketing to in uence consumer
+choice in social commerce.
+Acknowledgements. Research was in-part supported by NSF CNS-
+1010921, NSF IIS-1016909, Albert Yu & Mary Bechmann Foun-
+dation, IBM, Lightspeed, Microsoft and Yahoo.
+8. REFERENCES
+[1] L. Backstrom, D. Huttenlocher, J. Kleinberg, and X. Lan.
+Group formation in large social networks: membership,
+growth, and evolution. In KDD, 2006.
+[2] R. Bhatt, V. Chaoji, and R. Parekh. Predicting product
+adoption in large-scale social networks. In CIKM, 2010.
+[3] K. Burke. As consumer attitudes shift, so must marketing
+strategies. 2003.
+[4] J. Chevalier and D. Mayzlin. The effect of word of mouth on
+sales: Online book reviews. J. of Marketing Research, 2006.
+[5] A. Degeratu, A. Rangaswamy, and J. Wu. Consumer choice
+behavior in online and traditional supermarkets: The effects
+of brand name, price, and other search attributes. Intl. J. of
+Res. in Marketing, 2000.
+[6] P. DiMaggio and H. Louch. Socially embedded consumer
+transactions: for what kinds of purchases do people most
+often use networks? Amer. Soc. Rev., 63(5):619 637, 1998.
+[7] P. Doney and J. Cannon. An examination of the nature of
+trust in buyer-seller relationships. J. of Marketing, 1997.
+[8] Q. Duong, N. Sundaresan, N. Parikh, and Z. Shen. Modeling
+Seller Listing Strategies. Agent-Mediated El. Comm., 2010.
+[9] M. Granovetter. The strength of weak ties. American Journal
+of Sociology, 78(6):1360 1380, 1973.
+[10] M. Granovetter. Economic Action and Social Structure: The
+Problem of Embeddedness. Amer. J. of Sociology, 1985.
+[11] T. Hennig-Thurau, K. Gwinner, G. Walsh, and D. Gremler.
+Electronic word-of-mouth via consumer-opinion platforms:
+What motivates consumers to articulate themselves on the
+Internet? J. of Interactive Marketing, 18(1):38 52, 2004.
+[12] S. Hill, F. Provost, and C. Volinsky. Network-based
+marketing: Identifying likely adopters via consumer
+networks. Statistical Science, 21(2):256 276, 2006.
+[13] D. Houser and J. Wooders. Reputation in auctions: Theory,
+and evidence from eBay. J. of Econ. & Man. Strat., 2006.
+[14] W. Hu and A. Bolivar. Online auctions ef ciency: a survey of
+ebay auctions. In WWW, 2008.
+[15] R. Iyer, S. Han, and S. Gupta. Do Friends In uence
+Purchases in a Social Network? Harvard Business School
+Working Paper, 2009.
+[16] T. Joachims. Training linear SVMs in linear time. In KDD,
+2006.
+[17] J. Leskovec, L. Adamic, and B. Huberman. The dynamics of
+viral marketing. ACM TWEB, 1(1):5, 2007.
+[18] J. Leskovec, L. Backstrom, R. Kumar, and A. Tomkins.
+Microscopic evolution of social networks. In KDD, 2008.
+[19] J. Leskovec, D. Huttenlocher, and J. Kleinberg. Predicting
+positive and negative links in online social networks. In
+WWW, 2010.
+[20] J. Leskovec, D. Huttenlocher, and J. Kleinberg. Signed
+networks in social media. In CHI, 2010.
+[21] D. Liben-Nowell and J. Kleinberg. The link-prediction
+problem for social networks. In CIKM, 2003.
+[22] Y. Lu, C. Zhai, and N. Sundaresan. Rated aspect
+summarization of short comments. In WWW, 2009.
+[23] D. Lucking-Reiley, D. Bryan, N. Prasad, and D. Reeves.
+Pennies from ebay: the determinants of price in online
+auctions. The J. of Industrial Economics, 2007.
+[24] A. Rapoport. Spread of information through a population
+with socio-structural bias: I. Assumption of transitivity.
+Bulletin of Mathematical Biology, 15(4):523 533, 1953.
+[25] P. Resnick and R. Zeckhauser. Trust among strangers in
+Internet transactions: Empirical analysis of eBay s reputation
+system. Adv. in Appl. Microecon.: A Research Ann., 2002.
+[26] P. Resnick, R. Zeckhauser, J. Swanson, and K. Lockwood.
+The value of reputation on eBay: A controlled experiment.
+Experimental Economics, 9(2):79 101, 2006.
+[27] D. Romero and J. Kleinberg. The directed closure process in
+information networks with an analysis of link formation on
+twitter. In ICWSM, 2010.
+[28] B. Sarwar, G. Karypis, J. Konstan, and J. Riedl. Analysis of
+recommendation algorithms for e-commerce. In EC, 2000.
+[29] J. Schafer, J. Konstan, and J. Riedi. Recommender systems
+in e-commerce. In EC, 1999.
+[30] X. Wu and A. Bolivar. Predicting the conversion probability
+for items on C2C ecommerce sites. In CIKM, 2009.
+[31] J. Zheng, X. Wu, J. Niu, and A. Bolivar. Substitutes or
+complements: another step forward in recommendations. In
+EC, 2009.

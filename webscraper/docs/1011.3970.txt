@@ -1,0 +1,1772 @@
+,
+2 and Stefano Balietti1
+From Social Simulation to Integrative System Design
+Dirk Helbing1
+1 ETH Zurich, CLU, Clausiusstr. 50, 8092 Zurich, Switzerland
+2 Santa Fe Institute, 1399 Hyde Park Road, Santa Fe, NM 87501, USA
+  E-mail: dhelbing@ethz.ch and sbalietti@ethz.ch
+1
+1
+1
+0
+2
+ 
+b
+e
+F
+4
+2
+ 
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+2
+v
+0
+7
+9
+3
+.
+1
+1
+0
+1
+:
+v
+i
+X
+r
+a
+Abstract
+The purpose of this White Paper of the EU Support Action  Visioneer [1] is to address the following
+goals:
+1. Develop strategies to build up social simulation capacities.
+2. Suggest ways to build up an  arti cial societies  community that aims at simulating real and
+alternative societies by means of supercomputers, grid or cloud computing.
+3. Derive proposals to establish centers for integrative systems design.
+1
+Introduction
+1.1 Real-World Challenges
+Since decades, if not since hundreds of years, the world has been facing a number of recurrent socio-
+economic problems which are obviously hard to solve because their roots are still not well understood.
+This includes, in particular, the following problems:
+1. Financial and economic (in)stability (government debts, taxation, and in ation/de ation; sustain-
+ability of social bene t systems; consumption and investment behavior. . . )
+2. Public health (food safety; spreading of epidemics [ u, SARS, H1N1, HIV], obesity, smoking, or
+unhealthy diets. . . )
+3. Sustainable use of resources and environment (consumption habits, travel behavior, sustainable
+and e cient use of energy and other resources, participation in recycling e orts, environmental
+protection. . . )
+4. Collective social behavior and opinion dynamics (abrupt changes in consumer behavior; social con-
+tagion, extremism, hooliganism, changing values; breakdown of cooperation, trust, compliance, sol-
+idarity. . . )
+5. Security and peace (organized crime, terrorism, social unrest, independence movements, con ict,
+war. . . )
+6. Reliability of critical infrastructures, in particular of information systems (cyber risks, misuse of
+sensitive data, espionage, violation of privacy; data deluge, spam; education and inheritance of
+culture. . . )
+7. Institutional design (intellectual property rights; over-regulation; corruption; balance between global
+and local, central and decentral control. . . )
+8. Balance of power in a multi-polar world (between di erent countries and economic centers; also
+between individual and collective rights, political and company power; avoidance of monopolies;
+formation of coalitions; protection of pluralism, individual freedoms, minorities. . . )
+2
+9. Demographic change of the population structure (change of birth rate, migration, integration. . . )
+10. Social, economic and political participation and inclusion (of people of di erent gender, age, health,
+education, income, religion, culture, language, preferences; reduction of unemployment. . . )
+It must be underlined that the above list is not ranked according to importance and that at least some
+of these challenges are obviously interdependent. A recent paper [2] identi es and discusses a number of
+fundamental scienti c challenges in economics and other social sciences which must be addressed before
+the above problems can be cured or mitigated (see also Ref. [3]). However, there is actually hope that
+progress can be made, and the following activities are likely to be useful for this:
+1. Build a Financial Crisis Observatory and large-scale agent-based simulations, explore alternative
+exchange systems (see Ref. [4]).
+2. Create a network of  health sensors  and a Health Risk Observatory in order to follow, simulate
+and anticipate the spreading of diseases; create contingency plans (see Ref. [5]).
+3. Develop user-friendly ICT tools for a realistic, but pluralistic modeling and simulation of the dy-
+namics of complex systems and create new incentive schemes (see Sec. 3.4.2).
+4. Explore group dynamics through lab and Web experiments and social data mining (see Ref. [4]).
+5. Understand the roots of con icts to derive new ways to avoid or mitigate them (see Ref. [5]).
+6. Employ network analysis, build a privacy-respecting reputation system to learn how to design a
+self-controlled, trustable system (see [5]).
+7. Perform evolutionary optimization and scenario analyses, use serious games (see Secs. 4.6 and 4.7).
+8. Develop better coordination and synchronisation mechanisms and new paradigms to manage com-
+plexity (see Sec. 4.2).
+9. Create supporting ICT systems to support people in various real-life situations and their mutual
+interactions (e.g. create a  multi-national translator or adapter ); use Decision Arenas to identify
+good solutions (see Sec. 4.8).
+10. Use eGovernance and build a Knowledge Accelerator (see Ref. [4]).
+Some of the above challenges obviously require massive data-mining activities or the use and develop-
+ment of novel ICT systems, as it has been discussed in other Visioneer White Papers [5, 4, 3]. Of course,
+we do not want to claim that all problems will be solvable forever, but there are good reasons to believe
+that substantial progress can be made for some socio-economic issues, and that all possible attempt should
+be made to mitigate them. The before-mentioned documents explain possible approaches to make such
+progress. Complementary to these, social super-computing will be needed to make substantial progress
+in the understanding, management and improvement of complex systems, as outlined in this document.
+1.2 Particular scienti c challenges of socio-economic systems
+We are fully aware of a number of particular challenges of socio-economic systems which make them
+di erent from other systems [6]:
+  the number of variables involved is typically (much) larger,
+  the relevant variables and parameters are often unknown and hard to measure (the existence of
+ unknown unknowns  is typical),
+3
+  the time scales on which the variables evolve are often not well separated from each other,
+  the statistical variation of measurements is considerable and masks laws of social behavior, where
+they exist (if they exist at all),
+  frequently there is no ensemble of equivalent systems, but just one realization (one human history),
+  empirical studies are limited by technical,  nancial, and ethical issues,
+  it is di cult or impossible to subdivide the system into simple, non-interacting subsystems that
+can be separately studied,
+  details of the environment and the history of the system, in which the actors live, may be important
+to understand their behaviour,
+  the observer participates in the system and modi es social reality,
+  the non-linear and/or network dependence of many variables leads to complex dynamics and struc-
+tures, and sometimes paradoxical e ects,
+  interaction e ects are often strong, and emergent phenomena are ubiquitous (hence, not under-
+standable by the measurement and quanti cation of the individual system elements),
+  factors such as a large degree of randomness and heterogeneity, memory, anticipation (future ex-
+pectations), decision-making, communication, consciousness, and the relevance of intentions and
+individual interpretations complicate the analysis and modeling a lot,
+  the same applies to human features such as emotions, creativity, and innovation,
+  the impact of information is often more decisive for the behavior of a socio-economic system than
+physical aspects (energy, matter) or our biological heritage,
+  information feedbacks have a signi cant impact on the resulting socio-economic system dynamics,
+  the  rules of the game  and the interactions in a social or economic system may change over time,
+in contrast to what we believe to be true for the fundamental laws and forces of physics,
+  in particular, social systems are in uenced by normative and moral issues, which are variable.
+For these reasons, progress in the socio-economic sciences is more di cult than in the natural and
+engineering sciences. However, many available scienti c methods have not yet been used in the socio-
+economic sciences to the extent they may contribute. This includes, for example, insights from
+  psychology,
+  the neurosciences,
+  biology (particulary the organization of social species and swarms),
+  the ecology of mutually networked entities,
+  synergetics and complex systems theory for large adaptive systems with non-linear interactions
+(including theories of self-organization phenomena, non-linear and chaotic dynamics, emergence
+etc.),
+  statistical physics of systems with many interacting components (including theories of phase tran-
+sitions and critical phenomena),
+  information theory,
+  computer science (including data mining, pattern recognition, machine learning, computer simula-
+tion, evolutionary optimization, heuristic algorithms, etc.).
+4
+  arti cial intelligence and robotics,
+  cybernetics/control theory, and
+  game theory.
+As the methods of these di erent sciences have by far not been fully explored and utilized, we are
+convinced that a much better understanding of socio-economic systems can be gained than what we know
+today. Restricting to empirical, experimental and analytical methods, but underusing the possibilities of
+modern and future information and communication technologies (ICT) would ignore a large number of
+powerful research tools. When properly performed, computational approaches can gain results for a much
+wider range of models, parameters, and conditions than empirical, experimental and analytical methods
+can.
+2 Strategies to build up social simulation capacities: From
+agent-based to multi-scale simulations
+According to Shannon [7], simulation can be de ned as  the process of designing a model of a real system
+and conducting experiments with this model for the purpose of understanding the behavior of the system
+and/or evaluating various strategies for the operation of the system . The method of computer simulation
+has been successfully used in the natural and engineering sciences. Also in the social sciences, it is being
+used since the 50ies [8], and it is spreading continuously, particularly since the advent of agent-based
+modeling (ABM) (for an introduction to history of social science simulation see Chap. 1 of Ref. [9]).
+2.1 Agent-based models and simulation
+Agent-based simulations are used to model the decision-making entities of the system of interest. De-
+pending on the  eld of application, agents can represent individuals, groups, organizations, companies,
+etc. They seem to be particularly suited to re ect interactions with the surrounding environment and
+between di erent agents as well as their heterogeneous properties in a natural way [10, 11]. Agent-based
+simulations can be combined with a variety of concepts, ranging from decision models to evolutionary
+game theory and beyond. When modeling individuals, it seems plausible to give agents the following
+features (or a subset of them, depending on the purpose of the respective study):
+  birth, death, and reproduction,
+  individual needs of resources (e.g. eat and drink),
+  competition and  ghting ability,
+  toolmaking ability (e.g. the possibility to grow food, hunt etc.),
+  perception,
+  curiosity, exploration behavior, ability for innovation,
+  emotions,
+5
+  memory and future expectations,
+  mobility and carrying capacity,
+  communication,
+  learning and teaching ability,
+  possibility of trading and exchange,
+  the tendency to have relationships with other agents (e.g. family or friendship ties etc.).
+Agent-based simulations allow one to start o  with the descriptive power of verbal argumentation
+and to calculate the implications of di erent hypotheses. From this perspective, computer simulation is
+a special form of mathematics. Some are already arguing that applied computer science has taken the
+role that mathematics has had for centuries for what concerns  providing an orderly formal framework
+and explanatory apparatus for the other sciences  [12]. Others have formulated reasons why simulation
+should be considered more appropriate than mathematics for performing social science analysis [13]:
+modularity, greater  exibility, enhanced expressiveness, and inherent capabilities for performing parallel
+and distributed tasks are among its strong advantages.
+In the socio-economic sciences, multi-agent computer simulations facilitate to overcome the limitations
+of the theoretical concept of homo economicus (the  perfect egoist ) [14], relaxing idealized assumptions
+that are empirically not well supported. They also o er a possibility to go beyond the representative
+agent models of macroeconomics [15], and to establish a natural link between the micro- and macro-level
+of description, considering heterogeneity, spatio-temporal variability, and  uctuations, which are known
+to change the dynamics and outcome of the system sometimes dramatically [2].
+Computer simulations are also a suitable tool to study complex systems and their emergent, often
+counter-intuitive behaviors, due to which linear, conventional, and straight-forward modeling attempts
+may not provide a suitable understanding [16, 17]. By modeling the relationships on the level of individuals
+in a rule-based way rather than describing aggregates in the classical, equation-based way [18], agent-
+based simulations allow peculiar features of a system to emerge without a-priori assumptions on global
+properties. At the same time, this approach allows one to show the consequences of ex-ante hypotheses
+regarding the interactions of agents. It is also possible to apply methods from statistics and econometrics
+to simulation outcomes and compare the results with actual data, to which the same procedures have
+been applied. As agent-based simulations are suited for detailed hypothesis-testing, one could say that
+they can serve as a sort of magnifying glass or telescope ( socioscope ), which may be used to understand
+reality better.
+The progress as compared to  fteen years ago lies not only in the better computer power and visualiza-
+tion techniques. The greater perspectives result from the current transition from a data-poor to a data-rich
+situation in the socio-economic sciences, which allows one to verify or falsify models, calibrate their pa-
+rameters, or pursue data-driven modeling approaches [5]. This transition supports the comprehension
+of the inner relationships and signi cant patterns of complex systems with semi-automated techniques,
+based on algorithms and ICT systems that are able to cope with the gigantic amounts of data that are
+now continuously produced by all sorts of information systems (and even more so in the future). Given
+this development, we envision a new, complementary way of performing socio-economic research, which
+may be called  Social Supercomputing . This approach would facilitate the integration of di erent kinds
+of data (e.g. demographic, socio-economic, and geographic data) and di erent kinds of simulation ap-
+proaches (e.g. agent-based and continuous ones, using partial di erential equations), at an unprecedented
+scale and level of detail. It would facilitate multi-scale simulations of all kinds. In fact, global-scale com-
+puter simulation is a vision that appears to become possible in the socio-economic sciences within the
+next 10 to 15 years, with unprecedented opportunities for societies and economies, if done in the right
+way.
+6
+2.2 Social super-computing
+In the past, large or even global-scale simulations of human society have been obstructed by a lack of
+su cient computer power and also by a lack of data to determine suitable models, network interactions,
+parameters, initial and boundary conditions. However, future high performance computing capacities
+(including grid and cloud computing) and advances in collecting and analyzing massive socio-economic
+data [5] promise to overcome these problems. Massive computer power is, for example, required for large-
+scale computational analyses in the following areas:
+  network research, community detection,
+  Monte-Carlo simulations of probabilistic system behavior,
+  multi-agent simulations of large systems (e.g.  whole-earth simulator , which may involve up to 10
+billion agents and complementary environmental simulations),
+  multi-agent simulations considering human cognitive and psychological processes (e.g. personality,
+memory, strategic decision-making, emotions, creativity etc.),
+  massive data mining, e.g. real-time  nancial data analysis,
+  realistic computer simulations with parameter-rich models (coupling simulations of climate and
+environmental change with simulations of large techno-socio-economic-environmental systems),
+  pluralistic or  possibilistic ,  multiple-world-views  modeling [6] (to determine the degree of relia-
+bility of model assumptions and to improve the overall prediction capability),
+  calibration of parameter-rich models with massive datasets,
+  scanning of multi-dimensional parameter spaces,
+  sensitivity analyses (e.g. k-failures),
+  parallel worlds scenario analyses (to test alternative policies etc.),
+  visualization of multi-dimensional data and models of complex systems, and
+  an optimal real-time management of complex systems (guided self-organization, self-optimization),
+  multi-agent simulations considering complex decision-making processes.
+In the past, supercomputers have been used mainly in physics or biology, or for di cult engineering
+problems such as the construction of new aircrafts. They have also been applied to weather forecasting
+and the study of climate change (e.g. [19]). Recently, they are also increasingly used for social and
+economic analyses, even of the most fundamental human processes. First applications in a variety of
+ elds demonstrate the feasibility of social super-computing and the possibility to apply it in order to
+better cope with crises:
+1. A  rst successful application area was large-scale tra c simulation. The TRANSIMS project [20,
+21, 22] of the Los Alamos National Institute (LANL), for example, has created agent-based simula-
+tions of whole cities such as Dallas [23] and Portland [24]. The approach has been recently extended
+to the simulation of the travel behavior of the 7.5 million inhabitants of Switzerland [25, 26]. These
+simulations are obviously based on parallel computing. They generate realistic individual activity
+patterns according to detailed statistical panel data ( travel diaries ) [27, 28] which are nowa-
+days complemented by the availability of GPS data. Other extensions look at the interconnections
+between the tra c system and the regional development [29, 30].
+7
+2. Recent applications are studying contingency plans for large-scale evacuations of cities [31, 32].
+Key aspect here is understanding the interdependency of infrastructure systems [33, 34] and their
+vulnerabilities through natural disasters, terrorist attacks, and accidents. Los Alamos National Lab-
+oratories have already established a Critical Infrastructure Protection Decision Support System [35].
+Its advanced simulation capabilities have already been extensively used during past emergencies.
+3. Large-scale simulations have also been applied to study and predict the spreading of diseases.
+While previous epidemic spreading models such as the SIR model [36, 37, 38] have neglected spatial
+interaction e ects, recent models [39] take into account e ects of spatial proximity [40], air tra c
+[41] and land transport [42] using TRANSIMS and other tra c simulation models. The current
+scienti c development also tries to take into account behavioral changes which may reduce the
+spreading rate of diseases.
+4. There are also attempts to model  nancial markets with agent-based simulations. Two examples
+for this are the Santa-Fe Market Simulator [43] and U-mart [44]. Recent attempts are even heading
+towards the simulation of the whole economic system (see for example the EU project EURACE
+[45]). Other simulation studies are trying to understand the evolution of cooperation [46], social
+norms [47, 48], language [49, 50, 51], and culture [52]. Such simulations explore the conditions under
+which trust, cooperation and other forms of  social capital  can thrive in societies (see also Ref.
+[4, 2]). They also show that the crust of civilization is disturbingly vulnerable. These simulations
+reveal common patterns behind breakdowns of social order in events as diverse as the war in former
+Yugoslavia, lootings after earthquakes or other natural disasters, or the violent demonstrations we
+have recently seen in some European countries.
+5. Migration processes have been studied through large-scale social simulations as well [53]. The related
+scenarios integrate huge volumes of demographic information about geographical areas in order to
+determine the factors that in uence the spatial population dynamics.
+It appears logical that supercomputing will be ultimately moving on from applications in the natural
+and engineering sciences to the simulation of social and economic systems, as more and more complex
+systems become understandable and the required data become available. It is obvious that virtual three-
+dimensional worlds are waiting to be  lled with life. The upcoming trend becomes visible already. For
+example, ETH Zurich s Competence Center for  Coping with Crises in Complex Socio-Economic Systems 
+(CCSS) is currently the biggest shareholder of the Brutus supercomputing cluster, which is ranked 10th on
+the list of Europe s fastest supercomputers. Social supercomputing is also a new focus of other renowned
+research centres such as the Los Alamos National Laboratory, the Brookings Institution, John Hopkins
+University or the Oak Ridge National Laboratory in the United States, to mention only a few. Finally,
+there is very recent news that Spain is going to invest 2.7 million EUR in a project (Simulpast) aimed at
+developing new ways of applying simulation and High Performance Computing (HPC) to the Humanities
+and Social Sciences.
+3 Ways to build up an  arti cial societies  community that aims
+at simulating real and alternative societies by means of super-
+computers, grid or cloud computing
+Given the speed of development in the ICT area, it seems feasible to realize something like a  Living
+Earth Simulator  to simulate the entire globe, including all the diverse interactions of social systems and
+of the economy with our environment. However, this requires to solve a number of problems, including
+the following ones:
+8
+1. to provide suitable hardware systems,
+2. to transform data into knowledge,
+3. to create suitable software solutions,
+4. to build up a larger social supercomputing community, and
+5. to improve the scienti c methodology and validation of social simulation.
+3.1 Europe has to catch up in the area of supercomputing and data centers
+Today, challenges such as global climate simulation require the use of the fastest supercomputers of the
+world. Simulating life on Earth and everything it relates to will require even bigger computer power.
+Such planetary-scale simulations will be unprecedented in their scale and level of detail. The situation
+is similar for the collection and processing of the relevant data (see Ref. [5]). The potential social and
+economic bene ts of social super-computing would be enormous, from the prevention or mitigation of
+future crises up to the creation of new business opportunities (see Ref. [4]).
+An analysis of the list of top 100 supercomputers in the world, however, shows that Europe is lacking
+behind in terms of computer power (see Appendix B). While it appears appropriate that 19 out of the
+50 fastest supercomputers are located in Europe, 20 in the United States, and 9 in China or Japan, the
+top 20 list looks concerning: Only 5 of them are located in Europe, 4 in China or Japan, but 11 in the
+United States. The top 10 list is even alarming: Only 1 of the 10 fastest computers in the world is in
+Europe, 2 in China and Japan, while 7 of them are in the USA. The PRACE project [54] is trying to
+address Europe s computational gap on the long term by supplying exa-scale computing power by 2019.
+A similar picture is found for data centers, the creation and maintenance of which poses increasing
+costs and problems, considering in particular the rapidly growing data generation rates and the di cul-
+ties in integrating multiple concurrent data-streams and data from o ine repositories. This will require
+entirely new approaches to data processing. Today, most data are collected and stored by large Internet
+providers, government agencies, and private companies, while public research institutions are far behind.
+This situation implies a number of problems, including the lack of oversight of what is actually being
+done in di erent parts of the system, leading to multiple investments, while remaining knowledge gaps
+are not e ciently  lled [4]. Evaluating the diverse digital traces that human activities leave behind, this
+de ciency could be overcome.
+3.2 Turning data into knowledge: Future challenges to be addressed
+Current computer-based approaches in the social sciences still have a number of serious limitations which
+must and can be overcome, as discussed in the following:
+  The discussion around the simulation of Volcanic ashes shows that it is not su cient to have com-
+puter simulations. One rather needs a concept integrating real-time measurement and monitoring,
+e.g. through suitable sensor networks or other data sources. The goal is to reach zero-delay data min-
+ing which allows one (i) to feed boundary conditions and interaction network data into large-scale
+computer simulations, (ii) to calibrate parameters and determine advance warning signs on-the- y,
+(iii) to discover characteristic patterns ( stylized facts ).
+  Today s simulations are still restricted in scale and level of detail, and they lack integration. When
+performing transport-related simulations, for example, the time scales of tra c control, road re-
+pair, transport planning and regional planning range from seconds to 30 years. Such multi-scale
+simulations are still not operational on the level of a single region, and even less on a global scale.
+9
+  Di erent sectors of the techno-socio-economic-environmental system need to be computed in an
+integrated way, not in separation. Today, we are still lacking a su cient  ancial market simulation
+as well as an integrated micro-macro-simulation of the economic system. While this goal may be
+reachable to a certain extend within a couple of years, an integration with models of the environment
+and social system appear necessary as well. It is clear that the spreading of diseases is in uenced
+by human transport and impacts economics and social behavior. In a similar way environmental
+changes a ect agriculture, forestry, and other economic sectors, which may cause migration, inte-
+gration problems, and con icts or even wars. Therefore, it is crucial to gain an integrated systemic
+view.
+Causality networks [55] and systems dynamics approaches [56] can certainly be useful to explore
+possible cascading and feedback e ects. However, they are quite limited in scope, as they do not
+su ciently consider the variability in space and of other factors, and oversimplify the interactions
+in the system. This could be overcome when computer models are combined with massive data
+mining.
+  The behavioral response to information about the system needs better modeling. This has, for ex-
+ample, become obvious for predictions of epidemic models, where disease spreading rates change
+through behavioral adaptations. We also need to learn more about collective behavior, coalition
+formation, political decision making, and lobbying. All this requires the integration of behavioral
+models and, in particular of psychological models, into simulations of socio-economic systems. In
+other words, the approach must go beyond rational agent approaches and re ect emotions, percep-
+tion biases, and possibly other factors as well. Again, a data driven model promises progress, but
+needs to be combined with empirical and experimental approaches (in the lab and Web).
+Furthermore, we are currently lacking something like a  social information theory  which would
+allow one to assess the relevance and impact of certain kinds of information on socio-economic
+systems, or emergent e ects that may result when two or more pieces of information are perceived
+in correlation.
+3.3 Crafting new software tools
+The analysis of massive amounts of data is already a great computational challenge. The even bigger goal,
+namely to simulate society and the global economy as a whole, must be approached in a structured way.
+Herein, the modeling of human activities will play an eminent role. Today, there are already a number
+of multi-agent simulation platforms for speci c domains like tra c (e.g. Transims [57], Matsims [58]),
+economics (e.g. Eurace [45]) and  nance (e.g. Santa-Fe Market Simulator [43], U-mart [44]). However,
+they are still lacking crucial functionalities, including the integration of real-time data streams. Therefore,
+a wider approach to simulation is needed, which overcomes the boundaries between simulation and reality.
+For example, the increasing popularity of communal on-line games could be used as an opportunity for
+policy and systems design (see Sec. 4).
+Considering the potentials and limitations of current state-of-the-art large-scale simulators, a global-
+scale super-simulator ( Living Earth Simulator ) would require to have features such as the following:
+  massive computational resources (in order to reach a su cient degree of realism),
+  high  exibility, robustness, and evolutionary, self-organizing (self-*) properties,
+  interconnectedness with a variety of other simulation tools for the sake of multi-scale micro-macro
+modeling,
+  interoperability with large-scale data sets (both regarding the use of data during simulations and
+their deposition in massive repositories),
+10
+  support of the simultaneous integration of multiple data-sources, recombining real-time streams of
+information with historical datasets,
+  measurement of boundary conditions and the properties of the relevant interaction networks  on
+the  y ,
+  fusion of data-driven and model-based components in real-time,
+  self-calibration during the simulation, as more and more data become available over time (e.g.
+determination of weather-dependent road capacities or of spreading rates of diseases),
+  establishment of coherent,  exible and practical standards for interoperability and systems integra-
+tion,
+  veri cation and validation through lab and Web experiments, and/or serious multi-player games,
+  equipment with powerful visual data exploration tools (see Sec. A).
+Each of the above points involves fundamental challenges requiring to signi cantly advance today s ICT
+systems. In the following, we can just highlight a few points. For example, for the purpose of modeling
+complex systems (such as technical, social, economic and environmental systems and their interactions),
+it would be favorable to develop a software system which allows one to (semi-)automatically perform the
+following tasks:
+  identify well measurable, interpretable and relevant variables in large data sets,
+  detect signi cant patterns in high dimensional complex systems and visualize them,
+  extract a variety of mathematical laws consistent with available data sets and identify their crucial
+assumptions, approximations, and simpli cations,
+  assess the suitability to interpret the alternative models, to perform analytical studies, and to
+calibrate them,
+  evaluate their validity,
+  support the process of interpreting the models,
+  help to distinguish descriptive from explanatory models and to  nd models of the latter type
+(providing a better level of understanding of causal relationships and systemic interdependencies),
+  perform sensitivity analyses with respect to parameter variations and model assumptions (e.g.
+structural variations),
+  perform analyses of the network robustness (e.g. for critical infrastructures such as transportation
+systems, power grids, the  nancial system, communication systems, the Internet etc.),
+  perform analyses regarding spatial dependencies,
+  identify early warning signs of upcoming critical states and systemic shifts through scenario analyses,
+  generalize detected patterns and simplify models for them to determine  stylized facts  of the
+studied system,
+  customize the degree of detail to the modeling purpose,
+  determine implications which distinguish alternative models, and derive procedures to test the
+model variants by complementary data analyses or experiments,
+11
+  identify, run, and visualize relevant simulation scenarios, and support their interpretation,
+  determine the range of validity of the alternative models and the levels of uncertainty of the simu-
+lation scenarios studied.
+Such a new software platform would play a fundamental role in integrating
+1. data generated from various sources, as described in Ref. [5],
+2. models from economics, the social sciences and other disciplines,
+3. extending these models into new directions, for example as discussed in Ref. [3], taking into account
+the massive data provided by new powerful ICT systems.
+Besides, it appears desirable
+  to create distributed, adaptive processing and storage systems based on principles of collective
+intelligence,
+  to employ emergent computing and arti cial immune systems,
+  to make swarm architectures programmable like single systems,
+  to create ICT platforms that can recon gure themselves as well as adaptive algorithms that re-
+program themselves, allowing for changing interaction rules,
+  to develop a standardized framework for modelling agent interactions,
+  to consider cognitive and emotional factors supporting swarm intelligence, and
+  to enable  cultural evolution  in computer networks.
+3.4 Building up a larger social supercomputing community
+It is quite obvious that additional research, development, consultancy and education capacities must be
+built up in the areas of social simulation and integrative systems design in order to address the challenges
+of humanity more successfully in the future. Experiences from the establishment of the bioinformatics
+community or the climate and earth science communities may be helpful to consider, here.
+One way of extending these capacities is to connect the social simulation community (e.g. the European
+Social Simulation Association, ESSA [59]) with natural and computer scientists, engineers, and ICT
+researchers. This would pull in people and knowledge from a variety of relevant areas and make sure
+that the wisdom gained in the socio-economic sciences will be considered. It is clear that this requires
+to foster a multi-disciplinary interaction, which could be done by joint think tanks, summer schools,
+workshops, symposia, conferences, etc., joint research projects and publications, and the creation of
+a joint study direction, which may be called  Integrative Systems Design  or just  Systems Science 
+(see Sec. 4). Moreover, the  eld and its progress could be largely stimulated by  Hilbert Workshops 
+(identifying grand scienti c challenges), suitable incentive schemes, and tools that make communication
+and collaboration easier and more e cient (see Ref. [4]).
+12
+3.4.1 User-friendly tools for non-experts
+An additional route to take is the provision of better tools to social scientists and economists for the
+purpose of computer simulations. In the past, programming computer code has traditionally not been
+a focus in these areas, in contrast to the natural and engineering sciences. As a consequence, there is a
+huge gap between what is done in the academic world and in the governance and business world. This
+situation must be overcome by creating user-oriented ICT systems. For this, the following seems to be
+necessary:
+1. to create  non-expert systems , which make the knowledge of humanity, simulation tools etc. ac-
+cessible for everyone,
+2. to design models for adaptive autonomous systems that interact with humans and social structures:
+ICT systems that think like humans, understand what they want, and adapt to them,
+3. to develop ICT systems that are intuitive, easy to use, customizable, reliable (self-repairing),  exible
+(self-adaptive), trustable (in particular self-protecting), sustainable, scalable, and interoperable (like
+plug-ins or apps or widgets, see section 3.4.2),
+4. to facilitate an interface-free interaction with users (along the line of systems that can be instructed
+by voice or latest-generation computer games, which  understand  body language and mimics).
+3.4.2 Building up the  World of Modeling  (WoM), a toolbox of interoperable apps
+User-friendly simulation tools would make it easier to perform research that is driven by the problems
+that need to be solved rather than by existing theories. Today, researchers still have to spend too much
+time on programming their models, which implies that these tend to be oversimpli ed. It seems already
+beyond the scope of a PhD thesis or the capability of a single research team to create a simulator that
+would allow to study the implications and di erences of existing decision and behavioral models not to
+mention more sophisticated models that may be developed in the future. For the way in which certain
+behavioral strategies (or opinions) spread, for example, numerous plausible, but mutually inconsistent
+approaches have been proposed, including the following ones [60]:
+  strategic optimization considering likely future decisions of all involved parties, assuming that ev-
+erybody else would behave so as well,
+   satis cing , i.e. the application of aspiration-dependent rules (trying to reach a certain minimum
+performance),
+  reinforcement learning,
+  unconditional imitation of the best performing neighbor or interaction partner,
+  best response in the next interaction, given the current situation,
+  multi-stage strategies such as tit for tat,
+  the application of stimulus-response rules such as win-stay-lose-shift,
+  the use of probabilistic rules such as the proportional imitation rule, the Fermi rule, or the uncon-
+ditional imitation rule with a superimposed randomness ( noise ),
+  rules based on social in uence (such as majority rules), giving rise to herding e ects.
+13
+Despite all of these rules (and sometimes several variants of them) have been formalized and have
+testable implications, their range of validity has still not been experimentally determined. Most likely,
+di erent individuals apply di erent rules, and the application of the respective behavioral choice rule may
+even be situation-dependent ( framing e ect ) [61].
+Complementary, one would also have to test the impact of di erent interaction networks and di erent
+initial conditions or even  history dependencies , to get a su ciently di erentiated picture of socio-
+economic reality (or possible realities) through computer simulations. Note that, at least to a certain
+extent, such a simulation approach would allow one to identify sensitivities to parameter changes, and
+even structural instabilities, which may cause unexpected systemic shifts ( phase transitions ).
+To assess the sensitivity or robustness of socio-economic simulation results with regard to the under-
+lying assumptions, it will be necessary to simulate a large variety of interaction rules and settings, and
+to compare their implications. This should be doable by simply  plugging in  model components when
+setting up the model underlying a computer simulation. Going one step further, the ICT system could
+also create a number of scenarios in a (semi-)automated way. This multiple-world-view approach would
+be compatible with the  possibilitistic  and  pluralistic modeling  strategies, which seem to be most
+appropriate for the analysis of socio-economic systems [6].
+To build up the simulation capacities we are calling for, the scienti c community would have to create
+standardized app-like model components, which are compatible and interoperable. Successful examples
+of such an approach are Web browsers add-ons (e.g. see [62]), modules of content management systems
+(CMS) (e.g. see [63]) or the famous apps for mobile phone operating systems (see e.g. [64] or [65]). The
+way in which open communities such as Linux or Wikipedia are organized can give a good orientation of
+how to do this (see also Ref. [4]). The result of such community-wide activities creating model components
+for the simulation of socio-economic systems would be the creation of a big library ( toolbox ) for agent-
+based and other simulation approaches, which could be called the  World of Modeling  (WoM). The
+approach would overcome the current situation, in which we have a pletora of limited and mutually
+incompatible simulation tools such as Swarm [66] or Repast [67], which provide low-level libraries, and
+graphical modelling environments such as Netlogo [68] or Sesam [69], which are more suited for beginners
+(for a comprehensive comparison table of the features of available packages for agent-based simulations
+see Ref. [70]). Even powerful simulation packages like MatLab [71] are not suited for massive agent-based
+simulations or anything that would come close to the envisaged  Living Earth Simulator . Moreover,
+there is still a lack of analytical tools capable of exploring ABM results from a scienti c point of view.
+4 Proposals to establish centers for integrative systems design
+Besides analyzing, modeling and simulating our world, additional e orts will also be required in the area
+of managing complexity and integrative systems design in order to be able to prevent, mitigate, or cope
+with crises more e ciently.
+4.1 Predictability in socio-economic systems: Possibilities and limitations
+Many people believe that, in order to create a crisis-relief system, one needs to be able to predict the
+future of the system, but doubt that such prediction is possible for socio-economic systems. However,
+both is not exactly true:
+1. There are many other purposes of modeling and simulation besides prediction [72].
+2.  Model predictions  should be better understood as  model implications  rather than  model fore-
+casts , e.g. a statement that says what systemic outcome is expected to occur for certain (regulatory)
+boundary conditions, e.g. cooperation, free-riding, or con ict [47, 48].
+14
+3. It is important to point out that forecasts are possible sometimes. A famous example is Moore s
+law regarding the performance of computer chips. Moreover, while the detailed ups and downs of
+stock markets are hard to predict, the manipulation of interest rates by central banks leads, to a
+certain extent, to foreseeable consequences. Also the sequence in which the real-estate market in
+the US a ected the banking system, the US economy, and the world economy was quite logical.
+That is, even though the exact timing can often not be predicted, causality networks allow one to
+determine likely courses of events, which in principle enables us to take counter-actions in order to
+avoid or mitigate the further spreading of the crisis [55].
+4. As weather forecasts show, even unreliable short-term forecasts can be useful and of great economic
+value (e.g. for agriculture). Another example illustrating this is a novel self-control principle for
+urban tra c  ows, which was recently invented [73, 74]. Although its anticipation of arriving pla-
+toons is of very short-term nature, it manages to reduce travel times, fuel consumption, and vehicle
+emissions.
+In conclusion, prediction is limited in socio-economic systems, but more powerful than is usually believed.
+Moreover, in certain contexts, it is not necessary to forecast the course of events. For example, in order
+to reduce problems resulting from bubbles in  nancial markets, it is not necessary to predict the time of
+their bursting or even to know about their existence. What is required is a mechanism that destroys any
+forming bubbles, as long as they are small. Such mechanisms are possible. For example, they could be
+implemented by introducing additional sources of randomness into the system [17, 75].
+4.2 Paradigm shift from controlling systems to managing complexity
+The idea to control socio-economic systems is not only inadequate it is also not working well. Socio-
+economic systems are complex systems. Therefore, cause and e ect are usually not proportional to each
+other. In many cases, complex systems tend to resist manipulation attempts, while close to so-called
+ tipping points  (or  critical points ), unexpected  regime shifts  ( phase transitions ,  catastrophes )
+may happen. Consequently, complex systems cannot be controlled like a technical system (such as a car)
+[16].
+Note that the above property of systemic resistance is actually a result of the fact that complex
+systems often self-organize, and that their behavior is robust to not-too-large perturbations. While forcing
+complex systems tends to be expensive (in case systemic resistance is strong) or dangerous (in case an
+unexpected systemic shift is caused), the alternative to support the self-organization of the system makes
+much more sense. Such an approach  goes with the  ow  (using the natural tendencies in the system)
+and is resource-e cient. Therefore, a reasonable way to manage complexity is to guide self-organization
+or facilitating coordination [16, 76].
+In a certain sense, this self-organization or self-control approach moves away from classical regulation
+to mechanism design. Regulation often corresponds to changing the boundary conditions, while mecha-
+nism design changes the interactions in the system in a way that reduces instabilities (e.g. due to delays)
+and avoids that the system is trapped in local optima (and continues its evolution to a system-optimal
+state). For example, slightly modifying the interaction of cars by special driver assistant systems can
+stabilize tra c  ows and avoid bottleneck e ects to a certain degree [77].
+4.3 Self-defeating prophecies and proper design of information systems
+It is often pointed out that socio-economic systems would not be predictable, because the reaction of
+people to information about the system would destroy the validity of the forecast. If done in the wrong
+way, this is actually true. Let us illustrate this by an example: Assume that all drivers are given the same
+information about existing tra c jams. Then, drivers may most likely over-react, i.e. more drivers may
+use an alternative road than required to reach a system-optimal distribution of tra c  ows [78].
+15
+However, as has been shown in laboratory route choice experiments, an almost optimal route choice
+behavior may be reached by an information system that gives user-speci c recommendations. In other
+words, some drivers would be asked to stay on the road, and others to leave it. By introducing a form
+of compensation for the fact that not everyone follows the recommendations, one can avoid over- or
+under-reactions of drivers in congestion scenarios [78].
+One crucial issue of such individualized recommender systems, however, is their reliability. An un-
+reliable system or one that is systematically biased, will be only poorly followed, and people quickly
+compensate for biases. Therefore, it is also essential to design the information system in a way that is
+fair to everyone. That is, nobody should have a systematic advantage. Nevertheless, the system should be
+ exible enough to allow a trading of temporary (dis)advantages. For example, somebody who was asked
+to take the slower road on a given day (and who would have a right to use the faster road on another
+day), may still use the faster road. However, he or she would have to pay a fee for this, which would be
+earned by somebody else who would exchange his or her  ticket  for the faster road for a  ticket  for the
+slower road (such that the system optimum state would still be maintained) [78].
+In summary, the above described information system would not cheat anyone, and it would be  exible
+and fair. Only people who use the faster road more often than average would have to pay a road usage fee
+on average. A normal driver would either pay nothing (when following the user-speci c recommendation)
+or pay on some days (when being under a pressure of time, while the recommendation asks to take the
+slower road). However, the same amount of money could be earned on other days by taking the slower
+road. In other words, fair usage would be free of charge on average, and drivers would still have a freedom
+of route choice. The primary goal of the system would not be to suppress tra c  ows through road
+pricing, but the pricing scheme would serve to reach a system optimal tra c state.
+4.4 New approaches and designs to manage complexity
+There is no single scheme, which allows to manage all complex systems optimally, independently of their
+nature. The success of a management concept very much depends on the characteristics of the system,
+e.g. its degree of predictability. The systems design must account for this.
+In case of long-term predictability, there must obviously be an almost deterministic relationship be-
+tween input- and output-variables, which allow one to change the temporal development and  nal out-
+come of the system. If long-term predictability is not given, management attempts must be oriented at a
+su ciently frequent re-adjustment, which requires a suitable monitoring of the system.
+As the example of weather forecasts shows, even unreliable short-term predictability can be very useful
+and economically relevant (e.g. for agriculture).1 The success principle in case of short-term forecasts is
+the  exible adjustment to the local environment, while well predictable systems often perform well with
+a  xed (rather than variable) organization principle.
+Even in case of a system that cannot be forecast over time at all, it is possible to modify the system
+behavior. Taking the time-dependent course of the stock markets as an example, introducing a Tobin
+tax would reduce excessive levels of speculation. Moreover, introducing  noise  (further sources of unpre-
+dictability), would destroy undesirable correlations and impede insider trading [75].
+These are just a few examples illustrating that there actually are possibilities to in uence systems
+involving human behavior in a favorable way. A more detailed discussion of the issue of managing com-
+plexity is given in Refs [16, 79, 80, 81, 82].
+Generally, there are two ways of in uencing the dynamics and outcome of a system by changing
+the  rules of the game . If the interaction in the system are weak, the system dynamics can be well
+in uenced by modifying the boundary conditions of the system (i.e. by regulatory measures). However, if
+the interactions are strong, as in many social and economic processes, the self-organization of the system
+1Another example is the  self-control  of urban tra c  ows, which is based on a special, tra c-reponsive kind of
+decentralized tra c light control [73], see Sec. 4.2
+16
+dominates the external in uence. In this case, a modi cation of interactions in the system (mechanism
+design) seems to be more promising (as in the tra c assistance system that reduces the likelihood of
+congestion by special driver assistance systems [77]). Of course, both measures may also be combined
+with each other.
+While mechanism design is relatively common in computer science and some other areas (e.g. in
+evolutionary game theory, mathematics, and partly in physics), it seems that these methods have not
+been extensively applied in the socio-economic sciences so far. For example, there are many di erent
+mechanisms to match supply and demand, and it would be interesting to know what systemic properties
+they imply (such as the level of stability, the e ciency of markets, the resulting wealth distribution,
+the creation of investment opportunities, etc.). There is also an on-going debate about the best way
+to involve the population in the political decision-making process. It is still not clear how to reach the
+best combination of top-down and bottom-up elements of interaction, and how to  nd the best balance
+between centralized and decentralized coordination approaches. All this poses interesting and practically
+relevant challenges that determine the prosperity and well-being of societies (see also Ref. [4]).
+Moreover, in the past, mechanism design has been applied basically to (sub)systems (i.e. parts) of the
+complex overall system we are living in. However, due to the interconnection of all sorts of (sub-)systems
+(e.g. of the tra c, supply, industrial, and environmental systems), measures in one (sub)system may have
+undesired side e ects on other (sub)systems. In fact, for fundamental reasons, it is quite frequent that
+taking the best action in one (sub)system will usually negatively a ect another (sub)system, such that an
+optimal state of society is not reached (setting aside for the moment the practical problem of what the
+optimal state of society would be). The poor performance of tra c light controls that optimize locally
+(without a coordination with neighboring intersections) is a good example for this [77]. In networked
+systems, undesirable feedback e ects (such as spill-over e ects in urban tra c  ows) are quite common.
+4.5 Need of multi-disciplinary collaboration
+As a consequence of the complexity of socio-economic systems, one requires an integrative approach
+that comprises technical, social, economic and environmental systems and their interactions. A good
+concept to manage complexity must be integrative and holistic in nature. Such an approach may be
+called  integrative systems design . Extending the idea of a  policy wind tunnel  (a computer-based,
+experimental device to support decision-making) to large, global-scale systems, this will certainly require
+massive computer power and huge amounts of data, as envisaged by the concept of the Living Earth
+Simulator (see Sec.3.3). Moreover, in order to get beyond descriptive ( t) models in favor of explanatory
+models, it would call for the integration of a large variety of competencies, including
+  economics,
+  social sciences (also considering psychology, anthropology, history, . . . ),
+  statistical physics,
+  the theory of complex adaptive systems (including self-organization, emergence),
+  network theory,
+  cybernetics, etc.
+This implies the necessity of a multi-disciplinary approach. Due to the di culties related to the
+fact that multi-disciplinary research, education and funding does not  t well into existing institutional
+settings, it would be advised to build up a new, multi-disciplinary  eld and study direction. This would
+involve the above subjects, and also computer science (including programming, visualization, AI, robotics,
+etc.), mathematics, ecology, and biology (organization of social species, the immune and neural systems,
+17
+etc.). It is quite obvious that there is a lack of experts who would oversee all these areas and would be
+capable of an integrative systems design approach. Such experts overlooking a broad range of problems
+and methods would be very much needed in engineering, economics, and areas involving decision-making
+about complex issues (such as politics).
+4.6 New ICT tools for integrative systems design
+In the past, it was impossible to experiment with our future. This made social sciences di erent from
+the natural and engineering sciences, in which di erent options can be tried out before choosing one. In
+the future, we will also be able to make experiments with di erent socio-economic designs (e.g. various
+market mechanisms). Recently, besides the classical method of role plays, lab experiments are establishing
+as a new scienti c method in the socio-economic sciences [83, 84, 85, 86, 87]. These approaches are now
+complemented by Web experiments [88] and studies of multi-player on line games (such as  Second Life )
+[60, 89, 90, 91].
+In other words, so-called serious games, which represent features of society and economics in a quite
+realistic way, may be used to gain insights into human behavior and e ects of social or economic in-
+teractions on the systemic level. Such virtual realities allow one, in principle, to explore a number of
+di erent scenarios and worlds [88]. For example, a variety of designs of a new shopping mall, airport,
+railway station, or city center, could be populated in virtual reality and tested by their future users. In
+this way, one can discover weaknesses of designs in advance and identify the most popular architecture
+or city design.
+It is obvious that similar approaches can be applied to a variety of di erent institutional design
+problems. Using serious multi-player games complementary to lab, Web and real-life experiments (as far
+as these is ethically opportune) can create signi cant new insights and reveal weaknesses of computer
+models, such as over-simpli ed model assumptions or overlooked in uence factors. Therefore, they are
+a necessary instrument in the ICT tool set needed to overcome our knowledge gaps regarding complex
+socio-economic systems.
+As a result of these new ICT-based opportunities, there will be a paradigm shift in socio-economic
+decision-making. In the past, it was common to implement suitably appearing new measures based on
+experience and intuition. However, many decisions today have to target problems for which no previous
+experience is available, and the complexity is so high that feedback and side e ects of new measures
+cannot be anticipated well enough by human intuition anymore.
+4.7 Paradigm shift in decision-making
+Therefore, it seems likely that the future way of implementing new measures will look as follows: Before
+the implementation, large-scale computer simulations, fed by huge datasets, will explore di erent possible
+scenarios and their side e ects. Complementary, one will perform experiments in the lab, Web, and virtual
+realities. All these experimental techniques (including the computer experiments) will serve to gain in
+advance the best possible knowledge of the decision options and their likely implications for the concerned
+individuals and the socio-economic system. For example, one could study stress test scenarios for  nancial
+systems under as-realistic-as-possible conditions, involving interactions between all stakeholders (banks,
+governments, customers, tax payers, ...), while today s stress test still largely neglect interaction e ects.
+Based on the so collected experience, the best option would be chosen and implemented by the decision-
+makers, considering priorities, normative, and ethical issues.
+Furthermore, it would make sense to implement the best measures (institutional designs) in limited
+parts of the system  rst and evaluate their performance. After this practical test ( pilot studies ), the best
+solution would be transferred to the whole system, but the success of the measure would be continuously
+monitored. In some sense, this approach to implementing innovations is more along the lines how nature
+seems to work. In fact, the described approach basically follows the principles of evolution, with the main
+18
+di erence that some of the testing of new solutions happens in the virtual rather than the real world,
+and only the best variants are deployed in reality. It is obvious that, in the creation and selection of new
+solutions, evolutionary algorithms [92, 93] will play a major role. Besides, one can probably learn from
+complex adaptive systems such as neuronal networks [94, 95], immune systems [96], or the organization
+of ecological systems [97, 98].
+4.8 The importance of visualization and decision arenas
+Another crucial element of this integrative systems design concept is visualization. It matters not only
+for virtual reality applications. Also large-scale data mining and massive computer simulation imply a
+need for new visualization techniques and approaches. This subject is addressed in detail in Appendix
+A. Besides new visualization approaches, one will also require new visualization centers for sophisticated
+three-dimensional animations and the demonstration to a larger number of decision-makers, from expert
+panels, over managers and politicians to the interested public.
+Combining suitable data, models and visualization tools, the  nal goal would be to develop a virtual
+observatory of social, economic and  nancial systems with the possibility to explore new scenarios and
+system designs through what it sometimes called a  policy wind tunnel . The corresponding ICT sys-
+tems should be suited to craft policy options, contingency plans, and intelligent responses to emerging
+challenges and risks. They will allow one to develop concepts and institutional designs for a  exible,
+adaptive, and resource-e cient real-time management of complex socio-economic systems and organiza-
+tions. Decision arenas visualizing, animating, and illustrating the acquired scienti c insights will provide
+valuable decision-support to decision-makers, as they will make counter-intuitive feedback, cascading and
+side e ects understandable.
+Decision Arenas will also be useful to craft new designs for smarter cities, transport, tra c and
+logistics, and for intelligent energy production and consumption, as well as new institutional frameworks
+and settings to support social and economic participation.
+4.9 Ethical Issues
+It should  nally be pointed out that manipulating social or economic systems potentially raises ethical
+issues. People working in this area should, therefore, follow an ethical codex which could be imagined
+similar to Hippocratic Oath of doctors or other vows which as required from certain public o cers.
+The following goals seem to be widely acceptable:
+  promote human well-being,
+  increase the self-awareness of society,
+  reduce vulnerability and risk,
+  increase resilience (the ability to absorb societal, economic, or environmental shocks),
+  avoid loss of control (sudden, large and unexpected systemic shifts),
+  develop contingency plans,
+  explore options for future challenges and opportunities,
+  increase sustainability,
+  facilitate  exible adaptation,
+  promote fairness,
+19
+  increase social capital and the happiness of people,
+  support social, economic and political inclusion and participation,
+  balance between central and decentral (global and local) control,
+  protect privacy and other human rights, pluralism and socio-bio-diversity,
+  support collaborative forms of competition and vice versa ( coopetition ).
+Unethical use of powerful ICT tools should be forbidden. From people working with them, one should
+require a minimum level of quali cation and training, including ethical issues ( licence ). The activities of
+these ICT systems may need to be recorded and monitored in a way that is su ciently transparent. The
+public should have a right to be informed about related activities (be they at academic or government
+institutions, or in private companies). Security measures will depend on the size of the simulations and
+application areas. The software should be designed in a way that it can be remotely deactivated by a
+number of specially authorized, independent people, if they agree on the necessity of such a step (see
+Ref. [5] for details of such a mechanism). An ethical committee should accompany and supervise related
+activities.
+5 Summary
+Today, statistical and national planning o ces are using a large variety of models for di erent sectors of
+the economy and society, but these are still largely disconnected from each other and hard to integrate,
+so that systemic interaction e ects are hard to assess. Considering  nancial and economic instabilities,
+con ict, large-scale environmental changes, threats through diseases, cyber-crime, or problems resulting
+from demographic change (such as the instability of social bene t systems), etc., our society needs to
+undertake any possible e ort to get a better understanding of these problems and possibilities to mitigate
+them. In this context, the role of data is crucial to provide decision makers all relevant information needed
+to act in a timely manner and  nd long-term sustainable solutions.
+Hence, there is a strong need for integrated tools that are able to close the gap between mainstream
+linear  t models and the required dynamic and holistic thinking that is appropriate to address the
+global challenges of the twenty- rst century. Systemic and dynamic approaches have the advantage to
+consider feedback loops and to be able to reveal previously hidden consequences, while also supporting the
+assessment of the e ectiveness of policy measures. Massive agent-based simulations seem to be particularly
+promising in this context, as they allow one to handle many di erent kinds of agents (individuals, groups,
+companies, etc.), the variability of their individual properties, and interactions among the agents. Ideally,
+in the future, the implementation of such agents should re ect cognitive features and emotions, behavioral
+adaptation, the response to information, and the tendency to show collective behaviors (e.g. to form
+alliances or groups).
+The  nal goal of such super-computer-based activities is to monitor and improve the performance of
+the whole Living Earth system (including its socio-economic life), to assure systemic resilience and avoid
+to run into optimization traps.2 Note that na  ve optimization tends to eliminate heterogeneity [101] and
+redundancies in the system and may increase the vulnerability to perturbations, i.e. decrease robustness
+and resilience. Moreover, there exists special  evolutionary dead ends , in which gradual optimization
+2In fact, in certain systems (such as various transport, logistic, or production systems), optimization tends to drive
+the system towards instability, since the point of maximum e ciency is often in the neighborhood or even identical with
+the point of breakdown of performance. Such breakdowns in capacity or performance can result from ine ciencies due to
+dynamic interaction e ects. For example, when tra c  ow reaches its maximum capacity, sooner or later it breaks down.
+As a consequence, the road capacity tends to drop during the time period where it is most urgently needed, namely during
+the rush hour [99, 100].
+20
+simply does not work. In such cases, the best solution may be the combination of two bad solutions.
+Therefore, it may be easily overlooked. These dangers of na  ve optimization suggest to pursue a di erent
+approach oriented at the principles of evolution, i.e. to explore new solutions locally and test them, and
+if they perform well, then disseminate and apply them to larger areas (see Sec. 4.7).
+For all these reasons, there is a strong need to set-up a network of Centers for integrative systems
+design, capable of gaining an  ecological perspective  of all relevant interactions in socio-economic-techno-
+environmental systems. Within this holistic approach, these centers shall be able to run all potentially
+relevant scenarios, identify causality chains, explore feedback and cascading e ects for a number of model
+variants, and determine the reliability of their implications (given the validity of the underlying models).
+These Centers will compute, analyze and use independent information to address the impact of model
+assumptions and reveal hidden constraints. They will be able to detect possible negative side e ect of
+policy decisions, before they occur. The Centers belonging to this network of Integrative Systems Design
+Centers would be focused on a particular  eld, but they would be part of an attempt to eventually cover
+all relevant areas of society and economy and integrate them within a  Living Earth Simulator .
+The results of all research activities of such Centers would be turned into informative input for political
+Decision Arenas. For example, Crisis Observatories [5] (for  nancial instabilities, shortages of resources,
+environmental change, con ict, spreading of diseases, etc.) would be connected with such Decision Arenas
+for the purpose of visualization, in order to make complex interdependencies understandable to scientists,
+decision-makers, and the general public. By informing all the stakeholders in a better way, it will be
+easier to assess di erent options and their often counter-intuitive feedback, cascading, and side e ects.
+In this way, it will also become more e cient to develop contingency plans and intelligent responses
+to emerging risks or opportunities, having the best of all knowledge at hand. The tight link between
+Integrative System Design Centers and Decision Arenas will also foster the development of concepts
+and institutional designs for a  exible, adaptive, and resource-e cient real-time management of complex
+socio-economic systems and organizations. One of the strategies to explore new system designs will follow
+an evolutionary approach based on techniques such as metaheuristic optimization (genetic algorithms,
+swarm optimization, etc.). It will also pro t from evolutionary computing methods such as di erential
+evolution, learning classi ers, arti cial immune systems, etc. In such a way, new designs will be determined
+for smarter cities, transport, tra c and logistics, for intelligent energy production and consumption, or
+for a better social and economic participation.
+Acknowledgements
+The authors are grateful for  nancial support by the Future and Emerging Technologies programme
+FP7-COSI-ICT of the European Commission through the project Visioneer (grant no.: 248438). They
+would also like to thank for stimulating discussions, feedback on the manuscript and contributions to the
+Visioneer wiki: Ravi Bhavnani, Anna Carbone, Virginia Dignum, Andreas Flache, Mike Holcombe, Janos
+Kertesz, Imre Kondor, Rosario Nunzio Mantegna, Tamara Mihaljev, Dan Miodownik, Stefan Reimann,
+Xavier Rubio, Christian Schneider, David Sumpter, Piotr Swistak, Gabriele Tedeschi, Pietro Terna, and
+Arne Traulsen.
+A Visual problem solving
+The problem of how to  nd valuable information from (relatively) large data sources is probably one of
+the most pressing in the history of science. If human intuition alone may have su ced to cope with the
+contents of several books or with analysing two-dimensional and time-series plots, today the exponential
+growth of data generation rates imposes the use of more advanced visualizations techniques to grasp the
+breadth and depth of the interrelations among petabytes of data.
+21
+Statistical and structural analyses are useful tools, but they come into play later, when the  rst
+hypotheses have been made. At the early stages of scienti c analyses, when little is known about the
+data, but also in its interpretation and maturation process, the intuition of experts is very important
+and must enter the modeling process in a frictionless and interactive way. It can largely be stimulated by
+the great processing capacity of human visual system, which can easily notice correlations and quickly
+recognize variations in colors, shapes, movements, etc. Therefore, the visual exploration of data is crucial,
+particularly for the hypothesis generation process [102]. Moreover, at more advanced stages of the work, it
+can serve to quickly analyze the results of simulations and experiments, e.g. regarding the correct  tting
+of parameters, and it helps to check or reject hypotheses, at least on an intuitive level.
+Unfortunately, the development of novel techniques for the visualization of scienti c data did not
+catch up with the astounding improvements in computational capacity over the last decades. This has
+created a dangerous informational paradox, where one may have to invest one month to understand the
+results of a one-hour simulation job. As Kageyama and Ohno have pointed out, computational science
+without proper visualization tools is like  a high-rise building [not] supported by balanced pillars [103].
+In fact, now more than ever, there is an acute need of enhanced visualization tools. This urgency has not
+been generated due to a surge in the size of datasets, but it was caused, in particular, by the explosion
+of their dimensionality aspect, i.e. the number of observations for each entity. In fact,  what makes the
+data Big is repeated observations over time and/or space [104]. This high dimensionality has made the
+standard visualization techniques inadequate, which were suitable for data with low dimensionality, such
+as two- or three-D plots, OLAP (On Line Analytical Processing), etc.
+Herein, we will brie y review the state-of-the-art visualization techniques and describe how they should
+be integrated in a unique visualization tool that both scientists in integrative system design centers and
+policy-makers in decision arenas would enormously bene t from.
+A.1 Visual data exploration
+Fortunately, the new paradigm for future visualization tools has been already suggested. It can be sum-
+marized by three simple directives, constituting the Information Seeking Mantra[105]. Namely:  overview
+ rst, zoom and  lter, then details-on-demand . In principle, a data scientist should be able to easily exe-
+cute the three above-mentioned steps, passing seamlessly from one to another, without losing the overall
+picture. It is important to note that the technology to implement each step of the Information Seeking
+Mantra is already existing, but what is still missing is their seamless integration. That requires special at-
+tention for dynamic interaction and distortion techniques. To this extent, interactive zooming should not
+display only bigger objects, but also change the type of data representation according to the scale, switch-
+ing for example from colored pixels to high-resolutions icons such as sticky  gures [106] or faces [107],
+in order to exploit the great potential of the human brain to deal with physiognomy. Moreover,  ltering
+should be enabled directly at the visualization level, by implementing mechanisms to immediately and
+interactively process and display portions of the dataset in di erent ways, and scan them by  magnifying
+lenses  [108]. One possible transformation in presence of high-dimensionality is the parallel coordinates
+technique [109], while hierarchical structures can be rendered by rotating cone trees[110], although for
+particularly dense trees special spatial navigation support is required. Alternatively, the use of properties
+of non-Euclidean geometries can overcome this problem [111]. However, the most space-e cient solutions
+are squari ed and cushion treemaps [112, 113], which are especially e ective to represent  le system
+structures.
+As just shown, many visualization technologies are already available, but their implementation in a
+comprehensive tool capable to deal with big amounts of data and available for the scienti c community
+is still missing. Probably the best results in this direction could come only from a joint collaboration
+between visualization scientists and graphic artists, designers, and communicators, as suggested also by
+a recent Nature article [114].
+Finally, if the Information Seeking Mantra had been written more recently, it would have probably
+22
+entailed a fourth directive in order to study data in a distributed way from di erent individual perspec-
+tives, namely share. The Web is in fact currently experiencing a democratic data revolution where not
+only the datasets, but also the visualization tools required to manipulate them are shared. Dynamic in-
+teraction with the data and Web 2.0 social components are the staple features of such Web platforms (see
+Appendix of Visioneer White Paper  From Social Data Mining to Forecasting Socio-Economic Crisis 
+[5]). Applications could be manifold. For example, people could explore new architectural designs (such as
+airports, railway stations, pedestrian zones, stadia or shopping malls) before they are built, as interactive
+virtual multi-player environments would allow them to populate them in advance (see [115]).
+A.2 Virtual Reality for Scienti c Visualization
+Today, the frontier of human-computer interfaces is still called Virtual Reality. Although it is not a
+new technology, it is still in an maturating state. Nevertheless, nothing else at present supports the
+understanding of complex high-dimensional data in a similarly e ective way.
+In fact, virtual reality provides a rapid and intuitive way to explore high data volumes with a rich
+set of spatial and depth cues [116]. There are many reasons, which make virtual reality particularly
+appropriate for scienti c visualization. First, it can easily be oriented towards abstract and conceptual
+objects which can easily go beyond traditional notions of data representation, stimulating the scientists 
+intuition. Secondly, it allows a level of control and direct interaction which can hardly be surpassed.
+Finally, it has been proved it can be bene cial in debugging data acquisition methods.
+Notwithstanding its great potential, one of the reasons why it has been only marginally adopted so far
+is the requirement of special, and often costly, hardware and/or software (see [117]). Another often-heard
+criticism is the lack of tools for specialized visualization, or of an established framework to build such
+applications on top of it [118].
+Nonetheless, it is timely to focus research e orts in this direction, because the potential bene ts of
+breakthrough in this area would be immense.
+To this extent, it is worth mentioning the activities at the Earth Simulation Center in Japan, where
+a team of scientists have been working for years to develop a virtual reality solution for scienti c visual-
+ization called VFIVE [119], the source code of which is now publicly available [120].
+B List of top 100 supercomputer centers
+Herein follows the list of the top hundred supercomputer sites in the world. The list is updated to June
+2010 and it is provided by Top500 [121], which uses the LINPACK benchmark3 as an index to sort the
+sites by computing power.
+Table 1. World top 100 supercomputing centers [121].
+n. Supercomputing site
+1 Oak Ridge National Laboratory
+2 National Supercomputing Centre in Shenzhen (NSCS)
+3 DOE/NNSA/LANL
+4 National Institute for Computational Sciences/University of Tennessee
+5 Forschungszentrum Juelich (FZJ)
+6 NASA/Ames Research Center/NAS
+Country
+United States
+China
+United States
+United States
+Germany
+United States
+Continues on next page.
+3It measure how fast a computer solves a dense N by N system of linear equations Ax = b.
+Table 1   continued from previous page
+n. Supercomputing site
+7 National SuperComputer Center in Tianjin/NUDT
+8 DOE/NNSA/LLNL
+9 Argonne National Laboratory
+Sandia National Laboratories / National Renewable Energy Laboratory
+10
+11 Texas Advanced Computing Center/Univ. of Texas
+12 DOE/NNSA/LLNL
+13 Moscow State University - Research Computing Center
+14 Forschungszentrum Juelich (FZJ)
+15 KISTI Supercomputing Center
+16 University of Edinburgh
+17 NERSC/LBNL
+18 Grand Equipement National de Calcul Intensif - Centre Informatique National
+de l Enseignement Suprieur (GENCI-CINES)
+Institute of Process Engineering, Chinese Academy of Sciences
+Sandia National Laboratories
+Japan Atomic Energy Agency (JAEA)
+Shanghai Supercomputer Center
+Swiss Scienti c Computing Center (CSCS)
+SciNet/University of Toronto
+19
+20 Oak Ridge National Laboratory
+21
+22
+23 King Abdullah University of Science and Technology
+24
+25 Government
+26 University of Edinburgh
+27
+28
+29 Government
+30 ERDC DSRC
+31 University of Colorado
+32 New Mexico Computing Applications Center (NMCAC)
+33 Computational Research Laboratories, TATA SONS
+34 Lawrence Livermore National Laboratory
+35 DOE/NNSA/LANL
+36 National Institute for Computational Sciences/University of Tennessee
+37
+38
+39 ECMWF
+40 ECMWF
+41 DKRZ - Deutsches Klimarechenzentrum
+42
+43 US Army Research Laboratory (ARL)
+44 Commissariat a l Energie Atomique (CEA)
+45 Commissariat a l Energie Atomique (CEA)/CCRT
+46
+47 HLRN at Universitaet Hannover / RRZN
+48 HLRN at ZIB/Konrad Zuse-Zentrum fuer Informationstechnik
+49 Total Exploration Production
+50 Government Agency
+51 Computer Network Information Center, Chinese Academy of Science
+52 Lawrence Livermore National Laboratory
+Japan Agency for Marine -Earth Science and Technology
+IDRIS
+JAXA
+Joint Supercomputer Center
+23
+Country
+China
+United States
+United States
+United States
+United States
+United States
+Russia
+Germany
+Korea, South
+United Kingdom
+United States
+France
+China
+United States
+United States
+Japan
+Saudi Arabia
+China
+France
+United Kingdom
+Switzerland
+Canada
+United States
+United States
+United States
+United States
+India
+United States
+United States
+United States
+Japan
+France
+United Kingdom
+United Kingdom
+Germany
+Japan
+United States
+France
+France
+Russia
+Germany
+Germany
+France
+Sweden
+China
+United States
+Continues on next page.
+Table 1   continued from previous page
+Information Technology Center, The University of Tokyo
+Institute of Physical and Chemical Res. (RIKEN)
+IT Service Provider
+IBM Thomas J. Watson Research Center
+n. Supercomputing site
+53
+54 Kurchatov Institute Moscow
+55 Max-Planck-Gesellschaft MPI/IPP
+56
+57 Paci c Northwest National Laboratory
+58 EDF R&D
+59
+60
+61 Naval Oceanographic O ce - NAVO MSRC
+62 Manufacturing Company
+63 Bull
+64 GSIC Center, Tokyo Institute of Technology
+65 University of Southern California
+66 Lawrence Livermore National Laboratory
+67
+68 Maui High-Performance Computing Center (MHPCC)
+69 Naval Oceanographic O ce - NAVO MSRC
+70 CINECA
+71 Center for Computational Sciences, University of Tsukuba
+72 CLUMEQ - Universit Laval
+73 US Army Research Laboratory (ARL)
+74 CSC (Center for Scienti c Computing)
+75 DOE/NNSA/LLNL
+76 KTH - Royal Institute of Technology
+77 University of Minnesota/Supercomputing Institute
+78 National Centers for Environment Prediction
+79 National Centers for Environment Prediction
+80 Rensselaer Polytechnic Institute, Computational Center for Nanotechnology
+Stony Brook/BNL, New York Center for Computational Sciences
+Innovations
+IBM Poughkeepsie Benchmarking Center
+81 US Army Research Laboratory (ARL)
+82 NCSA
+83 University of Southampton
+84 NASA/Ames Research Center/NAS
+85 Clemson University
+86 NACAD/COPPE/UFRJ
+87 Barcelona Supercomputing Center
+88
+89 KTH - Royal Institute of Technology
+90 NCAR (National Center for Atmospheric Research)
+91 National Institute for Fusion Science (NIFS)
+92 Leibniz Rechenzentrum
+93 ERDC MSRC
+94
+95 Cray Inc.
+96 University of Tokyo/Human Genome Center, IMS
+97 Cray Inc.
+98 Georgia Institute of Technology
+Indian Institute of Tropical Meteorology
+24
+Country
+Japan
+Russia
+Germany
+Japan
+United States
+France
+Germany
+United States
+United States
+France
+France
+Japan
+United States
+United States
+United States
+United States
+United States
+Italy
+Japan
+Canada
+United States
+Finland
+United States
+Sweden
+United States
+United States
+United States
+United States
+United States
+United States
+United Kingdom
+United States
+United States
+Brazil
+Spain
+United States
+Sweden
+United States
+Japan
+Germany
+United States
+India
+United States
+Japan
+United States
+United States
+Continues on next page.
+Table 1   continued from previous page
+n. Supercomputing site
+99 NNSA/Sandia National Laboratories
+100 Commissariat a l Energie Atomique (CEA)
+25
+Country
+United States
+France
+C List of scientists who inspired this research agenda
+C.1 Austria
+  Alois Ferscha (Johannes Kepler University Linz): ICT systems, pervasive adaptation
+  Stefan Thurner (Vienna): Econophysics, Multi-Player On Line Games
+C.2 Cyprus
+  Anastasia Sofroniou (University of Nicosia): Nonlinear Dynamics, Climate Policies
+C.3 Denmark
+  Kim Sneppen (Niels Bohr Institute): Complex systems, interdisciplinary physics
+C.4 France
+  Henri Berestycki (EHESS, France): Managing Complexity and Institutional Design
+  Guillaume De uant (Cemagref): Social Simulation
+  Alan Kirman (Universite Paul Cezanne): Economics
+  Jean-Pierre Nadal (CNRS and EHESS): Complex Systems
+C.5 Germany
+  Thomas Brenner (Philipps-University Marburg): Econophysics
+  Holger Kantz (Max Planck Institute for Physics of Complex Systems,Dresden): Complex Systems,
+Time Series Analysis
+  J urgen Kurths (Potsdam Institute of Climate Research): Interdisciplinary Physics, Sustainability,
+Climate Policies
+  Thomas Lux (University of Kiel, Institut f ur Weltwirtschaft): Economics
+  Carlo J ager (Potsdam Institute for Climate Impact Research): Sustainability, Climate Policies
+  J urgen Jost (Max Planck Institute for Mathematics in the Sciences): Complex Systems, Networks,
+Autonomous Systems
+  Kristian Kersting (Fraunhofer): Data Mining
+  Oliver Kirchkamp (University of Jena): Empirical and Experimental Economics
+  J orn Kohlhammer (Fraunhofer IGD): Information Visualization
+  Paul Lukowicz (Universit at Passau): Sensors networks
+  Kai Nagel (TU Berlin): Large Scale Agents Modeling
+  Albrecht Schmidt (University of Duisburg-Essen): Novel Interfaces for Ubiquitous Computing
+26
+  Gerhard Tr oster (ETH Z urich): Sensor Networks, Wearable Computing
+  Peter Wagner (DLR, Germany): Tra c Modeling and Mobility
+  Uwe W ossner (Stuttgart): Virtual Reality
+C.6 Greece
+  Panos Agyrakis (University of Thessaloniki): Computational Physics
+  Anastassios Bountis (University of Patras): Complex Systems
+C.7 Great Britain
+  Mike Batty (University College London): Cities, urban development
+  Steven Bishop (University College London): Sustainability
+  Dave Cli  (University of Bristol): Large Scale Complex IT Systems
+  Nigel Gilbert (University of Surrey): Sociology, agent-based modeling
+  Simon G achter (University of Nottingham): Behavioural and Experimental Economics
+  Tim Lenton (University of East Anglia): Environmental Modeling
+  Eve Mitleton-Kelly (London School of Economics): Complex Social System
+  Paul Ormerod (British Academy for the Social Sciences/Volterra Consulting): Economics, Networks,
+Complex Systems
+  Ben Paechter (Edinburgh Napier University): ICT systems, pervasive adaptation, evolutionary com-
+puting
+  Jeremy Pitt (Imperial College London): Multi-Agent Systems
+  Tom Snijders (University of Oxford): Multilevel analysis, social statistics, social networks
+  Roger Whitaker (University of Cardi ): Telecommunication Systemss
+C.8 Hungary
+  David Hales (Szeged University): Techno-Social Systems
+  Janos Kertesz (Budapest): Mining of Socio-Economic Data
+  Imre Kondor (Collegium Budapest): Econophysics
+  Andras L orincz (E otv os Lorand University): ICT Systems
+  Gabor Vattay (E otv os Lorand University): ICT Systems
+27
+C.9
+Ireland
+  Petra Ahrweiler (University College Dublin): Innovation Networks
+C.10
+Italy
+  Armando Bazzani (University of Bologna): Tra c and transport, GPS data
+  Guido Caldarelli (National Research Council of Italy): Econophysics
+  Anna Carbone (Politecnico di Torino): Econophysics
+  Silvano Cincotti (University of Genoa): Agent-based Economics and Finance
+  Domenico Delli Gatti (University Cattolica): Economics
+  Santo Fortunato (ISI Torino): Information science, sociophysics
+  Mauro Gallegati (University Politecnica delle Marche, Ancona): Economics
+  Vittorio Loreto (University La Sapienza): Language Dynamics, On Line Social Dynamics
+  Rosario Mantegna (Palermo University): Econophysics
+  Matteo Marsili (Abdus Salam ICTP): Econophysics
+  Luciano Pietronero (La Sapienza, Rome): Complex systems, interdisciplinary physics
+  Alex Vespignani (ISI Torino): Techno-Social Systems, Modeling of Epidemic Spreading
+C.11 Netherlands
+  Vincent Buskens (Utrecht University): Economic and Mathematical Sociology, Game Theory
+  Andreas Flache (Univ. Groningen): Computer models of social systems
+  Cars Hommes (University of Amsterdam): Experimental economics
+  Johan Pouwelse (TU Delft): ICT systems, Peer-to-Peer Systems
+  Andrea Scharnhorst (KNAW): Information Systems
+  Bert de Vries (Utrecht University): Sustainable Development Modeling.
+C.12 Poland
+  Janusz Holyst (Warsaw Technical University): Sociophysics
+  Andrzej Nowak (Warsaw University): Psychology, complex systems
+C.13 Portugal
+  Jorge Lou c a (Lisbon University): Text-mining, Complex systems.
+  Jos e Fernando Mendes (University of Aveiro): Interdisciplinary Physics, Complex Networks
+28
+C.14 Romania
+  Carmen Costea (ASE Bucharest): Complex Economic Systems
+C.15 Spain
+  Alex Arenas (Universitat Rovira i Virgili): Econophysics
+  Antonio Ruiz de Elvira (Science and Climate): Climate Policies
+  Maxi San Miguel (IFISC): Sociophysics
+  Anxo Sanchez (Universidad Carlos III de Madrid): Sociophysics
+C.16 Sweden
+  Fredrick Liljeros (Stockholm University): Social Networks, Network Epidemiology, Complexity The-
+ory, Socio Physics
+  Kristian Lindgren (Goteborg University): Complex systems
+  Bj orn Ola-Linn er (Linkping University): Climate Policies
+  Martin Rosvall (Umea University): Interdisciplinary Physics, Information Science
+C.17 Switzerland
+  Karl Aberer (EPFL): Decentralized ICT systems
+  Kay Axhausen (ETH Zurich): Transportation
+  Wolfgang Breymann (Zurich University of Applied Sciences): Complex Systems
+  Lars-Erik Cederman (ETH Z urich): Con ict research
+  Axel Franzen (Bern University): Environmental Sociology
+  Nikolas Geroliminis (EPFL): Tra c systems
+  Dirk Helbing (ETH Zurich): Complex systems, Sociology, Coping with Crises
+  Hans Herrmann (ETH Zurich): Interdisciplinary Physics, Network Theory
+  Thomas Schulthess (ETH Zurich): Supercomputing
+  Frank Schweitzer (ETH Zurich): Econophysics, Network Analysis
+  Didier Sornette (ETH Zurich): Econophysics, Financial Crisis Observatory
+  Yi-Cheng Zhang (University of Fribourg): Econophysics
+29
+C.18 U.S.
+  Xavier Gabaix (New York University): Behavorial economics
+  Sander E. van der Leeuw (Arizona State University): Anthropology
+  Michael Macy (Cornell University): Collective Action, Con icts, Lab Experiments
+  Paul Werner (California School of Professional Psychology): Personality and Family Assessment,
+Clinical Decision Making
+  Douglas White (University of California Irvine): Social Networks, Long-Term Multilevel Study of
+Human Social Organizations
+References
+[1] VISIONEER. Visioneer, Envisioning a Socio-economic Knowledge Collider. 2010. url:
+http://www.visioneer.ethz.ch.
+[2] Dirk Helbing and Stefano Balietti. Fundamental and real world challenges in economics. in print.
+2010.
+[3] D. Helbing and S. Balietti.  Formulating grand fundamental challenges. Visioneer White Paper .
+In: (2010). url: http://www.visioneer.ethz.ch.
+[4] D. Helbing and S. Balietti.  How to create an Innovation Accelerator. Visioneer White Paper .
+In: (2010). url: http://www.visioneer.ethz.ch.
+[5] D. Helbing and S. Balietti. From social data mining to forecasting socio-economic crisis. Visioneer
+White Paper. 2010. url: http://www.visioneer.ethz.ch.
+[6] Dirk Helbing. Pluralistic Modeling
+of Complex Systems. CCSS-10-009.
+2010. url:
+http://ssrn.com/abstract=1646314(2010).
+[7] Robert E. Shannon.  Introduction to the art and science of simulation . In: WSC  98: Proceedings
+of the 30th conference on Winter simulation. Los Alamitos, CA, USA: IEEE Computer Society
+Press, 1998, pp. 7 14.
+[8] G. H. Orcutt.  A new type of socio-economic systems . In: The Review of Economics and Statistics
+58 (1957), pp. 773 797.
+[9] Nigel Gilbert and Klaus G Troitzsch. Simulation for the Social Scientist. Open University Press,
+2005.
+[10] S. Weinberg.  Is the Universe a Computer?  In: New York Review of Books 49.16 (2002).
+[11] Stephen Wolfram. A New Kind of Science. English. Wolfram Media,
+2002. url:
+http://www.wolframscience.com.
+[12]
+I. Foster.  A two-way street to science s future . In: Nature 440 (2006), p. 419.
+[13] Charles S. Taber and Richard J. Timpone. Computational Modelign. Sage, 1996.
+[14] Henry J Aaron.  Distinguished Lecture on Economics in Government: Public Policy, Val-
+ues, and Consciousness . In: Journal of Economic Perspectives 8.2 (1994), pp. 3 21. url:
+http://ideas.repec.org/a/aea/jecper/v8y1994i2p3-21.html.
+[15] Alan P Kirman.
+ Whom or What Does
+the Representative
+resent? 
+http://ideas.repec.org/a/aea/jecper/v6y1992i2p117-36.html.
+of Economic Perspectives
+Journal
+In:
+6.2
+(1992),
+pp.
+Individual Rep-
+url:
+117 36.
+[16] Dirk Helbing. Managing Complexity: Insights, Concepts, Applications. 1st ed. Springer, 14, 2007.
+[17] Dirk Helbing. Systemic risks in society and economics. Sante Fe Institute, working paper 09-12-044.
+2009. url: http://www.santafe.edu/research/working-papers/abstract/9596e5a57d1f9b7e8fcc289f118555ce
+30
+[18] H.V.D. Parunak.   Go to the ant : Engineering principles from natural multi-agent systems . In:
+Annals of Operations Research 75 (1997), pp. 69 102.
+[19] Earth Simulator: UK-Japan Climate Collaboration. url: http://www.earthsimulator.org.uk/.
+[20] K. Nagel.  Parallel implementation of the TRANSIMS micro-simulation . In: Parallel Computing
+27.12 (2001), pp. 1611 1639. url: http://dx.doi.org/10.1016/S0167-8191(01)00106-5.
+[21] M. Rickert and Nagel K.  Dynamic tra c assignment on parallel computers in TRANSIMS . In:
+Future generation computer systems 17.5 (2001), pp. 637 648.
+[22] Kai Nagel et al. TRANSIMS for urban planning. LA-UR-98-4389. 1999.
+[23] K. Nagel et al. Using Microsimulation Feedback for Trip Adaptation for Realistic Tra c in Dallas.
+1997.
+[24] P.M. Simon, J. Esser, and Nagel K.  Simple queueing model applied to the city of Portland . In:
+International Journal of Modern Physics C 10.5 (1999), pp. 941 960.
+[25] Bryan Raney et al.  An agent-based microsimulation model of Swiss travel: First results . In:
+Networks and Spatial Economics 3 (2003), pp. 23 41.
+[26] M. Balmer, K.W. Axhausen, and K. Nagel. An Agent Based Demand Modeling Framework for
+Large Scale Micro-Simulations. Working paper, 329, Institute for Transport Planning and Systems
+(IVT), ETH Zurich, Switzerland. 2005.
+[27] David Charypar
+and Kai Nagel.
+ Generating
+complete
+genetic
+with
+http://dx.doi.org/10.1007/s11116-004-8287-y.
+In: Transportation
+algorithms .
+32.4
+(2005),
+all-day
+pp.
+activity
+369 397.
+plans
+url:
+[28] K.W. Axhausen and T. Garling.  Activity-based approaches to travel analysis: conceptual frame-
+works, models, and research problems . In: Transport Reviews 12.4 (1992), pp. 323 341.
+[29] Dirk Helbing and Kai Nagel.  The physics of tra c and regional development . In: Contemporary
+Physics 45.5 (2004), pp. 405 426. url: http://dx.doi.org/10.1080/00107510410001715944.
+[30] V. Killer et al.  Understanding Regional E ects of Travel Times in Switzerland and Germany
+1970-2005 . In: Jnkping, Sweden: 50th European Regional Science Association (ERSA), 2010.
+[31] Gregor Laemmel, Dominik Grether, and Kai Nagel.  The
+time-dependent
+mentation of
+tions .
+http://dx.doi.org/10.1016/j.trc.2009.04.020.
+inundation in large-scale microscopic
+In: Transportation Research Part C: Emerging Technologies
+representation and imple-
+evacuation simula-
+(12, 2009). url:
+[32] H. Taubenboeck et al.   Last-Mile  preparation for a potential disaster - Interdisciplinary ap-
+proach towards tsunami early warning and an evacuation information system for the coastal city
+of Padang, Indonesia . In: Natural Hazards and Earth System Science 9.4 (2009), pp. 1509 1528.
+url: http://www.nat-hazards-earth-syst-sci.net/9/1509/2009/.
+[33] J. Min et al.  Toward modeling and simulation of critical national infrastructure interdependen-
+cies . In: IIE Transactions (39 2007). special issue on Industrial Engineering and Operations
+Research in Homeland Security, pp. 57 71.
+[34] Chris Barrett, Stephen Eubank, and Madhav Marathe.  Modeling and Simulation of
+Information and Socio-Technical Systems: An Interaction Based Ap-
+Large Biological,
+Interactive Computation. Ed. by Dina Goldin, Scott A. Smolka, and Pe-
+proach .
+ter Wegner. 10.1007/3-540-34874-3 14. Springer Berlin Heidelberg, 2006, pp. 353 392. url:
+http://dx.doi.org/10.1007/3-540-34874-3\textunderscore14.
+In:
+[35] National
+Simulation
+http://www.lanl.gov/programs/nisac/.
+Infrastructure
+and
+Analysis
+Center
+(NISAC).
+url:
+31
+[36] W. Kermack and A. Mckendrick.  Contributions
+In: Bulletin of Mathematical Biology
+demicsI .
+http://dx.doi.org/10.1007/BF02464423.
+to the mathematical
+53.1
+1991), pp.
+(10,
+theory of epi-
+33 55. url:
+[37] W. Kermack and A. Mckendrick.  Contributions to the mathematical theory of epidemicsII. The
+problem of endemicity . In: Bulletin of Mathematical Biology 53.1 (10, 1991), pp. 57 87. url:
+http://dx.doi.org/10.1007/BF02464424.
+[38] W. Kermack and A. McKendrick.  Contributions to the mathematical theory of epidemicsIII.
+Further studies of the problem of endemicity . In: Bulletin of Mathematical Biology 53.1 (1, 1991),
+pp. 89 118. url: http://dx.doi.org/10.1007/BF02464425.
+and
+[39] Vittoria Colizza et al.  The role of
+global
+predictability
+of
+diction
+Academy
+2020.
+http://www.pnas.org/content/103/7/2015.abstract.
+of Sciences
+eprint:
+the United States
+the airline transportation network in the pre-
+epidemics .
+the National
+2015 
+url:
+In: Proceedings
+(2006), pp.
+of America
+103.7
+http://www.pnas.org/content/103/7/2015.full.pdf+html.
+of
+of
+[40] Joshua M. Epstein.  Modelling to contain pandemics . In: Nature 460.7256 (5, 2009), p. 687. url:
+http://dx.doi.org/10.1038/460687a.
+[41] L. Hufnagel, D. Brockmann,
+and T. Geisel.
+ Forecast
+and
+control
+a
+in
+demics
+Sciences
+eprint:
+http://www.pnas.org/content/101/42/15124.abstract.
+globalized world .
+States
+the United
+http://www.pnas.org/content/101/42/15124.full.pdf+html.
+In: Proceedings
+of America
+of
+101.42
+the National Academy
+(2004),
+pp.
+of
+of
+epi-
+of
+15124 15129.
+url:
+[42] Stephen Eubank et al.  Modelling disease outbreaks in realistic urban social networks . In: Nature
+429.6988 (13, 2004), pp. 180 184. url: http://dx.doi.org/10.1038/nature02541.
+[43] Arti cial Stock Market. url: http://sourceforge.net/projects/artstkmkt/.
+[44] U-mart. url: http://www.u-mart.org/.
+[45] EURACE. url: http://www.eurace.org/.
+[46] Dirk Helbing and Wenjian Yu.  The outbreak of cooperation among success-driven individuals
+under noisy conditions . In: Proceedings of the National Academy of Sciences 106.10 (10, 2009),
+pp. 3680 3685. url: http://dx.doi.org/10.1073/pnas.0811503106.
+[47] D. Helbing and A. Johansson. Cooperation, norms, and con ict: A uni ed approach. SFI Working
+Paper. 2009.
+[48] Dirk Helbing et al.  Evolutionary Establishment of Moral and Double Moral Standards
+In: PLoS Comput Biol 6.4 (Apr. 2010), e1000758. url:
+through Spatial
+http://dx.doi.org/10.1371%2Fjournal.pcbi.1000758.
+Interactions .
+[49] A. Cangelosi and D. Parisi. Simulating the evolution of language. New York, NY, USA: Springer-
+Verlag, 2002.
+[50] R. Dunbar. Grooming, gossip, and the evolution of language. Harvard Univ Pr, 1998.
+[51] M.A. Nowak and D.C. Krakauer.  The evolution of language . In: Proceedings of the National
+Academy of Sciences of the United States of America 96.14 (1999), p. 8028.
+[52] J.M. Epstein and R. Axtell. Growing arti cial societies. Cambridge, MA, 1996.
+[53] Parallel discrete-event
+simulation of population dynamics. 2008, pp. 1047 1054. url:
+http://dx.doi.org/10.1109/WSC.2008.4736172.
+32
+[54] PRACE: Partnership for Advanced Computing in Europe. url: http://www.prace-project.eu/.
+[55] Dirk Helbing, H. Ammoser, and C. Kuehnert.  Extreme Events in Nature and Society . In: ed. by
+S. Albeverio, V. Jentsch, and Kantz H. Berlin: Springer, 2005. Chap. Disasters as extreme events
+and the importance of network interactions for disaster response management, pp. 319 348.
+[56] John Sterman. Business dynamics : systems thinking and modeling for a complex world.
+Irwin,McGraw-Hill, 2000.
+[57] Transims:
+Transportation
+Analysis
+and
+Simulation
+System.
+url:
+http://www.transims-opensource.net/.
+[58] Matsims: Multi-Agent Transport Simulation Toolkit. url: http://www.matsim.org/.
+[59] ESSA: European Social Simulation Association. url: http://www.essa.eu.org/.
+[60] Dirk Helbing and Yu W.  The future of social experimenting . In: PNAS 12 (107 2010), pp. 5265 
+5266.
+[61] Amos Tversky and Daniel Kahneman.
+ The Framing
+chology of Choice .
+http://dx.doi.org/10.2307/1685855.
+In: Science. New Series
+211.4481
+of Decisions
+(1981), pp.
+and the Psy-
+453 458. url:
+[62] Add-ons for Firefox. url: https://addons.mozilla.org/en-US/firefox/.
+[63] Drupal,
+an
+open
+source
+content management
+system. Modules
+page.
+url:
+http://drupal.org/project/Modules.
+[64] Apple Web apps store. url: http://www.apple.com/webapps/.
+[65] Google Android market. url: http://www.android.com/market.
+[66] SWARM. url: http://www.swarm.org/.
+[67] Repast, Recursive Porous Agent Simulation Toolkit. url: http://repast.sourceforge.net/.
+[68] NetLogo. url: http://ccl.northwestern.edu/netlogo/.
+[69] SESAM, Shell for Simulated Agent Systems. url: http://www.simsesam.de/.
+[70] Wikipedia:
+Comparison
+of
+Agent-based
+Modeling
+Software.
+url:
+http://en.wikipedia.org/wiki/Comparison\textunderscoreof\textunderscoreagent-based\textunderscor
+[71] MATLAB. url: http://www.mathworks.com/.
+[72] Joshua M. Epstein.  Why Model?  In: Journal of Arti cial Societies and Social Simulation 11.4
+(2008), p. 12. url: http://jasss.soc.surrey.ac.uk/11/4/12.html.
+[73] S. Laemmer and D. Helbing.  Self-control of tra c lights and vehicle  ows in urban road networks .
+In: JSTAT (2008). P04019.
+[74]  Verfahren zur Koordination von vernetzten Abfertigungsprozessen oder zur Steuerung des Trans-
+ports von mobilen Einheiten innerhalb eines Netzwerkes . Pat. DE102005023742B4. Dirk Helbing
+and S. Laemmer. 2010. url: http://www.patent-de.com/20100805/DE102005023742B4.html.
+[75] D. Helbing and M. Christen. Mit Rauschen und Reibung gegen  nanzielle Blasen. submitted to
+Wirtschaftswoche. 2010.
+[76] D.
+I. R. K. Helbing et al.  Biologistics and the
+in Complex Systems
+and perpesctives .
+http://dx.doi.org/10.1142/S0219525909002374.
+In: Advances
+struggle
+concepts
+12.06 (2009), pp. 533+. url:
+e ciency:
+for
+[77] A. Kesting et al.  Adaptive cruise control design for active congestion avoidance . In:
+Transportation Research Part C: Emerging Technologies 16.6 (2008), pp. 668 683. url:
+http://dx.doi.org/10.1016/j.trc.2007.12.004.
+33
+[78] Dirk Helbing.  Human Behaviour and Tra c Networks . In: ed. by M. Schreckenberg and R.
+Selten. Berlin: Springer, 2004. Chap. Dynamic decision behavior and optimal guidance through
+information services: Models and experiments, pp. 47 95.
+[79] Norbert Wiener. Cybernetics, Second Edition: or the Control and Communication in the Animal
+and the Machine. The MIT Press, 15, 1965.
+[80] Brian Fabien. Analytical System Dynamics: Modeling and Simulation. Springer, 2, 2008.
+[81] Sigurd Skogestad and Ian Postlethwaite. Multivariable Feedback Control: Analysis and Design.
+2nd ed. Wiley-Interscience, 18, 2005.
+[82] Er L. Fradkov, Iliya V. Miroshnik, and Vladimir O. Nonlinear and Adaptive Control of Complex
+Systems. Springer, 1999.
+[83] John H. Kagel. The Handbook of Experimental Economics. Princeton University Press, 17, 2004.
+[84] Nicholas Bardsley et al. Experimental Economics: Rethinking the Rules. US: Princeton University
+Press, Princeton, NJ, 2009, p. 384.
+[85] Daniel Friedman and Alessandra Cassar. Economics Lab: An Intensive Course in Experimental
+Economics. London and New York: Routledge, 2004.
+[86] D. Friedman and S. Sunder. Experimental Methods: A Primer for Economists. Cambridge Univer-
+sity Press, 1994.
+[87] Francesco
+Guala.
+The
+bridge
+http://ideas.repec.org/b/cup/cbooks/9780521618618.html.
+9780521618618.
+Books
+Methodology
+of
+Cambridge
+Experimental
+University
+Economics.
+Press,
+2005.
+Cam-
+url:
+[88] Matthew J. Salganik, Peter S. Dodds, and Duncan J. Watts.  Experimental Study of Inequality
+and Unpredictability in an Arti cial Cultural Market . In: Science 311.5762 (10, 2006), pp. 854 
+856. url: http://dx.doi.org/10.1126/science.1121066.
+[89] Michael
+Szell
+and
+Stefan Thurner.
+ Measuring
+social
+multiplayer
+Social Networks
+http://dx.doi.org/10.1016/j.socnet.2010.06.001.
+game .
+online
+In:
+32.4
+dynamics
+pp.
+(2010),
+in
+a massive
+313 329. url:
+[90] William S. Bainbridge.  The Scienti c Research Potential of Virtual Worlds . In: Science 317.5837
+(27, 2007), pp. 472 476. url: http://dx.doi.org/10.1126/science.1146930.
+[91] Neil F. Johnson et al.  Human group formation in online guilds and o ine gangs driven
+In: Physical Review E 79.6 (2009), pp. 066117+. url:
+by a common team dynamic .
+http://dx.doi.org/10.1103/PhysRevE.79.066117.
+[92] D.B. Fogel.  Introduction to evolutionary computation . In: Evolutionary computation 1: basic
+algorithms and operators (2000), p. 1.
+[93] D.B. Fogel. Evolutionary computation: toward a new philosophy of machine intelligence. Wiley-
+IEEE Press, 2006.
+[94] S. Haykin. Neural networks: a comprehensive foundation. Prentice Hall PTR Upper Saddle River,
+NJ, USA, 1994.
+[95] M.T. Hagan, H.B. Demuth, M. Beale, et al. Neural network design. PWS Pub, 1996.
+[96] C.A. Janeway et al. Immunobiology: the immune system in health and disease. Churchill Living-
+stone, 2001.
+[97] Robert M. May. Stability and Complexity in Model Ecosystems (Princeton Landmarks in Biology).
+Princeton University Press, 1, 2001.
+[98] Theoretical Ecology: Principles and Applications. 3rd ed. Oxford University Press, USA, 12, 2007.
+34
+[99] Dirk Helbing and Mehdi Moussaid. Analytical Calculation of Critical Perturbation Amplitudes
+and Critical Densities by Non-Linear Stability Analysis of a Simple Tra c Flow Model. Tech. rep.
+arXiv:0807.4006. Comments: For related work see http://www.soms.ethz.ch/. 2008.
+[100] D Helbing.  Tra c and Related Self-Driven Many-Particle Systems . In: Rev. Mod. Phys. 73.cond-
+mat/0012229. 4 (2000), pp. 1067 1141.
+[101] Why
+Economists
+Failed
+to
+Predict
+the
+Financial
+Crisis.
+url:
+http://www.ftpress.com/articles/article.aspx?p=1350507.
+[102] Keim D. A.  Information visualization and visual data mining . In: IEEE Transactions on Visu-
+alization and Computer Graphics 8.1 (2002).
+[103] Kageyama A. and Ohno N.  Tutorial introduction to Virtual Reality: What possibilities are o ered
+to our  eld?  In: Proceedings of ISSS-7. 2005, pp. 127 136.
+[104] Jacobs A.  The pathologies of big data . In: ACM Queue 7.6 (2009).
+[105] Ben Shneiderman.  The Eyes Have It: A Task by Data Type Taxonomy for Informa-
+tion Visualizations . In: Visual Languages, IEEE Symposium on 0 (1996), p. 336. url:
+http://doi.ieeecomputersociety.org/10.1109/VL.1996.545307.
+[106] R. M. Pickett and G. G. Grinstein.  Iconographic displays for visualizing multidimensional data .
+In: Proc. IEEE Conf. on Systems, Man and Cybernetics, Piscataway, NJ. 1988, pp. 514 519.
+[107] H. Cherno .  The use of faces to represent points in k-dimensional space graphically . In: Journal
+Amer. Statistical Association 68 (1973), pp. 361 368.
+[108] Bier E. A. et al.  Toolglass and magic lenses: The see-through interface . In: Proc. SIGGRAPH,
+Anaheim, CA. 1993, 7380.
+[109] A. Inselberg and B. Dimsdale.  Parallel coordinates: A tool for visualizing multi-dimensional
+geometry . In: Proc. Visualization, San Francisco, CA. 1990, pp. 361 370.
+[110] Robertson G. G., Mackinlay J. D., and Card S. K.  Cone trees: Animated 3D visualizations of
+hierarchical information . In: Proc. Human Factors in Computing Systems CHI 91 Conf., New
+Orleans, LA. 1991, pp. 189 194.
+[111] Lamping J., Rao R., and Pirolli P.  A focus+context technique based on hyperbolic geometry for
+visualizing large hierarchies . In: Proc. Human Factors in Computing Systems Conf. 1995, 401408.
+[112] van Wijk J. J. and van de Wetering H.  Cushion treemaps - visualization of hierarchical informa-
+tion . In: Proceedings 1999 IEEE Symposium on Information Visualization. 1999, 7378.
+[113] Bruls M., Huizing K., and Van Wijk J. J.  Squari ed treemaps . In: Proceedings of Joint Euro-
+graphics and IEEE TCVG Symposium on Visualization. IEEE Press, 2000, 3342.
+[114] Frankel F. and Reid Rosalind.  Distilling meaning from data . In: Nature 455.30 (2008).
+[115] ScienceSim. url: http://www.sciencesim.com.
+[116] S. Bryson.  Virtual Reality in Scienti c Visualization . In: COMMUNICATIONS OF THE ACM
+39.5 (May 1996).
+[117] Joseph
+al.
+et
+In: Trends
+Scienti c Visualiza-
+J. LaViola
+in Interactive Visualization. Ed. by Robert Liere,
+tion Environments .
+Tony Adriaansen,
+Information and Knowl-
+edge Processing. 10.1007/978-1-84800-269-2 10. Springer London, 2009, pp. 1 26. url:
+http://dx.doi.org/10.1007/978-1-84800-269-2\textunderscore10.
+and Elena Zudilova-Seinstra. Advanced
+ Virtual Reality-Based
+Interactive
+[118] Germans D. et al.  VIRPI: A high-level toolkit for interactive scienti c visualization in virtual
+reality . In: IPT/EGVE (2001).
+[119] Araki F., Kawahara S., and Ohno N.  Annual Report of the Earth Simulator Center . In: 2008.
+Chap. Study of Large-Scale Data Visualization, pp. 273 277.
+[120] VFIVE
+:
+Virtual
+Reality
+Visualization
+Software
+for
+CAVE
+System.
+url:
+http://www.jamstec.go.jp/esc/research/Perception/vfive.en.html.
+[121] Top 500 supercomputer sites. url: http://www.top500.org.
+35

@@ -1,0 +1,12 @@
+ Before effectively and ef ciently classifying, managing and recommending ubiqui- tous things, a fundamental task is to discover relations among things.
+ However, physical things also hold implicit relations due to their more 1http://ercim-news.ercim.eu/en72/keynote/the-web-of-things ACM Transactions on Intelligent Systems and Technology, Vol.
+ Different things provide differ- ent functionalities (e.g., microwave and printer), and might be of interest to differ- ent groups of people.
+ Given a set of human-thing interactions of quadruplets (thing, user, timestamp and location), discov- ering the latent correlations between things.
+ We rstly extract two types of graphs, namely the location-time-thing graph (Figure 2(a)) and the user-thing graph (Figure 2(b)).
+ The graphs are deduced from thing usage events, which re ect object and its three related information in terms of spatio-temporal and social aspects.
+ As illustrated in Figure 2, the spatio-temporal graph in Figure 2 (a) captures the relations ACM Transactions on Intelligent Systems and Technology, Vol.
+ A:6 (a) (b) Fig. 1. different things/objects, and the size represents the usage frequency. (a) Things usage and contextual attributes (b) Correlation discovery.
+ Here Vm = Loc Ts O where Loc, Ts and O are the sets of locations, timestamps and things respectively.
+ EY = {(loc, o) : (loc, o) Loc O} and the weight of each edge EY (i, j) EY is associated with the frequency that thing oj in location loci is accessed.
+ As shown in Figure 2 (b), such a graph contains two sets of entities, users U and things O.
+ This type of techniques can be easily parallelized (e.g., using Hadoop framework for improving performance) and processed in real time. 5.

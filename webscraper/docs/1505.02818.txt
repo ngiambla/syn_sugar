@@ -1,0 +1,1110 @@
+5
+1
+0
+2
+ 
+y
+a
+M
+1
+1
+ 
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+1
+v
+8
+1
+8
+2
+0
+.
+5
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Investigating Causality in Human Behavior from
+Smartphone Sensor Data: A Quasi-Experimental
+Approach
+Fani Tsapeli and Mirco Musolesi
+School of Computer Science, University of Birmingham, United Kingdom
+Abstract
+Smartphones have become an indispensable part of our daily life. Their
+improved sensing and computing capabilities bring new opportunities for hu-
+man behavior monitoring and analysis. Most work so far has been focused on
+detecting correlation rather than causation among features extracted from
+smartphone data. However, pure correlation analysis does not o er su cient
+understanding of human behavior. Moreover, causation analysis could allow
+scientists to identify factors that have a causal e ect on health and well-being
+issues, such as obesity, stress, depression and so on and suggest actions to
+deal with them. Finally, detecting causal relationships in this kind of obser-
+vational data is challenging since, in general, subjects cannot be randomly
+exposed to an event.
+In this article, we discuss the design, implementation and evaluation of
+a generic quasi-experimental framework for conducting causation studies on
+human behavior from smartphone data. We demonstrate the e ectiveness
+of our approach by investigating the causal impact of several factors such as
+exercise, social interactions and work on stress level. Our results indicate that
+exercising and spending time outside home and working environment have a
+positive e ect on participants stress level while reduced working hours only
+slightly impact stress.
+Keywords:
+smartphone data, causality, human behavior, stress modeling
+1. Introduction
+Nowadays, people generate vast amounts of data through the devices they
+interact with during their daily activities, leaving a rich variety of digital
+Preprint submitted to Journal Name
+April 16, 2018
+traces. Indeed, our mobile phones have been transformed into powerful de-
+vices with increased computational and sensing power, capable of capturing
+any communication activity, including both mediated and face-to-face inter-
+actions. User location can be easily monitored and activities (e.g., running,
+walking, standing, traveling on public transit, etc.) can be inferred from raw
+accelerometer data captured by our smartphones [1, 2]. Even more complex
+information such as our emotional state or our stress level can be inferred
+either by processing voice signals captured by means of smartphone s micro-
+phones [3, 4] or by combining information, extracted from several sensors,
+which correlates with our mood [5, 6, 7, 8]. Moreover, we keep track of our
+daily schedule by using digital calendars and we use social media to share
+our experiences, opinions and emotions with our friends.
+Leveraging this rich variety of human-generated information could pro-
+vide new insights on a variety of open research questions and issues in sev-
+eral scienti c domains such as sociology, psychology, behavioral  nance and
+medicine. For example, several works have demonstrated that online social
+media could act as crowd sensing platforms; the aggregated opinions posted
+in online social media have been used to predict movies revenues [9], elections
+results [10] or even stock market prices [11]. Social in uence e ects in social
+networks have been also investigated in several projects either using obser-
+vational data [12, 13] or by conducting randomized trials [14, 15]. Other
+works also use mobility traces in order to study social patterns [16] or to
+model the spreading of contagious diseases [17]. Moreover, the use of smart-
+phones is increasingly used to monitor and better understand the causes of
+health problems such as addictions, obesity, stress and depression [18, 19].
+Smartphones enable continuous and unobtrusive monitoring of human be-
+havior and, therefore, could allow scientists to conduct large-scale studies
+using real-life data rather than lab constrained experiments. In this direc-
+tion, in [20] the authors attempt to explain sleeping disorders reported by
+individuals, by investigating the correlations between sociability, mood and
+sleeping quality, based on data captured by mobile phones sensors and sur-
+veys. Also, in [21] the authors study the links between unhealthy habits, such
+as poor-quality eating and lack of exercise, and the eating and exercise habits
+of the user s social network. However, both studies are based on correlation
+analysis and, consequently, they are not su cient for deriving valid conclu-
+sions about the causal links between the examined variables. For example,
+an observed correlation between the eating and exercising habits of a social
+group does not necessarily imply that eating and exercise habits of individ-
+2
+uals are in uenced by their social group and, therefore, could be modi ed
+by changing someone s social group. Instead, the observed correlation could
+be due to the fact that people tend to have social relationships with people
+with similar habits.
+The e cient exploitation of human generated data in order to uncover
+causal links among factors of interest remains an open research issue. Some
+works have proposed the use of randomized trials [14, 15]. According to this
+technique, the causal e ects of an event or treatment are examined by ex-
+posing a randomly selected subset of participants (treatment group) to this
+event and comparing the result with the corresponding outcome on a con-
+trol group (i.e., a subset of participants who have not been exposed to the
+event). By randomly assigning participants to treatment and control groups
+it is assured that, on average, there will be no systematic di erence on the
+baseline characteristics of the participants between the two groups. Base-
+line characteristics are considered to be any characteristics of the subjects
+that could be related with the study (e.g.
+in a clinical study the age and
+the previous health status of the subjects could be considered as baseline
+characteristics). While randomized trials represent a reliable way to detect
+causal relationships, they require the direct intervention of scientists in par-
+ticipants  life, which is sometimes unethical or just not feasible. Moreover,
+such experimental studies cannot exploit the vast amount of observational
+data that are produced daily.
+Detecting causal relationships in observational data is challenging since
+subjects cannot be randomly exposed to an event. Thus, subjects that are
+exposed to a treatment may systematically di er from subjects that are not.
+In order to eliminate any bias due to di erences on the baseline charac-
+teristics of exposed and unexposed subjects, scientists need to gather and
+process information about several factors that could in uence the result of
+the study. There are two main methodologies that can be applied to control
+such factors: structural equation modeling [22, 23] and quasi-experimental
+designs [24]. According to the former, the causal e ect is estimated using
+multivariate regression. In detail, the variable representing the causal e ect
+of an event or treatment is regressed using as predictors the variable repre-
+senting the treatment as well as all the baseline characteristics of the subjects
+of the study that could in uence the result. Structural equation modeling is
+based on the assumption that the regression model has been correctly spec-
+i ed. False assumptions about the linearity or non-linearity of the model or
+failure to correctly specify the regression coe cients may result in mislead-
+3
+ing conclusions. On the other hand, methods based on quasi-experimental
+designs do not require the speci cation of a model. Instead, they attempt
+to emulate randomized trials by exploiting inherit characteristics of the ob-
+servational data. This can be achieved by comparing groups of treated and
+control subjects with similar baseline characteristics (matching design).
+The purpose of this work is to propose a generic causal inference frame-
+work for the analysis of human behavior using digital traces. More speci -
+cally, we demonstrate the potential of automatically processing human gen-
+erated observational digital data in order to conduct causal inference studies
+based on quasi-experimental techniques. We support our claim by presenting
+an analysis of the causal e ects of daily activities, such as exercising, social-
+izing or working, on stress based on data gathered by smartphones from 48
+students that were involved in the StudentsLife project [25] at Dartmouth
+College for a period of 10 weeks. The main goal of the StudentsLife project is
+the study of the mental health, academic performance and behavioral trends
+of this group of students using mobile phones sensor data. To the best of our
+knowledge, this is the  rst work presenting an observational causality study
+using digital data gathered by smartphones.
+Information about participants  daily social interactions as well as their
+exercise and work/study schedule is not directly measured; instead we use
+raw GPS and accelerometer traces in order to infer high-level information
+which is considered as implicit indicator of the variables of interest.
+No active participation of the users is required, i.e., answering to pop-up
+questionnaires. We automatically assign semantics to locations in order to
+group them in four categories: home, work/university, socialization venues
+and gym/sports center. By grouping locations into these four categories and
+continuously monitoring the spatio-temporal traces of users we can derive
+high-level information as follows:
+  Work/University. By analyzing the daily time that users spend at
+their workplace we can infer their working schedule. Prolonged sojourn
+time at work/university could be an indicator of increased workload.
+  Home. The time that participants spend at home could serve as a
+rough indicator of their social interactions. Prolonged sojourn time
+at home could imply limited social interactions or social interactions
+with a restricted number of people. In general, spending time outside
+home usually involves some social interaction. An estimation of the
+4
+total daily time that participants spend at any place apart from their
+home and working environment could serve as a rough indicator of their
+non-work-related social interactions.
+  Socialization Venues. By monitoring users visits at socialization
+venues such as pubs, bars, restaurants etc, we can infer the time that
+they spend relaxing and socializing outside home during a day.
+  Gym/Sports-center. Indoor workout can be captured by tracking
+participants  visits to gyms or sports centers. Outdoor activity can be
+measured using accelerometer data.
+2. Causal Inference Framework
+Our causality analysis is based on Rubin s counterfactual framework [26].
+According to this framework, a causal problem is formulated as a counter-
+factual statement which examines what would have been the outcome if an
+object has been exposed to an event. Since it is impossible to observe for the
+same object both the result of exposure and non-exposure to an event, causal
+inference is based on comparing the outcomes on equivalent treatment and
+control groups i.e., treatment and control units with similar baseline charac-
+teristics. In this subsection, we discuss a methodology for causal inference in
+observational data.
+The  rst step of the analysis is the description of the variables of the
+study. A causality study involves the following variables:
+1. cause or treatment variable X: an independent variable which in u-
+ences the values of another variable. The treatment variable is usually
+binary, denoting whether an object of the study has been exposed to a
+treatment or not. Treatment could be also a discrete variable in case
+that di erent levels of treatment are considered.
+2. e ect or outcome variable Y : a dependent variable which can be ma-
+3. a set of N variables Z = {Z 1, Z 2, ..., Z N}, which describes the baseline
+nipulated by changing the variable that represents the cause.
+characteristics of the objects of the study.
+In the second step of the analysis we de ne the units of the study. Each
+unit corresponds to a set of attributes, derived by the variables of the study,
+which describe an object (e.g., a person or a thing) on a speci c time period.
+5
+We can use multiple units describing a single object in di erent time intervals.
+Thus, a unit uo,t that describes an object o at time t corresponds to a set of
+values {Xuo,t, Yuo,t, Z 1
+uo,t}. Given that, in a causation study, the
+treatment should precede temporally the e ect, i.e., the value Xuo,t should
+correspond to the treatment that has been applied to object o before time
+t. In the remainder of the paper, the simpli ed notation u will be used to
+describe a unit uo,t.
+uo,t, ..., Z N
+uo,t, Z 2
+In order to claim that a value of a variable Y has been caused by a value of
+a variable X there should be an association between the occurrence of these
+two values and there should be no other plausible explanation of this associ-
+ation [24]. The  rst part of this requirement can be examined by performing
+a simple statistical analysis. However, excluding any other explanation of
+the observed association is a hard problem since both the treatment and the
+e ect variable may be driven by a third variable. Variables that correlate
+with both the outcome and the treatment are called confounding variables
+or confounders. In Figure 1 we provide a graphical representation of the de-
+pendencies between the treatment, outcome and confounding variables. The
+identi cation of the confounders requires a correlation analysis between each
+variable Z i   Z and the variables X and Y .
+Figure 1: Graphical representation of the relationships among the treatment
+X, outcomeY and the set of confounding variables C.
+An unbiased causality study requires that the assignment of units to
+treatments is independent of the outcome conditional to the confounding
+variables. While in experimental studies this requirement is satis ed by
+randomly assigning units to treatments, in observational studies we could
+eliminate confounding bias by comparing units with similar values on their
+confounding variables but di erent treatment value (matching design). Let
+us consider a binary treatment X, a group of treated units U and a group
+of control units V such as Xu = 1  u   U and Xv = 0  v   V . Let us
+also consider a set of confounding variables C.
+Ideally, each unit u   U
+will be matched with a unit v   V if Ci
+v,  Ci   C. However, perfect
+u = Ci
+6
+matching is usually not feasible. Thus, treated units need to be matched
+with the most similar control units. Several methods have been proposed
+to create balanced treated and control pairs [27]. After applying a matching
+method scientists need to check whether the treated and control groups are
+su ciently balanced by estimating the standardized mean di erence between
+the groups or by applying graphical methods such as quantile-quantile plots,
+cumulative distribution functions plots, etc.
+[28]. If su cient balance has
+not been achieved, the applied matching method needs to be revised.
+Finally, if any confounding bias has been su ciently eliminated, the treat-
+ment e ect can be estimated by comparing the e ect variable Y of the
+matched treated and control units. Let us de ne as G the set of paired
+treated and control units and NG the number of pairs. Then, the average
+treatment e ect (ATE) can be estimated as follows:
+(cid:80) (u,v) G Yu   Yv
+NG
+AT E =
+(1)
+In Figure 2 we provide a graphical representation of the causal inference
+methodology.
+Figure 2: Description of the causal inference process in observational data
+using a quasi-experimental matching design.
+3. Dataset Description
+The StudentsLife dataset contains a rich variety of information that was
+captured either through smartphone sensors or through pop-up question-
+naires. In this study we use only GPS location traces, accelerometer data,
+7
+a calendar with the deadlines for the modules that students attend during
+the term and students responses to questionnaires about their stress level.
+Students answer to these questionnaires one or more times per day.
+We use the location traces of the users to create location clusters. GPS
+traces are provided either through GPS or through WiFi or cellular net-
+works. For each location cluster, we assign one of the following labels: home,
+work/university, gym/sports-center, socialization venue and other. Labels
+are assigned automatically without the need for user intervention (a detailed
+description of the clustering and location labeling process is presented at the
+additional  le 1)
+We use information extracted from both accelerometer data and location
+traces to infer whether participants had any exercise (either at the gym or
+outdoors). The StudentsLife dataset does not contain raw accelerometer
+data. Instead it provides an activity classi cation by continuously sampling
+and processing accelerometer data. The activities are classi ed to stationary,
+walking, running and unknown.
+We also use the calendar with students  deadlines, which is provided by
+the StudentsLife dataset, as an additional indicator of students workload.
+We de ne as Du
+deadline a set of all days that the student u has a deadline. We
+de ne a variable Du,d that represents how many deadlines are close to the
+day d for a user u as follows:
+deadline
+1
+j d ,
+0,
+if j   Tdays < d < j
+otherwise
+(2)
+(cid:40) (cid:80)j Du
+j
+Du,d =
+Thus, Du,d will be equal to zero if there are no deadlines within the next
+Tdays days, where Tdays a constant threshold; otherwise, it will be inversely
+proportional to the number of days remaining until the deadline.
+In our
+experiments we set the Tdays threshold equal to 3. We found that with this
+value the correlation between the stress level of the participants and the
+variable Du,d is maximized.
+Finally, the StudentsLife dataset includes responses of the participants to
+the Big Five Personality test [29]. The Big Five Personality traits describe
+human personality using  ve dimensions: openness, conscientiousness, ex-
+troversion, agreeableness, and neuroticism. The personality traits of partici-
+pants can be used to describe some baseline characteristics of the units and,
+for this reason, we include them in the study.
+8
+4. Causality Analysis
+We apply the causal inference framework that was previously described
+in order to assess the causal impact of factors like exercising, socializing,
+working or spending time at home on stress level.
+4.1. Variables
+Initially, we de ne the variables that will be included in the study as
+follows:
+1. H u,d
+t
+: denotes the total time in seconds that the user u spent at home
+during day d until time t;
+2. U u,d
+t
+: denotes the total time in seconds that the user u spent at uni-
+versity during day d until time t;
+3. Ou,d
+t
+: denotes the total time in seconds time that the user u spent in
+any place apart from his/her home or university during day d until time
+t;
+4. Eu,d
+t
+: denotes the total time in seconds that the user u spent exercising
+during day d before time t (it is estimated using both location traces
+and accelerometer data);
+5. SC u,d
+t
+: denotes the total time in seconds that the user u spent at any
+socialization or entertainment venue during day d before time t;
+6. Su,d
+t
+: denotes the stress level of user u that was reported on day d and
+time t. Stress level is reported one or more times per day. Thus, in
+contrast with the above mentioned variables, Su,d
+is not continuously
+measured;
+d   1. This variable remains constant within a day;
+7. P Su,d: denotes the last stress level that was reported by user u the day
+t
+8. Du,d: represents the upcoming deadlines as described in Equation 2;
+9. Eu, N u, Au, C u, Ou: these  ve variables denote the extroversion, neu-
+roticism, agreeableness, conscientiousness and openness of user u based
+on his Big Five Personality Traits score respectively.
+4.2. Units
+In this study, we examine the e ects of  ve treatments, denoted by the
+variables H u,d
+ti and SC u,d
+ti on the stress level of participants,
+ti
+which is described by the variable Su,d
+. A unit of the study corresponds
+to a set of attributes derived by the variables of the experiment. All the
+, Ou,d
+ti
+, U u,d
+ti
+, Eu,d
+t
+9
+variables are sampled every 4 hours, thus there are maximum six samples
+per day for each participant. Let T = {4am, 8am, 12pm, 16pm, 20pm, 24pm}
+a set of sampling times and ti the ith element of T . Then a unit corresponds
+to the set of variables P u,d
+, P Su,d,
+Du,d). Since the variable Su,d
+is not continuously measured, it is not feasible
+to sample it for time ti. Instead, we de ne Su,d
+ti as the average stress level of
+unit u at day d between time ti and ti+1. Thus, Su,d
+is estimated as follows:
+ti
+t }, for ti   t   ti+1
+ti = E{Su,d
+Su,d
+ti = (H u,d
+ti
+, U u,d
+ti
+(3)
+, Ou,d
+ti
+, Eu,d
+ti
+, SC u,d
+ti
+, Su,d
+ti
+t
+If there are no stress level reports during this time interval, then the unit
+that corresponds to the set of variables P u,d
+ti will be discarded.
+4.3. Detection of Confounding Variables
+In order to conduct a reliable causation study based on observational data
+we need to de ne the confounding variables. While there is a large number
+of factors that could in uence the stress level of participants, the study could
+be biased only by factors that have a direct in uence on both the stress level
+and the variable that is considered as treatment in the study. Thus, in our
+case we need to specify factors that could in uence both the daily activities
+of participants and their stress level. For example, the workload of students
+can in uence their activities (e.g., in periods with increased workload some
+students may choose to change their workout schedule, etc.) and their stress
+level. Since the workload cannot be directly measured using only sensor
+data from smartphones, we use as confounding variables other variables that
+provide implicit indicators of workload such as the time that students spend
+at home and university and their deadlines. Moreover, participants choice to
+do an activity may exclude another activity from their schedule and it may
+also in uence their stress level. For example, someone may choose to spend
+some time in a pub instead of following his/her normal workout schedule.
+The previous day stress level may also in uence both next day s activities
+and stress level. Finally, several studies have demonstrated that stress level
+ uctuations are a ected by personality traits [8]. In general, more positive
+and extrovert people tend to be able to handle stress better than people with
+high neuroticism score. Moreover, personality characteristics may correlate
+with the daily schedule that people follow. For example more extrovert people
+may spend less time at home and more time in social activities. In order to
+de ne the covariates of the study we conduct a correlation analysis on the
+10
+variables of interest. Since the relationship among the variables may not be
+linear, we apply the Kendall rank correlation. The p-values of the Kendall
+correlation are presented in Table 1.
+Su,d
+ti
+0.3557
+0.004
+6   10 5
+0.0081
+9   10 5
+2.7   10 59
+1.69   10 11
+1.81   10 14
+0.024
+0.007
+0.057
+0.604
+Hu,d
+ti
+0
+6   10 128
+7   10 182
+0.0161
+2.7   10 6
+0.967
+2.5   10 6
+2.27   10 5
+0.004
+0.21
+0.078
+0.006
+Uu,d
+ti
+6   10 128
+0
+2   10 6
+0.042
+0.024
+0.0071
+0.0014
+0.059
+1.2   10 5
+0.15
+0.01
+0.005
+Ou,d
+ti
+7   10 182
+2   10 6
+0
+10 7
+10 13
+0.055
+0.0018
+4.9   10 4
+2.3   10 16
+0.047
+0.47
+2.1   10 5
+Eu,d
+ti
+0.0161
+0.042
+10 7
+0
+0.222
+0.3897
+0.002
+4.1   10 5
+0.013
+0.006
+0.352
+4.7   10 4
+SCu,d
+ti
+2.7   10 6
+0.024
+10 13
+0.222
+0
+0.046
+0.0076
+0.0037
+6   10 6
+0.002
+0.214
+0.95
+Hu,d
+ti
+Uu,d
+ti
+Ou,d
+ti
+Eu,d
+ti
+SCu,d
+ti
+PSu,d
+Du,d
+Eu
+Nu
+Au
+Cu
+Ou
+Table 1: P-values of Kendall correlation under the null-hypothesis that the
+examined variables are independent.
+, Ou,d
+ti
+, Eu,d
+ti and SC u,d
+ti on the e ect variable Su,d
+Based on these results, the time that students spend at home does not
+correlate with their stress level. Thus, the variable H u,d
+ti will not be in-
+cluded in the causality study. The causal impact of each treatment variable
+U u,d
+ti will be examined using
+ti
+as confounding variables all the variables that correlate with both the treat-
+ment and e ect based on Table 1. We consider a correlation to be signi cant
+enough if the p-value is smaller than 0.1. In Table 2, we present the con-
+founding variables that will be used for each examined treatment. While the
+are strongly correlated, we do not include SC u,d
+variables Ou,d
+ti
+ti
+in the set of confounding variables when the treatment is the variable Ou,d
+,
+ti
+since our goal is to study the impact of spending time in any place (including
+socialization venues) apart from home and working environment.
+and SC u,d
+ti
+4.4. Creation of Treated and Control Groups
+After de ning the confounding variables of the study, we need to split
+the units into control and treatment groups. We consider binary treatments
+11
+Treatment
+Confounding Variables
+U u,d
+ti
+Ou,d
+ti
+SC u,d
+ti
+Eu,d
+ti
+P Su,d Du,d Ou,d
+ti
+P Su,d Du,d U u,d
+ti
+P Su,d Du,d U u,d
+ti
+U u,d Eu
+Du,d
+Eu,d
+ti
+Eu,d
+ti
+Ou,d
+ti
+N u
+SC u,d
+ti
+Eu
+Eu
+Au
+Eu N u C u
+N u Au
+-
+N u Au
+-
+-
+-
+-
+Table 2: Confounding Variables for the di erent applied treatments.
+, SC u,d
+1. Uu,d
+ti
+, Ou,d
+ti
+, Eu,d
+ti
+: treatment units are all the units with U u,d
+ti } and control all the units with U u,d
+by applying thresholds to the examined treatment variables. Thus, for each
+of the four examined treatments (i.e., U u,d
+ti ) the units are
+ti
+split as follows:
+ti }      
+E{U u,d
+ti } +     E{U u,d
+ti },
+for a constant     [0, 1). Thus, we consider to have a positive treatment
+value when the university sojourn time is relatively small.
+ti > E{U u,d
+ti } +    
+E{U u,d
+ti }       E{U u,d
+ti }.
+Thus, we consider to have a positive treatment value when the time
+spent in any non-work-related place outside home is relatively large.
+: treatment units are all the units with Ou,d
+ti } and control all the units with Ou,d
+ti < E{U u,d
+ti   E{U u,d
+ti   E{U u,d
+2. Ou,d
+ti
+3. Eu,d
+ti
+: treatment units are all the units with Eu,d
+ti > 0 i.e. all the units
+that denote that a user u had some exercise at day d before time t. In
+the control group are units with Eu,d
+ti = 0
+4. SCu,d
+ti
+: similarly to the treatment variable Eu,d
+ti
+units with SC u,d
+ti > 0 and control units with SC u,d
+, treatment units are
+ti = 0
+and Ou,d
+Thus, when the treatment variables U u,d
+ti
+ti are considered, units
+are classi ed to treated and untreated based on the time they have spent at
+university or at any place apart from their home and university respectively.
+However, in order to examine the impact of exercising and visiting socializa-
+tion venues, the binary treatments are de ned by considering only whether
+there was some exercising activity or a visit to a socialization place or not.
+We do not study the impact of these factors by considering also the duration
+of these events since the amount of the data is not su ciently large.
+Each of the examined treatment variables describes some user behavior
+or activity from the start of the day to some time ti. Consequently, the
+comparison of two units with di erent sampling times ti is not valid. Thus,
+we create a group of pairs of treated and control units Gti for each one of
+12
+the 6 sampling times ti such that each treated unit P (u,d)
+control unit P (u,d)(cid:48)
+the average treatment e ect is estimated as follows:
+is matched with a
+with similar values on its confounding variables. Then,
+ti
+ti
+(cid:80)
+(cid:80)
+ti
+AT E =
+(P (u,d)
+ti
+,P (u,d)(cid:48)
+ti
+) Gti
+(SP (u,d)
+ti
+  S
+P (u,d)(cid:48)
+ti
+)
+(cid:80)
+NGti
+ti
+(4)
+If there is no causal e ect of the examined treatment on the stress level
+then the average treatment e ect should be zero. We use a t-test in or-
+der to decide whether the observed average treatment e ect is statistically
+signi cant.
+4.5. Balance Check
+In order to create balanced treated and control pairs of units we apply the
+Genetic Matching method [30]. Genetic Matching is a multivariate match-
+ing method that applies an evolutionary searching algorithm that estimates
+weights for each confounding variable in order to achieve an optimal covari-
+ates balance. In order to assess if the treated and control pairs are su ciently
+balanced, we check the standardized mean di erence for each confounding
+variables of the study. We indicate with C the set of confounding variables.
+For each confounding variable c   C, the standardized mean di erence is
+estimated as follows:
+ (P (u,d)
+ti
+,P (u,d)(cid:48)
+(cid:80) ti
+ti
+) Gti
+NGti
+(cP (u,d)
+ti
+  c
+P (u,d)(cid:48)
+ti
+)
+/(cid:112) T =1
+c
+(5)
+(cid:80) ti
+(cid:80)
+SM Dc =
+c
+where  T =1
+denotes the variance of the confounding variable c for the
+treated units. The remaining bias from a confounding variable c is considered
+to be insigni cant if SM Dc is smaller than 0.1 [28].
+5. Results
+According to Table 1, extroversion and neuroticism are the two person-
+ality characteristics that strongly correlate with stress level. Thus, we in-
+vestigate whether some of the examined treatments have a di erent causal
+impact on people with high extroversion or neuroticism scores. We conduct
+our study collectively for the whole population and selectively for people with
+high extroversion score and people with high neuroticism score. We de ne
+13
+(a) Causal e ect of variable U u,d
+on the
+stress level for the four examined thresh-
+olds
+ti
+(b) Causal e ect of variable Ou,d
+on the
+ti
+stress level for the four examined thresh-
+olds
+(c) Causal e ect of variables Eu,d
+ti
+Scu,d
+ti
+on the stress level
+and
+Figure 3: Percentage improvement on the stress level of treated units com-
+pared to control units when each one of the examined treatments is applied.
+Percentage improvement is estimated as
+AT E
+}   100.
+E{S(u,d)(cid:48)
+ti
+as Extroverts all the participants with extroversion score larger than the av-
+erage extroversion score of all the participants. Correspondingly, we de ne a
+subpopulation of Neurotics composed of participants with neuroticism score
+higher than the average score of the population.
+In Figure 3, we present the average treatment e ect (ATE) normalized
+by the average stress level of the control units along with the 95% con -
+14
+and Ou,d
+dence intervals for each one of the four examined treatment variables. For
+the treatment variables U u,d
+ti we present results for   equal to 0,
+ti
+0.05, 0.1 and 0.15. We do not present results for larger   values since the
+number of samples that are discarded is large and the remaining data are not
+su cient for statistically signi cant conclusions. In Figure 4 and Table 3, we
+present the standardized di erence, as described in Equation 5, for all the
+confounding variables that were used in each one of the causation studies.
+According to our results, the standardized di erence between treated and
+control samples is smaller than 0.1 for all the confounding variables thus any
+confounding bias has been su ciently minimized.
+Our results indicate that the time that students spend at university has
+only a weak causal impact on the stress level when participants  samples are
+split into treatment and control groups using an   value equal to 0.15. In de-
+tail, participants report 3.1% (with con dence interval  0.7%) lower stress
+level the days that their sojourn time at university is 15% lower than the
+average university sojourn time of the whole population compared to days
+that the university sojourn time is 15% larger than usual. However, when
+the analysis is limited to people with high extroversion score, there is no sta-
+tistically signi cant evidence that the time that students spend at university
+has any causal e ect on stress. When smaller   values are considered, the
+causality score is close to zero for the examined set of students as well as for
+the Extroverts and Neurotics sub-populations.
+Based on our results, the time that students spend in any place apart
+from their home and university has a signi cantly strong causal impact on
+their stress level. As depicted in Fig. 3.b, students have reported around
+3% (with con dence interval  0.65%) lower stress level the days that they
+spend more time outside than the average time compared to days that they
+spend less time outside (i.e.,   = 0), when the whole set of participants is
+considered. Similar results are observed when the Extroverts and Neurotics
+sub-populations are examined (the observed di erence is not statistically
+signi cant given the 95% con dence intervals of the study). When the value
+of   is increased, the causal impact of the examined variable is stronger.
+For   = 0.15, the improvement on the stress level for students who spend
+more time outside is 14.45% (with con dence interval  1.5%) when the total
+population is considered. The results are similar when the study is limited
+to students with high extroversion score. However, the examined variable
+has a signi cantly lower impact on stress level when the sub-population of
+Neurotics is considered.
+15
+(a)
+(b)
+Figure 4: Standardized di erence between treated and control samples for
+each confounding variable when the applied treatment is (a) the variable U u,d
+ti
+and (b) the variable Ou,d
+. The standardized di erence for all the confounding
+ti
+variables is less than 0.1, thus the groups are balanced.
+In Fig. 3.c, we examine the impact of exercising or visiting socialization
+venues on stress level. While the variable SC u,d
+is strongly correlated with
+ti
+the stress level, according to our results, there is no causal link between
+them. This indicates that, while people bene t from spending time outside
+home or working environment in general, there is no statistically signi cant
+bene t from visiting speci c venues. Finally, exercising has positive e ect on
+the stress level of the examined population. However, results are di erent
+when the Extroverts and Neurotics sub-populations are examined separately.
+Exercising has a stronger positive e ect on the stress level of participants
+with high neuroticism score while there is no statistically signi cant bene t
+for people with high extroversion score.
+P Su,d
+ 0.0035
+-
+SC u,d
+ti
+Eu,d
+ti
+Du,d
+0.0442
+0087  0.0011
+U u,d
+ti
+0.0046  0.0148  0.0069  0.0065
+Ou,d
+ti
+N u
+Eu
+-
+0.0047
+0
+Au
+0.0001
+0.0043
+Table 3: Standardized di erence between treated and control samples for
+each one of the confounding variables when the applied treatments corre-
+spond to the variables SC u,d
+.
+ti and Eu,d
+ti
+16
+6. Discussion
+In this work, we presented a framework for detecting causal links on hu-
+man behavior using mobile phones sensor data. We have studied the causal
+e ects of several factors, such as working, exercising and socializing, on stress
+level of 48 students using data captured by smartphones sensors. Our results
+suggest that exercising and spending time outside home or university have
+a strongly positive causal e ect on participants stress level. We have also
+demonstrated that the time participants stay at university has a positive
+causal impact on their stress level only when it is considerably lower than
+the average daily university sojourn time. However, this impact is not re-
+markable.
+Moreover, we have observed that some of the examined factors have dif-
+ferent impact on the stress level of students with high extroversion score and
+on students with high neuroticism score. More speci cally, more extrovert
+students bene t more from spending time outside home or university while
+more neurotic students bene t more from exercising.
+Our study mainly relies on raw sensor data that can be easily captured
+with smartphones. We have demonstrated that information extracted by
+simply monitoring users  location and activity (through accelerometer) can
+serve as an implicit indicator of several factors of interest such as their work-
+ing and exercising schedule as well as their daily social interactions. Inferring
+this high-level information using raw sensor data instead of pop-up question-
+naires has three main advantages: 1) it o ers a more accurate representation
+of participants activities over time since data are collected continuously, 2)
+data are collected in an obtrusive way without requiring participants to pro-
+vide any feedback; this minimizes the risk that some users will quit the study
+because they are dissatis ed by the amount of feedback that they need to
+provide, 3) data gathered through pop-up questionnaires may not be ob-
+jective since participants may provide either intentionally or unintentionally
+false responses. On the other hand, inferences based on sensor data could
+also be inaccurate either due to noisy sensor measurements or due to the
+fact that the variable of interest is inferred by the sensed data rather than
+directly measured. For example, in our case we assume that a visit to a
+sports center implies that the user had some exercise. However, the user
+may have visited this place to attend a sports event or just to meet friends.
+Assessing the degree of uncertainty that information inference from sensor
+measurements involves and incorporating this uncertainty into the causation
+17
+study represents an interesting research area for further investigation.
+Finally, this study involves a limited number of participants who do not
+constitute a representative sample of the population; therefore extrapolating
+general conclusions about the causal impact of the examined factors on stress
+level is not feasible. However, the purpose of this article is to demonstrate
+the potential of utilizing smartphones in order to conduct large-scale studies
+related to human behavior, rather than present a thorough investigation on
+factors that in uence stress.
+Appendix A. Location Clustering and Labeling
+We create location clusters using raw GPS traces. In order to increase the
+accuracy on location estimation we consider only GPS samples with accuracy
+less than 50 meters. Moreover, we ignore any samples that were collected
+while the user was moving. For each new GPS point, we create a cluster only
+if the distance of this point with the centroid of any of the existing clusters is
+more than 50 meters. Otherwise, we update the corresponding cluster with
+the new GPS sample. Every time a new GPS sample is added to a cluster,
+the centroid of the cluster is also updated. The pseudo code of the location
+clustering algorithm is presented at Algorithm 1.
+Each location cluster is labeled as home, work/university, gym/sports-
+center, socialization venue or other. The label socialization venue is used
+to describe places like pubs, bars, restaurants and cafeterias. The label
+other is used to describe any place that does not belong to the above men-
+tioned categories. We label as home the place that people spend most
+of the night and early morning hours.
+In order to  nd clusters that cor-
+respond to gyms/sports-centers or socialization venues we use the Google
+Maps JavaScript API [31]. Google Maps JavaScript API enable developers
+to search for speci c type of places that are close to a GPS point. The type of
+place is speci ed using speci c keywords from a list of keywords provided by
+this API. We use the centroid of each unlabeled cluster to search for nearby
+places of interest. Places that correspond to gym/sports centers are speci ed
+by the keyword gym and places that correspond to socialization venues are
+speci ed by the keywords bar, cafe, movie theater, night club and restaurant.
+For each unlabeled cluster we conduct a search for nearby points of inter-
+ests. If a point of interest with distance less than 50 meters from the cluster
+centroid is found, we label the cluster as gym/sport-center or socialization
+venue depending on the point of interest type. Otherwise the cluster is la-
+18
+Data: Set of location points L = {l1, l2, ..., ln}
+Result: Set of Clusters C = {c1, c2, ..., cm}
+C := {};
+for each l   L do
+if accuracy(l)>50 then
+continue;
+end
+locationClusteredF lag := 0;
+for each c   C do
+H := {Z j,k : Z j,k   P};
+if distance(l, centroid(c))<50 then
+c := c   {l};
+locationClusteredF lag := 1;
+break;
+end
+end
+if locationClusteredFlag = 0 then
+newCluster := {l};
+C := C   {newCluster};
+end
+end
+Algorithm 1: Location clustering
+beled as other. Any place within the university campus that is not labeled
+as gym/sport-center or socialization venue is labeled as work/university.
+Appendix B. Matching Method
+For matching the treatment and control units we use the MatchIt R pack-
+age [32] which includes an implementation of the genetic matching algorithm
+described above. Several optimization criteria can be used with Genetic
+Matching [33]. Here, the balance metric that the Genetic Matching algo-
+rithm optimizes is the mean standardized di erence of all the confounding
+variables. We use matching with replacement, i.e., each control unit can be
+matched to more than one treatment units. Matching with replacement can
+reduce the bias since control units which are very similar to treatment units
+can be exploited more. We use a matching ratio equal to 2. This means that
+19
+each treatment unit will be matched with up to 2 control units.
+References
+[1] Miluzzo, E. et al. Sensing meets mobile social networks: the design,
+implementation and evaluation of the cenceme application. In Proceed-
+ings of the 6th ACM conference on Embedded Network Sensor Systems
+(SenSys 08), 337 350 (ACM, 2008).
+[2] Ravi, N., Dandekar, N., Mysore, P. & Littman, M. L. Activity recog-
+nition from accelerometer data. In Proceedings of the 17th Conference
+on Innovative Applications of Arti cial Intelligence (IAAI 05), vol. 5,
+1541 1546 (2005).
+[3] Lu, H. et al. StressSense: detecting stress in unconstrained acoustic
+environments using smartphones. In Proceedings of the 14th ACM Con-
+ference on Ubiquitous Computing (UbiComp 12), 351 360 (ACM, 2012).
+[4] Rachuri, K. K. et al. Emotionsense: a mobile phones based adaptive
+platform for experimental social psychology research.
+In Proceedings
+of the 12th ACM International Conference on Ubiquitous Computing
+(UbiComp 10), 281 290 (ACM, 2010).
+[5] Ma, Y., Xu, B., Bai, Y., Sun, G. & Zhu, R. Daily mood assessment based
+on mobile phone sensing. In Proceedings of the 9th International Con-
+ference on Wearable and Implantable Body Sensor Networks (BSN 12),
+142 147 (IEEE, 2012).
+[6] Bauer, G. & Lukowicz, P. Can smartphones detect stress-related changes
+in the behaviour of individuals? In Proceedings of the Pervasive Comput-
+ing and Communications Workshops (PERCOM Workshops 12), 423 
+426 (IEEE, 2012).
+[7] Bogomolov, A., Lepri, B. & Pianesi, F. Happiness recognition from
+mobile phone data. In Proceedings of the International Conference on
+Social Computing (SocialCom 13), 790 795 (IEEE, 2013).
+[8] Bogomolov, A., Lepri, B., Ferron, M., Pianesi, F. & Pentland, A. S.
+Daily stress recognition from mobile phone data, weather conditions and
+individual traits. In Proceedings of the ACM International Conference
+on Multimedia (MM 14), 477 486 (ACM, 2014).
+20
+[9] Asur, S. & Huberman, B. A. Predicting the Future with Social Me-
+dia. In Proceedings of the 2010 Web Intelligence and Intelligent Agent
+Technology Conference (WI-IAT 10), vol. 1, 492 499 (IEEE, 2010).
+[10] Tumasjan, A., Sprenger, T. O., Sandner, P. G. & Welpe, I. M. Predict-
+ing elections with Twitter: What 140 characters reveal about political
+sentiment. In Proceedings of the Fourth International AAAI Conference
+on Weblogs and Social Media (ICWSM 10), vol. 10, 178 185 (2010).
+[11] Bollen, J., Mao, H. & Zeng, X. Twitter mood predicts the stock market.
+Journal of Computational Science 2, 1 8 (2011).
+[12] Cha, M., Haddadi, H., Benevenuto, F. & Gummadi, P. K. Measuring
+user in uence in Twitter: The million follower fallacy. In Proceedings
+of the Fourth International AAAI Conference on Weblogs and Social
+Media (ICWSM 10), vol. 10, (2010).
+[13] Anger, I. & Kittl, C. Measuring in uence on Twitter. In Proceedings
+of the 11th International Conference on Knowledge Management and
+Knowledge Technologies (I-KNOW 11), (ACM, 2011).
+[14] Bond, R. M. et al. A 61-million-person experiment in social in uence
+and political mobilization. Nature 489, 295 298 (2012).
+[15] Muchnik, L., Aral, S. & Taylor, S. Social in uence bias: A randomized
+experiment. Science 341, 647 651 (2013).
+[16] Onnela, J. et al. Structure and tie strengths in mobile communication
+networks. Proceedings of the National Academy of Sciences vol. 104,
+7332 7336 (National Acad Sciences, 2007).
+[17] Colizza, V., Barrat, A., Barthelemy, M. & Vespignani, A. Prediction and
+predictability of global epidemics: the role of the airline transportation
+network Proceedings of the National Academy of Sciences 103, 313 318
+(2005).
+[18] Marsch, L. A. Leveraging technology to enhance addiction treatment
+and recovery. Journal of Addictive Diseases 31, 2015 2020 (2012).
+21
+[19] Pejovic, V. & Musolesi, M. Anticipatory Mobile Computing for Be-
+haviour Change Interventions.
+In Proceedings of the 2014 ACM In-
+ternational Joint Conference on Pervasive and Ubiquitous Computing:
+Adjunct Publication, 1025 1034 (ACM, 2014).
+[20] Moturu, S. T., Khayal, I., Aharony, N., Pan, W. & Pentland, A. Using
+social sensing to understand the links between sleep, mood, and socia-
+bility. In Proceedings of the Third International Conference on Social
+Computing (SocialCom 11), 208 214 (IEEE, 2011).
+[21] Madan, A., Moturu, S., Lazer, D. & Pentland, A. S. Social sensing:
+obesity, unhealthy eating and exercise in face-to-face networks. In Pro-
+ceedings of Wireless Health 2010, 104 110 (ACM, 2010).
+[22] Mouchart, M., Russo, F. & Wunsch, G. Structural modelling, exo-
+geneity, and causality. In Causal Analysis in Population Studies, 59 82
+(Springer, 2009).
+[23] Spirtes, P., Glymour, C. N. & Scheines, R. Causation, Prediction, and
+Search, vol. 81 (MIT Press, 2000).
+[24] Campbell, D. & Stanley, J. Experimental and Quasi-Experimental De-
+signs for Research (Houghton Mi in Boston, 1963).
+[25] Wang, R. et al. Studentlife: Assessing mental health, academic perfor-
+mance and behavioral trends of college students using smartphones. In
+Proceedings of the 2014 ACM International Joint Conference on Perva-
+sive and Ubiquitous Computing (UbiComp 14), 3 14 (ACM, 2014).
+[26] Holland, P. W. Statistics and causal inference. Journal of the American
+Statistical Association 81, 945 960 (1986).
+[27] Stuart, E. A. Matching methods for causal inference: A review and a
+look forward. Statistical science: a review journal of the Institute of
+Mathematical Statistics 25, 1 21 (2010).
+[28] Austin, P. C. An introduction to propensity score methods for reducing
+the e ects of confounding in observational studies. Multivariate Behav-
+ioral Research 46, 399 424 (2011).
+22
+[29] Bolger, N. & Schilling, E. A. Personality and the problems of everyday
+life: The role of neuroticism in exposure and reactivity to daily stressors.
+Journal of personality 59, 355 386 (1991).
+[30] Diamond, A. & Sekhon, J. S. Genetic matching for estimating causal
+e ects: A general multivariate matching method for achieving balance in
+observational studies. Review of Economics and Statistics 95, 932 945
+(2013).
+[31] Google Maps Places API. https://developers.google.com/maps/documentation/
+javascript/places (2014).
+[32] Ho, D. E. MatchIt: nonparametric preprocessing for parametric causal
+inference. Ph.D. thesis, Departments of Mental Health and Biostatistics,
+Johns Hopkins Bloomberg School of Public Health (1737).
+[33] Sekhon, J. S. Multivariate and propensity score matching software with
+automated balance optimization: the matching package for R. Journal
+of Statistical Software 42, (2011).
+23

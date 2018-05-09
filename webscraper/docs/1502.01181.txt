@@ -1,0 +1,2146 @@
+A gap analysis of Internet-of-Things platforms
+Julien Minerauda, , Oleksiy Mazhelisb, Xiang Suc, Sasu Tarkomaa
+aDepartment of Computer Science, University of Helsinki, Finland
+bDepartment of Computer Science and Information Systems, University of Jyv askyl a, Finland
+cCenter for Ubiquitous Computing, University of Oulu, Finland
+6
+1
+0
+2
+ 
+r
+a
+ 
+M
+0
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+3
+v
+1
+8
+1
+1
+0
+.
+2
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Abstract
+We are experiencing an abundance of Internet-of-Things (IoT) middleware solutions that provide connectivity for sensors
+and actuators to the Internet. To gain a widespread adoption, these middleware solutions, referred to as platforms, have
+to meet the expectations of di erent players in the IoT ecosystem, including device providers, application developers,
+and end-users, among others.
+In this article, we evaluate a representative sample of these platforms, both proprietary and open-source, on the basis
+of their ability to meet the expectations of di erent IoT users. The evaluation is thus more focused on how ready and
+usable these platforms are for IoT ecosystem players, rather than on the peculiarities of the underlying technological
+layers. The evaluation is carried out as a gap analysis of the current IoT landscape with respect to (i) the support for
+heterogeneous sensing and actuating technologies, (ii) the data ownership and its implications for security and privacy,
+(iii) data processing and data sharing capabilities, (iv) the support o ered to application developers, (v) the completeness
+of an IoT ecosystem, and (vi) the availability of dedicated IoT marketplaces. The gap analysis aims to highlight the
+de ciencies of today s solutions to improve their integration to tomorrow s ecosystems. In order to strengthen the  nding
+of our analysis, we conducted a survey among the partners of the Finnish IoT program, counting over 350 experts, to
+evaluate the most critical issues for the development of future IoT platforms. Based on the results of our analysis and
+our survey, we conclude this article with a list of recommendations for extending these IoT platforms in order to  ll in
+the gaps.
+Keywords:
+Internet of Things, IoT platforms, IoT marketplace, gap analysis, IoT ecosystem.
+1. Introduction
+The Internet of Things (IoT) paradigm foresees the
+development of our current environment towards new en-
+riched spaces, such as smart cities, smart homes, smart
+grid, digital health, and automated environmental pollu-
+tion control [1, 2].
+In recent years, an abundance of solutions has emerged
+to interconnect smart objects for systems with di erent
+scales and objectives. For instance, a lightweight platform
+can be deployed in one s home to orchestrate several con-
+nected objects, such as the fridge, the lights, and the heat-
+ing system. On a broader scale, a smart city may bene t
+its development and management from new IoT solutions
+that can handle thousands of sensors, ease their mainte-
+nance, recalibration and, more importantly, analyze the
+data that they produce [3, 4].
+In this article, we study today s IoT landscape with re-
+gard to the distribution of applications and services, as well
+ Corresponding author
+Email addresses: julien.mineraud@cs.helsinki.fi
+(Julien Mineraud), mazhelis@jyu.fi (Oleksiy Mazhelis),
+xiang.su@ee.oulu.fi (Xiang Su), sasu.tarkoma@cs.helsinki.fi
+(Sasu Tarkoma)
+as the platforms that connect the devices to the Internet.
+For the purposes of this paper, an IoT platform is de ned
+as the middleware and the infrastructure that enables the
+end-users to interact with smart objects, as depicted in
+Figure 1. We frame our study as a gap analysis of these
+platforms with regard to their capacities in meeting the
+challenges emerging from the current development of the
+IoT technologies. In order to evaluate the limitations of
+the current IoT platform landscape and identify the gaps
+that need to be  lled, we consider the viewpoints of dif-
+ferent players of the IoT platform ecosystem, including
+device vendors, application developers, providers of plat-
+forms and related services, and the end-users. In order to
+strengthen the  ndings of the gap analysis, we conducted
+a survey among the experts of the national Finnish IoT
+program [5] to highlight the most critical gaps for the de-
+velopment of future IoT platforms. As a result of this
+evaluation, we propose a set of recommendations aimed at
+ lling in the identi ed gaps.
+The remainder of this article is organized as follows:
+Section 2 presents the review of a representative list of IoT
+platforms. This is followed by a thorough gap analysis of
+the solutions in Section 3.
+In Section 4, we present the
+results of the survey and in Section 5, we enumerate our
+Preprint submitted to Computer Communications, Special issue on the Internet of Things: Research challenges and SolutionsMarch 11, 2016
+as shown in Figure 1a, either in a form of a Platform-as-
+a-Service (PaaS) or a Sotfware-as-a-Service (SaaS). The
+PaaS refers to the platforms that provide cloud comput-
+ing services for IoT devices and data. The services in-
+clude, but are not restricted to storage facilities, devices
+management, device connectivity, backup mechanisms or
+online support. By contrast, SaaS focuses on the mashup
+of data using cloud computing capabilities. We added an
+additional Machine-to-Machine (M2M) tag if the platform
+targets primarily this part of IoT [6].
+The type of architecture is shown in the Column c).
+While the independent deployments are usually centrally
+controlled (see Figure 1b), the decentralized deployments
+(LinkSmart
+[Platform 17] or OpenIoT [Platform 23]) in-
+clude multiple sub-networks of sensing and actuating de-
+vices (referred to as sites in LinkSmart
+and hubs in Ope-
+nIoT ) that are independently controlled.
+TM
+TM
+Note that no color code is used for columns b) and c)
+as we believe that di erent types of platforms and archi-
+tectures are needed in di erent deployment environments.
+For example, a decentralized PaaS, such as H.A.T. [Plat-
+form 13], is ideal for a home environment while a cloud-
+based solution like Xively [Platform 39] is more appropri-
+ate for a large deployment of sensors and actuators (e.g.,
+smart factory).
+The table also includes information about the open-
+ness of the platforms, the availability of a Representational
+State Transfer (REST) API, as well as data access control
+and service discovery mechanisms.
+A number of open-source platforms are considered more
+promising compared with the proprietary alternatives for
+the following reasons. First, the use of the open source is
+expected to enable the faster integration of new IoT solu-
+tions across the application domains. Second, the use of
+the open source has been reported to speed up the adop-
+tion of a software technology in a bottom-up fashion. Fi-
+nally, when seen from the social surplus perspective, the in-
+dustry based on the open-source platforms has been found
+to provide larger total welfare, compared with the industry
+structures based on proprietary platforms [7].
+Only a few platforms do not have a REST API. This
+demonstrates that the current IoT services will tend to
+become more and more like traditional web services (i.e.,
+Web of Things [8]).
+In particular, IoT service mashups
+and data analytics will be key integrators for the future
+of IoT technologies [9, 10, 4]. We noted that only a few
+platforms have integrated some type of service discovery
+mechanisms, even in a very simpli ed fashion. A com-
+prehensive survey on discovery protocols for constrained
+M2M communications can be found in [11].
+Security and privacy of IoT platforms
+One of the fundamental criteria for IoT platforms is
+the need to include e cient and reliable privacy and secu-
+rity mechanisms [12, 13, 14, 15, 16]. In [16], Satyadevan et
+al. survey  ve IoT platforms (including platforms 4, 17,
+2
+(a) Cloud-based platform
+(b) Local platform
+Figure 1: End-to-end interactions between users, smart de-
+vices and the platform. IoT platforms currently enables interac-
+tion between devices and users. However, interactions between IoT
+platforms are limited and costly.
+recommendations for  lling in the gaps outlined in the
+previous sections. Finally, we will conclude this article in
+Section 6.
+2. Review of today s IoT platforms
+In this section, we survey available IoT platforms, both
+proprietary and open-source, that connect smart objects
+or things to the Internet. The list of the 39 platforms be-
+ing surveyed, ordered alphabetically and numbered (e.g.,
+[Platform 17], where 17 also refers to the  ref  column in
+Table 1), along with further details about these platforms,
+can be found in Appendix A. The list of the surveyed
+platforms shall by no means be seen as exhaustive though
+we believe that a representative sample of the available
+platforms has been included in the survey.
+Table 1 lists the surveyed platforms and summarizes
+some characteristics which are seen by the authors as fun-
+damental for meeting the expectations of the users and
+application developers. Hence, this table aims to provide
+quick visual information for those interested in selecting
+the most appropriate IoT platform to be deployed in their
+environment. To improve the clarity of the table, we ap-
+plied a color code to the table cells. Speci cally, the green
+color indicates that a particular platform s characteristic
+ ts the expectations of the users of the platforms, while
+the red color indicates a mismatch between the character-
+istic of the platforms and the expectations of the users.
+An intermediate orange color has been added to indicate
+partial  tting.
+In Table 1, Column a) enumerates the types of devices
+that are supported by the platform. Platforms that require
+a proprietary gateway to connect IoT devices are depen-
+dent on the platform providers to respond to emerging
+technologies, thus limiting the reactivity of the platform
+to adopt new protocols and support an increasing number
+of heterogeneous IoT devices.
+Column b) describes the type of the IoT platform. In
+most cases, the platforms are provisioned from a cloud,
+Ref
+Platforms
+a) Support of
+heterogeneous
+devices
+Table 1: Available IoT platforms
+b) Type
+c) Architecture
+d) Open source
+e) REST
+f) Data access
+control
+g) Service
+discovery
+AirVantage
+TM
+Needs gateway
+M2M PaaS
+Cloud-based
+Arkessa
+Yes
+M2M PaaS
+Cloud-based
+Yes
+OAuth2
+n.a.
+CoAP
+Facebook like
+privacy settings
+User s choice
+1
+2
+3
+4
+5
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+ARM mbed
+Carriots R(cid:13)
+DeviceCloud
+EveryAware
+Everyware
+EvryThng
+Exosite
+Fosstrack
+GroveStreams
+H.A.T.
+IoT-framework
+IFTTT
+Kahvihub
+LinkSmart
+TM
+18 MyRobots
+NiagaraAX
+19
+20
+Nimbits
+Embedded
+devices
+Yes
+Yes
+Yes
+Needs gateway
+Yes
+Yes
+RFID
+No
+Home devices
+Yes
+Yes
+Yes
+Embedded
+devices
+Robots
+Yes
+Yes
+M2M PaaS
+PaaS
+PaaS
+Server
+PaaS
+M2M SaaS
+PaaS
+Server
+PaaS
+PaaS
+Server
+SaaS
+Server
+P2P
+Robots PaaS
+M2M SaaS
+Server
+Centralized/
+Cloud-based
+Cloud-based
+Cloud-based
+Centralized
+Cloud-based
+Centralized
+Cloud-based
+Centralized
+Cloud-based
+Decentralized
+Centralized
+Centralized
+Centralized
+Cloud-based
+Distributed
+Centralized/
+Cloud-based
+Cloud-based
+Decentralized
+LGPLv3
+21
+NinjaPlatform
+Needs gateway
+PaaS
+22
+Node-RED
+23
+OpenIoT
+24
+OpenMTC
+Yes
+Yes
+Yes
+25
+OpenRemote
+Home devices
+26
+Open.Sen.se
+27
+28
+29
+realTime.io
+TM
+SensorCloud
+SkySpark
+30
+Swarm
+en-
+Ethernet
+abled
+Needs gateway
+No
+No
+Yes
+31
+32
+33
+34
+35
+TempoDB
+TerraSwarm
+The thing sys-
+tem
+Thing Broker
+ThingSpeak
+No
+Yes
+Home devices
+Yes
+Yes
+36
+ThingSquare
+37
+ThingWorx
+Embedded
+devices
+Yes
+PaaS
+PaaS
+SaaS
+PaaS
+PaaS
+OS
+Server
+Server
+Server
+Mesh
+Cloud-based
+Cloud-based
+Centralized/
+Cloud-based
+Cloud-based
+Cloud-based
+Decentralized
+Centralized
+Centralized
+Centralized/
+Cloud-based
+Cloud-based
+M2M PaaS
+Cloud-based
+38 WoTkit
+39
+Xively
+Yes
+Yes
+PaaS
+PaaS
+Cloud-based
+Cloud-based
+3
+Libraries
+only
+(Apache v2, MIT
+and Eclipse v1.0
+No
+No
+only
+No
+No
+No
+No
+No
+Libraries
+(BSD license)
+No
+No
+Yes
+Apache license 2.0
+No
+Apache license 2.0
+No
+No
+Apache license 2.0
+Open source hard-
+ware and Operat-
+ing System
+Apache license 2.0
+No
+No
+No
+Client
+source
+license)
+No
+n.a.
+M.I.T.
+is
+open
+(unknown
+Yes
+GNU GPLv3
+Gateway  rmware
+is open source
+No
+No
+Libraries are open
+source
+(BSD 3-
+clause), platform is
+not
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+Yes
+Yes
+Yes
+No
+Yes
+No
+Yes
+n.a.
+Yes
+Yes
+No
+No
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+n.a.
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+Yes
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+No
+Yes
+Yes
+Limited
+Yes
+Secured access
+n.a.
+4 levels
+n.a.
+Fine-grained
+n.a.
+Locally stored
+Role-based
+Locally stored
+Locally stored
+No storage
+Locally stored
+Locally stored
+Yes
+2 levels
+n.a.
+3 levels
+OAuth2
+User-based
+privileges
+User-based
+privileges
+Secured access
+No
+n.a.
+No
+No
+No
+Yes
+No
+Locally stored
+No
+2 levels
+Limited
+Secured access
+n.a.
+n.a.
+n.a.
+Secured access
+n.a.
+User s choice
+No
+No
+No
+n.a.
+No
+Yes
+No
+Locally stored
+2 levels
+No
+Limited
+No
+User-based
+privileges
+Secured access
+Secured access
+No
+Yes
+Yes
+Yes
+Server
+Centralized
+Hub
+Decentralized
+LGPLv3
+M2M client/
+Server
+Server
+Centralized/
+Cloud-based
+Centralized
+PaaS/SaaS
+Cloud-based
+No
+A ero GNU Public
+License
+No
+35 and 39 of our survey) with respect to security and trust
+management. The survey suggests that cloud-based IoT
+platforms are prone to traditional web and network secu-
+rity attacks such as Denial of Service (DoS), man-in-the-
+middle, eavesdropping, spoo ng and controlling attacks.
+A survey of low-level protocols for ensuring security and
+privacy in both centralized and distributed IoT scenarios is
+presented in [15], and the research community constantly
+aims to improve protocols to address these security chal-
+lenges. An example is the work proposed by Asokan et
+al. [17] to secure large swarms of embedded devices while
+overcoming the limitations of these constrained devices
+(i.e., memory, computation, communication, latency and
+energy consumption constrains). A number of areas are
+critical for the widespread adoption of IoT but not yet
+fully addressed by IoT platforms; many of these have been
+listed and analyzed in the above surveys, including: (i) de-
+vice authentication, (ii) communication and physical pri-
+vacy, (iii) data storage protection, (iv) device protection,
+(v) trust management, (vi) governance and (vii) fault tol-
+erance.
+In this article, we limit our analysis of the security and
+privacy issues to the protection mechanisms for data stor-
+age and data access available on the IoT platforms. Mean-
+while, for more comprehensive discussions on the other
+security, privacy and trust challenges pertaining to IoT
+platforms, we invite the interested readers to refer to [14,
+15, 16, 17].
+To authenticate users, most of the cloud-based plat-
+forms use the standard protocol OAuth 2.0 [18] while cen-
+tralized servers required only a local access to the machine.
+We evaluated the expectations in term of privacy as the
+ exibility of the access control o ered by the platform.
+Throughout our evaluation, we noted four types of access
+granularity from the basic private or public choice (i.e.,
+2-level for MyRobots [Platform 18] or Open.Sen.se [Plat-
+form 26]) to a  ne-grained access control where the data
+could be either private, protected, public or anonymous
+(i.e., 4-level for EveryAware [Platform 7]). In our opinion,
+the latter is the only one having the necessary  exibility
+to maximize the re-usability of the data by remote third-
+party services.
+3. Gap analysis
+In the previous section, we presented the characteris-
+tics of IoT platforms that are the most important to users
+and application developers. However, multiple gaps can be
+identi ed in the functionality o ered by these platforms.
+Therefore, we present in this section a gap analysis, sum-
+marized in Table 2, that aims to evaluate the maturity of
+the current solutions by assessing their shortcomings along
+several dimensions. The dimensions covered by the anal-
+ysis include (i) the extensibility of the platform in terms
+of supporting heterogeneous sensing and actuating tech-
+nologies, (ii) the data ownership and its implications for
+security and privacy, (iii) the data processing and shar-
+ing for supporting new services, (iv) the support of ap-
+plication developers, and (v) the completeness of an IoT
+ecosystem. Then, we extend the gap analysis to dedicated
+IoT marketplaces that (vi) support the deployment of IoT
+applications and services.
+3.1. Integration of sensing and actuating technologies
+The essence of an IoT platform is to enable the se-
+cure connection of a multitude of heterogeneous sensing
+and actuating devices, having di erent constraints and
+capabilities, to the Internet.
+In the absence of de-facto
+communication standard(s), the sensing and actuating de-
+vices by di erent vendors may subscribe to di erent inter-
+action patterns, and may implement di erent subsets of
+available communication protocols. As a result, arguably,
+the value of an IoT platform grows proportionally with
+the number and the versatility of the supported devices.
+An ideal IoT platform would o er a pool of standardized
+communication protocols where the device manufacturer
+may select the appropriate protocols (e.g., CoAP for con-
+strained devices [19]). In the case of passive devices (e.g.,
+RFID-enabled) or constrained devices, the connectivity
+relies on a mediating gateway (see Figure 1) that must
+be fully controlled by the platform user, alike the Nin-
+jaBlock [Platform 21], which provides open-source hard-
+ware and  rmware for the gateway.
+TM
+For a smooth integration with sensing and actuat-
+ing devices,
+it is essential that the IoT communities
+establish standardized protocols for all devices, as it
+is currently done for highly constrained devices by the
+IETF [20] or for M2M communications by IEEE1888,
+ETSI M2M and 3GPP [21]1. Presently, protocols for
+constrained devices are supported by OpenRemote [Plat-
+form 25] (KNX, Z-Wave, X10, etc.), LinkSmart
+(Zig-
+Bee), ARM mbed [Platform 3] (MQTT, CoAP) and Thing-
+Worx (MQTT); the others assume the use of relatively
+powerful devices capable of supporting traditional web
+protocols. It shall be noted that for some platforms, such
+as LinkSmart
+, the support for constrained devices pro-
+tocols is implied though the publicly available documenta-
+tion is insu cient for judging the extent of such support.
+Meanwhile, SensorCloud
+[Platform 28], SkySpark [Plat-
+form 29] or TempoDB [Platform 31] require full- edged
+HTTP end-point to upload the data, assuming powerful
+devices capable of supporting traditional web protocols
+and do not integrate device communication protocols into
+their solutions. Finally, IFTTT [Platform 15], which com-
+municates with both device manufacturers and web service
+providers,  adjusts  to the vendors  needs (e.g., to the
+needs of Belkin) to extend the platform to new technolo-
+gies. It shall be emphasized that there is no de-facto com-
+munication protocol suit, and this makes the task of inter-
+facing heterogeneous devices more challenging and hence
+TM
+TM
+1 More details on standardization bodies and protocols can be
+found in [1].
+4
+more expensive. In addition, as previously mentioned in
+Section 2, IoT platforms do not integrate su cient secu-
+rity and privacy protocols to satisfy the integrity of the
+data and the management of connected devices [15, 16].
+The current IoT solutions address the issue of inter-
+facing heterogeneous devices di erently. Generally, the
+interoperability with devices is ensured either by imple-
+menting a gateway that can be expanded, e.g., with the
+help of plug-ins, to support new types of devices whenever
+needed, or by mandating the device vendors to use pro-
+tocols from a limited set of supported ones. For example,
+the realTime.io [Platform 27] platform proposed a connec-
+tion of sensors via a proprietary gateway (ioBridge which
+even requires the use of a proprietary transport proto-
+col, ioDP ), while the ThingWorx [Platform 37] and Open-
+MTC [Platform 24] platforms use web sockets, MQTT or
+other standard communication protocols to interconnect
+devices to the platform. Some other platforms, such as
+the thing system [Platform 33] or H.A.T. targets the in-
+tegration of devices present in  smart homes  and  smart
+places  environments. Other platforms, such as Fosstrack
+[Platform 11], only enable one type of technology which,
+in the case of Fosstrack, is RFID. Note however that ei-
+ther the heterogeneity of supported devices is limited, or
+the use of a gateway is necessary (Gap G1.1). We believe
+that, in order to streamline the integration of new device
+types, standard object models for IoT devices, such as the
+models recommended in the recent IPSO Smart Objects
+guidelines [22] based on the Lightweight M2M (LwM2M
+1.0) speci cations [23], should be integrated widely by IoT
+platforms (Gap 1.2). Furthermore, security mechanisms,
+such as in [17], should be integrated to IoT platforms to
+provide secure management of IoT devices (Gap 1.3).
+3.2. Data ownership
+In our opinion, the enormous volume of data that
+would be generated by the devices in the IoT mandates
+the data management to be at the core of IoT paradigm,
+and it ampli es the need to maintain a certain degree of
+privacy and security [13]2. The owner of the data can thus
+be expected to have a full control over the placement of
+the data, as well as over who has the access rights to which
+portions of this data.
+Based on the information collected during our gap anal-
+ysis of today s IoT platforms, the data ownership has been
+a major concern for all the platforms. For instance, the
+cloud-based platforms (e.g., Swarm [Platform 30]) ensure
+that the data collected and stored by the platform remains
+the property of the customers. However, the full ownership
+of the data is rarely guaranteed. In most cases, rather than
+2ETSI Partnership Project oneM2M has issued a technical report
+for the speci cation of security architecture for M2M communica-
+tions [24]. The standardization body has classi ed the security solu-
+tions as (i) identi cation and authentication, (ii) authorization and
+(iii) identity management. In this study, we only considered the  rst
+two classes.
+5
+storing and manipulating the data locally at the edge, the
+data is sent to the platform in a raw format, stored un-
+encrypted and very little information is presented on the
+security measures taken to secure the data (Gap G2.1).
+The majority of the listed platforms requires the use
+of access keys or other access control mechanisms to get
+read or write permissions. The access rights are either
+determined by the end users of the devices, through a
+web interface (ThingSpeak [Platform 35], Nimbits [Plat-
+form 20]), or are left for the application provider to de-
+ ne when implementing the applications (OpenRemote,
+Swarm, LinkSmart
+, Thing Broker [Platform 34]). Fur-
+thermore, the EveryAware platform provides access to
+public data feeds to anonymous users, who do not require
+access keys. Such overly strict or too relaxed privacy set-
+tings do not provide enough control over the data (Gap
+G2.2).
+TM
+Only solutions, where the data is stored locally (e.g.,
+H.A.T. or OpenRemote), truly o er the full ownership of
+the data to the end-user. We suggest that future IoT solu-
+tions must have algorithms and mechanisms for the data
+owner to give access only to a prede ned set of the re-
+sources, and that the raw data must remain under control
+of the end-user. For instance, if the data owner is willing
+to archive data using a service o ered by a PaaS, he must
+be able to encrypt the data or process it before sending it
+to the cloud. Further, since too strict or too relaxed pri-
+vacy settings do not provide enough control over the data,
+in future IoT solutions,  ne-grained data visibility must
+be coupled to local storage functionalities to re-attribute
+the ownership of the data to the users.
+3.3. Data processing and data sharing
+IoT data can be large in terms of volume and the ap-
+plications typically have real-time requirements. IoT data
+streams are unbounded sequences of time-varying data el-
+ements. This data could often be unreliable, incomplete,
+and have di erent qualities and out-of-order arrival prob-
+lem, and communication loss [25]. Furthermore, this data
+is represented in di erent formats and various models.
+For example, it is a challenge to directly utilize low-level
+data provided by sensors without a well-de ned knowledge
+model.
+Data and knowledge behind data are the core of the
+wealth produced by the IoT. Data processing and sharing
+mechanisms should be developed to ensure that IoT data
+can be utilized in applications to its best. Today s IoT so-
+lutions either do not support, or have limited support for
+the processing and sharing of data streams. Yet, it remains
+possible to combine multiple streams into a single applica-
+tion if one knows the URI to the desired sources of infor-
+mation, but this represents a technical challenge for appli-
+cation developers. The Ericsson s IoT-Framework [Plat-
+form 14] provides mechanisms to integrate virtual streams
+(e.g., from external data sources) that can be combined
+with local streams for visualization or statistical analysis
+and data predictions. Moreover, di erent data process-
+ing techniques are adapted for IoT. For example, Tsai
+et al. [4] survey data mining technologies for IoT. Su et
+al. [26] study how to embed semantics on IoT devices and
+Maarala et al. [27] extend this research with processing
+large IoT data in city tra c scenarios. Nevertheless, the
+aggregation of these available data processing techniques
+within IoT platforms is still limited (Gap G3.1).
+The principle of data fusion has been addressed by the
+Node-RED tool [Platform 22], which enables the compo-
+sition of IoT data and devices with the concept of data
+ ows.
+In [28], Blackstock and Lea integrated the Node-
+RED composer to the WoTKit processor [Platform 38]
+to enable the creation of distributed data  ows. Hence,
+such mechanisms support the creation of innovative and
+enriched web-of-things contents. We suggest that such
+mechanisms should be integrated into IoT middleware sys-
+tems to perform similar operations on data streams. The
+current gap is in processing these streams e ciently and
+handling di erent formats and models (Gap G3.2). Here,
+e cient processing means (i) processing IoT data consider-
+ing computing, storage, communication, and energy limi-
+tations of IoT environments; and (ii) the timely generation
+of useful knowledge for IoT applications before it becomes
+outdated. Meanwhile, to cope with big IoT data, most
+IoT platforms shall have a high processing throughput.
+To mitigate the gap above, edge analytics solutions
+(i.e., closer to where the data is being produced), such
+as cloudlets [29], are now available for constrained deploy-
+ments. We believe that future IoT platforms should in-
+clude cloudlets-like technologies to enable local IoT net-
+works to perform edge analytics. Edge analytics con-
+tributes to maximize energy e ciency, reduce privacy
+threats and minimize latencies. The Kahvihub plat-
+form [Platform 16] envisions to support this for con-
+strained devices, by providing sandboxed execution plat-
+forms for IoT services. As a result, networks of hetero-
+geneous devices can collaboratively analyze the data that
+they produce. Sandboxing IoT application has also been
+addressed in [30].
+IoT devices produces low-level data, which is often un-
+reliable, incomplete, disordered, and even lost. Therefore,
+fault management is essential for IoT platforms. Availabil-
+ity of input data streams for IoT platforms is often unde-
+termined. Hence, additional challenges are introduced to
+guarantee the complete data processing result (Gap G3.4).
+Moreover, intrusion detection, prevention, and recovery
+mechanisms should be developed in IoT platforms, which
+will help IoT entities to protect their data and services
+[15].
+Finally, in order to  nd the relevant data streams that
+are available, these streams should be listed in dedicated
+data catalogs where context information may be used to
+provide e cient discovery mechanisms. Semantic index-
+ing can be used on these catalogs and other metadata
+available on the IoT devices [31]. The e cient process-
+ing of IoT data from multiple external sources is still an
+6
+open issue. From all the platforms reviewed in this article,
+only four (i.e., IoT-Framework, Kahvihub, ThingWorx and
+Xively) integrated a search mechanism for data streams.
+In the case of IoT-Framework, the search mechanism is
+performed through geolocalization, tagging or data types.
+However, the search was limited to the streams available
+on the platform, whereas the search through multiple plat-
+forms is hitherto unavailable (gap G3.3). Recent research
+e orts have been invested towards this direction with Hy-
+perCat, a lightweight JSON-based URI catalog that refer-
+ences services provided by IoT platforms [3].
+3.4. Support of application developers
+In order to foster an expedited development of appli-
+cations, the IoT platforms are expected to provide the
+developers with streamlined application programming in-
+terfaces (APIs) to their functionality, preferably with the
+help of higher abstraction level primitives. Further, to en-
+able an e cient development of cross-IoT-platform appli-
+cations, these APIs shall be uniform across the platforms,
+to the extent possible.
+Today s IoT platforms almost all provide a public API
+to access the services. The APIs are usually based on
+RESTful principles, and allow common operations such as
+PUT, GET, PUSH or DELETE. These operations support the
+interaction with the connected devices on the platform,
+as well as the management of these devices. Only four
+of the studied platforms did not include a REST API for
+easing the development of web services (i.e. Fosstrack,
+LinkSmart
+, IFTTT and OpenIoT ), but use di erent in-
+teraction means. Nonetheless, the other platforms uses
+nonuniform3 REST APIs and data models which compli-
+cates the mashing up of data across multiple platforms
+(Gap 4.1; see Section 3.3).
+TM
+TM
+Many platforms also o er libraries, which are in some
+cases open-source (e.g. AirVantage
+[Platform 1], Ex-
+osite [Platform 10], IoT-Framework or Xively), that are
+bindings for di erent programming languages to the REST
+API available on the platforms. However, these bindings
+libraries do not greatly improve the support to application
+developers in using the services provided by the platforms
+as they only include basic functionalities, e.g., connection
+to the platform with access keys (Gap 4.2). To some ex-
+tent, some platforms such as ThingSpeak enable the cre-
+ation of widgets written in Javascript, HTML and CSS
+that may be distributed on the platform to other users.
+Alternatively, the Carriots R(cid:13) platform [Platform 4] pro-
+vides a full Software Development Kit (SDK) written in
+Groovy for application developers. We believe that this
+approach should be more generalized within IoT solutions
+to maximize usability of the services provided by the IoT
+platforms.
+3Nonuniform in this context means that every platform provides
+custom APIs and data models as standards such as HyperCat [32]
+are not yet widely adopted.
+Table 2: Summary of the gap analysis
+Category
+Current status
+Expectations
+of
+Support
+heteroge-
+neous devices
+Platforms
+smart
+talk
+require gateway
+objects
+HTTP
+assume
+to
+or
+ Devices must be eas-
+ily and securely inte-
+grable to the IoT plat-
+form without a gateway
+  Uni ed resources and
+simplify usability
+Data
+ownership
+Mainly given to the
+end-user but with
+very simple privacy
+policies
+  Full control given to
+the owner of the data
+  Local storage
+  Fine-grained data vis-
+ibility model
+Data process-
+ing & sharing
+  Nonuniform data
+sharing format
+  Sharing is per-
+formed via nonuni-
+form REST API
+  Uniform data format
+across multiple plat-
+forms.
+  Pub/Sub mechanism
+and data catalogs
+  Edge analytics
+Developer
+support
+Ecosystem
+formation
+IoT
+marketplace
+  REST API
+to
+access the data or
+devices handled by
+the platform
+  Applications are
+use
+for
+rather
+for
+sharing
+(except
+IFTTT)
+internal
+than
+Platforms provide
+building
+useful
+blocks,
+storage
+and run-time en-
+vironment
+for
+application devel-
+opers
+  Limited applica-
+tions sharing
+  Limited (usage-
+based) charging of
+the end users of
+these applications
+  Use of a common API
+to ease the development
+of cross-platform appli-
+cations
+  Domain Speci c Lan-
+guage (DSL) dedicated
+to cross-platform appli-
+cation development
+  Platform easily ex-
+pandable by the devel-
+opers and o ering them
+incentives to contribute
+  Cross-platform shar-
+ing of applications and
+services
+  Local composition of
+services
+  Dedicated IoT data
+catalogs, IoT app store
+and IoT device store
+  Ability to advertise,
+deliver and charge for
+the use of applications
+and data
+  Validate applications
+against policies
+con-
+Gaps
+G1.1 Support of
+strained devices
+G1.2 Standardized IoT
+devices models
+G1.3
+Secure
+tication,
+of management of
+devices
+authen-
+identi cation
+IoT
+G2.1 Manipulation
+data in edge devices
+G2.2 Self-storage
+of
+G3.1 Data processing is
+not well integrated in IoT
+platforms
+G3.2 E cient processing
+for data formats and mod-
+els
+G3.3 Data analytics
+is
+only available in cloud-
+based solutions
+G3.4 Data catalogs are
+missing
+G4.1 Application mash-
+up APIs
+G4.2 Limited presence of
+SDKs
+G4.3 Absence of DSL
+with higher abstraction
+level primitives
+Problems
+  Heterogeneous inter-
+actions
+  Protocol standard-
+ization
+  Security of the data
+storage
+  Device constrains to
+store data and provide
+secure access control
+  Complex identi ca-
+tion system to access
+data
+  Fusion
+e ciently
+data
+from
+multiple data catalogs
+  IoT devices have
+limited
+computing
+capabilities
+streams
+to
+to
+Recommendations
+  Relying on stan-
+dard protocols (e.g.,
+CoAP,
+LwM2M,
+MQTT)
+ 
+of
+Integration
+state-of-the-art
+se-
+curity and privacy
+protocols
+and
+Algorithms
+avail-
+mechanisms
+able
+the data
+owner to limit the
+access
+a
+prede ned set of the
+resources
+  Data catalogs with
+semantic indexes
+  Uniform and inter-
+operable data models
+  Integration of data
+processing technolo-
+gies in platforms
+  Cloudlet-like solu-
+tion for edge analyt-
+ics
+only
+  Require
+standard-
+ization of application
+interactions dedicated
+to the IoT
+  IoT app store are
+missing
+IoT platforms must
+provide SDKs and
+APIs that maximize
+the
+re-usability of
+the services provided
+by their platform
+G5.1 Low platform ex-
+pandability
+G5.2 Limited monetizing
+possibilities
+G5.3 Limited support for
+cross-platform integration
+  Silos of platform-
+speci c solutions
+  User s using multiple
+platforms may not be
+able to aggregate the
+whole data into a sin-
+gle application
+G6.1 Application, data
+and device catalogs dedi-
+cated to the IoT are gen-
+erally missing
+G6.2 The billing (based
+on  xed fees, usage, or
+other metrics) of the end-
+users of the data is gener-
+ally missing
+in-
+An ecosystem of
+dependent application
+device
+developers,
+manufacturers,
+and
+end-users all support-
+ing the platform is
+needed for
+the de-
+mand for marketplace
+to appear and sustain
+A
+  Financial
+incen-
+tives for developers
+shall be o ered
+ 
+is
+broker
+needed to ease cross-
+platform integration
+  Models
+to con-
+textually de ne IoT
+applications to sim-
+plify their discovery
+by the end-users
+marketplace
+The
+shall
+functionality
+be
+by
+future IoT platforms
+provided
+In addition to APIs, a Domain Speci c Language
+(DSL) could be de ned to simplify the development of IoT
+applications, also by o ering functional primitives describ-
+ing the problem and solution space at a higher abstraction
+level. For instance, primitives for querying the data stream
+catalogs, fusing and aggregating data should be available
+to the developers in order to speed up the process of devel-
+oping cross-platform data-centric applications; such DSL,
+however, are largely non-existent at the time of writing
+(Gap 4.3).
+3.5. Toward IoT ecosystem formation
+The success of an IoT platform is dependent on the
+existence of a business ecosystem of  rms where the buy-
+ers, suppliers and makers of related products or services,
+as well as their socio-economic environment, collectively
+provide a variety of applications, products, and services
+to the end-users of IoT [33]. By o ering a common set
+of assets, that are shared by the ecosystem members and
+are essential for their products and services, such platform
+shapes a core of its ecosystem.
+To prosper, the platform, besides performing an es-
+sential IoT function or solving an essential IoT prob-
+lem, should be easily expandable by the developers of the
+complementing products or applications based on it, and
+should provide them with incentives to innovate and con-
+tribute to the platform [34]. In other words, the platform
+shall attract the developers of add-ons and applications,
+thereby enabling a bottom-up formation of the ecosystem
+around it.
+Today s IoT platforms claim to solve some of the essen-
+7
+applications. These marketplaces can be exempli ed
+with hardware-speci c and centrally-controlled solutions,
+such as Apple App Store or Google Play, or hardware-
+agnostic marketplaces, such as Good, Handster, Nexva,
+and SlideMe. The availability of such marketplaces is cru-
+cial for the dissemination of software innovations in gen-
+eral, and IoT innovations in particular [35].
+These marketplaces address the needs of the applica-
+tion providers and users, and alternatively, the needs of
+the platform vendors and platform operators. However,
+the traditional application stores are seemed to have limi-
+tations as far as IoT applications are concerned. Namely,
+to the best of our knowledge, none of the contemporary
+application stores support the delivery of purchased soft-
+ware to the connected devices other than the mobile ter-
+minals (e.g. smartphones and tablets) supported by the
+platform (Gap 6.1). Among IoT platforms, some plat-
+forms have dedicated application stores (e.g. ThingWorx)
+but only some (IFTTT ) allow the applications to be pub-
+licly shared, and only some (OpenIoT ) promise to enable
+the (usage-based) charging of the end users of these ap-
+plications (Gap 6.2). Moreover, one of the key challenges
+of IoT is to exploit all the data that is currently being
+produced by businesses. According to McKinsey5, busi-
+nesses already collect tremendous volume of sensor data
+but the data is only used for anomaly detection and con-
+trol. However, data should also be used for optimization
+and prediction which provide the greater value, but busi-
+nesses may lack the expertise to analyze and process their
+data. This justi es the need for the development of new
+marketplaces for IoT data that will thrive new business
+interactions (i.e., business-to-business).
+The Windows Azure Data Market 6 platform provides
+an example of a successful business model that could
+emerge from IoT data. For instance, the platform allows
+businesses to publish data streams to the platform in order
+to make them available to a large number of application
+developers. The platform o ers the possibility of charging
+for the data consumption either by a time-de ned sub-
+scription or by the amount of data to be consumed. The
+platform also allows publishing data streams free of charge.
+The catalogs of data sources published on the platform is
+also browsable. We believe that the development of IoT
+dedicated platforms, similar to the Windows Azure Data
+Market, is a requisite to the sustainability of IoT solu-
+tions. Figure 2 illustrates the opportunities that emerge
+from the availability of dedicated IoT marketplaces. Un-
+like in Figure 1, where interactions between IoT platforms
+is limited and di cult, the IoT marketplace allows the  ow
+of IoT data across platforms. Marketplaces should include
+authentication, billing, accounting, as well as catalogs for
+IoT data and applications. Marketplaces could also be ex-
+5http://www.mckinsey.com/insights/business_technology/
+the_internet_of_things_the_value_of_digitizing_the_
+physical_world
+6 http://datamarket.azure.com/
+8
+Figure 2: End-to-end interactions between users, smart de-
+vices, the platforms via the marketplace. The IoT marketplace
+allows cross-platform interactions and drives the development of new
+business opportunities (e.g., billing of IoT data). White rectangles
+within platforms represents functional elements (e.g., search engine
+or apps) but text was omitted in cloud-based architecture to improve
+visibility. Check Figure 1a for more details.
+tial problems of application developers, and are generally
+open for third-party application creators. However, only
+open-source platforms can be expanded rapidly to cope
+with the emergence of new technologies. Proprietary plat-
+forms do not allow to add reusable components or add-ons
+to the platform, except recipes in IFTTT and third-party
+tools integration for ThingWorx (Gap 5.1), and mone-
+tizing possibilities for platform complementers are absent
+or limited to integration services, e.g., OpenRemote (Gap
+5.2).
+In order to allow to treat the IoT domains as a sin-
+gle converging ecosystem that provides innovative prod-
+ucts and services and permits an economy of scale, an IoT
+platform broker is needed. Such a broker will facilitate the
+sharing of applications and services across space and time,
+and across platform-speci c IoT sub-ecosystems. How-
+ever, the possibility of multi-platform brokerage has not
+been investigated in depth and the resulting IoT ecosys-
+tem represents a multitude of fragmented IoT vertical silos
+(Gap 5.3).
+Still, this vision of new IoT ecosystem formation is
+shared by the Terra Swarm Research Center for the Ter-
+raSwarm [Platform 32] and by the Technology Strategy
+Board4 with the speci cation of HyperCat to solve inter-
+operability issues among IoT solutions.
+3.6. Dedicated IoT marketplaces
+Software application marketplaces are aimed at facil-
+itating the discovery, purchase, and distribution of the
+4https://www.innovateuk.org/
+Figure 3: Importance of the business opportunities for (a)
+sharing and selling data and/or applications in a controlled manner,
+(b) Maximizing re-usability of data to increase pro t, (c) Searching
+for data/applications in an ad-hoc fashion and (d) reducing transac-
+tion costs of data/application acquisition.
+Figure 4: Risk criticality of (a) direct sells preferred, (b) lack of
+data suppliers and application providers, (c) small customer base,
+(d) challenge of making generic applications and (e) fragmentation
+of the IoT landscape.
+tended with an additional catalog for communication pro-
+tocols (platform-speci c) and for IoT devices/components
+to provide a complete solution for the IoT users.
+4. The perspective of the national Finnish IoT pro-
+gram
+In this section, we present the results of a survey con-
+ducted among the partners of the Finnish IoT program [5]
+on the importance of various key points for the future de-
+velopment of IoT platforms, including the IoT dedicated
+market places. Table 3 lists the number of survey partici-
+pants.
+Table 3: Organization distribution
+Type
+Academia
+SME
+Large company
+Total
+Count Percentage
+19
+7
+9
+35
+54.29%
+20%
+25.71%
+100%
+Figure 3 summarizes the results of the survey regard-
+ing the possible business opportunities that could emerge
+from  lling out the gaps presented in the previous sec-
+tion. As can be seen from the  gure, survey respondents
+have designated the business opportunity of maximizing
+re-usability of data as the most important (at 40% very
+important, as well as 50% quite important). On the other
+hand, searching for data or applications in an ad-hoc fash-
+ion raised less interest as less than 50% of considered it
+quite/very important, and since 15% of the project s ex-
+perts declared it of little importance. Finally, the sharing
+and selling of data/applications as well as reducing the
+cost of data/applications acquisition have raised moderate
+interests.
+We also asked our experts to evaluate the risks that
+may emerge from developing the next generation of IoT
+platforms. As shown in Figure 4, the most critical risks
+are i) the lack of suppliers and application providers as well
+9
+as ii) having a too small customer base. In fact, these two
+risks are going hand in hand as a large customer base at-
+tracts application developers and data suppliers, while the
+latter attracts more customers. Noteworthy, possible neg-
+ative impact of the introduction of IoT marketplace onto
+the traditional way of selling directly has not been de ned
+as critical risk by our panel of experts (see Figure 4(a)).
+However, the risks coming out from the current verticality
+of the IoT landscape have been found moderately critical,
+thus showing the readiness of the IoT for more horizontal
+interactions between IoT solutions (see Figure 4(d) and
+Figure 4(e)).
+In the  nal stage of the survey, we asked our experts
+to evaluate the most important features that must be inte-
+grated to IoT platforms with regard to the gaps underlined
+in Section 3. The features are grouped by four di erent
+viewpoints; (i) application provider viewpoint, (ii) data
+publisher viewpoint, (iii) platform provider viewpoint and
+lastly (iv) the customer viewpoint. The results of this
+evaluation has produced the following list of features in a
+descending order of importance:
+1. Publishing applications: register and upload the ap-
+plications, make applications discoverable and avail-
+able for external parties (Application provider view-
+point).
+2. Available description or detailed information about
+the application or the data on the marketplace (Cus-
+tomer viewpoint).
+3. Purchasing the right to use the application or the
+data (Customer viewpoint).
+4. Publishing data: make the data discoverable and
+available for external parties through prede ned in-
+terfaces (Data publisher viewpoint).
+5. Gathering information about resources usage by cus-
+tomers, as well as summarizing it into accounting
+records, e.g., for the purpose of charging and billing
+(Platform provider viewpoint).
+6. Setting or modifying the access rights separately to
+di erent views or portions of the data in order to
+maximize re-usability (Data publisher viewpoint).
+7. Gathering information about the sells and downloads
+of the applications (Application provider viewpoint).
+8. Searching for the applications based on type, pay-
+ment details, rating (Customer viewpoint).
+9. Registering, unregistering, uploading and validating
+an application (Platform provider viewpoint).
+10. Managing platform subscriptions of customers (cre-
+ate, read, update, delete) (Platform provider view-
+point).
+This listing shows that eight out of the ten most im-
+portant features selected by our experts are related to the
+IoT marketplace and generate cross-platform interaction
+as depicted in Figure 2, thus comforting our view on the
+necessity of developing this type of platform. The sixth
+most important feature is, on the other hand, related to
+increasing the re-usability of the data by setting multiple
+role-based views on the data or on selected portions of the
+data (e.g., for only a time period of 24 hours).
+5. Recommendations for the development of IoT
+middleware
+In the previous sections, we evaluated the current IoT
+platform landscape with a thorough gap analysis, that is
+summarized in Table 2, and complemented the gap analy-
+sis with a survey conducted among the experts of the na-
+tional Finnish IoT program. As a result, numerous gaps
+have been identi ed; furthermore, several recommenda-
+tions were made in section 3 for the IoT platform vendors
+to expand their o erings so as to address these gaps. These
+recommendations included, among others,
+  leaning on standardized communication protocols to
+interface heterogeneous devices (Subsection 3.1),
+  adding the provisions for handling and processing
+data locally (Subsection 3.2),
+  adding uniform data models, data catalogs, and the
+edge analytics capabilities (Subsection 3.3),
+  o ering streamlined APIs (Subsection 3.4),
+  introducing cross-platform brokers and  nancial in-
+centives for ecosystem players (Subsection 3.5), and
+  developing dedicated IoT makerplace(s) (Subsec-
+tion 3.6).
+In this section, we return to these recommendations
+and complement them with further recommendations both
+concerning the short-term (easier to implement) and long-
+term (harder to implement) perspectives. For the reader s
+convenience, these recommendations are shown in the
+right-most column of Table 2.
+In the short-term perspective, the development of a
+basic IoT marketplace, as shown in Figure 2, serves as a
+repository for data streams and applications, should boost
+tremendously the ability of the IoT landscape to  ll par-
+tially in some of the gaps. For instance, the immediate
+bene ts would be:
+  Data processing & sharing: the ability to request
+numerous external data streams to enrich local con-
+tent. It would also enable users to publish some of
+their streams to third-parties;
+  Developer support: the possibility for application
+developers to publish their products and reach a wide
+range of customers;
+  Ecosystem formation: the increasing awareness
+about new innovations and possibility of creating
+new business models;
+  Market & billing: the ability to market/search for
+data and applications and sell/purchase the rights to
+use them.
+From the viewpoint of middleware solutions,  ne-
+grained access control must be implemented  rst to re-
+provision the user with the full ownership of his data. Fi-
+nally, SDKs should be provided to application developers
+to facilitate the creation of the applications based on the
+platform.
+In the long-term perspective, the marketplace would
+drive the uniformity for the REST APIs and the data
+models.
+It would also contribute to the standardization
+of popular communication protocols as IoT device manu-
+facturers will be encouraged to comply to these open stan-
+dards (e.g., ETSI, IETF, etc.) in order to improve their
+visibility on the marketplace. Accounting functionalities
+must be implemented next to strengthen ecosystems and
+permit a large scale economy. Additionally, e cient search
+engines for data streams must be developed to maximize
+the quality of services of IoT applications. From the view-
+point of the middleware solutions, the development of a
+cross-platform DSL would provide massive support to ap-
+plication developers. Moreover, performing edge analytics
+(see Figure 2) would help reduce the latency, the volume
+of data transported across the network and reduce threats
+on privacy and security (e.g., raw and risk-critical data
+may be pre-analyzed locally).
+As a result, the marketplace plays a central role in con-
+necting IoT actors and thus, allowing cross-platform inter-
+actions for the IoT (di erent interactions are represented
+with separated colors in Figure 2), and consequently cre-
+ating more opportunities for data exchanges and business
+operations. The marketplace will also allow the distribu-
+tion of IoT-speci c applications to a large number of IoT
+users as we currently experience with smartphone applica-
+tion stores, and thrive the economical growth of IoT which
+is expected to reach as much as $19 billions (Cisco s fore-
+cast for 20207).
+7https://agenda.weforum.org/2014/01/
+are-you-ready-for-the-internet-of-everything/
+10
+6. Conclusions
+In this article, we have evaluated a number of available
+IoT platforms, both proprietary and open-source, that to-
+gether form a representative sample of the IoT platform
+landscape. The IoT platforms were evaluated via a gap
+analysis that outlined their capability to (i) support the
+integration of heterogeneous hardware, (ii) provide su -
+cient data management mechanisms, (iii) support applica-
+tion developers, (iv) support the formation of ecosystems,
+as well as (v) provide the dedicated marketplaces for the
+IoT. Collectively, these capabilities re ect the needs of dif-
+ferent players of the emerging IoT ecosystem, including the
+device vendors, the application developers, the providers
+of platforms and related services, and the end-users.
+We complemented the gap analysis with a survey con-
+ducted among the experts of the Finnish IoT program to
+evaluate the business opportunities, risks and the most
+important features that may emerge from  lling in the
+highlighted gaps. Based on the results of the gap analy-
+sis and the survey, we compiled a list of recommendations,
+both for short and long term perspectives. Our recommen-
+dations are aimed at  lling in the identi ed gaps in con-
+temporary IoT platforms and include, among others, the
+development of a dedicated IoT marketplace, the availabil-
+ity of SDKs and open APIs, and the possibility to analyze
+data locally,  exibly control access to the platform and
+its data, as well as providing data processing and sharing
+mechanisms.
+Appendix A. Reviewed IoT Platforms
+Platform 1: AirVantage
+TM
+(https://airvantage.net/)
+TM
+AirVantage
+is a proprietary cloud-based M2M dedi-
+cated platform that provides end-to-end solutions to con-
+nect wireless-enabled devices to their platform. From an
+user viewpoint, the platform proposes interactive dash-
+boards for device management, and big data storage. The
+platform uses open-source M2M dedicated development
+tools such as the framework m2m.eclipse.org 8. The plat-
+form also integrates the standard protocol MQTT.
+Platform 2: Arkessa (http://www.arkessa.com/)
+Arkessa is a proprietary cloud-based M2M manage-
+ment architecture and IoT platform. It includes the MO-
+SAIC platform that enables devices to be easily connected
+to many applications. Privacy with third-party applica-
+tions is done in similar way than Facebook or Linkedin.
+Ownership of the data remains to the end-user. Arkessa
+provides an ecosystem of devices and applications giving
+high  exibility to the end-user.
+Platform 3: ARM mbed (https://mbed.org/)
+8http://m2m.eclipse.org
+ARM mbed R(cid:13) provides a device server, that is pro-
+prietary, to connect constrained devices to the IoT. The
+platform proposes security solutions for embedded devices,
+such as embedded Transport Layer Security (TLS). It uses
+CoAP and RESTful API for creating M2M networks of
+constrained devices.
+Platform 4: Carriots R(cid:13) (https://www.carriots.com/)
+Carriots R(cid:13) is a proprietary cloud-based platform
+(PaaS). REST API and Groovy SDK are available for
+web application development. Data format supported are
+JSON and XML. The data is stored on the platform and
+access keys are required to access it.
+Platform 5: DeviceCloud (http://www.etherios.com/products/
+devicecloud/)
+DeviceCloud is a proprietary and cloud-based device
+management platform (PaaS). The platform provides ac-
+cess the devices connected to the platform via a REST
+API.
+Platform 6: Devicehub.net (http://www.devicehub.net/)
+Devicehub.net is a proprietary cloud-based platform
+which does not provide a true REST API (using GET
+method to PUT data). Currently, the documentation of
+the platform is too limited to provide more information.
+Platform 7: EveryAware (http://www.everyaware.eu/)
+The EveryAware platform [36] provides an extendable
+data concept that could be use to enhance the possibili-
+ties of sharing and processing data feeds. The platform
+is running on a centralized server. This platform was the
+one providing the  ner-granularity of data visibility with
+four di erent levels (details, statistics, anonymous, none).
+A REST API has been integrated to access the data (ex-
+tendable data models).
+Platform 8: EveryWare Device Cloud
+eurotech.com/en/products/software+services/everyware+device+cloud)
+(http://www.
+TM
+TM
+EveryWare Device Cloud
+is a proprietary cloud-
+based platform (PaaS) using a pay-as-you-go business
+model. A RESTful API supporting JSON and XML data
+formats, is integrated for communication with the devices.
+The sensors required to be connected to Eurotech gateway
+to be connected to the cloud. A variety of applications and
+tools is available within the platform to provide full end-
+to-end solution.
+Platform 9: EvryThng (http://www.evrythng.com/)
+EvryThng is a proprietary centralized platform (SaaS)
+that provides a persistent presence on the Web of iden-
+ti able objects (RFID, NFC, connected objects, etc.). It
+allows via RESTful API to store and retrieve metadata as
+well as real-time data for these objects. The API allows
+ ne-access grained control to easy sharing of products in-
+formation. No search tools are available to  nd data feeds.
+Billing is done on-demand. The EvryThng platform in-
+11
+cludes standard protocols MQTT and CoAP.
+Platform 10: Exosite (http://exosite.com/)
+Proprietary cloud-based solution (PaaS) enabling ver-
+tical markets (from devices to IoT solution). Libraries for
+binding of the REST API with the Exosite platform are
+open-source, available under the BSD license.
+Platform 11: Fosstrack (https://code.google.com/p/fosstrak/)
+Fosstrack is a closed-source SaaS platform to handle
+RFID devices. Electronic Product Code (EPC) cloud have
+been developed on top of the Fosstrack for fast deploy-
+ments of RFID systems. Fosstrack shows that the frag-
+mentation of the IoT landscape is high. However, the
+users stores RFID data on their own database accessed
+via a Tomcat server.
+Platform 12: GroveStreams (https://grovestreams.com/)
+GroveStreams proprietary cloud-based solution for an-
+alytics of data from multiple sources.
+It uses a REST
+API and JSON data format. GroveStreams is an open
+platform, in the cloud, that any organization, user or de-
+vice can take advantage of. GroveStreams is free for small
+users. Large users will only be billed for what they use.
+Platform 13: Hub of All Things (http://hubofallthings.
+wordpress.com/)
+The Hub-of-All-Things (H.A.T.) platform has as pri-
+mary objective the creation of multi-sided market platform
+to generate new economic and business opportunities us-
+ing IoT data generated by a  smart home . An important
+feature of the H.A.T. is that the data belongs to the indi-
+vidual. It enables the end-users to get control of their data,
+and thus maintaining their expectations about privacy and
+other issues. In particular, the H.A.T architecture de nes
+di erent kind of applications (in-apps and out-apps). The
+ in-apps  (owned by either residents, landlords or build-
+ing managers) have their content enriched by local data
+available on the private H.A.T, while  out-apps  may be
+used by external platforms.
+Platform 14: Ericsson IoT-Framework (https://github.
+com/EricssonResearch/iot-framework-engine)
+The Ericsson IoT-Framework is a PaaS that accumu-
+lates sensor data from IP networks and focuses on the an-
+alytics and the mashing up of the data. The PaaS includes
+a REST API, data storage functionalities and OpenId ac-
+cess control for the data. The strength of this platform
+is the publish/subscribe mechanism, and querying of data
+streams, both from local and external data sources) to
+perform analytical tasks.
+Platform 15: IFTTT (https://ifttt.com/)
+( if this then that ) is a SaaS o ering, allowing a rapid
+composition of services called  recipes  by applying simple
+if-then rules to external service building blocks, such as
+emails, Facebook events, or Belkin s WeMo switch, that
+either play the role of a trigger (if) or an action (then,
+do). Though the service is free to use, the APIs to the
+service are not open at the time of writing. The recipes
+can be personal or shared at the discrepancy of the user;
+otherwise, the service building blocks rather than IFTTT
+deal with the user generated data.
+Platform 16: Kahvihub (http://github.com/uh-cs-iotlab/
+kahvihub)
+The Kahvihub platform is open-source and designed to
+be extremely extendable, as all components in the Kahvi-
+hub are delivered by third-parties, in the form of plugins
+or applications. These components are preferably scripted,
+to ensure a high re-usability of the platform s operations
+on a di erent platform implementation (the platform is ex-
+pected to be deployed on various and heterogeneous hard-
+ware). The Kahvihub prototype is aiming to enable edge
+analytics by creating local networks of IoT devices that can
+collaboratively and autonomously analyze the data that
+they produce.
+Platform 17: LinkSmart
+news.php)
+TM
+(http://www.hydramiddleware.eu/
+TM
+The LinkSmart
+middleware platform, formerly Hy-
+dra,
+is an open-source platform licensed under the
+LGPLv3. The platform enable the creation of a network
+for embedded systems, using semantics to discover the de-
+vices connected to the network. The middleware is based
+on a service-oriented architecture. The platform provides
+a SDK for application development and a DDK for device
+development.
+Platform 18: MyRobots (http://www.myrobots.com/)
+MyRobots is a proprietary cloud-based platform to
+connect robots to the IoT. Data format supported are
+JSON, XML, CSV and the web services are buildable using
+REST API. By default, the privacy of robots is set to pub-
+lic, but can be changed to private. The platform enables
+robots to be controlled over the Internet. The platform
+also includes an application store.
+Platform 19: NiagaraAX (http://www.niagaraax.com/)
+NiagaraAX [37] is a proprietary M2M dedicated soft-
+ware development framework that is fully distributed. It
+interconnect heterogeneous devices. However, details are
+missing about the nature of the open API.
+Platform 20: Nimbits (http://www.nimbits.com/)
+Similarly to ARM mbed [Platform 3], the Nimbits
+server has been made cloud architecture compatible, hence
+it scales from a single private server to a cloud architecture.
+Nimbits includes three levels of privacy for the data: (i)
+private, (ii) protected (read-only is public) and (iii) public.
+Control over the data and its ownership is to the user. The
+data is transmitted via XMPP messaging protocol. Web
+services access the data with HTML POST request and
+JSON data format. The platform is open source licensed
+12
+under the Apache License 2.0.
+Platform 21: NinjaBlock (http://ninjablocks.com/)
+NinjaBlock provides open-source hardware and open-
+source software to facilitate the development of sensors.
+However, the Ninja platform is proprietary and cloud-
+based. A RESTful API is avaiblable to connect NinjaBlock
+hardware to the cloud. NinjaBlock is open-hardware and
+serves as a gateway between the sensors and the Ninja
+platform. JSON data format is used by the platform and
+access is granted via the OAuth2 authentication protocol.
+Platform 22: Node-RED (http://nodered.org/)
+Node-RED is an open-source Node.js tool that aims
+to simplify the connection between IoT devices and web
+services. It incorporates the concept of  ow for IoT devices
+and data that allows complex interactions between objects
+and services. The  ow can be published on the Node-
+RED website for sharing. Node-RED is a creation of IBM
+Emerging Technology. Some cloud-based services, such as
+FRED9, provide front-end for Node-RED and others [28]
+integrate Node-RED to their own platform (e.g., WotKit)
+for added values.
+Platform 23: OpenIoT (http://openiot.eu/)
+OpenIoT platform is an open-source platform, fully de-
+centralized, that provides connectivity with constrained
+devices such as sensors. The platform provides a billing
+mechanism for the use of services.
+Platform 24: OpenMTC (http://www.open-mtc.org/)
+Cloud-based solution for M2M that aims to integrate
+all the standards de ned by the ETSI M2M, oneM2M and
+3GPP.
+Platform 25: OpenRemote (http://www.openremote.org)
+OpenRemote is a centralized open-source platform, li-
+censed under the A ero GNU Public License. The plat-
+form supports home and domotic automation spaces using
+a top-down approach.
+Platform 26: Open.Sen.se (http://open.sen.se/)
+Open.Sen.se is closed-source PaaS/SaaS. A tool called
+Funnel can be used to aggregate data, but only on data
+feeds that are within our dashboard. It is possible to get
+the data from di erent source and mash it up. The plat-
+form uses the JSON data format and REST API for web
+services development. The privacy of data visualization
+is either public or private, data is always private (needs
+private keys at all times to use the API).
+Platform 27: realTime.io (https://www.realtime.io/)
+IoBridge realTime.io provides a proprietary cloud-
+based platform (PaaS) to connect devices to the Internet
+and build applications upon the data. As realTime.io uses
+9 https://fred.sensetecnic.com/
+a proprietary transport protocol for data, ioDP, the phys-
+ical devices need to be connected to the realTime.io cloud
+service via a proprietary gateway. Once these gateways
+are connected to the service, public API (requiring real-
+Time.io keys) enables the connection to the device to pull
+or push data to the devices.
+SensorCloud
+TM
+TM
+Platform 28: SensorCloud
+(http://www.sensorcloud.com/)
+is a proprietary cloud-based sensor
+data storage and visualization platform (PaaS). It pro-
+vides a fully REST compliant API and the CSV and XDR
+data formats are supported. It also provides tools for vi-
+sualization and data mashup (MathEngine).
+Platform 29: SkySpark (http://skyfoundry.com/skyspark/)
+SkySpark is a proprietary software that can be locally
+installed on a private server or on a cloud and enable an-
+alytic tools for big data processing. The software does
+not require the connection of devices to the cloud. The
+software includes a REST API for connection with third-
+party applications and web services. The SkySpark soft-
+ware does not include direct management of connected de-
+vices.
+Platform 30: Swarm (http://buglabs.net/products/swarm)
+Bug s Swarm cloud-based platform (PaaS) is not open-
+source but provides an open-source client and some tools
+(unknown license). It creates swarm of resources to con-
+sume data, produce data or both among actors connected
+to the swarm. There is limited information on how the
+swarm data is stored, and who had its ownership. A
+RESTful API and JSON data format are usable to com-
+municate with the devices. The platforms also provide
+GUI tools, such an interactive dashboard with data visu-
+alization capabilities.
+Platform 31: TempoDB (https://tempo-db.com/)
+TempoDB is a proprietary, cloud-based PaaS that en-
+ables the users to upload their data on the cloud via a
+REST API. The service enables to store, retrieve, and
+query the data, while ensuring data security, multiple
+back-ups and providing visualization tools, etc. This ser-
+vice o ers billing o ers depending on the user need.
+Platform 32: TerraSwarm (http://www.terraswarm.org/)
+The TerraSwarm project [38] envision the development
+of a new kind of operating system, the SwarmOS, to na-
+tively support the heterogeneous nature of the devices and
+solutions existing in the IoT and enable the infrastructure
+with the ability to aggregate information from a variety
+of data sources. The architecture relies heavily on the
+power of cloud computing. The operating system will be
+also open-source to improve its reliability and e ciency,
+while maximizing the potential of innovative development
+of  swarm-apps  build upon the system.
+Platform 33: The thing system (http://thethingsystem.com/)
+13
+The thing system is a software using Node.js that en-
+ables discovery of smart things in the home environment.
+The project is open-source and licensed under the M.I.T
+license. The software does not provide storage functional-
+ities and must be coupled with a PaaS to enable storage
+outside the home area. The software intends only to pro-
+vide access remotely to smart devices of smart homes.
+Platform 34: Thing Broker (http://www.magic.ubc.ca/wiki/
+pmwiki.php/ThingBroker/ThingBroker)
+The Thing Broker [39] is a centralized platform that
+provides a Twitter-based abstraction model for Things and
+Events, that could be used to create local ecosystems such
+as smart homes. A REST API is provided by the platform
+to access the data and devices.
+Platform 35: ThingSpeak (https://www.thingspeak.com/)
+ThingSpeak is decentralized, open-source and copy-
+righted by ioBridge under the licence GPLv3. Commercial
+software or hardware using ThingSpeak requires a com-
+mercial agreement with IoBridge Inc. ThingSpeak pro-
+vides a server that may be used to store and retrieve IoT
+data. It allows opening of the channels (data  ows, sup-
+port the JSON, XML, CSV data formats) to the public but
+do not provide extensive con guration of the data  ows.
+The platform also provides visualization tools and enables
+the creation of widgets in Javascript/HTML/CSS to visu-
+alize the data in a more personi ed fashion.
+Platform 36: ThingSquare (http://thingsquare.com/)
+ThingSquare is a proprietary cloud-based platform spe-
+cialized on connecting constrained devices.
+It require a
+gateway, but its  rmware is open source. The gateway
+creates a wireless mesh networks of sensors and connect
+it to the Internet. The devices can access the Internet,
+but the devices are invisible from outside the mesh. The
+platform also includes a protocol for constrained devices.
+Platform 37: ThingWorx (http://www.thingworx.com/)
+ThingWorx is a proprietary cloud-based M2M dedi-
+cated platform (PaaS). It provides a variety of tools and
+services to support end-to-end solutions. The devices and
+data are accessible via a REST API. Due to acquisition
+of Axeda10, the platform will likely be expanded with the
+IoT connectivity services, software agents and toolkits of
+the latter, Axeda being a proprietary cloud-based solution
+for M2M communication of businesses and one of the key
+player in the current IoT landscape.
+Platform 38: Sense Tecnic WoTkit (http://sensetecnic.
+com/)
+The WoTkit [3] is a proprietary cloud-based platform
+that o ers an interesting search tool for public sensor.
+Public sensors do not require an account to be used.
+10http://www.thingworx.com/news/
+Platform 39: Xively (https://xively.com/)
+Xively (formerly Pachube) is a proprietary cloud-based
+platform (PaaS). Ownership of the data remains to the
+user, but the data is stored on the Xively server. Xively
+provides open-source APIs (in various programming lan-
+guages) mostly with the BSD 3-clause license. Xively pro-
+vides an extensive RESTful API including a search tool in
+order to retrieve feeds ( ow of data) depending on selected
+characteristics (location radius, name, type of data stored,
+etc.)
+References
+[1] E. Borgia, The internet of things vision: Key features, applica-
+tions and open issues, Computer Communications 54 (0) (2014)
+1   31. doi:http://dx.doi.org/10.1016/j.comcom.2014.09.
+008.
+URL http://www.sciencedirect.com/science/article/pii/
+S0140366414003168
+[2] L. Atzori, A. Iera, G. Morabito, The internet of things: A sur-
+vey, Computer Networks 54 (15) (2010) 2787 2805. doi:http:
+//dx.doi.org/10.1016/j.comnet.2010.05.010.
+URL http://www.sciencedirect.com/science/article/pii/
+S1389128610001568
+in:
+[3] R. Lea, M. Blackstock, CityHub: a cloud based IoT platform
+for smart cities,
+IEEE 6th International Conference on
+Cloud Computing Technology and Science (CloudCom), 2014,
+pp. 799   804. doi:10.1109/CloudCom.2014.65.
+URL
+CloudCom2014_pre_final.pdf
+http://eprints.lancs.ac.uk/71554/1/CityHub_
+[4] C.-W. Tsai, C.-F. Lai, M.-C. Chiang, L. Yang, Data mining
+for internet of things: A survey, Communications Surveys Tu-
+torials, IEEE 16 (1) (2014) 77 97. doi:10.1109/SURV.2013.
+103013.00206.
+[5] S. Tarkoma, H. Ailisto, The Internet of Things program: the
+Finnish perspective, IEEE Communications Magazine 51 (3)
+(2013) 10 11. doi:10.1109/MCOM.2013.6476854.
+[6] J. Kim, J. Lee, J. Kim, J. Yun, M2M service platforms: Survey,
+issues, and enabling technologies, IEEE Communications Sur-
+veys Tutorials 16 (1) (2014) 61 76. doi:10.1109/SURV.2013.
+100713.00203.
+[7] N. Economides, E. Katsamakas, Two-sided competition of
+proprietary vs. open source technology platforms and the
+implications for the software industry, Management Science
+52 (7) (2006) 1057 1071. doi:10.1287/mnsc.1060.0549.
+URL
+mnsc.1060.0549
+http://pubsonline.informs.org/doi/abs/10.1287/
+[8] J. L. P erez, A. Villalba, D. Carrera, I. Larizgoitia, V. Trifa,
+The COMPOSE API for the internet of things, in: Proceedings
+of the Companion Publication of the 23rd International Con-
+ference on World Wide Web Companion, 2014, pp. 971 976.
+doi:10.1145/2567948.2579226.
+URL http://dx.doi.org/10.1145/2567948.2579226
+[9] X. Qin, Y. Gu, Data fusion in the internet of things, Pro-
+cedia Engineering 15 (0) (2011) 3023   3026, {CEIS} 2011.
+doi:http://dx.doi.org/10.1016/j.proeng.2011.08.567.
+URL http://www.sciencedirect.com/science/article/pii/
+S1877705811020686
+[10] M. Ma, P. Wang, C.-H. Chu, Data management for internet
+of things: Challenges, approaches and opportunities, in: IEEE
+Green Computing and Communications (GreenCom), 2013, pp.
+1144 1151. doi:10.1109/GreenCom-iThings-CPSCom.2013.199.
+[11] B. Villaverde, R. De Paz Alberola, A. Jara, S. Fedor, S. Das,
+D. Pesch, Service discovery protocols for constrained machine-
+to-machine communications, IEEE Communications Surveys
+Tutorials 16 (1) (2014) 41 60. doi:10.1109/SURV.2013.102213.
+00229.
+\ptc-to-acquire-axeda-to-expand-internet-of-things-technology-portfolio
+14
+URL http://dx.doi.org/10.1002/cpe.3203
+[27] A. Maarala, X. Su, J. Riekki, Semantic data provisioning and
+reasoning for the internet of things,
+Internet of Things
+(IOT), 2014 International Conference on the, 2014, pp. 67 72.
+doi:10.1109/IOT.2014.7030117.
+in:
+[28] M. Blackstock, R. Lea, Toward a distributed data  ow platform
+for the web of things (distributed node-red), in: Proceedings of
+the 5th International Workshop on Web of Things, WoT  14,
+ACM, New York, NY, USA, 2014, pp. 34 39. doi:10.1145/
+2684432.2684439.
+URL http://doi.acm.org/10.1145/2684432.2684439
+[29] G. Lewis, S. Echeverria, S. Simanta, B. Bradshaw, J. Root,
+Tactical cloudlets: Moving cloud computing to the edge, in:
+IEEE Military Communications Conference (MILCOM), 2014,
+pp. 1440 1446. doi:10.1109/MILCOM.2014.238.
+[30] M. Kovatsch, M. Lanter, S. Duquennoy, Actinium: A rest-
+ful runtime container for scriptable internet of things applica-
+tions, in: 3rd International Conference on the Internet of Things
+(IOT), 2012, pp. 135 142. doi:10.1109/IOT.2012.6402315.
+[31] J. He, Y. Zhang, G. Huang, J. Cao, A smart web service based
+on the context of things, ACM Transactions on Internet Tech-
+nology (TOIT) 11 (3) (2012) 13:1 13:23. doi:10.1145/2078316.
+2078321.
+URL http://doi.acm.org/10.1145/2078316.2078321
+[32] J. Burt, HyperCat Spec Aims for Internet of Things Interoper-
+ability, EWeek (n.a.) (2014) n.a.
+[33] O. Mazhelis, E. Luoma, H. Warma, De ning an Internet-of-
+Things ecosystem,
+in: S. Andreev, S. Balandin, Y. Kouch-
+eryavy (Eds.), Internet of Things, Smart Spaces, and Next
+Generation Networking, Vol. 7469 of Lecture Notes in Com-
+puter Science, Springer Berlin Heidelberg, 2012, pp. 1 14.
+doi:10.1007/978-3-642-32686-8\_1.
+URL http://dx.doi.org/10.1007/978-3-642-32686-8_1
+[34] A. Gawer, M. A. Cusumano, How companies become platform
+leaders, MIT/Sloan Management Review 49 (2) (2012) n.a.
+[35] G. Kortuem, F. Kawsar, Market-based user innovation in the
+Internet of Things, in: Internet of Things (IOT), 2010, pp. 1 8.
+doi:10.1109/IOT.2010.5678434.
+[36] M. Becker, J. Mueller, A. Hotho, G. Stumme, A generic plat-
+form for ubiquitous and subjective data, in: Proceedings of the
+2013 ACM conference on Pervasive and ubiquitous computing
+adjunct publication, UbiComp  13 Adjunct, ACM, New York,
+NY, USA, 2013, pp. 1175 1182. doi:10.1145/2494091.2499776.
+URL http://doi.acm.org/10.1145/2494091.2499776
+[37] T. Samad, B. Frank, Leveraging the web: A universal frame-
+work for building automation, in: American Control Confer-
+ence, 2007. ACC  07, 2007, pp. 4382 4387. doi:10.1109/ACC.
+2007.4282471.
+[38] E. A. Lee, J. D. Kubiatowicz, J. Rabaey, A. Sangiovanni-
+Vincentelli, S. A. Seshia, J. Wawrzynek, D. Blaauw, P. Dutta,
+K. Fu, C. Guestrin, R. Jafari, D. L. Jones, V. Kumar, R. Mur-
+ray, G. Pappas, A. Rowe, C. Sechen, T. S. Rosing, B. Taskar,
+The terraswarm research center (TSRC) (a white paper), Tech.
+Rep. UCB/EECS-2012-207, EECS Department, University of
+California, Berkeley (November 2012).
+URL http://terraswarm.org/pubs/2.html
+[39] R. A. Perez de Almeida, M. Blackstock, R. Lea, R. Calderon,
+A. F. do Prado, H. C. Guardia, Thing broker: a twitter for
+things, in: Proceedings of the 2013 ACM conference on Perva-
+sive and ubiquitous computing adjunct publication, UbiComp
+ 13 Adjunct, ACM, New York, NY, USA, 2013, pp. 1545 1554.
+doi:10.1145/2494091.2497588.
+URL http://doi.acm.org/10.1145/2494091.2497588
+[12] Z. Yan, P. Zhang, A. V. Vasilakos, A survey on trust manage-
+ment for internet of things, Journal of Network and Computer
+Applications 42 (0) (2014) 120   134. doi:http://dx.doi.org/
+10.1016/j.jnca.2014.01.014.
+URL http://www.sciencedirect.com/science/article/pii/
+S1084804514000575
+[13] R. Roman, P. Najera, J. Lopez, Securing the Internet of Things,
+Computer 44 (9) (2011) 51 58. doi:10.1109/MC.2011.291.
+[14] Z.-K. Zhang, M. Cho, C.-W. Wang, C.-W. Hsu, C.-K. Chen,
+S. Shieh, Iot security: Ongoing challenges and research op-
+portunities, in: IEEE 7th International Conference on Service-
+Oriented Computing and Applications (SOCA), 2014, pp. 230 
+234. doi:10.1109/SOCA.2014.58.
+[15] R. Roman, J. Zhou, J. Lopez, On the features and challenges of
+security and privacy in distributed internet of things, Computer
+Networks 57 (10) (2013) 2266 2279, towards a Science of Cy-
+ber Security and Identity Architecture for the Future Internet.
+doi:http://dx.doi.org/10.1016/j.comnet.2012.12.018.
+URL http://www.sciencedirect.com/science/article/pii/
+S1389128613000054
+[16] S. Satyadevan, B. Kalarickal, M. Jinesh, Security, trust and
+implementation limitations of prominent iot platforms, in: S. C.
+Satapathy, B. N. Biswal, S. K. Udgata, J. K. Mandal (Eds.),
+Proceedings of the 3rd International Conference on Frontiers of
+Intelligent Computing: Theory and Applications (FICTA) 2014,
+Vol. 328 of Advances in Intelligent Systems and Computing,
+Springer International Publishing, 2015, pp. 85 95. doi:10.
+1007/978-3-319-12012-6\_10.
+[17] N. Asokan, F. Brasser, A. Ibrahim, A.-R. Sadeghi, M. Schunter,
+G. Tsudik, C. Wachsmann, Seda: Scalable embedded device at-
+testation, in: 22nd ACM Conference on Computer and Com-
+munications Security (CCS), 2015.
+[18] Internet Engineering Task Force, RFC 6749 (October 2012).
+URL https://tools.ietf.org/html/rfc6749
+[19] C. Bormann, A. Castellani, Z. Shelby, CoAP: An application
+protocol for billions of tiny internet nodes, IEEE Internet Com-
+puting 16 (2) (2012) 62 67. doi:10.1109/MIC.2012.29.
+[20] I. Ishaq, D. Carels, G. K. Teklemariam, J. Hoebeke, F. V. d.
+Abeele, E. D. Poorter, I. Moerman, P. Demeester, IETF stan-
+dardization in the  eld of the Internet of Things (IoT): A survey,
+Journal of Sensor and Actuator Networks 2 (2) (2013) 235 287.
+doi:10.3390/jsan2020235.
+URL http://www.mdpi.com/2224-2708/2/2/235
+[21] T. Klinpratum, C. Saivichit, A. Elmangoush, T. Magedanz, To-
+ward interconnecting M2M/IoT standards: interworking proxy
+for IEEE1888 standard at ETSI M2M platform, in: The 29th
+International Technical Conference on Circuit/Systems Com-
+puters and Communications, 2014.
+[22] IPSO Alliance, Ipso smartobject guideline, Tech. rep., Internet
+Protocol for Smart Objects (IPSO) Alliance (2014).
+URL
+technical-information/ipso-guidelines
+http://www.ipso-alliance.org/
+[23] Open Mobile Alliance, Lightweight machine to machine tech-
+nical speci cation, draft version 1.0, Tech. rep., Open Mobile
+Alliance (2013).
+URL
+lightweight-m2m-specification-from-oma
+http://openmobilealliance.hs-sites.com/
+[24] oneM2M Partners Type 1 (ARIB, ATIS, CCSA, ETSI, TIA,
+TTA, TTC), Ts-0003-v1.0.1: Security solutions, Tech. rep.,
+oneM2M (January 2015).
+URL
+TS-0003-Security_Solutions-V1_0_1.pdf
+http://www.onem2m.org/images/files/deliverables/
+[25] J. Gubbi, R. Buyya, S. Marusic, M. Palaniswami, Internet of
+Things (IoT): A vision, architectural elements, and future di-
+rections, Future Generation Computer Systems 29 (7) (2013)
+1645 1660. doi:10.1016/j.future.2013.01.010.
+URL http://dx.doi.org/10.1016/j.future.2013.01.010
+[26] X. Su, J. Riekki, J. K. Nurminen, J. Nieminen, M. Koskimies,
+Adding semantics to internet of things, Concurrency and Com-
+putation: Practice and Experience 27 (8) (2015) 1844 1860.
+doi:10.1002/cpe.3203.
+15

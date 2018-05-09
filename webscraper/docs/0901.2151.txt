@@ -1,0 +1,722 @@
+epl draft
+9
+0
+0
+2
+ 
+n
+a
+J
+ 
+5
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+1
+v
+1
+5
+1
+2
+.
+1
+0
+9
+0
+:
+v
+i
+X
+r
+a
+Improved community structure detection using a modi ed  ne
+tuning strategy
+Yudong Sun1, Bogdan Danila1, Kre simir Josi c2 and Kevin E. Bassler1,3
+1 Department of Physics, University of Houston, Houston TX 77204-5005
+2 Department of Mathematics, University of Houston, Houston TX 77204-3008
+3 Texas Center for Superconductivity, University of Houston, Houston TX 77204-5002
+PACS 89.75.Hc   Networks and genealogical trees
+PACS 87.16.Yc   Regulatory genetic, and chemical networks
+PACS 89.20.Hh   World Wide Web, Internet
+Abstract. - The community structure of a complex network can be determined by  nding the
+partitioning of its nodes that maximizes modularity. Many of the proposed algorithms for doing
+this work by recursively bisecting the network. We show that this unduely constrains their results,
+leading to a bias in the size of the communities they  nd and limiting their e ectivness. To solve
+this problem, we propose adding a step to the existing algorithms that does not increase the order
+of their computational complexity. We show that, if this step is combined with a commonly used
+method, the identi ed constraint and resulting bias are removed, and its ability to  nd the optimal
+partitioning is improved. The e ectiveness of this combined algorithm is also demonstrated by
+using it on real-world example networks. For a number of these examples, it achieves the best
+results of any known algorithm.
+The problem of detecting and characterizing the commu-
+nity structure of complex networks has recently attracted
+a great deal of interest [1 10]. The structure of a network
+is important for how it functions [2]. Often networks have
+a modular structure in which the nodes can be partitioned
+into highly connected groups that have common proper-
+ties or work together to achieve speci c behavior. This is
+true for many di erent types of networks including social,
+biological, and telecommunication networks. For exam-
+ple, recent work suggests the importance of modularity
+for the functioning of metabolic and transcriptional regu-
+latory networks [11 14]. However, identifying the various
+communities or modules in a network, i.e. its community
+structure, can be di cult. This is especially true for large
+networks which can frequently be partitioned in multiple,
+almost equally good ways. In these cases it becomes very
+important to eliminate or reduce all biases and undue con-
+straints from the method used to detect communities.
+Various algorithms have been proposed for the parti-
+tioning of complex networks into communities [3,4,10,15 
+41]. Many of these algorithms are based on the idea of
+maximizing a measure called modularity Q [3]. Find-
+ing the partitioning with the absolute maximum modu-
+larity has been proven to be an NP-hard problem [42],
+and is thus intractable for large networks.
+It is there-
+fore of interest to  nd a fast algorithm for obtaining a
+network partitioning that nearly maximizes modularity.
+One of the best methods currently in use is the leading
+eigenvalue method introduced by Newman [27, 28]. This
+is a bisectioning method, like most other proposed meth-
+ods. It begins by dividing the nodes into two communities
+and then recursively divides each of those communities in
+two until no further increase modularity can be achieved.
+Each bisection is done by  rst making a  guess  at the
+best way to divide the community into two, followed by
+a   ne-tuning  that systematically considers moving each
+of the nodes to the other community until no further im-
+provement in modularity can be achieved. Note that once
+a community is generated and  ne-tuned the partition be-
+tween it and all other communities is  xed. It can only
+be divided further into smaller communities; none of its
+nodes are ever placed in other existing communities. As
+we will see, this constraint generates a bias in the results
+that limits the modularity of the resulting partitioning.
+To address this problem, we introduce an additional
+tuning step in the algorithm. This additional tuning,
+which is done each time after all communities have been bi-
+sectioned and  ne-tuned, systematically considers moving
+p-1
+Y. Sun et al.
+0.04
+0.03
+0.02
+0.01
+y
+t
+i
+s
+n
+e
+d
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0
+0
+20
+40
+60
+Community Size
+80
+100
+Fig. 1: (Color online) Community size distribution for Erd os-
+R enyi random networks with 400 nodes and average degree 4.
+The results were obtained using the q = 2 leading eigenvector
+method with  ne-tuning, which is a bisectioning algorithm,
+(blue squares), the q = 3 trisectioning variant of that algorithm
+(green diamonds), and our improved algorithm that combines
+the q = 2 variant with   nal-tuning  (red circles).
+each node of the network to all other existing communities
+or into a new community of its own. Using this additional
+  nal-tuning , the value of modularity is consistently im-
+proved. The computational cost of  nal-tuning is very
+modest and the algorithm can be used to study large net-
+works. To demonstrate its usefulness we will use it to
+determine the community structure of some known exam-
+ple networks. As we will see, the results indicate that our
+algorithm is competitive with the best existing community
+detection methods, and for some networks gives partition-
+ings with modularity larger than that obtained with any
+other known method.
+Modularity Q is de ned as [3]
+Q =
+1
+2mXi,j
+Bij C(i),C(j)
+(1)
+where Bij = Aij kikj/(2m) are the elements of the  mod-
+ularity matrix  and C(i) is the community to which node
+i belongs. Here m is the total number of links in the net-
+work, ki is the degree of node i, Aij are the elements of the
+adjacency matrix, and   is the Kronecker delta function.
+This de nition of modularity is based on the idea that
+links between nodes in the same community are dense and
+that there are only sparse links between nodes in di er-
+ent communities. It is equal to the fraction of links that
+connect nodes in the same community minus what that
+fraction would be on average if the communities remained
+ xed but the links were randomly distributed.
+The leading eigenvalue method [27,28] produces a guess
+for the initial bisectioning of a network by rewriting the
+modularity Q in terms of a vector S whose elements Si
+take the values  1 depending on which of the two com-
+munities node i belongs to. Using the fact that  C(i),C(j) =
+(SiSj + 1)/2, Eq. 1 becomes
+Q =
+1
+4m
+ST BS.
+(2)
+The problem now becomes to choose the vector S that
+maximizes Q.
+If the elements of S were unconstrained,
+then the best choice would be to make S equal to the
+eigenvector corresponding to the largest eigenvalue of B.
+However, since they are constrained to be  1, the method
+assigns the sign of Si to correspond to the sign of the ith
+component of the eigenvector with the largest eigenvalue.
+The particular form of the modularity matrix B makes
+the power method a fast and e cient way to calculate the
+leading eigenvector [27, 28].
+To re ne the initial guess, a   ne-tuning  based on the
+Kernighan-Lin algorithm [43] is used. Once a community
+has been split in two,  ne-tuning proceeds by computing
+for each node l the di erence in modularity  Q associated
+with moving it from its sub-community to the other,
+ Q =  
+Sl
+m Xi6=l
+BliSi.
+(3)
+The move resulting in the highest  Q (even if negative) is
+performed and recorded. If multiple moves result in the
+highest  Q one of them is picked at random. The pro-
+cedure is then repeated, each time considering only the
+nodes that have not yet been moved and recording the
+new partitioning, until each node has been moved once.
+At this stage, the intermediate partitioning with the high-
+est modularity is retained. The entire   ne-tuning  pro-
+cedure is repeated at least once, until no further increase
+in modularity can be achieved. The move resulting in the
+largest modularity is then made, but, if the modularity
+after  ne-tuning is less than the modularity before, the
+partitioning given by the initial guess is restored. Subse-
+quent bisectionings of existing communities are done with
+an analogous procedure, except that instead of maximiz-
+ing Q they attempt to maximize
+where
+ Q =
+1
+4m
+ST B(C)S,
+B(C)
+ij = Bij    ij Xk C
+Bik
+(4)
+(5)
+is the modularity matrix for community C and i, j   C.
+As far as maximizing modularity is concerned, the lead-
+ing eigenvalue method arguably o ers the best balance
+between speed and accuracy of all methods currently
+in use.
+It is inferior only to simulated annealing but
+much faster [6], and, for some networks, to greedy algo-
+rithms [6, 38] as discussed below.
+However, there is a bias in the method that limits its
+e ectiveness. This bias can be demonstrated by consider-
+ing the distribution of community sizes that it  nds in an
+ensemble of random networks. The blue squares in Fig. 1
+p-2
+show the community size distribution obtained using the
+leading eigenvalue method with  ne-tuning for an ensem-
+ble of 106 random (Erd os-R enyi) networks. The size of
+these networks is N = 400 and their average degree is
+k = 4. To avoid complications with the community de-
+tection process, only fully connected networks have been
+considered. The distribution has two peaks, one around
+N/8, and another one around N/16. Thus, the method
+is biased in favor of  nding communities of those sizes.
+Since, 8 and 16 are both powers of 2, this suggests that
+the bias is due to the bisectioning nature of the algorithm.
+In order to check if this is true, we introduce a gener-
+alized version of the leading eigenvector method inspired
+by the Potts model [44] that recursively divides a network
+into q subsets. For q = 2 it is equivalent to the method de-
+scribed above. In the generalized method each of the ele-
+ments of S are from a set {P1, ..., Pq} of (q 1)-dimensional
+unit vectors such that [(q 1)Pi Pj +1]/q =  i,j. These are
+the vertices of a regular q-simplex centered at the origin.
+Modularity is now written as
+q   1
+2mq
+ST BS,
+Q =
+(6)
+with the multiplication between elements of S understood
+as a dot product. Equations 3 and 4 are generalized sim-
+ilarly. The initial guess for S is made assuming that an
+eigenvector of B (or B(C)) is equally likely to point in any
+direction in RN . Hence, normalized eigenvectors are uni-
+formly distributed on the (N   1)-hypersphere of radius
+one, and the probability density for any component of an
+eigenvector is given by
+N  3
+2
+,
+1
+pN (x) =
+IN  2 (cid:0)1   x2(cid:1)
+(7)
+where IN =     (N/2 + 1/2)/ (N/2 + 1). The variance
+of this density is 1/N . In the limit of large N , this ap-
+proaches a Gaussian distribution whose cumulative proba-
+bility function will be denoted by FN (x). Now, divide the
+real axis into q intervals de ned by Ij = {x|(j   1)/q  
+FN (x) < j/q} and arrange the set of vectors {Pj} in in-
+creasing order of their number of positive components.
+Then, if U is the eigenvector corresponding to the largest
+eigenvalue, the initial guess for the q-partitioning is made
+by choosing Si = Pj if Ui   Ij. Fine-tuning is easily gen-
+eralized as well. This is done, once a community has been
+split into q sub-communities, simply by considering mov-
+ing each node from its guessed sub-community to each of
+the other q   1 possibilities.
+Here we consider results of only the q = 3 variant
+of the generalized method. This is a trisectioning al-
+gorithm.
+In the q = 3 case, the elements of S are
+from the set {(1, 0), ( 1/2, 3/2), ( 1/2,  3/2)} and
+ C(i),C(j) = (2Si   Sj + 1)/3. If U is the eigenvector corre-
+sponding to the largest eigenvalue, we choose Si = (1, 0) if
+FN (Ui)   2/3, Si = ( 1/2, 3/2) if 1/3   FN (Ui) < 2/3,
+and Si = ( 1/2,  3/2) if FN (Ui) < 1/3. The green di-
+amonds in Fig. 1 shows the community size distribution
+Improved community structure detection
+1
+2
+3
+4
+5
+6
+7
+8
+9
+(a)
+(b)
+(c)
+Fig. 2: Partitions of a simple network (a) after one bisection
+using any simple bisectioning algorithm, (b)  nal result with
+simple bisectioning, and (c) the optimal partitioning that maxi-
+mizes modularity. The optimal partitioning results if bisection-
+ing is combined with  nal-tuning.
+obtained using this trisectioning method for the ensemble
+of random networks described above. Two peaks are now
+seen near N/9 and N/27, indicating a bias for  nding com-
+munities of these sizes. Since, 9 and 27 are powers of 3,
+this bias is due to the trisectioning nature of the algorithm.
+This result indicates that the peaks found using bisection-
+ing and trisectioning are artifacts of the methods, which
+are constrained to only allow division of existing communi-
+ties and never move nodes to other existing communities.
+The same  aw is undoubtedly present in other community
+detection methods that involve simple bisectioning.
+To better understand the problem, consider the simple
+example in Fig. 2 of a linear network with nine nodes
+connected by eight links. Fig. 2a shows the partition-
+ing after one bisection. Further bisectioning divides the
+community with  ve nodes into two sub-communities as
+shown in Fig. 2b. The modularity of this con guration is
+Q = 51/128. However, this is not the partitioning that
+maximizes modularity. The partitioning shown in Fig. 2c
+exhibits the largest modularity Qmax = 53/128. This par-
+titioning will never be found with a simple bisectioning al-
+gorithm. This is because nodes 4 and 5 are assigned to dif-
+ferent communities at the  rst bisectioning, and can never
+be moved into the same community after that. However,
+they are in the same community in the optimal partition-
+ing.
+In more general terms, if the partitions set during
+a division are not optimal, there is no chance to correct
+them. These partitions unduly constrain the community
+detection algorithm.
+The problem can be solved by using an additional mod-
+i ed  ne-tuning step similar to the one described above
+but involving all partitions. This modi ed  ne-tuning,
+which we call   nal-tuning,  is performed at the end of
+every round of divisions in the course of which all com-
+munities that resulted from the previous round have been
+divided once.
+In the  nal-tuning procedure, the di er-
+ences in modularity associated with moving every node of
+p-3
+Y. Sun et al.
+the network from its sub-community to every other sub-
+community are computed, and the move resulting in the
+highest modularity di erence is performed and recorded.
+As in the case of  ne-tuning, if multiple moves result in
+the highest modularity di erence one of them is picked at
+random. The procedure is repeated on the nodes that have
+not yet been moved until each node has been moved once,
+at the end retaining the intermediate con guration with
+the highest modularity. Equation 3 can be used to calcu-
+late the di erence in modularity  Q when switching one
+node to an arbitrary community, by de ning community
+C as the union of the origin and destination communities.
+However, it is usually faster to calculate  Q directly from
+Eq. 1 [7]. That is, by subtracting the modularity calcu-
+lated with node l in community Y from the modularity
+calculated with l in its original community X we  nd
+ Q =
+1
+m Xi Y
+Ali  Xi X
+Ali  
+kl(KY   KX + kl)
+2m
+! , (8)
+where KX and KY are the sums of the degrees of all nodes
+in communities X and Y respectively, and kj is the degree
+of node j. The speed of  nal-tuning can be improved by
+only considering moving nodes to the communities of the
+nodes which they are connected to, or into a community
+of their own.
+To incorporate  nal-tuning into the community detec-
+tion, we suggest the following algorithm.
+1. Apply any previous method, for example the leading
+eigenvalue method with  ne-tuning, to attempt to di-
+vide each of the existing communities.
+2. Use Eq. 8 to calculate  Q caused by all possible moves
+of any single node to all other existing communities,
+or into a community of its own.
+3. Find the move that leads to the largest  Q (even if
+negative) and make the move. If multiple moves re-
+sult in the largest  Q pick one of them randomly. Fix
+the community assignment for the node moved.
+4. Repeat steps 2-3, but in step 2 only consider moving
+nodes whose community assignment has not yet been
+ xed. Continue repeating until every node is moved
+once and only once.
+5. Choose the intermediate con guration with the
+largest Q.
+6. Repeat 2-5 until no further improvement of Q is
+achieved.
+7. Compare the modularity of the resulting partition to
+If the latter is larger,
+the modularity after step 1.
+then revert to the partitioning after step 1.
+8. Repeat 1-7 until no further improvement of Q is
+achieved.
+40
+30
+20
+10
+y
+t
+i
+s
+n
+e
+d
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0
+0.46
+0.48
+0.5
+0.52
+0.54
+Modularity
+0.56
+0.58
+Fig. 3: (Color online) Modularity distribution for Erd os-R enyi
+random networks with 400 nodes and average degree 4. The
+results were obtained using the q = 2 leading eigenvector
+method with  ne-tuning (blue squares), and by combining it
+with   nal-tuning  (red circles).
+The computational complexity of the leading eigenvalue
+algorithm with  ne-tuning is O[N (N + m)] for one bi-
+section [27]. Since the expected number of bisections is
+O(log N ), the overall complexity of the community de-
+tection procedure is O[N (N + m)] log N [27]. The ad-
+ditional workload due to investigating all possible moves
+between communities in a  nal-tuning step is generally
+O[N 2]. Thus, if the leading eigenvalue algorithm with
+ ne-tuning is used in step 1, then combining it with  nal-
+tuning does not change the overall order of computational
+complexity.
+The e ectiveness of including  nal-tuning in a commu-
+nity detection algorithm can be demonstrated  rst by not-
+ing that if it is used, then the optimal partitioning of
+the simple network in Fig. 2 (shown in Fig. 2c) is ob-
+tained. This is because  nal-tuning removes the undue
+constraints that exist in simple bisectioning methods. Sec-
+ond, combining  nal-tuning with the q = 2 leading eigen-
+value method and  ne-tuning, the multiple peaks of the
+community size distribution for random networks disap-
+pear (Red circles in Fig. 1), leaving only a single peak as
+expected [7]. This indicates that the undue constraints
+have been removed. The resulting modularity is also sig-
+ni cantly improved. Figure 3 compares the distribution of
+modularity of partitionings obtained with (red circles) and
+without (blue squares)  nal-tuning for the same ensemble
+of random networks.
+In both cases, the results approx-
+imately follow a Gaussian distribution, but the average
+maximum modularity increases from 0.515748   0.000067
+to 0.524293   0.000057 with the use of the  nial-tuning.
+The standard deviations of the two distributions are
+0.012158  0.000082 and 0.012022  0.000068, respectively.
+All errors are 2  estimates. Note that using the leading
+eigenvalue method with q > 2 does not improve the q = 2
+results. (Data not shown.)
+p-4
+Table 1: Comparison of maximum modularity of some example
+networks found using our method of  nal-tuning combined with
+the q = 2 leading eigenvalue method and  ne-tuning, QF T ,
+against the best previously known result obtained using any
+other algorithm, Qpub. The source of the data for the network
+is cited next to its name, and the articles reporting the previous
+best results are cited under  Method. 
+Network
+Karate [45]
+Jazz musicians [46]
+Metabolic [47]
+E-mail [48]
+Key signing [49, 50]
+Physicists [51]
+Size
+34
+198
+453
+1133
+10680
+27519
+QF T Qpub Method
+0.420
+0.445
+0.452
+0.580
+0.867
+0.737
+0.420
+0.445
+0.450
+0.579
+0.878
+0.748
+[40]
+[38]
+[38]
+[40]
+[25, 40]
+[38, 40]
+The networks are, respectively, the karate club of Zachary,
+a collaboration network of early Jazz musicians, a
+metabolic network of the nematode Caenorhabditis ele-
+gans, a network of e-mail contacts at a university, a trust
+network of mutual cryptography key signings, and a coau-
+thourship network of condensed matter physicists. These
+same networks were studied in Ref. [27].
+Improved community structure detection
+extra step into the community detection procedure that
+ ne-tunes the partitioning by considering moving nodes
+to all other existing communities. This extra step re-
+quires only minor computational cost, and does not in-
+crease the order of the computational complexity of the
+overall algorithm. We demonstrated the e ectiveness of
+our improved algorithm by showing that it eliminates the
+bias towards dividing random networks into communities
+of size N/2n that exists when a bisectioning algorithm is
+used. We also used it to determine the community struc-
+ture of some known example networks and found that, ex-
+cept for the largest networks, it achieves the best results
+of any currently known algorithm. Finally, since  nding
+the network partitioning with the largest modularity is an
+an NP-hard problem [42], we note that the approach we
+have used here to improve the approximate algorithms for
+solving the problem, namely of identifying and removing
+undue constraints that bias their results, may be helpful in
+improving approximate algorithms for solving other NP-
+hard problems associated with complex networks such as
+ nding the set of routes that maximizes the capacity of
+congested network transport [52 54].
+     
+As a further test, we applied  nal-tuning, combined
+with the q = 2 leading eigenvalue method and  ne-tuning,
+to  nd the community structure of a number of real world
+example networks that have been studied in the litera-
+ture [9, 25, 27, 38, 40, 45 51]. Note that, because the algo-
+rithm is partly stochastic, we have run hundreds of ana-
+lyzes for each of the networks considered and chosen the
+partition with the largest modularity. Table 1 shows a
+comparison between our results (labeled  FT ) and the
+best known published results (labeled  pub ). Although
+the increases in modularity may only seem modest, the
+estimated upper bounds for the maximum modularity for
+some of these networks [40] are very close to our results.
+For the two smallest networks, we  nd what is likely to
+be the optimal partitioning. For the two medium sized
+networks, our algorithm achieves results better than any
+other known algorithm. However, for the two largest net-
+works a greedy algorithm performs better. Greedy al-
+gorithms work by combining communities, instead of di-
+viding them.
+It is possible that combining a greedy al-
+gorithm with  nal-tuning would improve the results for
+the two largest networks as well. Note that for all exam-
+ples studied our results using  nal-tuning combined with
+the leading eigenvalue method equaled or surpassed the
+best known results obtained using the leading eigenvalue
+method only.
+In summary, we have shown that an undue constraint
+exists in many of the algorithms commonly used to detect
+the community structure of complex networks, and that
+this constraint limits the e ectiveness of those algorithms
+for  nding the network partitioning with the maximum
+modularity. To solve the problem, we proposed adding an
+The work of YS, BD, and KEB was supported by the
+NSF through grant No. DMR-0427538, and by the Texas
+Advanced Research Program through grant No. 95921.
+The work of KJ was supported by the NSF through grants
+No. DMS-0604429 and No. DMS-0817649, and by the
+Texas Advanced Research Program through grant No.
+96105. The authors gratefully acknowledge Tim F. Cooper
+and Charo I. Del Genio for stimulating discussions.
+REFERENCES
+[1] M. Girvan and M.E.J. Newman, Proc. Natl. Acad. Sci.
+USA, Vol. 99 2002, p. 7821.
+[2] M.E.J. Newman, SIAM Review, Vol. 45 2003, p. 167.
+[3] M.E.J. Newman and M. Girvan, Phys. Rev. E, Vol. 69
+2004, p. 026113.
+[4] F. Radicchi, C. Castellano, F. Cecconi, V. Loreto
+and D. Parisi, Proc. Natl. Acad. Sci. USA, Vol. 101 2004,
+p. 2658.
+[5] E.A. Variano, J.H. McCoy and H. Lipson, Phys. Rev.
+Lett., Vol. 92 2004, p. 188704.
+[6] L. Danon, A. Diaz-Guilera, J. Duch and A. Arenas,
+J. Stat. Mech. 2005, p. P09008.
+[7] J. Reichardt and S. Bornholdt, Phys. Rev. E, Vol. 74
+2006, p. 016110.
+[8] S. Fortunato and M. Barth elemy, Proc. Natl. Acad.
+Sci. USA 104, Vol. 104 2007, p. 36.
+[9] E. Weinan, T.J. Li and E. Vanden-Eijnden, Proc. Natl.
+Acad. Sci. USA, Vol. 105 2008, p. 7907.
+[10] A. Arenas, A. Fernandez and S. G omez, New J. Phys.,
+Vol. 10 2008, p. 053039.
+[11] A. Kreimer, E. Borenstein, U. Gophna and E. Rup-
+pin, Proc. Natl. Acad. Sci. USA, Vol. 105 2008, p. 6976.
+p-5
+Y. Sun et al.
+[12] E. Segal, M. Shapira, A. Regev, D. Pe er and D.
+Botstein, Nat. Genet., Vol. 34 2003, p. 166.
+[45] W.W. Zachary, J. Anthropol. Res., Vol. 33 1977, p. 452.
+[46] P. Gleiser and L. Danon, Adv. Complex Systems, Vol. 6
+[13] B. Snel B and M.A. Huynen, Genome Res., Vol. 14
+2003, p. 565.
+2004, p. 391.
+[47] H. Jeong, B. Tombor, R. Albert, Z.N. Oltvai and
+[14] M. Campillos, C. von Mering, L.J. Jensen and P.
+A.-L. Barab asi, Nature, Vol. 407 2000, p. 651.
+Bork, Genome Res., Vol. 16 2006, p. 374.
+[15] S. Boettcher, Phys. Rev. E, Vol. 64 2001, p. 026114.
+[16] M.E.J. Newman, Phys. Rev. E, Vol. 69 2004, p. 066133.
+[17] L. Donetti and M.A. Mu noz, J. Stat. Mech. 2004,
+p. P10012.
+[48] R. Guimer`a, L. Danon, A. D  az-Guilera, F. Giralt
+and A. Arenas, Phys. Rev. E, Vol. 68 2003, p. 065103.
+[49] X. Guardiola, R. Guimer`a, A. Arenas, A. D  az-
+Guilera, D. Streib and L.A.N. Amaral, arXiv:cond-
+mat/0206240, Vol. 2002, p. .
+[18] A. Clauset, M.E.J. Newman and C. Moore, Phys.
+[50] M. Bogu n a, R. Pastor-Satorras, A. D  az-Guilera
+Rev. E, Vol. 70 2004, p. 066111.
+[19] S. Fortunato, Phys. Rev. E, Vol. 70 2004, p. 056104.
+[20] J. Reichardt, Phys. Rev. Lett., Vol. 93 2004, p. 218701.
+[21] F. Wu, Eur. Phys. J. B, Vol. 38 2004, p. 331.
+[22] A. Medus, G. Acu na and C.O. Dorso, Physica A,
+Vol. 358 2005, p. 593.
+and A. Arenas, Phys. Rev. E, Vol. 70 2004, p. 056122.
+[51] M.E.J. Newman, Proc. Natl. Acad. Sci. USA, Vol. 98
+2001, p. 404.
+[52] B. Danila, Y. Yu, J.A. Marsh and K.E. Bassler,
+Phys. Rev. E, Vol. 74 2006, p. 046106.
+[53] B. Danila, Y. Yu, J.A. Marsh and K.E. Bassler,
+[23] C.P. Massen and J.P.K. Doye, Phys. Rev. E, Vol. 71
+Chaos, Vol. 17 2007, p. 026102.
+2005, p. 046101.
+[54] Y. Yu, B. Danila, J.A. Marsh and K.E. Bassler, Eu-
+[24] E. Ziv, M. Middendorf and C.H. Wiggins, Phys. Rev.
+rophys. Lett., Vol. 79 2007, p. 48004.
+E, Vol. 71 2005, p. 046117.
+[25] J. Duch and A. Arenas, Phys. Rev. E, Vol. 72 2005,
+p. 027104.
+[26] G. Palla, I. Der enyi, I. Farkas and T. Vicsek, Na-
+ture, Vol. 435 2005, p. 814.
+[27] M.E.J. Newman, Proc. Natl. Acad. Sci. USA, Vol. 103
+2006, p. 8577.
+[28] M.E.J. Newman, Phys. Rev. E, Vol. 74 2006, p. 036104.
+[29] M. Hastings, Phys. Rev. E, Vol. 74 2006, p. 035102.
+[30] S. Boccaletti, M. Ivanchenko, V. Latora, A.
+Pluchino and A. Rapisarda, Phys. Rev. E, Vol. 75 2007,
+p. 045102.
+[31] M. Rosvall and C.T. Bergstrom, Proc. Natl. Acad.
+Sci. USA, Vol. 104 2007, p. 7327.
+[32] S. Zhang, R. Wang and X. Zhang, Physica A, Vol. 374
+2007, p. 483.
+[33] S. Lehmann and L.K. Hansen, Eur. Phys. J. B, Vol. 60
+2007, p. 83.
+[34] A. Arenas, J. Duch, A. Fern andez and S. G omez,
+New J. Phys., Vol. 9 2007, p. 176.
+[35] M. Sales-Pardo, R. Guimer`a, A.A. Moreira and
+L.A.N. Amaral, Proc. Natl. Acad. Sci. USA, Vol. 104
+2007, p. 15224.
+[36] G. Xu, S. Tsoka and L.G. Papageorgiou, Eur. Phys.
+J. B, Vol. 60 2007, p. 231.
+[37] J. Ruan and W. Zhang, Phys. Rev. E, Vol. 77 2008,
+p. 016104.
+[38] P. Schuetz and A. Caflisch, Phys. Rev. E, Vol. 77
+2008, p. 046112.
+[39] M. Rosvall and C.T. Bergstrom, Proc. Natl. Acad.
+Sci. USA, Vol. 105 2008, p. 1118.
+[40] G. Agarwal and D. Kempe, Eur. Phys. J. B, Vol. 66
+2008, p. 409.
+[41] V. Nicosia, G. Mangioni, V. Carchiolo and M. Mal-
+geri, arXiv:0801.1647v3 [physics.data-an] 2008.
+[42] U. Brandes, D. Delling, M. Gaertler, R. Gorke,
+M. Hoefer, Z. Nikoloski and D. Wagner, IEEE Trans.
+on Knowledge and Data Engineering, Vol. 20 2008, p. 172.
+[43] B.W. Kernighan and S. Lin, Bell System Tech. J.,
+Vol. 49 1970, p. 291.
+[44] R.B. Potts, Proc. Cambridge Philos. Soc., Vol. 48 1952,
+p. 106.
+p-6

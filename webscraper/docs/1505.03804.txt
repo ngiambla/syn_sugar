@@ -1,0 +1,884 @@
+5
+1
+0
+2
+ 
+l
+u
+J
+ 
+0
+3
+ 
+ 
+]
+h
+p
+-
+c
+o
+s
+.
+s
+c
+i
+s
+y
+h
+p
+[
+ 
+ 
+2
+v
+4
+0
+8
+3
+0
+.
+5
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Climate change sentiment on Twitter: An unsolicited public opinion poll
+Emily M. Cody,1,   Andrew J. Reagan,1,   Lewis Mitchell,2,  
+Peter Sheridan Dodds,1,   and Christopher M. Danforth1,  
+1Department of Mathematics & Statistics, Vermont Complex Systems Center,
+Computational Story Lab, & the Vermont Advanced Computing Core,
+2School of Mathematical Sciences, The University of Adelaide, SA 5005, Australia
+The University of Vermont, Burlington, VT 05401.
+(Dated: April 23, 2018)
+The consequences of anthropogenic climate change are extensively debated through scienti c
+papers, newspaper articles, and blogs. Newspaper articles may lack accuracy, while the severity of
+ ndings in scienti c papers may be too opaque for the public to understand. Social media, however,
+is a forum where individuals of diverse backgrounds can share their thoughts and opinions. As
+consumption shifts from old media to new, Twitter has become a valuable resource for analyzing
+current events and headline news. In this research, we analyze tweets containing the word  climate 
+collected between September 2008 and July 2014. Through use of a previously developed sentiment
+measurement tool called the Hedonometer, we determine how collective sentiment varies in response
+to climate change news, events, and natural disasters. We  nd that natural disasters, climate bills,
+and oil-drilling can contribute to a decrease in happiness while climate rallies, a book release, and
+a green ideas contest can contribute to an increase in happiness. Words uncovered by our analysis
+suggest that responses to climate change news are predominately from climate change activists
+rather than climate change deniers, indicating that Twitter is a valuable resource for the spread of
+climate change awareness.
+INTRODUCTION
+After decades receiving little attention from non-
+scientists, the impacts of climate change are now widely
+discussed through a variety of mediums. Originating
+from scienti c papers, newspaper articles, and blog posts,
+a broad spectrum of climate change opinions, subjects,
+and sentiments exist. Newspaper articles often dismiss
+or sensationalize the e ects of climate change due to
+journalistic biases including personalization, dramatiza-
+tion and a need for novelty [1]. Scienti c papers por-
+tray a much more realistic and consensus view of climate
+change. These views, however, do not receive widespread
+media attention due to several factors including journal
+paywalls, formal scienti c language, and technical results
+that are not easy for the general public to understand [1].
+According to the IPCC Fifth Assessment report, hu-
+mans are  very likely  (90-100% probability) to be re-
+sponsible for the increased warming of our planet [2], and
+this anthropogenic global warming is responsible for cer-
+tain weather extremes [3]. In April 2013, 63% of Ameri-
+cans reported that they believe climate change is happen-
+ing. This number, however, drops to 49% when asked if
+climate change is being caused by humans. The percent-
+age drops again to 38% when asked if people around the
+world are currently being harmed by the consequences
+of climate change [4]. These beliefs and risk perceptions
+  emily.cody@uvm.edu
+  andy@andyreagan.com
+  lewis.mitchell@adelaide.edu.au
+  peter.dodds@uvm.edu
+  chris.danforth@uvm.edu
+Typeset by REVTEX
+can vary by state or by county [5]. By contrast, 97% of
+active, publishing, climate change scientists agree that
+ human activity is a signi cant contributing factor in
+changing mean global temperatures  [6, 7]. The general
+public learns most of what it knows about science from
+the mass-media [8]. Coordination among journalists, pol-
+icy actors, and scientists will help to improve reporting
+on climate change, by engaging the general public and
+creating a more informed decision-making process [9].
+One popular source of climate information that has
+not been heavily analyzed is social media. The Pew Re-
+search Center s Project for Excellence in Journalism in
+January of 2009 determined that topics involving global
+warming are much more prominent in the new, social me-
+dia [9]. In the last decade, there has been a shift from
+the consumption of traditional mass media (newspapers
+and broadcast television) to the consumption of social
+media (blog posts, Twitter, etc.). This shift represents a
+switch in communications from  one-to-many  to  many-
+to-many  [9]. Rather than a single journalist or scientist
+telling the public exactly what to think, social media of-
+fers a mechanism for many people of diverse backgrounds
+to communicate and form their own opinions. Exposure
+is a key aspect in transforming a social problem into a
+public issue [10], and social media is a potential avenue
+where climate change issues can be initially exposed.
+Here we study the social media site Twitter, which al-
+lows its users 140 characters to communicate whatever
+they like within a  tweet . Such expressions may in-
+clude what individuals are thinking, doing, feeling, etc.
+Twitter has been used to explore a variety of social and
+linguistic phenomena [11 13], and used as a data source
+to create an earthquake reporting system in Japan [14],
+detect in uenza outbreaks [15], and analyze overall pub-
+2
+lic health [16]. An analysis of geo-tagged Twitter activity
+(tweets including a latitude and longitude) before, dur-
+ing, and after Hurricane Sandy using keywords related
+to the storm is given in [17]. They discover that Twitter
+activity positively correlates with proximity to the storm
+and physical damage.
+It has also been shown that in-
+dividuals a ected by a natural disaster are more likely
+to strengthen interactions and form close-knit groups on
+Twitter immediately following the event [18]. Twitter
+has also been used to examine human sentiment through
+analysis of variations in the speci c words used by indi-
+viduals. In [19], Dodds et al. develop the  hedonometer ,
+a tool for measuring expressed happiness   positive and
+negative sentiment   in large-scale text corpora. Since its
+development, the hedonometer has been implemented in
+studies involving the happiness of cities and states [20],
+the happiness of the English language as a whole [21],
+and the relationship between individuals  happiness and
+that of those they connect with [22].
+The majority of the topics trending on Twitter are
+headlines or persistent news [23], making Twitter a valu-
+able source for studying climate change opinions. For
+example,
+in [24], subjective vs objective and positive
+vs negative tweets mentioning climate change are coded
+manually and analyzed over a one year time period.
+In [25], various climate hashtags are utilized to locate
+pro/denialist communities on Twitter.
+In the present
+study, we apply the hedonometer to a collection of tweets
+containing the word  climate . We collected roughly
+1.5 million such tweets from Twitter s gardenhose API
+(a random 10% of all messages) during the roughly 6
+year period spanning September 14, 2008 through July
+14, 2014. This time period represents the extent of
+our database at the time of writing. Each collected
+tweet contains the word  climate  at least once. We
+include retweets in the collection to ensure an appropri-
+ately higher weighting of messages authored by popular
+accounts (e.g. media, government). We apply the hedo-
+nometer to the climate tweets during di erent time peri-
+ods and compare them to a reference set of roughly 100
+billion tweets from which the climate-related tweets were
+ ltered. We analyze highest and lowest happiness time
+periods using word shift graphs developed in [19], and
+we discuss speci c words contributing to each happiness
+score.
+METHODS
+The hedonometer is designed to calculate a happiness
+score for a large collection of text, based on the happi-
+ness of the individual words used in the text. The instru-
+ment uses sentiment scores collected by Kloumann et al.
+and Dodds et al. [19, 21], where 10,222 of the most fre-
+quenly used English words in four disparate corpora were
+given happiness ratings using Amazon s Mechanical Turk
+online marketplace. Fifty participants rated each word,
+and the average rating becomes the word s score. Each
+word was rated on a scale from 1 (least happy) to 9 (most
+happy) based on how the word made the participant feel.
+We omit clearly neutral or ambiguous words (scores be-
+tween 4 and 6) from the analysis. In the present study,
+we use the instrument to measure the average happiness
+of all tweets containing the word  climate  from Septem-
+ber 14, 2008 to July 14, 2014 on the timescales of day,
+week, and month. The word  climate  has a score of
+5.8 and was thus not included when calculating average
+happiness. For comparison, we also calculate the average
+happiness score surrounding 5 climate related keywords.
+We recognize that not every tweet containing the word
+ climate  is about climate change. Some of these tweets
+are about the economic, political, or social climate and
+some are ads for climate controlled cars. Through man-
+ual coding of a random sample of 1,500 climate tweets, we
+determined that 93.5% of tweets containing the word  cli-
+mate  are about the earth s climate or climate change.
+We calculated the happiness score for both the entire
+sample and the sample with the non-earth related cli-
+mate tweets removed. The scores were 5.905 and 5.899
+respectively, a di erence of 0.1%. This di erence is small
+enough to conclude that the non-earth related climate
+change tweets do not substantially alter the overall hap-
+piness score.
+Based on the happiness patterns given by the hedo-
+nometer analysis, we select speci c days for analysis us-
+ing word shift graphs. We use word shift graphs to com-
+pare the average happiness of two pieces of text, by rank
+ordering the words that contribute the most to the in-
+crease or decrease in happiness.
+In this research, the
+comparison text is all tweets containing the word  cli-
+mate , and the reference text is a random 10% of all
+tweets. Hereafter, we refer to the full reference collection
+as the  un ltered tweets .
+Finally, we analyze four events including three natural
+disasters and one climate rally using happiness time series
+and word shift graphs. These events include Hurricane
+Irene (August 2011), Hurricane Sandy (October 2012), a
+midwest tornado outbreak (May 2013), and the Forward
+on Climate Rally (February 2013).
+RESULTS
+Fig. 1 gives the raw and relative frequencies of the
+word  climate  over the study period. We calculate the
+relative frequencies by dividing the daily count of  cli-
+mate  by the daily sum of the 50,000 most frequently
+used words in the gardenhose sample. From this  gure,
+we can see that while the raw count increases over time,
+the relative frequency decreases over time. This decrease
+can either be attributed to reduced engagement on the
+issue since the maximum relative frequency in December
+2009, during Copenhagen Climate Change Conference, or
+an increase in overall topic diversity of tweets as Twit-
+ter grows in popularity. The observed increase in raw
+count can largely be attributed to the growth of Twit-
+3
+Figure 1. The daily raw frequencies (top) and relative frequencies (bottom) of the word  climate  on Twitter from September
+14, 2008 to July 14, 2014. The insets (in red) show the same quantity with a logarithmically spaced y-axis.
+Figure 2. Average happiness of tweets containing the word  climate  from September 2008 to July 2014 by day (top), by week
+(middle), and by month (bottom). The average happiness of all tweets during the same time period is shown with a dotted
+red line. Several of the happiest and saddest dates are indicated on each plot, and are explored in subsequent  gures.
+ter during the study period from approximately 1 million
+tweets per day in 2008 to approximately 500 million in
+2014. In addition, demographic changes in the user pop-
+ulation clearly led to a decrease in the relative usage of
+the word  climate .
+Fig. 2 shows the average happiness of the climate
+tweets by day, by week, and by month during the 6 year
+time span. The average happiness of un ltered tweets
+4
+Figure 3. A word shift graph comparing the happiness of tweets containing the word  climate  to all un ltered tweets. The
+reference text is roughly 100 billion tweets from September 2008 to July 2014. The comparison text is tweets containing the
+word  climate  from September 2008 to July 2014. A yellow bar indicates a word with an above average happiness score. A
+purple bar indicates a word with below average happiness score. A down arrow indicates that this word is used less within
+tweets containing the word  climate . An up arrow indicates that this word is used more within tweets containing the word
+ climate . Words on the left side of the graph are contributing to making the comparison text (climate tweets) less happy.
+Words on the right side of the graph are contributing to making the comparison text more happy. The small plot in the lower
+left corner shows how the individual words contribute to the total shift in happiness. The gray squares in the lower right corner
+compare the sizes of the two texts, roughly 107 vs 1012 words. The circles in the lower right corner indicate how many happy
+words were used more or less and how many sad words were used more or less in the comparison text.
+is shown by a dotted red line. Several high and low
+dates are indicated in the  gure. The average happiness
+of tweets containing the word  climate  is consistently
+lower than the happiness of the entire set of tweets.
+Several outlier days, indicated on the  gure, do have
+an average happiness higher than the un ltered tweets.
+Upon recovering the actual tweets, we discover that on
+March 16, 2009, for example, the word  progress  was
+used 408 times in 479 overall climate tweets.  Progress 
+has a happiness score of 7.26, which increases the av-
+erage happiness for that particular day. Increasing the
+time period for which the average happiness is measured
+(moving down the panels in Fig. 2), the outlier days be-
+come less signi cant, and there are fewer time periods
+when the climate tweets are happier than the reference
+tweets. After averaging weekly and monthly happiness
+scores, we see other signi cant dates appearing as peaks
+or troughs in Fig. 2. For example, the week of October
+28, 2012 appears as one of the saddest weeks for climate
+discussion on Twitter. This is the week when Hurricane
+Sandy made landfall on the east coast of the U.S. For
+the same reason, October 2012 also appears as one of the
+saddest months for climate discussion.
+The word shift graph in Fig. 3 shows which words con-
+tributed most to the shift in happiness between climate
+tweets and un ltered tweets. The total average happi-
+ness of the reference text (un ltered tweets) is 5.99 while
+the total average happiness of the comparison text (cli-
+mate tweets) is 5.84. This change in happiness is due to
+the fact that many positively rated words are used less
+and many negatively rated words are used more when
+discussing the climate.
+The word  love  contributes most to the change in hap-
+piness. Climate change is not typically a positive subject
+of discussion, and tweets do not typically profess love for
+it. Rather, people discuss how climate change is a   ght ,
+ crisis , or a  threat . All of these words contribute to
+the drop in happiness. Words such as  pollution ,  de-
+nial ,  tax , and  war  are all negative, and are used
+relatively more frequently in climate tweets, contribut-
+ing to the drop in happiness. The words  disaster  and
+ hurricane  are used more frequently in climate tweets,
+suggesting that the subject of climate change co-occurs
+with mention of natural disasters, and strong evidence
+exists proving Twitter is a valid indicator of real time
+attention to natural disasters [26].
+On the positive side, we see that relatively less profan-
+ity is used when discussing the climate, with the excep-
+tion of the word  hell . We also see that  heaven  is used
+more often. From our inspection of the tweets, it is likely
+that these two words appear because of a famous quote by
+Mark Twain:  Go to heaven for the climate and hell for
+the company  [27]. Of the 97 non-earth related climate
+tweets from our 1,500 tweet sample, 8 of them referenced
+this quote. The word  energy  is also used more dur-
+ing climate discussions. This indicates that there may be
+a connection between energy related topics and climate
+related topics. As energy consumption and types of en-
+ergy sources can contribute to climate change, it is not
+surprising to see the two topics discussed together.
+Using the  rst half of our dataset, Dodds et. al.
+[19]
+calculated the average happiness of tweets containing
+several individual keywords including  climate . They
+found that tweets containing the word  climate  were,
+on average, similar in ambient happiness to those con-
+taining the words  no ,  rain ,  oil , and  cold  (see
+Table 2 [19]). In the following section, we compare the
+happiness score of tweets containing the word  climate 
+to that of 5 other climate-related keywords.
+Climate Related Keywords
+The diction used to describe climate change attitudes
+on Twitter may vary by user. For example, some users
+may consistently use  climate change  and others may
+use  global warming . There are also cohorts of users
+that utilize various hashtags to express their climate
+change opinions. In order to address this, we collected
+tweets containing 5 other climate related keywords to
+explore the variation in sentiment surrounding di er-
+ent types of climate related conversation. As in [25],
+we choose to analyze the keywords  global warming 
+(5.72),  globalwarming  (5.81),  climaterealists  (5.79),
+ climatechange  (5.86), and  agw  (5.73, standing for
+ anthropogenic global warming ).
+Search terms lack
+spaces in the cases where they are climate related hash-
+tags.
+Tweets including the  global warming  keyword con-
+tain more negatively rated words than tweets including
+5
+ climate . There is more profanity within these tweets
+and there are also more words suggesting that climate
+change deniers use the term  global warming  more of-
+ten than  climate change . For example, there is more
+usage of the words  stop ,  blame ,  freezing ,  fraud ,
+and  politicians  in tweets containing  global warming .
+These tweets also show less frequent usage of positive
+words  science  and  energy , indicating that climate
+change science is discussed more within tweets contain-
+ing  climate . We also see a decrease in words such as
+ crisis ,  bill ,  risk ,  denial ,  denying ,  disaster ,
+and  threat . The positively rated words  real  and
+ believe  appear more in  global warming  tweets, how-
+ever so does the word  don t , again indicating that in
+general, the Twitter users who who don?t acknowledge
+climate change use the term  global warming  more fre-
+quently than  climate change . A study in 2011 deter-
+mined that public belief in climate change can depend on
+whether the question uses  climate change  or  global
+warming  [28].
+Tweets containing the hashtag  globalwarming  also
+contain words indicating that this is often a hashtag used
+by deniers. The word contributing most to the decrease
+in happiness between  climate  and  globalwarming  is
+ fail , possibly referencing an inaccurate interpretation
+of the timescale of global warming consequences dur-
+ing cold weather. We see an increase in negative words
+ fraud ,  die ,  lie ,  blame ,  lies , and again a de-
+crease in positive, scienti c words. There is also an in-
+crease in several cold weather words including  snow ,
+ freezing ,  christmas ,  december , indicating that the
+ globalwarming  hashtag may often be used sarcastically.
+Similarly, Tweets including the hashtag  climaterealists 
+use more words like  fraud ,  lies ,  wrong , and  scan-
+dal  and less   ght ,  crisis ,  pollution ,  combat , and
+ threat .
+The hashtag  agw  represents a group that is even
+more so against anthropogenic climate change. We see an
+increase in  fraud ,  lie ,  fail ,  wrong ,  scare ,  scan-
+dal ,  conspiracy ,  crime ,  false , and  truth . This
+particular hashtag gives an increase in positive words
+ green  and  science , however based on the large in-
+crease in the aforementioned negative words, we can de-
+duce that these terms are being discussed in a nega-
+tive light. The  climatechange  hashtag represents users
+who are believers in climate change. There is an in-
+crease in positive words  green ,  energy ,  environ-
+ment ,  sea ,  oceans ,  nature ,  earth , and  future ,
+indicating a discussion about the environmental impacts
+of climate change. There is also an increase in  pollu-
+tion ,  threat ,  risk ,  hunger ,   ght , and  problem 
+indicating that the  climatechange  hashtag is often used
+when tweeting about the  ght against climate change.
+With the exception of the  globalwarming  hashtag,
+our analysis of these keywords largely agrees with what
+is found in [25]. Our analysis, however, compares word
+frequencies within tweets containing these hashtags with
+word frequencies within tweets containing the word  cli-
+6
+mate . We  nd that more skeptics use  global warming 
+in their tweets than  climate , while it may be the case
+that  global warming  and  globalwarming  hashtag are
+also used by activists.
+Analysis of Speci c Dates
+While Fig. 3 shows a shift in happiness for all climate
+tweets collected in the 6 year period, we now move to an-
+alyzing speci c climate change-related time periods and
+events that correspond to spikes or dips in happiness. It
+is important to note that tweets including the word  cli-
+mate  represent a very small fraction of un ltered tweets
+(see gray squares comparing text sizes in bottom right of
+Fig. 3). While our analysis may capture speci c events
+pertaining to climate change, it may not capture every-
+thing, as Twitter may contain background noise that we
+can t easily analyze.
+Fig. 4 gives word shift graphs for three of the happiest
+days according to the hedonometer analysis. These dates
+are indicated in the top plot in Fig. 2. The word shift
+graphs use un ltered tweets as the reference text and
+climate tweets as the comparison text for the date given
+in each title. Fig. 4(a) shows that climate tweets were
+happier than un ltered tweets on December 28, 2008.
+This is due in part to a decrease in the word  no , and an
+increase in the words  united ,  play , and  hopes . On
+this day, there were  high hopes  for the U.S. response
+to climate change. An example tweet by OneWorld News
+is given in Fig. 5(a) [29].
+Fig. 4(b) shows that climate tweets were happier than
+un ltered tweets on April 9, 2009, largely due to the in-
+crease in positive words  book ,  energy , and  prize .
+Twitter users were discussing the release of a new book
+called Sustainable Energy Without the Hot Air by David
+JC MacKay [30]. Also on this date, users were posting
+about a Climate Prize given to a solar-powered cooker
+in a contest for green ideas. Example tweets include
+Fig. 5(b) and (c) [31, 32]. Finally, Fig. 4(c) shows that cli-
+mate tweets were happier than un ltered tweets on April
+30, 2012. This is due to the increased usage of the words
+ dear ,  new ,  protect ,  forest ,  save , and  please .
+On this date, Twitter users were reaching out to Brazil-
+ian president Dilma to save the Amazon rainforest, e.g.,
+Fig. 5(d) [33].
+Similarly, Fig. 6 gives word shift graphs for three of
+the saddest days according to the hedonometer analy-
+sis. These dates are indicated in the top panel in Fig. 2.
+Fig. 6(a) shows an increase in many negative words on
+October 9, 2008. Topics of conversation in tweets con-
+taining  climate  include the threat posed by climate
+change to a tropical species, a British climate bill, and the
+U.S. economic crisis. Example tweets include Fig. 5(e-g)
+[34 36].
+Fig. 6(b)
+shows an increase in negative words
+ poor , assault ,  battle , and  bill  on April 4, 2010.
+Popular topics of conversation on this date included a
+California climate law and President Obama s oil-drilling
+plan. Example tweets include Fig. 5(h) and (i) [37, 38].
+Finally, Fig. 6(c) shows that the words  don t  and
+ stop  contributed most to the decrease in happiness on
+August 6, 2011. A topic of conversation on this date was
+the Keystone XL pipeline, a proposed extension to the
+current Keystone Pipeline. An example tweet is given in
+Fig. 5(j) [39].
+This per day analysis of tweets containing  climate 
+shows that many of the important issues pertaining to
+climate change appear on Twitter, and demonstrate dif-
+ferent levels of happiness based on the events that are
+unfolding. In the following section, we investigate spe-
+ci c climate change events that may exhibit a peak or a
+dip in happiness. First, we analyze the climate change
+discussion during several natural disasters that may have
+raised awareness of some of the consequences of climate
+change. Then, we analyze a non-weather related event
+pertaining to climate change.
+Natural Disasters
+Natural disasters such as hurricanes and tornados have
+the potential to focus society s collective attention and
+spark conversations about climate change. A person s be-
+lief in climate change is often correlated with the weather
+on the day the question is asked [40 42]. A study using
+ climate change  and  global warming  tweets showed
+that both weather and mass media coverage heavily in-
+ uence belief in anthropogenic climate change [43].
+In
+this section, we analyze tweets during three natural dis-
+asters: Hurricane Irene, Hurricane Sandy, and a mid-
+west tornado outbreak that damaged many towns includ-
+ing Moore, Oklahoma and Rozel, Kansas. Fig. 7 gives
+the frequencies of the words  hurricane  and  tornado 
+within tweets that contain the word  climate . Each plot
+labels several of the spikes with the names of the hurri-
+canes (top) or the locations (state abbreviations) of the
+tornado outbreaks (bottom). This  gure indicates that
+before Hurricane Irene in August 2011, hurricanes were
+not commonly referenced alongside climate, and before
+the April 2011 tornado outbreak in Alabama and Missis-
+sippi, tornados were not commonly referenced alongside
+climate.
+This analysis, however, will not capture every hurri-
+cane or tornado mentioned on Twitter, only those that
+were referenced alongside the word  climate . Hurricane
+Arthur, for example, occurred in early July, 2014 and
+does not appear as a spike in Fig. 7. This particular hur-
+ricane did not cause nearly as much damage or as many
+fatalities as the hurricanes that do appear in Fig. 7, and
+perhaps did not draw enough attention to highlight a
+link between hurricanes and climate change on Twitter.
+Additionally, a large tornado outbreak in Kentucky, Al-
+abama, Indiana, and Ohio occurred in early March 2012
+and does not appear as a spike in our analysis.
+Fig. 7 shows that the largest peak in the word  hurri-
+7
+Figure 4. Word shift graphs for three of the happiest days in the climate tweet time series.
+cane  occurred during Hurricane Sandy in October 2012.
+Fig. 8 provides a deeper analysis for the climate time se-
+ries during hurricane Sandy. The time series of the words
+ hurricane  and  climate  as a fraction of all tweets be-
+fore, during, and after Hurricane Sandy hit are given in
+Fig. 8(a) and (c). Spikes in the frequency of usage of
+these words is evident in these plots. The decay of each
+word is  tted with a power law in Fig. 8(b) and (d). A
+power law is a functional relationship of the following
+form:
+f (t   tevent) =  (t   tevent)
+  
+(1)
+Here, t is measured in days, and tevent is the day Hurri-
+cane Sandy made landfall. f (t) represents the relative
+frequency of the word  hurricane  (top) or  climate 
+(bottom), and   and   are constants.
+Using the power law  t, we calculate the  rst three half
+lives of the decay. Letting M equal the maximum relative
+frequency, the time at which the  rst half life of the power
+law relationship occurs is calculated by equation 2:
+t 1
+2
+=
+(2)
+(cid:19)  1
+ 
+(cid:18) M
+2 
+Figure 5. Example tweets on the happiest and saddest days
+for climate conversation on Twitter
+The  rst three half lives of the decay in the frequency of
+the word  hurricane  during hurricane Sandy are 1.57,
+0.96, and 1.56 additional days. Since the decay is not ex-
+ponential, these half lives are not constant. The  rst half
+life indicates that after about a day and a half,  hurri-
+cane  was already tweeted only half as often. The second
+8
+Figure 6. Word shift graphs for 3 of the saddest days in the climate tweet time series.
+Figure 7. Frequency of the word  hurricane   (top) and  tor-
+nado  (bottom) within tweets containing the word  climate .
+Several spikes have been identi ed with the hurricane or tor-
+nado that took place during that time period.
+Figure 8. Decay rates of the words  hurricane  (top) and
+ climate  (bottom). The left plots gives the time series of
+each word during hurricane Sandy. The right plots gives the
+power law  t for the decay in relative frequency, x-axes are
+spaced logarithmically. The power law exponents are given in
+the titles of the  gures.
+half life indicates that after one more day,  hurricane 
+was tweeted only one fourth as often, and so on. Thus,
+it did not take long for the discussion of the hurricane to
+decrease. The half lives, however, of the word  climate 
+are much larger at 8.19, 22.58, and 84.85 days.
+Fig. 9 gives happiness time series plots for three natu-
+ral disasters occurring in the United States. These plots
+show that there is a dip in happiness on the day that
+the disasters hit the a ected areas, o ering additional
+evidence that sentiment is depressed by natural disas-
+ters [24]. The word shift graphs indicate which words
+contributed to the dip in happiness. The circles on the
+bottom right of the word shift plots indicate that for all
+three disasters, the dip in happiness is due to an increase
+in negative words, more so than a decrease in positive
+9
+Figure 9. Happiness time series plots for tweets containing the word  climate  one week before and one week after three natural
+disasters in the United States (top) and word shift graphs indicating what words contributed most to the drop in happiness
+during the natural disasters (bottom). The word shift graphs compare the climate tweets to un ltered tweets on the day of the
+natural disaster.
+words. During a natural disaster, tweets mentioning the
+word  climate  use more negative words than tweets not
+mentioning the word  climate .
+ticular focus. Fig. 10 shows that the happiness of climate
+tweets increased slightly above the un ltered tweets dur-
+ing this event, which only occurs on 8% of days in Fig. 2.
+Forward on Climate Rally
+In this section, we analyze tweets during the Forward
+on Climate Rally, which took place in Washington D.C.
+on February 17, 2013. The goal of the rally, one of the
+largest climate rallies ever in the United States, was to
+convince the government to take action against climate
+change. The proposed Keystone pipeline bill was a par-
+Despite the presence of negative words such as
+ protestors ,  denial , and  crisis , the Forward on Cli-
+mate Rally introduced positive words such as  live ,
+ largest , and  promise . The Keystone pipeline bill was
+eventually vetoed by President Obama.
+10
+Figure 10. Left: Happiness time series plot for un ltered
+tweets (red dashed) and tweets containing the word  climate 
+(blue solid) one week before and one week after the Forward
+on Climate Rally. Right: word shift plot for climate tweets
+versus un ltered tweets on the day of the rally.
+CONCLUSION
+We have provided a general exploration of the senti-
+ment surrounding tweets containing the word  climate 
+in response to natural disasters and climate change news
+and events. The general public is becoming more likely
+to use social media as an information source, and dis-
+cussion on Twitter is becoming more commonplace. We
+ nd that tweets containing the word  climate  are less
+happy than all tweets.
+In the United States, climate
+change is a topic that is heavily politicized; the words
+ deny ,  denial , and  deniers  are used more often in
+tweets containing the word  climate . The words that
+appear in our climate-related tweets word shift suggest
+that the discussion surrounding climate change is dom-
+inated by climate change activists rather than climate
+change deniers, indicating that the twittersphere largely
+agrees with the scienti c consensus on this issue. The
+presence of the words  science  and  scientists  in al-
+most every word shift in this analysis also strengthens
+this  nding (see also [24]). The decreased  denial  of
+climate change is evidence for how a democratization of
+knowledge transfer through mass media can circumvent
+the in uence of large stakeholders on public opinion.
+In examining tweets on speci c dates, we have deter-
+mined that climate change news is abundant on Twitter.
+Events such as the release of a book, the winner of a
+green ideas contest, or a plea to a political  gure can
+produce an increase in sentiment for tweets discussing
+climate change. For example, the Forward on Climate
+Rally demonstrates a day when the happiness of climate
+conversation peaked above the background conversation.
+On the other hand, consequences of climate change such
+as threats to certain species, extreme weather events, and
+climate related legislative bills can cause a decrease in
+overall happiness of the climate conversation on Twitter
+due to an increase in the use words such as  threat ,
+ crisis , and  battle .
+Natural disasters are more commonly discussed within
+climate-related tweets than un ltered tweets, implying
+that some Twitter users associate climate change with
+the increase in severity and frequency of certain natu-
+ral disasters [44 46]. During Hurricane Irene, for exam-
+ple, the word  threat  was used much more often within
+climate tweets, suggesting that climate change may be
+perceived as a bigger threat than the hurricane itself.
+The analysis of Hurricane Sandy in Fig. 8 demonstrates
+that while climate conversation peaked during Hurricane
+Sandy, it persisted longer than the conversation about
+the hurricane itself.
+While climate change news is prevalent in traditional
+media, our research provides an overall analysis of cli-
+mate change discussion on the social media site, Twitter.
+Through social media, the general public can learn about
+current events and display their own opinions about
+global issues such as climate change. Twitter may be a
+useful asset in the ongoing battle against anthropogenic
+climate change, as well as a useful research source for
+social scientists, an unsolicited public opinion tool for
+policy makers, and public engagement channel for scien-
+tists.
+ACKNOWLEDGMENTS
+The authors are grateful for the computational re-
+sources provided by the Vermont Advanced Computing
+Core which is supported by the Vermont Complex Sys-
+tems Center. CMD, AJR, EMC, and LM were sup-
+ported by National Science Foundation (NSF) grant
+DMS-0940271 to the Mathematics & Climate Research
+Network. PSD was supported by NSF CAREER Award
+#0846668. Thanks to Mary Lou Zeeman for helpful dis-
+cussions.
+[1] Maxwell T Boyko  and Jules M Boyko . Climate change
+and journalistic norms: A case-study of US mass-media
+coverage. Geoforum, 38(6):1190 1204, 2007.
+[2] Christopher Field and Maarten Van Aalst. Climate
+change 2014: Impacts, adaptation, and vulnerability, vol-
+ume 1. IPCC, 2014.
+[3] E. M. Fischer and R. Knutti. Anthropogenic contribu-
+tion to global occurrence of heavy-precipitation and high-
+temperature extremes. Nature Climate Change, advance
+online publication, April 2015.
+[4] Anthony Leiserowitz, Edward Maibach, Connie Roser-
+Renouf, Geo  Feinberg, and Peter Howe. Climate change
+in the american mind: Americans  global warming beliefs
+and attitudes in April, 2013. Yale University and George
+Mason University. New Haven, CT: Yale Project on Cli-
+mate Change Communication, 2013.
+[5] Peter D Howe, Matto Mildenberger, Jennifer R Marlon,
+and Anthony Leiserowitz. Geographic variation in opin-
+ions on climate change at state and local scales in the
+usa. Nature Climate Change, 2015.
+[6] Peter T Doran and Maggie Kendall Zimmerman. Ex-
+amining the scienti c consensus on climate change. Eos,
+Transactions American Geophysical Union, 90(3):22 23,
+2009.
+[7] William RL Anderegg, James W Prall, Jacob Harold,
+and Stephen H Schneider. Expert credibility in climate
+change. Proceedings of the National Academy of Sciences,
+107(27):12107 12109, 2010.
+[8] Kris M Wilson. Mass media as sources of global warming
+knowledge. Mass Comm Review, 22:75 89, 1995.
+[9] Maxwell T Boyko . Who speaks for the climate?: Making
+sense of media reporting on climate change. Cambridge
+University Press, 2011.
+[10] James W Dearing and Everett M Rogers. Agenda-setting,
+volume 6. Sage Publications, 1996.
+[11] Nan Cao, Yu-Ru Lin, Xiaohua Sun, David Lazer, Shixia
+Liu, and Huamin Qu. Whisper: Tracing the spatiotem-
+poral process of information di usion in real time. Vi-
+sualization and Computer Graphics, IEEE Transactions
+on, 18(12):2649 2658, 2012.
+[12] Yu-Ru Lin, Drew Margolin, Brian Keegan, and David
+Lazer. Voices of victory: A computational focus group
+framework for tracking opinion shift in real time. In Pro-
+ceedings of the 22nd international conference on World
+Wide Web, pages 737 748. International World Wide
+Web Conferences Steering Committee, 2013.
+[13] Yu-Ru Lin, Brian Keegan, Drew Margolin, and David
+Lazer. Rising tides or rising stars?: Dynamics of shared
+attention on Twitter during media events. PloS one,
+9(5):e94093, 2014.
+[14] Takeshi Sakaki, Makoto Okazaki, and Yutaka Matsuo.
+Earthquake shakes Twitter users: real-time event detec-
+tion by social sensors. In Proceedings of the 19th inter-
+national conference on World wide web, pages 851 860.
+ACM, 2010.
+[15] Eiji Aramaki, Sachiko Maskawa, and Mizuki Morita.
+Twitter catches the  u: detecting in uenza epidemics us-
+ing Twitter. In Proceedings of the conference on empirical
+methods in natural language processing, pages 1568 1576.
+Association for Computational Linguistics, 2011.
+[16] Michael J Paul and Mark Dredze. You are what you
+tweet: Analyzing Twitter for public health. In ICWSM,
+pages 265 272, 2011.
+[17] Yury Kryvasheyeu, Haohui Chen, Nick Obradovich, Es-
+teban Moro, Pascal Van Hentenryck, James Fowler, and
+Manuel Serbian. Nowcasting disaster damage. Submit-
+ted, April 2015.
+[18] Tuan Q. Phan and Edoardo M. Airoldi. A natural ex-
+periment of social network formation and dynamics. Pro-
+ceedings of the National Academy of Sciences, 2015.
+11
+[19] Peter Sheridan Dodds, Kameron Decker Harris, Isabel M
+Kloumann, Catherine A Bliss, and Christopher M Dan-
+forth. Temporal patterns of happiness and information
+in a global social network: Hedonometrics and Twitter.
+PLoS ONE, 6(12):e26752, 2011.
+[20] Lewis Mitchell, Morgan R Frank, Kameron Decker Har-
+ris, Peter Sheridan Dodds, and Christopher M Danforth.
+The geography of happiness: Connecting Twitter senti-
+ment and expression, demographics, and objective char-
+acteristics of place. PLoS ONE, 8(5):e64417, 2013.
+[21] Isabel M Kloumann, Christopher M Danforth,
+and
+the English
+Kameron Decker Harris, Catherine A Bliss,
+Peter Sheridan Dodds.
+Positivity of
+language. PLoS ONE, 7(1):e29484, 2012.
+[22] Catherine A Bliss, Isabel M Kloumann, Kameron Decker
+Harris, Christopher M Danforth, and Peter Sheridan
+Dodds. Twitter reciprocal reply networks exhibit assor-
+tativity with respect to happiness. Journal of Computa-
+tional Science, 3(5):388 397, 2012.
+[23] Haewoon Kwak, Changhyun Lee, Hosung Park, and Sue
+Moon. What is Twitter, a social network or a news me-
+dia? In Proceedings of the 19th international conference
+on World wide web, pages 591 600. ACM, 2010.
+[24] Xiaoran An, Auroop R Ganguly, Yi Fang, Steven B
+Scyphers, Ann M Hunter, and Jennifer G Dy. Tracking
+climate change opinions from Twitter data. Workshop
+on Data Science for Social Good, 2014.
+[25] Hywel TP Williams, James R McMurray, Tim Kurz, and
+F Hugo Lambert. Network analysis reveals open forums
+and echo chambers in social media discussions of climate
+change. Global Environmental Change, 32:126 138, 2015.
+[26] Joseph T Ripberger, Hank C Jenkins-Smith, Carol L
+Silva, Deven E Carlson, and Matthew Henderson. So-
+cial media and severe weather: Do tweets provide a valid
+indicator of public attention to severe weather risk com-
+munication? Weather, Climate, and Society, 6(4):520 
+530, 2014.
+[27] Mark Twain, Michael Barry Frank, Robert Pack Brown-
+ing, Lin Salamo, Frederick Anderson, and Mark Twain.
+Mark Twain s Notebooks & Journals, Volume III:(1883-
+1891), volume 8. Univ of California Press, 1980.
+[28] Jonathon P Schuldt, Sara H Konrath, and Norbert
+Schwarz.
+or ?climate change??
+whether the planet is warming depends on question word-
+ing. Public Opinion Quarterly, page nfq073, 2011.
+?global warming?
+[29] OneWorld News. Twitter, 2008 (accessed March 19,
+2015). https://twitter.com/OneWorld_News/status/
+1083004712.
+[30] David MacKay. Sustainable Energy-without the hot air.
+UIT Cambridge, 2008.
+[31] Shifting Solutions. Twitter, 2009 (accessed March 19,
+2015). https://twitter.com/ShiftSolutions/status/
+1485975759.
+[32] Cory Doctorow. Twitter, 2009 (accessed March 19, 2015).
+https://twitter.com/doctorow/status/1482803994.
+[33] WWF. Twitter, 2012 (accessed March 19, 2015). https:
+//twitter.com/WWF/status/196902312797671424.
+[34] NewGreenStu . Twitter, 2008 (accessed March 19,
+2015). https://twitter.com/NewGreenStuff/status/
+953099924.
+[35] OneWorld News. Twitter, 2008 (accessed March 19,
+2015). https://twitter.com/OneWorld_News/status/
+953758970.
+12
+[36] Don Carli. Twitter, 2008 (accessed March 19, 2015).
+https://twitter.com/dcarli/status/953288121.
+[37] NewsOnGreen.
+Twitter, 2010 (accessed March 19,
+https://twitter.com/NewsOnGreen/status/
+2015).
+11608867076.
+[38] Humanitarian News. Twitter, 2010 (accessed March 19,
+https://twitter.com/HumanityNews/status/
+2015).
+11612292989.
+[39] Open View Gardens. Twitter, 2011 (accessed March
+https://twitter.com/openviewgardens/
+19, 2015).
+status/99975488293978112.
+[40] Lisa Zaval, Elizabeth A Keenan, Eric J Johnson, and
+Elke U Weber. How warm days increase belief in global
+warming. Nature Climate Change, 4(2):143 147, 2014.
+[41] Ye Li, Eric J Johnson, and Lisa Zaval. Local warm-
+ing daily temperature change in uences belief in global
+warming. Psychological Science, 2011.
+[42] Lawrence C Hamilton and Mary D Stampone. Blowin 
+in the wind: Short-term weather and belief in anthro-
+pogenic climate change. Weather, Climate, and Society,
+5(2):112 119, 2013.
+[43] Andrei P Kirilenko, Tatiana Molodtsova, and Svetlana O
+Stepchenkova. People as sensors: Mass media and local
+temperature in uence climate change discussion on Twit-
+ter. Global Environmental Change, 30:92 100, 2015.
+[44] Michael E. Mann and Kerry A. Emanuel. Atlantic hurri-
+cane trends linked to climate change. Eos, Transactions
+American Geophysical Union, 87(24):233 241, 2006.
+[45] Daniel G. Huber and Jay Gulledge. Extreme weather and
+climate change: Understanding the link, managing the
+risk. Pew Center on Global Climate Change Arlington,
+2011.
+[46] Christopher B Field. Managing the risks of extreme
+events and disasters to advance climate change adapta-
+tion: special report of the intergovernmental panel on cli-
+mate change. Cambridge University Press, 2012.

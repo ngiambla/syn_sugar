@@ -1,0 +1,891 @@
+Beyond Contact Tracing: Community-Based Early Detection for
+Ebola Response
+Vincent Wong, Daniel Cooney and Yaneer Bar-Yam
+New England Complex Systems Institute
+210 Broadway, Suite 101, Cambridge, MA 02139, USA
+(Dated: March 9, 2016)
+Abstract
+The 2014 Ebola outbreak in West Africa raised many questions about the control of infectious
+disease in an increasingly connected global society. Limited availability of contact information made
+contact tracing di cult or impractical in combating the outbreak. We consider the development
+of multi-scale public health strategies and simulate policies for community-level response aimed
+at early screening of communities rather than individuals, as well as travel restriction to prevent
+community cross-contamination. Our analysis shows the policies to be e ective even at a relatively
+low level of compliance.
+In our simulations, 40% of individuals conforming to these policies is
+enough to stop the outbreak. Simulations with a 50% compliance rate are consistent with the case
+counts in Liberia during the period of rapid decline after mid September, 2014. We also  nd the
+travel restriction to be e ective at reducing the risks associated with compliance substantially below
+the 40% level, shortening the outbreak and enabling e orts to be focused on a ected areas. Our
+results suggest that the multi-scale approach can be used to further evolve public health strategy
+for defeating emerging epidemics.
+6
+1
+0
+2
+ 
+r
+a
+M
+8
+ 
+ 
+ 
+]
+h
+p
+-
+c
+o
+s
+.
+s
+c
+i
+s
+y
+h
+p
+[
+ 
+ 
+2
+v
+0
+2
+0
+7
+0
+.
+5
+0
+5
+1
+:
+v
+i
+X
+r
+a
+1
+I.
+INTRODUCTION
+The initial medical response to Ebola in 2014 focused on caring for individuals in hospital
+settings and using contact tracing as the primary preventative measure [1]. Contact tracing
+is the accepted method for public health control of infectious diseases [2] and has been the
+subject of theoretical and empirical studies [3 13]. Under contact tracing, a patient admitted
+to a hospital is asked about their recent direct contacts, and those contacts are monitored
+or isolated for the incubation period of the disease [2, 14]. The spread of Ebola to dense
+urban communities made it di cult or impossible for contact tracing to work due to the
+large number of responders needed to trace contacts when many people are infected. While
+some contacts were knowable like family and friends, including those from ritual washing
+of the dead, others were untraceable anonymous interactions in public markets, buses, and
+taxis[15 18]. For traceable interactions, the number of individuals that are needed to perform
+contact tracing activities (interviewing, compiling lists, seeking out contacted individuals,
+performing monitoring and isolation of identi ed individuals) grows with the number of
+infected cases. For an exponentially growing number of cases, the number of responders
+for an e ective response must grow exponentially, and without this level of response, the
+number of cases cannot be curtailed [1, 19, 20]. As an alternate approach, we consider
+community-based monitoring and limiting travel to reduce inter-community contagion [21].
+In community based monitoring, the e ort to identify who has been contacted is avoided by
+monitoring all members of the community. Such approaches were taken in Liberia beginning
+in mid September 2014 [22, 23] and in Sierra Leone beginning in mid December 2014 [24],
+and may be responsible for the rapid reduction in cases seen in those two countries.
+In
+particular, in early March 2015, it was announced that there were zero remaining active
+cases of Ebola in Liberia [25]. Subsequent intermittent cases have not led to the same level
+of crisis. While the Centers for Disease Control Director Tom Frieden attributed much of the
+success in the public health e ort to the formation of local teams based upon the principle
+of RITE (Rapid Isolation and Treatment of Ebola) [26], the World Health Organization
+(WHO) has reported community engagement as a key factor in the successful response[18].
+The direct cause of the reduction is not well documented. Here we simulate the progress of
+an epidemic and found that community monitoring can be highly e ective in stopping an
+outbreak.
+2
+In general, early detection of Ebola-like symptoms is necessary for early care of patients
+with Ebola and limiting new infections. This is due to the extended infectious period and
+tendency of the disease to become more contagious as it progresses [27 29]. Contact tracing
+addresses this, but it is highly dependent on the patient knowing the people they interact
+with, made nearly impossible in urban environments with anonymous interactions. Here
+we explore a multi-scale intervention based on these ideas. Instead of monitoring individ-
+uals from a list of contacts, a community-based strategy requires that entire communities
+be monitored for new cases until infection is ruled out. Symptomatic individuals are iso-
+lated and treated to prevent further infections. This community-based early detection is
+augmented by restricting long-distance travel or subjecting travelers to extended periods
+of limited contact and observation. Restricting travel inhibits cross-contamination between
+communities and allows more targeted care to be given to infected communities. The objec-
+tive is to progressively limit the disease to smaller and smaller areas and to focus resources
+on the areas in which the disease is present. In contrast to contact tracing, the number of
+responders needed for community monitoring grows only with the number of infected areas
+instead of the number of cases. Moreover, the e ort needed to train individuals to screen
+for fever, the primary activity, is low, and those performing community monitoring can be
+members of that community.
+If all new infections could be perfectly isolated through the complete monitoring of the
+population, these policies would evidently drastically limit new Ebola cases and result in
+an abrupt halt to the epidemic. However, an analysis must account for how e ective the
+implementation of screening will be. It is infeasible and undesirable to constrain the popu-
+lation using high levels of force, so the level of compliance that is achieved is a key variable
+in e cacy. Here we model compliance as a probability that individuals will adhere to the
+community-level policies. This captures both the possibility of de ance as well as other
+sources of performance failure such as accidents or lack of awareness or information. We
+analyze the level of compliance necessary for the policies to work e ectively. As shown in
+Fig. 1, we  nd that even with 40% compliance the community level policies curtail the
+epidemic and a 60% compliance rapidly ends the outbreak.
+3
+FIG. 1: Simulations of an outbreak with a community-level screening intervention.
+Screening begins at the vertical dotted line, with a level of compliance indicated by label and
+color (green 0 to blue 1.0). A. Number of cases with or without symptoms. Note that even 40%
+compliance (0.4) results in decrease in cases. B. Cumulative cases. C. Rt, the e ective reproductive
+number the average number of individuals infected by an index case at time t. For an epidemic
+to continue to grow, Rt must exceed 1. For 40% compliance (0.4) and greater, Rt decreases below
+one, corresponding with a decrease in active cases. Rt drops before t = 70 because policies a ect
+the contagion of individuals that are initially infected prior to the intervention.
+4
+II. MODEL DETAILS
+Simulations of Ebola and other infectious diseases have been performed on complex net-
+works [30 35] or spatially-explicit populations [36 40] with interactions on household, com-
+munity, and global scales [35, 41 46]. Our analysis of response focuses on the possibility of
+local and long range transmission events. We incorporate such events into a transmission
+model and test that the results are robust to variations in the model transmission network.
+Our model is a Susceptible, Exposed, Infectious, Removed (SEIR) model on a spatial
+lattice of individuals (Fig. 2) with periodic boundary conditions. Individuals can be in one
+of four states: disease-free and never previously infected (susceptible), infected in the latent
+period without symptoms (exposed), infected with symptoms (infectious), and recovered
+or dead (removed). Newly infected individuals progress through a latent period for   days
+where they are asymptomatic and not contagious. They then become contagious for a period
+of   days, at the end of which they have either died or have recovered and have acquired
+immunity from further reinfection. Each individual interacts with all four of its nearest
+neighbors on the lattice once per day, and an infectious individual infects a susceptible
+neighbor with probability   during a given interaction. Each individual also interacts with
+another randomly chosen individual from the population. If one of them is infectious, they
+have a probability   of infecting the other by this long-range interaction. A schematic of
+these interactions is shown in Fig. 2. This mix of local and long-range disease transmission
+was chosen for our model to re ect the tendency for Ebola to spread both within households
+and through non-local interactions in shared taxis, hospitals, or through other travel [47].
+Additionally, it is known that the presence of even a small probability of long-range disease
+transmission can allow the rapid spread of an epidemic on a regional or global scale [36].
+The community-level public health interventions are modeled based on a proposed policy
+draft [21] and include daily checks for symptoms and isolation of individuals found to be
+in the infectious state. In our simulations, we allowed the disease to spread unabated for
+the  rst T0 days, after which the intervention policies are put into place. The time until
+the start of the intervention is important in measuring the impact of early response on the
+control of an emerging outbreak. We assume that, even after the start of the intervention,
+individuals cannot be isolated and are fully capable of infecting others on the  rst day of
+their infectious period. This captures the idea that an individual can become infectious
+5
+FIG. 2: Schematic of di erent types of transmission. Black squares indicate individuals of
+a spatially structured population, blue lines denote partitions between communities. A. Neighbor
+infection within a neighborhood. B. Cross-partition neighbor infection to another community. C.
+Long-range transmission within a community. D. Long-range transmission across a partition.
+and infect someone else between symptom checks on consecutive days. With probability
+ , infectious individuals are chosen to be compliant, which means that, after the  rst day
+of their infectious period, they will be perfectly isolated and incapable of interacting with
+others for the  nal     1 days of their infectious period. The lack of compliance, occurring
+with probability 1   , is assumed to be complete in the sense that noncompliant individuals
+continue to infect others for the duration of their infectious period.
+The travel restrictions are implemented based on cordons outlined in the policy draft
+[21]. We subdivide the population into square neighborhoods of equal size classi ed at
+each time as one of three types: A, B, or C. The initial type of each neighborhood is
+determined by monitoring of the population for   days upon the onset of the public health
+intervention. Type A neighborhoods are subpopulations in which at least one resident
+individual is infectious. Type C neighborhoods are subpopulations for which two criteria
+have simultaneously been satis ed: there has not been an infectious case in the past   days
+and the neighborhood does not share a border with any neighborhoods of type A. Type B
+neighborhoods do not have any active infectious cases, but have not yet satis ed the criteria
+to become a type C neighborhood. Neighborhoods are updated according to these criteria
+every timestep, however, we assume that travel restrictions implemented via a dynamic
+cordon prevent transmission of the disease to type C neighborhoods. This ensures that
+residents of type C neighborhoods are protected from infection, and renders type C as an
+absorbing state. The purpose of the classi cation is to enable a focus of e ort on screening
+neighborhoods of types A and B. Given e ective interventions, type A neighborhoods will
+6
+progressively be reclassi ed as type B and then as type C, allowing for resources to be
+devoted to the remaining a ected areas and facilitating the goal of reaching zero active
+cases within the region of intervention.
+III. DATA AND PARAMETERS
+We used data from the World Health Organization [48] to determine model parameters
+that match the exponential growth phase of the Ebola outbreak in Liberia. By performing
+an exponential regression, we determined that the cumulative number of con rmed cases,
+y(t), in Liberia approximately followed the functional form y(t)   exp (0.052 t), consistent
+with the analysis done by Chowell and Nishiura [49]. Comparison with empirical event data
+did not a ect the conclusions.
+It is useful to consider the value of the basic reproduction number, R0, de ned as the
+average number of individuals infected by a single index case in an otherwise susceptible
+population. R0 has a clear threshold value for epidemics: outbreaks with R0 > 1 experience
+exponential growth, whereas outbreaks with R0 < 1 die out exponentially. To deduce R0
+from the exponential growth rate, we used an expression derived from a mean- eld version
+of the SEIR model (see Appendix):
+R0 = 1 + (  +  ) r +   r2
+where r is the empirically-measured exponential growth rate of the cumulative number of
+cases [50]. Values for   and   must be identi ed in order to obtain a value of R0. We
+consider two di erent sets of parameter values corresponding to two di erent estimates of
+R0 for the 2014 Ebola outbreak in Liberia. These are consistent with empirical bounds on
+the parameters [55] and the results are robust to variation in these values as shown below.
+First, we considered a latency period of   = 5 days and an infectious period of   = 6 days
+to re ect the modeling assumptions of Althaus [51]. Using these time periods and infection
+parameters of   = 0.15 and   = 0.0125, we conducted 1,000 simulations and obtained an
+average exponential growth rate of 0.054, which results in an R0 estimate of 1.7, comparable
+to the value 1.6 obtained by Althaus. The values of   and   were chosen so that long
+range infections occurred but, as observed in West Africa, local infections dominated. The
+7
+speci c values do not change the conclusions. As Althaus based his parameter values on
+measurements from a previous outbreak on the same subtype of Ebola [51, 52], the  gures
+presented in the text of the paper are for these parameter values.
+Second, we used the parameter values   = 10 and   = 7 to compare our model with that
+of Chowell and Nishiura, who estimated that R0 = 1.96 [49]. Simulating this epidemic with
+infection parameters of   = 0.18 and   = 0.015, we obtained an average exponential growth
+rate of 0.05, with a corresponding R0 value of 2.0, similar to that found by Chowell and
+Nishiura. These authors based their parameter values on previously hypothesized epidemic
+properties of Ebola [49, 53]. Results using these parameter values are in the Supplement.
+For each set of parameters, we simulated compliances ranging from 0.0 to 1.0 in steps of
+0.05, and intervention delay times of 50, 70, 90, and 110. Results are averaged over 1,000
+simulations of a population of 10,000 individuals, 100   100 square lattice, with neighbor-
+hoods of size 100, 10  10 sublattices, initialized with 0.02% of the population infectious and
+0.02% latent.
+IV. RESULTS
+Fig. 1 shows the number of current and cumulative cases for various levels of compli-
+ance with community level interventions implemented at T0 = 70 days and without travel
+restrictions. We found that a relatively low compliance of 0.4 with the community screening
+policies was enough to end the outbreak (Fig. 1A). Fig. 1B shows that there is relatively
+little di erence in the cumulative number of infections over the duration of the outbreak
+for the interventions with 0.6, 0.8, and 1.0 compliance. Thus, and perhaps surprisingly, the
+greatest gains in reducing the epidemic duration and cumulative number of cases arise from
+a particularly low level of compliance.
+The impact of intervention policies can be readily seen by plotting the e ective repro-
+duction number Rt, the average number of secondary infections caused by a primary case
+who is  rst infected at time t [54]. An Rt greater than 1 at a given time implies that the
+epidemic will grow exponentially over the short term, while less than one implies it will
+decline exponentially. Unlike R0, Rt is designed to re ect the e ect of interventions as well
+as that of natural epidemic burnout. Plotted in Fig. 1C, we see that compliance levels of
+0.6, 0.8, and 1.0 cause the value of Rt to decrease well below the threshold value 1.0 within
+8
+a span of several days. This represents a quick transition from a regime in which the disease
+is growing exponentially to a regime in which the epidemic can no longer sustain itself and
+consequently dies out. Even with a compliance of 0.4, enough infections were halted to
+reduce the value of Rt below 1 (Fig. 1C).
+To observe the e ects of the travel restrictions, we show the outbreak length and the
+cumulative number of infections for interventions implemented at time T0 = 70 with and
+without the travel restrictions for our simulated compliance values in Figs. 3A and 3B.
+Without travel restrictions, compliance levels between 20% and 40% actually prolong the
+outbreak relative to the no intervention case (Fig. 3A). For these levels of compliance com-
+munity screening slows transmission but insu ciently to halt the outbreak, so transmission
+continues at a slower rate until the population is exhausted. Travel restrictions greatly reduce
+this e ect. Travel restrictions also noticeably decrease the cumulative number of infections
+for low levels of compliance (Fig. 3B). This shows that, in the event of low compliance,
+travel restrictions limit the spread and duration of the outbreak.
+Comparing the cumulative cases as a function of compliance for di erent delay times (Fig.
+3C), interventions with an earlier start time T0 generally result in fewer cumulative infections.
+However, without travel restrictions, this is much less true for low levels of compliance.
+Thus, travel restrictions ensure that early policy implementation is e ective even at low
+compliance. Fig. 3C also shows that higher compliances than 0.6 have comparatively little
+impact on the cumulative number of cases.
+We visualized the evolution of neighborhood types over time with the cordon to demon-
+strate the spatial constriction of the disease with this policy (Fig. 5). The  rst panel (top
+left) shows the geographical distribution of neighborhood types shortly after the policies
+come into e ect. The infected area shrinks and the ratio of type A (red) to type B (green)
+neighborhoods decreases over time.
+In Fig. 4 we plot both the reported number of cases in Liberia [55] and our simulation
+with T0 = 50 days and a 50% compliance (0.5). Our simulations  t the observed case count
+data in Liberia for the parameters chosen, indicating that the early screening intervention
+was far from complete, but was su ciently e ective. Since the results of the simulation are
+robust to variation in parameters, the correspondence of the real world data in with the
+simulation re ects the reduction of Rt below the epidemic threshold Liberia.
+9
+FIG. 3: E ect of compliance on epidemic length and cumulative infections with and
+without travel restrictions. A and B: Blue shows the case with travel restrictions, and red
+shows the case without such restrictions. Di erentiation between the two occurs because the travel
+restrictions compensate for low levels of compliance. This decreases the length of the epidemic A
+and reduces the cumulative number of infections B in cases of low compliance. C. The cumulative
+number of infections over the entire epidemic, as a function of compliance levels and intervention
+times. Colors from brown to yellow signify intervention times (50, 70, 90, 110). Without enforced
+travel restrictions (dotted lines), a low compliance results in little di erentiation between early
+and late policy implementation. The travel restrictions (solid lines) dramatically reduce infection
+number for earlier interventions at low compliance.
+V. ROBUSTNESS ANALYSIS
+The compliance analysis presented above is a robustness analysis of the community based
+response strategy. Additionally, we tested the robustness of our analysis to the approxima-
+tions used to model the network of transmission. This also tests the robustness of the
+intervention policies to changes in the societal transmission network. We included networks
+in which each person had di erent immediate neighbors (Moore neighborhood), and ones
+10
+FIG. 4: Comparison of empirical data with simulations Normalized, linear-log plot of
+Liberia empirical values (red) compared with simulation data (blue) with T0 = 50 and 50% com-
+pliance (0.5).
+for which the contact structure itself changes to a small world network model (Kleinberg
+network). For the Moore neighborhood network, each individual is connected to its closest
+eight rather than four nearest neighbors. The Kleinberg network was implemented by al-
+lowing individuals to have a varying number of long-range contacts with their probability of
+making that connection decrease with distance. We also allowed the length of the of latent
+and infectious periods to vary for individuals across values found by Chowell [56] to allow
+for variable stage lengths. Fig. 6 shows the results of the simulations with these di erent
+networks, with   and   adjusted so that each network s growth rate has an R0 in agreement
+with the observed results for Ebola. The results show the intervention e ectiveness remains
+high and a compliance above 50% is su cient to rapidly stop the epidemic. This provides
+additional evidence for the relevance of the results to real world conditions despite approx-
+imations used in modeling the transmission network. It also indicates that the community
+level interventions are highly robust.
+We note that recent research on contagious processes on networks that are not geographi-
+cally local have considered heterogeneous connectivities across nodes, and speci cally power
+law node connectivity. Under these conditions highly connected nodes enable the disease
+to spread across the entire network at arbitrarily low contagion rates [32]. Cordons that
+restrict the contagion by limiting geographical spread would also impose a cuto  on power
+11
+law connectivities leading to a non-zero threshold contagion rate for such networks. By
+limiting connectivity to local neighborhoods, cordons bound the maximum connectivity of
+an individual and therefore truncate power law connectivity distributions.
+We analyzed the e ect of community monitoring using a mean  eld, spatially averaged
+approach. The analytic equations are constructed by considering the dynamics of infection
+across the entire population. The susceptible population becomes infected by short range
+and long range transmission from noncompliant infectious individuals. The parameters are
+the compliance c, the short range infectious rate   , the long range infection rate  , the latent
+period  , the infectious period  , the average number of neighbors per individual z, the
+portion of neighbors that are already sick p, the probability that a transmission contact
+occurs in an unrestricted neighborhood r, and the probability that the transmission occurs
+in the same neighborhood f . The equations for the dynamics are:
+dS
+dt
+dE
+dt
+dI
+dt
+=  (1   c)
+= (1   c)
+E   1
+ 
+1
+ 
+=
+IS   (1   c)(1   r)
+IS + (1   c)(1   r)
+ 
+N
+IS   (1   c)
+ 
+rf  
+IS
+N
+N
+IS + (1   c)
+IS   1
+rf  
+ 
+N
+E
+  z(1   p)
+  z(1   p)
+N
+N
+I
+where S represents susceptible, E exposed, and I infectious groups. The  rst equation can
+be written as
+dS
+dt
+=     
+N
+IS
+where    = (1  c)[  z(1  p) +  ((1  r) + rf )] is the e ective transmission rate, encapsulating
+all the e ects of the infectiousness probabilities in the model. Note that the exposed and
+infected populations progress through the disease without interference. The base reproduc-
+tion number without intervention R0 for the SEIR model is R0 =  
+ eld value with community monitoring is Rm =   
+N S . Therefore, the mean
+N S . Using this approximate mean  eld
+model, and a value of p estimated from the simulation, the compliance needed to end an
+outbreak is c   0.5 to reduce Rt below 1.0, as compared to c   0.4 from the simulations
+themselves. The consistency of the result is further indication of its robustness.
+For a similar analysis of contact tracing, a mean  eld treatment should separate exposed
+and infected populations based on whether or not they were traced [57]. Traced individuals
+12
+are less likely to infect others. The success of contact tracing is dependent on the probability
+that an untraced infectious individual is discovered ( ), and the portion of traced contacts
+that are isolated successfully ( ). The reproduction number with contact tracing Rc is
+Rc = R0(1     ) [57]. To reduce Rc below 1 for ebola,      0.5. This shows that the
+minimum of   and   must be more than 0.5 to reduce Rc below 1 and end the outbreak.
+However, if one is at 0.5 they other has to be 1, i.e. 100% successful. Otherwise, success
+can be achieved if both are at least 0.7. Thus both the ability to identify contacts and
+the successful isolation of those contacts must be su ciently high. This makes explicit
+the requirement that successful contact tracing both identify individuals who have been in
+contact with the sick (or dead), and the need to successfully isolate those individuals.
+FIG. 5: Contraction of the epidemic areas using cordons and labeled neighborhoods.
+A simulated epidemic run on a 300   300 lattice with neighborhoods of size 10   10, with 70%
+compliance (0.7) and a delay of T0 = 50 days. Colored squares represent neighborhoods of types
+A (red, known infection), B (green, neighboring known infection), and C (blue, neither A nor B).
+Top (left to right) 60, 70, and 80 days, bottom 90, 100, and 110 days. Type C neighborhoods
+remain free from infection due to the protection provided by travel restrictions.
+13
+FIG. 6: Simulations for di erent types of networks. Screening at the dotted lines. Re-
+sults are normalized to the number of infected individuals at the time of the intervention. The
+intervention is robust against variation in network structure. A. Von Neumann neighborhood of
+four nearest neighbors. B. Moore neighborhood of eight nearest neighbors. C. Kleinberg small
+world network, with four nearest neighbors and longrange neighbors with probability of connection
+decreasing as inverse distance squared.
+VI. CONCLUSIONS
+We found that a policy of community response can be e ective at combating disease out-
+breaks without relying on information about infected individual s contact networks. This
+highlights the possibility of alternate methods to contact tracing for combating outbreaks.
+We have shown the policies require a surprisingly low compliance to end the outbreak. No-
+tably, we see that for estimated Ebola parameters, 40% compliance is su cient, and the
+cumulative number of infections in an outbreak is not substantially decreased by compli-
+ance higher than 60%. We also found that travel restrictions can be used to reduce the risks
+associated with compliance below 40%, and that the pairing of community-level interven-
+tions and travel restrictions can result in saving a substantial fraction of individuals from
+infection at any level of compliance. Public health interventions implementing variants of
+these policies have helped the number of active Ebola cases to reach zero in Liberia in March
+2015 [25, 26].
+Acknowledgments
+We thank Irving Epstein, Joseph Norman, Francisco Prieto-Castrillo, Alfredo Morales,
+and Matthew Hardcastle for comments on the manuscript and Joa Ja keno Okech-Ojony,
+Lorenzo Dorr, Stephen Paul Ayella Ataro, Subarna Mukherjee, and Katherine Collins for
+14
+help in obtaining or providing information about the Ebola response in Liberia.
+[1] World Health Organization (WHO). Contact tracing during an outbreak of ebola virus disease.
+WHO.
+http://www.who.int/csr/resources/publications/ebola/contact-tracing/
+en/. Published September 2015. Accessed February 1, 2016.
+[2] World Health Organization (WHO). Frequently asked questions on ebola virus disease. WHO.
+http://www.who.int/csr/disease/ebola/faq-ebola/en/. Published August 2014.
+[3] Browne C, Huo X, Magal P, Seydi M, Seydi O, et al. A Model of the 2014 Ebola Epidemic in
+West Africa with Contact Tracing. arXiv:1410.3817 2015.
+[4] Eames KT, Keeling MJ. Contact tracing and disease control. Proceedings of the Royal Society
+of London. Series B: Biological Sciences. 2003;270(1533):2565-71.
+[5] Tsimring LS, Huerta R. Modeling of contact tracing in social networks. Physica A: Statistical
+Mechanics and its Applications. 2003;325(1-2):33-39.
+[6] Kiss IZ, Green DM, Kao RR. Disease contact tracing in random and clustered networks.
+Proceedings of the Royal Society B: Biological Sciences. 2005;272(1570):14071414.
+[7] Kiss IZ, Green DM, Kao RR. Infectious disease control using contact tracing in random and
+scale-free networks. Journal of The Royal Society Interface. 2006;3(6):5562.
+[8] Klinkenberg D, Fraser C, Heesterbeek H. The e ectiveness of contact tracing in emerging
+epidemics. PloS One. 2006;1:e12.
+[9] Rivers CM, Lofgren ET, Marathe M, Eubank S, Lewis BL. Modeling the impact of inter-
+ventions on an epidemic of Ebola in Sierra Leone and Liberia. PLOS Currents Outbreaks.
+2014;1.
+[10] Burke DS, Epstein JM, Cummings DA, Parker JI, Cline KC, et al. Individual-based compu-
+tational modeling of Smallpox epidemic control strategies. Society for Academic Emergency
+Medecine 2006;13(11):1142-9.
+[11] Fraser C, Riley S, Anderson RM, Ferguson NM. Factors that make an infectious disease
+outbreak controllable. Proceedings of the National Academy of Sciences. 2004;101(16):6146-
+6151.
+[12] Riley S, Ferguson NM. Smallpox transmission and control: Spatial dynamics in Great Britain.
+Proceedings of the National Academy of Sciences. 2006;103(33):12637-42.
+15
+[13] Huerta R, Tsimring LS. Contact tracing and epidemics control in social networks. Physical
+Review E . 2002;66(5):056115.
+[14] Centers for Disease Control and Prevention (CDC). Ebola fact sheet. CDC . http://www.cdc.
+gov/vhf/ebola/pdf/ebola-factsheet.pdf. Published April 2015.
+[15] Hersher R. A Ride
+In Monrovia Means Wrestling With
+Ebola. NPR.
+http://www.npr.org/sections/goatsandsoda/2014/10/07/354356116/
+a-ride-in-monrovia-means-wrestling-with-ebola. Published October 2014. Accessed
+March 2016.
+[16] Stamp D. Taxis, planes and viruses: How deadly Ebola can spread. Reuters. http://www.
+reuters.com/article/health-ebola-transport-idUSL6N0Q570N20140731. Published July
+2014. Accessed March 2016.
+[17] Nebehay S. Ebola virus
+spread by taxi passengers,
+says World Health Organ-
+isation.
+The
+Independent.
+http://www.independent.co.uk/news/world/africa/
+ebola-virus-spread-by-taxi-passengers-says-who-9719478.html. Published Septem-
+ber 2014. Accessed March 2016.
+[18] World Health Organization (WHO). Liberia: a country and its capital are overwhelmed
+with Ebola cases. WHO. http://www.who.int/csr/disease/ebola/one-year-report/
+liberia/en/. Published January 2015. Accessed March 2016.
+[19] Centers for Disease Control and Prevention (CDC). Challenges in Responding to the Ebola
+Epidemic   Four Rural Counties, Liberia, August-November 2014. http://www.cdc.gov/
+mmwr/preview/mmwrhtml/mm6350a5.htm. Published December 2014.
+[20] Armbruster B, Brandeau M. Contact tracing to control infectious disease: when enough is
+enough. Health Care Manag Sci.. 2007;10(4):341-355.
+[21] Bar-Yam Y. DRAFT New Ebola response strategy:
+Local care team early detec-
+tion response. New England Complex Systems Institute. http://necsi.edu/research/
+management/health/ebolaresponse.html. Published October 12, 2014.
+[22] Bar-Yam Y.
+Is
+the
+response
+in Liberia succeeding?
+Positive
+indications. New
+England Complex Systems
+Institute. http://necsi.edu/research/social/pandemics/
+liberiadecrease.html. Published October 17, 2014.
+[23] World Health Organization (WHO). Liberia suceeds in  ghting Ebola with local, sector
+response. WHO. http://www.who.int/features/2015/ebola-sector-approach/en/. Pub-
+16
+lished April 2015.
+[24] Associated
+Press.
+Ebola
+outbreak:
+Sierra
+Leone
+o cials
+go-
+ing
+door
+to
+door.
+CBS
+News.
+http://www.cbsnews.com/news/
+ebola-outbreak-sierra-leone-officials-going-door-to-door/. Published Decem-
+ber 17, 2014.
+[25] Onishi
+H.
+Last
+known
+Ebola
+patient
+in
+Liberia
+is
+discharged.
+The
+New
+York
+Times.
+http://www.nytimes.com/2015/03/06/world/africa/
+last-ebola-patient-in-liberia-beatrice-yardolo-discharged-from-treatment.
+html?_r=0. Published March 5, 2015.
+[26] Frieden T. Rapid detection and response are essential to stopping Ebola.The Hu ngton Post.
+http://www.huffingtonpost.com/tom-frieden-md-mph/rapid-detection-and-respo_
+b_6705258.html. Published February 18, 2015.
+[27] Yamin D, Gertler S, Nde o-Mbah ML, Skrip LA, Fallah M, et al. E ect of Ebola progression
+on transmission and control in Liberia. Annals of Internal Medicine. 2015;162(1): 11-17.
+[28] Brauer F. Age of infection in epidemiology models. Electronic Journal of Di erential Equa-
+tions, Conference. 2005;12:29-37.
+[29] Towner JS, Rollin PE, Bausch DG, Sanchez A, Crary SM, et al. Rapid diagnosis of Ebola
+hemorrhagic fever by reverse transcription-PCR in an outbreak setting and assessment of
+patient viral load as a predictor of outcome. Journal of Virology. 2004;78(8):4330-41.
+[30] Keeling MJ, Eames KT. Networks and epidemic models. Journal of the Royal Society Inter-
+face. 2005;2(4):295307.
+[31] Eames KT, Keeling MJ. Modeling dynamic and network heterogeneities in the spread
+of
+sexually transmitted diseases. Proceedings of
+the National Academy of Sciences.
+2002;99(20):1333013335.
+[32] Pastor-Satorras R, Vespignani A. Epidemic spreading in scale-free networks. Physical Review
+Letters 2001;86(14):3200-3203.
+[33] Eubank S, Guclu H, Kumar VA, Marathe MV, Srinivasan A, et al. Modelling disease outbreaks
+in realistic urban social networks. Nature. 2004;429:180-184.
+[34] Read JM, Eames KT, Edmunds WJ. Dynamic social networks and the implications for the
+spread of infectious disease. Journal of The Royal Society Interface. 2008;5(26):1001-7.
+[35] Bonaccorsi S, Ottaviano S, De Pellegrini F, Socievole A, Van Mieghem P. Epidemic outbreaks
+17
+in two-scale community networks. Phys. Rev. E 2014;90(1):012810.
+[36] Rauch EM. Bar-Yam Y. Long-range interactions and evolutionary stability in a predator-prey
+system. Phys. Rev. E . 2006;73:020903.
+[37] Keeling MJ. The e ects of local spatial structure on epidemiological invasions. Proceedings of
+the Royal Society of London. Series B: Biological Sciences. 1999;266(1421):859867.
+[38] L opez L, Giovanini L, Burguener G. Addressing population heterogeneity and distribution in
+epidemics models using a cellular automata approach. BMC Research Notes. 2014;7:234.
+[39] Fuentes M, Kuperman M. Cellular automata and epidemiological models with spatial depen-
+dence. Physica A: Statistical Mechanics and its Applications. 1999;267(3-4):471-486.
+[40] Stacey B, Gros A, Bar-Yam Y. Eco-Evolutionary feedback in hostpathogen spatial dynamics.
+arXiv:1110.3845. 2014.
+[41] Kiskowski MA. A three-scale network model
+for the early growth dynamics of 2014
+West Africa Ebola Epidemic. PLOS Currents Outbreaks. 2014;1. doi:
+10.1371/cur-
+rents.outbreaks.c6efe8274dc55274f05cbcb62bbe6070.
+[42] Gomes MF, y Piontti AP, Rossi L, Chao D, Longini I, et al. Assessing the international spread-
+ing risk associated with the 2014 West African Ebola outbreak. PLOS Currents Outbreaks.
+2014;1. doi: 10.1371/currents.outbreaks.cd818f63d40e24aef769dda7df9e0da5.
+[43] Colizza V, Barrot A, Barthelemy M, Valleron AJ, Vespignani A. Modeling the worldwide
+spread of pandemic in uenza: Baseline case and containment interventions. PLoS Medicine.
+2007;4(1):e13.
+[44] Colizza V, Vespignani A. Epidemic modeling in metapopulation systems with heterogeneous
+coupling pattern: Theory and simulations. Journal of Theoretical Biology 2008;251(3):450-467.
+[45] Ball F, Mollison D, Scalia-Tomba G. Epidemics with two levels of mixing. Ann. Appl. Probab..
+1997;7(1):46-89.
+[46] Frank B, David S, Pieter T. Threshold behaviour and  nal outcome of an epidemic on a
+random network with household structure. Adv. in Appl. Probab.. 2009;41(3):765-796.
+[47] Nishiura H, Chowell G. Theoretical perspectives on the infectiousness of Ebola virus disease.
+Theoretical Biology and Medical Modelling. 2014;12:1.
+[48] World Health Organization (WHO). Ebola response roadmap situation report. WHO.
+http://apps.who.int/iris/bitstream/10665/137091/1/roadmapsitrep22Oct2014_eng.
+pdf?ua=1. Published October 22, 2014.
+18
+[49] Chowell G. Nishiura H, Bettencourt LM. Comparative estimation of the reproduction number
+for pandemic in uenza from daily case noti cation data. Journal of the Royal Society Interface.
+2007;4(12):155-66.
+[50] Lipsitch M, Cohen T, Cooper B, Robins JM, Ma S, et al. Transmission dynamics and control
+of severe acute respiratory syndrome. Science. 2003;300(5627):1966-1970.
+[51] Althaus CL. Estimating the
+reproduction number of Ebola virus
+(EBOV) dur-
+ing the 2014 outbreak in West Africa. PLOS Currents 2014;1. doi:
+10.1371/cur-
+rents.outbreaks.91afb5e0f279e7f29e7056095255b288.
+[52] WHO Ebola Response Team. Ebola virus disease in West Africa   The  rst 9 months of the
+epidemic and forward projections. New England Journals of Medicine. 2014; 371:1481-1495.
+[53] Lekone PE, Finkenst adt BF. Statistical inference in a stochastic epidemic SEIR model with
+control intervention: Ebola as a case study. Biometrics 2006;62(4):1170-7.
+[54] Nishiura H, Chowell G. Early transmission dynamics of Ebola virus disease (EVD), West
+Africa, March to August 2014. Euro Surveill . 2014;19(26).
+[55] World Health Organization (WHO). Ebola data and statistics. WHO. http://apps.who.int/
+gho/data/node.ebola-sitrep. Published March 2015.
+[56] Chowell G, Nishiura H. Transmission dynamics and control of Ebola virus disease (EVD): a
+review. BMC Medicine. 2014;12:196.
+[57] Browne C, Gulbudak H, Webb G. Modeling Contact Tracing in Outbreaks with Application
+to Ebola. Journal of Theoretical Biology. 2015;384:33-49.
+[58] World Health Organization (WHO). Ebola virus disease, WHO. http://www.who.int/
+mediacentre/factsheets/fs103/en//. Published April 2015.
+[59] Keeling MJ, Rohani P. Modeling infectious diseases in humans and animals. Princeton Uni-
+versity Press; 2008.
+[60] Chowell G, Hengartner NW, Castillo-Chavez C, Fenimore PW, Hyman J. The basic repro-
+ductive number of Ebola and the e ects of public health measures: The cases of Congo and
+Uganda. Journal of Theoretical Biology. 2004;229(1):119-126.
+[61] He ernan J, Smith R, Wahl L. Perspectives on the basic reproductive ratio. Journal of the
+Royal Society Interface. 2005;2(4):281-93.
+[62] Wallinga J, Lipsitch M. How generation intervals shape the relationship between growth rates
+and reproductive numbers. Proceedings of the Royal Society of London. Series B: Biological
+19
+Sciences. 2007;274(1609):599604.
+20
+APPENDIX
+A. SEIR Model
+We model Ebola using a Susceptible, Exposed, Infectious, Removed (SEIR) model with
+a  nite, spatially structured population with periodic boundary conditions.
+In an SEIR
+model, each individual can be in one of four states of health:
+S (susceptible): Healthy and capable of being infected.
+E (exposed): Infected but asymptomatic and incapable of transmitting the illness, other-
+wise referred to as latently infected.
+I (infectious): Infected and symptomatic. Capable of infecting susceptible individuals.
+R (removed): No longer symptomatic, infectious, or infectable. This state includes both
+individuals that have survived and gained immunity, and those who have died.
+Individuals transition from state to state in the order S   E   I   R. Historically, the
+case-fatality rate for Ebola outbreaks has been around 50% [58], so the number of removed
+individuals can be divided by two to obtain an estimate of the number of deaths.
+The standard non-spatial SEIR model is governed by a nonlinear system of di erential
+equations. Let S, E, I, and R represent the number of individuals in the corresponding
+states, then
+dS
+dI
+dE
+dt =   SI
+dt =  SI    E
+dt =  E    I
+dR
+dt =  I
+(1)
+where   represents the rate at which exposed individuals become infectious and   represents
+the rate at which the disease removes infectious individuals (either via death or survival with
+acquired immunity) [59]. Transmission of the disease requires contact between individuals
+in state I and state S. The infection rate parameter   is usually rewritten as   
+N , where each
+susceptible individual has   interactions with any of the N other members of population
+with probability   of being infected by an infectious one [59].
+21
+This system of di erential equations provides a mean- eld representation of the dynamics
+of an epidemic with an SEIR structure. We consider potential policy recommendations that
+involve explicit change of the contact network structure of the population. For our purpose,
+a model based upon this mass-action system of di erential equations is insu cient.
+B. Spatial Model
+We model a population on a square lattice where each individual has three properties:
+their current state of health (S, E, I, or R), the amount of time for which they have been
+in that state, and whether or not they are compliant with community-level policies. If an
+individual is characterized as compliant, then they can be successfully isolated after entering
+the infectious state.
+Using the de nitions from the SEIR model, we consider the rate of transition from state
+E to state I to be   and the rate of transition from state I to state R as  . For simplicity,
+individuals transition deterministically from state E to state I (from state I to state R) after
+  = 1
+  (   = 1
+  ) time steps. We take   and   to be integer numbers of days so that we can
+choose each time step of the simulation to represent a single day.
+We initialized the population by randomly setting 0.02% of the individuals to be in each
+of states E and I, with the remaining individuals starting out in state S. Each individual
+was designated as compliant with probability  . All individuals seeded in state I were
+initialized at the beginning of the infectious period, and individuals seeded in state E were
+given a random number between   and 3
+5  days remaining in the latent period. We chose
+0.02% and the initial compartment times in order to smoothy simulate the epidemic growth.
+Similations with di erent small initial numbers of seed cases and seeded state times yielded
+essentially the same behavior.
+The transmission of the disease involves both local and long-range spreading mechanisms.
+Each infectious individual has probability   of infecting each of its susceptible neighbors
+during a given day. Additionally, each susceptible individual chooses at random an individual
+on the grid with whom they will interact on a given day and, if infectious, the susceptible
+will become infected with probability  . The formal value of the network connectivity is N
+as all nodes are connected by the long range transmission probability.
+22
+C. Spatial model R0
+The basic reproduction number, R0, is generally de ned as the expected number of indi-
+viduals that a single seeded individual in state I will infect if the rest of the population is
+susceptible. For large population size G, the R0 value of this process, with infectious period
+  and number of neighbors (z = 4), is approximately given by
+(cid:16)
+1   (1     ) (cid:17)
+R0      + z
+(2)
+The number of neighbors that are infected is given by the second term, and the number
+of non-neighbors that are infected is given by the  rst term. The number of neighbors
+that become infected is complicated by the reduction in number of susceptible neighbors
+as they become infected from day to day during the infectious period. For the long range
+interactions, the e ect is small due to the large number of possible sites so that a few new
+infections do not a ect the number of susceptible individuals the long range interactions can
+a ect.
+To obtain equation 2, consider a neighbor that can be infected by the local infec-
+(1     )(cid:0)1    
+G2
+tion process with probability   and independently, by the long-range infection mechanism
+with probability  
+G2 . The probability that the neighbor is not infected on a given day is
+(cid:1). An individual is infectious for   days after becoming infected. This means
+1  (cid:16)
+= 1   (1     ) (cid:16)
+that the probability of a particular neighbor being infected is
+(cid:17)(cid:17) 
+(1     )
+(cid:17) 
+(cid:16)
+(3)
+1    
+G2
+1    
+G2
+For z neighbors that can be independently infected (periodic boundary conditions ensure
+any such individual has the same number of neighbors), the number of infected neighbors is
+(neglecting corrections of O(1/G2))
+(cid:18)
+1   (1     ) (cid:16)
+z
+(cid:17) (cid:19)
+(cid:18)
+(cid:18) 1
+(cid:19)(cid:19)
+For large G the number of infected individuals in the neighborhood is thus z(cid:0)1   (1     ) (cid:1).
+G2
+(4)
+= z
+1   (1     )  + O
+1    
+G2
+Individuals outside of the infected individual s neighborhood can only be infected by
+long-range interaction. Neglecting corrections of O(1/G2), the infected individual chooses
+23
+one such individual to visit and infects that individual according to the probability  . Since
+it is assumed that the concentration of infected individuals is small, the average number of
+individuals infected is  . The additional infection is only 1 in G2, which doesn t a ect the
+calculation in the next period, so the total number over the infectious period is   .
+We note that the characterization of R0 di ers from the di erential equation SEIR (mean
+ eld) model. Since an individual locally infected by the  rst seeded case has that seeded case
+as a neighbor, the expected number of susceptible neighbors is less than the seeded case.
+Therefore, it is unjusti ed to assume the calculation of R0 for the  rst individual holds for
+the rest of the contagion. It is better to think of the value of R0 as the contagion rate in the
+low density limit rather than, as is it conventionally discussed, that of a single individual.
+The dynamics of the epidemic can be more completely described by the e ective repro-
+duction number, Rt, de ned as the average number of secondary infections caused by an
+index case that is infected at time t. This includes the e ect of the reduction of the num-
+ber of susceptible individuals (epidemic burnout) and susceptible neighbors [36] as well as
+the impact of the community-level intervention at varying levels of compliance. Rt can be
+approximated by
+(cid:0)1   (1     ) (cid:1)
+Rt     st + zt
+(5)
+where zt is the average number of susceptible neighbors for an individual infected at time t
+and st is the proportion of susceptible individuals in the whole population. Eq. 5 reduces
+to Eq. 2 if a susceptible population is seeded with a single infectious individual, as st   1
+and zt = z, which is an individual s neighborhood size in the given population structure.
+In Fig. 7, we compare the simulated time-series of values for Rt with the time-series of
+Rt generated by Eq. 5 using simulated values of zt and st averaged over 1,000 simulations
+with   = 5,   = 6,   = 0.15, and   = 0.0125 and no public health intervention. Eq. 5
+agrees well with the values of Rt. The value of Rt (2.52) is consistent with Eq. 2 (2.57).
+D. Model Parameters and Epidemiological Analysis
+In order to make relevant comparisons between the results of our simulations and the
+actual 2014 Ebola outbreak, it is useful to choose model parameters so that the spread of
+our simulated epidemic matches the real-world spread of Ebola. We chose parameters so
+24
+FIG. 7: Comparison of Rt. The value of Rt measured from the average number of secondary
+infections caused by an individual infectied at time t, averaged over 1,000 simulations, is shown
+in blue. Rt calculated by Eq. 5 is shown in red. The values of zt and St, the average number of
+susceptible neighbors for an individual infected at time t and the average number of susceptibles
+in the population at time t, are also obtained from an average over 1,000 simulations.
+that the simulated epidemic matches the growth of cumulative case numbers observed in the
+Liberia outbreak during the period of exponential growth. Values obtained by comparison
+with event data and other methods do not change the conclusions. In addition, we consider
+values of   and   consistent with the actual mean latent and infectious periods for Ebola
+[55] and the results are robust to variation in these values as shown below.. Given these
+values of   and  , we  nd values of the infection parameters   and   so that the growth
+rate of cumulative cases in the simulated epidemic is consistent with the actual outbreak.
+Given a time series of cumulative cases, x(t), one can estimate the rate of initial expo-
+nential growth from a  t to the expression ln (x(t)) = b +  t [49]. Using data from the World
+25
+Health Organization, we  nd   = 0.052 for the 2014 outbreak in Liberia, consistent with
+the value computed by Chowell and Nishiura [56].
+We consider two sets of   and   that have been used to describe the Ebola outbreak.
+First, we use   = 5,   = 6, approximating values of Althaus [51] (  = 5.3,   = 5.61) taken
+from a previous Ebola outbreak with similar immunological properties. We found that this  
+and  , when paired with infection parameters   = 0.15 and   = 0.0125, produced a Liberia-
+like exponential growth rate of 0.0536. The results from simulations with these parameter
+values can be found in the main paper.
+We also considered the values   = 10,   = 7, which are consistent with the values used
+by Chowell and Nishiura [56] (  = 10.1,   = 6.5), who used hypothesized parameter values
+proposed by Lekone and Finkenstadt [53, 56]. Using infection parameters of   = 0.18 and
+  = 0.015, our simulated epidemic with this   and   produced an exponential growth rate
+of 0.0505, which also roughly matches the exponential growth rate in Liberia. Results from
+these simulations can be found later in the appendix.
+It is common to characterize simulated and real-world outbreaks using R0, the average
+number of secondary infectious caused by a single infectious individual in an otherwise
+susceptible population. One can obtain an expression for R0 in terms of  ,  , and  , the
+empirically observable exponential growth rate of cumulative cases, through a linear stability
+analysis of the mean  eld SEIR model.
+The cumulative number of cases x(t) satis es x(t)   e t near the disease-free equilibrium,
+where   is the dominant eigenvalue of the Jacobian matrix obtained from linearizing Eq. 1
+around the disease free equilibrium (i.e. where E = I = R = 0 and S = N ) [49, 50, 60, 61].
+It can be shown that R0 is equal to
+R0 = 1 + (  +  )   + (  )  2
+(6)
+Using Eq. 6 and the exponential growth rates generated from our simulations, we see
+that R0 is approximately equal to 1.68 for the   = 5,   = 6 simulations, and is equal
+to 2.04 for the   = 10,   = 7 case. These values of R0 agree well with the values of
+1.59 and 1.96 estimated by Althaus [51] and by Chowell and Nishiura [56], respectively.
+This provides further con rmation that our simulated epidemics display similar exponential
+growth behavior to the 2014 outbreak in Liberia.
+26
+E. Results for   = 10,   = 7
+We simulated our epidemic with the parameters values   = 10,   = 7,   = 0.18, and
+  = 0.015. As shown in Figs. 8 and 9, the qualitative behavior of the epidemic and the
+impact of intervention policies were similar to the   = 5,   = 6 case. For compliances of
+0.6, 0.8, and 1.0, the outbreak ended quickly after the implementation of community-level
+isolation policies (Fig. 1A), and the value of Rt dropped well below 1 after a few days. The
+primary di erence between this case and the one reported in the main paper can be seen in
+Fig. 8C where Rt remains near 1 for a long period of time for 0.4 compliance (compare Fig.
+8A).
+From Fig. 9C, we see that a compliance of 0.6 or higher limits the number of cumulative
+infections, and that travel restrictions still substantially help to limit the loss of life in the
+case of low compliance. Early implementation of the intervention (lower values of T0) results
+in lower infection totals. However, we also see that cumulative case counts without travel
+restrictions (dotted lines) only begin to coincide with those with travel restrictions (solid
+lines) at higher levels of compliance than in the   = 5,   = 6 case. This implies that the
+travel restrictions provide bene t at higher levels of compliance for these parameter values.
+Since these parameter values re ect a higher R0 value (2.04) than the   = 5,   = 6 case,
+this suggests that travel restrictions are more critical to halting outbreaks of more virulant
+diseases, as is to be expected.
+27
+FIG. 8: Simulations of an outbreak with a community-level screening intervention.
+Screening begins at the vertical dotted line, with a level of compliance indicated by label and color
+(green 0 to blue 1.0). A. Number of cases with or without symptoms. Note that, compared to
+the simulations in the main paper, 40% compliance (0.4) is no longer su cient to end this more
+virulent outbreak. B. Cumulative cases. C. For greater than 40% compliance (0.4), Rt decreases
+below one, corresponding to a rapid decrease in active cases. Despite this change, the overall results
+are robust as a compliance value of 0.6 is su cient to end the outbreak.
+28
+FIG. 9: E ect of compliance on epidemic length and cumulative infections with and
+without travel restrictions for the second set of paramter values (  = 10,   = 7). A,B.
+Simulations with (blue) and without (red) travel restrictions. The travel restrictions compensate
+for low levels of compliance, and their di erences are comparable to Fig. 3 in the main paper. C.
+The cumulative number of infections over the entire epidemic, as a function of compliance levels
+and intervention times. Colors from brown to yellow signify intervention times (70, 90, 110, 130).
+Without enforced travel restrictions (dotted lines), a low compliance results in minimal di erences
+between early and late policy implementation. Travel restrictions (solid lines) dramatically reduce
+infection numbers for earlier interventions at low compliance. We chose a slightly later set of
+intervention times T0 for this set of parameters because the mean generation length (  +  )
+[56, 62] is about 50% longer, 17 days, compared to the 11 days for the   = 5,   = 6 case, so the
+exponential growth phase begins at a later time.
+29

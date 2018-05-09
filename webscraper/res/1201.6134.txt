@@ -1,0 +1,11 @@
+ In this work, we propose a memory biased random walk model on multilayer sequence network, as a generator of synthetic sequential data for recommender systems.
+ Random walks [20], [6], [17] have been used for constructing recommender systems on di erent types of graph structures originating from users private data, but not to generate synthetic clickstreams.
+ The two characteristic data generator matrices used in this work are the Direct Sequence matrix (DS) and the Common View Score matrix (CV S).
+ We examined how statistical properties of the item preference matrix like DS and CV S are preserved in synthetic clickstream set, with respect to the original clickstream set.
+ We calculated the DS and CV S matrices from the C dataset and created the synthetic clickstream set C by using the MBRW model.
+ Upon obtaining the synthetic clickstream set C , we calculated the DS and CV S matrices, and compared their statistical properties to the original matrices DS and CV S.
+ We have used the Spearman s rank correlation measure between the corresponding rows in (DS, DS ) and (CV S, CV S ).
+ Now, we analyse the ability to learn recommender system models from syn- thetic data and apply this model on real users.
+ We measure and compare the rec- ommender system models learned on real, synthetic and random data and their corresponding performance on recommending items to real users.
+ Using the horizontal split on our Yahoo! dataset, we produced a training set Ctrain containing 9000, and a test set Ctest containing 1000 clickstreams.
+ From the aggre- gate statistics, they calculated the rst and second order information statistics of symbol distributions in strings, and generated synthetic, pseudo-string data.

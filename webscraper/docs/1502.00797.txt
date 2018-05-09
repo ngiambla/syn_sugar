@@ -1,0 +1,922 @@
+Towards a Practical Architecture for the Next Generation
+Internet of Things
+Prasant Misra , Yogesh Simmhan , Jay Warrior 
+(contributors in alphabetical order)
+ Robert Bosch Centre for Cyber Physical Systems, Indian Institute of Science, Bangalore, India
+ Supercomputer Education and Research Centre, Indian Institute of Science, Bangalore, India
+{prasant.misra, jay.warrior}@rbccps.org  simmhan@serc.iisc.in 
+6
+1
+0
+2
+ 
+r
+p
+A
+8
+ 
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+2
+v
+7
+9
+7
+0
+0
+.
+2
+0
+5
+1
+:
+v
+i
+X
+r
+a
+ABSTRACT
+The Internet of Things, or the IoT is a vision for a ubiquitous
+society wherein people and  Things  are connected in an im-
+mersively networked computing environment, with the con-
+nected  Things  providing utility to people/enterprises and
+their digital shadows, through intelligent social and commer-
+cial services. Translating this idea to a conceivable reality is
+a work in progress for more than a decade. Current IoT ar-
+chitectures are predicated on optimistic assumptions on the
+evolution and deployment of IoT technologies. We believe
+many of these assumptions will not be met, consequently
+impeding the practical and sustainable deployment of IoT.
+In this article, we explore use-cases across di erent appli-
+cations domains that can potentially bene t from an IoT
+infrastructure, and analyze them in the context of an alter-
+native world-view that is more grounded in reality. Despite
+this more conservative approach, we argue that adopting
+certain design paradigms when architecting an IoT ecosys-
+tem can achieve much of the promised bene ts in a practical
+and sustainable manner.
+1.
+INTRODUCTION
+The past couple of years have seen a heightened inter-
+est in the Internet of Things (IoT), transcending industry,
+academia and government [1]. The optimism of IoT being a
+transformational rather than an evolutionary technological
+advancement is driving innovation in both traditional and
+non-traditional application domains [2]. At the same time,
+as with promising concepts that are still emerging, the term
+IoT is being co-opted by various enterprises and industries to
+push their own vision, sometimes molded to  t their existing
+products and technologies. IoT is referred to as the Inter-
+net of Everything (IoE) by Cisco [3], the Industrial Internet
+by GE [4], the Smarter Planet by IBM [5] and Internet of
+Things and Humans (IoTH) by O Reilly [6]. Notwithstand-
+ing these alternate terminologies, the underlying vision  
+to build a ubiquitous society where everyone ( people ) and
+everything ( systems, machines, equipment and devices ) is
+immersively connected   is over 15 years in the making [7].
+As with new ideas that hold immense potential, the en-
+thusiasm exaggerates and outruns the underlying technol-
+ogy on the ground well before it matures into a sustainable
+ecosystem. Estimates on the spread and economic impact
+of IoT over the next few years are in the neighborhood of 50
+billion or more connected  Things  with a market exceed-
+ing $350 billion [8]. The enterprise, societal and individual
+bene ts touted are also signi cant, with smarter cities and
+infrastructure, intelligent appliances, and healthier lifestyles
+in the o ng [9]. While some of these potential bene ts
+from IoT are real and achievable, the road to accomplish
+these is fraught. Proposed IoT architectures typically end
+up repackaging existing ideas to bene t from the hype, or
+assume clean-slate and costly designs [10] that may prove
+infeasible. These IoT architecture make assumptions such
+as:
+  Contain hundreds of devices as part of a tightly cou-
+pled infrastructure
+  Deploy devices that cost $5-500, and are customized
+for a speci c IoT application
+  Use well-structured communication networks (IPv6)
+with always-on connectivity
+  Perform Cloud-centric data collection and analysis, with
+centralized control
+  Have a single vendor who owns the platform, Cloud
+services, data and eco-system for an application
+Examples of these vertically integrated IoT silos include
+smart power meters, supervisory control and data acqui-
+sition (SCADA) systems, personal monitoring devices like
+FitBit, etc.,.
+An e ective architecture for IoT (particularly, for emerg-
+ing nations with limited technology penetration at the na-
+tional scale) should be based on tangible technology ad-
+vances in the present, practical application scenarios of so-
+cial and entrepreneurial value, and ubiquitous capabilities
+that make the realization of IoT a ordable and sustainable.
+A rethink of the above assumptions suggests that a more
+plausible scenario would include:
+  Thousands of loosely connected devices in immediate
+vicinity, and millions more further out
+  Devices that cost from $0.01-$3 combined with existing
+in-person generic devices like smart phones
+  A mix of ad hoc P2P, 2G/3G/4G and WiFi based on
+existing and emerging communication networks, and
+with intermittent connectivity
+  Data collection and personalized analytics that seam-
+lessly span edge devices and the Cloud, with control
+over data sharing and ownership while encouraging
+Open Data
+(a) Edward Hall s proxemic zones mapped to  Things 
+(b) Coupling vs. Connectivity of  Things 
+Figure 1: People and  Things  in the IoT Canvas.
+  Open ecosystem without vendor lock-in using standard
+Internet and Web protocols, allowing devices and data
+to be shared across IoT applications
+Humans, data, communication and devices play key roles
+in the IoT ecosystem. Humans are an integral part of IoT,
+which di erentiates it from traditional industrial automa-
+tion or machine-to-machine (M2M) infrastructure. Humans
+are not only directly bene ted by IoT applications, but are
+active participants, serving directly or indirectly as sensors
+and actuators. IoT is indeed helping us progress to a point
+wherein each physical  Thing  is a digital shadow of the
+person using its services, just as the social network era ush-
+ered in a person s data footprint on the Cloud. Connected
+ Things  provide utility to people, and their digital shad-
+ows provide value to the enterprise. Unsurprisingly, vari-
+ous enterprises and companies are working towards linking
+ Things  as diverse as smartphones, cars, smart appliances,
+etc., with each other, and also with sensors/actuators and the In-
+ternet.
+As we consider the broad range of platforms such as RFID
+tags, beacons, sensor nodes, smart watches, activity track-
+ers, smart phones, in-vehicle sensing systems, and smart me-
+ters; it helps to classify them along key dimensions. One way
+is using Edward Hall s theory of proxemics [11] to classify
+these according to the  Things  spatial closeness to humans,
+as intimate, personal, social and public (Fig. 1).  Things 
+that are closer to humans often provide more insight, are
+ubiquitous and less tied to speci c infrastructure. At the
+same time, we can also classify these  Things  based on how
+coupled they are to speci c applications or infrastructure
+deployments, and how connected they are (e.g., global vs.
+limited, local and intermittent network connectivity).
+On the extremes of the coupling/connectivity quadrant
+are: (i) beacons that are very loosely coupled but have local
+connectivity, and (ii) smart meters that have global con-
+nectivity to their application, but are tightly coupled. The
+smart phone stands out as it is both loosely coupled with
+global connectivity, and also is within the personal proxim-
+ity range of people [12, 13]. It can not only function as the
+edge device, but also as the gateway to make the necessary
+interconnection between an edge device and the Internet.
+In the rest of this article, we discuss several usecases for
+IoT and analyze them in the above context (  2), o er ten
+design commandments for a practical IoT architecture (  3),
+suggest a high level IoT reference design that captures these
+concepts (  4).
+2. APPLICATION DOMAINS
+In this section, we will brie y discuss existing IoT appli-
+cations, which provide a basis for illustrating various chal-
+lenges in the current IoT architecture.
+2.1 Smart Healthcare
+The healthcare sector is a fast growing IoT market with
+It is expected
+a host of new tools and technologies [14].
+to improve the quality and e ciency of various healthcare
+services, but at reduced costs. The early applications of
+IoT in healthcare were based on tracking systems for: hand-
+washing, extracting the location footprints of patients and
+doctors, monitoring medical assets, and the management of
+medical wastes [15]. The tracked information is coupled with
+contextual information to raise alerts and triggers, facilitate
+interventions, and assist in identi cation and veri cation.
+Existing tracking systems, for healthcare applications, are
+designed to be minimally invasive [16]. They were architec-
+tured in a manner such that: 1) a lightweight passive tag
+is carried by the object-of-interest; 2) readers/interrogators,
+typically,  xed to some location in the de ned tracking perime-
+ter respond to tag information; and 3) a central server subse-
+quently analyzes the tagged information to deriving useful
+analytic. Such architectures are examples of special pur-
+pose (tracking) systems with vertically integrated operation
+scope; and hence, introduce certain constraints. A close look
+leads to the following indications of a possible alternative ar-
+chitecture.
+First, existing solutions use special purpose tracking hard-
+ware and tags. While RFID tags may be commoditised,
+they are still a special device that is out of place in daily
+life. Given the prominence of smart gadgets (such as smart-
+watches) and portable devices (such as smartphones) that
+are inevitably carried by people and are part of their natural
+ecosystem, there exists the potential to replace these custom
+hardware by  symbiotic  usage of existing devices.
+Second, existing IoT architectures default to a centralized
+model of state space tracing wherein all data collected by
+the tag reader on an object-of-interest is streamed, and ag-
+gregated at a single location for processing and analysis. In
+such a case, the scalability of the solution would become a
+bottleneck as the number of tracked devices increases. On
+the contrary, using devices such as smart phones and gad-
+gets as the tracker could potentially resolve this problem;
+wherein, each such tracker could cater to a group of track-
+ing entities, perform various computations locally on the de-
+vices, and those trackers (potentially much smaller in count)
+could only feed in the required information to the central
+server.
+Third, the human factor seems to have been omitted in
+the solution design space; and therefore, they do not tend
+to take advantage of the available information/features that
+humans and their motion captures. In this regard, certain
+degree of  symbiotic  knowledge could be used wherein we
+could potentially use people as mules, and use their personal
+phones/gadgets as the tracker to map out the location bea-
+cons instrumented in the space-of-interest; and track their
+location individually.
+2.2 Smart Energy and Power Grids
+Smart power grids are a canonical cyber physical system.
+Monitoring capability at the utility scale, ranging from pha-
+sor measurement units (PMU) at the transmission network
+to smart power meters at the consumer-end in the distri-
+bution network [17], are connected through bi-directional
+networking with the power utility. Utilities leverage the
+energy consumption data, collected through monitoring, to
+perform decisions on demand-response optimization; and, by
+using the communication capability, broadcast noti cations
+to consumers (such as request for load shedding/shifting and
+updates on real-time pricing for the service area).
+In au-
+tomated demand response systems, these noti cations may
+directly reach the local building control system that enacts
+energy curtailment routines to meet the utility s request.
+Such smart power grids exemplify the concept of vertically
+integrated and wide-area distributed IoT; but, the potential
+for smart energy management goes well beyond the exist-
+ing mechanisms. Looking at this architecture di erently, we
+again see indications of a possible alternative architecture.
+The  rst aspect is to make the energy demand and cur-
+tailment process more customer focused rather than util-
+ity focused. Understanding the impact of user activities on
+energy use is important. For example, the evening energy
+consumption can get impacted by a signi cant delay in the
+evening tra c on a commuter road. Likewise, similar en-
+ergy correlations are expected if consumers are planning to
+go out for an evening movie. Further, when a peak load is
+detected, utilities need to intelligently target customers for
+curtailment rather than broadcast to all in the service area,
+based on the user s past response. The incentives given to
+customers may also vary, appealing to their budgets in one
+case or environmental consciousness in another. Large scale
+data analytics over historical energy usage to predict de-
+mand, mining social network feeds for understanding prefer-
+ences, and behavioral modeling to determine responses will
+bene t in these cases. This requires treating the IoT as the
+IoTH, placing user signals and information streams on par
+with physical sensing of infrastructure.
+The second aspect is leveraging local rather than central-
+ized control. Here, the consumer s software agent acts on
+their behalf to analyze (rich) personalized information about
+the user (comfort preferences, activity, schedule, etc.,), build-
+ing and local weather conditions, along with utility requests
+to determine the current energy con guration. Devices like
+Nest [18] are early steps in this direction. Also, this al-
+lows the local agent to negotiate with the utility to make
+trade-o s, thus enabling demand-response optimization as a
+regular matter rather than as a special scenario.
+The third aspect is one of data ownership. One extreme
+is data siloing, where the utility has only smart meter and
+smart grid data, and the customer has smart meter and
+residential/personal data. Here, agents for the utility and
+customer operate on limited data. At the other extreme, a
+utility may collect in-depth data on smart appliances and
+demographic indicators on the user that while helping with
+better model prove invasive to privacy.
+Instead, starting
+with data silos where data owners hold their data but adding
+a data exchange and brokering layer that allows select data
+to be exchanged with the other party, in return for incen-
+tives, would retain control while allowing for optimizations.
+For example, a utility may o er a discount on a customer s
+bill if they are willing to share plug load information. This
+is also a more nuanced goal than a simple opt-in or opt-out
+mechanism, with longevity and incentives factored in the
+end use of the data.
+2.3 Smart Agriculture
+The agriculture sector is the predominant consumer of wa-
+ter worldwide with the bulk of the water demands directed
+towards irrigation. Irrigators in many countries are facing
+a number of challenges such as a growing shortage of avail-
+able water, increasing energy costs for pumping, and tighter
+environmental regulations. The combination of these fac-
+tors, along with the ine cient usage of irrigation water, is
+starting to impact on agricultural productivity, sustainabil-
+ity and food security of many countries, both developed and
+developing [19].
+Recognizing the need for improving the e ciency of water
+usage, many irrigation systems have been proposed. Irriga-
+tors are increasingly encouraged to adopt micro-irrigation
+techniques with pressurized irrigation systems over tradi-
+tional and less e cient methods of  ooding and surface irri-
+gation. Pressurized irrigation systems consist of a network
+of pipes to carry water under pressure from the source (e.g.,
+the pumping station) to the destination (i.e., the irrigation
+area). They o er the advantages of minimal water utiliza-
+tion (by pressurized  ows) for irrigating large areas, prevent
+water losses (by seepage, evaporation, etc.,), and can be au-
+tomated. However, on the  ip side, system procurement
+and operation is costly with higher energy costs. Maintain-
+ing such a pressurized water system with limited electrical
+supplies (as in developing nations), or soaring energy costs
+(as in many developing/developed economies) poses a seri-
+ous challenge.
+Smart agriculture is aimed towards addressing the chal-
+lenges of synergy among contemporary technologies and in-
+telligent systems to enhance the resource use e ciency with
+minimal negative trade-o s, or to advance the development
+strategies. Many ICT solutions have been developed to ad-
+dress these problems [20]. For instance, remote sensing of
+the soil moisture through network of sensors and integrating
+time irrigation scheduling to match the crop demand have
+been demonstrated; but except for larger commercial agri-
+cultural operations, large scale adoption has not occurred.
+The reasons behind the low penetration of ICT technologies
+in agriculture reveal interesting facts; and perhaps, suggest
+the need for an alternate architecture.
+First, custom designing of enabler technologies and knowl-
+edge building amongst the stakeholders is lacking due to
+poor participation of the stakeholder farmers. Part of the
+reason for the lack of due diligence being that the land-users
+and farmers are interested to be part of the eco-system and
+understand how the ICT system interprets the farming con-
+ditions and what suggestions (in the form of actuation com-
+mands) does it issue to alter the conditions; but, existing
+solutions keep the farmer out of the loop.
+Second, the cost of building and maintaining customized
+infrastructure (such as wireless sensor networks) is too high
+for any farmer to a ord the services (even after amelioration
+on a large scale). Besides, it is an extremely cumbersome
+(and practically infeasible) task to instruments farms with
+customized WSNs over an entire region, province or state.
+Hence, there is a need to use/develop alternate solutions
+that can potentially piggy-back on existing infrastructure to
+reach the envisioned scale.
+2.4 Smart Retail
+Retail stores have been early users of large scale data ware-
+houses to analyze customer purchasing behavior, to help
+with inventory control, discounting and product placement
+in physical stores. Loyalty cards and billing have been key
+sources of such information.
+There is emerging recognition of the role of IoT in smart
+retail. In an era where customers can search on their smart
+phones for the cheapest price for an item and their atten-
+tion being distracted by multiple screens, smart retail needs
+to span the physical and digital worlds, and span the shop
+ oor and the residence [21]. Retail business, in that sense,
+has been customer centric; and IoTH o ers the chance to
+further personalize this practice and evolve with technology.
+Retail pricing is becoming more dynamic and personal-
+ized, based on factors such as inventory, current lowest phys-
+ical and web pricing, and whether this is a planned or im-
+pulse purchase. The former requires realtime analytics on
+online trends while the latter requires customer modeling.
+On the shopping  oor, sensors (such as iBeacons) that de-
+tect customer proximity to goods, smart shelves that sense
+products being taken (or put back), and smart carts that
+detect items placed in the cart, need to be leveraged. Tasks
+such as automated billing and inventory restocking are ob-
+vious.
+In addition, real time recommendations on addi-
+tional purchases based on current cart contents, proximity
+alerts from shelves based on shopping list available on smart
+phone, and discounts or health feedback o ered to encour-
+age purchases are possible.
+Amazon has transformed e-commerce, making virtual shop-
+ping from the home (or from anyplace) a common transac-
+tion mode. Smart appliances keeping track of household
+usage and automatically reordering items going low is not
+far-fetched. Smart TVs will make it as easy as a click to
+order products whose advertisements are displayed. Going
+further, analytics could allow vendors to preemptively ship
+products to customers before they order it ( anticipatory
+shipping  [22]).
+Such real time, easy, preemptive and targeted purchasing
+does bring up signi cant concerns on data privacy. However,
+more than other application domains, the focus on people is
+making retail a testing ground for new IoT ideas.
+2.5 Environmental Monitoring
+Understanding the natural environment is also an active
+application space for IoT, and related ICT technologies.
+This domain of mapping large scale environmental phenomenon
+is broad, and includes monitoring of air and water quality,
+micro-climate in urban regions and rain-forests, biodiversity,
+cattle, wildlife habitat, etc., [23].
+Several monitoring solutions have been developed over the
+years; where the primary idea has been to perform sens-
+ing and large scale data collection of the  parameters-of-
+interest , and subsequently aggregating these data points in
+a central place to perform analytical studies and run live in-
+formation feeds to a web portal. The core technologies used
+for sensing and data collection have been either: (i) remote
+sensing with geonavigation satellites; or (ii) deployment of
+custom designed wireless sensor networks; or (iii) using mo-
+bile sensor nodes mounted on moving vehicles (such as buses,
+trams [24], bicycles [25]). All of these approaches result in
+varying levels of temporal/spatial granularity and coverage;
+and o er di erent levels of system complexity, manageabil-
+ity, scalability, and cost.
+Mobile crowdsourcing [26], using existing infrastructure
+and ubiquitously used platforms along with  humans  as the
+data mule [27, 28], for monitoring in urbanized settings has
+emerged as an alternate architecture for meeting the price
+and performance points where they can be used on a large
+scale [29]. Thus, it replaces the physical infrastructure of
+previous solutions with  symbiotic  (or existing, interdepen-
+dent) infrastructure of the locale and its inhabitants to dra-
+matically lower the cost and simplicity of deployment of the
+monitoring solution. However, a pivotal challenge in this
+architecture is to incentivize the citizen to participate in the
+data gathering in exchange for relevant services [30]. Similar
+to smart retail, the focus on people is driving the ecosystem
+of new IoT ideas for environmental monitoring in (sub)urban
+settings.
+3. NEXGEN IOT: DESIGN PARADIGMS
+Humans, data, communication and devices play key roles
+in the IoT ecosystem. Based on the use cases explored in
+the previous section, we can synthesize several characteris-
+tics that are desired in a practical architecture for the next
+generation of IoT.
+3.1 Human-centric rather than Thing-centric
+Current IoT architectures are device or network oriented
+due to their operational signi cance in an IoT system. How-
+ever, two key aspects that are often ignored are the humans
+who are part of this ecosystem and the context within which
+interaction between people and  Things  take place.
+The human-centric model of IoT, also referred to as In-
+ternet of Things and Humans (IoTH), resets the focus from
+what is enabled by networked devices and sensors to specif-
+ically what bene ts can be gained for humans who are part
+of, a ected by and in uence the network. There will be
+a tremendous focus on neighborhood and locality by the
+way people perceive, interpret and use their personal space.
+Here, the richness of information will be more profound at
+close proximity to  people , but will deplete and become less
+interesting and useful as the proximity zone expands. For
+such systems, all related technologies and services have to be
+people centric such as networking, communication, decision
+making, quality-of-service, etc., for creating a IoT experi-
+ence that deeply engages with people.
+Such an approach has several consequences. For exam-
+ple, the sensing and actuation of physical infrastructure can
+naturally extend to people themselves, with human beings
+acting as data sources (e.g., tweets, health monitoring), and
+likewise responding to controls (e.g., noti cations to volun-
+tarily turn down the air conditioner to save energy). This
+o ers the possibility of o ering uniform control/service and
+data plane abstractions to both humans (virtual sensors /ac-
+tuators) and  Things . In addition, the interface to the phys-
+ical world needs to be simple and easily understandable for
+managing the scale, multitude and heterogeneity of devices.
+3.2 Span Virtual and Physical Worlds
+Much of the IoT conversation is about the physical in-
+frastructure and its optimization. Bringing in humans and
+social elements (with their virtual online avatars such as so-
+cial networks and virtual agents) helps span the digital and
+physical world, and also integrate across humans and infras-
+tructure. Capturing proximity and interactions between hu-
+mans and  Things  (H2H, H2M, M2M), both in the physical
+and virtual worlds, is necessary for actionable intelligence.
+3.3
+ Big-Little  Data
+Analytics performed on information from diverse sources
+within the IoT architecture helps with data-driven decision
+making. There are two classes of such data: (1) transient
+sensor and personal data collected continuously from hu-
+mans/physical devices, i.e.,  Little  data; and (2) persistent
+knowledge-bases and archives that span domains and avail-
+able in central repositories/Clouds, i.e.,  Big  data. Mean-
+ingful analytics requires both Big and Little data to be com-
+bined, and often in real-time.
+The analytic services themselves could either be deployed
+on-demand on devices or Clouds, or be restricted to cen-
+tral data centers. Consequently, neither a fully federated
+nor a completely centralized data storage model will scale
+or sustain. An asymmetric storage and service model that
+adapts to the social and service context is necessary. The
+would be many entities in this mix: (a) data generators
+with realtime, cached or archived data (e.g., from sensors)
+stored at the source site (e.g., mobile phone); (b) data own-
+ers who can release all/some of this data outside the source
+site, with/without anonymization,
+in return for payment
+or incentives; (c) knowledge-bases, that have (large-sized)
+open or proprietary corpus of information that are stored at
+archive sites (e.g., public Clouds); (d) integration services
+that consume data from generators and knowledge-based to
+o er homogenized information on which analytics can be
+performed. The services themselves may be able to run on
+a single site (e.g., mobile phone, private Cloud) or across
+multiple sites (e.g., P2P network), and the integrated data
+itself can be centralized or distributed. Integration services
+will also help discover data and be willing pay for consum-
+ing it. Another entity would be: (e) analytic services that
+consume the integrated data and generated operational in-
+telligence. The analytics themselves may run centrally (e.g.,
+on a phone/public Cloud) or distributed (across a P2P net-
+work), and the result they generate is shared with the an-
+alytics consumer. Analytics services will be willing to pay
+for the integrated data they consume, and may charge con-
+sumers of the analytics. The  nal set of entities would be:
+(f) data brokers that help with data discovery and payment
+of data owners for consumed data, and negotiation of data
+movement; (g) service brokers that help with the discovery
+of analytics or integration services and their payment, and
+negotiation of service deployment/movement; (h) analytics
+consumers who are willing to pay for the analytics service.
+At the same time, data privacy and ownership start becom-
+ing concerns as the data moves further away from its source
+(owner).
+3.4 Analytics from the Edge to the Cloud
+Related to Big-Little data is performing distributed ana-
+lytics and decision making. The current model of pushing all
+data to a central Cloud for analytics will not scale, is ine -
+cient, and raises privacy concerns. Given the enhanced capa-
+bilities of edge devices like smart phones coupled with inter-
+mittent network connections, decisions on whether a subset
+of the Big data and decision-analytic should be pushed to
+the phone, or the Little data and analytic aggregated in the
+Cloud have to be automated. These are informed by the
+device capability, privacy needs, energy and network costs,
+and application QoS.
+3.5 Bring the  Network to the Sensor 
+As tens of thousands of cheap (few cents) IoT devices pro-
+liferate, they will be even more constrained in energy and
+communication capabilities. Rather than rely on massive
+deployment of custom sensor networks and new standards,
+there is value in piggybacking on existing, widely adopted
+standards and reusing symbiotic infrastructure to achieve
+the system scale and densities at a ordable costs. For e.g.,
+using smart phones as P2P data mules for last mile connec-
+tivity to sensors, combined with highly functional gateways
+and Clouds for coordination (rather the centralized storage
+and control), suggests an asymmetric architecture.
+Given the large diversity of  Things , it will be unlikely
+that they all will share a single type of communication in-
+frastructure. It is here that the existing Internet Protocol
+(IP) will provide the necessary interoperability for glueing
+existing networks that run on di erent types of communica-
+tion links. IPv4 has been the ubiquitous stack for the Inter-
+net, and therefore, provides a ruggedly tested framework for
+versatility, scalability and con guration management. IPv4
+will undoubtedly remain in operation for years to come; but
+given the large scale proliferation of  Things , its capability
+to handle the address space could get challenged. Therefore,
+an early adoption of the next version of IP (i.e., IPv6) may
+be a plausible direction. Due to the highly asymmetric ar-
+chitecture, it may be an overkill to provision for IP in the
+cheap sensing platforms; but would be a good move to limit
+it to the highly functional gateways.
+3.6 How  Low  can you go ?
+Technology penetration has not been uniform across coun-
+tries, regions, or, for that matter, industries. This disparity
+is a re ection of the di erences in infrastructure, cost of
+access, telecom networks and services, and policies among
+di erent economies. Hence, the cost and technology behind
+the sensing, device, networking and analytic solutions for the
+IoT should be a ordable and scale to billions of users. This
+requires reuse of commodity hardware and sensors, and ex-
+isting infrastructure in novel ways rather than custom solu-
+tions with cutting-edge capabilities, or canned solutions de-
+veloped for advanced economies. The cost-to-bene t trade-
+o s become critical.
+3.7 Whose data is it anyway ?
+The intersection of devices, communication, data and hu-
+mans within IoT o ers interesting incentive and business
+models. A key success of the WWW is the ability for businesses
+to monetize users  data (e.g., Google Ads using user s web
+data pays for free search and email services). With IoT, de-
+vices are going to be even more closer to humans and blend
+into our environment. Ensuring there is transparency in
+data ownership, sharing, and usage is important. Further,
+there is scope for data brokering that encourages open data
+sharing by users with business in return for clear rewards,
+be they monetary, peer recognition, or for the greater good.
+3.8 When  good enough  is enough ?
+IoT is naturally a diverse ecosystem with unreliability and
+uncertainties as: (1) cheap sensors mean questionable data
+quality, (2) humans are  ckle to model, (3) physical systems
+are complex, (4) distributed  Things  and intermittent com-
+munication are a given, and (5) data privacy puts bounds
+on its availability. As a result, analytic and decision making
+have to be probabilistic; and the system and application has
+to be conscious of what is  good enough  and not fail in the
+absence of perfect behavior.
+3.9 Context determines the Action
+Given the uncertainties of the system and humans being
+central entities, much of the decision making within the IoT
+infrastructure and applications has to be contextual. Con-
+text binds people and  Things  to a common scope, and
+hence, will ease mining of relevant information. There has
+to be semantic knowledge that captures system and social
+behaviour, some speci ed while others are learned using
+models.
+Intelligent agents will often act on the behalf of
+humans. They may be aware of personal preferences (e.g.,
+Apple s Siri, Microsoft s Cortana, and Google Now), and
+these will interact with digital agents of service providers,
+utilities and vendors. Semantic context will have to com-
+plement web standards for structural syntax to allow such
+M2M interaction to be e ective.
+3.10 Business Canvas
+If the IoT is to yield successful business models, we  rst
+need to recognize that IoT is not a new product or market.
+What IoT brings is an additional set of technologies, lower
+power, more computation and storage, cheaper devices, bet-
+ter wireless connectivity, much more granular control and
+observation capabilities. What it enables is scaling in both
+directions   up and down, and the ability to look at ourselves
+and the world in an unprecedented degree of detail.
+IoT business models fall into two broad categories: (1)
+horizontals, concerned with enabling components and tech-
+nology; and (2) verticals, which integrate these technologies
+to supply an end user with a value proposition.
+The  rst set of horizontal business models is the develop-
+ment of speci c sensors and actuators that enable the gen-
+eration of new, or more cost e ective observations. The sec-
+ond model is the deployment horizontal, a business model
+that addresses the needs of building out to scale of the data
+gathering, data storage and data curation and data broker-
+ing needs of IoT based systems. The third horizontal busi-
+ness model addresses the needs for a portfolio of analytical
+techniques to convert the data gathered into actionable in-
+formation. While the  rst two have been the focus of IoT s
+precursor technologies, IoT s scale is driving active develop-
+ment across the board.
+Verticals will pull solutions and services across these hor-
+izontals to deliver  nal end customer value. The emphasis
+here will be on the necessary domain and system integration
+expertise and the ability to build the necessary collabora-
+tions across customers and suppliers.
+4. NEXGEN IOT: ARCHITECTURE
+IoT has a large application space and is driven by a wide
+variety of use cases. A modular, scalable architecture that
+supports adding or removing capabilities depending on the
+functional requirements will, therefore, be useful.
+In this
+section, we present one possible architecture that re ects
+the design principles outlined in the previous section. Fig. 2
+illustrates the 4-layer architecture stack that we envision.
+4.1 Physical/Virtual Space
+The lowest layer is a collection of sensing elements, or data
+generators and consumers that provide context information.
+This information is sensed not only from the physical space
+of hardware-level sensors, but also from soft sensors that ex-
+ist in the virtual space.
+Physical modules/platforms contain the interface to the
+physical world. There exists a large number of sensor prod-
+ucts, from multiple manufacturers, to measure various physi-
+cal parameters such as temperature, pressure, humidity, illu-
+mination, acoustics, motion, location, touch, etc.,. These de-
+vices range in heterogeneity and complexity, from an embed-
+ded 8-bit SoC unit with a single sensor/actuator to 32/64 bit
+computing platform with many transducers; and interface
+with di erent proprietary communication technologies (di-
+rect Ethernet, WiFi, BLE, NFC, Zigbee, 6LowPAN, UART
+or serial lines, SPI or I2C wired buses) over a wide variety
+of protocols.
+The virtual sensing space is also highly diverse. It consists
+of sensing entities that can be human (e.g., crowdsourced
+data, collaborative projects, blogs, content communities, so-
+cial networking sites, virtual game worlds, virtual social
+worlds, electronic calendars, a travel-booking systems), their
+virtual agents (e.g., Siri, Cortana), or digital applications
+and services that aggregate and o er higher order sensing
+(e.g., averages from multiple physical sensors).
+4.2 Sensor/Network as a Service
+The SNaaS layer consists of control and data planes. The
+data plane will o er channel models (e.g., event driven, sam-
+ple and hold, etc.,) as a universal abstraction for input/output
+to the physical and virtual space of the sensing layer. The
+control plane will be responsible for managing the sensor/
+network and providing a standardized life-cycle for the dis-
+covery, con guration and use of the channel models. The
+combination enables the creation of the plug-n-play infras-
+tructure (across platforms from multiple vendors) necessary
+for interoperability and successful deployment of large-scale
+systems.
+The enabling feature for plug-n-play would be a trans-
+ducer electronic data sheet (TEDS) that will be used to
+describe the physical elements such as transducer identi-
+ cation, calibration, correction data, measurement range,
+and manufacturer related information, etc.,. This informa-
+tion will either be broadcasted by the new sensing entity
+to the infrastructure elements, or actively pulled by the in-
+frastructure itself from a TEDS repository on receipt of the
+sensor identi er. Providing a mechanism to describe the
+transducers will allow the application (user, service, agent)
+to record its properties and semantic description (seman-
+tic metadata). The control plane will expose ways to turn
+on/o  sensors or speci c attributes, change their sampling
+interval/transmission interval, the type of quality controls
+done (e.g., linear interpolation), etc.,.
+Following the con guration of the  Thing , the data plane
+will publish the observations of each sensor as individual
+data streams to the upper layer. The communication be-
+tween the SNaas and upper layers will follow a stateless and
+self-describing interface using REST based protocols.
+The combination of semantic capability and data push/pull
+(with a publish/subscribe model) will allow  Things  to be
+assembled into a semantically linked data  ow graphs. The
+SNaaS layer will, therefore, act as a registry for semantic
+discovery and linkage of  Things , and for virtualizing the
+real world.
+4.3
+ Big-Little  Data Management
+SNaaS o ers a conduit for streaming  little  data from
+distributed physical and virtual sensors. This data has to
+be cataloged, curated and if necessary, persisted and aggre-
+gated, in order to perform subsequent analytics. The data
+management layer helps discover and maintain a Registry
+of data sources and their characteristics such as periodicity,
+liveliness, and quality, and make them available for subse-
+quent analysis. These may be from physical sensors that
+are deployed as part of static infrastructure, mobile devices
+that may emit data transiently, or virtual sensors that share
+posts based on social conditions. The registry itself may
+be federated using a P2P model, i.e. the data management
+layer is itself distributed and not necessarily a centralized
+one hosted exclusively in the Cloud. Similarly, access to data
+may be as streams of events pushed using a publish-subscribe
+model, pulled on-demand, or accumulated at the device for
+local operations pushed to it, using existing web and open
+standards like REST, COAP, Atom and JMS. These may be
+controlled using data privacy and distributed access control
+policies that are enforced by this layer.
+Data management should also help integrate with aggre-
+gate and slow-changing data  Big  that is available from
+canonical sources or have accumulated from sensor streams.
+Often, the Big data is hosted at central locations, globally
+or at local caches, to avoid costly data movement and repli-
+cation, and may have less restrictive privacy requirements.
+These may include institutionaland crowd-sourced data.
+Integrating this  Big  data with the  Little  data requires
+common vocabulary that help bridge the semantics. DBPe-
+dia and SWEET o er reusable semantic ontologies for gen-
+eral purpose and speci c domains to automate matchmaking
+of data requirements, while simple glossaries or taxonomies
+might be adequate in other cases. Similarly, data quality
+checks and validation can help understand the usability of
+data for speci c needs.
+Figure 2: A High level reference architecture for the IoT.
+A data brokering service that helps interface data con-
+sumers with data producers is enabled using these building
+blocks of data ownership, incentives to collect data, data de-
+scription, data quality and access control. The broker can
+help incentivize data collection and reuse through attribu-
+tion, barter, or even monetary rewards.
+4.4 Analytics and Decision Making
+Analytics for IoT applications often fall into categories of
+data and pattern mining, predictive analytics and forecast-
+ing, event and pattern detection, and optimizations. While
+there may be domain/application speci c analytic, it is use-
+ful to have key analytics algorithms available that can be re-
+con gured to suit common needs. Time series and regression
+tree forecasting are useful for predicting future conditions,
+such as power demand, based on past behavior of univariate
+or multivariate features. Pattern mining and clustering can
+help group environmental conditions and users who exhibit
+similar behavior so that collective action can take place, or
+extrapolation from one entity in the cluster to rest can hap-
+pen, such as recommendations. Mining can also help iden-
+tify causality between a pattern of features and an event of
+interest. Such patterns and predictions can help feed into
+realtime complex event pattern matching that detect situa-
+tions of interest and help respond to, or preferable, preempt
+them. These also feed into optimization algorithms that can
+control physical or virtual  Things  to ensure reliability and
+e ciency of the system.
+[16] A. Pantelopoulos and N.G. Bourbakis. A survey on
+wearable sensor-based systems for health monitoring and
+prognosis. IEEE Transactions on Systems, Man, and
+Cybernetics, Part C: Applications and Reviews, 40(1):1 12,
+Jan 2010.
+[17] Aqeel H. Kazmi, Michael J. O grady, Declan T. Delaney,
+Antonio G. Ruzzelli, and Gregory M. P. O hare. A review
+of wireless-sensor-network-enabled building energy
+management systems. ACM Trans. Sen. Netw.,
+10(4):66:1 66:43, June 2014.
+[18] What does google s purchase of nest mean for the internet
+of things? http://goo.gl/UGEdh9.
+[19] T. Jackson. An appraisal of the on-farm water and energy
+nexus in irrigated agriculture. PhD thesis, Charles Sturt
+University, 2009.
+[20] P. Corke, T. Wark, R. Jurdak, Wen Hu, P. Valencia, and
+D. Moore. Environmental wireless sensor networks.
+Proceedings of the IEEE, 98(11):1903 1917, Nov 2010.
+[21] The internet of things in retail  a  A S disruptor or
+distraction? http://goo.gl/ROcFcK.
+[22] Amazon will sell you things before you know you want to
+buy them. http://goo.gl/0Ne750.
+[23] P. Corke, T. Wark, R. Jurdak, D. Moore, and P. Valencia.
+Environmental wireless sensor networks. Proceedings of the
+IEEE, 98(11):1903 1917, 2010.
+[24] OpenSense Zurich: A System for Monitoring Air Pollution.
+http://www.opensense.ethz.ch/.
+[25] S. B. Eisenman, E. Miluzzo, N. D. Lane, R. A. Peterson,
+G.-S. Ahn, and A. T. Campbell. BikeNet: A Mobile Sensing
+System for Cyclist Experience Mapping. ACM Transaction
+on Sensor Network, 6(1):6:1 6:39, January 2010.
+[26] R.K. Ganti, F. Ye, and H. Lei. Mobile crowdsensing:
+current state and future challenges. IEEE Communications
+Magazine, 49(11):32 39, November 2011.
+[27] Andrew T. Campbell, Shane B. Eisenman, Nicholas D.
+Lane, Emiliano Miluzzo, and Ronald A. Peterson.
+People-centric urban sensing. In Proceedings of the 2nd
+Annual International Workshop on Wireless Internet,
+WICON  06, New York, NY, USA, 2006. ACM.
+[28] M. Stevens, M. Vitos, J. Altenbuchner, G. Conquest,
+J. Lewis, and M. Haklay. Taking participatory citizen
+science to extremes. IEEE Pervasive Computing,
+13(2):20 29, Apr 2014.
+[29] B. Hull, V. Bychkovsky, Y. Zhang, K. Chen, M. Goraczko,
+A. Miu, E. Shih, H. Balakrishnan, and S. Madden. CarTel:
+A Distributed Mobile Sensor Computing System. In
+Proceedings of the 4th International Conference on
+Embedded Networked Sensor Systems, SenSys  06, pages
+125 138, New York, NY, USA, 2006. ACM.
+[30] J. P. Rula, V. Navda, F. E. Bustamante, R. Bhagwan, and
+S. Guha. No  One-size Fits All : Towards a Principled
+Approach for Incentives in Mobile Crowdsourcing. In
+Proceedings of the 15th Workshop on Mobile Computing
+Systems and Applications, HotMobile  14, pages 3:1 3:5,
+New York, NY, USA, 2014. ACM.
+Such analytics algorithms and platforms, as before, have
+to operate in a distributed environment rather than assume
+centralized availability of data or the ability to  t in memory.
+Based on the privacy and communication constraints, and
+availability of distributed data and devices, these analytics
+will have to run across edge devices and the Cloud. Latency
+is another key metric since analytics and optimizations over
+streaming data may drive realtime decision making. Such a
+constrained environment in the presence of potentially unre-
+liable data and computation capability means that analytics
+and decisions will have to be probabilistic. The cost of per-
+forming the decision, including data, network, compute and
+intellectual property, need to be factored in and traded o 
+against the value from the decision.
+5. DISCUSSION
+The high level IoT vision of building an ubiquitous society
+of people and  Things , apart from the set of enabling tech-
+nologies, requires an elastic, scalable architecture. With the
+continued increase in the proliferation of  Things , there ex-
+ists a large population of physical entities that are currently
+observable, but do not easily connect in a meaningful way
+to people or to each other at the envisioned scale. In this
+article, we attempted to disaggregate these core problems;
+and o ered a trajectory with a set of design paradigms and
+a possible architecture for a new IoT ecosystem.
+6. REFERENCES
+[1] Internet of Everything: A $4.6 Trillion Public-Sector
+Opportunity. http://goo.gl/7Zj178.
+[2] Top 50  internet of things  applications.
+http://goo.gl/T6YmMQ.
+[3] The Internet of Everything.
+http://internetofeverything.cisco.com.
+[4] Introducing the Industrial Internet. http://goo.gl/TRS8JX.
+[5] What is a Smarter Planet ? http://goo.gl/ntuaWS.
+[6] IoTH: The Internet of Things and Humans.
+http://goo.gl/noqtIq.
+[7] History of the internet of things. http://goo.gl/RPh2ok.
+[8] The Internet of Things: How the Next Evolution of the
+Internet Is Changing Everything. http://goo.gl/sBISi4.
+[9] The Societal Impact of the Internet of Things.
+http://goo.gl/wUaUsp.
+[10] The Internet of Things: A Study in Hype, Reality,
+Disruption, and Growth. http://goo.gl/bp9xLU.
+[11] N. Marquardt and S. Greenberg. Informing the design of
+proxemic interactions. IEEE Pervasive Computing,
+11(2):14 23, April 2012.
+[12] W.Z. Khan, Yang Xiang, M.Y. Aalsalem, and Q. Arshad.
+Mobile phone sensing systems: A survey. IEEE
+Communications Surveys Tutorials, 15(1):402 427, First
+2013.
+[13] A. K. Dey, K. Wac, D. Ferreira, K. Tassini, J.-H. Hong, and
+J. Ramos. Getting closer: An empirical investigation of the
+proximity of user to their smart phones. In Proceedings of
+the 13th International Conference on Ubiquitous
+Computing, UbiComp  11, pages 163 172, New York, NY,
+USA, 2011. ACM.
+[14] Healthcare is among sectors with a clear path to internet of
+things. http://goo.gl/SYwUP6.
+[15] Sylvain Bureau, Markus Bick, Selwyn Piramuthu, Yannick
+Meiller, Wei Zhou, and Samuel Fosso Wamba. Radio
+frequency identi cation: A case for health care. In
+Proceedings of the 12th International Conference on
+Information Integration and Web-based Applications
+&#38; Services, iiWAS  10, pages 875 878, New York, NY,
+USA, 2010. ACM.

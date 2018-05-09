@@ -1,0 +1,653 @@
+7
+1
+0
+2
+ 
+r
+a
+ 
+M
+6
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+2
+v
+0
+7
+5
+2
+0
+.
+6
+0
+6
+1
+:
+v
+i
+X
+r
+a
+Using Game Theory to Study the
+Evolution of Cultural Norms
+Soham De1, Dana S. Nau1,2, and Michele J. Gelfand3
+1Department of Computer Science
+2Institute for Systems Research
+3Department of Psychology
+University of Maryland, College Park, MD, USA
+{sohamde, nau}@cs.umd.edu, mgelfand@umd.edu
+March 20, 2017
+Abstract
+We discuss how to use evolutionary game theory (EGT) as a framework for studying
+how cultural dynamics and structural properties can in uence the evolution of norms
+and behaviors within a society. We provide a brief tutorial on how EGT works, and
+discuss what kinds of insights it can provide. We then describe three published studies
+in which we have developed EGT models that help explain how structural and external
+conditions in a society a ect the emergence of social norms.
+1 Introduction
+Understanding human behavior and modeling how cultural norms evolve in di erent human
+societies is vital for designing policies and avoiding con icts around the world. In this paper
+we discuss ways to use computational game-theoretic techniques to gain insight into why
+di erent human societies have di erent norms and behaviors.
+In particular, we will use
+evolutionary game-theory (EGT), which was originally developed to model the evolution of
+biological life forms, but also is useful for understanding the evolution of human cultures.
+EGT models typically deal with a large population of individuals that interact with
+each other. Di erent individuals have di erent strategies, hence their interactions lead to
+di erent game-theoretic payo s which are used to represent the individuals  evolutionary
+ tness. Individuals with higher  tness (or lower  tness) will be more likely (or less likely,
+respectively) to reproduce, hence the strategies used by those individuals will become more
+prevalent (or less prevalent) in the population. In a biological model, an individual s strategy
+might represent its species;
+in a cultural model it might represent a particular kind of
+behavior. Thus, EGT o ers a simple framework for studying the evolution of populations,
+without requiring the decision-theoretic  rationality  assumptions that are typically required
+in classical game theory models.
+One of the limitations of EGT models is that they deliberately omit large amounts of
+detail. In EGT models of biological evolution, they ignore most of the factors that might
+in uence whether a particular individual will reproduce successfully, and instead consider
+1
+all individuals of a species to be equivalent. Similarly, EGT models of cultural evolution
+ignore most of the complexities of human interactions. For example, rather than reasoning
+about the physical outcomes of an interaction among several individuals, these outcomes
+are represented by payo  values. Because the models are highly simpli ed, they don t give
+exact numeric predictions of what would happen in real life.
+Another problem is that it isn t always easy to get the model right. In EGT research, the
+authors usually need to be very careful in developing their models, and must convincingly
+justify their models in their research publications.
+On the other hand, a good EGT model can provide explanations of the underlying dy-
+namics of an evolving system, and establish support for causal relationships. Consequently,
+such models can provide a useful complement to empirical studies, in which there may be
+questions whether or not a correlation among various factors indicates a causal relationship
+[1].
+In this paper, we begin by providing a tutorial introduction to EGT. We follow this with
+a description of several cases in which we have used EGT to show how various aspects of
+a society s structure or its environment can in uence the evolution of behaviors and norms
+within the society. These include: showing that strength of ties and mobility in a society
+critically a ect the evolution of third-party punishment, showing that societal threat directly
+controls the strength of evolving social norms in a society, and showing that mobility plays
+a crucial role in the evolution of ethnocentrism.
+2 Background
+2.1 Evolutionary Game Theory in Biology
+Evolutionary game theory (EGT) was  rst developed as an application of game theory to
+evolving populations composed of multiple animal species, as a way to model how each
+species  evolutionary  tness causes its proportion of the population to grow or shrink [45].
+The idea is to represent an interaction among animals as a normal-form game. The game s
+payo s are intended to represent the e ect that the interaction will have on the individuals 
+evolutionary  tness. For example, if two animals  ght over a piece of food, one might expect
+that each individual s  tness would be a ected by how the  ght a ects the animal s health,
+and whether the animal gets the piece of food.
+Rather than developing a detailed model of each speci c individual, EGT models typ-
+ically are at a much more abstract level that does not distinguish among the individuals
+within each species, but instead looks at the average behavior of all individuals of that
+species. More speci cally:
+  If the population is composed of n di erent species, then for each species i (i = 1, . . . n),
+all individuals of species i have the same strategy si, namely the strategy of being a
+member of species i. This strategy is intended to encompass in an abstract way, of
+course everything that might a ect this species  average evolutionary  tness: size,
+aggressiveness, sensory abilities, intelligence, etc.
+  Each species i constitutes some proportion xi of the entire population, with(cid:80)n
+i=1 xi =
+1. If we choose an individual at random, then for i = 1, . . . , n, the probability that
+this individual uses strategy si is xi.
+2
+Now, consider an interaction (e.g., a con ict over a source of food) between two individuals:
+one from species i and one from species j. For simplicity of presentation, we ll restrict this
+to just two individuals, but it can easily be generalized to interactions among k individuals
+for arbitrary k.
+To formulate this interaction as a normal-form game, let us say that the individuals 
+expected payo s are u(si, sj) and u(sj, si), where  payo   means the e ect that the inter-
+action will have on the individual s evolutionary  tness.
+The normal-form game is symmetric, i.e., if we name the two individuals a and b, then
+it doesn t matter whether the one with strategy si is individual a or individual b. In either
+case, this individual s expected payo  is u(si, sj), and the other individual s expected payo 
+is u(sj, si).
+payo  for the individual with strategy si is (cid:80)n
+Suppose an individual with strategy si meets another individual chosen at random. Then
+for j = 1, . . . , n, the other individual s strategy is sj with probability xj. Hence the expected
+j=1 xju(si, sj). Earlier, we said the expected
+payo  is intended to represent the interaction s e ects on evolutionary  tness. The idea is
+that species i s expected payo  is higher than that of the entire population, then species i
+will reproduce at a higher rate, hence its proportion xi will increase. If species j s expected
+payo  is lower than that of the entire population, then species j will reproduce at a lower
+rate, hence xj will decrease.
+The best-known way to model this is the replicator dynamic [46]. The original version
+is a di erential equation that assumes an in nite population and continuous time. Let
+ i(x)   0 be the average payo  obtained by individuals of species i when the proportions
+of each species are x = (x1, . . . , xn). Then the average payo  for the entire population is
+i=1 xi i(x). According to the replicator dynamic, the rate of change in each xi is
+ (x) =(cid:80)n
+given by the following di erential equation:
+dxi/dt = xi( i(x)    (x)).
+The replicator dynamic is consistent with the Lotka-Volterra equations for the dynamics
+of biological systems.
+Indeed, the replicator dynamic is mathematically equivalent to a
+generalization of those equations [37].
+The replicator dynamic can be translated into a di erence equation in which the popu-
+lation is  nite, and time proceeds as a sequence of discrete iterations [30]. This formulation
+can be used to run a discrete-event computer simulations and look at their outcomes which
+is useful if the di erential equations are too complicated to solve mathematically.
+One big limitation of the above approach is that it assumes that the species are well-
+mixed, i.e., that they are uniformly distributed geographically. Such an assumption is often
+inaccurate; there are many settings in which an individuals  location can make a huge
+di erence in what interactions they have, and how those interactions a ect their evolutionary
+ tness. To model such situations, it often is useful to locate the individuals in a network in
+which they are restricted to interact with their neighbors. We ll discuss this further in the
+next section.
+2.2 Modeling Cultural Evolution
+EGT can be used to model aspects of the evolution of human cultures. Here, strategies
+correspond not to collections of individuals, but instead to possible behaviors. A successful
+strategy i.e., a behavior that produces good results is likely to be adopted by others,
+3
+Figure 1: Graph of
+s = 1 and  4    i    j   4.
+1+es( i  j ) , for
+1
+(a)
+(b)
+Figure 2: (a) direct punishment, and (b)
+third-party punishment.
+hence become more prevalent in the population. Conversely, the prevalence of an unsuc-
+cessful strategy is likely to decrease. The propagation of these strategies corresponds not to
+biological reproduction, but instead to cultural transmission, in which humans imitate oth-
+ers and learn from others. Rather than the replicator dynamic, here the evolutionary model
+is a comparison process, e.g., a modi ed version of the Fermi rule from statistical mechanics
+[5]. At each iteration t, each individual i uses some strategy in a game-theoretic interaction
+and receives a payo   i. Then, before the beginning of iteration t + 1, i compares  i to the
+payo   j received by a randomly chosen neighbor j, and decides whether to keep using the
+same strategy that it used before, or switch to the neighbor s strategy. The probability of
+switching is given by a version of the well-known sigmoid function (see Figure 1):
+Pr[i switches to j s strategy] = 1/(1 + es( i  j )),
+where  i and  j are i s and j s payo s in the current iteration, and s   0 is an arbitrary
+constant called the selection strength. The Fermi rule can easily be adapted to situations
+in which the population isn t well-mixed (see the discussion at the end of Section 2.1). For
+example, we can locate the individuals at the nodes of a network, restrict each individual i
+to interact only with its neighbors, and restrict i to compare its payo  with the payo s of
+its neighbors.
+Usually the Fermi rule is modi ed by introducing an exploration dynamic that is some-
+what analogous to biological mutation. In biological evolution, mutation occurs so rarely
+that game-theoretic biological models often omit it.
+In cultural evolution, an analogous
+phenomenon happens more frequently: individuals to try out new behaviors [47]. The ex-
+ploration dynamic models this as follows: when each agent i chooses what strategy to use
+at the next iteration, there is a small probability   that i will choose a strategy s at random
+from the set of all possible strategies, regardless of whether s was a successful strategy for
+the agents who used it in the current iteration, or whether any agent even used it at all.
+2.3 Tutorial Example
+Many kinds of human interactions have been modeled as social dilemmas in which there is a
+con ict between behaving responsibly to help maintain a publicly-available resource e.g.,
+to avoid depleting a renewable resource such as grazing land,  shing stock, clean air, potable
+water, or climate stability or to misuse the resource and thereby improve one s own payo 
+at the expense of others.
+4
+The Public Goods Game (PGG) [24, 6, 44] provides an abstract model of the above
+In this game, k participants are chosen at random from the population, and
+dilemma.
+each is asked to contribute an amount c to a common pool. There are two pure strategies:
+Cooperate (i.e., contribute) and Defect (don t contribute). The sum of all the contributions
+is multiplied by a factor b > 1 that represents the bene t that the public good provides to
+the participants, and the resulting amount is distributed equally to all of the participants,
+regardless of whether they contributed.
+If m of the k participants cooperate, then each cooperator s payo  is bcm/k   c. If suf-
+ ciently many participants cooperate, all participants will get more than they contributed.
+However, as in the famous Prisoner s Dilemma game,1 the payo  for cooperation is lower
+than the payo  for defection, which is bcm/k. Consequently, when the PGG is played
+repeatedly with any of the evolutionary dynamics discussed earlier, defection spreads to
+include nearly 100% of the population,2 and everyone s payo  is near zero.
+What s missing from the above model is a way to sustain cooperation. One of the most
+likely candidates is punishment. There is substantial evidence that humans are eager to
+punish those who harm them and that punishment can help sustain cooperation [15, 24, 6].
+If we allow defectors to be punished by those that they harmed (see Figure 2(a)), then
+the expected payo  for defecting might be smaller than that for cooperating, in which case
+cooperation will have evolutionary advantage over defection.
+To model punishment of defectors, let us say that for each PGG participant i who
+defected, another randomly chosen participant j will have an opportunity to punish i, by
+subtracting a  xed amount   > 0 from i s payo . To do this realistically, the model needs to
+include a cost for performing the punishment [25]: if j chooses to punish, then j will incur
+a cost   (with 0 <   <  ).
+In this model, each individual s strategy now consists of two choices: whether to coop-
+erate if asked to do so, and whether to punish a defector if asked to do so. Thus there are
+four pure strategies:
+  CP (Cooperation with Punishment of defectors);
+  CN (Cooperation with Non-punishment of defectors);
+  DP (Defection with Punishment of defectors);
+  DN (Defection with Non-punishment of defectors).
+Unfortunately, there are several problems with this model. One is that the model of pun-
+ishment is incomplete because it doesn t include the possibility of punishing cooperators
+although that phenomenon has been observed in human societies [26]. That problem is
+relatively easy to  x, but another problem is more serious: why do individuals punish at
+all?
+Since punishing incurs a cost, those who punish will have slightly lower payo s than those
+who don t so over time, the group will evolve to nearly 100% non-punishers (strategies CN
+and DN). As the proportion of punishers decreases, the average payo s to defectors will
+become higher than the average payo s to cooperators so as before, the population will
+1 Indeed, when k = 2 the PGG is equivalent (under standard utility theory) to the Prisoner s Dilemma,
+i.e., there is a positive a ne transformation [32, Section 1.3].
+1    .
+2The reason for the word  nearly  is that the exploration dynamic keeps the fraction of punishers below
+5
+evolve toward nearly 100% defectors, and each participant s average payo  will be close to
+zero.
+Game-theoretically, this presents a problem. One can argue informally that individuals
+continue to punish because it helps to maintain cooperative norms, but the model doesn t
+show how that happens. This was a problem in the EGT literature for some number
+of years, until it was solved in 2012 by incorporating an observation that sometimes an
+individual s decision how to behave isn t an absolute one, but instead is opportunistic, i.e.,
+swayed by information about whether misbehavior will be punished [14, 28]. One way to
+model opportunistic behavior is to have a probability 0       1 that a participant in the
+PGG will be informed, just before the contribution phase, of the punishment reputation of
+the individual who will observe them, i.e., whether or not this individual punishes defectors
+[29]. In this case there are four cooperation strategies:
+  Cooperate;
+  Defect;
+  Opportunistically Cooperate (OC), i.e., behave opportunistically if told the punishment
+reputation, and cooperate otherwise;
+  Opportunistically Defect (OD), i.e., behave opportunistically if told the punishment
+reputation, and defect otherwise;
+where  behave opportunistically  means to cooperate if one knows one will be punished for
+defection, and defect otherwise.
+During the punishment phase, each individual has an opportunity to observe another
+individual s behavior, and decide whether to punish them. There are four punishment
+strategies:
+  Responsible punishment (punish defectors but not cooperators);
+  Antisocial punishment (punish cooperators but not defectors);
+  Spiteful punishment (punish everyone);
+  Non-punishment (punish no one).
+In this model, the strategy space is much more complicated than it was before. Each
+individual s strategy is a combination of one of the cooperation strategies and one of the
+punishment strategies, hence there is a total of 16 possible pure strategies. Evolutionary
+simulations show that with this model, populations converge toward a high proportion of
+cooperation (mostly of the opportunistic kind) and responsible punishment [29].
+3 Three EGT Studies of Cultural Evolution
+We now describe three published studies of how structural and external conditions a ect
+the emergence of social norms [40, 41, 10]. We focus on explaining the design decisions: how
+we chose to model things, and why.
+6
+3.1 Evolution of Third-Party Punishment
+Motivation.
+In Section 2.3 we discussed the question of why direct punishment should
+exist, since it incurs a cost to the punisher. In third-party punishment (3PP), an individual
+A harms another individual B, and an uninvolved third party C punishes A for causing that
+harm (see Figure 2(b)). There is signi cant empirical evidence that humans [11, 4] and
+non-human species [39] are willing to engage in 3PP, but this is even more of a puzzle than
+direct punishment: not only does it incur a cost to the punisher, but the punisher was not
+involved in the original interaction.
+Since the work described in Section 2.3 showed that punishment reputation was a key in-
+gredient in the evolution of responsible direct punishment, we decided to investigate whether
+punishment reputation could also account for the evolution of responsible 3PP. Below we
+summarize the results of that investigation (see [40] for details).
+We began with the model in Section 2.3, and modi ed it as follows:
+  For the contribution phase, we changed the game to a cooperation dilemma (the special
+case k = 2, as discussed in Footnote 1) between two individuals.
+  For each individual in the cooperation dilemma, we allowed an uninvolved third party
+observe that individual s behavior and decide whether to punish them hence 3PP
+rather than direct punishment
+  The four punishment strategies were the same as in Section 2.3, except that the
+punishment was 3PP as described above.
+  The opportunistic strategies look at the punishment reputations of the individual s
+neighbors, and decide whether to cooperate by looking at the expected payo s for
+cooperating and defecting.
+  The punishment reputations of the neighbors are always available, making the OC and
+OD strategies identical. Hence there are just three pure strategies for contribution:
+Cooperation, Defection, and Opportunism.
+Next, drawing on classic sociological and psychological theory, we hypothesized that
+social-structural constraints in human populations might play a crucial role in enabling the
+evolution of responsible 3PP. The constraints that particularly interested us were strength-
+of-ties and residential mobility, which have wide-ranging consequences for humans [20, 35,
+34].
+We hypothesized that punishment reputation was more likely to incentivize cooperation
+and responsible 3PP in situations where there was high strength-of-ties (individuals inter-
+acted primarily with a small group of other individuals) and low residential mobility (no
+individual would be able to exit the group easily).
+As a basis for modeling strength-of-ties and residential mobility, we began by locating
+the individuals as nodes on a network (see the discussion at the end of Section 2.1). We used
+Watts-Strogatz small-world networks [48]. On this network, we implemented strength-of-ties
+and residential mobility as follows:
+  Strength-of-ties. Granovetter [20] measured tie strength between two humans in terms
+of how often they interacted with each other during a period of time. In our EGT
+model, each individual generally has an equal number of interactions at each iteration,
+so an individual with few connections has a relatively high number of interactions with
+7
+Figure 3: E ects of strength-of-ties (a) and mobility (b) on the proportions of cooperators
+and responsible 3rd-party punishers. Long run average proportions were attained by aver-
+aging 100 simulation runs over 5000 generations for populations of 1000 individuals, with
+cooperation contribution c = 1, cost   = 1 to punish, punishment penalty   = 3, explo-
+ration rate   = 0.01, selection strength s = 0.5. In (a) the mobility is m = 0, and in (b) the
+strength-of-ties is 1/4. For additional details see [41].
+those neighbors (hence high strength-of-ties), while an individual with many connec-
+tions has a relatively low number of interactions with a greater variety of individuals
+(hence low strength-of-ties). Thus if an individual is located at a node with degree d,
+then the strength-of-ties to each of the individual s neighbors is 1/d.
+  Residential mobility. Residential mobility [35] is the degree to which humans are able
+to change their location, and, as a result, their position within the social network
+within a population. Some human populations, particularly those that are individual-
+istic, have very high mobility where people can easily exit the group, whereas others,
+particularly collectivistic cultures, are much more dependent on others and are less
+able to easily exit the group [34, 42, 43]. We implemented a simple model of residen-
+tial mobility using a probability m with which, at the beginning of each generation,
+an individual would switch position with a randomly chosen other individual in the
+population.
+We ran a large number of EGT simulations in which we varied the individuals  average
+strength-of-ties and their average mobility. The simulation results con rmed our hypothesis:
+the evolution of responsible 3PP depended critically on conditions of high social-structural
+constraint, i.e. high average strength-of-ties and low mobility (see Figure 3).
+Examination of the results showed that when responsible 3PP evolves, it does so as an
+ultimately non-altruistic trait. The behavior acts as a signal to potential co-players in the
+neighborhood that non-cooperation will not be tolerated. High strength-of-ties and low
+mobility allow clustered agents engaging in responsible 3PP to induce cooperation in their
+neighborhood. By inducing such local cooperation, clusters of 3PP agents increase their
+own payo  and spread. This leads to the emergence of responsible 3PP in the population
+as a whole. By contrast, low strength-of-ties and high mobility prevent 3PP agents from
+inducing a local culture of cooperation, and hence responsible 3PP does not evolve.
+8
+3.2 Societal Threat and the Strength of Social Norms
+The strength of social norms varies widely around the globe. For example there is consider-
+able cross-cultural variation in norms for fairness, cooperation, and the willingness to punish
+to enforce such norms [3, 18, 25, 26]; and there is evidence that these variations are related
+to the degree of threat to the society which can include manmade threats such as threats
+of invasions, low natural resources (e.g., food supply), and high degrees of natural disasters
+such as  oods, cyclones, and droughts [9, 33, 18]. What has been unclear is whether the de-
+gree of threat might actually require stronger norms and associated punishment of deviance
+in order to survive under high threat or more generally, whether di erences in punishment
+across societies have any evolutionary basis.
+We now describe a study in which we used EGT modeling to explore whether higher
+levels of threat cause stronger norms of cooperation, with higher punishment of deviance, to
+be evolutionarily adaptive (see [41] for details). We studied both cooperative norms (as in
+Section 2.3) and coordination norms (where individuals need to coordinate their actions in
+order to accomplish something). Below we discuss only the former; for the latter, see [41].
+For cooperative norms, our EGT model was similar to one in Section 2.3. Individuals
+interacted in a PGG with a contribution phase and a punishment phase. However, we made
+the following modi cations:
+  Our previous study (the one in Section 3.1) having convinced us of the importance
+of geographically constraining the individuals on a network, we also did that here.
+However, we didn t need to vary degree of the nodes this time, so we used a simple
+grid, which is the kind of network that s used the most frequently in EGT studies
+[22, 23].
+  The contribution strategies were the same as in Section 3.1: Cooperation, Defection,
+and Opportunism, where the latter strategy looks at the punishment reputations of the
+individual s neighbors, and decides whether to cooperate by looking at the expected
+payo s for cooperating and defecting.
+As a measure of the norm strength in a population, we used the percentage of agents who
+adhere to the norm, and the proportion of punishers.
+To implement the notion of societal threat, we started by giving all individuals a base
+payo  from the environment, to capture the notion that our game models just one of the
+many kinds of interactions that individuals might have in a more realistic world. Then we
+subtracted an amount   from this base payo , to model the level of threat. Since threats like
+drought, hurricanes, tornadoes, famine, or hostile invasions all can reasonably be assumed
+to reduce the general payo  that agents in a population receive from their environment,
+this captures the essential e ect of a broad array of threats. For instance, ecological threats
+are related to the availability of natural resources in that they often diminish agricultural
+yields and engender food shortages [38], and managing them often requires the use of the
+population s resources.
+After each individual receives its base payo  and the payo s from the contribution
+and punishment phases, the total acquired payo  p is transformed to reproductive  tness
+through a  tness function f (p) = 1   e 0.1p, which is intended to capture the principle of
+diminishing marginal utility:
+increased payo s produce diminishing marginal increases in
+ tness, e.g., the  fth meal of a day is not as important to an agent s  tness or wellbeing
+as the  rst. There is an abundance of evidence across disciplines that increased resources
+9
+Figure 4: Long-term average proportions of cooperation (at left) and punishment (at right)
+strategies under di erent levels of threat. The graph at left also includes the cooperation
+rate, the percentage of actions in the game that are cooperation. To attain long-term
+average proportions, we ran simulations for 5000 timesteps and averaged the population
+proportions over all timesteps. Each data point in the plot is the average of 50 simulation
+runs. Error bars show standard deviation. Model parameters are r = 3, c = 1,   = 1/2,
+  = 3/2,   = 0.1, d = 0.1, base-pay = 30. Note higher Responsible Punishers (R) and
+higher cooperation by Opportunistic (O) and Cooperator (C) agents under higher threat
+levels. For additional details see [41].
+lead to diminishing increases in utility [12, 13, 16], and diminishing-returns  tness functions
+have been used in several other EGT studies [16, 19, 21].
+We ran EGT simulations with the above model to test the hypothesis that exposure to
+threat is an important causal factor in the emergence of strong norms under the evolutionary
+pressures of cultural adaptation. If exposure to threat is indeed a cause of the emergence
+of strong norms, agents that adhere to the norm and enforce the norm through punishment
+should thrive evolutionarily under higher threat, while other agents that do not enforce the
+norm should not fare well evolutionarily. In contrast, under lower threat, we would expect
+the evolutionary pressures to allow for a greater variety of strategies and less norm-enforcing
+punishers. The results (see Figure 4) con rm this hypothesis.
+3.3 Why Has Ethnocentrism Decreased?
+Almost all current and historical con icts around the world can be characterized by individ-
+uals de ning themselves and others in terms of their group membership. This is supported
+by substantial empirical evidence that show that individuals have a natural tendency to-
+wards ethnocentrism, i.e., to favor in-group members, while being hostile towards out-group
+individuals [7, 8, 27]. Several EGT studies have also shown that group-biased behavior
+among individuals emerges readily and dominantly in populations comprised of various
+groups [2, 17, 22].
+Although these studies might seem to indicate that ethnocentric behavior among humans
+is inevitable, statistics show that over the past few centuries of human civilization, violence
+10
+and out-group con ict have declined dramatically. It occurred to us that the seeming dis-
+connect between these statistics and the research literature might be resolved by examining
+how residential mobility (see Section 3.1) a ects the evolution of ethnocentrism. Below we
+summarize our EGT study on this topic; the details are described in [10].
+Classic sociological and psychological theory suggests that in high-mobility contexts, in-
+dividuals form new relationships and sever unwanted ones with great ease, and are more
+open towards strangers but in low-mobility contexts, individuals have fewer opportunities
+to form new relationships, and severing existing relationships can lead to being ostracized
+from one s only social circle [36, 31]. Thus we hypothesized that residential mobility might
+counteract the evolution of ethnocentrism, by discouraging group-entitative behavior (in
+which one s behavior toward others depends primarily on what groups they are in) and
+encouraging individual-entitative behavior (in which one reacts to others primarily as indi-
+viduals rather than as members of a particular group).
+For our model, we began with the one in Hammond and Axelrod s pioneering EGT study
+of ethnocentrism [22]. In their model, agents were located on a grid, and interacted with
+their immediate neighbors. Each agent had a perceivable group tag to identify what group
+it was in, and each agent i could behave di erently toward in-group members (members of
+i s group) and out-group members(members of other groups). At each iteration, each agent
+had a Prisoner s Dilemma interaction with each of its immediate neighbors. The possible
+strategies were CC (cooperate with both in-group and out-group members), CD (cooperate
+with in-group and defect with out-group), DC (defect with in-group and cooperate with
+out-group), and DD (defect with both in-group and and out-group). In their study, they
+tested a wide range of parameter settings, and in each case ethnocentrism (modeled by the
+CD strategy) became predominant.
+To test our hypothesis, we needed to modify Hammond and Axelrod s model to introduce
+mobility. Furthermore, in their model, all of an agent s interactions were group-entitative,
+and we needed to introduce the possibility of individual-entitative behavior. To accomplish
+this, we made the following modi cations:
+  We implemented mobility as in Section 3.1: we used a probability m with which, at
+the beginning of each generation, an individual would switch position with a randomly
+chosen other individual in the population.
+  Each individual could either be group-entitative, i.e. base their actions solely on what
+the group an individual is in, or individual-entitative, i.e., base their actions on knowl-
+edge of each individual rather than their group tag.
+  The action of a group-entitative individual i towards an individual j depended only
+on i s last encounter with anyone from j s group. Thus, i had two possibly di erent
+strategies: one for in-groups and another for out-groups. Each of those strategies was
+one of the following: AllC (always cooperate), AllD (always defect), TFT (Tit-for-
+Tat: play whatever action the opponent played in i s last interaction with anyone from
+j s group), or OTFT (play the opposite of what TFT would play).
+  The action of an individual-entitative agent i depended only on its last encounter
+speci cally with agent j, ignoring j s group tag. Thus, i could have one of the above
+four strategies, except that TFT and OTFT depended on i s last interaction with j
+speci cally, rather than someone in j s group.
+The results of our EGT simulations (see Figure 5) con rmed our hypothesis. With low
+mobility (low values of m), groups tended to cluster together heavily, i.e., agents interacted
+11
+(a)
+(b)
+Figure 5: Proportions of agents and actions as a function of mobility, after 30000 iterations.
+Each data point is an average of 100 simulation runs. The plots show the proportions of
+(a) the group-entitative and individual-entitative agents, and (b) the actions played by the
+agents. For additional details see [10].
+primarily with in-group members. Thus, group-entitative strategies (in-group cooperation
+and out-group hostility) were pro table in terms of payo s and ethnocentric behavior be-
+came evolutionarily dominant. However, as we increased m, ethnocentrism decreased. In-
+dividuals were more likely to interact with out-group members, and hence couldn t rely
+on high payo s from in-group interactions. Thus, individual-entitative strategies became
+evolutionarily dominant with strategies like TFT gaining prominence.
+4 Discussion
+In this paper, we have discussed how evolutionary game theory can be used as a framework
+for studying the evolution of cultural norms, and have described the modeling decisions
+that we made in three EGT studies of the evolution of cultural norms. These studies have
+helped to establish support for causal relationships between several structural factors 
+strength-of-ties, residential mobility, and societal threat and societal traits such as third-
+party punishment, norm enforcement, and ethnocentrism.
+At this point, some readers might be pondering the following question: why did we use
+EGT for these studies, rather than conventional game theory?
+Conventional game theory is good for analyzing situations where we know the individuals 
+preferences, and want to predict what they will do based on those preferences. But in our
+work, we wanted to know how these preferences arose. We were interested in the following
+kinds of questions:
+  What kinds of structural and external factors might have led to the emergence of
+behaviors we see among individuals in a society?
+  What evolutionary pressures might have led to variations in those behaviors?
+  Can they be validated by observed phenomena?
+12
+Conventional game theory wouldn t have answered those questions. To lay out an individ-
+ual s preferences in a conventional game-theoretic model would, in essence, be building into
+the model the very traits whose emergence we were wondering about. We instead needed
+to lay out the structural/environmental factors that might be responsible for the evolution
+of those traits, to see whether those traits would evolve.
+These results also illustrate how an interdisciplinary team in this case, computer scien-
+tists and psychologists can achieve results that couldn t have been done without coopera-
+tion among participants from both disciplines. The work required a strong understanding
+of both psychological principles and computational and mathematical modeling techniques.
+References
+[1] John Aldrich. Correlations genuine and spurious in Pearson and Yule. Statistical
+Science, pages 364 376, 1995.
+[2] Tibor Antal, Hisashi Ohtsuki, John Wakeley, Peter D Taylor, and Martin A Nowak.
+Evolution of cooperation by phenotypic similarity. Proc. Natl. Acad. Sci., 106(21):8597 
+8600, 2009.
+[3] Daniel Balliet and Paul AM Van Lange. Trust, punishment, and cooperation across 18
+societies a meta-analysis. Perspectives on Psych. Sci., 8(4):363 379, 2013.
+[4] Helen Bernhard, Urs Fischbacher, and Ernst Fehr. Parochial altruism in humans.
+Nature, 442(7105):912 915, 2006.
+[5] Lawrence Blume. The statistical mechanics of strategic interaction. Games and Econ.
+Behavior, 5(3):387 424, 1993.
+[6] H. Brandt, C. Hauert, and K. Sigmund. Punishment and reputation in spatial public
+goods games. Proc. Royal Soc. B, 270(1519):1099 1104, 2003.
+[7] Marilynn B Brewer and Roderick M Kramer. The psychology of intergroup attitudes
+and behavior. Ann. Review of Psych., 36(1):219 243, 1985.
+[8] Yan Chen and Sherry Xin Li. Group identity and social preferences. American Econ.
+Review, pages 431 457, 2009.
+[9] L. Cosner. The functions of social con ict. Free Press, 1956.
+[10] Soham De, Michele J Gelfand, Dana Nau, and Patrick Roos. The inevitability of
+ethnocentrism revisited: Ethnocentrism diminishes as mobility increases. Scienti c
+Reports, 5, 2015.
+[11] D.J.F. De Quervain, U. Fischbacher, V. Treyer, M. Schellhammer, U. Schnyder,
+Science,
+The neural basis of altruistic punishment.
+A. Buck, and E. Fehr.
+305(5688):1254, 2004.
+[12] Ed Diener and Robert Biswas-Diener. Will money increase subjective well-being? Social
+indicators research, 57(2):119 169, 2002.
+13
+[13] Ed Diener, Daniel Kahneman, William Tov, and Raksha Arora. Income s association
+International di erences in well-being, pages
+with judgments of life versus feelings.
+3 15, 2010.
+[14] Miguel dos Santos, Daniel J Rankin, and Claus Wedekind. The evolution of punishment
+through reputation. Proc. Royal Soc. B, 2010.
+[15] Ernst Fehr and Simon G achter. Cooperation and punishment in public goods experi-
+ments. American Econ. Review, 90(4):980 994, September 2000.
+[16] Kevin R Foster. Diminishing returns in social evolution: the not-so-tragic commons.
+J. Evolutionary Biology, 17(5):1058 1072, 2004.
+[17] Feng Fu, Corina E Tarnita, Nicholas A Christakis, Long Wang, David G Rand, and
+Martin A Nowak. Evolution of in-group favoritism. Scienti c Reports, 2, 2012.
+[18] Michele J. Gelfand, Jana L. Raver, Lisa Nishii, Lisa M. Leslie, Janetta Lun, et al.
+Di erences between tight and loose cultures: A 33-nation study. Science, 332:1100 
+1104, 2011.
+[19] H Charles J Godfray. Signalling of need by o spring to their parents. Nature, 1991.
+[20] Mark Granovetter. The strength of weak ties: A network theory revisited. Sociological
+Theory, 1:201 233, 1983.
+[21] Uri Grodzinski and Rufus A Johnstone. Parents and o spring in an evolutionary game:
+the e ect of supply on demand when costs of care vary. Proc. Royal Soc. B, 2011.
+[22] Ross A Hammond and Robert Axelrod. The evolution of ethnocentrism. J. Con ict
+Resolution, 50(6):926 936, 2006.
+[23] Max Hartshorn, Artem Kaznatcheev, and Thomas Shultz. The evolutionary dominance
+of ethnocentric cooperation. J. Arti cial Societies and Social Simulation, 16(3):7, 2013.
+[24] J. Henrich and R. Boyd. Why people punish defectors: Weak conformist transmission
+can stabilize costly enforcement of norms in cooperative dilemmas. J. Theor. Biology,
+208(1):79 89, 2001.
+[25] Joseph Henrich, Richard McElreath, Abigail Barr, Jean Ensminger, Clark Barrett,
+Alexander Bolyanatz, Juan Camilo Cardenas, Michael Gurven, Edwins Gwako, Natalie
+Henrich, et al. Costly punishment across human societies. Science, 312(5781):1767 
+1770, 2006.
+[26] Benedikt Herrmann, Christian Th oni, and Simon G achter. Antisocial punishment
+across societies. Science, 319(5868):1362 1367, 2008.
+[27] Miles Hewstone, Mark Rubin, and Hazel Willis.
+Intergroup bias. Ann. Review of
+Psych., 53(1):575 604, 2002.
+[28] Christian Hilbe and Karl Sigmund. Incentives and opportunism: from the carrot to
+the stick. Proc. Royal Soc. B, pages 2427 2433, 2010.
+[29] Christian Hilbe and Arne Traulsen. Emergence of responsible sanctions without second
+order free riders, antisocial punishment or spite. Scienti c Reports, 2, 2012.
+14
+[30] Josef Hofbauer and Karl Sigmund. Evolutionstheorie und dynamische Systeme. Parey,
+1984.
+[31] Hope Landrine. Clinical implications of cultural di erences: The referential versus the
+indexical self. Clinical Psychology Review, 12(4):401 415, 1992.
+[32] Kevin Leyton-Brown and Yoav Shoham. Essentials of Game Theory: A Concise Mul-
+tidisciplinary Introduction. Morgan & Claypool, 2008.
+[33] Alan Lomax and Norman Berkowitz. The evolutionary taxonomy of culture. Science,
+pages 228 229, 1972.
+[34] Shigehiro Oishi. The psychology of residential mobility implications for the self, social
+relationships, and well-being. Perspectives on Psychological Science, 5(1):5 21, 2010.
+[35] Shigehiro Oishi, Janetta Lun, and Gary D Sherman. Residential mobility, self-concept,
+and positive a ect in social interactions. J. Personality and Social Psych., 93(1):131,
+2007.
+[36] SHIGEHIRO Oishi, JOANNA Schug, MASAKI Yuki, and JORDAN Axt. The psy-
+chology of residential and relational mobilities. Handbook of Advances in Culture and
+Psychology, 5:221 272, 2015.
+[37] Karen M Page and Martin A Nowak. Unifying evolutionary dynamics. J. Theor.
+Biology, 219(1):93 98, 2002.
+[38] Aaron Popp. The e ects of natural disasters on long run growth. Major Themes in
+Economics, 1:61 81, 2006.
+[39] Nichola J Raihani, Alexandra S Grutter, and Redouan Bshary. Punishers bene t from
+third-party punishment in  sh. Science, 327(5962):171 171, 2010.
+[40] P. Roos, M. J. Gelfand, D. S. Nau, and R. Carr. High strength-of-ties and low mobility
+enable the evolution of third-party punishment. Proc. Royal Soc. B, 281(1776), 7
+February 2014.
+[41] Patrick Roos, Michele Gelfand, Dana Nau, and Janetta Lun. Societal threat and
+cultural variation in the strength of social norms: An evolutionary basis. Organizational
+Behavior and Human Decision Processes, 129:14 23, 2015.
+[42] Joanna Schug, Masaki Yuki, Hiroki Horikawa, and Kosuke Takemura. Similarity attrac-
+tion and actually selecting similar others: How cross-societal di erences in relational
+mobility a ect interpersonal similarity in Japan and the USA. Asian J. Social Psych.,
+12(2):95 103, 2009.
+[43] Joanna Schug, Masaki Yuki, and William Maddux. Relational mobility explains
+between-and within-culture di erences in self-disclosure to close friends. Psych. Science,
+2010.
+[44] Karl Sigmund, Hannelore De Silva, Arne Traulsen, and Christoph Hauert. Social learn-
+ing promotes institutions for governing the commons. Nature, 466(7308):861 863, 2010.
+[45] J. M. Smith and G. R. Price. The logic of animal con ict. Nature, 246:15 18, 1973.
+15
+[46] Peter D. Taylor and Leo B. Jonker. Evolutionary stable strategies and game dynamics.
+Mathematical Biosciences, 40(1-2):145   156, 1978.
+[47] Arne Traulsen, Christoph Hauert, Hannelore De Silva, Martin A Nowak, and Karl Sig-
+mund. Exploration dynamics in evolutionary games. Proc. Natl. Acad. Sci., 106(3):709 
+712, 2009.
+[48] Duncan J Watts and Steven H Strogatz. Collective dynamics of  small-world  networks.
+Nature, 393(6684):440 442, 1998.
+16

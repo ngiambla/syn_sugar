@@ -1,0 +1,22 @@
+  the problem of clustering content in social media has pervasive applications,
+including the identification of discussion topics, event detection, and content
+recommendation. here we describe a streaming framework for online detection and
+clustering of memes in social media, specifically twitter. a pre-clustering
+procedure, namely protomeme detection, first isolates atomic tokens of
+information carried by the tweets. protomemes are thereafter aggregated, based
+on multiple similarity measures, to obtain memes as cohesive groups of tweets
+reflecting actual concepts or topics of discussion. the clustering algorithm
+takes into account various dimensions of the data and metadata, including
+natural language, the social network, and the patterns of information
+diffusion. as a result, our system can build clusters of semantically,
+structurally, and topically related tweets. the clustering process is based on
+a variant of online k-means that incorporates a memory mechanism, used to
+"forget" old memes and replace them over time with the new ones. the evaluation
+of our framework is carried out by using a dataset of twitter trending topics.
+over a one-week period, we systematically determined whether our algorithm was
+able to recover the trending hashtags. we show that the proposed method
+outperforms baseline algorithms that only use content features, as well as a
+state-of-the-art event detection method that assumes full knowledge of the
+underlying follower network. we finally show that our online learning framework
+is flexible, due to its independence of the adopted clustering algorithm, and
+best suited to work in a streaming scenario.

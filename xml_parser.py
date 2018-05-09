@@ -6,10 +6,20 @@ def parse_xml(xml_file):
     doc = BeautifulSoup(file_handler, "xml")
     catchphrases = doc.find_all('catchphrase')
     sentences = doc.find_all('sentence')
-    catchphrase_soln = open('xml_files/solns/'+xml_file+'_soln.txt', 'w')
-    sentence_soln = open('xml_files/docs/'+xml_file+'.txt', 'w')
+
+    catchphrase_soln = open(xml_file.replace("xdocs", "solns").rsplit('.', 1)[0]+'.txt', 'w')
+    sentence_soln = open(xml_file.replace("xdocs", "docs").rsplit('.', 1)[0]+'.txt', 'w')
+    
     for catchphrase in catchphrases:
-         catchphrase_soln.write(catchphrase.text.split(">", 1)[-1]+'\n')
-        
+        try:
+            catchphrase_soln.write(unicode(catchphrase.text).split(">", 1)[-1]+'\n')
+        except Exception as e:
+            pass          
     for sentence in sentences:
-        sentence_soln.write(sentence.text+'\n')
+        try:
+            sentence_soln.write(unicode(sentence.text)+'\n')
+        except Exception as e:
+            pass
+            
+    catchphrase_soln.close()
+    sentence_soln.close()

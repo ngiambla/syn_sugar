@@ -1,0 +1,3310 @@
+Wearable Computing for Health and Fitness: Exploring the Relationship
+between Data and Human Behaviour
+KATRIN H  ANSEL, Queen Mary University of London
+NATALIE WILDE, Queen Mary University of London
+HAMED HADDADI, Queen Mary University of London
+AKRAM ALOMAINY, Queen Mary University of London
+A
+6
+1
+0
+2
+ 
+n
+a
+J
+ 
+9
+2
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+2
+v
+8
+3
+2
+5
+0
+.
+9
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Health and  tness wearable technology has recently advanced, making it easier for an individual to monitor their be-
+haviours. Previously self generated data interacts with the user to motivate positive behaviour change, but issues arise
+when relating this to long term mention of wearable devices. Previous studies within this area are discussed. We also
+consider a new approach where data is used to support instead of motivate, through monitoring and logging to encourage
+re ection. Based on issues highlighted, we then make recommendations on the direction in which future work could be most
+bene cial.
+Additional Key Words and Phrases: Wearable Technology, Pervasive Sensing, Behaviour Change, Health Monitoring
+1. INTRODUCTION
+Wearable technologies are a relatively new entrant in the health and  tness sector. Examples
+of health and  tness wearable devices and applications include health monitors,  tness trackers,
+activity monitors, and analysis aids. According to Orange [2014],  tness and medical wearables
+accounted for 60% of the wearables market in 2013 and it is predicted that the health wearables
+market will be worth roughly   3.7 billion by 2019. The ever-growing popularity of smartwatches
+and  tness bands suggest that the increase of wearable health and  tness devices remains an
+ongoing trend; the technology associated with these wearable devices is improving at a fast rate.
+Devices are becoming increasingly smaller and more energy ef cient, making them better suited
+for continuously sensing and giving feedback.
+Although the technology is improving and applications are evolving, ensuring long-term user re-
+tention is a challenge that still remains. The dropout rate of health and  tness wearable devices
+currently stands at around 85% [Velayanikal 2014]. The lack of ef cient data collection, utilisation
+and feedback may all contribute to the causes of this issue. Advanced sensors can log individu-
+als  health data ef ciently and can present the users with comprehensive information about their
+health. However, the meaningfulness of data can have a major effect on a user s behaviour. Poorly
+presented data or the overload of information can lead to an individual becoming confused and
+discouraged. This in turn leads to them abandoning their wearable device.
+In this paper, we present an extensive survey of different approaches for data utilisation from
+wearable and mobile technology with regards to  tness and health behaviour change. We explore
+examples and studies of wearable sensors, actuators, and applications used to promote health and
+wellness. We then point out different methods of utilising an individual s data to support positive
+behaviour change.
+Within this literature review, we focused on wearable sensing technologies. Wearable sensing
+can be used to provide data on various health aspects. These include body movements, physical
+activity and behaviour, bio-signals like heart rate, respiration, brain activity, or health in uencing
+environmental factors. A large body of research also focused on the use of mobile phone sensing to
+pick up those signals, and is therefore included in this survey on the basis that their approaches
+are transferrable to wearable device applications. A criteria for the presented wearable approaches
+is the presentation of the collected data to the user, either as raw data, in a processed form, or
+as persuasive, contextualised feedback. For behaviour change theories and techniques, we mainly
+focused on the work of the UCL Behaviour change group by Michie et al. [2014, 2013].
+This survey is organised as follows; in Section 2, we focus on using data to encourage behaviour
+change through motivation and persuasive techniques, using gaming and social aspects to achieve
+this. We outline several psychological aspects and theories which surround technology driven be-
+haviour change and present related projects. In Section 3, we focus on different approaches of
+This work is supported by the Engineering and Physical Sciences Research Council (EPSRC) and the Media and Arts
+Technology Doctoral Programme. This work was done while Haddadi was at Qatar Computing Research Institute. Authors 
+address: School of Electronic Engineering and Computer Science, Queen Mary University of London, UK;
+Permission to make digital or hard copies of part or all of this work for personal or classroom use is granted without fee
+provided that copies are not made or distributed for pro t or commercial advantage and that copies bear this notice and
+the full citation on the  rst page. Copyrights for third-party components of this work must be honored. For all other uses,
+contact the owner/author(s).
+c(cid:13) YYYY Copyright held by the owner/author(s). 0000-0000/YYYY/01-ARTA $15.00
+DOI: http://dx.doi.org/10.1145/0000000.0000000
+ACM Journal Name, Vol. V, No. N, Article A, Publication date: January YYYY.
+data presentations to in uence a person s behaviour. This includes the contextualised and adap-
+tive presentations, as well as cognitive supporting ambient displays. In Section 4, we explain a
+more modern approach where data is used to support and facilitate human health behaviour. We
+outline studies conducted where data from wearable technology can support intrinsic driven be-
+havioural changes. By analysing studies that have been carried out in these areas, we highlight
+the challenges posed for the future of wearables in Section 5. Finally, in Section 6 we suggest areas
+and directions for future work that we feel would be bene cial to the  eld.
+2. PERSUASIVE WEARABLE TECHNOLOGIES FOR BEHAVIOUR CHANGE
+When looking into behavioural change, motivation is a key factor to consider. Nevid [2012]
+describes the term motivation as the  factors that activate, direct and sustain goal directed be-
+haviours  [Nevid 2012, p. 288]. He further describes motives to be the needs or wants that drive
+behaviours.
+Motivation has the power to cause a person to start more healthy activities but also to continue
+and repeat these activity routines. If there is a lack of motivation or it is not used in the correct
+way, this can lead to opposite effects in an individual s behaviour [Arteaga et al. 2009]. Motivation
+can be, furthermore, classi ed into two categories; intrinsic and extrinsic motivation, whereby the
+latter can be further distinguished in sub-types identi ed by Deci and Ryan [1985]. Intrinsic mo-
+tivation can be seen as motivation created through internal interest and enjoyment, whereby the
+reward lies within performing a behaviour itself and plays an substantial role in one s well-being.
+Extrinsic motivation, on the contrary, is generated through external in uences and rewards. Ex-
+trinsic motivation can be further distinguished into external regulation, introjection, identi cation,
+and integration. While external regulation is merely based on external rewards and punishments,
+introjection already describes a certain degree of internalisation of motivation driven by guilt or
+a gained feeling of self-esteem; but still inherits an external control. Identi cation and integrated
+regulation are more autonomous, self-determined and internalised. Ryan and Deci [2000] describe
+that there can be a process of internalising originally external motivation when the values are iden-
+ti ed as consistent with one s perception of self and the motivation is identi ed as less controlling.
+The Cognitive Evaluation Theory of Deci [1975] speci es factors to facilitate intrinsic motivation
+through contexts that support the personal feeling of competence.
+Motivation is also an important part of Fogg s Fogg [2009] Behaviour Change Model (Figure 1). It
+de nes three components for successful behaviour: motivation and ability to perform a behaviour
+in a suf ciently high level and triggers. Different approaches can be made to make a successful
+behaviour more achievable; this can be accomplished by either making it easier to perform the
+task by breaking it down in easier actions or by increasing motivation. Gami cation aims to highen
+motivation through use of points, leader boards and rewards created from data. The trigger to carry
+out behaviour happens whilst the player is in the game itself. Nobody wants to lose and this triggers
+people to carry out the actions.
+This section outlines two of the biggest data utilisation methods used to create motivation; gam-
+i cation and social in uence.
+2.1. Gami cation
+Gami cation is a common way to motivate behavioural change. It refers to taking game design
+elements and applying these within other contexts. For example, rewarding an individual with
+game points if they eat healthy food for a day can motivate them and help develop a speci c type
+of behavioural outcome [Deterding et al. 2011]. Gami cation is a relatively new concept and the
+exact origins are unknown. Pelling [2011]  rst used the concept of gami cation within commercial
+devices. The main aim of his consultancy Condura was to incorporate gaming methodologies into
+businesses. Fogg [2002] describes the Pocket Pikachu; it is one of the  rst wearable devices that
+utilised gami cation to become persuasive tool. The simple device includes a pedometer to mea-
+sure the step count of the wearer. This data is then translated into game points which help the
+virtual Pikachu to grow. Robson et al. [2015] state that presenting data and utilising it within a
+gaming context works well in encouraging behavioural change because it taps into an individual s
+motivational drivers; particularly intrinsic motivation which is behaviour driven by internal re-
+wards like fun and extrinsic motivation through rewards like badges and game point. Engaging
+motivation can arise from within the individual because they enjoy the behaviour and experience
+it as rewarding [Cherry]. A comprehensive review by Seaborn and Fels [2015] highlights future
+directions in gami cation research.
+2.1.1. Motivational Affordances. Wearable applications can utilise motivational affordances and gam-
+i cation to motivate extrinsically. This includes emotionally positive stimuli like the use of badges,
+leader boards and challenges. Based on Hamari et al. [2014], the points system claims to be the
+2
+High
+Motivation
+n
+o
+i
+t
+a
+v
+i
+t
+o
+M
+Low
+Motivation
+Triggers 
+Succeed here
+Triggers 
+Fail here
+Activation Threshold
+Hard to do
+Ability
+Easy to do
+Fig. 1. Foggs Behaviour Model (Adapted from [Fogg 2009])
+most commonly used method. Bleecker et al. [2007] presented the prototype of a mobile based game
+ MobZombies  incorporating wearable sensors. The sensors provide accelerometer data which is
+used to move the virtual avatar. Physical movement by the player within the real world are trans-
+lated into moves within the game. The main aim of the game is to run away from the zombies and
+collect points through body movement. Rewarding the player with points utilises features that the
+user is already familiar with and presenting data in this way ensures that the user gains instant
+grati cation and motivation.
+An issue that most of the motivational affordances have in common, is the clouding of the actual
+data. Health data is not directly presented to the user and the focus is on the rewards and achieve-
+ments to stimulate extrinsic motivated behaviour change. The removal of external incentives can
+lead the the termination of the exercise and termination of health behaviour if the behaviour is
+not internalised and congruent with personal, self-determined goals [Deci 1975]. This indicates
+that the behavioural change is strongly connected to the presence of game elements. Further re-
+search is needed to determine long-term health behaviour outside of the game world. Furthermore,
+there is evidence that a special personality type prefers a certain motivational affordance and that
+applications should take this into account [Karanam et al. 2014].
+Payton et al. [2011] developed a mobile game to reduce sedentary lifestyles in college students.
+World of Workout motivates the player to increase step count in small amounts throughout the
+day. The users can de ne a goal they wish to achieve and the mobile phone application generates
+suitable quests for the player to complete. The user s step count is calculated by using the iOS
+shake event and is then related to the set goal. Rewarding feedback is provided to the user when a
+goal is reached. The game was found to have a positive effect on participants, with players  nding
+it fun and enjoyable to play. Feedback from other players suggested that they would enjoy a feature
+to share their data outside of the game. This could include the possibility of posting achievements
+on Facebook or Twitter.
+Others have also looked at levering extrinsic motivation by enabling the user to earn tangible
+rewards such as money or psychological rewards like praise. An example of a device that utilises
+rewards is the Mymo. Developed by Tupelo1, the activity tracker allows users to cash in their
+steps to earn rewards such as mobile talk time and airline miles [Velayanikal 2014]. But other
+studies suggest that the use of extrinsic incentives, like materialistic rewards, may have  aws.
+In general, we can say that extrinsic regulation can negatively in uence intrinsic motivation and
+undermine the feeling of autonomy and competence [Deci and Ryan 1985]; it can therefore have
+1www.tupelolife.com/
+3
+a negative impact on our well-being. Greene and Lepper [1974] stated that when an intrinsically
+motivated task, such as drawing for children, is rewarded externally, it can be harmful. It leads to
+people expecting external rewards all the time and can have a detrimental effect on the individual s
+intrinsic motivations.
+2.1.2. Social Incentives within Games. Social aspects are important in gami cation. Ali-Hasan et al.
+[2006] state that single player games can lead to the user feeling isolated. To avoid this, some gam-
+i cation strategies include social incentives. There are two main incentives used   competition and
+cooperation. Competition can be created by comparing data of two users against each other within
+an application. In 2010, Clawson et al. created a mobile game where players have to dance in time
+to get points. Two people wear wireless sensors around their ankles that contain accelerometers
+to measure movements. This data is then translated into game points. Users found this game en-
+joyable and were satis ed with the experience, and although the participants were just testing the
+application for two songs, the majority indicated that they would use the game for 20 minutes or
+more a day. Clawson et al. concluded that comparing an individual s data to others within a gaming
+context can heighten the motivation to dance more and get physical active.
+Ali-Hasan et al. [2006] discusses Fitster, a mobile social  tness application that incorporates
+large scale competitiveness. It includes an online dashboard which contains the daily step count
+and activity data of the user s friends. The application accommodates the light-hearted competition
+that can take place between befriended groups to motivate physical activity. The application is
+socially oriented and takes this further by allowing users to actively challenge another member
+to walk a set amount of steps within a given time. The introduction of timing can apply pressure
+for the user to perform speci c behaviours. Although this may not make it as enjoyable, it may
+increase motivation.
+The second social incentive is cooperation; users can work together to reach a goal and motivate
+each other within a gaming context. Ahtinen et al. [2010] created and trialled Into; a social mobile
+wellness application. In the application, the physical activity data from the individuals merges
+together to achieve a group goal with the aim to encourage physical activity for all group members.
+The game contains virtual trips between cities in the world made up of step count goals. The player
+and their group can work together to achieve a goal and gain rewards whilst travelling around
+the world virtually. The social aspects of the application and the merging of data were found to be
+bene cial for users.
+But which social incentive is the most in uential? Chen and Pu [2014] noticed that many games
+focus on the competitive element of gaming. They developed a mobile application to  nd out which
+social incentive is most in uential and observed how players reacted to data presented in three
+gami cation modes. This included competition, cooperation and a hybrid of the two. The application
+included a messaging service, allowing pairs of users to talk to each other. Users could communicate
+either to help, support or to taunt one another. Results showed that all modes caused people to
+increase their daily activity but cooperation was more powerful than competition. Their qualitative
+results also indicate that users prefer to be paired with a partner with similar abilities.
+2.1.3. Real versus Virtual Worlds. More recently gami cation has started merging data from the real
+world with the virtual world within the game. Mobile games developed by Macvean and Robertson
+[2012] and Chuah et al. [2012], created virtual game maps using location and movement data from
+the phone to bridge the gap between the real and gaming worlds; those games can be considered
+alternate reality games [McGonigal 2004]. The user must physically move around their physical
+environment to earn virtual rewards. The audio augmented Zombies, Run!2 game motivates run-
+ners by playing zombie noises through the headphones while they are on a run. These noises are
+supposed to create the immersive feeling of being hunted and motivate the user to run faster.
+Freegaming by G org  u et al. [2010] is an interactive game using augmented reality through the
+user s mobile phone camera. It places information and directions over real life footage of buildings
+and landmarks as the user views them in real time. The aim of Freegaming is to motivate outdoor
+exercising. This is achieved by presenting data about the user s status and environment itself in an
+immersive, augmented way. Based on this information, the app suggests workout routines to the
+user. As a result of the study, the author suggests that presenting data within a familiar environ-
+ment can have an in uence on an individual s behaviour. For example, if they know the running
+route and the rough distance in advance, users may be easier motivated. Getting feedback is an
+important factor for working successfully towards a goal [Locke and Latham 2002].
+2www.zombiesrungame.com
+4
+2.2. Social In uence
+Rashotte [2007] de nes social in uence as the effect on another humans behaviour, thoughts,
+and attitudes as a result of interacting with others. For example, recommendations by friends
+likely lead to an desire to try out or buy the same thing. Instances like this sway our own ideas,
+actions and behaviours on a daily basis. According to Ledger and McCaffrey [2014], social factors
+are important for our health and there is strong evidence to suggest that our behaviours are shaped
+by the behaviour of our family, friends and even the people we work with.
+Social in uence can also be a key factor in the adoption of new health behaviours. Intille [2004]
+explains how an individual s behaviour can re ect that of their peers. Sticking to a diet can be eas-
+ier for the individual if they have friends that also engage in healthy behaviours. Having friends
+that eat bad foods around you can cause unwanted temptations [Bruening et al. 2012]. Various
+wearable applications offer the functionality to share health data through online social networks.
+This allows competition or comparisons to happen between all members of the social group. This
+can lead to members of the group re ecting upon themselves and wanting to change their be-
+haviours [Ananthanarayan and Siek 2012]. Effects of social networks can even be observed on the
+large scale; the effect of social contagion and the propagation of obesity, smoking behaviour etc. can
+be identi ed [Smith and Christakis 2008]. New technologies and online media can even enhance
+this effect. There are many different types of social in uence which are outlined below.
+2.2.1. Normative In uence. Norms within social groups have in uence on our behaviour; Asch [1951]
+explains how normative in uence causes an individual to alter behaviour. An individual conforms
+to a groups social norms in order to be liked and accepted within the group. One type of informal
+conformity is social proof [Aronson et al. 2009]; it explains how, in times of uncertainty, an individ-
+ual observes the reaction of others [Cialdini 2006]. They will then base their own behaviours upon
+their observations. Chang [2012] created a social food journalling application called Food Fight.
+The mobile application allows the user to take pictures of the food they eat and share this with
+other app users to compare. Similarity is one of the factors that increases the effectiveness of social
+proof [Cialdini 2006]; we are more likely to be in uenced by people we believe to be similar to our-
+selves. The Food Fight app allows to look out for people that have similar goals. The pictures that
+the users share become part of a timeline called the food feed. Within this timeline other users can
+vote up pictures that they like. As most of the users on the app aim to eat healthy, this means that
+the most popular images are usually healthy foods. If an individual is unsure of what to eat for
+lunch they may look at popular up-voted images for ideas. This may in uence them to try healthier
+options if they see it is a popular choice.
+Another factor that increases the effectiveness of social proof is authority [Cialdini 2006]. If an
+individual believes the information to be coming from a reliable and trusted source, they are more
+likely to conform to it. Buttussi and Chittaro [2008] created MOPET, a mobile personal training
+application. The application utilises real-time  tness data from activity and heart rate sensors;
+analyse it and provides health and safety advice to the user. This advice comes from a virtual per-
+sonal trainer which is visualised to the user via a talking 3D embodied agent. The belief that the
+information comes from a real personal trainer, can have an effect on how in uential the infor-
+mation is. The user may be more likely to change their behaviour if they feel the advice is from a
+knowledgeable source.
+2.2.2. Social Comparison. Another type of in uence, proposed by Festinger [1954], is the Theory
+of Social Comparison. It describes, that we evaluate our own opinions and abilities by comparing
+them to others around us. This happens to reduce uncertainty and supports an individual learning
+to de ne themselves. In the wearable ecosystem, this can mean comparing user data within a
+group. It can also include representing information in a way to encourage comparison to peers
+and promote self re ection. Lin et al. [2006] utilised social comparison to create a computer game
+called Fish n Steps. Within this game, the users wear pedometers which collect their daily step
+count. A higher step count leads to the growth of the user s animated  sh character in the game.
+Social comparison comes into play when many players place their  sh within the same bowl. This
+encourages the players to look at the growth of the other s  sh compared to their own. Presenting
+the step count data in this manner had a positive in uence on the activity levels of the participants.
+Bandura [2001] explains a similar concept of Vicarious Capability in his Social Cognitive The-
+ory (SCT); it explains how we do not learn only from our own experiences but from also observing
+those around us. This also applies to observing others mastering tasks; and the vicarious experi-
+ence of observing others successfully performing a behaviour can improve the self-belief   namely
+our self-ef cacy   in the own ability to master a challenge [Bandura 1977]. Success of a friend los-
+ing weight by using an activity tracker could not just become driver for us ourselves getting the
+same tracker [Ledger and McCaffrey 2014], but it could also improve our self-belief to master the
+5
+same challenge and be successful. Anderson et al. [2007] used a wearable mobile device as a health
+promotion tool by utilising a groups collected data. Shakra calculates the daily exercise levels of
+users from the measured movement data. These daily exercise levels are then shared amongst
+the group of friends. The study found that this sharing of data was perceived positively by the
+participants. It helped them to re ect more upon their own exercise level data and encouraged be-
+havioural change. If an individual  nds that their friend with a  gure they perceive as desirable
+is more active during the day, this may lead to the friend becoming a role model with an in uence
+on the own behaviour. After re ection, the individual may choose to start walking more in hope to
+achieve a similar success.
+Social comparison has been shown to be a successful driver for health behaviour change, but
+there can be negative implications on a person s wellbeing and interpersonal relationships. These
+implications include decreased happiness [Lyubomirsky and Ross 1997], feelings of guilt, and dis-
+honesty to others [White et al. 2006].
+2.2.3. Social Facilitation. Zajonc et al. [1965] describe social facilitation, a type of in uence where an
+individual s performance can be improved by the mere presence of others. This includes working
+with others within a team or by having an audience. Audience effect within wearable applications
+may involve sharing  tness data and goals with others. Sharing goals on social networks like
+Facebook increases the likelihood of an individual changing their behaviour to what they feel is
+acceptable, because they feel a sense of commitment [Ledger and McCaffrey 2014]. The fear and
+guilt of letting others down by not achieving goals is a main driver of behaviour modi cation.
+Lim et al. [2011] created Pediluma which is a wearable device strapped to the user s foot. It takes
+the user s step count and maps it to a  ashing LED light. The more steps the user takes, the
+more the device will  ash. The ambient manner used to display the data results in the public
+becoming an audience. The individual may adjust their behaviour to ensure the data presented to
+the public is promoting a positive self-image. The study found the device to increase the amount
+of daily steps taken. Public commitment can be important with regards to changing a person s
+behaviour [Locke and Latham 2002]. Contrary, Fogg [2013] describes anecdotally how this may not
+be enough on its own. He owns a pair of scales which tweet out the weight to his Twitter account
+every time they get used. Although this automated process was supposed to motivate through
+social facilitation, it was not motivational to him and he did not pay much attention to it. The
+scales barely attracted his interest and therefore did not encourage him to want to lose any weight.
+Zajonc et al. [1965] explain another type of social facilitation called co-action which describes
+the effect on the own performance when other people are carrying out the same task. Toscos et al.
+[2006] created an app called Chick clique. The application aims to motivate teenage girls to exercise
+more, through use of their  tness data. Data presented in the application levers the power of so-
+cial relationships to bring about behavioural change. The app includes a leaderboard of each group
+member s daily step counts. This encourages the girls to talk about health and  tness with each
+other and allows the application to become a persuasive social actor. Furthermore, this approach
+can counteract misperceptions of peer thoughts and behaviour, which can be one factor of promot-
+ing unhealthy behaviour. Social Norms Theory describes three concepts of discrepancies between
+actual norms and individually perceived norms: pluralistic ignorance, false consensus and false
+uniqueness [Berkowitz 2004]. Pluralistic ignorance describes the misperception that the majority
+of peers behave differently than oneself and can lead to the adaption of less healthy behaviour; for
+example, a physically active person inaccurately perceives the majority of the social group more
+sedentary, will likely adapt a less active lifestyle. On the other hand, a sedentary person could
+falsely perceive the majority of the group as sedentary as well and take this as justi cation to not
+become more active   this is called false consensus. If a person perceives the own behaviour as
+falsely unique within the group, this can lead to withdraw from the social group. While the major-
+ity of studies focus on alcohol consumption and smoking behaviour [Berkowitz 2004], application
+which facilitate a raised awareness within social groups can counteract those misperceptions and
+may promote healthier behaviour within the groups.
+Other wearable applications encourage co-action by motivating groups whilst they are physi-
+cally together. Mauriello et al. [2014] designed and built a set of wearable, electronic textile dis-
+plays. These displays support a group of people while they are running. Accumulated running data
+obtained from sensors is displayed on e-ink screens attached to the back of the runners T-shirts.
+Their studies concluded that they improved motivation within the group through social facilitation.
+Karau and Williams [1993] also state that group members work harder on tasks if they perceive
+their contribution as instrumental to the desired team outcome. They will also work harder if they
+feel their peers are monitoring them.
+6
+The use of social awareness can increase the effectiveness of co-action techniques. It can lead
+to an individual having an active interest in others and how they are doing. Burns et al. [2012]
+created Activmon which is a wrist-worn device. Members of a group all wear the device and it
+contains a custom-built square LED screen. The device monitors each user s step counts and while
+LEDs light up on the device to correspond with the progress towards the user s daily goal, the whole
+group s achievements are also displayed on an ambient screen. This allows the user to see how the
+group is performing as a whole but also individuals. Displaying other member s data can encourage
+an individual to become interested in how other members are performing, raise the awareness and
+sense of team belonging, and support motivation and socially-driven behaviour change.
+2.2.4. Social Impact. [Nowak et al. 1990] describe the theory of social impact which presents three
+factors that affect the amount of social in uence. The  rst factor is number of sources for the
+in uence. As the amount of people providing data increases, so does the in uence exerted on each
+individual. This is evident in traditional support groups. The second factor is strength, which refers
+to the perceived importance of the feedback source. The more trusted the source providing feedback
+are to someone, the more likely they are to in uence them. As mentioned earlier by Lin et al.
+[2006], Fish n steps placed many individual s  sh in the same bowl. Family members   sh were
+more in uential than strangers  when placed in the same bowl.
+The last factor is immediacy, the closeness of the group both in time and space. Wearables open
+up opportunities for people to share data with others and be within the same shared digital space.
+Online social networks provide great opportunities to create these digital spaces. Lu and Lemonde
+[2014] developed an app called UOIFit. The mobile application aims to increase levels of activity
+amongst adolescents. The app collects  tness data of each user and shares this data to everyone
+through a  t feed tab. The app also allows users to exercise with each other remotely. This is an
+example of creating digital spaces for collaboration through data. Studies conducted into the app
+found social aspects to have a positive impact on an individual s behaviour. It increased the users 
+activity level and lowered their Body Mass Index (BMI).
+2.2.5. Wearable Computers as Social Actors. Fogg [2002] talks about wearable technology becoming a
+social actor itself and outlines the possibility of communicating with a wearable device to create
+a social experience. Wearables themselves may be able to lever social in uence. This social in u-
+ence may persuade individuals to change their behaviours. Fogg highlights cues that can lead to
+a wearable becoming a persuasive social actor, the  rst of which is physical cues. The more at-
+tractive the interface of a device is to the user, the more of an impact it will make on the user
+(e.g. [Sonderegger et al. 2014; Chang et al. 2014]). The way that data represented aesthetically
+makes a great difference with regards to in uence.
+The second cue is psychological cues. This involves making the user believe that the application
+possesses emotions and feelings like a human. A subgroup of the Affective Computing community
+focuses on the technology imitation of human emotions [Picard 1997]. As Lin et al. [2006] showed,
+Fish n steps represents the collected activity data in the form of a  sh avatar growing. This repre-
+sentation works well in developing a persuasive, emotional relationship between the user and their
+data. But as found in the study it can also have a negative effect on the user s behaviour. The user
+would feel responsible for the avatar when it was not growing or looking sad. This feeling of guilt
+would lead some people to avoid the application as they did not want to see an unhappy avatar.
+Language is another cue mentioned by Fogg [2002], this can involve the application asking ques-
+tions and offering a dialog. Wearable applications can offer praise, which is common among health
+and  tness applications. The wearable collected data can be used to determine when praise should
+be given. Using data to create a conversation with the user is important in in uencing long-term
+behaviour change. Arteaga et al. [2010] created an application which uses a talking head to com-
+municate motivational phrases and advice to the user at appropriate times. The use of a talking
+head made the application more anthropomorphic. This was perceived positively in studies and
+found to make a difference to the users. Bickmore et al. [2008] conducted studies looking at virtual
+agents and how they were able to in uence health behaviour change in more depth. The virtual
+agent talked to the user, but they also utilised non-verbal behaviour and facial expressions to com-
+municate messages. These messages were based on data collected from the user. The agent was
+part of an application designed for use in the of ce, and the application s virtual agent suggested
+short breaks to the user at timed intervals. Their studies concluded that the more social cues were
+presented by the agent, the more breaks the users were taking. Visualising data to a user in an
+empathetic way may encourage long-term compliance with new behaviours.
+7
+3. WEARABLE DATA REPRESENTATION
+In current wearable applications, visual representations and methods of feedback are the most
+common way to communicate data to the user [Ludden 2013]. The way in which the raw data is
+processed and manipulated before it is presented to the user, plays a big role in how in uential it
+can be. One of the issues raised by researchers in the health and personal data space is provision
+of meaningful data to the users and enabling Human Data Interaction [Haddadi et al. 2013].
+Current step counters, pedometers and their accompanying applications struggle to provide long-
+term behaviour change. The users are still aware of the data provides of these devices, but it is
+not perceived as so meaningful and in uential after six months [Ananthanarayan and Siek 2012].
+Data representations need to emphasise the importance of being healthier in more intuitive and
+meaningful ways.
+3.1. Adaptive and Contextual Data
+Adaptive and personal data representations can be a powerful tool to deliver meaningful infor-
+mation from wearable devices. An individual s health and  tness is a personal issue to them, so
+the way of presenting the data should be just as personal. By making the representations user
+adaptive, a personal experience for each user can be offered.
+A context aware system is able to tell what the user is doing from utilising and analysing sensor
+data. It can then use this to make motivational suggestions at speci c, in uential times in the
+day. Intille [2004] conducted a study that looked into utilising just-in-time messaging of health
+information. The presentation of contextualised information at important decision times within the
+user s day proved to be effective and previous studies show that just-in-time persuasive interfaces
+can in uence behavioural change. Patel et al. [2015] suggest supporting new behaviours may be
+best facilitated by regular, appropriately framed feedback. This feedback should be presented at
+the times where the user is most likely to notice it. [Carroll et al. 2013] looked at a sensor-equipped
+bra that senses emotions. They plan to utilise the collected data to determine when the individual
+is most vulnerable to emotional eating and then present just-in-time interventions. Intille [2004]
+had four rules which they believed helped the data representation to be effective. The  rst rule was
+to keep the data representation as simple as possible. This ensures the user understands the data
+that s displayed to them as clearly as possible. Other rules include displaying data at appropriate
+times and in the appropriate place. This is to make it as easy as possible for the user to refer to the
+data within their day-to-day life. If the data representation is irritating to the user this can lead
+them to ignoring the device altogether.
+Gockley et al. [2006] created a wearable device that contextualises sensor data. Aviva tracks the
+users  and their close friends  eating and exercise patterns. A wrist-worn, watch-type device shows
+the feedback to them. It aims to display qualitative and holistic data to the user, not just simply
+numbers from sensors. Experts suggested that displaying lots of raw unexplained data can lead to
+the user becoming discouraged [Gockley et al. 2006]. Aviva displays personalised, contextualised
+suggestions. For example, the user could be noti ed to  eat a bag of nuts  as opposed to just telling
+them they  need more protein . This contextualising of data can be more persuasive when get-
+ting an individual to change their behaviour. Another way to contextualise data demonstrated by
+Macvean and Robertson [2012] and Chuah et al. [2012] in 2012. They suggest to give recommenda-
+tions speci c to the user s location. Making an application location aware can lead to it being more
+entertaining for the user as they feel they can relate to the data more easily.
+Previous studies have shown personalisation to be an important factor for device usage and
+adaptations. Studies outlined by Ananthanarayan and Siek [2012] have shown that users want to
+create their own system to access their data. Users do not like having to use a prede ned default
+form that everyone else uses as it does not feel personal. Ananthanarayan et al. [2014] developed
+another wearable to look into the effectiveness self-crafted devices. The device the users could
+create held a set of sensors that tracked an individual s UV exposure. They found that people
+received the device well with people attaching it to their bags or even wearing it as an headband.
+Another device developed by Ananthanarayan and Siek [2010] looks into raising health awareness
+in children. They wanted to motivate them to think about their behaviour. It had a personalised
+build-it-yourself approach to the fabrication of the devices. All the components the device contained
+were plug and play in style. The children could attach components to a leather bracelet, including
+sensors and displays for feedback. The LED display changed colour dependant on the amount of
+exercise the child had done that day. Allowing individuality for data representation and form factor
+may make the device more meaningful to the user. This is because they feel they have created it so
+it may be more in uential than a standard generic form.
+8
+3.2. Triggering Habits
+Presenting meaningful data to the user is encouraging in promoting behaviour change, but pre-
+senting it in a way to compliment behavioural change processes is the most effective method to
+use. Fogg [2013] suggests behavioural change is systematic. He also suggests that motivation is
+not enough to sustain long-term behaviour change. Fogg created Tiny Habits, tiny life changes
+that become automatic. For example he decided to do two push ups every time after he went to
+the toilet. He increased this slowly everyday until he was able to do 20 pushups a day. Wearable
+applications and the presentation of data should not place importance on motivating the individ-
+ual. They should instead accommodate letting the natural processes emerge. He quotes that an
+application can  plant a seed in the right spot and it will grow without coaxing .
+Habits play a substantial role in forming behaviour. As a  behaviour that has been repeated un-
+til it has become more or less automatic, enacted without purposeful thinking, largely without any
+sense of awareness  [Nilsen et al. 2012, p. 1], habits are hard to consciously establish and to change
+and require self-consciousness, willpower and self-regulation. According to Strack and Deutsch
+[2004], motives and behaviours can be addressed to two systems; the Re ective Impulsive Model
+describes these two two systems as the re ective system and the impulsive system. While the re-
+ ective system is characterised by cognitively intensive decision processes based on knowledge and
+active willingness to perform the behaviour, the impulsive system in uences actions concerning
+basic human needs and habits; and it performs with less cognitive load for the triggering of these
+actions. Technologies which support the information processing with less cognitive load could there-
+fore lead to an easier suppression of habitual behaviour in the right moments. Strack and Deutsch
+[2004] also highlighted is the role of the physiological arousal on the re ective system. While a high
+level of arousal promotes the execution of habits and stereotypic behaviour, low levels of arousal
+weaken self-control. A mid level of arousal appears to be the optimal level for the re ective system
+and for addressing conscious behaviour change. Context aware sensing to detect stress and arousal
+could lead to context-aware systems which could give recommendations in the right moment. Food
+and Mood by Carroll et al. [2013] considers  rst approaches in this direction to intervene emotional
+eating habits. Other projects looked into the identi cation of boredom using mobile phone sensing
+[Pielot et al. 2015]. These approaches could build the basis for future contextualised and emotion
+aware interventions.
+The establishment of habits plays a substantial role in establishing long-term behaviour success.
+When we look at the Transtheoretical Model from Prochaska and DiClemente [1982], the transi-
+tion from the action stage to the maintenance stage includes a longer-term adaption of the new
+behaviour, an increased self-con dence and less likelihood to fall back into old behaviours. This is
+also a prerequisite for habits
+Rajanna et al. [2014] created an application called Step up life. The application uses the sugges-
+tion of small contextually suitable activities at regular intervals. Step up life promotes brief bursts
+of physical exercise after periods of inactivity. It does this by sending data in the form of on screen
+nudge reminders. Suggesting small behaviour changes to the user can lead to the incorporation of
+these changes into their daily lifestyles. The changes seem easy to do by the user so they are more
+likely to lead to long-term behaviour change than setting up unrealistic goals.
+3.3. Theory of Planned Behaviour
+When thinking about how best to personalise data representation to make it as persuasive as
+possible, the Theory of Planned Behaviour (TPB) could be considered (Figure 2). Created by Ajzen
+[1991], TPB states that intentions are the best predictor of how an individual is going to behave
+in certain situations. For example, if we plan to do something we are more likely to go through
+with it. Three factors produce an individual s intentions to perform a speci c behaviour. These
+are their attitude, subjective norms and perceived behavioural control. Behavioural attitude refers
+to how the individual feels about the behaviour. This includes affective attitudes which describe
+whether they feel they would enjoy doing it. Also, instrumental attitudes refer to whether they
+feel a behaviour would bene t them. Contextualising health data to make the user aware of the
+bene ts may have an impact on the user s behaviours. Subjective norms deal with the support that
+we get from our friends, family and even the doctor. Injective norms involve others encouraging
+speci c behaviours. An example of this is a friend making you go to the gym. Descriptive norms
+involve others actually engaging in a speci c behaviour. This would involve your friend actually
+going to the gym with you. Wearable ecosystems have adapted the social aspect of sharing data
+to address these social norms. The  nal factor is the extent to which the individual believes that
+they can carry out the behaviour. This is in uenced by how the data is presented to them. If a task
+sounds easy, an individual is more likely to engage in it.
+9
+Fig. 2. Theory of Planned Behaviour
+Arteaga et al. [2010] developed a mobile phone application that considers TPB within its design.
+The app aimed to change an adolescents behaviour and get them to exercise more. They wanted
+to achieve long-term behavioural change as opposed to the short-term changes that other  tness
+games were producing. To design data representations that are engaging for teenagers, the system
+incorporated TPB principles. To stop the user getting bored of the game they decided it needed
+to take their personality into consideration. Everyone s preferences are different so they created a
+game that assesses the person s attitudes. Based on this assessment, it would suggest games that
+would be the most motivational and bene cial to them. Adjusting data representations around an
+individual s attitudes and personal traits can lead to stronger intentions for behavioural change.
+3.4. Ambient Displays
+We mentioned before that the way of presenting the data from wearable sensors to the users plays
+an important role in supporting long-term health promotion. The displaying of numbers and  g-
+ures may not be enough to encourage behavioural change. Ananthanarayan and Siek [2012] state
+that wearable technology has the capacity to track dif cult metrics such as heart rate. The right
+presentation of this data to the user can have an impact on the in uence on behaviour change. The
+subtle and ambient presentation of the data can be a key to motivate and subconsciously trigger a
+behaviour change.
+When presented with a lot of complex information an individual can lack the cognitive capacity
+to process it. Ham and Midden [2010] show that ambient displays can be more persuasive because
+they do not require the user s conscious attention and use little cognitive resources. Studies con-
+ducted have found that the use of simple displays for information have more effect on an individ-
+ual s behaviour than displaying numerical values. Modern health wearable devices have started to
+harness the power of using ambient ways to display data. Consolvo et al. [2008] developed an early
+example of such an application. Ubi t is a mobile application that includes a glancable display.
+This display is a non-literal representation of the physical activity that the user has done. It also
+represents the goals that they have achieved. The display contains a metaphor of a garden and
+the user gains more  owers by exercising more. They gain butter ies in their garden for achieving
+goals. The application collects data from sensors on the user s body. It then analyses the data to
+change the aesthetics of the garden display throughout the week. From studies they discovered
+that participants did  nd the display motivating. They agreed that the metaphorical representa-
+tion of their data helped them to focus on their goals. Lin et al. [2012] presented another similar
+application called BeWell+. The metaphor of  sh within a  sh bowl is used. The more  sh it shows,
+the more physical and socially active the users have been. It also gives feedback on sleep quality by
+changing the light in the underwater world. This application gives unobtrusive feedback whenever
+the user glances at the screen of the phone. This subconsciously promotes healthier behaviour and
+wellbeing. Fortmann et al. [2014] created Waterjewel, a wrist worn device which aims to in uence
+the user to drink more water throughout the day. It has a light up display that indicates to the user
+how much of their daily goal they have already achieved. The device also  ashes every 2 hours
+as a nudge to tell the user to drink more water. Studies conducted with the device found it was
+10
+Action
+I
+n
+c
+o
+n
+s
+i
+s
+t
+e
+n
+c
+y
+Belief
+High 
+Dissonance
+Change 
+Belief
+Change 
+Action
+Change 
+Action Perception
+Fig. 3. Cognitive Dissonance Theory
+Lower 
+Dissonance
+successful in promoting healthy drinking behaviour. Users did drink more water when wearing the
+bracelet then when not.
+3.5. Cognitive Dissonance
+When thinking about the reasons that ambient ways of data representation are effective, cogni-
+tive dissonance theory (CDT) offers some insight (Figure 2). Created by Festinger [1962], cognitive
+dissonance theory refers to situations that cause a con ict for an individual s attitudes, beliefs or
+behaviours. As humans we have a inner drive to keep all three of these in harmony. Contradiction
+can lead to discomfort which causes the individual to change their behaviour to restore the balance.
+Using displays and feedback techniques can also present data in a way to get the user to think of
+the long-term effects of their current short-term actions and cause the contradiction effect.
+The Fatbelt created by Pels et al. [2014] is an example of CDT in action. The device looks into
+utilising isomorphic feedback to get the user to think of the consequences of their behaviours.
+The user wears the device around their waist. It uses physical feedback by in ating around the
+user s stomach when they consume too many calories. This simulates the long-term weight gain
+associated with overeating. In tests the device contributed to a signi cant decrease in calorie con-
+sumption from the user. The use of data in this way leads to the user feeling that the device is
+an extension of their own body. This gives the wearable more emotional power over the user and
+their behaviour. Zhang et al. [2013] created a similar device which uses augmented reality glasses
+to represent potential UV damage on the user s skin. It discouraged them from staying out in the
+sun too long as was also found to encourage healthy behaviour.
+Both techniques made the users more aware of the future consequences of current unhealthy
+behaviour. This makes them feel uneasy about continuing the behaviour. This raised awareness on
+problematic behaviour and the focus on consequences can be an initial trigger to start a behaviour
+change. Prochaska and DiClemente s Transtheoretical Model [1982] describes stages of behaviour
+change and that different techniques can support people to change in different changes. Technolo-
+gies which focus on consciousness raising can support a transition from the pre-contemplation
+stage, where people are not considering a behaviour change in the foreseeable future, to the con-
+templation stage, where people are aware of the problem and are seriously considering to change
+the action in the foreseeable future (the next six month) [Prochaska and DiClemente 1982].
+4. SUPPORT OF BEHAVIOUR CHANGE
+Methods of using wearable device applications to drive behaviour change have proven to work
+well in previous research. But the feasibility of such methods in ensuring long-term retention is an
+area that needs further research. Recent studies focus on using the data that wearable technology
+provides to support individuals with behaviour change. Fogg [2013] showed concerns about technol-
+ogy focusing on motivation for behaviour change for the western culture. He believes that systems
+that support behaviour change would be much more successful in the long term. Similarly, Deci
+[2012] states in his TED talk:  Don t ask how we can motivate people. That s the wrong question.
+Ask how we can provide the conditions within which people can motivate themselves.  Wearable
+products are starting to support instead of drive behaviour and are utilising data with the aim of
+in uencing our inner abilities to change behaviour.
+4.1. External and Self-Monitoring
+This section focuses on the use of wearable technology to monitor health and wellbeing. These
+aspects can be monitored by the users themselves or by an health professional. We brie y outline
+11
+sensing technologies used to provide health related data. This information about our behaviour can
+be a prerequisite for enabling behaviour change. Fogg s behaviour change model describes  ability 
+as factor of behaviour [Fogg 2009]. Monitoring devices can provide information and ease our ability
+reason about behaviour. We then focus on the use of data for self-re ection, which can help improve
+self-understanding. This increased self-understanding can lead to an individual making changes
+and informed decisions in their everyday behaviours. Similarly, COM-B by Michie et al. [2011]
+model identi es the capability as an important component to enable behaviour. Capability can be
+seen as the psychological and physical capacity of a user to engage in a behaviour; and it is partially
+characterised by being able to comprehend and reason about the target behaviour. This comprises
+knowledge about the behaviour as well as the ability to compare the behavioural performance with
+the target behaviour. Behaviour monitoring is an important part in this process to enable users to
+make informed decisions.
+4.1.1. Health Monitoring. The increasing accuracy and portability of health monitoring sen-
+sors is promoting less obtrusive data collection and enables long-term health monitor-
+ing [Pantelopoulos and Bourbakis 2010]. There are many examples where wearable technol-
+ogy is used successfully in monitoring an individual s recovery from illnesses and rehabilita-
+tion [Patel et al. 2012]. While this health data can be used by the user to adjust heath behaviour,
+the data provided by wearable devices allow this monitoring to happen remotely, too. An example
+of this could include a medical professional being able to monitor patients without them having
+to be in the hospital. This is advantageous because the patient can bene t from healing at home.
+Being at home is more comfortable for many and this can lead to improved healing compared to a
+recovery in hospitals. Remote monitoring also cuts costs for the healthcare system due to shorter
+hospital stays.
+Table I. Common wearable sensors and example applications
+Sensor
+Measurement
+Examples
+Accelerometer
+Is usually used to determine movements and activity
+by measuring the acceleration.
+  Activity monitor:
+Bulling et al. 2014]
+[Clawson et al.
+2010;
+  Movement
+execution
+in
+rehabilitation:
+[How et al. 2013; Nerino et al. 2013]
+food
+(smoking,
+tracking
+  Habit
+intake):
+Stretch sensors
+(textile)
+Stretch sensors are  exible sensors that change con-
+ductivity when stretched or bend.
+[Lopez-Meyer et al. 2013; Amft et al. 2005]
+  Sports performance: [Spelmezan et al. 2009]
+  Measure angle of
+joints in rehabilitation:
+[Shyr et al. 2014]
+  Movement of the chest to determine respiration
+rate: [Qureshi et al. 2011]
+Piezoelectric
+sensors (textile)
+Piezoelectric sensors measure force/pressure applied
+to them
+  Tracking of hits Taekwando [Chi et al. 2004]
+Heart Rate
+sensor (ECG or
+PPG)
+Heart Rate sensors can be used to measure the ac-
+tivity of the heart, which gives indication on health,
+energy expenditure or arousal
+levels. It can be
+measured with Electrocardiograms (ECG) or Photo-
+plethysmogram (PPG)
+  For more accurate calculation of Energy Expen-
+diture: [Altini et al. 2013]
+  Fetal monitoring
+[Fanelli et al. 2013]
+with
+special
+belt:
+UV sensors Sense the amount of UV light
+  For warnings when there
+is
+sun light
+Ananthanarayan et al. [2014]
+exposure:
+[Zhang et al.
+too much
+2013],
+GPS GPS is used for localisation
+  Used
+to
+contextualise
+[Macvean and Robertson
+[Chuah et al. 2012]
+other
+2012]
+data:
+and
+Wearable devices bring a wide variety of sensing to detect the amount, type and execution of
+movements. An overview of sensors and their application can be found in Table I. Accelerometers
+are devices which determine acceleration data and can therefore detect movements. These sen-
+sors are widely used for activity tracking [Garcia-Ceja et al. 2014]. They can be present in either in
+12
+mobile phones or body-worn devices. Accelerometers form the basis for data collection in many com-
+mercially available activity trackers. Utilising Accelerometer data can identify activities such as
+walking, running, eating and drinking movements [Amft et al. 2005; Bulling et al. 2014]. They can
+even detect human behaviours such as smoking [Lopez-Meyer et al. 2013]. A clinician or the indi-
+vidual themselves can analyse the automatically recorded data. Analysis of behaviours and habits
+can help support a healthy behaviour change by forming a basis for services such as counselling or
+other intervention methods.
+This also brings new possibilities to the physiotherapies after injuries or surgeries. How et al.
+[2013] created a mobile application called MyWalk. The application supports patients who have
+suffered from a stroke in the past. Step patterns of the wearer provided from the phones accelerom-
+eter detect gait asymmetry. If asymmetry exists, it lets them know that they need more training to
+establish a symmetry in their step pattern again. The mobile app offers different trainings modes
+and a overall score after each session. The user is able to view their score history to review their
+improvements. They can also share this score history with their therapist. The data collected from
+their training at home may help to enhance their physiotherapy sessions and enables patients to
+monitor a part of their rehabilitation from home. Nerino et al. [2013] focused on the rehabilitation
+after knee surgery. They used accelerometers to collect data at different positions around the leg.
+They then used this data to monitor motor functions of the exercising patient. They created an
+application that included a coaching function, which would suggest exercises. There is also a video
+conferencing functionality for situations when the therapists is needed. Patel et al. [2012] presents
+a detailed review of wearable sensors that are currently used for rehabilitation and he especially
+identi es the trend of using ambient sensing for holistic home health monitoring and the need for
+a telepresence integrated in home monitoring systems.
+Textile sensors and fabrics are other enablers for wearable technology in the healthcare sector.
+The combination of conventional, non-conductive fabrics with conductive materials have led to new
+sensor technologies [Marculescu et al. 2003]. These new technologies allow easy integration into
+textile products and garments. Stretch sensors are an example of these new technology. These sen-
+sors are able to collect data that can be used to monitor movements of joints in the body [Shyr et al.
+2014]. Qureshi et al. [2011] used knitted stretch sensors to monitor breathing and Rai et al. [2013]
+used textile sensors to monitor neurological and cardiovascular biosignals. Textile sensors bring the
+possibilities of  exibility and unobtrusive integration into clothing. Where delicate and soft sensors
+are required,  exibility can be an advantage. An example of where this is important is textiles for
+newborn infants. Chen et al. [2010] developed neonatal babywear that measures the temperature
+of babies using soft textile sensors. The sensors were designed to be aesthetically pleasing but also
+as comfortable as possible for newborns to wear. An extensive review of wearable, smart textiles
+has been presented by Stoppa and Chiolerio [2014].
+Another use case is the monitoring of health parameters to give the patient peace of mind and
+contact a medical professional in emergencies. Wearable sensors can be used to monitor pregnant
+women. Fanelli et al. [2013] monitored the fetal heart rate with a stomach belt. The designed the
+belt to be easy to put on to ensure it is easily useable at home. This reduces hospital visits during
+the pregnancy and make the pregnant woman feel calmer.
+There are several technologies for detecting seizures with wearable technology which could pro-
+vide data to inform clinicians or family of a seizure. Patel et al. [2009] used accelerometer data
+and EEG brain signals to detect seizures with a 95% accuracy. The Human+ platform created by
+Altini et al. [2011] uses various sensors like EEG, heart activity via ECG and skeletal muscle ac-
+tivity via EMG to obtain data and detect seizures. While these approaches are not very usable
+in everyday applications due to the use of EEG and ECG electrodes, the MIT Affective Comput-
+ing group developed a seizure detecting wristband which uses Electrodermal Activity [Poh et al.
+2012]. This research formed the foundation for the commercially available Embrace watch3. The
+watch has an accompanying app, which alerts parents or caretakers in the event of a seizure of
+the child or patient. Additionally it can be used to monitor stress and sleep levels. Wearable tech-
+nology can be used to monitor behaviour and use the data to gain insight into health states of a
+person. Madan et al. [2010] looks at the usage of mobile phone data to detect the health status of an
+individual. The data is analysed to detect health conditions such as colds or depression. This appli-
+cation can form the basis for informing the user s doctor of their condition. More broadly available
+mobile phone sensing can be used for epidemiological studies amongst large populations.
+In healthcare it is often necessary to avoid unhealthy situations. Data provided by wearable
+technology can help identify unhealthy situations and environmental in uences. One example is
+the UV sensing glasses from Zhang et al. [2013]. Too much sun exposure is widely known to be
+3https://www.empatica.com/product-embrace
+13
+connected to skin cancer. These glasses keep track of the sun exposure and warn the user when
+they are at risk. Fabrizi [2014] presented a concept for a wearable textile  ower. The  ower is a
+visual representation of air quality data and can raise the awareness about unhealthy polluted air.
+4.1.2. Quanti ed Self. The Quanti ed Self (QS) is a new movement supported by sensing data ob-
+tained from wearable devices. QS is part of the Personal Informatics, focusing on tools to support
+the personal growth and improvement and an individual. Within the QS community, this is mostly
+achieved through the use of technology in data collection and analysis with the focus on collecting
+data about ourselves with the purpose to re ect. Re ection can increase self-understanding about
+areas that need improvement in the future [Swan 2013].
+Choe et al. [2014] state that health improvements are one of the most reported reasons for self-
+quanti cation and especially activity is a commonly tracked feature. Commercially available  tness
+trackers like Fitbit or Jawbone4 allow daily assessment of steps and activity. Fitness watches, like
+the Atlas5 promise the automation of workout logging, which is usually a manual task. It achieves
+this by using data to identify workout activities and repetitions. The consumer market for self-
+tracking wearable technology is ever growing. Tools like the open-source Fluxtream6 support self-
+tracking by providing a platform for data aggregation and visualisation from multiple sources. It
+also supports the identi cation of correlations within the data.
+Quanti ed Self can be a powerful tool to gain insights and support behaviour changes within
+an individual by providing information on the own performance; this allows users to identify . But
+it can requires skills to understand data fully to ensure long-term engagement. Choe et al. [2014]
+identi es two reasons why self-tracking often fails. One is that too many things are tracked and the
+effort is relatively high to track these. Automated data capturing and simple tracking mechanisms
+can ease the burden of tracking. The second reason is lack of knowledge about triggers and the
+context of the data. This confusion around the interpretation of data makes behaviour change
+dif cult for the user. Self-tracking can be a powerful tool for re ecting and making us more aware
+of our own daily habits, patterns and performance. But at the current time, it still requires a
+lot of effort, engagement and knowledge. Creating tools to ease these hurdles could assist us by
+identifying our own behavioural and habitual patterns. By presenting this data back effectively it
+could provide active support for self-improvement.
+4.1.3. Sports Performance Monitoring. When it comes to sports, performance monitoring is essential
+in improving performance or preventing injuries. Using data monitoring can be useful for individ-
+ual or even group performance. Strohrmann et al. [2011] looked at the use of shoe sensors to access
+kinematic parameters of runners. This data can give an insight into the runner s performance and
+technique. This can help medical professionals and the runners themselves to analyse how effec-
+tive the training was. The Sensoria  tness tracker works in a similar way7. The Sensoria tracker
+consists of a sock with textile pressure sensors and an attachable main unit for the data transfer
+to a mobile app. It can provide data about the performance during a run as well as feedback about
+the right running technique.
+Spelmezan et al. [2009] looked at the use of force, bend and accelerometer sensors to track the
+movements of snowboarding beginners. The data collected is then shared with their trainers. The
+data helps the trainer to give more accurate feedback on the movements and technique of the
+snowboarder. They suggest a system like this could help in the teaching process. Chi et al. [2004]
+looked at the tracking of movements of Taekwondo players. They used piezoelectric sensors to
+detect forces applied by hits of the competitor. The system then counts the hits and calculates a
+score based on this information. This calculated data is then used as feedback for the athletes,
+trainers and the jury in competitions. Not just the performance of an individual is important.
+In team sports, the performance and communication of the whole team matters. Technological
+advances within networks and algorithms allow real-time assessment and remote monitoring of
+bio-signals within a group of athletes. Garcia et al. [2011] gives an example for using bio-signal
+sensing to monitor a group of soccer players.
+4.2. Encouraging Re ection
+Re ection is uniquely human ability and belongs to the basic capabilities de ned in the Social
+Cognitive Theory by Bandura [2001]; next to our capability to abstract, to learn from others, think
+about the future, and validate our own behaviour against standards. While re ection is a cogni-
+4www. tbit.com/ and www.jawbone.com/
+5www.atlaswearables.com/
+6www. uxtream.org/
+7http://www.sensoria tness.com/Technology
+14
+tively heavy process, it involves introspection and a willingness to learn; and allows us to make
+decisions based on knowledge [Strack and Deutsch 2004]. Re ection plays a substantial role in all
+the above presented sections on external and self-monitoring. Getting users to re ect upon their
+own behaviour can help them to stay on track by supporting their learning and introspection; and
+it builds the basis for to self-control. It helps us identify discrepancies of our own behaviour to the
+desired outcome and supports the regulation towards goals.
+Fleck and Fitzpatrick [2010] distinguished different levels of re ection, these include revisiting,
+revisiting with explanation, exploring relationship, fundamental change, and wider implications.
+The Quanti ed Self movement and the exploration of relationships
+Fleck and Fitzpatrick [2010] present an overview on technology support for re ection. One sup-
+port type focuses on helping us revisit information, moments and thoughts from the past. While
+they consider  revisiting  not as a re ection process, it is a facilitator. Technology which records
+aspects of our lives and let us revisit these aspects later, can become such a facilitator. Lifelogs can
+be seen as such technology; the aim of a lifelog is to record various aspects of a person s lifestyle.
+Gemmell et al. [2006] created one of the  rst technologies to support lifelogging. MyLifeBits creates
+a complete historical log of documents, websites, and other objects a person has encountered whilst
+using their computer. To build upon the effectiveness of presenting data in a lifelog, Epstein et al.
+[2014] utilised the Moves mobile phone app8 which records activity and location data on the phone.
+They developed cuts which focus on a subset of the data with a shared feature, e.g. days with the
+most physical activity or time to commute by the type of weather at the day. New visualisation
+offered new insights in the data for the user and were perceived positively.
+Technologies can also support gaining explanations for experiences or on data. In section 4.1.1 we
+highlighted health monitoring systems which allow the sharing of data with health professionals.
+This dialog can support the process of making sense of the own health data. Kocielnik et al. [2013]
+focused on the long-term stress monitoring at the workplace. They used wristbands to monitor
+stress levels and combined it with data collected from online calendars to generate an aggregated
+view for self-re ection. This allowed workers to review the stress levels in different situations at
+the workplace. Interviews conducted with participants were promising and indicated that workers
+found it easier to identify stressful factors and support them to make sense from the situations.
+Another commonly used technique mentioned by Fleck and Fitzpatrick [2010] is the use of tech-
+nology to  see more . This includes technologies addressing the collection of data, we could not
+gather without technological support, like step count data or bio-signal data. Several project have
+looked into supporting self-re ection; Sanches et al. [2010] developed a mobile application called
+Mind the body which is focussed on mental health and encourages the user to re ect upon both
+negative and positive aspects of their behaviour. Sensing data on skin conductance and heart rate
+are used to determine the stress levels of the user. The mobile phone app presents the stress levels
+in real time. Based on the user feedback during their study, they also offer a history to view past
+stress levels and support re ection. [Fleck and Fitzpatrick 2010] also highlighted the important of
+audio and visual recording to relive our experience. St  ahl et al. [2009] created Affective Diary which
+is a digital diary. The mobile application has access to recorded stress data from sensors, mobile
+usage data, and photos. They present this data in a timeline which contains photos and arousal
+levels represented by shapes. They found that some users appreciated the application as it helped
+their self-understanding. Others experienced discomfort because the data shown highlighted bad
+moments.
+4.3. Self-ef cacy
+Self-ef cacy is a person s belief in their ability to succeed within a speci c situation. Bandura
+[1977] stated that these beliefs are great drivers of how people think, behave and feel. A person
+with a strong sense of self-ef cacy forms a strong sense of commitment to tasks and likes to master
+challenges. A person with a weak sense of self-ef cacy would avoid challenging tasks altogether. In
+order to sustain long-term behavioural change, an individual s self-ef cacy needs to remain high.
+There are different techniques to promote physical activity; Supporting vicarious experience from
+observing others being successful, giving feedback, providing participants with goals set by an
+interventionist and tailoring of interventions have shown to be successful strategies to increase
+self-ef cacy for physical activity[Consolvo et al. 2009]. In section 2.2, we already presented a body
+of research on social in uences and how the observations of others can support the own belief in
+being able to succeed.
+The most effective method for maintaining self-ef cacy is mastery experiences. If an individ-
+ual has success and an application makes them more aware of this, it can have a positive effect
+8www.moves-app.com
+15
+on their self-con dence. Wearable applications can give rewards when users have achieved their
+goals. Using data in a way to set realistic goals provides the most effective methods of support for
+the individual. Using unrealistic and generic goals within a system could set the user on a path
+where they are likely to not succeed. This can cause more damage than good. The GymSkill mo-
+bile application by Kranz et al. [2013] involves sensor data logging and activity recognition. The
+application works for an individual while they are balance board training. They use this to present
+the user with goals suitable for their ability. In the study, users liked the personalised feedback
+and suggestions. This shows that there is potential for this type of system to support long-term
+behaviour change.
+4.4. Social Support
+Social support has been shown to have bene cial effects on our health [Holt-Lunstad and Uchino
+2015];
+it can be de ned as the  verbal and nonverbal communication between recipients
+and providers that reduces uncertainty about the situation, the self, the other, or the re-
+lationship, and functions to enhance a perception of personal control
+in one s experience 
+[Albrecht and Adelman 1987, p. 19]; and it can play an important part in supporting behaviour
+change. Albrecht and Adelman [1987] describe the key factors of social support as: enhancing con-
+trol, communication, and reduction of uncertainty. Different types of social support can be de-
+rived [Schaefer et al. 1981]. Emotional support is the offering of support in the form of concern,
+affection and caring from others. This type of support makes the individual feel valued; and it
+can also promote the feeling of the carried out behaviour being meaningful. Providing emotional
+support through a wearable interface may be positive in supporting behaviour change. It could be
+effective because it enhances the support that we get from our friends and family in everyday life.
+In their exploratory study - CalmMeNow - Paredes and Chan [2011] looked at different interven-
+tions for people in stressful situations; haptic feedback (guided breathing and acupressure), games
+and emotional, social support in form of text messages from loved ones. Although the results show
+no signi cant difference between these intervention types on the relaxing effect, this  ndings could
+be personality type speci c.
+Another type of social support is informational support. This involves offering advice and sug-
+gestions to someone to help them solve problems. Health and  tness wearables can utilise informa-
+tional support through the use of virtual trainers. Freyne et al. [2012] created an application which
+comprises of a weight management mentor that supports dietary changes. The application would
+take in data about what the user was eating. It would then analyse the collected data and make
+suggestions for changes to the user. They created two versions of the application; the full version
+offered suggestions and pushed these as prompts to the user, and the control version was a simple
+base line application that did not have the pushing feature. The study found that users who had
+suggestions in the form of prompts sent to them, lost more weight than those who were not offered
+suggestions.
+Companionship support gives an individual a sense of belonging to a social network or group.
+This involves encouraging the presence of others in shared social activities. Mueller et al. [2007]
+created a wearable device called Jogging over a distance. The device uses audio pace cues to allow
+two people to go on a run together when they were in two different geographical locations. The
+spatial sound lets the user know whether the other runner is jogging in front or behind them. They
+found that providing companionship support in this situation was very supportive. Users could  nd
+a person to run with of similar experience and at the time of day which was most convenient to
+them.
+Polzien et al. [2007] aimed to investigate support offered through data provided by a wearable
+compared to support from a human being. Their study compared results of weight loss programs
+supported by counselling or supportive technology. The technology used was the SenseWear Pro
+wristband. This provided data to the user about their total energy expenditure and sleep ef ciency.
+The study found that the group that used technology lost more weight within the 12 week inter-
+vention period. Those who had face to face conversations with a counsellor did not lose as much.
+Comparing the effectiveness over an even longer period would provide a more solid insight. The
+study also found that a mixture of using counselling and technology was not as effective as solely
+using one or the other.
+4.5. Biofeedback
+Another important topic for supporting behaviour change is biofeedback. Biofeedback involves
+instant feedback on an individual s own biosignals, like heart rate, respiration or brain waves.
+Providing meaningful feedback pre-requires that the patient understands about the meaning of the
+signals as well as how to in uence them. Appropriate visual cues and training can help the user to
+16
+instantly adjust the behaviour to positively in uence their biosignals; whereby these adjustments
+can improve physical and mental health [Frank et al. 2010]. The use of wearable technology can
+help to bring the traditional biofeedback therapy to the home of the user.
+MacLean et al. [2013] created MoodWings, a project which uses biofeedback for drivers. The aim
+of the wearable bracelet was to make the users aware of their current stress state while they are
+driving. When the driver was stressed, the butter y s wings  apped faster. The feedback positively
+increased their task performance and driving safety, but they found showing feedback on a driver s
+internal state could make them feel even more stressed. Yu et al. [2014] presented a study looking
+at use of biofeedback to change the ambient environment. They used Electrocardiogram sensors to
+observe the heart activities; the changes in heart rate were then used to control the ambient light-
+ning in the room. The aim was to help the user relax by actively trying to control their heart rate
+patterns. This subtle and intuitive interface was perceived more positively than usual Graphical
+User Interfaces.
+5. CHALLENGES AND OPPORTUNITIES FOR FUTURE WORK
+In the previous sections, we surveyed the current  eld of wearable technologies and applications
+with focus on health and  tness promotion. Different techniques and psychological concepts have
+been applied and they bring new opportunities and challenges along. In this section, we explain
+the challenges wearable technology faces at the current time.
+5.1. Encourage Self-Motivation
+Most wearable applications aim to drive behavioural change through persuasion and creating
+extrinsic motivation within an individual. We showed that they achieve this by using gami cation,
+incorporating social incentives or persuasive data representation methods. We believe that there
+are issues with this approach of machine-made motivation.
+Constant motivation through external rewards can lead to the effect that we expect to get
+rewarded all the time to stay motivated. Effects on the removal of those external incenti-
+tives remain an area for research. These external motivators can even spoil otherwise intrin-
+sic and enjoyable task [Greene and Lepper 1974] and decrease wellbeing and feelings of self-
+determination [Deci and Ryan 1985]. Wearable applications currently risk manipulating data be-
+yond recognition, especially games.
+In games, the actual sensing data is often not represented in a direct way to the user on the
+interface but instead it may be manipulated and hidden behind game points. In the short term,
+this can create motivation and a stimulus for the user to move in order to score points. But the
+behaviours may not be adapted by the users every day life outside of the game. Other studies have
+shown that the removal of the game elements lead to a decrease in usage of a system [Thom et al.
+2012]. A similar effect could in uence the long-term effects of gami ed wearable applications. Fur-
+ther studies have to investigate long-term motivational consequences of game elements on health
+behaviour changes.
+In section 2, we presented the Behavioural Change Model by Fogg [2009] which illustrates that a
+balance of high motivation and high ability to execute a behaviour in combination with a trig-
+ger is needed to facilitate behavioural change. Instead of persuading us to change, wearables
+should support self-motivation and raise awareness through providing a direct, positive link be-
+tween changing our behaviour and the health outcomes. Technologies, which show us the con-
+sequences of unhealthy behaviour, like the FatBelt [Pels et al. 2014], could raise the awareness
+and our self-motivation to change and avoid unpleasant outcomes. Identifying these unhealthy
+behaviours and providing contextualised, meaningful alternatives could help to promote a better
+behaviour through internal triggered motivation.
+5.2. Design to support and motivate long-term use
+Long-term retention of health and  tness wearable devices
+cur-
+rently [Ledger and McCaffrey 2014]. The majority of the studies we present in this paper
+take place over a short time span. Studies conducted over longer time periods are scarce and hard
+to  nd. The development of future devices and future research should take this into consideration.
+Long-term studies and the comparison of multiple approaches, like gami cation and social incen-
+tives, could lead to insights on sustainable support for healthier behaviour. There is also evidence,
+that personal traits have to be taken into account (e.g. [Karanam et al. 2014]). Long-term studies
+could investigate these issues and help to develop a framework for the design of wearable health
+promotion applications which are optimised to support different personality types in the long term.
+It is important to bring together researchers, designers and engineers with different background
+and expertise to address technological problems, like accurate sensing and battery life, device de-
+is a big issue
+17
+sign and aesthetics, cognitive supporting visualisations, as well as psychological, behavioural con-
+cepts.
+5.3. Support of change from the beginning to the end
+Behaviour change does not happen overnight and with the same stimuli throughout the process,
+but it rather is happening in stages. The Transtheoretical Model from Prochaska and DiClemente
+[1982] describes six stages of behaviour change:
+  Pre-contemplation: In this phase, the user has no intention to change in the near future. Tech-
+niques raising the consciousness about the problem can help raising the awareness and support
+a transition to the next stage.
+  Contemplation: The user became aware of the problem and has the intention to change in the
+near future. If this change really happens in the near future is still unclear, but support of self-
+evaluation can support a transition forward.
+  Preparation: This stage is characterised by the serious intent to action and often involves  rst
+steps towards action. Self-ef cacy support and support of commitment can help towards a transi-
+tion into the action phase.
+  Action: People in this stage have begun to change their behaviour and make efforts to keep this
+going. Social support, reinforcement and substitution of problem cues with healthy cues can sup-
+port the establishment of a long-term behaviour and healthy habit.
+  Maintenance: This stage is characterised by a successful behaviour change of more than six month
+and is characterised by a high self-control and self-ef cacy.
+The iteration through this stages is not necessarily sequential and it is possible, that users fall
+back. Technology that helps through all the stages could help us to identify problematic behaviour
+and become aware of it, take the  rst action steps and ensure a long-term maintenance.
+5.4. Personal but non-intrusive interfaces for data collection and analysis
+Studies show that users want wearable health devices and applications to be person-
+alised to their needs and situation [Ananthanarayan and Siek 2012; Gockley et al. 2006;
+Macvean and Robertson 2012]. Collecting and utilising data about the user s behaviour, person-
+ality and location can give insights in their needs and situation and support personalised and
+meaningful feedback.
+Collecting data about the user s behaviour and health raises issues concerning privacy and prac-
+ticability. How much data needs to be collected about a user in order to be able to give a reliable
+representation of the user s lifestyle? This includes and overview of their choices and overall health.
+Obtaining many different types of data can require a collection of different sensing methods. All
+of these sensors obtaining data may feel intrusive for the user. We feel there is an opportunity
+to study the correlation between the amount of data collected about someone and how effective
+it is at describing their health in general. Current systems require many data sources to built a
+context around an individual s health. These countless sources can include emails, sleep patterns
+and location. Some users may  nd these systems to be intrusive and may not be comfortable with
+giving all of this information away. These users should still be able to have access to a system that
+is customisable to their comfort requirements.
+A compromise needs to be found between two elements. The  rst is the amount of data points
+a system collects to analyse. The second is the user s perception of personalisation. Can a system
+using minimal data input sources intelligently be just as personal as another with multiple inputs?
+Devices should not be intrusive, they should blend into the user s environment. Devices need to
+selectively analyse the minimal amount of data collected ef ciently. Future work in this area will
+lead to integrated intelligent systems. These systems will offer a personal interface, regardless of
+the amount of data the user wants to provide.
+5.5. Understanding not everyone wants and needs the same type of support
+Most wearable applications offer motivation or support in one de ned way. But the support of-
+fered may not be the most effective method for every person that uses the application. This leads to
+applications being limited to the amount of people that they can support. There is an opportunity to
+utilise data to  nd out which methods are most effective in supporting behaviour in each user. This
+could work well in is establishing the most effective social incentives to use within an application.
+For example, one person may be motivated more by competing with their friends but another
+person may prefer working as a team to achieve goals [Chen and Pu 2014]. Some people may ex-
+perience the self-monitoring and analysis of their own data as a suf cient tool to gain insight in
+their health and adjust their behaviour based on that. Other users may need active support from
+18
+an wearable application through rewards, interventions or similar things. But little research has
+looked into providing appropriate methods support. A smart and adaptive system can analyse data
+and learn from the user s behaviour to work out an individual s support preferences.
+5.6. Installing and Changing Habits
+As mentioned in Subsection 3.2, habits are automatic behaviours which require less cognitive
+load. Old habits are hard to overcome, and new ones hard to establish. Willpower and self-control
+are key factors, and both are dependent on our arousal and stress levels [Strack and Deutsch
+2004; Segerstrom and Nes 2007]. Technology could support us in this processes, by detecting those
+arousal levels and offering contextualised support in those situations. Furthermore, technology can
+be used to support stress management.
+5.7. Technology Adaption
+An important factor for wearable device facilitated behaviour change interventions is the adap-
+tion of the technology by the user. The Technology Acceptance Model by Davis et al. [1989] states
+that tho main factors need to be considered for adaption: the perceived ease of use and the per-
+ceived usefulness. A prerequisite for users to use the health promoting technologies is their un-
+derstanding and perception of the technologies ability to enhance their performance and improve
+their health. New applications have to clearly communicate their role in the intervention pro-
+cess. In the second version of the model this criteria was extended by social in uences like the
+subjective norm of others approving of the use of such technology and an potential increase of
+status within a social group [Venkatesh and Davis 2000]. The perceived ease of use is in uenced
+by factors like computer self-ef cacy and anxiety, the perceived controls and external resources
+to support the technology usage, and the personal ability for computer playfulness to try out new
+interactions [Venkatesh and Bala 2008].
+These factors have to be considered through the design processes of wearable device user inter-
+faces have to consider these factors to ease the use of the technology, support long-term retention
+and support the behaviour change.
+6. DISCUSSIONS AND CONCLUSION
+In this paper, we reviewed the current research on utilising wearable technology to in uence
+human health behaviour. We focused speci cally on methods of data collection, manipulation and
+representation in wearable ecosystems. As previous studies have shown, wearable applications
+and the data have the power to drive positive behaviour change within an individual. By utilising
+methods such as gami cation and social interaction, motivation can be created. This motivation
+increases the possibility of someone changing their health behaviours for the better. But we have
+found issues with using wearable sensing data as a behavioural driver. Although studies have
+shown it to be effective in the short term, there are issues regarding data losing its meaning to
+the user over time. As a response to this, it has been suggested that data and data representations
+should act as a facilitator for behaviour change. This can be archived by encouraging re ection and
+presenting the health data to accommodate cognitive theories and support the natural behavioural
+change process. Using data as a facilitator is showing positive hope for the development of further
+health wearables, but we believe that even more research is needed.
+Through outlining previous studies, we believe that there are many opportunities for further
+research. Personalisation is an area in which more research would be bene cial. A system that
+can adapt to the user and recognise their needs could help to form a long-term relationship be-
+tween a user and their health data. Data meaningfulness needs to remain high to ensure long-
+term retention between the user and their device. We suggest ways that this could be done through
+non-invasive collection and intelligent interpretation of health data in a way to encourage self-
+motivation. Wearable systems need to offer a number of different data manipulation and presen-
+tation methods. The methods would then be chosen to re ect which process the system determined
+to be the most effective. Ideally, research needs to be conducted that can inform the design process
+of future wearable technology. Ensuring long-term retention needs to be considered from the very
+beginning of the development process to create effective systems.
+REFERENCES
+Aino Ahtinen, Pertti Huuskonen, and Jonna H  akkil  a. 2010. Let s All Get Up and Walk to the North
+Pole: Design and Evaluation of a Mobile Wellness Application. In Proceedings of the 6th Nordic
+Conference on Human-Computer Interaction: Extending Boundaries (NordiCHI  10). ACM, New
+York, NY, USA, 3 12. DOI:http://dx.doi.org/10.1145/1868914.1868920
+19
+Icek Ajzen. 1991. The theory of planned behavior. Organizational behavior and human decision
+processes 50, 2 (1991), 179 211. DOI:http://dx.doi.org/10.1016/0749-5978(91)90020-T
+Terrance L Albrecht and Mara B Adelman. 1987. A Theoretical Perspective.
+Noor Ali-Hasan, Diana Gavales, Andrew Peterson, and Matthew Raw. 2006.
+Fitster:
+Social Fitness Information Visualizer. In CHI  06 Extended Abstracts on Human Fac-
+tors in Computing Systems (CHI EA  06). ACM, New York, NY, USA, 1795 1800.
+DOI:http://dx.doi.org/10.1145/1125451.1125792
+M. Altini, S. Del Din, S. Patel, S. Schachter, J. Penders, and P. Bonato. 2011. A low-power
+multi-modal body sensor network with application to epileptic seizure monitoring. In Proceed-
+ings of the 2011 Annual International Conference of the IEEE on Engineering in Medicine
+and Biology Society (EMBC  11). IEEE Computer Society, Washington, DC, USA, 1806 1809.
+DOI:http://dx.doi.org/10.1109/IEMBS.2011.6090515
+Marco Altini, Julien Penders, and Oliver Amft. 2013. Personalizing Energy Expenditure Estima-
+tion Using a Cardiorespiratory Fitness Predicate. In Proceedings of the 7th International Confer-
+ence on Pervasive Computing Technologies for Healthcare (PervasiveHealth  13). ICST (Institute
+for Computer Sciences, Social-Informatics and Telecommunications Engineering), ICST, Brus-
+sels, Belgium, Belgium, 65 72. DOI:http://dx.doi.org/10.4108/icst.pervasivehealth.2013.252069
+Oliver Amft, Holger Junker, and Gerhard Troster. 2005. Detection of Eating and Drinking Arm
+Gestures Using Inertial Body-worn Sensors. In Proceedings of the Ninth IEEE International
+Symposium on Wearable Computers (ISWC  05). IEEE Computer Society, Washington, DC, USA,
+160 163. DOI:http://dx.doi.org/10.1109/ISWC.2005.17
+Swamy Ananthanarayan, Nathan Lapinski, Katie Siek, and Michael Eisenberg. 2014.
+To-
+wards the Crafting of Personal Health Technologies. In Proceedings of the 2014 Confer-
+ence on Designing Interactive Systems (DIS  14). ACM, New York, NY, USA, 587 596.
+DOI:http://dx.doi.org/10.1145/2598510.2598581
+Swamy Ananthanarayan and Katie A. Siek. 2010. Health Sense: A Gedanken Experiment on
+Persuasive Wearable Technology for Health Awareness. In Proceedings of the 1st ACM In-
+ternational Health Informatics Symposium (IHI  10). ACM, New York, NY, USA, 400 404.
+DOI:http://dx.doi.org/10.1145/1882992.1883051
+Swamy Ananthanarayan and Katie A Siek. 2012. Persuasive wearable technology design for health
+and wellness. In Proceedings of the 6th International Conference on Pervasive Computing Tech-
+nologies for Healthcare (PervasiveHealth  12). IEEE Computer Society, Washington, DC, USA,
+236 240. DOI:http://dx.doi.org/10.4108/icst.pervasivehealth.2012.248694
+Ian Anderson, Julie Maitland, Scott Sherwood, Louise Barkhuus, Matthew Chalmers, Malcolm
+Hall, Barry Brown, and Henk Muller. 2007. Shakra: Tracking and Sharing Daily Activity Levels
+with Unaugmented Mobile Phones. Mobile Networks and Applications 12, 2-3 (2007), 185 199.
+DOI:http://dx.doi.org/10.1007/s11036-007-0011-7
+Elliot Aronson, Timothy D Wilson, and Robin M Akert. 2009. Social Psychology. Pearson.
+Sonia M. Arteaga, Mo Kudeki, and Adrienne Woodworth. 2009. Combating Obesity Trends in
+Teenagers Through Persuasive Mobile Technology. SIGACCESS Access. Comput. 94 (2009), 17 
+25. DOI:http://dx.doi.org/10.1145/1595061.1595064
+Sonia M. Arteaga, Mo Kudeki, Adrienne Woodworth, and Sri Kurniawan. 2010. Mobile Sys-
+tem to Motivate Teenagers  Physical Activity. In Proceedings of the 9th International Con-
+ference on Interaction Design and Children (IDC  10). ACM, New York, NY, USA, 1 10.
+DOI:http://dx.doi.org/10.1145/1810543.1810545
+Solomon E Asch. 1951. Effects of group pressure upon the modi cation and distortion of judgments.
+In Groups, leadership and men; research in human relations, Harold Guetzkow (Ed.). Carnegie
+Press, Oxford, 177 190.
+Albert Bandura. 1977. Self-ef cacy: toward a unifying theory of behavioral change. Psychological
+Review 84, 2 (1977), 191 215.
+Albert Bandura. 2001. Social cognitive theory: An agentic perspective. Annual review of psychology
+52, 1 (2001), 1 26.
+Alan D Berkowitz. 2004. The Social Norms Approach: Theory, Research, and Annotated Bibliogra-
+phy. Accessed: 15/01/2016. (2004). www.alanberkowitz.com/articles/social norms.pdf
+Timothy Bickmore, Daniel Mauer, Francisco Crespo, and Thomas Brown. 2008. Negotiating Task
+Interruptions with Virtual Agents for Health Behavior Change. In Proceedings of the 7th Inter-
+national Joint Conference on Autonomous Agents and Multiagent Systems - Volume 3 (AAMAS
+ 08). International Foundation for Autonomous Agents and Multiagent Systems, Richland, SC,
+1241 1244. http://dl.acm.org/citation.cfm?id=1402821.1402841
+Julian Bleecker, Mark Bolas, Will Carter, Perry Hoberman, and Aaron Meyers. 2007. MobZombies:
+A Wearable Sensor For A Playground Style Electronic Game. In Proceedings of the 2007 11th
+20
+IEEE International Symposium on Wearable Computers (ISWC  07). IEEE Computer Society,
+Washington, DC, USA, 1 4. DOI:http://dx.doi.org/10.1109/ISWC.2007.4373778
+Meg Bruening, Marla Eisenberg, Richard MacLehose, Marilyn S Nanney, Mary Story, and Dianne
+Neumark-Sztainer. 2012. Relationship Between Adolescents  and Their Friends  Eating Behav-
+iors: Breakfast, Fruit, Vegetable, Whole-Grain, and Dairy Intake. Journal of the Academy of Nu-
+trition and Dietetics 112, 10 (2012), 1608 1613. DOI:http://dx.doi.org/10.1016/j.jand.2012.07.008
+Andreas Bulling, Ulf Blanke, and Bernt Schiele. 2014. A Tutorial on Human Activity Recognition
+Using Body-worn Inertial Sensors. ACM Comput. Surv. 46, 3, Article 33 (Jan. 2014), 33 pages.
+DOI:http://dx.doi.org/10.1145/2499621
+Patrick Burns, Christopher Lueg, and Shlomo Berkovsky. 2012. Activmon: Encouraging Phys-
+ical Activity Through Ambient Social Awareness. In CHI  12 Extended Abstracts on Hu-
+man Factors in Computing Systems (CHI EA  12). ACM, New York, NY, USA, 2363 2368.
+DOI:http://dx.doi.org/10.1145/2212776.2223803
+Fabio Buttussi and Luca Chittaro. 2008. MOPET: A Context-aware and User-adaptive
+Artif. Intell. Med. 42, 2 (Feb. 2008), 153 163.
+Wearable System for Fitness Training.
+DOI:http://dx.doi.org/10.1016/j.artmed.2007.11.004
+Erin A Carroll, Mary Czerwinski, Asta Roseway, Ashish Kapoor, Paul Johns, Kael Rowan, and MC
+Schraefel. 2013. Food and mood: Just-in-time support for emotional eating. In Proceedings of the
+Humaine Association Conference on Affective Computing and Intelligent Interaction (ACII  13).
+IEEE Computer Society, Washington, DC, USA, 252 257.
+Robert Cercos and Florian Floyd  Mueller. 2013.
+Watch Your Steps: Designing a
+Semi-Public Display to Promote Physical Activity.
+In Proceedings of The 9th Aus-
+tralasian Conference on Interactive Entertainment Matters of Life and Death (IE 13). 1 6.
+DOI:http://dx.doi.org/10.1145/2513002.2513016
+Shu-Hao Chang, Wen-Hai Chih, Dah-Kwei Liou, and Lih-Ru Hwang. 2014. The in uence of
+web aesthetics on customers  {PAD}. Computers in Human Behavior 36 (2014), 168 178.
+DOI:http://dx.doi.org/10.1016/j.chb.2014.03.050
+Tony Chang. 2012. Food Fight: A Social Diet Network Mobile Application. EECS Department,
+University of California, Berkeley. (May 2012). Master Thesis.
+Wei Chen, Sietse Dols, Sidarto Bambang Oetomo, and Loe Feijs. 2010. Monitoring Body Temper-
+ature of Newborn Infants at Neonatal Intensive Care Units Using Wearable Sensors. In Pro-
+ceedings of the Fifth International Conference on Body Area Networks (BodyNets  10). ACM, New
+York, NY, USA, 188 194. DOI:http://dx.doi.org/10.1145/2221924.2221960
+Yu Chen and Pearl Pu. 2014. HealthyTogether: Exploring Social Incentives for Mobile Fitness
+Applications. In Proceedings of the Second International Symposium of Chinese CHI (Chinese
+CHI  14). ACM, New York, NY, USA, 25 34. DOI:http://dx.doi.org/10.1145/2592235.2592240
+Kendra Cherry. n.d. What Is Intrinsic Motivation? www.psychology.about.com/od/motivation/f/intrinsic-motivation.htm
+(n.d.). Accessed: 14-04-2015.
+Ed H. Chi, Jin Song, and Greg Corbin. 2004.  Killer App  of Wearable Computing: Wireless Force
+Sensing Body Protectors for Martial Arts. In Proceedings of the 17th Annual ACM Symposium
+on User Interface Software and Technology (UIST  04). ACM, New York, NY, USA, 277 285.
+DOI:http://dx.doi.org/10.1145/1029632.1029680
+Eun Kyoung Choe, Nicole B. Lee, Bongshin Lee, Wanda Pratt, and Julie A. Kientz. 2014. Under-
+standing Quanti ed-selfers  Practices in Collecting and Exploring Personal Data. In Proceedings
+of the SIGCHI Conference on Human Factors in Computing Systems (CHI  14). ACM, New York,
+NY, USA, 1143 1152. DOI:http://dx.doi.org/10.1145/2556288.2557372
+M. Chuah, G. Jakes, and Z. Qin. 2012. WiFiTreasureHunt: A Mobile Social Application for Staying
+Active Physically. In Proceedings of the 2012 ACM Conference on Ubiquitous Computing (Ubi-
+Comp  12). ACM, New York, NY, USA, 631 632. DOI:http://dx.doi.org/10.1145/2370216.2370339
+Robert B Cialdini. 2006. In uence: The Psychology of Persuasion (2nd ed.). Harper Business, New
+York, USA.
+James Clawson, Nirmal Patel, and Thad Starner. 2010. Dancing in the Streets: The design
+and evaluation of a wearable health game. In Proceedings of the 2010 International Sympo-
+sium on Wearable Computers (ISWC  10). IEEE Computer Society, Washington, DC, USA, 1 4.
+DOI:http://dx.doi.org/10.1109/ISWC.2010.5665864
+Sunny Consolvo, Predrag Klasnja, David W McDonald, and James A Landay. 2009. Goal-
+Setting Considerations for Persuasive Technologies That Encourage Physical Activity. In
+Proceedings of the 4th International Conference on Persuasive Technology (Persuasive  09).
+DOI:http://dx.doi.org/10.1145/1541948.1541960
+Sunny Consolvo, David W. McDonald, Tammy Toscos, Mike Y. Chen, Jon Froehlich, Beverly Harri-
+son, Predrag Klasnja, Anthony LaMarca, Louis LeGrand, Ryan Libby, Ian Smith, and James A.
+21
+Landay. 2008. Activity Sensing in the Wild: A Field Trial of Ubi t Garden. In Proceedings of the
+SIGCHI Conference on Human Factors in Computing Systems (CHI  08). ACM, New York, NY,
+USA, 1797 1806. DOI:http://dx.doi.org/10.1145/1357054.1357335
+Fred D Davis, Richard P Bagozzi, and Paul R Warshaw. 1989. User Acceptance of Computer Tech-
+nology: a Comparison of Two Theoretical Models. Management Science 35, 8 (Aug 1989), 982 
+1003. DOI:http://dx.doi.org/10.1287/mnsc.35.8.982
+Rodrigo de Oliveira and Nuria Oliver. 2008. TripleBeat: Enhancing Exercise Performance with
+Persuasion. In Proceedings of the 10th international conference on Human computer interac-
+tion with mobile devices and services - MobileHCI  08 (Proceedings of the 10th international
+conference on Human computer interaction with mobile devices and services - MobileHCI  08).
+DOI:http://dx.doi.org/10.1145/1409240.1409268
+Edward
+Deci.
+Health,
+http://tedxtalks.ted.com/video.mason/Promoting-Motivation-Health-and?,
+(2012). Accessed: 12.05.2015.
+Promoting Motivation,
+2012.
+and
+Excellence.
+TEDxFlourCity.
+Edward L Deci. 1975. Cognitive Evaluation Theory: Effects of Extrinsic Rewards on Intrinsic Moti-
+vation. 129 159. DOI:http://dx.doi.org/10.1007/978-1-4613-4446-9 5
+Edward L Deci and Richard M Ryan. 1985. Intrinsic Motivation and Self-Determination in Human
+Behavior. DOI:http://dx.doi.org/10.1007/978-1-4899-2271-7
+Sebastian Deterding, Dan Dixon, Rilla Khaled, and Lennart Nacke. 2011. From Game Design Ele-
+ments to Gamefulness: De ning  Gami cation . In Proceedings of the 15th International Aca-
+demic MindTrek Conference: Envisioning Future Media Environments (MindTrek  11). ACM,
+New York, NY, USA, 9 15. DOI:http://dx.doi.org/10.1145/2181037.2181040
+Katelyn Doran, Shaun Pickford, Cory Austin, Tory Walker, and Tiffany Barnes. 2010. World of
+Workout: Towards Pervasive, Intrinsically Motivated, Mobile Exergaming. In Meaningful Play.
+Daniel Epstein, Felicia Cordeiro, Elizabeth Bales, James Fogarty, and Sean Munson. 2014. Taming
+Data Complexity in Lifelogs: Exploring Visual Cuts of Personal Informatics Data. In Proceedings
+of the 2014 Conference on Designing Interactive Systems (DIS  14). ACM, New York, NY, USA,
+667 676. DOI:http://dx.doi.org/10.1145/2598510.2598558
+Elena Fabrizi. 2014. Fiori in Aria: Air Quality Indicator. In Proceedings of the 2014 ACM Inter-
+national Symposium on Wearable Computers: Adjunct Program (ISWC  14 Adjunct). ACM, New
+York, NY, USA, 39 42. DOI:http://dx.doi.org/10.1145/2641248.2641282
+Andrea Fanelli, Maria G Signorini, Paolo Perego, Giovanni Magenes, and Giuseppe Andreoni. 2013.
+A smart wearable prototype for fetal monitoring. In Advances in Human Aspects fo Healthchare,
+Vincent G. Duffy (Ed.). CRC Press, Boca Raton, FL, USA.
+Leon Festinger. 1954. A theory of social comparison processes. Human relations 7, 2 (1954), 117 
+140.
+Leon Festinger. 1962. A theory of cognitive dissonance (1st ed.). Stanford university press, Stanford,
+USA.
+Rowanne Fleck and Geraldine Fitzpatrick. 2010. Re ecting on Re ection. In Proceedings of the
+22nd Conference of the Computer-Human Interaction Special Interest Group of Australia on
+Computer-Human Interaction - OZCHI  10 (Proceedings of the 22nd Conference of the Computer-
+Human Interaction Special Interest Group of Australia on Computer-Human Interaction - OZCHI
+ 10). DOI:http://dx.doi.org/10.1145/1952222.1952269
+BJ Fogg. 2009. A Behavior Model for Persuasive Design. In Proceedings of the 4th International
+Conference on Persuasive Technology (Persuasive  09). ACM, New York, NY, USA, Article 40, 7
+pages. DOI:http://dx.doi.org/10.1145/1541948.1541999
+B. J. Fogg. 2002. Persuasive Technology: Using Computers to Change What We Think and Do.
+Ubiquity 2002, December, Article 5 (Dec. 2002). DOI:http://dx.doi.org/10.1145/764008.763957
+Brian J Fogg. 2013. Why Tiny Habits Give Big Results. SXSW Talk. (2013).
+Jutta Fortmann, Vanessa Cobus, Wilko Heuten, and Susanne Boll. 2014. WaterJewel: Design and
+Evaluation of a Bracelet to Promote a Better Drinking Behaviour. In Proceedings of the 13th
+International Conference on Mobile and Ubiquitous Multimedia (MUM  14). ACM, New York,
+NY, USA, 58 67. DOI:http://dx.doi.org/10.1145/2677972.2677976
+Derek Foster, Conor Linehan, Ben Kirman, Shaun Lawson, and Gary James. 2010. Motivating
+Physical Activity at Work. In Proceedings of the 14th International Academic MindTrek Confer-
+ence on Envisioning Future Media Environments - MindTrek  10 (Proceedings of the 14th Interna-
+tional Academic MindTrek Conference on Envisioning Future Media Environments - MindTrek
+ 10). DOI:http://dx.doi.org/10.1145/1930488.1930510
+Dana L Frank, Lamees Khorshid, Jerome F Kiffer, Christine S Moravec, and Michael G McKee.
+2010. Biofeedback in medicine: who, when, why and how? Mental Health in Family Medicine 7,
+2 (June 2010), 85 91.
+22
+Jill Freyne, Emily Brindal, Gilly Hendrie, Shlomo Berkovsky, and Mac Coombe. 2012. Mobile
+Applications to Support Dietary Change: Highlighting the Importance of Evaluation Context. In
+CHI  12 Extended Abstracts on Human Factors in Computing Systems (CHI EA  12). ACM, New
+York, NY, USA, 1781 1786. DOI:http://dx.doi.org/10.1145/2212776.2223709
+Miguel Garcia, Angel Catal  a, Jaime Lloret, and Joel J P C Rodrigues. 2011. A wireless sensor
+network for soccer team monitoring. In Proceedings of the 2011 International Conference on Dis-
+tributed Computing in Sensor Systems (DCOSS). IEEE Computer Society, Washington, DC, USA,
+1 6. DOI:http://dx.doi.org/10.1109/DCOSS.2011.5982204
+Enrique Garcia-Ceja, Ramon F Brena, Jose C Carrasco-Jimenez, and Leonardo Garrido. 2014.
+Long-term activity recognition from wristwatch accelerometer data. Sensors 14, 12 (Nov. 2014),
+22500 22524. DOI:http://dx.doi.org/10.3390/s141222500
+Rachel Gockley, Michael Marotta, Carin Rogoff, and Adrian Tang. 2006.
+Jim Gemmell, Gordon Bell, and Roger Lueder. 2006. MyLifeBits: A Personal Database for Every-
+thing. Commun. ACM 49, 1 (Jan. 2006), 88 95. DOI:http://dx.doi.org/10.1145/1107458.1107460
+AVIVA: A
+Health and Fitness Monitor for Young Women. In CHI  06 Extended Abstracts on Hu-
+man Factors in Computing Systems (CHI EA  06). ACM, New York, NY, USA, 1819 1824.
+DOI:http://dx.doi.org/10.1145/1125451.1125796
+Levent G org  u, Abraham G. Campbell, Kealan McCusker, Mauro Dragone, Michael J. O Grady,
+Noel E. O Connor, and Gregory M. P. O Hare. 2010. FreeGaming: Mobile, Collaborative, Adaptive
+and Augmented Exergaming. (2010). DOI:http://dx.doi.org/10.1145/1971519.1971550
+David Greene and Mark R Lepper. 1974.
+dren s subsequent intrinsic interest.
+DOI:http://dx.doi.org/10.2307/1128110
+rewards on chil-
+Child development 45, 4 (Dec. 1974), 1141 1145.
+Effects of extrinsic
+Hamed Haddadi, Richard Mortier, Derek McAuley, and Jon Crowcroft. 2013. Human-data inter-
+action. University of Cambridge (2013).
+Jaap Ham and Cees Midden. 2010. Ambient Persuasive Technology Needs Little Cognitive Ef-
+fort: The Differential Effects of Cognitive Load on Lighting Feedback Versus Factual Feedback.
+In Proceedings of the 5th International Conference on Persuasive Technology. Springer-Verlag,
+Berlin, Heidelberg, 132 142. DOI:http://dx.doi.org/10.1007/978-3-642-13226-1 14
+Juho Hamari, Jonna Koivisto, and Harri Sarsa. 2014. Does Gami cation Work?   A Literature
+Review of Empirical Studies on Gami cation. In Proceedings of the 2014 47th Hawaii Interna-
+tional Conference on System Sciences (HICSS  14). IEEE Computer Society, Washington, DC,
+USA, 3025 3034. DOI:http://dx.doi.org/10.1109/HICSS.2014.377
+Julianne Holt-Lunstad and Bert Uchino. 2015. Social Support and Health (5th ed.).
+Tuck-Voon How, Justin Chee, Eric Wan, and Alex Mihailidis. 2013. MyWalk: A Mobile App for Gait
+Asymmetry Rehabilitation in the Community. In Proceedings of the 7th International Conference
+on Pervasive Computing Technologies for Healthcare (PervasiveHealth  13). ICST (Institute for
+Computer Sciences, Social-Informatics and Telecommunications Engineering), ICST, Brussels,
+Belgium, Belgium, 73 76. DOI:http://dx.doi.org/10.4108/icst.pervasivehealth.2013.252118
+S. S.
+Intille. 2004.
+tivate Healthy Aging.
+DOI:http://dx.doi.org/10.1109/TITB.2004.835531
+Trans.
+A New Research Challenge: Persuasive Technology to Mo-
+Info. Tech. Biomed. 8, 3 (Sept. 2004), 235 237.
+Yamini Karanam, Leslie Filko, Lindsay Kaser, Hanan Alotaibi, Elham Makhsoom, and Stephen
+Voida. 2014. Motivational Affordances and Personality Types in Personal Informatics. In
+Proceedings of the 2014 ACM International Joint Conference on Pervasive and Ubiquitous
+Computing: Adjunct Publication (UbiComp  14 Adjunct). ACM, New York, NY, USA, 79 82.
+DOI:http://dx.doi.org/10.1145/2638728.2638800
+Steven J Karau and Kipling D Williams. 1993. Social loa ng: A meta-analytic review and
+theoretical integration. Journal of personality and social psychology 65, 4 (Oct. 1993), 681.
+DOI:http://dx.doi.org/10.1037/0022-3514.65.4.681
+Rafal Kocielnik, Natalia Sidorova, Fabrizio Maria Maggi, Martin Ouwerkerk, and Joyce H D M
+Westerink. 2013. Smart technologies for long-term stress monitoring at work.. In Proceedings
+of the 26th International Symposium on Computer-Based Medical Systems (CBMS). IEEE Com-
+puter Society, Washington, DC, USA, 53 58.
+Matthias Kranz, Andreas M oller, Nils Hammerla, Stefan Diewald, Thomas Pl oTz, Patrick Olivier,
+and Luis Roalter. 2013. The Mobile Fitness Coach: Towards Individualized Skill Assessment
+Using Personalized Mobile Devices. Pervasive and Mobile Computing 9, 2 (Apr 2013), 203 215.
+DOI:http://dx.doi.org/10.1016/j.pmcj.2012.06.002
+Nicholas D Lane, Mu Lin, Mash qui Mohammod, Xiaochao Yang, Hong Lu, Giuseppe Cardone,
+Shahid Ali, Afsaneh Doryab, Ethan Berke, Andrew T Campbell, and et al. 2014. BeWell: Sensing
+Sleep, Physical Activities and Social Interactions to Promote Wellbeing. Mobile Networks and
+23
+Applications 19, 3 (2014), 345 359. DOI:http://dx.doi.org/10.1007/s11036-013-0484-5
+Dan Ledger and D McCaffrey. 2014. Inside wearables: how the science of human behavior change
+offers the secret to long-term engagement. Technical Report. Endeavour Partners, Cambridge,
+MA, USA.
+Brian Y. Lim, Aubrey Shick, Chris Harrison, and Scott E. Hudson. 2011. Pediluma: Motivat-
+ing Physical Activity Through Contextual Information and Social In uence. In Proceedings of
+the Fifth International Conference on Tangible, Embedded, and Embodied Interaction (TEI  11).
+ACM, New York, NY, USA, 173 180. DOI:http://dx.doi.org/10.1145/1935701.1935736
+James J. Lin, Lena Mamykina, Silvia Lindtner, Gregory Delajoux, and Henry B. Strub. 2006.
+Fish N Steps: Encouraging Physical Activity with an Interactive Computer Game. In Proceedings
+of the 8th International Conference on Ubiquitous Computing. Springer-Verlag, Berlin, Heidel-
+berg, 261 278. DOI:http://dx.doi.org/10.1007/11853565 16
+Mu Lin, Nicholas D. Lane, Mash qui Mohammod, Xiaochao Yang, Hong Lu, Giuseppe Cardone,
+Shahid Ali, Afsaneh Doryab, Ethan Berke, Andrew T. Campbell, and Tanzeem Choudhury. 2012.
+BeWell+: Multi-dimensional Wellbeing Monitoring with Community-guided User Feedback and
+Energy Optimization. In Proceedings of the Conference on Wireless Health (WH  12). ACM, New
+York, NY, USA, Article 10, 8 pages. DOI:http://dx.doi.org/10.1145/2448096.2448106
+Yuzhong Lin, Joran Jessurun, Bauke De Vries, and Harry Timmermans. 2011. Motivate: Towards
+Context-Aware Recommendation Mobile System for Healthy Living. In Proceedings of the 5th
+International ICST Conference on Pervasive Computing Technologies for Healthcare (Proceedings
+of the 5th International ICST Conference on Pervasive Computing Technologies for Healthcare).
+DOI:http://dx.doi.org/10.4108/icst.pervasivehealth.2011.246030
+Edwin A Locke and Gary P Latham. 2002. Building a Practically Useful Theory of Goal Set-
+ting and Task Motivation: a 35-Year Odyssey. American Psychologist 57, 9 (2002), 705 717.
+DOI:http://dx.doi.org/10.1037/0003-066x.57.9.705
+P Lopez-Meyer, S Tiffany, Y Patil, and E Sazonov. 2013. Monitoring of Cigarette Smoking Using
+Wearable Sensors and Support Vector Machines. IEEE Transactions on Biomedical Engineering
+60, 7 (July 2013), 1867 1872. DOI:http://dx.doi.org/10.1109/TBME.2013.2243729
+Fletcher Lu and Manon Lemonde. 2014. Reducing adolescent obesity with a social networking
+mobile  tness application. In e-Health Networking, Applications and Services (Healthcom), 2014
+IEEE 16th International Conference on. IEEE Computer Society, Washington, DC, USA, 429 
+434.
+Geke Ludden. 2013. Designing feedback: multimodality and speci city. In Proceedings of the 5th
+International Congress of International Association of Societies of Design Research (IASDR  13).
+Tokyo.
+Sonja Lyubomirsky and Lee Ross. 1997. Hedonic consequences of social comparison: A contrast of
+happy and unhappy people. Journal of personality and social psychology 73, 6 (1997), 1141 1157.
+DOI:http://dx.doi.org/10.1037//0022-3514.73.6.1141
+Diana MacLean, Asta Roseway, and Mary Czerwinski. 2013. MoodWings: A Wearable Biofeedback
+Device for Real-time Stress Intervention. In Proceedings of the 6th International Conference on
+Pervasive Technologies Related to Assistive Environments (PETRA  13). ACM, New York, NY,
+USA, Article 66, 8 pages. DOI:http://dx.doi.org/10.1145/2504335.2504406
+Andrew Macvean and Judy Robertson. 2012. iFitQuest: A School Based Study of a Mobile Location-
+aware Exergame for Adolescents. In Proceedings of the 14th International Conference on Human-
+computer Interaction with Mobile Devices and Services (MobileHCI  12). ACM, New York, NY,
+USA, 359 368. DOI:http://dx.doi.org/10.1145/2371574.2371630
+Anmol Madan, Manuel Cebrian, David Lazer, and Alex Pentland. 2010.
+Social Sensing
+for Epidemiological Behavior Change. In Proceedings of the 12th ACM International Con-
+ference on Ubiquitous Computing (UbiComp  10). ACM, New York, NY, USA, 291 300.
+DOI:http://dx.doi.org/10.1145/1864349.1864394
+D Marculescu, R Marculescu, N H Zamora, P Stanley-Marbell, P K Khosla, S Park, S Jayaraman,
+S Jung, C Lauterbach, W Weber, T Kirstein, D Cottet, J Grzyb, G Troster, M Jones, T Martin,
+and Z Nakad. 2003. Electronic textiles: A platform for pervasive computing. Proc. IEEE 91, 12
+(2003), 1995 2018. DOI:http://dx.doi.org/10.1109/JPROC.2003.819612
+Matthew Mauriello, Michael Gubbels, and Jon E. Froehlich. 2014. Social Fabric Fitness: The De-
+sign and Evaluation of Wearable E-textile Displays to Support Group Running. In Proceedings
+of the 32Nd Annual ACM Conference on Human Factors in Computing Systems (CHI  14). ACM,
+New York, NY, USA, 2833 2842. DOI:http://dx.doi.org/10.1145/2556288.2557299
+Jane McGonigal. 2004.
+Alternate Reality Gaming.
+Accessed: 20/01/2016.
+(2004).
+www.avantgame.com/McGonigal%20ARG%20MacArthur%20Foundation%20NOV%2004.pdf
+Susan Michie, Michelle Richardson, Marie Johnston, Charles Abraham, Jill Francis, Wendy Harde-
+24
+man, Martin P Eccles, James Cane, and Caroline E Wood. 2013. The Behavior Change Technique
+Taxonomy (V1) of 93 Hierarchically Clustered Techniques: Building an International Consensus
+for the Reporting of Behavior Change Interventions. Annals of Behavioral Medicine 46, 1 (Mar
+2013), 81 95. DOI:http://dx.doi.org/10.1007/s12160-013-9486-6
+Susan Michie, Maartje M van Stralen, and Robert West. 2011. The Behaviour Change Wheel: a
+New Method for Characterising and Designing Behaviour Change Interventions. Implementa-
+tion Science 6, 1 (2011), 42. DOI:http://dx.doi.org/10.1186/1748-5908-6-42
+Susan Michie, Robert West, Rona Campbell, Jamie Brown, and Heather Gainforth. 2014. ABC of
+Behaviour Change Theories.
+Florian  Floyd  Mueller, Shannon O Brien, and Alex Thorogood. 2007. Jogging over a Distance: Sup-
+porting a  Jogging Together  Experience Although Being Apart. In CHI  07 Extended Abstracts
+on Human Factors in Computing Systems (CHI EA  07). ACM, New York, NY, USA, 2579 2584.
+DOI:http://dx.doi.org/10.1145/1240866.1241045
+R. Nerino, L. Contin, W. J. Gonc alves da Silva Pinto, G. Massazza, M. Actis, P. Capac-
+A BSN Based Service for Post-surgical
+chione, A. Chimienti, and G. Pettiti. 2013.
+Knee Rehabilitation at Home. In Proceedings of
+the 8th International Conference on
+Body Area Networks (BodyNets  13).
+ICST (Institute for Computer Sciences, Social-
+Informatics and Telecommunications Engineering), ICST, Brussels, Belgium, Belgium, 401 407.
+DOI:http://dx.doi.org/10.4108/icst.bodynets.2013.253679
+Jeffrey Nevid. 2012. Psychology: Concepts and applications (4th ed.). Cengage Learning, California,
+USA.
+Per Nilsen, Kerstin Roback, Anders Brostr m, and Per-Erik Ellstr m. 2012. Creatures of Habit:
+Accounting for the Role of Habit in Implementation Research on Clinical Behaviour Change.
+Implementation Science 7, 1 (2012), 53. DOI:http://dx.doi.org/10.1186/1748-5908-7-53
+Andrzej Nowak, Jacek Szamrej, and Bibb Latan e. 1990. From private attitude to public opinion: A
+dynamic theory of social impact. Psychological Review 97, 3 (1990), 362.
+Nuria Oliver and Fernando Flores-Mangas. 2006.
+System for Monitoring and Analyzing Physiological Signals.
+DOI:http://dx.doi.org/10.1109/BSN.2006.27
+HealthGear: a Real-Time Wearable
+BSN (2006), 61 64.
+Orange. 2014. Wearable Technology Boom in Healthcare. http://healthcare.orange.com/eng/news/latests-news/2014/infographic-
+(2014). Accessed: 14-04-2015.
+Alexandros Pantelopoulos and Nikolaos G. Bourbakis. 2010. A Survey on Wearable Sensor-based
+Systems for Health Monitoring and Prognosis. Trans. Sys. Man Cyber Part C 40, 1 (Jan. 2010),
+1 12. DOI:http://dx.doi.org/10.1109/TSMCC.2009.2032660
+Pablo Paredes and Matthew Chan. 2011. CalmMeNow. In Proceedings of the 2011 annual confer-
+ence extended abstracts on Human factors in computing systems - CHI EA  11 (Proceedings of
+the 2011 annual conference extended abstracts on Human factors in computing systems - CHI EA
+ 11). DOI:http://dx.doi.org/10.1145/1979742.1979831
+Mitesh S Patel, David A Asch, and Kevin G Volpp. 2015. Wearable Devices as Facilitators, Not
+Drivers, of Health Behavior Change. Journal of the American Medical Association (JAMA) 313,
+5 (Feb. 2015), 459 460.
+Shyamal Patel, Chiara Mancinelli, Anthony Dalton, Ben Patritti, Trudy Pang, Steven Schachter,
+and Paolo Bonato. 2009. Detecting epileptic seizures using wearable sensors. In Proceedings of
+the 35th Annual Northeast Bioengineering Conference. IEEE Computer Society, Washington, DC,
+USA, 1 2. DOI:http://dx.doi.org/10.1109/NEBC.2009.4967771
+Shyamal Patel, Hyung Park, Paolo Bonato, Leighton Chan, and Mary Rodgers. 2012. A review of
+wearable sensors and systems with application in rehabilitation. Journal of NeuroEngineering
+and Rehabilitation 9, 1 (2012), 21. DOI:http://dx.doi.org/10.1186/1743-0003-9-21
+Jamie Payton, Evie Powell, Andrea Nickel, Katelyn Doran, and Tiffany Barnes. 2011.
+GameChanger: A Middleware for Social Exergames. In Proceedings of the 1st International
+Workshop on Games and Software Engineering (GAS  11). ACM, New York, NY, USA, 36 39.
+DOI:http://dx.doi.org/10.1145/1984674.1984688
+Nick
+Pelling.
+2011.
+The
+(Short)
+Prehistory
+of
+https://nanodome.wordpress.com/2011/08/09/the-short-prehistory-of-gami cation/.
+Accessed: 14-01-2016.
+Gami cation. . . .
+(2011).
+Trevor Pels, Christina Kao, and Saguna Goel. 2014. FatBelt: Motivating Behavior Change Through
+Isomorphic Feedback. In Proceedings of the Adjunct Publication of the 27th Annual ACM Sympo-
+sium on User Interface Software and Technology (UIST 14 Adjunct). ACM, New York, NY, USA,
+123 124. DOI:http://dx.doi.org/10.1145/2658779.2658807
+Rosalind W. Picard. 1997. Affective Computing. MIT Press, Cambridge, MA, USA.
+Martin Pielot, Tilman Dingler, Jose San Pedro, and Nuria Oliver. 2015. When Attention Is Not
+25
+Scarce - Detecting Boredom From Mobile Phone Usage. Proceedings of the 2015 annual confer-
+ence on Ubiquitous Computing (2015), 825 836. DOI:http://dx.doi.org/10.1145/2750858.2804252
+Ming-Zher Poh, Tobias Loddenkemper, Claus Reinsberger, Nicholas C Swenson, Shubhi Goyal,
+Mangwe C Sabtala, Joseph R Madsen, and Rosalind W Picard. 2012. Convulsive seizure detec-
+tion using a wrist-worn electrodermal activity and accelerometry biosensor. Epilepsia 53, 5 (May
+2012), e93 e97. DOI:http://dx.doi.org/10.1111/j.1528-1167.2012.03444.x
+Kristen M Polzien, John M Jakicic, Deborah F Tate, and Amy D Otto. 2007. The Ef cacy of a
+Technology-based System in a Short-term Behavioral Weight Loss Intervention. Obesity 15, 4
+(2007), 825 830.
+James O Prochaska and Carlo C DiClemente. 1982. Transtheoretical Therapy: Toward a More
+Integrative Model of Change. Psychotherapy: Theory, Research & Practice 19, 3 (1982), 276 288.
+DOI:http://dx.doi.org/10.1037/h0088437
+Waqas Qureshi, Li Guo, Joel Peterson, Lena Berglin, Adib Kalantar Mehrjerdi, and Mikael Skrif-
+vars. 2011. Knitted Wearable Stretch Sensor for Breathing Monitoring Application. In Proceed-
+ings of the scienti c conference for Smart and functional textiles, Well-Being, Thermal comfort in
+clothing, Design, Thermal Manikins and Modelling (Ambience  11).
+Pratyush Rai, Sechang Oh, Prashanth Shyamkumar, Mouli Ramasamy, Robert E Harbaugh, and
+Vijay K Varadan. 2013. Nano- Bio- Textile Sensors with Mobile Wireless Platform for Wearable
+Health Monitoring of Neurological and Cardiovascular Disorders. Journal of the Electrochemical
+Society 161, 2 (Sept. 2013), B3116 B3150. DOI:http://dx.doi.org/10.1149/2.012402jes
+Vijay Rajanna, Raniero Lara-Garduno, Dev Jyoti Behera, Karthic Madanagopal, Daniel
+Goldberg, and Tracy Hammond. 2014.
+Step Up Life: A Context Aware Health As-
+sistant. In Proceedings of the Third ACM SIGSPATIAL International Workshop on the
+Use of GIS in Public Health (HealthGIS  14). ACM, New York, NY, USA, 21 30.
+DOI:http://dx.doi.org/10.1145/2676629.2676636
+Lisa Rashotte. 2007. Social In uence. In The Blackwell Encyclopedia of Sociology, George Ritzer
+and Michael J Ryan (Eds.). Vol. IX. Blackwell Publishing, Oxford, 4426 4429.
+Wolfgang Reitberger, Wolfgang Spreicer, and Geraldine Fitzpatrick. 2014. Situated and Mobile Dis-
+plays for Re ection on Shopping and Nutritional Choices. Personal and Ubiquitous Computing
+18, 7 (2014), 1721 1735. DOI:http://dx.doi.org/10.1007/s00779-014-0781-4
+Karen Robson, Kirk Plangger, Jan H Kietzmann, Ian McCarthy, and Leyland Pitt. 2015. Is it
+all a game? Understanding the principles of gami cation. Business Horizons 58, 4 (July 2015),
+411 420. DOI:http://dx.doi.org/10.1016/j.bushor.2015.03.006
+Richard M Ryan and Edward L Deci. 2000.
+Intrinsic and Extrinsic Motivations: Classic Def-
+initions and New Directions. Contemporary Educational Psychology 25, 1 (2000), 54 67.
+DOI:http://dx.doi.org/10.1006/ceps.1999.1020
+Pedro Sanches, Kristina H o ok, Elsa Vaara, Claus Weymann, Markus Bylund, Pedro Ferreira,
+Nathalie Peira, and Marie Sj olinder. 2010. Mind the Body!: Designing a Mobile Stress
+Management Application Encouraging Personal Re ection. In Proceedings of the 8th ACM
+Conference on Designing Interactive Systems (DIS  10). ACM, New York, NY, USA, 47 56.
+DOI:http://dx.doi.org/10.1145/1858171.1858182
+Catherine Schaefer, James C Coyne, and Richard S Lazarus. 1981.
+The Health-Related
+Journal of Behavioral Medicine 4, 4 (1981), 381 406.
+Functions of Social Support.
+DOI:http://dx.doi.org/10.1007/bf00846149
+Katie Seaborn and Deborah I Fels. 2015.
+Gami cation in theory and action: A
+International Journal of Human-Computer Studies 74 (Feb. 2015), 14 31.
+survey.
+DOI:http://dx.doi.org/10.1016/j.ijhcs.2014.09.006
+Suzanne C Segerstrom and Lise Solberg Nes. 2007. Heart Rate Variability Re ects Self-
+Regulatory Strength, Effort, and Fatigue. Psychological Science 18, 3 (Mar 2007), 275 281.
+DOI:http://dx.doi.org/10.1111/j.1467-9280.2007.01888.x
+Tien-Wei Shyr, Jing-Wen Shie, Chang-Han Jiang, and Jung-Jen Li. 2014. A textile-based wearable
+sensing device designed for monitoring the  exion angle of elbow and knee movements. Sensors
+14, 3 (2014), 4050 4059. DOI:http://dx.doi.org/10.3390/s140304050
+Kirsten P Smith and Nicholas A Christakis. 2008. Social Networks and Health. Annual Review of
+Sociology 34, 1 (2008), 405 429. DOI:http://dx.doi.org/10.1146/annurev.soc.34.040507.134601
+Andreas Sonderegger, Andreas Uebelbacher, Manuela Pugliese, and Juergen Sauer. 2014. The
+In uence of Aesthetics in Usability Testing: The Case of Dual-domain Products. In Proceedings
+of the SIGCHI Conference on Human Factors in Computing Systems (CHI  14). ACM, New York,
+NY, USA, 21 30. DOI:http://dx.doi.org/10.1145/2556288.2557419
+Daniel Spelmezan, Adalbert Schanowski, and Jan Borchers. 2009. Wearable Automatic Feed-
+back Devices for Physical Activities. In Proceedings of the Fourth International Conference on
+26
+Body Area Networks (BodyNets  09). ICST (Institute for Computer Sciences, Social-Informatics
+and Telecommunications Engineering), ICST, Brussels, Belgium, Belgium, Article 1, 8 pages.
+DOI:http://dx.doi.org/10.4108/ICST.BODYNETS2009.6095
+Anna St  ahl, Kristina H o ok, Martin Svensson, Alex S. Taylor, and Marco Combetto. 2009. Ex-
+periencing the Affective Diary. Personal Ubiquitous Comput. 13, 5 (June 2009), 365 378.
+DOI:http://dx.doi.org/10.1007/s00779-008-0202-7
+Kevin G Stanley, Farjana Z Eishita, Eva Anderson, and Regan Mandryk. 2014. Gemini Redux:
+Understanding Player Perception of Accumulated Context. In IEEE Games Media Entertainment
+(GEM). 1 8. DOI:http://dx.doi.org/10.1109/gem.2014.7048100
+Matteo Stoppa and Alessandro Chiolerio. 2014. Wearable Electronics and Smart Textiles: a Critical
+Review. Sensors 14, 7 (Jul 2014), 11957 11992. DOI:http://dx.doi.org/10.3390/s140711957
+Fritz Strack and Roland Deutsch. 2004.
+Re ective and Impulsive Determinants of So-
+Personality and Social Psychology Review 8, 3 (Aug 2004), 220 247.
+cial Behavior.
+DOI:http://dx.doi.org/10.1207/s15327957pspr0803 1
+Christina Strohrmann, Holger Harms, Gerhard Tr oster, Stefanie Hensler, and Roland M  uller.
+2011. Out of the Lab and into the Woods: Kinematic Analysis in Running Using Wearable Sen-
+sors. In Proceedings of the 13th International Conference on Ubiquitous Computing (UbiComp
+ 11). ACM, New York, NY, USA, 119 122. DOI:http://dx.doi.org/10.1145/2030112.2030129
+Jennifer Thom, David Millen, and Joan DiMicco. 2012.
+Melanie Swan. 2013. The Quanti ed Self: Fundamental Disruption in Big Data Science and Bio-
+logical Discovery. Big Data 1, 2 (June 2013), 58 99. DOI:http://dx.doi.org/10.1089/big.2012.0002
+Removing Gami cation from
+an Enterprise SNS.
+on Computer
+Supported Cooperative Work (CSCW  12). ACM, New York, NY, USA, 1067 1070.
+DOI:http://dx.doi.org/10.1145/2145204.2145362
+the ACM 2012 Conference
+In Proceedings
+of
+Tammy Toscos, Anne Faber, Shunying An, and Mona Praful Gandhi. 2006. Chick Clique: Per-
+suasive Technology to Motivate Teenage Girls to Exercise. In CHI  06 Extended Abstracts on
+Human Factors in Computing Systems (CHI EA  06). ACM, New York, NY, USA, 1873 1878.
+DOI:http://dx.doi.org/10.1145/1125451.1125805
+Malavika Velayanikal. 2014. Can a  tness tracker which rewards users solve the problem of wear-
+https://www.techinasia.com/mymo- tness-tracker-gives-rewards-to-users/. (2014).
+able tech?
+Accessed: 17-07-2015.
+Viswanath Venkatesh and Hillol Bala. 2008.
+Research Agenda on Interventions.
+DOI:http://dx.doi.org/10.1111/j.1540-5915.2008.00192.x
+Technology Acceptance Model 3 and a
+Decision Sciences 39, 2 (May 2008), 273 315.
+Viswanath Venkatesh and Fred D Davis. 2000. A Theoretical Extension of the Technology Accep-
+tance Model: Four Longitudinal Field Studies. Management Science 46, 2 (Feb 2000), 186 204.
+DOI:http://dx.doi.org/10.1287/mnsc.46.2.186.11926
+Judith B White, Ellen J Langer, Leeat Yariv, and John C Welch IV. 2006. Frequent Social Compar-
+isons and Destructive Emotions and Behaviors: The Dark Side of Social Comparisons. Journal
+of Adult Development 13, 1 (June 2006), 36 44. DOI:http://dx.doi.org/10.1007/s10804-006-9005-0
+Bin Yu, Jun Hu, and Loe Feijs. 2014. Design and Evaluation of an Ambient Lighting Interface of
+HRV Biofeedback System in Home Setting. In Ubiquitous Computing and Ambient Intelligence.
+Personalisation and User Adapted Services. Springer International Publishing, Cham, 88 91.
+DOI:http://dx.doi.org/10.1007/978-3-319-13102-3 17
+Robert Boleslaw Zajonc and others. 1965. Social facilitation (1st ed.). Research Center for Group
+Dynamics, Institute for Social Research, University of Michigan, Michigan, USA.
+Xiaoyi Zhang, Wenyao Xu, Ming-Chun Huang, Navid Amini, and Fengbo Ren. 2013. See UV on
+Your Skin: An Ultraviolet Sensing and Visualization System. In Proceedings of the 8th Inter-
+national Conference on Body Area Networks (BodyNets  13). ICST (Institute for Computer Sci-
+ences, Social-Informatics and Telecommunications Engineering), ICST, Brussels, Belgium, Bel-
+gium, 22 28. DOI:http://dx.doi.org/10.4108/icst.bodynets.2013.253701
+Oren Zuckerman and Ayelet Gal-Oz. 2014. Deconstructing Gami cation: Evaluating the Effec-
+tiveness of Continuous Measurement, Virtual Rewards, and Social Comparison for Promot-
+ing Physical Activity. Personal and Ubiquitous Computing () 18, 7 (Oct 2014), 1705 1719.
+DOI:http://dx.doi.org/10.1007/s00779-014-0783-2
+27
+Online Appendix to:
+Wearable Computing for Health and Fitness: Exploring the Relationship
+between Data and Human Behaviour
+KATRIN H  ANSEL, Queen Mary University of London
+NATALIE WILDE, Queen Mary University of London
+HAMED HADDADI, Queen Mary University of London
+AKRAM ALOMAINY, Queen Mary University of London
+Abbreviations of Behaviour Change Theories (BCT):
+  SDT - Self Determination Theory [Deci and Ryan 1985]
+  SCT - Social Cognitive Theory [Bandura 1977]
+  TBP - Theory of Planned Behaviour [Ajzen 1991]
+  TTM - Transtheoretical model [Prochaska and DiClemente 1982]
+  FBC - Fogg s Behaviour Change Model [Fogg 2009]
+  FP - Fogg Persuasive [Fogg 2002]
+  SET - Self Ef cacy Theory [Bandura 1977]
+c(cid:13) YYYY Copyright held by the owner/author(s). 0000-0000/YYYY/01-ARTA $15.00
+DOI: http://dx.doi.org/10.1145/0000000.0000000
+ACM Journal Name, Vol. V, No. N, Article A, Publication date: January YYYY.
+Paper
+Summary
+Sensors and Feedback
+Feedback
+Motivation through Gami cation
+Accelerometer, GPS for movement data and
+position
+game points
+N
+-
+Duration
+Results
+BCT
+-
+-
+[Bleecker et al. 2007]
+[Payton et al.
+[Doran et al. 2010]
+2011],
+[Stanley et al. 2014]
+[Clawson et al. 2010]
+[Ali-Hasan et al. 2006]
+[Ahtinen et al. 2010]
+[Chen and Pu 2014]
+[Chuah et al. 2012]
+[Macvean and Robertson
+2012]
+[G org  u et al. 2010]
+Game utilising movements from wearable in
+a game where avatar runs from zombies and
+player gets points
+World of Workout exergame to motivate
+physical activity with quests that the user
+must complete by beating step count goals
+set up either by them or the app.
+Pervasive Accumulated Context Exergame
+(PACE) which passively collects activity dur-
+ing the day, and rewards the participant in
+a later sedentary computer game
+Mobile and wearable health game which
+uses 2 wireless accelerometers worn around
+the users ankles as input into a social danc-
+ing game played by groups of users at the
+same time. 49 people were satis ed with the
+game but there was a lot of users  nding the
+sensors dif cult to use or that they weren t
+agreeing with what they were doing.
+Game with an online dashboard showing
+physical activity of the group members and
+offer capability to challenge other members
+of the group.
+Designed and modelled a mobile phone
+game that looked at using social and play
+aspects to encourage physical activity called
+ into . The game works on the analogy of the
+user going on  virtual trips  using their dis-
+tance traveled to win rewards. People can
+combine and work together.
+Developed a game to study and observe how
+users interact in different group gami ca-
+tion settings - competition, cooperation, or
+hybrid. App included a messaging service to
+allow a pair of people to talk to each other
+and help or taunt each other.
+A location based alternate reality game that
+encourages users to stay physically active.
+The app includes ways for the user to go on
+tours to  nd hidden rewards on a real world
+map and also on group tours and share to
+social networks.
+iFitQuest is a mobile location-aware, alter-
+nate reality exergame using google maps.
+Made up of mini games like  collect the coins 
+and  escape the ghost  where the user must
+physically move to avoid or collect things
+shown on screen.
+Freegaming is a location-based augmented
+exergame. The player is navigated on a vir-
+tual map by following augmented reality
+clues. The status off each playerrs progress
+can be seen on a map in the mobile phone
+app.
+A
+C
+M
+J
+o
+u
+r
+n
+a
+l
+N
+a
+m
+e
+,
+V
+o
+l
+.
+V
+,
+N
+o
+.
+N
+,
+A
+r
+t
+i
+c
+l
+e
+A
+,
+P
+u
+b
+l
+i
+c
+a
+t
+i
+o
+n
+d
+a
+t
+e
+:
+J
+a
+n
+u
+a
+r
+y
+Y
+Y
+Y
+Y
+.
+iPhone shake sensor
+new quests on a virtual quest map
+10 students
+2 quests
+users liked the game and found it fun
+phone accelerometer, location (if on campus
+by looking at wi  SSID), bluetooth proximity
+received game advantages in computer
+game, and alerts during the day
+players
+24
+(two
+rounds
+of 12 players
+each)
+Accelerometer for each leg
+dancing game with encouraging mes-
+sages
+50
+9 days
+2 songs
+found system fun and challenging, users
+were satis ed with experience,
+phone accelerometer for step data
+online leaderboard
+-
+-
+-
+phone accelerometer for step data
+challenges within the group, presentation
+of the walked distance on a map
+37 in groups of
+2-6
+1 week
+users liked the app, found it understand-
+able, and appreciated the similarity of game
+world
+Fitbit pedometer
+mobile dashboard
+in
+36
+pairs
+(collaboration,
+competition,
+hybrid groups)
+2
+day warm-up,
+1 week control 1
+week experimental
+session
+signi cant increase of activity in all groups,
+cooperation and hybrid effective in motiva-
+tion more activity, competition lead to a neg-
+ative correlation between increase of step
+count between pair members
+phone WiFi module to log into WiFi access
+points
+mobile phone all with a map, access
+points and progress
+-
+-
+-
+mobile phone GPS and compass for location-
+ing and navigation
+Escape the Ghost: Map showing a virtual
+ghost avatar the players must escape by
+moving in the physical world; Collect the
+Coins: The users must collect coins shown
+on the virtual map while avoiding the
+ghosts.
+25
+30 minutes
+users found both games enjoyable, boys en-
+joyed the game signi cantly more than girls
+GPS for locationing; camea for augmented
+reality clues
+augmented reality clues, a game map
+with the status of each player
+-
+-
+-
+A
+p
+p
+ 
+2
+K
+.
+H
+ a
+n
+s
+e
+l
+e
+t
+a
+l
+.
+A
+C
+M
+J
+o
+u
+r
+n
+a
+l
+N
+a
+m
+e
+,
+V
+o
+l
+.
+V
+,
+N
+o
+.
+N
+,
+A
+r
+t
+i
+c
+l
+e
+A
+,
+P
+u
+b
+l
+i
+c
+a
+t
+i
+o
+n
+d
+a
+t
+e
+:
+J
+a
+n
+u
+a
+r
+y
+Y
+Y
+Y
+Y
+.
+Paper
+Summary
+Sensors and Feedback
+Feedback
+[Zuckerman and Gal-Oz
+2014]
+[Zuckerman and Gal-Oz
+2014]
+StepByStep mobile application to promote
+regular walking. Quanti ed version with
+continuous measurement, daily goals and
+feedback on daily progression for self-
+motivated re ection. Gami ed version with
+virtual rewards and social comparison.
+StepByStep mobile application to promote
+regular walking. Quanti ed version with
+continuous measurement, daily goals and
+feedback on daily progression for self-
+motivated re ection. Gami ed version with
+virtual rewards and social comparison.
+accelerometer in phone for step count
+1st study mobile app showed active min-
+utes and progress towards goal
+accelerometer in phone for step count
+2nd study mobile app showed active min-
+utes, progress towards goal and gami ca-
+tion elements of points and a leaderboard
+(in the leaderboard version)
+N
+40
+59
+Duration
+Results
+BCT
+2 weeks
+signi cant increase of walking minutes; app
+raised the awareness for own activity
+10 days
+signi cant correlation between walking goal
+and active minutes for QS and points ver-
+sion, but not for leaderboards
+[Buttussi and Chittaro
+2008]
+personal
+a mobile
+Generated
+trainer
+(MOPET), the MOPET takes in real time
+data from sensors and knowledge from
+professional trainers to provide motivation
+and health and safety advice.   To interact
+with the user there is a 3d embodied agent
+that can talk
+GPS for locationing, heart rate monitor with
+a 3D accelerometer
+exercise recommendations from proves-
+sional
+-
+-
+-
+Social In uence
+[Lin et al. 2006]
+Fish n Steps is a social computer game
+which links the players daily activity count
+to the growth of animated  sh characters.
+Accelerometer for step count data
+animated  sh character in a bowl in the
+phone app
+19
+Fish n Steps study indicates that partici-
+pants either rose in the levels of the trans-
+theoretical model or increased the number
+of daily steps
+[Anderson et al. 2007]
+[Cercos and Floyd  Mueller
+2013]
+[Lim et al. 2011]
+Looks at using a mobile phone as a
+health promotion tool. The app tracks the
+daily exercise levels of users by analysing
+their movement. This data is then shared
+amongst the users group of friends. A short
+study found that this sharing of data encour-
+aged the user to re ect upon the data more.
+ ght sedentary through social play and
+collective awareness, team data shown on
+semi-public display, they utilise power of so-
+cial relationships to change behaviour, pro-
+mote shared re ective view of players, a  c-
+tional player (10k guy) to promote shared
+goal of 10.000 steps, utilises social compar-
+ison and showed discrepancy between goal
+and actual performance
+Pediluma is a wearable device that is worn
+on the user s foot, the more steps a user
+takes, the more the device lights up. A study
+was conducted and found that the use of the
+device did encurage an increase in physical
+activity but there are issues around discreet-
+ness of the device.
+GSM cell signal strength to detect cells and
+movement
+app shows current progress and peers
+progress towards goal
+9
+10 days
+application was perceived well by partici-
+pants, no study on effect of behaviour change
+Fitbit: accelerometer and altimeter
+semi-public display with visualisation of
+step data of all participants, 2D line
+graph is shown
+15
+8 weeks
+observational results of preliminary study:
+when display was hanging, more and more
+people were interested in participating, also
+new conversation spaces through discus-
+sions
+SDT,
+SCT,
+TTM
+shoe accessory with pedometer
+LED in accessory lights up when wearer
+moves, dims when wearer is stationary
+18
+2 weeks (1 week de-
+tecting baseline, 1
+week with wearable
+feedback)
+the device was able to increase the step
+count and physical activity, but people felt
+not too comfortable around strangers seeing
+the device
+FP
+[Foster et al. 2010]
+StepMatron is a Facebook application to pro-
+vide social and competitive environment to
+increase physical activity at the workplace
+Pedometer
+non-social version: participant can see
+own step data in online dashboard, social:
+participant can additionally see step data
+from group members and can comment
+on them.
+10 nurses
+3w
+signi cant increased step count in social ver-
+sion compared to non-social
+[Toscos et al. 2006]
+Chick Clique is a Mobile phone app that al-
+lows girls to talk track their step count as
+a group and talk about their progress. So-
+cial element worked and encouraged girls to
+talk to each other about health, something
+they would not normally do.
+accelerometer as pedometer
+app with group activity overview
+groups
+of
+2
+friends
+(one
+4 (15-17), the
+other
+(13
+years))
+3
+comparison just tracker - tracker and app for
+group awareness: group one performed bet-
+ter with app, group two without (no signi -
+cance)
+l
+W
+e
+a
+r
+a
+b
+e
+C
+o
+m
+p
+u
+t
+i
+n
+g
+f
+o
+r
+H
+e
+a
+l
+t
+h
+:
+l
+E
+x
+p
+o
+r
+i
+n
+g
+t
+h
+e
+R
+e
+a
+t
+i
+o
+n
+s
+h
+p
+b
+e
+t
+w
+e
+e
+n
+D
+a
+l
+i
+t
+a
+a
+n
+d
+H
+u
+m
+a
+n
+B
+e
+h
+a
+v
+o
+u
+r
+i
+A
+p
+p
+ 
+3
+Paper
+Summary
+Sensors and Feedback
+Feedback
+accelerometer (determine pace and distance)
+and heart rate
+e-ink screen on back of the shirt show
+progress to other runners
+[Mauriello et al. 2014]
+[Lu and Lemonde 2014]
+[Lane et al. 2014]
+[Burns et al. 2012]
+[Oliver and Flores-Mangas
+2006],
+[de Oliveira and Oliver
+2008]
+[Carroll et al. 2013]
+[Kranz et al. 2013]
+Created a set of wearable devices to sup-
+port group  tness, which displayed impor-
+tant run data to every group member on e
+int displays located on the back of the run-
+ners t-shirts.
+Designed an app called  UOIFit  aimed at in-
+creasing physical activity levels in adoles-
+cents. The app incorporated social aspects
+into its design such as friending, sharing
+progress and collaboratively exercising with
+friends either in person or remotely, the  t-
+feed tab of the app displaying all this data.
+Studies were conducted with the app and
+found social aspects to have a positive im-
+pact on the amount of activity the user did
+and their BMI.
+Created a set of wearable devices to sup-
+port group  tness, which displayed impor-
+tant run data to every group member on e
+int displays located on the back of the run-
+ners t-shirts.
+Developed a low-complexity low- engage-
+ment interface to motivate physical activity.
+Activimon is a wrist worn device that has a
+light display that shows the user when other
+members of their group are being active by
+ ashing. In studies, users were divided in
+their opinion about the device, some liked
+it but others felt it didnt provide them with
+enough information.
+MPTrain app plays adaptive music to the
+runners speed, TrippleBeat app in uences
+music based on exercise performance, ad-
+vancement over MPTrain: TippleBeat con-
+siders optimal training zones, virtual com-
+petition with others, motivation through
+scores, glance-able interface showing
+Looks at modifying the behaviour that peo-
+ple have with regards to emotional eating.
+Users used a mobile phone application to
+track emotions and to receive interventions
+- emotree. This helped them to  nd the emo-
+tions most felt when eating occurred. Then
+made a bra that could sense these emotions.
+Looked into the feasibility of using a smart
+as a personalised  tness trainer. The  Gym-
+Skill  app involves exercise descriptions,
+sensor data logging, activity recognition and
+on-top skill assessment to present data as
+valuable as that of a personal trainer, tai-
+lored to the users ability. The gym skill app
+was speci c to balance board training, as the
+user was on the balance board, they would
+simply place their Andriod smart phone in
+the middle of the board. Testing of the sys-
+tem showed its potential for ensuring long-
+term retention in this type of application.
+People particularly liked the personalised
+feedback and suggestions more than other
+features.
+A
+C
+M
+J
+o
+u
+r
+n
+a
+l
+N
+a
+m
+e
+,
+V
+o
+l
+.
+V
+,
+N
+o
+.
+N
+,
+A
+r
+t
+i
+c
+l
+e
+A
+,
+P
+u
+b
+l
+i
+c
+a
+t
+i
+o
+n
+d
+a
+t
+e
+:
+J
+a
+n
+u
+a
+r
+y
+Y
+Y
+Y
+Y
+.
+N
+52
+Duration
+Results
+BCT
+1 run
+display motivated to perform better; dis-
+plays improve awareness of individual and
+group performance, helps groups stay to-
+gether, and improves in-situ motivation
+A
+p
+p
+ 
+4
+accelerometer in phone for tracking exer-
+cises
+app shows  tness activity and offers so-
+cial activity functions
+35
+6 weeks
+all participants reduced their BMI to a
+healthier range, strong correlation between
+use of social activity features ad BMI reduc-
+tion
+phone s accelerometer and microphone to
+detect sleep patterns and quality, physical
+activity, and social activity to calculate well-
+being score
+baseline group: web-dashboard showing
+wellbeing score: multidimensional-group:
+ambient phone display with  sh swim-
+ming in a bowl
+27
+19 days
+liked the ambient display, positive be-
+haviour change, but study short
+Movement of users arm, step count
+wristband shows light  ashing when
+peers are active
+5
+2 weeks
+usability study
+Context-Aware Interfaces and Feedback
+ecg, accelerometer
+MPTrain: adaptive changes in music,
+TrippleBeat: music changes, glancable
+phone screen with information
+10 runners
+electrodermal
+electrocardiogram sensor,
+activity
+accelerome-
+ter, user s food and mood input to detect
+emotional eating patterns
+gyroscope,
+sensor,
+mobile phone accelerometer and gyroscope
+Personalised feedback on exercises and
+suggestions on the phone
+-
+6
+-
+-
+compared MPTrain and TrippleBeat:
+in-
+creased time in trainings zone with Trip-
+ple Beat (57.1% vs 82.8%), all participants
+spend more time in optimal trainings zone,
+competition was valued by users, partici-
+pants clearly preferred trippleBeat
+3 studies: 2 on interventions for snacking; 1
+on feasibility of wearable emotion recogni-
+tion
+SCT
+5 days
+people especially liked the personal feed-
+back and exercise suggestions.
+SCT
+K
+.
+H
+ a
+n
+s
+e
+l
+e
+t
+a
+l
+.
+Paper
+Summary
+Sensors and Feedback
+Feedback
+manual input in phone app
+progress is visualised as LEDs on the
+wristband, progress also shown in mobile
+app
+N
+6
+Duration
+Results
+BCT
+4 weeks (2 weeks in
+each condition)
+participants drank more and more regularly
+with the wearable compared to the mobile
+app alone
+A
+C
+M
+J
+o
+u
+r
+n
+a
+l
+N
+a
+m
+e
+,
+V
+o
+l
+.
+V
+,
+N
+o
+.
+N
+,
+A
+r
+t
+i
+c
+l
+e
+A
+,
+P
+u
+b
+l
+i
+c
+a
+t
+i
+o
+n
+d
+a
+t
+e
+:
+J
+a
+n
+u
+a
+r
+y
+Y
+Y
+Y
+Y
+.
+[Fortmann et al. 2014]
+[Pels et al. 2014]
+[Rajanna et al. 2014]
+[Lin et al. 2011]
+[Lin et al. 2012]
+[Consolvo et al. 2008]
+[Oliver and Flores-Mangas
+2006]
+Waterjewel
+is a device to encourage its
+wearer to drink more water daily. It has a
+light up display which indicates how much
+of their daily goal the user has achieved
+but also acts as a reminder every two hours
+to the user that they should drink more.
+LEDs in bracelet would light up red or
+green according to users drinking behaviour.
+Made using Arduino lily pad and linked to
+an android app called  Carbodroid . Studies
+showed that people drank more when wear-
+ing the bracelet than not. So the bracelet
+was successful in promoting good drinking
+behaviour.
+The Fat belt is a wearable device that uses
+physical feedback through in ating around
+the stomach as a response to calorie overcon-
+sumption, simulating the long-term weight-
+gain associated with over-eating   isomor-
+phism.
+A context aware health assistant system  
+A mobile application that encourages the
+user to adopt a healthy life style by perform-
+ing simple and contextually suitable physi-
+cal exercises. The mobile app promotes brief
+physical exercise after prolonged periods of
+inactivity by sending  nudges  to the user.
+Developed a context aware recommendation
+system called  Motivate , which takes into
+consideration an individuals location and
+other features to offer personalised advice.
+The user downloads the motivate app onto
+their smartphone and sets up a pro le for
+the app to base its advice around. The advice
+has constraints such as weather and time
+and models its response around these. the
+user then tells the app whether they intend
+take the advice.
+mobile phone app BeWell+ to monitor sleep,
+physical activity and social activity to gen-
+erate wellbeing score, which is presented to
+users. Compared two versions in their study:
+baseline with web dashboard and version
+with additional ambient display. Social fea-
+ture allows to compare own wellbeing score
+to peers and identify role models
+UbiFit is an application that uses on-body
+sensing and machine learning to infer peo-
+ple s activities, using a personal, mobile dis-
+play to encourage physical activity. The dis-
+play uses the metaphor of a garden that
+blooms throughout the week as the user per-
+forms physical activities.
+Health gear consists of physiological sensors
+wirelessly connected to a mobile phone via
+Bluetooth. The data from these sensors are
+then manipulated and displayed to the user
+in a relevant way. There was an 100% suc-
+cess rate in recognising cases of sleep apnea.
+Issues like security and privacy need to be
+addressed.
+input of calories in mobile app
+in ating belt mimicking weight gain in
+the stomach area
+12
+2 days
+signi cant decrease in consumption over a
+baseline period of the same length. Seen as
+an extension of the users own body   gave
+the wearable more emotional power over the
+user.
+accelerometer and GPS to determine activ-
+ity
+Nudges sent to user through their smart
+phone to remind them to be more active.
+Can be vibrations, visual or auditory.
+GPS or GSM localisation; further informa-
+tion from weather services,
+App interface with recommendations for
+activities based on weather, location and
+personal preferences
+-
+6
+-
+-
+FBC
+5 weeks
+Studys found the reception of this app to be
+mixed, with only 50% of people replying yes
+to advice given to them within the app.
+Support for Self-Monitoring and Re ection
+phone s accelerometer and microphone
+group:
+baseline
+web-dashboard:
+multidimensional-group: ambient phone
+display with  sh swimming in a bowl
+27
+19 days
+liked the ambient display, positive be-
+haviour change, but study short
+accelerometer and barometer to infer physi-
+cal activity
+glancable screen on phone with a bloom-
+ing garden depending on activity levels
+12
+21-25 days
+TTM
+The technology worked reasonably well
+within the  eld study, recognising most
+activities correctly. Participants mentioned
+that the garden was motivating, often sur-
+prisingly so   worked as a constant repre-
+sentation of their data. For others it helped
+them focus on planning or simply  nding
+time for physical activity.
+wearable blood oximeter for heart rate and
+blood oxygen levels
+shows heart rate and oxygen on phone.
+20
+1 night
+shows heart rate and oxygen on phone.
+l
+W
+e
+a
+r
+a
+b
+e
+C
+o
+m
+p
+u
+t
+i
+n
+g
+f
+o
+r
+H
+e
+a
+l
+t
+h
+:
+l
+E
+x
+p
+o
+r
+i
+n
+g
+t
+h
+e
+R
+e
+a
+t
+i
+o
+n
+s
+h
+p
+b
+e
+t
+w
+e
+e
+n
+D
+a
+l
+i
+t
+a
+a
+n
+d
+H
+u
+m
+a
+n
+B
+e
+h
+a
+v
+o
+u
+r
+i
+A
+p
+p
+ 
+5
+Duration
+Results
+BCT
+Paper
+Summary
+Sensors and Feedback
+Feedback
+[How et al. 2013]
+[Nerino et al. 2013]
+[Zhang et al. 2013]
+Android app to help people in rehabilita-
+tion (eg. after stroke) to improve their step
+symmetry. The app has three modes where
+the user can train, capture regular walks
+and compare his improvements in a history.
+Data can be shared with therapist via email.
+A wireless body sensor network for monitor-
+ing the exercises of rehabilitation patients of
+knee surgery. This supports unassisted re-
+habilitation of motor functions.
+Created a system that contains a wearable
+UV sensor and a pair of AR glasses. The
+glasses would change the colour of the users
+skin to make it look more red dependant on
+the amount of time the user spends out in
+the UV rays.
+Android phone accelerometer to detect step
+pattern
+Dashboard in app with scores for symme-
+try of walk and stats like tome and rating
+of the walk
+accelerometer, gyroscope to determine leg
+position and movement
+GUI on a tablet for patients with feed-
+back on correct positioning during exer-
+cises
+UV sensor
+Augmented reality glasses showing a
+change in skin colour after too much sun
+exposure to simulate sunburn
+N
+-
+-
+6
+[Madan et al. 2010]
+They used mobile phone social sensing and
+self-assessments to identify correlations be-
+tween mobile data and illness symptoms.
+Bluetooth proximity to other phone users,
+WLAN for rough location, Call & SMS
+records, daily symptoms self-assessment
+no feedback
+70 residents of
+a dormitory
+-
+-
+-
+-
+[Spelmezan et al. 2009]
+Custom sensor and mobile phone applica-
+tion (phone for hosting and computation) for
+learning and training of physical activities.
+Used snowboarding beginners as example.
+force sensitive resistors in shoes, Shake sen-
+sors to measure upper body rotation, Bend-
+Short sensors to measure knee  exion,
+vibro-tactile feedback through actuators
+placed at different places
+8
+1 snowboarding ses-
+sion
+[Chi et al. 2004]
+[Sanches et al. 2010]
+[Kocielnik et al. 2013]
+Study Looked at putting sensors into a mar-
+tial art competition (taekwondo) to see when
+a signi cant impact had been delivered to ei-
+ther competitor.
+Different sensors brought together with a
+mobile app with different visualizations to
+help users track their stress and re ect.
+Framework for measuring stress in real-life
+conditions continuously and unobtrusively
+to help the users re ect their stress states
+and develop relief patterns
+[St ahl et al. 2009]
+[Reitberger et al. 2014]
+A digital diary for user-written notes as well
+as body sensor data and mobile phone media
+data to help people re ect their emotions.
+The tablet app showed a timeline with pho-
+tos and information on the current affective
+state, the presence of others, and phone ac-
+tivity like calls and SMS.
+Nutri ect system with a ambient display in
+kitchen, shows information on healthiness
+of bought food
+[Paredes and Chan
+2011]
+They measured stress levels of participants
+and offered different type of intervention
+to help participants relax: games, guided
+breathing with haptic feedback and social
+support from loved ones
+A
+C
+M
+J
+o
+u
+r
+n
+a
+l
+N
+a
+m
+e
+,
+V
+o
+l
+.
+V
+,
+N
+o
+.
+N
+,
+A
+r
+t
+i
+c
+l
+e
+A
+,
+P
+u
+b
+l
+i
+c
+a
+t
+i
+o
+n
+d
+a
+t
+e
+:
+J
+a
+n
+u
+a
+r
+y
+Y
+Y
+Y
+Y
+.
+Force sensors, Amount of force on competi-
+tors body protector
+Displays score to user on screen
+national
+in
+4
+champions
+Taekwondo
+2 hours
+Accelerometer, GSR, ECG integrated into
+clothing to detect movements and stress
+Philips DTI-2 sensor (GSR, skin temper-
+lightning,
+ature, ambient
+accelerometer),
+self-
+assessments
+temperature,
+calendar
+entries,
+mobile phone app, stress history view for
+re ection and manual pattern detection
+for the user
+no feedback during the study, LifelogEx-
+porer showed graphs of data at the end of
+study
+-
+10
+-
+-
+4 weeks
+Bodymedia biosensor collecting skin con-
+ductance data, mobile phone photos, mobile
+phone usage data (SMS, calls), bluetooth
+proximity to detect presence of others
+a tablet app allows the presentation to
+the collected data in a timeline. It shows
+photos and symbolised data on detected
+bluetooth device, phone calls and SMS,
+and  gures with colour codes for current
+emotional state
+4
+2 to 4 weeks
+camera to scan EAN or NFC to identify foods
+ambient display in form of tablet showing
+family process of health eating
+21
+2 weeks pre, 4 weeks
+study,
+participants liked it and rated it positively
+Social Support
+Heart Rate sensor and GSR sensor to detect
+stress
+3 intervention types: gaming; haptic feed-
+back for guided breathing; emotional, so-
+cial support
+20
+experimental
+1
+setup
+no signi cant difference between interven-
+tions
+-
+-
+Studies conducted found the visualisation to
+have a positive effect on users.
+it is possible to determine the health status
+of individuals using information gathered by
+mobile phones alone, without having actual
+health measurements about the subject
+identi ed movements accurately, partici-
+pants perceived very well tactile instruc-
+tions (87as compared to corresponding audio
+instructions (97played back over earplugs
+while snowboarding.
+participants and jury agreed with the scor-
+ing provided by the system; participants
+gave positive feedback
+data presented to the user after the 4
+weeks, LifelogExplorer to generate overview
+of all data semi-structured interviews on
+the meaningfulness, usefulness, and trigger-
+ing of healthier behaviour; the participants
+were positive, that new unobtrusive sensors
+for long-term data measurement can help
+user to get feedback of their stress levels in
+real work environments
+Their qualitative study showed that partici-
+pants used the diary in very different ways
+to interpret and make sense of the data.
+They also concluded, that the measurements
+did not always represent the experienced
+feelings.
+A
+p
+p
+ 
+6
+K
+.
+H
+ a
+n
+s
+e
+l
+e
+t
+a
+l
+.
+A
+C
+M
+J
+o
+u
+r
+n
+a
+l
+N
+a
+m
+e
+,
+V
+o
+l
+.
+V
+,
+N
+o
+.
+N
+,
+A
+r
+t
+i
+c
+l
+e
+A
+,
+P
+u
+b
+l
+i
+c
+a
+t
+i
+o
+n
+d
+a
+t
+e
+:
+J
+a
+n
+u
+a
+r
+y
+Y
+Y
+Y
+Y
+.
+Paper
+Summary
+Sensors and Feedback
+Feedback
+[Polzien et al. 2007]
+Studied whether using technology with per-
+sonal counselling or using purely technol-
+ogy will result in a bigger weight loss. Used
+the Sensewear pro armband was used to de-
+termine the energy expenditure. The group
+that used solely technology lost the most
+weight, followed by the people that used
+solely counselling.
+Sensewear pro armband for determining en-
+ergy expenditure, self-monitored calorie in-
+take
+Inteructions on calorie intake and exer-
+cise regime, the technology group also
+had access to their energy expenditure
+data from Sensewear
+N
+58
+Duration
+Results
+12 weeks
+participants using the Sensewear lost 2kg
+more weight than group without technology
+support (not signi cant)
+BCT
+SET
+l
+W
+e
+a
+r
+a
+b
+e
+C
+o
+m
+p
+u
+t
+i
+n
+g
+f
+o
+r
+H
+e
+a
+l
+t
+h
+:
+l
+E
+x
+p
+o
+r
+i
+n
+g
+t
+h
+e
+R
+e
+a
+t
+i
+o
+n
+s
+h
+p
+b
+e
+t
+w
+e
+e
+n
+D
+a
+l
+i
+t
+a
+a
+n
+d
+H
+u
+m
+a
+n
+B
+e
+h
+a
+v
+o
+u
+r
+i
+A
+p
+p
+ 
+7

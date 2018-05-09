@@ -1,0 +1,1306 @@
+Predicting sports scoring dynamics with restoration and anti-persistence
+Leto Peel1,   and Aaron Clauset1, 2, 3,  
+1Department of Computer Science, University of Colorado, Boulder, CO 80309
+2BioFrontiers Institute, University of Colorado, Boulder, CO 80303
+3Santa Fe Institute, 1399 Hyde Park Rd., Santa Fe, NM 87501
+Professional team sports provide an excellent domain for studying the dynamics of social com-
+petitions. These games are constructed with simple, well-de ned rules and payo s that admit a
+high-dimensional set of possible actions and nontrivial scoring dynamics. The resulting gameplay
+and e orts to predict its evolution are the object of great interest to both sports professionals and en-
+thusiasts. In this paper, we consider two online prediction problems for team sports: given a partially
+observed game Who will score next? and ultimately Who will win? We present novel interpretable
+generative models of within-game scoring that allow for dependence on lead size (restoration) and
+on the last team to score (anti-persistence). We then apply these models to comprehensive within-
+game scoring data for four sports leagues over a ten year period. By assessing these models  relative
+goodness-of- t we shed new light on the underlying mechanisms driving the observed scoring dynam-
+ics of each sport. Furthermore, in both predictive tasks, the performance of our models consistently
+outperforms baselines models, and our models make quantitative assessments of the latent team
+skill, over time.
+I.
+INTRODUCTION
+Competition in social systems is a natural and perva-
+sive mechanism for improving performance and distribut-
+ing limited resources. The quantitative study of such
+competitions can improve our ability to predict the out-
+comes associated with speci c strategies and the strategic
+choices that competitors may make. However, most real
+competitions take place in complex and evolving environ-
+ments [15, 26], which makes them di cult to study. Pro-
+fessional team sports, with their well de ned and consis-
+tently enforced rules, provide a controlled setting for the
+study of competition dynamics [14, 27, 29] and have pre-
+viously been used as model systems for studying business
+decision making and human behavioral biases [28, 34].
+The recent trend toward recording comprehensive and
+detailed data on the events within particular games pro-
+vides us with new opportunities to study, model, and
+predict the dynamics of these games. The results of these
+studies promise to shed new light on a wide variety of ex-
+isting competitive social systems, and enhance work on
+designing new ones, both o ine and online.
+Here, we examine the time series of scoring events in
+all league games across four di erent team sports over a
+period of ten years. We construct and test probabilistic
+models for two online predictive tasks: given a partially
+observed game Who will score next? and ultimately Who
+will win? We then use these models to investigate the
+predictiveness of the dynamical phenomena of restoration
+and anti-persistence, which are de ned below.
+The events within a particular game can be e ectively
+modeled as the interaction of skill and chance. Inferring
+skill from a series of competitions has a long history of
+  leto.peel@colorado.edu
+  aaron.clauset@colorado.edu
+study, both for individuals [11, 17] and for teams [20, 35].
+However, this past work has typically only considered the
+ nal outcome of games, in terms of either a win or loss,
+or the  nal point di erence. Here, we focus on modeling
+the speci c pattern of scoring events within an individual
+game.
+The role of chance also has a long history of study,
+typically focusing on the question of whether one success
+increases the likelihood of subsequent success. This idea
+can be formalized at di erent levels, e.g., success by in-
+dividual players within a game [2, 16, 39], or a team s
+success across multiple games [1, 32, 37]. Here, for the
+ rst time, we focus on a di erent level: success by a whole
+team within a game.
+A simple starting point for such models is the basic
+idea of many skill ranking systems [6, 11], which model
+game outcomes as random variables dependent on the
+competing teams  skills. We extend this idea to consider
+the point-scoring events within a game to be a sequence of
+independent contests. Past work supports this approach,
+as some studies have found a lack of dependence between
+an individual scoring and their ability to score subse-
+quent points [16, 39], or between a team winning and
+their chance to win future games [32, 37]. On the other
+hand, there is also evidence of non-independence, e.g., the
+probability of scoring itself can vary with the clock time
+within a game or with the size of the lead [14, 26, 27]. To
+investigate the degree to which non-independence gov-
+erns scoring probabilities, we construct a sequence of
+more complex models that allow speci c aspects of a
+game s current state to in uence scoring rates, e.g., the
+team that scored last and the lead size.
+In many sports, including American football and bas-
+ketball, a simple source of non-independence is a forced
+change in ball possession after each scoring event, putting
+the scoring team at a disadvantage. This can result in a
+phenomenon called anti-persistence, in which a score by
+one team is more likely to be followed by a score by their
+5
+1
+0
+2
+ 
+ 
+r
+p
+A
+2
+2
+ 
+ 
+]
+n
+a
+-
+a
+t
+a
+d
+.
+s
+c
+i
+s
+y
+h
+p
+[
+ 
+ 
+1
+v
+2
+7
+8
+5
+0
+.
+4
+0
+5
+1
+:
+v
+i
+X
+r
+a
+opponent [14].
+Another potential source of non-independence is the
+size of the lead itself. Past work has shown that the
+observed probability of scoring next can vary with lead
+size [14, 27]. A negative dependence may be the result of
+strategy, e.g., a team using its best players when it falls
+behind and substituting them out when they are ahead.
+Such strategies have a restorative e ect on the lead size,
+serving to pull the size of the lead back toward zero.
+Conversely, anti-restoration or momentum occurs when
+the leading team has a higher chance of scoring again,
+perhaps by improving their control over the playing  eld
+or by learning from gameplay how to better exploit the
+weaknesses of the opposing team.
+In this paper, we develop probabilistic generative mod-
+els around these ideas to explore and predict the evolu-
+tion of point scoring over the course of a game. We use
+these models to deduce the impact of chance, strategy,
+and the rules of the game itself, and to test two simple
+hypotheses:
+1. the probability of scoring does not depend on the
+current state of the game (team skill alone mat-
+ters).
+2. the probability of scoring does depend on the cur-
+rent game state (as well as team skill).
+Our probabilistic models encode speci c instances of
+these assumptions and we assess their accuracy under
+two online predictive tasks. We present novel predictive
+models that can not only predict the outcome of a game,
+but also provide better predictions over baseline models
+about the sequence of scoring events.
+II. RELATED WORK
+Our work addresses two novel prediction problems for
+predicting Who will score next? and Who will win?, us-
+ing only the sequence of scoring events that have already
+occured during the game. In the following we outline re-
+lated work to each of these questions in turn.
+Essential to answering the question Who will score
+next? is understanding the underlying mechanisms of
+scoring dynamics. The study of competitive team sports
+has a rich history spanning a broad selection of features
+including the timing of scoring events [7, 12, 14, 21,
+27, 36, 39], long-range correlations in scoring [30], the
+role of timeouts [31], the identi cation of safe leads [8],
+and the impact of spatial positioning and playing  eld
+design [5, 26, 40]. The most relevant of these studies
+focuses on the analysis of individual player  momen-
+tum  or  hot-hands  [2, 16, 39] and on team winning
+streaks [1, 16, 32, 37, 39]. Here, we bring together these
+two ideas by considering the notion of momentum, or its
+reverse  restoration , at the team level. Although some
+analysis has previously been undertaken in this direc-
+tion [14], we go further to provide the  rst predictive
+models that answer the question: Who will score next?
+2
+The foundations of our approach lie in the  eld of skill
+modeling and team ranking [6, 11], which originated in
+the mid-20th century. Work in this area includes the
+ranking of individuals [9, 11, 17], teams [18, 32, 35],
+or both [20, 22]. These models have been applied to a
+wide range of competitive events, including baseball [32],
+chess [9, 11, 17], American football [18, 35], association
+football (soccer) [23], and tennis [17]. More recently, they
+have been adapted to matchmaking problems in online
+games [20] and to calibrating reviewer scores in computer
+science conferences [13].
+Our work is the  rst to use skill ranking models to pre-
+dict Who will win? by predicting the sequence of scoring
+events within a game. Skill ranking models have previ-
+ously been applied to predicting game outcomes but only
+based on the  nal outcome of the game, either in terms
+of the win/loss result or the  nal point di erence. These
+past approaches thus cannot update their prediction as
+the game unfolds, while our models can. We train on a
+history of scoring event sequences so that we may pre-
+dict Who will win? in an online fashion. Some commer-
+cial online sports betting systems exist that make similar
+online predictions, but these systems are proprietary and
+closed, which precludes a scienti c evaluation or compar-
+ison with our models. They are not considered hereafter.
+III. SPORTS DATASETS
+We use scoring event data1 from four team sports:
+college-level American football (CFB, 10 seasons; 2000-
+2009), professional American football (NFL, 10 seasons;
+2000-2009), hockey (NHL, 9 seasons; 2000-2003, 2005-
+2009)2 and basketball (NBA, 9 seasons; 2002-2010). Each
+dataset consists of the set of scoring events for each game
+played in the season. It includes the time the event was
+scored, the team and player that scored, and its point
+value. Table I gives a summary of these data including the
+number of teams, games, and individual scoring events.
+In our analysis and modeling, we discard the timestamps
+of the events and instead consider only the order in which
+events appear within a game.
+A. Preprocessing
+We extract from the raw event data two sequences to
+represent each game: a point sequence  , where  i is the
+point value of scoring event i in the game, and a team
+sequence  , where  i   {r, b} is the identity of the team
+that won those points. If there are Nt events in game
+1 Data provided by STATS LLC, copyright 2015
+2 The entire 2004 NHL season was canceled due to an extensive
+lockout over a dispute about player salary caps [33].
+TABLE I. Summary of our sports data for multiple seasons across four team competitive sports.
+3
+abbrv.
+seasons
+sport
+Football (college) CFB 10, 2000 2009
+NFL 10, 2000 2009
+Football (pro)
+Basketball (pro) NBA
+9, 2002 2010
+9, 2000 2009
+NHL
+Hockey (pro)
+teams
+number of games number of scoring events mean events
+preprocessed (preprocessed)
+total preprocessed
+8.60
+13,689
+7.85
+2,561
+93.34
+5.77
+total
+190,337
+32,800
+11,744 1,301,408
+65,085
+10,259
+117,752
+20,115
+1,096,179
+59,227
+461 14,588
+32 2,645
+30 11,744
+30 11,813
+t, then the corresponding   and   each contain Nt ele-
+ments, and the lead size at event i is
+Li =
+ j ( j, r)    j ( j, b) ,
+(1)
+i(cid:88)
+j=1
+for team labels r and b (arbitrarily chosen), where  (., .)
+is the Kronecker delta function and by convention we
+compute L from team r s perspective.
+We begin by removing some games and scoring events.
+We remove any events that occur during regulation over-
+time (0.88% of all events), because these events follow
+di erent scoring processes than events in regular game
+time [27]. Additionally, any games in which only one team
+scored are removed (6.24% of all games), as the raw data
+do not indicate the identity of the non-scoring team.
+Under certain game conditions, multiple scoring
+events, potentially by di erent teams, can occur at the
+same game clock time. For example, in American foot-
+ball, the clock is stopped after a touchdown is scored but
+the scoring team gets a chance to score a conversion. If
+the conversion is unsuccessful, occasionally the opposing
+team gains control and scores points before the clock is
+restarted. Similarly, in basketball, the clock is stopped
+during free throws after a foul, after which the ball is
+inbounded (thrown in). If the ball is inbounded close to
+the other basket, it is possible to score before a second
+has elapsed on the clock. In these cases, the ordering of
+these events is ambiguous.
+Removing these events would alter the running lead
+size, which is one of the game states of interest. Instead,
+we merge simultaneous events into a single scoring play
+that removes the ordering ambiguity while preserving the
+correct score. If one team scores two simultaneous events
+i and i + 1, we merge their values, setting  i =  i +  i+1,
+and removing event i + 1 from both sequences. If two
+teams score simultaneously, we merge their values with
+that of the immediately preceding event in a way that
+preserves the running lead. Speci cally, we set  i 1 =
+ i 1   | i    i+1|, where the sign is consistent with the
+previous assignment of r and b labels to teams, and then
+remove events i and i + 1 from both sequences.
+B. Scoring and lead size
+We use these point and team sequences to make an
+initial investigation of our hypotheses. If the scoring dy-
+FIG. 1. Probability that a team scores next as a function of
+its lead size, for the observed (yellow ) and simulated (black )
+patterns, each with a linear least squares  t line. The simu-
+lated scoring sequence assumes that the probability of scoring
+is independent of the game s state.
+namics are truly independent of the game s state, these
+dynamics will be indistinguishable from an independent
+Bernoulli process, in which each Bernoulli trial represents
+a scoring event. We evaluate this model by calculating
+the empirical probability that a team will score the next
+event as a function of the current lead size L. Recall that
+we compute L from the perspective of team r; thus, if r
+is leading, then L is positive, while if r is trailing, then
+L is negative (and vice versa for b). This function is thus
+rotationally symmetric about a lead of L = 0, where
+neither team leads, and has the mathematical form of
+P ( i = r | Li 1) = 1   P ( i = b|  Li 1).
+(cid:80)N
+We compare the empirical scoring function to one cal-
+culated from synthetic team sequences generated accord-
+ing to an independent Bernoulli process, in which we  ip
+a biased coin to determine which team wins each scoring
+event. The coin s bias is determined by the proportion of
+scoring events each team wins in that particular game,
+1
+i=1  ( i, r) (or for b). In this simulation, events are
+N
+thus independent of the game state (hypothesis 1). We
+also compute a least-squares regression line for the em-
+pirical and for the synthetic data, in which each point
+is given weight proportional to the number of times the
+corresponding lead size was observed.
+All of the resulting gradients relating scoring probabil-
+ity to lead size are nonzero (Fig. 1), and each Bernoulli
+process produces a positive gradient. This pattern simply
+re ects the empirical distribution of biases used to sim-
+ulate the ensemble of games, with a more positive slope
+re ecting broader variance in these biases. The variance
+in the estimated scoring probability increases with lead
+size simply because progressively fewer games produce
+leads of that magnitude.
+Comparing the observed and simulated scoring func-
+tions (Fig. 1), we observe a clear contradiction. The gra-
+dient and, in particular for NBA, the range of lead sizes
+generated by the Bernoulli process disagree strongly with
+those properties observed in the empirical data. These re-
+sults suggest that the probability of scoring does indeed
+depend, somehow, on the game state (hypothesis 2). In
+subsequent sections, we investigate this dependence us-
+ing sophisticated probabilistic models to determine how
+the probability of scoring depends on game state.
+IV. WHERE STANDARD TESTS FAIL
+To determine whether scoring events are independent,
+we now apply a suite of statistical randomization tests,
+which compare observed sequences to random sequences
+with similar properties. Speci cally, we employ the
+  serial test (non-uniformity),
+  Wald-Wolfowitz runs test (anti-restoration), and
+  autocorrelation test (persistence/anti-persistence),
+where for each the null hypothesis is that the team se-
+quence   is simply a random sequence.
+The serial test [25] examines bigram frequencies in a
+sequence and compares them to their expected frequen-
+cies under a uniformly random sequence. For a team se-
+quence with N elements, the observed fractions of bi-
+grams {rr, rb, br, bb} are compared to their expectations
+of N/4. This test can identify the existence of a bias
+within each game, i.e., if one team is systematically more
+likely to score than another.
+The Wald-Wolfowitz runs test [38] examines the ob-
+served number of runs in a sequence, i.e., substrings of  
+for which each element is the same (either r or b), which
+allows us to identify either positive momentum or anti-
+restorative e ects in within-game scoring. We reject the
+null hypothesis that   is random if the observed number
+of runs is signi cantly below its expected value. Previ-
+ously, this test has been used to detect winning streaks
+in sequences of games [37].
+The autocorrelation test measures the correlation of a
+sequence with itself, shifted by one element, which allows
+us to identify periodic dynamics that occur as a result of
+anti-persistence. Here, we reject the null hypothesis that
+  contains no dependence between values if the autocor-
+relation is signi cantly higher or lower than zero.
+We apply each of these three tests to each of our four
+data sets, and compare the results against a false positive
+4
+FIG. 2. (top) Probability distributions for the number of scor-
+ing events in a game, and (bottom) the randomization test
+results for each sport, by season, versus a false positive rate
+of   = 0.05 (dashed line). The team sequences of each game
+are tested independently and we plot the proportion of games
+that reject the null hypothesis that the sequences are random.
+Because CFB, NFL and NHL typically have a small number of
+events per game (upper panel), the null hypothesis is di cult
+to reject.
+rate of   = 0.05 (Fig. 2). We also consider each season
+separately so as to reveal non-stationarities. Basketball,
+unlike the other sports, produces a large proportion of
+rejections for the serial and autocorrelation tests, which
+re ects the known anti-persistence pattern in basketball
+scoring [14].
+On the other hand, for all sports except basketball,
+each of these tests rejects the null hypothesis at close to
+or below the chosen false positive rate, a  nding consis-
+tent with each of these sequences being random. How-
+ever, this interpretation is problematic. The serial test
+makes the very strict assumption that each sequence is
+drawn from a uniform random distribution, i.e., each is
+generated by  ipping a fair coin several times. A face-
+value interpretation thus implies that all teams have an
+equal chance of winning each game a highly unlikely
+situation and it predicts that the scoring function from
+Section III B should be independent of lead size, which
+contradicts the observed pattern (Fig. 1).
+In fact, however, there is no contradiction: the   se-
+quences are simply too short (Fig. 1) for these tests to
+reliably distinguish random from non-random sequences
+when we assume they are generated independently, i.e.,
+the tests have low statistical power. The one exception
+is basketball, whose sequences typically contain 90 or so
+events, while those for American football or hockey typ-
+ically contain less than 10.
+In the following sections, we show how to circumvent
+the low statistical power of these tests by exploiting the
+fact that team sequences are not, in fact, independent
+of each other. Instead, each season s sequences are gen-
+erated by repeatedly selecting pairs from a  nite and
+ xed population of teams. This process induces substan-
+tial correlations across games that we can capture by
+modeling the latent skills of each team within a given
+season.
+V. SKILL-BASED SCORING DYNAMICS
+Toward this end, we develop a series of models of in-
+creasing complexity based on speci c underlying mech-
+anisms for sports scoring dynamics, including indepen-
+dence, restoration, and anti-persistence. Each of these
+models represents team skill as a latent variable. We as-
+sume that team skill is  xed over the course of any partic-
+ular season [18], which re ects the relatively stable team
+rosters and coaching sta s, and low injuries rates in these
+sports. Furthermore, modeling each season separately al-
+lows us to run multiple tests for each sport one for each
+season and allows our models to capture real changes
+in team skill across seasons [18].
+Each of our models generates a team sequence   by
+extending the popular Bradley-Terry (BT) model [6] to
+generate individual scoring events within a game. Tra-
+ditionally, the BT model is used to estimate unobserved
+(latent) team skills from the observed outcomes of many
+games among pairs of teams. The probability that team
+r wins in a match against team b is given by the skill of
+r relative to b:
+P (r wins against b) = drb =
+ r
+ r +  b
+,
+(2)
+where  r,  b   [0, 1] is the latent skill for team r.
+A.
+Independent model
+When scoring events within a game are independent,
+their generation is equivalent to a simple Bernoulli pro-
+cess with a game-speci c bias. This is equivalent to an
+ independent model  that applies the game-level BT
+model of Eq. (2) to each of the individual scoring events
+within a game, yielding
+P ( i = r) = drb .
+(3)
+This represents our  rst model, which can capture vari-
+ability in a team sequence caused by di erences in team
+skill parameters, but not other sources of variability.
+B. Restorative models
+Real scoring functions (Fig. 1) produce a range of gra-
+dients. However, the independent model can only pro-
+duce positive slopes. To capture a wider variety of scor-
+ing function shapes, and in particular a negative slope or
+ restorative  pattern, we extend the independent model
+by allowing each team s skill to explicitly covary with
+5
+its lead. Such a relationship could arise for psychological
+reasons, e.g., a winning team  loses steam  or a losing
+team gains motivation [4], or for strategic reasons, e.g.,
+substituting out or in the more skilled players while in
+the lead in order to conserve their energy, avoid injury,
+or create momentum [27].
+Our restorative model augments the independent
+model with an explicit per-team  restorative force  pa-
+rameter  r, which modi es team r s strength in response
+to the current lead size from its perspective (cid:96)r and cap-
+tures the fact that di erent teams may have di erent
+behaviors in response to how far ahead or behind they
+are. When  r < 0, team r exhibits a restorative pattern,
+with skill being proportional to  (cid:96)r. When  r > 0, team
+r exhibits an anti-restorative or momentum pattern, with
+skill being proportional to (cid:96)r.
+The probability that team r scores against b is given
+by
+P ( i = r) = drb + (cid:96)ircrb ,
+where (cid:96)ir is r s lead size just before event i and
+crb =  r +  b = cbr .
+(4)
+(5)
+A game as a whole exhibits a restorative pattern when-
+ever crb < 0. This occurs either when both teams exhibit
+a restorative pattern themselves ( r < 0 and  b < 0) or
+when one team s restorative force is stronger than the
+other team s anti-restorative force ( r < 0,  b > 0, and
+| r| > | b|).
+The additional term in Eq. (4) relative to the in-
+dependent model means this model s scoring function
+is no longer bounded on the [0, 1] interval. We correct
+this behavior by using a sigmoid function of the form
+ 1 to provide a smooth and continuous
+ (x) = (1 + e x)
+approximation of the misspeci ed linear function.
+To make this approximation, we change variables so
+that a logistic curve most closely approximates the linear
+equation, which occurs when we match the gradients at
+the point of symmetry at P ( i = r) = 1/2. Setting the
+derivative  (cid:48) equal to crb, we  nd
+ (cid:48)(mrb(cid:96)ir + vrb) =
+mrbemrb(cid:96)ir+vrb
+(emrb(cid:96)ir + evrb)2 = crb ,
+(6)
+We then solve for when the logistic function equals 1/2,
+yielding
+ (mrb(cid:96)ir + vrb) =
+1
+1 + e (mrb(cid:96)ir+vrb)
+= 1/2 .
+(7)
+Finally, in solving Eqs. (6) and (7) we obtain the fol-
+lowing transformation of variables:
+vrb =  4 (1/2   drb)
+mrb = 4 crb ,
+(8)
+(9)
+where mrb and vrb are the variables used in the logistic
+function such that crb and drb retain their linear interpre-
+tation and are thus comparable to the skill variables in
+6
+model goodness-of- t by calculating the held out like-
+lihood for each model under a 10-fold cross validation.
+Furthermore, we follow this procedure for each season of
+each sport separately, the results of which are given in
+Tables II V. By treating seasons independently, we ob-
+tain multiple model assessments within each sport while
+controlling for within season variability. For each season,
+we highlight the two highest scores in blue and the high-
+est score in bold.
+In basketball (NBA), we  nd that the restorative anti-
+persistent model consistently provides the best  t across
+all seasons (Table II), with the second best model be-
+ing the independent anti-persistent model. These results
+indicate a strong role for both restoration and anti-
+persistence in driving basketball scoring dynamics. Pre-
+vious analysis of basketball scoring using random walk
+theory came to similar conclusions [14].
+American football (NFL and CFB) shows a di erent
+result, with both types of independent model being heav-
+ily favored over both types of restorative model (Tables
+III and IV). The poor  t here of the restorative models
+indicates that the competitive processes that produce a
+restorative force in basketball are largely absent in Amer-
+ican football. This di erence may be related to the much
+greater scoring rate in basketball relative to American
+football (Fig. 2): an increased scoring rate lowers the
+marginal value of each scoring event relative to the game
+outcome (who wins), and low value interactions in other
+systems are associated with restorative forces [10, 19].
+Furthermore, the anti-persistent model for NFL is fa-
+vored in 8 of 10 seasons over the independent model,
+while in CFB, it is favored in only 2 of 10 seasons. That
+is, anti-persistence appears to play a stronger role in NFL
+games than in CFB games. In fact, CFB is the only sport
+to strongly favor the independent model, a result that
+agrees with the our previous simulation results (Fig. 1),
+which showed that the trivial independent model pro-
+duced the smallest disagreement for CFB between real
+and simulated scoring function gradients among the four
+sports.
+The results for hockey (NHL) are less clear cut (Ta-
+ble V). In 8 out of 9 seasons, the independent anti-
+persistent model is either the best or second best model,
+and the independent model is best or second best in
+7 out of 9. On the other hand, the simple restorative
+model wins for 2 seasons, and is second best for one.
+(The restorative anti-persistent model is a poor  t for
+all hockey seasons.) We note, however, that the log-
+likelihoods among these three models are all very close,
+indicating that each performs about as well as the oth-
+ers for these data. Given that NHL is also the one sport
+among the four that is not anti-persistent by design (pos-
+session is determined by a  faceo   after each goal) and
+that its scoring function has a negative gradient, we ten-
+tatively conclude that the restorative model is better.
+Across seasons, the best overall models appear to be
+CFB:
+independent anti-persistent;
+NBA: restorative anti-persistent; and NHL: restorative.
+independent; NFL:
+FIG. 3. Two examples of linear functions matched to logistic
+functions using the change of variables in Eqs. (8) and (9).
+the independent scoring model. Figure 3 shows examples
+of two linear functions and their corresponding logistic
+approximations.
+C. Anti-persistence models
+In many sports, we observe an anti-persistent pattern
+in the team sequences, in which the probability that
+r scores next depends on which team scored last, i.e.,
+P ( i+1 = r |  i). For example, for NBA team sequences,
+the rate of rr and bb bigrams is only 0.35, indicating
+strong anti-persistence. (The rates for CFB, NFL, and
+NHL are 0.45, 0.44, and 0.49, respectively.) Such an anti-
+persistence pattern can occur when teams have di erent
+degrees of skill at defensive and o ensive play, e.g., when
+both teams have o enses that are relatively stronger than
+the opposing team s defense.
+To capture these e ects, we extend the independent
+model so that each team has an o ensive skill parame-
+ter  o  and a defensive parameter  def . For sports like
+American football and basketball, ball possession (o en-
+sive play) typically alternates after a scoring event. We
+model this game rule by applying a team s defensive skill
+immediately after it scores and its o ensive skill after the
+other team scores. Under this independent anti-persistent
+model, the probability of scoring event i is
+P ( i = r |  i 1) =
+(10)
+Finally, we obtain a fourth model by combining the
+restorative model with the anti-persistent model.
+(cid:40) def
+r
+ o 
+r
+(cid:14)(cid:0) def
+(cid:14)(cid:0) o 
+r + o 
+b
+r + def
+b
+(cid:1) if  i 1 = r
+(cid:1) if  i 1 = b
+.
+VI. MODELING SCORING DYNAMICS
+We  t the (i) independent, (ii) restorative, (iii) in-
+dependent anti-persistent, and (iv) restorative anti-
+persistent models to the team sequences within a given
+season of each sport, using Markov chain Monte Carlo
+to estimate each model s parameters. For each, we assess
+7
+TABLE II. Log-likelihoods on held-out data for NBA games.
+Independent
+Restorative
+Independent anti-persistent
+Restorative anti-persistent
+2002
+-80849
+-80573
+-75655
+-75627
+2003
+-78814
+-78506
+-73823
+-73777
+2004
+-84698
+-84361
+-79151
+-79097
+2005
+-84744
+-84404
+-78841
+-78796
+2006
+-84795
+-84469
+-79088
+-79040
+2007
+-86070
+-85777
+-80174
+-80141
+2008
+-85727
+-85444
+-79841
+-79812
+2009
+-86314
+-86005
+-80513
+-80465
+2010
+-85114
+-84704
+-79386
+-79297
+Independent
+Restorative
+Independent anti-persistent
+Restorative anti-persistent
+Independent
+Restorative
+Independent anti-persistent
+Restorative anti-persistent
+TABLE III. Log-likelihoods on held-out data for NFL games.
+2000
+-1286
+-1324
+-1278
+-1322
+2001
+-1307
+-1347
+-1290
+-1337
+2002
+-1408
+-1450
+-1401
+-1450
+2003
+-1372
+-1402
+-1361
+-1496
+2004
+-1403
+-1451
+-1392
+-1448
+2005
+-1373
+-1422
+-1378
+-1427
+2006
+-1369
+-1424
+-1372
+-1434
+TABLE IV. Log-likelihoods on held-out data for CFB games.
+2000
+-7487
+-8114
+-7486
+-8011
+2001
+-7575
+-8182
+-7643
+-8113
+2002
+-8098
+-8689
+-8142
+-8625
+2003
+-8105
+-8656
+-8201
+-8586
+2004
+-7675
+-8268
+-7741
+-8198
+2005
+-7708
+-8176
+-7759
+-8110
+2006
+-7265
+-7884
+-7328
+-7781
+TABLE V. Log-likelihoods on held-out data for NHL games.
+2007
+-1433
+-1466
+-1425
+-1470
+2007
+-8673
+-9334
+-8678
+-9214
+2008
+-1484
+-1530
+-1473
+-1520
+2008
+-8435
+-9065
+-8458
+-8880
+Independent
+Restorative
+Independent anti-persistent
+Restorative anti-persistent
+2000
+-4432
+-4432
+-4420
+-4449
+2001
+-4238
+-4238
+-4237
+-4254
+2002
+-4300
+-4313
+-4287
+-4318
+2003
+-4078
+-4056
+-4068
+-4090
+2005
+-5026
+-5031
+-5020
+-5045
+2006
+-4712
+-4695
+-4706
+-4721
+2007
+-4504
+-4511
+-4497
+-4521
+2008
+-4755
+-4761
+-4761
+-4787
+2009
+-1395
+-1432
+-1387
+-1426
+2009
+-8097
+-8777
+-8078
+-8630
+2009
+-4655
+-4663
+-4668
+-4687
+season, and comparing the simulated and empirical scor-
+ing functions. That is, we repeat the assessment of Fig-
+ure 1, but now using models that can capture depen-
+dence across sequences. The results show that our skill-
+based models are a dramatic improvement over simulat-
+ing each game independently (Fig. 4), agreeing closely
+with the empirical scoring patterns in both the gradient
+and range of lead sizes.
+VII. PREDICTING OUTCOMES
+We now apply our models to two online prediction
+tasks in each of the sports: Who will score next? and
+Who will win? For both tasks, we let our models observe
+the point and team sequences of the  rst T games in a
+particular season. We then use these models to predict
+for each unobserved game in that season (i) the team se-
+quence values  i for 1   i   N , and (ii) the identity of
+the winning team, when each model is allowed to observe
+the game states ( j,  j) for 1   j < i. In the second task,
+all models predict point values  i as the mean value (cid:104) (cid:105)
+averaged over all events in the season. We compare our
+predictions to those of three baseline models.
+The  rst baseline is a na  ve leading model, which as-
+sumes that the team currently in the lead is the stronger
+FIG. 4. Probability that a team scores next as a function of
+its lead size, for the observed (yellow ) and simulated (black )
+patterns, each with a linear least squares  t line. Each simula-
+tion uses the best overall skill model for that sport to generate
+synthetic point and team sequences.
+We check these models by performing a semi-parametric
+bootstrap, generating synthetic   and   sequences of the
+same number and lengths as observed empirically in each
+8
+A. Who will score next?
+In the  rst task, we aim to predict which team will
+score event i, for each 1   i   N , given the sequence
+of preceding game states ( j,  j) for 1   j < i. For this
+online prediction task, we learn each model s parameters
+from the  rst T games in a season and then make pre-
+dictions across all unobserved games within a season and
+calculate the AUC for all predictions across all seasons to
+obtain a single score. Each model observes at least 10%
+of a season, which ensures that every team has played at
+least a few times.
+The results show that the overall best models identi ed
+in the previous section also tend to be the best predictors
+at who will score next (Fig. 5), although some alternative
+models also perform well. For instance, the best model for
+NFL games early in the season is the  rst order Markov
+model; however, the best NFL model beats this baseline
+after about 30% of a season is observed. Similarly, the
+ rst order Markov model performs almost as well as the
+best skill model in predicting who will score next in NBA
+games, by capturing the known anti-persistence pattern
+in that sport. One of the worst models across all four
+sports is the leading baseline, which often performs only
+slightly better than chance.
+B. Who will win?
+Predicting who will win a game requires extrapolating
+the point and team sequences to determine the game s
+ nal outcome. We simplify this task slightly by assum-
+ing that the number of scoring events N in each game is
+known. We then allow the models to learn their parame-
+ters from the  rst 30% of each season (other choices lead
+to qualitatively similar results as those reported here).
+For each game in the remainder of a season, the models
+predict the identity of the winning team when they are al-
+lowed to observe a progressively greater fraction of game
+states ( i,  i) for 0.1   i/N   0.9 as if each model were
+watching the game unfold in real time.
+The results show that the overall best model for each
+sport both consistently outperforms the baselines and
+also correctly predicts the winner with at least 80% ac-
+curacy at a game s halftime (Fig. 6).
+The relatively poorer performance of the  leading 
+baseline model
+illustrates that this prediction task is
+non-trivial who is leading at a given moment is not
+as predictive of who wins as knowing something about
+team skills and scoring dynamics. On the other hand, the
+Bradley-Terry baseline performs comparably well very
+early in the game, but is quickly beaten because it cannot
+learn from the real-time evolution of a game.
+For this task, most of our skill-based models make very
+similar predictions and the  rst order Markov model also
+performs well. Although the distributions of  nal lead
+sizes may be di erent, the means are very close, and the
+individual predictions across models correlate strongly.
+.
+FIG. 5. Probability of accurately predicting which team will
+score next (AUC), when models observe di erent fractions of
+a season. Based on 95% con dence intervals, our best model
+performs signi cantly better than the baseline models for
+CFB and NBA, and after observing at least half of the season
+for NFL and NHL.
+team and thus more likely to both score next and win
+the game. Speci cally, it predicts that team holding the
+lead at event i will win the next event, i.e., it predicts
+ i+1 = r if L > 0 and  i+1 = b if L < 0, and will also
+win the game. If L = 0, the model  ips a fair coin for r
+and b.
+The second baseline is the standard Bradley-Terry
+model in which we infer latent team skills   from the win-
+loss records among teams in the observed games. This
+model is simpler than our independent model, which in-
+fers team skills using team sequences { } of the observed
+games.
+The third baseline is a simple  rst order Markov
+model. It predicts that the next team to score will either
+be the same or di erent than the team that scored last ac-
+cording to the empirical bigram frequencies {rr, bb, rb, br}
+observed in the  rst T games of the season. Formally, it
+predicts that a team will score again given it scored last
+time as
+P ( i+1=  i) =
+ ( i+1,  i)
+t=1
+i=1
+t=1
+(11)
+For both prediction tasks, we assess prediction accu-
+racy via AUC statistic, which gives the probability that
+a randomly selected true positive is ranked above a ran-
+domly selected false positive. The AUC is a statistically
+principled measure for binary classi cation tasks like ours
+where the cost of an error is the same in either direction
+(since team labels, r or b, are arbitrary).
+(cid:32) T(cid:88)
+Nt 1(cid:88)
+(cid:33)(cid:44)(cid:32) T(cid:88)
+(cid:33)
+Nt   1
+9
+FIG. 6. AUC scores for predicting which team will win given
+the current state of the game.
+The greatest di erence occurs at the start of the game. In
+particular, the  rst order Markov model performs much
+worse than the skill-based models at the beginning be-
+cause it has no information about the heterogeneity of
+team scoring abilities. As the game progresses the predic-
+tions tend to converge. This occurs because these models
+all make predictions based on random walks on a binary
+sequence {r, b}, the di erence being in how they model
+the transition probabilities. Later in the game we extrap-
+olate less and so the di erences between models become
+less pronounced.
+VIII. TEAM SKILL EVOLVES OVER TIME
+A useful feature of our probabilistic models is the in-
+terpretability of their parameters, which are meaningful
+measures of team skill here. By learning these parame-
+ters independently for each season in each sport, we can
+investigate how team skills have evolved over time.
+Using the best overall model for each sport, we learn
+its parameters using all data in each particular season
+and calculate the Spearman rank correlation across team
+skills for each pair of seasons (Fig. 7). We  nd that
+the relative ordering of teams by their inferred skills ex-
+hibits strong serial correlation over time, which appears
+as a strong diagonal component in the pairwise correla-
+tion matrices. The low or inverse correlation in the far
+o -diagonal elements, as well as the block-like patterns
+observed in CFB and NFL, implies an underlying non-
+stationarity in team skills for each of the leagues over the
+roughly 10-year span of data.
+The manner in which team rosters change over time
+is a likely source of such long-term dynamics in relative
+team skill. At short time scales, team rosters are fairly
+stable, with only a few players changing from season to
+season. However, over longer time scales, these changes
+accumulate, and rosters separated in time by more than a
+FIG. 7. Correlation of inferred skills over years for each sport.
+We see that the highest correlations occur along the block di-
+agonal indicating that adjacent years are more similar. Note
+that the scale is di erent for CFB due to a much higher cor-
+relation across all years.
+few years are likely to be very di erent, with concomitant
+di erences in team skill.
+The exception to this pattern is CFB, which shows a
+larger long-term correlation, i.e., a slower rate of change
+in relative team skills, than in professional sports. We
+speculate that this di erence is caused by the di erence
+in player mobility between college and professional-level
+sports: professional teams operate in a national player
+market, and players can move relatively freely among
+teams, while colleges operate as rough regional monopo-
+lies over the sources of their players.
+The inferred season-by-season skill orderings them-
+selves are also of interest, as they reveal the particular
+trajectories of individual teams over time. We show vi-
+sualizations of these trajectories for NBA and NFL in
+Figures 8 and 9. We omit CFB because there are too
+many teams (461) to meaningfully visualize and NHL for
+space reasons.
+For each plot we highlight the two teams that won the
+league championship (NFL Super Bowl and NBA Finals)
+more than once during the period covered by the dataset.
+It is notable that these teams are not necessarily the most
+skilled teams under our model. This is unsurprising, as
+tournaments by bracket are the highest variance method
+of identifying the most skilled team [3]. Interestingly, in
+both NFL and NBA games, the highlighted teams tend
+to have strong o ensive skills, while their defensive skills
+are more variable. This pattern suggests that o ensive
+skills are more important for winning games, which seems
+reasonable given that a strong defense alone cannot win
+a game.
+Looking at individual teams, we can see how their
+skills change with respect to the total ordering. For in-
+stance, the Cleveland Cavaliers drafted LeBron James in
+2003 and went from being ranked the third worst (of-
+10
+FIG. 8. NBA defensive (top) and o ensive (bottom) skill rankings. Teams that won more than one NBA  nals game in the data
+are highlighted, i.e., Lakers (orange) 2002, 2009 and 2010, Spurs (black ) 2003, 2005 and 2007.
+FIG. 9. NFL defensive (top) and o ensive (bottom) skill rankings. Teams that won more than one NFL super bowl games in
+the data are highlighted, i.e., Patriots (black ) 2002, 2004 and 2005, Steelers (orange) 2006 and 2009.
+fensive) team to a mid-range one. When James left for
+Miami Heat at the start of the 2010 11 season, we see
+the Cavaliers  o ensive skill drop to the bottom ranked
+team, while Miami Heat s o ensive and defensive skills
+increased to be ranked third and  rst respectively. We
+also see that the Los Angeles Lakers  skills (both o en-
+sive and defensive) drop for the 2004 05 season. After
+facing a di cult 2003-04 season [24], they disbanded the
+team, lost their coach and faced a number of injuries,
+resulting in a poorer performance in 2004 05.
+Finally, the range of values occupied by o ensive and
+defensive skills is di erent between NFL and NBA teams:
+in the latter, these two skills occupy non-overlapping
+ranges (large and small respectively), while in the for-
+mer, they fall in similar ranges. That is, NBA teams are
+less likely to score when playing defensively than when
+they have possession of the ball, which serves to create a
+stronger anti-persistence scoring pattern (0.36) than for
+NFL (0.44), where skills are more evenly matched.
+IX. CONCLUSION
+In this work we considered the online prediction tasks
+of Who will score next? and Who will win? based on the
+sequence of scoring events in the game so far. Our proba-
+bilistic models based on latent team skills perform well at
+both predictive tasks and can predict with a high degree
+of certainty (> 80%) who will win a game in each of the
+four leagues we studied, after only half of the game has
+elapsed. Furthermore, by using gameplay, i.e., the partic-
+ular sequence of events within each game, to model team
+skill rather than just game outcomes, we can infer di er-
+ent types of latent team skills e.g., o ensive vs. defensive
+skills.
+Our statistical models provide a quantitative and prin-
+cipled means of capturing and testing hypotheses about
+the variability induced by chance, the biases produced by
+real di erences in team skill, and the structural impact
+of game-speci c rules. In applying these models to com-
+prehensive data from four di erent sports, we found that
+each of the leagues is best  t by a di erent model. This
+11
+indicates that skill, luck, strategy, and the rules of the
+game serve di erent roles in the scoring dynamics across
+sports. The exception was professional hockey (NHL),
+where the very low scoring rate resulted in no clear pre-
+dictive winner among our models.
+Our models and results open up many new directions
+for future work. For instance, we could incorporate other
+data such as player or ball positioning [5, 40], or the
+timing of events [27] to improve our models and allow us
+to apply them to low scoring sports such as soccer. These
+models could also be used to make other predictions, e.g.,
+the number of scoring events in a game, the  nal score,
+and when a lead is safe [8], and to produce more rigorous
+team rankings (Figs. 8 and 9).
+In addition to data on gameplay, data on individual
+player attributes and performance in competitive settings
+are also often available, e.g., height, strength, speed, ac-
+curacy when scoring, defensive skill, passing skill, etc.
+However, there are no good models that connect these
+characteristics to team skills and to gameplay as a means
+of predicting game outcomes. The models we formulated
+here solve part of this problem by connecting team skill to
+gameplay. An interesting direction for future work would
+be to predict outcomes from player statistics via team
+skills as an intermediary. Such a model would allow teams
+to make more data-driven choices about how they build
+team rosters and train their players. This extension of
+our work would also open up new avenues in designing
+realistic simulations of competitive play, e.g., for better
+AI in video games.
+X. ACKNOWLEDGEMENTS
+We thank Ruben Coen Cagli, Ramsey Faragher, The-
+ofanis Karaletsos, Marina Kogan, David Edward Lloyd-
+Jones and Sam Way for helpful conversations, and ac-
+knowledge support from Grant #FA9550-12-1-0432 from
+the U.S. Air Force O ce of Scienti c Research (AFOSR)
+and the Defense Advanced Research Projects Agency
+(DARPA).
+[1] J. Arkes and J. Martinez. Finally, evidence for a momen-
+tum e ect in the NBA. J. of Quantitative Analysis in
+Sports, 7(3):article 13, 2011.
+[2] M. Bar-Eli, S. Avugos, and M. Raab. Twenty years of
+ hot hand  research: Review and critique. Psychology of
+Sport and Exercise, 7(6):525 553, 2006.
+[3] E. Ben-Naim and N. W. Hengartner. How to choose a
+champion. Phys. Rev. E, 76:026106, 2007.
+[4] J. Berger and D. Pope. Can losing lead to winning? Man-
+agement Sci., 57(5):817 827, 2011.
+[5] J. Bourbousson, C. S`eve, and T. McGarry. Space-time
+coordination dynamics in basketball: Part 2. The interac-
+tion between the two teams. J. of Sports Sci., 28(3):349 
+358, 2012.
+[6] R. A. Bradley and M. E. Terry. Rank analysis of incom-
+plete block designs: I. the method of paired comparisons.
+Biometrika, 39(3-4):324 345, 1952.
+[7] S. E. Buttrey, A. R. Washburn, and W. L. Price. Esti-
+mating NHL scoring rates. J. of Quantitative Analysis
+in Sports, 7(3):article 24, 2011.
+[8] A. Clauset, M. Kogan, and S. Redner. Safe leads and
+lead changes in competitive team sports. Preprint,
+arXiv:1503.03509, 2015.
+[9] P. Dangauthier, R. Herbrich, T. Minka, and T. Graepel.
+TrueSkill through time: Revisiting the history of chess.
+In Neural Information Processing Systems 20, pages 337 
+344, 2007.
+[10] Y. Durham, J. Hirshleifer, and V. L. Smith. Do the rich
+get richer and the poor poorer? Experimental tests of a
+model of power. American Economic Rev., 88(4):970 
+983, 1998.
+[11] A. E. Elo. The rating of chessplayers, past and present,
+volume 3. Batsford, 1978.
+[12] P. Everson and P. S. Goldsmith-Pinkham. Composite
+Poisson models for goal scoring. J. of Quantitative Anal-
+ysis in Sports, 4(2):article 13, 2008.
+[13] P. A. Flach, S. Spiegler, B. Gol enia, S. Price, J. Guiver,
+R. Herbrich, T. Graepel, and M. J. Zaki. Novel tools
+to streamline the conference review process: experiences
+from SIGKDD 09. ACM SIGKDD Explorations Newslet-
+ter, 11(2):63 67, 2010.
+[14] A. Gabel and S. Redner. Random walk picture of bas-
+ketball scoring. J. of Quantitative Analysis in Sports,
+8(1):manuscript 1416, 2012.
+[15] T. Galla and J. D. Farmer. Complex dynamics in learning
+complicated games. Proc. Natl. Acad. Sci., 110(4):1232 
+1236, 2013.
+[16] T. Gilovich, R. Vallone, and A. Tversky. The hot hand in
+basketball: On the misperception of random sequences.
+Cognitive Psychology, 17(3):295 314, 1985.
+[17] M. E. Glickman. Parameter estimation in large dynamic
+paired comparison experiments. J. of the Royal Statisti-
+cal Society: Series C (Applied Statistics), 48(3):377 394,
+1999.
+[18] M. E. Glickman and H. S. Stern. A state-space model
+for National Football League scores. J. of the American
+Statistical Association, 93(441):25 35, 1998.
+[19] K. Hartley and T. Sandler. Handbook of defense eco-
+nomics, volume 2. Elsevier, 2007.
+[20] R. Herbrich, T. Minka, and T. Graepel. Trueskill(TM):
+In Neural Information
+A Bayesian skill rating system.
+Processing Systems 20, pages 569 576, 2007.
+[21] A. Heuer, C. M uller, and O. Rubner. Soccer: Is scoring
+goals a predictable Poissonian process? Eur. Phys. Lett.,
+89(3):38007, 2010.
+[22] T.-K. Huang, R. C. Weng, and C.-J. Lin. Generalized
+Bradley-Terry models and multi-class probability esti-
+mates. J. Machine Learning Research, 7:85 115, 2006.
+[23] L. M. Hvattum and H. Arntzen. Using ELO ratings for
+match result prediction in association football. Int. J. of
+Forecasting, 26(3):460 470, 2010.
+[24] P. Jackson and M. Arkush. The last season: a team in
+search of its soul. Penguin Press, 2004.
+[25] D. E. Knuth. The art of computer programming 2:
+seminumerical algorithms. Addision Wesley, 1998.
+12
+[26] S. Merritt and A. Clauset. Environmental structure and
+competitive scoring advantages in team competitions.
+Sci. Reports, 3:3067, 2013.
+[27] S. Merritt and A. Clauset. Scoring dynamics across pro-
+fessional team sports: tempo, balance and predictability.
+Eur. Phys. J. Data Sci., 3(1):article 4, 2014.
+[28] M. Rabin and D. Vayanos. The gambler s and hot-hand
+fallacies: Theory and applications. The Rev. of Economic
+Studies, 77(2):730 778, 2010.
+[29] D. Reed and M. Hughes. An exploration of team sport
+as a dynamical system. Int. J. of Performance Analysis
+in Sport, 6(2):114 125, 2006.
+[30] H. V. Ribeiro, S. Mukherjee, and X. H. T. Zeng.
+Anomalous di usion and long-range correlations in the
+score evolution of the game of cricket. Phys. Rev. E,
+86(2):022102, 2012.
+[31] S. Saavedra, S. Mukherjee, and J. P. Bagrow. Is coaching
+experience associated with e ective use of timeouts in
+basketball? Sci. Reports, 2:676, 2012.
+[32] C. Sire and S. Redner. Understanding baseball team
+standings and streaks. Eur. Phys. J. B, 67(3):473 481,
+2009.
+[33] P. D. Staudohar. The hockey lockout of 2004-05. Monthly
+Lab. Rev., 128:23 29, 2005.
+[34] T. St ockl, J. Huber, M. Kirchler, and F. Lindner. Hot
+hand belief and gambler s fallacy in teams: Evidence from
+investment experiments. Technical report, University of
+Innsbruck, 2013.
+[35] D. Tarlow, T. Graepel, and T. Minka. Knowing what
+we don t know in NCAA football ratings: Understand-
+ing and using structured uncertainty. MIT Sloan Sports
+Analytics Conf., 2014.
+[36] A. Thomas. Inter-arrival times of goals in ice hockey. J.
+of Quantitative Analysis in Sports, 3(3):article 5, 2007.
+[37] R. C. Vergin. Winning streaks in sports and the misper-
+ception of momentum. J. of Sport Behavior, 23(2):181 
+197, 2000.
+[38] A. Wald and J. Wolfowitz. On a test whether two samples
+are from the same population. The Annals of Mathemat-
+ical Statistics, 11(2):147 162, 1940.
+[39] G. Yaari and S. Eisenmann. The hot (invisible?) hand:
+can time sequence patterns of success/failure in sports be
+modeled as repeated random independent trials? PLOS
+ONE, 6(10):e24532, 2011.
+[40] Y. Yue, P. Lucey, P. Carr, A. Bialkowski, and
+I. Matthews. Learning  ne-grained spatial models for
+dynamic sports play prediction. In Int. Conf. on Data
+Mining, pages 670 679, 2014.

@@ -1,0 +1,1333 @@
+2
+1
+0
+2
+ 
+r
+p
+A
+2
+1
+ 
+ 
+ 
+]
+S
+D
+.
+s
+c
+[
+ 
+ 
+1
+v
+6
+0
+6
+2
+.
+4
+0
+2
+1
+:
+v
+i
+X
+r
+a
+Privacy via the Johnson-Lindenstrauss Transform
+Krishnaram Kenthapadi 
+Microsoft Research
+Aleksandra Korolova 
+Stanford University
+Ilya Mironov 
+Microsoft Research
+Nina Mishra 
+Microsoft Research
+ {krisken,mironov,ninam}@microsoft.com  {korolova@cs.stanford.edu}
+April 13, 2012
+Abstract
+Suppose that party A collects private information about its users, where each user s data is represented
+as a bit vector. Suppose that party B has a proprietary data mining algorithm that requires estimating
+the distance between users, such as clustering or nearest neighbors. We ask if it is possible for party A
+to publish some information about each user so that B can estimate the distance between users without
+being able to infer any private bit of a user. Our method involves projecting each user s representation
+into a random, lower-dimensional space via a sparse Johnson-Lindenstrauss transform and then adding
+Gaussian noise to each entry of the lower-dimensional representation. We show that the method preserves
+di erential privacy where the more privacy is desired, the larger the variance of the Gaussian noise.
+Further, we show how to approximate the true distances between users via only the lower-dimensional,
+perturbed data. Finally, we consider other perturbation methods such as randomized response and draw
+comparisons to sketch-based methods. While the goal of releasing user-speci c data to third parties is
+more broad than preserving distances, this work shows that distance computations with privacy is an
+achievable goal.
+1
+Introduction
+In recent years, there has been an abundance of rich and  ne-grained data about individuals in domains such
+as healthcare,  nance, retail, web search and social networks. It is desirable for data collectors to enable third
+parties to perform complex data mining applications over such data. However, privacy is a natural obstacle
+that arises when sharing data about individuals with third parties, since the data about each individual may
+contain private and sensitive information.
+We ask the following question:
+Is it possible to empower third parties with knowledge about users
+without compromising privacy of the users? Suppose that party A collects private information about its
+users, where each user s data is represented as a bit vector. We focus on the setting where a third party
+B has a proprietary data mining algorithm that requires estimating the distance between users, such as
+clustering or nearest neighbors. We ask if it is possible for party A to publish some information about each
+user so that B can estimate the distance between users without being able to infer any private bit of a
+1
+user. Even in a scenario where the data mining algorithm is run by the data collector itself (that is, parties
+A and B are the same), privacy breaches are possible if the result of data mining is to be published [19].
+The reason is that complex algorithms that access private data can be susceptible to either unintended or
+adversarial attacks [6]. While one way to address this problem is to design a sophisticated algorithm that
+respects privacy (e.g., [7]), our approach can ensure that the data given as input to the algorithm itself does
+not compromise user privacy.
+Although estimating distances between users in a privacy-preserving manner is a fundamental primitive
+in many data mining applications, the approaches known to date have certain short-comings. Approaches
+resorting to user id anonymization while keeping the data unchanged have been shown to be badly insu cient
+to preserve privacy [2, 29]. A random projection based method to preserve distance between users was
+proposed in [22], but later work demonstrated concrete attacks to breach privacy on this method [14, 30].
+These approaches su er due to lack of a rigorous privacy de nition. On the other hand, approaches to data
+sharing such as the recently proposed provably private methods for search query and click data release [16,20]
+accomplish it at the price of giving up on all user-level information.
+Contributions: We describe a simple, natural way to publish a sketch of a user that simultaneously
+preserves privacy and enables estimation of the distance between users. The main idea is to project a d-
+dimensional vector representation of a user s feature attributes into a lower k-dimensional space by  rst
+applying a random Johnson-Lindenstrauss transform and then adding Gaussian noise N (0,  2) to each bit
+of the resulting vector. We prove that this perturbed lower-dimensional vector preserves di erential privacy,
+i.e., an attacker who knows all but one attribute of a user cannot recover the value of that attribute from
+the published information with high con dence. In terms of utility, we show how to recover the distance
+between users from the perturbed sketches. We show that the squared Euclidean distance between pairs of
+users is preserved in expectation. Further, with high probability, the distance between users is preserved up
+to the usual Johnson-Lindenstrauss factors plus an additive factor that depends on k and the variance of
+the noise  2.
+We also compare our proposed solution to other candidate solutions. For instance, we compare to the
+more straightforward solution of directly adding noise to the user   user distance matrix. We show that
+in order to achieve the same privacy, the variance of the added noise is higher for the more direct method.
+Concretely, we show that the projection-based method is better if the maximal weight of a user vector is much
+smaller than the number of users. Also, we analyze a randomized response [32] method for data sharing. For a
+ xed value of the target dimension k, we show that for nearby points (those within squared distance O( k)),
+both algorithms are inaccurate. Projection-based methods are better when pairs are medium distance apart,
+i.e., between  k and  dk/ 2. Randomized response methods excel for pairs that are far apart.
+While the problem of sharing data with third parties is more complex than producing sketches of user data
+that preserve distances between users, this work o ers a privacy-preserving method to enable third parties to
+execute one of the core data-mining primitives. Since the goal of our work is to enable distance computations,
+understandably it does not apply in situations and applications where proximity to a particular user is itself
+sensitive information.
+2 Preliminaries
+We  rst describe how the users are represented in our model and provide a formal problem statement. Then
+we discuss the measure of utility as well as the privacy de nition. We also state a classic result on preserving
+distances during dimensionality reduction which is crucial for our techniques to work.
+2
+2.1 User representation
+We represent each user belonging to a set U of n users as a binary vector in d dimensions, where each
+dimension corresponds to the value of an attribute (e.g. gender, interest/disinterest in a particular topic,
+location information, etc.) We assume that the attribute meanings are not sensitive or, if they are, they
+can be published in a privacy-preserving manner (say, using the techniques in G oetz et al. or Korolova et
+al. [16, 20]).
+Our goal can be formally stated as: Given a set of user pro les represented as vectors in d dimensions,
+publish sketches of the user pro les that simultaneously preserve user privacy and enable third parties to
+estimate pairwise distance between users.
+2.2 Utility measure
+We consider Euclidean ( 2) distance between users as the distance measure we aim to preserve, as it is a
+natural choice for similarity search in high dimensions [15]. We discuss other distance measures in  5. Our
+measure of utility is whether pairwise Euclidean distance between users can be recovered by a third party,
+who has access only to the transformed privacy-preserving user pro les.
+2.3 Privacy de nition
+Any system that employs heuristic notions of privacy su ers from the fundamental problem that an adversary
+can come up with sophisticated attacks to breach the protection in ways that the system designer had not
+anticipated. Hence we contend that it is crucial to design a data release method with provable privacy
+guarantees. We adopt a rigorous approach to privacy introduced by Dwork et al. [12], which has gained
+widespread recognition in recent years (see a survey [10]), and has been used to demonstrate the feasibility
+of privacy-preserving data releases [3, 20, 23, 24]. We adopt a slight variant of the de nition introduced
+in Dwork et al. [11]:
+De nition 1 (( ,  )-di erential privacy). A (randomized) algorithm A satis es ( ,  )-di erential privacy, if
+for all inputs X and X  di ering in at most one user s one attribute value, and for all sets of possible outputs
+ D   Range(A):
+Pr[A(X)    D]   e    Pr[A(X )    D] +  ,
+where the probability is computed over the random coin tosses of the algorithm.
+Intuitively, the di erential privacy guarantee states that an attacker who knows all attributes of all
+users except one attribute of one user cannot infer with con dence the value of that attribute, from the
+information published by the algorithm. The   parameter corresponds to the probability with which the
+preceding guarantee can fail, with   typically thought of as O(1/n). The privacy guarantees also extend to
+small collections of (not necessarily related) attributes.
+The privacy guarantees may be achieved through introduction of noise to the output. In order to achieve
+the more stringent privacy guarantee of ( , 0)-di erentially privacy, the noise added typically comes from the
+Laplace distribution [12]. If one is willing to tolerate a more lenient guarantee of ( ,  ), the noise can be
+added from the more tightly concentrated Normal distribution [11].
+3
+2.4 Johnson-Lindenstrauss transform
+A celebrated result in geometry, the Johnson-Lindenstrauss Lemma [18], states that for any set V of n
+points in Rd, given  JL > 0 and k =  (cid:16) log n
+JL (cid:17), there exists a map that embeds the set into Rk, distorting
+all pairwise distances within at most 1    JL factor. The proof proceeds by showing that for any x, y   Rd,
+a linear projection P   Rd k sampled from a carefully de ned class satis es
+ 2
+(1    JL)kx   yk2
+2
+2   kxP   yPk2
+2   (1 +  JL)kx   yk2
+with certain probability 1    JL over the choice of the projection matrix, where log 1
+applying the union bound.
+ JL
+= O(k 2), and then
+This transform has become a fundamental tool in dimensionality reduction and similarity search in high
+dimensions, and computer science literature [1, 17] has proposed several constructions for P .
+3 Construction and Usage of Privacy-Preserving Projections
+We next describe the intuition as well as the technical components of our approach. Then we state our
+privacy and utility guarantees and provide their proofs.
+3.1 Algorithms for transforming user pro les and recovering distances
+Our mechanism for enabling data sharing with privacy consists of two components: 1) an algorithm that
+transforms the representation of each user into a privacy-preserving sketch and 2) an algorithm that recovers
+distances between users from the transformed user sketches. The intuition for the design of our mechanism
+is as follows: since we aim to preserve pairwise distances with the goal of performing user segmentation
+and nearest neighbor computations, an algorithm that performs a privacy-preserving transformation of user
+pro les while approximately maintaining pairwise distances would su ce. At the core of our method is a
+one-time privacy-preserving transformation of user pro les that can be published. All subsequent operations
+can be performed on this published data and therefore do not consume a  privacy budget  or pose additional
+privacy risk.
+Our algorithms are easy to state and implement, and do not require understanding of privacy. However
+the proofs of privacy and utility guarantees are non-trivial and require deeper analysis.
+3.1.1 Private projection algorithm
+The goal of Algorithm 1 (PrivateProjection) is to transform an n   d representation of user data into
+a representation that can be publicly shared without compromising the privacy of any individual involved
+and can simultaneously preserve distance characteristics of the original representation. First, the data is
+projected into a much lower dimension (k   d) to obtain a compact representation that preserves pairwise
+distances (steps 1 2), similar to many dimensionality reduction techniques. Then the resulting data is slightly
+perturbed (steps 3 4) to guarantee privacy of each user. The bene t of projecting onto a lower dimension
+and doing the perturbation is that we require less noise addition.
+4
+Algorithm 1 PrivateProjection
+Input: Boolean n   d matrix X whose rows correspond to people and columns correspond to attributes
+learned about the users by  rst parties; Privacy parameters  ,  ; Projected dimension k.
+Output: d   k projection matrix P ; privacy-preserving n   k matrix Z, both of which can be pub-
+lished.
+1: Construct random d   k projection matrix P .
+2: Y := XP
+3: Construct random n   k noise matrix  , based on privacy parameters  ,   and projection matrix P .
+4: Z := Y +  
+5: Publish (P, Z).
+Intuitively, for a given level of desired privacy, there are two factors that a ect utility and behave in
+opposite directions as we vary the projected dimension k. On the one hand, as k gets smaller, dimensionality
+reduction plays a greater role in the distortion of distances. On the other hand, as k gets larger, noise added
+plays a greater role in the distortion of distances. Finding the optimal value for the projected dimension k is
+challenging theoretically, as it depends on the underlying data distributions and the speci c distance values
+we are trying to preserve.
+We next discuss the key components of Algorithm 1, namely, the choice of desired privacy guarantees
+( ,  ) which determines the distribution of the noise, the choice of projection matrix P (and its sensitivity)
+and the corresponding choice of the parameters of the noise matrix s distribution. We remark that the
+projection matrix as well the noise matrix do not depend on X, but only require knowledge of the number
+of users n, the original dimension d and the desired privacy parameters. Following Kerckho s s Principle
+in Cryptography, we assume that the algorithm as well as the parameters n, d, k,  ,  , P and the parameters
+used in the noise matrix are publicly known.
+3.1.2 Choosing desired privacy guarantees
+The  rst decision in utilizing Algorithm 1 (PrivateProjection) is to determine the privacy guarantees
+desired by the algorithm s curator. The crucial observation is that one is able to guarantee ( ,  )-di erential
+privacy by adding noise   from the Normal distribution, with the variance of the noise depending on the  2
+sensitivity of the chosen projection matrix P , which we de ne next.
+De nition 2 (  -Sensitivity of P ). De ne the l -sensitivity of a d   k projection matrix P = {Pij}d k,
+denoted by w (P ), as the maximum   -norm of any row in P, i.e., w (P ) = max1 i d(cid:0)Pk
+Equivalently, w (P ) can be de ned as maxei keiPk , where {ei}d
+i=1 are standard basis unit vectors.
+j=1 |Pij| (cid:1) 1
+  .
+3.1.3 Choosing projection matrix P
+There are many ways to choose a projection matrix for dimensionality reduction, depending on the properties
+of the data that need to be preserved. Our choice of P is guided by two considerations: (1) we would like
+to preserve pairwise  2 distances and thus user segmentation based on these distances (2) we would like to
+minimize the amount of noise to be added in order to maximize utility while guaranteeing privacy in the
+subsequent step.
+The natural candidate projection matrices for (1), preserving  2 distances between vectors, are the random
+projection matrices satisfying Johnson-Lindenstrauss guarantees ( 2.4), such as the ones below:
+5
+1. Each entry of the matrix drawn independently from a Normal distribution with mean 0 and  2 =
+1/k. [17].
+2. Each entry of the matrix drawn independently and uniformly at random from {  1 k
+3. Each entry of the matrix is chosen independently to be +q 3
+k , 0, q 3
+tively [1].
+k with probability 1
+, + 1 k} [1].
+3 , 1
+6 , 2
+6 , respec-
+4. The extremely sparse projection matrix of Dasgupta et al. [9].
+As we will see in the proof of privacy in Theorem 1, when using noise   from Normal distribution,
+the amount of noise needed to preserve privacy depends on the choice of the projection matrix P ; and
+more precisely, on the  2-sensitivity of the chosen P . It is therefore desirable to use a projection matrix
+with low  2 sensitivity, in order to ensure that we are adding the smallest possible amount of noise and
+therefore, maximizing utility while preserving privacy. The expected  2 sensitivity of all of the random
+projection matrices described above is tightly concentrated around 1 (using the alternative de nition of
+w2(P ) = maxei keiPk2, where {ei}d
+i=1 are standard basis unit vectors, and by applying the proofs of low
+distortion for these matrices) and therefore, all of them are suitable for privacy preserving transformations
+that aim to preserve the maximum utility.
+We emphasize that the speci c measure of sensitivity of the matrix P , namely  2-sensitivity, is driven by
+the type of noise added for privacy, which is Normal in our case, and not by the choice of norm one seeks to
+preserve under projection.
+3.1.4 The random noise matrix  
+The choice of the desired privacy guarantees and projection matrix P determines the noise matrix  . Each
+entry in   is drawn randomly and independently from Normal distribution with mean 0 and variance
+ 2, where the variance of the noise depends on  2-sensitivity of the projection matrix P and the privacy
+parameters   and  . By choosing   satisfying the condition in Theorem 1, the algorithm guarantees ( ,  )-
+di erential privacy.
+3.1.5 Recover distance algorithm
+We next describe our algorithm for estimating the squared distance between two users, given their sketches
+released in a privacy-preserving manner using Algorithm 1. Algorithm 2 (RecoverDistancePP) computes
+the squared  2 distance between the transformed representations in the k dimensional space, and then
+discounts for the systemic positive distortion of the distance due to noise addition. The discount 2k 2
+represents the expected distortion in the squared distance due to Gaussian noise addition.
+By repeated application of Algorithm 2, a third party can perform user segmentation and study the
+characteristics of the segments, as well as perform nearest-neighbor computations.
+Algorithm 2 RecoverDistancePP
+Input: n   k matrix Z published in a privacy-preserving manner; Noise parameter  ; Indices a, b of the
+desired users.
+Output:
+original
+space.
+Estimated
+distance
+between
+squared
+users
+the
+in
+a
+and
+b
+1: Let  x and  y be the ath and bth rows in Z, respectively.
+2: Output dist2
+PP(usera, userb) = k x    yk2
+2   2k 2.
+6
+3.2 Formal privacy and utility guarantees
+We now prove formal privacy and utility guarantees for the blueprints of Algorithm 1 and Algorithm 2, for
+the case when noise   is drawn from Normal distribution and the utility goal is to preserve  2 distance
+between users.
+3.2.1 Privacy guarantees
+As Algorithm 2 uses already published data, it is su cient to provide privacy guarantees for Algorithm 1.
+Theorem 1. Let w2(P ) be the  2-sensitivity of the projection matrix P (see De nition 2). Assuming   < 1
+2 ,
+ 2(ln( 1
+2  )+ )
+let the entries of the noise matrix be drawn from N (0,  2) with     w2(P )
+. Then Algorithm 1
+ 
+satis es ( ,  )-di erential privacy wrt a change in an individual person s attribute.
+A surprising feature of the algorithm and one that will turn out to be crucial for the utility of the algorithm
+is that the amount of noise one needs to add in order to satisfy privacy guarantees does not depend on the
+dimensions of the projection matrix P other than through a (possible) dependence of sensitivity w2(P ) on
+P  s dimension. The work of McSherry and Mironov [24] uses a similar observation relating multi-dimensional
+Gaussian noise and privacy guarantees without detailing the proof, so we provide the proof for completeness.
+We  rst prove a more general geometric statement, which we will then use to prove the privacy guarantees
+of our algorithm. The lemma extends the result of Dwork et al. [11] to multiple dimensions.
+Lemma 1. Let Y and Y   be points in Rl s.t. kY   Y  k2   w. Then for any  D   Rl, and any   drawn
+2 , the following inequality holds: Pr[Y   +      D]  
+from N l(0,  2), where     w
+e  Pr[Y +      D] +  .
+Proof. The crucial insight is that due to spherical symmetry properties of Gaussian noise, we may choose
+the basis in such a way that Y and Y   di er in exactly one dimension.
+and   < 1
+ 2(ln( 1
+Partition  D into two sets of points:  Din = {D    D : hY     Y, D   Y  i   wR} and  Dout = {D  
+ D : hY     Y, D   Y  i > wR}. The value of R will be determined later. We  rst prove that
+2  )+ )
+ 
+and then prove that
+Pr[Y   +      Din]   e  Pr[Y +      Din], if R  
+Pr[Y   +      Dout]    , if R    r2 ln(
+1
+2 
+).
+2  2   w2
+2w
+,
+(1)
+(2)
+By choosing   so that R satis es both constraints of (1) and (2), summing the resulting inequalities, and
+observing that Pr[Y +      Din]   Pr[Y +      D], we will obtain the desired bound.
+Proof of (1). By assumption R   2  2 w2
+Pr[Y   +      Din] =
+. By de nition of the Gaussian noise
+1
+2 2kY     zk2
+2w
+1
+( 2  )k Z  Din
+exp(cid:18) 
+2(cid:19) dz.
+7
+The density function restricted to  Din satis es:
+exp(cid:18) 
+1
+2 2kY     zk2
+2(cid:19) = exp(cid:18) 
+= exp(cid:18) 
+  exp(cid:18) 
+  exp(cid:18) 
+It implies that
+2   2hY     Y, z   Y  i(cid:1)(cid:19)
+2 + 2hY     Y, z   Y  i(cid:1)(cid:19)
+1
+2 2 (cid:0)kY   zk2
+1
+2 2kY   zk2
+1
+2 2kY   zk2
+1
+2 2kY   zk2
+2   kY   Y  k2
+2(cid:19)   exp(cid:18) 1
+2(cid:19)   exp(cid:18) w2 + 2wR
+2(cid:19)   exp ( ) .
+2 2 (cid:0)kY   Y  k2
+(cid:19)
+2 2
+1
+Pr[Y   +      Din] =
+( 2  )k Z  Din
+exp(cid:18) 
+( 2  )k Z  Din
+Proof of (2). Recall that R    q2 ln( 1
+ 
+1
+2(cid:19) dz
+1
+2 2kY     zk2
+exp(cid:18) 
+1
+2 2kY   zk2
+2(cid:19) exp( ) dz   exp( ) Pr[Y +      Din].
+Y   = (y 1, . . . , y k) di er only in the  rst coordinate and y 1 < y1. Then
+2  ). We choose the coordinate system so that Y = (y1, . . . , yk) and
+ Dout = {D    D : hY     Y, D   Y  i > wR}   {z   Rk : (y 1   y1)(z1   y 1) > wR},
+8
+2(cid:19) dz1 . . . dzk
+1
+2 2kY     zk2
+2 2 (y i   zi)2(cid:19) dz1 . . . dzk
+1
+which implies the following bound on the probability of Y   +   falling inside  Dout:
+Pr[Y   +      Dout] =
+ 
+=
+=
+=
+=
+=
+ 
+  
+2(cid:19) dz
+exp(cid:18) 
+. . .Z + 
+exp(cid:18) 
+. . .Z + 
+Yi=1
+2 2 (y 1   z1)2(cid:19) dz1
+  
+1
+k
+1
+1
+1
+1
+1
+y 
+1
+ y1
+  
+  
+1)>wR
+1 y1)(z1 y  
+1 y1)(z1 y  
+1 y1)(z1 y  
+exp(cid:18) 
+( 2  )k Z  Dout
+( 2  )k Z((y  
+( 2  )k Z(y  
+ 2  Z(y  
+ 2  Z wR
+2 1 + erf  wR
+2(cid:18)1   erf(cid:18)
+exp  (cid:18)
+exp(cid:18) 
+1
+2 2kY     zk2
+1)>wRZ + 
+1)>wRZ + 
+exp(cid:18) 
+exp(cid:18) 
+2 2 (y 1   z1)2(cid:19) dz1
+!!
++ y 1   y 1
+ 2 
+ 2 (y1   y 1)(cid:19)(cid:19)
+wR
+ 2 (y1   y 1)(cid:19)2!
+2 2w2(cid:19) =
+exp(cid:18) 
+2 2(cid:19)
+w2R2
+y  
+1 y1
+  
+wR
+R2
+1
+1
+1
+2
+1
+2
++y  
+1
+1
+( )
+1
+ 
+2
+   ,
+if R    q2 ln( 1
+2  ). The bound ( ) follows from 1   erf(x)   exp( x2) for x > 0 [8].
+Hence, for (1) and (2) to hold simultaneously, we need
+ r2 ln(
+1
+2 
+)   R  
+2  2   w2
+2w
+and R > 0.
+ ln( 1
+2  )+ ln( 1
+2  )+ 
+ 2 
+By solving the resulting quadratic inequality we conclude that Lemma 1 holds if     w
+and   < 1
+2  ) +  .
+2 . The claim follows by observing that q2(ln( 1
+2  ) +  ) >qln( 1
+2  ) +qln( 1
+Proof of Theorem 1. The intuition behind the proof is to observe that a one-element di erence in matrices
+X and X  will a ect only one row of the projection.
+To prove that Algorithm 1 satis es ( ,  )-di erential privacy, we need to prove that for any two input
+matrices X and X , which di er in one element xaj (corresponding to user a having 1 or 0 value for attribute
+j), and for any  D, where  D is a set of possible outputs of the algorithm, namely a set of n   k matrices, the
+following inequality holds over the random choices of the algorithm:
+where   is a n   k noise matrix, in which each element is drawn independently at random from N (0,  2).
+Pr[X P +      D]   e  Pr[XP +      D] +  ,
+9
+Fix X and X , and recall the notation of Algorithm 1. Wlog view Y and Y   (in a natural way) as  attened
+vectors of length nk rather than n   k matrices. Observe that if X and X  are binary and kX    Xk2 = 1,
+ij = w2(P ). Applying the result
+j=1 P 2
+then kY     Y k2 = kX P   XPk2 = k(X    X)   Pk2   max1 i dqPk
+of Lemma 1 to Y and Y  , we obtain the desired privacy guarantee.
+We remark that Theorem 1 applies even if the input matrix X consists of values in [0, 1] instead of
+Boolean values.
+In Figure 1 we depict the exact relationship between the privacy parameters   and  , and the variance
+of the noise needed, by plotting three curves of feasible ( ,  ) pairs for three choices of  . The chart can be
+used either to determine legitimate values of   and   for a  xed  , or vice versa. Fixing the value   to 1.0
+implies ( ,  )-privacy for all values of  ,   in the middle curve. Alternatively, one can  x the values ( ,  ) to
+(1, 0.1) and  nd a noise level     1.0 that passes through the point.
+,"-"!#("
+,"-"!#("
+,"-"$#!"
+,"-"$#!"
+,"-"%#!"
+,"-"%#!"
+!#+"
+!#+"
+!#*"
+!#*"
+!#)"
+!#)"
+!#("
+!#("
+"
+"
+!
+!
+!# "
+!# "
+!#&"
+!#&"
+!#%"
+!#%"
+!#$"
+!#$"
+!"
+!"
+!"
+!"
+!#%"
+!#%"
+!# "
+!# "
+!#)"
+!#)"
+!#+"
+!#+"
+$#%"
+$#%"
+$# "
+$# "
+$#)"
+$#)"
+$#+"
+$#+"
+%"
+%"
+$"
+$"
+#"
+#"
+Figure 1: Feasible values of  ,   for a given choice of  .
+3.2.2 Utility guarantees for the Gaussian projection
+We next discuss the utility guarantees provided by our algorithms. We show that the squared Euclidean
+distance between two user vectors is preserved in expectation after the privacy transformations performed
+by our algorithms, and further provide guarantees on how far the distance after transformation can deviate
+from the original distance. From a third party s perspective, these guarantees imply that (a) the users who
+are close in the original space are likely to remain close in the transformed space and (b) similarly the users
+who are far apart are likely to remain so after the transformations.
+Concrete utility guarantees depend on the type of the projection matrix P . Among the possible choices
+for projection matrices described in Section 3.1.3, we analyze the guarantees a orded by the use of the
+Gaussian projection matrix due to Indyk and Motwani [17], proving that the resulting estimate of the
+squared Euclidean distance is unbiased, computing its variance and giving a tail probability bound.
+Although Algorithm 1 is stated as applied to n user vectors simultaneously, we will analyze its utility in
+preserving squared distances between a particular  xed pair of users. Consider two user vectors x, y   {0, 1}d
+which are transformed by Algorithm 1 into  x = xP + 1 and  y = yP + 2, where  1 and  2 are independent
+k-dimensional Gaussians N k(0,  2).
+10
+Recall that according to Theorem 1 in order for Algorithm 1 to satisfy ( ,  ) di erential privacy,   is
+determined as a function of  ,  , and w2(P ), which in turn depends on the projection matrix P . The
+following lemma bounds   for a given setting of  ,   and k.
+Lemma 2. Let the projection matrix P be d  k matrix whose entries are i.i.d. N (0, 1/k) random variables.
+Algorithm 1 using the noise matrix whose entries are sampled from N (0,  2) satis es ( ,  )-di erential privacy
+if
+4
+   
+k > 2(ln d + ln(2/ )),
+ pln(1/ ),
+and
+Proof. According to Theorem 1, ( ,  /2)-di erential privacy is satis ed if
+  < ln(1/ ).
+    w2(P )p2(ln(1/ ) +  )
+ 
+,
+(3)
+where w2(P ) is P  s  2-sensitivity. Since the entries of P are distributed as Gaussians, its sensitivity w2(P )
+has the following distribution:
+k
+w2(P )  vuuut max
+1 i d 
+Xj=1
+ 
+|N (0, 1/k)|2 
+   r max
+1 i d
+1
+k
+Zi,
+where Zi s are i.i.d.  2
+of freedom). Choosing x = ln d + ln(2/ ) and applying Lemma 4 (see Appendix), we  nd that
+k variables (i.e., distributed according to the chi-squared distribution with k degrees
+Pr"w2(P ) > 1 +r 2x
+k # <  /2.
+Under the assumption that k > 2(ln d+ln(2/ )), the probability that w2(P ) is greater than 2 is less than  /2.
+Combining this bound with (3), we  nd that Algorithm 1 satis es ( ,  )-di erential privacy for   < ln(1/ ) if
+   
+which completes the proof.
+4
+ pln(1/ ) >
+2
+ p2(ln(1/ ) +  ) and k > 2(ln d + ln(2/ )),
+The proof of Lemma 2 implies that the value of   can be chosen independent of P . This property is
+crucial for the following argument, which repeatedly uses independence of the matrix P and the noise  
+(scaled by  ).
+Theorem 2. Algorithms 1 and 2, where entries of P are sampled from N (0, 1/k), and   is chosen indepen-
+dently of the realization of P , satisfy the following utility guarantees:
+11
+1. dist2
+PP is an unbiased estimator of kx   yk2
+2:
+E[dist2
+PP(x, y)] = kx   yk2
+2.
+2. Variance of dist2
+PP is given by the following expression:
+PP(x, y)] = 2kx   yk4
+Var[dist2
+2/k + 8 2kx   yk2
+2 + 8 4k.
+3. Deviations are bounded, i.e., with probability 1   ( JL +   2 +  N ), the following holds:
+(cid:12)(cid:12)dist2
+PP(x, y)   kx   yk2
+2(cid:12)(cid:12)    JLkx   yk2
+when  JL < 1/2,  JL   2 exp( k 2
+JL/6),   2   2 exp(  2
+ 2 ) and  N   exp(  2
+N )
+ N   .
+2 + 4 2 k  2 + 4 2 2
+ 2 + 4 (1 +  JL) Nkx   yk2,
+(4)
+dist2
+= k(x   y)P +  k2
+PP(x, y) = k x    yk2
+Proof. First we note that   =  1    2 is distributed as a k-dimensional Gaussian N k(0, 2 2). We can
+express the random variable dist2
+PP(x, y) as a sum of three random variables Z1, Z2, Z3:
+2   2k 2 =
+2   2k 2
++ k k2
+{z
+}
+|
+2   2k 2 = kxP +  1   yP    2k2
++ 2h(x   y)P,  i
+}
+|
+For the given  xed choice of user vectors x and y, let z = x  y = (z1, . . . , zd) and r = kx  yk2. Since the
+entries of P are i.i.d. according to N (0, 1/k), the projection (x  y)P is distributed according to N k(0, r2/k).
+Indeed, the ith entry of (x   y)P has the following distribution:
+Xj=1
+2   2k 2 = k(x   y)Pk2
+}
+z2
+j /k)   N (0, r2/k).
+zjN (0, 1/k)  
+j /k)   N (0,
+Xj=1
+d
+Xj=1
+N (0, z2
+Z1
+{z
+Z2
+{z
+|
+Z3
+d
+d
+2
+.
+Using the above expression and Lemma 6 we may write the variables Z1, Z2, Z3 as follows:
+Z1  (cid:13)(cid:13)N k(0,kx   yk2
+Z2   N (0, 8 2Z1),
+Z3   2 2 2
+k   2k 2,
+2/k)(cid:13)(cid:13)
+2
+2 = r2    2
+k/k,
+where  2
+the squares of k independent N (0, 1) random variables.
+k is the chi-squared distribution with k degrees of freedom de ned as the distribution of a sum of
+Claim 1. To show that dist2
+the chi-squared distribution with k degrees of freedom is k. Therefore,
+PP(x, y) is an unbiased estimator for r2 = kx   yk2
+2 observe that the mean of
+E[Z1] = E(cid:2)r2    2
+E[Z2] = 0,
+E[Z3] = 0,
+k/k(cid:3) = r2,
+and thus
+E[dist2
+PP(x, y)] = E[Z1] + E[Z2] + E[Z3] = r2.
+12
+Claim 2. To compute the variance of dist2
+PP(x, y), express it as
+Var(cid:0)dist2
+PP(x, y)(cid:1) = Var(Z1 + Z2 + Z3) = E[(Z1 + Z2 + Z3)2]  (cid:0)E[Z1 + Z2 + Z3](cid:1)2
+= E[Z 2
+3 + 2Z1Z2 + 2Z1Z3 + 2Z2Z3]  (cid:0)E[Z1] + E[Z2] + E[Z3](cid:1)2
+2 + Z 2
+1 + Z 2
+=
+independent. The expectations of the pairwise products can be evaluated as follows:
+Recall that by assumption of the theorem,   is chosen independently of P , therefore, (x  y)P and   are
+E[Z1Z2] = E(cid:2)k(x   y)Pk2
+E[Z2Z3] = E(cid:2)2h(x   y)P,  i   (k k2
+2   2h(x   y)P,  i(cid:3) = E(cid:2)2hk(x   y)Pk2
+(by Lemma 6)
+(since Z1 and Z3 are independent)
+2   (x   y)P,  i(cid:3) = 0,
+2   2k 2)i(cid:3) = 0.
+Analyzing the other terms in equation (5), we have
+E[Z1Z3] = E[Z1]E[Z3] = 0,
+(by Lemma 6)
+.
+(5)
+2   2k 2)(cid:3) = E(cid:2)2h(x   y)P,     (k k2
+r4
+k2 Var( 2
+E[Z 2
+E[Z 2
+1 ]   E[Z1]2 = Var(Z1) = Var(r2    2
+3 ]   E[Z3]2 = Var(Z3) = Var(2 2 2
+k) =
+k/k) =
+k   2k 2) = 4 4Var( 2
+2r4
+r4
+k2 2k =
+k
+k) = 8 4k,
+,
+since Var( 2
+k) = 2k.
+To  nish the computation, we need to evaluate E[Z 2
+2 ]. Recall that Z2 = 2h(x  y)P,  i, where (x  y)P  
+N k(0, r2/k) and     N k(0, 2 2). Since E[Z2] = 0, the second moment of Z2 is Var(Z2), which can be
+computed as follows:
+Var(Z2) = Var 2
+k
+Xi=1
+N (0, r2/k)   N (0, 2 2)! = kVar(cid:0)2N (0, r2/k)   N (0, 2 2)(cid:1) = 8r2 2,
+(the last equation is because the mean of both Gaussians is zero, in which case the variance of the product
+of two independent variables is the product of their variances).
+Putting the above expressions together into equation (5) we obtain
+Var(dist2
+PP(x, y)) = 2r4/k + 8 2r2 + 8 4k,
+as claimed.
+Claim 3. Towards proving deviation bounds, observe that
+(cid:12)(cid:12)Z1   r2(cid:12)(cid:12) <  JLr2 with probability at least 1    JL
+|Z2|   4  NpZ1 with probability at least 1    N
+|Z3|   4 2 k  2 + 4 2 2
+ 2 with probability at least 1     2 .
+(by [1, Lemma 4.1])
+(Lemma 5 in Appendix)
+(by [21, Lemma 1])
+Using the union bound and plugging in the bound on Z1 into the second expression, we obtain the desired
+bound.
+By [1, Lemma 4.1](cid:12)(cid:12)Z1   r2(cid:12)(cid:12) <  JLr2 with probability at least
+k
+1   2 exp( 
+2
+if  JL < 1/2 and  JL   2 exp( k 2
+JL/6).
+( 2
+JL/2    2
+JL/3)) > 1   2 exp( k 2
+JL/6)   1    JL,
+13
+Optimal projection dimension: A natural question that our analysis leaves open is how to  nd an
+optimum number of dimensions k to which we should project.
+  To  nd the asymptotic of the optimal target dimension k for a  xed setting of the noise   and the failure
+probability  JL+  2 + N , we equate the failure probabilities   =  JL =   2 =  N for some  xed   < 1/3.
+From the conditions on the   s in the statement of Theorem 2 it follows that   2 =  (plog 1/ ),
+ N =  (plog 1/ ), and  JL =  (q log 1/ 
+kOPT =  (plog 1/    kx   yk2
+  Another approach for  nding the optimal target dimension k for a  xed setting of the noise   would
+be to aim to minimize the variance of the squared distance estimate returned by the algorithm, which
+happens for kOPT = kx yk2
+). Optimizing the upper bound (4) for k we obtain that
+2/ 2).
+k
+2
+.
+2 2
+Both of these analytic approaches imply that the optimal value for the target dimension of the privacy-
+preserving Johnson-Lindenstrauss transform depends on the expected distance between vectors measured
+using this mechanism, and it scales inversely proportionally to  2 =  (ln(1/ )/ 2) (Lemma 2). For this
+choice of the parameters, the (additive) error in measuring kx   yk2
+2/(2 2)
+with probability 1     assuming that log 1/    k. The variance of the estimator when k = kx   yk2
+is 16 2   kx   yk2
+2. An algorithm designer applying this algorithm in practice could consider using di erent
+projection matrices with varying k s each optimized for a particular range of distances, and would need a
+logarithmic (in terms of possible distances) number of such projections.
+2 is O( plog 1/    kx   yk2) and holds
+4 Alternative Approaches
+In this section we consider alternative approaches to release of pairwise distances of n vectors in Rd. The
+ rst approach is based on output perturbation, where the noise is added directly to the  nal outcome of the
+mechanism, i.e., the n  n matrix of all pairwise distances. We argue that this method is inferior to privacy-
+preserving projections (previous section) in most settings. The other method is based on input perturbation,
+where the noise is added to the raw d-dimensional vectors. We compare the method to privacy-preserving
+projections, and discuss their ranges of applicability.
+4.1 Direct Noise Addition
+A classic result in di erential privacy [11] shows that any function can be computed with ( ,  )-di erential
+privacy as long as the Gaussian noise calibrated according to the  2-sensitivity of that function is added
+to the true function value prior to its announcement (Lemma 1). Thus, a natural alternative approach to
+the Johnson-Lindenstrauss transform-based algorithm that we proposed is an algorithm publishing noisy
+versions of pairwise distances between points by adding properly calibrated noise to the true distances. We
+formalize this approach in Algorithms 3 and 4.
+14
+Algorithm 3 NoiseAddition
+Input: Boolean n   d matrix X whose rows correspond to people and columns correspond to attributes
+learned about the users by  rst parties; Privacy parameters  ,  .
+Output: Privacy-preserving strictly upper triangular n   n matrix Z, whose entries correspond to noisy
+pairwise distances squared, which can be published.
+1: Construct random n   n strictly upper triangular noise matrix  , based on privacy parameters  ,  .
+2: Let Y be a strictly upper triangular n   n matrix, such that for 1   i < n, i < j   n, yi,j = ||xi   xj||2
+2.
+3: Z := Y +  
+4: Publish Z.
+Algorithm 4 RecoverDistanceNA
+Input: n   n matrix Z published in a privacy-preserving manner; Noise parameter  ; Indices a, b of the
+desired users (assume a < b wlog).
+Output: Estimated squared distance between users a and b.
+1: Output dist2
+NA(usera, userb) = za,b.
+Similarly to the analysis in Section 3.2.1, Algorithm 3 preserves privacy if   > qn   2(ln( 1
+  < 1/2, since a change in a single bit of X causes n changes in the matrix Y , each of magnitude one.
+Following the analysis of the previous section, consider the variance of the estimator dist2
+2  ) +  )/  if
+NA. Since it is
+obtained by adding Gaussian noise drawn from N (0,  2), it is exactly  2:
+Var(dist2
+NA) =  2 =  (n ln(1/ )/ 2).
+Notice that the variance of the estimator is linear in the number of users n (i.e., rows of the matrix X).
+4.2 Comparison between PrivateProjection and NoiseAddition
+We use variance of the estimators to compare the accuracy of two methods for release of privacy-preserving
+pairwise distances. Recall that
+Var[dist2
+PP(x, y)] = 2kx   yk4
+2/k + 8 2
+PPkx   yk2
+2 + 8 4
+PPk,
+where  PP =  (pln(1/ )/ ) and k is the target dimension of the projection matrix. The distance kx   yk2
+for binary vectors x and y is equal to their Hamming distances, and does not exceed the sum of their weights.
+Let the maximal weight of a user vector be  . For the target dimension k =  ( ) (notice that it does not
+have to be optimal for the the given kx   yk2
+2):
+PP(x, y)] = 2kx   yk4
+PPkx   yk2
+2/k + 8 2
+2 + 8 4
+PPk = O( 4
+PP    ).
+Var[dist2
+As argued in the previous section,
+Var(dist2
+NA) =  (n ln(1/ )/ 2),
+independent of x and y. We see that the the variance of the NoiseAddition method is larger than the
+variance of PrivateProjection if   2
+In other words, the PrivateProjection method is
+superior (in terms of the variance of the estimator) if the maximal weight of a user vector is much smaller
+than the total number of users.
+PP = o(n).
+15
+4.3 Randomized response
+We next describe a technique known as randomized response studied by Warner in the 1960s [32]. Random-
+ized response is a natural, alternate solution to computing privacy-preserving user sketches. We compare
+this solution to our PrivateProjection (PP) approach.
+As before, we describe two separate algorithms: one technique for publishing data in a way that preserves
+privacy and another technique for estimating the squared  2 distance between the original vectors given only
+the perturbed, private vectors. We show that randomized response s strength is in preserving large distances
+between users, whereas the strength of PP is in preserving small distances. Given the potential applications
+that we consider, of user segmentation and  nding users near a given user, we conclude that PP is a more
+favorable solution.
+4.3.1 Privacy guarantees
+The algorithm suggested in the randomized response literature for preserving privacy is quite simple: Each
+bit of a user s vector is  ipped with probability p (Algorithm 5). Observe that if p = 1
+2 then the technique
+achieves perfect privacy, since any vector is equally likely to be published. However, publishing a random
+vector is worthless. On the other hand, if each bit is  ipped with probability slightly less than 1
+2 , as in
+Algorithm 5, then one can show that some privacy is still preserved and yet the perturbed vectors can still
+be used to estimate the actual distance between vectors.
+Algorithm 5 RandomizedResponse
+Input: Boolean n   d matrix X whose rows correspond to people and columns correspond to attributes;
+Privacy parameter p < 1
+2 .
+Output: Privacy-preserving n   d matrix  X.
+1:  Xij :=(Xij with probability 1   p
+Xij with probability p
+.
+2: Publish  X.
+We discuss the relationship between the  ipping probability p and di erential privacy  rst.
+Lemma 3. Algorithm 5 preserves ( , 0)-di erential privacy when log 1 p
+p    , or equivalently when p   1
+1+e  .
+The proof [26,32] follows by considering two candidate vectors x and x  that di er in only one bit position,
+and showing that the ratio of the probability that  x is published given x to the probability that  x is published
+given x  is at most 1 p
+p . Setting this value to at most e  per the de nition of di erential privacy yields the
+lemma.
+4.3.2 Utility guarantees
+We now demonstrate that a third party equipped with the perturbed, private vectors published by Algo-
+rithm 5 can still approximate the squared  2 distance between pairs of users, via Algorithm 6. The algorithm
+ rst computes the squared  2 distance between the perturbed representations, and then accounts for the sys-
+temic distortion due to perturbation.
+16
+Algorithm 6 RecoverDistanceRR
+Input: n   d matrix  X published in a privacy-preserving manner using Algorithm 5; Privacy parameter p
+used; Indices a and b of the desired users.
+Output:
+perturba-
+tion.
+Estimated
+distance
+between
+users
+a
+squared
+and
+b
+before
+1: Let x and y represent vectors corresponding to users a and b before randomized response perturbation,
+and let  x and  y be the corresponding vectors after perturbation in the published matrix  X.
+2: Output dist2
+RR(usera, userb) = k x  yk2
+2 2dp(1 p)
+(1 2p)2
+Theorem 3. Algorithms 5 and 6 satisfy the following utility guarantees:
+1. dist2
+RR is an unbiased estimator of kx   yk2
+2:
+E[dist2
+RR(x, y)] = kx   yk2
+2.
+2. Deviations on squared distances are bounded as follows:
+RR(x, y)   kx   yk2
+(cid:12)(cid:12)dist2
+2(cid:12)(cid:12)   pd log(2/ RR)
+ 2(1   2p)2
+with probability at least 1    RR.
+Proof of Theorem 3. Let x and y be two vectors which after going through the randomized response process
+yield perturbed vectors  x and  y. Let w = kx   yk2
+RR(y, x) is an unbiased estimate for
+w and is tightly concentrated around w.
+2. We prove that dist2
+Claim 1. Assume wlog that x and y di er in the  rst w bits and agree on the remaining d   w bits.
+In the  rst w bits, E[k x    yk2
+2] is the expected number of positions where neither x nor y get  ipped or
+both get  ipped. In the remaining d   w positions, E[k x    yk2
+2] is the expected number of positions where
+2] = ((1   p)2 + p2)w + 2p(1   p)(d   w) =
+one gets  ipped and not the other. Consequently, E[k x    yk2
+(1   2p)2w + 2p(1   p)d. Thus
+E[distRR(x, y)] =
+E[k x    yk2
+2]   2dp(1   p)
+(1   2p)2
+= w = ky   xk2
+2.
+Claim 2. Observe that for any two bit values, the probability that the distance between them remains
+unchanged is q = p2 + (1  p)2, corresponding to both bits either being  ipped or both remaining unchanged.
+Accordingly, the probability that the distance between any two bits changes is 1   q.
+Let Ii denote the indicator random variable corresponding to the distance between ith bit of x and y
+remaining unchanged despite perturbation. Then each Ii can be viewed as an independent Bernoulli trial,
+with Pr[Ii = 1] = q.
+i=1 Ii, and b = Pd
+Let a = Pw
+i=w+1 I i. In other words, let a be the number of bit positions among the
+ rst w bits in which the distance between bits remains unchanged, i.e., remains 1, and let b be the number
+of bit positions among the remaining d   w bits, where the distance between bits changed (i.e., increases to
+1), due to perturbation introduced by Algorithm 5. Then k x    yk2
+2 = a + b.
+17
+By Hoe ding s inequality (applied to d independent random variables, the variance of each of which is
+bounded):
+Therefore,
+Prhk x    yk2
+2   E[k x    yk2
+Prh(cid:12)(cid:12)dist2
+RR(y, x)   ky   xk2
+2 2
+d
+).
+k y    xk2
+k y    xk2
+2]|    i = Prh|a + b   E[a + b]|    i   2 exp( 
+2(cid:12)(cid:12)(cid:12)(cid:12)    #
+2](cid:12)(cid:12)    (1   2p)2#
+2   2dp(1   p)
+(1   2p)2
+2 + (1   2p)2w   E[k y    xk2
+2]
+2(cid:12)(cid:12)    i = Pr"(cid:12)(cid:12)(cid:12)(cid:12)
+= Pr"(cid:12)(cid:12)(cid:12)(cid:12)
+= Pr"[(cid:13)(cid:13)| y    xk2
+  2 exp(cid:18) 
+(1   2p)2
+2   E[k y    xk2
+2 2(1   2p)4
+  ky   xk2
+(cid:19).
+d
+  ky   xk2
+2(cid:12)(cid:12)(cid:12)(cid:12)    #
+Plugging in   =r d log( 2
+ RR
+)
+2(1 2p)4 , we obtain the desired inequality.
+4.3.3 Comparison between PrivateProjection and RandomizedResponse
+In Theorems 2 and 3, we showed that both PrivateProjection (PP) and RandomizedResponse (RR)
+algorithms preserve the expected squared distance between pairs of users, and computed the bounds on how
+likely it is that the actual values are concentrated around the expectation.
+Since both concentration bounds are known to be tight in practice (see Venkatasubramanian and Wang [31]
+for an empirical study of the Johnson-Lindenstrauss transform), we follow the standard practice of compar-
+ing the concentration guarantees to determine which of the two privacy-preserving algorithms would better
+preserve utility.
+Consider the case when k is  xed. When the squared distance is O( k), we show that both algorithms
+are inaccurate, when the squared distance is between  k and  dk/ 2 our PrivateProjection algorithm is
+more accurate, and when the squared distance is larger than  dk/ 2, RandomizedResponse is preferable.
+To see why, consider that it follows from Lemma 3 that for Algorithm 5 to satisfy ( , 0)-di erential privacy,
+the  ip probability p has to be such that p   1
+1+e    1/2    /4, which is accurate to within 10% for
+  < 1. For the purpose of comparison we choose   = 2pln(n)/ , resulting in ( , 1/n)-di erential privacy
+  for some     1, we have  JL =  (plog(1/ )/ k),   2 =  (plog(1/ )),
+ N =  (plog(1/ )) for some k. Fix two vectors x, y   Rd and compare the error of the estimates dist2
+PP(x, y)
+2 <  dk/ 2, which controls
+and dist2
+the  rst term of the bound (4), and k(ln n)2   d, which bounds the second term, the estimate dist2
+PP(x, y)
+is closer to the true distance, and hence PrivateProjection outperforms RandomizedResponse. The
+exact constants separating these regions depend on the privacy parameters and failure probabilities   s.
+according to Theorem 1. This is a conservative setting of the privacy parameters, roughly corresponding to
+a single violation of the ( , 0)-di erential privacy guarantee over n users. Then, equating failure probabilities
+  =  RR =  JL =  N =  2
+RR(x, y) of the true squared  2-distance kx yk2
+2. As long as  k < kx yk2
+Note however that the target dimension k is not  xed, but rather is selected by the curator. k can be
+selected with the goal of  nding the sweet spot between preserving privacy and the utility of a given algorithm.
+18
+Alternatively, several sketches with di erent values of k can be released so as to preserve distances at multiple
+scales, each consuming its share of the privacy budget.
+5 Discussion
+In this section, we describe how user sketches released in a privacy-preserving way can be used by third
+parties, and conclude by discussing the limitations of sketches and our privacy guarantees.
+5.1 Applications
+We begin by re-iterating exactly what can be safely published:
+1. The d attribute meanings in the original vector space, assuming the meanings themselves are not sen-
+sitive, or the ones that are published via a method similar to the one in [20] or [16].
+2. The Johnson-Lindenstrauss projection matrix P .
+3. For each user x, their userID, together with their perturbed sketch xP +  .
+There are several actions that the third party can perform with this published information, depending on
+what kind of additional information the third party possesses about the users and the goal the third party
+is trying to achieve.
+Segmentation: User sketches can be segmented via some clustering algorithm and then information
+known to the third party about some members of the cluster can be generalized to the rest of the cluster.
+There is convincing evidence that segmentation of users into clusters is e ective in some contexts [4,25,27,33].
+Nearest Neighbors: Another application of perturbed sketches is  nding nearest neighbors. For ex-
+ample,  nding users most similar to an already known one can be useful in the context of online dating, and
+product and movie recommendations.
+5.2 Limitations
+Although our algorithm o ers a method for privacy-preserving sharing of user data with third parties in a
+way that enables user-user distance computations, there are other tasks for which the user data shared using
+our method would not be useful to third parties. We also discuss the limitations of the privacy protections
+we provide.
+5.2.1 Utility Limitations
+An important limitation of our work from the utility perspective is that the dimensions of the user sketches
+are impossible to interpret. As a consequence, the only way for a third party to select users satisfying a
+particular attribute is to project the vector corresponding to this attribute in the higher-dimensional space
+to the lower-dimensional space, and then perform the distance computation between user sketches and the
+obtained lower-dimensional attribute vector. However, as explained in  4.3.3, this computation would fall
+into the range of squared distance values for which both PrivateProjection and RandomizedResponse
+perform poorly.
+Furthermore, the proposed computation of user sketches weighs all attributes equally, which may not
+be desirable for third parties who want to prioritize similarity between users in some of the attributes over
+others. Computing multiple projections, each based on a di erent subset or weighing of the attributes would
+require use of additional privacy budget for each projection, as well as necessitate precluding the possibility
+of collusion among third parties.
+19
+Another limitation, which is a challenge for much of the privacy literature, is that our sketches provide
+a static snapshot of user data, and would require additional privacy budget in order to update them as the
+user information changes. The work of [13] o ers directions for possibly overcoming this challenge.
+5.2.2 Privacy Limitations
+While our work takes an important step forward, privacy is more complex than ensuring that a third party
+cannot infer a particular attribute of a user. For example, if many of the attributes are correlated or
+representative of a higher-level user feature, then our techniques do not prevent a third party from inferring
+that. In other words, our guarantees apply to a constant number of attributes, but not to a persistent trend
+that exists in the data. Depending on the context, it may be more powerful to  rst categorize the attributes
+into a coarser granularity prior to producing perturbed sketches.
+Finally, as we explained in the Introduction, the goal of our work is to enable third parties to perform
+distance computations and clustering on users. Clearly, our work is not relevant for settings where such
+computations and privacy are fundamentally at odds, i.e., scenarios where the underlying data is so sensitive
+that even the ability to identify that two users are similar constitutes a privacy violation.
+6 Related Work
+Liu et al. [22] introduce and motivate the problem of releasing data to third parties with a goal that the
+original sensitive information cannot be inferred while preserving analytic properties of the data, such as
+inner product and Euclidean distance computations. Their approach is based on random projection to a
+lower-dimensional subspace using a projection matrix drawn from a distribution unknown to the adversary.
+The key distinction from our work is that they do not utilize an operational de nition for what it means to
+protect the privacy of the data, and therefore, as they point out, there are scenarios in which an adversary can
+ nd approximations to original data (e.g., if the data is restricted to Boolean domain or adversary possesses
+certain background knowledge). Follow-up works [14, 30] propose concrete attacks and demonstrate the
+vulnerabilities of the approach. Our use of di erential privacy and addition of properly calibrated random
+noise after the projection enables us to provide a rigorous privacy guarantee, as well as gain insight into the
+change in utility depending on projected dimension used. Mukherjee et al. [28] propose enabling distance-
+based mining algorithms over private data using Fourier-related transforms, but their approach has the same
+drawbacks as Liu et al. [22].
+We discussed randomized response in  4.3 and compared its performance with our method in  4.3.3. In
+terms of privacy, randomized response o ers a slightly better privacy guarantee. However, from a utility
+perspective, randomized response does not preserve  small  distances as e ectively as the present work.
+Concretely, for users that are less than  dk distance apart, our method provides stronger guarantee than
+randomized response. Since third parties are likely interested in preserving small distances, we believe that
+our approach is more suitable for typical data mining applications.
+From a di erential privacy perspective, alternative solutions could be used to attack our problem. For
+example, Blum et al. [5] give a method of running k-Means on a private data set maintained by a trusted
+administrator. Their goal is to produce k cluster centers that are not too far from the k cluster centers
+that k-Means would produce if the algorithm had access to the private data. Our goal di ers in that we
+seek to publish data (or enable its utilization) along with the userIDs and enable identi cation of users who
+belong to the same cluster. Also, our noisy sketches can also be used for other distance-based computations
+such as nearest neighbors. Finally, another possible direction is not to publish any data and only allow
+20
+black-box queries to the  rst-party data provider, where the answers to such queries are perturbed [12, 23].
+This approach may place considerable burden on the  rst-party data provider, and consumes privacy budget
+with each query posed.
+7 Conclusion and Future Work
+We proposed a viable solution to the challenge of publishing user data for enabling computation of distance
+between users, without revealing the values of user data attributes. The key insight behind our technique is
+that by projecting users to a lower-dimensional space, we can limit the amount of noise we add to each user s
+data, while also reaping the bene t of preserving distances. We also compared our proposed solution to other
+candidate solutions, such as directly adding noise to the pairwise distances or adding noise to each attribute
+of a user, and showed that our method is preferable for potential applications such as user segmentation and
+nearest neighbor search.
+There is ample opportunity to improve upon our results as the problem of privacy-preserving data sharing
+with third parties is naturally more complex than sharing in a way that enables distance computations. For
+example, third parties would bene t from data that enables computation of other data-mining primitives
+and from ability to operate on dynamically changing data [13].
+A Appendix
+Lemma 4. Let X1, . . . , Xn are i.i.d. variables drawn from  2
+freedom). For any x > 0
+k (chi-squared distribution with k degrees of
+Proof. We use the bound due to Laurent and Massart [21, Lemma 1] on the tail probability of the chi-squared
+distribution:
+k. We establish the claim by taking the union bound over n independent variables and observing
+Xi >  k +  2x] < exp(ln n   x).
+Pr[qmax
+i
+Pr[X   k + 2 kx + 2x]   exp( x),
+qk + 2 kx + 2x <q( k +  2x)2 =  k +  2x.
+where X    2
+that
+for x > 0.
+Lemma 5. Suppose X is drawn from N (0,  2). Then
+Pr[|X| < x]   1   exp(cid:18) 
+2 
+x 2 
+Pr[|X| < x]   1  
+x2
+2 2(cid:19) ,
+exp(cid:18) 
+x2
+2 2(cid:19) .
+The second bound is stronger than the  rst when x   0.8 .
+21
+Proof. Expressing the tail probabilities in terms of the CDF of the standard Normal distribution denoted as
+  we have (the  rst bound):
+and thus
+Pr[X <  x] =  ( x/ ),
+Pr[X >  x] = 1    (x/ ),
+Pr[|X| < x] = 1   ( ( x/ ) + 1    (x/ )) =  (x/ )    ( x/ )
+2(cid:0)1 + erf(
+=
+Alternatively (the second bound)
+1
+x
+  2
+)   1   erf(  x
+  2
+x
+  2
+).
+)(cid:1) = erf(
+Pr[|X| < x] = 1   2 Pr[X > x]   1  
+2 
+x 2 
+exp(cid:18) 
+x2
+2 2(cid:19) .
+The second bound is be stronger than the  rst as long as
+2 
+1
+x 2    1,
+which holds when x   0.8 .
+Lemma 6. Let X be an arbitrary distribution over Rk and Y   N k(0,  2), independent of X. Then
+In particular,
+hX, Y i   N (0,kXk2
+2 2).
+E[hX, Y i] = 0.
+Proof. Let X = (X1, . . . , Xk) and Y = (Y1, . . . , Yk). Then
+hX, Y i  
+k
+Xi=1
+XiYi  
+k
+Xi=1
+XiN (0,  2)  
+k
+Xi=1
+N (0, X 2
+i  2)   N (0,  2
+k
+Xi=1
+X 2
+i )   N (0,  2kXk2
+2),
+by scaling and additive properties of the Gaussian distribution.
+References
+[1] D. Achlioptas. Database-friendly random projections: Johnson-Lindenstrauss with binary coins. J.
+Comput. Syst. Sci., 66(4):671 687, 2003.
+[2] M. Barbaro and T. Zeller. A face is exposed for AOL searcher No. 4417749. New York Times, Aug 9,
+2006.
+[3] R. Bhaskar, S. Laxman, A. Smith, and A. Thakurta. Discovering frequent patterns in sensitive data.
+In B. Rao, B. Krishnapuram, A. Tomkins, and Q. Yang, editors, KDD, pages 503 512. ACM, 2010.
+22
+[4] bluekai.com. Case Studies [Online] http://bluekai.com/intentdata casestudies.php, 2010.
+[5] A. Blum, C. Dwork, F. McSherry, and K. Nissim. Practical privacy: the SuLQ framework. In PODS,
+pages 128 138, 2005.
+[6] J. A. Calandrino, A. Kilzer, A. Narayanan, E. W. Felten, and V. Shmatikov. You might also like:
+Privacy risks of collaborative  ltering. In IEEE Symposium on Security and Privacy, 2011.
+[7] K. Chaudhuri and C. Monteleoni. Privacy-preserving logistic regression. In NIPS, pages 289 296, 2008.
+[8] M. Chiani, D. Dardari, and M. Simon. New exponential bounds and approximations for the computation
+of error probability in fading channels. Wireless Communications, IEEE Transactions on, 2(4):840  
+845, jul. 2003.
+[9] A. Dasgupta, R. Kumar, and T. Sarl os. A sparse Johnson-Lindenstrauss transform. In STOC, pages
+341 350, 2010.
+[10] C. Dwork. A  rm foundation for private data analysis. Commun. ACM, 54(1):86 95, 2011.
+[11] C. Dwork, K. Kenthapadi, F. McSherry, I. Mironov, and M. Naor. Our data, ourselves: Privacy via
+distributed noise generation. In EUROCRYPT, pages 486 503. Springer, 2006.
+[12] C. Dwork, F. McSherry, K. Nissim, and A. Smith. Calibrating noise to sensitivity in private data
+analysis. In TCC, pages 265 284, 2006.
+[13] C. Dwork, M. Naor, T. Pitassi, and G. N. Rothblum. Di erential privacy under continual observation.
+In STOC, pages 715 724, 2010.
+[14] C. Giannella, K. Liu, and H. Kargupta. On the privacy of Euclidean distance preserving data pertur-
+bation. CoRR, abs/0911.2942, 2009.
+[15] A. Gionis, P. Indyk, and R. Motwani. Similarity search in high dimensions via hashing. In VLDB, pages
+518 529, 1999.
+[16] M. G otz, A. Machanavajjhala, G. Wang, X. Xiao, and J. Gehrke. Privacy in search logs. CoRR,
+abs/0904.0682, 2009.
+[17] P. Indyk and R. Motwani. Approximate nearest neighbors: Towards removing the curse of dimension-
+ality. In STOC, pages 604 613, 1998.
+[18] W. B. Johnson and J. Lindenstrauss. Extensions of Lipschitz maps into a Hilbert space. In Contemp
+Math, volume 26, pages 189 206, 1984.
+[19] A. Korolova. Privacy violations using microtargeted ads: A case study. In ICDM Workshops (IEEE
+Workshop on Privacy Aspects of Data Mining), pages 474 482, 2010.
+[20] A. Korolova, K. Kenthapadi, N. Mishra, and A. Ntoulas. Releasing search queries and clicks privately.
+In WWW, pages 171 180, 2009.
+[21] B. Laurent and P. Massart. Adaptive estimation of a quadratic functional by model selection. Annals
+of Statistics, 28(5):1302 1338, 2000.
+23
+[22] K. Liu, H. Kargupta, and J. Ryan. Random projection-based multiplicative data perturbation for
+privacy preserving distributed data mining. IEEE Trans. Knowl. Data Eng., 18(1):92 106, 2006.
+[23] F. McSherry. Privacy integrated queries: an extensible platform for privacy-preserving data analysis.
+In SIGMOD, pages 19 30, 2009.
+[24] F. McSherry and I. Mironov. Di erentially private recommender systems: Building privacy into the
+Net ix prize contenders. In KDD, pages 627 636, 2009.
+[25] M. Millan, M. Trujillo, and E. Ortiz. A collaborative recommender system based on asymmetric user
+similarity. In Intelligent Data Engineering and Automated Learning - IDEAL, volume 4881 of Lecture
+Notes in Computer Science, pages 663 672. Springer-Verlag, 2007.
+[26] N. Mishra and M. Sandler. Privacy via pseudorandom sketches. In PODS, pages 143 152, 2006.
+[27] B. Mobasher, H. Dai, T. Luo, and M. Nakagawa. Discovery and evaluation of aggregate usage pro les
+for web personalization. Data Mining and Knowledge Discovery, 6:61 82, 2002.
+[28] S. Mukherjee, Z. Chen, and A. Gangopadhyay. A privacy-preserving technique for Euclidean distance-
+based mining algorithms using Fourier-related transforms. The VLDB Journal, 15:293 315, 2006.
+[29] A. Narayanan and V. Shmatikov. Robust de-anonymization of large sparse datasets. In IEEE Symposium
+on Security and Privacy, pages 111 125, 2008.
+[30] E. O. Turgay, T. B. Pedersen, Y. Saygin, E. Savas, and A. Levi. Disclosure risks of distance preserving
+data transformations. In Scienti c and Statistical Database Management, volume 5069 of Lecture Notes
+in Computer Science, pages 79 94. Springer Berlin, 2008.
+[31] S. Venkatasubramanian and Q. Wang. The Johnson-Lindenstrauss transform: An empirical study. In
+ALENEX, 2011.
+[32] S. L. Warner. Randomized response: A survey technique for eliminating evasive answer bias. Journal
+of the American Statistical Association, 60(309):pp. 63 69, 1965.
+[33] J. Yan, N. Liu, G. Wang, W. Zhang, Y. Jiang, and Z. Chen. How much can behavioral targeting help
+online advertising? In WWW, pages 261 270, 2009.
+24

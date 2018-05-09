@@ -1,0 +1,17 @@
+  suppose that party a collects private information about its users, where each
+user's data is represented as a bit vector. suppose that party b has a
+proprietary data mining algorithm that requires estimating the distance between
+users, such as clustering or nearest neighbors. we ask if it is possible for
+party a to publish some information about each user so that b can estimate the
+distance between users without being able to infer any private bit of a user.
+our method involves projecting each user's representation into a random,
+lower-dimensional space via a sparse johnson-lindenstrauss transform and then
+adding gaussian noise to each entry of the lower-dimensional representation. we
+show that the method preserves differential privacy---where the more privacy is
+desired, the larger the variance of the gaussian noise. further, we show how to
+approximate the true distances between users via only the lower-dimensional,
+perturbed data. finally, we consider other perturbation methods such as
+randomized response and draw comparisons to sketch-based methods. while the
+goal of releasing user-specific data to third parties is more broad than
+preserving distances, this work shows that distance computations with privacy
+is an achievable goal.

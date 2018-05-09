@@ -1,0 +1,1897 @@
+5
+1
+0
+2
+ 
+n
+u
+J
+ 
+9
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+1
+v
+2
+2
+0
+3
+0
+.
+6
+0
+5
+1
+:
+v
+i
+X
+r
+a
+The Majority Illusion in Social Networks
+USC Information Sciences Institute, 4676 Admiralty Way, Marina del Rey, CA 90292
+Kristina Lerman, Xiaoran Yan, and Xin-Zeng Wu
+(Dated: June 10, 2015)
+Social behaviors are often contagious, spreading through a population as individuals imitate the
+decisions and choices of others. A variety of global phenomena, from innovation adoption to the
+emergence of social norms and political movements, arise as a result of people following a simple
+local rule, such as copy what others are doing. However, individuals often lack global knowledge of
+the behaviors of others and must estimate them from the observations of their friends  behaviors.
+In some cases, the structure of the underlying social network can dramatically skew an individual s
+local observations, making a behavior appear far more common locally than it is globally. We trace
+the origins of this phenomenon, which we call  the majority illusion,  to the friendship paradox in
+social networks. As a result of this paradox, a behavior that is globally rare may be systematically
+overrepresented in the local neighborhoods of many people, i.e., among their friends. Thus, the
+ majority illusion  may facilitate the spread of social contagions in networks and also explain why
+systematic biases in social perceptions, for example, of risky behavior, arise. Using synthetic and
+real-world networks, we explore how the  majority illusion  depends on network structure and
+develop a statistical model to calculate its magnitude in a network.
+I.
+INTRODUCTION
+An individual s behavior often depends on the
+actions of others [8, 9, 17, 29, 30, 33]. This
+phenomenon is manifested daily in the decisions
+people make to adopt a new technology [28, 31]
+or idea [7, 33],
+listen to music [29], engage
+in risky behavior [4], or join a social move-
+ment [17, 30]. As a result, a variety of behav-
+iors are said to be  contagious , because they
+spread through the population as people observe
+others adopting the behavior and then adopt it
+themselves. In some cases, behaviors will spread
+from a small number of initial adopters to a
+large portion of the population, resulting in fads,
+hit songs, successful political campaigns, epi-
+demics, and social norms. Researchers have ex-
+amined the conditions under which such global
+outbreaks occur, especially in a networked set-
+ting, where individuals interact with a subset of
+the population, i.e., their network neighbors or
+friends. Studies have linked the onset of global
+outbreaks to the topology of underlying net-
+work [9, 32], including the presence of highly
+connected individuals [21, 25] and small clusters
+of connected people [8, 33]. However, network
+structure can a ect the emergence of global out-
+breaks in a subtler way. As we show in this
+paper, the con guration of initial adopters on
+a network can systematically skew the obser-
+vations people make of their friends  behavior.
+This can make some behavior appear much more
+popular than it is, thus creating conditions for
+its spread.
+Networks often have counter-intuitive proper-
+ties. One of the better known of these is the
+friendship paradox, which states that, on aver-
+age, most people have fewer friends than their
+friends have [14]. Despite its almost nonsensical
+nature, the friendship paradox has been used to
+design e cient strategies for vaccination [12], so-
+cial intervention [22], and early detection of con-
+tagious outbreaks [11, 16]. In a nutshell, rather
+than monitoring random people to catch a con-
+tagious outbreak in its early stages, the friend-
+ship paradox suggests monitoring their random
+friends, because they are more likely to be bet-
+ter connected and not only to get sick earlier,
+but also to infect more people once sick.
+Recently, friendship paradox was generalized
+for attributes other than degree, i.e., number
+of network neighbors. For example, your co-
+authors are cited more often than you [13], and
+the people you follow on Twitter post more fre-
+quently than you do [19]. In fact, any attribute
+that is correlated with degree will produce a
+paradox [13, 23]. Thus, if heavy drinkers also
+happen to be more popular, then people exam-
+ining their friends  drinking behavior will con-
+clude that, on average, their friends drink more
+than they do. This may help explain why adoles-
+cents systematically overestimate their friends 
+alcohol consumption and drug use [3, 6].
+In this paper, we describe a novel variation
+of the friendship paradox that is essential for
+understanding contagious behaviors. The para-
+dox applies to networks in which nodes have at-
+tributes, in the simplest case a binary attribute,
+such as  has red hair  vs  does not have red
+hair  or  purchased an iPhone  vs  did not pur-
+chase an iPhone . We refer to nodes that have
+this attribute as  active , and the rest are  in-
+active.  We show that under some conditions,
+a large fraction of nodes will observe most of
+their neighbors in the active state, even when
+it is globally rare. For this reason, we call the
+paradox the  majority illusion. 
+As a simple illustration of the  majority il-
+lusion  paradox, consider the two networks in
+Figure 1. The networks are identical, except for
+which of the few nodes are colored. Imagine that
+colored nodes are active and the rest of the nodes
+are inactive. Despite this apparently small dif-
+ference, the two networks are profoundly di er-
+ent: in the  rst network, every inactive node will
+examine its neighbors to observe that  at least
+half of my neighbors are active,  while in the
+second network no node will make this observa-
+tion. Thus, even though only three of the 14
+nodes are active, it appears to all inactive nodes
+in the  rst network that most of their neighbors
+are active.
+The  majority illusion  can dramatically im-
+pact social contagions. Researchers use the
+threshold model to describe the spread of social
+contagions in networks [10, 17, 32]. At each time
+step in this model, an inactive individual ob-
+serves the current states of its k neighbors, and
+becomes active if more than  k of the neighbors
+are active; otherwise, it remains inactive. The
+fraction 0       1 is the activation threshold.
+It represents the amount of social proof an in-
+dividual requires before switching to the active
+state [17]. Threshold of   = 0.5 means that to
+become active, an individual has to have a ma-
+jority neighbors in the active state. Though the
+two networks in Figure 1 have the same topol-
+ogy, when the threshold is   = 0.5, all nodes
+will eventually become active in the network on
+the left, but not in the network on the right.
+This is because the  majority illusion  alters lo-
+cal neighborhoods of the nodes, distorting their
+perceptions of the prevalence of the active state.
+This paper describes and analyzes the  major-
+ity illusion  paradox. We measure the strength
+of the paradox as the fraction of network nodes
+with a majority active neighbors. Using syn-
+thetic and real-world networks, we study how
+network structure and con guration of active
+nodes contributes to the paradox. We demon-
+strate empirically, as well as through theoreti-
+cal analysis, that the paradox is stronger in net-
+works in which the better-connected nodes are
+active, and also in networks with a heteroge-
+neous degree distribution. Network structure
+also ampli es the paradox via degree correla-
+tions. The paradox is strongest in networks
+where low degree nodes have the tendency to
+2
+connect to high degree nodes. Activating the
+high degree nodes in such networks biases the
+local observations of many nodes, which in turn
+impacts collective phenomena emerging in net-
+works, including social contagions. Our statisti-
+cal model quanti es the strength of this e ect.
+II. RESULTS
+A network s structure is partly speci ed by its
+degree distribution p(k), which gives the proba-
+bility that a randomly chosen node in an undi-
+rected network has k neighbors (i.e., degree k).
+This quantity also a ects the probability that a
+randomly chosen edge is connected to a node of
+degree k, otherwise known as neighbor degree
+distribution q(k). Since high degree nodes have
+more edges, they will be over-represented in the
+neighbor degree distribution by a factor propor-
+tional to their degree; hence, q(k) = kp(k)/ hki,
+where hki is the average node degree.
+Networks often have structure beyond that
+speci ed by their degree distribution:
+for ex-
+ample, nodes may preferentially link to others
+with a similar (or very di erent) degree. Such
+degree correlation is captured by the joint de-
+gree distribution e(k, k ), the probability to  nd
+nodes of degrees k and k  at either end of a
+randomly chosen edge in an undirected net-
+work [27]. This quantity obeys normalization
+conditions Pkk  e(k, k ) = 1 and Pk  e(k, k ) =
+q(k). Globally, degree correlation in an undi-
+rected network is quanti ed by the assortativity
+coe cient, which is simply the Pearson correla-
+tion between degrees of connected nodes:
+1
+ 2
+r =
+=
+q Xk,k 
+ 
+ 
+ Xk,k 
+ 
+1
+ 2
+q
+kk  [e(k, k )   q(k)q(k )]
+kk e(k, k ) 
+q 
+    hki2
+  .
+q = Pk k2q(k)   [Pk kq(k)]2. In assor-
+Here,  2
+tative networks (r > 0), nodes have a tendency
+link to similar nodes, e.g., high-degree nodes to
+other high-degree nodes. In disassortative net-
+works (r < 0), on the other hand, they prefer to
+link to dissimilar nodes. A star composed of a
+central hub and nodes linked only to the hub is
+an example of a disassortative network.
+We can use Newman s edge rewiring proce-
+dure [27] to change a network s assortativity
+without changing its degree distribution p(k).
+The rewiring procedure randomly chooses two
+pairs of connected nodes and swaps their edges
+3
+(a)
+(b)
+FIG. 1. An illustration of the  majority illusion  paradox. The two networks are identical, except for which
+three nodes are colored. These are the  active  nodes and the rest are  inactive.  In the network on the
+left, all  inactive  nodes observe that at least half of their neighbors are  active,  while in the network on
+the right, no  inactive  node makes this observation.
+if doing so changes their degree correlation. This
+can be repeated until desired assortativity is
+achieved.
+The con guration of attributes in a network
+is speci ed by the joint probability distribution
+P (x, k), the probability that node of degree k
+has an attribute x.
+In this work, we consider
+binary attributes only, and refer to nodes with
+x = 1 as active and those with x = 0 as inactive.
+The joint distribution can be used to compute
+ kx, the correlation between node degrees and
+attributes:
+ kx  
+=
+=
+1
+ x k Xx,k
+ x k Xk
+1
+xk [P (x, k)   P (x)p(k)]
+(1)
+k [P (x = 1, k)   P (x = 1)p(k)]
+P (x = 1)
+ x k
+[hkix=1   hki] .
+In the equations above,  k and  x are the stan-
+dard deviations of the degree and attribute dis-
+tributions respectively, and hkix=1 is the average
+degree of active nodes.
+Randomly activating nodes creates a con gu-
+ration with  kx close to zero. We can change it
+by swapping attribute values among the nodes.
+For example, to increase  kx, we randomly
+choose nodes v1 with x = 1 and v0 with x = 0
+and swap their attributes if the degree of v0 is
+greater than the degree of v1. We can continue
+swapping attributes until desired  kx is achieved
+(or it no longer changes).
+A.  Majority Illusion  in Synthetic and
+Real-world Networks
+Synthetic networks allow us to systematically
+study how network structure a ects the strength
+of the  majority illusion  paradox. First, we
+looked at scale-free networks. We generated net-
+works with N = 10, 000 nodes and degree distri-
+bution of the form p(k)   k  . Such networks
+are used to model the heterogeneous structure of
+many real-world networks, which contain a few
+high degree hubs and many low degree nodes.
+To create a scale-free network, we  rst sampled
+a degree sequence from a distribution with ex-
+ponent  , where exponent   took three di er-
+ent values (2.1, 2.4, and 3.1), and then used the
+con guration model to create an undirected net-
+work with that degree sequence (see Appendix
+Sec. S1). We activated P (x = 1) = 0.05
+of nodes and used edge rewiring and attribute
+swapping procedures describe above to change
+the network s degree assortativity r and degree 
+attribute correlation  kx.
+Figure 2 shows the fraction of nodes with a
+majority active neighbors in these scale-free net-
+works as a function of the degree attribute cor-
+relation  kx and for di erent values of degree as-
+sortativity r. The fraction of nodes experiencing
+the  majority illusion  can be quite large. For
+  = 2.1, 60% 80% of the nodes may observe a
+majority active neighbors, even though only 5%
+of the nodes are, in fact, active. The  majority
+illusion  is exacerbated by three factors: it be-
+comes stronger as the degree attribute correla-
+tion increases, and as the network becomes more
+disassortative (i.e., r decreases) and heavier-
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+1
+0.8
+0.6
+0.4
+0.2
+0
+ 
+0
+ 
+r= 0.35
+r= 0.25
+r= 0.15
+r= 0.05
+0.2
+0.4
+k x correlation
+(a)  = 2.1
+0.6
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.8
+0.6
+0.4
+0.2
+0
+ 
+0
+ 
+r= 0.20
+r= 0.10
+r=0.00
+r=0.10
+r=0.20
+0.2
+0.4
+k x correlation
+(b)  = 2.4
+0.6
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.4
+0.3
+0.2
+0.1
+0
+ 
+0
+4
+ 
+r= 0.15
+r= 0.05
+r= 0.00
+r= 0.30
+0.2
+0.4
+k x correlation
+(c)  = 3.1
+0.6
+FIG. 2. Magnitude of the  majority illusion  in scale-free networks as a function of degree attribute cor-
+relation  kx and for di erent values of degree assortativity r. Each network has 10,000 nodes and degree
+distribution of the form p(k)   k  . The fraction of active nodes in all cases is 5%. The lines represent
+calculations using the statistical model of Equation 4.
+tailed (i.e.,   becomes smaller). However, even
+when   = 3.1, under some conditions a substan-
+tial fraction of nodes will experience the para-
+dox. The lines in the  gure show show theoret-
+ical estimates of the paradox using Equation 4,
+as described in the next subsection.
+ Majority illusion  can also be observed in
+networks with a Poisson degree distribution. We
+used the Erd os-R enyi model to generate net-
+works with N = 10, 000 and average degrees
+hki = 5.2 and hki = 2.5 (see Appendix Sec. S1).
+We randomly activated 5%, 10%, and 20% of
+the nodes, and used edge rewiring and attribute
+swapping to change r and  kx in these net-
+works. Figure 3 shows the fraction of nodes
+in the paradox regime. Though much reduced
+compared to scale-free networks, we still observe
+some amount of the paradox, especially in net-
+works with a greater fraction of active nodes.
+We also examined whether  majority illusion 
+can be manifested in real-world networks. We
+looked at three typical social and communica-
+tions networks:
+the co-authorship network of
+high energy physicists (HepTh) [24], social me-
+dia follower graph (Digg) [20], and the net-
+work representing links between political blogs
+(blogs) [2]. All three networks are undirected.
+To make the Digg follower graph undirected, we
+kept only the mutual follow links, and further re-
+duced the graph by extracting the largest con-
+nected component. Except for political blogs
+(r =  0.22), the networks were assortative with
+r = 0.23 and r = 0.12 for HepTh and Digg
+respectively. These data are described in Ap-
+pendix Sec. S1.
+Figure 4 shows the fraction of nodes experi-
+encing the  majority illusion  for di erent frac-
+tions of active nodes P (x = 1) = 0.05, 0.1, 0.2
+and 0.3. As degree attribute correlation  kx in-
+creases, a substantial fraction of nodes experi-
+ence the paradox in almost all networks. The
+e ect is largest in the disassortative political
+blogs network, where for high enough correla-
+tion, as many as 60% 70% of nodes will have a
+majority active neighbors, even when only 20%
+of the nodes are active. The e ect also exists
+in the Digg network of mutual followers, and to
+a lesser degree in the HepTh co-authorship net-
+work. Although positive assortativity reduces
+the magnitude of the e ect, compared with syn-
+thetic networks, local perceptions of nodes in
+real-world networks can also be skewed. If the
+attribute represents an opinion, under some con-
+ditions, even a minority opinion can appear to
+be extremely popular locally.
+B. Modeling  Majority Illusion  in
+Networks
+Having demonstrated empirically some of the
+relationships between  majority illusion  and
+network structure, we next develop a model that
+includes network properties in the calculation
+of paradox strength. Like the friendship para-
+dox, the  majority illusion  is rooted in di er-
+ences between degrees of nodes and their neigh-
+bors [14, 18]. These di erences result in nodes
+perceiving that, not only are their neighbors bet-
+ter connected [14], on average, but that they also
+have more of some attribute than they them-
+selves have [19]. The latter paradox, which is
+referred to as the generalized friendship para-
+dox, is enhanced by correlations between node
+degrees and attribute values  kx [13].
+In bi-
+nary attribute networks, where nodes can be ei-
+ther active or inactive, a con guration in which
+higher degree nodes tend to be active causes the
+Erd os-R enyi network with N = 10, 000 and hki = 5.2
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+r= 0.50
+r=0.00
+r=0.50
+0.1
+0.08
+0.06
+0.04
+0.02
+0
+ 
+0
+0.2
+k x correlation
+0.4
+0.6
+(a)P (x = 1) = 0.05
+ 
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+r= 0.50
+r=0.00
+r=0.50
+0.2
+0.15
+0.1
+0.05
+0
+ 
+0
+0.2
+k x correlation
+0.4
+0.6
+(b)P (x = 1) = 0.10
+ 
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+r= 0.50
+r=0.00
+r=0.50
+0.4
+0.3
+0.2
+0.1
+0
+ 
+0
+0.2
+k x correlation
+0.4
+0.6
+(c)P (x = 1) = 0.20
+Erd os-R enyi network with N = 10, 000 and hki = 2.5
+r= 0.50
+r=0.00
+r=0.50
+0.1
+0.08
+0.06
+0.04
+0.02
+0
+ 
+0
+0.2
+k x correlation
+0.4
+0.6
+(d)P (x = 1) = 0.05
+ 
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+r= 0.50
+r=0.00
+r=0.50
+0.2
+0.15
+0.1
+0.05
+0
+ 
+0
+0.2
+k x correlation
+0.4
+0.6
+(e)P (x = 1) = 0.10
+ 
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+r= 0.50
+r=0.00
+r=0.50
+0.4
+0.3
+0.2
+0.1
+0
+ 
+0
+0.2
+k x correlation
+0.4
+0.6
+(f)P (x = 1) = 0.20
+5
+ 
+ 
+FIG. 3. Magnitude of the  majority illusion  in Erd os-R enyi-type networks as a function of degree attribute
+correlation  kx and for di erent values of degree assortativity r. Each network has 10,000 nodes with
+hki = 5.2 (top row) or hki = 2.5 (bottom row), and di erent fractions of active nodes. The lines represent
+calculations using the statistical model of Equation 4.
+0.8
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.6
+0.4
+0.2
+0
+ 
+0
+P(x=1)=0.05
+P(x=1)=0.1
+P(x=1)=0.2
+P(x=1)=0.3
+0.2
+0.4
+k x correlation
+ 
+0.8
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.6
+0.4
+0.2
+0
+ 
+0
+0.6
+0.8
+P(x=1)=0.05
+P(x=1)=0.1
+P(x=1)=0.2
+P(x=1)=0.3
+0.2
+0.4
+k x correlation
+ 
+0.8
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.6
+0.4
+0.2
+0
+ 
+0
+0.6
+0.8
+P(x=1)=0.05
+P(x=1)=0.1
+P(x=1)=0.2
+P(x=1)=0.3
+ 
+0.2
+0.4
+k x correlation
+0.6
+0.8
+HepTh collaboration
+Digg
+blogs
+FIG. 4. Magnitude of the  majority illusion  in real-world networks as a function of degree attribute
+correlation  kx for di erent fraction of active nodes P (x = 1). The lines represent calculations using the
+statistical model of Equation 4.
+remaining nodes to observe that their neighbors
+are more active than they are (see Appendix
+Sec. S1 A).
+While heterogeneous degree distribution and
+degree attribute correlations give rise to friend-
+ship paradoxes even in random networks, other
+elements of network structure, such as correla-
+tion between degrees of connected nodes, may
+also a ect observations nodes make of their
+neighbors. To understand why, consider the
+probability that a node has an active neighbor,
+conditioned on that node having a degree k:
+P (x  = 1|k) = Xk 
+= Xk 
+P (x  = 1|k )P (k |k)
+(2)
+P (x  = 1|k )
+e(k, k )
+q(k)
+.
+In the equation above, e(k, k ) is the joint degree
+distribution. Globally, the probability that any
+node has an active neighbor is
+P (x  = 1) = Xk
+P (x  = 1|k)p(k)
+= Xk Xk 
+= Xk Xk 
+= Xk 
+P (x  = 1, k )
+q(k ) Xk
+P (x  = 1|k )
+e(k, k )
+q(k)
+p(k)
+P (x  = 1, k )
+p(k )
+e(k, k )
+hki
+k
+k 
+k
+e(k, k ).
+Given two di erent networks with the same
+degree distribution p(k) and the same con-
+ guration of active nodes,
+the probability
+that a node in each network observes an ac-
+tive neighbor P (x  = 1) is a function of
+Pk,k  (k /k)e(k, k ). Since assortativity r is a
+function of Pk,k  kk e(k, k ), we can see that the
+two expressions weigh the e(k, k ) term in oppo-
+site ways. This suggests that the probability of
+having an active neighbor increases as assorta-
+tivity decreases and vice versa. Thus, we expect
+stronger paradoxes in disassortative networks.
+To quantify the  majority illusion  paradox,
+we calculate the probability that a node of de-
+gree k has more than a fraction   of active neigh-
+bors, i.e., neighbors with attribute value x  = 1:
+P> (k) =
+k
+Xn> k
+(cid:18)k
+n(cid:19)  
+(3)
+P (x  = 1|k)n(1   P (x  = 1|k))(k n) .
+Here P (x  = 1|k) is the conditional probability
+of having an active neighbor, given a node with
+degree k, and is speci ed by Eq. 2. Although
+the threshold   in Eq. 3 could be any fraction, in
+this paper we focus on   = 1
+2 , which represents a
+straight majority. Thus, the fraction of all nodes
+most of whose neighbors are active is
+P> 1
+2
+p(k)
+= Xk
+k
+Xn> k
+2
+(cid:18)k
+n(cid:19)  
+(4)
+P (x  = 1|k)n(1   P (x  = 1|k))(k n) .
+Using Equation 4, we can calculate the
+strength of the  majority illusion  paradox for
+any network whose degree sequence, joint degree
+distribution e(k, k ), and conditional attribute
+distribution P (x|k) are known. The solid lines
+in Figures 2 4 report these calculations for each
+network. We used the empirically determined
+joint probability distribution P (x, k) to calcu-
+late P (x = 1|k) in the equation above, as well
+6
+as  kx for the  gure. For some  well-behaved 
+degree distributions, P (x = 1|k) can be deter-
+mined analytically (rather than empirically) by
+approximating the joint distribution P (x, k) as
+a bivariate normal distribution (see Appendix
+Sec. S1 B). However, this  gaussian  approxi-
+mation breaks down as degree distributions be-
+comes heavier tailed. Overall, our statistical
+model does a good job explaining most of the
+empirical observations. Although the global de-
+gree assortativity r is an important contributor
+to the  majority illusion,  a more detailed view
+of the structure using joint degree distribution
+e(k, k ) is necessary to accurately estimate the
+magnitude of the paradox. As demonstrated in
+Appendix Sec. S1 C, two networks with the same
+p(k) and r can display di erent amounts of the
+paradox.
+III. DISCUSSION
+Local prevalence of some attribute among a
+node s network neighbors can be very di erent
+from its global prevalence, creating an illusion
+that the attribute is far more common than it
+actually is. In a social network, this illusion may
+cause people to reach wrong conclusions about
+how common a behavior is, leading them to ac-
+cept as a norm a behavior that is globally rare.
+This may explain how global outbreaks can be
+triggered by very few initial adopters, and why
+people overestimate how much their friends en-
+gage in risky behaviors, such as alcohol and drug
+use.
+We quanti ed this paradox, which we call the
+ majority illusion , and studied its dependence
+on network structure and attribute con gura-
+tion. As in the friendship paradox [13, 14, 19,
+23],  majority illusion  can ultimately be traced
+to the power of high degree nodes to skew the ob-
+servations of many others. This is because such
+nodes are overrepresented in the local neighbor-
+hoods of other nodes. This, by itself is not sur-
+prising, given than high degree nodes are ex-
+pected to have more in uence and are often tar-
+geted by in uence maximization algorithms [21].
+However, the ability of high degree nodes to
+bias the perceptions of others depends on other
+aspects of network structure. Speci cally, we
+showed that the paradox is much stronger in dis-
+assortative networks, where high degree nodes
+tend to link to low degree nodes. In other words,
+given the same degree distribution, the high de-
+gree nodes in a disassortative network will have
+greater power to skew the observations of oth-
+7
+ers than those in an assortative network. This
+suggests that some network structures are more
+susceptible than others to in uence manipula-
+tion and the spread of external shocks [32]. Fur-
+thermore, small changes in network topology, as-
+sortativity and degree attribute correlation may
+further exacerbate the paradox even when there
+are no actual changes in the distribution of the
+attribute. This may explain the apparently sud-
+den shifts in public attitudes witnessed during
+the Arab Spring and on the question of gay mar-
+riage.
+The  majority illusion  is an example of class
+size bias e ect. When sampling data to estimate
+average class or event size, more popular classes
+and events will be overrepresented in the sam-
+ple, biasing estimates of their average size [15].
+Thus, the average class size that students ex-
+perience at college is larger than the college s
+average class size. Similarly, people experience
+highways, restaurants, and events to be more
+crowded than they normally are. In networks,
+sampling bias a ects estimates of network struc-
+ture,
+including its degree distribution [1, 18].
+Our work suggests that network bias also af-
+fects an individual s local perceptions and the
+collective social phenomena that emerge.
+Acknowledgements
+Authors are grateful to Nathan Hodas and
+Farshad Kooti for their inputs into this work.
+[1] Dimitris Achlioptas, Aaron Clauset, David
+Kempe, and Cristopher Moore. On the Bias
+of Traceroute Sampling; or, Power-law Degree
+Distributions in Regular Graphs.
+In Proc.
+37th ACM Symposium on Theory of Comput-
+ing (STOC), 2005.
+[2] Lada A Adamic and Natalie Glance. The po-
+litical blogosphere and the 2004 us election: di-
+vided they blog. In Proceedings of the 3rd in-
+ternational workshop on Link discovery, pages
+36 43. ACM, 2005.
+[3] J. S. Baer, A. Stacy, and M. Larimer. Biases
+in the perception of drinking norms among col-
+lege students. Journal of studies on alcohol,
+52(6):580 586, November 1991.
+[4] Jonathan M. Bearak. Casual Contraception
+in Casual Sex: Life-Cycle Change in Under-
+graduates  Sexual Behavior in Hookups. Social
+Forces, 93(2):sou091 513, October 2014.
+[5] Edward A Bender and E Rodney Can eld. The
+asymptotic number of labeled graphs with given
+degree sequences.
+Journal of Combinatorial
+Theory, Series A, 24(3):296 307, 1978.
+[6] Alan D Berkowitz. An overview of the social
+norms approach. Changing the culture of col-
+lege drinking: A socially situated health com-
+munication campaign, pages 193 214, 2005.
+[7] Lu  s Bettencourt, Ariel Cintron-Arias, David I
+Kaiser, and Carlos Castillo-Chavez. The power
+of a good idea: Quantitative modeling of the
+spread of ideas from epidemiological models.
+Physica A: Statistical Mechanics and its Appli-
+cations, 364:513 536, 2006.
+[8] Damon Centola. The Spread of Behavior in
+an Online Social Network Experiment. Science,
+329(5996):1194 1197, September 2010.
+[9] Damon Centola and Andrea Baronchelli. The
+spontaneous emergence of conventions: An ex-
+perimental study of cultural evolution. Pro-
+ceedings of the National Academy of Sciences,
+112(7):1989 1994, February 2015.
+[10] Damon Centola, V  ctor M. Egu  luz,
+and
+Michael W. Macy. Cascade dynamics of com-
+plex propagation. Physica A: Statistical Me-
+chanics and its Applications, 374(1):449 456,
+January 2007.
+[11] Nicholas A. Christakis and James H. Fowler.
+Social Network Sensors
+for Early Detec-
+tion of Contagious Outbreaks. PLoS ONE,
+5(9):e12948+, September 2010.
+[12] Reuven Cohen, Shlomo Havlin, and Daniel ben
+Avraham. E cient Immunization Strategies for
+Computer Networks and Populations. Phys.
+Rev. Lett., 91:247901, Dec 2003.
+[13] Young-Ho Eom and Hang-Hyun Jo. General-
+ized friendship paradox in complex networks:
+The case of scienti c collaboration. Scienti c
+Reports, 4, April 2014.
+[14] Scott L. Feld. Why Your Friends Have More
+Friends Than You Do. American Journal of
+Sociology, 96(6):1464 1477, May 1991.
+[15] Scott L. Feld and Bernard Grofman. Variation
+in Class Size, the Class Size Paradox, and Some
+Consequences for Students. Research in Higher
+Education, 6(3), 1977.
+[16] Manuel Garcia-Herranz, Esteban Moro, Manuel
+Cebrian, Nicholas A. Christakis, and James H.
+Fowler.
+Using Friends as Sensors to De-
+tect Global-Scale Contagious Outbreaks. PLoS
+ONE, 9(4):e92413+, April 2014.
+[17] Mark Granovetter. Threshold Models of Collec-
+tive Behavior. American Journal of Sociology,
+83(6):1420 1443, 1978.
+[18] Sidharth Gupta, Xiaoran Yan, and Kristina
+Structural Properties of Ego Net-
+Lerman.
+works.
+In International Conference on Social
+Computing, Behavioral Modeling and Predic-
+tion, 2015.
+[19] Nathan Hodas, Farshad Kooti, and Kristina
+Lerman. Friendship Paradox Redux: Your
+Friends Are More Interesting Than You.
+In
+Proc. 7th Int. AAAI Conf. on Weblogs And So-
+cial Media, 2013.
+[20] Tad Hogg and Kristina Lerman. Social dynam-
+ics of digg. EPJ Data Science, 1(5), June 2012.
+[21] David Kempe, Jon Kleinberg, and Eva Tardos.
+Maximizing the spread of in uence through a
+social network.
+In KDD  03: Proceedings of
+the ninth ACM SIGKDD international confer-
+ence on Knowledge discovery and data min-
+ing, pages 137 146, New York, NY, USA, 2003.
+ACM Press.
+[22] David A. Kim, Alison R. Hwong, Derek
+Sta ord, D. Alex Hughes, A. James O Malley,
+James H. Fowler, and Nicholas A. Christakis.
+Social network targeting to maximise popula-
+tion behaviour change: a cluster randomised
+controlled trial. The Lancet, May 2015.
+[23] Farshad Kooti, Nathan O. Hodas, and Kristina
+Lerman. Network Weirdness: Exploring the
+Origins of Network Paradoxes.
+In Interna-
+tional Conference on Weblogs and Social Media
+(ICWSM), March 2014.
+[24] Jure Leskovec, Jon Kleinberg, and Christos
+Faloutsos. Graph evolution: Densi cation
+and shrinking diameters. ACM Transactions
+on Knowledge Discovery from Data (TKDD),
+1(1):2, 2007.
+[25] J. O. Lloyd-Smith, S. J. Schreiber, P. E. Kopp,
+and W. M. Getz. Superspreading and the e ect
+of individual variation on disease emergence.
+Nature, 438(7066):355 359, 2005.
+[26] Michael Molloy and Bruce Reed. A critical
+point for random graphs with a given degree se-
+quence. Random structures & algorithms, 6(2-
+3):161 180, 1995.
+[27] M. E. J. Newman. Assortative Mixing in Net-
+works. Phys. Rev. Lett., 89:208701, Oct 2002.
+[28] Everett M. Rogers. Di usion of Innovations,
+5th Edition. Free Press, 5th edition, August
+2003.
+[29] M. J. Salganik, P. S. Dodds, and D. J. Watts.
+Experimental Study of Inequality and Unpre-
+dictability in an Arti cial Cultural Market. Sci-
+ence, 311, 2006.
+[30] Thomas C. Schelling. Hockey Helmets, Con-
+cealed Weapons, and Daylight Saving: A Study
+of Binary Choices with Externalities. The Jour-
+nal of Con ict Resolution, 17(3), 1973.
+[31] Thomas W. Valente. Network Models of the
+Di usion of Innovations (Quantitative Methods
+in Communication Subseries). Hampton Press
+(NJ), 1995.
+[32] Duncan J. Watts. A simple model of global
+cascades on random networks. Proceedings of
+the National Academy of Sciences, 99(9):5766 
+5771, April 2002.
+[33] H. Peyton Young. The dynamics of social inno-
+vation. Proceedings of the National Academy of
+8
+Sciences, 108(Supplement 4):21285 21291, De-
+cember 2011.
+APPENDIX
+S1. DATA
+by
+the
+to
+implemented
+We use the con guration model
+[5, 26],
+SNAP library
+as
+(https://snap.stanford.edu/data/),
+cre-
+ate a scale-free network with a speci ed degree
+sequence. We generated a degree sequence from
+a power law of the form p(k)   k  . Here, pk
+is fraction of nodes that have k half-edges. The
+con guration model proceeded by linking a pair
+of randomly chosen half-edges to form an edge.
+The linking procedure was repeated until all
+half-edges have been used up or there were no
+more ways to form an edge.
+To create Erd os-R enyi-type networks, we
+started with N = 10, 000 nodes and linked pairs
+at random with some  xed probability. These
+probabilities were  xed to produce average de-
+gree similar to the average degree of the scale-
+free networks.
+The statistics of real-world networks we stud-
+ied, including the collaboration network of high
+energy physicist (HepTh),1 Digg follower graph
+(http://www.isi.edu/ lerman/downloads/digg2009.html),
+and a network of political blogs (http://www-
+personal.umich.edu/ mejn/netdata/)
+are
+summarized below.
+edges
+network nodes
+HepTh 9,877 25,998 5.3
+Digg 25,454 175,892 13.8
+Political blogs 1,490 19,090 25.6
+0.2283
+0.1160
+-0.2212
+hki assortativity
+A. Friendship Paradox
+Node degree distribution p(k) gives the prob-
+ability that a randomly chosen node in an undi-
+rected network has k neighbors or edges. Neigh-
+bor degree distribution q(k) gives the probabil-
+ity that a randomly chosen edge in an undirected
+network is connected to a node of degree k. It is
+easy to demonstrate that average neighbor de-
+gree hkiq is larger than average node degree hki.
+The di erence between these quantities is
+hkiq hki = Xk
+k2p(k)
+hki
+ hki = (cid:10)k2(cid:11)   hki2
+hki
+=
+ 2
+k
+hki
+,
+where  k is the standard deviation of the degree
+distribution p(k). Since  k   0, hkiq   hki  
+0. This con rms that the friendship paradox,
+which says that average neighbor degree is larger
+than node s own degree, has its origins in the
+heterogeneous degree distribution [14], and is
+more pronounced in networks with larger degree
+heterogeneity  k.
+Heterogeneous degree distribution also con-
+tributes to nodes perceiving that their neigh-
+bors have more of some attribute than they
+themselves have   what is referred to as the
+generalized friendship paradox [13]. Let s con-
+sider again a network where nodes have a bi-
+nary attribute x. For convenience, we will re-
+fer to nodes with the attribute value x = 1
+as active, and those with x = 0 as inactive.
+The probability that a random node is active
+probability that a random neighbor is active is
+is P (x = 1) = Pk P (x = 1|k)p(k). The
+Q(x = 1) = Pk P (x = 1|k)q(k). Using Bayes 
+rule, this can be rewritten as
+Q(x = 1) = Xk
+= Xk
+P (x = 1, k)
+kp(k)
+p(k)
+hki
+ 
+P (x = 1, k)
+kP (x = 1)
+P (x = 1)
+hki
+9
+mating the joint distribution P (x , k ) as a mul-
+tivariate normal distribution, and we have
+hP (x |k )i = hP (x )i +  kx
+ x
+ k
+(k    hki) ,
+resulting in
+P (x  = 1|k ) = hxi +  kx
+ x
+ k
+(k    hki).
+Figure S1 reports the  majority illusion  in
+the same synthetic scale free networks as Fig. 2,
+but with theoretical lines (dashed lines) calcu-
+lated using the Gaussian approximation for esti-
+mating P (x  = 1|k ). The Gaussian approxima-
+tion  ts results quite well for the network with
+degree distribution exponent   = 3.1. However,
+theoretical estimate deviates signi cantly from
+data in a network with a heavier tailed degree
+distribution with exponent   = 2.1. The ap-
+proximation also deviate from the actual result
+when the network has very positive or negative
+assortativity. When this approximation is not
+applicable, we need to determine the joint dis-
+tribution P (x , k ) empirically to calculate both
+ kx and P (x  = 1|k ) for a speci c joint distri-
+bution.
+P (x = 1)
+=
+kP (k|x = 1)
+hki Xk
+hkix=1
+hki
+= P (x = 1)
+,
+C.
+In uence of Network Structure
+where hkix=1 is the average degree of active
+nodes. This quantity and the average degree
+hki are related via the correlation coe cient
+ kx = P (x=1)
+[hkix=1   hki] (Eq. 1). Hence, the
+strength of the generalized friendship paradox is
+ x k
+Q(x = 1)   P (x = 1) =  kx
+ x k
+hki
+,
+which is positive when node degree and attribute
+are positively correlated ( kx > 0) and increases
+with this correlation [13].
+B. Gaussian Approximation
+The conditional probability P (x  = 1|k ) re-
+quired to calculate the strength of the  major-
+ity illusion  using Eq. 4 can be speci ed ana-
+lytically for some  well-behaved  degree distri-
+butions, such as scale free distributions of the
+form p(k)   k   with   > 3 or the Poisson dis-
+tributions of the Erd os-R enyi random graphs in
+near-zero assortativity.
+In these cases, proba-
+bility P (x  = 1|k ) can be acquired by approxi-
+A network is not fully speci ed by its degree
+sequence and degree assortativity r.
+In fact,
+many di erent structures are possible with an
+identical degree sequence and r. These struc-
+tural di erence may a ect the  majority illu-
+sion.  Here, we report some comparison of se-
+lected degree sequences in scale-free synthetic
+networks.
+We generated scale-free networks with some
+degree sequence and assortativity. We then
+used edge rewiring to change network s structure
+while keeping the assortativity r (and degree
+sequence) the same. Existing structural con-
+straints restrict the range of assortativity val-
+ues that a given degree sequence may attain.
+Thus there are fewer choices for extreme values
+of assortativity. Figure S2 reports the fraction of
+nodes in the paradox regime in these networks.
+Identical symbols are for the same value of as-
+sortativity. Results don t change much in cases
+where structural constraints prevent varying the
+structure while keeping assortativity  xed. On
+the other hand, the fraction of nodes in the
+paradox regime can vary somewhat in the mid-
+assortativity range.
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+1
+0.8
+0.6
+0.4
+0.2
+0
+ 
+0
+0.2
+0.15
+0.1
+0.05
+0
+ 
+0
+r= 0.35
+r= 0.25
+r= 0.15
+r= 0.05
+0.2
+0.4
+k x correlation
+(a)  = 2.1
+P(x=1) = 0.05
+P(x=1) = 0.1
+P(x=1) = 0.2
+0.2
+0.4
+0.6
+k x correlation
+ 
+0.6
+ 
+0.8
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.8
+0.6
+0.4
+0.2
+0
+ 
+0
+0.4
+0.3
+0.2
+0.1
+0
+ 
+0
+10
+ 
+r= 0.15
+r= 0.05
+r= 0.00
+r= 0.30
+0.2
+0.4
+k x correlation
+(c)  = 3.1
+0.6
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.4
+0.3
+0.2
+0.1
+0
+ 
+0
+ 
+0.6
+ 
+r= 0.20
+r= 0.10
+r=0.00
+r=0.10
+r=0.20
+0.2
+0.4
+k x correlation
+(b)  = 2.4
+P(x=1) = 0.05
+P(x=1) = 0.1
+P(x=1) = 0.2
+0.2
+0.4
+0.6
+0.8
+k x correlation
+(d)hki = 5.2
+(e)hki = 2.5
+FIG. S1. Strength of the  majority illusion  with Gaussian approximation. Symbols show the empirically
+determined fraction of nodes in the paradox regime (same as in Fig. 2 and Fig. 3), while dashed lines show
+theoretical estimates using the Gaussian approximation.
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+1
+0.8
+0.6
+0.4
+0.2
+0
+ 
+0
+r= 0.05
+r= 0.15
+r= 0.25
+r= 0.35
+ 
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.2
+0.4
+k x correlation
+(a)  = 2.1
+0.6
+0.8
+0.6
+0.4
+0.2
+0
+ 
+0
+r=0.20
+r=0.10
+r=0.00
+r= 0.10
+r= 0.20
+0.2
+k x correlation
+(b)  = 2.4
+0.4
+0.6
+ 
+0.4
+2
+/
+1
+>
+P
+ 
+,
+y
+t
+i
+r
+o
+a
+m
+j
+ 
+f
+o
+ 
+y
+t
+i
+l
+i
+b
+a
+b
+o
+r
+P
+0.3
+0.2
+0.1
+0
+ 
+0
+ 
+r=0.45
+r=0.30
+r=0.15
+r=0.00
+r= 0.15
+0.4
+0.2
+k x correlation
+(c)  = 3.1
+0.6
+FIG. S2. Strength of the majority illusion in synthetic scale-free networks showing that networks with the
+same degree sequence and assortativity can manifest di ering levels of the paradox. Identical symbols in the
+same plot are for networks with the same assortativity.

@@ -1,0 +1,10 @@
+ The task for this experiment is that of clustering protomemes using a single similarity measure, namely content similarity.
+ Hierarchical clustering outperforms K-means over a broad range of values for the number of clusters, and also achieves a better overall cluster quality.
+ While the experiment reported in Fig. 4 is based on protomemes and content similarity, we systematically explored other measures.
+ The similarity measure adopted to compare tweets and aggregate them is content similarity based on TF-IDF.
+ Such information is very time-consuming to obtain and this task seems unfeasible in real-time, streaming scenarios.
+ The proposed diffusion similarity measure uses mention and retweet information, that can be reconstructed in real-time from the observed data, considering each protomeme diffusion set.
+ We carried out a systematic evaluation showing the promising performance of the clus- tering framework, by using a manually-curated dataset as a ground truth.
+ This work is supported by NSF (grants CCF-1101743 and IIS-0968489), DARPA (grant W911NF-12-1-0037), and the McDonnell Foundation.
+ In Proceedings of the 4th ACM International Conference on Web Search and Data Mining, pages 65 74.
+ In Proceedings of the 3rd ACM International Conference on Web Search and Data Mining, pages 291 300.

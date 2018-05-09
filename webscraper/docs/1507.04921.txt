@@ -1,0 +1,1636 @@
+Do recommender systems bene t users?
+Chi Ho Yeung
+Department of Science and Environmental Studies,
+The Hong Kong Institute of Education,
+10 Lo Ping Road, Taipo, Hong Kong
+(Dated: July 20, 2015)
+Recommender systems are present in many web applications to guide our choices.
+They increase sales and bene t sellers, but whether they bene t customers by pro-
+viding relevant products is questionable. Here we introduce a model to examine the
+bene t of recommender systems for users, and found that recommendations from the
+system can be equivalent to random draws if one relies too strongly on the system.
+Nevertheless, with su cient information about user preferences, recommendations
+become accurate and an abrupt transition to this accurate regime is observed for
+some algorithms. On the other hand, we found that a high accuracy evaluated
+by common accuracy metrics does not necessarily correspond to a high real accu-
+racy nor a bene t for users, which serves as an alarm for operators and researchers
+of recommender systems. We tested our model with a real dataset and observed
+similar behaviors. Finally, a recommendation approach with improved accuracy is
+suggested. These results imply that recommender systems can bene t users, but
+relying too strongly on the system may render the system ine ective.
+5
+1
+0
+2
+ 
+l
+u
+J
+ 
+5
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+1
+v
+1
+2
+9
+4
+0
+.
+7
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Introduction
+Almost all popular websites employ recommender systems to match users with items [1 4].
+For instance, news websites analyze the reading history of individuals and recommend news
+which match their interests [5]; online social networks recommend new friends to individuals
+based on their existing friends [6]. Most commonly, online retailers analyze the purchase
+history of customers and recommend products to them to increase their own sales [7 9].
+These examples show an increasingly crucial role of recommender systems in our daily life,
+in uencing our various choices.
+Due to their broad applications, great e orts have been devoted to study recommendation
+2
+algorithms and to improve their accuracy [4]. Researchers in computer science, mathematics
+and management science employ various mathematical tools such as Bayesian approach and
+matrix factorization to derive recommendation algorithms [4, 10 12]. Recently, physicists
+and complex system scientists started to work in the area and incorporated physical processes
+such as mass di usion and heat conduction to recommender system [13]. Nevertheless, the
+main goal of these studies is limited to recommendation accuracy, but their genuine bene ts
+are less examined.
+Although recommender systems have been shown to bene t retailers, whether the rec-
+ommended products are relevant to customers is questionable [9, 14]. On one hand, many
+recommendation algorithms are based on product similarity and the recommended products
+may be redundant since they are similar to the already purchased products [13]. On the
+other hand, instead of speci c products which match individual needs, many recommender
+systems can only recommend popular but potentially irrelevant products [9, 15]. Neverthe-
+less, users may be tempted to purchase the products due to recommendations, and in this
+case recommender systems bene t sellers but not customers.
+In this paper, we introduce a simple model to examine the relevance between the rec-
+ommended products and the preferences of users. Unlike empirical studies where the true
+user preference is unknown, each user in the model is characterized by a taste and the true
+recommendation accuracy can be measured. We found that recommendations can be either
+random or very accurate depending on the frequency the users select a product without
+recommendations. For some algorithms, an abrupt increase in accuracy is observed when
+this frequency exceeds a threshold. On the other hand, we found that a high accuracy in-
+dicated by common evaluation metrics does not necessarily imply to a high real accuracy.
+We tested our model using the MovieLens dataset [16] and observed similar behaviors. Fi-
+nally, a recommendation approach based on our  ndings was suggested which outperforms
+conventional approaches.
+Model
+Speci cally, we consider a group of N users selecting products from a group of M items.
+Each user i and item   is characterized by one of the G tastes or genres, denoted by gi and g 
+respectively. For instance, in terms of movies, these tastes may correspond to science  ctions,
+3
+romantic comedies or thrillers. The case where users have multiple tastes are described in
+Section C.
+At each time step, a user i is randomly drawn. With a fraction fsel of the times, user i
+chooses a product matching his/her own taste without using the recommender system. This
+is the conventional way to purchase a product and we call fsel the frequency of deliberate
+selection. On the other hand, with a fraction 1   fsel of the times, user i buys a product
+following the recommender system. In both cases, a product in his/her collection is randomly
+removed since all products are assumed to be consumable and can be brought and consumed
+for more than once. In this case, the total number of products collected by user i remains
+constant at ki, which simpli es our model as network growth is not required and N and M
+remain constant. The above procedures are repeated for a large number of times per user.
+We remark that the recommender system has no direct knowledge of user taste and
+product genre, it can only infer user preferences through his/her purchase history. Since fsel
+is the frequency a user makes purchases in the absence of recommender systems, on average
+at least fsel of the purchases of user i must match his/her taste; fsel is thus proportional
+to the amount of available hints the recommender systems can exploit. We further de ne
+recommendation accuracy Arec to be the fraction of recommended products which match
+the taste of the user, and our goal is to examine Arec to reveal the bene t of recommender
+systems to users.
+For simplicity, we employ the common Item-based Collaborative Filtering (ICF) [17] to be
+the recommendation algorithm in our model. ICF provides personalized recommendations
+to users by computing similarity between their purchased products with other products.
+We  rst denote the similarity between item   and   at time t to be s  (t). As shown
+by previous studies [17], the performance of the algorithm is strongly dependent on the
+de nition of similarity. To shown that our results are relevant to di erent recommendation
+algorithms, we will employ two de nitions of similarity, namely the common neighbor (CN)
+similarity, given by
+s(CN)
+   (t) =
+N
+X
+i=0
+ai (t)ai (t),
+and the cosine similarity [17], given by
+s(cosine)
+  
+(t) =
+1
+pk k 
+N
+X
+i=0
+ai (t)ai (t).
+(1)
+(2)
+4
+The adjacency variable ai (t) = 1 if item   is collected by user i at time t, and otherwise
+ai (t) = 0. The recommendation score ri (t) of product   for user i at time t is given by
+ri (t) =
+M
+X
+ =1
+ai (t)s  (t) = X
+  Ci(t)
+s  (t),
+(3)
+where Ci(t) is the set of products collected by user i at time t. Finally, the product with
+the highest score not yet collected by the user is recommended.
+Results
+A. Random versus accurate recommendations
+To examine the bene t of recommender system to users, we  rst study the dependence
+of recommendation accuracy Arec on the frequency fsel of deliberate selection. The higher
+the value of fsel, the more often the user chooses a product of a matching taste without
+recommendation, and the more the information for the recommender system to exploit. If
+recommender systems work perfectly, Arec = 100% = 1 whenever fsel > 0 as there exists non-
+zero information about user tastes in the dataset; on the other hand, if recommender systems
+do not work at all, recommendations are always random, and Arec = 1/G independent of
+fsel.
+As shown in Fig. 1, the recommendation accuracy falls between the two extreme cases.
+The common neighbor similarity is employed in Fig. 1(a), and Arec   1/G which corresponds
+to the case of random recommendations when fsel is less than a threshold. When fsel increases
+beyond the threshold, recommendation accuracy increases abruptly to Arec = 1, which
+corresponds to a case of perfect recommendation. As shown in Fig. 1(b), cosine similarity is
+employed and a similar dependence of Arec on fsel is observed, though the transition between
+the two phases is more gentle. We remark that Arec = 1 is an artifact of the model since each
+user and product is categorized by only one taste, and after users and products of the same
+taste formed an isolated bipartite cluster, only products within the cluster are recommended
+and lead to a persistent perfect accuracy.
+The accuracy Arec is also dependent on the number of taste group G. Intuitively, the
+threshold value for perfect recommendation decreases with G, since it seems easier to iden-
+tify an item with the correct taste out of a smaller number of taste groups. However,
+5
+Common Neighbor Similarity
+G = 2
+G = 5
+G = 10
+(a)
+1
+c
+e
+r
+A
+0.8
+0.6
+0.4
+0.2
+0
+0
+0.2
+0.4
+0.6
+0.8
+1
+fsel
+(b)
+1
+c
+e
+r
+A
+0.8
+0.6
+0.4
+0.2
+0
+0
+0.2
+0.4
+G = 2
+G = 5
+G = 10
+Cosine Similarity
+0.6
+0.8
+1
+fsel
+FIG. 1: The accuracy Arec of the recommender system as a function of fsel for di erent number of
+taste groups G. The simulation results were obtained with N = 2000 users and M = 100 products.
+Each user collects k = 7 products and is updated 1   105 times. Each data point was averaged
+over 50 instances. The common neighbor similarity Eq. (1) and the cosine similarity Eq. (2) were
+employed in (a) and (b) respectively.
+simulated results in both Fig. 1(a) and (b) show that the threshold value increases when G
+decreases. It is because users collect products of both relevant and irrelevant taste; when G
+is small, the irrelevant products belong to a small number of taste groups, and there exists
+a strong connection between users and each irrelevant taste group, making it di cult for
+the recommender system to identify these false connections. In short, the more diverse and
+distinct the users and products, the less amount of hints are required to provide correct
+recommendations.
+Other than the number of taste group, recommendation accuracy also depends on the
+6
+Common Neighbor 
+Similarity
+k = 3
+k = 5
+k = 7
+(a)
+1
+c
+e
+r
+A
+0.8
+0.6
+0.4
+0.2
+0
+0
+0.2
+0.4
+0.6
+0.8
+1
+fsel
+(b)
+1
+c
+e
+r
+A
+0.8
+0.6
+0.4
+0.2
+Cosine Similarity
+k = 3
+k = 5
+k = 7
+0
+0
+0.2
+0.4
+0.6
+0.8
+1
+fsel
+FIG. 2: The accuracy Arec of the recommender system as a function of fsel for di erent values of k,
+the number of products collected per user. The simulation results were obtained with N = 2000,
+M = 100 and G = 10. Each user was updated 1   105 times, and each data point was averaged
+over 50 instances. The common neighbor similarity Eq. (1) and the cosine similarity Eq. (2) were
+employed in (a) and (b) respectively.
+number of items collected by each user. For simplicity, all users collect the same number
+of items, i.e. ki = k for  i. As shown in Fig. 2(a) and (b), perfect recommendation is
+more di cult to be achieved for cases with larger k, where the stronger connection between
+users and irrelevant taste groups is again the reason. These results imply that when users
+collect a large number of products, false connections exist and may impact negatively on
+the recommender system. Hence, instead of drawing recommendations based on all the
+available data, an algorithm which e ectively eliminates the false connections may lead to
+a high recommendation accuracy.
+7
+The above results suggest that recommender systems may provide irrelevant recommen-
+dations when users do not provide su cient hints about their taste. On the other hand,
+given su cient hints, recommender systems well utilize the information to match users with
+products. The amount of hints required for accurate recommendation is di erent for di erent
+algorithms and systems.
+B. Estimated accuracy versus real accuracy
+In real systems, since the real preference of users is unknown, there is no way to measure
+the real recommendation accuracy. Various metrics are thus introduced to evaluate recom-
+mendation accuracy. Nevertheless, whether these metrics correctly measure real accuracy is
+questionable. Since user taste and product genre are de ned in our model, we can compare
+the accuracy measured by these metrics with the real accuracy.
+One common metric to evaluate recommendation accuracy is AUC, i.e. the area under
+the receiver operating curve (ROC). When recommendations are made for user i, AUC is
+computed as the probability that a correct product   is ranked higher than an arbitrary
+product  , given by
+AUCi  =
+n(ri  < ri ) + 0.5n(ri  = ri )
+M   ki
+(4)
+where n(ri  < ri ) is the number of products with score ri  lower than the score ri  of
+the correct product, and n(ri  = ri ) is the number of items which tie with the correct
+item. Based on the de nition of correct predictions, we compute two AUC measures - (i)
+the conventional estimated AUCest, obtained by dividing the dataset into a training set and
+a probe set; links in the probe set are removed and are considered to be correct predictions
+if their existence are predicted; and (ii) the real AUCreal which quanti es the accuracy of
+the algorithm in recommending products of a matching taste.
+The dependence of AUCest and AUCreal on fsel is shown in Fig. 3. As we can see,
+AUCreal   0.5 when fsel is small since recommendations are random (see Fig. 1) and the
+products of a matching taste are randomly ranked in the recommendation list. However,
+AUCest is much higher and is not consistent with AUCreal. The reason for a large AUCest
+at small fsel is the frequent application of recommender systems, such that user purchases
+are strongly in uenced by the algorithms regardless of their true preference. In this case,
+8
+1
+0.75
+C
+U
+A
+0.5
+0.25
+0
+0
+Common Neighbor 
+       Similarity
+1
+C
+U
+A
+0.5
+AUCest
+AUCreal
+0.2
+0
+0
+0.4
+Cosine Similarity
+0.2 0.4 0.6 0.8
+fsel
+0.6
+0.8
+fsel
+1
+1
+FIG. 3: The two di erent AU C measures, AU Cest and AU Creal, as a function of fsel, obtained
+by ICF with common neighbor similarity and cosine similarity (inset) on systems with N = 2000,
+M = 100, k = 3 and G = 10.
+products which do not match their preference but are consistent with the algorithms are
+also collected by the users. This favors the evaluation by AUCest using a random probe set,
+and lead to a high AUCest even random recommendations are indeed provided.
+When fsel increases, AUCest decreases since the user-product relations become less in u-
+enced by the recommender system. At the same time, AUCreal increases since more hints
+about the user tastes are present. We remark that although Arec   1/G when fsel is smaller
+than the threshold (see Fig. 1(a)), the corresponding AUCreal is increasing in the same
+regime. Finally, AUCreal and AUCest become consistent when fsel further increases and the
+system achieves perfect recommendation.
+The above results imply that the conventional evaluation of recommendation accuracy
+may not necessarily re ect the true accuracy. Indeed, AUCest may over-estimate the accu-
+racy of the algorithm, especially in cases where users rely frequently on the recommender
+system and do not reveal their own taste by deliberately selecting products. This serves as
+an alarm for researchers and operators of recommender systems. Alternative evaluations are
+therefore necessary to supplement conventional accuracy metrics to quantify the bene t of
+recommender systems for users.
+9
+1
+0.8
+0.6
+0.4
+0.2
+(1) = f1 (Optimal state)
+Arec
+k = 3
+k = 5
+k = 7
+f1 > 0.77
+0
+0
+0.2
+0.4
+0.6
+0.8
+1
+f1
+)
+1
+(
+c
+e
+r
+A
+FIG. 4: The fraction A(1)
+rec of recommended items in taste 1 as a function of f1, the fraction of the
+selected products in taste 1. The simulations are obtained with N = 2000, M = 100, G = 10 and
+fsel = 0.95 for 5   104N updates averaged over 50 instances. Only results obtained with common
+neighbor similarity are shown.
+C. Users with multiple tastes
+Ordinary users usually have more than one interests, for instance, a user may be interested
+in both scienti c  ction and action movies. To model this scenario, we assume that each user
+is characterized by two tastes, which we denote by taste 1 and taste 2. Similar to the previous
+case, with fsel of the times, the user selects a product in the absence of recommender systems;
+otherwise, the recommendation algorithm is applied. When a user selects a product, f1 of
+the selected products are in taste 1 and the rest are in taste 2. To simplify the model,
+we only study cases with large fsel, with which perfect recommendation is achieved in the
+original single-taste system.
+Since a fraction f1 of the selected products of the user are in taste 1, the ratio f1/(1   f1)
+corresponds to his/her preference between the two tastes. If optimal recommendations are
+achieved, f1 of the recommended products should be in taste 1 and 1   f1 of them should be
+in taste 2. Nevertheless, as shown in Fig. 4, the fraction A(1)
+in taste 1 does not coincide with the optmial line A(1)
+rec = f1. For instance, when f1 is small,
+rec of the recommended products
+the recommendations are mainly in taste 2. It leads to a sub-optimal state which under-
+represent the minority taste, i.e. taste 1 when f1 < 0.5, among the recommended products.
+Similarly, taste 2 is under-represented when f1 > 0.5. As we can see in Fig. 4, the di erence
+between A(1)
+rec and f1 is larger when k is larger. This implies an increasing di culty for
+the recommender system to identify a secondary taste if the user-product connections are
+denser. We remark that the results by employing the common neighbor similarity and the
+cosine similarity are almost identical.
+10
+where f  
+On the other hand, one may expect a perfect recommendation regime at f1fsel > f  
+sel,
+sel denotes the threshold value, or equivalently the smallest fsel at which the system
+achieves perfect recommendation in the corresponding single-taste scenario. For the system
+parameters employed in Fig. 4, f  
+sel
+  0.73, but perfect recommendations in taste 1 are
+not achieved with f1 > f  
+sel/fsel = 0.77 (indicated by the dotted line in Fig. 4) due to the
+presence of taste 2.
+D. Tests with empirical datasets
+Finally, we incorporate our model with a real dataset obtained from MovieLens [16].
+Since user taste and product genre are unknown in real systems, we again randomly divide
+the dataset into a training set and a probe set, and consider the recommended movie to
+be correct only if it was collected by the user and received a rating of 3 (in a scale from 1
+to 5) from the user as recorded in the data. Similar to our model, with fsel of the times,
+a user deliberately selects a correct movie and otherwise the recommendation algorithm is
+applied. For those users who rated at least two movies with a score of 3 or above, we set
+their degree to be ki   1 such that an un-collected correct movie always exists. As in the
+previous simulations, a user randomly removes one of his/her collected movies when he/she
+obtains a new movie; the system is then repeatedly updated.
+As shown in Fig. 5(a), the accuracy Arec obtained by both similarity de nitions starts at
+a low value and increases with fsel. Nevertheless, it does not show an abrupt jump to a high
+value similar to previous simulations but a plateau at small fsel and a small jump at large fsel
+are observed in the case with cosine similarity. These results again suggest that su cient
+hints about user taste are essential for the system to obtain accurate recommendations.
+When fsel approaches 1, Arec decreases since users have collected most of the correct movies
+through deliberate selection and it becomes more di cult for the recommender system to
+identify the fewer correct items among all the other items.
+As shown in Fig. 5(b), the dependence of AUCest and AUCreal on fsel is similar to that
+Movielens
+11
+Common neighbor similarity
+Cosine similarity
+0.2
+0.4
+fsel
+0.6
+0.8
+1
+Common Neighbor 
+       Similarity
+1
+C
+U
+A
+0.5
+(a)
+0.4
+0.3
+c
+e
+r
+A
+0.2
+0.1
+0
+0
+(b)
+1
+0.75
+C
+U
+A
+0.5
+0.25
+AUCest
+AUCreal
+0
+0
+0.2
+Cosine Similarity
+0
+0
+0.4
+0.2 0.4 0.6 0.8
+fex
+0.6
+0.8
+fsel
+1
+1
+FIG. 5: (a) The recommendation accuracy Arec as a function of fsel, obtained by incorporating our
+model with the MovieLens dataset with 944 users and 1683 products, and 5000 updates per user.
+(b) The corresponding estimated AU Cest and the real AU Creal as a function of fsel.
+observed from the previous simulations. When fsel is small, the conventional AUC metric
+over-estimates the accuracy of the recommender system. Especially, AUCest is highest when
+AUCreal is lowest, and AUCest = AUCreal only when fsel = 1. This suggests that conventional
+metrics may again be over-estimate recommendation accuracy in real systems.
+E. A recommendation algorithm with improvement
+Based on the previous results, we slightly modify the ICF algorithm to improve the
+recommendation accuracy. The rationale is simple   since products deliberately selected by
+users usually match their taste, we simply give a higher weight to these products during
+No bias
+Biased
+Generated 
+networks
+CN similarity
+0.2 0.4 0.6 0.8
+fsel
+(a)
+1
+0.75
+c
+e
+r
+A
+0.5
+0.25
+0
+0
+(c)
+0.4
+0.3
+c
+e
+r
+0.2
+A
+0.1
+0
+0
+     Movielens
+CN similarity
+0.2 0.4 0.6 0.8
+fsel
+1
+1
+c
+e
+r
+A
+(b)
+1
+0.8
+0.6
+0.4
+0.2
+0
+0
+(d)
+0.5
+0.4
+0.3
+c
+e
+r
+A
+0.2
+0.1
+0
+0
+12
+Generated networks 
+     Cosine similarity
+0.2 0.4 0.6 0.8
+fsel
+          Movielens
+Cosine similarity
+0.2 0.4 0.6 0.8
+fsel
+1
+1
+FIG. 6: The accuracy Arec of the original ICF compared with ICF biased on products collected via
+deliberate selection (with b = 2 in Eq. (5)). The results are obtained by (a) the common neighbor
+(CN) similarity and (b) the cosine similarity on generated networks with N = 2000, M = 100,
+k = 7 and G = 10. The corresponding results on the MovieLens dataset are shown in (c) and (d).
+the computation of recommendation scores, by modifying the adjacency variable ai (t) as
+follows:
+ai (t) =
+      
+     
+0 if   /  Ci(t),
+1 if     Ci(t) via recommendation,
+(5)
+b
+if     Ci(t) via selection,
+where Ci(t) is again the set of products collected by user i at time t, and b > 1 is the bias
+on products collected via deliberate selection. The recommendation score of an item are
+then computed by the same formula Eq. (3). The recommendation accuracy obtained by
+the modi ed algorithm is compared to that of the original algorithm in Fig. 6. As we can
+see from Fig. 6(a) and (b), perfect recommendations are achieved at a smaller fsel when
+selected products are weighed more in the algorithm. Similar results are observed with
+the MovieLens datasets as shown in Fig. 6(c) and (d). These results imply that products
+deliberately chosen by users are essential information to improve recommendation accuracy.
+Discussion
+13
+To reveal the bene t of recommender systems for users, we studied a simple model where
+users either choose their own products or follow the recommendations from the system. Our
+results show that the recommendations may be equivalent to random draws if users rely
+too strongly on the recommender system and do not reveal their own taste by deliberately
+selecting products. On the other hand, if su cient information about their taste is present,
+recommendation systems are able to achieve high accuracy in matching appropriate products
+to users. For some recommendation algorithms, the increase in accuracy is abrupt once the
+amount of available information exceeds a threshold. These results imply that recommender
+systems can bene t users, but relying too strongly on the system may render the system
+ine ective.
+On the other hand, our study reveals the di culties to obtain a realistic and accurate
+evaluation of recommendation accuracy. Since real user preference is unknown, evaluation of
+recommender algorithms usually involves removing a set of existing data and quanti es their
+accuracy by their success to retrieve the removed set. Our results show that such metrics
+do not necessarily re ect and may over-estimate the true accuracy of the algorithm. This
+is because the choice of products collected by users was previously in uenced by the recom-
+mendation algorithms; the presence of these products may not re ect their true preference
+and may favor the evaluation by the conventional accuracy metrics. The disagreement be-
+tween the estimated and the real accuracy was observed in simulations with both generated
+network and a real dataset. These results imply that a high recommendation accuracy indi-
+cated by the conventional metrics may not necessarily imply a bene t for users. Alternative
+evaluations are necessary to supplement these metrics in order to quantify the e ectiveness
+of the recommender systems.
+Additional information
+Acknowledgement I acknowledge the support from the Internal Research Grant RG
+71/2013-2014R and the Dean s Research Fund 04115 ECR-5 2015 of the Hong Kong
+Institute of Education.
+Author contributions C. H. Y. designed the research, performed the experiments,
+analyzed the data and wrote the manuscript.
+Competing  nancial interests The author declares no competing  nancial interests.
+14
+[1] Resnick, P. & Varian, H. R. Recommender Systems. Commun. ACM 56 58 (1997).
+[2] Schafer, J. B., Konstan, J. & Riedl, J. Recommender Systems in E-Commerce. Proceedings
+of the 1st ACM conference on Electronic commerce 158 166 (1999).
+[3] Ricci, F., Rokach, L., Shapira, B. & Kantor, P. B. Recommender systems handbook (Springer,
+New York, USA, 2011).
+[4] Lu, L., Medo, M., Yeung, C. H., Zhang, Y.-C., Zhang, Z.-K. & Zhou, T. Recommender
+Systems. Physics Reports 519, 1 49 (2012).
+[5] Liu, J., Pedersen, E. & Dolan, P. Personalized News Recommendation Based on Click Be-
+havior. Proceedings of the 15th international conference on Intelligent user interfaces 31 40
+(2010).
+[6] Chen, J., Geyer, W., Dugan, C., Muller, M. & Guy, I. Make New Friends, but Keep the Old:
+Recommending People on Social Networking Sites. Proceedings of the SIGCHI Conference on
+Human Factors in Computing Systems 201 210 (2009).
+[7] Brynjolfsson, E., Hu, Y. & Smith, M. D. Consumer surplus in the digital economy: estimating
+the value of increased product variety at online booksellers. Management Science 49, 1580 
+1596 (2003).
+[8] Chen, P.-Y., Wu, S.-Y. & Yoon, J. The impact of online recommendations and consumer
+feedback on sales. Proceedings of the 25th International Conference on Information Systems
+711 724 (2004).
+[9] Fleder, D. & Hosanagar, K. Blockbuster Culture s Next Rise or Fall: The Impact of Recom-
+mender Systems on Sales Diversity. Management Science 55, 697 712 (2009).
+[10] Tak acs, G., Pil aszy, I., N emeth, B. & Tikk, D. On the Gravity Recommendation System.
+Proc. KDD Cup Workshop at SIGKDD, San Jose, California 22V30 (2007).
+[11] Blei, D. L., Ng, A. Y. & Jordan, M. I. Latent Dirichlet allocation. The Journal of Machine
+Learning Research 3, 993 1022 (2003).
+15
+[12] Gri ths, T. L. & Steyvers, M. Finding scienti c topics. Proc. Natl. Acad. USA 101, 5228 5235
+(2004).
+[13] Zhou, T., Kuscsik, Z., Liu, J.-G., Medo, M., Wakeling, J. R. & Zhang, Y.-C. Solving the
+apparent diversity-accuracy dilemma of recommender systems. Proc. Natl. Acad. Sci. USA
+107, 4511 4515 (2010).
+[14] Liang, T.-P., Lai, H.-J. & Ku, Y.-C. Personalized Content Recommendation and User Satis-
+faction: Theoretical Synthesis and Empirical Findings. Journal of Management Information
+Systems 45 70 (2006).
+[15] Zeng, A., Yeung, C. H., Shang, M.-S. & Zhang, Y.-C. The reinforcing in uence of recommen-
+dations on global diversi cation. Europhys Lett. 97, 18005 (2012).
+[16] The website of MovieLens:. http://grouplens.org/datasets/movielens/ (2015).
+[17] Sarwar, B., Karypis, G., Konstan, J. & Riedl, J. Item-based Collaborative Filtering Recom-
+mendation Algorithms. Proceedings of the 10th International Conference on World Wide Web
+285 295 (2001).
+D eede ye bee(cid:12) 	e?
+Chi   Ye	g
+Deae f Siee ad Eviea  S	die
+The  g g i	e f Ed	ai
+10  ig Rad Tai  g g
+Daed: 	e 19 2015
+Reede ye ae ee i ay web a iai  g	ide 	 hie.
+They ieae a e ad bee(cid:12) e  e b	 whehe hey bee(cid:12) 	e by 	
+vidig e eva d	 i 	eiab e.  ee we id	e a de   exaie he
+bee(cid:12) f eede ye f 	e ad f	d ha eedai f he
+ye a be e	iva e  ad daw if e e ie  g y  he ye.
+evehe e wih 	 ie ifai ab	 	e efeee eedai
+bee a	ae ad a ab	 aii  hi a	ae egie i beved f
+e a gih.  he he had we f	d ha a high a	ay eva 	aed
+by  a	ay ei de  eeai y ed  a high ea  a		
+ay  a bee(cid:12) f 	e whih eve a a a a f ea ad eeahe
+f eede ye. We eed 	 de  wih a ea  daae ad beved
+ii a behavi. Fia  y a eedai aah wih ived a	ay i
+	ggeed. Thee e	  i y ha eede ye a bee(cid:12) 	e b	
+e yig  g y  he ye ay ede he ye ie(cid:11)eive.
+d	i
+A  a   	 a webie e y eede ye  ah 	e wih ie [1{4 .
+F iae ew webie aa yze he eadig hiy f idivid	a  ad eed ew
+whih ah hei iee [5 ;  ie ia  ewk eed ew fied  idivid	a 
+baed  hei exiig fied [6 .   y  ie eai e aa yze he 	hae
+hiy f 	e ad eed d	  he  ieae hei w a e [7{9 .
+Thee exa e hw a ieaig y 	ia   e f eede ye i 	 dai y  ife
+i(cid:13)	eig 	 vai	 hie.
+D	e  hei bad a iai gea e(cid:11) have bee deved  	dy eedai
+a gih ad  ive hei a	ay [4 . Reeahe i 	e iee aheai
+ad aagee iee e y vai	 aheaia    	h a Bayeia aah ad
+aix faizai  deive eedai a gih [4 10{12 . Ree y hyii
+ad  ex ye iei aed  wk i he aea ad iaed hyia  ee
+	h a a di(cid:11)	i ad hea d	i  eede ye [13 . evehe e he
+ai ga  f hee 	die i  iied  eedai a	ay b	 hei ge	ie bee(cid:12)
+ae  e exaied.
+A h	gh eede ye have bee hw  bee(cid:12) eai e whehe he e	
+eded d	 ae e eva  	e i 	eiab e [9 14 .  e had ay
+eedai a gih ae baed  d	 ii aiy ad he eeded d	
+ay be ed	da ie hey ae ii a  he a eady 	haed d	 [13 .  he
+he had iead f ei(cid:12) d	 whih ah idivid	a  eed ay eede
+ye a  y eed 	 a b	 eia  y ie eva d	 [9 15 . evehe	
+ e 	e ay be eed  	hae he d	 d	e  eedai ad i hi
+ae eede ye bee(cid:12) e  e b	  	e.
+ hi ae we id	e a i e de   exaie he e evae bewee he e	
+eded d	 ad he efeee f 	e. U ike eiia  	die whee he 	e
+	e efeee i 	kw eah 	e i he de  i haaeized by a ae ad he 	e
+eedai a	ay a be ea	ed. We f	d ha eedai a be eihe
+ad  vey a	ae deedig  he fe	ey he 	e e e a d	 wih	
+eedai. F e a gih a ab	 ieae i a	ay i beved whe
+hi fe	ey exeed a heh d.  he he had we f	d ha a high a	ay i	
+diaed by  eva 	ai ei de  eeai y i y  a high ea  a	ay.
+We eed 	 de  	ig he viee daae [16  ad beved ii a behavi. Fi	
+a  y a eedai aah baed  	 (cid:12)dig wa 	ggeed whih 	ef
+veia  aahe.
+de 
+Sei(cid:12)a  y we ide a g	 f  	e e eig d	 f a g	 f  ie.
+Eah 	e i ad ie (cid:11) i haaeized by e f he G ae  gee deed by g
+ad g
+i
+(cid:11)
+eeive y. F iae i e f vie hee ae ay ed  iee (cid:12)i
+ai edie  hi  e. The ae whee 	e have 	 i e ae ae deibed i
+Sei C.
+A eah ie e a 	e i i ad y daw. Wih a fai f
+f he ie 	e i
+e 
+he a d	 ahig hi/he w ae wih	 	ig he eede ye. Thi
+i he veia  way  	hae a d	 ad we a   f
+he fe	ey f de ibeae
+e 
+e ei.  he he had wih a fai 1   f
+f he ie 	e i b	y a d	
+e 
+f  wig he eede ye.  bh ae a d	 i hi/he   ei i ad y
+eved ie a   d	 ae a	ed  be 	ab e ad a be b	gh ad 	ed
+f e ha e.  hi ae he a  	be f d	   eed by 	e i eai
+a a k
+ whih i i(cid:12)e 	 de  a ewk gwh i  e	ied ad  ad 
+i
+eai a. The abve ed	e ae eeaed f a  age 	be f ie e 	e.
+We eak ha he eede ye ha  die kw edge f 	e ae ad
+d	 gee i a  y ife 	e efeee h	gh hi/he 	hae hiy. Sie f
+e 
+i he fe	ey a 	e ake 	hae i he abee f eede ye  aveage
+a  ea f
+f he 	hae f 	e i 	 ah hi/he ae; f
+i h	 ia 
+e 
+e 
+ he a	 f avai ab e hi he eede ye a ex i. We f	he de(cid:12)e
+eedai a	ay A
+ be he fai f eeded d	 whih ah
+e
+he ae f he 	e ad 	 ga  i  exaie A
+ evea  he bee(cid:12) f eede
+e
+ye  	e.
+F i iiy we e y he  e	baed C   abaive Fi eig CF [17   be
+he eedai a gih i 	 de . CF vide ea ized eedai
+ 	e by 	ig ii aiy bewee hei 	haed d	 wih he d	.
+We (cid:12) dee he ii aiy bewee ie (cid:11) ad (cid:12) a ie   be 
+. A hw
+(cid:11)(cid:12)
+by evi	 	die [17  he efae f he a gih i g y deede  he
+de(cid:12)ii f ii aiy. T hw ha 	 e	  ae e eva  di(cid:11)ee eedai
+a gih we wi   e y w de(cid:12)ii f ii aiy ae y he  eighb C
+ii aiy give by
+C
+
+X
+
+ =
+a
+a
+;
+1
+(cid:11)(cid:12)
+i(cid:11)
+i(cid:12)
+i=0
+ad he ie ii aiy [17  give by
+ie
+1
+
+X
+
+ =
+a
+a
+:
+2
+
+(cid:11)(cid:12)
+i(cid:11)
+i(cid:12)
+k
+k
+(cid:11)
+(cid:12)
+i=0
+The adjaey vaiab e a
+ = 1 if ie (cid:11) i   eed by 	e i a ie  ad hewie
+i(cid:11)
+a
+ = 0. The eedai e 
+ f d	 (cid:11) f 	e i a ie  i give by
+i(cid:11)
+i(cid:11)
+
+X
+X
+
+ =
+a
+
+ =
+
+;
+3
+i(cid:11)
+i(cid:12)
+(cid:11)(cid:12)
+(cid:11)(cid:12)
+(cid:12)=1
+(cid:12)2C
+
+i
+whee C
+ i he e f d	   eed by 	e i a ie . Fia  y he d	 wih
+i
+he highe e  ye   eed by he 	e i eeded.
+Re	 
+A. Rad ve	 a	ae eedai
+T exaie he bee(cid:12) f eede ye  	e we (cid:12) 	dy he deedee
+f eedai a	ay A
+ he fe	ey f
+f de ibeae e ei. The highe
+e
+e 
+he va 	e f f
+ he e fe he 	e he a d	 f a ahig ae wih	
+e 
+eedai ad he e he ifai f he eede ye  ex i. f
+eede ye wk efe y A
+= 100 = 1 wheeve f
+> 0 a hee exi 	
+e
+e 
+ze ifai ab	 	e ae i he daae;  he he had if eede ye
+d  wk a a   eedai ae a way ad ad A
+= 1=G ideede f
+e
+f
+.
+e 
+A hw i Fig. 1 he eedai a	ay fa   bewee he w exee ae.
+The  eighb ii aiy i e yed i Fig. 1a ad A
+(cid:25) 1=G whih ed
+e
+ he ae f ad eedai whe f
+i  e ha a heh d. Whe f
+ieae
+e 
+e 
+beyd he heh d eedai a	ay ieae ab	 y  A
+= 1 whih
+e
+ed  a ae f efe eedai. A hw i Fig. 1b ie ii aiy i
+e yed ad a ii a deedee f A
+ f
+i beved h	gh he aii bewee
+e
+e 
+he w hae i e ge e. We eak ha A
+= 1 i a aifa f he de  ie eah
+e
+	e ad d	 i aegized by  y e ae ad afe 	e ad d	 f he ae
+ae fed a i aed biaie  	e  y d	 wihi he  	e ae eeded
+ad  ead  a eie efe a	ay.
+The a	ay A
+i a  deede  he 	be f ae g	 G. 	iive y he
+e
+heh d va 	e f efe eedai deeae wih G ie i ee eaie  ide	
+ify a ie wih he e ae 	 f a a  e 	be f ae g	.  weve
+i	 aed e	  i bh Fig. 1a ad b hw ha he heh d va 	e ieae whe G
+deeae.  i bea	e 	e   e d	 f bh e eva ad ie eva ae; whe G
+i a   he ie eva d	 be g  a a   	be f ae g	 ad hee exi
+a g ei bewee 	e ad eah ie eva ae g	 akig i di 	  f
+he eede ye  ideify hee fa e ei.  h he e divee ad
+dii he 	e ad d	 he  e a	 f hi ae e	ied  vide e
+eedai.
+he ha he 	be f ae g	 eedai a	ay a  deed  he
+	be f ie   eed by eah 	e. F i iiy a   	e   e he ae 	be
+f ie i.e. k
+= k f 8i. A hw i Fig. 2a ad b efe eedai i
+i
+e di 	   be ahieved f ae wih  age k  whee he ge ei bewee
+	e ad ie eva ae g	 i agai he ea. Thee e	  i y ha whe 	e
+  e a  age 	be f d	 fa e ei exi ad ay ia egaive y 
+he eede ye.  ee iead f dawig eedai baed  a   he
+avai ab e daa a a gih whih e(cid:11)eive y e iiae he fa e ei ay  ead 
+a high eedai a	ay.
+The abve e	  	gge ha eede ye ay vide ie eva ee	
+dai whe 	e d  vide 	 ie hi ab	 hei ae.  he he had
+give 	 ie hi eede ye we   	i ize he ifai  ah 	e wih
+d	. The a	 f hi e	ied f a	ae eedai i di(cid:11)ee f di(cid:11)ee
+a gih ad ye.
+B. Eiaed a	ay ve	 ea  a	ay
+ ea  ye ie he ea  efeee f 	e i 	kw hee i  way  ea	e
+he ea  eedai a	ay. Vai	 ei ae h	 id	ed  eva 	ae e	
+edai a	ay. evehe e whehe hee ei e y ea	e ea  a	ay i
+	eiab e. Sie 	e ae ad d	 gee ae de(cid:12)ed i 	 de  we a ae
+he a	ay ea	ed by hee ei wih he ea  a	ay.
+e  ei  eva 	ae eedai a	ay i AUC i.e. he aea 	de
+he eeive eaig 	ve RC. Whe eedai ae ade f 	e i AUC i
+	ed a he babi iy ha a e d	 (cid:11) i aked highe ha a abiay
+d	 (cid:13)  give by
+AU C
+=
+4
+i(cid:11)
+
+< 
+  0:5
+= 
+
+i(cid:13)
+i(cid:11)
+i(cid:13)
+i(cid:11)
+   k
+i
+whee 
+< 
+ i he 	be f d	 wih e 
+ we ha he e 
+f
+i(cid:13)
+i(cid:11)
+i(cid:13)
+i(cid:11)
+he e d	 ad 
+= 
+ i he 	be f ie whih ie wih he e
+i(cid:13)
+i(cid:11)
+ie. Baed  he de(cid:12)ii f e edii we 	e w AUC ea	e 	 i
+he veia  eiaed AU C
+ baied by dividig he daae i a aiig e ad
+e
+a be e;  ik i he be e ae eved ad ae ideed  be e edii
+if hei exiee ae edied; ad ii he ea  AU C
+whih 	ai(cid:12)e he a	ay f
+ea 
+he a gih i eedig d	 f a ahig ae.
+The deedee f AU C
+ad AU C
+ f
+i hw i Fig. 3. A we a ee
+e
+ea 
+e 
+AU C
+(cid:25) 0:5 whe f
+i a   ie eedai ae ad ee Fig. 1 ad he
+ea 
+e 
+d	 f a ahig ae ae ad y aked i he eedai  i.  weve
+AU C
+i 	h highe ad i  ie wih AU C
+. The ea f a  age AU C
+e
+ea 
+e
+a a   f
+i he fe	e a iai f eede ye 	h ha 	e 	hae
+e 
+ae g y i(cid:13)	eed by he a gih egad e f hei 	e efeee.  hi ae
+d	 whih d  ah hei efeee b	 ae ie wih he a gih ae
+a    eed by he 	e. Thi fav he eva 	ai by AU C
+	ig a ad be e
+e
+ad  ead  a high AU C
+eve ad eedai ae ideed vided.
+e
+Whe f
+ieae AU C
+deeae ie he 	e	d	 e ai bee  e i(cid:13)		
+e 
+e
+eed by he eede ye. A he ae ie AU C
+ieae ie e hi
+ea 
+ab	 he 	e ae ae ee. We eak ha a h	gh A
+(cid:25) 1=G whe f
+i a  e
+e
+e 
+ha he heh d ee Fig. 1a he edig AU C
+i ieaig i he ae
+ea 
+egie. Fia  y AU C
+ad AU C
+bee ie whe f
+f	he ieae ad he
+ea 
+e
+e 
+ye ahieve efe eedai.
+The abve e	  i y ha he veia  eva 	ai f eedai a	ay
+ay  eeai y e(cid:13)e he 	e a	ay. deed AU C
+ay ve	eiae he a		
+e
+ay f he a gih eeia  y i ae whee 	e e y fe	e y  he eede
+ye ad d  evea  hei w ae by de ibeae y e eig d	. Thi eve a
+a a a f eeahe ad ea f eede ye. A eaive eva 	ai ae
+heefe eeay  	 ee veia  a	ay ei  	aify he bee(cid:12) f
+eede ye f 	e.
+C. Ue wih 	 i e ae
+diay 	e 		a  y have e ha e iee f iae a 	e ay be ieeed
+i bh iei(cid:12) (cid:12)i ad ai vie. T de  hi eai we a	e ha eah 	e
+i haaeized by w ae whih we dee by ae 1 ad ae 2. Sii a  he evi	
+ae wih f
+f he ie he 	e e e a d	 i he abee f eede ye;
+e 
+hewie he eedai a gih i a ied. Whe a 	e e e a d	 f
+f
+1
+he e eed d	 ae i ae 1 ad he e ae i ae 2. T i ify he de 
+we  y 	dy ae wih  age f
+ wih whih efe eedai i ahieved i he
+e 
+igia  ig e	ae ye.
+Sie a fai f
+f he e eed d	 f he 	e ae i ae 1 he ai f
+=1   f
+
+1
+1
+1
+ed  hi/he efeee bewee he w ae. f ia  eedai ae
+ahieved f
+f he eeded d	 h	 d be i ae 1 ad 1   f
+f he h	 d be
+1
+1
+i ae 2. evehe e a hw i Fig. 4 he fai A
+f he eeded d	
+e
+1
+i ae 1 de  iide wih he ia   ie A
+= f
+. F iae whe f
+i a  
+e
+1
+1
+1
+he eedai ae ai y i ae 2.   ead  a 	b	ia  ae whih 	de	
+eee he iiy ae i.e. ae 1 whe f
+< 0:5 ag he eeded d	.
+1
+Sii a y ae 2 i 	de	eeeed whe f
+> 0:5. A we a ee i Fig. 4 he di(cid:11)eee
+1
+bewee A
+ad f
+i  age whe k i  age. Thi i ie a ieaig di 	 y f
+e
+1
+1
+he eede ye  ideify a eday ae if he 	e	d	 ei ae
+dee. We eak ha he e	  by e yig he  eighb ii aiy ad he
+ie ii aiy ae a  ideia .
+ he he had e ay exe a efe eedai egie a f
+f
+> f
+
+1
+e 
+e 
+
+whee f
+dee he heh d va 	e  e	iva e y he a  e f
+a whih he ye
+e 
+e 
+
+ahieve efe eedai i he edig ig e	ae eai. F he ye
+aaee e yed i Fig. 4 f
+(cid:25) 0:73 b	 efe eedai i ae 1 ae
+
+e 
+
+ ahieved wih f
+> f
+=f
+= 0:77 idiaed by he ded  ie i Fig. 4 d	e  he
+1
+e 
+e 
+eee f ae 2.
+D. Te wih eiia  daae
+Fia  y we iae 	 de  wih a ea  daae baied f viee [16 .
+Sie 	e ae ad d	 gee ae 	kw i ea  ye we agai ad y divide
+he daae i a aiig e ad a be e ad ide he eeded vie 
+be e  y if i wa   eed by he 	e ad eeived a aig f 3 i a a e f 1
+ 5 f he 	e a eded i he daa. Sii a  	 de  wih f
+f he ie
+e 
+a 	e de ibeae y e e a e vie ad hewie he eedai a gih i
+a ied. F he 	e wh aed a  ea w vie wih a e f 3  abve we e
+hei degee  be k
+  1 	h ha a 		  eed e vie a way exi. A i he
+i
+evi	 i	 ai a 	e ad y eve e f hi/he   eed vie whe he/he
+bai a ew vie; he ye i he eeaed y 	daed.
+A hw i Fig. 5a he a	ay A
+baied by bh ii aiy de(cid:12)ii a a
+e
+a  w va 	e ad ieae wih f
+. evehe e i de  hw a ab	 j	  a high
+e 
+va 	e ii a  evi	 i	 ai b	 a  aea	 a a   f
+ad a a   j	 a  age f
+e 
+e 
+ae beved i he ae wih ie ii aiy. Thee e	  agai 	gge ha 	 ie
+hi ab	 	e ae ae eeia  f he ye  bai a	ae eedai.
+Whe f
+aahe 1 A
+deeae ie 	e have   eed  f he e vie
+e 
+e
+h	gh de ibeae e ei ad i bee e di 	  f he eede ye 
+ideify he fewe e ie ag a   he he ie.
+A hw i Fig. 5b he deedee f AU C
+ad AU C
+ f
+i ii a  ha
+e
+ea 
+e 
+beved f he evi	 i	 ai. Whe f
+i a   he veia  AUC ei
+e 
+ve	eiae he a	ay f he eede ye. Eeia  y AU C
+i highe whe
+e
+AU C
+i  we ad AU C
+= AU C
+ y whe f
+= 1. Thi 	gge ha veia 
+ea 
+e
+ea 
+e 
+ei ay agai be ve	eiae eedai a	ay i ea  ye.
+E. A eedai a gih wih ivee
+Baed  he evi	 e	  we  igh y dify he CF a gih  ive he
+eedai a	ay. The aia e i i e { ie d	 de ibeae y e eed by
+	e 		a  y ah hei ae we i y give a highe weigh  hee d	 d	ig
+he 	ai f eedai e by difyig he adjaey vaiab e a
+ a
+i(cid:11)
+f  w:
+8
+>
+>
+0 if (cid:11) =2 C
+
+>
+i
+>
+<
+a
+ =
+5
+i(cid:11)
+1 if (cid:11) 2 C
+ via eedai
+i
+>
+>
+>
+>
+:
+b
+if (cid:11) 2 C
+ via e ei
+i
+whee C
+ i agai he e f d	   eed by 	e i a ie  ad b > 1 i he bia
+i
+ d	   eed via de ibeae e ei. The eedai e f a ie ae
+he 	ed by he ae f	 a E. 3. The eedai a	ay baied by
+he di(cid:12)ed a gih i aed  ha f he igia  a gih i Fig. 6. A we a
+ee f Fig. 6a ad b efe eedai ae ahieved a a a  e f
+whe
+e 
+e eed d	 ae weighed e i he a gih. Sii a e	  ae beved wih
+he viee daae a hw i Fig. 6 ad d. Thee e	  i y ha d	
+de ibeae y he by 	e ae eeia  ifai  ive eedai a	ay.
+Di	i
+T evea  he bee(cid:12) f eede ye f 	e we 	died a i e de  whee
+	e eihe he hei w d	  f  w he eedai f he ye. 	
+e	  hw ha he eedai ay be e	iva e  ad daw if 	e e y
+ g y  he eede ye ad d  evea  hei w ae by de ibeae y
+e eig d	.  he he had if 	 ie ifai ab	 hei ae i ee
+eedai ye ae ab e  ahieve high a	ay i ahig aiae d	
+ 	e. F e eedai a gih he ieae i a	ay i ab	 e he
+a	 f avai ab e ifai exeed a heh d. Thee e	  i y ha eede
+ye a bee(cid:12) 	e b	 e yig  g y  he ye ay ede he ye
+ie(cid:11)eive.
+ he he had 	 	dy evea  he di 	 ie  bai a ea ii ad a	ae
+eva 	ai f eedai a	ay. Sie ea  	e efeee i 	kw eva 	ai f
+eede a gih 		a  y iv ve evig a e f exiig daa ad 	ai(cid:12)e hei
+a	ay by hei 	e  eieve he eved e. 	 e	  hw ha 	h ei
+d  eeai y e(cid:13)e ad ay ve	eiae he 	e a	ay f he a gih. Thi
+i bea	e he hie f d	   eed by 	e wa evi	 y i(cid:13)	eed by he e	
+edai a gih; he eee f hee d	 ay  e(cid:13)e hei 	e efeee
+ad ay fav he eva 	ai by he veia  a	ay ei. The diageee be	
+wee he eiaed ad he ea  a	ay wa beved i i	 ai wih bh geeaed
+ewk ad a ea  daae. Thee e	  i y ha a high eedai a	ay idi	
+aed by he veia  ei ay  eeai y i y a bee(cid:12) f 	e. A eaive
+eva 	ai ae eeay  	 ee hee ei i de  	aify he e(cid:11)eivee
+f he eede ye.
+Akw edge
+ akw edge he 	 f he ea  Reeah Ga RG 71/2013	2014R ad he
+Dea Reeah F	d 04115 ECR	5 2015 f he  g g i	e f Ed	ai.
+[1  Reik .  Vaia  . R. Reede Sye. C	. AC 56{58 1997.
+[2  Shafe . B. a .  Ried  . Reede Sye i E	Cee. eedig
+f he 1 AC feee  E ei ee 158{166 1999.
+[3  Rii F. Rkah . Shaia B.  a . B. Reede ye hadbk Sige
+ew Yk USA 2011.
+[4  	 . ed . Ye	g C.  . Zhag Y.	C. Zhag Z.	.  Zh	 T. Reede
+Sye. hyi Re 519 1{49 2012.
+[5  i	 . edee E.  D a . ea ized ew Reedai Baed  C ik Be	
+havi. eedig f he 15h ieaia  feee  e   ige 	e iefae 31{40
+2010.
+[6  Che . Geye W. D	ga C. 	  e .  G	y . ake ew Fied b	 ee he  d:
+Reedig e e  Sia  ewkig Sie. eedig f he SGC  Cfeee 
+ 	a Fa i C	ig Sye 201{210 2009.
+[7  Byj f E.  	 Y.  Sih . D. C	e 	 	 i he digia  ey: eiaig
+he va 	e f ieaed d	 vaiey a  ie bke  e. aagee Siee 49 1580{
+1596 2003.
+[8  Che .	Y. W	 S.	Y.  Y . The ia f  ie eedai ad 	e
+feedbak  a e. eedig f he 25h eaia  Cfeee  fai Sye
+711{724 2004.
+[9  F ede D.   aaga . B kb	e C	 	e ex Rie  Fa  : The a f Re	
+ede Sye  Sa e Diveiy. aagee Siee 55 697{712 2009.
+[10  Tak(cid:19)a G. i (cid:19)azy . (cid:19)eeh B.  Tikk D.  he Gaviy Reedai Sye.
+. DD C	 Wkh a SGDD Sa e Ca ifia 22V30 2007.
+[11  B ei D. . g A. Y.  da . . ae Diih e a  ai. The 	a  f ahie
+eaig Reeah 3 993{1022 2003.
+[12  Gi h T. .  Seyve . Fidig iei(cid:12) i. . a . Aad. USA 101 5228{5235
+2004.
+[13  Zh	 T. 	ik Z. i	 .	G. ed . Wake ig . R.  Zhag Y.	C. S vig he
+aae diveiy	a	ay di ea f eede ye. . a . Aad. Si. USA
+107 4511{4515 2010.
+[14  iag T.	. ai  .	.  	 Y.	C. ea ized Ce Reedai ad Ue Sai	
+fai: Theeia  Syhei ad Eiia  Fidig. 	a  f aagee fai
+Sye 45{70 2006.
+[15  Zeg A. Ye	g C.  . Shag .	S.  Zhag Y.	C. The eifig i(cid:13)	ee f ee	
+dai  g ba  divei(cid:12)ai. E	hy e. 97 18005 2012.
+[16  The webie f viee:. h://g	 e.g/daae/vie e/ 2015.
+[17  Sawa B. ayi G. a .  Ried  . e	baed C  abaive Fi eig Re	
+edai A gih. eedig f he 10h eaia  Cfeee  W d Wide Web
+285{295 2001.
+Common Neighbor Similarity
+G = 2
+G = 5
+G = 10
+(a)
+1
+c
+e
+r
+A
+0.8
+0.6
+0.4
+0.2
+0
+0
+0.2
+0.4
+0.6
+0.8
+1
+fsel
+(b)
+1
+c
+e
+r
+A
+0.8
+0.6
+0.4
+0.2
+0
+0
+0.2
+0.4
+G = 2
+G = 5
+G = 10
+Cosine Similarity
+0.6
+0.8
+1
+fsel
+FG. 1: The a	ay A
+f he eede ye a a f	i f f
+f di(cid:11)ee 	be f
+e
+e 
+ae g	 G. The i	 ai e	  wee baied wih  = 2000 	e ad  = 100 d	.
+Eah 	e   e k = 7 d	 ad i 	daed 1  10
+ie. Eah daa i wa aveaged
+5
+ve 50 iae. The  eighb ii aiy E. 1 ad he ie ii aiy E. 2 wee
+e yed i a ad b eeive y.
+Common Neighbor 
+Similarity
+k = 3
+k = 5
+k = 7
+(a)
+1
+c
+e
+r
+A
+0.8
+0.6
+0.4
+0.2
+0
+0
+0.2
+0.4
+0.6
+0.8
+1
+fsel
+(b)
+1
+c
+e
+r
+A
+0.8
+0.6
+0.4
+0.2
+Cosine Similarity
+k = 3
+k = 5
+k = 7
+0
+0
+0.2
+0.4
+0.6
+0.8
+1
+fsel
+FG. 2: The a	ay A
+f he eede ye a a f	i f f
+f di(cid:11)ee va 	e f k 
+e
+e 
+he 	be f d	   eed e 	e. The i	 ai e	  wee baied wih  = 2000
+ = 100 ad G = 10. Eah 	e wa 	daed 1  10
+ie ad eah daa i wa aveaged
+5
+ve 50 iae. The  eighb ii aiy E. 1 ad he ie ii aiy E. 2 wee
+e yed i a ad b eeive y.
+1
+0.75
+C
+U
+A
+0.5
+0.25
+0
+0
+Common Neighbor 
+       Similarity
+1
+C
+U
+A
+0.5
+AUCest
+AUCreal
+0.2
+0
+0
+0.4
+Cosine Similarity
+0.2 0.4 0.6 0.8
+fsel
+0.6
+0.8
+fsel
+1
+1
+FG. 3: The w di(cid:11)ee AU C ea	e AU C
+ad AU C
+ a a f	i f f
+ baied
+e
+ea 
+e 
+by CF wih  eighb ii aiy ad ie ii aiy ie  ye wih  = 2000
+ = 100 k = 3 ad G = 10.
+1
+0.8
+0.6
+0.4
+0.2
+(1) = f1 (Optimal state)
+Arec
+k = 3
+k = 5
+k = 7
+f1 > 0.77
+)
+1
+(
+c
+e
+r
+A
+0
+0
+0.2
+0.4
+0.6
+0.8
+1
+f1
+FG. 4: The fai A
+f eeded ie i ae 1 a a f	i f f
+ he fai f he
+e
+1
+1
+e eed d	 i ae 1. The i	 ai ae baied wih  = 2000  = 100 G = 10 ad
+f
+= 0:95 f 5  10
+ 	dae aveaged ve 50 iae.  y e	  baied wih 
+e 
+4
+eighb ii aiy ae hw.
+(a)
+0.4
+0.3
+c
+e
+r
+A
+0.2
+0.1
+0
+0
+(b)
+1
+0.75
+C
+U
+A
+0.5
+0.25
+AUCest
+AUCreal
+0
+0
+0.2
+Movielens
+Common neighbor similarity
+Cosine similarity
+0.2
+0.4
+fsel
+0.6
+0.8
+1
+Common Neighbor 
+       Similarity
+1
+C
+U
+A
+0.5
+Cosine Similarity
+0
+0
+0.4
+0.2 0.4 0.6 0.8
+fex
+0.6
+0.8
+fsel
+1
+1
+FG. 5: a The eedai a	ay A
+a a f	i f f
+ baied by iaig 	
+e
+e 
+de  wih he viee daae wih 944 	e ad 1683 d	 ad 5000 	dae e 	e.
+b The edig eiaed AU C
+ad he ea  AU C
+a a f	i f f
+.
+e
+ea 
+e 
+No bias
+Biased
+Generated 
+networks
+CN similarity
+0.2 0.4 0.6 0.8
+fsel
+(a)
+1
+0.75
+c
+e
+r
+A
+0.5
+0.25
+0
+0
+(c)
+0.4
+0.3
+c
+e
+r
+0.2
+A
+0.1
+0
+0
+     Movielens
+CN similarity
+0.2 0.4 0.6 0.8
+fsel
+1
+1
+c
+e
+r
+A
+(b)
+1
+0.8
+0.6
+0.4
+0.2
+0
+0
+(d)
+0.5
+0.4
+0.3
+c
+e
+r
+A
+0.2
+0.1
+0
+0
+Generated networks 
+     Cosine similarity
+0.2 0.4 0.6 0.8
+fsel
+          Movielens
+Cosine similarity
+0.2 0.4 0.6 0.8
+fsel
+1
+1
+FG. 6: The a	ay A
+f he igia  CF aed wih CF biaed  d	   eed via
+e
+de ibeae e ei wih b = 2 i E. 5. The e	  ae baied by a he  eighb
+C ii aiy ad b he ie ii aiy  geeaed ewk wih  = 2000  = 100
+k = 7 ad G = 10. The edig e	   he viee daae ae hw i  ad d.

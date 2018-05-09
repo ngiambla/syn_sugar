@@ -66,7 +66,7 @@ class parser:
 						if len(words) > 0:
 							_line_label = _line_label +1
 
-			if len(_ingredients) < 500:
+			if len(_ingredients) < 100:
 				return -1
 			else:
 				return ingredients(_ingredients, _ingredient_mapping, filename)

@@ -1,0 +1,487 @@
+Computational fact checking from knowledge networks
+Giovanni Luca Ciampaglia1 , Prashant Shiralkar1, Luis M. Rocha1,2,
+Johan Bollen1, Filippo Menczer1, Alessandro Flammini1
+1Center for Complex Networks and Systems Research,
+5
+1
+0
+2
+ 
+n
+a
+J
+ 
+4
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+1
+v
+1
+7
+4
+3
+0
+.
+1
+0
+5
+1
+:
+v
+i
+X
+r
+a
+School of Computing, Indiana University,
+Bloomington, IN USA
+2Instituto Gulbenkian de Ciencia,
+Oeiras, Portugal
+Abstract
+Traditional fact checking by expert journalists cannot keep up with the enormous volume of information
+that is now generated online. Computational fact checking may signi cantly enhance our ability to evaluate
+the veracity of dubious information. Here we show that the complexities of human fact checking can be
+approximated quite well by  nding the shortest path between concept nodes under properly de ned
+semantic proximity metrics on knowledge graphs. Framed as a network problem this approach is feasible
+with ef cient computational techniques. We evaluate this approach by examining tens of thousands of
+claims related to history, entertainment, geography, and biographical information using a public knowledge
+graph extracted from Wikipedia. Statements independently known to be true consistently receive higher
+support via our method than do false ones. These  ndings represent a signi cant step toward scalable
+computational fact-checking methods that may one day mitigate the spread of harmful misinformation.
+Introduction
+Online communication platforms, in particular social media, have created a situation in which the proverbial lie
+ can travel the world before the truth can get its boots on.  Misinformation [1], astroturf [2], spam [3], and
+ To whom correspondence should be addressed; E-mail: gciampag@indiana.edu.
+1
+outright fraud [4] have become widespread. They are now seemingly unavoidable components of our online
+information ecology [5] that jeopardize our ability as a society to make rapid and informed decisions
+[6, 7, 8, 9, 10].
+While attempts to partially automate the detection of various forms of misinformation are burgeoning
+[11, 12, 13, 14, 15], automated reasoning methods are hampered by the inherent ambiguity of language and by
+deliberate deception. However, under certain conditions, reliable knowledge transmission can take place online
+[16]. For example, Wikipedia, the crowd-sourced online encyclopedia, has been shown to be nearly as reliable
+as traditional encyclopedias, even though it covers many more topics [17]. It now serves as a large-scale
+knowledge repository for millions of individuals, who can also contribute to its content in an open way.
+Vandalism, bias, distortions, and outright lies are frequently repaired in a matter of minutes [18]. Its continuous
+editing process even indicates signs of collective human intelligence [19].
+Here we show that we can leverage any collection of factual human knowledge, such as Wikipedia, for
+automatic fact checking [20]. Loosely inspired by the principle of epistemic closure [21], we computationally
+gauge the support for statements by mining the connectivity patterns on a knowledge graph. Our initial focus is
+on computing the support of simple statements of fact using a large-scale knowledge graph obtained from
+Wikipedia.
+Knowledge Graphs
+Let a statement of fact be represented by a subject-predicate-object triple, e.g., ( Socrates,   is a,   person ). A
+set of such triples can be combined to produce a knowledge graph (KG), where nodes denote entities (i.e.,
+subjects or objects of statements), and edges denote predicates. Given a set of statements that has been
+extracted from a knowledge repository   such as the aforementioned Wikipedia   the resulting KG network
+represents all factual relations among entities mentioned in those statements. Given a new statement, we expect
+it to be true if it exists as an edge of the KG, or if there is a short path linking its subject to its object within the
+KG. If, however, the statement is untrue, there should be neither edges nor short paths that connect subject and
+2
+object.
+In a KG distinct paths between the same subject and object typically provide different factual support for the
+statement those nodes represent, even if the paths contain the same number of intermediate nodes. For
+example, paths that contain generic entities, such as  United States  or  Male,  provide weaker support
+because these nodes link to many entities and thus yield little speci c information. Conversely, paths
+comprised of very speci c entities, such as  positronic  ux capacitor  or  terminal deoxynucleotidyl
+transferase,  provide stronger support. A fundamental insight that underpins our approach is that the de nition
+of path length used for fact checking should account for such information-theoretic considerations.
+To test our method we use the DBpedia database [22], which consists of all factual statements extracted from
+Wikipedia s  infoboxes  (see Fig. 1(a)). From this data we build the large-scale Wikipedia Knowledge Graph
+(WKG), with 3 million entity nodes linked by approximately 23 million edges (see Materials and Methods).
+Since we use only facts within infoboxes, the WKG contains the most uncontroversial information available on
+Wikipedia. This conservative approach is employed to ensure that our process relies as much as possible on a
+human-annotated, collectively-vetted factual basis. The WKG could be augmented with automatic methods to
+infer facts from text and other unstructured sources available online. Indeed, other teams have proposed
+methods to infer knowledge from text [23] to be employed in large and sophisticated rule-based inference
+models [24, 25, 23]. Here we focus on the feasibility of automatic fact checking using simple network models
+that leverage DBpedia. For this initial goal, we do not need to enhance the WKG, but such improvements can
+later be incorporated.
+Semantic Proximity from Transitive Closure
+Let the WKG be an undirected graph G = (V, E) where V is a set of concept nodes and E is a set of predicate
+edges (see Materials and Methods). Two nodes v, w   V are said to be adjacent if there is an edge between
+them (v, w)   E. They are said to be connected if there a sequence of n   2 nodes v = v1, v2, . . . vn = w,
+such that, for i = 1, . . . , n   1 the nodes vi and vi+1 are adjacent. The transitive closure of G is G  = (V, E )
+3
+where the set of edges is closed under adjacency, that is, two nodes are adjacent in G  iff they are connected in
+G via at least one path. This standard notion of closure has been extended to weighted graphs, allowing
+adjacency to be generalized by measures of path length [26], such as the semantic proximity for the WKG we
+introduce next.
+The truth value   (e)   [ 0, 1 ] of a new statement e = (s, p, o) is derived from a transitive closure of the WKG.
+More speci cally, the truth value is obtained via a path evaluation function:   (e) = max W(Ps,o). This
+function maps the set of possible paths connecting s and o to a truth value  . A path has the form
+Ps,o = v1v2 . . . vn, where vi is an entity node, (vi, vi+1) is a edge, n is the path length measured by the number
+of its constituent nodes, v1 = s, and vn = o. Various characteristics of a path can be taken as evidence in
+support of the truth value of e. Here we use the generality of the entities along a path as a measure of its length,
+which is in turn aggregated to de ne a semantic proximity:
+W(Ps,o) = W(v1 . . . vn) =
+(cid:34)
+(cid:35) 1
+log k (vi)
+(1)
+n 1(cid:88)
+i=2
+1 +
+where k(v) is the degree of entity v, i.e., the number of WKG statements in which it participates; it therefore
+measures the generality of an entity. If e is already present in the WKG (i.e., there is an edge between s and o),
+it should obviously be assigned maximum truth. In fact W = 1 when n = 2 because there are no intermediate
+nodes. Otherwise an indirect path of length n > 2 may be found via other nodes. The truth value   (e)
+maximizes the semantic proximity de ned by Eq. 1, which is equivalent to  nding the shortest path between s
+and o [26], or the one that provides the maximum information content [27, 28] in the WKG. The transitive
+closure of weighted graphs equivalent to  nding the shortest paths between every pair of nodes is also known
+as the metric closure [26]. Fig. 1(b) depicts an example of a shortest path on the WKG for a statement that
+yields a low truth value.
+Note that in this speci c formulation we disregard the semantics of the predicate, therefore we are only able to
+check statements with the simplest predicates, such as  is a ; negation, for instance, would require a more
+4
+sophisticated de nition of path length.
+Alternative de nitions of   (e) are of course possible. Instead of shortest paths, one could use a different
+optimization principle, such as widest bottleneck, also known as the ultra-metric closure [26], which
+corresponds to maximizing the path evaluation function Wu:
+Wu(Ps,o) =Wu (v1 . . . vn) =
+(cid:2)1 + maxn 1
+i=2 {log k (vi)}(cid:3) 1
+1
+n = 2
+n > 2.
+(2)
+     
+=
+Or it could be possible to retain the original directionality of edges and have a directed WKG instead of an
+undirected one. As described next, we evaluated alternative de nitions of   (e) and found Eq. 1 to perform best.
+Results
+Calibration
+Our fact-checking method requires that we de ne a measure of path semantic proximity by selecting a
+transitive closure algorithm (the shortest paths of Eq. 1 or the widest bottleneck paths of Eq. 2) and a directed
+or undirected WKG representation. To evaluate these four combinations empirically, let us attempt to infer the
+party af liation of US Congress members. In other words, we want to compute the support of statements like
+ x is a member of y  where x is a member of Congress and y is a political party. We consider all members of
+the 112th US Congress that are af liated with either the Democratic or Republican party (Senate: N = 100;
+House: N = 445). We characterize each member of Congress with its semantic proximity to all nodes in the
+WKG that represent ideologies. This yields an N   M feature matrix Ftc for each of the four transitive closure
+methods. The top panel of Fig. 2 illustrates the proximity network obtained from Ftc that connects members of
+the 112th Congress and their closest ideologies, as computed using Eq. 1. A high degree of ideological
+polarization can be observed in the WKG, consistent with blogs [29] and social media [30].
+5
+We feed Ftc into off-the-shelf classi ers (see Materials and Methods). As shown in Table 1, the metric closure
+on the undirected graph gives the most accurate results. Therefore, we continue to use this combination in our
+semantic proximity computations when performing the validation tasks described below.
+To evaluate the overall performance of the calibrated model, we also compared it against DW-NOMINATE, the
+state of the art in political classi cation [31]. This model is not based on data from a knowledge graph, but on
+explicit information about roll-call voting patterns. Comparing our classi cation results with such a baseline is
+also useful to gauge the quality of the latent information contained in the WKG for the task of political
+classi cation. As shown in the bottom panel of Fig. 2, a Random Forests classi er trained on our truth values
+matches the performance of DW-NOMINATE.
+Graph search vs infoboxes only
+Most of the WKG information that our fact checker exploits is provided by indirect paths (i.e., comprising
+n > 2 nodes). To demonstrate this, we compare the calibrated model of Eq. 1 to the fact checker s performance
+with only the information in the infoboxes.
+In practice, we compute an additional feature matrix Fb, using the same sequence of steps outlined in the
+calibration phase, but additionally constraining the shortest path algorithm to use only paths (if any) with
+exactly n = 2 nodes, i.e., direct edges. Thus Fb encodes only the information of the infoboxes of the
+politicians. The results from 10-fold cross validation using Ftc and Fb are shown in Table 2. The same
+off-the-shelf classi ers, this time trained on Fb, perform only slightly better than random, thus con rming that
+the truth signal is yielded by the structure of indirect connections in the WKG.
+Validation on factual statements
+We test our fact-checking method on tasks of increasing dif culty, and begin by considering simple factual
+statements in four subject areas related to entertainment, history, and geography. We evaluate statements of the
+form  di directed mj,   pi was married to sj,  and  ci is the capital of rj,  where di is a director, mj is a
+6
+movie, pi is a US president, sj is the spouse of a US president, ci is a city, and rj is a country or US state. By
+considering all combinations of subjects and objects in these classes, we obtain matrices of statements (see
+Materials and Methods). Many of them, such as  Rome is the capital of India,  are false. Others, such as
+ Rome is the capital of Italy,  are true. To prevent the task from being trivially easy, we remove any edges that
+represent true statements in our test set from the graph. Fig. 3 shows the matrices obtained by running the fact
+checker on the factual statements. Let e and e(cid:48) be a true and false statement, respectively, from any of the four
+subject areas. To show that our fact checker is able to correctly discriminate between true and false statements
+with high accuracy, we estimate the probability that   (e) >   (e(cid:48)). To do so we plot the ROC curve of the
+classi er (see Fig. 4) since the area under the ROC curve is equivalent to this probability [32]. With this
+method we estimate that, in the four subject areas, true statements are assigned higher truth values than false
+ones with probability 95%, 98%, 61%, and 95%, respectively.
+Validation on annotated corpus
+In a second task, we consider an independent corpus of novel statements extracted from the free text of
+Wikipedia and annotated as true or false by human raters [33] (see Materials and Methods). We compare the
+human ratings with the truth values provided by our automatic fact checker (Fig. 5). Although the statements
+under examination originate from Wikipedia, they are not usually represented in the WKG, which is derived
+from the infoboxes only. When a statement is present in the WKG, the link is removed. The information
+available in the WKG about the entities involved in these particular statements is very sparse, therefore this task
+is more dif cult than the previous case.
+We  nd that the truth values computed by the fact checker are positively correlated to the average ratings given
+by the human evaluators. Table 3 shows the positive correlation between GREC human annotations and our
+computational truth scores.
+As shown in Fig. 5, our fact checker yields consistently higher support for true statements than false ones.
+Using only information in the infoboxes however yields worse performance, closer to random choice:
+7
+AUROC = 0.47 and 0.52 for the  degree  and  institution  predicates, respectively. We conclude that the fact
+checker is able to integrate the strength of indirect paths in the WKG, which pertain to factual information not
+originally included in the infoboxes.
+Discussion
+These results are both encouraging and exciting: a simple shortest path computation maximizing information
+content can leverage an existing body of collective human knowledge to assess the truth of new statements. In
+other words, the important and complex human task of fact checking can be effectively reduced to a simple
+network analysis problem, which is easy to solve computationally. Our approach exploits implicit information
+from the topology of the WKG, which is different from the statements explicitly contained in the infoboxes.
+Indeed, if we base our assessment only on direct edges in the WKG, performance decreases signi cantly. This
+demonstrates that much of the correct measurement of the truthfulness of statements relies on indirect paths.
+Because there are many ways to compute shortest paths in distance graphs, or transitive closures in weighted
+graphs [26], there is ample room for improvement on this method.
+We live in an age of overabundant and ever-growing information, but much of it is of questionable veracity
+[10, 34]. Establishing the reliability of information in such circumstances is a daunting but critical challenge.
+Our results show that network analytics methods, in conjunction with large-scale knowledge repositories, offer
+an exciting new opportunity towards automatic fact-checking methods. As the importance of the Internet in our
+everyday lives grows, misinformation such as panic-inducing rumors, urban legends, and conspiracy theories
+can ef ciently spread online in variety of new ways [8, 5]. Scalable computational methods, such as the one we
+demonstrate here, may hold the key to mitigate the societal effects of these novel forms of misinformation.
+8
+Materials and Methods
+Wikipedia Knowledge Graph
+To obtain the WKG we downloaded and parsed RDF triples data from the DBpedia project (dbpedia.org).
+We used three datasets of triples to build the WKG: the  Types  dataset, which contains subsumption triples of
+the form (subject,  is-a,  Class), where Class is a category of the DBpedia ontology; the  Properties  dataset,
+which contains triples extracted from infoboxes; and the DBpedia ontology, from which we used all triples with
+predicate  subClassOf.  This last data was used to reconstruct the full ontological hierarchy of the graph. We
+then discarded the predicate part of each triple and con ated all triples having the same subject and object,
+obtaining an edge list. In this process, we discarded all triples whose subject or object belonged to external
+namespaces (e.g., FOAF and schema.org). We also discarded all triples from the  Properties  dataset whose
+object was a date or any other kind of measurement (e.g.,  Aristotle,   birthYear,   384 B.C. ), because by
+de nition they never appear as subjects in other triples.
+Ideological classi cation of the US Congress
+To get a list of ideologies we consider the  Ideology  category in the DBpedia ontology and look up in the
+WKG all nodes Y connected to it by means of a statement (Y ,  is-a,   Ideology ). We found M = 819 such
+nodes (see SI appendix for a complete list of the ideologies). Given a politician X and an ideology Y we then
+compute the truth value of the statement  X endorses ideology Y .  To perform the classi cation, we use two
+standard classi er algorithms: k-Nearest Neighbors [35] and Random Forests [36]. To assess the classi cation
+accuracy we computed F-score and area under Receiver Operating Characteristic (ROC) curve using 10-fold
+cross-validation.
+9
+Simple factual statements
+We formed simple statements by combining each of N subject entities with each of N object entities. We
+performed this procedure in four subject areas: (1) Academy Awards for Best Movie (N = 59), (2) US
+presidential couples (N = 17), (3) US state capitals (N = 48), and (4) world capitals (N = 187). For directors
+with more than one award, only the  rst award was used. All data were taken from Wikipedia (see SI
+appendix). To make the test fair, if a triple indicating a true statement was already present in the WKG, we
+removed it from the graph before computing the truth value. This step of the evaluation procedure is typical of
+link prediction algorithms [37].
+Independent corpus of statements
+The second ground truth dataset is based on the Google Relation Extraction Corpus (GREC) [33]. For
+simplicity we focus on two types of statements, about education degrees (N = 602) and institutional
+af liations (N = 10, 726) of people, respectively. Each triple in the GREC comes with truth ratings by  ve
+human raters (Figure 5(c)), so we map the ratings into an ordinal scale between  5 (all raters replied  No ) and
++5 (all raters replied  Yes ), and compare them to the truth values computed by the fact checker. The subject
+entities of several triples in the GREC appear in only a handful of links in the WKG, limiting the chances that
+our method can  nd more than one path. Therefore we select from the two datasets only triples having a
+subject with degree k > 3. Similarly to the previous task, if the statement is already present in the WKG, we
+remove the corresponding triple before computing the truth value.
+Acknowledgements
+The authors would like to thank Karissa McKelvey for original exploratory work and Deborah Rocha for
+editing the manuscript. We acknowledge the Wikimedia Foundation, the DBpedia project, and Google for
+making their respective data freely available. This work was supported in part by the Swiss National Science
+Foundation (fellowship 142353), the Lilly Endowment, the James S. McDonnell Foundation, NSF (grant
+10
+CCF-1101743), and DoD (grant W911NF-12-1-0037). The authors declare that they have no competing
+ nancial interests.
+Author Contributions
+GLC, LMR, JB, FM, and AF designed the research. GLC and PS performed simulations and analyzed the data.
+GLC, LMR, JB, AF, and FM wrote the manuscript.
+References
+[1] Mendoza, M., Poblete, B. & Castillo, C. Twitter under crisis: Can we trust what we RT? In Proceedings
+of the  rst workshop on social media analytics, 71 79 (ACM, 2010).
+[2] Ratkiewicz, J. et al. Detecting and tracking political abuse in social media. In Proceedings of the Fifth
+International AAAI Conference on Weblogs and Social Media (AAAI, 2011).
+[3] Cranor, L. F. & LaMacchia, B. A. Spam! Commun. ACM 41, 74 83 (1998).
+[4] Jagatic, T. N., Johnson, N. A., Jakobsson, M. & Menczer, F. Social phishing. Commun. ACM 50, 94 100
+(2007).
+[5] Friggeri, A., Adamic, L. A., Eckles, D. & Cheng, J. Rumor cascades. In Proceedings of the Eighth
+International AAAI Conference on Weblogs and Social Media (AAAI, 2014).
+[6] Flanagin, A. J. & Metzger, M. J. Perceptions of Internet information credibility. Journalism & Mass
+Communication Quarterly 77, 515 540 (2000).
+[7] Rieh, S. Y. & Danielson, D. R. Credibility: A multidisciplinary framework. Annual Review of
+Information Science and Technology 41, 307 364 (2007).
+11
+[8] Kata, A. A postmodern pandora s box: Anti-vaccination misinformation on the internet. Vaccine 28,
+1709 1716 (2010).
+[9] Castillo, C., Mendoza, M. & Poblete, B. Information credibility on Twitter. In Proceedings of the 20th
+international conference on World Wide Web, 675 (ACM, 2011).
+[10] Lewandowsky, S., Ecker, U. K. H., Seifert, C. M., Schwarz, N. & Cook, J. Misinformation and its
+correction: Continued in uence and successful debiasing. Psychological Science in the Public Interest
+13, 106 131 (2012).
+[11] Wilner, T. Meet the robots that factcheck. Columbia Journalism Review (2014).
+[12] Gupta, A., Kumaraguru, P., Castillo, C. & Meier, P. Tweetcred: A real-time Web-based system for
+assessing credibility of content on Twitter. In Proc. 6th International Conference on Social Informatics
+(SocInfo) (2014).
+[13] Resnick, P., Carton, S., Park, S., Shen, Y. & Zeffer, N. Rumorlens: A system for analyzing the impact of
+rumors and corrections in social media. In Proc. Computational Journalism Conference (2014).
+[14] Wu, Y., Agarwal, P. K., Li, C., Yang, J. & Yu, C. Toward computational fact-checking. Proceedings of the
+VLDB Endowment 7 (2014).
+[15] Finn, S. et al. TRAILS: A system for monitoring the propagation of rumors on twitter. In Proc.
+Computational Journalism Conference (2014).
+[16] Berners-Lee, T., Hendler, J., Lassila, O. et al. The semantic web. Scienti c American 284, 28 37 (2001).
+[17] Giles, J. Internet encyclopaedias go head to head. Nature 438, 900 901 (2005).
+[18] Priedhorsky, R. et al. Creating, destroying and restoring value in Wikipedia. In Proceedings of the 2007
+international ACM SIGGROUP conference on Supporting group work (ACM, 2007).
+12
+[19] DeDeo, S. Collective phenomena and non- nite state computation in a human social system. PLoS ONE
+8, e75818 (2013).
+[20] Cohen, S., Hamilton, J. T. & Turner, F. Computational journalism. Commun. ACM 54, 66 71 (2011).
+[21] Luper, S. The epistemic closure principle. In Zalta, E. N. (ed.) The Stanford Encyclopedia of Philosophy
+(The Metaphysics Research Lab, Stanford University, 2012), Fall 2012 edn.
+[22] Auer, S. et al. DBpedia: A nucleus for a Web of open data. In Aberer, K. et al. (eds.) The Semantic Web,
+vol. 4825 of Lecture Notes in Computer Science, 722 735 (Springer Berlin Heidelberg, 2007).
+[23] Dong, X. et al. Knowledge vault: A web-scale approach to probabilistic knowledge fusion. In
+Proceedings of the 20th ACM SIGKDD International Conference on Knowledge Discovery and Data
+Mining, 601 610 (ACM, 2014).
+[24] Etzioni, O., Banko, M., Soderland, S. & Weld, D. S. Open information extraction from the web.
+Commun. ACM 51, 68 74 (2008).
+[25] Niu, F., Zhang, C., R e, C. & Shavlik, J. Elementary: Large-scale knowledge-base construction via
+machine learning and statistical inference. International Journal on Semantic Web and Information
+Systems 8, 42 73 (2012).
+[26] Simas, T. & Rocha, L. M. Distance closures on complex networks. Network Science In Press (2014).
+(arXiv:1312.2459 ).
+[27] Markines, B. & Menczer, F. A scalable, collaborative similarity measure for social annotation systems. In
+Proceedings of the 20th ACM Conference on Hypertext and Hypermedia, 347 348 (ACM, 2009).
+[28] Aiello, L. et al. Friendship prediction and homophily in social media. ACM Trans. WEB 6, 9 (2012).
+URL http://dl.acm.org/citation.cfm?doid=2180861.2180866.
+13
+[29] Adamic, L. A. & Glance, N. The political blogosphere and the 2004 U.S. election: Divided they blog. In
+Proceedings of the 3rd International Workshop on Link Discovery, 36 43 (ACM, 2005).
+[30] Conover, M. et al. Political polarization on Twitter. In Proc. 5th International AAAI Conference on
+Weblogs and Social Media (ICWSM) (AAAI, 2011).
+[31] Poole, K. T. & Rosenthal, H. Ideology and Congress: A Political Economic History of Roll Call Voting
+(Transaction Publishers, 2007).
+[32] Fawcett, T. An introduction to ROC analysis. Pattern Recogn. Lett. 27, 861 874 (2006).
+[33] Google Inc. 50,000 lessons on how to read: a relation extraction corpus.
+http://googleresearch.blogspot.com (2013). Last accessed 2014-06.
+[34] Nyhan, B., Rei er, J. & Ubel, P. A. The hazards of correcting myths about health care reform. Medical
+Care 51, 127 132 (2013).
+[35] Bishop, C. M. Pattern recognition and machine learning (Springer-Verlag, 2006).
+[36] Breiman, L. Random forests. Machine learning 45, 5 32 (2001).
+[37] Liben-Nowell, D. & Kleinberg, J. The link-prediction problem for social networks. Journal of the
+American Society for Information Science and Technology 58, 1019 1031 (2007).
+[38] Kamada, T. & Kawai, S. An algorithm for drawing general undirected graphs. Information Processing
+Letters 31, 7   15 (1989).
+14
+Table 1: Transitive closure calibration. Area under ROC curve of two classi ers, random forests (RF) and
+k-nearest neighbors (k-NN) on the ideological classi cation task.
+Directed
+k-NN RF
+99
+57
+100
+39
+Undirected
+k-NN RF
+99
+57
+100
+61
+Metric
+Ultra-metric
+Metric
+Ultra-metric
+97
+53
+96
+70
+House
+Senate
+96
+56
+70
+49
+Table 2: Ideological classi cation results. Out-of-sample F-score and Area Under Receiver Operating Char-
+acteristic (AUROC) of random forest (RF) and k-nearest neighbors (k-NN) classi ers trained on truth scores
+computed by the fact checker, using either the transitive closure or solely information from infoboxes.
+RF
+k-NN
+Dataset F-score AUROC F-score AUROC
+0.96
+0.97
+0.54
+0.54
+Senate
+House
+TRANSITIVE CLOSURE Ftc
+0.91
+0.99
+0.99
+0.90
+1.00
+1.00
+INFOBOXES Fb
+Senate
+House
+0.66
+0.54
+0.46
+0.66
+0.62
+0.68
+Table 3: Agreement between fact checker and human raters. We use rank-order correlation coef cients
+(Kendall s   and Spearman s  ) to assess whether the scores are correlated to the ratings. Signi cance tests rule
+out the null hypothesis that the correlation coef cients are zero.
+Relation
+Degree
+Institution
+ 
+0.17
+0.09
+p-value
+2   10 5
+4   10 19
+ 
+0.13
+0.07
+p-value
+10   1 6
+1   10 24
+15
+Figure 1: Using Wikipedia to fact-check statements. (a) To populate the knowledge graph with facts we use
+structured information contained in the  infoboxes  of Wikipedia articles (in the  gure, the infobox of the article
+about Barack Obama). (b) Using the Wikipedia Knowledge Graph, computing the truth value of a subject-
+predicate-object statement amounts to  nding a path between subject and object entities. In the diagram we plot
+the shortest path returned by our method for the statement  Barack Obama is a muslim.  The path traverses
+high-degree nodes representing generic entities, such as Canada, and is assigned a low truth value.
+16
+Figure 2: Ideological classi cation of the US Congress based on truth values. (a) Ideological network of
+the 112th US Congress. The plot shows a subset of the WKG constituted by paths between Democratic or
+Republican members of the 112th US Congress and various ideologies. Red and blue nodes correspond to
+members of Congress, gray nodes to ideologies, and white nodes to vertices of any other type. The position of
+the nodes is computed using a force-directed layout [38], which minimizes the distance between nodes connected
+by an edge weighted by a higher truth value. For clarity only the most signi cant paths, whose values rank in
+the top 1% of truth values, are shown. (b) Ideological classi cation of members of the 112th US Congress. The
+plot shows on the x axis the party label probability given by a Random Forest classi cation model trained on
+the truth values computed on the WKG, and on the y axis the reference score provided by DW-NOMINATE. Red
+triangles are members of Congress af liated to the Republican party and blue circles to the Democratic party.
+Histograms and density estimates of the two marginal distributions, color-coded by actual af liation, are shown
+on the top and right axes.
+17
+Figure 3: Automatic truth assessments for simple factual statements. In each confusion matrix, rows rep-
+resent subjects and columns represent objects. The diagonals represent true statements. Higher truth values
+are mapped to colors of increasing intensity. (a) Films winning the Oscar for Best Movie and their directors,
+grouped by decade of award (see the complete list in the SI appendix). (b) US presidents and their spouses,
+denoted by initials. (c) US states and their capitals, grouped by US Census Bureau-designated regions. (d)
+World countries and their capitals, grouped by continent.
+18
+Figure 4: Receiver Operating Characteristic for the multiple questions task. For each confusion matrix
+depicted in Fig. 3 we compute ROC curves where true statements correspond to the diagonal and false statements
+to off-diagonal elements. The red dashed line represents the performance of a random classi er.
+19
+Figure 5: Real-world fact-checking scenario. (a) A document from the ground truth corpus. (b) Statement to
+fact-check: Did Steve Tesich graduate from Indiana University, Bloomington? This information is not present
+in the infobox, and thus it is not part of the WKG. (c) Annotations from  ve human raters. In this case, the
+majority of raters believe that the statement is true, and thus we consider it as such for classi cation purposes.
+(d) Receiver operating characteristic (ROC) curve of the classi cation for subject-predicate-object statements in
+which the predicate is  institution  (e.g.,  Albert Einstein,   institution,   Institute for Advanced Studies ). A
+true positive rate above the false positive rate (dashed line), and correspondingly an area under the curve (AUC)
+above 0.5, indicate better than random performance. (e) ROC curve for statements with  degree  predicate (e.g.,
+ Albert Einstein,   degree,   University Diploma ).
+20

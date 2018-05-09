@@ -1,0 +1,4582 @@
+5
+1
+0
+2
+ 
+l
+u
+J
+ 
+1
+1
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+3
+v
+4
+8
+7
+0
+0
+.
+7
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Twitter Sentiment Analysis Applied to Finance:
+A Case Study in the Retail Industry
+Th arsis T. P. Souza1, Olga Kolchyna1, Philip C. Treleaven12 and Tomaso
+Aste12
+1 Department of Computer Science, UCL, Gower Street, London, UK,
+2 Systemic Risk Centre, London School of Economics and Political Sciences, London,
+UK
+Abstract. This paper presents a  nancial analysis over Twitter senti-
+ment analytics extracted from listed retail brands. We investigate whether
+there is statistically-signi cant information between the Twitter senti-
+ment and volume, and stock returns and volatility. Traditional newswires
+are also considered as a proxy for the market sentiment for comparative
+purpose. The results suggest that social media is indeed a valuable source
+in the analysis of the  nancial dynamics in the retail sector even when
+compared to mainstream news such as the Wall Street Journal and Dow
+Jones Newswires.
+Keywords: retail,  nancial markets, data science, computational social
+science, social media, news analytics
+1
+Introduction
+Major news announcements can have a high impact on the  nancial market and
+investor behaviour resulting in rapid changes or abnormal e ects in  nancial
+portfolios. As human responsiveness is limited, automated news analysis has
+been developed as a fundamental component to algorithmic trading. In this way,
+traders can shorten the time of reaction in response to breaking stories. The basic
+idea behind these news analytics technologies is to predict human behavior and
+automate it, so traders may be able to anticipate asset movements before making
+an investment or risk management decision.
+Twitter data has also become an increasingly important source to describe
+ nancial dynamics. It provides a  ne-grained real-time information channel that
+includes not only major news stories but also minor events that, if properly
+modelled, can provide ex-ante information about the market even before the
+main newswires. Recent developments have re ected this prominent role of social
+media in the  nancial markets. One major example is the U.S. Securities and
+Exchange Commission report allowing companies to use Twitter to announce
+key information in compliance with Regulation Fair Disclosure [18]. Twitter has
+also shown that can cause fast and drastic impact. In 2013, with the so-called
+Hash Crash, a hacked Twitter account of the American news agency Associated
+Press falsely disclosed a message about an attack on the White House causing a
+drop in the Dow Jones Industrial Average of 145 points in minutes [25].
+In [11] we proposed a new model for sentiment classi cation using Twitter.
+We combined the traditional lexicon approach with a support vector machine al-
+gorithm to achieve better predictive performance. In the present work, we use the
+dataset of sentiment analytics from [11] to investigate the interplay between the
+Twitter sentiment extracted from listed retail brands, and  nancial stock returns
+and volatility. We verify whether there is statistically-signi cant information in
+this relationship and also compare it to a corresponding analysis using sentiment
+from traditional newswires. We consider volatility and log-returns as  nancial
+endogenous variables and we take Twitter sentiment and volume as exogenous
+explanatory variables in the  nancial dynamics of the selected stocks. We also
+consider traditional newswires as datasource for comparative purpose. There-
+fore, the main objectives are: (i) verify whether there is statistically-signi cant
+information between the Twitter sentiment, and stock returns and volatility and
+(ii) compare this interplay while using mainstream news as a proxy for the mar-
+ket sentiment. The main contribution of this work is an empirical evidence that
+supports the use of Twitter as a signi cant datasource in the context of  nancial
+markets in the retail industry even when compared to traditional newswires.
+2 Literature Review
+The investigation of the market impact of News has been long studied since
+the seminal work of [5]. In this work, the authors investigate to which extent
+macroeconomic news explain return variance and also analyse the observed mar-
+ket moves following major political and world events. More recently, [23] provided
+the  rst evidence that news media content can predict movements in broad indi-
+cators of stock market activity. The authors found correlation between high/low
+pessimism of media and high market trading volume. They further analyse the
+relation between the sentiment of news, earnings and return predictability [24].
+Since then, with the availability of machine readable news and the use of senti-
+ment analysis, several works have found news as a signi cant source for  nancial
+applications: [1] found positive correlation between the number of mentions of
+a company in the Financial Times and its stock s volume; [12] investigate the
+e ect of News in the behavior of the traders; [13] analyse the Thomson Reuters
+News Analytics (TRNA) and  nd a causality between sentiment and, volatility
+and liquidity.
+Recent research supports the hypothesis that Twitter data also has statistically-
+signi cant information related to  nancial indicators. As one of the  rst investi-
+gations analysing Twitter in the context of  nancial markets, [2] analyse the text
+content of daily Twitter feeds to identify two types of mood: (i) polarity (positive
+vs. negative) and (ii) emotions (calm, alert, sure, vital, kind, and happy). They
+were able to increase the accuracy in the prediction of the DJIA index. Similar
+work [27] was able to predict not only the DJIA index but also the NASDAQ-100
+index; the authors measured the agreement of sentiment between messages in
+addition to the market mood. More recently, [28] combined Information The-
+ory with sentiment analysis to demonstrate that Twitter sentiment can contain
+statistically-signi cant ex-ante information on future prices of the S&P500 index
+and also identi ed a subset of securities in which hourly changes in social media
+sentiment do provide lead-time information. As a contribution to the to the  eld
+of event study research, [22] o er a methodology to analyse market reactions to
+combinations of di erent types of news events using Twitter to identify which
+news are more important from the investor perspective. In a similar way, [16]
+combine sentiment analytics with the identi cation of Twitter peaks in an event
+study approach to imply directions of market evolution. Further, exploring the
+social network structure from Twitter users, [26] provide empirical evidence of a
+ nancial community in Twitter in which users  interests align with the  nancial
+market.
+Similar to the present work, [21] investigate the causality between polarity
+measures from Twitter and daily return of closing prices. The authors also use
+sentiment derived from a Support Vector Machine model to classify the tweets
+into the positive, negative and neutral categories. As a contribution compared to
+this work we not only investigate the causality in returns but also stock s volatil-
+ity. Also, we provide a comparison between Twitter and traditional newswires.
+Moreover, we concentrate the analysis in retails brands which can provide mean-
+ingful insights for applications in that domain.
+Further examples of social media applications in the stock market are: the use
+of StockTwits sentiment and posting volume to predict daily returns, volatility
+and trading volume [14]; the extraction of features from  nancial message board
+for stock market predictions [19] and approaches combining Twitter with other
+sources such as blogs and news [27, 20, 4].
+3 Dataset
+Our analysis is conducted on a set of  ve listed retail brands with stocks traded
+in the US equity market, which we monitor during the period from November
+01, 2013 to September 30, 2014. The name of the investigated stocks with re-
+spective Reuters Instrument Codes (RIC) follow: ABERCROMBIE & FITCH
+CO. (ANF.N), NIKE INC. (NKE.N), HOME DEPOT INC. (HD.N), MATTEL
+INC. (MAT.N) and GAMESTOP CORP. (GME.N). The choice of companies is
+bounded by the Twitter sentiment analytics dataset provided by [11].
+Given the companies selected, we consider three streams of time series data:
+(i) the market data, which is given at the daily stock price; (ii) news meta-
+data supplied by [17], which consists in 10,949 news stories from Dow Jones
+Newswires, the Wall Street Journal and Barron s, and (iii) the social media data
+analytics provided by [11], which is based on 42,803,225 Twitter messages.
+3.1 News Analytics
+The news analytics data supplied by [17] are provided in a metadata format
+where each news receives scores quantifying characteristics such as relevance
+and sentiment according to a related individual stock. Table 1 shows a sample
+of the news sentiment analytics data provided. The relevance score (Relevance)
+of the news ranges between 0 and 100 and indicates how strongly related the
+company is to the underlying news story, with higher values indicating greater
+relevance. Usually, a relevance value of at least 90 indicates that the entity is
+referenced in the main title or headline of the news item, while lower values
+indicate references further down the story body. Here we  lter the news stories
+with a relevance of 100. This increases the likelihood of the story considered
+being related to the underlying equity. Besides the relevance, we also consider
+the Event Sentiment Score (ESS). This measure indicates short-term positive
+or negative  nancial or economic impact of the news in the underlying company;
+higher values indicate more positive impact. It ranges between 0 and 100 where
+higher values indicate more positive sentiment while lower values below 50 show
+negative sentiment.
+Table 1: News Sentiment Analytics. Each line represents a news story related
+to a company. The metadata considered consists of the relevance and sentiment
+scores and a timestamp.
+Date
+Hour Relevance Event Sentiment Score (ESS)
+Story Company
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+20140104 210130
+NIKE INC.
+20140105 41357
+MATTEL INC.
+20140105 145917
+NIKE INC.
+NIKE INC.
+20140105 150523
+GAMESTOP CORP. 20140105 193507
+GAMESTOP CORP. 20140106 170040
+MATTEL INC.
+20140106 222532
+GAMESTOP CORP. 20140107 32601
+20140107 172628
+MATTEL INC.
+NIKE INC.
+20140110 204027
+33
+100
+93
+100
+44
+99
+100
+100
+55
+100
+64
+50
+88
+61
+50
+44
+61
+50
+40
+67
+volume analytics for each company as:
+Given this metadata information, we  rst normalize the Event Sentiment
+Score (ESS) of a given story at a timestamp  t such as it ranges between -1
+and 1, and we label it as (cid:100)ESS( t)   [ 1, 1]. Then, we de ne the sentiment and
+with (cid:100)ESS( t) > 0;
+with (cid:100)ESS( t) < 0;
+  BN ews(t): daily number of negative News, i.e., daily total number of News
+  GN ews(t): daily number of positive News, i.e., daily total number of News
+  VN ews(t): daily total number of News;
+  SAN ews(t): daily absolute sentiment from News:
+SAN ews(t) = GN ews(t)   BN ews(t);
+(1)
+  SRN ews(t)   [ 1, 1]: daily relative sentiment from News as the daily mean
+of sentiment score (cid:100)ESS( t),  t   [t, t + 1).
+3.2 Twitter Analytics
+For the Twitter data analytics, we use the dataset from [11]. It provides senti-
+ment and volume metrics related to a company. We use the following analytics:
+  GT witter(t): daily number of positive English tweets;
+  BT witter(t): daily number of negative English tweets;
+  VT witter(t): daily total number of messages regardless of the language.
+Table 2 shows an example of the Twitter sentiment analytics for the company
+MATTEL INC. For the polarity classi cation, [11] employed a new approach
+based on the combination of existing common used techniques (lexicon-based
+and machine learning based) which outperformed standard benchmarks, see [11]
+for further details. Notice that the number of positive, negative and neutral
+messages do not sum up to the total volume, as the former consider only English
+tweets and the total volume covers the total number of messages regardless of
+the language. Also, although provided, we do not use the number of neutral
+messages as we believe that the extreme polarities (positive and negative) may
+be more informative.
+Table 2: Twitter Sentiment Analytics. Sample of analytics for the company MAT-
+TEL INC. It shows the positive, negative and neutral English Twitter messages
+related to the company and also the total number of messages regardless of the
+language.
+Date
+CompanyID Volume #Positive #Negative #Neutral
+01/11/2013 MATTEL INC. 1,980
+02/11/2013 MATTEL INC. 1,750
+03/11/2013 MATTEL INC. 1,700
+04/11/2013 MATTEL INC. 2,720
+05/11/2013 MATTEL INC. 1,980
+06/11/2013 MATTEL INC. 1,580
+07/11/2013 MATTEL INC. 1,770
+08/11/2013 MATTEL INC. 1,900
+09/11/2013 MATTEL INC. 1,260
+10/11/2013 MATTEL INC. 1,700
+8
+12
+8
+19
+11
+11
+7
+5
+16
+7
+4
+2
+1
+2
+8
+4
+1
+4
+2
+8
+485
+339
+518
+429
+793
+470
+498
+288
+236
+313
+We hence compute the variables:
+  SAT witter(t): daily absolute sentiment from Twitter:
+SAT witter(t) = GT witter(t)   BT witter(t);
+  SRT witter(t)   [ 1, 1]: daily relative sentiment from Twitter as
+SRT witter(t) =
+GT witter(t)   BT witter(t)
+GT witter(t) + BT witter(t)
+.
+(2)
+(3)
+Notice that SRT witter(t0) = +1, represents a day t0 with the highest posi-
+tive sentiment for the company considered; conversely SRT witter(t0) =  1 in-
+dicates the highest negative sentiment, whereas we consider neutrality when
+SRT witter(t0) = 0.
+Although Twitter and News are distinct datasources, noticed that we have
+computed sentiment and volume analytics in such way that we have comparable
+time series between those sources3. This allows us make a comparative study
+between them while analysing the  nancial data further de ned.
+Table 3 shows a summary description of the selected companies with the
+number of stories considered. We show the total number of News related to the
+each company and also the number of relevant news, i.e., those in which the news
+story has a Relevance score equals to 100, as explained previously. Moreover,
+we present the total number of tweets related to each company. Notice that the
+Twitter dataset used does not provide any relevance score, therefore there is no
+further  ltering process.
+Table 3: Summary table of selected companies. The  ve retails brands selected
+for the analysis along with their market capitalization. Also, we present the total
+number of news and tweets in the selected period. The relevant news represent
+the news  ltered with the highest relevance score (100).
+RIC Market Cap.* ($Billions) Total No. of News Relevant News No. of Tweets
+Company
+ABERCROMBIE & FITCH CO. ANF.N
+NKE.N
+NIKE INC.
+HD.N
+HOME DEPOT INC.
+MAT.N
+MATTEL INC.
+GAMESTOP CORP.
+GME.N
+(*) Market Capitalization as in October 31, 2013. Source: Thomson Reuters Ikon.
+2.86
+67.39
+111.57
+15.02
+6.41
+1,608
+2,881
+3,835
+1,508
+1,117
+174
+178
+241
+125
+167
+1,352,643
+38,033,900
+1,593,204
+613,798
+1,209,680
+3 We may refer to a time series independently to a speci c datasource, in such cases
+we will represent it as its original symbol but without the text subscript, e.g., the
+number of positive will be represented as G(t) when discussing both News GN ews(t)
+and Twitter GT witter(t) in the same context.
+4 Financial Variables
+Let P (t) be the closing price of an asset at day t and R(t) = log P (t) log P (t   1)
+its daily log-return. We consider the Excess of Log-return4 of the asset over the
+return of the market index (cid:98)R as:
+We consider the S&P500 daily returns as the market index (cid:98)R.
+ER(t) = R(t)   (cid:98)R(t).
+(4)
+(5)
+As a proxy for the daily volatility of a stock, we de ne:
+V OL(t) = 2
+Phigh(t)   Plow(t)
+Phigh(t) + Plow(t)
+,
+where Phigh(t) and Plow(t) are the highest and the lowest price of the stock at
+day t, respectively.
+Fig. 1 shows a sample of the calculated variables from Twitter for the com-
+pany Home-Depot Inc. It is interesting to notice a spike in volume and decrease
+in sentiment at the end of the period which follows a corresponding drop in
+excess of log-return. Further, Fig. 2 depicts the distribution of values of the rel-
+ative sentiment obtained from Twitter and News. We observe that both present
+a skewed distribution while news has a more neutral-centred distribution com-
+pared to Twitter. It is important to notice that the sentiment provided by the
+Twitter analytics presents a distinct proxy for sentiment compared to News as
+each company analysed depicts di erent positive/negative sentiment tones, e.g.,
+the NIKE s Twitter sentiment is highly positive while the news  sentiment has
+a mean around a neutral point.
+4 An alternative approach is to examine the alpha generation as the excess return of
+the underlying stock relative to its benchmark adjusted for a given level of risk as
+in the market model described in [8].
+Fig. 1: Twitter s Sample Descriptive Analysis for Home-Depot Inc. Variables:
+Excess of log-return, ER; volatility, V OL; absolute sentiment, SAT witter; num-
+ber of positive messages, GT witter and number of negative messages, BT witter.
+There is a spike in volume and decrease in sentiment at the end of the period
+which follows a corresponding drop in excess of log-return.
+Fig. 2: Distribution of relative sentiment from Twitter SRT witter(t) and News
+SRN ews(t) for the companies: ABERCROMBIE & FITCH CO., GAMESTOP
+CORP., HOME DEPOT INC., MATTEL INC. and NIKE INC. It is clear that
+the sentiment provided by Twitter is a distinct proxy for market sentiment com-
+pared to News as each company analysed depicts di erent distributions of sen-
+timent.
+5 Method
+5.1 Granger Causality
+We are interested in investigating the statistical causality between sentiment
+and the  nancial variables. In this sense, [9] introduced a concept of cause-e ect
+dependence where the cause not only should occur before the e ect but also
+should contain unique information about the e ect. Therefore, we say that X
+Granger-cause Y if the prediction of Y can be improved using both information
+from X and Y as compared to only utilizing Y.
+In a Vector Auto-Regressive (VAR) framework, we can assess the Granger
+causality performing a F-test to verify the null hypothesis that Y is not Granger-
+caused by X and measure its probability of rejection within a con dence level.
+Hence, assuming the VAR models:
+Yt =  0 +  1Yt 1 + . . . +  kYt k +  1Xt 1 + . . . +  kXt k + t,
+Xt =  0 +  1Xt 1 + . . . +  kXt k +  1Yt 1 + . . . +  kYt k +(cid:98)t,
+(6)
+(7)
+we take the null hypothesis in equation (8) and test it against its alternative
+one in equation (9). Thus, a rejection of the null hypothesis implies that Y
+Granger-cause X.
+H0 :  1 =  2 = . . . =  k = 0
+H1 :     , 0       k :    (cid:54)= 0
+(8)
+(9)
+In the same way, the test for X Granger-cause Y can be done considering the
+equation (7) and taking the hypotheses from equations (8) and (9) in an analo-
+gous way.
+For both News and Twitter, we will test the Grange-causality between the
+Excess of Log-return ER and the number of positive stories G, the number
+of negative stories B, the relative sentiment SR and the absolute sentiment
+SA. For the volatility V OL, we will consider the total volume of stories V in
+addition to previously mentioned variables. Furthermore, we will perform the
+Granger-causality test over the normally standardized versions of the time series
+analysed such as they have zero mean and standard deviation 1. To perform the
+F-statistics of the Granger-causality tests we use the function anova.lm from the
+package stats of the R Project for Statistical Computing [15].
+For the only purpose of visualization of the Granger-causality results we
+create a Granger-causality graph G = [V, E], where V is a node set, and E is an
+edge set. A node u   V represents a variable in the causality test and an edge
+e = (u, v) indicates that u Granger-causes v within a pre-de ned signi cance
+level. Further, we de ne p(e) as an attribute of the edge and if C is the set of
+companies in which we have a causality between u and v, then we set p(e) = C.
+Fig. 3 shows an example of a Granger-causality graph that indicates that u
+Granger-causes v for the set of companies C.
+u
+C
+v
+Fig. 3: Granger-causality graph. The variable u Granger-causes the variable v
+for the set of companies C.
+5.2 Predictive Analysis
+To evaluate the predictive power of sentiment we consider two auto-regressive
+models, with and without sentiment, and conduct a 1-step ahead prediction
+analysis:
+k(cid:88)
+k(cid:88)
+  =1
+M0 : X(t) =   +
+M1 : X(t) =   +
+   X(t     ) + t,
+   X(t     ) +
+k(cid:88)
+ iY (t     ) +(cid:98)t
+(10)
+(11)
+(12)
+(13)
+where,
+  =1
+i=1
+X(t)   {ER(t), V OL(t)},
+Y (t)   {G(t), B(t), SR(t), V (t)}.
+As the absolute sentiment SA(t) (of both News and Twitter) is already a linear
+combination between positive G(t) and negative stories B(t), we will not consider
+it in the linear regression for any dataset. Moreover, we consider only 1 day lag
+for the sentiment variables and a lag of 2 days for the  nancial variables5. Again,
+we will consider the normally standardized versions of the time series analysed.
+Hence, we will consider the following regression models for the excess of log-
+return prediction:
+M0 : ER(t) =   +  1ER(t   1) +  2ER(t   2) + t,
+M1 : ER(t) =   +  1ER(t   1) +  2ER(t   2)
++  1G(t   1) +  2B(t   1) +  3SR(t   1) +(cid:98)t
+(14)
+(15)
+For the volatility prediction using news as datasource we will not include the
+volume time series VN ews(t) as an explanatory variable in the regression because
+of its high correlation with the number of positive and negative news already
+taken into account in the model. Notice that, for the Twitter case, the volume
+time series consider also non-English messages which are not taken into account
+by the time series in GT witter(t) and BT witter(t). Therefore, we keep VT witter(t)
+5 A model selection approach can be also used in order to  nd an optimal lag for the
+explanatory variables, examples of selection s criteria are: the Akaike information
+criterion (AIC), the Bayesian information criterion (BIC) and Mallow s Cp. See [3].
+(cid:118)(cid:117)(cid:117)(cid:117)(cid:116) T(cid:80)
+i=1
+(yi  (cid:98)yi)2
+   =
+=
+n
+(cid:118)(cid:117)(cid:117)(cid:117)(cid:116) T(cid:80)
+i=1
+n
+ 2
+i
+(20)
+as an explanatory variable in the Twitter model. As a result, we have for news:
+M0 : V OL(t) =   +  1V OL(t   1) +  2V OL(t   2) + t,
+M1 : V OL(t) =   +  1V OL(t   1) +  2V OL(t   2)
++  1GN ews(t   1) +  2BN ews(t   1) +(cid:98)t
+(16)
+(17)
+and for Twitter:
+M0 : V OL(t) =   +  1V OL(t   1) +  2V OL(t   2) + t,
+M1 : V OL(t) =   +  1V OL(t   1) +  2V OL(t   2)
++  1GT witter(t   1) +  2BT witter(t   1) +  3VT witter(t   1) +(cid:98)t.
+Forecasting accuracy is measured by comparing the two residuals t and(cid:98)t
+(19)
+(18)
+in terms of Residual Standard Error:
+where, T is the total number of points, n is the number of degrees of freedom of
+the model, (cid:98)yi are the predicted values and yi are the observed ones.
+6 Results and Discussion
+Here we present the results from the Granger-causality tests and the predic-
+tive analysis between the  nancial variables and sentiment data from Twitter
+and news. The sentiment predictive power and its Granger-causality tests are
+ful lled in 1-step ahead fashion. We investigate the statistical signi cance of
+the sentiment variables in regards to movements in returns and volatility and
+we compare the Twitter results with news. We provide empirical evidence that
+Twitter is moving the market in respect to the excess of log-returns for a subset
+of stocks. Also, Twitter presents a stronger relationship with stock returns com-
+pared to news, in the selected retail companies. On the other hand, the Twitter
+sentiment analytics showed a weaker relationship with volatility compared to
+news.
+6.1 Excess of Log-Returns
+We analyse the dynamics of excess of log-returns of the stocks considered in
+relation to absolute and relative sentiments and also with the number of positive
+and negative stories.
+Fig. 4 shows the Granger-causality graph that summarises the signi cant
+Granger-causalities (p-value < 0.05) between the excess of log-return and the
+sentiment variables for both news and Twitter. See Table 5 for the detailed
+results. We observe that the Twitter s sentiment analytics present more signi -
+cant points compared to news. The Twitter s relative sentiment and its number
+of positive messages Granger-cause log-returns, respectively, for the companies
+GAMESTOP CORP. and MATTEL INC. The Twitter s absolute sentiment also
+Granger-causes returns for MATTEL INC. while having a two-way signi cant
+(p-value < 0.01) Granger-causality for the company HOME DEPOT INC. The
+number of negative stories alone has no signi cant relationship with returns but
+combined with the number of positive stories in the form of relative and absolute
+sentiment it shows to be an important measure. The News  analytics have only
+one signi cant relationship that it is observed in the number of positive news
+Granger-causing the excess of log-returns for the company GAMESTOP CORP.
+(a) TWITTER
+G
+(b) NEWS
+G
+MAT.N
+GME.N
+HD.N
+HD.N
+SA
+ER
+SR
+ER
+HD.N, MAT.N
+GME.N
+Fig. 4: Granger-causality graph for (a) Twitter and (b) news. It shows the signi -
+cant points in the the Granger-causality test between excess of log-returns (ER)
+and the sentiment analytics: number of positive stories (G), number of nega-
+tive stories (B), absolute sentiment (SA) and relative sentiment SR. Sentiment
+variables that presented no signi cant causality are not shown in the graph.
+The solution of the multiple regression analysis in Table 6 agrees with the
+Granger-causality tests as it shows Twitter with a higher number of signi cant
+sentiment coe cients compared to news. The company MATTEL INC. partic-
+ularly presents all sentiment coe cients with high signi cance (p-value < 0.01)
+suggesting that the Twitter sentiment analytics is indeed relevant in the pre-
+diction of the next day excess of log-return. The companies HOME DEPOT
+INC. and GAMESTOP CORP. also presented signi cant sentiment coe cients.
+For the News analytics, the sentiment was signi cant only for the company
+GAMESTOP CORP. Further, analysis of the Residual Standard Error of the
+models with and without sentiment variables in Table 4 shows that the use of
+the Twitter sentiment variables reduced the error of the model with only market
+data for the companies MATTEL INC., HOME DEPOT INC. and GAMESTOP
+CORP. while the news  sentiment improved the prediction only for the company
+GAMESTOP CORP.
+In sum, the Twitter analytics surprisingly showed a stronger causality with
+stock s returns compared to news. It is interesting to notice that we did not
+perform any explicit  ltering process in the Twitter analytics. However, we only
+considered the extremes of polarity (positive and negative categories), i.e., we did
+not consider the neutral tweets. This suggests that the sentiment classi cation
+itself is indirectly  ltering the noise in the data in the sense that the non-neutral
+tweets are really informative. Moreover, the increased causality compared to
+news indicates a prominent role of Twitter in the retail industry. We believe
+that Twitter act as a feedback channel for the retail brands in a timely fashion
+ ne-grained way compared to News.
+Table 4: Residual standard error improvement in prediction of excess of log-
+return ER(t) using SR(t), G(t) and B(t) compared to the model with only mar-
+ket data.
+Company
+NIKE INC.
+ABERCROMBIE & FITCH CO.
+HOME DEPOT INC.
+MATTEL INC.
+GAMESTOP CORP.
+Error Reduction (%)
+NEWS TWITTER
+-2.41
+-1.26
+-0.99
+-0.48
+8.34
+-0.58
+-0.60
+1.23
+2.82
+1.10
+I
+S
+C
+T
+Y
+L
+A
+N
+A
+S
+W
+E
+N
+I
+S
+C
+T
+Y
+L
+A
+N
+A
+R
+E
+T
+T
+W
+T
+I
+d
+n
+a
+)
+t
+(
+G
+,
+)
+t
+(
+R
+S
+,
+)
+t
+(
+A
+S
+d
+n
+a
+n
+r
+u
+t
+e
+r
+-
+g
+o
+l
+s
+s
+e
+c
+x
+e
+n
+e
+e
+w
+t
+e
+b
+s
+i
+s
+y
+l
+a
+n
+a
+y
+t
+i
+l
+a
+s
+u
+a
+c
+-
+r
+e
+g
+n
+a
+r
+G
+f
+o
+)
+s
+e
+u
+l
+a
+v
+-
+p
+(
+e
+c
+n
+a
+c
+ 
+i
+n
+g
+i
+s
+l
+a
+c
+i
+t
+s
+i
+t
+a
+t
+S
+:
+5
+e
+l
+b
+a
+T
+.
+,
+)
+N
+D
+H
+(
+.
+C
+N
+I
+T
+O
+P
+E
+D
+E
+M
+O
+H
+.
+,
+)
+N
+E
+K
+N
+(
+.
+C
+N
+I
+E
+K
+N
+I
+.
+,
+)
+N
+F
+N
+A
+(
+.
+O
+C
+H
+C
+T
+I
+F
+&
+E
+I
+B
+M
+O
+R
+C
+R
+E
+B
+A
+:
+s
+e
+i
+n
+a
+p
+m
+o
+c
+e
+h
+t
+r
+o
+f
+)
+t
+(
+B
+.
+.
+)
+N
+E
+M
+G
+(
+.
+P
+R
+O
+C
+P
+O
+T
+S
+E
+M
+A
+G
+d
+n
+a
+.
+)
+N
+T
+A
+M
+(
+.
+C
+N
+I
+L
+E
+T
+T
+A
+M
+.
+.
+.
+N
+F
+N
+A
+N
+E
+K
+N
+N
+E
+M
+G
+N
+T
+A
+M
+N
+D
+H
+.
+.
+.
+.
+N
+F
+N
+A
+N
+E
+K
+N
+N
+E
+M
+G
+N
+T
+A
+M
+.
+.
+7
+0
+7
+.
+0
+1
+8
+2
+.
+0
+4
+1
+8
+.
+0
+3
+1
+2
+.
+0
+1
+3
+2
+.
+0
+8
+1
+5
+.
+0
+8
+9
+3
+.
+0
+3
+6
+8
+.
+0
+1
+2
+6
+.
+0
+6
+4
+5
+.
+0
+6
+1
+8
+.
+0
+4
+6
+5
+.
+0
+4
+0
+3
+.
+0
+9
+9
+1
+.
+0
+6
+9
+7
+.
+0
+9
+6
+7
+.
+0
+0
+4
+1
+.
+0
+0
+3
+2
+.
+0
+6
+9
+6
+.
+0
+2
+6
+1
+.
+0
+*
+*
+4
+1
+0
+.
+0
+1
+7
+1
+.
+0
+0
+2
+9
+.
+0
+4
+9
+8
+.
+0
+1
+1
+4
+.
+0
+1
+5
+4
+.
+0
+7
+7
+9
+.
+0
+4
+1
+3
+.
+0
+8
+2
+2
+.
+0
+2
+8
+3
+.
+0
+6
+7
+9
+.
+0
+6
+4
+6
+.
+0
+3
+0
+3
+.
+0
+3
+2
+4
+.
+0
+7
+4
+7
+.
+0
+2
+4
+9
+.
+0
+3
+0
+2
+.
+0
+8
+8
+3
+.
+0
+1
+8
+6
+.
+0
+5
+5
+8
+.
+0
+7
+7
+4
+.
+0
+7
+3
+9
+.
+0
+1
+9
+5
+.
+0
+5
+7
+8
+.
+0
+5
+8
+6
+.
+0
+7
+9
+1
+.
+0
+3
+6
+7
+.
+0
+0
+8
+4
+.
+0
+8
+8
+8
+.
+0
+4
+5
+3
+.
+0
+0
+8
+6
+.
+0
+5
+9
+9
+.
+0
+0
+0
+4
+.
+0
+0
+8
+3
+.
+0
+4
+4
+3
+.
+0
+6
+6
+1
+.
+0
+0
+4
+1
+.
+0
+1
+3
+2
+.
+0
+*
+*
+2
+3
+0
+.
+0
+6
+9
+1
+.
+0
+5
+8
+8
+.
+0
+7
+5
+9
+.
+0
+7
+6
+2
+.
+0
+8
+3
+5
+.
+0
+*
+*
+6
+4
+0
+.
+0
+4
+0
+4
+.
+0
+7
+9
+4
+.
+0
+5
+5
+8
+.
+0
+*
+*
+6
+1
+0
+.
+0
+5
+0
+3
+.
+0
+9
+5
+5
+.
+0
+2
+9
+7
+.
+0
+.
+N
+D
+H
+7
+2
+3
+.
+0
+9
+1
+2
+.
+0
+2
+8
+1
+.
+0
+9
+4
+4
+.
+0
+*
+0
+5
+0
+.
+0
+*
+*
+4
+2
+0
+.
+0
+*
+*
+*
+*
+*
+*
+6
+3
+0
+0
+0
+0
+.
+.
+0
+0
+R
+R
+A
+R
+R
+G
+R
+B
+S
+S
+E
+E
+E
+E
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+R
+R
+R
+R
+R
+A
+G
+B
+E
+E
+E
+E
+S
+S
+*
+:
+1
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+,
+*
+*
+:
+5
+0
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+,
+*
+*
+*
+:
+1
+0
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+:
+s
+e
+d
+o
+c
+e
+c
+n
+a
+c
+ 
+i
+n
+g
+i
+S
+e
+h
+t
+r
+o
+f
+)
+B
+,
+G
+,
+R
+S
+(
+t
+n
+e
+m
+i
+t
+n
+e
+s
+g
+n
+i
+s
+u
+)
+R
+E
+(
+n
+r
+u
+t
+e
+r
+-
+g
+o
+l
+f
+o
+s
+s
+e
+c
+x
+e
+f
+o
+n
+o
+i
+t
+c
+i
+d
+e
+r
+P
+.
+n
+o
+i
+s
+s
+e
+r
+g
+e
+r
+e
+l
+p
+i
+t
+l
+u
+m
+f
+o
+s
+c
+i
+t
+s
+i
+t
+a
+t
+s
+y
+r
+a
+m
+m
+u
+S
+:
+6
+e
+l
+b
+a
+T
+.
+C
+N
+I
+L
+E
+T
+T
+A
+M
+.
+,
+)
+N
+D
+H
+(
+.
+C
+N
+I
+T
+O
+P
+E
+D
+E
+M
+O
+H
+.
+,
+)
+N
+E
+K
+N
+(
+.
+C
+N
+I
+E
+K
+N
+I
+.
+,
+)
+N
+F
+N
+A
+(
+.
+O
+C
+H
+C
+T
+I
+F
+&
+E
+I
+B
+M
+O
+R
+C
+R
+E
+B
+A
+:
+s
+e
+i
+n
+a
+p
+m
+o
+c
+.
+.
+)
+N
+E
+M
+G
+(
+.
+P
+R
+O
+C
+P
+O
+T
+S
+E
+M
+A
+G
+d
+n
+a
+.
+)
+N
+T
+A
+M
+(
+I
+S
+C
+T
+Y
+L
+A
+N
+A
+S
+W
+E
+N
+I
+S
+C
+T
+Y
+L
+A
+N
+A
+R
+E
+T
+T
+W
+T
+I
+.
+N
+F
+N
+A
+.
+N
+E
+K
+N
+.
+N
+E
+M
+G
+.
+N
+T
+A
+M
+.
+N
+D
+H
+.
+N
+F
+N
+A
+.
+N
+E
+K
+N
+.
+N
+E
+M
+G
+.
+N
+T
+A
+M
+.
+N
+D
+H
+1
+0
+-
+e
+0
+1
+4
+7
+5
+4
+.
+1
+-
+2
+0
+-
+e
+7
+2
+2
+8
+1
+0
+.
+4
+2
+0
+-
+e
+1
+4
+6
+0
+6
+0
+.
+9
+-
+*
+*
+*
+1
+0
+-
+e
+5
+4
+5
+9
+2
+1
+.
+6
+1
+0
+-
+e
+2
+0
+3
+2
+9
+5
+.
+2
+2
+0
+-
+e
+1
+1
+0
+3
+0
+2
+.
+1
+2
+0
+-
+e
+8
+0
+4
+1
+0
+0
+.
+3
+-
+*
+*
+1
+0
+-
+e
+7
+3
+1
+4
+0
+7
+.
+1
+-
+*
+1
+0
+-
+e
+3
+1
+5
+2
+9
+1
+.
+1
+2
+0
+-
+e
+7
+4
+0
+0
+1
+3
+.
+6
+-
+2
+0
+-
+e
+1
+6
+8
+3
+6
+3
+.
+4
+*
+*
+*
+1
+0
+-
+e
+6
+4
+4
+8
+5
+4
+.
+4
+*
+1
+0
+-
+e
+4
+3
+8
+4
+7
+6
+.
+2
+-
+2
+0
+-
+e
+2
+5
+4
+5
+9
+6
+.
+5
+-
+2
+0
+-
+e
+0
+3
+7
+1
+4
+7
+.
+4
+-
+2
+0
+-
+e
+8
+1
+1
+2
+5
+7
+.
+9
+2
+0
+-
+e
+5
+0
+3
+5
+3
+5
+.
+1
+3
+0
+-
+e
+9
+2
+8
+2
+9
+1
+.
+9
+4
+0
+-
+e
+8
+1
+0
+4
+1
+4
+.
+4
+2
+0
+-
+e
+1
+3
+5
+6
+0
+8
+.
+9
+-
+2
+0
+-
+e
+9
+9
+7
+4
+6
+3
+.
+9
+2
+0
+-
+e
+1
+2
+9
+7
+8
+4
+.
+4
+1
+0
+-
+e
+8
+3
+1
+2
+5
+8
+.
+2
+-
+2
+0
+-
+e
+6
+0
+8
+1
+1
+2
+.
+8
+-
+1
+0
+-
+e
+3
+7
+5
+2
+9
+0
+.
+1
+-
+2
+0
+-
+e
+6
+8
+8
+8
+5
+5
+.
+2
+2
+0
+-
+e
+9
+8
+0
+7
+1
+8
+.
+1
+*
+*
+1
+0
+-
+e
+9
+0
+2
+1
+2
+8
+.
+1
+*
+*
+*
+1
+0
+-
+e
+9
+3
+9
+8
+1
+7
+.
+3
+2
+0
+-
+e
+1
+8
+3
+8
+5
+2
+.
+2
+-
+)
+1
+ 
+t
+(
+R
+E
+)
+2
+ 
+t
+(
+R
+E
+)
+1
+ 
+t
+(
+R
+S
+1
+0
+-
+e
+5
+0
+5
+9
+7
+2
+.
+2
+-
+1
+0
+-
+e
+5
+4
+3
+4
+4
+1
+.
+2
+-
+*
+*
+*
+1
+0
+-
+e
+4
+1
+5
+2
+6
+9
+.
+4
+1
+0
+-
+e
+2
+5
+8
+3
+8
+6
+.
+2
+1
+0
+-
+e
+6
+8
+7
+0
+0
+6
+.
+2
+2
+0
+-
+e
+3
+7
+2
+5
+4
+4
+.
+4
+2
+0
+-
+e
+2
+8
+8
+6
+5
+9
+.
+3
+-
+2
+0
+-
+e
+2
+4
+1
+9
+2
+2
+.
+1
+-
+*
+*
+*
+1
+0
+-
+e
+4
+2
+9
+6
+8
+2
+.
+4
+-
+*
+*
+*
+1
+0
+-
+e
+1
+6
+6
+6
+3
+5
+.
+2
+)
+1
+ 
+t
+(
+G
+2
+0
+-
+e
+2
+7
+3
+7
+5
+4
+.
+3
+2
+0
+-
+e
+4
+7
+4
+9
+7
+1
+.
+6
+-
+2
+0
+-
+e
+0
+5
+1
+5
+1
+3
+.
+5
+-
+3
+0
+-
+e
+6
+8
+8
+5
+2
+6
+.
+3
+2
+0
+-
+e
+9
+8
+6
+8
+5
+8
+.
+9
+-
+2
+0
+-
+e
+6
+4
+2
+7
+4
+3
+.
+3
+-
+2
+0
+-
+e
+6
+9
+0
+9
+5
+4
+.
+1
+-
+1
+0
+-
+e
+5
+6
+9
+9
+5
+1
+.
+1
+-
+*
+*
+*
+1
+0
+-
+e
+4
+2
+0
+1
+0
+8
+.
+4
+*
+*
+1
+0
+-
+e
+1
+1
+1
+2
+1
+6
+.
+2
+-
+)
+1
+ 
+t
+(
+B
+*
+:
+1
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+,
+*
+*
+:
+5
+0
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+,
+*
+*
+*
+:
+1
+0
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+:
+s
+e
+d
+o
+c
+e
+c
+n
+a
+c
+ 
+i
+n
+g
+i
+S
+6.2 Volatility
+Here, we analyse the interplay between message s volume and sentiment with
+stock s volatility. As volume measures we consider: the number of positive and
+negative English stories and also the total volume of stories, regardless of the
+language. As sentiment analytics we consider: absolute sentiment and relative
+sentiment.
+Fig. 5 shows the signi cant links (p-value < 0.05) of the Granger-causality
+test between the volatility and the sentiment variables. See Table 8 for the de-
+tailed results. Overall, there are more signi cant points of causality for the News
+sentiment analytics compared to Twitter. We observe that the number of positive
+stories and the total volume both Granger-cause volatility for Twitter as well
+as for news but more companies are a ected by news. The absolute sentiment
+Granger-causes volatility only for news, observed in the company ABERCROM-
+BIE & FITCH CO. (ANF.N). The relative sentiment and the number of negative
+stories are not causing volatility, on the other hand volatility is Granger-causing
+negative news for the company GAMESTOP CORP. (GME.N).
+(a) TWITTER
+V
+(b) NEWS
+V
+MAT.N
+HD.N, MAT.N
+HD.N, GME.N, ANF.N
+V OL
+ANF.N
+SA
+V OL
+GME.N
+B
+HD.N
+G
+GME.N, ANF.N
+G
+Fig. 5: Granger-causality graph for (a) Twitter and (b) news. It shows the sig-
+ni cant points in the Granger-causality test between volatility (V OL) and the
+sentiment analytics: total number of stories (V ), number of positive stories (G),
+number of negative stories (B), absolute sentiment (SA) and relative sentiment
+(SR). Sentiment variables with no signi cant causality are not shown in the
+graph.
+The solution of the multiple regression analysis in Table 9 shows that the
+number of positive stories is a signi cant variable for both news and Twitter,
+being more signi cant for the former. The number of negative stories showed
+no relevance in both regressions. The total volume of Twitter was relevant only
+for the company NKE.N. Moreover, analysis of the Residual Standard Error of
+the models with and without sentiment variables in Table 7 shows that both
+Twitter and News were able to reduce the error in prediction for a subset of the
+companies. In the cases where the model was improved with sentiment, News
+provided a higher reduction of error compared to Twitter.
+Overall, the news analytics showed a higher causality with volatility com-
+pared to Twitter. This con rms the predictive power of News with volatility as
+described in the literature [7, 13, 6, 10]. Further improvements in entity detec-
+tion in the sentiment classi cation algorithm used in the dataset provided [11]
+may improve the Twitter s results.
+Table 7: Residual standard error improvement in the prediction of volatility
+V OL(t) using G(t), B(t) and V (t) compared to the model with only market
+data.
+Error Reduction (%)
+NEWS TWITTER
+Company
+1.36
+NIKE INC.
+ABERCROMBIE & FITCH CO. 4.03
+2.46
+HOME DEPOT INC.
+-2.21
+MATTEL INC.
+GAMESTOP CORP.
+14.99
+1.08
+-0.52
+1.10
+-0.36
+0.20
+d
+n
+a
+)
+)
+t
+(
+L
+O
+V
+(
+y
+t
+i
+l
+i
+t
+a
+l
+o
+v
+n
+e
+e
+w
+t
+e
+b
+s
+i
+s
+y
+l
+a
+n
+a
+y
+t
+i
+l
+a
+s
+u
+a
+c
+-
+r
+e
+g
+n
+a
+r
+G
+f
+o
+)
+s
+e
+u
+l
+a
+v
+-
+p
+(
+e
+c
+n
+a
+c
+ 
+i
+n
+g
+i
+s
+l
+a
+c
+i
+t
+s
+i
+t
+a
+t
+S
+:
+8
+e
+l
+b
+a
+T
+.
+,
+)
+N
+E
+K
+N
+(
+.
+C
+N
+I
+E
+K
+N
+I
+.
+,
+)
+N
+F
+N
+A
+(
+.
+O
+C
+H
+C
+T
+I
+F
+&
+E
+I
+B
+M
+O
+R
+C
+R
+E
+B
+A
+:
+s
+e
+i
+n
+a
+p
+m
+o
+c
+e
+h
+t
+r
+o
+f
+)
+t
+(
+V
+d
+n
+a
+)
+t
+(
+R
+S
+,
+)
+t
+(
+A
+S
+,
+)
+t
+(
+B
+,
+)
+t
+(
+G
+.
+.
+)
+N
+E
+M
+G
+(
+.
+P
+R
+O
+C
+P
+O
+T
+S
+E
+M
+A
+G
+d
+n
+a
+.
+)
+N
+T
+A
+M
+(
+.
+C
+N
+I
+L
+E
+T
+T
+A
+M
+.
+,
+)
+N
+D
+H
+(
+.
+C
+N
+I
+T
+O
+P
+E
+D
+E
+M
+O
+H
+I
+S
+C
+T
+Y
+L
+A
+N
+A
+S
+W
+E
+N
+I
+S
+C
+T
+Y
+L
+A
+N
+A
+R
+E
+T
+T
+W
+T
+I
+.
+N
+F
+N
+A
+*
+*
+*
+1
+0
+0
+.
+0
+0
+6
+5
+.
+0
+*
+*
+*
+1
+0
+0
+.
+0
+<
+5
+1
+6
+.
+0
+0
+4
+5
+.
+0
+1
+0
+8
+.
+0
+*
+6
+5
+0
+.
+0
+0
+4
+3
+.
+0
+*
+*
+0
+1
+0
+.
+0
+6
+9
+9
+.
+0
+.
+.
+N
+E
+K
+N
+N
+E
+M
+G
+N
+T
+A
+M
+.
+6
+4
+8
+.
+0
+2
+6
+4
+.
+0
+1
+6
+9
+.
+0
+9
+5
+8
+.
+0
+6
+2
+5
+.
+0
+1
+9
+3
+.
+0
+1
+4
+4
+.
+0
+4
+8
+1
+.
+0
+2
+5
+6
+.
+0
+7
+0
+7
+.
+0
+*
+*
+0
+2
+0
+.
+0
+*
+3
+5
+0
+.
+0
+*
+*
+1
+3
+0
+.
+0
+1
+1
+2
+.
+0
+4
+0
+2
+.
+0
+*
+*
+6
+2
+0
+.
+0
+0
+1
+5
+.
+0
+0
+9
+5
+.
+0
+7
+9
+4
+.
+0
+7
+8
+1
+.
+0
+0
+2
+3
+.
+0
+3
+5
+4
+.
+0
+1
+4
+3
+.
+0
+0
+9
+3
+.
+0
+1
+0
+3
+.
+0
+0
+2
+6
+.
+0
+5
+2
+9
+.
+0
+2
+5
+3
+.
+0
+4
+9
+1
+.
+0
+2
+5
+3
+.
+0
+.
+N
+D
+H
+*
+*
+9
+2
+0
+.
+0
+7
+0
+3
+.
+0
+*
+0
+6
+0
+.
+0
+6
+4
+1
+.
+0
+2
+2
+5
+.
+0
+4
+8
+4
+.
+0
+6
+1
+4
+.
+0
+4
+5
+8
+.
+0
+5
+3
+4
+.
+0
+3
+7
+1
+.
+0
+.
+.
+N
+F
+N
+A
+N
+E
+K
+N
+N
+E
+M
+G
+.
+9
+2
+7
+.
+0
+4
+2
+9
+.
+0
+8
+2
+2
+.
+0
+0
+9
+6
+.
+0
+4
+8
+8
+.
+0
+7
+6
+9
+.
+0
+0
+2
+2
+.
+0
+3
+2
+6
+.
+0
+6
+1
+2
+.
+0
+0
+5
+9
+.
+0
+6
+7
+9
+.
+0
+1
+1
+6
+.
+0
+7
+9
+3
+.
+0
+0
+3
+3
+.
+0
+6
+3
+6
+.
+0
+9
+2
+7
+.
+0
+6
+8
+7
+.
+0
+1
+1
+6
+.
+0
+2
+4
+1
+.
+0
+0
+2
+1
+.
+0
+1
+5
+7
+.
+0
+0
+8
+9
+.
+0
+8
+7
+6
+.
+0
+8
+6
+6
+.
+0
+0
+2
+7
+.
+0
+3
+6
+3
+.
+0
+9
+8
+4
+.
+0
+1
+9
+7
+.
+0
+7
+3
+4
+.
+0
+7
+4
+7
+.
+0
+.
+N
+T
+A
+M
+.
+N
+D
+H
+*
+*
+*
+4
+0
+0
+.
+0
+*
+*
+5
+2
+0
+.
+0
+*
+*
+6
+1
+0
+.
+0
+8
+2
+2
+.
+0
+*
+2
+7
+0
+.
+0
+*
+*
+*
+4
+0
+0
+.
+0
+3
+7
+2
+.
+0
+8
+1
+1
+.
+0
+7
+7
+4
+.
+0
+5
+0
+3
+.
+0
+7
+6
+8
+.
+0
+6
+3
+7
+.
+0
+0
+0
+9
+.
+0
+0
+6
+5
+.
+0
+*
+3
+5
+0
+.
+0
+0
+2
+4
+.
+0
+9
+3
+5
+.
+0
+4
+4
+9
+.
+0
+4
+7
+2
+.
+0
+8
+5
+4
+.
+0
+L
+R
+L
+A
+L
+L
+L
+G
+B
+O
+O
+S
+S
+V
+O
+O
+O
+V
+V
+ 
+ 
+ 
+ 
+ 
+V
+V
+V
+ 
+ 
+L
+L
+L
+L
+L
+ 
+ 
+ 
+O
+O
+O
+O
+O
+R
+A
+G
+B
+S
+S
+V
+V
+V
+V
+V
+V
+*
+:
+1
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+,
+*
+*
+:
+5
+0
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+,
+*
+*
+*
+:
+1
+0
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+:
+s
+e
+d
+o
+c
+e
+c
+n
+a
+c
+ 
+i
+n
+g
+i
+S
+r
+o
+f
+)
+V
+(
+e
+m
+u
+l
+o
+v
+d
+n
+a
+)
+B
+,
+G
+(
+t
+n
+e
+m
+i
+t
+n
+e
+s
+g
+n
+i
+s
+u
+)
+L
+O
+V
+(
+y
+t
+i
+l
+i
+t
+a
+l
+o
+v
+f
+o
+n
+o
+i
+t
+c
+i
+d
+e
+r
+P
+.
+n
+o
+i
+s
+s
+e
+r
+g
+e
+r
+e
+l
+p
+i
+t
+l
+u
+m
+f
+o
+s
+c
+i
+t
+s
+i
+t
+a
+t
+s
+y
+r
+a
+m
+m
+u
+S
+:
+9
+e
+l
+b
+a
+T
+L
+E
+T
+T
+A
+M
+.
+,
+)
+N
+D
+H
+(
+.
+C
+N
+I
+T
+O
+P
+E
+D
+E
+M
+O
+H
+.
+,
+)
+N
+E
+K
+N
+(
+.
+C
+N
+I
+E
+K
+N
+I
+.
+,
+)
+N
+F
+N
+A
+(
+.
+O
+C
+H
+C
+T
+I
+F
+&
+E
+I
+B
+M
+O
+R
+C
+R
+E
+B
+A
+:
+s
+e
+i
+n
+a
+p
+m
+o
+c
+e
+h
+t
+.
+.
+)
+N
+E
+M
+G
+(
+.
+P
+R
+O
+C
+P
+O
+T
+S
+E
+M
+A
+G
+d
+n
+a
+.
+)
+N
+T
+A
+M
+(
+.
+C
+N
+I
+I
+S
+C
+T
+Y
+L
+A
+N
+A
+S
+W
+E
+N
+I
+S
+C
+T
+Y
+L
+A
+N
+A
+R
+E
+T
+T
+W
+T
+I
+.
+N
+F
+N
+A
+.
+N
+E
+K
+N
+*
+*
+1
+0
+-
+e
+2
+9
+7
+.
+3
+*
+*
+1
+0
+-
+e
+5
+8
+7
+.
+3
+1
+0
+-
+e
+4
+5
+0
+.
+1
+2
+0
+-
+e
+3
+9
+0
+.
+3
+.
+N
+E
+M
+G
+2
+0
+-
+e
+7
+8
+5
+.
+9
+2
+0
+-
+e
+2
+9
+0
+.
+5
+.
+N
+T
+A
+M
+.
+N
+D
+H
+.
+N
+F
+N
+A
+.
+N
+E
+K
+N
+.
+N
+E
+M
+G
+.
+N
+T
+A
+M
+.
+N
+D
+H
+3
+0
+-
+e
+1
+5
+4
+.
+4
+-
+2
+0
+-
+e
+0
+2
+1
+.
+9
+-
+2
+0
+-
+e
+7
+5
+9
+5
+3
+7
+.
+8
+2
+0
+-
+e
+8
+8
+6
+7
+0
+3
+.
+4
+2
+0
+-
+e
+3
+3
+1
+3
+7
+1
+.
+6
+-
+*
+1
+0
+-
+e
+0
+8
+5
+8
+3
+2
+.
+1
+*
+1
+0
+-
+e
+3
+3
+7
+0
+5
+2
+.
+1
+2
+0
+-
+e
+5
+6
+2
+.
+6
+*
+1
+0
+-
+e
+1
+9
+8
+.
+3
+*
+1
+0
+-
+e
+5
+9
+3
+8
+0
+3
+.
+1
+*
+*
+*
+1
+0
+-
+e
+6
+6
+6
+3
+9
+8
+.
+1
+1
+0
+-
+e
+4
+0
+0
+9
+1
+0
+.
+1
+*
+*
+*
+1
+0
+-
+e
+4
+7
+3
+1
+1
+2
+.
+2
+*
+*
+*
+1
+0
+-
+e
+1
+5
+8
+5
+0
+3
+.
+2
+)
+1
+ 
+)
+2
+ 
+t
+(
+L
+O
+V
+t
+(
+L
+O
+V
+*
+1
+0
+-
+e
+9
+2
+3
+.
+3
+-
+1
+0
+-
+e
+4
+7
+2
+.
+1
+*
+*
+*
+1
+0
+-
+e
+6
+4
+0
+.
+6
+3
+0
+-
+e
+2
+7
+7
+.
+2
+*
+*
+1
+0
+-
+e
+8
+1
+0
+.
+3
+2
+0
+-
+e
+3
+4
+4
+3
+3
+5
+.
+3
+3
+0
+-
+e
+9
+0
+2
+6
+8
+5
+.
+1
+-
+*
+1
+0
+-
+e
+7
+1
+4
+7
+0
+8
+.
+2
+-
+1
+0
+-
+e
+1
+4
+9
+3
+7
+0
+.
+1
+*
+1
+0
+-
+e
+6
+2
+0
+5
+4
+8
+.
+1
+1
+0
+-
+e
+0
+0
+3
+.
+1
+-
+1
+0
+-
+e
+0
+0
+4
+.
+1
+-
+1
+0
+-
+e
+4
+8
+1
+.
+1
+1
+0
+-
+e
+5
+0
+1
+.
+1
+-
+2
+0
+-
+e
+4
+9
+2
+.
+9
+2
+0
+-
+e
+2
+1
+2
+9
+6
+5
+.
+8
+-
+3
+0
+-
+e
+4
+5
+3
+1
+8
+1
+.
+2
+-
+2
+0
+-
+e
+4
+8
+0
+1
+6
+4
+.
+4
+2
+0
+-
+e
+9
+2
+9
+9
+5
+7
+.
+7
+-
+3
+0
+-
+e
+3
+2
+2
+0
+2
+4
+.
+1
+A
+/
+N
+A
+/
+N
+A
+/
+N
+A
+/
+N
+A
+/
+N
+2
+0
+-
+e
+8
+0
+5
+2
+4
+7
+.
+5
+*
+*
+1
+0
+-
+e
+4
+9
+3
+1
+0
+9
+.
+1
+1
+0
+-
+e
+8
+5
+5
+0
+2
+9
+.
+1
+2
+0
+-
+e
+1
+9
+3
+2
+6
+8
+.
+1
+-
+3
+0
+-
+e
+7
+8
+3
+8
+6
+4
+.
+1
+-
+*
+:
+1
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+,
+*
+*
+:
+5
+0
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+,
+*
+*
+*
+:
+1
+0
+.
+0
+<
+e
+u
+l
+a
+v
+-
+p
+:
+s
+e
+d
+o
+c
+e
+c
+n
+a
+c
+ 
+n
+g
+i
+S
+i
+)
+1
+ 
+t
+(
+G
+)
+1
+ 
+t
+(
+B
+)
+1
+ 
+t
+(
+V
+7 Conclusion
+We showed that measures of the Twitter sentiment extracted from listed retail
+brands have statistically-signi cant relationship with stock returns and volatility.
+While analysing the interplay between the excess of log-return and the Twitter
+sentiment variables we conclude that: (i) Twitter presented a stronger Granger-
+causality with stock s returns compared to news; (ii) positive tweets and Twit-
+ter s sentiment Granger-cause excess of log-returns for a subset of companies;
+(iii) Twitter s sentiment analytics is indeed relevant in the prediction of the next
+day excess of log-return even compared to traditional newswires. Moreover, in
+the volatility analysis we found that: (i) Twitter s analytics showed a weaker
+relationship with volatility compared to the one observed with returns; (ii) the
+number of positive tweets and the total volume both Granger-cause volatility for
+some companies but present reduced Granger-causality compared to news; (iii)
+the number of positive tweets is a signi cant variable for the 1-step ahead pre-
+diction of volatility while the number of negative messages showed no relevance.
+Overall, the Twitter sentiment analytics showed to be a distinct and comple-
+mentary proxy of market s sentiment compared to news in the analysis of the
+ nancial dynamics of retail brands  stocks. Surprisingly, the Twitter s sentiment
+presented a relatively stronger relationship with the stock s returns compared
+to traditional newswires. The results suggest that social media analytics have a
+prominent role in the dynamics of the retails sector in the  nancial markets.
+Acknowledgments
+We thank the valuable feedback from the two anonymous reviewers. This work
+was supported by OptiRisk Systems which provided the news sentiment analyt-
+ics from RavenPack. T.A. acknowledges support of the UK Economic and Social
+Research Council (ESRC) in funding the Systemic Risk Centre (ES/K002309/1).
+T.T.P.S. acknowledges  nancial support from CNPq - The Brazilian National
+Council for Scienti c and Technological Development. O.K. acknowledges sup-
+port from the company Certona Corporation.
+References
+1. Alanyali, M., Moat, H.S., Preis, T.: Quantifying the relationship between  nancial
+news and the stock market. Sci. Rep. 3 (2013)
+2. Bollen, J., Mao, H., Zeng, X.: Twitter mood predicts the stock market. Journal of
+Computational Science 2(1), 1   8 (2011)
+3. Box, G., Jenkins, G.: Time series analysis: forecasting and control. Holden-Day
+series in time series analysis and digital processing, Holden-Day (1976)
+4. Crone, S., Koeppel, C.: Predicting exchange rates with sentiment indicators: An
+empirical evaluation using text mining and multilayer perceptrons. In: Computa-
+tional Intelligence for Financial Engineering Economics (CIFEr), 2104 IEEE Con-
+ference on. pp. 114 121 (March 2014)
+5. Cutler, D.M., Poterba, J.M., Summers, L.H.: What moves stock prices? The Jour-
+nal of Portfolio Management 15(3), 4 12 (1989)
+6. Date, P., Sidorov, S.P., Balash, V.: Garch type volatility models augmented with
+news intensity data. In: Chaos, Complexity and Leadership 2012, pp. 199 207.
+Springer Proceedings in Complexity 2014, Springer Netherlands (2014)
+7. diBartolomeo, D., Mitra, G., Mitra, L.: Equity portfolio risk (volatility) estimation
+using market information and sentiment (2009)
+8. Fama, E.F.: E cient capital markets: A review of theory and empirical work.
+The Journal of Finance 25(2), 383 417 (1970), http://dx.doi.org/10.1111/j.
+1540-6261.1970.tb00518.x
+9. Granger, C.W.: Testing for causality: a personal viewpoint. Journal of Economic
+Dynamics and control 2, 329 352 (1980)
+10. Kalev, P.S., Duong, H.N.: Firm-speci c news arrival and the volatility of intraday
+stock index and futures returns, pp. 271 288. John Wiley & Sons, Ltd. (2011)
+11. Kolchyna, O., Souza, T.T.P., Treleaven, P., Aste, T.: (2015), http://arxiv.org/
+abs/1507.00955
+12. Lillo, F., Miccich`e, S., Tumminello, M., Piilo, J., Mantegna, R.N.: How news a ect
+the trading behavior of di erent categories of investors in a  nancial market (Jul
+2012), http://arxiv.org/abs/1207.3300
+13. Mitra, G., Yu, K., Yu, X.: Impact of news on asset behaviour: return, volatility
+and liquidity in an intra-day setting (2013)
+14. Oliveira, N., Cortez, P., Areal, N.: On the predictability of stock market behavior
+using stocktwits sentiment and posting volume. In: Progress in Arti cial Intelli-
+gence, Lecture Notes in Computer Science, vol. 8154, pp. 355 365. Springer Berlin
+Heidelberg (2013), http://dx.doi.org/10.1007/978-3-642-40669-0_31
+15. R Core Team: R: A Language and Environment for Statistical Computing. R Foun-
+dation for Statistical Computing, Vienna, Austria (2014), http://www.R-project.
+org/
+16. Ranco, G., Aleksovski, D., Caldarelli, G., Mozeti c, I.: Investigating the relations
+between twitter sentiment and stock prices (2015), http://arxiv.org/abs/1506.
+02431
+17. Ravenpack: Ravenpack o cial website. http://www.ravenpack.com/ (2015), last
+accessed on Jan 29, 2015
+18. SEC: U.S. Securities and Exchange Commission. SEC says social media ok for
+company announcements if investors are alerted. http://1.usa.gov/1zFxUPa (Apr
+2013), last accessed on Jan 29, 2015
+19. Sehgal, V., Song, C.: Sops: Stock prediction using web sentiment. In: Proceedings
+of the Seventh IEEE International Conference on Data Mining Workshops. pp. 21 
+26. ICDMW  07, IEEE Computer Society, Washington, DC, USA (2007), http:
+//dx.doi.org/10.1109/ICDMW.2007.97
+20. Shi, B., Ifrim, G., Hurley, N.: Be In The Know: Connecting News Articles to
+Relevant Twitter Conversations. ArXiv e-prints (May 2014)
+21. Smailovi, J., Grar, M., Lavra, N., nidari, M.: Predictive sentiment analysis of
+tweets: A stock market application. In: Holzinger, A., Pasi, G. (eds.) Human-
+Computer Interaction and Knowledge Discovery in Complex, Unstructured, Big
+Data, Lecture Notes in Computer Science, vol. 7947, pp. 77 88. Springer Berlin
+Heidelberg (2013), http://dx.doi.org/10.1007/978-3-642-39146-0_8
+22. Sprenger, T.O., Sandner, P.G., Tumasjan, A., Welpe, I.M.: News or Noise? Us-
+ing Twitter to Identify and Understand Company-speci c News Flow. Journal of
+Business Finance & Accounting 41(7-8), 791 830 (09 2014)
+23. Tetlock, P.C.: Giving content to investor sentiment: The role of media in the stock
+market. The Journal of Finance 62(3), 1139 1168 (2007)
+24. Tetlock, P.C., Saar-Tsechansky, M., Macskassy, S.: More than words: Quantifying
+language to measure  rms  fundamentals. The Journal of Finance 63(3), 1437 1467
+(2008)
+25. WSJ: Wall Street Journal. False AP twitter message sparks stock-market sello .
+http://on.wsj.com/12ms85v (Apr 2013), last accessed on Jan 29, 2015
+26. Yang, S.Y., Mo, S.Y.K., Zhu, X.: An empirical study of the  nancial community
+network on twitter. 2014 IEEE Conference on Computational Intelligence for Fi-
+nancial Engineering & Economics (2014)
+27. Zhang, W., Skiena, S.: Trading strategies to exploit blog and news sentiment. In:
+In Fourth Int. Conf. on Weblogs and Social Media (ICWSM), 2010. 186 (2010)
+28. Zheludev, I., Smith, R., Aste, T.: When Can Social Media Lead Financial Markets?
+Scienti c Reports 4 (Feb 2014)

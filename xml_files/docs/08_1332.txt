@@ -1,0 +1,596 @@
+
+ INTRODUCTION 
+ 
+1 The applicant (RWWA) seeks declarations (and associated injunctive relief).
+It seeks confirmation that it has not breached a licence agreement entered into between the parties by making and installing a copy of the software system the subject of the licence agreement.
+It also seeks declarations that the respondent (SAG) is not entitled to be paid additional fees pursuant to the licence agreement.
+SAG cross claims to the contrary and for a sum equivalent to the fees it says would have been paid on sale of the further licence to RWWA.
+2 The dispute relates to RWWA's use of a software system supplied to it by SAG for RWWA's mainframe computer.
+It is helpful for an understanding of the case that there be some appreciation of the evidence as to the nature of the mainframe industry in Australia.
+Relatively speaking there are very few (some 60) mainframe computers in Australia.
+Obviously this stands in significant contrast to personal computers of which there are very many.
+In the mainframe industry '5-9 availability' means that a mainframe computer, unlike a personal computer, is expected to be available 99.999% of the time.
+The level of reliability expected of mainframe computers is consistent with the volume and value of the business carried out by enterprises which use mainframes.
+The reliability of mainframe computers is, of course, commensurate with their cost.
+3 The world of personal computers is not simply a smaller version of the world of mainframes.
+For example, in practice, a mainframe is rarely 'turned off' as a personal computer may be.
+The concepts of installation or loading software are different.
+With a mainframe, substantial configuration is necessary in the course of that process.
+4 For those (like SAG) who create sophisticated and valuable software for such a small but select market, protection of the rights to use the software is jealously guarded.
+5 Failure of a mainframe is said to be extremely rare (a highly qualified expert in his 30 years experience in the industry has known of only one in Australia).
+The consequences of such a failure or a failure caused by external disaster, nevertheless, would be very significant.
+Accordingly, substantial resources are applied to providing a backup system which can be resorted to in a timeframe which would be much quicker than re-establishing the whole system.
+6 I will say more in due course about the technical meaning of terms and functions which are referred to below.
+There also follows for convenience, a short dictionary of these terms derived from the evidence that has been given.
+THE CONTEXT OF THE DISPUTE 
+ 
+7 RWWA is the regulatory body and betting totalisator for the racing and wagering industry in Western Australia.
+SAG is in the business of licensing proprietary software systems.
+8 Historically, by a series of agreements commencing in 1980, made between the predecessor to RWWA, the Totalisator Agency Board (TAB) and Software AG of North America Inc by its agent SPL (Australia) Pty Ltd, there was granted to the TAB a non-transferable and non-exclusive licence to use database management software known as 'ADABAS'.
+Also licensed was a related computer language product known as 'NATURAL' together with other necessary and associated products.
+9 On 30 January 2004 pursuant to the Racing and Gambling Legislation Amendment and Repeal Act 2003 (WA), RWWA succeeded to the rights and liabilities of the TAB which had been in turn previously established under the Totalisator Agency Board Betting Act 1960 (WA) (see ss 34-37).
+10 On 16 June 2005 following what was described as the TAB's 'name change', it became necessary to execute a further written agreement which is the Licence Agreement the subject of dispute in these proceedings.
+The Licence Agreement grants to RWWA a perpetual licence to use the system software described in the System Attachment to the Licence Agreement.
+The Licence Agreement sets out the terms and conditions for the granting of the licence.
+11 On the pleadings the parties have agreed that the Licence Agreement had force and effect as at January 2005 when RWWA made the relevant copy known as a disaster recovery copy (the DR Copy).
+It is also common ground that the Licence Agreement governs the relationship between the parties at all material times following the making of the DR Copy.
+12 RWWA transacts a very considerable volume of business in the racing and wagering industry.
+Its annual turnover at the time of the establishment of the DR Site was in excess of $1.3 billion.
+It has required a highly sophisticated system and a very high level of dependability of the system in order to ensure continuity of business operations.
+13 Under the Licence Agreement it is necessary to specify a designated location for the hardware which will store the software supplied by SAG.
+The Osborne Park head office of RWWA has always been the designated location under the Licence Agreement.
+14 The System was supplied to RWWA in a form which consisted mostly of load modules which are precompiled executable files capable of independent execution.
+In addition, files of source code format were supplied.
+In configuring and installing the System at the designated location at the head office, the source code files were compiled to create object code files which were then link-edited to form further load modules.
+These steps are necessary in order for the System to function.
+15 On 3 September 2004, RWWA reached an agreement with KAZ Technology Services Pty Ltd (KAZ) by which KAZ agreed to provide a 'warm' disaster recovery site for RWWA at the premises of KAZ in Bennett Street, East Perth.
+This site has been known as the DR Site.
+The purpose of the DR Site and its contents (RWWA say the sole purpose) was to enable RWWA to have an emergency recovery system in place to deal with any disaster.
+In addition to agreeing to provide the site, KAZ also agreed to assist in the conduct of disaster recovery tests at the DR Site.
+16 Having reached that agreement, RWWA then made a copy of the System as it was installed and configured on its mainframe at its head office.
+The copy was effected by a process of 'disk mirroring' which will be explained in greater detail shortly.
+Up until this time, RWWA had kept backup copies on tapes which were also held at a location apart from the head office location.
+To use these tapes rather than disk mirroring for disaster recovery of the System in the case of an emergency would have taken a substantially longer period of time than the use of the DR Site and the DR Copy.
+Material as it is generated at the head office site through the process of disk mirroring is instantaneously replicated at the DR Site but is not in an active form which could enable its use at the DR Site until further steps are taken.
+17 The DR Copy is kept at the DR Site under the agreement between RWWA and KAZ.
+It is stored on a disk that is part of the storage area network known as the SAN.
+It is also therefore part of the 'mainframe environment' at the DR Site.
+Unless actually used in a real emergency restart scenario or when it has been used in the course of specific tests which have been conducted, the DR Copy is not and never has been loaded into the memory of the mainframe computer located at the DR Site.
+This is because there is 'partitioning' (a process to be explained further shortly) between the mainframe computer and the DR Copy.
+The partitioning on the mainframe at the DR Site is not activated until an emergency requires that to occur or until testing is conducted.
+There have been four tests conducted and a further attempted test for the purposes of demonstrating the process to persons involved in this litigation.
+That attempted test was unsuccessful for reasons which are not presently relevant.
+18 The mirroring link between the RWWA mainframe at its head office and the DR Copy is one-way.
+This means that data can only be copied to the DR Copy and not the other way.
+In order for the DR Copy to be used either in the case of emergency or on a test to operate RWWA's database management system, that connection must be broken by RWWA activating the partition and loading the DR Copy into the memory of the mainframe held at the DR Site.
+THE PRIMARY CLAIMS 
+ 
+19 RWWA contends the DR Copy is permitted under cl 12.3 of the Licence Agreement, or alternatively under s 47C of the Copyright Act 1968 (Cth) (CA).
+20 By its original cross-claim, SAG alleged that RWWA breached cl 1.1(d) and cl 1.4 of the Licence Agreement by installing the System on a second machine at a location other than the designated location without the consent of SAG.
+Further, SAG says that RWWA breached cl 1.5 of the Licence Agreement by 'outsourcing' the operation of the System to KAZ.
+SAG claims damages in the amount of $2,150,209 for a one off licence fee, and the sums of $725,712 and $322,538 as maintenance fees.
+Alternatively it claims such amount as the Court may conclude it would have been paid for a negotiated sale with a discount to RWWA, of a further licence for the DR Copy.
+21 In its original defence to the cross-claim, RWWA says that it did not 'outsource'.
+It claims that the System has not been permanently or temporarily moved or installed at any location which is not the designated location.
+Further RWWA says that it is entitled to keep a copy of the System on its disaster recovery site (the DR Site) for emergency restart purposes.
+DICTIONARY 
+ 
+22 The evidence in this case reveals the following meanings of various terms used in these reasons.
+Definitions 
+ 
+' ADABAS ' --- is database management software supplied by SAG under the Licence Agreement.
+' Assembly language ' --- a low level programming language that is, a language which tells a computer what to do in precise detail.
+' Cold ', ' Warm ', and ' Hot ' Disaster Recovery Site --- are descriptors that refer to the speed with which recovery can take place after a 'disaster' if the current facility is unusable.
+A hot site is broadly defined as a fully equipped site which is able to resume operations immediately.
+A cold site is broadly defined as a site with minimal facilities and does not contain a facility for quick duplication or recovery.
+A warm site is defined as a category between 'cold' and 'hot' and usually contains some backup equipment ready for use.
+The terms are not particularly precise.
+' Compilation of source code ' --- refers to the process by which human-readable programming language is translated into a machine-readable executable program.
+' DAF ' --- is an internal SAG deal approval form.
+' Designated location ' --- is a prescribed location from which the System functions, in this case the Osborne Park head office of RWWA under the Licence Agreement.
+' Disk mirroring ' --- in this case, the RWWA system which is installed on a HDS9970B disk system at its head office is 'mirrored' using an HDS utility known as TrueCopy to an HDS USP-100 disk system located at the DR Site.
+The mirroring is synchronous.
+From there the disk is connected to an IBM Z890 Series mainframe computer at the DR Site but the DR Copy is not installed on the DR mainframe and is solely kept on a disk.
+RWWA's partition on the DR mainframe is not active as it is 'turned off'.
+The DR Copy is unable to be used or executed unless RWWA activates the partition and loads the system from the backup disk into the memory of the DR mainframe as it does when conducting testing.
+RWWA thereby mirrors data contained on the ADABAS database continuously to the DR Site.
+RWWA's component of the DR mainframe would be activated, that is, copying would be terminated and the DR Copy would be loaded into the DR mainframe only in the event of an emergency restart scenario or in testing.
+' Distribution tapes ' --- means the tapes originally supplied by SAG to RWWA containing the generic software system, not then configured for use.
+' DR Copy ' --- means the copy made at the DR Site of the System as installed and configured on the mainframe computer at RWWA's Head Office by disk mirroring.
+' Disaster recovery site ' --- an offsite location where a backup copy of a system can be stored away from the designated location.
+' DR Site ' --- means the specific location where RWWA's DR Copy is stored being the premises of KAZ Technology Services Pty Ltd located at Bennett Street, East Perth.
+' KAZ ' --- the providers of the disaster recovery site for RWWA.
+' Libraries ' --- storage files grouped together, for precompiled routines that perform predefined tasks.
+' Linking ' - is the process of combining all of the parts of the computer program into an executable code which runs the program.
+' Link edited ', ' Link-editor ', ' Linking of object code ' --- source code (see below) is, the human readable form of a computer program that is input to a compiler or translator for conversion into equivalent object code.
+Its function is to translate the humanly readable source code into a machine (i.e.
+computer) readable form known as machine code.
+To this end, a compiler can be viewed as a program translating high level language into absolute code or assembly language.
+The output of the compiler is known as object code.
+Object code is a program which is written in a language capable of being understood by a machine and which can be executed at a later time.
+However, before execution can occur, it is necessary for the object code to be linked.
+While the object code is in a machine readable form, it is not necessarily in a state that will allow it to be readily loaded into a computer's memory and executed.
+The further step involves linking or binding the object code.
+Object code needs to be linked because in most cases computer programs involve a large number of routines.
+' Load module ' --- means all or part of a program in machine language form that is suitable for loading into memory and executing.
+The load module is generated by the linker or link editor.
+' LPAR ' --- is an acronym for Logical Partition which effectively partitions a portion of the machine capacity in this case, ready for use by RWWA.
+' Machine code ' --- see Object code.
+' Mainframe ' --- means a large high performance computer that supports many users simultaneously and has the computing capacity to store large volumes of data and to run a wide variety of applications at one time.
+' MIPS ' --- Million Instructions Per Second
+ 
+' MSU ' --- Million Service Units which is a measurement of the amount of processing work a computer can perform in one hour.
+It is common for mainframe software vendors to charge by MSUs consumed or by MSU system capacity.
+' NATURAL ' --- is a computer language product supplied by SAG under the Licence Agreement.
+' Object Code ' --- means the program as compiled in machine readable, binary code, that can be executed without the need for translation.
+Object code is generated from source code by an assembler or compiler.
+' PriSe ' --- SAG's internal price and discount determination programme.
+' RECALL ' --- prior to the establishment of the DR Site, RWWA's transactions and records had been backed up to tape which was held offsite at a location described as RECALL.
+' SAN ' --- storage area network.
+' SAP ' --- SAG's core financial system.
+' Source Code ' --- means a set of instructions to the computer for carrying out the various tasks which are performed by the program, expressed in a human-readable programming language which is yet to be compiled or translated into machine language (object code).
+Source code is input to a compiler or assembler, in order to derive object code (machine code).
+' The System' --- comprises database management software known as ADABAS, a computer language product called 'NATURAL' and five other associated products.
+It is located at the head office of RWWA.
+FURTHER RE-AMENDED CROSS-CLAIM 
+ 
+23 The original cross-claim following the alleged breach of the Licence Agreement was to the effect that if RWWA had been licensed by SAG to use and deal with the System in the manner pleaded, SAG would have required payment of:
+(a) an additional licence fee in relation to the DR Copy; and
+(b) associated annual upgrade maintenance services fees.
+24 The sums referred to above totalling about $3 million are then particularised in the amended cross-claim filed on 2 October 2007.
+25 By a further amendment foreshadowed shortly prior to the trial and articulated on the second day of the trial, the alternative particulars of those damages as pleaded by SAG were as follows:
+ 
+ 
+ 2.2 In the alternative ..., if the cross respondent had sought a licence from the cross claimant to use and deal with the System ..., the cross claimant would have been prepared to negotiate a licence within the following framework: 
+ 
+2.2.1 a one off licence fee reflecting a discount of up to a maximum of 30% from the figure shown at sub-paragraph 2.1(a) above, which is $1,469,709; 2.2.2 it would not have required payment of back maintenance service fees for the period January 2005 up until, say, 1 September 2006; 2.2.3 it would have been prepared to reduce the maintenance service fees shown at sub-paragraphs 2.1(b), (c), (d) and (e) above, so that they reflected amounts based on 15% of the negotiated one off licence fee shown at 2.2.1.
+26 As explained by counsel for SAG in the course of closing addresses, on the amended claim, SAG contends that it is essentially suing for a price, that is to say, the full price for the licence and various service fees as originally pleaded or alternatively, that sum, discounted.
+To support the discounted price and practice, SAG produced some 23 agreements and deal approval forms (DAF) with other parties.
+Those agreements, it was argued, showed the standard internal commercial processes of SAG and the likely practice between SAG and its customers.
+27 In essence, the effect of that internal process was for those in authority within SAG to approve a minimum price at which SAG would permit its software to be licensed and also a maximum discount rate.
+There would then follow negotiations with clients of SAG.
+Those who were negotiating on behalf of SAG would try to obtain the least possible discount from the price, in other words, they would try to recover the highest price possible for SAG.
+They received a commission.
+The permitted discounts varied very considerably.
+SAG says that the mean discount, as shown on the DAFs produced, was approximately 30%.
+28 Accordingly the alternative plea was to the effect that if the Court were satisfied that there had been a breach but not one which would entitle SAG to recover the full licence fee and service fees as pleaded, then it was open to the Court to arrive at a figure based on a course of dealings conducted by SAG with other clients as to the likely price which SAG would have been able to negotiate [after discounting].
+THE LICENCE AGREEMENT 
+ 
+29 It is necessary to examine in more detail the Licence Agreement.
+Essentially this case involves deciding whether RWWA's actions were authorised by cl 12.3 of the Licence Agreement.
+30 The Licence Agreement recites that SAG is the Australian distributor of the proprietary software system(s) set out in the System Attachment(s) attached to and incorporated into the Licence Agreement (the System(s)).
+It does not at any point, nor does SAG's case assert, that it was the owner of copyright in the System.
+31 There are certain key elements of the contract which have fallen for consideration in the case.
+The first of those is cl 1 which sets out the grant of the Licence.
+It is in the following terms.
+1.
+GRANT OF LICENCE
+ 
+ 
+ 1.1 In consideration of the Licence fee(s) set out in the System Attachment(s) attached to and incorporated into this Agreement, Software AG grants to the Licensee a non-transferable and non-exclusive licence to use the System(s) as specified on the System Attachment(s), together with the data carrier containing the same and the system manuals and other documentation provided from time to time by Software AG ("the documentation") for the duration specified in the System Attachment(s) solely in the conduct of the Licensee's internal business as defined in Clause 1.3 and not further or otherwise.
+The Licensee is licensed to use the System(s): 
+ 
+ 
+ 
+ 
+ (a) only at the designated location(s) and on one single machine of Hardware Make and Model within the designated Software AG Hardware Class indicated (if any) on the System Attachment(s)("the Designated Installation"); and
+ (b) only by a maximum number of concurrent users equal to the number indicated (if any) in the column headed "Qty" on the System Attachment(s) (in relation to those of the Systems whose "Price Type" is indicated on any relevant System Attachment(s) as "User" and whose "Hardware Class" is indicated on any relevant System Attachment(s) as "Concurrent" and for these purposes a "user" means an individual employee of the Licensee and concurrent use means the simultaneous use of the Systems by more than one user; and
+ (c) only by the maximum number of users equal to the number indicated (if any) in the column headed "Qty" on the System Attachment(s) (in relation to those of the Systems whose Price Type" is indicated on any relevant System Attachment(s) as "User" and whose "Hardware Class" is indicated on any relevant System Attachment(s) as "Registered") and for these purposes a "user" means an individual employee of the Licensee who is registered to use the Systems; and 
+ (d) only on a single machine at the designated location(s) which contains no more than the number of processors indicated in the column headed "Qty" on System Attachment (in relation to those of the Systems whose "Price Type" is indicated (if any) on any relevant System Attachment(s) as "Processor"; and 
+ (e) only upon the operating system indicated (if any) on the System Attachment(s).
+
+ 
+ 
+ 
+ 
+ 
+ 1.2 The Licensee shall not be entitled to use the System(s) on any other or upgraded machine(s) or operating system without the prior written consent of Software AG and the issue of an additional or amended System Attachment together with payment of all additional Licence fees due under the then current Software AG price list.
+The Licensee shall notify Software AG at least 45 days prior to any proposed change of machine or operating system by the Licensee.
+1.3 The Licensee's use of the System(s) shall be solely for the purposes of the internal administration by the Licensee of the Licensee's own business or the processing by the Licensee of the Licensee's own data and not to provide any type of bureau, rental, facilities management or similar type of service to, or use the Systems on behalf of or for the benefit of, any third party (including any subsidiary, holding company or associate of the Licensee) by way of trade or otherwise in any similar such manner.
+The Licensee shall not use the System(s) in connection with the sale or leasing of computer services for development of software for sale, lease or other external distribution, or for training purposes save in respect of the Licensee's own employees.
+
+ 
+ 
+ 
+ 1.4 The Licensee shall not permanently or temporarily move the System(s) to, or install the System(s) at, any location which is not the designated location without the prior written consent of Software AG.
+Such consent may be granted for alternative locations operated by the Licensee within Australia at Software AG's absolute discretion upon issue of an additional or amended System Attachment and payment of any additional Licence fees due under the then current Software AG price list.
+
+ 
+ 
+ 
+ 1.5 The Licensee shall not assign, sub-licence, sell, lease, encumber, charge or otherwise in any manner attempt to transfer this Licence or any of its rights or obligations hereunder.
+The Licensee may not allow any third party to operate the System(s) on its behalf as part of any outsourcing, facilities management, application service provision or similar type of arrangement.
+
+ 
+ 
+ 
+ 1.6 By this Agreement, the Licensee obtains only the right to use the System(s) for the specified duration and does not acquire any rights of ownership whatsoever in the System(s), the Documentation, the data carrier(s) or any copies, enhancements and/or modifications thereof.
+The Licensee shall not be entitled to use the System(s) in any manner or for any purpose not expressly permitted by the terms of this Agreement.
+
+ 
+
+32 The next important clause is cl 10 which reads as follows:
+ 
+ 
+ 10 Software AG shall have no obligation to provide the System(s) to the Licensee in source code form.
+For those parts of the System(s) not provided to the Licensee in source code form, Software AG may procure the deposit with a third party of the system source code to facilitate maintenance, modification or correction of product.
+
+ 
+
+33 Clause 12, in particular cl 12.3, is central to the dispute between the parties.
+The entirety of cl 12 reads as follows:
+ 12 CONFIDENTIALITY 
+ 
+ 12.1 The Licensee agrees that copyright and other intellectual property rights in the System(s), the Documentation and the data carrier is and remains the property of Software AG or the relevant owner thereof.
+The Licensee further agrees that all confidential commercial and technical information, data, copyright and other intellectual property rights and know-how provided to the Licensee under this Agreement ("the Confidential Information") is and remains the property of Software AG or the relevant owner thereof.
+The Licensee undertakes that the System(s), the Documentation and the Confidential Information shall be held in confidence and secret.
+12.2 Without prejudice to Clause 12.1, the Licensee hereby undertakes that the Licensee will:
+ 
+ 
+ 
+ 
+ 
+ a) not access, run or use the whole or any part of the System(s), the Documentation or the Confidential Information save as expressly permitted by this Agreement; and
+ b) save as permitted by Clause 12.3, not copy (whether in the course of running a copy of the System(s) for the purposes for which the System(s) were designed or otherwise), reproduce, adapt, modify or interface the whole or any part of the System(s), the Documentation or the Confidential Information or combine or incorporate the System(s) in any other software; and
+ c) as permitted by Clause 12.4, not sell, disclose or communicate the System(s), the Documentation or the Confidential Information or permit the same to be sold by, disclosed or communicated to, accessed by, copied, reproduced in any way, modified or interfaced in part or whole by any person; and
+ d) in all respects treat the System(s), the Documentation and the Confidential Information in like manner to the Licensee's own confidential and valuable information and take all necessary precautions to prevent any unauthorised person having access to or copying or reproducing the same; and
+ e) not (save to the extent expressly permitted by law) reverse-assemble or de-compile the System(s) in whole or in part or otherwise attempt to create or generate any source code or source code version of any part of the System(s).
+
+ 
+ 
+ 
+ 
+ 
+ 12.3 Software AG hereby expressly authorises the Licensee to copy the System (s) ( in object code only ) and the Documentation for archival or emergency restart purposes PROVIDED THAT no more than (3) copies made by the Licensee of the then current system version shall exist at any time and all old versions shall be destroyed.
+(emphasis added) 
+ 
+
+34 The remainder of cl 12 and the Licence Agreement itself is inconsequential to this dispute.
+However, the System Attachment annexed to it, specifies the Licence number, the Attachment number, the date, the Licensee (being RWWA), the designated location (being the Osborne Park premises) and contains text reading:
+ TERMS APPLICABLE TO ALL SYSTEMS LICENSED UNDER THIS SYSTEM ATTACHMENT The Licence to use the System(s) set out in this System Attachment only permits the use of the System(s) at the Designated Location on the Designated Hardware Make and Model and Operating System.
+The terms of the Licence to which this System Attachment is attached shall apply to the System(s) Licensed by this System Attachment together with the terms set out herein.
+In the event of conflict between the Licence and this System Attachment the terms of the terms System Attachment shall prevail.
+35 The licence type is specified as being perpetual and it is suggested that the:
+ Use of the Systems is limited to the use for the business previously carried out by the Totalisator Agency Board of Western Australia only and for no other purpose whatsoever.
+Upgrade to 32 MSU from 28 MSU previously licensed under the name of Totalisator Agency Board of Western Australia.
+36 The licence start date is specified as being 16 June 2005 and the maintenance and service fee start date is 17 July 2005.
+The System Attachment sets out the System name and operating system for the respective components referable to a 32 MSU capacity.
+The System Attachment goes on to specify the licence fee, maintenance service fee and maintenance service renewal details.
+37 It is common ground that the System comprises database management software known as ADABAS, a relative computer language product called 'NATURAL' and five other associated products.
+38 In summary then, by cl 1.1 of the Licence Agreement, SAG grants to RWWA a non-transferable and non-exclusive licence to use the System on terms which restrict the usage to a single machine at a designated location.
+It is common ground that RWWA is not permitted either to permanently or temporarily move the System or to install the System at any location which is not the designated location without the prior written consent of SAG (cl 1.4).
+No written consent was sought or obtained in relation to the DR Site which is the subject of this dispute.
+39 Consent pursuant to cl 1.4 may be granted for alternative locations operated by RWWA within Australia at the absolute discretion of SAG but only in circumstances where additional licences are granted and in respect of which there would usually be further licence fees payable.
+The licence fees payable pursuant to those circumstances are under the contract, referable to the then current SAG's price list (subject to discount).
+40 RWWA contends that it was entitled by cl 12.3 to set up a disaster recovery site and indeed it maintains that it is also entitled to test the facility at the disaster recovery site as to set it up without testing its capacity to function, would be a pointless and highly risky exercise of little value to it.
+41 By cl 1.5, RWWA is precluded from allowing any third party to operate the System on its behalf as part of any outsourcing facilities management, application service provision or similar type of arrangement and SAG contends that RWWA has breached this clause.
+42 On or about 30 January 2005, RWWA made a copy of the System as installed and configured on its mainframe at its head office to a disk by a process of disk mirroring which set up what is known as the disaster recovery or DR Copy.
+The first question will be whether in doing so, it breached the provisions of the Licence Agreement.
+43 The DR Copy is kept at the premises of KAZ in Bennett Street, East Perth under an agreement between RWWA and KAZ.
+Not a great deal of attention was directed to that agreement but it is clear that KAZ has charged a substantial fee to RWWA for the facility at the premises of KAZ which is of considerable sophistication and value to RWWA.
+The DR Copy is maintained well away from the head office as the purpose of the DR Site is to ensure that if the mainframe at the head office is destroyed by fire, terrorism or some other unforeseen event it is far enough away from the DR Copy to make the chances of the DR Copy being similarly damaged unlikely.
+44 RWWA says that the DR Copy was made for the sole purpose of disaster recovery or emergency restart of the System in the event that its head office mainframe computer failed due to it being '(lost), destroyed or rendered unusable'.
+The concepts of disaster recovery and emergency restart, it says, are synonymous.
+45 Insofar as the installation is concerned, SAG argues that by cl 1.4, RWWA can only install (emphasis added) the System at the designated location.
+Insofar as copying (emphasis added) is concerned, the only entitlement given under the Licence Agreement is the right to copy under cl 12.3 which is expressly limited in its terms.
+46 As distinct from the rights which are granted, SAG emphasises that the Licence Agreement imposes a range of prohibitions on RWWA in relation to the System.
+It is a 'basic' agreement and for additional usage of the System, payment is required.
+Specifically by cl 1.6, RWWA is not permitted to use the System in any manner and for any purpose not expressly permitted under the Licence Agreement; by cl 1.2, RWWA cannot use the System on any other machine or operating system except under the issue of an additional licence; by cl 1.4, RWWA cannot move the System to or install the System at any other location; by cl 1.5, RWWA may not allow any third party to operate the System on its behalf (emphasis added).
+By cl 12.2(c), RWWA is not entitled to sell, disclose or communicate the System(s) to any other party and by cl 12.2(d), RWWA is obliged to treat the System, the Documentation and the Confidential Information as if it were its own confidential information.
+47 SAG emphasises, no doubt correctly, that the System it supplies is of very considerable value.
+It is valuable not only in the sense of its cost to produce but also as a backup system it is of great importance to RWWA.
+SAG also emphasises, again correctly, that the driving factor for RWWA in establishing the DR Site is the great savings in being able to recover from a disaster within a matter of hours rather than a week or so.
+All of these considerations, SAG contends, should lead to or, at least, support a conclusion that RWWA was required to pay SAG a licence fee and service fees for the copying, installation and usage of the System at the DR Site.
+48 In response RWWA says that cl 12.3 of the Licence Agreement (and s 47C CA), must be given some sensible commercial meaning, no matter how strictly and literally the contract is construed.
+RWWA argues that the contract is made between people who are in the industry.
+It argues that to not be permitted to test the emergency recovery site to know that it is of practical functionality would mean that the exception conferred by cl 12.3 would have no practical or commercial advantage.
+If the System could not be tested at the DR Site, RWWA would not know that it was any better off than having to wait for a week or so before the System could be restored in the event of an emergency.
+RWWA says that the notion that one could have a disaster recovery site without the capacity to test it would be unheard of in the mainframe industry.
+THE STATUTORY FRAMEWORK 
+ 
+49 In addition to its contractual rights, RWWA submits that the making of the DR Copy is permitted by s 47C CA.
+The concept of computer program backup is well recognised by the CA. 
+ 
+50 Part III Div 4A CA sets out a number of activities which will be deemed not to constitute copyright infringement even though reproduction is involved.
+Relevantly, s 47C permits reproduction for the purpose of making a back-up, subject to certain limitations as follows: 
+ 47C Back-up copy of computer programs 
+ 
+ (1) Subject to subsection (4), the copyright in a literary work that is a computer program is not infringed by the making of a reproduction of the work if: 
+ 
+ 
+ 
+ 
+ (a) the reproduction is made by, or on behalf of, the owner or licensee of the copy (the original copy ) from which the reproduction is made; and
+ (b) the reproduction is made for use only by, or on behalf of, the owner or licensee of the original copy; and
+ (c) the reproduction is made for any of the following purposes: 
+ 
+ 
+(i) to enable the owner or licensee of the original copy to use the reproduction in lieu of the original copy and to store the original copy; (ii) to enable the owner or licensee of the original copy to store the reproduction for use in lieu of the original copy if the original copy is lost, destroyed or rendered unusable; (iii) to enable the owner or licensee of the original copy to use the reproduction in lieu of the original copy, or of another reproduction made under this subsection, if the original copy, or the other reproduction, is lost, destroyed or rendered unusable.
+
+ 
+ (2) Subject to subsection (4), the copyright in a literary work that is a computer program, and in any work or other subject-matter held together with the program on the same computer system, is not infringed by the making of a reproduction of the program, or of such a work or other subject-matter if: 
+ 
+ 
+ 
+ 
+ (a) the reproduction is made by, or on behalf of, the owner or licensee of the copy (the original copy ) from which the reproduction is made; and
+ (b) the making of the reproduction is part of the normal back-up copying of data for security purposes.
+
+ 
+ 
+ 
+ 
+ (3) Subsection (1) applies in relation to a reproduction of a work made for a purpose referred to in subparagraph (1)(c)(iii) whether or not other reproductions of the work have previously been made for the same purpose from the same copy.
+
+ 
+
+51 As to subs (4), s 47C does not apply to an infringing copy of the computer program.
+Back-up copies cannot be made if the program is designed to prevent the making of copies, or if any licence for the use of the original copy given at the time it was acquired has expired or been terminated (s 47C(4)(b), (c)).
+52 RWWA says that it made and now keeps the DR Copy for use only by or on behalf of RWWA to enable it to be used in lieu of the System if the System is 'lost, destroyed or rendered unusable'.
+It also says that the DR Copy was made and is now kept by RWWA as part of the normal back-up copying of data for security purposes.
+53 RWWA refers to and relies on extrinsic materials such as the Explanatory Memorandum to the Copyright Amendment (Computer Programs) Bill 1999 to support the proposition that a restrictive view of s 47C should not be adopted.
+Section 47F Reproducing Computer Programs for Security Testing 
+ 
+54 RWWA also submits that it is permitted by s 47F CA to copy or reproduce the System for the purposes of testing the DR Copy.
+Section 47F relevantly provides that copyright in a computer program is not infringed by making a reproduction or adaptation to the extent reasonably necessary to test, in good faith, the security of the original copy, or of a computer system or network of which the copy is a part.
+55 To fall within this exception, there are certain requirements that must be met.
+First, the reproduction or adaptation must be made by or on behalf of the owner or licensee of the original copy being tested, investigated or corrected; secondly, the information resulting from making the reproduction or adaptation must not have been readily available to the owner or licensee when it was made; and thirdly, the copy being tested must not be an infringing copy.
+56 RWWA argues that it has only conducted 'security tests' of the DR Copy in May and July of 2005 and February and August 2006 at the third party site of KAZ.
+RWWA says that by virtue of the fact that the DR Copy is a mirrored copy of the original system by testing the DR Copy, RWWA is in effect testing the original system.
+57 SAG submits that the testing process is not 'security testing' within the ordinary or technical meaning of that expression.
+SAG says further, that even if the testing process did constitute security testing the conduct would not be permitted under s 47F as the DR Copy was not made for the sole purpose of security testing, but also to have a backup copy.
+JURISDICTION 
+ 
+58 The relief sought by RWWA is declaratory.
+It is clear by virtue of s 21(1) , (2) of the Federal Court of Australia Act 1976 (Cth) that the Court may in relation to any matter in which it has original jurisdiction make binding declarations of right whether or not any consequential relief is or could be claimed and a suit is not open to objection on the ground that a declaratory order only is sought.
+The reference to original jurisdiction in s 21(1) of the Federal Court of Australia Act includes the accrued jurisdiction of the Court --- Bond v Sulan [1990] FCA 419 ; (1990) 26 FCR 580 at 584-585 where Gummow J said:
+ Accordingly, the jurisdiction of the Court, in so far as injunctive relief is claimed in the application, is attracted by s 39b of the Judiciary Act; in relation to a matter in which this Court has original jurisdiction, it may make binding declarations of right, as provided by s 21 of the Federal Court of Australia Act 1976 (Cth), and in this regard, no distinction is drawn between the accrued and the primary jurisdiction of the Court: Orison Pty Ltd v Strategic Minerals Corp NL (1988) 81 ALR 183 at 191.
+In so far as the respondent is to be seen as exercising functions reposed in him by State law, there would be a foundation in the accrued jurisdiction for the declaratory relief now sought against him: Attorney-General (Cth) v Queensland (1990) 25 FCR 125 at 145... 
+59 The dispute between RWWA and SAG is undoubtedly real.
+It is not abstract or hypothetical.
+The cross-claim by SAG for damages is effectively in millions of dollars.
+The jurisdiction of the Court to grant declaratory relief is confined only by considerations which mark out the boundaries of judicial power --- Ainsworth v Criminal Justice Commission [1992] HCA 10 ; (1992) 175 CLR 564 at 582.
+THE EVIDENCE --- NON-EXPERTS 
+ Mr Michael John Meehan 
+ 
+60 Mr Michael John Meehan is the Manager of Information Systems for RWWA.
+He first commenced dealing with SAG through its Western Australian reseller.
+He now deals directly with SAG support personnel in Sydney and Melbourne.
+61 He explained that TAB was involved with SAG from the early 1980s and SAG products have become entrenched as a key database within RWWA's systems.
+The first contract for implementation of SAG's products was made on 26 August 1980.
+That contract was between TAB and a predecessor of SAG.
+Each time that the TAB and subsequently RWWA upgraded its mainframe computer, software contracts were also updated to reflect the new hardware.
+In Mr Meehan's experience that was a common practise in the industry.
+In Mr Meehan's time with RWWA, RWWA and its predecessor, TAB have always worked with a mainframe.
+62 Mr Meehan has worked on mainframes systems since 1972 in various Government and private positions.
+The major types of databases that may be used on mainframes are IBM's DB2, IBM's IMS, Software AG's ADABAS and Oracle.
+He describes these databases as database management systems whose role is to hold the data used by the applications which run on computers including mainframe computers.
+63 ADABAS is supplied by SAG under the Licence Agreement and holds information relating to RWWA's core business systems.
+This includes RWWA data, betting accounting information, accounting journals, account betting transactions and unpaid winning betting tickets.
+64 Originally all betting tickets are written to an IBM file and after a certain amount of time, (usually about three weeks) all unpaid winning tickets are transferred to the ADABAS ticket file.
+The primary use of the ADABAS ticket file is to enable the payout of winning tickets that have not been claimed within three weeks.
+65 NATURAL is a notional language supplied by SAG.
+It is used to create programs and interfaces which allow RWWA staff to manage the race day systems, for example, to jump between races to enter results and perform other functions which are necessary for RWWA's business.
+66 SAG delivers the basic system on its distribution tapes to RWWA in the following forms:
+ 
+(a) Source code: 399 modules;
+ 
+(b) Load module form: 281 modules;
+ 
+(c) Other: 935 files (JCL, sample jobs, INPL, ADABAS data, etc).
+67 The distribution tapes contain 281 modules in load module form, four of which are re-link edited.
+68 I will explain these concepts further below when considering the expert evidence but they are important in considering the meaning of cl 12.3 of the Licence Agreement because it confines the rights of RWWA to copy the System in object code only.
+69 From 1984, RWWA and its predecessor TAB ran two small mainframe computers in adjoining rooms.
+Those mainframes were both kept at the main building in Osborne Park now occupied by RWWA and formerly by TAB.
+Both TAB and then RWWA ran production on one machine and development on the other machine.
+Eventually the production and back up machines were amalgamated into a single big machine.
+70 Mr Meehan confirmed that the system from SAG was installed from the distribution tapes onto RWWA's HDS 9970V disk system located in its premises at Osborne Park.
+71 He was not involved in the Board discussion in May 2004 when RWWA through its Board resolved to create a separate disaster recovery site some distance from RWWA's main premises in Osborne Park.
+He did, however, provide information in the paper that was presented to the Board by the Chief Information Officer, Mr Glen Fee (who also gave evidence).
+He says, however, that one of the key business reasons for the decision was the high risk associated with having the backup (disaster recovery) computer located in the room adjacent to the room containing the production machine.
+The purpose of shifting it to a different location was to have a backup plan if there was massive destruction of the building by fire or other cause.
+72 Mr Meehan said there was a great deal of planning involved in creating the DR Site.
+He was involved in that planning.
+The DR Site was established in mid-2004 at the KAZ data centre in East Perth.
+73 Prior to the establishment of the DR Site, backups existed by way of tape and were held offsite at a location described as RECALL.
+After the establishment of the DR Site, RWWA initially backed up its database to tapes at the DR Site.
+At that stage RWWA had not commenced the process of disk mirroring.
+From early January 2005 on implementation of the Board's decision, Mr Meehan commenced arrangements for the DR Site to mirror data from the Osborne Park production site by organising the renting of fibre link between RWWA's head office and the DR Site.
+The other aspect was to arrange for the mirroring process to become active.
+74 The process of disk mirroring meant that RWWA's database was written to the primary site at Osborne Park at the same time as it was written to disk at the DR Site to create the DR Copy.
+The DR Copy was made and kept at the DR Site at the same time RWWA 'went live' at the end of January 2005.
+75 In the disk mirroring process all the production files on RWWA's mainframe at Osborne Park are mirrored using the HDS utility known as 'TrueCopy' to an HDS USP-100 disk system located at the DR Site.
+The mirroring is synchronous.
+The disk is connected to an IBM Z890 series mainframe computer at the DR Site but, importantly, the DR Copy is not installed on the mainframe at the DR Site and is solely kept on the disk.
+76 RWWA has a partition on the mainframe at the DR Site which is not active.
+As described in lay terms by Mr Meehan, it is in effect 'turned off'.
+The DR Copy is then unable to be used or executed unless RWWA were to activate the partition so as to load the System from the backup disk into the memory of the mainframe at the DR Site.
+RWWA's partition on the DR mainframe is not activated and the DR Copy of the system is loaded onto memory only in the event of an emergency restart scenario.
+77 The process is continuous, that is, RWWA mirrors data which is contained on the ADABAS database continuously to the DR Site to ensure that the backup copy at the DR Site is always up to date.
+Mr Meehan says that RWWA made the DR Copy of the SAG software for the purpose only of emergency restart of the database management system in the event that RWWA's mainframe at its head office failed due to being 'lost, destroyed or rendered unusable'.
+78 According to Mr Meehan, KAZ does not at any time and has not at any time operated RWWA's component of the DR environment.
+Off duty RWWA operational staff would take control of that process.
+Besides providing the IBM mainframe and HDS disk, KAZ only provide environmental support, power and air-conditioning etc. 
+ 
+79 Mr Meehan says that the mainframe at the DR Site has never been activated except when RWWA has conducted a scheduled DR test.
+RWWA's intention was to establish a safe DR Site and to test it twice a year.
+It has been unable to meet that schedule.
+Four tests have been conducted, the first two in May and July of 2005 and then tests in each of February and August 2006.
+80 These events all commenced before execution of the Licence Agreement.
+It was not until 16 June 2005 that Mr Meehan, on behalf of RWWA executed the Licence Agreement with SAG.
+Since that time the last upgrade of SAG products was completed in March 2006.
+That was simply an upgrade or change to the SAG products which had been in production since January 2005.
+It followed that certain SAG libraries were affected by the upgraded products and therefore the changes were mirrored at the DR Site.
+Since the March 2006 upgrade, no changes have been made to the SAG load modules on the production disk and therefore no changes have been made on the mirrored disk at the DR Site.
+81 Mr Meehan confirmed that SAG became aware of the DR Site as a result of an email containing a technical query that he sent to Mr Dan Martin of SAG on 1 June 2006.
+He had previously had dealings with Mr Martin.
+Mr Martin responded to his email seeking more details on the DR Site.
+Those details were provided by Mr Meehan who received a further email and then correspondence essentially raising the question of whether there had been a breach of the Licence Agreement.
+82 Different reasons were given by SAG at various times in relation to the basis upon which it was contended that there had been a breach.
+On 28 July 2006, Mr Meehan and Mr Charles McNiven who was a RWWA senior systems engineer met with Mr Martin and Mr Blair Harding who was a senior technical consultant of SAG.
+Minutes of that meeting were prepared by Mr Meehan.
+Discussion was reasonably spirited.
+No agreement was reached.
+83 On 8 August 2006, Mr Martin emailed Mr Meehan suggesting that it would be of value if representatives of RWWA discussed the DR Site further with Mr Colin Brookes, the country manager of SAG.
+Accordingly, on 14 August 2006, Mr Fee, the Chief Information Officer of RWWA and Mr Meehan spoke with Mr Brookes of SAG.
+In that conversation, Messrs Fee and Meehan confirmed RWWA's position that the software was not installed at the DR Site and that the load libraries at the DR Site were used as a backup copy for the purpose of an emergency restart.
+He also provided further requested details which clarified RWWA's position in an email which he sent to Mr Martin on the same day, 14 August 2006.
+84 As to the steps which could be taken by RWWA concerning the SAG software, Mr Meehan says there are three possible directions it could take for the DR Site.
+The first is to maintain the current situation and backup to disk via the mirroring process.
+The second is to backup, as SAG claims is authorised under the Licence Agreement, that is, to copy the distribution tapes only.
+Mr Meehan says that to do so is not standard industry practice and it would be a 35 step process which would take at least a week to do and introduce the risk that the newly created environment could differ from the original.
+The third possibility is to mirror all of RWWA's data except the SAG System which would be backed up to tape.
+That backup would be of the SAG load libraries and the database.
+Mr Meehan says that would add approximately 30 minutes to the recovery process.
+85 Mr Meehan says that in 2004, had he been aware of SAG's view of RWWA's backup process he would not have implemented the mirror processing for the SAG component of RWWA's production environment.
+The backup would have remained on tape which had occurred prior to the setup of the DR Site.
+86 During a test of the DR Site what is done is to 'break the mirror', that is, at that point data from the production site is not written by mirroring or in any other way onto the disks at the DR Site.
+The test is conducted as swiftly as possible and the test data is then overwritten as soon as the test ends.
+In other words, in terms of data for usage on an ongoing basis, the test data (as distinct from the process) has no value in RWWA's future business.
+Testing the DR Site is a necessary procedure according to Mr Meehan, to ensure that the DR Site is actually likely to work in the event of a disaster.
+87 Following RWWA's four tests, there was a further test conducted in April 2008 but that was in the presence of Mr Rodney McKemmish.
+Mr McKemmish is the expert witness called by SAG.
+Also in attendance on that occasion were Mr Steven Fink and Mr Richard Adams, the experts for RWWA and certain legal representatives.
+The purpose of that test was to demonstrate the process in light of the pending trial in these proceedings.
+(That test actually failed for reasons beyond the control of RWWA but it served part of its purpose of providing a demonstration of the process to the expert witnesses and others).
+88 When testing is conducted, the requisite process is to notify the DR Site of RWWA's intention to carry out a disaster test; to ensure that the DR Site operators ready the room with RWWA's terminals and equipment; to recall offsite canisters from RECALL; to form technical and operational teams; to notify external organisations such as banks etc; and to notify Telstra to activate the business resumption plan so as to switch the frame relay network, internet and selected voice/fax numbers to the DR Site.
+89 The mainframe equipment is then inspected and activated if required and the disaster recovery mainframe devices are set to a state which stops the mirroring.
+RWWA's partition is then activated.
+This in itself is a 33 step process which includes operators replying to various automated messages and performing numerous checks.
+90 In an actual true disaster recovery scenario, Mr Meehan says that if RWWA had to reinstall from the SAG distribution tapes, it would delay the recovery process by as much as a week.
+By standard industry practice that would be unacceptable and to backup distribution libraries so as to enable that process would not be the norm.
+91 Using the mirrored backup copy of the System, the DR test takes at least one evening and involves RWWA's software support staff, technical support staff, testing services staff and computer operators.
+92 No personnel from the DR Site, that is to say KAZ, are involved in the process.
+The DR mainframe is kept in a separate locked room and RWWA's partition is not active unless and until there is an emergency restart scenario or RWWA undertakes a DR test.
+During testing all the production functions are performed.
+93 According to Mr Meehan the DR Site is essential for the purpose of ensuring that within 8-12 hours RWWA can have the System ready again to take bets in the event of a disaster.
+He says all RWWA DR tests to date have been unable to meet this target.
+On no occasion has RWWA used the DR Site in a real life situation.
+94 Mr Meehan gave extremely detailed (and technical) evidence as to the process involved both in testing and if reinstallation from the tapes were necessary.
+As he was not challenged on that detail, it is unnecessary to repeat it all.
+Indeed SAG freely acknowledges that there would be good sense in avoiding the old process of backup to tapes.
+Its argument is simply against RWWA's doing so without SAG's approval, a licence and/or payment of fees to SAG.
+95 The KAZ contract contemplates provision of a 'warm' site.
+That term is very fluid.
+Mr Meehan does not consider the site is actually 'warm'.
+Mr Meehan's reason for saying that is because RWWA did not achieve a target of an 8-12 hour turnaround .
+He confirmed in cross-examination that the timing issue was at least one of the reasons for having the DR Copy and was and is certainly an important issue for RWWA.
+96 He accepted that the DR Copy was installed on the KAZ mainframe as and when there was DR testing.
+He contended that emergency restart was, in the mainframe industry synonymous with the disaster recovery.
+However, Mr Meehan was not put forward as an expert witness and while there is no reason to doubt the veracity of any of his evidence, there is ample further explanation from the independent experts as to the highly technical aspects involved with mainframe computers.
+97 The objective of achieving an emergency restart within 8-12 hours turnaround was a business or financial decision.
+The turnover of RWWA as at September 2006 was about $1.33 billion (which equates to a mean of over $25,000,000 in a week).
+There were and are considerable fluctuations at certain times.
+Later in the calendar year such as the time of the 'Spring Carnival' in Melbourne, the weekly betting revenue which would be lost in the event of a breakdown of the mainframe or the System would be far more than the mean weekly amount.
+98 Mr Meehan was questioned about the meeting that he attended on 28 July 2006 which had been preceded by a substantial amount of email exchange.
+He confirmed that by the time of that meeting, if not before, there was no equivocation whatsoever on the part of RWWA as to its refusal to purchase a further licence from SAG.
+That position did not change at all at the meeting and the view taken by Mr Meehan as to the position being taken by SAG was that its argument in relation to the construction of the Licence Agreement and to its entitlements was 'ridiculous'.
+99 Mr Meehan also accepted that he was the person from RWWA whose job it was to agree with the terms of the correspondence from RWWA's solicitors to SAG.
+Others in the organisation were also involved.
+This questioning went to, amongst other things, his authorising of the terms in which experts were briefed.
+100 Mr Meehan also accepted that if it had been a small mainframe and there was a relatively insignificant or minor problem with the operation of the mainframe then it may be possible to restart the mainframe by basically turning it off, reinstalling the copy of the software and building it up from the original copy of the software.
+He accepted that this may be a technical possibility depending on how complicated the configuration linking was.
+It could take a short period of time in the case of a small mainframe or it could take up to a week in the case of the RWWA mainframe.
+Mr Meehan accepted that this would constitute an instance of using a backup copy for emergency restart but stressed that in practice, it would not be done that way.
+101 I have indicated that Mr Meehan was not put forward as an expert witness but he has had 36 years expertise in the mainframe industry.
+He accepted that since he commenced in 1972 there has been enormous change in all sorts of respects in terms of software and hardware during that period.
+The concept of disaster recovery sites is rather more widely employed now than it was 30 or 40 years ago.
+He accepted that all of the KAZ options which had been offered to RWWA were more sophisticated than simply backing up current versions of a tape and leaving them in a safe location to be used if there was a disaster.
+Mr Meehan's intention was to engage KAZ to provide a warm DR site as it was no longer acceptable for RWWA to do nothing more than have the backup tapes simply stored in order to be 'pulled out' if there was a disaster.
+102 RWWA had spent approximately $2.97 million with SAG for its services in the 10 years up to September 2006.
+Mr Meehan accepted that it was decided to pay over five years some $4 million to $5 million to KAZ in order to improve the disaster recovery system.
+103 Mr Meehan, however, made the point that if it was only open to RWWA to backup the distribution tapes, then RWWA would have to go through a full installation process including configuration, testing, compilation etc to ensure that the end result is the same as what has been destroyed.
+In relation to his evidence that backing up would not be 'done that way', Mr Meehan said that it was standard practice in any data centre to backup load libraries and it is those load libraries that you would restore if there was a corruption or some other sort of failure.
+He said that you do not restore from distribution tapes because you are redoing work that has already been done.
+104 Mr Meehan's evidence was that if they had (hypothetically) obtained legal advice that they would have to acquire a new licence from SAG for the DR testing, they would have proceeded on a different basis rather than to pay for that additional licence.
+This has been a contentious issue.
+SAG submit that I should reject this evidence as it is driven largely by a hostile reaction to demands of SAG which Mr Meehan considers were 'ridiculous'.
+I will refer to my assessment of this evidence and submission in due course.
+105 Mr Meehan did not deny that RWWA could pay for the licence.
+He was simply not 'in a position to discuss financially what they would or would not have done'.
+He also accepted that RWWA had derived something of benefit through having gone through the testing process in particular and having proven that the DR Copy worked.
+He accepted that it was because of his perception as to the unjustified contractual demands from SAG that in his view the figure sought by SAG did not matter as RWWA would never have agreed to pay for an additional licence fee.
+Mr Glen Michael Fee 
+ 
+106 Mr Fee was also called by RWWA.
+He is the Chief Information Officer of RWWA.
+He has held that position since 2000.
+He is responsible for setting the overall strategic technology direction of RWWA; for establishing and implementing a program of work as agreed by the RWWA Board of Directors; for reviewing and implementing current technology to support RWWA business both internally and externally; and for developing and managing an overall technology budget.
+In addition, he reviews technical performance of implemented technology in relation to its impact on business objectives so as to ensure appropriate action is taken to predict any unsatisfactory results.
+107 His first dealings with SAG were on 27 June 2006 when he was contacted by Mr Meehan.
+As a result of discussions with Mr Meehan, he became aware of the issue with SAG concerning software licensing at the DR Site.
+On 27 June 2006 he was copied into the email that Mr Meehan wrote Mr Martin of SAG and in early August Mr Meehan requested him to be involved in a telephone conference with Mr Brookes at SAG.
+Mr Meehan kept Mr Fee informed about discussions with representatives of SAG in relation to issues arising in connection with the DR Site.
+108 Mr Fee was involved in the telephone conference on 14 August 2006 which was mainly between Mr Meehan and Mr Brookes.
+Following the 14 August 2006 telephone conference, Mr Fee was copied with Mr Meehan's email sent to Mr Martin of SAG on 16 August 2006 and Mr Fee received a letter from Mr Steve Keys, Sales Director of SAG on 21 August 2006 followed by a phone call on 28 August 2006 from Mr Martin.
+In that phone call, Mr Martin asked whether RWWA would like to meet with representatives of SAG or whether a legal approach would be adopted.
+Mr Fee informed Mr Martin that he would get back to him by the end of the week.
+109 On 31 August 2006 Mr Fee spoke again with Mr Martin and advised him that RWWA had considered SAG's options of either meeting to discuss the situation or embarking in a legal process.
+He suggested to Mr Martin that SAG should come across to Perth on the following week with their lawyer to discuss the matter further and Mr Martin asked Mr Fee whether he understood SAG's position.
+Mr Fee confirmed that he did but that RWWA did not agree with the position.
+Mr Martin suggested to him that SAG and RWWA should speak at a personal level rather than involve lawyers.
+Mr Fee informed Mr Martin that RWWA intended to have legal representation at the proposed meeting between RWWA and SAG and that it would be more productive if SAG did as well.
+Mr Martin said that he would discuss the proposed meeting internally with SAG and get back to Mr Fee.
+110 On 4 September 2006, Mr Martin telephoned Mr Fee suggesting that SAG's proposed way forward was for RWWA's legal representatives to speak with SAG's contract person to arrive at an agreed understanding of the situation and for SAG to meet in Perth with RWWA to reach an agreed outcome.
+Mr Martin informed Mr Fee he would send an email to RWWA with the contact number of the contract person at SAG.
+111 Emails were duly sent.
+Mr Fee together with a solicitor had a telephone conversation with Mr Martin and M/s Stella Adams, the General Manager Business Operations/Company Secretary of SAG and Mr Keys.
+Mr Fee says that most of the discussion took place between Mr Stewart and M/s Adams on the loudspeaker telephone.
+Their discussion was essentially in relation to the legal interpretation of the contract between RWWA and SAG but no resolution was reached at that meeting.
+On 12 September 2006, he received a letter from Mr Martin and on 19 September 2006, through RWWA's solicitors a response was sent to SAG.
+Mr Fee, like Mr Meehan, also confirms that in 2006, he considered the claims by SAG were simply wrong and that was the reason why, in his view, RWWA should not pay anything for an additional licence.
+112 Mr Fee also says that although RWWA has at all times considered that it was entitled to maintain the DR Copy, if SAG in January had claimed $2,150,209 for the fee plus maintenance costs of $274,587 per year, RWWA would not have agreed to pay any such fee as RWWA would have continued to simply backup to tape as it had since 1980 prior to setting up the DR Site.
+Again, whether that is so, is a contentious issue according to SAG in light of the risk of loss of a very large amount of business in the period of a week.
+113 On 9 November 2006, RWWA through its solicitors issued the proceedings against SAG.
+Mr Bruce Andrew Beddoe 
+ 
+114 Mr Bruce Andrew Beddoe has been employed by SAG since March 2000.
+He is the Director of Extended Rights Management for Australia and Asia.
+He has been in that role for two years.
+He commenced with SAG in sales and has moved into management.
+115 He explains that SAG is a subsidiary of Software AG, a publicly listed company on the Frankfurt TecDax Stock Exchange head quarters in Darmstadt, Germany.
+It has offices in about 50 countries.
+Mr Beddoe is responsible for SAG sales revenue in Australia, Asia and Japan.
+In carrying out his responsibilities, he works with SAG sales directors across the region and with their sales team in identifying revenue opportunities where there are requirements for extended usage rights of SAG systems.
+Such identification, he says, usually leads to a negotiation process resulting in additional contractual terms and conditions.
+In this role he is involved in formulating and approving pricing and correspondence which is sent to the customer.
+116 From about January 2004 to early 2006 he was the Australian sales director responsible for Australian revenue and the Australian sales team.
+He managed a team of six salespersons.
+Amongst those was Mr Martin, the account manager responsible for the RWWA contract.
+Mr Martin reported to Mr Beddoe.
+117 Mr Beddoe explained the charges which SAG would have raised against RWWA in January 2005 based on the assumptions that:
+ 
+(a) on 30 January 2005, RWWA made a second installation of the System(s) at a different location on a much larger mainframe or different make and model to that referred to under the Licence Agreement within a Logical Partition (LPAR).
+It effectively partitions a portion of the machine capacity for use by RWWA.
+The full capacity of the LPAR is 32 MSU or 170 MIPS.
+MIPS is an acronym for Million Instructions Per Second.
+(b) from 30 January 2005, RWWA outsourced the maintenance and operation of the second installation of the System(s) to a third party; and
+ 
+(c) from 30 January 2005, RWWA used the second installation of the System(s) at a disaster recovery site classified as 'warm'.
+118 Mr Beddoe produced the business operations manual for 7 December 2004 which he said was designed to answer most of the 'day to day' questions regarding software licensing policies.
+It was to be used in conjunction with the most current SAG price list.
+The business operations manual was used by SAG until it was updated in 2005.
+119 In January 2005, SAG's then internal current price list was contained in SAP, SAG's core financial system.
+It was accessed at that stage via the Vantive price server.
+SAG's prices were set by its Board.
+As and when there was a price change, prices were adjusted on the SAP.
+The Vantive price server sat on a secure intranet available only to SAG's staff.
+Mr Beddoe used the Vantive price server almost daily from the time he commenced at SAG until April 2006 and was very familiar with it.
+That system was replaced with PriSe.
+He now uses PriSe every day.
+It has the same functionality as Vantive and requires the same input of data in order to determine licence fees payable by a licensee.
+Based on his frequent use of Vantive until it was replaced by PriSe and his frequent use of PriSe immediately after the changeover, he believed that PriSe replicated details previously produced by Vantive in that PriSe produced the same price amounts as had been produced by Vantive.
+120 He demonstrated how these business tools could be used in order to explain what, in the view of SAG, RWWA would be required to pay it for the DR Copy at the DR Site and on what basis.
+121 Once the standard licence fees and maintenance fees have been calculated, SAG works with each customer to determine what additional extended usage rights are required to correctly licence the use of the SAG system(s).
+Extended usage rights or additional usage rights are those over and above the standard product licence terms and conditions.
+122 He explained that generally customers take both a current view and a future view and depending on the tactical and strategic directions of the business, elect to include additional contractual terms into an agreement which reflect the additional usage rights.
+123 One of the documents Mr Beddoe followed was a licensing rules document prepared by M/s Stella Adams.
+He used the licensing rules document as a ready reckoner to calculate fees for extended usage rights during the period from about 1 August 2004 to 1 August 2005.
+According to that document:
+(a) one year's maintenance fee was calculated to 15% of the list price licence fee;
+ 
+(b) LPAR licensing was an additional 50% of the list price licence fee for the licensed SAG System(s);
+ 
+(c) outsourcing was an additional 50% of the list price licence fee for the licensed SAG System(s); and
+ 
+(d) where the System(s) were to be used for 'warm standby' the customer would obtain a 50% discount of the licence and maintenance fees.

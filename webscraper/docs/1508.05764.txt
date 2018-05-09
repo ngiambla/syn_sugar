@@ -1,0 +1,2358 @@
+The  who  and  what  of #diabetes on Twitter
+Mariano Beguerisse-D  az,1, 2,   Amy K. McLennan,3 Guillermo
+Gardu no-Hern andez,4 Mauricio Barahona,1,   and Stanley J. Ulijaszek3,  
+1Department of Mathematics, Imperial College London, UK
+2Mathematical Institute, University of Oxford, UK
+3School of Anthropology and Museum Ethnography, University of Oxford, UK
+4Sinnia, Mexico City, Mexico
+Social media are being increasingly used for health promotion, yet the landscape of users, mes-
+sages and interactions in such fora is poorly understood. Studies of social media and diabetes have
+focused mostly on patients, or public agencies addressing it, but have not looked broadly at all
+the participants or the diversity of content they contribute. We study Twitter conversations about
+diabetes through the systematic analysis of 2.5 million tweets collected over 8 months and the inter-
+actions between their authors. We address three questions: (1) what themes arise in these tweets?;
+(2) who are the most in uential users?; (3) which type of users contribute to which themes? We
+answer these questions using a mixed-methods approach, integrating techniques from anthropology,
+network science and information retrieval such as thematic coding, temporal network analysis, and
+community and topic detection. Diabetes-related tweets fall within broad thematic groups: health
+information, news, social interaction, and commercial. At the same time, humorous messages and
+references to popular culture appear consistently, more than any other type of tweet. We classify
+authors according to their temporal  hub  and  authority  scores. Whereas the hub landscape is
+di use and  uid over time, top authorities are highly persistent across time and comprise bloggers,
+advocacy groups and NGOs related to diabetes, as well as for-pro t entities without speci c diabetes
+expertise. Top authorities fall into seven interest communities as derived from their Twitter follower
+network. Our  ndings have implications for public health professionals and policy makers who seek
+to use social media as an engagement tool and to inform policy design.
+I.
+INTRODUCTION
+Of an estimated three billion internet users around the
+world (over 40% of the global population), approximately
+310 million actively use the social networking site Twit-
+ter [71]. Since Twitter s launch in 2006, the platform
+and its users have been the protagonists of several ma-
+jor events (e.g., the Arab Spring, protest movements in
+Iran, Spain and elsewhere [1 7]), and it has become a
+prominent venue for companies, personalities, and ordi-
+nary people to broadcast news and events, send public
+messages, express opinions, and socialise [8, 9].
+There is growing interest in the potential uses for Twit-
+ter, and other social media, in public and population
+health. Research has been carried out on the use of Twit-
+ter for epidemiological applications and public health
+surveillance. For instance, in uenza spread [10, 11], con-
+tagious disease outbreaks [12] and tobacco use [13] have
+been mapped using public data from Twitter. Geo-
+graphic or spatial risk factors have also been elucidated
+using Twitter [14, 15]. This medium is being increas-
+ingly used for health information sharing [16], primary
+care, delivery of health support, primary prevention, and
+public health education [17 21].
+Health promotion has typically drawn on unidirec-
+ Electronic address: beguerisse@maths.ox.ac.uk
+ Electronic address: m.barahona@imperial.ac.uk
+ Electronic address: stanley.ulijaszek@anthro.ox.ac.uk
+tional, top-down social marketing and advertising strate-
+gies to disseminate health-related messages to a wide au-
+dience [22]. The recent use of Twitter in health pro-
+motion coincides with the in ux of commercial agen-
+cies into social media to sell commodities, trends and
+ideas [22]. The con uence of health promotion and
+commercial agents on Twitter has led to a cacophony
+of short health-related messages directed at users and
+passed through social networks. Some users who cre-
+ate and disseminate content have the exclusive aim of
+promoting health, while others may have additional or
+alternative aims (e.g., commercial interest, self promo-
+tion). Yet this complex environment is rarely acknowl-
+edged in public health promotion research, reviews and
+planning.
+Instead, public health marketing strategies
+and evaluations focus on the quantity of messages dis-
+seminated by health authorities over time, the number
+of followers an account has attracted, and the design of
+new slogans [20, 21]. There is little critical analysis of
+the wider landscape of, and relationships underpinning,
+health-related content on Twitter, or of the impact that
+messages have in the broad user base.
+In this paper, we investigate messages on Twitter
+( what  is discussed, and by  whom ) relating to a sin-
+gle clinical and public health concern: diabetes. Dia-
+betes is a clinical condition associated with blood sugar
+regulation by the hormone insulin and other endocrine
+factors. Complications associated with unmanaged or
+poorly-managed diabetes can typically a ect the heart,
+blood vessels, eyes, kidneys and nerves. There are two
+types of diabetes: Type 1 (often abbreviated as T1 or
+7
+1
+0
+2
+ 
+n
+a
+J
+ 
+0
+3
+ 
+ 
+]
+h
+p
+-
+c
+o
+s
+.
+s
+c
+i
+s
+y
+h
+p
+[
+ 
+ 
+4
+v
+4
+6
+7
+5
+0
+.
+8
+0
+5
+1
+:
+v
+i
+X
+r
+a
+2
+FIG. 1: The number of daily tweets in English containing the term  diabetes  (blue line), the number of daily tweets containing
+some version of the  Mathematics joke , a particularly recurrent tweet (red line, see also Table VII), and the number of tweets
+mentioning the actor Tom Hanks (green dashed-line), who revealed his diabetes in October 2013.
+T1D on Twitter) occurs when the pancreas does not
+produce su cient insulin; Type 2 (T2 or T2D) develops
+when the body does not e ectively respond to insulin.
+In 2012, the global prevalence of diabetes of both types
+was estimated to be nine percent among adults aged 18
+years and over [23]. However, this is likely to be an un-
+derestimate; in the United States alone, 27.8% of all dia-
+betes cases are thought to be undiagnosed [24]. Globally,
+around 10% of all people with diabetes have T1, which
+typically requires the daily administration of insulin. The
+remaining 90% have diagnoses of T2, which is commonly
+associated with obesity, poor nutrition and physical inac-
+tivity. Both types have genetic components, although no
+known genes directly cause diabetes by themselves [23].
+T2 is managed predominantly through health education,
+diet activity change, and weight loss; treatments also
+may include medication, and in more advanced cases,
+regular insulin administration [23]. People who have di-
+abetes are encouraged to self-surveil their blood sugar
+levels and self-manage their lifestyles and insulin levels
+(through diet, physical activity, and medications, where
+prescribed) in order to control their blood sugar levels
+and minimise related health complications such as those
+described above.
+Previous research on diabetes and social media has fo-
+cused on the possibilities that the internet and social me-
+dia open up for both self-management [25, 26] and clin-
+ical management [27 29] for people living with the dis-
+ease. Others have focused on the dissemination of infor-
+mation relating to diabetes-speci c outreach events [30]
+or from speci c platforms [31]. Our approach is di erent;
+instead of assuming that patients, clinicians and health
+promotion organisations are the main protagonists in the
+Twitter conversation about diabetes, we place all stake-
+holders on an initial equal footing with respect to Twitter
+exchanges around the broad category  diabetes .
+We compiled over 2.5 million English-language tweets
+containing the term  diabetes , which were generated by
+more than one million users over a period of 8 months
+(March 2013 to January 2014). These are the type
+of messages that users encounter when they search for
+the term  diabetes  on Twitter, or click on the hashtag
+#diabetes. We analysed these tweets (public messages
+comprising of text strings with a maximum length of
+140 characters), using a mixed-methods approach that
+combines mathematical and computational techniques
+with anthropological analysis. We used tools from data
+and network science to detect patterns in social inter-
+actions [1, 32, 33] and to extract topics from the mes-
+sages [34, 35]. We then interrogated these patterns using
+discourse analysis approaches from anthropology [36 38],
+which permit the elaboration of themes, personalities,
+and contexts. As a result, we extract and classify the
+topics that appear in the messages, and identify the im-
+portant participants in the conversations (which include
+patients, practitioners, public health authorities, com-
+mercial entities and others).
+Researchers have called for improving our understand-
+ing of social media to inform its use in public health pol-
+icy making and practice [29]. Our work contributes to
+this understanding by addressing three questions. First,
+what are the main themes of messages posted on Twitter
+that contain the term  diabetes  ? To answer this question,
+we extract the topics that appear in the tweets by pro-
+cessing word co-occurrence networks, and analyse their
+content, participants, and evolution. Second, who talks
+about diabetes on Twitter and in what capacity? To an-
+swer this question, we investigate the Twitter users who
+drive conversations by analysing networks of interactions
+(posting, sharing/retweeting, following) among the users.
+And third, which users contribute content to which topics
+and themes? We answer this question by examining the
+type of accounts that post in the di erent themes. We
+discuss the relevance of this interdisciplinary research for
+public health professionals and policy. The methods em-
+ployed in this project are general and may be applied in
+other studies where similar data become available.
+II. METHODS
+A. Data from Twitter
+We collected every tweet containing the term  diabetes 
+(2,698,114 tweets in total), posted between 26 March
+2013 and 19 January 2014 by 1,202,143 di erent users
+(Fig. 1). We also collected information about  retweets  
+a retweet event is when a user re-broadcasts a message
+(or  status ) originally posted by another user and which
+is disseminated to his or her followers. Each retweet is
+a time-annotated interaction between two users: the tar-
+get (the author of the original tweet, or the target of the
+attention) and the source (the user who retweeted the
+message, or the source of the attention). We recorded
+1,219,282 retweets from June 2013 up until when the
+data collection ended. We also recorded 41,582 friend-
+follower relationships among a select subset of the users
+along with their Twitter biographies, messages of at most
+140 character in which users can describe themselves. All
+data were collected by Sinnia using Twitter Gnip Power-
+Track API [72]. We have made available a list containing
+tweet IDs used in this study (see Data Statement).
+There is an ongoing debate about the ethical implica-
+tions of using Twitter data for research. Some authors
+maintain that the lack of complicated privacy settings on
+Twitter means that messages placed in the public domain
+are intended to be there; alternatively, other authors con-
+sider that posting tweets should not be interpreted as
+permission to use tweets for research [39]. We believe
+that the topic, analysis and results presented here serve
+the public interest and pose no risk to users. None of
+the tweets we analyse and reproduce here contain no-
+table amounts of sensitive or private material. Indeed,
+the most prominent users in our data set also maintain
+other online pro les and produce tweets for public con-
+sumption.
+B. Construction of the di erent networks
+The number of  diabetes  tweets follows weekly cycles
+of activity (Fig. 1). Consequently, we group the data in
+weekly bins. Given that the date of the original mes-
+sage and the date of its retweet are not always the same,
+retweets are labelled by the date of the original posting.
+3
+FIG. 2:
+In retweet networks, nodes that are exposed to
+content can  pass it on  to their followers. The  ow of data
+goes in the opposite direction to the interest of the users,
+where interest is represented by arrows which indicate the
+direction of attention.
+Retweet network: For each week w, we construct a
+directed, weighted retweet network with N (w) nodes, cor-
+responding to all the users who participated in a retweet
+event either actively (by retweeting) or passively (by hav-
+ing their statuses retweeted by someone else). A directed
+connection (edge or arc) exists between two nodes if the
+source node has retweeted the status of the target node,
+and the weight of the edge corresponds to the number
+of retweets (see Fig. 2), i.e., we de ne the N (w)   N (w)
+adjacency matrix of the retweet network as A(w), where
+the element Aij(w) records the number of retweets from
+i to j over week w. For a given node, the in-degree cor-
+responds to the number of users who have retweeted sta-
+tuses of that node, and the out-degree corresponds to the
+number of users whose status that node has retweeted. In
+the example network from Fig. 3A, node 1 has retweeted
+statuses of nodes 3, 4 and 7, and has had nodes 2, 6 and
+8 retweet some of her own (i.e. the in-and out-degree of
+node 1 are both three). A weakly-connected component
+is a group of nodes that are all mutually reachable if we
+ignore the direction of the edges. For example, the initial
+network in Fig. 3A consists of only one weakly-connected
+component, but its co-citation and bibliographic projec-
+tions (de ned below) have six and  ve components re-
+spectively.
+In a retweet network, the direction of the edge signi-
+ es an explicit declaration of interest (i.e. source nodes
+ nd certain messages worth passing along to their follow-
+ers) and information  ows in the opposite direction (i.e.
+from the target nodes), as shown in Fig. 2. Such retweet
+networks have a distinct structure, with many weakly-
+connected components and an abundance of  star  motifs,
+in which a highly-retweeted node (with high in-degree) is
+surrounded by many nodes that point almost exclusively
+to the star node. Figure 3B shows a typical network for
+one week in our data with 34,000 nodes and about 4,000
+weakly-connected components. Over 50% of the nodes
+belong to a giant connected component (nodes in pur-
+ple) whereas each of the smaller components contain less
+that 1% of the nodes.
+A fundamental feature of retweet networks is the fact
+that they are directed (they may contain extreme asym-
+metry of interest,
+ leaders  and  followers  and other
+roles). Directionality entails additional computational
+4
+FIG. 3: A: Projections of a retweet network. The origi-
+nal retweet network is directed. The co-citation projection
+joins nodes who are the targets of the interest of other nodes.
+Nodes 5 and 6 have both been rewteeted by node 4, hence
+they are connected in the co-citation projection (edges in
+red).
+In turn, nodes 2 and 8 have both retweeted statuses
+by node 1, which is why they are connected in the biblio-
+graphic projection (edges in magenta). Both of the projec-
+tions have several disconnected components. B: Example of
+retweet, co-citation and bibliographic networks constructed
+from one week s worth of interactions in our data. There are
+approximately 44,000 nodes, each coloured according to their
+weakly-connected component in each network.
+challenges, which is why it is often neglected. However,
+ignoring directionality in such settings destroys valuable
+information and can severely a ect the results and their
+interpretation [1]. Our analysis below takes the directed
+and temporal nature of the network into full account.
+Co-citation and bibliographic projections of the
+retweet network: To understand not only who drives
+conversations and produces in uential content, but also
+which users are instrumental in the dissemination of con-
+tent, we study two useful networks derived from the orig-
+inal retweet network: the co-citation and bibliographic
+projections [33]. These projections re ect the asymmetry
+of the original adjacency retweet matrix A(w), and pro-
+vide (a) information about the shared interests of users
+who have retweeted tweets by the same authors (biblio-
+graphic) and (b) information about whose tweets gener-
+ate responses from the same users (co-citation).
+The co-citation network projection of A(w) is an undi-
+rected, weighted network de ned on the same set of N (w)
+nodes as the original retweet network with adjacency ma-
+trix C(w):
+C(w) = A(w)T A(w).
+(1)
+An edge of the co-citation network Ci,j(w) exists when
+at least one user has retweeted messages from both users
+i and j during week w. Hence this network links authors
+of tweets that elicit interest in users, even though they
+themselves may belong to di erent spheres of interest and
+FIG. 4: A: Number of nodes, number of components and size
+of the two largest connected components in the co-citation
+projection through the observation period. B: Same mea-
+surements for the bibliographic projection.
+activity (Fig. 3). The number of disconnected nodes in
+the co-citation network is typically large (Fig. 4A). For
+example, all nodes whose in-neighbours have a maximum
+out-degree equal to 1 in the retweet network will be iso-
+lated in the co-citation projection (Fig. 3).
+The bibliographic network projection is the converse of
+the the co-citation network.
+It is also built from the
+original retweet network A(w) and has adjacency matrix
+B(w) = A(w)A(w)T .
+(2)
+This projection links pairs of users who have retweeted
+messages posted by at least one author in common; in
+other words, the bibliographic projection connects users
+who share interests. In a retweet networks context the
+size of the largest component in the bibliographic projec-
+tion is typically larger than in the co-citation projection
+(Figs. 3B and 4); this is due to the fact that, on average,
+Twitter users retweet more than they are rewteeted.
+Note that all nodes in the original retweet network ex-
+ist in both projections. However, depending on their con-
+nectivity (induced by the interest elicited or the interest
+bestowed) they may appear isolated in one or both of the
+projections. Figure 3 shows an illustration of the con-
+struction of the co-citation and bibliographic projections
+in a simple example, as well as the retweet, co-citation
+and bibliographic networks compiled from a typical week
+in the data.
+Follower network:
+In addition to the retweet net-
+work, we also constructed a follower network for a small
+subset of users of interest (see Sec. III B 2 below).
+In
+this network a directed connection between two nodes
+exists when the source node follows the target node on
+Twitter (i.e., is subscribed to the target s content). The
+interpretation of the follower network is similar to the
+retweet network (Fig. 2) in the sense that a directed con-
+nection is a declaration of interest, with content  owing
+in the opposite direction [1]. One key di erence between
+retweet and follower networks is that connections in the
+retweet network can be understood as localised expres-
+sions of interest associated to a speci c tweet, whereas in
+follower networks a connection may be understood as a
+more general (and stable) expression of interest.
+C. Computation of the hub and authority scores
+over time
+Hub and authority scores provide a useful tool to anal-
+yse directed networks [32]. Intuitively, a hub is a node
+whose outgoing connections point to important nodes
+in the retweet network (authorities); conversely, an au-
+thority is a node with many incoming connections from
+hubs. The entries of the lead eigenvectors of the adja-
+cency matrices of the co-citation and bibliographic pro-
+jections C(w) and B(w) correspond to the authority and
+hub centrality scores of the nodes during week w. A node
+may rank highly as hub, authority, both or none, as we
+will show below.
+Henceforth, for notational simplicity, we drop the w
+from the matrices A(w), C(w) and B(w), but the depen-
+dence on w remains implicit.
+An alternative way to understand hub and authority
+scores is through the singular value decomposition (SVD)
+of A: A = U VT , where U and VT are unitary ma-
+trices containing the left and right singular vectors, re-
+spectively, and   = diag( i) is the diagonal matrix of
+the N singular values. The entries of the leading left and
+right singular vectors of A correspond to the hub and
+authority scores, respectively [40].
+As
+explained above,
+the bibliographic and co-
+citation networks contain several disconnected compo-
+nents (Figs. 3 and 4). The largest connected compo-
+nent in a typical co-citation network in our dataset con-
+tains about 10-15% of the nodes, yet it is responsible
+for producing about 50% of messages that have at least
+one retweet. This observation is consistent with Ref. [9]
+which reports that about 50% of URLs on Twitter are
+5
+posted by a small minority of  elite users . On the other
+hand, since the number of users who retweet is much
+larger than those whose messages are retweeted, the bib-
+liographic projection has a much larger giant connected
+component, with about 75% of the nodes.
+Given the fragmented nature of the projection net-
+works, we compute hub/authority scores weight-averaged
+over all components as follows. Let the co-citation net-
+work for a given week C have K weakly-connected com-
+ponents (excluding components of size 1), which we label
+with the index k in order of decreasing size (i.e., k = 1
+corresponds to the largest and k = K to the smallest
+k=1 Ck, where Ck is the
+Nk   Nk adjacency matrix of the k-th component. For
+each component k, we compute the authority score, vk:
+component). Therefore, C =(cid:76)K
+Ckvk =  max
+k
+vk,
+k
+v =(cid:2)(N1/N ) vT
+where  max
+is the largest eigenvalue and vk is nor-
+malised such that all
+its entries add up to 1 (i.e.,
+||vk||1 = 1). The authority score of the i-th user in
+component k is vk(i). We then aggregate the authority
+scores of all components into the weight-averaged vector
+. The score for each
+node is weighed according to the size of the component
+in which it is found, thus ensuring that the scores are
+comparable and that we do not discard information from
+the smaller components.
+1 , . . . , (NK/N ) vT
+K
+(cid:3)T
+To extract the hub scores in each week we follow the
+same procedure on matrix B.
+D. Topic extraction
+Topic extraction from the data proceeds in several
+steps. First, the tweets in the dataset are grouped in
+weekly bins (as for the networks constructed above). For
+each week, the raw text is pre-processed and a word co-
+occurrence network is created. The probability that the
+tweets in each bin belong to di erent topics is computed
+using techniques from textual analysis and community
+detection for graphs. Note that topics are extracted us-
+ing only the original tweets retweets are excluded be-
+cause they do not add any new topical information. The
+details of each of the steps for topic extraction are as
+follows:
+a. Text pre-processing: Prior to topic extraction,
+the text of each tweet is processed in the following way:
+  Convert words to lowercase, e.g., the terms  di-
+abetes ,  Diabetes  and  DIABETES  are all pro-
+cessed as the same word.
+  Remove
+all
+non-
+alphanumeric characters, i.e., we compare tweets
+based only on the words they contain.
+punctuation
+signs
+and
+  Replace collocations for speci c terms (e.g.,  Type
+2  or  T2D  are replaced by  type2 ) in order to ho-
+Raw tweet
+US FDA approves Johnson & Johnson diabetes drug, canagli ozin -
+Reuters http://t.co/pKYCbqiVAZ #health
+SAVOR-TIMI 53 sets new standard for cardiovascular outcome trials
+in diabetes http://t.co/j9jkB1RagE #pharma
+RESEARCH AND MARKETS: Type 2 Diabetes - Pipeline Review,
+H2 2013 http://t.co/5afh5ypDTl
+Last Dec my son (then 4) was diagnosed with type 1 Diabetes.
+JDRF UK do excellent research into prevention, lifestyle and cure.
+#walkforcure
+Processed tweet
+us fda approv johnson johnson drug canagli ozin reuter health
+savortimi set standard cardiovascular outcom trial pharma
+research market type2 pipelin review h2
+last dec diagnos type1 jdrf uk excel research prevent lifestyl cure
+walkforcur
+TABLE I: Examples of  raw tweets  and their processed version prior to topic extraction.
+6
+mogenise terms that are known to refer to the same
+concept.
+  Remove stop-words and special words (articles,
+conjunctions, etc) [35], numbers and vestigial
+URLs, which bear no topical information.
+  Stem the text [41]. This step strips su xes so that
+related words are mapped to the same stem, e.g.,
+ house ,  houses ,  housing  are replaced by  hous .
+The result of this pre-processing step is illustrated in Ta-
+ble I, which contains examples of  raw tweets  and their
+processed version.
+b. Topic extraction from word co-occurrence
+graphs: After text pre-processing, we extract the top-
+ics from the tweets in each weekly bin in the following
+steps:
+1. Following Lancichinetti et al [34], we create a word
+adjacency graph for each weekly bin. The nodes in
+the graph are words, and edges indicate two words
+that co-appear in tweets with higher probability
+than one would expect at random (i.e., when the
+probability of such an edge in a random network
+with the same degree sequence is less than 0.05).
+2. We analyse the word co-occurrence graph using
+Markov Stability [42, 43] (in contrast with the use
+of Infomap in Ref. [34]) to extract relevant commu-
+nities (or groups) of words that co-appear in tweets
+more consistently than with words outside of their
+own group, and to consider groupings of di erent
+granularity [1, 44].
+3. The communities of words are used as the input for
+the Latent Dirichlet Allocation (LDA) topic extrac-
+tion method [45]. Hence, the communities obtained
+with Markov Stability provide an initial guess for
+the topics to which a tweet is likely to belong.
+Speci cally, we assume that each document (tweet)
+di belongs to a topic (community) tk with a prior
+probability P0(di|tk) that is proportional to the
+number of words that document di has in topic tk.
+LDA then proceeds iteratively to produce the pos-
+terior probability that document di belongs to each
+topic tk: P (tk|di). LDA also produces P (hj|tk), the
+probability of  nding word hj given topic tk.
+4. We make the assumption that, given their brevity,
+each tweet can only belong to at most one topic.
+This entails collecting only the assignments of top-
+ics to documents with abnormally large values (i.e.,
+the outliers) of P (tk|di), and discarding all other
+values. A tweet is assigned to a topic if P (tk|di) >
+pc(99) + IPR, where pc(99) is the 99th percentile
+of the distribution and IPR is the inter-percentile
+range: IPR = pc(99)   pc(1). Figure 5A shows an
+example of this criterion where a tweet about the
+FDA s approval of a diabetes drug is assigned to a
+topic that contains almost 2,000 tweets about this
+event.
+This method for topic extraction is applied separately
+to each of the 43 weeks in our dataset. Figure 5B shows
+the number of topics in each week. The average number
+of topics per week is 75.
+E. Themes from topics:
+In order to identify the dominant themes in the
+dataset, we applied open thematic coding [38] to the top-
+ics obtained in the previous section, for a random selec-
+tion of weeks. In total, we analysed in-depth 290 topics
+(from weeks 34, 39, 44 and 50 of 2013, and week 2 of
+2014) containing 63,000 processed tweets with identi ed
+topic.
+The analysis consisted of reading all the tweets in each
+topic, and assigning a label to the topic according to the
+dominant theme present. In general, one or two themes
+clearly dominated each topic. In some cases, tweets in
+one topic were too mixed to identify one single theme; in
+this case, we did not assign a theme label but we read
+the tweets to ensure that no new themes emerged within
+the topic. As per standard practice, we continued this
+process until saturation; that is, until no new themes
+emerged from the evaluation of topics, and the repeti-
+tion of existing theme labels was constant [37]. This pro-
+cess was repeated twice by the same researcher to ensure
+consistency. For ease of representation, we then grouped
+the themes identi ed through open thematic coding into
+thematic groups, as seen in Table II.
+In summary, our analysis of content progressed as fol-
+lows:  rst, we automatically extracted weekly topics from
+7
+ant connected component of this network comprises 880
+nodes, with the rest being either isolated or suspended.
+To extract the communities in the networks, we used the
+Markov Stability community detection framework as de-
+scribed in Refs. [1] and [46]; we found a robust partition
+of the network into seven communities of di erent size.
+We labelled the communities according to the type of ac-
+counts that each contains (e.g., health agencies, diabetes
+advocacy, research scientists, and so on).
+III. RESULTS
+A. The  what  of diabetes on Twitter
+As described above, the tweets on our dataset were  rst
+automatically grouped into topics, and their content was
+then manually assigned themes using open thematic cod-
+ing. These themes fall into one of four broad thematic
+groups: health information, news, social interaction, and
+commercial. For tweets in these groups, although the
+content and messages changed from week to week, the
+themes remained constant. In addition to these four the-
+matic groups, we identi ed a  fth group of tweets with
+consistent and recurrent content. In this distinct group,
+the speci c content was repeated consistently across the
+data sample (i.e., the tweets did not change from week
+to week).
+In Table II, we present the thematic groups
+and the themes within each group. Figure 6 contains a
+visual summary of the thematic groups as  word clouds 
+with the 200 top words in each thematic group (i.e., the
+words most likely to appear in the topics), and  word
+clouds  with the usernames (scaled to size of number of
+tweets) of the 200 most active users (available also as a
+Supplementary spreadsheet (see Data Statement). Note
+that the term diabetes has been removed from the analy-
+sis because it appears in all of the tweets. It is important
+to remark that the most active users (e.g., those who
+tweet the most) are not necessarily the most important,
+or  central  in the di erent networks, from the point of
+view of information generation.
+We now discuss in more detail the themes, topics and
+users found in each of the  ve thematic groups.
+1. Health information tweets
+One of the largest thematic groups consists of health
+information, research  ndings, recommendations, advice
+and warnings, which are all abundantly tweeted and
+retweeted. Figure 6A contains a word-cloud with the 200
+most probable words in the topics of this group (the total
+number of distinct terms is 29,647 in 90 topics from open
+thematic coding). The top 10 words in this thematic
+group are: risk, type2, disea (disease, diseased), heart,
+research, month, obe (obese, obesity), fruit, news, awar
+(aware, awareness). Such terms are typical of tweets
+that fall within this broad thematic group, as seen in
+FIG. 5: A: Box-plot of the posterior probability of a speci c
+tweet di after LDA optimisation. The red line indicates the
+median LDA assignment score for this tweet, the box indicates
+the 25th and 75th percentiles, and the whiskers mark the
+interpercentile range (IPR, see text). There are three topics
+(red crosses) that lie outside the interpercentile range, the one
+furthest to the right is designated as the topic of the tweet.
+This tweet belongs to a topic which covers the FDA s approval
+of a diabetes drug in late March 2013. The topic belongs
+to a theme the  Commercial  thematic group in Table II. B:
+The number of topics extracted varies for each week with an
+average of 75.
+the tweets; second, we manually applied open thematic
+coding until saturation to obtain a list of coded themes;
+and third, we manually placed these themes into thematic
+groups.
+In order to learn which themes dominated in tweets by
+the most in uential accounts, we also analysed the tweets
+by the top authority nodes. Here, tweets belonging to
+each user were coded according to themes identi ed in
+the thematic analysis.
+F.
+Interest communities in the follower network of
+authorities:
+To complement the textual analysis above, we also
+analysed the community structure of the follower net-
+work of the 1,000 accounts with the highest cumulative
+authority score over the observation period. The gi-
+8
+Thematic group
+Health information
+News
+Social Interaction
+Commercial
+Recurrent content
+Theme
+Public health messages
+Links to articles, blogs and studies about risks, treatment and cure
+Population health fears
+Publicity about outreach and awareness events and activities
+Advice about diabetes management and diagnosis
+Lifestyle, diet and cookery tips, news and links
+Life stories and experiences (some for marketing purposes)
+Dangers of sugar, sugar replacements and/or soda
+Headline links to particular  breakthrough  studies or technologies
+Celebrity news
+General news articles about diabetic people or pets
+News relating to the pharmaceutical industry and the economy
+Users joking about how what they have eaten is likely to give them diabetes
+Chatter and social interchanges that include mentions of diabetes
+Everyday experiences of diabetes
+Stigmatising comments
+Banter and sexual innuendo and humour relating to sweetness and diabetes
+Advertisements for jobs in the pharmaceutical and care industries
+Marketing for a speci c product, app, treatment, event or service
+Pharmaceutical, health industry and stockmarket updates and FDA approvals
+Sale of diabetes drugs, diets or treatment products online
+Song lyric:  All the time  by Jeremih [47]
+Song lyric:  I m still happy  by Boosie Badazz [48]
+Viral  fact : Alcohol reduces diabetes risk
+Viral  fact : Urine tasting
+The mathematics joke
+TABLE II: Thematic groups and associated themes obtained through open coding applied to the topics detected in the tweets
+of the collected dataset.
+Figure 6A and Supplementary Spreadsheet, as well as
+in Table III in the Appendix containing speci c exam-
+ples of tweets. The tweets in this group include informa-
+tion about diabetes (its causes, treatments and cures);
+technologies and pharmaceutical products that can be
+used for managing it; as well as risks associated with the
+disease. Other health-related messages include publicity
+about outreach and awareness events, activities and in-
+formation. These individual messages are typically not
+long-lived, and are only visible at the top of a user s time-
+line for short periods of time [49]. In general, there is a
+high turnover in the content that each user is exposed to,
+even though many messages (e.g., those from newspapers
+and online media) are posted multiple times. One of the
+themes that is less variable in this regard concerns the
+dangers of sugar, sugar replacements and/or sodas. Its
+frequency is unsurprising given the nature of diabetes as
+a problem of blood sugar regulation.
+It is worth men-
+tioning that the largest spike of activity in our data (in
+November 2013, see Fig. 1) is in part due to a surge in
+tweets about World Diabetes Day on 14 November 2013.
+The health information in the collected sample does
+not appear to be directly or speci cally associated with
+health promotion groups. Instead, such tweets are posted
+by users with di erent claims to expertise:
+individuals
+who have experienced diabetes; personal trainers mar-
+keting their services; companies selling lifestyle products
+or services; and other users with an apparent interest in
+diabetes, cookery and healthy eating. These tweets in-
+clude advice about diabetes management and diagnosis,
+cookery and diet tips, life stories and experiences, and
+links to articles about new treatments or promising cures.
+Some tweets make claims about  curing  diabetes, or of-
+fer natural or  miracle  treatments. Advice of this nature
+appears to be authoritative in tone and language, mak-
+ing it di cult to distinguish it from advice disseminated
+by o cial health authorities. Links contained in such
+tweets point to di erent types of authoritative sources of
+content: from people who have  rst-hand experience of
+diabetes, to marketing agencies trying to sell a particu-
+lar food, supplement or device, to hospitals attempting to
+communicate a speci c health message. Home remedies
+and  miracle  cures appear alongside health tips and rec-
+ommendations. Digests and newsletters speci cally con-
+taining diabetes-related news (where the authors gather
+information from multiple sources around the internet
+and supply it to their followers) appear at di erent mo-
+ments in time and mix all such messages together.
+2. News tweets
+News-related tweets in the collected dataset typically
+list a headline of a news article; they sometimes give the
+ rst line of the story and often also provide a weblink to
+the complete story. These tweets rarely relate to health
+promotion or education messages. Figure 6B contains
+the 200 most probable words theme (out of 10,416 in 29
+topics). The top 10 words are: type2, risk, fruit, type1,
+eat, peopl (people, peoples), blueberri (blueberry, blueber-
+ries), cut, research, juic (juice, juicer, juicing, juicy).
+Some news-related tweets communicate research break-
+through studies or technologies, which may be reported
+with messages of hope for those who have diabetes, in
+particular T2. Just as common in this thematic group are
+tweets with celebrity news (especially about celebrities
+diagnosed with diabetes) and diverse news about peo-
+ple or pets with diabetes. Another prominent theme in
+this group consists of tweets disseminating news head-
+lines about the pharmaceutical industry and stock mar-
+ket. Diabetes treatment is a lucrative industry because
+diabetes is a chronic condition that requires regular and
+ongoing treatment (rather than cure), and so the demand
+for pharmaceutical products and lifestyle aids is inelas-
+tic [50]. Furthermore, the number of people with T2
+is projected to increase dramatically in the future as a
+result of population ageing and obesity [51], which will
+further expand the market. Table IV in the Appendix
+contains examples of tweets in this category.
+3. Social interaction and humorous tweets
+Twitter is not simply an information-sharing technol-
+ogy, but also a space that permits (virtual) social inter-
+action [3, 8]. Social interaction tweets use language dif-
+ferently to the thematic groups above: they are typically
+informal in tone, their attention to spelling and gram-
+mar is limited, and they often use exclamation marks
+and punctuation to express fun, laughter, exasperation,
+sarcasm, irony, and abuse. The top 10 words (out of
+31,061 in 97 topics) in this group are: give, health, food,
+die, think, fat, year, diet, diseas (disease, diseased), cau
+(cause, causes, causing). See Fig. 6C for the theme s
+word-cloud. Users frequently joke about how what they
+have eaten is likely to give them diabetes, with a wide
+variety of sugary foods and drinks, junk foods and other
+ unhealthy  options being cited. Such tweets indicate a
+level of awareness of dietary guidelines and diabetes ae-
+tiology. Users have conversations and interact about a
+diversity of topics in a chatter that is not necessarily di-
+rectly related to diabetes but may include references to
+it. People who have diabetes particularly T1 also talk
+about their daily experiences of their bodies, sugar man-
+agement, and social acceptance or stigma; such tweets
+may elicit retweets or messages of support from others.
+Some users also talk in terms of  us  (with T1) and
+ them  (without). For example, one user talks about T1
+as being a  perk  or feature he/she looks for in a romantic
+partner:
+I haven t stopped thinking about this girl for seriously
+like...a month. AND she has diabetes! #diabetes-
+perks
+Such chatter often elicits retweets and replies, including
+messages of support, or appreciation of a joke.
+9
+On the other hand, stigmatising comments, especially
+tweets which blame diabetic people for bringing the dis-
+ease on themselves through, for example, poor diet or
+lack of physical activity, are abundant in the dataset.
+Figure 6C and the Supplementary Spreadsheet contain
+numerous examples of profanity and pejoratives. Faced
+with such messages, users with T1 diabetes frequently
+point out that it is important to di erentiate between
+T1 and T2, insinuating that while T1 diabetes is not a
+person s  fault , T2 may well be. Other tweets include
+calling other people  diabetic  as an insult and wishing
+diabetes upon a person a user does not like. Table V
+in the Appendix contains examples of social interaction,
+humorous and stigmatising tweets.
+A distinct theme in this category consists of tweets
+with sexual innuendo. At their mildest, such tweets refer
+to boy-band members or other (often celebrity)  crushes 
+that are so sweet they are diabetes-inducing. At their
+most extreme, tweets joke that others  bodily  uids and
+genitals are so sweet they are diabetes-inducing. These
+tweets contain weblinks to pornography websites or other
+explicit material. Like the jokes discussed earlier, these
+tweets might re ect a baseline awareness of the links be-
+tween sugar and diabetes.
+4. Commercial tweets
+As mentioned previously, diabetes is an industry with
+an attractive (and expanding) market:
+it is a chronic
+condition which is currently incurable, and it requires
+constant and regular testing, surveillance and treatment.
+The top 10 words (out of 5,841 words in 20 topics) in this
+group are: type2, drug, job, manag (manage, manager),
+care, health, marijuana, sale, test, forsal (for sale). See
+Fig. 6D for the theme s word-cloud and the most active
+users within this topic. People with diabetes depend on
+di erent technologies, consumables, health services, and
+pharmaceutical products. This commercial dimension of
+diabetes is re ected in many Twitter messages. Tweets
+concerned with stockmarket listing announcements, FDA
+approval (e.g., Fig. 5A), court cases, and business re-
+cruitment (for example, a company hiring a new CEO,
+or advertising for new sta ) are common. Table VI in
+the Appendix contains typical examples of these types of
+message.
+5. Recurrent content
+While the speci c content of tweets in di erent themes
+varies over time, there are some tweets whose content
+appears consistently across time over our dataset. The
+top 10 words (out of 8,731 words in 19 topics) in this
+theme are: sugar, eat, blood, sweet, risk, type2, drink,
+high, reduc (reduce, reducing, reduction), health. Fig-
+ure. 6E contains this theme s word-cloud. There is a
+large number of tweets repeating lyrics from two speci c
+10
+been reported to reduce diabetes [53]). These few spe-
+ci c facts appear intended to entertain or amuse. They
+retain almost identical phrasing over time, with sustained
+popularity. In fact, such facts are repeated more consis-
+tently over time than other headlines, health messages
+and reports.
+One of the most prominent instances of recurrent con-
+tent in our data corresponds to various versions of a
+mathematics-themed joke. A typical instance of this joke
+is
+Math Problems: If Jim has 50 chocolate bars, and
+eats 45, what does he have? Diabetes. Jim has dia-
+betes...
+See Table VII in the Appendix for more versions of the
+same joke. This joke appears consistently in our dataset
+(44,130 times including retweets, Fig. 1). As with other
+jokes about certain foods that are linked to diabetes, for
+this joke to be amusing or entertaining (which its sheer
+volume suggests it is to many) it requires that readers and
+retweeters have a minimum awareness of certain foods
+that might contribute to diabetes. To highlight the con-
+sistency with which the mathematics joke appears in our
+data, we also show on Fig. 1 the number of tweets men-
+tioning the actor Tom Hanks.
+In October 2013, Tom
+Hanks announced he had Type 2 diabetes, which was
+discussed and shared widely on Twitter (13,454 tweets
+in our dataset). In contrast to the mathematics joke, the
+number of tweets about Tom Hanks displays an abrupt
+ exogenous peak  (evidence of external events a ecting
+the behaviour of a system [54]) followed by a steady re-
+laxation to a baseline level.
+B. The  who  of diabetes on Twitter
+We now turn our focus to the analysis of the users in
+the retweet networks extracted from our dataset. Fig-
+ure 6 provides a visual
+illustration of the users that
+posted more tweets in the topics contained within each of
+the thematic groups. Although helpful, this  gure does
+not provide information about how important these users
+are perceived to be in the community, or the impact they
+have in the conversation about diabetes. Therefore, in or-
+der to understand who are the key users that in uence
+diabetes-related content on Twitter over time, we exam-
+ine the hub and authority scores of all nodes for each of
+the weekly retweet networks from June 2013 to January
+2014 (see Section II C for a description of the method-
+ology). We then examine the content generated by the
+most important users (according to their hub and author-
+ity scores), and we  nally analyse their follower network
+(i.e., who follows whom within this group of important
+users).
+1. Authorities and hubs in the weekly retweet networks
+FIG. 6: Top 200 words and most frequent authors in each
+of the thematic groups in Table II. The size of each word is
+proportional to its probability of appearing in a topic in the
+group. The size of the username is proportional to the number
+of tweets in the thematic group.
+rap songs, both of which contain the term  diabetes  (see
+Table VII). Of these,  All the Time  by Jeremih [47] was
+released in 2013, so it is possible that the appearance of
+one line from the song in many tweets in our sample may
+be linked to marketing and initial responses to the song.
+The lyric repeated from the song relates to the sexual
+innuendo discussed previously, so its continued presence
+may result from it being used to express a joke rather
+than as a direct and deliberate citation (indeed, the song
+name or artist are rarely mentioned). The second song
+ I m Still Happy  by Lil Boosie (now Boosie Badazz) [48]
+was released on a 2010 digital mixtape, suggesting that
+the lyric has been consistently attractive to users over
+time. This lyric is about determination in the face of
+challenges; the artist himself has T1 and has talked with
+his fans about the challenge of managing his diabetes.
+In addition, several speci c viral  facts  and jokes are
+posted frequently and repeatedly (for example, that tast-
+ing urine for sweetness was a method to detect diabetes in
+the past [52], or that consuming alcohol moderately has
+11
+FIG. 7: Top ten users by aggregate authority score, number of weeks with nonzero authority score, and brief description.
+a. Authority nodes: Figure 7 shows the score over
+time for the top ten authorities ranked by their aggregate
+weekly score. Of these authorities, nine are institutional
+accounts and one belongs to an individual blogger, Kelly
+Kunik (@diabetesalish). This blogger is a diabetes advo-
+cate who has had T1 for over 30 years and is involved with
+a number of diabetes advocacy organisations. She also
+administrates the Diabetesaliciousness blog [73], which
+ spreads diabetes validation through humour, ownership
+and advocacy . Kunik s tweets and blog posts are hu-
+morous, casual, and interpersonal in style.
+of
+the
+institutional
+Three
+accounts belong
+to
+stockmarket-listed commercial ventures (i.e., established
+with the purpose of generating pro ts for shareholders).
+Of these, two (@diabetesfacts and @EverydayHealth) be-
+long to Everyday Health Media. This company, which
+does not claim to have any speci c diabetes expertise,
+owns and operates a range of brands.
+It was founded
+in 2002 by Ben Wolin (an entrepreneur who has pre-
+viously worked for Beliefnet, acquired by News Corp.,
+PBS, Warner Brothers and Tribune Interactive), and
+Mike Keriakos (a media sales expert who began his ca-
+reer at Procter and Gamble and who built partnerships
+between Everyday Health and AOL, Google, YouTube
+and the ABC). The other listed company account, @Di-
+abetes Sano , belongs to the global pharmaceutical  rm
+Sano , which produces diabetes treatments.
+@WDD (which belongs to the International Diabetes
+Federation). The latter account is established especially
+to promote World Diabetes Day (November 14), although
+it disseminates diabetes information and messages all
+year round. These associations were originally founded
+by physicians and they focus on advocacy and research.
+The remaining three authorities in the top ten be-
+long to not-for-pro t organisations founded by people
+who have experienced T1. These organisations target T1
+speci cally: one is a funding body (@JDRF, an organ-
+isation previously known as Juvenile Diabetes Research
+Foundation), and the other two are blog platforms that
+host discussions and disseminate information (@diabetes-
+blogs and @DiabetesSocMed).
+Figure 8 shows the complement of the cumulative dis-
+tribution (CDF) (i.e., 1  CDF) of the aggregate author-
+ity scores (blue triangles). The distribution of authorities
+shows that over 95% of users involved in a retweet event
+do not feature as an authority at all (in our weekly bin-
+ning). Users who do attain a non-zero authority score
+fall into two categories:
+(i) users with a sporadic or marginal appearance (i.e.,
+they appear in only a handful of weeks and/or not
+in the giant components of the weekly co-citation
+networks). These users are concentrated in the long
+plateau in Fig. 8.
+Another three of the top ten authorities correspond to
+national and international diabetes associations: @Am-
+DiabetesAssn (the American Diabetes Association) @Di-
+abetesAssoc (the Canadian diabetes association) and
+(ii) users who appear more regularly usually as part
+of the weekly giant connected components. These
+users constitute the top 2% in the heavy tail of high
+scores in Fig. 8.
+12
+These hub nodes have a highly variable number of fol-
+lowers. For instance, in August 2016 @Diabetes Month
+had over twenty thousand followers, whereas @abdSauce
+had about 50. What all hubs have in common is a high
+rate of retweeting and a feeble, unsustained presence
+throughout the observation period. Figure 9A shows the
+scores over time for the top ten hubs based on aggregate
+score, along with the number of weeks in which they have
+a nonzero score. The data shows that, in most cases, the
+high aggregate hub score is the result of a  one-o   surge.
+We thus term these  intermittent hubs .
+The biographical information provided by these users
+about who they are and what they do is sparse, often
+vague, and di cult to corroborate. For example, the ac-
+count @1MEDICAL2NEWS claims to be a Dr Richard
+Billard from Los Angeles, but while the account had a
+high level of activity on Twitter in our data (and un-
+til August 2014) there is no other evidence online that
+this doctor exists. Given the extremely active Twitter
+account, it is unusual that this doctor has absolutely no
+other online presence. The rate at which this particular
+user retweeted (on average, 65 times per day), together
+with the lack of any original tweets (or non-retweets),
+further suggests that it could have been an automated
+account assigned an authoritative-sounding alias.
+Figure 8 shows the complementary CDF of aggregate
+hub scores for all users (red squares). In contrast with
+the authority scores, most users (  90%) have a non-zero
+aggregate hub score), and the split between low scoring
+and high scoring hubs is more even, with around 50% of
+the  1.2M users contained in the heavy-tailed part of the
+distribution. There is a distinct bend at the right end of
+the heavy tailed regime of the distribution that contains
+the top 20 users by aggregate hub score, most of which
+have been discussed above.
+To obtain a clearer picture of  persistent hubs , we cre-
+ated an additional activity ranking of hubs by number of
+weeks in which the users have a nonzero hub score (Fig-
+ure 9B). The top hub according to this persistence score
+is still @1MEDICAL2NEWS, which is a hub in each of
+the 31 weeks for which we computed the hub scores. An-
+other noteworthy appearance is @diabetesalish, who is
+also a top ten authority, and who was active as a hub in
+each week as well. The top 1000 (intermittent and per-
+sistent) hub accounts are included in the Supplemental
+Spreadsheet as a resource for further research.
+c. Authorities vs. hubs: Our results in Figs. 7, 8
+and 9 show that the behaviour of the top authorities and
+hubs in our data is fundamentally di erent: top author-
+ities tend to have a more sustained presence throughout
+the observation period than top hubs. We therefore in-
+vestigate the combined characterisation of users in terms
+of joint aggregate hub and authority scores. Figure 10
+shows the accounts with high hub and authority scores
+(i.e., in the global top 2% in both rankings). It is rele-
+vant to study users that have a prominent role as both
+hub and authority. These include not only the the blog-
+ger @diabetesalish and the advocacy group @Diabetes-
+FIG. 8: Cumulative distribution of aggregate hub (red) and
+authority (blue) scores on a doubly-logarithmic scale. The
+horizontal dotted-lines show the proportion of nodes with zero
+aggregate hub (< 10%) and authority ((cid:39) 95%) scores.
+In the Supplemental Spreadsheet, we provide the top
+1000 accounts by aggregate authority score as a further
+resource for research. As with the top ten users discussed
+above, this longer list contains accounts of known com-
+mercial, public and advocacy organisations, as well as
+medical schools, hospitals, individual activists and blog-
+gers. In addition, we note the appearance of academic
+publishers (@bmj latest, ranked 55, @NEJM, ranked 67);
+comedians (@ChelcieRice, ranked 28, @SherriEShepherd,
+ranked 85); news and media outlets (@medical xpress,
+ranked 40, @foxnewshealth, ranked 82); entertainment
+(@FoodPorn, ranked 197); and large health-oriented or-
+ganisations (@WHO, ranked 88, @NIH, ranked 111), all
+of which have a focus much broader than diabetes.
+These accounts disseminate content and information
+about diabetes on Twitter e ciently, with messages that
+elicit a wide, measurable response through re-tweets and
+replies from the general population. The sustained pres-
+ence of the top authorities (i.e., the sustained strictly
+positive authority score in Fig. 7) is an indication that
+these users consistently produce content that resonates
+with the general Twitter-using population.
+b. Hub nodes:
+The top ten accounts by aggre-
+gate hub score have a markedly di erent character to
+the authorities, both in behaviour and types of users. In
+the context of a retweet network, hubs are connectors;
+they forward information generated by authorities across
+Twitter. The top accounts by aggregate hub score over
+time (see Fig. 9A and the Supplemental Spreadsheet)
+contain: content aggregators (i.e., accounts that gather
+internet content for re-use such as @1MEDICAL2NEWS
+or @Diabetes Month); accounts designed to promote
+products like @reTouchMD; automated accounts (e.g.,
+so-called  robots ); and some individual accounts. Some
+of these accounts have been suspended (@shaschneider1);
+have become inactive (@1MEDICAL2NEWS); or have
+seemingly changed hands (@abdSauce) since the data
+was originally collected.
+13
+FIG. 9: Two di erent rankings of hub nodes. A: Top ten users ranked by their aggregate hub score, along with the number of
+weeks in which they appear with a nonzero hub score. B: Top ten users ranked by their number of weeks with a nonzero hub
+score. Note the change in the scale of the y-axis.
+SocMed, but also the following users (highlighted in black
+in Fig. 10):
+  @JDRFAdvocacy: a US Government-funded or-
+ganisation which focuses on building support for
+T1D research; the advocacy account of @JDRF;
+(authority rank, hub rank) = (38, 234).
+  @askmanny: Manny Hernandez, a prominent
+Venezuelan-American diabetes advocate who has
+had diabetes since 2002, and whose professional ex-
+pertise is in social media, technology and health
+(authority rank, hub rank) = (12, 208).
+  @amidiabetic: Diabetes advocate and writer Stuart
+Wimbles, who runs a diabetes information website
+and reportedly has T1D, although there is little ad-
+ditional information about him online; (authority
+rank, hub rank) = (20, 366).
+  @DiabetesMine: A website/blog/newsletter run by
+Healthline, a consumer health information website.
+The company has a large team of sta  and a panel
+of three medical advisors (a Professor of Emergency
+Medicine, a drug information specialist, and a phar-
+macist) who provide insights into user needs; (au-
+thority rank, hub rank) = (13, 208),
+  @KayleighAdams3: Account currently suspended;
+(authority rank, hub rank) = (300, 64).
+  @theNGdoc: Nigeria Diabetes Online Community,
+a non-government organisation launched in 2013 to
+provide empowerment, education and support for
+diabetics in Nigeria. An original idea by Cherise
+Showkley (@DiabetesSocMed), the site is o cially
+recognised by the International Diabetes Federa-
+tion, and two of its Directors are medical doctors;
+(authority rank, hub rank) = (127, 200).
+  @BattleDiabetes:
+Account
+of
+informationaboutdiabetes.com,
+website
+with no details about who it belongs to, but which
+traces to Jill Knapp, a T2 diabetic who is an
+advocate for the American Diabetes Association;
+(authority rank, hub rank) = (49, 442).
+a
+  @KellyRawlings: Diabetes advocate, T1 diabetic,
+journalist, and editor of Diabetes Forecast, a pub-
+lication of the American Diabetes Association; (au-
+thority rank, hub rank) = (107, 387).
+  @diaTribeNews: Account of the diaTribe Founda-
+tion, a non-pro t organisation founded by T1 di-
+abetic Kelly Close to help people with diabetes
+to live better lives. Close was previously a  nan-
+cial sector analyst and also runs Close Concerns,
+a healthcare information  rm focusing on diabetes
+and obesity; the Foundation Board contains one
+medical doctor; (authority rank, hub rank) = (171,
+273).
+14
+2. Extended analysis of authorities: content and
+relationships.
+The analysis so far has established the persistence and
+relevance of a relatively small number of authorities in
+the collected retweet networks. To further our under-
+standing of the group of authorities, we perform two
+further analyses. First, we analyse in detail the the-
+matic content produced by the top ten authorities. Sec-
+ond, we extract the network of followers within the top
+1,000 authorities and characterise the interest communi-
+ties within the network of authorities [1, 46].
+a. Topical analysis of authorities: We analyse
+into which of the topics and themes obtained through
+our earlier analysis of the whole dataset, the tweets from
+the top ten authorities are classi ed. All of the top ten
+authorities post messages frequently and consistently in
+all the themes listed under the thematic group  Health
+Information  in Table II. Some  News  related tweets are
+also featured, although these are less common.
+Two accounts, @Diabetes Sano  and @diabetesblogs,
+do not appear to be dominated by any one of the themes
+listed, but contain a mixture of all the  Health Informa-
+tion  themes. Two other accounts, @WDD and @Am-
+DiabetesAssn participate in themes that are related to
+outreach and advocacy activities, events and news. The
+not-for-pro t organisation and research funding body
+@JDRF produces tweets that contain life stories and ex-
+periences of diabetes su erers more than any other top-
+ten authority.
+Two accounts, @diabetesfacts and @EverydayHealth
+(owned by the same company) focus predominantly on
+lifestyle and diet-related tips, hints and advice. Unlike
+the other authorities, these do not produce outreach or
+advocacy messages at all. Typical messages posted by
+these accounts include:
+@diabetesfacts: Tips on adjusting your insulin pump
+during exercise from diabetes educator Gary Scheiner
+@Integ Diabetes - http://t.co/28Hx8c7PES
+@EverydayHealth: Medical costs for people with
+#diabetes are more than 2x those of people
+without
+Are you budgeting for diabetes?
+http://t.co/2ohMOVJvwp
+it.
+@EverydayHealth: The best beverages to quench
+your thirst with #diabetes http://t.co/HbR4poFfF5
+The vast majority of the tweets from these two accounts
+provide a link back to the company s website, which o ers
+articles containing health and lifestyle advice.
+The messages posted by the accounts @diabetesalish
+and @DiabetesSocMed are dominated by a mix of social
+interactions, banter and advocacy. They participate in
+news topics, but to a lesser degree than the other top-ten
+authorities. Their tone is di erent to the others:
+it is
+informal and conversational rather than authoritative or
+informational. For example:
+@DianetesSocMed: Happy Mother s (aunts, fur baby
+moms, god moms, etc.) to all the women in the dia-
+betes community! Have a great day!
+FIG. 10: Twitter accounts with the highest combined aggre-
+gate hub and authority score (top 2% on both rankings, on a
+logarithmic scale). The colour of each data point corresponds
+to the user s combined hub/authority score; blue denotes a
+lower hub or authority both (relative to the other accounts
+on shown here), a transition towards red denotes strength on
+both scores. Shown here are the usernames of 35 accounts
+that score highly both as hubs and as authorities; usernames
+in black are discussed further in the text.
+  @MyGlu: T1D Exchange, a non-pro t organisation
+providing connectivity for people whose lives are
+a ected by diabetes. The site s leadership team
+contains a physician and pediatric endocrinologist;
+but it also makes a clear disclaimer that discussions
+on the site should not be a substitute for medical
+advice; (authority rank, hub rank) = (122, 326).
+  @abdSauce: Top hub account, has been taken down
+or switched hands since data were collected; a Pin-
+terest account with the same handle belongs to
+Rasheed Adewole, who works with the Nigeria Dia-
+betes Online Community (@theNGdoc); (authority
+rank, hub rank) = (676, 6),
+  @dr bolajidauda: Top hub account, no longer ac-
+tive at the time of analysis; (authority rank, hub
+rank) = (637, 7).
+In addition to posting messages that evoke a broad
+response (as authorities), these users also engage by
+retweeting and replying to messages posted by other
+users (as hubs). The empty upper-right corner in Fig. 10
+indicates that there are no accounts at the very top as
+both hubs and authorities.
+and
+@diabetesalish: #dblog:Dear240 #bgnow: You
+R but  eeting & temporary,
+am perma-
+nently fabulous. #Iwin #diabetes #doc #dsma
+http://t.co/w9iZw83f97
+I
+which links to a blog posting about the user s experi-
+ence with diabetes. Two other users, @diabetesblogs
+and @DiabetesAssoc, also tweet some social and inter-
+personal messages.
+Two accounts, @diabetesblogs and @diabetesalish oc-
+casionally feature marketing or product promotion mes-
+sages. Such instances of marketing are to be expected,
+as some bloggers generate income by advertising goods
+and services, and sponsoring blog advertising in this way
+is not regulated by governments. In this case and oth-
+ers, while marketing might not be made explicit to other
+users, it is still possible that ostensibly non-commercial
+accounts are also practising marketing, especially ac-
+counts owned by stockmarket-listed  rms.
+The topics where the highest number of top ten au-
+thorities converge are related to advocacy and aware-
+ness. For example, a topic about Diabetes Blog Week
+in May 2013 gathered 6 of the top ten authorities: @di-
+abetesalish, @diabetesblogs, @DiabetesSocMed, @Dia-
+betes Sano , @diabetesfacts, and @EverydayHealth. In
+other weeks, the top 10 authorities appear together in
+topics related to promotion of blogs by diabetics (using
+the hashtag #dblogs, which appears in 15,901 tweets in
+the data set), and diabetes social media awareness (using
+the hashtag #dsma, which is promoted by @Diabetes-
+SocMed and appears in 10,945 tweets).
+b. Analysis of the authority follower network:
+In order to understand how the users with high authority
+scores interact with each other, we have mined Twitter
+further to extract and analyse the follower network of
+the top 1000 authorities by aggregate score (see Supple-
+mental Spreadsheet).
+In this network, each of the top
+1000 authorities is a node and a directed connection be-
+tween two nodes indicates that the source node  follows 
+the target node on Twitter.
+This directed network has a large weakly connected
+component of 880 nodes (see Fig. 11) the rest of the
+nodes are either isolated (a handful are connected to only
+one node) or have since been deleted or blocked. We work
+below with this network of 880 Twitter users and their
+follower relationships.
+It is important to note that, unlike the retweet net-
+works studied up to this point, the follower network is
+not  conversation-centric . In a retweet network, the ex-
+istence of a connection is the result of one user retweeting
+a message containing the term  diabetes  at least once. In
+contrast, in the follower network a directed edge indicates
+an interest by the  follower  to receive information from
+the  followed  on a more permanent basis. This decla-
+ration of interest may re ect more general information
+beyond the speci c retweets about diabetes.
+As discussed above, the top 1000 authorities form a
+heterogeneous group of users, including, among others:
+15
+public health institutions and foundations; diabetes ad-
+vocates, researchers, activists, and patients; hospitals
+and medical schools; academic and mainstream publish-
+ers, media, and personalities; companies. The most cen-
+tral nodes in this follower network according to pager-
+ank [55, 56] (a proxy for importance) are users with a
+broad reach and not diabetes-speci c:
+1. Centers for Disease Control & Prevention (CDC),
+@CDCgov (ranked 65 as an authority in the previ-
+ous section).
+2. National Institutes of Health, @NIH (authority
+rank 111)
+3. New York Times-Health, @NYTHealth (authority
+rank 150)
+4. World Health Organization, @WHO (authority
+rank 88)
+5. CDC  u updates, @CDCFlu (authority rank 87)
+6. Recall information from the US Food and Drug Ad-
+ministration (FDA), @FDArecalls (authority rank
+651)
+7. News about medical research and health advice
+from the New York Times, @nytimeswell (authority
+rank 412)
+8. National Public Radio-Health, @NPRHealth (au-
+thority rank 336)
+9. US O ce on Women s Health, @womenshealth (au-
+thority rank 93)
+10. New England Journal of Medicine, @NEJM (au-
+thority rank 67)
+The high centrality of accounts relating to health research
+and information (@NIH, @NEJM, @CDCgov, @WHO,
+@CDCFlu, @womenshealth), health-speci c news media
+(@NYTHealth, @nytimeswell, @NPRHealth), health ad-
+vocacy (@WHO) and commercial activities relating to
+foods and medicines (@FDArecalls) indicates that health
+in general is a key concern to users in this network. Di-
+abetes is one health concern, but it is not isolated from
+others.
+Beyond a ranking of centrality, it is important to ex-
+tract information about relevant communities in this fol-
+lower network, so as to reveal information about who
+the authorities are and about their interests. A com-
+munity in a network is usually de ned as a highly co-
+hesive group of nodes, with above-expected connections
+within the group [57]. In directed networks such as the
+follower network, we de ne communities in terms of  ows
+of information, i.e. as groups of nodes in which inter-
+est or information is retained and circulated. To extract
+such interest communities, we use the Markov Stability
+framework [42, 43], a dynamical framework especially
+well-suited to extract directed communities [1, 44].
+In
+16
+FIG. 11: A: The Twitter follower network of the top authorities. The nodes correspond to the 1000 users with the highest
+aggregate authority score and the follower network was obtained by mining Twitter in September 2015. The users are coloured
+according to their interest community, as obtained through the analysis of the follower network using Markov Stability. We
+ nd 7 main communities (there are an additional six very small communities not shown). B: The authority follower network
+coarse-grained by the obtained communities. Word clouds of the Twitter biographies of the users in each interest community
+were computed a posteriori to help establish the thematic content of each of the seven groups, as summarised in the description.
+The directed arrows re ect the direction of interest between groups, and the width of the arrows is proportional to the number
+of connections between the groups.
+this follower network, we found a robust partition into
+seven main interest communities (Fig. 11B) and six ad-
+ditional communities with three nodes or fewer. Each of
+the seven larger communities contains a distinct group
+of users characterised by domain of activity, background,
+interests or employer (see Supplemental Spreadsheet for
+the full list):
+C0 Health and medicine generalist accounts:
+This community, the largest in the network (30%
+of the nodes, light blue in Fig. 11), contains many
+accounts with high pagerank (including all the top
+10 by pagerank listed above). Most members are
+related in general to health and medicine. For
+example, public health bodies, hospitals, medical
+schools, academic publishers, the health divisions
+of mainstream media, and commercial entities.
+C1 Diabetes-related users: This community (28%
+of nodes, in green) contains the overwhelming ma-
+jority of the diabetes-centred accounts discussed
+earlier, including associations, funders, advocates
+and patients, and companies. All of the top 10 au-
+thority accounts in Fig. 7 belong to this community.
+C2 Lifestyle and well-being users: This commu-
+nity contains accounts related to lifestyle and well-
+being advice, publications, natural and alterna-
+tive remedies, detox, health and organic foods and
+products (17% of the nodes, in red).
+C3 Science writers and media: This commu-
+nity contains science writers (e.g., @bengoldacre)
+and popular scienti c publications, British media,
+and biotech-industry related accounts (11% of the
+nodes, in orange).
+C4 Celebrity and wider public: This commu-
+nity contains celebrities, men s publications, and
+celebrity doctor @DrOz (5% of nodes, in dark blue).
+C5 Tesco-related: In this community, most accounts
+are either owned by the UK retailer Tesco or by its
+employees (3% of the nodes, in yellow).
+C6 Humour: This community contains comedians,
+parody, novelty accounts, and others (2% of the
+nodes, in purple).
+Through this succinct analysis of the follower network
+of authorities we obtain a clearer global picture of: the
+general participants in the diabetes-speci c discussions
+analysed earlier; the groups of interests that are present;
+the audiences involved in the debate; and how they re-
+late to each other. For instance, as Fig. 11B shows, the
+largest community (C0), which contains generalist health
+and medicine agencies, is clearly seen as a reference by
+all other communities, and especially by the three other
+large communities: C1 (Diabetes), C2 (Life-style) and C3
+(Science writers and media). There are other clear asym-
+metries in the follower-followed relationships: C2-lifestyle
+accounts strongly follow C1-diabetes accounts (but this
+following is not reciprocated to the same extent), whereas
+C2 users do not strongly follow C3-science writers/media
+accounts (which largely ignore C2). The connection be-
+tween C1-diabetes and C3-science writers/media is not
+strong in either direction. The presence of the UK re-
+tailer Tesco as a distinct community (C5) in this network
+is also noteworthy; Tesco is a high-pro le supporter of the
+charity Diabetes UK (@DiabetesUK, in C1) [74]. As we
+have previously noted, humour is a prominent feature in
+our datasets, and it makes another signi cant appearance
+here. Community C6, which contains many comedy and
+parody accounts. Parody and comedy communities have
+also been observed in other follower networks obtained
+from di erent topical issues [1]. To provide a visual in-
+terpretation of the communities found, Figure 11B also
+contains word-clouds constructed from the Twitter bi-
+ographies of the members in each community. The word
+clouds are aligned with our descriptions of the interest
+communities.
+In particular the members of communi-
+ties C0, C1, C2, C3 and C5 use consistently-themed lan-
+guage to describe themselves. In contrast, the members
+of the celebrity and humour communities (C4 and C6)
+are heterogeneous in their self-descriptions, yet clearly
+identi able through examination of their usernames. As
+noted in [1], the word-clouds obtained from the biogra-
+phies can be thought of as an independent annotation or
+ self-description  of the communities. It is important to
+remark that the biographies were not used in the analysis
+of the network.
+IV. DISCUSSION
+Twitter is a source of information and interaction for
+a growing section of the world s population [58]. Hence,
+understanding online conversations around health issues
+on Twitter (and social media platforms more broadly) is
+important, especially since such platforms are frequently
+considered as possible tools in public health outreach and
+health promotion initiatives [20, 21, 59 61]. Such initia-
+tives are designed based on extended assumptions about
+the Twitter health landscape, the messages which domi-
+nate it, and the interactions of users within it. However,
+detailed data-driven research can help ascertain the va-
+lidity of such assumptions and enrich our understanding
+of the online landscape and its implications for popula-
+tion health.
+In our study, references to diabetes on Twitter fall into
+four broad thematic groups: health information, news,
+social exchanges and commercial messages (Table II).
+While these groups de ne a body of consistent themes,
+speci c messages are largely irregular and variable over
+time, both in their language and content.
+In contrast, there exists an additional group of highly
+consistent messages that are propagated through popu-
+lar culture and humour, including jokes, song lyrics or
+viral  facts . Such messages are consistent in content and
+17
+style over time as they continue to be posted and shared.
+Humorous tweets, banter, jokes and social engagement
+(both supportive and stigmatising) are common in our
+data. Tweets with such content have a di erent tone and
+vocabulary than tweets containing authoritative posts,
+formal health messages or news headlines. This obser-
+vation is in line with previous reports, which have found
+that the most retweeted tweets are emotionally evocative
+(either humorous or evoking anger) [46, 62, 63]. More-
+over, we also  nd that these tweets appear on Twitter
+more persistently over time than other tweets in the sam-
+ple (Fig. 1). From a health promotion perspective, this
+highlights a need to consider not only the consistency of
+slogans or lines in the messages, but also their style and
+sentiment. The importance of sentiment in promoting
+dietary choices has also been discussed in Refs. [64 66].
+The abundance of jokes and sexual innuendo about
+foods and substances that contribute to diabetes indi-
+cate at least a basic understanding of diabetes, some of
+its causes, and its connection to blood sugar. The embed-
+ding of such fundamental understandings about diabetes
+in online social media may be the result of health e orts
+in nutrition over the past decades. This observation is
+at odd with assumptions that more health education is
+required to help people to understand the sorts of foods
+which might contribute to the development of diabetes.
+Furthermore, such use of humour may imply a sense of
+powerlessness to make  healthy  choices as users seem-
+ingly mock health advice when faced with realities of the
+food and drink products they encounter on a daily ba-
+sis [67].
+When it comes to the  who  of diabetes on Twitter, our
+analysis shows a clear separation between the relatively
+few accounts that produce the most engaging content
+(authorities), and the broader audiences that dissemi-
+nate and respond to it (hubs), as seen in Fig. 10). Only
+about 10% of the accounts in our dataset (approximately
+120,000) produce tweets that evoke some (heterogeneous)
+response (Fig. 8). Among the top authority accounts, we
+ nd a mix of stockmarket-listed  rms; public, civil and
+grassroots organisations; and individuals who have expe-
+rience as diabetes patients and care-givers. The engage-
+ment levels of all authorities are sustained throughout
+the observation period, and it is di cult to clearly dis-
+cern between these di erent groups based on the content,
+style or theme of their tweets alone. These observations
+re ect the fact that the health landscape today no longer
+consists of government and citizens alone [65]. Other
+entities (such as commercial agents, individual bloggers
+and automated accounts) also exist and exert in uence
+on the health promotion landscape, and on the conver-
+sations taking place around such themes. Their motives
+are sometimes challenging to discern, and sponsorship ar-
+rangements can be di cult to identify or regulate. Sim-
+ilar  ndings have been noted with respect to Facebook,
+another social media platform used for health care and
+communication [31]. Such entities, which are assumed
+by health authorities to be extrinsic to the healthcare
+arena, need to be acknowledged and considered in suc-
+cessful strategies for health promotion.
+Our results show that the role of hubs in disseminat-
+ing information is less persistent over time than the role
+played by authorities in generating information. Hubs
+are generally far less transparent about their identity.
+Some accounts, for example, claim to have medical ex-
+pertise, but these claims cannot always be veri ed. As
+a result, it is di cult for Twitter users to be  informed
+citizens  and discern legitimate from misleading or dis-
+credited information, or a bona- de health expert from
+a social-media expert, or a marketer with business mo-
+tivations from a marketer with public health ones. Es-
+tablishing the credibility of an account by the number of
+messages, followers or even through the published user
+pro le, for example, can therefore be misleading. This
+poses challenges to the use of Twitter as a health promo-
+tion platform, and requires the use of sophisticated tech-
+niques (e.g., collaboration of health professionals with
+practitioners of network and data science). Further re-
+search and engagement with  real  people, and not sim-
+ply their virtual online personae which represent them,
+is necessary to elucidate the expertise and intentions of
+users generating some of the key diabetes-related content
+on Twitter.
+This research has implications for health policy mak-
+ers and health promotion practitioners. We show that
+key authorities in relation to diabetes on Twitter are
+not simply those with accredited and formally-recognised
+health expertise, but also bloggers (men and women), pa-
+tients, celebrities, advocacy organisations, stockmarket-
+listed  rms, news media and automated accounts. There
+are diverse stakeholders that use Twitter; even when lim-
+ited to the English language, these accounts originate
+from a range of countries (notably, several Nigerian ac-
+counts have prominent roles as both hubs and author-
+ities). It may be that establishing long-term collabora-
+tions with the most in uential users, as well as enhancing
+the connections between di erent communities of users,
+may be more e ective health promotion strategies than
+running short-term government-led campaigns and slo-
+gans aimed at informing people who have (or who are at
+risk of developing) diabetes. In addition, it is important
+that policy makers understand what social media users
+already know about health before new initiatives are in-
+troduced: simply telling users what they already appear
+to know, for example, about which foods contribute to
+diabetes, may hinder health agencies  impact and credi-
+bility.
+Our  ndings also have implications for programme
+evaluation, where  number of tweets/followers  is com-
+monly assumed to equate to  impact . Other metrics that
+leverage the structure of the network of interactions to
+consider relative impact, or a sustained high-centrality
+presence over time (e.g., via centrality metrics such as
+hub-authority scores) may more closely re ect the real-
+ity of Twitter use for health purposes.
+The health information landscape on Twitter is com-
+18
+plex, and it cannot be assumed that people can eas-
+ily discern  good  and  bad  information. Our observa-
+tions echo previous reports that there is more informa-
+tion available to consumers than they have the capacity
+to process and understand [68, 69]. In this context, public
+health approaches and messages that simply aim to  in-
+form  the public might be insu cient in themselves, or
+even be counterproductive as they make a complicated
+cacophony of messages even busier. This is particularly
+relevant for health policy makers. For instance, infor-
+mation that is disseminated by bloggers, stockmarket-
+listed  rms or automated accounts may be in line with
+broad health recommendations (and indeed may provide
+a valuable service to users), but without clear distinction
+from  legitimate  health advice, such information might
+equally push particular aspects of a commercial agenda
+that could lead to harm or greater health costs in future.
+In this case, public health agencies may have to develop
+novel approaches to ensure that the electronic health in-
+formation landscape is one that promotes healthy citizens
+and not only sweet pro ts.
+DECLARATIONS
+Contributions
+MBD and AM researched literature and conceived the
+study, carried out quantitative (MBD) and qualitative
+(AM) data analysis, and prepared the  rst draft of the
+manuscript. GGH and MBD collected the data. MBD,
+AM, MB, SU wrote the paper. All authors reviewed and
+edited the manuscript and approved the  nal version of
+the manuscript.
+Acknowledgements
+We thank E. Gardu no for useful advice and discussions
+on how best to gather and process the data. We thank
+H. Harrington and S. Yaliraki for fruitful discussions and
+comments on the manuscript.
+Funding
+support
+MBD acknowledges
+from the James S.
+McDonnell Foundation Postdoctoral Program in Com-
+plexity Science/Complex Systems Fellowship Award
+(#220020349-CS/PD Fellow). MB acknowledges fund-
+ing from the EPSRC through grants EP/I017267/1 and
+EP/N014529/1.
+Data statement
+Con icting interests
+The IDs of the tweets used in this research and the
+Supplemental Spreadsheet can be downloaded from the
+ReShare UK Data Service repository [70].
+GGH is an employee of Sinnia, a data analytics com-
+pany. The remaining authors declare no con icting in-
+terests.
+19
+[1] Beguerisse-D  az M, Gardu no-Hern andez G, Vangelov
+Interest commu-
+the
+Journal of
+Avail-
+http://rsif.royalsocietypublishing.
+B, Yaliraki SN, Barahona M.
+nities and  ow roles
+Twitter network of
+The Royal Society Interface. 2014;11(101).
+able
+org/content/11/101/20140940.
+in directed networks:
+the UK riots.
+from:
+[2] Denef S, Bayerl PS, Kaptein N. Social media and the
+police   Tweeting practices of British police forces during
+the August 2011 riots. In: Proceedings of the Computer-
+Human Interaction Conference. ACM; 2013. .
+[3] Gonz alez-Bail on S, Borge-Holthoefer J, Rivero A,
+Moreno Y. The dynamics of protest recruitment through
+an online network. Sci Rep. 2011;1:197. Available from:
+http://dx.doi.org/10.1038/srep00197.
+[4] Gonz alez-Bail on S, Wang N. Networked discontent:
+in social me-
+The anatomy of protest campaigns
+dia.
+Avail-
+able from: http://www.sciencedirect.com/science/
+article/pii/S0378873315000659.
+Social Networks. 2016;44:95   104.
+[5] Morales AJ, Losada JC, Benito RM. Users struc-
+ture and behavior on an online social network during
+a political protest. Physica A: Statistical Mechanics
+and its Applications. 2012;391(21):5244   5253. Avail-
+able from: http://www.sciencedirect.com/science/
+article/pii/S037843711200386X.
+[6] Tonkin E, Pfei er HD, Tourte G. Twitter,
+informa-
+tion sharing and the London riots?
+Bulletin of the
+American Society for Information Science and Technol-
+ogy. 2012;38(2):49 57. Available from: http://dx.doi.
+org/10.1002/bult.2012.1720380212.
+[7] Zhou Z, Bandari R, Kong J, Qian H, Roychowdhury V.
+Information resonance on Twitter: watching Iran.
+In:
+Proceedings of the First Workshop on Social Media An-
+alytics. SOMA  10. New York, NY, USA: ACM; 2010.
+p. 123 131. Available from: http://doi.acm.org/10.
+1145/1964858.1964875.
+[8] Kwak H, Lee C, Park H, Moon S. What is Twitter, a
+Social Network or a News Media?
+In: Proceedings of
+the 19th International Conference on World Wide Web.
+WWW  10. New York, NY, USA: ACM; 2010. p. 591 
+600. Available from: http://doi.acm.org/10.1145/
+1772690.1772751.
+[9] Wu S, Hofman JM, Mason WA, Watts DJ. Who says
+what to whom on twitter. In: Proceedings of the 20th
+international conference on World wide web. WWW  11.
+New York, NY, USA: ACM; 2011. p. 705 714. Available
+from: http://doi.acm.org/10.1145/1963405.1963504.
+[10] Culotta A. Towards Detecting In uenza Epidemics by
+Analyzing Twitter Messages. In: Proceedings of the First
+Workshop on Social Media Analytics. SOMA  10. New
+York, NY, USA: ACM; 2010. p. 115 122. Available from:
+http://doi.acm.org/10.1145/1964858.1964874.
+[11] Signorini A, Segre AM, Polgreen PM. The Use of Twitter
+to Track Levels of Disease Activity and Public Concern in
+the U.S. during the In uenza A H1N1 Pandemic. PLoS
+ONE. 2011 05;6(5):e19467. Available from: http://dx.
+doi.org/10.1371%2Fjournal.pone.0019467.
+[12] Garc  a-Herranz M, Moro E, Cebri an M, Christakis
+NA, Fowler JH. Using Friends as Sensors to Detect
+Global-Scale Contagious Outbreaks. PLoS ONE. 2014
+04;9(4):e92413. Available from: http://dx.doi.org/10.
+1371%2Fjournal.pone.0092413.
+[13] Prier KW, Smith MS, Giraud-Carrier C, Hanson CL.
+Identifying Health-related Topics on Twitter: An Explo-
+ration of Tobacco-related Tweets As a Test Topic.
+In:
+Proceedings of the 4th International Conference on So-
+cial Computing, Behavioral-cultural Modeling and Pre-
+diction. SBP 11. Berlin, Heidelberg: Springer-Verlag;
+2011. p. 18 25. Available from: http://dl.acm.org/
+citation.cfm?id=1964698.1964702.
+[14] Paul M, Dredze M. You Are What You Tweet: An-
+alyzing Twitter for Public Health; 2011. Available
+from:
+https://www.aaai.org/ocs/index.php/ICWSM/
+ICWSM11/paper/view/2880.
+[15] Llorente A, Garcia-Herranz M, Cebrian M, Moro E. So-
+cial Media Fingerprints of Unemployment. PLoS ONE.
+2015 05;10(5):e0128692. Available from: http://dx.
+doi.org/10.1371%2Fjournal.pone.0128692.
+[16] Scanfeld D, Scanfeld V, Larson EL.
+Dissemi-
+nation of health information through social net-
+works: Twitter and antibiotics. American Journal
+of Infection Control. 2010;38(3):182   188.
+Avail-
+able from: http://www.sciencedirect.com/science/
+article/pii/S0196655310000349.
+[17] Hawn C. Take Two Aspirin And Tweet Me In The
+Morning: How Twitter, Facebook, And Other Social
+Media Are Reshaping Health Care. Health A airs.
+2009;28(2):361 368. Available from: http://content.
+healthaffairs.org/content/28/2/361.abstract.
+[18] Heaivilin N, Gerbert B, Page JE, Gibbs JL. Public
+Health Surveillance of Dental Pain via Twitter. Jour-
+nal of Dental Research. 2011;90(9):1047 1051. Avail-
+able from:
+http://jdr.sagepub.com/content/90/9/
+1047.abstract.
+[19] King D, Ramirez-Cano D, Greaves F, Vlaev I,
+Beales S, Darzi A. Twitter and the health reforms
+Health
+in the English National Health Service.
+Policy.
+from:
+http://www.sciencedirect.com/science/article/
+pii/S0168851013000456.
+2013;110(2-3):291 297.
+Available
+[20] Public Health England. Social marketing strategy
+one year on; 2015. Available from:
+2014 to 2017:
+https://www.gov.uk/government/publications/
+public-health-england-marketing-strategy-2014-to-2017.
+[21] Public
+England.
+Marketing
+Health
+to
+2014
+egy:
+https://www.gov.uk/government/publications/
+Available
+2015.
+2017;
+strat-
+from:
+public-health-england-marketing-strategy-2014-to-2017.
+[37] Bowen GA.
+20
+[22] Lupton D. M-health and health promotion: The
+Social The-
+digital cyborg and surveillance society.
+ory & Health. 2012;10(3):229 244. Available from:
+http://www.palgrave-journals.com/sth/journal/
+v10/n3/abs/sth20126a.html.
+[23] World Health Organization. Fact sheet No. 312: Dia-
+betes. Geneva: WHO Media centre. 2015;.
+[24] Centers for Disease Control and Prevention and oth-
+ers. National diabetes statistics report: estimates of
+diabetes and its burden in the United States, 2014.
+2014;US Department of Health and Human Services.
+Available from: http://www.cdc.gov/diabetes/data/
+statistics/2014statisticsreport.html.
+[25] Shaw R, Johnson C. Health Information Seeking and
+Social Media Use on the Internet among People with
+Diabetes. Online Journal of Public Health Informatics.
+2011;3(1). Available from: http://journals.uic.edu/
+ojs/index.php/ojphi/article/view/3561.
+[26] El-Gayar O, Timsina P, Nawar N, Eid W. Mobile applica-
+tions for diabetes self-management: status and potential.
+J Diabetes Sci Technol. 2013;7(1):247 262.
+[27] Kaufman N.
+Internet and information technology use
+in treatment of diabetes. International Journal of Clin-
+ical Practice. 2010;64:41 46. Available from: http:
+//dx.doi.org/10.1111/j.1742-1241.2009.02277.x.
+[28] Gough A, McCance D, Alderdice F, Harper R, Holmes
+V. Preconception counselling resource for women with
+diabetes. BMJ Qual Improv Rep. 2015;4(1). Avail-
+able from: http://dx.doi.org/10.1136/bmjquality.
+u209621.w3984.
+[29] Harris JK, Mueller NL, Snider D, Haire-Joshu D. Lo-
+cal health department use of twitter to disseminate di-
+abetes information, United States. Prev Chronic Dis.
+2013;10:E70. Available from: http://dx.doi.org/10.
+5888/pcd10.120215.
+[30] Desai T, Shari  A, Shari  A, Kats M, Fang X, Christiano
+C, et al. Tweeting the meeting: an in-depth analysis
+of Twitter activity at Kidney Week 2011. PLoS One.
+2012;7(7):e40253. Available from: http://dx.doi.org/
+10.1371/journal.pone.0040253.
+[31] Greene JA, Choudhry NK, Kilabuk E, Shrank WH.
+Online social networking by patients with diabetes:
+a qualitative evaluation of communication with Face-
+J Gen Intern Med. 2011 Mar;26(3):287 
+book.
+292. Available from:
+http://dx.doi.org/10.1007/
+s11606-010-1526-3.
+[32] Kleinberg JM. Authoritative Sources in a Hyperlinked
+Environment. J ACM. 1999 Sep;46(5):604 632. Available
+from: http://doi.acm.org/10.1145/324133.324140.
+[33] Newman M. Networks: an introduction. Oxford Univer-
+sity Press; 2010.
+[34] Lancichinetti A, Sirer MI, Wang JX, Acuna D, K ording
+K, Amaral LAN.
+High-Reproducibility and High-
+Accuracy Method for Automated Topic Classi cation.
+Phys Rev X. 2015 Jan;5:011007. Available from: http:
+//link.aps.org/doi/10.1103/PhysRevX.5.011007.
+[35] Manning CD, Raghavan P, Sch utze H, et al. Introduction
+to information retrieval. vol. 1. Cambridge, UK: Cam-
+bridge University Press; 2008.
+[36] Wilson SM, Peterson LC. The Anthropology of On-
+line Communities. Annual Review of Anthropology.
+2002;31(1):449 467. Available from: http://dx.doi.
+org/10.1146/annurev.anthro.31.040402.085436.
+Naturalistic inquiry and the satura-
+tion concept:
+a research note.
+Qualitative Re-
+search. 2008;8(1):137 152. Available from: http://qrj.
+sagepub.com/content/8/1/137.abstract.
+[38] Braun V, Clarke V. Using thematic analysis in psychol-
+ogy. Qualitative Research in Psychology. 2006;3(2):77 
+101. Available from: http://www.tandfonline.com/
+doi/abs/10.1191/1478088706qp063oa.
+[39] Zimmer M, Proferes NJ.
+disciplines, methods, and ethics.
+A topology of Twitter
+research:
+Aslib
+Journal of Information Management. 2014;66(3):250 
+261. Available from:
+http://dx.doi.org/10.1108/
+AJIM-09-2013-0083.
+[40] Ding CHQ, Zha H, He X, Husbands P, Simon HD. Link
+Analysis: Hubs and Authorities on the World Wide
+Web. SIAM Review. 2004;46(2):256 268. Available from:
+http://dx.doi.org/10.1137/S0036144501389218.
+[41] Porter MF. Snowball: A language for stemming al-
+gorithms; 2009. Available from: http://snowball.
+tartarus.org/texts/introduction.html.
+[42] Delvenne JC, Yaliraki SN, Barahona M. Stability of
+graph communities across time scales. Proc Nat Acad Sci
+USA. 2010;107(29):12755 12760. Available from: http:
+//www.pnas.org/content/107/29/12755.abstract.
+[43] Delvenne JC, Schaub MT, Yaliraki SN, Barahona M.
+The Stability of a Graph Partition: A Dynamics-Based
+Framework for Community Detection.
+In: Mukherjee
+A, Choudhury M, Peruani F, Ganguly N, Mitra B, edi-
+tors. Dynamics On and Of Complex Networks, Volume
+2. Springer New York; 2013. p. 221 242. Available from:
+http://dx.doi.org/10.1007/978-1-4614-6729-8_11.
+[44] Lambiotte R, Delvenne J, Barahona M. Random Walks,
+Markov Processes and the Multiscale Modular Organiza-
+tion of Complex Networks. Network Science and Engi-
+neering, IEEE Transactions on. 2014 July;1(2):76 90.
+[45] Blei DM, Ng AY, Jordan MI. Latent Dirichlet Allocation.
+J Mach Learn Res. 2003 Mar;3:993 1022. Available from:
+http://dl.acm.org/citation.cfm?id=944919.944937.
+[46] Amor B, Vuik S, Callahan R, Darzi A, Yaliraki SN, Bara-
+hona M. Community detection and role identi cation in
+directed networks: understanding the Twitter network of
+the care. data debate. arXiv:150803165. 2015;Available
+from: http://arxiv.org/abs/1508.03165.
+[47] Jeremih, Wayne L, Mosley N. All The Time; 2013. Def
+Jam Records. Digital Download.
+[48] Boosie L. I m still happy; 2010. Gone Til December.
+[49] Gleeson JP, O Sullivan KP, Ba nos RA, Moreno Y. De-
+terminants of Meme Popularity. arXiv:150105956. 2015;.
+[50] Simonsen M, Skipper L, Skipper N. Price sensitivity of
+demand for prescription drugs: exploiting a regression
+kink design. Journal of Applied Econometrics. 2015;p.
+n/a n/a. Available from: http://dx.doi.org/10.1002/
+jae.2436.
+[51] Wild S, Roglic G, Green A, Sicree R, King H. Global
+Prevalence of Diabetes: Estimates for the year 2000 and
+projections for 2030. Diabetes Care. 2004;27(5):1047 
+1053. Available from: http://care.diabetesjournals.
+org/content/27/5/1047.abstract.
+[52] Polonsky KS. The Past 200 Years in Diabetes. New
+England Journal of Medicine. 2012;367(14):1332 1340.
+PMID: 23034021. Available from: http://dx.doi.org/
+10.1056/NEJMra1110560.
+[53] Koppes LLJ, Dekker JM, Hendriks HFJ, Bouter LM,
+Heine RJ. Moderate Alcohol Consumption Lowers the
+Risk of Type 2 Diabetes: A meta-analysis of prospective
+observational studies. Diabetes Care. 2005;28(3):719 
+725. Available from: http://care.diabetesjournals.
+org/content/28/3/719.abstract.
+[54] Sornette D, Desch atres F, Gilbert T, Ageon Y. Endoge-
+nous versus exogenous shocks in complex networks: An
+empirical test using book sale rankings. Physical Review
+Letters. 2004;93(22):228701.
+[55] Page L, Brin S, Motwani R, Winograd T. The PageRank
+Citation Ranking: Bringing Order to the Web. Stanford
+InfoLab; 1999. 1999-66. Previous number = SIDL-WP-
+1999-0120. Available from: http://ilpubs.stanford.
+edu:8090/422/.
+[56] Gleich DF. PageRank Beyond the Web. SIAM Re-
+view. 2015;57(3):321 363. Available from: http://dx.
+doi.org/10.1137/140976649.
+[57] Porter MA, Onnela JP, Mucha PJ. Communities in Net-
+works. Notices of the American Mathematical Society.
+2009;56:1082.
+[58] Mitchell A, Barthel M, Shearer E, Gottfried J, Matsa KE,
+Keeter S, et al. The Evolving Role of News on Twitter
+and Facebook. Pew Research Center; 2015. Avail-
+able from: http://www.journalism.org/2015/07/14/
+the-evolving-role-of-news-on-twitter-and-facebook/.
+[59] Shi man DS. Twitter as a tool for conservation ed-
+ucation and outreach: what scienti c conferences can
+do to promote live-tweeting. Journal of Environmental
+Studies and Sciences. 2012;2(3):257 262. Available from:
+http://dx.doi.org/10.1007/s13412-012-0080-1.
+[60] Radmanesh A, Duszak R, Fitzgerald RT.
+Social
+Media and Public Outreach: A Physician Primer.
+American Journal of Neuroradiology. 2014;Available
+from: http://www.ajnr.org/content/early/2014/09/
+11/ajnr.A4100.short.
+[61] You J. Who are the science stars of Twitter? Science.
+2014;345(6203):1440 1441. Available from: http://www.
+sciencemag.org/content/345/6203/1440.short.
+[62]  Alvarez R, Garc  a D, Moreno Y, Schweitzer F. Senti-
+ment cascades in the 15M movement. EPJ Data Science.
+2015;4(1):1 13.
+[63] So J, Prestin A, Lee L, Wang Y, Yen J, Chou WYS.
+What Do People Like to  Share  About Obesity? A
+Content Analysis of Frequent Retweets About Obesity
+on Twitter. Health Communication. 2015;0(0):1 14.
+21
+PMID: 26086083. Available from: http://dx.doi.org/
+10.1080/10410236.2014.940675.
+[64] McLennan AK, Ulijaszek SJ, Eli K. 1 Social Aspects of
+Dietary Sugars. Dietary Sugars and Health. 2014;p. 1.
+[65] McLennan AK, Ulijaszek SJ. Political models of obe-
+sity: Set within regulatory frameworks and ideologies.
+In: 22nd European Congress on Obesity 2015, Prague;
+2015. .
+[66] Ulijaszek SJ, McLennan AK. Framing obesity in UK pol-
+icy from the Blair years, 19972015: the persistence of in-
+dividualistic approaches despite overwhelming evidence
+of societal and economic factors, and the need for col-
+lective responsibility. Obesity Reviews. 2016;17(5):397 
+411. OBR-10-15-2417.R1. Available from: http://dx.
+doi.org/10.1111/obr.12386.
+[67] McLennan AK, Ulijaszek SJ, Beguerisse-D  az M. Who
+talks about diabetes on Twitter, what do they say, and
+why are there so many jokes? In: Schneider T, Eli K,
+Dolan C, S U, editors. Digital Food Activism. Routledge;
+2016. To appear.
+[68] Berg L, Gornitzka  A. The consumer attention de cit
+syndrome: Consumer choices in complex markets. Acta
+Sociologica. 2012;55(2):159 178. Available from: http:
+//asj.sagepub.com/content/55/2/159.abstract.
+[69] Gallotti R, Porter MA, Barthelemy M. Lost in trans-
+portation:
+Information measures and cognitive limits
+in multilayer navigation. Science Advances. 2016;2(2).
+Available from:
+http://advances.sciencemag.org/
+content/2/2/e1500445.
+[70] Beguerisse-D  az M. Diabetes tweets. UK Data Archive;.
+http://reshare.ukdataservice.ac.
+Available from:
+uk/852474/.
+[71] According to Twitter s own  gures from July 2016
+[72] https://gnip.com/realtime/powertrack/
+[73] http://diabetesaliciousness.blogspot.co.uk/
+[74] https://www.diabetes.org.uk/tesco/ Accessed on Oc-
+tober 8 2015.
+Appendix A: Additional tables with illustrative
+tweets for each thematic group
+22
+Public health
+messages
+Links to articles,
+blogs and studies
+about risks,
+treatment and cure
+Population health
+and fears
+Publicity about
+outreach and
+awareness events
+and activities
+Advice about
+diabetes
+management and
+diagnosis
+Lifestyle, diet and
+cookery tips, news
+and links
+Life stories and
+experiences (some
+for marketing
+purposes)
+Dangers of sugar,
+sugar replacements
+and/or soda
+Launches
+Global
+Campaign
+Diabetes
+Animal
+Health
+Awareness
+fears diabetes
+to soar across Bradford district
+(From Bradford Telegraph and Argus)
+Experts recommend universal diabetes testing for pregnant women at  rst prenatal visit http://t.co/6nLAUytBCX
+FDA warns of massive diabetes test strip recall Nova Max strips http://t.co/dxtv4YLMIR via @nbcnewshealth
+One Overlooked Trace Mineral Could Wipe Out Diabetes: http://t.co/lD1GgBy6ry
+: Insulin Pumps vs. Insulin Injections for Type 1 Children http://t.co/d2Np519zAN #diabetes
+E ect of imidapril versus ramipril on urinary albumin excretion in hypertensive patients with type 2 diabetes...
+http://t.co/wLZfIsiElp
+Reverse Your Diabetes Today: Learn a little-known but 100% proven way to erase your pre-diabetes and type 2
+diabetes. http://t.co/TUDwKT3R8F
+Studies show chlorella could improve insulin sensitivity in type 2 diabetes patients http://t.co/J4GxrbLF32 via
+@HealthRanger
+Flu shot extra important if you have diabetes http://t.co/59Qx57TiI4
+Health chief
+http://t.co/g5A1yZTbsJ
+Fears Rockhampton facing diabetes epidemic: Diabetes Queensland says more than 10 per cent of the population i...
+http://t.co/bQhnR4x4Rk
+Obesity and diabetes pose a serious threat to the long-term health of young people in the United States.
+http://t.co/biz4U2gWup
+Diabetes is a disease that can strike when you don t take care of your body. Check out these eye-opening statistics.
+http://t.co/zwpfTPgbtu
+Many @Enterasys employees riding in @AmDiabetesAssn Tour de Cure are too familiar w/ diabetes. Here s why they
+ride http://t.co/qURu4XP2xy
+Donate to @Brenda Novak s auction for the cure for diabetes. I m giving away 2 tix to my blog tour course #win -
+http://t.co/sR65gINrx6
+Join us as we  ght to #StopDiabetes. Sign our petition to urge Congress to invest in #diabetes prevention & a cure:
+http://t.co/6ztkHxnNy1
+Support World Diabetes Day 2012, add a #twibbon to your avatar now! - http://t.co/7mLvcvY1Hx
+Merck
+Month  http://t.co/BDr77CoCg5
+Open Question: Diabetes question i want to know if i have diabeties? i was in eye hospital today and they have...
+http://t.co/2BNfwNZL2f
+Open Question: Whart are some good ways to deal with pre-diabetes? 9I have some too but are open to yous)?
+http://t.co/y6wT3BXSaX
+5 things #caregivers need to know about #diabetes. http://t.co/oncoPhK0QH via @sallyabrahms
+Open Question: I think I may have diabetes? http://t.co/UGnLZaZ3Gf
+8 Tips for Eating Out With Diabetes - Type 2 Diabetes Center-Everyday Health http://t.co/u5nIZ4cg5E #diabetes
+#health #diettips
+Control Your Diabetes: Diet Tips Check out this post Control Your Diabetes: Diet Tips!.. http://t.co/nES3pfIwg
+Purina veterinary diets dm http://t.co/cJ7bVFrbz8 #diabetes management feline formula
+Zucchini Escarole Soup: From Diabetes Cooking for Everyone, by Carol Gelles. Exchanges: 1/4 bread, 1 vegetable,...
+http://t.co/IiH1Da9d4u
+Micronutrient Enriched Wheat Steamed Bread is Bene cial for Diabetes Patients http://t.co/SHthuJliHh #health
+#cancer
+Tips For Living A Life With Diabetes: TIP! Almonds are a great way to get some additional protein into your di...
+http://t.co/XPkJm6jAJ0
+To manage your diabetes, Weird Science recommends the munchies http://t.co/QybNo8qfTd
+Tiny cells lift Type 1 diabetes hope: Michael Scho eld gets to meet the mother of the man whose death gave hi...
+http://t.co/ODMOzctOWI
+Debby M Shared this yesterday and its outstanding!!! April 23rd 2013, I was diagnosed with diabetes type 2. My...
+http://t.co/iv4blIR5Nj
+The Day I was Diagnosed with Juvenile Diabetes: I was diagnosed on July 21st 1999 when I was eight years old. ...
+http://t.co/U1GPaX812b
+#50ThingsAboutMe 38) I have diabetes since I was 9 years old
+Drinking one can of soda a day increases your chances of getting type 2 diabetes by 22%!
+http://t.co/BzOmFKhhbw
+Diabetes warning over soft sugary drinks: Dr Tim Dalton, chair of the Wigan Borough Clinical Commissioning Gro...
+http://t.co/uaLWTZaHDI
+A soda a day keeps the doctor in pay: soft drinks and diabetes: Recent research linking soft drinks to type 2 ...
+http://t.co/QhB31VRES2
+If Mountain Dew: Baja Blast was sold in the stores, diabetes would spread like wild re, y all.
+Thanks for putting a damper on my #1 pregnancy craving.
+http://t.co/MI8it8xphD via @adweek
+Fighting  ab? Think before u reach out 4 sugar substitute #Sugar #Sucralose #Diabetes http://t.co/cfeYURK7r3
+Coke and Pepsi Face Diabetes Backlash
+to
+Support
+Pet
+Details  
+TABLE III: Speci c examples of health information tweets.
+23
+Headline links to
+particular
+ breakthrough 
+studies or
+technologies
+Celebrity news
+General news
+articles about
+diabetic people or
+pets
+News relating to
+the pharmaceutical
+industry and the
+economy
+Immune protein could stop diabetes in its tracks, discovery suggests: Researchers have identi ed an immune pr...
+http://t.co/rd8Jx2avnn
+$FPMI - Advanced Imaging Studies May Enhance Diabetes Management http://t.co/Ow3QX0yuYm
+Fish Oil Pills Might Cut Diabetes Risk, Researchers Say http://t.co/fvsIMXFKGR
+Great article from @jdwilson2 on islet cell transplant testing o ering hope for T1 #diabetes http://t.co/qn9XYwIxC5
+@cnnhealth
+Another reason to dislike the Pats   NFL Patriots release Kyle Love after diabetes diagnosis: http://t.co/lAV114TP06
+via @wtcommunities
+Sherri Shepherd Talks About Her Fight With Diabetes! [Video]: video platformvideo managementvideo solutionsvid...
+http://t.co/6FiJMcUal3
+Wow Trump just gave Lil John $100K toward his diabetes charity & his mom just passed away they all cheered
+endlessly. #apprentice nale
+Thief steals family car with daughters #diabetes medicine insidehttp://youtu.be/juPZtMmzL2s via @youtube @tmz
+http://t.co/agDquGWmUL
+Diabetes service dog saves the day and night for Fort Worth teen http://t.co/LQ4NRm9PLm
+Cop beats up girl for diabetes, exposes racist government schools: http://t.co/5AYnBxPEsI via @youtube
+Why Jasper TX Service Trains Quality Service Dogs For Those With Diabetes And Autism http://t.co/xFzI5hdRCP
+Glooko s New Diabetes Management System FDA Cleared: Glooko (Palo Alto, CA) received FDA clearance for its
+lat... http://t.co/j1K Omigz
+$CXM Plays Two Vital Roles in the Fight Against Diabetes http://t.co/f0zVaXMsv9   #diabetes #stocks
+http://t.co/QK5Zw5tGQt
+Woman with Type 2 diabetes sees premiums plummet from $500 to $1 under Obamacare   http://t.co/CUurbdnwqR
+News: Cytori Licenses AsiaPaci c Cardiovascular Renal & Diabetes Markets to Lorem Vascular for up to $531 Million
+http://t.co/6SNySsC7qX
+AstraZeneca could buy Bristol stake in diabetes JV: analyst: LONDON (Reuters) - AstraZeneca may seek to increa...
+http://t.co/rcZQPIIZxo
+Salix to Buy Santarus for $2.6 Billion to Gain (type 2) #Diabetes Drug http://t.co/wpjNIxKGLf #
+TABLE IV: Examples of news tweets.
+24
+Users joking about
+how what they
+have eaten is likely
+to give them
+diabetes
+Chatter and social
+interchanges
+Everyday
+experiences of
+diabetes
+Stigmatising
+comments
+Sexual innuendo
+and humour
+relating to
+sweetness and
+diabetes
+Jokes, sarcasm and
+humorous tweets
+aren t
+getting
+????
+along
+today.
+and diabetes
+#ifeellikepoop #badmood #diabeticproblems
+cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake cake
+cake cake cake diabetes
+2 bowls of yogurt, a bowl of oreos, hersheys, chips, cheese and a shitload of mints. My diet consists of diabetes.
+Bother! Burger King has arrived. Hello obesity, diabetes, poor nutrition. McD s is bad enough. Grumble Grumble
+????
+To us: candy,chocolate,nasi lemak,fries To parents: diabetes,tooth decay,heart disease,high blood pressure.
+I JUST TOLD MY DAD A BAD DIABETES JOKE AND HE S A DIABETIC OMFG IM SUCH A BAD PERSON
+My mom said I probably have diabetes.. aaa I didn t know she went to school to be a doctor lol
+Screw this diabetes business today. Just wanna sleep.. #HeadAche #FeelHungover
+My #husband going in for #surgery this morning for #amputation of his toe and partial foot due to #diabetes
+#diabetesawareness #fckudiabetes
+Watching belly dancers on youtube & wishing I never stopped going-No time & damn diabetes took over my life.
+#killjoy #fcbd #hipsofglory
+Breakfast gone wild? Pump set gone wild? Hellooo Monday. WTF diabetes. http://t.co/uK3xTuJuMD
+Me
+http://t.co/3OwXSe2keO
+Ever have a cat chew on your insulin pump tubing? #diabetes #tubing #insulinpump
+Is it too much to ask that media clearly di erentiate between type 1 and type 2 diabetes? Lap band surgery will not
+cure T1 diabetes #fedup
+ I m working on something   The only thing you re working on is diabetes you fat fuck  #Projectx is jokes :L
+Why do you think your beautiful you look like a fucking frog with diabetesOMFG ahahahahahahahah
+To the cunt in work that smeared shit on the  oor in the toilets. I hope you get type 2 diabetes and aids.
+I hope y all fucking future kids get fat and get diabetes talking shit bout Ms Dumas
+I seriously miss my doctor in touness, this one told me today that he thinks diabetes is gonna be the cause of my
+death. How rude):
+ A nation of porkers : Diabetes expert complains on national radio that we re eating ourselves into an early grave
+Excuse me sir..Just leave the gym with ur diabetes-lookin, wheezin self.. Pu ng ur chest doesnt hide ur huge beer
+belly ??? #idontplayatgym
+ Niall s so sweet, i d bet you d get diabetes by swallowing his cum  OMFG HAHAAHAHAAH I LOVE THIS
+HARRY YOU LJTTLE CUTIE PATOOTIE I THINK I JUST RECIEVED DIABETES FROM LOOKIGN AT THIS
+SUGAR PIE HOINEY BUCNH http://t.co/nJZqYUfOMW
+I d lick your sweet pussy till I get diabetes.
+Do me baby. Uh oh, did you say DEW ME?! *Mountain Dew gushes from his penis and gives her sexually transmitted
+diabetes*
+woah woah stop giving girls diabetes Ahh EYE CANDYMAN   EH I don t even know what s going on now! What
+eye candy...
+#ABCReports The Blacker The Berry,The Sweeter the Juice Is Wesley Snipes own sweat giving him Diabetes???More
+@ 10pmlol
+Just saw a commercial for diabetes medicine. Side e ects: Low Blood Sugar. Let that sink in.
+I didn t even know what the gd pancreas did until Violet was diagnosed with Type 1 Diabetes. Fuck you, you shitty
+non-working pancreas.
+A marwadi opens a Sweets Shop ... Puts an Advertisement : Helper Needed ... Quali cation : Should have Diabetes
+Pray for the rain forest. Pray for that gay NBA player. Pray for the o-zone layer. Pray for stray animals. Pray for
+diabetes
+The coca cola Christmas advert, because nothing says Christmas quite like diabetes and capitalism. LOL
+TABLE V: Social interaction and humorous tweets.
+Advertisements for
+jobs in the
+pharmaceutical
+and care industries
+Marketing for a
+speci c product,
+app, treatment,
+event or service
+Buy diabetes
+drugs, diets or
+treatment
+products online
+- Albuquerque, NM
+- Diabetes Products
+Sioux City Jobs: Sioux City, IA Diabetes Sales Specialist at Inventiv Health (Sioux City, IA) http://t.co/9vDO6xjUKS
+#Jobs #SiouxCityJobs
+#jobs4u #jobs #ABQ Pharmaceutical Representative
+http://t.co/ghNCYrMbHo #albuquerque #NM
+#jobs,#ukjobs Clinical Nurse Specialist Diabetes http://t.co/QtnCwYK6WR #jobs4u
+Start a new #career at American Diabetes Association in Rocky Hill, CT. Associate Director - Fundr...
+http://t.co/Wi3tM70wMd
+Ca eine stimulates elevated of Cortisol = arthritis, obesity, diabetes, and depression. Try healthy co ee:
+http://t.co/4paSPZ0mrc
+Acid Re ux, Arthritis, Diabetes, Enlarged Prostate, Overweight! http://t.co/aCXiugNQsh
+FREE Kindle
+http://t.co/gGNGXwVfqx
+http://t.co/wJ6z0hd1BO Buy Diabetes online if Cheap Diabetes no prescription, Order Diabetes without prescription
+aggressive diabetes actos http://t.co/biK2GYcOQI #buy #cheap #pills #online #pharmacy #drugs #generic
+#aldactone: Co-trimoxazole: Buy Generic Bactrim - Aldactone for diabetes at http://t.co/0qM9gUUa69
+No Script Slimex For Cheap No Prescriptions Needed For Slimex Cause Diabetes http://t.co/6uhu2RmMZh
+American-Diabetes-Wholesale : $12 O  Order of $100 or More! Code: ADW12100 http://t.co/e5K20ptIhH
+Apple Cider Vinegar Natural Cures
+eBook:
+for Diabetes, Cancer,
+and MORE!...
+25
+-
+TABLE VI: Commercial tweets.
+Lyrics of  All the
+time , by
+Jeremih [47]
+Lyrics of  Mind of
+a maniac , by
+Boosie Badazz [48]
+Alcohol reduces
+diabetes risk
+Viral fact about
+detecting diabetes
+by tasting urine
+The mathematics
+joke
+If its sweet then ima eat it, til I get sugar diabetes. Ima blood n she anemic. We perfect.
+And If It s Sweet Then Ima Eat It Till I Get Sugar Diabetes Ima Blood And She A Nemick!!!!
+And if it s sweet then imma smoke it till I get sugar diabetes - wayne
+Pusssssy for breakfast. Yo  pussy betta. Ima eat till i get sugar diabetes. #AllTheTime #Jermiah
+Use to hold my head down.. not no more diabetes n my body police kickin in my door.. but I m still happyyyy...
+#boosie
+USED TO HOLD MY HEAD DOWN NOT NOMO DIABETES IN MY BODY POLICE KICKING IN MY
+DOE!!!BUT IM STILL HAPPY!!!!!!
+diabetes in my body police kickin in my door, but im still happy.
+ One Alcoholic drink a day can reduce your risk of type 2 diabetes by up to 30 percent.  See I m not an alcy I m
+keepin helthy
+ One Alcoholic drink a day can reduce your risk of type 2 diabetes by up to 30 percent.  Let s drink more
+ One Alcoholic drink a day can reduce your risk of type 2 diabetes by up to 30 percent.  #tequila
+ Doctors used to taste urine to determine if someone had diabetes because their urine would taste sweet. 
+HAHAHAHA
+ Doctors used to taste urine to determine if someone had diabetes because their urine would taste sweet.  #nasty
+Ammm ewwww  Doctors used to taste urine to determine if someone had diabetes 
+Elementary math problems are weird.  I had 10 chocolate bars and ate 9. What do I have now?  Oh, I don t know,
+DIABETES MAYBE. : 
+Louis has 40 chocolate bars. He eats 35. What does Louis have now? Diabetes. Louis has diabetes.
+Here s a question. Juan has 40 choco bars. He eats 35. What does Juan hve now? Diabetes. Juan has diabetes.
+*Mathematics + Logic = Sarcasm
+TABLE VII: Recurrent tweets

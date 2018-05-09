@@ -1,0 +1,543 @@
+4
+1
+0
+2
+ 
+l
+u
+J
+ 
+5
+1
+ 
+ 
+]
+R
+I
+.
+s
+c
+[
+ 
+ 
+2
+v
+4
+3
+1
+6
+.
+1
+0
+2
+1
+:
+v
+i
+X
+r
+a
+Synthetic sequence generator for recommender
+systems - memory biased random walk on
+sequence multilayer network
+Nino Antulov-Fantulin1, Matko Bo snjak1, Vinko Zlati c2, Miha Gr car3, and
+Tomislav  Smuc1
+1 Laboratory for Information Systems, Division of Electronics, Rudjer Bo skovi c
+Institute, Zagreb, Croatia,
+nino.antulov@irb.hr,
+2 Theoretical Physics Division, Rudjer Bo skovi c Institute, Zagreb, Croatia
+3 Department of Knowledge Technologies / E8, Jo zef Stefan Institute, Ljubljana,
+Slovenia
+Abstract. Personalized recommender systems rely on each user s per-
+sonal usage data in the system, in order to assist in decision making.
+However, privacy policies protecting users  rights prevent these highly
+personal data from being publicly available to a wider researcher audi-
+ence. In this work, we propose a memory biased random walk model
+on multilayer sequence network, as a generator of synthetic sequential
+data for recommender systems. We demonstrate the applicability of the
+synthetic data in training recommender system models for cases when
+privacy policies restrict clickstream publishing.
+Keywords: biased random walks, recommender systems, clickstreams,
+networks
+1
+Introduction
+Recommender systems provide a useful personal decision support in search
+through vast amounts of information on the subject of interest [1] [30], such
+as books, movies, research papers, etc. The operation and performance of rec-
+ommender systems based on collaborative data [7] [31] are necessarily tied to
+personal usage data, such as users  browsing and shopping history, and to other
+personal descriptive data such as demographical data. These data often conform
+to privacy protection policies, which usually prohibit their public usage and
+sharing, due to their personal nature. This, in turn, limits research and devel-
+opment of recommender systems to companies in possession of such vital data,
+and thus prevents performance comparison of new systems between di erent re-
+search groups. In order to enable data sharing and usage, many real data sets
+were anonymized by removing all the explicit personal identi cation attributes
+like names and social security numbers, among others. Nevertheless, various
+research groups managed to successfully identify personal records by linking dif-
+ferent datasets over quasi-personal identi ers such as search logs, movie ratings,
+and other non-unique data, revealing as a composition of identi ers. Due to suc-
+cessful privacy attacks, some of the most informative data for recommendation
+purposes, such as the personal browsing and shopping histories, are put out of
+the reach of general public. In their original form, usage histories are consid-
+ered personal information, and their availability is heavily restricted. However,
+even with the personal information obfuscated, they remain a speci c ordered
+sequence of page visits or orders, and as such can be uniquely tied to a single
+person through linkage attacks. With usage histories often rendered unavailable
+for public research, recommender systems researchers have to manage on their
+own and often work on disparate datasets. Recently, a one million dollar worth
+Overstock.com recommender challenge released synthetic data, which shares cer-
+tain statistical properties with the original dataset. The organizers noted that
+this dataset should have been used only for testing purposes, while the code itself
+had to be uploaded to RecLabs4 for model building and evaluation against the
+real data. The challenge ended with no winner since no entry met the required
+e ectiveness at generating lift. It would be useful both for contestants and the
+companies, if the synthetic data could be used for recommendation on real users.
+Random walks [20], [6], [17] have been used for constructing recommender
+systems on di erent types of graph structures originating from users  private
+data, but not to generate synthetic clickstreams. We propose an approach to
+synthetic clickstream generation by constructing a memory biased random walk
+model (MBRW) on the graph of the clickstream sequences, which is a subclass
+of Markov chains [15], [21]. We show that the synthetic clickstreams share sim-
+ilar statistical properties to real clickstream. We also use the MBRW model to
+generate synthetic clickstreams for the VideoLectures.NET5 dataset from the
+ECML/PKDD 2011 Discovery Challenge[4]. And  nally, we demonstrate that
+synthetic data could be used to make recommendations to real users on the
+Yahoo Music dataset released for the KDDCup challenge for the year 2011 [13].
+2 Methodology
+The biased random walk on a graph [8] [26] is a stochastic process for mod-
+elling random paths on a general graph structure. Clickstream is a sequence
+of items (path on graph), such as web pages, movies, books, etc., a user inter-
+acted with, i.e. user s interaction history. Throughout the rest of this work we
+assume, without the loss of generality, a clickstream as a sequence of visited
+web pages. Formally, a clickstream ci is de ned as an ordered sequence of web
+pages ci = {ui
+n}, visited by a particular user i. The set of all the
+clickstreams in a system is C = {c1, c2, ..., ci, ..., cm}. Now, we describe the mem-
+ory biased random walk which will be used to generate sequences of synthetic
+paths on speci c networks. The two characteristic data generator matrices used
+in this work are the Direct Sequence matrix (DS) and the Common View Score
+matrix (CV S). The element DS[m, n] of the matrix DS denotes the number of
+3, ..., ui
+1, ui
+2, ui
+4 http://code.richrelevance.com/reclab-core/
+5 http://videolectures.net
+clickstreams in C in which the web page m immediately follows the web page n.
+The element CV S[m, n] of the matrix CV S denotes the number of occurrences
+in which the web page m and the web page n belong to the same clickstream in
+C. Using these generator matrices, we can now de ne the memory biased ran-
+dom walk on multilevel network. By introducing the memory component to the
+biased random walk [8] , we obtain the MBRW model. The MBRW model is a
+discrete time Markov chain model, with a  nite memory of m past states. Biases
+from the DS graph are connecting probability of choosing next item and current
+item, while, biases from the CV S graph are connecting probability of choosing
+the next item with the past m items in a clickstream. The initial vertex for the
+random walk can be chosen by either a stochastic or a deterministic rule. Given
+an initial vertex u1, the probability of choosing the adjacent vertex u2 equals:
+P{u2|u1} =
+DSu2,u1
+Pk DSk,u1
+(1)
+which, in turn, generates a clickstream ci = {u1, u2}. The third vertex, u3 in the
+clickstream is chosen with the probability of:
+P{u3|u2,u1} =
+DSu3,u2 CV Su3,u1
+Pk DSk,u1 CV Sk,u1
+(2)
+thus generating a clickstream ci = {u1, u2, u3}. Using a  nite memory of size m,
+we choose the vertex un with the probability of:
+P{un|un 1,...,un m 1} =
+DSun,un 1 Qm
+Pj DSj,un 1 Qm
+k=1 CV Sun,un k 1
+k=1 CV Sj,un k 1
+(3)
+thus generating a clickstream ci = {u1, u2, u3, ..., un} at the n-th step of the
+random walk.
+The intuition behind this analytical expression for transition probability is
+the following. The probability of choosing the next item is proportional to the
+product of direct sequence frequency DS and common view score frequencies
+CV S in clickstream data. Direct sequence frequency DS measures the tendency
+that the current item appears one place before the next item in clickstream data.
+Product of common view score frequencies tell us the tendency that the next
+item appears with all other items in current clickstream that we are generating.
+Denominator is the normalization expression to turn frequencies to probability
+measure. In Figure 1, we demonstrate how transition probability is calculated
+on a simple example. Clickstream length L is a random variable sampled from
+a discrete probability distribution like Poisson, negative binomial, geometric,
+or from the real clickstream length distribution, if available. Using this model,
+we generate a set of synthetic clickstreams C  = {c 1, c 2, ..., c K}. In each of
+the K independent iterations, we determine the clickstream length l and the
+initial vertex of the random walk. At the end of each iteration i, random walk
+path ci = {ui
+l} determines one clickstream appended to the synthetic
+clickstream set C .
+2, ..., ui
+1, ui
+Fig. 1. Simple example: at current step the MBRW model (m = 2) has created a
+clicktream (u1, u2, u3, u4) and node u4 has two neighbouring nodes u5 and u6 at the
+DS graph. The transition probability (see formula 3) to node u5 is given, where the  
+transition denotes the probability of a jump to some arbitrary node ux, the C denotes
+the normalization, the factor  
+N denotes the probability of random jump back to node
+u5 and N denotes total number of nodes in DS graph.
+In order to ensure an additive smoothing over transition probabilities in
+MBRW walk, we introduce a small   probability of a random jump. At each step
+in the clickstream generation process a random walker produces a jump to some
+random item with the probability  . This  -smoothing technique turns all possible
+clickstreams to become non-forbidden in generation process. The pseudo code for
+Memory Biased Random Walks with Random Jumps is provided in Algorithm
+1. The code for the MBRW model is available at github repository6.
+3 Results
+We analyse the statistical properties as well as the utility of the synthetic data
+in training recommender system models. In our experiments we will use two
+datasets: (i) Yahoo Music dataset released for the KDDCup challenge for the
+year 2011 [13] and (ii) the VideoLectures.NET7 dataset from the ECML/PKDD
+2011 Discovery Challenge[4]. As the privacy policies did not restrict publishing
+user preferences data to particular musical items in KDDCup challenge 2011,
+the subsample of the Yahoo Music dataset is used in our study as a experimen-
+tal polygon to measure the ability of training the recommender systems models
+on synthetic data. Note, that all the content data about musical items were
+anonymized in the Yahoo Music dataset. Contrary, in the ECML/PKDD 2011
+Discovery Challenge [4], only the content data and clickstrem statistics could be
+6 http://github.com/ninoaf/MBRW
+7 http://videolectures.net
+Algorithm 1 Memory Biased Random Walks with Random Jumps
+Input: DS - Direct Sequence matrix, CV S - Common View Score matrix, K -
+number of synthetic clickstreams,   - probability of random jump, m memory length
+from prob. distr. M
+Output: C   = {c 1, c 2, ..., c K } synthetic clickstream set
+C   =  
+for i = 1 : K do
+i = u // random initial item;
+c 
+for j = 1 : number of random hops do
+with 1     probability choose the next item uj with MBRW walk on DS and
+CV S;
+with   probability choose the next item uj with random jump;
+append new item: c 
+i   uj ;
+i = c 
+end for
+append new synthetic clickstream: C   = C     ci;
+end for
+published but not the actual clickstreams. Therefore, we use our methodology
+on the second VideoLectures.NET dataset to create and publish synthetic click-
+stream data. The  rst dataset used in our experiments is a subset of Yahoo Music
+dataset released for the KDDCup challenge for the year 2011 [13] Yahoo 2011
+challenge dataset which contains user preferences (ratings) to particular musi-
+cal items along with appropriate time stamp. We extracted from this dataset a
+subset that represents a very good proxy for a set of sequential activity (click-
+streams). For each user in our subset we retained sequence of highly rated items
+in ascending order over time stamps (sequence activity or clickstream proxy). We
+limited the total number of items and users in our subset to 5000 and 10000 re-
+spectively, in order to be able to perform large set of computational experiments
+with resources on disposal. The reduced dataset is denoted with C represents a
+set of clickstreams for 10000 users. This dataset reduction should not have any
+signi cant impact on the results and conclusions of the study. We will address
+this question later with cross-validation technique.
+Our  rst hypothesis is the following. Given a su ciently large synthetic
+dataset, basic statistical properties of DS  and CV S  matrices are preserved.
+We examined how statistical properties of the item preference matrix like DS
+and CV S are preserved in synthetic clickstream set, with respect to the original
+clickstream set. We calculated the DS and CV S matrices from the C dataset
+and created the synthetic clickstream set C  by using the MBRW model. Mem-
+ory parameter m was sampled from the Gaussian distribution N (3, 22), number
+of random walk hops parameter l was sampled from N (9, 22) and number of
+synthetic clickstreams parameter K varying from 104   106. Upon obtaining the
+synthetic clickstream set C , we calculated the DS  and CV S  matrices, and
+compared their statistical properties to the original matrices DS and CV S. We
+have used the Spearman s rank correlation measure between the corresponding
+rows in (DS, DS ) and (CV S, CV S ).
+Table 1. Average rank correlation between (DS,DS  ) and (CV S,CV S  ) for di erent
+sizes (K) of generated synthetic clickstream set. Synthetic clickstream set is created
+using parameter m sampled from N (3, 22), parameter l sampled from N (9, 22).
+ST D[r(DS, DS  )]
+0.3210
+0.3060
+0.2224
+0.0639
+0.0590
+AV G[r(DS, DS  )]
+Size
+K = 104
+0.5700
+K = 5   104 0.8261
+K = 105
+0.8914
+K = 5   105 0.9308
+K = 106
+0.9294
+AV G[r(CV S, CV S  )] ST D[r(CV S, CV S  )]
+K = 104
+0.4545
+K = 5   104 0.5530
+K = 105
+0.6050
+K = 5   105 0.7071
+K = 106
+0.7361
+0.2677
+0.2407
+0.2120
+0.1765
+0.1784
+Due to the fact that these matrices are sparse and that in the process of rec-
+ommendation only top ranked items are relevant, we limited the rank correlation
+calculation to the  rst z = 100 elements. Rank correlation between complete
+rows would be misleadingly high due to the row sparsity. Average rank correla-
+tion coe cient AV G[r(DS, DS )] = 0.92 and AV G[r(CV S, CV S )] = 0.73 over
+all corresponding rows was obtained for the  rst z most important elements, with
+the above parameters and K = 106. The rank correlation coe cients for di er-
+ent values of parameter K can be seen in Table 1. This shows highly correlated
+statistical properties (DS, DS ) and (CV S, CV S ).
+Now, we analyse the ability to learn recommender system models from syn-
+thetic data and apply this model on real users. We measure and compare the rec-
+ommender system models learned on real, synthetic and random data and their
+corresponding performance on recommending items to real users. We take the
+standard Item-Knn [12] recommender system as a representative of similarity-
+based techniques and state-of-the-art method matrix factorization techniques:
+Bayesian Personalized Ranking Matrix Factorization Technique [29]. We hy-
+pothesise that learning recommender systems models even from synthetic data
+can help making predictions to real users.
+In order to create proper training and test data for testing of our hypotheses
+we create two splits: a  vertical  and  horizontal  split. The horizontal split of
+the clickstream dataset C randomly divides them to two disjoint,  xed-size click-
+stream sets Ctrain and Ctest. Using the horizontal split on our Yahoo! dataset,
+we produced a training set Ctrain containing 9000, and a test set Ctest containing
+1000 clickstreams. The vertical split, on the other hand, divides clickstream in
+C into two sets:  rst t items are appended to  rst set, whereas the rest of the
+clickstream items belong to a second set. By applying the vertical split on the
+Ctest set again, we get two additional sets Cquery ( rst 50% of items in a click-
+stream) and Ctest (rest of clickstreams). These splits are graphically represented
+Fig. 2. Three ways of splitting the original clickstream set used in computational ex-
+periments: A - Horizontal split, B - Vertical split and C - Horizontal and vertical split
+train and C 
+in the Figure 2. Experimental procedure is the following. We extract DS and
+CV S statistics from Ctrain and generate synthetic C 
+train with the MBRW model.
+The baseline random synthetic dataset C 
+RN D is created by setting the parameter
+  = 1 (random jump model). Now, we create three di erent recommender sys-
+tem models: M (real model), M   (synthetic model), and MRN D (random model)
+from the Ctrain, C 
+RN D, respectively. Then recommender models for
+the input of real users Cquery produce recommendations which are compared
+to Ctest (ground truth). The performance on Ctest is measured with the stan-
+dard information retrieval measures: MAP (Mean Average Precision), NDCG
+(Normalized Discounted Cumulative Gain: ranking measure) and precision@10
+(fraction of the top 10 items retrieved by the system that are relevant for the
+user). In order to estimate how performance results can generalize to indepen-
+dent datasets we use a cross-validation technique. We make a 10-fold horizontal
+splits of our dataset. Then in each round we generate C i
+query.
+For each C i
+RN D. Note,
+that in each round recommender algorithms learn model on C i
+train and
+C i 
+test. In Fig-
+ure 3, we observe that BPRMF and Item-Knn models have signi cantly better
+performance than baseline random models. We have used the recommender sys-
+tems8 implementations from the Recommender System extension [19] [24] in the
+RapidMiner.
+RN D but their performance is measured for new users C i
+train we generate synthetic C i 
+train and random dataset C i 
+train, C i
+test and C i
+train, C i 
+query on C i
+In the end, we focus on the ECML/PKDD 2011 Discovery Challenge [4],
+where the privacy policies have restricted public availability of users clickstream
+data on the VideoLectures.Net. This challenge provided a rich content data
+about items in a system and di erent statistics about users clickstream se-
+quences. This has motivated us to use the direct sequence statistics and common
+view statistics as a generators of synthetic clickstreams with a proposed MBRW
+model. Direct sequence graph DS from this dataset consists of 7226 vertices in
+a single large, weakly connected component and common view score undirected
+graph CV S from this dataset consists of 7678 vertices in a large connected com-
+8 Item-Knn with k = 15 and BPRMF with num factors: 10, user, item and negItem
+regularization: 0.025, iterations: 30, learn rate: 0.05, initial mean: 0.0, initial std: 0.1
+and fast sampling: 1024.
+Fig. 3. Results for 10-folds cross-validation for MAP and NDCG measures for di erent
+datasets with Item-Knn [12] (plots A and B) and BPRMF [29] algorithm (plots C
+and D). Label  Real  represents performance on real dataset. Label:  Syn  represents
+synthetic data using MBRW with m sampled from N (3, 22), l sampled from real length
+distribution,   = 0.0001, K=9000. Label  Rnd  represents random data generated by
+random jumps   = 1.0 on item graph.
+ponent. We have produced and published 9 the 20000 synthetic clickstreams for
+VideoLectures.net with the MBRW model with the memory parameter m = 5
+and clickstream length L sampled from as a Geometric distribution with param-
+eter 0.1 (expected length of clickstreams is 10).
+Discussion and related work
+The problems of privacy-preserving data publishing [9] [18] and privacy preserv-
+ing data mining [3] are intensively researched within the database, the statistical
+disclosure, and the cryptography communities. Recently, a comprehensive survey
+[5] on the privacy challenges and solutions in privacy-preserving data mining has
+been published. Di erent privacy protection models already exists and here we
+will only mention the important ones. Record linkage models like k-Anonymity
+model [22] [32] [33] assure that the number of records with a quasi-identi er id
+is at least k and therefore assure the value of linkage probability at most 1/k.
+Attribute linkage models like L-diversity [23] are envisioned to overcome the
+problem of inferring the sensitive values from k anonymity groups by decreasing
+the correlations between the quasi-identi ers and the sensitive values. Probabilis-
+tic models like  -di erential privacy model [14] ensures that individual s presence
+or absence in the database does not e ect the query output signi cantly. Post-
+random perturbation (PRAM) methods [34] [35] change original values through
+9 http://lis.irb.hr/challenge/index.php/dataset/
+probabilistic mechanisms and thus, by introducing uncertainty into data, re-
+duce the risk of re-identi cation. Aggarwal et.al. [2] proposed an anonymization
+framework for string-like data. They used the condensation-based techniques
+to construct condensed groups and their aggregate statistics. From the aggre-
+gate statistics, they calculated the  rst and second order information statistics
+of symbol distributions in strings, and generated synthetic, pseudo-string data.
+But still, many data-privacy researchers agree that high dimensional data poorly
+resist to de-anonymization [25] which poses privacy issues for companies, and pre-
+vent the usage of real-life datasets for research purposes. Contrary to standard
+anonymization methods, synthetic data generation is an alternative approach to
+data protection in which the model generates synthetic dataset, while preserving
+the statistical properties of the original dataset. Several approaches for synthetic
+data generation have been proposed: (i) synthetic data generation by multiple
+imputation method [27], (ii) synthetic data by bootstrap method [16] (estimat-
+ing multi-variate cumulative probability distribution, deriving similar c.d.f., and
+sampling a synthetic dataset), (iii) synthetic data by Latin Hypercube Sam-
+pling [10], (iv) and others such as a combination of partially synthetic attributes
+and real non-con dential attributes [11] [28]. These synthetic data generation
+strategies were mostly developed for database records with a  xed number of
+attributes but not for sequences such as sequence data.
+We propose a novel approach for synthetic sequence generation by construct-
+ing the memory biased random walk (MBRW) model on the multilevel network
+of usage sequences. Moreover, we demonstrate this synthetic data can be used for
+learning recommender models which can be useful for applications on real users.
+What are the potential privacy breach problems of our approach ? Our method
+is based on the assumption that the sequence statistics: direct sequence DS and
+common view score CV S can be publicly available without breaking privacy of
+particular user. Why this is the case ? We can view the clickstreams as a dif-
+ferent way of writing the sequence statistics like  nite state machines represent
+ nite way of coding the in nite set of word from some regular language. Note,
+that the privacy breach can occur in a situation when the attacker can claim
+that individual unique synthetic subsequences could only be generated by using
+the unique transitions from particular user u. This is the reason why we need
+smoothing procedure (  jumps) or k-anonymity  ltering over the transition ma-
+trices DS and CV S. The   random jumps in the generation process with small
+  probability correspond to the additive smoothing of transition probabilities in
+MBRW model. Let us de ne the set of all possible combinatoric combinations of
+clickstreams with arbitrary length from set of items with   (in nite). Note, that
+when   = 0 the MBRW model cannot create arbitrary clickstream from space
+of all clickstreams combinations   due to the existence of zero values in DS
+and CV S matrices. As the additive smoothing technique turns all combinatoric
+clickstreams from   set possible the attacker can not longer certainly claim that
+certain unique user subsequence was used in generation process. K-anonymity
+ ltering can also be applied to CV S and DS directly by  ltering all frequen-
+cies that are lower than k. This  ltering enables that the presence or absence of
+individual transitions in DS or CV S can not be detected. Therefore if the DS
+and CV S statistics after a potential  ltering can be publicly available without
+breaking privacy our methodology can be applied.
+4 Conclusion
+The principle aim of our work was to construct a generator of real-like click-
+stream datasets, able to preserve the original user-item preference structure,
+while at the same time addressing privacy protection requirements. With re-
+spect to this aim, we investigated properties of the memory biased random walk
+model. We demonstrated that the basic statistical properties of data genera-
+tors DS and CV S matrices are preserved in synthetic dataset if we generate
+dataset of su ciently large size. In addition to presenting the MBRW model
+for synthetic clickstream generation, we demonstrate that the synthetic datasets
+created with it can be used to learn recommender system models which can be
+useful to recommendations for real users.
+5 Acknowledgments
+This work was supported by the European Community 7th framework ICT-
+2007.4 (No 231519)  e-LICO: An e-Laboratory for Interdisciplinary Collabora-
+tive Research in Data Mining and Data-Intensive Science  and by the EU-FET
+project MULTIPLEX (Foundational Research on MULTIlevel comPLEX net-
+works and systems, grant no. 317532).
+References
+1. Adomavicius, G., Tuzhilin, A.: Toward the next generation of recommender sys-
+tems: A survey of the state-of-the-art and possible extensions. IEEE Transactions
+on Knowledge and Data Engineering 17(6), 734 749 (2005)
+2. Aggarwal, C.C., Yu, P.S.: A framework for condensation-based anonymization of
+string data. Data Min. Knowl. Discov. 16(3), 251 275 (2008)
+3. Aggarwal, C.C., Yu, P.S.: Privacy-Preserving Data Mining: Models and Algo-
+rithms, 1 edn. Springer Publishing Company, Incorporated (2008)
+4. Antulov-Fantulin, N., Bo snjak, M., Znidar sic, M., Gr car, M., Morzy, M.,  Smuc,
+T.: Ecml/pkdd 2011 discovery challenge overview. In: Proceedings of the ECML-
+PKDD 2011 Workshop on Discovery Challenge, pp. 7 20 (2011)
+5. Berendt, B.: More than modelling and hiding: towards a comprehensive view of
+web mining and privacy. Data Min. Knowl. Discov. 24(3), 697 737 (2012)
+6. Bogers, T.: Movie recommendation using random walks over the contextual graph.
+In: Second Workshop on Context-Aware Recommender Systems (2010)
+7. Burke, R.: Hybrid recommender systems: Survey and experiments. User Modeling
+and User-Adapted Interaction 12(4), 331 370 (2002)
+8. Zlati c, V., Gabrielli, A., Caldarelli, G.: Topologically biased random walk and
+community  nding in networks. Phys. Rev. E 82, 066,109 (2010)
+9. Chen, B.C., Kifer, D., LeFevre, K., Machanavajjhala, A.: Privacy-preserving data
+publishing. Found. Trends databases 2(18211;2), 1 167 (2009)
+10. Dandekar, R.A., Cohen, M., Kirkendall, N.: Sensitive micro data protection using
+latin hypercube sampling technique. In: Inference Control in Statistical Databases,
+From Theory to Practice, pp. 117 125 (2002)
+11. Dandekar, R.A., Domingo-Ferrer, J., Seb e, F.: Lhs-based hybrid microdata vs rank
+swapping and microaggregation for numeric microdata protection. In: Inference
+Control in Statistical Databases, From Theory to Practice, pp. 153 162 (2002)
+12. Deshpande, M., Karypis, G.: Item-based top-n recommendation algorithms. ACM
+Transactions on Information Systems 22(1), 143 177 (2004)
+13. Dror, G., Koenigstein, N., Koren, Y., Weimer, M.: The yahoo! music dataset and
+kdd-cup 11. In: Proceedings of KDDCup 2011 (2011)
+14. Dwork, C.: Di erential privacy. In: M. Bugliesi, B. Preneel, V. Sassone, I. We-
+gener (eds.) Automata, Languages and Programming, Lecture Notes in Computer
+Science, vol. 4052, pp. 1 12 (2006)
+15. Feller, W.: An introduction to probability theory and its applications, vol. 2. John
+Wiley & Sons (2008)
+16. Fienberg, S.: A radical proposal for the provision of micro-data samples and the
+preservation of con dentiality. Tech. rep., Department of Statistics, Carnegie-
+Mellon University. Technical Report (1994)
+17. Fouss, F., Faulkner, S., Kolp, M., Pirotte, A., Saerens, M.: Web recommendation
+system based on a markov-chain model. In: International Conference on Enterprise
+Information Systems (ICEIS 2005) (2005)
+18. Fung, B.C., Wang, K., Fu, A.W.C., Yu, P.S.: Introduction to Privacy-Preserving
+Data Publishing: Concepts and Techniques, 1st edn. Chapman & Hall/CRC (2010)
+19. Gantner, Z., Rendle, S., Freudenthaler, C., Schmidt-Thieme, L.: Mymedialite: A
+free recommender system library. In: Proceedings of the  fth ACM conference on
+Recommender systems, pp. 305 308. ACM (2011)
+20. Gori, M., Pucci, A.: Research paper recommender systems: A random-walk based
+approach. In: Web Intelligence, pp. 778 781 (2006)
+21. Kao, E.: An introduction to stochastic processes. Business Statistics Series.
+Duxbury Press (1997)
+22. Kenig, B., Tassa, T.: A practical approximation algorithm for optimal k-anonymity.
+Data Min. Knowl. Discov. 25(1), 134 168 (2012)
+23. Machanavajjhala, A., Kifer, D., Gehrke, J., Venkitasubramaniam, M.: L-diversity:
+Privacy beyond k-anonymity. ACM Transactions on Knowledge Discovery from
+Data 1(1) (2007)
+24. Mihel ci c, M., Antulov-Fantulin, N., Bo snjak, M.,  Smuc, T.: Extending rapidminer
+with recommender systems algorithms. In: Proceedings of the RapidMiner Com-
+munity Meeting and Conference, pp. 63 75 (2012)
+25. Narayanan, A., Shmatikov, V.: Robust de-anonymization of large sparse datasets.
+In: Proceedings of the 2008 IEEE Symposium on Security and Privacy, SP  08, pp.
+111 125. IEEE Computer Society, Washington, DC, USA (2008)
+26. Newman, M.: Networks: An Introduction. Oxford University Press, Inc. (2010)
+27. Raghunathan, T., Reiter, J., Rubin, D.: Multiple imputation for statistical disclo-
+sure limitation. Journal of O cial Statistics 19(1), 1 16 (2003)
+28. Reiter, J.: Inference for partially synthetic, public use microdata sets. Survey
+Methodology 29(2), 181 188 (2003)
+29. Rendle, S., Freudenthaler, C., Gantner, Z., Schmidt-Thieme, L.: Bpr: Bayesian
+personalized ranking from implicit feedback. In: Proceedings of the 25th Conference
+on Uncertainty in Arti cial Intelligence, UAI  09, pp. 452 461 (2009)
+30. Rendle, S., Tso-Sutter, K., Huijsen, W., Freudenthaler, C., Gantner, Z., Wartena,
+C., Brussee, R., Wibbels, M.: Report on state of the art recommender algorithms
+(update). Tech. rep. (2011). MyMedia public deliverable D4.1.2.
+31. Resnick, P., Iacovou, N., Suchak, M., Bergstrom, P., Riedl, J.: Grouplens: an open
+architecture for collaborative  ltering of netnews.
+In: Proceedings of the 1994
+ACM conference on Computer supported cooperative work, CSCW  94, pp. 175 
+186 (1994)
+32. Samarati, P.: Protecting respondents  identities in microdata release. IEEE Trans-
+actions on Knowledge and Data Engineering 13(6), 1010 1027 (2001)
+33. Samarati, P., Sweeney, L.: Generalizing data to provide anonymity when disclos-
+ing information (abstract).
+In: Proceedings of the seventeenth ACM SIGACT-
+SIGMOD-SIGART symposium on Principles of database systems, PODS  98, pp.
+188 (1998)
+34. Wolf, P.P.D., Amsterdam, H.V., Design, C., Order, W.T.: An empirical evaluation
+of pram statistics netherlands voorburg/heerlen (2004)
+35. Wolf, P.P.D., Gouweleeuw, J.M., Kooiman, P., Willenborg, L.: Re ections on pram.
+Statistical Data Protection, Luxembourg pp. 337 349 (1999)

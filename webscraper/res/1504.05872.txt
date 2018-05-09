@@ -1,0 +1,11 @@
+ The resulting gameplay and e orts to predict its evolution are the object of great interest to both sports professionals and en- thusiasts.
+ In this paper, we consider two online prediction problems for team sports: given a partially observed game Who will score next? and ultimately Who will win?
+ We present novel interpretable generative models of within-game scoring that allow for dependence on lead size (restoration) and on the last team to score (anti-persistence).
+ We construct and test probabilistic models for two online predictive tasks: given a partially observed game Who will score next? and ultimately Who will win?
+ The events within a particular game can be e ectively modeled as the interaction of skill and chance.
+ In our analysis and modeling, we discard the timestamps of the events and instead consider only the order in which events appear within a game.
+ The team sequences of each game are tested independently and we plot the proportion of games that reject the null hypothesis that the sequences are random.
+ For both tasks, we let our models observe the point and team sequences of the rst T games in a particular season.
+ Each simula- tion uses the best overall skill model for that sport to generate synthetic point and team sequences.
+ We check these models by performing a semi-parametric bootstrap, generating synthetic and sequences of the same number and lengths as observed empirically in each 8 A.
+ Probability of accurately predicting which team will score next (AUC), when models observe di erent fractions of a season.

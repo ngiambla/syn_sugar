@@ -1,0 +1,13 @@
+ However, in part due to the lack of appropriate data, much less quantitative research has focused on student dropout in the traditional classroom environment.
+ Our broader objective is to understand the key determinants of dropout, to accurately identify students likely to attrite, and to recommend policy interventions to reduce student attrition.
+ Of these 69,116, 5 students did not have birth years available and were consequently excluded from the analysis.
+ First, we are extend- ing our analysis to the full dataset and to other universities, including dealing with issues related to class imbalances (Thammasiri et al., 2014).
+ As an extension to this, we hope to leverage this work for possible interventions at the policy level to reduce attrition.
+ In hopes of improving these models, we intend to rst use feature engineering on our existing feature space.
+ Feature engi- neering is often used in the analysis of customer churn from businesses, as shown recently by Huang et al., for example (2015), and we see a direct analog with student attrition.
+ We also intend to eventually look at convolutional and recurrent neural networks, thereby reducing the need for hand-engineered features. 5.
+ Conclusions In this work, we show preliminary results for predicting student attrition from a large, heterogeneous dataset of student demographics and transcript records.
+ Predicting eventual student attrition yielded promising results from a balanced dataset of over 32,500 students with regular- ized logistic regression providing the strongest predictions.
+ GPA in math, English, chemistry, and psychology courses were among the strongest individual predictors of attrition, as were year of enrollment and birth year, thus highlighting time effects in our data.
+ We obtained a root mean squared error (RMSE) value of 5.03 quarters when using data on all non-completions.
+ When excluding the bottom 5% and 10% of least accurate predictions, RMSE was 4.14 and 3.74 quarters, respectively.

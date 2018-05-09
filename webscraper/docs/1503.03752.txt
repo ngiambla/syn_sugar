@@ -1,0 +1,377 @@
+5
+1
+0
+2
+ 
+r
+a
+ 
+M
+3
+1
+ 
+ 
+]
+I
+S
+.
+s
+c
+[
+ 
+ 
+2
+v
+2
+5
+7
+3
+0
+.
+3
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Manipulation and abuse on social media
+Emilio Ferrara
+School of Informatics and Computing, and
+Indiana University Network Science Institute
+Indiana University, Bloomington, IN, USA
+The computer science research community has became increasingly interested in the study of social
+media due to their pervasiveness in the everyday life of millions of individuals. Methodological
+questions and technical challenges abound as more and more data from social platforms become
+available for analysis. This data deluge not only yields the unprecedented opportunity to unravel
+questions about online individuals  behavior at scale, but also allows to explore the potential perils
+that the massive adoption of social media brings to our society. These communication channels
+provide plenty of incentives (both economical and social) and opportunities for abuse. As social
+media activity became increasingly intertwined with the events in the o ine world, individuals
+and organizations have found ways to exploit these platforms to spread misinformation, to attack
+and smear others, or to deceive and manipulate. During crises, social media have been e ectively
+used for emergency response, but fear-mongering actions have also triggered mass hysteria and
+panic. Criminal gangs and terrorist organizations like ISIS adopt social media for propaganda and
+recruitment. Synthetic activity and social bots have been used to coordinate orchestrated astroturf
+campaigns, to manipulate political elections and the stock market. The lack of e ective content
+veri cation systems on many of these platforms, including Twitter and Facebook, rises concerns
+when younger users become exposed to cyber-bulling, harassment, or hate speech, inducing risks
+like depression and suicide. This article illustrates some of the recent advances facing these issues
+and discusses what it remains to be done, including the challenges to address in the future to
+make social media a more useful and accessible, safer and healthier environment for all users.
+Introduction
+Social media play a central role in the social life of millions of people every day. They
+help us connect [Gilbert and Karahalios 2009; De Meo et al. 2014], access news and share
+information [Kwak et al. 2010; Ferrara et al. 2013], hold conversations and discuss our
+topics of interest [Ferrara et al. 2013; JafariAsbagh et al. 2014].
+The wide adoption of social media arguably brought several positive effects to our soci-
+ety: social media played a pivotal role during recent social mobilizations across the world
+[Conover et al. 2013; Conover et al. 2013], helping democratizing the discussion of social
+issues [Varol et al. 2014]; they have been used during emergencies to coordinate disas-
+ter responses [Sakaki et al. 2010]; they have also proved effective in enhancing the social
+awareness about health issues such as obesity [Centola 2011], or increasing voting partici-
+pation during recent political elections [Bond et al. 2012].
+SIGWEB Newsletter Spring 2015
+ 
+2
+Emilio Ferrara
+Researchers in computing quickly realized the fresh opportunities brought by the rise of
+social media: blending computational frameworks, machine learning techniques, and ques-
+tions from social and behavioral sciences, nowadays computational social science studies
+the impact of socio-technical systems on our society [Lazer et al. 2009; Vespignani 2009].
+Although a large body of literature has been devoted to the usage of social media [Java et al.
+2007; Huberman et al. 2008; Asur and Huberman 2010], only recently our community
+started realizing some potentially harmful effects that the abuse of these platforms might
+cause to our society. Due to a mixture of social and economical incentives, a lack of
+effective policies against misbehavior, and insuf cient technical solutions to timely detect
+and hinder improper use, social media have been recently characterized by widespread
+abuse. In the following, I illustrate what are the perils that arise from some forms of social
+media abuse, provide examples of the effects of such behaviors on our society, and discuss
+possible solutions.
+Misinformation, fear, manipulation and abuse
+On Tuesday April 23rd, 2013 at 1:07 p.m. the of cial Twitter account of the Associated
+Press (AP), one of the most in uential American news agencies, posted a tweet reporting
+two explosions at the White House allegedly causing President Barack Obama to remain
+injured. The tweet garnered several thousands retweets in a few minutes, and generated
+countless variants that spread uncontrolled reaching millions. In the short interval of time
+that took to other agencies to challenge the veracity of this news, and to realize that the
+AP Twitter account had been hacked, the panic of a terror attack started diffusing through
+the population; as a direct consequence, the Dow Jones plummeted 147 points in a matter
+of 3 minutes, one of the largest point drops in its history; shortly after the con rmation
+of the hack, the Dow recovered but the crash erased $136 billion dollars. This event,
+captured in Fig. 1, is the  rst reported case of a planetary-scale misinformation spreading
+with tangible real-world effects and devastating economic loss. A later revindication by
+the Syrian Electronic Army raised concerns about possibly new forms of cyber-terrorism,
+leveraging social media, aimed at generating mass hysteria to trigger market crashes.1
+The AP hack exposed the risks related to security of social media from attacks aimed at
+impersonation or identity theft. Yet, most importantly, it showed the potentially dangerous
+power and effects social media conversation has on the of ine, physical world  especially
+on the fragile and increasingly interconnected  nancial markets. This was not one isolated
+event: shadows have been cast [Hwang et al. 2012] on the role of social media during the
+infamous 2010  ash crash of the stock market,2 after an inconclusive report by the Se-
+curities and Exchange Commission.3 More recently, a company named Cynk Technology
+Corp underwent the unfathomable gain of more than 36,000% when its penny stocks surged
+from less than $0.10 to above $20 a share in a matter of few weeks, reaching a market cap
+of above $6 billions.4 Further investigation revealed what seems to be an orchestrated at-
+1Syrian hackers claim AP hack that tipped stock market by $136 billion. Is it terrorism?   washingtonpost.
+com/blogs/worldviews/wp/2013/04/23/syrian-hackers-claim-ap-hack
+2Wikipedia: 2010 Flash Crash   en.wikipedia.org/wiki/2010_Flash_Crash
+3Findings regarding the market events on May 6, 2010   http://www.sec.gov/news/studies/
+2010/marketevents-report.pdf
+4The Curious Case of Cynk, an Abandoned Tech Company Now Worth $5 Billion   mashable.com/2014/
+SIGWEB Newsletter Spring 2015
+Manipulation and abuse on social media
+ 
+3
+Fig. 1. The fake tweet causing the Dow Jones to plunge on April 23rd, 2013 in 3 minutes erased $136 billion
+dollars in equity market value.
+tempt of touting the stock s performance through arti cial social media discussion, using
+social bots and spam accounts [Ferrara et al. 2014; Yang et al. 2014]. The abundance of
+synthetically-generated content has direct implications for business ventures as well: busi-
+ness intelligence and analytics companies that use social media signals for market analysis
+(for example to predict how well a movie will do at the box of ce [Asur and Huberman
+2010; Mesty an et al. 2013], or to determine how a new TV show is being received by it
+target audience) have their results affected by the noise produced by synthetic/spam ac-
+counts.5
+The presence of social bots on social media undermines the very roots of our information
+society: they can be employed to fake grassroots political support (a phenomenon called
+astroturf ) [Ratkiewicz et al. 2011; Ratkiewicz et al. 2011], or to reach millions of indi-
+viduals by using automated algorithms tuned for optimal interaction. One recent example
+is provided by ISIS, which is using social bots for propaganda and recruitment [Berger
+and Morgan 2015], adopting different manipulation strategies according to the targets of
+their campaigns.6 The ongoing efforts of our community to  ght social bots and synthetic
+activity are summarized in a recent survey [Ferrara et al. 2014].
+The spreading of manipulation campaigns has overwhelming societal effects. In politics,
+for example, smearing attacks have been perpetrated to defame candidates and damage
+their public images during various elections, including the 2009 Massachusetts Senate spe-
+07/10/cynk
+5Nielsen s New Twitter TV Ratings Are a Total Scam. Here s Why.   defamer.gawker.com/
+nielsens-new-twitter-tv-ratings-are-a-total-scam-here-1442214842
+6The Evolution of Terrorist Propaganda: The Paris Attack and Social Media   brookings.edu/
+research/testimony/2015/01/27-terrorist-propaganda-social-media-berger
+SIGWEB Newsletter Spring 2015
+ 
+4
+Emilio Ferrara
+Fig. 2. The diffusion of information need on Twitter (RTs and MTs).
+cial election [Metaxas and Mustafaraj 2012] and the 2010 U.S. Senate election [Ratkiewicz
+et al. 2011], while governments and other entities attempted to manipulate the public per-
+ception on impeding social issues7,8. The viral dynamics of information spreading on
+social media have been target of recent studies [Weng et al. 2013; 2014], however much
+remains to be done to understand how to contain or hinder the diffusion of dangerous cam-
+paigns, including deception and hijacked ones.9,10
+7Russian Twitter political protests  swamped by spam    bbc.com/news/technology-16108876
+8Fake Twitter accounts used to promote tar sands pipeline   theguardian.com/environment/2011/
+aug/05/fake-twitter-tar-sands-pipeline
+9McDonald s Twitter Campaign Goes Horribly Wrong #McDStories   businessinsider.com/
+mcdonalds-twitter-campaign-goes-horribly-wrong-mcdstories-2012-1
+10NYPD s Twitter campaign back res   usatoday.com/story/news/nation-now/2014/04/23/
+nypd-twitter-mynypd-new-york/8042209/
+SIGWEB Newsletter Spring 2015
+Manipulation and abuse on social media
+ 
+5
+Fig. 3. The spreading of fear-rich content across different Twitter communities (RTs and MTs).
+Time
+2014-10-17 13:33:57
+2014-10-17 13:39:44
+2014-10-17 13:40:38
+2014-10-17 13:56:20
+2014-10-17 13:59:20
+2014-10-17 14:09:03
+Content
+@FoxNews WHY WON T YOU REPORT THE CRUISE SHIP IS BEING
+DENIED ENTRY INTO BELIZE? CRUCIAL FOR CLOSING OUR BORDERS!
+@FoxNews Those hc workers are totally wacky.Y today do they decide to tell
+some1 they handled specimens from Ebola pt, esp on ship&not sick?
+@NBCNews Many countries are refusing entry from  ights from Ebola nations.
+Why aren t you asking the WH about their crazy policy?
+@CNN Why two doctors treated for EBOLA & INFECTED no one else including
+CARE GIVERS but it s not the same case for TX? Who screwed up?
+@FoxNews Are they paying these potential Ebola victims money to get on ships
+and planes? I am beginning to really wonder
+OMG! He cld b infected  @NBCNews: Who is man wearing plain clothes
+during an #Ebola patient s transfer?  via @NBCDFW
+Table I. Examples of concerned or fear-rich tweets spreading during the Ebola emergency of Oct. 17th, 2014.
+SIGWEB Newsletter Spring 2015
+ 
+6
+Emilio Ferrara
+Social media have been extensively adopted during crises and emergencies [Hughes and
+Palen 2009], in particular to coordinate disaster response [Yates and Paquette 2011], en-
+hance situational awareness [Yin et al. 2012], and sense the health state of the population
+[Sakaki et al. 2010]. However, manipulation of information (e.g., promotion of fake news)
+and misinformation spreading can cause panic and fear in the population, which can in
+turn become mass hysteria. The effects of such types of social media abuse have been
+observed during Hurricane Sandy at the end of 2012, after the Boston Marathon bombings
+in April 2013, and increasingly every since. During Sandy, a storm of fake news struck the
+Twitter-sphere:11 examples of such misinformation spreading include rumors, misleading
+or altered photos,12 sharing of untrue stories, and false alarms or unsubstantiated requests
+for help/support. After the Boston bombings, tweets reporting fake deaths or promoting
+fake donation campaigns spread uncontrolled during the  rst few hours after the events
+[Gupta et al. 2013]. Rumors and false claims about the capture of the individuals respon-
+sible for the bombing occurred throughout the four days after the event (the period during
+which the man hunt was carried out).13
+The examples above show how frequent social media abuse is during crises and emer-
+gencies. My current research aims at illustrating some of the devastating societal conse-
+quences of such abuse: by extracting features of crisis-related content generated by dif-
+ferent types of information producers (e.g., news agencies, Twitter in uentials, or of cial
+organizations) along different dimensions (content sentiment, temporal patterns, network
+diffusion, etc.), we can study the characteristics of content produced on social media in
+reaction to external stimuli. Conversations can exhibit different classes of induced reac-
+tions (e.g., awareness vs. fear). We can highlight announcements and news that likely
+trigger positive reactions in the population (awareness), and pinpoint to those that likely
+yield negative feedback (fear, panic, etc.). By identifying fear-rich content and information
+needs [Zhao and Mei 2013], we can characterize the relation between communication by
+media/organizations and emotional responses (awareness, concerns, doubts, etc.) in the
+population. We can study how fear and concern are triggered or mitigated by media and
+of cial communications, how this depends on language, timing, demography of the target
+users, etc.
+Fig. 2 shows the spreading of information need [Zhao and Mei 2013] on Twitter:
+the
+data capture all tweets produced during a short interval of 1 hour on October 17th, 2014,
+in the context of the discussion about the 2014 Ebola emergency. Particularly prominent
+nodes in the discussion are labeled, and they are positioned according to their centrality;
+different colors identify different topical communities [Ferrara et al. 2013; JafariAsbagh
+et al. 2014]. From a central core of users that start asking questions and information about
+Ebola, the  ow of retweets (RTs) and mentions (MTs) reaches thousands, affecting even
+communities several hops far away from such topics, including those around in uential
+accounts like news agencies.
+11Hurricane Sandy brings storm of fake news and photos to New York   theguardian.com/world/
+us-news-blog/2012/oct/30/hurricane-sandy-storm-new-york
+12Snopes.com: Hurricane Sandy Photographs   http://www.snopes.com/photos/natural/
+sandy.asp
+13Wikipedia:
+bombings
+Boston Marathon bombings   en.wikipedia.org/wiki/Boston_Marathon_
+SIGWEB Newsletter Spring 2015
+Manipulation and abuse on social media
+ 
+7
+Fig. 3 illustrates another example of such analysis, showing the spread of concern and fear-
+rich content during the same interval of time (some example tweets are reported in Table
+1). Positioning, size and colors again represent the prominence of the accounts involved
+in the discussion and different Twitter topical communities. We can observe how panic
+and fear spread virally, reaching large audiences at great diffusion speed: the exposure
+to contents that leverage human s fears obfuscates our judgment and therefore our ability
+to discriminate between factual truths and exaggerated news.14 In turn, this fosters the
+spreading of misinformation, rumors, and unveri ed news, potentially creating panic in
+the population, and the generation of further, more negative content. This self-reinforced
+mechanism can be interrupted by the implementation of ad-hoc intervention campaigns,
+designed to be effective on speci c targets, based on their characteristics and susceptibility.
+We urge a computational framework to deal with abuse in social media (especially during
+crises) that goes beyond simple data analytics, capable of actively design and implement
+effective policies in order to support decision-making strategies and timely interventions.
+Conclusions
+In this article I illustrated some of the issues concerned with abuse on social media. Phe-
+nomena such as misinformation spreading are greatly magni ed by the massive reach and
+pervasiveness that social media lately obtained. I brought several examples of the risks
+both at the economic and social level that rise from social media abuse, and discussed
+examples of such abuse in the context of political discussion, stock market manipulation,
+propaganda and recruitment. I  nally exposed the consequences of the spreading of fear
+and panic during emergencies, as a consequence of improper communication on social
+media, or fear-mongering activity by speci c parties.
+I highlighted some of the recent advances to challenge these issues, including the detection
+of social bots, campaigns, and spam, yet arguing that much remains to be done to make
+social media a more useful and accessible, safer and healthier environment for all users.
+Notably, recent studies illustrated how particular populations, such as younger social me-
+dia users, are even more exposed to abuse, for example in the form of cyber-bullying and
+harassment, or being targeted by stigmas and hate speech, increasing health risks like de-
+pression and suicide [Boyd 2008; 2014].
+As a community, we need to face the methodological challenges and the technical issues to
+detect social media abuse to secure online social platforms, and at the same time try reduce
+the abundant social and economical incentives by creating frameworks of effective policies
+against social media abuse.
+REFERENCES
+ASUR, S. AND HUBERMAN, B. A. 2010. Predicting the future with social media. In 2010 IEEE/WIC/ACM
+International Conference on Web Intelligence and Intelligent Agent Technology. IEEE, 492 499.
+BERGER, J. AND MORGAN, J. 2015. The ISIS Twitter Census: De ning and describing the population of ISIS
+supporters on Twitter. The Brookings Project on U.S. Relations with the Islamic World 3, 20.
+14Fear, Misinformation,
+ebola-social-media/
+and Social Media Complicate Ebola Fight   time.com/3479254/
+SIGWEB Newsletter Spring 2015
+ 
+8
+Emilio Ferrara
+BOND, R. M., FARISS, C. J., JONES, J. J., KRAMER, A. D., MARLOW, C., SETTLE, J. E., AND FOWLER,
+J. H. 2012. A 61-million-person experiment in social in uence and political mobilization. Nature 489, 7415,
+295 298.
+BOYD, D. 2014. It s complicated: The social lives of networked teens. Yale University Press.
+BOYD, D. M. 2008. Taken out of context: American teen sociality in networked publics. ProQuest.
+CENTOLA, D. 2011. An experimental study of homophily in the adoption of health behavior. Science 334, 6060,
+1269 1272.
+CONOVER, M. D., DAVIS, C., FERRARA, E., MCKELVEY, K., MENCZER, F., AND FLAMMINI, A. 2013. The
+geospatial characteristics of a social movement communication network. PloS one 8, 3, e55957.
+CONOVER, M. D., FERRARA, E., MENCZER, F., AND FLAMMINI, A. 2013. The digital evolution of Occupy
+Wall Street. PloS one 8, 5, e64679.
+DE MEO, P., FERRARA, E., FIUMARA, G., AND PROVETTI, A. 2014. On Facebook, most ties are weak.
+Communications of the ACM 57, 11, 78 84.
+FERRARA, E., JAFARIASBAGH, M., VAROL, O., QAZVINIAN, V., MENCZER, F., AND FLAMMINI, A. 2013.
+In 2013 IEEE/ACM International Conference on Advances in Social
+Clustering memes in social media.
+Networks Analysis and Mining. IEEE, 548 555.
+FERRARA, E., VAROL, O., DAVIS, C., MENCZER, F., AND FLAMMINI, A. 2014. The rise of social bots. arXiv
+preprint arXiv:1407.5225.
+FERRARA, E., VAROL, O., MENCZER, F., AND FLAMMINI, A. 2013. Traveling trends: social butter ies or
+frequent  iers? In First ACM conference on Online social networks. ACM, 213 222.
+GILBERT, E. AND KARAHALIOS, K. 2009. Predicting tie strength with social media. In 27th SIGCHI Confer-
+ence on Human Factors in Computing Systems. ACM, 211 220.
+GUPTA, A., LAMBA, H., AND KUMARAGURU, P. 2013. $1.00 per RT #BostonMarathon #PrayForBoston:
+Analyzing fake content on Twitter. In eCrime Researchers Summit. IEEE, 1 12.
+HUBERMAN, B., ROMERO, D., AND WU, F. 2008. Social networks that matter: Twitter under the microscope.
+First Monday 14, 1.
+HUGHES, A. L. AND PALEN, L. 2009. Twitter adoption and use in mass convergence and emergency events.
+International Journal of Emergency Management 6, 3, 248 260.
+HWANG, T., PEARCE, I., AND NANIS, M. 2012. Socialbots: Voices from the fronts. Interactions 19, 2, 38 45.
+JAFARIASBAGH, M., FERRARA, E., VAROL, O., MENCZER, F., AND FLAMMINI, A. 2014. Clustering memes
+in social media streams. Social Network Analysis and Mining 4, 1, 1 13.
+JAVA, A., SONG, X., FININ, T., AND TSENG, B. 2007. Why we Twitter: understanding microblogging usage
+and communities. In 2007 Workshop on Web mining and social network analysis. ACM, 56 65.
+KWAK, H., LEE, C., PARK, H., AND MOON, S. 2010. What is Twitter, a social network or a news media? In
+19th International Conference on World Wide Web. ACM, 591 600.
+LAZER, D., PENTLAND, A. S., ADAMIC, L., ARAL, S., BARABASI, A. L., BREWER, D., CHRISTAKIS, N.,
+CONTRACTOR, N., FOWLER, J., GUTMANN, M., ET AL. 2009. Life in the network: the coming age of
+computational social science. Science 323, 5915, 721.
+MESTY  AN, M., YASSERI, T., AND KERT  ESZ, J. 2013. Early prediction of movie box of ce success based on
+wikipedia activity big data. PloS one 8, 8, e71226.
+METAXAS, P. T. AND MUSTAFARAJ, E. 2012. Social media and the elections. Science 338, 6106, 472 473.
+RATKIEWICZ, J., CONOVER, M., MEISS, M., GONC  ALVES, B., FLAMMINI, A., AND MENCZER, F. 2011.
+Detecting and tracking political abuse in social media. In 5th International AAAI Conference on Weblogs and
+Social Media. 297 304.
+RATKIEWICZ, J., CONOVER, M., MEISS, M., GONC  ALVES, B., PATIL, S., FLAMMINI, A., AND MENCZER,
+In 20th International Conference
+F. 2011. Truthy: mapping the spread of astroturf in microblog streams.
+companion on World Wide Web. ACM, 249 252.
+SAKAKI, T., OKAZAKI, M., AND MATSUO, Y. 2010. Earthquake shakes Twitter users: real-time event detection
+by social sensors. In 19th International Conference on World Wide Web. ACM, 851 860.
+VAROL, O., FERRARA, E., OGAN, C. L., MENCZER, F., AND FLAMMINI, A. 2014. Evolution of online user
+behavior during a social upheaval. In 2014 ACM conference on Web science. ACM, 81 90.
+VESPIGNANI, A. 2009. Predicting the behavior of techno-social systems. Science 325, 5939, 425.
+SIGWEB Newsletter Spring 2015
+Manipulation and abuse on social media
+ 
+9
+WENG, L., MENCZER, F., AND AHN, Y.-Y. 2013. Virality prediction and community structure in social net-
+works. Scienti c Reports 3.
+WENG, L., MENCZER, F., AND AHN, Y.-Y. 2014. Predicting successful memes using network and community
+structure. In 8th International AAAI Conference on Weblogs and Social Media.
+YANG, Z., WILSON, C., WANG, X., GAO, T., ZHAO, B. Y., AND DAI, Y. 2014. Uncovering social network
+sybils in the wild. ACM Transactions on Knowledge Discovery from Data 8, 1, 2.
+YATES, D. AND PAQUETTE, S. 2011. Emergency knowledge management and social media technologies: A
+case study of the 2010 Haitian earthquake. International Journal of Information Management 31, 1, 6 13.
+YIN, J., LAMPERT, A., CAMERON, M., ROBINSON, B., AND POWER, R. 2012. Using social media to enhance
+emergency situation awareness. IEEE Intelligent Systems 27, 6, 52 59.
+ZHAO, Z. AND MEI, Q. 2013. Questions about questions: An empirical analysis of information needs on
+Twitter. In Proceedings of the 22nd international conference on World Wide Web. International World Wide
+Web Conferences Steering Committee, 1545 1556.
+Emilio Ferrara is a Research Assistant Professor at the School of Informatics and Computing of Indiana Uni-
+versity, Bloomington (USA) and a Research Scientist at the Indiana University Network Science Institute. His
+research interests lie at the intersection between Network Science, Data Science, Machine Learning, and Com-
+putational Social Science. His work explores Social Networks and Social Media Analysis, Criminal Networks,
+and Knowledge Engineering, and it appears on leading journals like Communications of the ACM and Physical
+Review Letters, several ACM and IEEE Transactions and Conference Proceedings.
+SIGWEB Newsletter Spring 2015

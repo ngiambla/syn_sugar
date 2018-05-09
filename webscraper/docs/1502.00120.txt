@@ -1,0 +1,995 @@
+5
+1
+0
+2
+ 
+n
+a
+J
+ 
+1
+3
+ 
+ 
+]
+Y
+C
+.
+s
+c
+[
+ 
+ 
+1
+v
+0
+2
+1
+0
+0
+.
+2
+0
+5
+1
+:
+v
+i
+X
+r
+a
+Electricity markets regarding the operational  exibility of power plants
+South Westphalia University of Applied Sciences, Haldener Stra e 182, D-58095 Hagen, Germany
+Cem Kiyak and Andreas de Vries
+(Dated: 2015-01-31)
+Electricity market mechanisms designed to steer sustainable generation of electricity play an important role
+for the energy transition intended to mitigate climate change. One of the major problems is to complement
+volatile renewable energy sources by operationally  exible capacity reserves. In this paper a proposal is given
+to determine prices on electricity markets taking into account the operational  exibility of power plants, such that
+the costs of long-term capacity reserves can be paid by short-term electricity spot markets. For this purpose, a
+measure of operational  exibility is introduced enabling to compute an in exibility fee charging each individual
+power plant on a wholesale electricity spot market. The total sum of in exibility fees accumulated on the spot
+markets then can be used to  nance a capacity market keeping the necessary reserves to warrant grid reliability.
+Here each reserve power plant then gets a reliability payment depending on its operational  exibility. The
+proposal is applied to a small exemplary grid, illustrating its main idea and also revealing the caveat that too
+high fees paradoxically could create incentives to employ highly  exible power plants on the spot market rather
+than to run them as backup capacity.
+Keywords: electricity markets, market mechanism, operational  exibility of power plants,  exibility measure,
+renewable energy, capacity market, energy transition
+JEL C02, C70, D47, H23, Q21, Q41
+ACM Classi cation (1998): J.4
+2012 ACM Computing Classi cation System: Theory of computation   Computational pricing and auctions
+Elsevier Subject Classi cation for Energy: 13.101 Electricity Markets
+I.
+INTRODUCTION
+To mitigate the global climate change it is commonly
+agreed that greenhouse gas emissions, and in particular emis-
+sions of CO2, have to be reduced substantially [11, 17 
+19, 23, 24]. Since 85% of current primary energy driving
+global economies are due to the combustion of fossil fuels,
+and since consumption of fossil fuels accounts for 56.6% of all
+anthropogenic greenhouse gas emissions, introducing renew-
+able energy sources to support all areas of human life plays
+an essential role in  ghting global warming [8]. In particular,
+the generation of electricity by renewables will be an impor-
+tant step towards this goal, requiring substantial changes to
+current grid structures and power plant systems.
+If generation and distribution of electricity is to be orga-
+nized by market principles, a preeminent challenge of a future
+electricity market mechanism design is to set effective price
+signals to reward the introduction and the use of renewable
+energy sources for the generation of electricity, and simulta-
+neously to penalize fossil fuel power plants. However, the
+physical requirements of electricity grids and the necessities
+of public life in present societies impose special restrictions
+on electricity markets. In particular, a necessary condition for
+grid stability is the reliability of electricity generation and the
+immediate equality of supply and demand at any instant of
+time.
+It is expected that the biggest contribution of renew-
+able energy sources in electricity grids will come from wind
+turbines and photovoltaic cells [1], both producing electricity
+only with high volatility. Their widespread installation there-
+fore would challenge the reliability of electricity supply and
+thus the stability of the grids. Lacking suf ciently large stor-
+ages for electricity, to warrant reliability in grids with volatile
+energy sources power plants with high operational  exibility
+are required as a power reserve standing in in cases of sud-
+den scarcity of electricity supply or of blackouts. Cramton
+and Ockenfels [4] proved the  missing money  theorem stat-
+ing that, in a competitive electricity market, prices are always
+too low to pay for adequate capacity. In fact, present electric-
+ity markets are not perfect ef cient markets since both supply
+and demand are price inelastic, see Figure 1. Future increase
+of demand elasticity, for instance by smart grids, would re-
+lax the dif culties to a certain degree, but inelasticity on the
+supply-side could only be removed by capacity reserves or
+huge electricity storages. The  rst option, however, requires
+long-term plannings at a magnitude of decades, whereas the
+second option is technologically not realizable to date. For
+more details see [5].
+Besides these theoretical arguments there also exist em-
+pirical clues to doubt that current electricity markets encour-
+age investments in operationally  exible power plants or in
+the provision of power reserves for cases of emergency or
+maintenance [2, 7, 9, 27]. Several solutions to this prob-
+lem have been proposed recently to complement the present
+ energy-only  markets, ranging from separate capacity mar-
+kets which trade backup capacity, to strategic capacity re-
+serves usually settled by long-term contracts with national
+agencies [2, 4, 9, 13, 15, 21, 26, 27].
+The main goal of this paper is to propose a solution for the
+economic problem to  nance the necessary capacity reserves
+guaranteeing grid stability by market principles. One neces-
+sary property of a power plant for being part of a capacity
+reserve is a fast guaranteed operational  exibility. In our opin-
+ion the main problem of current market mechanism designs is
+the fact that market prices do not regard operational  exibil-
+2
+D
+S
+e
+c
+i
+r
+p
+t
+u
+o
+k
+c
+a
+l
+b
+e
+c
+i
+r
+p
+p 
+q 
+quantity
+Pmax
+power
+FIG. 1: A perfect ef cient market where any demand D meets supply S at a certain equilibrium price p  and quantity q  (left hand). On an electricity spot
+market, a blackout is a market failure due to inelastic demand and supply, with the supply curve given by the merit order of the power plant system (right hand).
+Here a ( rolling ) blackout occurs if the demand is higher than the total maximum power Pmax of all power plants [5]. Increasing the demand-side inelasticity,
+e.g., by smart grids, could remove the problem on the long run, but in the short run electricity markets require capacity reserves which are not demanded for
+most of the time.
+ity, being determined solely by the marginal costs of electric-
+ity generation. Thus the costs of operational in exibility are
+market externalities [3,  14], [20, p 125] and reduce welfare.
+By contrast, a sustainable electricity market mechanism de-
+sign should induce market prices which take into account both
+the direct variable production costs and the external ecologi-
+cal costs of electricity production, but also the costs caused by
+operational in exibility of each individual power plant. Due
+to emissions trading [28,  15.4], the  rst two cost factors are
+already priced in as marginal costs on present electricity spot
+markets, but operational  exibility does not play a role for the
+determination of the spot market prices to date. To internal-
+ize it into price calculation, at  rst we de ne measure for the
+operational  exibility of a given power plant. This measure
+then can be used to compute an in exibility fee for each power
+plant. The total of these in exibility fees then can serve to pay
+power reserves provided by some given capacity mechanism.
+This paper is organized as follows. In section II a general
+class of functions measuring the operational  exibility of a
+power pant in dependence to its guaranteed start-up time is
+de ned. In section III the effect of the in exibility fee on the
+offer price of a power plant on an electricity spot market is cal-
+culated and demonstrated by a prototypical exemplary  toy 
+grid in Example 1. A way how the accumulated in exibility
+fees then can be used to  nance a capacity mechanism is de-
+scribed in section IV, before a short discussion concludes the
+paper.
+II. A MEASURE OF THE OPERATIONAL FLEXIBILITY
+OF A POWER PLANT
+havior
+j (x)   1
+as x   0,
+and j (x)   0 as x    
+.
+(1)
+Here the variable x represents the starting time of the power
+plant, measured in hours [h]. A simple example of such a
+measure is the differentiable function
+j (x)
+j (x) =
+1
+x + 1
+.
+(2)
+x
+In the sequel we will use this function to measure the opera-
+tional  exibility of a given power plant. In Table I there are
+listed guaranteed start-up times ts and the respective  exibil-
+ity measures j (ts) for some typical power plants. Note that
+Power Plant
+wind turbine
+hydroelectric power station
+gas turbine
+cogeneration plant (CHP)
+combined cycle gas turbine
+hard coal power plant
+lignite power plant
+nuclear power plant
+Guaranteed
+Start-Up
+Time [h]
+j
+Marginal
+Costs pmc
+[e/MWh]
+.000
+.979
+.893
+.855
+.167
+.143
+.100
+.020
+ 
+ 
+90
+ 
+50
+60
+40
+5
+0.02
+0.12
+0.17
+5
+6
+9
+50
+We stipulate that the operational  exibility of a power plant
+depends on its guaranteed start-up time ts   [0,  ) which is
+de ned as the time that a power plant requires to supply a
+guaranteed power of electricity. Moreover, we claim that the
+measure should be a pure number expressing a degree of  ex-
+ibility ranging from 0 to 1, with the property that the longer
+the guaranteed start-up time the smaller the value of  exibil-
+ity. Consequently, we de ne a general measure of operational
+ exibility to be a strictly monotonically decreasing function
+: [0,  )   [0,1] of a single variable satisfying the limit be-
+j
+TABLE I: Exemplary cold start-up times and their respective operational
+ exibility measures, as well as exemplary marginal costs (without emissions
+trading). The values are typical for current German electricity markets. Data
+from [14, p 71] (start-up times) and [16, pp 13, 19], [29, p 3] (marginal costs).
+a wind turbine is assigned a vanishing operational  exibility,
+since due to the volatility of winds a predetermined amount of
+energy by a wind turbine cannot be guaranteed at a given fu-
+ture instant. The highest operational  exibilities are exposed
+by hydroelectric power stations and modern gas turbines.
+III. FEES ON OPERATIONAL INFLEXIBILITY
+On an wholesale electricity market, each participating
+power plant operator offers electric power with a sell bid for
+each of its power plant. The market maker collects all these
+sell bids and determines the market-clearing price in accor-
+dance to the buy bids and the merit order [6, 10, 25, 30], for a
+theoretical introduction see also [12,  6.5,  7.4.5]. Our main
+idea now is to rise a fee for operational in exibility on each
+power plant, its amount being calculated by the operational
+ exibility j as part of a factor to a given market-wide refer-
+ence level. In consequence, the offer price of each power plant
+must take it into account its operational  exibility.
+i
+To be more precise, let pmc
+denote the marginal offer price
+per energy quantity of the power plant regarding only the
+marginal costs, including the variable costs of production and
+emissions trade certi cates; this is the price which would be
+offered for the power plant on a current wholesale spot market
+[29]. Assume moreover that all power plants participating at
+the spot market are uniquely numbered by the indices i = 1,
+2, . . . , n. The spot market offer price pi of plant i taking into
+account its operational  exibility j i then is calculated by the
+formula
+pi = pmc
+i + (1   j i) p0.
+(3)
+Here p0 denotes a market-wide constant reference level price,
+set by the market authority. It therefore is a political or regula-
+tory quantity, not a market-inherent value or immediately eco-
+nomically deducible. It is arbitrary in principle, but the higher
+its amount the heavier the effect of operational  exibility on
+the  nal spot market price. It should be high enough to signal
+effective incentives to introduce and use operationally  exible
+power plants for scarcity situations and black-outs, but it must
+be low enough to avoid a too radical change of the merit or-
+der such that too many  exible power plants are operational
+on the spot market and thus unavailable for a capacity reserve
+(see Figure 2).
+Example 1. Consider a small examplary grid (called  toy
+grid  in the sequel) consisting of the eight power plants listed
+in Table I. The prices resulting from the respective in exibil-
+ity fees in dependence to different reference level prices p0 are
+listed in Table II. If the reference level price is low (here p0
+= 10 e/MWh), the modi ed offer prices do not change the
+merit order of the power plant system, whereas a suf ciently
+high reference level price (e.g., p0 = 70 e/MWh) changes
+it, as is depicted in Figure 2. In our toy grid we can recog-
+nize that, if the amount of p0 is too high, the effect may be
+even counterproductive since the  exible gas turbine is in the
+money and thus operating at a normal quantity demand, leav-
+ing no power plant as a capacity reserve. In case of a sudden
+scarcity or of a blackout, the grid then would perform worse
+than with the original merit order.
+Moreover we observe that the higher the reference level
+price p0, the higher the spot market price. The amounts, how-
+ever, are not related to each other in a linear manner, but de-
+pend discontinously on the changes of the merit order. The
+total amount of in exibility fees, at last, is directly calculated
+3
+to be either 48.4 e/MWh in case of p0 = 10 e/MWh, or 339
+e/MWh in case of p0 = 70 e/MWh.
+We  nally note that for the demanded quantity q  depicted
+in the scenarios in Figure 2, only  ve power plants are oper-
+ational. Depending on the reference level price the realized
+pro t then is given by the following tables.
+p0 = 10 e/MWh
+Power plant Pro t for q 
+wind turbine 40 e/MWh
+hydroelectric 50 e/MWh
+CHP
+0 e/MWh
+2 e/MWh
+lignite
+nuclear
+37 e/MWh
+p0 = 70 e/MWh
+Power plant Pro t for q 
+wind turbine 27 e/MWh
+hydroelectric 95 e/MWh
+CHP
+37 e/MWh
+0 e/MWh
+gas turbine
+nuclear
+24 e/MWh
+Assume for simplicity that the demand remains constantly at
+q  during a certain hour and that all power plants yield the
+same power of 5 MW, say, and let be q  = 25 MW be the
+demanded electrical power for the hour considered (such that
+the consumed electricity energy during this period is E = 25
+MWh). Then with Table II the total of the in exibility fees for
+the  ve operational power plants in the money has the amount
+of
+Cf = (10 + 1 + 1 + 9 + 10)   5 = 205 e/h,
+(4)
+at a reference level price p0 = 10 e/MWh, and
+Cf = (70 + 1 + 8 + 10 + 69)   5 = 790 e/h,
+(5)
+at a reference level price p0 = 70 e/MWh. The total fee then
+can be distributed to the power plants participating at a capac-
+ity mechanism, paying their time of reliability.
+(cid:3)
+The toy grid in Example 1 demonstrates the possible direct
+consequences of the in exibility fee to the wholesale elec-
+tricity market.
+In essence, by Equation (3) a power plant
+with a low operational  exibility is penalized more than one
+with a high operational  exibility. In the limit case that all
+power plants participating on the spot market are equally op-
+erationally  exible, i.e., j i = const, all sell bids are raised by
+the same amount and the merit order cannot change. On the
+other hand, if the power plants have different operational  ex-
+ibilities and the reference price level p0 is chosen too high,
+the merit order changes the merit order such that all  exible
+power plants are operational on the spot market, such that no
+power plant is left for the capacity reserve necessary to war-
+rant grid reliability.
+The total amount of in exibility fees paid for each power
+plants participating the spot market now is available for a ca-
+pacity mechanism, as described in the following section.
+IV. ACCUMULATED INFLEXIBILITY FEES PAYING
+CAPACITY RESERVES
+A power plant serving as a power reserve for periods of
+scarcity or blackouts should have fast and guaranteed start-
+up times, i.e., should be operationally  exible to a high de-
+gree. There exist several proposed capacity mechanisms, for
+4
+Power Plant
+j
+1   j
+wind turbine
+.000 1.000
+hydroelectric power station .980 .020
+.893 .107
+gas turbine
+cogeneration plant (CHP)
+.855 .145
+combined cycle gas turbine .167 .833
+.143 .857
+hard coal power plant
+.100 .900
+lignite power plant
+nuclear power plant
+.020 .980
+Marginal Price Offer Price
+pi [e/MWh]
+p0 = 10 p0 = 70
+[e/MWh]
+pmc
+i
+1
+1
+90
+50
+50
+60
+40
+5
+11
+1
+91
+51
+58
+69
+49
+15
+71
+2
+98
+60
+108
+120
+103
+74
+TABLE II: Operational  exibilities, as given by the exemplary data of Table I, and the resulting offer price differences with respect to the reference level prices
+p0 = 10 e/MWh and p0 = 70 e/MWh.
+e/MWh
+p 
+o
+r
+d
+y
+h
+d
+n
+i
+w
+r
+a
+e
+l
+c
+u
+n
+e
+t
+i
+n
+g
+i
+l
+e/MWh
+p 
+o
+r
+d
+y
+h
+d
+n
+i
+w
+r
+a
+e
+l
+c
+u
+n
+e
+t
+i
+n
+g
+i
+l
+e
+n
+i
+b
+r
+u
+t
+s
+a
+g
+l
+a
+o
+c
+d
+r
+a
+h
+e
+n
+i
+b
+r
+u
+t
+s
+a
+g
+l
+a
+o
+c
+d
+r
+a
+h
+s
+a
+g
+e
+l
+c
+y
+c
+d
+e
+n
+i
+b
+m
+o
+c
+s
+a
+g
+e
+l
+c
+y
+c
+d
+e
+n
+i
+b
+m
+o
+c
+P
+H
+C
+q 
+P
+H
+C
+q 
+e/MWh
+p0 = 10 e/MWh
+p 
+MW
+p0 = 70 e/MWh
+d
+n
+i
+w
+o
+r
+d
+y
+h
+e/MWh
+p 
+P
+H
+o C
+r
+d
+y
+h
+s
+a
+g
+e
+l
+c
+y
+c
+d
+e
+n
+i
+b
+m
+o
+c
+e
+n
+i
+b
+r
+u
+t
+s
+a
+g
+l
+a
+o
+c
+d
+r
+a
+h
+r
+a
+e
+l
+c
+u
+n
+e
+t
+i
+n
+g
+i
+l
+P
+H
+C
+q 
+MW
+e
+t
+i
+n
+g
+i
+l
+e
+n
+i
+b
+r
+u
+t
+s
+a
+g
+d
+n
+i
+w
+r
+a
+e
+l
+c
+u
+n
+l
+a
+o
+c
+d
+r
+a
+h
+s
+a
+g
+e
+l
+c
+y
+c
+d
+e
+n
+i
+b
+m
+o
+c
+MW
+q 
+MW
+FIG. 2: Effect of the operational in exibility fee on the price p  clearing the market consisting of the power plant system in Table II, neglecting operational
+ exibility (left) and regarding it (right). The reference level price are assumed as p0 = 10 e/MWh and p0 = 70 e/MWh, respectively. For a given demand q  of
+electric power, the market-clearing spot price increases more or less slightly, depending on p0. For a high operational in exibility fee, as in the second case, the
+merit order is changed.
+instance capacity markets or a strategic reserve determined by
+a grid agency. In either of these approaches, we therefore re-
+quire a power plant to offer capacity reserves to have a high
+operational  exibility j , say
+j >
+1
+2
+.
+(6)
+This value means that the guaranteed start-up time of a power
+plant participating the capacity mechanism must be less than
+one hour. A further natural requirement is that a power plant
+offering its reliability on the capacity market cannot partici-
+pate on the spot market.
+Assume then that there are k power plants participating on
+the capacity market, each one established with a unique index
+i = 1, . . . , k. Let j i and Pi denote the operational  exibility
+and the capacity (measured in MW) of power plant i, respec-
+Cf
+j Pj.
+(7)
+r i =
+tively, and let Cf be the total of in exibility fees accumulated
+on the spot market in a certain past period, say, the day be-
+fore. It has the dimension currency per time, for instance e/h.
+Then the reliability payment r i for power plant i in that period
+is de ned as
+j i Pi
+P ex
+h(cid:21)
+(cid:20) e
+r i = Cf , i.e., the sum over all re-
+Note that by construction (cid:229)
+liability payments equals the total amount of the in exibility
+fees. The quantity P ex is the weighted sum of all available
+capacities, where the weights are precisely the respective op-
+erational  exibilities.
+Example 2. Assume the toy grid from Example 1. Then by
+the requirement (6) only three power plants can participate
+P ex =
+where
+j
+k(cid:229)
+j=1
+k
+1
+at the capacity market, namely the hydroelectric power sta-
+tion, the CHP plant and the gas turbine. In Table III they are
+listed with their capacities and the resulting reliability pay-
+ments according to Equation (7) and depending on the amount
+of total in exibility fee coming from the spot market. For cal-
+culational details refer to the Excel  le http://math-it.org/
+climate/operational-flexibilities. xls.
+(cid:3)
+V. DISCUSSION
+In this paper a proposal has been worked out to integrate
+operational  exibility into the sell bids of power plants partic-
+ipating wholesale electricity spot markets. The main idea is
+to calculate a fee for each power plant depending on its op-
+erational  exibility. For this purpose the concept of a general
+measure of operational  exibility of a power plant is intro-
+duced here as a strictly monotonically decreasing function j
+of the guaranteed start-up time, normed by condition (1). With
+such a measure, the in exibility is priced in by Equation (3)
+to the marginal price determining the sell bid of each power
+plant at the spot market. The amount depends on a market-
+wide reference level price p0 which is set by the market au-
+thority or the state. The total operational in exibility fee Cf
+accumulated at the spot markets then is spread on the power
+plants participating in a given capacity mechanism, depend-
+ing on their operational  exibilities according to Equation (7).
+Here the power plants forming a capacity reserve should have
+a very high operational  exibility, to guarantee reliability and
+stability of the grid. A reasonable value is proposed by in-
+equality (6). A simple example of a measure for operational
+ exibility is given by Equation (2). Using this measure, the
+spot market and the corresponding payments to power plants
+5
+participating in a capacity mechanism are applied to a simple
+but prototypical toy grid in Examples 1 and 2.
+The most
+important consequence of our proposal, as
+viewed from an economic perspective, is the internalization of
+the negative externality of operational in exibility of power
+plants. With the in exibility fees determined as above, the
+currently external costs would thus be paid by the spot mar-
+kets and could be used to pay capacity reserves, be it on a
+separate capacity market or another capacity mechanism such
+as a pool of power plants forming a strategic reserve. The in-
+ exibility fee therefore increases welfare without necessarily
+decreasing dispatch ef ciency.
+A critical point of our approach, however, is the determina-
+tion of the reference level price p0. It is crucial since it can
+even change the merit order of electricity markets if it is set
+very high. Although a change of the merit order in itself does
+not necessarily imply severe problems, it could nonetheless
+lead to the paradox that operationally  exible power plants
+participate in a short-term spot market and therefore could not
+serve as a capacity reserve. An amount p0 too high would
+thus be adverse to the intention to pay a capacity mechanism
+and thus would even diminish welfare. We therefore are faced
+with the con icting objectives of providing enough means to
+fund the reserves of a capacity mechanism, and of keeping
+suitable power plants with high operational  exibility as ca-
+pacity reserve. Although this risk is calculable when choos-
+ing the amount for a given grid cautiously such that experi-
+ences could be gained over time, a comprehensive theoretical
+framework to illuminate effects and limits of in exibility fees
+on electricity markets should be accomplished. Hints to tackle
+this problem may be indicated by the optimal taxation due to
+Ramsey [22], or by regulation theory [28,  13]. Further re-
+search in this direction appears worthwhile.
+[1] Agora Energiewende.
+ 12 Insights on Germany s En-
+ergiewende. A Discussion Paper Exploring Key Challenges
+for the Power Sector .
+http://www.agora-energiewende.
+org/topics/the-energiewende/detail-view/article/
+12-insights-on-the-energiewende/, 2013.
+[2] Agora Energiewende.
+ Capacity market or strategic reserve:
+What s the next step? . http://www.agora-energiewende.org/
+topics/electricity-market-and-system-reliability/, 2013.
+[3] P. Bo nger. Grundz ge der Volkswirtschaftslehre. Eine Ein-
+f hrung in die Wissenschaft von M rkten. Pearson Studium,
+M nchen, 2. edition, 2007.
+[4] P. Cramton and A. Ockenfels.  Economics and design of capac-
+ity markets for the power sector . Zeitschr. f. Energiewirtschaft,
+36:113 134, 2012. doi 10.1007/s12398-01-0084-2.
+[5] P. Cramton, A. Ockenfels, and S. Stoft. Capacity Market Fun-
+http://www.cramton.umd.edu/papers2010-2014/
+damentals.
+cramton-ockenfels-stoft-capacity-market-fundamentals.
+pdf, September 2013.
+[6] R. Das, J. E. Hanson, J. O. Kephart, and G. Tesauro. Agent-
+human interactions in the continuous double auction. In Pro-
+ceedings of the 17th International Joint Conference on Arti cial
+Intelligence, volume 2, pages 1169 1176, San Francisco, 2001.
+Morgan Kaufmann Publishers. http://citeseer.ist.psu.edu/
+viewdoc/summary?doi=10.1.1.72.177.
+[7] J. Ecke, N. Herrmann, U. Hilmes, R. Kremp, U. Macharey,
+A. Nolde, H. Wolter, and W. Zander.
+A Sustainable
+Energy Market Design for Germany (Condensed Version).
+VKU, Berlin,
+http://www.vku.de/energie/
+energiemarktdesign0.html [2014-05-04].
+June 2013.
+[8] O. Edenhofer, R. P. Madruga, Y. Sokona, K. Seyboth,
+P. Matschoss, S. Kadner, T. Zwickel, P. Eickemeier, G. Hansen,
+S. Schl mer, and C. von Stechow, editors. Renewable Energy
+Sources and Climate Change Mitigation. Special Report of
+the Intergovernmental Panel on Climate Change. Cambridge
+University Press, Cambridge, 2012. http://www.ipcc.ch/pdf/
+special-reports/srren/SRREN_Full_Report.pdf.
+[9] C. Elberg, C. Growitsch, F. H f er, and J. Richter. Untersu-
+chungen zu einem zukunftsf higen Strommarktdesign. http://
+www.ewi.uni-koeln.de/publikationen/studien/, K ln, M rz
+2012. Endbericht im Auftrag des BMWi.
+[10] EPEX. EPEX Spot in the Power Market. http://www.epexspot.
+com/en/company-info/epex_spot_in_the_power_market [2014-
+11-09], Paris Leipzig Wien, 2014.
+[11] J. B. Foster, B. Clark, and R. York. The Ecological Rift. Capi-
+talism s War on the Earth. Monthly Review Press, New York,
+2010.
+6
+Power Plant
+j
+Capacity
+[MW]
+hydroelectric power station .980
+.893
+gas turbine
+cogeneration plant (CHP)
+.855
+5
+5
+5
+r i [e/h]
+Cs = 205 e/h Cs = 790 e/h
+74
+ 
+404
+67
+64
+386
+  284
+259
+105
+100
+247
+TABLE III: The three power plants participating at the capacity market of our toy grid in Example 2 and their reliability payments r
+in exibility fee coming from the spot market.
+in dependence to the total
+[12] D. Fudenberg and J. Tirole. Game Theory. MIT Press, Cam-
+bridge, 1991.
+[13] E. Gawel and A. Purkus.  Die Marktpr mie im EEG 2012: Ein
+sinnvoller Beitrag zur Markt- und Systemintegration erneuer-
+barer Energien? . Zeitschr. f. Energiewirtschaft, 37(1):43 61,
+2013. doi 10.1007/s12398-012-0097-x.
+[14] V. Grimm. Einbindung von Speichern f r erneuerbare Energien
+in die Kraftwerkseinsatzplanung. Ein uss auf die Strompreise
+der Spitzenlast.
+PhD thesis, Ruhr-Universit t Bochum,
+2007. http://www-brs.ub.ruhr-uni-bochum.de/netahtml/HSS/
+Diss/GrimmVanessa/diss.pdf (ISBN 978-3-934951-18-1).
+[15] C. Growitsch, F. C. Matthes, and H.-J. Ziesing. Clearing-
+Studie Kapazit tsm rkte.
+http://www.ewi.uni-koeln.de/
+publikationen/studien/, Berlin K ln, M rz 2013. im Auftrag
+des BMWi.
+[16] N. Heitmann. Modellierung von Investitionsentscheidungen
+und Kraftwerkseinsatzplanung unter Unsicherheit mittels
+und Multi-Agenten-Ansatz
+Stochastischer Optimierung
+am Beispiel des deutschen Strommarktes.
+PhD thesis,
+Universit t Augsburg, 2010.
+http://opus.bibliothek.
+uni-augsburg.de/opus4/frontdoor/deliver/index/docId/
+2094/file/Dissertation_Heitmann.pdf.
+[17] IPCC. Climate Change 2007. The Physical Science Basis. Con-
+tribution of Working Group I to the Fourth Assessment Report of
+the IPCC. Cambridge University Press, Cambridge New York,
+2007. http://www.ipcc.ch/pdf/assessment-report/ar4/wg1/
+ar4_wg1_full_report.pdf.
+[18] IPCC. Climate Change 2013. The Physical Science Basis. Con-
+tribution of Working Group I to the Fifth Assessment Report of
+the IPCC. Cambridge University Press, Cambridge New York,
+November 2013. http://www.climatechange2013.org.
+[19] IPCC. Climate Change 2014. Impacts, Adaptation, and Vulner-
+ability. Contribution of Working Group II to the Fifth Assess-
+ment Report of the IPCC. Cambridge University Press, Cam-
+bridge New York, March 2014. http://ipcc-wg2.gov/AR5/.
+[20] P. Krugman and R. Wells. Macroeconomics. Worth Publishers,
+New York, 2006.
+[21] F. C. Matthes, B. Schlemmermeier, C. Diermann, H. Her-
+mann, and C. von Hammerstein.
+Fokussierte Kapaz-
+it tsm rkte. Ein neues Marktdesign f r den  bergang zu
+einem neuen Energiesystem. WWF Deutschland, Berlin, 2012.
+http://www.wwf.de/fileadmin/fm-wwf/Publikationen-PDF/
+Fokussierte-Kapazitaetsmaerkte.pdf.
+[22] F. P. Ramsey.  A Contribution to the Theory of Taxation . The
+Economic Journal, pages 47 61, 1927. http://www.jstor.org/
+stable/2222721.
+[23] J. Rockstr m, W. Steffen, K. Noone,  . Persson, F. S. Chapin,
+E. Lambin, T. M. Lenton, M. Scheffer, C. Folke, H. J.
+Schellnhuber, B. Nykvist, C. A. de Wit, T. Hughes, S. van der
+Leeuw, H. Rodhe, S. S rlin, P. K. Snyder, R. Costanza,
+U. Svedin, M. Falkenmark, L. Karlberg, R. W. Corell, V. J.
+Fabry, J. Hansen, B. Walker, D. Liverman, K. Richardson,
+P. Crutzen, and J. Foley.
+ Planetary Boundaries: Exploring
+the Safe Operating Space for Humanity . Ecology and Soci-
+ety, 14(2), 2009. http://www.ecologyandsociety.org/vol14/
+iss2/art32/.
+[24] J. Rockstr m, W. Steffen, K. Noone,  . Persson, F. S.
+Chapin, E. F. Lambin, T. M. Lenton, M. Scheffer, C. Folke,
+H. J. Schellnhuber, B. Nykvist, C. A. de Wit, T. Hughes,
+S. van der Leeuw, H. Rodhe, S. S rlin, P. K. Snyder,
+R. Costanza, U. Svedin, M. Falkenmark, L. Karlberg, R. W.
+Corell, V. J. Fabry, J. Hansen, B. Walker, D. Liverman,
+K. Richardson, P. Crutzen, and J. A. Foley.  A safe operating
+space for humanity . Nature, 461:472 475, September 2009.
+doi 10.1038/461472a.
+[25] M. A. Satterthwaite and S. R. Williams.  Bilateral trade with the
+sealed bid k-double auction: Existence and ef ciency . Journal
+of Economic Theory, 48(1):107 133, 1989.
+[26] M. Sch nberg.
+ Will long-term contracts destroy prospects
+for a uni ed European energy market? .
+http://www.
+climatechangecapital.com/thinktank/research/, ThinkTank
+Climate Change Capital, London, January 2015.
+[27] S. D. Steuwer.  Instrumente der Energiewende . In J. Varwick,
+editor, Energiewende, Politische Bildung. Beitr ge zur wissen-
+schaftlichen Grundlegung und zur Unterrichtspraxis, pages 46 
+70. Wochenschau Verlag, Schwalbach, 2013.
+[28] W. Str bele, W. Pfaffenberger, and M. Heuterkes.
+En-
+ergiewirtschaft. Einf hrung in Theorie und Politik. Oldenbourg,
+M nchen, 3. edition, 2012.
+[29] S. von Roon and M. Huck. Merit Order des Kraftwerk-
+parks.
+Forschungsstelle f r Energiewirtschaft, M nchen,
+2010. http://www.ffe.de/download/wissen/20100607_Merit_
+Order.pdf.
+[30] R. Wilson.  Incentive ef ciency of double auctions . Economet-
+rica, pages 1101 1115, 1985. http://www.jstor.org/stable/
+1911013.

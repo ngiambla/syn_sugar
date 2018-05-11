@@ -1,12 +1,10 @@
- This demonstrates that the current IoT services will tend to become more and more like traditional web services (i.e., Web of Things [8]).
- The availability of such marketplaces is cru- cial for the dissemination of software innovations in gen- eral, and IoT innovations in particular [35].
- According to McKinsey5, busi- nesses already collect tremendous volume of sensor data but the data is only used for anomaly detection and con- trol.
- However, data should also be used for optimization and prediction which provide the greater value, but busi- nesses may lack the expertise to analyze and process their data.
- This justi es the need for the development of new marketplaces for IoT data that will thrive new business interactions (i.e., business-to-business).
- The platform o ers the possibility of charging for the data consumption either by a time-de ned sub- scription or by the amount of data to be consumed.
- Platform 14: Ericsson IoT-Framework (https://github. com/EricssonResearch/iot-framework-engine) The Ericsson IoT-Framework is a PaaS that accumu- lates sensor data from IP networks and focuses on the an- alytics and the mashing up of the data.
- The privacy of data visualization is either public or private, data is always private (needs private keys at all times to use the API).
- Platform 27: realTime.io (https://www.realtime.io/) IoBridge realTime.io provides a proprietary cloud- based platform (PaaS) to connect devices to the Internet and build applications upon the data.
- As realTime.io uses 9 https://fred.sensetecnic.com/ a proprietary transport protocol for data, ioDP, the phys- ical devices need to be connected to the realTime.io cloud service via a proprietary gateway.
- Chu, Data management for internet of things: Challenges, approaches and opportunities, in: IEEE Green Computing and Communications (GreenCom), 2013, pp. 1144 1151. doi:10.1109/GreenCom-iThings-CPSCom.2013.199. [11] B.
- Pesch, Service discovery protocols for constrained machine- to-machine communications, IEEE Communications Surveys Tutorials 16 (1) (2014) 41 60. doi:10.1109/SURV.2013.102213. 00229. \ptc-to-acquire-axeda-to-expand-internet-of-things-technology-portfolio 14 URL http://dx.doi.org/10.1002/cpe.3203 [27] A.
+ In this article, we evaluate a representative sample of these platforms, both proprietary and open-source, on the basis of their ability to meet the expectations of di erent IoT users.
+ The evaluation is thus more focused on how ready and usable these platforms are for IoT ecosystem players, rather than on the peculiarities of the underlying technological layers.
+ The evaluation is carried out as a gap analysis of the current IoT landscape with respect to (i) the support for heterogeneous sensing and actuating technologies, (ii) the data ownership and its implications for security and privacy, (iii) data processing and data sharing capabilities, (iv) the support o ered to application developers, (v) the completeness of an IoT ecosystem, and (vi) the availability of dedicated IoT marketplaces.
+ The survey suggests that cloud-based IoT platforms are prone to traditional web and network secu- rity attacks such as Denial of Service (DoS), man-in-the- middle, eavesdropping, spoo ng and controlling attacks.
+ A survey of low-level protocols for ensuring security and privacy in both centralized and distributed IoT scenarios is presented in [15], and the research community constantly aims to improve protocols to address these security chal- lenges.
+ Integration of sensing and actuating technologies The essence of an IoT platform is to enable the se- cure connection of a multitude of heterogeneous sensing and actuating devices, having di erent constraints and capabilities, to the Internet.
+ In [28], Blackstock and Lea integrated the Node- RED composer to the WoTKit processor [Platform 38] to enable the creation of distributed data ows.
+ Here, e cient processing means (i) processing IoT data consider- ing computing, storage, communication, and energy limi- tations of IoT environments; and (ii) the timely generation of useful knowledge for IoT applications before it becomes outdated.
+ In order to allow to treat the IoT domains as a sin- gle converging ecosystem that provides innovative prod- ucts and services and permits an economy of scale, an IoT platform broker is needed.
+ Such a broker will facilitate the sharing of applications and services across space and time, and across platform-speci c IoT sub-ecosystems.

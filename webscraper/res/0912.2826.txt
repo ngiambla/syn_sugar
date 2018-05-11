@@ -1,10 +1,10 @@
+ This leads to algorithm 2, where we use the list of ages of individuals directly taken from the data, and a probability of household P'(t, s, (ai)), independently from the distribution of ages in the population: Algorithm 2: 1.
  Data of figure 3 provide us with P(ar | s=1), the probability of age range of the head for households of size 1 (single).
  Data of figure 4 together with data of figure 3, provide with P(ar | s>1), the probability of age range of the head for households of size superior to 1.
+ Data of figure 5 provide us with P(t | ar = ), the probability of a household type given the age of the head equals , and the probability P(child | a = ) for a individual of age to live in a household without being the head or the partner (this means, as a "child"2).
  We pick the age of children with probability P(ai | ar)*P(child | ai) for single-parent and P(ai | ar')*P(child | ai) for couples.
- We use for the comparison both the data implicitly used in the building algorithm and other national and municipality level data, which were not used in the generation process.
+ Indeed, the described algorithm should a priori be repeated until all the households of the list are filled with all the individuals of the availability vector.
  We calculate the distributions both for one single realization of the system and for a sequence of 100 realizations (the random nature of the algorithm leads to some variations from one run to the other).
- Figures Figure 1: Histogram of the number of individuals according to various age ranges of 5 years each for Abrest and Bellerive-sur-Allier.
+ It could be expected: the data we are using in this case for the comparison are at national data, and therefore keep into account of the population of metropolitan areas.
  Figure 2: Histogram of the number of households according to their size (number of individuals in the household) in Abrest and Bellerive-sur-Allier.
  Source: INSEE, French Census data, 1990.. 10 Figure 3: Histogram of the number of households according to the age ranges of person living alone in Abrest and Bellerive-sur-Allier.
- Figure 4: Histogram of the number of households according to the age ranges of the head in Abrest and Bellerive-sur-Allier.
- The error is the standard deviation on the 100 replicas. 14 Figure 10: Histograms for age number of children distribution for the village of Abrest (left plot) and of Bellerive-sur-Allier (right plot).

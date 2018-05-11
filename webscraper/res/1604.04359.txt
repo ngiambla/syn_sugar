@@ -1,10 +1,10 @@
- OPPORTUNISTIC MANIPULATION: the manipulators seek to vote in a way that makes their preferred candidate win in every viable extension of the partial votes of the non- manipulators. 3.
- Similarly, it is easy to show, that the COALITIONAL MANIPULATION problem with (cid:96) manipulators reduces to WEAK MANIPULATION, OPPORTUNISTIC MANIPULATION, and STRONG MANIPULATION problems with (cid:96) manipulators, since the former is a special case of the latter ones.
  The COALITIONAL MANIPULATION problem with (cid:96) manipulators many-to-one reduces to WEAK MANIPULATION, OPPORTUNISTIC MANIPULATION, and STRONG MANIPULATION problems with (cid:96) manipulators for all voting rules and for all positive integers (cid:96).
- We begin with proving that the WEAK MANIPULATION problem is NP-complete for the k-approval voting rule even with one manipulator and at most 4 undetermined pairs per vote.
- The other case where the manipulator s vote v(cid:48) be c (cid:31) d (cid:31) z2 (cid:31) z1 (cid:31) um (cid:31) (cid:31) u1 (cid:31) y can be argued similarly.
- For the Bucklin and simpli ed Bucklin voting rules, we show intractability of the OPPORTUNIS- TIC MANIPULATION problem with at most 15 undetermined pairs per vote and only one manipulator.
- The other case where the manipulator s vote v(cid:48) puts c, every candidate in W, x1, x2, and z2 within top m + 1 positions is symmetrical.
- For each candidate c(cid:48) C \ {c}, c(cid:48) can be placed at positions i {2, . . . , m} in the manipulator s vote which NM (c, c(cid:48)) + i 1 negative.
- Our next result proves that the STRONG MANIPULATION problem for the Bucklin, simpli ed Bucklin, Fallback, and simpli ed Fallback voting rules are in P.
+ Follows from the fact that every instance of the COALITIONAL MANIPULATION problem is also an equivalent instance of the WEAK MANIPULATION, OPPORTUNISTIC MANIPULATION, and STRONG MANIPULATION problems.
+ The WEAK MANIPULATION problem is NP-complete for Bucklin, simpli ed Bucklin, Fall- back, and simpli ed Fallback voting rules, even when we have only one manipulator and the number of undetermined pairs in each vote is no more than 16.
+ Let (U = {u1, . . . , um}, S := {S1, S2, . . . , St}) be an instance of X3C, where each Si is a subset of U of size three.
+ W (cid:31) X (cid:31) Si (cid:31) c (cid:31) (U \ Si) (cid:31) D \ ({X ({c} Si)}) , i (cid:54) t 12 Notice that the number of undetermined pairs in every vote in P is 16.
+ We introduce the following additional complete votes Q: (cid:66) t copies of U (cid:31) c (cid:31) others (cid:66) m/3 1 copies of U (cid:31) a (cid:31) c (cid:31) others (cid:66) m/3 + 1 copies of D (cid:31) b (cid:31) others The total number of voters, including the manipulator, is 2t + 2m/3 + 1.
+ Now we show that the X3C instance (U, S) is a YES instance if and only if the OPPORTUNISTIC MANIPULATION instance (P Q, 1, c) is a NO instance.
+ Notice that we can assume without loss of generality that the manipulator places c at the rst position, d at the second position, the candidate ui at (m + 5 i)th position for every i [m], and y at the last position, since otherwise c can never win uniquely irrespective of the extension of P (that it, the manipulator s vote looks like c (cid:31) d (cid:31) {z1, z2} (cid:31) um (cid:31) um 1 (cid:31) (cid:31) u1 (cid:31) y).
  The STRONG MANIPULATION problem is in P for the Bucklin, simpli ed Bucklin, Fall- back, and simpli ed Fallback voting rules, for any number of manipulators.
+ Let (C, P, M, c) be an instance of STRONG MANIPULATION for simpli ed Bucklin, and let m denote the total number of candidates in this instance.

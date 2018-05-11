@@ -1,10 +1,10 @@
- First, we formalize a representation of the United States Code as the union of a hierarchical network and a citation network over vertices containing the language of the Code.
  This representation re ects the fact that the Code is a hierarchically organized document containing language and explicit citations between provisions.
  Second, we use this formalization to measure aspects of the Code as codi ed in October 2008, November 2009, and March 2010.
- As a result, we cannot make compare the rate of growth of di erent sections or titles of the Code with this data.
- Table 1 shows a summary of the size of the Code and its edge-induced citation network for each snapshot.
+ Well-known titles include the Tax Code, formally known as Title 26 - Internal Rev- enue Code, Title 20 - Education, and Title 18 - Crimes and Criminal Punishment.
+ To do so, we have obtained XML snapshots of the Code at three points in time: October 2008, November 2009, and March 2010.
  Between October 2008 and Novem- ber 2009, approximately 4.29 vertices were added to the Code each day, and between November 2009 and March 2010, approximately 2.71 vertices were added to the Code each day.
+ It is important to note that vertex creation can be the product of (1) reorganization of existing hierarchy and its embedded language or (2) the codi cation of new legislation.
  The rst step in this analysis is to examine the change in the amount of language in the Code over time.
- The circles and pluses cor- respond to the change in the section size distribution from 4 Figure 3: Distribution of Section Sizes by log10 Word Count in Oc- tober 2008.
+ Table 2 allows us to assess these changes by comparing the language contained within the snapshots of the Code over time.
+ The numbers given in this table represent the average size of each sec- tion, i.e., |T (v)|, and the total size of the Code as measured by words. 6 Just as Table 1 above shows that structure of the Code is growing, Table 2 shows that the amount of language in the Code is growing.
  The circles and pluses show the change in the section size distribution from October 2008 to November 2009 and from October 2008 to March 2010 respectively.
- This gure shows that the changes are relatively small and primarily contained in the bulk of the distribution in sections between 10 and 1,000 words.

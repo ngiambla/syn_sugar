@@ -1,12 +1,10 @@
+ While the importance of topology in geostrategy has long been recognized [4], [5], the role of spatial patterns in determining a region s vulnerability to con ict is not well understood.
+ Here, we use network science to show that global patterns in war and peace are closely related to the relative position of cities in a global interaction network.
  This metric is also a good predictor of the distance to a con ict zone and can estimate the risk of con ict.
  We go on to show that the spatial network of cities is closely related to violence, and propose a simple model to account for the phenomenon.
- We use two standard network measures: degree D (number of neighbouring connected cities) and betweenness B (number of shortest paths which pass through the city in question).
- We nd a robust empirical relationship between con ict and network measures: high degree cities are peaceful and far from the nearest con ict zones, whereas high betweenness cities are often engulfed in persistent violence.
- Examples of the highest degree cities are in Western Europe and are far from the nearest con ict zones (Fig. 1c).
+ Fig. 2 shows scatter plots of the number of terrorist attacks A(z) against the network metrics, with panel plots for both the probability of being a major con ict zone, and the distance to the nearest major con ict zone.
+ A major con ict zone is one that experiences persistent con ict, which is de ned as having suffered over 100 attacks between 2002 and 2014 (equivalent to at least 78% of the years being under attack see Supplementary Information (SI)).
+ A zone with high strategic centrality has a high probability of being in major con ict (P (A(z) > 100) >0.7) and is close to existing con ict zones (<50 km).
  Cities are connected by a spatial network, as in the empirical case above, and each city has the capacity to in uence the states of its neighbours.
- Each city is also tagged with its country and province af liation. 2) Con ict data: two data sets are used, (1) terrorism and insurgency violence, and (2) conventional warfare.
- For terrorism and insurgency violence: the Global Terrorism Database (GTD) [31] database is used, with over 30,000 con ict incidents between 2002 to 2014.
- Nonetheless, we present the results for = 0 (no weighting) and = 1 (full weighting) in the SI to demonstrate the robustness of the methodology.
- The strategic centrality for a zone z as S(z) = B(z) D(z), which normalises the betweenness of a city by the number of links.
- A city with a high betweenness will have global interaction importance, while a low degree (more isolated) will increase its vulnerability to con ict.
- The degree of the node or the zone is D1(v) = D1(z) = 2N if the relay node is connected to all N nodes in the cores.
+ The shortest path of travelling between a city m to any other city n is de ned as the path with the least number of hops.
+ The unnormalised betweenness of a city Bv is de ned as the number of shortest paths that pass through this city: B(v) = mn(v), (1) (cid:88) m(cid:54)=n(cid:54)=v v Vz the zone), i.e., B(z) =(cid:80) where m,n(v) is the shortest path between m and n that goes through city i.

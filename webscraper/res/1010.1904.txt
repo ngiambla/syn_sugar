@@ -1,11 +1,10 @@
- Therefore, one can assume that the position of an author in the list of authors of the paper provides an indication about the contributions of the author to the paper.
- Let j be the weight assigned to the jth author of the paper we in equal weight scheme, and wp j be the weight assigned to jth author in positional weight scheme.
+ Lemma 1: Let there be k authors of a paper, and w = {wj} be the weights assigned to the jth author of the paper where j varies from 1 to k.
+ A possible scheme for assigning weights to jth author of the paper can be wj = 2(k j + 1) k(k + 1) (12) j=1 wj = 1. where, 0 wj 1, and Pk Proof: Given that there are k authors of the paper.
  In other words, weights assigned to each author in equal weight assignment scheme are lying on half way of the weights assigned to the rst and the last authors in position based weight assignment scheme.
+ This also indicates that the amount of increase in the positional weights of some of the authors is equal to the amount of decrease in the positional weights of the remaining authors.
+ Figure 2 shows the weight assigned to the rst author and the last author of a paper as a function of the number of e g a t i h g e W 1 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1 0 1 Equal Weightage First Author Last Author 2 3 4 5 6 7 8 9 10 Number of Authors Fig. 2. the number of authors.
  Variations in the positional weights of the rst and the last authors as a function of the number of authors. authors of a paper under positional weight scheme and under equal weight scheme.
  When the number of authors is two, the rst author is assigned a weight of 2 3 0.666, and the second author is assigned a weight of 1 3 0.333.
  As compared to equal weight scheme, the increase in the weight of the rst author under positional weight scheme is 16.6%; the same is the decrease in the weight of the second author.
+ As mentioned earlier, if there are k authors in a paper, the weight assigned to each authors is 1 k under equal weight scheme and weights assigned according to the position of authors is given by (12).
  Figure 3 shows the relative increase or decrease in the weights of the rst author and the last author of a paper using positional weight scheme as compared to the weights assigned using equal weight scheme.
- Also, note that under positional weight scheme the increase in the weight of the rst author is exactly the same as the decrease in the weight of the last author.
- Note that under position based weight assignment scheme, the difference between the weights of the rst and the last authors decreases with the number of authors (see Figure 2).
- When the number of authors is 2, the increase in the positional weight of the rst author is 0.1666, the same is the decrease in the positional weight of the second author.
- Comparison between weighted citation h-cuts: positionally weighted p, and equally weighted e for a given set of authors. large for the rst few papers as compared to the papers that appear later in the list of cited papers.

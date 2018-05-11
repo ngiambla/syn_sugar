@@ -1,12 +1,10 @@
- In general, we nd that latent friendship ties can be predicted with over 95% accuracy when two individuals have had at least 10 interactions.
- Within the Reach sys- tem, individuals choose from among seven game types and numerous subtypes, which are played over more than 33 terrain maps.
+ Here, we investigate the accuracy of multiple statistical features, based either purely on temporal interaction patterns or on the cooperative nature of the interactions, for automatically extracting latent social ties.
+ Using self-reported friendship and non-friendship labels derived from an anonymous online survey, we learn highly accurate predictors for recovering hidden friendships within a massive online data set encompassing 18 billion interactions among 17 million individuals of the popular online game Halo: Reach.
+ These results clarify the nature of friendship in online social environments and suggest new opportunities and new privacy concerns for friendship-aware applications that do not require the disclosure of private friendship information.
  The subgraph of interactions by our survey participants contained a total of 2,531,479 vertices and 665,401,283 temporal edges over the same period of time.
+ INFERRING FRIENDSHIP To recover latent friendship ties given only the time series of annotated interactions between pairs of individ- uals, we take a supervised learning approach.
  We investigate the accuracy of our statistical fea- tures, divided into temporal and cooperative classes and considered individually, for predicting latent ties.
- The expected diurnal and weekly cycles observed in the data will modulate these behaviors, and a reasonable ap- proach for their quanti cation is via interaction period- icity.
- Lightweight predictors of friendship These results suggest that individual features alone may perform well at predicting latent friendships, and such features would make good computationally lightweight predictors that could realistically be deployed on a large-scale system.
- We explore this possibility using logistic regression to build single-feature latent tie classi ers and mea- sure their performance using AUC.
- We then computed the average AUC and its standard error by creating equal sized training and test sets from 10 random permutations of the data in each bin, and ap- plying the individual-feature models.
- The large e ec- tive capacity of an online system means that any signal from autocorrelation is likely to be signi cant.
- The strongly predictive nature of direct assists Ax,y that we observe corroborates this nding, and demonstrates that it holds over a wide range of Nx.
+ In their analysis of friendship and gameplay in Reach, Mason and Clauset showed that individuals who are friends tend to coordinate and cooperate in ways that in- crease their team s score and the probability of winning the match [8].
  The temporal features of raw and normalized pair frequencies Nx,y and Nx,y/Nx are less reliable predictors for small histories, but become more reliable as Nx increases.
  The discrim- inatory power of autocorrelation and prosocial behavior, even with sparse data, suggests that latent friendship ties may in fact be easily detectable, due to the nature of friendship itself.
+ In a sense, periodic and prosocial in- teractions are the de nition of friendship, and it may be 11 di cult to maintain such a relationship online without manifesting a signal in these ways.

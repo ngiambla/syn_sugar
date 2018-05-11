@@ -177,11 +177,13 @@ def bake(file_ext=""):
 								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 						except Exception as e:
 							print(e)
-		print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
-		print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
-		print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
 
 	elif file_ext == "webscraper/docs/":
+		p_avg 		= 	0
+		r_avg 		= 	0
 		f1_avg 		= 	0
 		test_cases 	= 	0
 		
@@ -224,16 +226,21 @@ def bake(file_ext=""):
 							print(scores[0]['rouge-l'])
 							print(scores[0]['rouge-2'])
 							print(scores[0]['rouge-1'])
-
+							p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
+							r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
 							f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
 							test_cases 	= test_cases+1
 							
 							print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 					except Exception as e:
 						print(e)
-		print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
 
 	elif file_ext == "xml_files/xdocs/":
+		p_avg 		= 	0
+		r_avg 		= 	0
 		f1_avg 		= 	0
 		test_cases 	= 	0
 		
@@ -272,13 +279,16 @@ def bake(file_ext=""):
 								print(scores[0]['rouge-l'])
 								print(scores[0]['rouge-2'])
 								print(scores[0]['rouge-1'])
-
+								p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
+								r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
 								f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
 								test_cases 	= test_cases+1
 								
 								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 						except Exception as e:
 							print(e)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
 			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)			
 			
 

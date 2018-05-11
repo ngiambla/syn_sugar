@@ -1,10 +1,10 @@
  We introduce an extensible framework that will enable the real-time analysis of meme diffusion in social media by mining, visualizing, mapping, classifying, and modeling massive streams of public microblogging events.
- Sankaranarayanan et al. developed an automated break- ing news detection system based on the linking behavior of Twitter users [44], while Heer and Boyd describe a system for visualizing and exploring the relationships between users in large-scale social media systems [23].
+ We describe a Web service that leverages this framework to track political memes in Twitter and help detect astrotur ng, smear campaigns, and other misinforma- tion in the context of U.S. political elections.
+ The importance of political astroturf stems from the unprecedented opportunities created by social media for increased participation and information awareness among the Internet-con- nected public [1, 8, 2].
+ Using a hand-classi ed set of 300 tweets, they identify several dif- ferences between spam and good user accounts, including the fre- quency of tweets, age of accounts, and their respective periphery in the social graph.
+ Benevenuto et al. [7] use content and user behav- ior attributes to train a machine learning apparatus to detect spam accounts.
  They build a classi er that achieves approximately 87% accuracy in identifying spam tweets, and similar accuracy in de- tecting the spam accounts themselves.
+ The mass creation of accounts, the impersonation of users, and the posting of deceptive content are all behaviors that are likely common to both spam and political astrotur ng.
  The post might also involve a set of memes consisting of hashtags and URLs referenced in the tweet.
  The meme_filter s goal is to extract only those tweets that pertain to memes of signi cant general interest.
- Here the user can examine the sta- tistical data described above, tweets relating the meme of interest, and sentiment analysis data.
- An- other account, @HopeMarie_25, had a similar behavior to @PeaceKaren_25 in retweeting the accounts of the same candidates and boosting the same Web sites.
- We began by producing a hand-labeled corpus of training ex- amples in three classes truthy, legitimate, and remove.
- We thank the Gephi toolkit for aid in our visualizations and the many users who have provided feedback and annotations.
- In KDD 09: Proc. of the 15th ACM SIGKDD international Conf. on Knowledge discovery and data mining, page 497, 2009. [33] J.
+ To this end, we extract all memes (of the types described in 3.1) from each in- coming tweet, and track the activation over the past hour of each meme, in real time.

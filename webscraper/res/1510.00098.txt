@@ -1,10 +1,10 @@
- We train a fully convolutional CNN model to predict nighttime lights from daytime imagery, simultaneously learning features that are use- ful for poverty prediction.
  We overcome this lack of training data by using a se- quence of transfer learning steps and a convolutional neu- ral network model.
- Speci cally, we start with a CNN model pre-trained for object classi ca- tion on ImageNet and learn a modi ed network that pre- dicts nighttime light intensities from daytime imagery.
- We show that transfer learning succeeds in learning features rel- evant not only for nighttime light prediction but also for poverty mapping.
- The output dimensions h and w depend on the stride and zero-padding parameters of the layer, which control how the convolutional lters slide across the input.
+ The idea is to leverage available datasets such as ImageNet to extract features and high-level repre- sentations that are useful for the task of interest, i.e., ex- tracting socioeconomic data for poverty mapping.
+ For target problems with abundant data, we can transfer low-level features, such as edges and corners, and learn new high-level features spe- ci c to the target problem.
+ Our goal is to transfer knowledge from the ImageNet object recognition challenge (P1) to the target problem of predicting nighttime light intensity from daytime satellite imagery (P2).
+ In P1, we have an object classi cation problem with source domain data D1 = {(x1i, y1i)} from ImageNet that consists of natural images x1i X1 and object class labels.
+ In P2, we have a nighttime light intensity prediction prob- lem with target domain data D2 = {(x2i, y2i}) that consists of daytime satellite images x2i X2 and nighttime light intensity labels.
+ The target domain data D3 = {(x3i, y3i)} consists of satellite images x3i X3 from the feature space of satellite images of Uganda and a limited number of poverty labels y3i Y3, detailed below.
  The VGG model parameters are obtained from the Caffe Model Zoo, and all networks are trained with Caffe (Jia et al. 2014).
- The goal is to learn high-level features that are indicative of economic development and can be used for poverty mapping in the spirit of transfer learning.
- Figure 5: A set of 25 maximally activating images and their corresponding activation maps for a lter in the fth convolutional layer of the network trained on the 3-class nighttime light intensity prediction task.
- Figure 6: A set of 25 maximally activating images and their corresponding activation maps for a lter in the fth convolutional layer of the network trained on the 3-class nighttime light intensity prediction task.
- This lter seems to activate for water, barren, and forested lands, which this lter seems to group together as contributing similarly to nighttime light intensity.
+ The fully convolutional model is ne-tuned from the pre-trained parameters of the VGG F model, but it randomly initializes the convolutional layers that replace fully connected layers.
+ Figure 4: A set of 25 maximally activating images and their corresponding activation maps for a lter in the fth convolutional layer of the network trained on the 3-class nighttime light intensity prediction task.

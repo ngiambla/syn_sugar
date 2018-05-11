@@ -1,11 +1,10 @@
- These trees can be used to com- pose and test sophisticated hypotheses and to develop predictive models.
- Availability and Implementation: Branch is hosted at http://biobranch.org/ and the open source code is available at http://bitbucket.org/sulab/biobranch/.
+ Contact: {gkarthik, asu, bgood}@scripps.edu 1 Introduction One central goal of large-scale molecular profiling is to identify con- sistent patterns that can be used to advance understanding of and to make predictions about a particular condition.
+ Given the large numbers of fea- it can also be used to interactively construct and test a complex predic- tive model.
+ Yet, despite the troves of data collected, the predictive and explanatory power of patterns extracted automatically from data remain weak for most conditions of in- terest(Weigelt et al., 2012).
+ It also provides a collaborative graphical interface for manual creation of decision trees that encapsulate the structure of sophisticated hypotheses.
  This tool not only allows users to answer questions of particular datasets, Users begin by selecting a dataset of interest from the Branch dataset li- brary.
+ Each dataset corresponds to a single table in which each row con- tains the values for a set of features, e.g. gene expression levels or clini- cal variables, and a binary class label for each sample, e.g. cancer/nor- mal.
+ Third, if no compatible datasets are available as independent test sets, the percentage split option simulates the pro- cess by dividing the data randomly into a training and testing set again Gangavarapu et al.
  A decision tree built using a node-negative, ER-positive, HER2-negative breast cancer dataset(Griffith et al., 2013). (A) Evaluation of the tree on the testing set.
  In addition, the appli- cation can be used to generate a crowdsourced collection of predictive models that captures the collective knowledge of the user community.
  This library of predictive models should prove useful to individual users and might also be applied computationally, for example, to generate an ensemble predictor.
- Bioinformatics, 20, 2479 81. giving more realistic assessments about the generalizability of decision Griffith,O.L. et al. (2013) A robust prognostic signature for hormone-positive tree structures developed using the tool. node-negative breast cancer.
- Paik,S. et al. (2004) A multigene assay to predict recurrence of tamoxifen-treated, Given a dataset and an evaluation method, the user can begin construct- node-negative breast cancer.
- Most simply, single feature splits WARE,M. et al. (2001) Interactive machine learning: letting users build classifiers. may be created from individual features in the dataset such as the expres- Int.
- Custom features Weigelt,B. et al. (2012) Challenges translating breast cancer gene signatures into may be created as linear combinations of other features.
- The user may also choose to use built-in ma- chine learning algorithms to infer a predictive model from a feature sub- set and use the model for a decision node.

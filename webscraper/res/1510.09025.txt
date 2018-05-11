@@ -1,10 +1,10 @@
  The of v, and let ds analogous de nition is used for listening out-degree (d(cid:96)+ G(v)) and in-degree (d(cid:96) G(v)).
- Note that, at the beginning of step 7 there is a single large component (otherwise we would be in step 5 or 6).
+ We say there is a speaking path of length k from v to u if there exists a set of directed edges svv1, sv1v2, . . . , svku Es and edges (cid:96)uvk , (cid:96)vkvk 1, . . . , (cid:96)v1v E(cid:96).
+ Since (cid:96)wv / E(cid:96), if for any node z we have z Rs G,k(v), then, by the de nition of reachability, there exists a path from v to z that does not use edge svw.
+ In step 7 there is exactly one large component (see also Lemma 17), and the number components without a direct edge to T1 is reduced by one.
  If there exists v, w V such that svw Es and (cid:96)wv / E(cid:96), then with probability at least 1 , the edge svw is chosen.
- The probability of selecting svw and (cid:96)wv consecutively (cid:18) 1 (cid:19)2 1 1 n 2 n 1 is at least .
- We rst consider nontrivial ranges of parameters k > 1 and cs, c(cid:96) n 1 (see Section 5.1 for a discussion of extremal parameter ranges and networks).
- The vertices are labeled by strings x0 . . . xD 1 of length D with xi {0, . . . , d} with xi (cid:54)= xi+1.
- Hence, |Rs G(v)| n 1 where equality occurs if and only if all other nodes are reachable from v.
- For k = , if 0 cs n 1 and 0 c(cid:96) n 1, then the cycle C is pairwise stable.
- If cs, c(cid:96) > 1 then the empty graph is ef cient and is the only stable graph.
+ The probability of selecting svw and (cid:96)wv consecutively 1 1 n 2 n 1 is at least .
+ Moreover, we know that if svw and (cid:96)wv are selected in sequence then both will be removed as svw is removable, and then (cid:96)wv will be removable by Lemma 26.
+ Hence, the distance from x to y is k + 1 if we remove edge xx(cid:48) where x(cid:48) = x1, . . . , xD, y0.
  We let f (G, c, k) [0, 1] be the percentage of removable edges in G for the model speci ed by c R+, k {2, 3, . . . , }.
+ We can de ne an analogous local version f (v, c, k) [0, 1] as the percentage of removable edges going out from v.

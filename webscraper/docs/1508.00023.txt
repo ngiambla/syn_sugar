@@ -1334,7 +1334,7 @@ rj,sE [Dj,s(t)]   (cid:88)
   t(cid:88)
 (cid:105)
 j J
-k=0
+j J
   (cid:88)
 Hence,
 E
@@ -1345,7 +1345,7 @@ rj,sQj,s(t + 1)
 For any   /   Cout, by de nition there exists a J   [N ] such that (cid:80)
 Thus in that case, lim supt   E(cid:104)(cid:80)
 j J
-j J
+k=0
 k=0
   
   
@@ -1378,10 +1378,10 @@ j,s such that aj,s = aj,s(cid:48) (as it satis es
 FND: Same ordering is used for all (j, s) tasks and MaxWeight chooses zl
 IND: Same ordering is used for all (j, s) tasks, allocations to different categories are in same order (l = 1 to L)
 j,s(cid:48) for all l, l(cid:48) (as it satis es IND), hence if a task of a job is
-j,s = zl
+j,s such that zl
 and MaxWeight chooses zl
 allocated to category l then so are the other tasks.
-j,s such that zl
+j,s = zl
 D. Proof of Theorem 8
 Note that MaxWeight chooses an allocation {   j,s(t)}. But, the maximum number of (j, s)-tasks that can be served
 is Qj,s(t)+Aj(t). By Prop. 7, Task Allocation does a feasible allocation for FD, FND, and IND systems. Also, note
@@ -1782,11 +1782,11 @@ Gs > c log N
   S
 N  c
 1   exp (  K)
+1
 Note that the total number of unallocated jobs in the system is upper-bounded by (minj,s:rj,s>0 rj,s) 1(cid:80)
 s Gs,
 as any unallocated job has at least minj,s:rj,s>0 rj,s skill-hours unallocated. Hence the total number of unallocated
 tasks in the system, Q, satis es:
-1
 .
 Pr (Q > cS log N )   Pr
   Pr

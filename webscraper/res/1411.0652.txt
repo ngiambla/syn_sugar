@@ -1,10 +1,10 @@
  Here we describe a streaming framework for online detection and clustering of memes in social media, speci cally Twitter.
+ A pre-clustering procedure, namely protomeme detection, rst isolates atomic tokens of information carried by the tweets.
+ The clustering algorithm takes into account various dimen- sions of the data and metadata, including natural language, the social network, and the patterns of information di usion.
  As a result, our sys- tem can build clusters of semantically, structurally, and topically related tweets.
- On the other hand, social media are also used to disseminate misleading information such as rumors and spam [13, 20, 37].
- In other words, our proposed approach bene ts from protomemes as a pre-aggregation step and then it clusters them to identify memes.
- In such a case, the algorithm assumes unlimited access to all data points as well as boundless memory and processing resources.
- In all cases, without loss of generality, we assume the stream to start at time t = 0 and discretize time into steps of xed duration t.
- The closest cluster is chosen based on the distance between the arriving point and the centroid of the cluster.
- This is due to the characteristic fast-paced churning time of the topics of discussion in social media.
- In our framework, we proposed to rely on mention and retweet di usion sets, which can be inferred in real time from the observed data.
- Also, our system provides better performance by pre-clustering based on protomemes and by metadata-driven measures of similarity between clusters.
+ The clustering process is based on a variant of Online K-means that incorporates a memory mechanism, used to forget old memes and replace them over time with the new ones.
+ We can now de ne a set of similarity measures based on content and metadata.
+ Common user similarity Su between protomemes p and q is the cosine sim- ilarity (1) Su(p, q) = pu qu ||pu||||qu|| 6 where pu and qu are the vectors representing the number of tweets in p and q, respectively, produced by each user.
+ Let A be the correct cluster assignment, and suppose that it contains cA clusters.
+ Let B be the output of a clustering algorithm operating on the same data and producing cB clusters.
+ Each bin is one hour. rows correspond to the clusters in A and whose columns represent clusters in B.

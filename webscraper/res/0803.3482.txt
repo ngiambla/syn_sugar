@@ -1,11 +1,10 @@
- We then sep- arately examine highly variable behaviors for users, content rating and network formation, in Secs. 3, 4, and 5, respectively.
- For the rest of the users, Fig. 2 shows the distribution of votes among users who voted at least once for noninitial resolves.
- Plot includes a curve for a lognormal distribution t, which is indistinguishable from the points and with parameters = 0.03 0.05 and = 1.70 0.04.
- The step at age 50 is, pre- sumably, due to a limit on number of recent resolves readily accessible to users.
- The persistence of votes on resolves based on the wide variation of r values among resolves gives rise to a multiplicative process with decay.
+ Thus the observed votes on a resolve are a combination of two user activi- ties: creating a new resolve (giving the resolve its rst vote) and subsequently other users choosing to vote on the resolve if they see it while visiting the site.
+ For simplicity, we treat these choices as independent and take q and to be the same for all users.
+ Thus in our model, the variation among users is due to their di ering overall activity rates u and amount of time they are active on the site Tu. 3.2 Behavior We estimate the model parameters from the observed user activities, and restrict attention to active users.
+ The resulting f (a) estimates from the numerical solution are similar to the distribution of votes vs. age in Fig. 6, and Fig. 7 shows the distribution of estimated r values and a lognormal t.
  With the wide variation in r values for resolves and the activity rates for users (Fig. 4), a natural question is whether these variations are related.
- A common property of such networks is the wide range in numbers of links made by users, i.e., the degree distribution of the network.
- The need to build ideological pro les suggests votes on common resolves is key to the number and type of links.
+ While active users tend to introduce more resolves overall, the correlation between the ac- tivity rate of a user and the average r values of the resolves introduced by that user is small: 0.06.
  The wide variation in activity times and u among users (Fig. 1 and 4) gives rise to a wide distribution of number of links.
+ While the most common mechanisms designed to reproduce the observed power law degree distribu- tions use growing rules and the degree of vertices in link formation [11], in the following we propose a mechanism that only takes into account the extent to which two users share interests to describe link formation between two users.
+ The rst factor gives more links for those who vote a lot (due to being more likely to have votes in common with others).
  In particular, users with few votes will also have few common votes with other users and hence their links will tend to be mostly friends.
- Furthermore, we can expect f (a) to change slowly with time as primarily due to how the user in- terface makes resolves visible to users.

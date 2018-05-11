@@ -1,12 +1,10 @@
- CDR data have proven to be a hi- proxy for individuals movements and social interactions [22,37].
- Second, we apply the analytical framework on large- scale mobile phone data and quantify the relations be- tween human mobility, social interactions and economic development in France using municipality-level o cial statistics as external comparison measurements.
- Starting from mobile phone data (a) mobility and social measures are computed for each individual in the dataset (b).
- A set of recent works use mobile phone data as a proxy for socio-demographic variables.
- Unfortunately these socio-demographic data are generally not available in mobile phone data for privacy and proprietary reasons.
- We investigate the correlations between the aggre- gated measures and the external socio-economic indica- tors nding two main results.
- Figure 8 provides another way to observe the rela- tions between the diversity measures and socio-economic development.
- For mobility diversity, the deciles of the economic values increase while the mean de- creases and the variance increases, highlighting a change of the distribution in the di erent groups.
- For each group, we plot the distributions of mean mobility diversity and mean social diversity.
- In null model NM2, we randomly shu e the values of the socio-economic indicators over the municipali- ties.
+ In this paper, we design a data- driven analytical framework that uses mobility mea- sures and social measures extracted from mobile phone data to estimate indicators for socio-economic devel- opment and well-being.
+ First, we design a data-driven analytical framework that uses Big Data to extract meaningful measures of human be- havior and estimate indicators for the socio-economic development.
+ Figure 10 shows the relative im- portance of regressors produced by the LMG method [32] for both model M1 and model M2.
+ We observe that mobility diversity gives the highest contribution to the regression, accounting for the 54% and 65% of the importance for M1 and M2 respectively, while so- cial diversity provides a little contribution (0.7% for M1 (a) (b) Fig. 8 The distribution of mobility diversity (a) and social diversity (b) in the deciles of deprivation index.
+ We perform this procedure 100 times and take, for each municipality, the mean value of the socio-economic indicators computed over the 100 produced values.
  In contrast with empirical data, we nd no correlation in the null models between the diversity measures and the socio-economic indicators, neither for mobility diversity nor for social diversity (Figure 9).
- The interpretation of the observed relation between mobility diversity and socio-economic indicators is, with- out a doubt, two-directed.
+ We are aware that the computation of individual measures on CDR data (step (a) and (b) in Figure 1) present privacy issues.
+ We intend to use a method to assess the privacy risk of users in order to detect risk cases where the privacy of users is violated and apply privacy enhancing techniques for data anonymization [35].
+ In our experiments we compare the measures of mo- bility and sociality with two external socio-economic in- dicators: per capita income and deprivation index.
+ Per capita income is a simple indicator indicating the mean income of individuals resident in a given municipality, without any information about the distribution of the wealth and the inequality.

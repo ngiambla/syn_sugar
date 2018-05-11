@@ -1,11 +1,10 @@
+ Applying a regression strategy, we obtain a mean deviation for the predictions between 0.5 and 0.7 in the range [1-5] for the computed social signals.
  Once data from the environment have been acquired and processed to de ne a set of behavioral features, they serve as the basis for modelling a set of communication indicators.
- Constraints of the main condition at the center of the owchart are denoted by , , , and their respective thresholds , , .
- The counting variables are F N , F P , h , representing the accumulated number of false negatives, false positives, and hits for the current person .
- The correction of false positives and false negatives is shown, improving the continuity of the detection of positive regions of interest between consecutive frames.
- On the other hand, if a session involves just one party and the mediator, we introduce only one sample corresponding to the party involved.
+ For instance, in [31], the authors outline a system for real-time tracking of the human body with the objective of interpreting human behavior.
+ However, in the context of conversations we are particularly interested in behavioral traits belonging to social signals captured in the communication and in the interactions between the participants in the VOM sessions.
  As explained in section II, the observations of the classi- cation task are the accuracies achieved by the system when predicting receptivity, agreement, and satisfaction.
- Tables IV and V show the results obtained when employing the different techniques and using the complete set of behavioral indicators in Table III.
- However, both hand agitation, gaze, and the combination of the two are chosen as being the most relevant features when predicting receptivity.
- This means that these are the most discriminating behav- ioral indicators in the prediction of the degree of receptivity, agreement, and satisfaction in a conversation such as that maintained in a VOM process.
+ Then, the correlation can be observed between the observations predicted by the system and the impressions recorded by the mediators.
+ These opinions are quanti ed values of receptivity, agreement, and satisfaction presented in relation to the parties involved in the VOM session, and represent the ground truth of our system.
+ In this setting, we also ran the experiment twice: rst, we considered all features, and then UNDER CONSIDERATION AT PATTERN RECOGNITION LETTERS 13 features using audio-RGB-depth data.
  Finally, we have de ned an automatic computation of behavioral indicators used as nal features for learning and classi cation tasks.
- Weighted feature selection when using AdaBoost and SVM for the grouping response cases presenting the highest accuracy when predicting receptivity, agreement, and satisfaction.
+ We have demonstrated the applicability of the system for use in the restorative justice eld as a tool for mediators, obtaining recognition accuracies of 86% when predicting satisfaction and 79% when predicting both agreement and receptivity, and a high correlation in the regression analysis.

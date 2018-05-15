@@ -1,0 +1,7 @@
+ Concretely , it is either NIL , or a triple : The second and third items of the TNCB triple are the child TNCBs .
+ The value of a TNCB is the sign that is formed from the combination of its children , or INCONSISTENT , representing the fact that they cannot grammatically combine , or UNDETERMINED , i.e. it has not yet been established whether the signs combine .
+ Adjunction : A maximal TNCB can be inserted inside a maximal TNCB , i.e. conjoined with a non-maximal TNCB , where the combination is licensed by rule .
+ In figure , the TNCB composed of nodes 1 , 2 , and 3 is inserted inside the TNCB composed of nodes 4 , 5 and 6 .
+ We thus see that during generation , we formed a basic constituent , the dog , and incrementally refined it by adjoining the modifiers in place .
+ At the heart of this approach is that , once well-formed , constituents can only grow ; they can never be dismantled .
+ Even if generation ultimately fails , maximal well-formed fragments will have been built ; the latter may be presented to the user , allowing graceful degradation of output quality .

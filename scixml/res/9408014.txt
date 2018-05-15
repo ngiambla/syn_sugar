@@ -1,0 +1,7 @@
+ Given that the notion of a symbol , let alone an ` internal symbol ' , is itself a slippery one , it may be unwise to build our theories of language , or even the way we classify different theories , on this notion .
+ Such scores are normally computed by speech recognition systems , although they are usually also multiplied by word-based language model probabilities which we do not require in this application context .
+ Our approach to language modeling , which covers the content analysis and language generation factors , is presented in section and the transfer probabilities fall under the translation model of section .
+ To determine the probability of deriving a relation graph C for a phrase headed by we make use of parameters ( ` dependency parameters ' ) for the probability , given a node h and a relation r , that w is an r-dependent of h.
+ Under the assumption that the dependents of a head are chosen independently from each other , the probability of deriving C is : where is the probability of choosing to start the derivation .
+ We now have where h ranges over all the heads in C , and is the number of occurrences of r in , assuming that all orderings of - dependents are equally likely .
+ Although we have not provided a denotational semantics for sets of relation edges , we anticipate that this will be possible along the lines developed in monotonic semantics Alshawi and Crouch 1992 .

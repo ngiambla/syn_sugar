@@ -1,0 +1,7 @@
+ In Section below , I report results of such experiments with ATIS data , which , for the reasons given above , would at first sight seem relatively unlikely to yield useful results from a clustering approach .
+ Since , as we will see , clustering does yield benefits in this domain , it seems very plausible that it will also do so for other , more naturally clustered domains .
+ There are many different criteria for quantifying the ( dis ) similarity between ( analyses of ) two sentences or between two clusters of sentences ; Everitt 1993 provides a good overview .
+ Unfortunately , whatever the criterion selected , it is in general impractical to find the optimal clustering of the data ; instead , one of a variety of algorithms must be used to find a locally optimal solution .
+ The greater the value of K , the more a clustering reduced the apparent training set per-item entropy ( which , of course , is not the same thing as reducing test set entropy ) .
+ The reductions for K = 20 were around 20 % for unigrams , 40 % for bigrams and 50 % for trigrams , with very little variation ( typically 1 % or less ) between different runs for the same condition .
+ However , clustering trigrams produces no improvement in score ; in fact , it gives a small but statistically significant deterioration , presumably due to the increase in the number of parameters that need to be calculated .

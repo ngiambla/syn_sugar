@@ -1,0 +1,7 @@
+ And to date , grammar checkers and other programs which deal with ill-formed input usually step directly from spelling considerations to a full-scale parse , assuming a complete sentence .
+ Work described below is aimed at evaluating the effectiveness of shallow ( sub-sentential ) processing and the feasibility of cooperative error checking , through building and testing appropriately an error-processing system .
+ A system under construction is outlined which incorporates morphological checks ( using new two-level error rules ) over a directed letter graph , tag positional trigrams and partial parsing .
+ Unless a keyboard user is particularly proficient , a frustrating amount of time is usually spent backtracking to pick up mis-typed or otherwise mistaken input .
+ Work described in this paper started from an idea of an error processor that would sit on top of an editor , detecting / correcting errors just after entry , while the user continued with further text , relieved from tedious backtracking .
+ If the word is unknown , the system reconsiders analysis from the point where it broke down with the added possibility of an error rule .
+ There are currently four error rules , corresponding to the four Damerau transformations : omission , insertion , transposition , substitution Damerau 1964 - considered in that order Pollock 1983 .

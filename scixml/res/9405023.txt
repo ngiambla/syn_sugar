@@ -1,0 +1,7 @@
+ GLR* is a recently developed robust version of the Generalized LR Parser Tomita 1986 , that can parse almost any input sentence by ignoring unrecognizable parts of the sentence .
+ On a given input sentence , the parser returns a collection of parses that correspond to maximal , or close to maximal , parsable subsets of the original input .
+ This paper describes recent work on developing an integrated heuristic scheme for selecting the parse that is deemed `` best '' from such a collection .
+ The filtering scheme 's task is to classify the parse chosen as best by the parser into one of two categories : `` good '' or `` bad '' .
+ Our heuristic takes into account both the actual value of the parse 's combined penalty score and a measure relative to the length of the input sentence .
+ When using the full heuristics , the percentage of sentences , for which the parser returned a parse that matched or almost matched the `` correct '' parse increased from 50 % to 75 % .
+ As a result of its skipping capabilities , GLR* succeeds to parse 58 sentences ( 48 % ) that were not parsable by the original GLR parser .

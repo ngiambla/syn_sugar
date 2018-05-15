@@ -1,0 +1,7 @@
+ If the answer is the , then the decision tree needs to ask no more questions ; it is clear that the decision tree should assign the tag with probability 1 .
+ If , instead , the answer to question 1 is bear , the decision tree might next ask the question : 2 .
+ If the answer to question 2 is determiner , the decision tree might stop asking questions and assign the tag with very high probability , and the tag with much lower probability .
+ However , if the answer to question 2 is noun , the decision tree would need to ask still more questions to get a good estimate of the probability of the tagging decision .
+ A leaf node in a decision tree can be represented by the sequence of question answers , or history values , which leads the decision tree to that leaf .
+ The probability of a parse is just the product of the probability of each of the actions made in constructing the parse , according to the decision-tree models .
+ Because of the size of the search space , ( roughly where | T | is the number of part-of-speech tags , n is the number of words in the sentence , and | N | is the number of non-terminal labels ) , it is not possible to compute the probability of every parse .

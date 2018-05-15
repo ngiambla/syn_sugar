@@ -1,0 +1,7 @@
+ The connectives ` , ' and ` ; ' have the same precedence as in Prolog , while ` : ' has the same precedence as ` , ' .
+ The stronger constraint of immediate precedence is marked by ` : ' ; ` A : B ' indicates that the span of A precedes that of B , and that there is no uncovered input between the two .
+ One can then go back to the grammar and see that the noun phrase rule needs to be changed to account for certain types of modifier including adjectives and adverbial modifiers .
+ It is also possible to set local thresholds dynamically , by making use of the ` { prolog code } ' facility : In this way , the strictness of a rule may be varied according to information originating either within the particular run-time invocation of the rule , or elsewhere in the current parse .
+ For example , it would be possible , by providing a suitable definition for set_dynamic_threshold / 2 , to set T to 0.5 when more than one optional adjective has been found , and 0.9 otherwise .
+ The use of the chart to store known results and failures allows the user to develop hybrid parsing techniques , rather than relying on the default depth-first top-down strategy given by analysing with respect to the top-most category .
+ For instance , it is possible to analyse the input in ` layers ' of linguistic categories , perhaps starting by analysing noun-phrases , then prepositions , verbs , relative clauses , clauses , conjuncts , and finally complete sentences .

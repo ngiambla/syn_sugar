@@ -1,0 +1,7 @@
+ By iterating the algorithm with the same corpus , the parameters of the model can be made to converge on values which are locally optimal for the given text .
+ The degree of convergence can be measured using a perplexity measure , the sum of plog for hypothesis probabilities p , which gives an estimate of the degree of disorder in the model .
+ The aim of this paper is to examine the role that training plays in the tagging process , by an experimental evaluation of how the accuracy of the tagger varies with the initial conditions .
+ The former figure looks more impressive , but the latter gives a better measure of how well the tagger is doing , since it factors out the trivial assignment of tags to non-ambiguous words .
+ Although there is some variations in the readings , for example in the `` similar / D0 + T0 '' case , we can draw some general conclusions about the patterns obtained from different sorts of data .
+ Furthermore , examining the accuracies in table , in the cases of initial maximum and early maximum , the accuracy tends to be significantly higher than with classical behaviour .
+ It seems likely that what is going on is that the model is converging to towards something of similar `` quality '' in each case , but when the pattern is classical , the convergence starts from a lower quality model and improves , and in the other cases , it starts from a higher quality one and deteriorates .

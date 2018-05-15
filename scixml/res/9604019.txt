@@ -1,0 +1,7 @@
+ Many approaches focus on exploiting specific knowledge about grammars and / or the computational task ( s ) that one is using them for by making filtering explicit and extending the processing strategy such that this information can be made effective .
+ This does not change the semantics of the original grammar as it merely serves as a way to incorporate the relevant bindings derived with the magic predicates to avoid redundant applications of a rule .
+ Corresponding to the first right-hand side literal in the original rule step derives the following magic rule : It is used to derive from the guard for the original rule a guard for the rules defining the first right-hand side literal .
+ The second right-hand side literal in the original rule leads to the following magic rule : Finally , step of the algorithm ensures that a seed is created .
+ The tree on the right is the proof tree for the example sentence which is built up as a result of unifying in the derived magic facts when applying a particular rule .
+ E.g. , in order to derive fact , magic fact is unified with the magic literal in the modified version of rule ( in addition to the facts and ) .
+ The rule builds up infinitely large subcategorization lists of which eventually only one is to be matched against the subcategorization list of , e.g. , the lexical entry for `` buys '' .

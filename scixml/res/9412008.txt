@@ -1,0 +1,7 @@
+ Analyzing compound nouns is one of the crucial issues for natural language processing systems , in particular for those systems that aim at a wide coverage of domains .
+ In this paper , we propose a method to analyze structures of Japanese compound nouns by using both word collocations statistics and a thesaurus .
+ In this paper , we propose a method to analyze structures of Japanese compound nouns by using word collocational information and a thesaurus .
+ The outline of procedures to acquire the collocational information is as follows : extract collocations of nouns from a corpus of four kanzi character words . replace each noun in the collocations with thesaurus categories , to obtain the collocations of thesaurus categories . count occurrence frequencies for each collocational pattern of thesaurus categories .
+ Function cv returns an associativity measure of two categories , which is calculated from the frequency of category collocation described in the previous section .
+ We would use two measures for cv : returns the relative frequency of collation , which appears on the left side and , which appears on the right .
+ Table shows the result of the analysis for four , five , and six kanzi character sequences . `` '' means that the correct answer was not obtained because the heuristics is segmentation filtered out from the correct segmentation .

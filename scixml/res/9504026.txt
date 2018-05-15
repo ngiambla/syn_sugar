@@ -1,0 +1,7 @@
+ The predicate always succeeds , and as a side-effect asserts that its argument is a rule of the parse forest grammar .
+ For the sentence ` a a b b ' we obtain the parse forest grammar : The reader easily verifies that indeed this grammar generates ( a isomorphism of ) the single parse tree of this example , assuming of course that the start symbol for this parse-forest grammar is .
+ The same techniques that are used for calculating the intersection of a FSA and a CFG can be applied in the case of DCGs .
+ In order to compute the intersection of a DCG and a FSA we assume that FSA are represented as before .
+ But if we use existing techniques for parsing DCGs , then we are also confronted with an undecidability problem : the recognition problem for DCGs is undecidable Pereira and Warren 1983 .
+ This result is proved by Hopcroft and Ullman 1979 by showing that the halting problem for Turing Machines can be encoded as an instance of Post 's Correspondence Problem .
+ First I give a simple algorithm to encode any instance of a PCP as a pair , consisting of a FSA and an off-line parsable DCG , in such a way that the question whether there is a solution to this PCP is equivalent to the question whether the intersection of this FSA and DCG is empty .

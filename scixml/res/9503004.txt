@@ -1,0 +1,7 @@
+ In this paper , we describe aspects of this work concerned with the definition of the tagset , the building of the lexicon , derived from an existing two-level morphological analyser , and the definition of a lexical transducer for guessing unknown words .
+ We earlier described two taggers for French : the statistical one having an accuracy of 95 - 97 % and the constraint-based one 97 - 99 % Chanod and Tapanainen 1994 , Chanod and Tapanainen 1995 .
+ The disambiguation has been already described , and here we discuss the other stages of the process , namely the definition of the tagset , transforming a current lexicon into a new one and guessing the words that do not appear in the lexicon .
+ The problematic sentence was : where interdit is mistakenly tagged as an adjective rather than a finite verb , while arme is a feminine noun and interdit a masculine adjective , which makes the noun-adjective sequence impossible in this particular sentence .
+ Another argument in favour of gender distinction is that some nouns are ambiguously masculine or feminine , with possible differences in meaning , e.g. poste , garde , manche , tour , page .
+ We also counted 325 occurrences of nouns ( proper nouns excluded ) which do not have different meanings in the masculine and the feminine readings , e.g. lve , camarade , jeune .
+ Of those unknown words , 9385 ( i.e. about 70 % ) are capitalised words , which are correctly and unambiguously analysed by the guesser as proper nouns with more than 95 % accuracy .

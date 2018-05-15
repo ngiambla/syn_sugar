@@ -1,0 +1,7 @@
+ In this case , the resolution of the anaphora is postponed to a next call of the anaphora module according to principle stated above .
+ When the anaphor is included in a PP ( particular case of ) , PP attachment rules need semantic information about the `` object '' of the PP ; when it is a pronoun , no semantic information is available , so that the attachment rules can not be applied .
+ The anaphoric pronouns have to be resolved first , so as to determine what semantic class they refer to ; the PP attachment procedure can then be applied .
+ When a sequence contains more than two such PPs , i.e. , with anaphors as objects , the length of a cycle is more than 4 .
+ The pronoun its can not be resolved by the anaphora resolution module because it is preceded by unattached PPs ; its resolution is skipped .
+ The PP attachment procedure is then called to determine the attachment of since and at while the object of the in PP comprises an anaphoric pronoun its ( case ) and the on PP is preceded by its .
+ The algorithm should be considered as the splitting of both anaphora resolution and PP attachment procedures into several phases and not as the repetition of each procedure .

@@ -1,0 +1,7 @@
+ Unfortunately , input information can be insufficient in two respects : If the input structure for generation is provided by another AI-system , global problems in producing sufficient input information for the generator may occur , e.g. , because of translation mismatches in machine translation Kameyama 1991 .
+ In this case , the output has to be repaired , e.g. , by repeating parts of the utterance : `` I will be able to meet you ... oops ...
+ I won't be able to meet you at the hotel this evening . '' In the following sections , we argue for the appropriateness of processing-conforming default handling .
+ We define a module named default handler which tries to resume the process by giving advice to it , i.e. , by making assumptions about the missing input specification .
+ The advantage of this approach is , that processing is continued in a consistent way , which eases the introduction of the input-licensed value .
+ One default for choosing a missing case-value is specified as follows : The default preconditions of the rule characterize a situation where an object ( ) contains no information about the case but identifies the input category as ` N ' for noun .
+ Furthermore , the semantic function of the object is specified as ` agent ' but no verb defined yet in the head object .

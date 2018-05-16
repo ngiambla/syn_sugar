@@ -12,6 +12,10 @@ import pdf2txt as pdf2txt
 import xml_parser as xparse
 import sci_xml_parser as scixparse
 
+
+from pyteaser import Summarize
+from gensim.summarization.summarizer import summarize
+
 from time import localtime, strftime
 from subprocess import call
 from bcolors import bcolors
@@ -40,6 +44,8 @@ help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "+ ~[utilities]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "| 'clean' = cleans post baked items.\n"\
 		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+
+which_bench = 1
 
 EDITOR = os.environ.get('EDITOR','vim') #that easy!
 r = Rouge()
@@ -137,6 +143,11 @@ def bake(file_ext=""):
 		p_avg 		= 	0
 		r_avg 		= 	0
 		f1_avg 		= 	0
+
+		p_avg_ 		= 	0
+		r_avg_ 		= 	0
+		f1_avg_		= 	0
+
 		test_cases 	= 	0
 		
 		for ghost in test_ghost:
@@ -166,10 +177,32 @@ def bake(file_ext=""):
 											break;
 										ref_summ = ref_summ + line
 							if len(ref_summ) > 0:
+								text=""
+								with open(ghost, 'r') as f:
+									for line in f:
+										text=text+line+"\n"
+								summaries = ""
+								if which_bench == 0:
+									summaries = Summarize("", text)
+									print(summaries)
+									text=""
+									for s in summaries:
+										text=text+s+"\n"
+								if which_bench == 1:
+									text=summarize(text)
+								scores_1	= stos.eval(ref_summ, text)
+								print(scores_1[0]['rouge-l'])
+								print(scores_1[0]['rouge-2'])
+								print(scores_1[0]['rouge-1'])
+
 								scores 		= stos.eval(ref_summ, sys_summ)
 								print(scores[0]['rouge-l'])
 								print(scores[0]['rouge-2'])
 								print(scores[0]['rouge-1'])
+
+								p_avg_ 		= p_avg_ + scores_1[0]['rouge-1']['p'] 
+								r_avg_ 		= r_avg_ + scores_1[0]['rouge-1']['r'] 
+								f1_avg_ 	= f1_avg_+scores_1[0]['rouge-1']['f']
 
 								p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
 								r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
@@ -179,6 +212,10 @@ def bake(file_ext=""):
 								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 						except Exception as e:
 							print(e)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg_/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print("--------------------------------------")
 			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
 			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
 			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
@@ -187,6 +224,11 @@ def bake(file_ext=""):
 		p_avg 		= 	0
 		r_avg 		= 	0
 		f1_avg 		= 	0
+
+		p_avg_ 		= 	0
+		r_avg_ 		= 	0
+		f1_avg_		= 	0
+
 		test_cases 	= 	0
 		
 		for ghost in test_ghost:
@@ -224,10 +266,30 @@ def bake(file_ext=""):
 							for line in f:
 								ref_summ = ref_summ + line
 						if len(ref_summ) > 0:
+							text=""
+							with open(ghost, 'r') as f:
+								for line in f:
+									text=text+line+"\n"
+							summaries = ""
+							if which_bench == 0:
+								summaries = Summarize("", text)
+								print(summaries)
+								text=""
+								for s in summaries:
+									text=text+s+"\n"
+							if which_bench == 1:
+								text=summarize(text)
+							scores_1	= stos.eval(ref_summ, text)
+							print(scores_1[0]['rouge-l'])
+							print(scores_1[0]['rouge-2'])
+							print(scores_1[0]['rouge-1'])
 							scores 		= stos.eval(ref_summ, sys_summ)
 							print(scores[0]['rouge-l'])
 							print(scores[0]['rouge-2'])
 							print(scores[0]['rouge-1'])
+							p_avg_ 		= p_avg_ + scores_1[0]['rouge-1']['p'] 
+							r_avg_ 		= r_avg_ + scores_1[0]['rouge-1']['r'] 
+							f1_avg_ 	= f1_avg_+scores_1[0]['rouge-1']['f']							
 							p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
 							r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
 							f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
@@ -236,6 +298,10 @@ def bake(file_ext=""):
 							print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 					except Exception as e:
 						print(e)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg_/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print("--------------------------------------")
 			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
 			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
 			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
@@ -297,6 +363,12 @@ def bake(file_ext=""):
 		p_avg 		= 	0
 		r_avg 		= 	0
 		f1_avg 		= 	0
+
+
+		p_avg_ 		= 	0
+		r_avg_ 		= 	0
+		f1_avg_		= 	0
+
 		test_cases 	= 	0
 		
 		for ghost in test_ghost:
@@ -330,10 +402,30 @@ def bake(file_ext=""):
 								for line in f:
 									ref_summ = ref_summ + line
 							if len(ref_summ) > 0:
+								text=""
+								with open(ghost, 'r') as f:
+									for line in f:
+										text=text+line+"\n"
+								summaries = ""
+								if which_bench == 0:
+									summaries = Summarize("", text)
+									print(summaries)
+									text=""
+									for s in summaries:
+										text=text+s+"\n"
+								if which_bench == 1:
+									text=summarize(text)
+								scores_1	= stos.eval(ref_summ, text)
+								print(scores_1[0]['rouge-l'])
+								print(scores_1[0]['rouge-2'])
+								print(scores_1[0]['rouge-1'])
 								scores 		= stos.eval(ref_summ, sys_summ)
 								print(scores[0]['rouge-l'])
 								print(scores[0]['rouge-2'])
 								print(scores[0]['rouge-1'])
+								p_avg_ 		= p_avg_ + scores_1[0]['rouge-1']['p'] 
+								r_avg_ 		= r_avg_ + scores_1[0]['rouge-1']['r'] 
+								f1_avg_ 	= f1_avg_+scores_1[0]['rouge-1']['f']										
 								p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
 								r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
 								f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
@@ -342,6 +434,10 @@ def bake(file_ext=""):
 								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 						except Exception as e:
 							print(e)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg_/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print("--------------------------------------")
 			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
 			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
 			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)			

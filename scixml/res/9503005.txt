@@ -1,0 +1,7 @@
+ In the following section , we shall present a formal language for talking about this representation ; that is , a language for specifying LFG grammars .
+ A model is a tripartite structure , where is our mathematical picture of c - structure , our picture of f-structure , and zoomin our picture of the link between the two .
+ Note that specifies local tree admissibility ( thus obviating the need for rewrite rules ) , and , and work together to capture the effect of and .
+ In LFG , this applies to a ( small ) finite number of attributes ( that is , transitions in the feature structure ) .
+ This collection includes the grammatical functions ( e.g. subj , obj , iobj ) together with some longer transitions such as obl ; obj and to ; obj .
+ Let GF be a metavariable over the modalities corresponding to the elements of this set , thus GF contains such items as , , , and .
+ Now , the completeness principle requires that any of these features appearing as an attribute in the value of the pred attribute must also appear as an attribute of the f-structure immediately containing this pred attribute , and this recursively .

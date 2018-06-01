@@ -9,7 +9,12 @@ import importlib
 import time
 import summ_to_syn as stos
 import pdf2txt as pdf2txt
-import xml_parser as xparse 
+import xml_parser as xparse
+import sci_xml_parser as scixparse
+
+
+from pyteaser import Summarize
+from gensim.summarization.summarizer import summarize
 
 from time import localtime, strftime
 from subprocess import call
@@ -30,6 +35,7 @@ help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "|        +----> [-t] conducts a test. \n"\
          "|        +----> [-a] conducts an academic paper test.\n"\
          "|        +----> [-l] conducts a legal paper test.\n"\
+         "|        +----> [-z] conducts a test from the Argumentative Zoning Corpus.\n"\
 		 "| 'help' | 'h' --> displays this. \n"\
 		 "| 'info' | 'i' --> inspects a data file "+ bcolors.OKCYAN +"[opens vim]."+ bcolors.ENDC +"\n"\
 		 "| 'ls'   | 'l' --> lists all text files.\n"\
@@ -38,6 +44,8 @@ help_msg="+ ~[help]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "+ ~[utilities]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"\
 		 "| 'clean' = cleans post baked items.\n"\
 		 "+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+
+which_bench = 1
 
 EDITOR = os.environ.get('EDITOR','vim') #that easy!
 r = Rouge()
@@ -135,6 +143,11 @@ def bake(file_ext=""):
 		p_avg 		= 	0
 		r_avg 		= 	0
 		f1_avg 		= 	0
+
+		p_avg_ 		= 	0
+		r_avg_ 		= 	0
+		f1_avg_		= 	0
+
 		test_cases 	= 	0
 		
 		for ghost in test_ghost:
@@ -164,10 +177,32 @@ def bake(file_ext=""):
 											break;
 										ref_summ = ref_summ + line
 							if len(ref_summ) > 0:
+								text=""
+								with open(ghost, 'r') as f:
+									for line in f:
+										text=text+line+"\n"
+								summaries = ""
+								if which_bench == 0:
+									summaries = Summarize("", text)
+									print(summaries)
+									text=""
+									for s in summaries:
+										text=text+s+"\n"
+								if which_bench == 1:
+									text=summarize(text)
+								scores_1	= stos.eval(ref_summ, text)
+								print(scores_1[0]['rouge-l'])
+								print(scores_1[0]['rouge-2'])
+								print(scores_1[0]['rouge-1'])
+
 								scores 		= stos.eval(ref_summ, sys_summ)
 								print(scores[0]['rouge-l'])
 								print(scores[0]['rouge-2'])
 								print(scores[0]['rouge-1'])
+
+								p_avg_ 		= p_avg_ + scores_1[0]['rouge-1']['p'] 
+								r_avg_ 		= r_avg_ + scores_1[0]['rouge-1']['r'] 
+								f1_avg_ 	= f1_avg_+scores_1[0]['rouge-1']['f']
 
 								p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
 								r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
@@ -177,12 +212,23 @@ def bake(file_ext=""):
 								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 						except Exception as e:
 							print(e)
-		print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
-		print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
-		print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg_/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print("--------------------------------------")
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
 
 	elif file_ext == "webscraper/docs/":
+		p_avg 		= 	0
+		r_avg 		= 	0
 		f1_avg 		= 	0
+
+		p_avg_ 		= 	0
+		r_avg_ 		= 	0
+		f1_avg_		= 	0
+
 		test_cases 	= 	0
 		
 		for ghost in test_ghost:
@@ -220,21 +266,109 @@ def bake(file_ext=""):
 							for line in f:
 								ref_summ = ref_summ + line
 						if len(ref_summ) > 0:
+							text=""
+							with open(ghost, 'r') as f:
+								for line in f:
+									text=text+line+"\n"
+							summaries = ""
+							if which_bench == 0:
+								summaries = Summarize("", text)
+								print(summaries)
+								text=""
+								for s in summaries:
+									text=text+s+"\n"
+							if which_bench == 1:
+								text=summarize(text)
+							scores_1	= stos.eval(ref_summ, text)
+							print(scores_1[0]['rouge-l'])
+							print(scores_1[0]['rouge-2'])
+							print(scores_1[0]['rouge-1'])
 							scores 		= stos.eval(ref_summ, sys_summ)
 							print(scores[0]['rouge-l'])
 							print(scores[0]['rouge-2'])
 							print(scores[0]['rouge-1'])
-
+							p_avg_ 		= p_avg_ + scores_1[0]['rouge-1']['p'] 
+							r_avg_ 		= r_avg_ + scores_1[0]['rouge-1']['r'] 
+							f1_avg_ 	= f1_avg_+scores_1[0]['rouge-1']['f']							
+							p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
+							r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
 							f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
 							test_cases 	= test_cases+1
 							
 							print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 					except Exception as e:
 						print(e)
-		print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg_/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print("--------------------------------------")
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+
+	elif file_ext == "scixml/xdocs/":
+		p_avg 		= 	0
+		r_avg 		= 	0
+		f1_avg 		= 	0
+		test_cases 	= 	0
+		
+		for ghost in test_ghost:
+			start = time.time()
+
+			if "az-scixml" == ghost.rsplit('.', 1)[1].lower(): 
+				try:
+					scixparse.parse_sci_xml(ghost)
+				except Exception as e:
+					print("[INFO] "+str(e))					
+				ghost=ghost.replace("xdocs", "docs").rsplit('.', 1)[0]+".txt"
+				_ingredients=parser().collect_ingredients(ghost, False)
+				print("Reading: "+ghost)
+				if _ingredients != -1:
+					special_items=[]
+					for rank in sorted(_classes.iterkeys()):
+						_class=_classes[rank]
+						print(bcolors.OKCYAN+"Baking: "+str(_class).split(".")[0])
+						special_items = special_items + _class().bake(_ingredients)	
+					try:			
+						sys_summ=garnish().final_touches(_ingredients, special_items, ghost.replace("scixml/docs/", "scixml/res/"))
+						end = time.time()
+					except Exception as e:
+						print("[INFO] "+str(e))
+						continue
+					ref_summ=""
+					if len(sys_summ) > 0:
+
+						try:
+							with open(ghost.replace("scixml/docs/", "scixml/solns/").lower(), "r") as f:
+								for line in f:
+									ref_summ = ref_summ + line
+							if len(ref_summ) > 0:
+								scores 		= stos.eval(ref_summ, sys_summ)
+								print(scores[0]['rouge-l'])
+								print(scores[0]['rouge-2'])
+								print(scores[0]['rouge-1'])
+								p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
+								r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
+								f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
+								test_cases 	= test_cases+1
+								
+								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
+						except Exception as e:
+							print(e)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)			
 
 	elif file_ext == "xml_files/xdocs/":
+		p_avg 		= 	0
+		r_avg 		= 	0
 		f1_avg 		= 	0
+
+
+		p_avg_ 		= 	0
+		r_avg_ 		= 	0
+		f1_avg_		= 	0
+
 		test_cases 	= 	0
 		
 		for ghost in test_ghost:
@@ -268,17 +402,44 @@ def bake(file_ext=""):
 								for line in f:
 									ref_summ = ref_summ + line
 							if len(ref_summ) > 0:
+								text=""
+								with open(ghost, 'r') as f:
+									for line in f:
+										text=text+line+"\n"
+								summaries = ""
+								if which_bench == 0:
+									summaries = Summarize("", text)
+									print(summaries)
+									text=""
+									for s in summaries:
+										text=text+s+"\n"
+								if which_bench == 1:
+									text=summarize(text)
+								scores_1	= stos.eval(ref_summ, text)
+								print(scores_1[0]['rouge-l'])
+								print(scores_1[0]['rouge-2'])
+								print(scores_1[0]['rouge-1'])
 								scores 		= stos.eval(ref_summ, sys_summ)
 								print(scores[0]['rouge-l'])
 								print(scores[0]['rouge-2'])
 								print(scores[0]['rouge-1'])
-
+								p_avg_ 		= p_avg_ + scores_1[0]['rouge-1']['p'] 
+								r_avg_ 		= r_avg_ + scores_1[0]['rouge-1']['r'] 
+								f1_avg_ 	= f1_avg_+scores_1[0]['rouge-1']['f']										
+								p_avg 		= p_avg + scores[0]['rouge-1']['p'] 
+								r_avg 		= r_avg + scores[0]['rouge-1']['r'] 
 								f1_avg 		= f1_avg+scores[0]['rouge-1']['f']
 								test_cases 	= test_cases+1
 								
 								print(bcolors.GREENBACK+" Cooking Time: "+str(end-start)+bcolors.ENDC)
 						except Exception as e:
 							print(e)
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg_/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg_/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)
+			print("--------------------------------------")
+			print(bcolors.GREENBACK+"~ Precision: "+str(p_avg/test_cases)+bcolors.ENDC)
+			print(bcolors.GREENBACK+"~ Recall: "+str(r_avg/test_cases)+bcolors.ENDC)
 			print(bcolors.GREENBACK+"~ F1 Average: "+str(f1_avg/test_cases)+" Tests: "+str(test_cases)+bcolors.ENDC)			
 			
 
@@ -310,6 +471,10 @@ def ls(file_ext=""):
 			print(bcolors.OKCYAN + "[-] " + file +bcolors.ENDC)
 		return glob.glob(file_ext + "*")	
 	elif file_ext == "xml_files/xdocs/":
+		for file in glob.glob(file_ext + "*"):
+			print(bcolors.OKCYAN + "[-] " + file +bcolors.ENDC)
+		return glob.glob(file_ext + "*")	
+	elif file_ext == "scixml/xdocs/":
 		for file in glob.glob(file_ext + "*"):
 			print(bcolors.OKCYAN + "[-] " + file +bcolors.ENDC)
 		return glob.glob(file_ext + "*")	
@@ -373,6 +538,8 @@ def main():
 						commands[command[0]]("webscraper/docs/")
 					elif command[1] == "-l":
 						commands[command[0]]("xml_files/xdocs/")
+					elif command[1] == "-z":
+						commands[command[0]]("scixml/xdocs/")
 
 
 		elif command != []:

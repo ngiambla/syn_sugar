@@ -1,0 +1,7 @@
+ A comparison was made of vectors derived by using ordinary co-occurrence statistics from large text corpora and of vectors derived by measuring the inter-word distances in dictionary definitions .
+ The precision of word sense disambiguation by using co-occurrence vectors from the 1987 Wall Street Journal ( 20 M total words ) was higher than that by using distance vectors from the Collins English Dictionary ( head words + definition words ) .
+ Therefore , distance vectors can be expected to convey almost the same information as the entire network , and clearly they are much easier to handle .
+ Dependence on Dictionaries As a semantic representation of words , distance vectors are expected to depend very weakly on the particular source dictionary .
+ We used as a corpus the 1987 Wall Street Journal in the CD-ROM I Liberman 1991 , which has a total of 20 M words .
+ The results using distance vectors are shown by dots ( ) , and using co-occurrence vectors from the 1987 WSJ ( 20 M words ) by circles ( ) .
+ A context size ( x-axis ) of , for example , 10 means 10 words before the target word and 10 words after the target word .

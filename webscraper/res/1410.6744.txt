@@ -1,10 +1,10 @@
- We showed people a list of science stories and asked them to vote for, or recommend, ones they found interesting.
+ How people react to social signals, in combination with content quality and its presentation order, determines the outcomes of peer recommendation, i.e., item popularity.
  We measured the degree to which displaying the number of prior votes, which acts as the social signal, affects the votes stories 2 T.
  Lerman / Human Computation (2015) 1:1 receive, after controlling for their content and position within the list shown to users.
- We used the model (Section 4.1) to adjust for position bias when determining Pr(click|view) in the absence of the social signal.
- Second, the ratio is larger for larger signals, i.e., a user is relatively more likely to click on stories with larger social in uence signals.
- By comparison, the observed values for activity with social in uence are considerably larger, suggesting those values are unlikely to arise if the social signal had no effect on inequality.
- Quantifying the response as a function of the size of the social signal requires identifying how users attend to social signals.
- For each quartile, this gave the actual number of votes, the expected number and the number of instances (i.e., number of times a story was shown to users with a signal in each quartile).
- Speci cally, the correlation between number of votes and appeal is 0.77 and 0.79 for activity ordering, without and with social signals, respectively.
- Moreover, this was achieved with substantially less user effort, as measured by the number of url clicks and votes.
+ We also studied how social signals affect individual behavior, speci cally, which stories people choose to evaluate and their preferences for them.
+ Speci cally, for stories shown with in uence signals below and above the median, we have Pr(vote|click) = 65% and 75%, respectively, averaged over all stories.
+ In other words, users are more likely to vote for a story they read when they see that it already received many votes. 5.2.
+ Social Signals and Collective Behavior We examined how social signals affect collective behavior in peer recommendation by comparing the outcomes, i.e., the number of votes stories receive, in the experiments with and without social in uence.
+ To quantify the signi cance of the increase in inequality, we focused on the experiments with xed ordering and no social in uence.
+ For instance, experiments could identify which aspect of social signals users primarily attend to (e.g., absolute value, rank or variation from average value for the stories), by manipulating the value of the signal shown to users.
+ In the RANDOM model, each story is equally likely to be recommended: (s, p) is a constant value, independent of story s and the position p that story is shown to a user.

@@ -1,0 +1,7 @@
+ First , setting certain parameters a set of guessing rules is acquired , then it is evaluated and the results of evaluation are used for re-acquisition of a better tuned rule-set .
+ As was pointed out above , one of the requirements in many techniques for automatic learning of part-of-speech guessing rules is specially prepared training data -- a pre-tagged training corpus , training examples , etc .
+ For example , an ending-guessing rule says that if a word ends with `` ing '' it can be an adjective , a noun or a gerund .
+ Unlike a morphological rule , this rule does not ask to check whether the substring preceeding the `` ing '' - ending is a word with a particular POS - tag .
+ If the guessed POS - set is the same as the POS - set stated in the lexicon , we count it as success , otherwise it is failure .
+ The cascading guesser outperformed the guesser supplied with the Xerox tagger by about 8 - 9 % and the guesser supplied with Brill 's tagger by about 6 - 7 % .
+ Tagging accuracy on unknown words using the cascading guesser was detected at 90 - 92 % when tagging with the full-fledged lexicon and 86 - 88 % when tagging with the closed-class and short word lexicon .

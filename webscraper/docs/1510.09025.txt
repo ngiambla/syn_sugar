@@ -527,8 +527,6 @@ Otherwise, for all v, w   V , if svw   Es then (cid:96)wv   E(cid:96) and if (ci
 is not stable, there must exist an edge which addable or removable. By Lemma 23 we know that no
 removed edge will be added again. Hence, the only possible change is to remove an edge. Suppose
 that svw is an existing removable edge for v. The probability of selecting svw and (cid:96)wv consecutively
-(cid:18) 1
-(cid:19)2
 1
  
   1
@@ -543,6 +541,8 @@ The convergence happens in expected polynomial time because the probabilities, a
 above, shows that after O(n4) moves in expectation, the value of pG + mG will decrease. We know
 that pG + mG = O(n2). Thus, after at most O(n6) moves in expectation we will reach a stable
 network.
+(cid:18) 1
+(cid:19)2
 DEFINITION 25 (VERTEX DYNAMICS).
 In each round, a vertex v is selected at random, and
 two options are selected at random 1) speaking or listening and 2) adding or deleting. Without

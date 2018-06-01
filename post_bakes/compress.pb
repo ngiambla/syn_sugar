@@ -1,102 +1,203 @@
-~$[introduction 
-1 application %%#%% quash %%#%% decision %%#%% %%#%% refugee review tribunal (the tribunal) %%#%% %%#%% 6 april 2005 ]f[ jurisdictional error%%cln%% plaintiff s157/2002 %%#%% %%#%% commonwealth %%#%% australia [2003] hca 2 %%scn%% (2003) 211 clr 476%%per%% 
-2 %%#%% applicant %%#%% %%#%% hazara %%#%% afghanistan%%per%%]$~ 
-~$[he %%#%% %%#%% %%#%% shia muslim%%per%%]$~ 
-~$[he %%#%% largely uneducated%%lst%% ]^[ comes %%#%% %%#%% village %%#%% %%#%% jaghouri province%%per%% 
-3 %%#%% %%#%% %%#%% australia %%#%% 15 january 2001%%lst%% ]^[ soon afterwards applied ]f[ %%#%% protection visa %%#%% %%#%% migration act 1958 (cth)%%per%%]$~ 
-~$[he claimed %%#%% %%#%% %%#%% well%%dsh%%founded fear %%#%% persecution %%#%% reason %%#%% %%#%% race%%lst%% %%#%% %%#%% taliban %%cmp_t%% %%#%% control %%#%% afghanistan %%#%% victimising hazaras%%per%%]$~ 
-~$[there %%#%% %%#%% significant personal history %%#%% support %%#%% %%#%% claim%%lst%% %%#%% %%#%% %%#%% %%#%% country information %%#%% %%#%% behaviour %%#%% %%#%% taliban %%#%% afghanistan%%per%% 
-4 %%#%% applicant %%#%% found %%#%% %%#%% %%#%% well%%dsh%%founded fear %%#%% %%#%% persecuted %%#%% %%#%% %%cmp_t%% ruling regime %%#%% afghanistan%%lst%% %%#%% taliban%%lst%% %%#%% reason %%#%% %%#%% race ]^[ %%#%% religion%%per%%]$~ 
-~$[he %%#%% granted %%#%% subclass 785 (temporary protection) visa%%per%%]$~ 
-~$[it enabled %%#%% %%#%% stay %%#%% australia ]f[ %%#%% period %%#%% %%#%% years%%per%%]$~ 
-~$[it %%#%% %%cmp_t%% necessary %%#%% apply ]f[ %%#%% subclass 866 (protection) visa %%#%% %%#%% temporary protection visa expired%%per%%]$~ 
-~$[he %%#%% so%%per%%]$~ 
-~$[his application ]f[ %%#%% permanent protection visa %%#%% refused %%#%% %%#%% delegate %%#%% %%#%% %%#%% respondent%%lst%% ]^[ %%cmp_t%% %%#%% %%#%% tribunal%%per%%]$~ 
-~$[the tribunal%%sqt%%s decision %%#%% based %%#%% %%#%% finding %%#%% %%#%% reasons ]f[ %%#%% grant %%#%% %%#%% temporary protection visa %%#%% ceased %%#%% exist%%per%%]$~ 
-~$[it found %%#%% %%#%% taliban %%#%% ]n[ re%%dsh%%emerge %%#%% %%#%% political power %%#%% afghanistan following %%#%% removal %%#%% power %%#%% november 2001%%per%%]$~ 
-~$[it %%#%% found %%#%% %%#%% applicant%%sqt%%s %%#%% grounds ]f[ %%#%% granted %%#%% permanent protection visa %%#%% ]n[ %%#%% out%%per%% 
-5 %%#%% %%#%% %%#%% decision %%#%% %%#%% tribunal %%#%% %%#%% %%#%% subject %%#%% %%#%% %%#%% application%%per%%]$~ 
-~$[the claim concerning %%#%% taliban%%cln%% misapplication %%#%% art 1c(5) 
-6 %%#%% %%#%% jurisdictional error asserted %%#%% %%#%% applicant concerned %%#%% %%#%% %%#%% tribunal %%#%% approached %%#%% application ]f[ %%#%% permanent protection visa %%#%% relation %%#%% %%#%% fear %%#%% %%#%% taliban%%per%%]$~ 
-~$[section 36(2) %%#%% %%#%% act provides %%#%% %%#%% criterion ]f[ %%#%% grant %%#%% %%#%% protection visa %%#%% %%#%% %%#%% decision%%dsh%%maker %%#%% satisfied %%#%% australia owes protection obligations %%#%% %%#%% visa applicant%%per%%]$~ 
-~$[it %%cmp_tf%% directs attention %%#%% %%#%% relevant provisions %%#%% %%#%% refugees convention %%#%% amended %%#%% %%#%% refugees protocol%%per%% 
-7 article 1a(2) %%#%% %%#%% convention %%#%% defines %%#%% %%#%% person %%#%% %%#%% %%#%% regarded %%#%% %%#%% refugee%%per%%]$~ 
-~$[it defines %%#%% refugee %%#%% %%#%% person who%%lst%% owing %%#%% %%#%% well%%dsh%%founded fear %%#%% %%#%% persecuted ]f[ reasons %%#%% race%%lst%% religion%%lst%% nationality%%lst%% membership %%#%% %%#%% particular social %%#%% ]v[ political opinion%%lst%% %%#%% outside %%#%% country %%#%% nationality ]^[ %%#%% unable or%%lst%% owing %%#%% %%#%% fear%%lst%% %%#%% unwilling %%#%% avail %%#%% ]v[ %%#%% %%#%% %%#%% protection %%#%% %%#%% country%%per%%]$~ 
-~$[article 1c(5) %%cmp_t%% appears %%#%% mirror %%#%% provisions %%#%% art 1a(2)%%per%%]$~ 
-~$[it %%#%% %%#%% %%#%% convention ceases %%#%% apply %%#%% circumstances %%#%% %%#%% person %%#%% previously %%#%% accepted %%#%% %%#%% %%#%% refugee %%#%% %%#%% longer%%lst%% %%cmp_b%% %%#%% circumstances %%#%% connection %%#%% %%#%% %%#%% person %%#%% %%#%% recognised %%#%% %%#%% refugee %%#%% ceased %%#%% exist%%lst%% continue %%#%% refuse %%#%% avail %%#%% ]v[ %%#%% %%#%% %%#%% protection %%#%% %%#%% ]v[ %%#%% country %%#%% nationality%%per%% 
-8 %%#%% applicant contended %%#%% %%#%% convention %%#%% %%#%% whole%%lst%% %%#%% %%#%% circumstances%%lst%% ]^[ %%#%% particular art 1c(5)%%lst%% required %%#%% %%#%% change %%#%% circumstance %%#%% afghanistan %%#%% %%#%% %%#%% %%cmp_ta%% transitory%%lst%% ]^[ %%#%% %%#%% decision%%dsh%%maker %%#%% %%#%% satisfied %%#%% %%#%% change %%#%% durable %%#%% %%cmp_ta%% transient ]^[ substantial ]^[ effective%%per%%]$~ 
-~$[the expression %%#%% %%#%% submissions %%#%% %%#%% %%#%% change %%#%% %%sqt%%fundamental%%lst%% stable ]^[ durable%%sqt%%%%per%%]$~ 
-~$[it %%#%% %%cmp_t%% contended %%#%% %%#%% tribunal %%#%% failed %%#%% apply %%#%% measure %%#%% %%#%% permanent protection visa application%%lst%% ]b[ %%#%% erroneously simply %%#%% regard %%#%% whether%%lst%% %%#%% %%#%% time %%#%% %%#%% decision%%lst%% %%#%% test established %%#%% art 1a(2) %%#%% satisfied%%per%%]$~ 
-~$[that is%%lst%% %%#%% %%#%% claimed%%lst%% %%#%% tribunal %%#%% addressing art 1c(5) %%#%% erred %%#%% law%%per%% 
-9 %%#%% %%#%% judgment%%lst%% %%#%% %%cmp_if%% %%#%% %%#%% assumed %%#%% %%#%% tribunal simply applied art 1c(5) %%#%% %%#%% mirror %%#%% %%#%% art 1a(2) test %%#%% %%#%% applicant%%sqt%%s permanent protection visa application%%lst%% %%#%% tribunal %%#%% ]n[ committed jurisdictional error%%per%%]$~ 
-~$[at present%%lst%% %%#%% authority binding %%#%% %%#%% %%#%% %%#%% decision %%#%% %%#%% %%#%% court %%#%% %%#%% court %%#%% nbgm %%#%% minister ]f[ immigration multicultural indigenous affairs [2006] fcafc 60%%per%%]$~ 
-~$[as %%#%% chief justice %%#%% %%#%% %%#%% [25]%%lst%% %%#%% majority decision %%#%% %%#%% %%#%% required %%#%% tribunal%%lst%% %%#%% (as here) %%#%% %%#%% %%#%% %%#%% %%#%% relevant circumstances %%#%% changed %%#%% %%#%% grant %%#%% %%#%% temporary protection visa%%lst%% %%#%% %%#%% satisfied %%#%% accordance %%#%% %%#%% 36 %%#%% %%#%% act %%#%% %%#%% applicant ]f[ %%#%% permanent protection visa %%#%% %%#%% time %%#%% %%#%% decision %%#%% %%#%% well%%dsh%%founded fear %%#%% persecution ]f[ %%#%% convention reason%%per%%]$~ 
-~$[there %%#%% %%#%% additional element %%#%% %%#%% applied %%cmp_b%% %%#%% art 1c(5) %%#%% %%#%% convention%%per%% 
-10 accordingly%%lst%% %%#%% %%#%% %%#%% assumption%%lst%% %%#%% %%#%% basis %%#%% jurisdictional error %%#%% ]n[ %%#%% out%%per%%]$~ 
-~$[it %%#%% ]n[ necessary %%#%% %%#%% regard %%#%% consider %%#%% %%#%% tribunal %%#%% approach %%#%% question %%#%% %%#%% %%#%% decide %%#%% %%#%% %%#%% contended ]f[ %%#%% %%#%% applicant%%per%%]$~ 
-~$[the claim concerning %%#%% taliban%%cln%% %%#%% %%#%% properly considered? 
-11 %%#%% applicant %%cmp_t%% argued that%%lst%% %%#%% applying %%#%% test prescribed %%#%% %%#%% 36(2) %%lst%% ]^[ %%#%% substance %%#%% assessment %%#%% %%#%% %%#%% %%#%% %%#%% %%sqt%%refugee%%sqt%% %%#%% defined %%#%% art 1a(2) %%#%% %%#%% convention %%#%% %%#%% time %%#%% %%#%% decision%%lst%% %%#%% tribunal %%#%% committed jurisdictional error%%per%%]$~ 
-~$[it %%#%% contended %%#%% %%#%% tribunal had%%cln%% 
-(1) wrongly %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% real chance %%#%% %%#%% taliban %%#%% re%%dsh%%assume political power %%#%% afghanistan ]^[ ]s[ resume %%#%% persecution %%#%% persons %%#%% %%#%% applicant%%lst%% %%#%% %%#%% tribunal %%#%% %%#%% %%#%% considered %%#%% %%#%% applicant %%#%% %%#%% %%#%% risk %%#%% %%#%% taliban %%#%% %%#%% %%#%% %%#%% ]n[ resumed political power ]^[ %%cmp_t%% %%#%% %%#%% afghani authorities %%#%% %%#%% reasonable measure %%#%% protect %%#%% applicant %%#%% them%%scn%% ]^[ (2) wrongly imposed %%#%% %%#%% %%#%% test %%#%% determine %%#%% %%#%% applicant %%#%% %%#%% well%%dsh%%founded fear %%#%% persecution %%#%% reason %%#%% %%#%% race ]^[ religion%%per%% 
-12 %%#%% %%#%% view%%lst%% %%#%% %%#%% %%#%% %%#%% contentions %%#%% %%#%% out%%per%% 
-13 %%#%% addressing %%#%% %%#%% status %%#%% %%#%% taliban%%lst%% %%#%% tribunal %%#%% reviewing %%#%% independent country evidence said%%cln%% 
-%%sqt%%given %%#%% ongoing presence ]^[ %%#%% %%#%% western powers %%#%% afghanistan ]^[ %%#%% keen desire %%#%% prevent %%#%% re%%dsh%%emergence %%#%% %%#%% taliban%%lst%% %%#%% chance %%#%% becoming %%#%% force %%#%% %%#%% able %%#%% %%#%% control %%#%% %%#%% country again%%lst%% conscript %%#%% %%#%% %%#%% ]^[ persecute particular minorities%%lst%% %%#%% remote%%per%%]$~ 
-~$[on %%#%% basis %%#%% %%#%% evidence referred %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% taliban %%#%% %%#%% removed %%#%% power %%#%% afghanistan%%per%%]$~ 
-~$[i %%#%% ]n[ accept %%#%% %%#%% %%#%% %%#%% %%cmp_ta%% %%#%% remote chance %%#%% %%#%% taliban re%%dsh%%emerging %%#%% %%#%% viable political movement %%#%% afghanistan %%#%% %%#%% reasonably foreseeable future%%per%% 
-%%sqt%% 
-%%#%% led %%#%% tribunal %%#%% conclude %%#%% %%#%% circumstances %%#%% connection %%#%% %%#%% %%#%% applicant %%#%% %%#%% recognised %%#%% %%#%% refugee %%#%% ceased %%#%% exist%%per%% 
-14 %%#%% tribunal %%cmp_t%% proceeded %%#%% address %%#%% %%#%% applicant %%#%% %%#%% person %%#%% whom australia %%#%% protection obligations ]f[ %%#%% reasons%%per%%]$~ 
-~$[it identified %%#%% %%#%% reasons %%#%% %%#%% ]f[ political opinion imputed %%#%% %%#%% applicant consequent %%#%% %%#%% father%%sqt%%s political activities%%lst%% ]^[ %%#%% membership %%#%% %%#%% particular social %%#%% %%#%% %%#%% described loosely %%#%% %%sqt%%those tainted %%#%% %%#%% west%%sqt%%%%per%%]$~ 
-~$[it %%#%% ]n[ accept %%#%% %%#%% applicant %%#%% %%#%% well%%dsh%%founded fear %%#%% persecution ]f[ %%#%% %%#%% %%#%% reasons%%per%%]$~ 
-~$[it %%#%% ]n[ necessary %%#%% refer %%#%% %%#%% them%%per%% 
-15 %%#%% tribunal %%#%% not%%lst%% %%#%% addressing %%#%% %%#%% reasons%%lst%% %%#%% regard %%#%% %%#%% applicant%%sqt%%s claimed fear %%#%% persecution %%#%% reason %%#%% %%#%% renewed activities %%#%% %%#%% taliban%%lst%% %%#%% %%cmp_if%% (as %%#%% found) %%#%% taliban %%#%% unlikely %%#%% re%%dsh%%assume political power %%#%% afghanistan %%#%% %%#%% foreseeable future%%per%%]$~ 
-~$[that %%#%% %%#%% claim %%#%% %%#%% %%#%% applicant%%per%%]$~ 
-~$[if %%#%% %%#%% %%#%% real possibility %%#%% %%#%% taliban %%#%% pose %%#%% serious threat %%#%% %%#%% applicant %%cmp_if%% %%#%% %%#%% %%#%% return %%#%% afghanistan%%lst%% %%cmp_b%% %%#%% taliban (on %%#%% tribunal%%sqt%%s findings) %%#%% %%#%% %%#%% non%%dsh%%state entity%%lst%% %%#%% %%#%% %%#%% %%#%% necessary ]f[ %%#%% tribunal %%cmp_t%% %%#%% address %%#%% capacity %%#%% %%#%% afghani authorities %%#%% protect %%#%% applicant ]^[ %%#%% %%#%% %%#%% threat %%#%% %%#%% taliban%%cln%% %%#%% minister ]f[ immigration multicultural affairs %%#%% respondents s152/2003 (2004) 205 alr 487 %%#%% [23]%%per%%]$~ 
-~$[the afghani authorities %%#%% obliged %%#%% %%#%% reasonable measure %%#%% protect %%#%% lives ]^[ safety %%#%% %%#%% citizens %%#%% non%%dsh%%state violence%%lst%% including %%#%% provision %%#%% %%#%% appropriate criminal law ]^[ %%#%% provision %%#%% %%#%% reasonably effective ]^[ impartial police force ]^[ justice system%%cln%% %%#%% gleeson cj%%lst%% hayne ]^[ heydon jj %%#%% respondents s152/2003 %%#%% [26]%%per%% 
-16 %%#%% %%#%% view%%lst%% %%#%% tribunal%%sqt%%s failure %%#%% address %%#%% particular claim %%#%% %%#%% applicant%%sqt%%s %%#%% apparent %%#%% %%#%% %%#%% %%#%% %%#%% reasons ]f[ decision %%#%% %%#%% %%#%% %%#%% referred%%per%%]$~ 
-~$[immediately preceding %%#%% passage quoted%%lst%% %%#%% tribunal recognised %%#%% taliban remnants %%#%% %%#%% afghanistan%%lst%% ]^[ %%#%% %%#%% activities demonstrate %%#%% %%#%% power%%lst%% militarily ]^[ politically%%lst%% %%#%% growing%%per%%]$~ 
-~$[it quoted material headed %%sqt%%stronger ]^[ %%#%% deadly%%lst%% %%#%% terror %%#%% %%#%% taliban %%#%% back%%sqt%%%%per%%]$~ 
-~$[its conclusion %%#%% %%#%% taliban %%#%% unlikely %%#%% %%#%% able %%#%% %%#%% control %%#%% %%#%% country %%#%% %%#%% reached %%#%% %%#%% %%cmp_b%% %%#%% %%#%% ]n[ disrupted %%#%% 2004 %%#%% election%%lst%% nor prevented %%#%% formulation %%#%% %%#%% elected government%%per%%]$~ 
-~$[the conclusion referred %%#%% %%#%% %%#%% context %%#%% %%#%% reasoning %%#%% ]n[ address %%#%% significance %%#%% %%#%% taliban %%#%% %%#%% non%%dsh%%state threat %%#%% %%#%% applicant %%#%% reason %%#%% %%#%% race ]v[ religion%%per%%]$~ 
-~$[the %%#%% %%#%% %%#%% conjunctive %%sqt%%and%%sqt%% %%#%% reference %%#%% %%#%% persecuting particular minorities %%#%% %%#%% %%#%% context %%#%% %%#%% re%%dsh%%emergence %%#%% %%#%% political controller %%#%% afghanistan%%per%% 
-17 counsel %%#%% referred %%#%% %%#%% later passage %%#%% %%#%% reasons ]f[ decision %%#%% %%#%% tribunal %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% ]n[ satisfied %%#%% %%#%% %%#%% %%#%% real chance %%#%% harm %%#%% %%sqt%%befall %%#%% applicant %%#%% %%#%% hands %%#%% %%#%% pashtuns (and/or taliban remnants)%%sqt%%%%per%%]$~ 
-~$[that passage occurs %%#%% %%#%% conclusion %%#%% %%#%% consideration %%#%% %%#%% applicant%%sqt%%s %%#%% claims%%per%%]$~ 
-~$[it explained %%#%% %%#%% rejected %%#%% claim %%#%% %%#%% %%#%% well%%dsh%%founded fear %%#%% persecution %%cmp_b%% %%#%% %%#%% father%%sqt%%s earlier political activities%%per%%]$~ 
-~$[it %%cmp_t%% explained %%#%% %%#%% rejected %%#%% claim %%#%% %%#%% %%#%% well%%dsh%%founded fear %%#%% persecution %%cmp_b%% %%#%% %%#%% %%#%% perceived %%#%% %%sqt%%westernised%%sqt%%%%per%%]$~ 
-~$[it %%cmp_t%% %%#%% %%#%% %%#%% claim %%#%% %%#%% %%#%% well%%dsh%%founded fear %%#%% %%#%% persecuted %%#%% pashtuns %%#%% lived near %%#%% village%%per%%]$~ 
-~$[it referred %%#%% %%#%% relevant geography%%per%%]$~ 
-~$[it identified %%#%% threat %%#%% %%#%% %%#%% pashtuns %%#%% %%#%% %%#%% continued %%#%% support %%#%% taliban%%lst%% ]^[ observe %%#%% %%#%% %%#%% ]n[ %%#%% %%#%% reports %%#%% taliban incursions %%#%% jaghouri %%#%% november 2001%%per%%]$~ 
-~$[it continued%%cln%% 
-%%sqt%%the applicant claimed %%#%% pashtuns %%#%% persecute hazaras %%#%% %%#%% latter travelled %%#%% market towns %%#%% sang%%dsh%%e masha%%per%%]$~ 
-~$[this %%#%% %%#%% market town %%#%% %%#%% %%#%% applicant%%sqt%%s family %%#%% %%#%% %%cmp_if%% %%#%% %%#%% supplies%%lst%% %%#%% %%#%% applicant %%#%% %%#%% %%#%% ]n[ %%#%% %%#%% except %%#%% %%#%% departure [from] afghanistan%%per%%]$~ 
-~$[his father%%lst%% however%%lst%% %%#%% regularly%%per%%]$~ 
-~$[i note %%#%% %%#%% route %%#%% %%#%% applicant%%sqt%%s village %%#%% sang%%dsh%%e masha %%#%% entirely %%#%% %%#%% central %%#%% %%#%% jaghori%%lst%% ]n[ close %%#%% %%#%% district borders%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% reports %%#%% incursions %%#%% pashtuns %%#%% jaghori%%lst%% %%#%% discount %%#%% claim%%per%%]$~ 
-~$[on %%#%% evidence %%#%% me%%lst%% %%#%% am ]n[ satisfied %%#%% %%#%% %%#%% %%#%% real chance %%#%% harm %%#%% befall %%#%% applicant %%#%% %%#%% hands %%#%% %%#%% pashtuns (and/or taliban remnants) ]f[ reason %%#%% %%#%% ethnicity ]v[ %%#%% religion %%#%% %%#%% hazara shi%%sqt%%a%%per%% 
-%%sqt%% 
-18 %%#%% %%#%% view%%lst%% %%#%% %%#%% structure %%#%% %%#%% tribunal%%sqt%%s reasons%%lst%% %%#%% brief reference %%#%% %%#%% taliban %%#%% %%#%% passage %%#%% merely incidental%%per%%]$~ 
-~$[the claim %%#%% considered %%#%% based %%#%% %%#%% asserted fear %%#%% pashtuns%%per%%]$~ 
-~$[it %%#%% not%%lst%% %%#%% reading %%#%% %%#%% %%#%% %%#%% tribunal%%sqt%%s reasons%%lst%% represent %%#%% conclusion %%#%% %%#%% tribunal based %%#%% %%#%% consideration %%#%% %%#%% applicant%%sqt%%s claim %%#%% %%#%% %%#%% well%%dsh%%founded fear %%#%% persecution %%#%% reason %%#%% %%#%% renewed activities %%#%% %%#%% taliban %%#%% non%%dsh%%state agents%%per%% 
-19 %%#%% failure %%#%% address %%#%% particular claim %%#%% %%#%% applicant %%#%% expressed amounts %%#%% jurisdictional error%%cln%% %%#%% dranichnikov %%#%% minister ]f[ immigration ]^[ multicultural affairs [2003] hca 26 %%scn%% (2003) 197 alr 389 %%#%% [24] %%dsh%% [25] %%#%% gummow ]^[ callinan jj%%per%%]$~ 
-~$[in %%#%% matter%%lst%% %%#%% %%#%% %%#%% evidence %%#%% %%#%% tribunal accepted%%lst%% %%#%% %%#%% support %%#%% conclusion %%#%% %%#%% afghani authorities %%#%% %%#%% unable %%#%% provide %%#%% protection %%#%% %%#%% law ]^[ %%#%% agencies %%#%% %%#%% applicant%%per%%]$~ 
-~$[the tribunal accepted %%#%% %%#%% %%#%% %%#%% lack %%#%% %%#%% rule %%#%% law ]^[ unprofessional police force throughout %%#%% province %%#%% jaghouri%%per%%]$~ 
-~$[the inquiry required %%#%% respondents s152/2003 %%#%% respect %%#%% %%#%% applicant%%sqt%%s fear %%#%% violence %%#%% non%%dsh%%state agencies%%lst%% namely %%#%% taliban%%lst%% %%#%% ]n[ obviously %%#%% %%#%% fruitless one%%per%% 
-20 %%#%% %%#%% ]n[ necessary %%#%% address %%#%% %%#%% %%#%% %%#%% contentions referred %%#%% %%#%% [11] above%%per%%]$~ 
-~$[however%%lst%% %%#%% observe %%#%% %%#%% independent country information %%#%% %%#%% activities %%#%% %%#%% taliban %%#%% %%#%% %%#%% time %%#%% %%#%% tribunal%%sqt%%s decision%%lst%% ]^[ %%#%% uncontrovertible (and accepted) previous persecutory behaviour %%#%% relation %%#%% hazaras%%lst%% %%#%% %%#%% %%#%% %%#%% difficult ]f[ %%#%% tribunal %%#%% %%#%% ]s[ confident %%#%% %%#%% taliban %%#%% pose %%#%% threat %%#%% %%#%% applicant %%#%% %%#%% properly %%#%% %%#%% account %%#%% chance %%#%% %%#%% applicant %%#%% %%#%% %%#%% risk %%#%% %%#%% future %%#%% %%#%% taliban%%lst%% ]^[ %%#%% %%#%% afghani authorities %%#%% provide %%#%% reasonably effective ]^[ impartial police force %%#%% protect %%#%% %%#%% %%#%% threats%%cln%% %%#%% minister ]f[ immigration ]^[ ethnic affairs %%#%% guo [1997] hca 22 %%scn%% (1997) 191 clr 559 %%#%% 576 %%#%% brennan cj%%lst%% dawson%%lst%% toohey%%lst%% gaudron%%lst%% mchugh ]^[ gummow jj%%scn%% minister ]f[ immigration ]^[ multicultural affairs %%#%% rajalingam [1999] fca 719 %%scn%% (1999) 93 fcr 220%%per%%]$~ 
-~$[conclusions 
-21 %%#%% view %%#%% %%#%% conclusion %%#%% %%#%% reached%%lst%% %%#%% %%#%% ]n[ necessary %%#%% consider %%#%% applicant%%sqt%%s %%#%% contentions %%#%% %%#%% tribunal %%#%% erred in%%cln%% 
-(1) failing %%#%% consider according %%#%% law %%#%% claim %%#%% fear persecution %%#%% %%#%% religious mullahs %%#%% reasons %%#%% %%#%% %%#%% hazara returnee %%#%% australia %%#%% %%#%% adopted ]^[ conformed %%#%% australia%%sqt%%s customs%%scn%% (2) failed %%#%% consider %%#%% applicant%%sqt%%s claims according %%#%% law %%#%% failing %%#%% %%#%% regard %%#%% %%#%% %%#%% %%#%% relevant coherent ]^[ detailed material concerning %%#%% state %%#%% affairs %%#%% afghanistan provided %%#%% %%#%% tribunal %%#%% ]v[ %%#%% behalf %%#%% %%#%% applicant%%lst%% ]^[ ]s[ %%#%% ]n[ %%#%% performed %%#%% review function required %%#%% it%%lst%% ]s[ %%#%% %%#%% %%#%% ]n[ satisfied %%#%% %%#%% matters %%#%% %%#%% %%#%% required %%#%% address%%per%% 
-22 %%#%% %%#%% judgment%%lst%% ]f[ %%#%% reasons given%%lst%% %%#%% tribunal %%#%% committed jurisdictional error%%per%%]$~ 
-~$[its decision %%#%% 6 april 2005 %%#%% %%cmp_tf%% quashed%%per%%]$~ 
-~$[the tribunal %%#%% directed %%#%% rehear ]^[ determine %%#%% applicant%%sqt%%s application %%#%% %%#%% 14 october 2004 %%#%% review %%#%% decision %%#%% %%#%% delegate %%#%% %%#%% %%#%% respondent %%#%% 1 october 2004 according %%#%% law%%per%%]$~ 
-~$[the %%#%% respondent %%#%% pay %%#%% %%#%% applicant costs %%#%% %%#%% application %%#%% %%#%% court%%per%%]$~ 
-~$[i certify %%#%% %%#%% preceding twenty%%dsh%%two (22) numbered paragraphs %%#%% %%#%% true copy %%#%% %%#%% reasons ]f[ judgment herein %%#%% %%#%% honourable justice mansfield%%per%%]$~ 
-~$[associate%%cln%% 
-dated%%cln%% 24 july 2006 
-counsel ]f[ %%#%% applicant%%cln%% %%#%% charman 
-solicitor ]f[ %%#%% applicant%%cln%% westside community lawyers inc%%per%%]$~ 
-~$[counsel ]f[ %%#%% respondent%%cln%% cd bleby 
-solicitor ]f[ %%#%% respondent%%cln%% australian government solicitor 
-date %%#%% hearing%%cln%% 10 august 2005%%scn%% 27 june 2006 
-date %%#%% judgment%%cln%% 25 july 2006 
-austlii%%cln%% copyright policy | disclaimers | privacy policy | feedback 
-url%%cln%% http://www%%per%%austlii%%per%%edu%%per%%au/au/cases/cth/fca/2006/925%%per%%html 
+~$[workshop track %%dsh%% iclr 2018 
+quantization error %%#%% %%#%% metric %%#%% dynamic 
+precision scaling %%#%% neural net training 
+ian taras & dylan malone stuart 
+department %%#%% electrical ]^[ computer engineering 
+university %%#%% toronto 
+toronto%%lst%% on%%lst%% canada 
+{tarasian%%lst%% malones2}@ece%%per%%utoronto%%per%%ca 
+1 
+introduction 
+%%#%% %%#%% %%#%% established %%#%% neural networks%%lst%% %%#%% ordinarily trained using 32%%dsh%%bit single precision 
+oating %%#%% representation%%lst%% %%#%% achieve desirable accuracy %%#%% inference %%#%% reduced precision 
+weights ]^[ activations (judd et al%%per%%%%lst%% 2015) (mishra et al%%per%%%%lst%% 2017) (courbariaux et al%%per%%%%lst%% 2015) (hubara 
+et al%%per%%%%lst%% 2016)%%per%%]$~ ~$[these reduced precision networks %%#%% amenable %%#%% acceleration %%#%% custom hardware 
+platforms %%#%% %%#%% %%#%% advantage %%#%% lower bit%%dsh%%widths %%#%% order %%#%% speed %%#%% computation (na & 
+mukhopadhyay%%lst%% 2016) (gupta et al%%per%%%%lst%% 2015)%%per%%]$~ ~$[reduced precision strategies %%#%% ]n[ typically applied 
+%%#%% back%%dsh%%propagation whilst training%%lst%% %%#%% %%#%% %%#%% lead %%#%% heavily reduced accuracy ]v[ %%#%% non%%dsh%% 
+convergence%%per%%]$~ 
+~$[recent %%#%% %%#%% shown %%#%% dynamic precision scaling%%lst%% %%#%% technique %%#%% %%#%% %%#%% numerical precision 
+%%#%% %%#%% training %%#%% varied on%%dsh%%the%%dsh%%y %%#%% training progresses%%lst%% %%#%% achieve computational speedups 
+(on custom hardware) %%#%% hampering accuracy (na & mukhopadhyay%%lst%% 2016) (courbariaux 
+et al%%per%%%%lst%% 2014)%%per%%]$~ ~$[dps %%#%% feedback %%#%% %%#%% training process %%#%% decide %%#%% %%#%% appropriate number 
+representation%%per%%]$~ ~$[for example%%lst%% na & mukhopadhyay (2016) suggest starting %%#%% reduced precision%%lst%% 
+]^[ increasing precision dramatically whenever training %%#%% numerically unstable%%lst%% ]v[ %%#%% 
+training loss stagnates%%per%%]$~ 
+~$[in %%#%% paper%%lst%% %%#%% %%#%% %%#%% novel dps algorithm %%#%% %%#%% %%#%% stochastic xed%%dsh%%point rounding method 
+suggested %%#%% gupta et al%%per%% (2015)%%lst%% %%#%% dynamic bit%%dsh%%width representation %%#%% %%#%% na & mukhopadhyay 
+(2016)%%lst%% ]^[ %%#%% algorithm %%#%% leverages information %%#%% %%#%% quantization error encountered %%#%% 
+rounding %%#%% %%#%% heuristic ]f[ scaling %%#%% number %%#%% fractional bits utilized%%per%% 
+2 fixed %%#%% representation and quantization/rounding 
+fixed %%#%% numbers %%#%% represented %%#%% %%#%% fractional portion appended %%#%% %%#%% integer portion%%lst%% %%#%% %%#%% 
+implied radix %%#%% %%#%% between%%per%%]$~ ~$[we allow %%#%% xed %%#%% representation %%#%% %%#%% arbitrary bit%%dsh%%width 
+]f[ %%#%% %%#%% integer ]^[ fractional parts%%lst%% ]^[ represent %%#%% bit%%dsh%%width %%#%% %%#%% integer %%#%% %%#%% il ]^[ 
+%%#%% bit%%dsh%%width %%#%% %%#%% fractional %%#%% %%#%% %%#%% l%%per%%]$~ ~$[we denote %%#%% %%#%% xed %%#%% representation%%lst%% %%cmp_t%%%%lst%% %%#%% 
+(cid:104)il%%lst%% %%#%% l(cid:105)%%per%%]$~ ~$[dps modies il ]^[ %%#%% l on%%dsh%%the%%dsh%%y %%#%% training%%per%%]$~ 
+~$[inspired %%#%% gupta et al%%per%% (2015)%%lst%% %%#%% %%#%% stochastic rounding %%#%% quantization %%#%% oating %%#%% 
+values %%#%% (cid:104)il%%lst%% %%#%% l(cid:105)%%lst%% %%#%% %%#%% implements %%#%% unbiased rounding%%per%% 
+1 
+workshop track %%dsh%% iclr 2018 
+%%#%% algorithm employs %%#%% dynamic bit%%dsh%%width%%lst%% dynamic radix scheme %%#%% %%#%% il ]^[ %%#%% l %%#%% 
+free %%#%% vary independently%%per%%]$~ ~$[note %%#%% %%#%% %%#%% alternative xed bit%%dsh%%width scheme%%lst%% il ]^[ %%#%% l %%#%% 
+inter%%dsh%%dependent %%#%% increasing %%#%% necessitates %%#%% decrease %%#%% %%#%% other%%per%% 
+3 dynamic precision scaling algorithm 
+%%#%% %%#%% formally introduce %%#%% novel dps algorithm %%#%% leverages average % quantization error 
+%%#%% %%#%% metric ]f[ scaling fractional bits%%per%%]$~ ~$[quantization error %%#%% calculated %%#%% %%#%% per%%dsh%%value basis %%#%% %%#%% 
+equation 1%%per%%]$~ ~$[quantization error % %%#%% accumulated ]^[ averaged %%#%% %%#%% round operations %%#%% %%#%% %%#%% 
+metric %%#%% %%#%% scaling %%#%% l%%per%%]$~ 
+~$[e% %%#%% 
+|xout xin| 
+xin 
+100 
+(1) 
+table 1 frames %%#%% %%#%% %%#%% relation %%#%% prior %%#%% %%#%% %%#%% area%%per%%]$~ 
+~$[algorithm 1 dynamic precision scaling %%#%% quantization error 
+input%%cln%% current integer length%%cln%% il%%lst%% current fractional length%%cln%% fl 
+overow rate%%cln%% %%#%% 
+average % quantization error%%cln%% %%#%% 
+maximum overow rate%%cln%% %%#%% max 
+maximum average quantization error%%cln%% %%#%% max 
+begin 
+%%cmp_if%% %%#%% %%#%% %%#%% max%%cln%% 
+output%%cln%% (cid:104)il%%lst%% %%#%% l(cid:105) ]f[ %%#%% %%#%% attribute (weights%%lst%% gradients%%lst%% ]v[ activations)%%per%% 
+1%%cln%% 
+2%%cln%% 
+3%%cln%% 
+4%%cln%% 
+5%%cln%% 
+6%%cln%% 
+7%%cln%% 
+8%%cln%% 
+9%%cln%% 
+10%%cln%% 
+il il %%#%% 1 
+il il 1 
+%%#%% l %%#%% l %%#%% 1 
+%%#%% l %%#%% l 1 
+%%cmp_if%% %%#%% %%#%% %%#%% max%%cln%% 
+%%#%% 
+%%cmp_e%% 
+%%cmp_e%% 
+table 1%%cln%% summary %%#%% related %%#%% 
+authors 
+fixed %%#%% format 
+(bit width%%lst%% radix) 
+scaling 
+rounding 
+(na & mukhopadhyay%%lst%% 2016) 
+(dynamic%%lst%% dynamic) convergence/ 
+(courbariaux et al%%per%%%%lst%% 2014) 
+(gupta et al%%per%%%%lst%% 2015) 
+essam et al%%per%% (2017) 
+(koster et al%%per%%%%lst%% 2017) 
+(fixed%%lst%% dynamic) 
+(fixed%%lst%% fixed) 
+(fixed%%lst%% dynamic) 
+(fixed%%lst%% dynamic) 
+training based 
+nearest 
+overow based nearest 
+none 
+overow based 
+predictive 
+max%%dsh%%value 
+stochastic 
+stochastic 
+n/a 
+precision 
+granularity 
+per%%dsh%%layer 
+per%%dsh%%layer 
+global 
+global 
+per%%dsh%%tensor 
+(dynamic%%lst%% dynamic) overow ]^[ 
+quantization 
+error based 
+stochastic 
+global 
+ours 
+4 experiments 
+%%#%% order %%#%% perform evaluations%%lst%% %%#%% emulate %%#%% dynamic xed %%#%% representation %%#%% using custom 
+caffe layers %%#%% quantize/round %%#%% native oating %%#%% values %%#%% values %%#%% %%#%% legal %%#%% %%#%% xed 
+%%#%% format%%per%%]$~ ~$[in %%#%% study%%lst%% %%#%% consider training %%#%% neural network using stochastic gradient descent 
+%%#%% dynamically scaled precision ]f[ weights%%lst%% activations%%lst%% ]^[ gradients %%#%% %%#%% %%#%% forward 
+2 
+workshop track %%dsh%% iclr 2018 
+(inference) ]^[ backward pass%%per%%]$~ ~$[as %%#%% na & mukhopadhyay (2016)%%lst%% %%#%% quantize weights%%lst%% biases%%lst%% 
+activations%%lst%% ]^[ gradients %%#%% %%#%% appropriate pass %%#%% %%#%% network%%lst%% ]^[ update %%#%% precision 
+on%%dsh%%the%%dsh%%y %%#%% training %%#%% %%#%% iteration%%per%%]$~ 
+~$[we train lenet%%dsh%%5 %%#%% %%#%% mnist dataset using caffe ]^[ %%#%% custom rounding layers ]^[ dps 
+algorithm (lecun et al%%per%%%%lst%% 1998)%%per%%]$~ ~$[we %%#%% %%#%% batch size %%#%% 64%%lst%% ]^[ train ]f[ 10,000 iterations%%per%%]$~ ~$[we %%#%% %%#%% 
+initial learning rate %%#%% 0%%per%%01%%lst%% momentum %%#%% 0%%per%%9%%lst%% %%#%% weight decay factor %%#%% 0%%per%%0005%%lst%% ]^[ scale %%#%% learning 
+rate using lr %%#%% lrinit (1 %%#%% iter)pow%%lst%% %%#%% %%#%% 0%%per%%0001 ]^[ pow %%#%% 0%%per%%75%%per%%]$~ ~$[we update il ]^[ fl 
+%%#%% %%#%% iteration%%lst%% ]^[ %%#%% emax %%#%% rmax %%#%% 0%%per%%01%%%per%%]$~ 
+~$[we %%cmp%% %%#%% results %%#%% %%#%% baseline network trained %%#%% %%#%% %%#%% dataset %%#%% %%#%% %%#%% hyperparame%%dsh%% 
+ters%%lst%% ]b[ using full%%dsh%%precision oating %%#%% ]f[ %%#%% attributes%%per%%]$~ ~$[we %%#%% %%cmp%% %%#%% %%#%% non%%dsh%%dynamic 
+xed %%#%% representation %%#%% %%#%% 13 bits ]f[ weights ]^[ activations%%lst%% ]^[ %%#%% gradients %%#%% 32 bits%%per%% 
+(a) test error 
+(b) log %%#%% training loss 
+figure 1%%cln%% comparison %%#%% training %%#%% dynamic precision scaling vs%%per%% %%#%% baseline (oating point) vs%%per%% 
+xed %%#%% reduced precision (13 bit weights ]^[ activations)%%per%%]$~ 
+~$[our results reveal %%#%% %%#%% %%#%% achieve accuracy on%%dsh%%par %%#%% 
+%%#%% baseline%%lst%% whilst drastically reducing %%#%% bit%%dsh%%width %%#%% 
+]f[ %%#%% weights ]^[ activations%%per%%]$~ ~$[our dynamic precision 
+scaling algorithm %%#%% general%%lst%% however%%lst%% doesnt reduce %%#%% 
+gradient bit%%dsh%%width %%#%% much%%lst%% %%#%% %%#%% requires %%#%% %%#%% 
+precision %%#%% order ]f[ training %%#%% converge%%per%%]$~ ~$[the training loss 
+using dps is%%lst%% %%#%% general%%lst%% larger %%cmp_ta%% %%#%% training loss %%#%% %%#%% 
+baseline model %%#%% hurting accuracy%%lst%% suggesting %%#%% 
+%%#%% reduced precision %%#%% act %%#%% %%#%% regularization technique 
+%%#%% training %%#%% %%#%% validation via experimentation 
+%%#%% larger networks ]^[ %%#%% complex datasets%%per%%]$~ ~$[note %%#%% 
+naively reducing %%#%% bit%%dsh%%width %%#%% weights ]^[ activations 
+%%#%% %%#%% xed 13%%dsh%%bits %%#%% %%#%% dynamic precision scaling results 
+%%#%% %%#%% training process failing %%#%% converge%%per%%]$~ ~$[with dynamic 
+precision scaling%%lst%% however%%lst%% 13%%dsh%%bit weights ]^[ activations 
+%%#%% sufcient %%#%% %%#%% %%#%% training process%%per%% 
+5 discussion 
+figure 2%%cln%% moving average bitwidths dur%%dsh%% 
+ing training using dps%%per%%]$~ 
+~$[we introduce %%#%% dynamic precision scaling algorithm %%#%% %%#%% quantization error %%#%% %%#%% metric ]f[ 
+scaling dynamic bit%%dsh%%width xed %%#%% values %%#%% neural network training%%per%%]$~ ~$[combining %%#%% %%#%% 
+stochastic rounding%%lst%% %%#%% achieve greatly reduced bit%%dsh%%width %%#%% training%%lst%% whilst remaining %%#%% %%#%% 
+fraction %%#%% %%#%% % %%#%% sota accuracy %%#%% %%#%% mnist dataset%%per%%]$~ ~$[this avenue %%#%% algorithmic work%%lst%% %%#%% 
+paired %%#%% emerging hardware ]f[ training%%lst%% %%#%% %%#%% potential %%#%% greatly increase %%#%% productivity %%#%% 
+engineers ]^[ machine learning researchers alike %%#%% decreasing training time%%per%% 
+3 
+workshop track %%dsh%% iclr 2018 
+references 
+m%%per%%]$~ ~$[courbariaux%%lst%% y%%per%%]$~ ~$[bengio%%lst%% ]^[ j%%per%%%%dsh%%p%%per%%]$~ ~$[david%%per%%]$~ ~$[binaryconnect%%cln%% training deep neural networks %%#%% 
+binary weights %%#%% propagations%%per%%]$~ ~$[arxiv e%%dsh%%prints%%lst%% november 2015%%per%%]$~ 
+~$[matthieu courbariaux%%lst%% yoshua bengio%%lst%% ]^[ jean%%dsh%%pierre david%%per%%]$~ ~$[low precision arithmetic ]f[ deep 
+learning%%per%%]$~ ~$[corr%%lst%% abs/1412%%per%%7024%%lst%% 2014%%per%%]$~ ~$[url http://arxiv%%per%%org/abs/1412%%per%%7024%%per%%]$~ 
+~$[m%%per%%]$~ ~$[essam%%lst%% t%%per%%]$~ ~$[b%%per%%]$~ ~$[tang%%lst%% e%%per%%]$~ ~$[t%%per%%]$~ ~$[w%%per%%]$~ ~$[ho%%lst%% ]^[ h%%per%%]$~ ~$[chen%%per%%]$~ ~$[dynamic %%#%% stochastic rounding algorithm ]f[ 
+limited precision arithmetic %%#%% deep belief network training%%per%%]$~ ~$[in 2017 8th international ieee/embs 
+conference %%#%% neural engineering (ner)%%lst%% pp%%per%% 629632%%lst%% %%#%% 2017%%per%% doi%%cln%% 10%%per%%1109/ner%%per%%2017%%per%% 
+8008430%%per%%]$~ 
+~$[suyog gupta%%lst%% ankur agrawal%%lst%% kailash gopalakrishnan%%lst%% ]^[ pritish narayanan%%per%%]$~ ~$[deep learning %%#%% 
+limited numerical precision%%per%%]$~ ~$[corr%%lst%% abs/1502%%per%%02551%%lst%% 2015%%per%%]$~ 
+~$[itay hubara%%lst%% matthieu courbariaux%%lst%% daniel soudry%%lst%% ran el%%dsh%%yaniv%%lst%% ]^[ yoshua bengio%%per%%]$~ ~$[binarized neu%%dsh%% 
+ral networks%%per%%]$~ ~$[in d%%per%%]$~ ~$[d%%per%%]$~ ~$[lee%%lst%% m%%per%%]$~ ~$[sugiyama%%lst%% u%%per%%]$~ ~$[v%%per%%]$~ ~$[luxburg%%lst%% i%%per%%]$~ ~$[guyon%%lst%% ]^[ r%%per%%]$~ ~$[garnett (eds%%per%%)%%lst%% advances 
+%%#%% neural information processing systems 29%%lst%% pp%%per%% 41074115%%per%%]$~ ~$[curran associates%%lst%% inc%%per%%%%lst%% 2016%%per%%]$~ ~$[url 
+http://papers%%per%%nips%%per%%cc/paper/6573%%dsh%%binarized%%dsh%%neural%%dsh%%networks%%per%%pdf%%per%%]$~ 
+~$[patrick judd%%lst%% jorge albericio%%lst%% tayler hetherington%%lst%% tor aamodt%%lst%% natalie enright jerger%%lst%% raquel 
+urtasun%%lst%% ]^[ andreas moshovos%%per%%]$~ ~$[reduced%%dsh%%precision strategies ]f[ bounded memory %%#%% deep 
+neural nets%%lst%% arxiv:1511%%per%%05236v4 [cs%%per%%lg] %%per%% arxiv%%per%%org%%lst%% 2015%%per%%]$~ 
+~$[urs koster%%lst%% tristan webb%%lst%% xin wang%%lst%% marcel nassar%%lst%% arjun %%#%% bansal%%lst%% william constable%%lst%% oguz 
+elibol%%lst%% stewart hall%%lst%% luke hornof%%lst%% amir khosrowshahi%%lst%% carey kloss%%lst%% ruby %%#%% pai%%lst%% ]^[ naveen 
+rao%%per%%]$~ ~$[flexpoint%%cln%% %%#%% adaptive numerical format ]f[ efcient training %%#%% deep neural networks%%per%%]$~ ~$[in 
+i%%per%%]$~ ~$[guyon%%lst%% u%%per%%]$~ ~$[v%%per%%]$~ ~$[luxburg%%lst%% s%%per%%]$~ ~$[bengio%%lst%% h%%per%%]$~ ~$[wallach%%lst%% r%%per%%]$~ ~$[fergus%%lst%% s%%per%%]$~ ~$[vishwana%%cmp_ta%%%%lst%% ]^[ r%%per%%]$~ ~$[garnett (eds%%per%%)%%lst%% 
+advances %%#%% neural information processing systems 30%%lst%% pp%%per%% 17401750%%per%%]$~ ~$[curran associates%%lst%% inc%%per%%%%lst%% 
+2017%%per%%]$~ 
+~$[y%%per%%]$~ ~$[lecun%%lst%% l%%per%%]$~ ~$[bottou%%lst%% y%%per%%]$~ ~$[bengio%%lst%% ]^[ p%%per%%]$~ ~$[haffner%%per%%]$~ ~$[gradient%%dsh%%based learning applied %%#%% document 
+recognition%%per%%]$~ ~$[proceedings %%#%% %%#%% ieee%%lst%% 86(11):22782324%%lst%% nov 1998%%per%%]$~ ~$[issn 0018%%dsh%%9219%%per%% doi%%cln%% 
+10%%per%%1109/5%%per%%726791%%per%%]$~ 
+~$[asit k%%per%%]$~ ~$[mishra%%lst%% eriko nurvitadhi%%lst%% jeffrey j%%per%%]$~ ~$[cook%%lst%% ]^[ debbie marr%%per%%]$~ ~$[wrpn%%cln%% wide reduced%%dsh%%precision 
+networks%%per%%]$~ ~$[corr%%lst%% abs/1709%%per%%01134%%lst%% 2017%%per%%]$~ ~$[url http://arxiv%%per%%org/abs/1709%%per%%01134%%per%%]$~ 
+~$[taesik na ]^[ saibal mukhopadhyay%%per%%]$~ ~$[speeding %%#%% convolutional neural network training %%#%% 
+dynamic precision scaling ]^[ exible multiplier%%dsh%%accumulator%%per%%]$~ ~$[in proceedings %%#%% %%#%% 2016 in%%dsh%% 
+ternational symposium %%#%% low power electronics ]^[ design%%lst%% islped 16%%lst%% pp%%per%% 5863%%lst%% %%#%% 
+york%%lst%% ny%%lst%% usa%%lst%% 2016%%per%%]$~ ~$[acm%%per%%]$~ ~$[isbn 978%%dsh%%1%%dsh%%4503%%dsh%%4185%%dsh%%1%%per%% doi%%cln%% 10%%per%%1145/2934583%%per%%2934625%%per%%]$~ ~$[url 
+http://doi%%per%%acm%%per%%org/10%%per%%1145/2934583%%per%%2934625%%per%% 
+4 

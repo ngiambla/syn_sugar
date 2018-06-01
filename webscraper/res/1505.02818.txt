@@ -1,10 +1,10 @@
- In this article, we discuss the design, implementation and evaluation of a generic quasi-experimental framework for conducting causation studies on human behavior from smartphone data.
- We demonstrate the e ectiveness of our approach by investigating the causal impact of several factors such as exercise, social interactions and work on stress level.
+ Creation of Treated and Control Groups After de ning the confounding variables of the study, we need to split the units into control and treatment groups.
  We consider binary treatments 11 Treatment Confounding Variables U u,d ti Ou,d ti SC u,d ti Eu,d ti P Su,d Du,d Ou,d ti P Su,d Du,d U u,d ti P Su,d Du,d U u,d ti U u,d Eu Du,d Eu,d ti Eu,d ti Ou,d ti N u SC u,d ti Eu Eu Au Eu N u C u N u Au - N u Au - - - - Table 2: Confounding Variables for the di erent applied treatments. , SC u,d 1.
  Uu,d ti , Ou,d ti , Eu,d ti : treatment units are all the units with U u,d ti } and control all the units with U u,d by applying thresholds to the examined treatment variables.
  Thus, for each of the four examined treatments (i.e., U u,d ti ) the units are ti split as follows: ti } E{U u,d ti } + E{U u,d ti }, for a constant [0, 1).
  Thus, we consider to have a positive treatment value when the university sojourn time is relatively small. ti > E{U u,d ti } + E{U u,d ti } E{U u,d ti }.
  Thus, we consider to have a positive treatment value when the time spent in any non-work-related place outside home is relatively large. : treatment units are all the units with Ou,d ti } and control all the units with Ou,d ti < E{U u,d ti E{U u,d ti E{U u,d 2.
- Exercising has a stronger positive e ect on the stress level of participants with high neuroticism score while there is no statistically signi cant bene t for people with high extroversion score.
- We have studied the causal e ects of several factors, such as working, exercising and socializing, on stress level of 48 students using data captured by smartphones sensors.
- Our results suggest that exercising and spending time outside home or university have a strongly positive causal e ect on participants stress level.
+ We do not present results for larger values since the number of samples that are discarded is large and the remaining data are not su cient for statistically signi cant conclusions.
+ In Figure 4 and Table 3, we present the standardized di erence, as described in Equation 5, for all the confounding variables that were used in each one of the causation studies.
+ According to our results, the standardized di erence between treated and control samples is smaller than 0.1 for all the confounding variables thus any confounding bias has been su ciently minimized.
+ Our results indicate that the time that students spend at university has only a weak causal impact on the stress level when participants samples are split into treatment and control groups using an value equal to 0.15.

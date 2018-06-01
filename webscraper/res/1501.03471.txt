@@ -1,12 +1,10 @@
- Loosely inspired by the principle of epistemic closure [21], we computationally gauge the support for statements by mining the connectivity patterns on a knowledge graph.
- Our initial focus is on computing the support of simple statements of fact using a large-scale knowledge graph obtained from Wikipedia.
  A set of such triples can be combined to produce a knowledge graph (KG), where nodes denote entities (i.e., subjects or objects of statements), and edges denote predicates.
  If, however, the statement is untrue, there should be neither edges nor short paths that connect subject and 2 object.
- For example, paths that contain generic entities, such as United States or Male, provide weaker support because these nodes link to many entities and thus yield little speci c information.
- A fundamental insight that underpins our approach is that the de nition of path length used for fact checking should account for such information-theoretic considerations.
- To test our method we use the DBpedia database [22], which consists of all factual statements extracted from Wikipedia s infoboxes (see Fig. 1(a)).
- To perform the classi cation, we use two standard classi er algorithms: k-Nearest Neighbors [35] and Random Forests [36].
- To assess the classi cation accuracy we computed F-score and area under Receiver Operating Characteristic (ROC) curve using 10-fold cross-validation. 9 Simple factual statements We formed simple statements by combining each of N subject entities with each of N object entities.
+ In a KG distinct paths between the same subject and object typically provide different factual support for the statement those nodes represent, even if the paths contain the same number of intermediate nodes.
+ The truth value (e) [ 0, 1 ] of a new statement e = (s, p, o) is derived from a transitive closure of the WKG.
+ This function maps the set of possible paths connecting s and o to a truth value .
+ A path has the form Ps,o = v1v2 . . . vn, where vi is an entity node, (vi, vi+1) is a edge, n is the path length measured by the number of its constituent nodes, v1 = s, and vn = o.
+ In other words, the important and complex human task of fact checking can be effectively reduced to a simple network analysis problem, which is easy to solve computationally.
  The path traverses high-degree nodes representing generic entities, such as Canada, and is assigned a low truth value. 16 Figure 2: Ideological classi cation of the US Congress based on truth values. (a) Ideological network of the 112th US Congress.
  The plot shows a subset of the WKG constituted by paths between Democratic or Republican members of the 112th US Congress and various ideologies.
- This information is not present in the infobox, and thus it is not part of the WKG. (c) Annotations from ve human raters.
+ Red and blue nodes correspond to members of Congress, gray nodes to ideologies, and white nodes to vertices of any other type.

@@ -1,0 +1,7 @@
+ Because this algorithm is also syntactically oriented and based on a chart , it has the same advantage as that of Mellish 's parser .
+ When the original parsing algorithm terminates unsuccessfully , the algorithm begins to assume errors of insertion , deletion and mutation of a word .
+ So , we assign less error value to the deletion-error hypothesis edge than to the insertion - and mutation-errors . where is the error cost of a terminal symbol , is the error cost of a nonterminal symbol .
+ The possibility of error occurrence within noun phrases are lower than between a noun phrase and a verbal phrase , a preposition phrase , an adverbial phrase .
+ We can show that our robust parser can compensate for lack of rules using only 192 rules with the recovery mechanism and heuristics .
+ Test set First , 1,000 sentences are selected randomly from the WSJ corpus , which we have referred to in proposing the robust parser .
+ To show the validity of these heuristics , we compare the result of the robust parser using heuristics with one not using heuristics .

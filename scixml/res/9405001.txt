@@ -1,0 +1,7 @@
+ In this work we propose a method for estimating the probability of such previously unseen word combinations using available information on `` most similar '' words .
+ We describe a probabilistic word association model based on distributional word similarity , and apply it to improving probability estimates for unseen word bigrams in a variant of Katz 's back-off model .
+ For perplexity evaluation , we tuned the similarity model parameters by minimizing perplexity on an additional sample of 57.5 thousand words of WSJ text , drawn from the ARPA HLT development test set .
+ For these values , the improvement in perplexity for unseen bigrams in a held-out 18 thousand word sample , in which 10.6 % of the bigrams are unseen , is just over 20 % .
+ The cooccurrence smoothing technique Essen and Steinbiss 1992 , based on earlier stochastic speech modeling work by Sugawara et al. 1985 , is the main previous attempt to use similarity to estimate the probability of unseen events in language modeling .
+ It enables us to rely on direct maximum likelihood estimates when reliable statistics are available , and only otherwise resort to the estimates of an `` indirect '' model .
+ The improvement we achieved for a bigram model is statistically significant , though modest in its overall effect because of the small proportion of unseen events .

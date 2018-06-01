@@ -205,8 +205,24 @@ class garnish:
 
 		_scalar 	= (min_entropy/max_entropy)
 
+
+
+		for _label in sentence_entropy_map:
+
+			avg_entropy = avg_entropy + sentence_entropy_map[_label] 
+
+			if sentence_entropy_map[_label] > max_entropy:
+				max_entropy = sentence_entropy_map[_label]				
+
+			if sentence_entropy_map[_label] < min_entropy:
+				min_entropy = sentence_entropy_map[_label]			
+		
+		avg_entropy = avg_entropy/len(sentence_vec_map)
+
+		_scalar 	= (min_entropy/max_entropy)
+
 		while _scalar < 0.1:
-			_scalar=_scalar*10
+			_scalar=_scalar*2
 		
 		print(bcolors.OKGREEN+ "\n\n> Stats" + bcolors.ENDC)
 		print(bcolors.OKGREEN+ ">> MAX Entropy: " + str(max_entropy) + bcolors.ENDC)
@@ -225,125 +241,62 @@ class garnish:
 		miss_count 		= 	0
 
 
+
 		for _i_label in sentence_vec_map:
 
-			if sentence_entropy_map[_i_label] > curr_limit:
+			if sentence_entropy_map[_i_label] > _scalar:
+
 				a = freq_vec_map[_i_label]
 				wa = sentence_low_map[_i_label]
+				va = sentence_vec_map[_i_label]
 
 				seen_labels[_i_label]=0
 
 				for _j_label in sentence_vec_map:
-					if sentence_entropy_map[_j_label] > curr_limit: 
-
-						curr_limit = curr_limit*2
-						miss_count = 0
-
+					if sentence_entropy_map[_j_label] > _scalar: 
 						if  _j_label not in seen_labels:
 
 							b = freq_vec_map[_j_label]
 							wb = sentence_low_map[_j_label]
-							
-							sim_i	= math.floor(100*(mutils.get_cosine_sim(a,b)*mutils.jaccard_index(wa,wb)))
-							sim_i  	= int(sim_i)
-							if sim_i not in sen_pairs: 
-								sen_pairs[sim_i] = {}
+							vb = sentence_vec_map[_j_label]
 
-							if _i_label not in sen_pairs[sim_i]:
-								sen_pairs[sim_i][_i_label]=sentence_entropy_map[_i_label]
+							wrd_sim 	= mutils.jaccard_index(wa,wb)
+							sim_i 		= 100*wrd_sim
 
-							if _j_label not in sen_pairs[sim_i]:
-								sen_pairs[sim_i][_j_label]=sentence_entropy_map[_j_label]
+
+							if _i_label not in sen_pairs:
+								sen_pairs[_i_label] = sim_i
+							else:
+								sen_pairs[_i_label] = sen_pairs[_i_label] + sim_i
 
 							count=count+1
 							self.display_progress_check(1, count, cols)
-					else:
-						miss_count=miss_count+1
-						if miss_count < len(sentence_vec_map)*0.10:
-							curr_limit = curr_limit*0.05
-							miss_count = 0
-
-
-		fields={}
-		for _bin in sen_pairs:
-			
-			seen_again={}
-			
-			for il in sen_pairs[_bin]:
-				seen_again[il]=True
-				for jl in sen_pairs[_bin]:
-					if jl not in seen_again:
-						dist 	= jl-il
-						field	= (_bin*sen_pairs[_bin][jl]*sen_pairs[_bin][il])/((dist)**2)
-						if il not in fields:
-							fields[il]=field
-						else:
-							fields[il]=fields[il]+field		
-
-		sorted_bins 	= 	{}
-		ent_lim 		= 	avg_entropy
-
-		for _bin in sen_pairs:
-
-			seen_again={}
-
-			for il in sen_pairs[_bin]:
-				if sen_pairs[_bin][il] >= ent_lim:
-
-					if _bin not in sorted_bins:
-						sorted_bins[_bin]={}
-
-					a = sentence_vec_map[il]
-
-					seen_again[il]=0
-
-					for jl in sen_pairs[_bin]:
-						if sen_pairs[_bin][jl] >= ent_lim:
-							count=count+1
-							self.display_progress_check(2, count, cols)
-
-							if jl not in seen_again:
-
-								b = sentence_vec_map[jl]
-
-								hamming_sim = len(sentence_vec_map[il])-mutils.hamming_distance(a,b)
-								sim_j = int( math.floor( 100*(hamming_sim)/len(sentence_vec_map[il]) ) )
-								
-								if sim_j not in sorted_bins[_bin]:
-									sorted_bins[_bin][sim_j]={}
-
-								sorted_bins[_bin][sim_j][il]=1
-								sorted_bins[_bin][sim_j][jl]=1
-
-
 
 		print("\n")
-
-		summary_map 	= {}
-
-		for _bin in sen_pairs:
-
-			if _bin in sorted(sorted_bins, reverse=True):
-				if len(sorted_bins[_bin]) > 0 and _bin > 0:
-					for sim_j in sorted(sorted_bins[_bin], reverse=True):
-						for label in sorted_bins[_bin][sim_j]:
-							if label in fields:
-								if label not in summary_map:
-									summary_map[label] = ((sim_j*10)/(1+_bin))*fields[label]
-								else:
-									summary_map[label] = summary_map[label] + ((sim_j*10)/(1+_bin))*fields[label]
-		k_summary_map = sorted(summary_map.items(), key=operator.itemgetter(1), reverse=True)
+		fields = {}
+		for il in sentence_entropy_map:
+			fields[il] = 0;
+			for jl in sentence_entropy_map:
+				if il in sen_pairs:
+					if jl in sen_pairs:
+						if il != jl:
+							dist = jl-il
+							ent_i = sentence_entropy_map[il]
+							ent_j = sentence_entropy_map[jl]
+							field = (sen_pairs[il]*sen_pairs[jl]*ent_i*ent_j)/((dist)**2)
+							fields[il] = fields[il] + field
 
 
+		k_summary_map = sorted(fields.items(), key=operator.itemgetter(1), reverse=True)
 		l_summary_map = {}
 
 		for _label in k_summary_map:
-			if len(l_summary_map) < 20:
+			if len(l_summary_map) < (10):
 				l_summary_map[_label[0]]=_label[1]
 			else:
 				break
 
-		s_summary_map = sorted(l_summary_map.items(), key=operator.itemgetter(0))			
+		s_summary_map = sorted(l_summary_map.items(), key=operator.itemgetter(0))		
 		
 		s1=""
 		s2=[]

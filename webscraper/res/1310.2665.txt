@@ -1,10 +1,10 @@
- The task for this experiment is that of clustering protomemes using a single similarity measure, namely content similarity.
- Hierarchical clustering outperforms K-means over a broad range of values for the number of clusters, and also achieves a better overall cluster quality.
- While the experiment reported in Fig. 4 is based on protomemes and content similarity, we systematically explored other measures.
- The similarity measure adopted to compare tweets and aggregate them is content similarity based on TF-IDF.
- Such information is very time-consuming to obtain and this task seems unfeasible in real-time, streaming scenarios.
- The proposed diffusion similarity measure uses mention and retweet information, that can be reconstructed in real-time from the observed data, considering each protomeme diffusion set.
- We carried out a systematic evaluation showing the promising performance of the clus- tering framework, by using a manually-curated dataset as a ground truth.
- This work is supported by NSF (grants CCF-1101743 and IIS-0968489), DARPA (grant W911NF-12-1-0037), and the McDonnell Foundation.
- In Proceedings of the 4th ACM International Conference on Web Search and Data Mining, pages 65 74.
- In Proceedings of the 3rd ACM International Conference on Web Search and Data Mining, pages 291 300.
+ The appropriate granularity of a meme, however, is hardly captured from existing entities such as tags and keywords.
+ Here we present a framework for the novel task of detecting memes by clustering messages from large streams of social data.
+ We de ne several similarity measures between memes, leveraging various content, metadata, and network features of tweets; and we propose different ways to combine them for clustering memes.
+ DESPIC architecture for meme clustering and classi cation We compare multiple clustering algorithms, nding that hierarchical clustering outperforms K-means in terms of the trade-off between quality of the clusters and their number and size.
+ This process allows for tuning the performance of hierarchical clustering to nd the correct trade-off between number and size of clusters, as shown in Fig. 3.
+ The baseline achieves its best performance for a number of clusters that is comparable to the number of tweets, which is not very helpful in our setting.
+ This con guration, however, might not be viable for our task in the streaming scenario.
+ The MAX strategy obtains its best performance for a much smaller number of clusters, even out- performing Baseline+Followers when the number of clusters is closer to that in the ground truth.
+ We ran the hierarchical clustering algorithm for each set of weights in a 3-dimensional simplex with step 0.1, resulting in 286 parameter con gurations.
+ Our work instead focuses on the assessment of the quality of the meme clustering process, and allows for overlapping memes.

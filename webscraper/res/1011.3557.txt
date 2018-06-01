@@ -1,11 +1,10 @@
- The folksonomy learning problem has been addressed in recent work [17] using a bottom-up approach to heuristically construct the folk- sonomy.
  PROBABILISTIC INTEGRATION OF STRUCTURED DATA A key idea of folksonomy learning through sapling inte- gration is to merge similar nodes from di erent saplings.
- The local similarity between two nodes i and j, localSim(i, j), is based on the intrinsic features of i and j, such as their tag distributions.
- To reduce the com- putational complexity, we assume that nodes with dif- ferent stemmed names belong to di erent concepts, and as a result, their similarity is 0.
- Root-to-Root similarity Two saplings A and B are likely to describe the same concept if their root nodes rA and rB have similar names and some of their leaf nodes also have similar names.
- Structural similarity between two leaf nodes is de ned as follows: structSimLL(lA, lB) (5) = 1 Z 1 ((Xi,j (name(lA i ), name(lB j ))) 1).
- We omit E, I and S factors to simplify the diagram. (b) Factor graph representation of RAP. the rst constraint.
+ Merging similar root nodes expands the width of the learned tree, while merging the leaf of one sapling to the root of another extends its depth.
+ The merging process has two key sub-components: (1) a similarity function that evaluates how similar a pair of nodes is; (2) a pro- cedure that decides if two nodes should or should not be merged, based on their similarity.
+ For the leaf-to-leaf similarity on a pair of leaf nodes, we can only consider the cluster label of their roots rather than all of their siblings.
+ The con guration shown in the gure is valid since both C and D belong to the same exemplar E and their parents, A and B, belong to the same exemplar A.
+ However, if cBB = 1, then the con guration is invalid, because parents of nodes in the cluster of exemplar E will belong to di erent exemplars (A and B).
  We then used the leaf node names of these saplings to identify other saplings whose root names were similar to these names, and so on, for two iterations.
+ To compare the di erent strategies for exploiting struc- tural information, we apply the two clustering proce- dures, AP and RAP, with di erent similarity functions, to these data sets.
  We used the following similarity func- tions: (1) local : only local similarity; and (2) hybrid : local and structural similarity; and (3) class-hybrid : lo- cal and structural similarity using class labels.
- Results We measure how using structural information, either through structural similarity or through structural con- straints, a ects the quality of the learned folksonomy.
- We studied two di erent ways to incorporate structural information into the inference process, and applied the approach to the folksonomy learning problem.
+ To make this work comparable to [17], we used the following pa- rameter values in the similarity functions: in local simi- larity Eq. 3, we set the number of top tags K = 40, and the number of common tags J = 4; in the hybrid sim- ilarity function, the weight combination between local and structural similarity is = 0.9 when comparing two nodes that are both roots or leaves, and = 0.2 when one node is a root and the other a leaf.

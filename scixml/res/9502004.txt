@@ -1,0 +1,7 @@
+ The scanning step achieves a certain degree of goal-directedness for bottom-up algorithms because only those clauses which can appear as leaves in the proof tree of the goal are added to the chart .
+ An item in normal context-free chart parsing can be regarded as a pair consisting of a dotted rule R and the substring S that the item covers ( a pair of starting and ending position ) .
+ Non-directional adjacent combination : This indexing is used if only adjacent constituents can be combined , but the order of combination is not prescribed ( e.g. non-directional basic categorial grammars ) .
+ Free combination : Allows an item to be used several times in a proof , for example for the non-unit clauses of the program , which would be represented as items of the form .
+ Index 1 ( I1 ) is the index associated with the non-unit clause , Index 2 ( I2 ) is associated with the unit clause , and is the result of combining the indices .
+ In case 2 ( `` non-adjacent combination '' ) , the indices X and Y consist of a set of string positions , and the operation is the union of these string positions , provided that no two string positions from X and Y do overlap .
+ In the following inference rule for clauses with mixed goal types , is a ( possibly empty ) sequence of goals without any waiting goals , and is a ( possibly empty ) sequence of goals starting with a waiting goal . is the most general unifier of G and G ' , and the substitution is the solution which results from proving the sequence of goals .

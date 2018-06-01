@@ -1,11 +1,10 @@
- The networks we have chosen to study are the traditional Erd os and R enyi (ER) [10] random graphs and the scale free models due to Barab asi and Albert (BA)[11].
- At each subsequent (discrete) time step the probability of moving one step to the right is p and that for a step to the left is 1 p.
+ For the networks we investigate, Erd os-R enyi random graphs and Barab asi-Albert scale free networks, these walks are not transient and we consider various approaches to computing the probability of a given length walk.
+ One approach is to label nodes according to both their total degree and the number of links connected to leaf nodes, and as a byproduct we compute the probability of a random node of a scale free network having such a label. 2 1 0 2 l u J 0 3 ] n n - s i d . t a m - d n o c [ 1 v 4 9 9 6 . 7 0 2 1 : v i X r a I.
  This study of simple networks suggests that the probability of longer walks decays exponentially for homogeneous networks and that the exponent is not dependent on the size of the network.
+ Imagine that a walk has survived until step t, then the probability, , that it will survive one more step is just that of avoiding a leaf node. = e = 1 P (transition to a leaf node) (5) The decay is exponential when the transition probability does not depend on the length of the walk, and this is the case for homogeneous networks.
+ Numerical studies indicate that the walks between leaves that we consider in this paper have the same properties as on the simple models: they do not scale with the size of the system and their probability decays as shown in gure 2.
  For these leaf random walks there is no need to restrict the starting leaf nodes to be part of the giant component and we include the contribution from walks on the nite clusters.
+ Below the percolation transition, where only nite 4 FIG. 2: The probability of a random walk between leaves of length t on an ER graph.
  Shown for various values of (cid:104)k(cid:105), the mean degree . clusters exist, the decay su ers strong nite size e ects and is not exponential.
- In this case the probability that the walk is not absorbed in the next step is. (cid:88) k(cid:88) k=2 l=0 = wkl = 1 e (cid:104)k(cid:105) (16) 6 So this argument yields precisely the same exponent as the rough one.
- In gure 2, the curves for graphs with (cid:104)k(cid:105) below the threshold, do not display exponential decay, but this should be attributed to a nite size e ect from individual clusters.
- Krapivsky and Redner[17] compute the age dependence of the degree distribution and support the notion of a highly connected old core to the network with high degree nodes.
- Long paths access this old core and the random walks that access this region tend to stay there and are less likely to be absorbed.
- We do not show this prediction in gure 6 as it is not very accurate and we can obtain a better prediction following the reasoning used for ER networks and leading to the estimate of the survival probability given in equation (18).
  For longer paths we have had some success with ER networks by assuming that the equilibrium occupation probabilities of a node are proportional to the number of its non-leaf links.
+ Together with results for the proportion of (k, l) nodes, this approach gives some useful predictions for BA networks but does not capture the non-trivial decay of the walk due to intrinsic correlations in the network.

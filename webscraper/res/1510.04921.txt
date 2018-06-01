@@ -1,12 +1,10 @@
+ Responses indicate that participants hold nuanced opinions on security and privacy trade-o s, with most recognizing legitimate uses for the practice, but also concerned about threats from hackers or government surveillance.
  There is strong support for noti cation and consent when a system is intercepting their encrypted tra c, although this support varies depending on the situation.
- Some companies use TLS proxies to lter malware and viruses, prevent the leak of company secrets and intellectual property, block harmful websites, or catch malicious insiders.
- Currently, browsers and users have no method for distinguishing between benevolent and malicious TLS proxies, and the user is entirely unaware that an organization or attacker is intercepting encrypted tra c.
+ A signi cant concern about malicious uses of TLS inspection is identity theft, and many would react negatively and some would change their behavior if they discovered inspection occurring without their knowledge.
+ We also nd that a small but signi cant number of participants are jaded by the current state of a airs and have lost any expectation of privacy. 1.
  To address the risks related to instructing participants on an issue and then surveying them, we spent considerable e ort and time crafting our description of TLS proxies.
- Figure B TLS proxies can be set up by the organization that controls your Internet (for example, your ISP, school, or employer) and also by malicious attackers.
- These questions survey participant opinions as to whether TLS proxies are a breach of their privacy and whether there are acceptable uses for TLS proxies.
- The survey then asks participants about how they would personally react to having a TLS proxy on a network they use to connect to the Internet.
- We validated the consistency of the coders choice to exclude participants responses using Fleiss Kappa [6] and found that coders were in perfect agreement (kappa value of 1).
+ Our goals were to (1) give a simple and concise overview of how TLS proxies are used to inspect encrypted tra c, and (2) present participants with a fair and unbiased description of how the inspection of encrypted tra c could be used for both benevolent and malicious purposes.
+ We speculate that due to the e ects of illusory superiority, the number of participants that were unaware of TLS proxies before the survey was even higher than reported [8, 9].
  Interestingly, in our survey participants indicated a high level of acceptance for TLS proxies, which could suggest that real-world acceptance of TLS proxies than we measured.
- To better clarify user feelings in this area, we formulated a second survey in which we ask participants about a series of speci c scenarios where inspection of encrypted tra c could be used.
- It then asks several questions repeated from the rst survey: whether TLS proxies are an invasion of privacy and whether there are acceptable uses for TLS proxies.
- Strongly Disagree, Disagree, Neither Agree nor Disagree, Agree, Strongly Agree The above description of TLS proxies helped me to clearly understand what TLS proxies are and how they are used.
+ On the other hand, many participants reported wanting to have their consent obtained, or at least be noti ed of, the inspection of encrypted tra c; in practice, it is possible that fewer participants would actually be is even higher interested in being noti ed.
+ In both cases there is still strong support for either noti cation or 5As before, we speculate that due to the e ects of illusory superiority, the number of participants that were unaware of TLS proxies before the survey was even higher than reported [8, 9].

@@ -1,11 +1,10 @@
- On the other hand, a good EGT model can provide explanations of the underlying dy- namics of an evolving system, and establish support for causal relationships.
- The normal-form game is symmetric, i.e., if we name the two individuals a and b, then it doesn t matter whether the one with strategy si is individual a or individual b.
- During the punishment phase, each individual has an opportunity to observe another individual s behavior, and decide whether to punish them.
- In Section 2.3 we discussed the question of why direct punishment should exist, since it incurs a cost to the punisher.
- In third-party punishment (3PP), an individual A harms another individual B, and an uninvolved third party C punishes A for causing that harm (see Figure 2(b)).
- Next, drawing on classic sociological and psychological theory, we hypothesized that social-structural constraints in human populations might play a crucial role in enabling the evolution of responsible 3PP.
- The constraints that particularly interested us were strength- of-ties and residential mobility, which have wide-ranging consequences for humans [20, 35, 34].
- We ran a large number of EGT simulations in which we varied the individuals average strength-of-ties and their average mobility.
- Furthermore, in their model, all of an agent s interactions were group-entitative, and we needed to introduce the possibility of individual-entitative behavior.
- The plots show the proportions of (a) the group-entitative and individual-entitative agents, and (b) the actions played by the agents.
- Thus, group-entitative strategies (in-group cooperation and out-group hostility) were pro table in terms of payo s and ethnocentric behavior be- came evolutionarily dominant.
+ We then describe three published studies in which we have developed EGT models that help explain how structural and external conditions in a society a ect the emergence of social norms. 1 Introduction Understanding human behavior and modeling how cultural norms evolve in di erent human societies is vital for designing policies and avoiding con icts around the world.
+ In this paper we discuss ways to use computational game-theoretic techniques to gain insight into why di erent human societies have di erent norms and behaviors.
+ In particular, we will use evolutionary game-theory (EGT), which was originally developed to model the evolution of biological life forms, but also is useful for understanding the evolution of human cultures.
+ Di erent individuals have di erent strategies, hence their interactions lead to di erent game-theoretic payo s which are used to represent the individuals evolutionary tness.
+ Individuals with higher tness (or lower tness) will be more likely (or less likely, respectively) to reproduce, hence the strategies used by those individuals will become more prevalent (or less prevalent) in the population.
+ In a biological model, an individual s strategy might represent its species; in a cultural model it might represent a particular kind of behavior.
+ Thus, EGT o ers a simple framework for studying the evolution of populations, without requiring the decision-theoretic rationality assumptions that are typically required in classical game theory models.
+ Consequently, when the PGG is played repeatedly with any of the evolutionary dynamics discussed earlier, defection spreads to include nearly 100% of the population,2 and everyone s payo is near zero.
+ The contribution strategies were the same as in Section 3.1: Cooperation, Defection, and Opportunism, where the latter strategy looks at the punishment reputations of the individual s neighbors, and decides whether to cooperate by looking at the expected payo s for cooperating and defecting.
+ As a measure of the norm strength in a population, we used the percentage of agents who adhere to the norm, and the proportion of punishers.

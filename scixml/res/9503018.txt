@@ -1,0 +1,7 @@
+ Design-World is an experimental environment for testing the relationship between discourse strategies , task parameters and agents ' cognitive capabilities , similar to the single agent TileWorld simulation environment Pollack and Ringuette 1990, Hanks et al. 1993 .
+ Design-World agents can be parametrized as to discourse strategy , and the effects of this strategy can be measured against a range of cognitive and task parameters .
+ The amount of effort required for each retrieval step is a parameter , as is the cost of each inference step and the cost of each communicated message .
+ For example , if retrieval is free then all items in working memory are instantly accessible , as they would be if they were stored in registers with fast parallel access .
+ If AWM is set to 16 , but retrieval isn't free , the model approximates slow spreading activation that is quite effortful , yet the agent still has the ability to access all of memory , given enough time .
+ Figure shows that if communication cost is 10 , and inference and retrieval are free , then the Explicit-Warrant strategy is DETRIMENTAL ( KS for AWM 1 to 5 # GT .23 , p # LT .01 ) .
+ The Design-World environment is based on a cognitive model of limited attention and supports experiments on the interaction of discourse strategies with agents ' cognitive limitations .

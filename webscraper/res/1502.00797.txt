@@ -1,12 +1,10 @@
- The early applications of IoT in healthcare were based on tracking systems for: hand- washing, extracting the location footprints of patients and doctors, monitoring medical assets, and the management of medical wastes [15].
- This o ers the possibility of o ering uniform control/service and data plane abstractions to both humans (virtual sensors /ac- tuators) and Things .
- Given the enhanced capa- bilities of edge devices like smart phones coupled with inter- mittent network connections, decisions on whether a subset of the Big data and decision-analytic should be pushed to the phone, or the Little data and analytic aggregated in the Cloud have to be automated.
+ Here, the richness of information will be more profound at close proximity to people , but will deplete and become less interesting and useful as the proximity zone expands.
+ Analytics services will be willing to pay for the integrated data they consume, and may charge con- sumers of the analytics.
+ The nal set of entities would be: (f) data brokers that help with data discovery and payment of data owners for consumed data, and negotiation of data movement; (g) service brokers that help with the discovery of analytics or integration services and their payment, and negotiation of service deployment/movement; (h) analytics consumers who are willing to pay for the analytics service.
  This disparity is a re ection of the di erences in infrastructure, cost of access, telecom networks and services, and policies among di erent economies.
  Hence, the cost and technology behind the sensing, device, networking and analytic solutions for the IoT should be a ordable and scale to billions of users.
- What IoT brings is an additional set of technologies, lower power, more computation and storage, cheaper devices, bet- ter wireless connectivity, much more granular control and observation capabilities.
+ This requires reuse of commodity hardware and sensors, and ex- isting infrastructure in novel ways rather than custom solu- tions with cutting-edge capabilities, or canned solutions de- veloped for advanced economies.
+ What it enables is scaling in both directions up and down, and the ability to look at ourselves and the world in an unprecedented degree of detail.
  The data plane will o er channel models (e.g., event driven, sam- ple and hold, etc.,) as a universal abstraction for input/output to the physical and virtual space of the sensing layer.
- The combination of semantic capability and data push/pull (with a publish/subscribe model) will allow Things to be assembled into a semantically linked data ow graphs.
- A data brokering service that helps interface data con- sumers with data producers is enabled using these building blocks of data ownership, incentives to collect data, data de- scription, data quality and access control.
- Such analytics algorithms and platforms, as before, have to operate in a distributed environment rather than assume centralized availability of data or the ability to t in memory.
- Based on the privacy and communication constraints, and availability of distributed data and devices, these analytics will have to run across edge devices and the Cloud.
- Such a constrained environment in the presence of potentially unre- liable data and computation capability means that analytics and decisions will have to be probabilistic.
+ The control plane will be responsible for managing the sensor/ network and providing a standardized life-cycle for the dis- covery, con guration and use of the channel models.
+ The combination enables the creation of the plug-n-play infras- tructure (across platforms from multiple vendors) necessary for interoperability and successful deployment of large-scale systems.

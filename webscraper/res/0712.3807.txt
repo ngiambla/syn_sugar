@@ -1,10 +1,10 @@
- We argue that a better algorithm should simultaneously require less computation and generate higher accuracy.
- However, the algorithmic accuracy and computational complexity may be very sensitive to the statistics of data sets.
  In order to increase the system scalability and accuracy of standard CF, we introduce a network-based rec- ommendation algorithm with spreading activation, namely SA-CF.
+ In addition, two free parameters, and N are presented to increase the accuracy and personality. 2.
+ Method Denoting the object set as O = {o1, o2, , on} and user set as U = {u1, u2, , um}, a recommendation system can be fully described by an adjacent matrix A = {aij} Rn,m, where aij = 1 if oi is collected by uj, and aij = 0 otherwise.
  Numerical results To test the algorithmic accuracy and personality, we use a benchmark data-set, namely MovieLens 19.
+ The data consists of 1682 movies (objects) and 943 users, who vote movies using discrete ratings 1-5.
  The black solid and red dash curves represent the performances of SA-CF and CF, respectively.
+ All the data points are obtained by averaging over ten independent runs with di erent data-set divisions.
  The above simulation results indicate that SA-CF outperforms CF from the viewpoints of accuracy and personality.
  Besides the algorithmic accuracy and personality, the computational complex- ity should also be taken into account.
  Actually, we argue that a better algorithm should simultaneously require less computation and generate higher accuracy.
- Both the two modi ed algorithm can further enhance the accuracy of SA-CF.
- More signi cantly, with properly choice of the parameter N , top-N SA-CF can simultaneously reduces the computational complexity and improves the algorithmic accuracy.

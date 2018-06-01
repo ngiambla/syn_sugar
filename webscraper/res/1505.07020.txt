@@ -1,12 +1,10 @@
- INTRODUCTION The initial medical response to Ebola in 2014 focused on caring for individuals in hospital settings and using contact tracing as the primary preventative measure [1].
- We incorporate such events into a transmission model and test that the results are robust to variations in the model transmission network.
- In our simulations, we allowed the disease to spread unabated for the rst T0 days, after which the intervention policies are put into place.
  We consider two di erent sets of parameter values corresponding to two di erent estimates of R0 for the 2014 Ebola outbreak in Liberia.
- We found that a relatively low compliance of 0.4 with the community screening policies was enough to end the outbreak (Fig. 1A).
- Even with a compliance of 0.4, enough infections were halted to reduce the value of Rt below 1 (Fig. 1C).
- Without travel restrictions, compliance levels between 20% and 40% actually prolong the outbreak relative to the no intervention case (Fig. 3A).
- This shows that, in the event of low compliance, travel restrictions limit the spread and duration of the outbreak.
- The infected area shrinks and the ratio of type A (red) to type B (green) neighborhoods decreases over time.
- Neglecting corrections of O(1/G2), the infected individual chooses 23 one such individual to visit and infects that individual according to the probability .
- It is common to characterize simulated and real-world outbreaks using R0, the average number of secondary infectious caused by a single infectious individual in an otherwise susceptible population.
- Results for = 10, = 7 We simulated our epidemic with the parameters values = 10, = 7, = 0.18, and = 0.015.
+ These are consistent with empirical bounds on the parameters [55] and the results are robust to variation in these values as shown below.
+ First, we considered a latency period of = 5 days and an infectious period of = 6 days to re ect the modeling assumptions of Althaus [51].
+ Using these time periods and infection parameters of = 0.15 and = 0.0125, we conducted 1,000 simulations and obtained an average exponential growth rate of 0.054, which results in an R0 estimate of 1.7, comparable to the value 1.6 obtained by Althaus.
+ Second, we used the parameter values = 10 and = 7 to compare our model with that of Chowell and Nishiura, who estimated that R0 = 1.96 [49].
+ RESULTS Fig. 1 shows the number of current and cumulative cases for various levels of compli- ance with community level interventions implemented at T0 = 70 days and without travel restrictions.
+ Fig. 1B shows that there is relatively little di erence in the cumulative number of infections over the duration of the outbreak for the interventions with 0.6, 0.8, and 1.0 compliance.
+ Thus, and perhaps surprisingly, the greatest gains in reducing the epidemic duration and cumulative number of cases arise from a particularly low level of compliance.
+ The travel restrictions compensate for low levels of compliance, and their di erences are comparable to Fig. 3 in the main paper.
+ The cumulative number of infections over the entire epidemic, as a function of compliance levels and intervention times.

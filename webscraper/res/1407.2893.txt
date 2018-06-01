@@ -1,11 +1,10 @@
- While larger teams tend to be more successful, workload is highly focused across the team, with only a few members performing most work.
- The rest of this paper is organized as follows: In Sec. 2 we describe our GitHub dataset; give de nitions of a team, team success, and work activity/focus of a team member; and introduce metrics to measure various aspects of the experience and experiential diversity of a team s members.
+ We nd that highly successful teams are signi cantly more focused than average teams of the same size, that their members have worked on more diverse sets of projects, and the members of highly successful teams are more likely to be core members or leads of other teams.
  In Sec. 4 we present statistical tests on linear regression models of team features to control for potential confounds between team features and team success.
- E ective team size (cid:80)M The number of team members, M, does not fully represent the size of a team since the distribution of work may be highly skewed across team members.
- This correlation may be due to more team members driving project success or success may act as a mechanism to recruit team members.
- For example, in one scenario a team member may be a community manager merging in large numbers of external contributions from non-team members.
- Within this subset of teams, dominated teams had signi cantly higher S than non-dominated teams (Mann-Whitney U test with continuity correction, p < 10 8).
- This e ective size can be roughly thought of as the average number of unique contributors per unit time and need not be a whole number.
+ Lastly, we conclude with a discussion in Sec. 5. 1For examples, see https://github.com/showcases/science. 2See https://github.com/blog/1840-improving-github-for-science. 3 2 Methods and Materials Dataset and team selection Public GitHub data covering 1 January 2013 to 1 April 2014 was collected from githubarchive.org in April 2014.
+ Lastly, to ensure our results are not due to outliers, in some analyses we excluded teams above the 99th percentile of S .
+ Despite a strong skew in the distribution of S , these highly popular teams account for only 2.54% of the total work activity of the teams considered in this study (2.27% when considering teams with M 10 members). 4 Secondary Team GitHub provides a mechanism for external, non-team contributors to propose work that team members can then choose to use or not.
+ Of course, the larger the team the more potential leads it may contain so when studying the e ects of leads on team success we only compare teams of the same size (comparing L while holding M xed).
+ Otherwise, E and D already account for team size. 3 Results We began our analysis by measuring team success S as a function of team size M, the number of primary contributors to the team s project.
+ This result is in line with prior studies [51], supporting the plausibility of our de nition of a team and our use of pushes to measure work.
+ This focus in work activity indicates that the majority of the team serves as a support system for a core set of members.
  The relationship between D and S was even stronger for larger teams (Fig. 3 inset), implying that larger teams can more e ectively translate this diversity into success.
- A team with many leads will bring considerable experience, but most of its members may also be unable to dedicate their full attention to the team.
- Team members should be both specialists, acting as the lead contributor to a team, and generalists, 14 o ering ancillary support for teams led by another member.

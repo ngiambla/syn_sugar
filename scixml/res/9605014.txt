@@ -1,0 +1,7 @@
+ MDL stipulates that the best probability model for given data is that model which requires the least code length for encoding of the model itself , as well as the given data relative to it .
+ We refer to the code length for the model as the ` model description length ' and that for the data the ` data description length ' .
+ In this context , a model with less clusters , such as Model 2 in Figure , tends to be simpler ( in terms of the number of parameters ) , but also tends to have a poorer fit to the data .
+ In contrast , a model with more clusters , such as Model 1 in Figure , is more complex , but tends to have a better fit to the data .
+ Finally , is calculated by where denotes the observed frequency of the noun verb pair , and the estimated probability of , which is calculated as follows where denotes the observed frequency of the noun verb pairs belonging to cluster .
+ We then applied the learning method proposed in Li and Abe 1995 to learn case frame patterns with the constructed thesaurus as input using the same training data .
+ That is , we used it to learn the conditional distributions , , where and vary over the internal nodes in a certain ` cut ' in the thesaurus tree .

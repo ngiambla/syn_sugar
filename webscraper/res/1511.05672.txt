@@ -1,11 +1,10 @@
- The typing data consists of numerical elements, which correspond to time periods in microseconds that elapse between consecutive key press events and time between key press and key release events.
- RELATED WORK Keystroke Dynamics is the process of monitoring and analyzing the typing behavior of users on a computer keyboard and is extensively studied in last two decades, with the main focus on user authentication.
- We believe that an application that classi es computer users according to their age groups using typing data is an interesting new research challenge.
- In this study, digraph measure is used to compose the dataset, as preferred in majority of the studies for Keystroke Dynamics.
- In order to make comparative studies with the Keystroke Dynamics Benchmark Dataset [3], the dataset is composed in an identical format.
- The time period between the key press and release events for the same key M , which is the duration time for that key, is shortened as D(M).
- ANALYSIS Using the collected dataset, we attempt to analyze the performance of discriminating child typing samples from adult typing samples.
- In this method, we compute the mean feature vector for the training set for both age groups as the rst step.
- Typing this password phrase is a relatively harder task for the subjects, for which they occasionally had to look at the screen.
- In this dataset the nth feature vector (sample row) is concatenation of the nth feature vector of the Turkish dataset and the password dataset.
- The equal error rates for concatenated dataset are always lower than those obtained for the password dataset, hence, it can be said that password dataset is the worst alternative for discriminating age groups.
+ To protect children from such threats, in this study, we investigate how successfully typing data can be used to distinguish children from adults.
+ For this purpose, we collect a dataset comprising keystroke data of 100 users and show that distinguishing child Internet users from adults is possible using Keystroke Dynamics with equal error rates less than 10 percent.
+ Initially, the subjects were greeted by a welcome screen, in which they entered their name, surname, gender, year of birth and class (for primary school students only) information.
+ The only information that is required for our current work is the year of age, but we also retained name and surname in order to recognize a subject in case they may provide data at future sessions and also for future studies.
+ Lastly, gender data is used to build a dataset with equal number of males and females in each age group.
+ In the next step, the users were confronted with a short survey including questions that may be related to their typing behavior.
+ Then, training samples are given as inputs to the neural network with the outputs set to +1 for adult February 1, 2016 DRAFT 12 typing samples and -1 for child typing samples.
+ RESULTS We test and compare the classi cation methods described in the previous section for classifying typing samples of adult and children participants.
+ Type-1 error is the ratio of adult typing samples mislabeled as child sample to all adult typing samples and type-2 error is the ratio of child typing samples mislabeled as adult sample to all child typing samples.
+ A question that may be relevant for using the same phrase for all users is that whether it is realistic to expect users type the same phrase in a real life application.

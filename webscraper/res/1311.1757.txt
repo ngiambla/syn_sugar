@@ -1,13 +1,10 @@
+ Our ndings include such risk properties as conta- gion potential, persistence, roles in cascades of failures and the identity of risks most detrimental to system stability.
  Speci cally, we propose a model for the materialization of risks on the network, in which internal (self-materialization) and external (contagion) risk materializations are separated using historical data.
+ Furthermore, we show that a model incorporating the in uence of a risk s network neigh- borhood on its own materialization matches past data on risk materialization better than a model which is oblivious to network e ects.
  First, for a risk i, given that it is in state 0, its spontaneous or internal materialization is a Poisson process with intensity int .
- We nd the values of the model parameters that optimize the model match with the historical data, while we use expert assessments to individualize probabilities of Bernoulli processes for each risk.
- In essence, the expert assessments are de ning those probabilities for each risk in relations to probabilities for other risks, while model parameters map per- formance of all risks onto historical data.
+ Similarly, given the risk in state 1, its recovery from this state, and therefore transition to state 0, is a Poisson process with intensity rec .
+ Finally, given that risks i is in state 0, and j in state 1 are connected, the materialization of risk i due to the external in uence of risk j is a Poisson process with intensity ext ji .
  We also compute the probability that the cascade resulting from the materialization of a given initiator risk would result in the materialization of a selected risk.
  Speci cally, we consider the probability of materialization of the four risks, 8, 1, 17 and 25, observed to be among the top ve risks most frequently active in simulations.
- So model parameters de ne the same ratio of intensities of all risks, while likelihood assessments de ne individual values of these intensities for each risk.
- For a given set of values of parameters , , and , one can compute the log-likelihood of observing the given time-series of risk materialization using Eqs 2 and 12.
+ Risk 8 is the initiator that yields the highest materialization probability for risks 1, 17, and 40, while it itself materializes with highest probability when the initiator risk is 1 and is followed by risks 17, 25, and 40.
  This result demonstrates that to fully uncover the value of expert data requires accounting for network e ects, as we have done in our network model.
- Parameters , , and govern the Poisson process intensities for internal materializations, pairwise in uence, and continuation, as expressed in Eqs. 8, 10, and 9 respectively.
- We assume a three parameter network model for the propagation 16 of risk materialization (representing the corresponding network node failures), and obtain maximum likelihood values for the parameters using historical data on risk materialization.
- Our model was built upon expert assessments available in the WEF report which enabled the construction of a detailed and heterogeneous weighted network of risks.
- We have uncovered the global risk network dynamics and measured its resilience, stabil- ity, and risks contagion potential, persistence, and roles in cascades of failures.

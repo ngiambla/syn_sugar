@@ -1,0 +1,7 @@
+ Although the usefulness of on-line semantic filtering during the processing of complete sentences is debatable , filtering has a more plausible role to play in interactive , real-time environments , such as interactive spell checkers ( see e.g.
+ Here the choice is between whether or not to have semantic filtering at all , rather than whether to do it on-line , or at the end of the sentence .
+ In practice , however , provided we are only interested in mapping from a string of words to a semantic representation , and don't need explicit syntax trees to be constructed , we can merely use the types of the ` syntactic lambda expressions ' , rather than the expressions themselves .
+ This is essentially the approach taken in Milward 1992 in order to provide complete , word by word , incremental interpretation using simple lexicalised grammars , such as a lexicalised version of formal dependency grammar and simple categorial grammar .
+ For example , the fragment Every man gives a book can be given the following representation : Each quantified term consists of a quantifier , a variable and a restrictor , but no body .
+ Thus instead of doing all quantifier scoping at the end of the sentence , each new quantifier is scoped relative to the existing quantifiers ( and operators such as negation , intensional verbs etc ) .
+ A preliminary implementation achieves this by annotating the semantic representations with node names , and recording which quantifiers are ` discharged ' at which nodes , and in which order .

@@ -1,11 +1,10 @@
  Using data from social media users of Last.fm and Twit- ter, we design and evaluate a measure that reasonably captures diversity of musical tastes.
+ We use that mea- sure to explore associations between musical diversity and variables that capture socioeconomic status, demo- graphics, and personal traits such as openness and de- gree of interest in music (into-ness).
+ This can lead to a better understanding of the impact of so- cial conditioning on diverse musical tastes, and by proxy, a better understanding of the connection between socioe- conomic status, demographics, and the diversity of musical preferences.
  To date, the social computing community has examined online listening activity as source of information and recom- mendations for music (Bu et al. 2010; Zheleva et al. 2010; Farrahi et al. 2014; Turnbull et al. 2014).
- Along with these ndings, our results also show that de- mographic factors such as age and gender are associated with musical diversity rather than conventional socioeco- nomic status such as income and education level.
- We begin by reviewing the primary key research around the diversity of musical tastes, and then identify possible challenges for developing better measures of diversity.
- We inferred socioeco- nomic status including income, education level, ethnic diver- sity of area of residence, and urbanness of area of residence by using geocoded tweets.
  Into-ness (i.e., degree of music- related topics of interest in Twitter) and openness including number of friends, timezone diversity of friends, and interest diversity was inferred by using tweets, pro le descriptions, and friendship information in Twitter.
- We selected a single home ZIP code (and FIPS code) for each user by intersecting the ZIP code sets resulting from the three methods mentioned above.
  Into-ness and Openness For each user, we calculated several variables that capture openness (preference for novelty and variety) and into-ness (degree of interest in music) using Twitter and Last.fm data.
- For the other measures of diversity, when moving between genre and subgenre levels, the average correlation coef - cients dropped more steeply, especially the volume measure.
+ To help inferring into-ness and openness regarding each user s interests, we rst inferred the user s general interests by using a method proposed in (Bhattacharya et al. 2014).
+ Both of Age and Gender in the demographic variables have pos- itive effect on diversity: being older or male is more likely to have more diverse musical tastes.
+ Among variables about into-ness, Musical Event At- tendance and Days from Registration appear to be nega- tively associated with diversity, whereas Number of Last.fm Friends does not show a signi cant relationship and Num- ber of Loved Tracks appears to positively associated with diversity.
  Musical diversity can be computed by simple methods, but it may underestimate or overestimate diversity depending on the complexity of musical categories and the disparity be- tween musical categories that people perceive.
- Our results show that volume and entropy might not be the best solution for computing the musical diversity of people on a highly complex map of musical categories such as subgenres.

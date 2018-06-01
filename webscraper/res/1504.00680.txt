@@ -1,12 +1,10 @@
- In this paper, we characterize antisocial be- havior in three large online discussion communities by ana- lyzing users who were banned from these communities.
- Among FBUs, we observe that the distribution of users post deletion rates (i.e., the proportion of a user s posts that get deleted by moderators) is bimodal.
- Thus, we instead obtained human judgments of the appropriateness of a post, and collected labels for a random sample of 6000 posts using Mechanical Turk.
- Then, we analyze changes in behavior over the lifetimes of these users to understand the effects of post quality, commu- nity bias, and excessive censorship.
- Evolution Over Time While FBUs behave differently from NBUs, how does their behavior and the community s perception of them change over time?
- As Table 2 shows, FBUs enter a community already writing worse than NBUs (3.0 vs. 3.5 for CNN, p<0.05 for all communities).
- In other words, if users had their posts arbitrarily deleted, despite writing similarly to other users whose posts were left alone, were they more likely to write worse in the future?
+ We nd that such users tend to concentrate their efforts in a small number of threads, are more likely to post irrelevantly, and are more successful at garnering responses from other users.
+ While most users tend to be civil, others may engage in antisocial behavior, negatively affecting other users and harming the community.
+ Such undesired behavior, which in- cludes trolling, aming, bullying, and harassment, is exacer- bated by the fact that people tend to be less inhibited in their online interactions (Suler 2004).
  In this study, we considered users who wrote at least 10 posts, and computed the mean text quality of each user s rst ve posts.
  We divided these users into two populations: those which had four or more posts deleted among their rst ve posts, and those who had one or less posts deleted.
- We rst t two linear regression lines to a user s post deletion rate over time, one for each half of the user s life (Figure 5a).
+ Next, we matched pairs of users from these two populations on text quality, and then compare the mean text quality of their subsequent ve posts.
+ Thus, we include features such as the proportion of posts that are replies and the maximum number of posts in a single thread, in addition to other features such as posts per day or votes given to other users.
+ We also considered the different mechanisms in which other members of a community in- teract with users and their posts.
  Moderator features (i.e., features re- lating to post deletion) constitute the strongest signals of deletion, as community moderators are responsible for both deleting posts and banning users.
- Discussion & Conclusion This paper presents a data-driven study of antisocial behav- ior in online discussion communities by analyzing users that are eventually banned from a community.
+ In addition to the propor- tion of posts deleted so far, we include the slopes and in- tercepts of the deletion rate over the rst ten posts.

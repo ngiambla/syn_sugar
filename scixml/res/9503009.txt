@@ -1,0 +1,7 @@
+ In a previous paper Schuetze 1993 , we trained a neural network to disambiguate part-of-speech using context ; however , no information about the word that is to be categorized was used .
+ This scheme fails for cases like `` The soldiers rarely come home '' vs. `` The soldiers will come home '' where the context is identical and information about the lexical item in question ( `` rarely '' vs. `` will '' ) is needed in combination with context for correct classification .
+ By restricting the matrices , , and to their first m # LT k columns ( = principal components ) one obtains the matrices T , S , and D .
+ The context vectors of punctuation marks contribute little information about syntactic categorization since there are no grammatical dependencies between words and punctuation marks , in contrast to strong dependencies between neighboring words .
+ The case of the tags `` VBN '' and `` PRD '' ( past participles and predicative adjectives ) demonstrates the difficulties of word classes with indistinguishable distributions .
+ There are hardly any distributional clues for distinguishing `` VBN '' and `` PRD '' since both are mainly used as complements of `` to be '' .
+ For example , `` fun '' in `` It 's a fun thing to do . '' has properties of both a noun and an adjective ( superlative `` funnest '' possible ) .

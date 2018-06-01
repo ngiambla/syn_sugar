@@ -171,13 +171,16 @@ class garnish:
 
 		
 		avg_wrd_snt = (_number_of_ingredients/len(sentence_vec_map))
+		with open("okay.txt", "w+") as f:
+			for item in sentence_length_map:
 
-		for item in sentence_length_map:
+				lcompress=min(avg_wrd_snt/sentence_length_map[item], 0.65)
+				rcompress=max((1-len(freq_vec_map_gb[item])/sentence_length_map[item])/100, 0.001)
+				f.write(str(item)+","+str(sentence_entropy_map[item]));
 
-			lcompress=min(avg_wrd_snt/sentence_length_map[item], 0.65)
-			rcompress=max((1-len(freq_vec_map_gb[item])/sentence_length_map[item])/100, 0.001)
+				sentence_entropy_map[item]=sentence_entropy_map[item]*mutils.sig_filter((sentence_length_map[item]), lcompress, rcompress, avg_wrd_snt)
+				f.write(","+str(sentence_entropy_map[item])+"\n");
 
-			sentence_entropy_map[item]=sentence_entropy_map[item]*mutils.sig_filter((sentence_length_map[item]), lcompress, rcompress, avg_wrd_snt)
 
 		for _label in sentence_entropy_map:
 

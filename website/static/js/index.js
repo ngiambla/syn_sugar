@@ -284,6 +284,7 @@ function upload_file() {
 			    	sentence_len_map 	= ret["res"][2];
 			    	entropy_map			= ret["res"][3];
 			    	sen_pairs 			= ret["res"][4];
+			    	console.log(sen_pairs);
 			    	freq_vec_map 		= ret["res"][5];
 
 			    	load_doc(doc, summary);

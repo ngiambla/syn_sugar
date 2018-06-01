@@ -1,1818 +1,203 @@
-Semantic homophily in online communication: evidence from Twitter 
-A 
-SANjA S CEPANOVI C, Aalto University 
-IGOR MISHKOVSKI, University Ss. Cyril ]^[ Methodius 
-BRUNO GONC ALVES, New York University 
-NGUYEN TRUNG HIEU, University of Tampere 
-PAN HUI, Hong Kong University of Science ]^[ Technology 
-People are observed to assortatively connect on a set of traits. This phenomenon, termed assortative mixing ]v[ sometimes 
-homophily, can be quanti ed through assortativity coef cient in social networks. Uncovering the exact causes of strong 
-assortative mixing found in social networks has been a research challenge. Among the main suggested causes from sociology 
-are the tendency of similar individuals to connect (often itself referred as homophily) ]^[ the social in uence among already 
-connected individuals. Distinguishing between these tendencies ]^[ other plausible causes ]^[ quantifying their contribution 
-to the amount of assortative mixing has been a dif cult task, ]^[ proven ]n[ even possible from observational data. However, 
-another task of similar importance to researchers ]^[ in practice can be tackled, as we present here: understanding the exact 
-mechanisms of interplay between these tendencies ]^[ the underlying social network structure. Namely, in addition to the 
-mentioned assortativity coef cient, there are several other static ]^[ temporal network properties ]^[ substructures that can 
-be linked to the tendencies of homophily ]^[ social in uence in the social network ]^[ we herein investigate those. 
-Concretely, we tackle a computer-mediated communication network (based on Twitter mentions) ]^[ a particular type 
-of assortative mixing that can be inferred from the semantic features of communication content that we term semantic 
-homophily. Our work, to the best of our knowledge, is the rst to offer an in-depth analysis on semantic homophily in 
-a communication network ]^[ the interplay between them. We quantify diverse levels of semantic homophily, identify the 
-semantic aspects that are the drivers of observed homophily, show insights in its temporal evolution ]^[ nally, we present its 
-intricate interplay with the communication network on Twitter. By analyzing these mechanisms we increase understanding 
-on what are the semantic aspects that shape ]^[ how they shape the human computer-mediated communication. In addition, 
-our analysis framework presented on this concrete case can be easily adapted, extended ]^[ applied on other type of social 
-networks ]^[ ]f[ different types of homophily. 
-Keywords: Homophily, Semantics, In uence, Semantic Relatedness, Twitter, Wikipedia, Social Network Analysis, Compu- 
-tational Social Science 
-1. INTRODUCTION 
-Homophily [Lazarsfeld ]^[ Merton 1954; McPherson et al. 2001] (sometimes referred as selection 
-[Leenders 1997; Crandall et al. 2008]) represents a tendency of individuals who are similar on some 
-traits to connect to each other (become friends, follow each other, communicate etc.) in a social net- 
-work. Social in uence (peer pressure) is in a way an inverse tendency ]f[ people to become similar 
-on some traits ]v[ to adopt certain behavior from their social contacts. Both, homophily ]^[ social 
-in uence result in a higher correlation (assortative mixing) on certain traits between connected than 
-between random users in a network. This assortative mixing property (also in some studies referred 
-as social correlation [Anagnostopoulos et al. 2008]) is repeatedly con rmed in social network anal- 
-ysis literature [Bollen et al. 2011; De Choudhury et al. 2010; Anagnostopoulos et al. 2008; Aral 
-]^[ Walker 2012; Tang et al. 2013]. A question remains, to what extent is the observed assortative 
-mixing a result of an underlying homophily that shapes the formation of the network ]v[ of the social 
-in uence taking place in an already formed network [Leenders 1997]. A third factor that could be 
-the cause of social correlation is a common external in uence. Moreover, a combination of these 
-factors is often at play. For instance, an external factor might have non-homogeneous adoption in 
-the network because friends could have a higher common latent propensity ]f[ it ]^[ adopt it to a 
-larger extent than non-friends. Distinguishing between these factors as the main causes of assorta- 
-Author s addresses: S. S cepanovi c, Aalto University, Department of Computer Science, Espoo, 02150, Finland; I. 
-Mishkovski, University Ss. Cyril ]^[ Methodius, Faculty of Computer Science, Skopje, 1000, Macedonia; H. Nguyen Trung, 
-University of Tampere, Tampere, 33100, Finland; P. Hui, Hong Kong University of Science ]^[ Technology, Department of 
-Computer Science, Clear Water Bay, Kowloon, Hong Kong; B. Gonc alves, New York University, Center ]f[ Data Science, 
-New York, 10003, U.S.; 
-7 
+Workshop track - ICLR 2018 
+QUANTIZATION ERROR AS A METRIC FOR DYNAMIC 
+PRECISION SCALING IN NEURAL NET TRAINING 
+Ian Taras & Dylan Malone Stuart 
+Department of Electrical ]^[ Computer Engineering 
+University of Toronto 
+Toronto, ON, Canada 
+{tarasian, malones2}@ece.utoronto.ca 
 1 
-0 
-2 
-r 
-a 
-M 
-0 
-2 
-] 
-h 
-p 
-- 
-c 
-o 
-s 
-. 
-s 
-c 
-i 
-s 
-y 
-h 
-p 
-[ 
-3 
-v 
-7 
-0 
-2 
-8 
-0 
-. 
-6 
-0 
-6 
+INTRODUCTION 
+It is well established that neural networks, though ordinarily trained using 32-bit single precision 
+oating point representation, can achieve desirable accuracy during inference with reduced precision 
+weights ]^[ activations (Judd et al., 2015) (Mishra et al., 2017) (Courbariaux et al., 2015) (Hubara 
+et al., 2016). These reduced precision networks are amenable to acceleration on custom hardware 
+platforms which can take advantage of lower bit-widths in order to speed up computation (Na & 
+Mukhopadhyay, 2016) (Gupta et al., 2015). Reduced precision strategies are ]n[ typically applied 
+during back-propagation whilst training, as this can lead to heavily reduced accuracy ]v[ even non- 
+convergence. 
+Recent work has shown that dynamic precision scaling, a technique in which the numerical precision 
+used during training is varied on-the-y as training progresses, can achieve computational speedups 
+(on custom hardware) without hampering accuracy (Na & Mukhopadhyay, 2016) (Courbariaux 
+et al., 2014). DPS uses feedback from the training process to decide on an appropriate number 
+representation. For example, Na & Mukhopadhyay (2016) suggest starting with reduced precision, 
+]^[ increasing precision dramatically whenever training becomes numerically unstable, ]v[ when 
+training loss stagnates. 
+In this paper, we present a novel DPS algorithm that uses the stochastic xed-point rounding method 
+suggested by Gupta et al. (2015), the dynamic bit-width representation used by Na & Mukhopadhyay 
+(2016), ]^[ an algorithm that leverages information on the quantization error encountered during 
+rounding as a heuristic ]f[ scaling the number of fractional bits utilized. 
+2 FIXED POINT REPRESENTATION AND QUANTIZATION/ROUNDING 
+Fixed point numbers are represented by a fractional portion appended to an integer portion, with an 
+implied radix point in between. We allow our xed point representation to use arbitrary bit-width 
+]f[ both the integer ]^[ fractional parts, ]^[ represent the bit-width of the integer part as IL ]^[ 
+the bit-width of the fractional part as F L. We denote a given xed point representation, then, as 
+(cid:104)IL, F L(cid:105). DPS modies IL ]^[ F L on-the-y during training. 
+Inspired by Gupta et al. (2015), we use stochastic rounding during quantization of oating point 
+values to (cid:104)IL, F L(cid:105), as it implements an unbiased rounding. 
 1 
-: 
-v 
-i 
-X 
-r 
-a 
-A:2 
-S. S cepanovi c et al. 
-tive mixing has been a challenge, ]^[ proven ]n[ even possible from observational data [Shalizi ]^[ 
-Thomas 2011]. 
-Extensive research is conducted in sociology on homophily in social networks as abstractions of 
-diverse groups in society (see the seminal review by McPherson et al. [McPherson et al. 2001]). 
-Classical paper [Lazarsfeld ]^[ Merton 1954] introduced two basic levels ]v[ dimensions of ho- 
-mophily: status ]^[ value homophily. Status homophily relates to any formal ]v[ perceived status 
-among individuals. It includes some of the most important social dimensions, such as race, eth- 
-nicity, sex, age, education, occupation ]^[ religion. Value homophily relates to our internal states 
-that might shape the future behavior; ]f[ example: abilities (intelligence), aspirations, ]^[ attitudes 
-(political orientation), regardless of the differences in status. 
-In addition to individuals connecting to similar individuals, another suggested mechanism driving 
-homophily is the process of tie (link) dissolution over time that happens more often among non- 
-similar individuals. However, both mechanisms, of similarity ]^[ dissimilarity are ]n[ enough to 
-explain a particular clustered (community) structure found in social networks. Sociologists have pro- 
-posed that instead of only being driven by similarity, a tie is actually often formed around a speci c 
-focus of homophily [Feld 1981]. McPherson et al. [McPherson et al. 2001] offer a nice overview 
-on possible different foci, ]^[ below we brie y discuss some of them. Geographical proximity is 
-considered one of the most important foci of homophily, simply put, because we are more likely to 
-have contacts with the people who are geographically closer to us. The ties induced by proximity 
-in space are often weak; however, they leave more potential ]f[ stronger ties formation. It is worth 
-noting that the advent of new technologies over time did ]n[ remove this pattern of geographical 
-homophily ]^[ recent empirical research on online social networks nds that people online still tend 
-to connect more often to geographically close people (in Twitter network [Kulshrestha et al. 2012; 
-De Choudhury 2011]; in Microsoft IMS [Leskovec ]^[ Horvitz 2008]; in Facebook social graph 
-[Ugander et al. 2011]; in mobile phone communication [Blondel et al. 2010]). The only study we 
-found that reports no signi cant effects of geographical homophily tackles organization-individual 
-relationship on Twitter [Sun ]^[ Rui 2017]. Another important focus that causes homophily are fam- 
-ily ties. Family ties are an interesting focus of formation that causes people who are similar on some 
-aspects ]^[ as well who are dissimilar on certain other aspects to connect. For this reason, when 
-it comes to family ties, we nd the largest geographic, age, sex ]^[ educational heterophily; ]b[ at 
-the same time, the largest race, religious ]^[ ethnic homophily. Organizational foci turns to be the 
-most important cause of ties that are ]n[ relatives nor family-bound. These foci include schoolmates, 
-colleagues from work ]^[ voluntary organizations. A more implicit cause of homophily shows to 
-be network position. Research nding exist that holding a same position inside an organization will 
-induce larger homophily between individuals than it would be the case if the ties were random 
-[Lincoln ]^[ Miller 1979]. Another, more internal, focus ]f[ homophily lies inside perceived sim- 
-ilarity ]^[ shared knowledge, ]^[ it is termed cognitive processes. It is particularly notable among 
-teenagers who tend to connect to those who are perceived to be more similar on some of the internal 
-traits. Looking back at the described homophily traits ]^[ foci, it is ]n[ easy to make a clear dis- 
-tinction between the consequences of homophily ]^[ the causes ]v[ origins of it. Whether cognitive 
-processes focus among teenagers causes them to become friends with similar ones; ]v[ whether the 
-friend teenagers in uence each other ]^[ hence become similar on a value homophily level? 
-1.1. Terminology 
-Communication network: In this study, the social network of interest is a computer-mediated 
-communication [Thurlow et al. 2004] network from Twitter. It is formed of nodes representing 
-Twitter users, ]^[ the directed links representing the tweets in which they mention (reply to) each 
-other. The tweet content is also included. Hence, our network can be seen as a subtype of previously 
-introduced interaction networks on Facebook [Wilson et al. 2009]. Throughout the rest of this study 
-we simply use the term communication network referring to this de nition. While in general 
-communication refers to exchanging of information, we recognize the potential of Twitter mentions 
-Semantic homophily in online communication: evidence from Twitter 
-A:3 
-to carry two different forms of communication. In the rst form, the source is directly addressing the 
-receiver, ]^[ in the second form, there is a sort of authority attribution where the source comments 
-to the rest of the Twitter users about the receiver (this could be a critique as well). Communication 
-intensity (CI) in our network denotes the weight on the links i.e., the number of mentions between 
-a pair of users. 
-Semantic homophily: Importantly, in many related studies the term homophily is used with the 
-meaning of assortative mixing as we introduced it here (one possible reason being described indis- 
-tinguishability of presented phenomena). We also use the term semantic homophily when talking 
-about assortative mixing on semantic aspects of communication. In the light of introduced de ni- 
-tions, a more precise term to use would be semantic assortative mixing. However, we select to talk 
-about semantic homophily in order to be consistent with the related studies ]^[ also since we do ]n[ 
-focus on distinguishing between homophily ]^[ social in uence. Hence, using an umbrella term 
-semantic homophily to cover both tendencies is simpler. When at some point we talk about one 
-of the tendencies in particular, we then point that out. In order to analyze semantic homophily, we 
-tackle following semantic aspects of communication: 
-semantic relatedness (SR) between the tweet contents of two users. SR is a more general metric 
-compared to semantic similarity [Harispe et al. 2015] since in addition to similarity, it includes 
-also any other relation between the terms, such as antonymes (opposite terms) [Lehrer ]^[ Lehrer 
-1982] ]^[ meronymes (a term is a part of ]v[ member of the other) [Murphy 2003]. For instance, 
-the term airplane is similar to the term spacecraft. The same term is related to car, train ]v[ wing, 
-]b[ ]n[ similar to them. SR relation between tweets of a pair of users is quanti ed by a value 
-ranging from 0 (not related at all) to 1 (maximally related); 
-sentiment of user tweet content. The sentiment value ranges from -1 (negative) to 1 (positive); 
-the most important entities (people, companies, organizations, cities, geographic features etc.), 
-concepts (abstract ideas in the text: ]f[ example, if an article mentions CERN ]^[ the Higgs 
-boson, it will have Large Hadron Collider as a concept even if the term is ]n[ mentioned explicitly 
-in the page [An IBM Company 2016]) ]^[ taxonomy (a hierarchy that helps to classify the content 
-into its most likely topic category) of user tweets content. 
-Communication propensity ( cp) is de ned as function of some property ]^[ represents the ex- 
-tent to which the observed communication ]^[ its intensity diverge from what would be expected in 
-a uniformly random setting with respect to that property. We investigate communication propensity 
-in our network with respect to SR threshold in the network (formula is given in Section 4.1). 
-Social capital: Among a variety of de nitions from sociology [Portes 2000; Bourdieu 2011], 
-one that translates well to our case introduces social capital as the actual ]^[ potential resources 
-that are linked to the ego s social network ]^[ relationships. Hence, in similarity to the previ- 
-ous study on socio-semantic networks [Roth ]^[ Cointet 2010], we de ne social capital in our 
-communication network as the total number of contacts (degree in the unweighted network) ]v[ 
-the total communication intensity (degree in the weighted network). Moreover, we can divide the 
-social capital, de ned as such, in both cases to popularity (if we look at in-degree) ]^[ commu- 
-nication activity (if looking at out-degree). To sum up, thanks to our network being directed ]^[ 
-weighted, we can introduce four types of social capital in it: (i) popularity in terms of number of 
-communication contacts ]^[ (ii) popularity in terms of communication intensity ]^[ (iii) activity in 
-terms of number of contacts ]^[ (iv) activity in terms of communication intensity. 
-Semantic capital denotes the amount of diversity of user tweet content with respect to the intro- 
-duced semantic attributes, similarly as in [Roth ]^[ Cointet 2010]. 
-Relative status of two users can be de ned ]f[ both social ]^[ semantic capital ]^[ represents the 
-difference of their respective status ranks. Finally, ]f[ a single user we de ne status inconsistency 
-[Lenski 1954; Rogers ]^[ Bhowmik 1970] as a relative difference between his/her ranking among 
-all users on social ]^[ semantic capital. Status inconsistent individuals tend to be highly ranked on 
-some aspects ]^[ lowly ranked on others. This is suggested to be an attribute of individuals who 
-are drivers of social change [Lenski 1954]. Status inconsistency can be de ned on a communication 
-A:4 
-S. S cepanovi c et al. 
-link, as well, as a measure of inconsistency of both participating users (we give a formal de nition 
-in Section 4.4). 
-1.2. Contributions 
-In this study, we offer a deeper understanding on the mechanisms of semantic homophily ]^[ how 
-they are shaping the structure ]^[ properties of the underlying communication network. 
-While homophily has been identi ed in a diverse set of social networks, most of the studies inves- 
-tigated friendship, followers ]v[ citation type of ties. Interaction ties are more suitable ]f[ inferring 
-meaningful social relationships [Wilson et al. 2009]. Our analysis is on the communication ties 
-formed from Twitter mentions (replies), that are a subtype of interaction ties. The ties in our net- 
-work are ]n[ only formed once (such as friendship ]^[ followership), ]b[ they require an active 
-engagement over time. The nature of the mention network is fundamentally different from fol- 
-lower/friendship network in Twitter [Bliss et al. 2012]. For instance, the reciprocity of the followers 
-network is found to be around 22% [Kwak et al. 2010] which is lower compared to the other social 
-networks. The reciprocity of our mention network is 64%, considerably higher. When a user A fol- 
-lows a user B it simply states some type of potential interest in what B has to say. Depending on the 
-different time zones ]^[ the number of other users that A is already following s/he might ]n[ even 
-get to see any of B s tweets. In the case of our communication network we can clearly point to 
-interactions ]^[ information diffusion between users (when the user A mentions the user B), instead 
-of simply speculating about it when using the friendship/follower network. While retweet network 
-allows ]f[ similar information diffusion analysis, its nature is also shown to be importantly different 
-from mention network [Conover et al. 2011]. Finally, observance of communication interruption in 
-time allows us to de ne a tie dissolution (link decommission). As discussed in [Bliss et al. 2012], 
-considering link decommission resolves issues of analyzing social network with stale links without 
-current functional role. 
-The focus of our work is on semantic homophily. While several other studies have tackled some 
-aspects of semantic homophily, as we discuss in the related work, to the best of our knowledge 
-this is the rst study aiming towards a comprehensive picture on the role of semantic homophily in 
-communication. We offer an in-depth ]^[ detailed investigation of semantic homophily: from quan- 
-ti cation ]^[ qualitative assessment, through temporal evolution to its interplay with community 
-structure of communication network. 
-Fig. 1 presents the general framework ]f[ our study ]^[ lists several main contributions. For a full 
-list of our contributions, we refer the reader to Table VIII in Discussion 7. As depicted in Fig. 1, we 
-operate on experimental datasets (from Twitter ]^[ Wikipedia), while at the same time building on 
-existing sociological ndings ]^[ theories. By testing ]f[ existence of status ]^[ value homophily, 
-we con rm that these general theories from sociology hold in a communication social network. In 
-addition, we identify the aspects of homophily that are speci c ]f[ communication, compared to 
-other types of social networks. A natural method to asses homophily in communication is through 
-semantic aspects of it. 
-At rst we quantify diverse aspects of semantic homophily in the network. We start by uncover- 
-ing the subtle relationship between SR among users ]^[ the intensity of their communication. Next 
-we introduce measures of social ]^[ semantic status of users ]^[ show that communication net- 
-work exhibits assortativity on those metrics. This con rms sociological theories on status level ho- 
-mophily. We also show that such status correlation increases with strength of ties in communication. 
-In addition, analysis of the interplay between two types of capital reveals large status heterogeneity 
-among users. Accordingly, we nd that status inconsistency of one ]v[ both communicating parties 
-correlates with intensity of communication. 
-Next we focus on temporal evolution of semantic homophily. We detect temporal increase in 
-average semantic relatedness among users ]^[ investigate new links formation as a possible cause. 
-However, we also nd a number of links that get decommissioned in time. After comparing rel- 
-ative statuses of users who stop communication, we present evidence that decommission is more 
-Semantic homophily in online communication: evidence from Twitter 
-A:5 
-Fig. 1: General framework ]^[ main contributions of our study. In blue frames we denote 
-the evidence found in Twitter experimental data ]f[ the existing theories from sociology. During 
-data analysis, we also nd evidence pointing to some novel hypotheses, presented in green fames. 
-However, such evidence should be evaluated ]^[ con rmed in several other datasets before any 
-general conclusions about semantic homophily in communication can be reached. 
-due to status than to value heterophily. Finally, the analysis on the community structure of the 
-communication network (structural communities) reveals the semantic foci around which such 
-communities are formed (functional communities). In this way, we nd evidence ]f[ Feld s theory 
-of focused organization of social ties [Feld 1981] ]^[ also identify some of such foci around which 
-communication ties are formed. In the end, we delve into the mechanisms of pluralistic homophily 
-(assortative mixing as a result of several foci), ]^[ describe speci city of users who have such a 
-position in communication network. 
-The rest of the paper is organized as follows. Section 2 presents related research literature. In 
-Section 3 we describe two Web datasets (from Twitter ]^[ Wikipedia) used ]f[ analysis, as well 
-as the framework of analysis consisting of a communication (Section 3.1) ]^[ semantic (Section 
-3.2) layer. Quanti cation of different forms of homophily in our network is presented in Section 
-4: social status homophily in 4.2 ]^[ semantic status ]^[ value homophily in 4.3. Insights on the 
-relationship between these forms of capital, ]^[ relative status ]^[ status inconsistency are given in 
-4.4. The relationship between semantic relatedness ]^[ communication are reported in Subsection 
-4.1. Temporal aspects of semantic homophily, from link formation ]^[ dissolution to persisting 
-interactions, are discussed in Section 5. Community structure ]^[ focused organization of social 
-A:6 
-S. S cepanovi c et al. 
-ties are the topic in Section 6. Pluralistic homophily is also characterized in this section. The article 
-concludes with a discussion ]^[ nal remarks on future research directions in Section 7. 
-2. RELATED WORK 
-Knowledge networks representing scienti c collaboration ]^[ blogger citations are studied in [Roth 
-]^[ Cointet 2010]. This study is similar to ours in that the joint dynamics ]^[ co-evolution of the 
-social ]^[ socio-semantic structures is analyzed in these knowledge networks. Our work is dif- 
-ferent since we focus on another type of a network (communication). Hence, we respond in part 
-to the call by Roth ]^[ Cointet [Roth ]^[ Cointet 2010] to analyze some of the epistemic patterns, 
-which they found in the scientist ]^[ blogger communities, in other type of communities. Moreover, 
-while they only investigate social link formation, we are also able to investigate link decommission 
-(disconnection), thanks to the type of the network we analyze. Therefore, our work offers an ad- 
-ditional understanding on the temporal interplay between semantic ]^[ social structures. Another 
-important difference is that we offer considerably deeper semantic aspects analysis. Compared to 
-a hand-picked set of categories used in [Roth ]^[ Cointet 2010], our Wikipedia-based database in 
-combination with Alchemy API provide us with richer insights on entities, categories, taxonomy 
-]^[ also sentiment of communication. 
-A recent study on Twitter analyzes homophily on the status (de ned as the difference in the 
-follower counts) ]^[ the value (tweet contents, common followees, location, age etc.) levels [Sun 
-]^[ Rui 2017]. There are several important differences to our work: the focus of their study is on 
-reciprocal followers network (instead of mention network in our case), homophily is analyzed on 
-the organization-individual relationship (whereas we focus on individual-individual relationship) 
-]^[ there is no focus on community analysis ]v[ temporal aspects of homophily as in our study. 
-However, there are several previous studies in online settings that have analyzed the temporal 
-interplay between homophily ]^[ social ties. Crandal et al. [Crandall et al. 2008] nd that the ho- 
-mophily between two Wikipedia admin users sharply rises some time before the tie formation ]^[ 
-after that continues to slowly grow. This is interpreted ]s[ that, at rst, homophily plays a role in the 
-tie formation, ]b[ after that, the tie plays a role in the continuous increase of homophily. Another 
-similar study on Flickr [Zeng ]^[ Wei 2013], nds more subtle insights: the users who have similar 
-popularity (de ned as the average number of favorites ]f[ their photos) are more likely to diverge 
-in similarity after the tie formation; while the similarity continues to grow ]f[ the users who have a 
-larger popularity difference. This is explained by the tendency of users to stay unique ]^[ diverse 
-in their uploaded content from equally popular users. Besides focusing on a different type of social 
-ties communication, our work extends these previous studies with the insights on interplay of 
-homophily ]^[ tie (link) decommission that they have ]n[ investigated. In addition, we also uncover 
-the relationship between introduced social ]^[ semantic forms of capital ]^[ homophily around the 
-time of link formation ]^[ decommission. 
-Signi cant homophilous foci on Facebook [Barnett ]^[ Bene eld 2015] are found to be ge- 
-ographic proximity, language, civilization, ]^[ migration. The analysis performed on 3 online 
-datasets: Last.fm, Flickr ]^[ aNobii [Aiello et al. 2012], presents how homophily information can 
-be used ]f[ link prediction. The authors present best accuracy in the case of aNobii (92%) when 
-combining multiple features: in-degree, activity, number of distinct tags, assortativity of users in 
-terms of topics etc. A conclusion is that the distinct language groups present in the aNobii dataset, 
-which are quite homogenous ]^[ non-mixing, support the prediction accuracy. Halberstam et al. 
-[Halberstam ]^[ Knight 2014] analyze communication on Twitter (comprising both retweets ]^[ 
-mentions of political candidates) in similarity to us, however, with a different aim to understand 
-information diffusion. They nd a greater degree of homophily exhibited ]^[ also more connections 
-per node in larger communities. 
-Below we mention several other studies that have tackled homophily in online settings, ]b[ with a 
-different focus from us. A number of studies are conducted toward distinguishing between in uence 
-]^[ homophily [Aral et al. 2009; La Fond ]^[ Neville 2010; Anagnostopoulos et al. 2008] report- 
-Semantic homophily in online communication: evidence from Twitter 
-A:7 
-Table I: Twitter dataset ltering steps statistics 
-Dataset 
-original download 
-English language 
-users > 20 tweets 
-internal replies 
-mentions 
-12 441 636 
-2 527 990 
-1 344 692 
-744 821 
-users 
-547 368 
-284 100 
-29 616 
-26 717 
-ing different levels ]^[ proportions of the two traits in online social networks. For example, De 
-Choudhury et al. [De Choudhury et al. 2010] quanti ed the impact of various types of homophily 
-on in uence on Twitter. Users were given homophilous traits based on attributes such as: location, 
-information roles they take (generators, mediators ]^[ receptors), content creation (meformer, in- 
-former) ]^[ activity behavior (number of tweets per period of time). However, it is later shown that 
-in empirical settings these tendencies are indistinguishable due to confounding effects [Shalizi ]^[ 
-Thomas 2011]. A couple of more recent papers tackled this research challenge in controlled exper- 
-iments. The experiment on Facebook found that the probability ]f[ a user to share a link increases 
-with the number of friends who shared the same link even without the user being exposed to their 
-link shares [Bakshy et al. 2012]. Hence this controlled experiment con rmed homophily ]v[ some 
-unobserved common external in uence taking place in the network. 
-3. DATASETS AND FRAMEWORK FOR ANALYSIS 
-3.1. Communication layer: Twitter mention network 
-Our initial dataset contains 12,441,636 mentions (tweets including @username) among 547,368 
-users over the course of 6 months (May-Nov 2011). All internal mentions are included, meaning, 
-each time when a user from our dataset mentions a user from outside, we did ]n[ keep such tweets, 
-]b[ all the mentions among the users in the dataset are present. 
-In order to have a well suited dataset ]f[ the intended analysis, we perform several cleaning ]^[ 
-ltering steps described below. The initial dataset includes tweets in several languages, ]s[ we lter it 
-to select only English tweets ]^[ from the users who mostly tweet in English. We use NLTK Python 
-library [Bird et al. 2009] in this step. After the language ltering, the dataset is reduced to 20% of its 
-original size in terms of tweets, while the number of users halved. For semantic analysis, individual 
-tweets are often too small ]^[ noisy, ]s[ the next step involves ltering the remaining users based 
-on their total number of tweets. Upon research ]^[ pre-test with the semantic knowledge database 
-that we built (described in the following subsection), a threshold of minimum 20 tweets is selected. 
-After this step, the dataset contains 29,616 users. Finally, again keeping only the internal replies 
-withing this group of users, we end up with 26,717 users in our nal dataset ]f[ analysis (see Table 
-I). 
-From the nal ltered dataset we build our analysis target, the communication network, 
-G = (V,E,W ). The nodes ui,u j V represent Twitter users; they are connected with a directed 
-edge ei j = (ui,u j) E if a user ui mentions u j, ]^[ the edge is assigned the weight wi j = 
-(ui,u j) W equal to the communication intensity (total number of such mentions). Properties of 
-the communication network are given in Table II. Finally, at some points we will look at undi- 
-rected and/or unweighted versions of the presented network. When we do so, it will be pointed out, 
-otherwise, whenever we discuss communication network it refers to the weighted ]^[ directed 
-network described here. 
-3.2. Semantic layers: Semantic enrichment of communication network 
-On top of the communication layer, we extract another, semantic layer from the Twitter data. Con- 
-cretely, we apply two semantic analysis procedures that enrich our communication network in 
-terms of node ]^[ edge attributes. The rst procedure is based on Wikipedia semantic relatedness 
-A:8 
-S. S cepanovi c et al. 
-Table II: Communication network statistics 
-Network parameter 
-Nodes 
-Edges 
-Avg weighted deg. 
-Avg clustering coeff. 
-value 
-26 717 
-99 910 
-55.75 
-0.051 
-Network parameter 
-Max out-degree 
-Max in-degree 
-Diameter 
-Density 
-value 
-1358 
-3228 
-29 
-0.00014 
-database that we build from a whole English Wikipedia dump according to the Explicit Seman- 
-tic Relatedness (ESA) algorithm [Gabrilovich ]^[ Markovitch 2009; Gabrilovich ]^[ Markovitch 
-2007]. The second procedure employs an existing, natural language processing API, Alche- 
-myAPI [An IBM Company 2016] from IBM. Wikipedia SR database provides enrichment ]f[ both, 
-edges (SR between tweets of two users) ]^[ nodes (extracted Wikipedia concepts relevant to the 
-user tweets see following paragraph ]f[ details). AlchemyAPI provides an additional set of node 
-attributes: concepts, entities, taxonomy ]^[ sentiment of the user tweets. We describe both proce- 
-dures ]^[ the enrichment they provide in more detail in the following. 
-3.2.1. Wikipedia Semantic Relatedness database. The semantic layer includes a network of users 
-featuring semantic relatedness (SR) between their tweets collections as edge weights, we refer to it 
-as the SR network. The SR network is based on SR knowledge database built using a Wikipedia 
-XML dump from April 2015 (for details see Methods 8). In addition to SR scores, from the 
-Wikipedia SR database, ]f[ each user we can also obtain their corresponding Wikipedia concept 
-vectors CVs. CV s are formed of relevant Wikipedia concepts (articles) describing semantically user 
-tweet contents. 
-In a somewhat computationally demanding task, we calculate the SR scores between all the user 
-pairs (not just those who communicate ]^[ are connected in communication network), resulting 
-in a full SR network. Distribution of SR values of the full SR network is shown in Fig. 9 (right). 
-During the analysis, we also apply different thresholds (SRth) on the edge weights ]^[ obtain several 
-SR sub-networks, which we denote SRth networks. 
-3.2.2. AlchemyAPI. AlchemyAPI [An IBM Company 2016] performs natural language process- 
-ing (NLP) ]^[ machine learning (ML) analysis. We send individual user tweets collections ]f[ anal- 
-ysis ]^[ AlchemyAPI returns semantic meta-data from the content. Not all are relevant ]f[ our study 
-]b[ we utilize following: sentiment score, taxonomy, concepts, entities ]^[ keywords. Hence, based 
-on the output, we assign a set of attributes to users: the overall sentiment of his/her tweets (a real 
-number between -1 ]f[ fully negative ]^[ 1 ]f[ fully positive), the taxonomy hierarchy representing 
-topics, concepts, entities ]^[ keywords found relevant in the tweets. For each of the elements in the 
-output, AlchemyAPI also returns corresponding relevance score, that we utilize to lter ]f[ most 
-relevant semantic attributes. 
-Based on the evaluations in the literature, we believe that AlchemyAPI is a suitable choice to 
-support our work. In [Meehan et al. 2013] it was shown that the sentiment analysis obtained from 
-AlchemyAPI achieved accuracy of 86% on a corpus of 5,370 tweets employed by an intelligent 
-recommendation system ]f[ tourism. The AlchemyAPI s performance on a number of datasets ]^[ 
-in different contexts was also shown in [Rizzo ]^[ Troncy 2011] ]^[ [Saif et al. 2012], where 
-AlchemyAPI outperfomed Zemanta1, OpenCalais2, Extractiv3 ]^[ DBpedia Spotlight4 in extracting 
-]^[ categorizing named entities. However, besides the evaluations stated above, ]^[ the benchmark 
-analysis done in [Ribeiro et al. 2016], we might consider using sentence-level methods, as VADER 
-1http://blog.zemanta.com/ 
-2http://www.opencalais.com/ 
-3http://extractiv.com/ 
-4https://github.com/dbpedia-spotlight/dbpedia-spotlight 
-Semantic homophily in online communication: evidence from Twitter 
-A:9 
-[Hutto ]^[ Gilbert 2014], SentiStrength [Thelwall 2013] ]v[ Umigon [Levallois 2013] on our Twitter 
-dataset as our future work. 
-4. QUANTIFYING SEMANTIC HOMOPHILY 
-4.1. Semantic relatedness ]^[ communication 
-We start by investigating interplay between SR ]f[ a pair of users ]^[ their CI by asking: whether 
-higher communication intensity is linked to a higher semantic relatedness? Fig. 2 (left) displays 
-the correlation when we apply logarithmic binning to account ]f[ long-tailed distribution of CI(e). 
-However, we nd that user pairs exist who communicate quite intensively ]b[ have low relatedness 
-of their tweet contents ]^[ also on the opposite some users with relatedness close to 1 seldom 
-communicate. Our result is comparable those in the study that evaluated similar relationship in 
-retweet ]^[ follower Twitter graphs [Mitzlaff et al. 2014]. Next we turn to another way of assessing 
-the interplay between the two communication aspects. 
-Fig. 2: Interplay between SR ]^[ communication: (a) correlation of link SR value (SR(e)) ]^[ 
-its communication intensity (CI(e)); we apply logarithmic binning to account ]f[ long-tailed distri- 
-bution of CI(e); average value ]^[ standard deviation are shown ]f[ each bin; (b) communication 
-propensity with respect to SR ( cp(SRth)) ]f[ different minimum communication intensity (CIth) of 
-links 
-We calculate communication propensity ( cp) with respect to SR threshold (SRth) as the extent 
-to which observed communication ]^[ its intensity diverge from what would be expected in an 
-uniformly random setting. To illustrate, SR0.2 network has 40M links, ]v[ 9% out of all the 
-possible 438M links in full SR network. Hence, in a uniformly random setting, we would expect 
-a similar percent of communication links in SR0.2 network. However, we nd this percent to be 3 
-times higher. Precisely, we apply the dyadic propensity formula de ned in [Roth 2005] to calculate 
-cp: 
-cp(SRth) = Lcomm(SRth)/Ltot (SRth), 
-where Lcomm(SRth) is the number of links in communication network with SR value higher than 
-the threshold ]^[ Ltot (SRth) is the number of total possible such links. We also evaluate in the same 
-A:10 
-S. S cepanovi c et al. 
-Fig. 3: Properties of SR network in function of SRth: (left) size of the largest connected compo- 
-nent, its density ]^[ overall network density; (right) branching factor, intermodular connectivity ]^[ 
-transitivity as three ingredients ]f[ network degree assortativity [Estrada 2011] 
-way existence of links with a minimum communication intensity threshold (CIth). Fig. 2 presents 
-the results. Communication propensity increases with the increase in both SR ]^[ CI thresholds. 
-The increase reveals presence of semantic homophily in the network with respect to SR. After both 
-presented analyses, we conclude that the correlation between SR ]^[ CI is ]n[ simple ]^[ linear, ]b[ 
-it is strongly captured by the subtle aspects of communication network. 
-This section we conclude with several results on the properties of the full SR network. It is impor- 
-tant to point out that ]f[ this analysis we take the network built from the data ]f[ the whole 6 months 
-period. Such results inform us about semantic relatedness metrics of a random group of people (not 
-necessarily ever communicating). Fig. 3 (left) reveals that when thresholding the SR network near 
-SR value 0.25, the largest connected component still has around 85% of the nodes ]^[ its density 
-stabilizes, even it starts to grow, whereas the overall density in the network is signi cantly reduced. 
-In Fig. 3 (right) we plot the degree assortativity [Newman 2002] in SR network as a function of 
-SR threshold. We detect an interesting changing pattern from positive to negative degree assortativ- 
-ity. In order to make sure that this pattern is speci c to real-world SR metric, we randomize the SR 
-values on SR network in several ways ]^[ nd no pattern in such cases. Hence, we conclude that 
-a structurally important change in human SR network takes place when we consider different SR 
-threshold. 
-Fig. 3 (right) also shows the values ]f[ branching factor, intermodular connectivity ]^[ network 
-transitivity (clustering coef cient), as it has been proven that they together de ne degree assorta- 
-tivity value [Estrada 2011]. In the interval (0.15,0.35) SR network obeys highest assortativity ]^[ 
-transitivity. In this way we nd lower ]^[ upper bounds ]f[ the threshold that can be used to remove 
-the noise generated when building the SR knowledge database. For these values we also obtain 
-the best community matching between SR network ]^[ communication network, as described in 
-Section 6. From an application point of view, these ndings might be important to consider while 
-designing other semantic relatedness ]^[ similarity metrics, in particular when choosing a suitable 
-threshold to distinguish signi cantly related ]^[ ]n[ related users. 
-4.2. Forms of social capital ]^[ degree assortativity 
-As we introduced earlier, a basic measure of assortative mixing in a network is the assortativity 
-coef cient [Newman 2003] ]v[ simply assortativity. This coef cient is calculated as Pearson cor- 
-relation between the value of a property on a node ]^[ the average value of that property on its 
-neighbors. Hence the assortativity value ranges from 1 in a perfectly assortative network to -1 in a 
-Semantic homophily in online communication: evidence from Twitter 
-A:11 
-perfectly dissasortative network. Any discrete ]v[ scalar attribute of nodes can be used to calculate 
-this coef cient. 
-We start by calculating assortativity based on node degree, an inherent node attribute of any 
-network. Positive degree assortativity [Newman 2002] is suggested to be fundamental to social 
-networks ]^[ to distinguish them from other types of networks [Newman ]^[ Park 2003]. 
-Undirected network variants. We start by looking at an undirected variant of our 
-communication network. Such an abstraction provides us with social capital in terms of num- 
-ber of contacts (unweighted) ]^[ total communication intensity (weighted network case). When we 
-look at mutual edges, then we tackle strong communication ties, ]^[ when including all edges, then 
-we also consider weak communication ties [Granovetter 1973]. The values of degree assortativity 
-coef cient (r) in different variants of the communication network are presented in Table III. Us- 
-ing jackknife method as in [Newman 2003] we calculate ]^[ present also the standard deviation ]f[ 
-each measurement to verify statistical signi cance of the results. Below we discuss ]^[ interpret the 
-cases when our networks exhibits assortativity. 
-Undirected unweighted network including all edges is slightly disassortative with r = 0.015. 
-Undirected unweighted network with only mutual edges is on the other hand highly assortative 
-with r = 0.414 (similar result reported in [Bliss et al. 2012]). This result shows that the more 
-strong contacts you have, the more strong contacts they themselves tend to have. 
-Undirected weighted network including all edges is slightly disassortative with r = 0.014. 
-Undirected weighted network with only mutual edges is again highly assortative with r = 0.474. 
-This result shows that the stronger communication intensity you have, the stronger communication 
-intensity your contacts tend to have. 
-Directed network variants. In directed networks, four types of degree assortativity can be calcu- 
-lated, as introduced in [Piraveenan et al. 2012]. These four types of assortativity coef cients show if 
-the degree of a source node is correlated with the degree of the target nodes, hence tackling relational 
-analysis between source ]^[ receiver in communication [Rogers ]^[ Bhowmik 1970]. As shown in 
-Table III the in-in is the only negative of the four coef cients in our network. This is in agreement 
-with the ndings ]f[ assortativity in directed followers Twitter network [Myers et al. 2014], except 
-]f[ out-in coef cient which is also found negative in the followers graph ]^[ it is slightly positive 
-in our case. The authors (ibid.) argue that Twitter exhibits negative assortativity coef cients, unlike 
-other social networks, because of its role as an information network, too. Below we interpret the 
-results in our network. 
-Looking at in-in coef cient, there was no assortativity with r = 0.001 in the unweighted net- 
-work. This value increases to r = 0.015 in the weighted network case ]^[ becomes statistically 
-signi cant. It is still low ]s[ we do ]n[ interpret it. 
-Low positive in-out degree assortativity tells that: the more popular you are the more active those 
-who you contact tend to be (both in terms of number of contacts ]^[ in terms of communication 
-intensity). 
-Positive out-in degree assortativity is low (0.038) ]s[ we do ]n[ interpret it. 
-The highest coef cient is ]f[ out-out degree assortativity, informing us that the higher the number 
-of users whom you contact, the higher the number of users they also tend to contact (or the more 
-intensively you are communicating, the more intensively those who you contact also tend to be 
-communicating). 
-Assortativity as a function of communication intensity. We can create an ensemble of weighted 
-communication networks by thresholding the original network on different minimum edge 
-weights. Then we calculate the above presented coef cients in each thresholded network. Since 
-weight on the edges represents intensity of communication, the result is degree assortativity as a 
-function of the communication intensity, as shown in Fig. 4. 
-A:12 
-S. S cepanovi c et al. 
-Table III: Degree assortativity r coef cients in the communication network. Standard deviation s 
-calculated using jackknife method [Newman 2003] is also presented 
-undirected networks 
-r 
-s 
-unweighted 
-weighted 
-mutual edges 
-0.414 
-0.010 
-all edges 
--0.015 
-0.001 
-mutual edges 
-0.474 
-0.017 
-all edges 
--0.014 
-0.001 
-directed networks 
-in-in 
-in-out 
-out-in 
-out-out 
-in-in 
-in-out 
-out-in 
-out-out 
-r 
--0.001 
-0.110 
-0.038 
-0.389 
--0.015 
-0.207 
-0.014 
-0.338 
-s 
-0.002 
-0.013 
-0.003 
-0.014 
-0.002 
-0.020 
-0.004 
-0.026 
-Fig. 4: Degree assortativity as a function of communication intensity CI in the ensemble of thresh- 
-olded communication networks. undir all is degree assortativity in undirected network including 
-all edges; undir mutual in undirected network with only reciprocal; in(out)-in(out) are the four types 
-of coef cients in directed networks showing the correlation between in(out)-degrees of source ]^[ 
-receiver nodes [Piraveenan et al. 2012] 
-First insight is that already with a small threshold, the two assortativity coef cients that are in 
-the original network found slightly negative (in undirected network with all edges ]^[ in directed 
-network in-in coef cient) become positive. With the threshold larger than 20 mentions, the networks 
-are highly assortative on all the coef cients. This property exhibits one of the differences between 
-often analyzed social networks based on unweighted, once formed links (such as friendship ]^[ 
-followership) ]^[ the weighted communication network that we focus on. Bliss et al. [Bliss et al. 
-2012] demonstrated temporal stability of degree assortativity in mutual mention network, while 
-herein we exhibit its variability with respect to the minimum communication intensity. Coming 
-back to the above mentioned negative assortativity results in the Twitter followers network [Myers 
-et al. 2014], we argue that at higher communication intensity (requiring more time ]^[ effort than 
-other interactions, such as following) the Twitter mention network serves more of a social than 
-information role. That is exhibited by the strong degree assortativity coef cients. 
-Semantic homophily in online communication: evidence from Twitter 
-A:13 
-Fig. 5: Semantic capital distributions 
-Moreover, looking at the higher communication intensity thresholds, we notice two more inter- 
-esting patterns. Two directed assortativity coef cients (in-in ]^[ out-out) start to slowly decrease, 
-while the four other coef cients asymptotically reach the maximum value 1. In our concrete net- 
-work case, the threshold of 239 mentions is when the four coef cients all become equal by reaching 
-the value 1 ]^[ also the coef cients in-in ]^[ out-out become equal (at value 0.505). While ]n[ 
-shown in Fig. 4, we calculated ]^[ those two coef cients continue to drop, while the others stay at 
-the maximum value as we increase the threshold further. 
-To conclude, presented positive degree assortativity properties reveal presence of social status 
-homophily (users with higher status tend to assortatively connect) on different forms of social capital 
-in the communication network. We also nd slight amounts of social status heterophily in relation 
-to weak ties ]^[ popularity, ]b[ this heterophily quickly gives place to strong homophily when there 
-is higher communication intensity in the network. 
-4.3. Forms of semantic capital ]^[ attribute assortativity 
-In this section, we investigate levels of assortative mixing on semantic aspects in the 
-communication network. Besides degree, social networks are shown to exhibit assortativity on 
-diverse nodes attributes [Bollen et al. 2011; Aiello et al. 2012; Eom ]^[ Jo 2014]. In line with such 
-previous ndings, we ask on which semantic attributes our Twitter communication network ex- 
-hibits assortativity ]^[ to what extent. While social capital aspects presented in previous section 
-reveal status homophily, some of the semantic capital aspects in this section exhibit value ]^[ some 
-status homophily. Precisely, we look at assortativity on sentiment score ]^[ topics presence in the 
-tweets, revealing semantic value homophily. We also look at semantic capital, ]v[ the diversity with 
-regard to the number of relevant entities, concepts ]^[ taxonomy levels found in the tweets ]^[ this 
-analysis reveals semantic status homophily. Prior to looking at assortativity, it is useful to familiar- 
-ize ourselves with the distributions of semantic capital ]^[ sentiment values ]f[ the whole user base. 
-In Fig. 5 we show kernel density estimates of their distributions displaying heterogeneity of entities 
-]^[ CVs diversity (see Section 3.2.1 ]^[ Methods ]f[ description of CVs), ]^[ sentiment values 
-among users. While most of the users tend to have around 5 entities relevant to their tweet contents, 
-we also nd an important percent of users with nearly 30 such entities. Similarly ]f[ concepts, a 
-majority of users has 500 700 concepts in their CVs, ]b[ we nd also users with with 1500 2000 
-concepts. As ]f[ sentiment, a majority of users tend to have neutral tweets sentiment, however, we 
-also nd users on both sides of the spectrum (negative ]^[ positive sentiment scores). Hence, we 
-conclude that there is large semantic capital heterogeneity among our users (see [Roth ]^[ Cointet 
-2010] ]f[ similar result in different types of networks). 
-A:14 
-S. S cepanovi c et al. 
-Table IV: Status ]^[ value homophily: attributes assortativity r 
-in the unweighted 
-communication network. Standard deviation s calculated using jackknife method is also presented 
-level 
-attr Wiki CVs 
-diversity 
-topic 
-music movies 
-value homophily 
-topic 
-taxonomy 
-diversity 
-sentiment 
-score 
-topic 
-sex 
-0.151 
-0.003 
-0.269 
-0.006 
-0.136 
-0.004 
-0.244 
-0.005 
-0.136 
-0.004 
-0.253 
-0.006 
-concept 
-diversity 
-status homophily 
-entity 
-diversity 
-directed network, all edges 
-0.292 
-0.003 
-0.315 
-0.003 
-undirected network, mutual edges 
-0.452 
-0.005 
-0.398 
-0.005 
-0.173 
-0.003 
-0.289 
-0.005 
-r 
-s 
-r 
-s 
-0.144 
-0.003 
-0.269 
-0.006 
-0.157 
-0.003 
-0.282 
-0.005 
-The results presented in Table IV suggest the presence of both, value (topics of tweet- 
-ing, sentiment) ]^[ status (semantic capital) homophily in the unweighted versions of the 
-communication network. We focus on the unweighted versions, since we rst of all ask, whether 
-there is a tendency among the users to have contact with other users who are similar to them on some 
-semantic attributes (without looking at intensity of communication). This means that the answers 
-to this question in the networks including only mutual edges will inform us about such correla- 
-tion among strong contacts, while looking at networks with all edges included will inform us also 
-about weak contacts. Once again, as with the degree assortativity, we nd that mutual (reciprocal) 
-communication network is importantly different compared to the network including also one- 
-sided communication edges. Notably, it exhibits higher levels of assortativity on all the analyzed 
-attributes. 
-As the observed correlation levels could be induced by existing degree assortativity, we also test 
-the presence of assortativity after node attribute randomization. The assortativity value in such case 
-is importantly lower, 0.07 ]^[ ]s[ we conclude that indeed the communication network exhibits 
-low to moderate levels of semantic status ]^[ value homophily. Moreover, among analyzed semantic 
-attributes, status homophily is the largest with respect to entity diversity ]^[ value homophily with 
-respect to sentiment. 
-4.4. Interplay between social ]^[ semantic capital 
-After establishing the presence of status ]^[ value homophily in the communication network 
-on different forms of social ]^[ semantic capital, we ask next about the relationship between these 
-forms of capital. Whether the users who are richer in terms of social capital (and hence more network 
-central) are also richer in terms of semantic capital (their tweets are semantically richer, ]v[ exhibit 
-more diversity on semantic aspects)? With this analysis, we respond to the call by authors in [Roth 
-]^[ Cointet 2010] to look ]f[ similar types of patterns as they have investigated in the bloggers ]^[ 
-scientists networks. Indeed, we also nd a wide range of possible combinations of joint values of 
-social ]^[ semantic capital, as they have reported. In the end we conclude that the observed patterns 
-in the Twitter communication network resemble more of the bloggers than the scientists network 
-presented in [Roth ]^[ Cointet 2010]. 
-Precisely, testing ]f[ different forms of social capital against different forms of semantic capital 
-reveals no signi cant ]v[ low to medium correlations between the two. For the purpose of visualiza- 
-tion, in Fig. 6, we show joint distributions ]f[ entity, concepts diversity ]^[ sentiment score on one 
-side ]^[ communication intensity (of popularity ]^[ of activity) on the other. 
-When it comes to popularity (weighted indegree), we observe a wide spectrum of semantic 
-diversity in terms of entities ]f[ both, the users with low ]^[ high popularity. Most popular users 
-tend to be slightly more likely to have high semantic diversity. On the other hand, most popular users 
-are likely to have quite neutral sentiment in their tweets. However, users which are more positive ]v[ 
-negative in their sentiment are likely to have modest to low popularity. 
-Semantic homophily in online communication: evidence from Twitter 
-A:15 
-Fig. 6: Joint distributions of social ]^[ semantic capital: the darkness of the hexagon corresponds 
-to the frequency of users with the combination of social ]^[ semantic capital values 
-When it comes to intensity of communication activity (weighted outdegree), we observe similar 
-patterns that are a bit more pronounced ]f[ the socially richest users. Basically, most actively com- 
-municating users are likely to have higher semantic diversity in terms of entities (however, we still 
-nd a number of users with diverse tweet contents that are ]n[ actively communicating). Seman- 
-tic (entity) diversity has the highest correlations with communication activity (weighted outdegree; 
-r = 0.397) presented in Fig. 6 ]^[ with weighted mutual degree (r = 0.396). These values are simi- 
-lar to the value found in the bloggers network ]^[ lower compared to the scientists network in [Roth 
-]^[ Cointet 2010]. 
-Sentiment has negative correlations with both popularity ]^[ activity, also presented in Fig. 6. 
-This means that with popularity ]^[ being active users tend to have a slightly more negative tweets 
-sentiment. Finally, when it comes to diversity in terms of number of concepts present in their CVs, 
-we do ]n[ nd any differences between popular ]^[ active users. The richest users in terms of both 
-types of social capital tend to have an average semantic capital (between 500 ]^[ 1000). Hence, 
-we conclude that different forms of semantic capital have different patterns of interplay with social 
-capitals. 
-Thanks to our network being directed ]^[ weighted, we are able to observe one additional pattern: 
-while being particularly low ]f[ popularity (indegree), all the correlations increase ]f[ user activ- 
-ity (outdegree) ]^[ with communication intensity (weighted degrees). For instance, the correlation 
-between entity diversity ]^[ (unweighted) indegree is only 0.051. In this way, we exhibit that com- 
-munication activity, intensity ]^[ stronger contacts are more conductive of higher semantic capital, 
-compared to popularity ]^[ weaker contacts. 
-A:16 
-S. S cepanovi c et al. 
-Fig. 7: Status differences in communication: Kernel density estimates ]f[ distributions of (left) 
-popularity difference ]^[ (right) semantic capital difference. 
-Relative status of source ]^[ receiver. An additional way to investigate the interplay between 
-social ]^[ semantic capitals is in terms of relative status of source ]^[ receiver in communication. 
-By relative status we mean the difference in status on a particular form of capital. Such de nition 
-is similar to the achieved status presented in [Sun ]^[ Rui 2017]. In Fig. 7 we show distributions 
-of relative social status (popularity difference) ]^[ relative semantic status (entity diversity differ- 
-ence) between source ]^[ receiver. In particular, the distribution ]f[ relative social status exhibits a 
-dominant peak at zero (users with similar status are most likely to communicate), ]b[ plotting it on 
-a log scale reveals two additional interesting peaks at intervals ( 100, 10) ]^[ (10,100). There is 
-a higher likelihood ]f[ users with differences in social status belonging to these ranges to be talking 
-to each other. The left peak is higher, ]^[ this together with the negative mean value ]f[ relative 
-social status informs us that source users tend to be a bit less popular. There is also a small number 
-of users mentioning considerably more popular users than themselves (leftmost part of the distri- 
-bution). This happens to a smaller extent in the other direction, from more popular source users. 
-When it comes to semantic capital, most of communication happens between those who have close 
-to equal semantic capital. 
-For the joint distribution of social ]^[ semantic relative statuses we nd (analyzed, ]n[ shown 
-in a graph) a wide range of combinations. There is a small positive correlation between the two. 
-As ]f[ the small number of users who initiate communication towards a considerably more popular 
-users discussed above, we nd that they tend to be semantically richer compared to the receiving 
-users. We speculate that this semantic superiority might be a needed approach ]f[ such users to 
-compensate ]f[ their lower popularity. 
-Status inconsistency of source ]^[ receiver. Finally, we can tackle a sociological proposition 
-that source and/or receiver status inconsistency can increase effectiveness of their communication 
-[Rogers ]^[ Bhowmik 1970]. Status inconsistency (internal heterophily of an individual) is de ned 
-in sociology as the relative lack of similarity in an individual s ranking on various indicators of 
-social status [Lenski 1954]. Hence we introduce status inconsistency ]f[ Twitter users as a relative 
-difference in their social ]^[ semantic capital ranks. We apply a similar formula to calculate status 
-inconsistency (stinc) as in [Lenski 1954]: 
-(cid:26) (1 rsoc/rsem), 
-(1 rsem/rsoc), 
-stinc = 
-if rsoc rsem 
-otherwise; 
-Semantic homophily in online communication: evidence from Twitter 
-A:17 
-l 
-Fig. 8: Relationship between communication intensity ]^[ link inconsistency: (left) scatter 
-plot; (right) linear regression visualization we apply logarithmic binning to account ]f[ long-tailed 
-distribution of CI(e); average value ]^[ standard deviation are shown ]f[ each bin. 
-where rsoc ]^[ rsem are users ranks in terms of social ]^[ semantic capital, respectively, among all 
-users. This de nition allows rstly to asses the amount of user status inconsistency (how close is 
-abs(stinc) to 1), ]^[ second, it also encodes whether he/she has higher social (stinc is positive) ]v[ 
-semantic (stinc is negative) status. 
-While we can ]n[ measure effectiveness of communication directly using our dataset, we al- 
-low communication intensity to be a proxy ]f[ it. Our hypothesis in this regard is: the higher the 
-communication intensity between a source ]^[ receiver, the higher potential ]f[ an effective com- 
-munication. Now, ]f[ all the directed links (ei, j) in our communication network we de ne link 
-inconsistency using above introduced status inconsistency of the source (stinc(ui)) ]^[ the receiver 
-(stinc(u j)) as their product: 
-stinc(ei, j) = stinc(ui) stinc(u j). 
-This simple formula produces a higher absolute value ]f[ the links with higher total pair s inconsis- 
-tency. The sign in this case indicates whether the source ]^[ receiver are ranked higher on the same 
-sorts of capital (stinc(ei, j) positive) ]v[ different forms of capital (stinc(ei, j) negative). 
-We indeed nd signi cant correlation between introduced link inconsistency ]^[ communication 
-intensity (r = 0.27). Results presented in Fig. 8 indicate following nding: the communication be- 
-tween two users tends to increase with status inconsistency of one ]v[ both of the users, if they are 
-both richer on the same form of capital. If the users are status inconsistent ]b[ being rich on differ- 
-ent forms of capital, then their communication intensity tends to decrease. As with other ndings 
-regarding social capitals, the described patterns are relevant ]f[ extreme cases (high ]^[ low edge 
-weights), ]^[ there is a wide spectrum of edge inconsistency values taken by the medium-weight 
-edges (Fig. 8, left). 
-5. TEMPORAL EVOLUTION OF SEMANTIC HOMOPHILY 
-In previous sections we performed analysis on a snapshot of Twitter network formed from the whole 
-6 months dataset. In this section we investigate temporal aspects of semantic homophily by looking 
-A:18 
-S. S cepanovi c et al. 
-Fig. 9: Cumulative SR distributions 
-in 
-communication network ]^[ (right) in the rest of SR network. For better visualization of the dif- 
-ferences in distributions the y-axis is thresholded above 0.7. The distributions are together sharply 
-rising up to around that point. 
-]f[ 5 full months 
-in our dataset: 
-(left) 
-at different snapshots of the network ]f[ each month. First we analyze temporal change of SR values. 
-In Fig. 9, cumulative distribution functions (CDF) of SR values ]f[ each full month in our dataset are 
-shown ]f[ communication network ]^[ ]f[ the rest of the links in SR network. Precisely, we con- 
-sider all the links with mutual communication (strong ties) in communication network, while ]f[ 
-the second distribution, we take the difference between links in SR network ]^[ all communication 
-contacts (both strong ]^[ weak). In this way we aim to distinguish between SR of user pairs affected 
-by communication (and hence social in uence) ]^[ those that are less likely to be affected (no com- 
-munication of any type occurred between them in our dataset). Gradual increase in SR values takes 
-place in both cases over time (CDF increases at higher SR values). In addition to the visualization, 
-by applying Kolmogorov-Smirnov (K-S) test [Massey Jr 1951] we con rm the distribution change. 
-In particular, we compare the distributions ]f[ June ]^[ ]f[ October. For communication network, 
-K-S results in p < e 24 and, respectively, ]f[ SR network, in p < e 197, hence in both cases strongly 
-rejecting the hypothesis that the distributions are the same. 
-5.1. External in uences evidence 
-The increase in average SR in SR network (Fig. 9) among ]n[ connected pairs of users is peculiar. It 
-indicates a possible external in uence taking place during the period causing all users to talk more 
-on a similar (external) topic. However, since the Twitter social network we investigate is ]n[ the 
-only possible way ]f[ our users to communicate ]^[ in uence each other, this does ]n[ allow us to 
-assert whether the increase is indeed (only) due to external in uence. In any case, we turn to our 
-semantic layers to look ]f[ an evidence of common external in uences in the dataset. 
-Using AlchemyAPI output, we identify overall most popular categories ]f[ topics of communi- 
-cation in our dataset. They are displayed in Fig. 10. Arts ]^[ entertainment, including movies, tv 
-shows, music ]^[ humor is the dominant category. Second set of most popular categories includes 
-sex (under society), sports ]^[ technology ]^[ computing. 
-Insights on common topics of communication using Wikipedia semantic relatedness database 
-are consistent with those from AlchemyAPI. In Table V we present some of top 100 concepts 
-Semantic homophily in online communication: evidence from Twitter 
-A:19 
-Fig. 10: Semantic taxonomy of whole communication network visualized in a bubble-tree- 
-map: highest level categories are in the center. Subcategories are represented as descendants in the 
-tree. Size of bubbles corresponds to the frequency of topics under that category in our dataset. 
-(Wikipedia articles) found to describe the semantics in the dataset overall. For easier comparison, 
-we display these concepts per (sub)categories identi ed using AlchemyAPI. The two seasons of 
-TV series This Is England that have been aired at the time corresponding to our dataset are ranked 
-2nd ]^[ 3rd. Next, we also nd several musicians ]^[ bands. The concepts LOL ]^[ Smiley Face 
-are in part a result of how ESA algorithm [Gabrilovich ]^[ Markovitch 2009; Gabrilovich ]^[ 
-Markovitch 2007] that we used to build Wikipedia SR database works. They are also in agreement 
-with humor being prevalent subcategory among users in our dataset. In addition to the series This is 
-England being aired at the time of our dataset, the death of Osama bin Laden also happened during 
-that period, ]^[ we see an article about him describing the general conversation. ESA s output of 
-> 300K Wikipedia concepts describing topics in our dataset results in a ne SR metrics, as exhibited 
-in detecting ne gradual temporal increase. At the same time, from Table V we see that already the 
-top 100 concepts provide insights into the concrete topics of the conversation in the dataset. 
-These insights, offer evidence ]f[ some external in uence taking place in our dataset that could 
-lead to global increase in SR among ]n[ connected users. Since mentioned TV series, music ]^[ 
-events are prevalent topics in the dataset, it could mean that our users are independently watch- 
-ing/following ]^[ commenting on them. This in turn could lead to average increase in their SR, 
-even if they never communicated. However, once again, we can ]n[ assert whether the increase is 
-indeed (only) due to external in uence ]v[ due to some social contacts and/or peer in uence ]n[ 
-detectable using our Twitter dataset. 
-A:20 
-S. S cepanovi c et al. 
-Table V: Most popular Wikipedia concepts in the dataset, per taxonomy categories: movies ]^[ TV 
-shows, music, sports ]^[ humor 
-Wikipedia articles in category 
-Wikipedia articles in category 
-Concept 
-Movies ]^[ TV shows 
-rank 
-Music 
-Concept 
-rank 
-This Is England 86 (TV series) 
-This Is England 88 (TV series) 
-Love of Life (American soap opera) 
-The Dad Who Knew Too Little 
-(Simpsons episode) 
-2 
-3 
-15 
-38 
-Robert Smith (musician) 
-10cc (English rock band) 
-The Cure 
-Producers 
-(band) 
-5 
-9 
-10 
-16 
-Wikipedia articles in category 
-Sports 
-Concept 
-rank 
-Wikipedia articles in category 
-Humor 
-Concept 
-rank 
-List of electronic sports titles 
-Larry Johnson (American football) 
-Alabama Crimson Tide football 
-Racism in association football 
-22 
-67 
-68 
-82 
-LOL 
-Smiley Face 
-Lolcat 
-Pres. Obama on Death of 
-Osama bin Laden (spoof) 
-1 
-4 
-20 
-36 
-5.2. Semantic homophily, social in uence ]^[ tie dissolution 
-The increase in communication network can be due to homophily in its strict de nition, i.e., new 
-user pairs starting communication. Once connected they are later likely to have higher SR, as we 
-presented in Section 4. This can happen due to already connected pairs becoming more related, i.e., 
-social in uence. Sociology also suggests to look ]f[ link dissolution among dissimilar individuals 
-[Felmlee et al. 1990; Block ]^[ Grund 2014] as one of the reasons of average network SR increase. 
-We start by investigating formation ]^[ dissolution of links through time ]^[ their SR change. The 
-requirement ]f[ active engagement from both source ]^[ receiver allows us to de ne communica- 
-tion activation (link formation) ]^[ communication decommission (link dissolution) ]f[ reciprocal 
-links. For each of the 69,312 reciprocal links observed during the whole period, we de ne com- 
-munication activation (formation) time to be the month when ]f[ the rst time both users have 
-mentioned each other (in our dataset period). Communication decommission (dissolution) time is 
-given by the last month in our dataset that the users have both mentioned each other, after which one 
-]v[ both sides ceased the communication. In order to have enough data to calculate users similarity 
-prior/after to links activation/decommission, we require the month of activation/decommission to 
-be between July ]^[ September. With this approach, we nd in total 13,492 link activations ]^[ 
-10,080 link decommissions in our dataset. As a rst insight, we notice that slightly more links are 
-activated than decommissioned. 
-Temporal change of average SR on links prior to ]^[ after the activation is shown in Fig. 11. 
-The SR between a user pair noticeably increases at the month of their communication activation. 
-Similar result has been found in other networks, ]f[ instance among Wikipedia admins [Crandall 
-et al. 2008] ]^[ ]f[ Flickr users [Zeng ]^[ Wei 2013]. The drop in average SR in the period after 
-the link activation is also reported in earlier studies [Zeng ]^[ Wei 2013]. To investigate the drop 
-in our case, we look ]f[ an evidence that some interactions might ]n[ be preserved ]f[ long. This is 
-one aspect where our approach is advantageous compared to the previous approaches, that consider 
-a formal edge formation (adding someone as a friend ]v[ following) ]^[ do ]n[ require an active user 
-engagement afterwards. 
-Indeed, we nd in total 8,166 links that are activated ]^[ then also decommissioned during 
-our dataset period. The SR change ]f[ such links, that are activated ]^[ then decommissioned, as 
-well as ]f[ those that persist in our dataset after the formation is show in Fig. 12. The average SR 
-values ]f[ formed ]^[ persisting links stay high after they are formed. It is those links that will get 
-Semantic homophily in online communication: evidence from Twitter 
-A:21 
-Fig. 11: Temporal SR change. Average SR on: (top) all communication links, (mid, left) during 
-communication activation, (mid, right) decommission, ]^[ (bottom) on persisting links; error bars 
-show standard deviation values 
-Fig. 12: SR change during formation ]^[ decommission; (left) during link formation ]^[ (right) 
-during link decommission. We show the differences between the links that persist after formation 
-]v[ not, ]^[ similarly between those that were persisting in our dataset period before decommission 
-]^[ those that were non-persisting. Error bars show standard deviation values 
-decommissioned soon that contribute to lowering the average SR after formation that we see in Fig. 
-11. This result displays that homophily needs to be considered together with active engagement ]^[ 
-its temporal dynamics. 
-If observing only the persisting links that were already active ]^[ persisted during the whole 
-period in our dataset, we obtain results ]f[ their average SR change in the bottom plot in Fig. 11. 
-Such persisting interactions have a relatively stable average SR through time despite that the average 
-SR in the whole network has increased from June until October. Also, SR on persisting links is 
-higher compared to the whole network. The stability of SR ]f[ an established communication could 
-suggest a lack of in uence in our network. However, we are careful with such an interpretation, 
-since this result might also indicate a saturation effect taking place. If looking at newly formed links 
-A:22 
-S. S cepanovi c et al. 
-Fig. 13: Temporal status differences during formation ]^[ decommission: (top) average relative 
-social status (number of strong contacts), (bottom) average sum of strong contacts. Error bars show 
-standard deviation values 
-which persist ]^[ have high SR, that indicates how at rst, the users might in uence each other ]f[ 
-some time. However, their similarity is likely to stabilizes around this speci c SR value ( 0.07) ]f[ 
-persisting links in our dataset, as indicated by average SR during dissolution of previously persisting 
-links in Fig. 12 (we discuss this result in more detail below). 
-Fig. 11 also displays temporal change of SR on links that get decommissioned. Again, in Fig. 
-12, we separate persisting links (during our dataset) that get decommissioned from those that have 
-formed during our dataset time frame (non-persisting) ]^[ get decommissioned. Indeed, we can 
-notice how the persisting links have the above mentioned characteristic average SR of 0.07 which 
-does ]n[ change during the actual month of decommission, ]b[ afterwards drops signi cantly to 
-0.02. The non-persisting links reach even higher SR during the month of decommission, ]b[ 
-before ]^[ after their SR is lower. This can indicate a sort of short-lived active engagement/interest 
-between such pairs, unlike more stable relationship between previously persisting links. The drop in 
-average SR on the links that get decommissioned is striking: SR becomes from 2 (on non-persisting) 
-to 3 (on persisting) times lower after link dissolution. Sociology suggests as one possible cause 
-]f[ link decommission that maintaining ties with dissimilar others might be costly [Felmlee et al. 
-1990]. However, we notice that the SR values before decommission on previously persisting links 
-are ]n[ lower ]b[ around the same as on the links that stay persisting. Hence, in terms of SR there 
-is no observable dissimilarity between users with persisting communication before they will cease 
-communication. We investigate other possible reasons ]f[ their link dissolution below. 
-Operating on the same sets of communication links as ]s[ far, we now look at social capital of the 
-communicating user pairs. As presented earlier, different forms of social capital can be assessed. 
-Since herein we look at mutual communication, it is natural to asses social capital in terms of 
-Semantic homophily in online communication: evidence from Twitter 
-A:23 
-numbers of strong/weak contacts. In Fig. 13, we show relative status ]^[ total number of strong 
-contacts of communicating user pairs. 
-Relative social status (discussed in Section 4.4) is de ned as the absolute difference between 
-social capitals of source ]^[ receiver users. Looking at relative status (top row plots in Fig. 13), 
-we rst notice the difference on persisting links compared to other types of links (and also to the 
-whole network, a result which is ]n[ displayed). Persisting links have lower relative status, i.e., users 
-who are actively communicating tend to have similar social status rank. While homophily on the 
-status level is ]n[ new, herein we exhibit its underlying mechanisms in communication network. 
-Namely, both types of links, those that are newly formed ]^[ those that will get decommissioned in 
-time, have slightly, ]b[ notably higher relative social status compared to persisting links. Hence, we 
-nd evidence that link dissolution happens due to dissimilarity in social status. Another interesting 
-observation is that user pairs that start with higher relative status compared to persisting also get 
-decommissioned later (while those who start around that persisting average indeed persist commu- 
-nication later). The results are similar ]f[ relative status in terms of weak contacts ]s[ we do ]n[ 
-present them. To reiterate, our analysis ]s[ far gives two insights about links before they get decom- 
-missioned: i) lack of semantic differences on previously persisting links (their SR is ]n[ lower at the 
-time when link dissolution happens compared to those who consistently persist communication) ]^[ 
-ii) higher status differences (also compared to persisting links). Hence, there is indication in Twit- 
-ter network that persisting communication links dissolve in the presence of status level heterophily 
-rather than value level heterophily. 
-Findings from sociology also suggest that relationships last shorter time ]^[ are more likely to 
-decay ]f[ pairs of individuals with lower overall social status [Burt 2000]. To assess this hypothesis 
-in our communication network, we observe social status in terms of total number of contacts ]f[ 
-user pairs who cease communication. Results in Fig. 13 (plots in bottom row) do ]n[ support such 
-hypothesis ]f[ strong contact: pairs who cease communication have around the same sum of strong 
-contacts on average as the pairs who persist communication. Moreover, in the case of weak contacts, 
-there is an opposite evidence: pairs prior to communication cease tend to have more weak contact 
-compared to average of persisting links (other results ]f[ weak contacts are similar to strong ]s[ we do 
-]n[ show them). In addition, the increase in the sum of pair s contacts at the month of decommission 
-suggests that those new contacts might affect their existing link. After the decommission the sum of 
-contacts drops, ]b[ still stays higher than would be expected after the decommission (existing link is 
-counted as one strong contact ]f[ both users, ]s[ after the decommission, their sum of contacts would 
-be expected to drop by 2). Such evidence suggests that in some percent of the cases one ]v[ both of the 
-users have established new communication links at the time of abandoning the current one between 
-them. This result is supported by a level of stability on the number of persisting communication 
-links per user. Namely, most of the 5,229 users who participate in constantly persisting links in our 
-dataset have between one to two persisting contacts ( = 1.2 ]^[ = 0.49). 
-In summary, presented types of interactions show the importance of considering both homophily 
-]^[ in uence as dynamic interdependent tendencies [Yavas ]^[ Y ucel 2014] in temporal networks, 
-instead of looking at static snapshots. Our analysis on interaction decommission reveals similar 
-results as in [Noel ]^[ Nyhan 2011] where it is showed how ]n[ accounting ]f[ homophily effect 
-on tie dissolution ( unfriending ) may importantly affect social in uence estimation. Precisely, we 
-suggest that on a same communication link (interaction) at different points of time with reference 
-to its activation/decommission time, one ]v[ the other of the tendencies might be playing a stronger 
-role. Our dataset time-frame does ]n[ allow ]f[ that, ]b[ as a future work, we aim to look at the 
-period in which edge formations ]^[ deletions might be happening, ]^[ whether there are some 
-natural cycles in the human communication networks. 
-6. COMMUNITY STRUCTURE AND SEMANTIC FOCI 
-We start by investigating what are the semantics traits that shape community structures in 
-communication network of Twitter users. 
-A:24 
-S. S cepanovi c et al. 
-Table VI: Largest communities in the communication network ]^[ their semantic foci 
-Num of 
-users 
-Main 
-geo-entities 
-% positive users 
-2222 
-686 
-636 
-435 
-381 
-343 
-343 
-Nigeria 
-Indonesia 
-0.38 
-0.87 
-Philippines, 
-South 
-Africa Malaysia 
-0.67 
-0.72 
-Jamaica U.K. NY, LA, 
-0.5 
-0.59 
-Miami 
-0.71 
-Fig. 14: Most relevant entities found in the tweets of the two largest communities: (left) Nige- 
-rian ]^[ (right) Indonesian 
-When dealing with representations of real-world networks one can distinguish between structural 
-]^[ functional communities [Yang et al. 2014; Yang ]^[ Leskovec 2015]. The connectivity pattern 
-among members in the network de nes structural communities, whereas a common function ]v[ 
-a role of user groups de nes functional communities. Simply speaking, structural communities 
-can be de ned as groups of users that are more tightly connected within the group compared to the 
-rest of the network. This de nition can entail modular ]v[ communities with distinct users, ]b[ also, 
-more representative of the real-world, we can think of overlapping community structure, where 
-certain nodes belong to more communities. 
-If we recall Feld s theory about foci of homophily [Feld 1981] that drive clustered (community) 
-structure of social networks, then foci can be seen as one such common function ]v[ role around 
-which communities are formed. In our case, we allow different semantic traits of user commu- 
-nication to de ne semantic foci. Our initial question can be now rephrased as whether structural 
-communities (both modular ]^[ overlapping) can be explained in terms of their functional roles by 
-semantic foci. 
-6.1. Modular communication communities 
-A state of the art algorithm when it comes to detecting modular community structure is based 
-on modularity metrics [Newman 2006]. We run its fast implementation [Blondel et al. 2008] on 
-our commnication network ]^[ detect 2632 communities. Statistics about the largest detected 
-modular communities is shown in Table VI. By applying semantic analysis on groups of users be- 
-longing to detected communities, we nd most relevant semantic traits of the communication in 
-each community. Precisely, we nd relevant concepts, entities, categories, taxonomy tree ]^[ aver- 
-age sentiment ]f[ each community. Then we also apply TF-IDF analysis on the semantic traits with 
-respect to those ]f[ the whole communication network to asses whether found semantic traits are 
-speci c to a community. After careful analysis, we conclude that only the entities of conversation 
-can be used to explain the modular communities. As an example, in Fig. 14, we present top entities 
-Semantic homophily in online communication: evidence from Twitter 
-A:25 
-found in tweets of the two largest communities. Thanks to those entities, we are able to conclude 
-that they represent respectively a community of users speaking about Nigeria ]^[ about Indonesia. 
-Importantly, in addition to a few dialect speci c words (such as in this case dey in Nigerian ]^[ 
-nih in Indonesian community), among most relevant entities we nd geographical entities (in ad- 
-dition to Nigeria, we nd entity Lagos in Nigerian ]^[ in addition to Indonesia, we detect Jakarta 
-]^[ Bali ]f[ Indonesian community). With such analysis ]^[ additional manual inspection of the 
-tweets, we conclude that the largest modular communities are formed around geographic entities 
-as foci of communication (see Table VI ]f[ the other top size communities). To reiterate, we con- 
-clude that geographic entities are homophilous foci that best explain modular communities in our 
-communication network. Similar result are found in different types of communication networks; 
-good predictors of cohesive communication groups in [Leskovec ]^[ Horvitz 2008; De Choudhury 
-2011] are geographic foci ]^[ several studies [Blondel et al. 2010; Aiello et al. 2012] report lan- 
-guage foci. As a remark, the communities in our Twitter network may be formed due to the ethnicity 
-of users ]v[ their geolocation, while in any case, their tweet contents contain relevant geo-location 
-entities. 
-Another important nding regarding modular communities is that there is a wide diversity in their 
-average sentiment. In Table VI, we show the percent of positive users in the whole community. We 
-can see it ranges from 0.38, ]f[ a quite negative Nigerian, to 0.87 ]f[ the most positive Indonesian 
-community. The large difference in the sentiment between these two particular communities can 
-be also inferred from their relevant concepts: prevalent swear word-concepts in Nigeria (having 
-negative sentiment), and, on the other hand, gratitude ]^[ luck being dominant in positive Indonesia. 
-Displaying particularity of the Indonesian community, an earlier study found that Indonesian users 
-have higher than average tweets per user ratio, which is related to higher reciprocity, ]^[ in turn a 
-higher-reciprocity communities display a happier language [Poblete et al. 2011]. 
-If modular structural communities were ]n[ formed around foci as suggested by Feld s theory, 
-]b[ if instead they were simply a result of semantically related users connecting more often, then we 
-would expect to see similar communities when running community detection on the SR network. 
-We test such hypothesis by detecting communities on a several SR x networks. In order to evaluate 
-how well the sets of communities from communication (P) ]^[ semantic layer (L) match, we apply 
-the procedure used in [Yang et al. 2014; Yang ]^[ Leskovec 2012; Yang ]^[ Leskovec 2015] to nd 
-the matching score: 
-S = max 
-Pj P,Li L 
-F1(Li,Pj), 
-where F1() uses F1 as a score ]f[ similarity between the two sets. Resulting S [0,1], where 1 
-indicates perfect matching. 
-Best matching score we nd when running InfoMap algorithm [Rosvall ]^[ Bergstrom 2008] on 
-the SR 0.2 network. The threshold x = 0.2 matches with ]^[ is explained by the analytical anal- 
-ysis of SR network that we discussed earlier (see Section 4.1). InfoMap is ]n[ modularity-based 
-community detection ]^[ the rationale why it performs better on the semantic layer is because SR x 
-networks are ]s[ dense. Modularity metric, which is optimized by modularity-based algorithms, eval- 
-uates existence of dense connections among nodes within communities ]b[ sparse connections with 
-nodes in different communities. Hence it can ]n[ work well on dense networks, such as SR 0.2. 
-Best matching scores ]f[ biggest communities (with more than 50 users) are presented in Table 
-VII. We also visualize modular communication communities ]^[ their respective SR community 
-counterparts in Fig. 15. The matching scores reveal that SR communities can only to a moderate 
-extent explain the communication community structure. Such conclusion, in turn, supports Feld s 
-theory about foci of homophily, in particular when he states that similarities need ]n[ lead to fo- 
-cused (clustered) interaction, ]^[ focused interaction can exist apart from similarity of individual 
-characteristics [Feld 1981]. 
-A:26 
-S. S cepanovi c et al. 
-Fig. 15: Modular communication network communities; (left) radial axis visualization in Gephi 
-[Bastian et al. 2009] of communication network communities with displayed identi ed user geo- 
-location entities in each community; (right) SR communities produced by Infomap visualized with 
-different colors on the communication network community representation; we can see to what 
-extent the largest modular communities from the communication layer overlap with those produced 
-from the semantic layer 
-Table VII: Community similarity between communication ]^[ semantic layer 
-P communities 
-P0 - Philippines 
-P8 - Nigeria 
-P10 - Indonesia 
-P11 - Nigeria 
-P102 - UK 
-L communities 
-L326 
-L2 
-L159 
-L2 
-L211 
-S 
-0.41 
-0.45 
-0.18 
-0.18 
-0.13 
-Semantic homophily in online communication: evidence from Twitter 
-A:27 
-Fig. 16: Overlapping communities: (left) relationship between community size ]^[ density; (right) 
-forms of social capital as a function of node community membership. We average values ]f[ 10 ]^[ 
-more community memberships, due to data scarcity. Error bars show one standard deviation. 
-6.2. Overlapping communication communities 
-Next we analyze overlapping structural communities in communication network. We select the 
-algorithm BigClam [Yang ]^[ Leskovec 2013] because it detects overlapping communities as the 
-groups of nodes with denser links presence, in agreement with sociological theories, such as the 
-Feld s [Yang ]^[ Leskovec 2014]. BigClam automatically detects 198 communities in our network, 
-largest in size consisting of 586 users. Community membership of a user (de ned as the number 
-of communities in which it belongs), ranges from the minimum 1, ]f[ a majority of users, to the 
-maximum 14, ]f[ a small number of users, ]^[ it exponentially decreases. Similar semantic anal- 
-ysis as with modular communities reveals that geographic foci are again the strongest predictor of 
-communities. The subtle difference, however, is seen in modular communities being broken apart in 
-several overlapping communities. For instance, the largest Nigerian modular community now has 7 
-overlapping counterparts. Many of the nodes from one modular community will belong to several 
-such counterparts. By careful analysis, we reveal other foci, behind the overarching geographic, that 
-drive such overlapping communities within the modular (these foci can again be geographic ]v[ not). 
-For example, withing the Nigerian group, we nd subgroups discussing different geo-entities, in 
-addition to common Nigeria: some talk about Ghana, some about Zambia ]^[ others about London. 
-That ]n[ only geographic foci drive these overlapping sub-communities, we can see from the case 
-]f[ Malaysia where one subcommunity of 260 users has the predominant entity selamat hari raya, 
-]v[ Muslim greeting ]f[ Happy Eid. We also nd communities around specialized topics, such as one 
-of 144 users talking predominantly about NASCAR (auto racing). Hence, our semantic analysis of 
-overlapping community structure reveals that geographic ]^[ language foci are the largest foci, in 
-terms of number of users connected. Within these foci as enablers, we can nd other more focused 
-]^[ overlapping foci, with smaller number of users discussing more speci c topics. 
-Additionally, we look into which communities are featuring most overlaps with others. To this 
-purpose, we introduce community density as the average number of community memberships ]f[ 
-the nodes in the community. As presented in Fig. 16 (left), there is a strong positive correlation 
-between the size of the community ]^[ its introduced density. Such result exhibits that the largest 
-communities are those that feature most overlaps with other (sub)communities. Thinking of foci, 
-such result can be interpreted also in the following way. The largest foci are as well enablers ]f[ 
-A:28 
-S. S cepanovi c et al. 
-Fig. 17: Pluralistic homophily ]^[ semantic capital: (left) semantic capital, (middle) mean neigh- 
-borhood SR ]^[ (right) status inconsistency in function of community memberships. Error bars 
-show one standard deviation. 
-participating users to develop more additional foci of homophily. A related result in an analysis 
-on Twitter is reported by Halberstam et al. [Halberstam ]^[ Knight 2014] who found that users 
-af liated with majority political groups, relative to the minority group, have more connections, ]^[ 
-are more densely connected. 
-6.3. Pluralistic homophily 
-Pluralistic homophily results from several different foci. The users that share more communities 
-(they are found in overlapping parts) have more homophilous foci in common, i.e., they feature 
-aspects of pluralistic homophily. Such users are more densely connected [Yang ]^[ Leskovec 2013] 
-forming a network core [Yang ]^[ Leskovec 2014]. Hence we ask whether the nodes in these parts 
-tend to have higher social capital. However, we nd no correlation between community member- 
-ship ]^[ social capital, except that the nodes in more communities tend to be slightly more popular 
-than active (see Fig. 16, right). Interestingly, the same holds ]f[ semantic capital: nodes with higher 
-community membership are no more likely to be semantically rich than those belonging to less 
-communities (see Fig. 17, left). This is a particularly surprising result, as such nodes, with higher 
-community membership, are tied with their friends from different communities around different 
-foci, according to the theory of focused interaction [Feld 1981]. We would expect them to be seman- 
-tically richer, since they talk on several additional topics, as their community membership grows. 
-However, as they are ]n[ semantically richer, then our next assumptions is that such nodes must be 
-less similar to their neighbors on average. Indeed, this is true, as presented in Fig. 17 (middle). The 
-correlation between similarity to an average neighbor ]^[ community membership is highly nega- 
-tive ]^[ signi cant 0.83, p = 0.003. A concept of opinion leaders [Rogers ]^[ Bhowmik 1970] 
-de nes them as the members of the group sought by others ]f[ opinion ]^[ advice ]^[ they are said 
-to posses features ]^[ conformity to the norms that make them super-representative ]v[ similar to 
-their average follower. Hence, the users with increased community membership in our network po- 
-tentially represent opinion leader withing their different communities. So far we nd no correlation 
-between social ]v[ semantic capital ]^[ community membership. However, we ask what about sta- 
-tus inconsistency. Since status inconsistency can be negative, we correlate its median value against 
-community membership (although, similar result holds ]f[ mean value, as well). As presented in 
-Fig. 17 (right), status inconsistency grows with community membership (r = 0.87 ]^[ p = 0.001). 
-With this we reveal that the users in more communities do ]n[ have higher social ]v[ semantic status, 
-]b[ they can be characterized by increased status inconsistency. As mentioned in introduction, status 
-inconsistency is suggested to be an attribute of individuals who are drivers of social change [Lenski 
-Semantic homophily in online communication: evidence from Twitter 
-A:29 
-1954]. Therefore, we conclude that individuals featuring pluralistic homophily in communication 
-networks are likely to be the opinion leaders ]^[ drivers of social change within their communities. 
-7. DISCUSSION AND CONCLUSION 
-Despite the vast ]^[ growing literature ]^[ research on what interweaves people in social networks, 
-the interplay of homophily ]^[ in uence as the main factors ]f[ social correlation with the network 
-is still ]n[ fully explored ]^[ understood. Our rst set of ndings quantify to what extent semantic 
-homophily ]^[ social in uence affect the communication, its propensity ]^[ intensity in online 
-social networks, though we are ]n[ trying to distinguish between these two factors. Concretely, 
-we analyze interplay of semantic relatedness ]^[ communication intensity ]^[ show that while 
-their correlation is low, their relationship is strongly captured by subtle communication network 
-properties. 
-Next we show that several types of homophily are present in communication network, such as 
-value (topics, sentiment) ]^[ status (social ]^[ semantic capital) homophily. Introduced social ]^[ 
-semantic status metrics allow us to exhibit their growth with strength of the links (both, in terms 
-of reciprocal communication ]^[ with increase in intensity). Assessment on how the two types of 
-capital are affecting each other in communication network reveals diversity of relationships depend- 
-ing on which exact form of the two types of capitals is considered. While popularity ]^[ semantic 
-capital are positively correlated, sentiment, inversely, is negatively correlated with social capital. 
-In any case, we exhibit large diversity among users on the existing combinations of capitals they 
-posses. Additional investigation on sociological concept of relative status reveals strong preference 
-]f[ communication with users of similar status. However, ]f[ relative social status particularly, we 
-notice pattern of less popular users initiating more communication towards higher popularity users. 
-We also nd evidence ]f[ sociological proposition that status inconsistency of one ]v[ both of the 
-parties increases communication effectiveness. Moreover, our data suggest a new hypothesis: this 
-proposition holds only when both users are higher on the same status type, otherwise, communica- 
-tion intensity decreases compared to average. 
-Using temporal communication network we show that the tendencies of homophily ]^[ in uence 
-are dynamic ]^[ change their role ]^[ magnitude in time. In addition to con rming previous nding 
-in other types of networks that similarity of users sharply grows before their link formation, we also 
-explain in part the following decrease in similarity as a result of link decommission. A novel in- 
-sight we make is that relative difference in social status is a stronger predictor ]f[ link decommission 
-compared to differences on a value homophily level. 
-We analyze modular ]^[ overlapping community structure of the communication layer ]^[ nd 
-evidence ]f[ Feld s theory about focused organization of social ties. Comparison of best matching 
-between community structure in communication ]^[ in semantic layer shows that cohesive commu- 
-nities cannot be explained only by semantic relatedness of users, instead there need to be a foci of 
-homophily present around which communities are formed. Further analyses reveal that geographic 
-foci are the largest predictor ]f[ both modular ]^[ overlapping communities. However, in the case 
-of overlapping community structure, we nd that such large foci also give space ]f[ smaller ]b[ 
-stronger foci around which sub-communities within are formed. Precisely, larger foci tend to create 
-denser communities (i.e., those with more overlapping parts within). Explanation from sociology is 
-a tendency of people who are connected around one foci to nd ]v[ create new foci to strengthen the 
-interaction. 
-Finally, we also exhibit that pluralistic homophily does ]n[ correlate with social ]v[ semantic cap- 
-ital; instead the users who are connected with others around several different foci tend to have lower 
-average similarity to those neighbors, while at the same time being increasingly status inconsistent. 
-A:30 
-S. S cepanovi c et al. 
-Table VIII: Summary of our contributions: ]f[ each theory ]v[ question from sociology that de ned 
-the analysis we describe found evidence and/or some novel hypotheses ]v[ open questions that arise 
-from the analysis. 
-Experimental evidence 
-Novel hypotheses/open questions 
-Sociology; 
-theory ]^[ 
-questions 
-Semantic 
-homophily 
-Status level 
-homophily 
-Value level 
-homophily 
-Semantic 
-homophily 
-evolution 
-Heterophilous 
-links 
-dissolution 
-Quanti cation 
-Comm. propensity ( cp) ]^[ intensity 
-(CI) increase with SR. 
-(Un)directed degree assortativity; 
-increases with tie strength ]^[ CI. = 
-On higher CI, Twitter is more a 
-social than information network. 
-Attribute assortativity on semantic 
-aspects of comm., such as topics, 
-sentiment, semantic diversity. 
-Temporal evolution 
-Average increase through time in SR 
-among communicating users. 
-The increase is driven by semantic homophily 
-]^[ social in uence. 
-Dissolution more due to social status ]^[ 
-less due to semantic value heterophily. 
-Persisting pairs having more weak 
-contacts are increasingly likely 
-to stop communicating. 
-CI increases with status inconsistency, 
-when both users are high on the same 
-status dimension; otherwise CI decreases. 
-in-in ]^[ out-out deg. assortativity 
-coef cients obey a different pattern 
-to others with increase in CI. 
-Tendency of users with a particular 
-popularity difference to interact. 
-Semantic diversity ]^[ negative 
-sentiment increase with comm. activity. 
-Average increase through time in SR 
-among users who never communicated. 
-The increase is driven by external in uence. 
-At the time of a link dissolution, 
-one ]v[ both of the participating users 
-are likely to have found a new contact 
-that will replace the one being 
-disconnected. 
-High correlation between size of a 
-community ]^[ its density of overlap. 
-Pluralistic homophily is ]n[ explained 
-by social ]v[ semantic capital. 
-On the other hand, individuals 
-exhibiting pluralistic homophily 
-are increasingly status inconsistent. 
-Theory of 
-focused 
-interaction 
-Pluralistic 
-homophily 
-Community foci 
-Semantic similarity in terms of SR 
-only moderately explains structural 
-communities. Modular communities 
-explained by geolocation entities as 
-comm. foci. 
-Overlapping communities 
-formed around other foci enabled 
-by overarching geolocation foci. 
-7.1. Limitations 
-A limitation of our work posed by the restricted dataset is that we are ]n[ considering the entire 
-Twitter channel ]f[ information ow, as there are also considerable amount of information owing 
-along the retweet network, which is ]n[ taken into consideration in this work. Besides this, the men- 
-tion mechanism in Twitter can be sometimes biased towards speci c target audiences ]f[ speci c 
-information [Tang et al. 2015]. 
-Semantic homophily in online communication: evidence from Twitter 
-A:31 
-Another limitation is that our results are solely about computer-mediated communication ]^[ we 
-do ]n[ tackle the impact of Internet (online medium) on social interaction. 
-Further investigation is needed on the in uence of the threshold ]f[ semantic relatedness on the 
-semantic homophily, as we show in this work that the semantic layer became disassortative after 
-threshold equal to 0.6. Additional ]^[ improved sentiment analysis is needed to understand how the 
-social reinforcement in uences communication between users ]^[ if there exists happiness paradox 
-while people communicate in social network. 
-8. METHODS 
-In this section we describe how we build Wikipedia-based semantic database using an English pages 
-dump (52GB in size, uncompressed). The rst step is to take the article texts as the algorithm builds 
-on the large amount of knowledge they provide. We then apply an open-source script wikiextractor 
-[Giuseppe Attardi 2015] to pre-process ]^[ clean the texts. The ESA algorithm is based on the TF- 
-IDF (term frequency - inverse document frequency) [Baeza-Yates et al. 1999] scores of words in 
-different articles in the Wikipedia corpus. As a result a word w1 is mapped to the concept vector 
-CV (w1) = {(C1 
-j represent Wikipedia concepts ]^[ V 1 
-j 
-are TF-IDF scores ]f[ the word w1 in those articles ]^[ are calculated as follows: 
-3 ), ..., (C1 
-M1)}. C1 
-1 ), (C1 
-2 ), (C1 
-M1,V 1 
-2,V 1 
-1,V 1 
-3,V 1 
-j = T F IDF = (1 + log( f1, j)) log( 
-V 1 
-N 
-nt 
-), 
+Workshop track - ICLR 2018 
+Our algorithm employs a dynamic bit-width, dynamic radix scheme in which IL ]^[ F L are 
+free to vary independently. Note that with the alternative xed bit-width scheme, IL ]^[ F L are 
+inter-dependent as increasing one necessitates a decrease in the other. 
+3 DYNAMIC PRECISION SCALING ALGORITHM 
+Here we formally introduce our novel DPS algorithm which leverages average % quantization error 
+as a metric ]f[ scaling fractional bits. Quantization error is calculated on a per-value basis as in 
+Equation 1. Quantization error % is accumulated ]^[ averaged over all round operations this is the 
+metric used when scaling F L. 
+E% = 
+|xout xin| 
+xin 
+100 
 (1) 
-where T F is the log-normalized raw frequency ( f1, j) of the word w1 in article j, ]^[ IDF is the 
-inverse document frequency, N is the number of articles, ]^[ nt is the number of articles in which 
-the word w1 is present. 
-The algorithm was implemented in Python with application of the scikit-learn machine learning 
-library [Pedregosa et al. 2011] ]^[ the resulting database was stored in a MongoDB collection. 
-Since some of the concept vectors might have tens of thousands of terms; prior to storing, we apply 
-the pruning process [Gabrilovich ]^[ Markovitch 2009] that ]f[ each word keeps only important 
-CV elements. The algorithm implementation needs tuning several parameters, ]^[ in this process 
-we also consult some of the existing implementations of the ESA algorithm. Our implementation of 
-ESA is open-source ]^[ published on Github [Scepanovic 2016]. 
-8.0.1. Word Semantic Relatedness. The semantic relatedness (SR) between words is ]n[ mea- 
-sured directly, ]b[ it is rather determined through a set of concepts highly related to them 
-[Gabrilovich ]^[ Markovitch 2009; Hieu et al. 2013]. Let us assume that the SR between words 
-w1 ]^[ w2 is requested. The word SR calculation follows the two steps below. 
-1,V 1 
-2 ), (C1 
-1 ), (C2 
-Determining the corresponding CVs derived from Wikipedia ]f[ the words w1 ]^[ 
-w2. The CVs are based on concepts (or articles) of Wikipedia which are related to 
-the words. Let us assume that w1 
-(tf-idf) vector: CV (w1) = 
-is mapped to concept 
-{(C1 
-M1)} ]^[ w2 is mapped to concept (tf-idf) vector: 
-1 ), (C1 
-..., (C1 
-M2)}. These are the sets of Wikipedia con- 
-CV (w2) = {(C2 
-3,V 2 
-cepts, C1 
-j ]^[ V 2 
-j ]^[ C2 
-j , 
-respectively. In the following, we will assume that N is the number of common concepts in CV (w1) 
-]^[ CV (w2). 
-2,V 1 
-1,V 2 
-j , which are related to the word w1 ]^[ w2 ]^[ their TF-IDF scores, V 1 
-M1,V 1 
-3 ), ..., (C2 
-3,V 1 
-3 ), 
-2 ), (C2 
-2,V 2 
-Calculating the SR between words using cosine similarity between obtained CVs. For mea- 
-suring the degree of semantic relatedness, cosine similarity between the CV s ]f[ two words w1 
-]^[ w2 is calculated. This measure gives the cosine of the angle between the two vectors CV (w1) 
-M2,V 2 
-A:32 
-S. S cepanovi c et al. 
-]^[ CV (w2). The cosine measure can be re-formulated ]f[ our purpose as follows: 
-SR(w1,w2) = cos(CV (w1),CV (w2)) = 
-, 
-(2) 
-(cid:113) 
-M1 
-k=1 
-N 
-i=1V 1 
-(cid:0)V 1 
-k 
-(cid:1)2 (cid:113) 
-i V 2 
-i 
-M2 
-l=1 
-(cid:1)2 
-(cid:0)V 2 
-l 
-where i iterates over the common concepts. 
-The SR(w1,w2) values range from 0 (i.e., no semantic relatedness) to 1 (i.e., perfect semantic relat- 
-edness) as the TF-IDF weights can ]n[ be negative. 
-1 V 1 
-M, (v1 
-1 V 1 
-1 ,v2 
-1), (t2 
-2, (v1 
-1 V 1 
-1 ) = {(C1 
-2 )), (C1 
-3, (v1 
-3 )) , ..., (C1 
-2 ,v1 
-2), (t1 
-3), ..., (t2 
-3 ,v1 
-n ,v2 
-1 ,v1 
-2), (t2 
-1), (t1 
-3 ,v2 
-8.0.2. Document Semantic Relatedness. The semantic relatedness (SR) between documents is 
-measured through the SR of the words found in the documents. Let us assume that the SR between 
-documents d1 ]^[ d2 is requested. The document SR calculation follows the three steps below. 
-Analyzing documents using the term frequency (TF) approach which nds the frequency of 
-words in the document. The result of this step is a list of important words with their correspond- 
-ing TF scores. Let us assume that: 
-d1 is analyzed to term (tf) vector: T (d1) = {(t1 
-d2 to term (tf) vector: T (d2) = {(t2 
-2 ,v2 
-Determining the corresponding CVs derived from Wikipedia ]f[ the documents d1 ]^[ d2. 
-For each term in the lists T (d1) ]^[ T (d2) we derive their individual CV s (as described ]f[ words in 
-1 
-Section 8.0.1). For instance, the t1 
-1, (v1 
-M))}. The other terms in T (d1) can be 
-V 1 
-1 )), (C1 
-represented in a similar way. When summarizing the CV s ]f[ one document, the CV ]f[ each term 
-is multiplied with its TF score in the document (found in the previous step). If the terms in T (d1) 
-have the same concepts in their CV s, we sum the weighted TF-IDF scores of those concepts. 
-After this process we obtain CV (d1), the list of Wikipedia concepts ]^[ TF-IDF scores which 
-are related to all the terms in T (d1). Similarly, ]f[ d2 the list of relevant Wikipedia concepts ]^[ 
-TF-IDF scores is found in CV (d2). 
-1 term is mapped to concept (tf-idf) vector: CV (t1 
-m)}, 
-3), ..., (t1 
-m,v1 
-n)}, ]^[ m < n. 
-Calculating the SR between documents using cosine similarity between obtained CVs. Fi- 
-nally, we obtain the SR(d1,d2) between documents by calculating the cosine similarity of CV (d1) 
-]^[ CV (d2) (see Eq. 2). 
-8.0.3. SR database evaluation. The English version of Wikipedia used includes over 2.5 million 
-articles. Since many of the articles are highly specialized, ]^[ due to the described pruning process, 
-we nd only around 15% of those articles (387,992) relevant ]f[ our tweets corpus. In a similar 
-manner as in the original paper [Gabrilovich ]^[ Markovitch 2009], we evaluate the quality of the 
-SR database that we built against available datasets with human judgment ]f[ word pairs relatedness. 
-We use several such datasets available online, as one of the most comprehensive current resources 
-[Faruqui ]^[ Dyer 2014]. The results of the evaluation are presented in Table IX. We do ]n[ provide 
-herein a comparison with the existing implementations, since ]n[ all of them provide their evaluation 
-on the same datasets with human judgments, ]^[ since a previous study comparing them has shown 
-that some of these results are incompatible [Cramer 2008]. However, our evaluation scores are 
-comparable to the original implementation [Gabrilovich ]^[ Markovitch 2009] ]^[ to the ESA 
-implementations available online. 
-ACKNOWLEDGMENTS 
-S. S. research was partially nanced by CIVIS EU FP7 project (FP7- SMARTCITIES-2013). I.M. work was partially - 
-nanced by the Faculty of Computer Science ]^[ Engineering at the University Ss. Cyril ]^[ Methodius . S. S. ]^[ I.M. 
-also gratefully acknowledge the CyberTrust research project ]f[ their support. B.G. thanks the Moore ]^[ Sloan Foundations 
-Semantic homophily in online communication: evidence from Twitter 
-A:33 
-Table IX: SR knowledge database evaluation 
-Human judgments dataset 
-WordSim-353 
-Miller ]^[ Charles 
-Word pair similarity, MTurk 
-Rubenstein ]^[ Goodenough 
-MEN dataset of word pair sim. 
-Average 
-Spearman s rank Pearson s correlation 
-0.51 
-0.79 
-0.53 
-0.81 
-0.73 
-0.67 
-0.45 
-0.82 
-0.45 
-0.74 
-0.44 
-0.58 
-]f[ support as part of the Moore-Sloan Data Science Environment at New York University. P.H. thanks General Research 
-Fund 26211515 from the Research Grants Council of Hong Kong. S. S. thanks A. Ukkonen ]f[ the help with the SR database 
-implementation. S. S. also acknowledges collaboration with P. T. Trung during his MSc thesis project when we performed a 
-similar type of SR analysis on Twitter data. The authors also thank A. Gionis ]f[ the helpful discussion ]^[ ]f[ reviewing the 
-manuscript. 
+Table 1 frames this work in relation to prior work in the area. 
+Algorithm 1 Dynamic Precision Scaling with Quantization Error 
+Input: Current Integer Length: IL, Current Fractional Length: FL 
+Overow Rate: R 
+Average % Quantization Error: E 
+Maximum Overow Rate: R max 
+Maximum Average Quantization Error: E max 
+Begin 
+if R > R max: 
+Output: (cid:104)IL, F L(cid:105) ]f[ the given attribute (Weights, Gradients, ]v[ Activations). 
+1: 
+2: 
+3: 
+4: 
+5: 
+6: 
+7: 
+8: 
+9: 
+10: 
+IL IL + 1 
+IL IL 1 
+F L F L + 1 
+F L F L 1 
+if E > E max: 
+End 
+else 
+else 
+Table 1: Summary of related work 
+Authors 
+Fixed point format 
+(bit width, radix) 
+Scaling 
+Rounding 
+(Na & Mukhopadhyay, 2016) 
+(Dynamic, Dynamic) Convergence/ 
+(Courbariaux et al., 2014) 
+(Gupta et al., 2015) 
+Essam et al. (2017) 
+(Koster et al., 2017) 
+(Fixed, Dynamic) 
+(Fixed, Fixed) 
+(Fixed, Dynamic) 
+(Fixed, Dynamic) 
+Training Based 
+Nearest 
+Overow Based Nearest 
+None 
+Overow Based 
+Predictive 
+Max-Value 
+Stochastic 
+Stochastic 
+N/A 
+Precision 
+Granularity 
+Per-Layer 
+Per-Layer 
+Global 
+Global 
+Per-Tensor 
+(Dynamic, Dynamic) Overow ]^[ 
+Quantization 
+Error Based 
+Stochastic 
+Global 
+Ours 
+4 EXPERIMENTS 
+In order to perform evaluations, we emulate a dynamic xed point representation by using custom 
+Caffe layers that quantize/round the native oating point values to values that are legal in our xed 
+point format. In our study, we consider training a neural network using stochastic gradient descent 
+with dynamically scaled precision ]f[ weights, activations, ]^[ gradients during both the forward 
+2 
+Workshop track - ICLR 2018 
+(inference) ]^[ backward pass. As per Na & Mukhopadhyay (2016), we quantize weights, biases, 
+activations, ]^[ gradients at the appropriate pass through the network, ]^[ update the precision 
+on-the-y during training on each iteration. 
+We train LeNet-5 on the MNIST dataset using Caffe ]^[ our custom rounding layers ]^[ DPS 
+algorithm (Lecun et al., 1998). We use a batch size of 64, ]^[ train ]f[ 10,000 iterations. We use an 
+initial learning rate of 0.01, momentum of 0.9, a weight decay factor of 0.0005, ]^[ scale the learning 
+rate using lr = lrinit (1 + iter)pow, where = 0.0001 ]^[ pow = 0.75. We update IL ]^[ FL 
+once each iteration, ]^[ use Emax = Rmax = 0.01%. 
+We compare our results to a baseline network trained on the same dataset with the same hyperparame- 
+ters, ]b[ using full-precision oating point ]f[ all attributes. We also compare against a non-dynamic 
+xed point representation that uses 13 bits ]f[ weights ]^[ activations, ]^[ keeps gradients at 32 bits. 
+(a) Test Error 
+(b) Log of Training Loss 
+Figure 1: Comparison of training with Dynamic Precision Scaling vs. the baseline (oating point) vs. 
+xed point reduced precision (13 bit weights ]^[ activations). 
+Our results reveal that we can achieve accuracy on-par with 
+the baseline, whilst drastically reducing the bit-width used 
+]f[ both weights ]^[ activations. Our dynamic precision 
+scaling algorithm in general, however, doesnt reduce the 
+gradient bit-width very much, as this requires the most 
+precision in order ]f[ training to converge. The training loss 
+using DPS is, in general, larger than the training loss of the 
+baseline model without hurting accuracy, suggesting that 
+the reduced precision may act as a regularization technique 
+during training this needs validation via experimentation 
+on larger networks ]^[ more complex datasets. Note that 
+naively reducing the bit-width of weights ]^[ activations 
+to a xed 13-bits with no dynamic precision scaling results 
+in the training process failing to converge. With dynamic 
+precision scaling, however, 13-bit weights ]^[ activations 
+are sufcient early in the training process. 
+5 DISCUSSION 
+Figure 2: Moving average bitwidths dur- 
+ing training using DPS. 
+We introduce a dynamic precision scaling algorithm that uses quantization error as a metric ]f[ 
+scaling dynamic bit-width xed point values during neural network training. Combining this with 
+stochastic rounding, we achieve greatly reduced bit-width during training, whilst remaining within a 
+fraction of a % of SOTA accuracy on the MNIST dataset. This avenue of algorithmic work, when 
+paired with emerging hardware ]f[ training, has the potential to greatly increase the productivity of 
+engineers ]^[ machine learning researchers alike by decreasing training time. 
+3 
+Workshop track - ICLR 2018 
 REFERENCES 
-Luca Maria Aiello, Alain Barrat, Rossano Schifanella, Ciro Cattuto, Benjamin Markines, ]^[ Filippo Menczer. 2012. Friend- 
-ship prediction ]^[ homophily in social media. ACM Transactions on the Web (TWEB) 6, 2 (2012), 9. 
-An IBM Company. 2016. AlchemyAPI ]^[ IBM Watson. (January 2016). http://www.alchemyapi.com/api 
-Aris Anagnostopoulos, Ravi Kumar, ]^[ Mohammad Mahdian. 2008. In uence ]^[ correlation in social networks. In Pro- 
-ceedings of the 14th ACM SIGKDD international conference on Knowledge discovery ]^[ data mining. ACM, 7 15. 
-Sinan Aral, Lev Muchnik, ]^[ Arun Sundararajan. 2009. Distinguishing in uence-based contagion from homophily-driven 
-diffusion in dynamic networks. Proceedings of the National Academy of Sciences 106, 51 (2009), 21544 21549. 
-Sinan Aral ]^[ Dylan Walker. 2012. Identifying in uential ]^[ susceptible members of social networks. Science 337, 6092 
-(2012), 337 341. 
-Ricardo Baeza-Yates, Berthier Ribeiro-Neto, ]^[ others. 1999. Modern information retrieval. Vol. 463. ACM press New 
-York. 
-Eytan Bakshy, Itamar Rosenn, Cameron Marlow, ]^[ Lada Adamic. 2012. The role of social networks in information diffu- 
-sion. In Proceedings of the 21st international conference on World Wide Web. ACM, 519 528. 
-George A Barnett ]^[ Grace A Bene eld. 2015. Predicting international Facebook ties through cultural homophily ]^[ other 
-factors. New Media & Society (2015), 1461444815604421. 
-Mathieu Bastian, Sebastien Heymann, ]^[ Mathieu Jacomy. 2009. Gephi: An Open Source Software ]f[ Exploring ]^[ 
-Manipulating Networks. (2009). http://www.aaai.org/ocs/index.php/ICWSM/09/paper/view/154 
-Steven Bird, Ewan Klein, ]^[ Edward Loper. 2009. Natural language processing with Python. O Reilly Media, Inc. . 
-Catherine A Bliss, Isabel M Kloumann, Kameron Decker Harris, Christopher M Danforth, ]^[ Peter Sheridan Dodds. 2012. 
-Twitter reciprocal reply networks exhibit assortativity with respect to happiness. Journal of Computational Science 3, 5 
-(2012), 388 397. 
-Per Block ]^[ Thomas Grund. 2014. Multidimensional homophily in friendship networks. Network Science 2, 02 (2014), 
-189 212. 
-A:34 
-S. S cepanovi c et al. 
-Vincent Blondel, Gautier Krings, Isabelle Thomas, ]^[ others. 2010. Regions ]^[ borders of mobile telephony in Belgium 
-]^[ in the Brussels metropolitan zone. Brussels Studies (2010). 
-Vincent D Blondel, Jean-Loup Guillaume, Renaud Lambiotte, ]^[ Etienne Lefebvre. 2008. Fast unfolding of communities 
-in large networks. Journal of statistical mechanics: theory ]^[ experiment 2008, 10 (2008), P10008. 
-Johan Bollen, Bruno Gonc alves, Guangchen Ruan, ]^[ Huina Mao. 2011. Happiness is assortative in online social networks. 
-Arti cial life 17, 3 (2011), 237 251. 
-Pierre Bourdieu. 2011. The forms of capital.(1986). Cultural theory: An anthology (2011), 81 93. 
-Ronald S Burt. 2000. Decay functions. Social networks 22, 1 (2000), 1 28. 
-Michael Conover, Jacob Ratkiewicz, Matthew R Francisco, Bruno Gonc alves, Filippo Menczer, ]^[ Alessandro Flammini. 
-2011. Political polarization on twitter. ICWSM 133 (2011), 89 96. 
-Irene Cramer. 2008. How well do semantic relatedness measures perform?: a meta-study. In Proceedings of the 2008 Con- 
-ference on Semantics in Text Processing. Association ]f[ Computational Linguistics, 59 70. 
-David Crandall, Dan Cosley, Daniel Huttenlocher, Jon Kleinberg, ]^[ Siddharth Suri. 2008. Feedback effects between sim- 
-ilarity ]^[ social in uence in online communities. In Proceedings of the 14th ACM SIGKDD international conference 
-on Knowledge discovery ]^[ data mining. ACM, 160 168. 
-Munmun De Choudhury. 2011. Tie Formation on Twitter: Homophily ]^[ Structure of Egocentric Networks. 2011 IEEE 
-Third Int l Conference on Privacy, Security, Risk ]^[ Trust ]^[ 2011 IEEE Third Int l Conference on Social Computing 
-(Oct. 2011), 465 470. DOI:http://dx.doi.org/10.1109/PASSAT/SocialCom.2011.177 
-Munmun De Choudhury, Hari Sundaram, Ajita John, Doree Duncan Seligmann, ]^[ Aisling Kelliher. 2010. Birds of 
-a Feather : Does User Homophily Impact Information Diffusion in Social Media? arXiv preprint arXiv:1006.1702 
-(2010). 
-Young-Ho Eom ]^[ Hang-Hyun Jo. 2014. Generalized friendship paradox in complex networks: The case of scienti c 
-collaboration. Scienti c reports 4 (2014). 
-Ernesto Estrada. 2011. Combinatorial study of degree assortativity in networks. Physical Review E 84, 4 (2011), 047101. 
-Manaal Faruqui ]^[ Chris Dyer. 2014. Community Evaluation ]^[ Exchange of Word Vectors at wordvectors.org. In Pro- 
-ceedings of the 52nd Annual Meeting of the Association ]f[ Computational Linguistics: System Demonstrations. Asso- 
-ciation ]f[ Computational Linguistics, Baltimore, USA. 
-Scott L Feld. 1981. The focused organization of social ties. American journal of sociology (1981), 1015 1035. 
-Diane Felmlee, Susan Sprecher, ]^[ Edward Bassin. 1990. The dissolution of intimate relationships: A hazard model. Social 
-Psychology Quarterly (1990), 13 30. 
-Evgeniy Gabrilovich ]^[ Shaul Markovitch. 2007. Computing semantic relatedness using wikipedia-based explicit semantic 
-analysis.. In IJCAI, Vol. 7. 1606 1611. 
-Evgeniy Gabrilovich ]^[ Shaul Markovitch. 2009. Wikipedia-based semantic interpretation ]f[ natural language processing. 
-Journal of Arti cial Intelligence Research (2009), 443 498. 
-Giuseppe Attardi. 2015. Wikipedia Extractor. (April 2015). https://github.com/attardi/wikiextractor 
-Mark S Granovetter. 1973. The strength of weak ties. American journal of sociology 78, 6 (1973), 1360 1380. 
-Yosh Halberstam ]^[ Brian Knight. 2014. Homophily, group size, ]^[ the diffusion of political information in social net- 
-works: Evidence from twitter. Technical Report. National Bureau of Economic Research. 
-Semantic homophily in online communication: evidence from Twitter 
-A:35 
-Sebastien Harispe, Sylvie Ranwez, Stefan Janaqi, ]^[ Jacky Montmain. 2015. Semantic similarity from natural language 
-]^[ ontology analysis. Synthesis Lectures on Human Language Technologies 8, 1 (2015), 1 254. 
-Nguyen Trung Hieu, Mario Di Francesco, ]^[ Antti Yl a-J a aski. 2013. Extracting knowledge from wikipedia articles through 
-distributed semantic analysis. In Proceedings of the 13th International Conference on Knowledge Management ]^[ 
-Knowledge Technologies. ACM, 6. 
-Clayton J Hutto ]^[ Eric Gilbert. 2014. Vader: A parsimonious rule-based model ]f[ sentiment analysis of social media text. 
-In Eighth International AAAI Conference on Weblogs ]^[ Social Media. 
-Juhi Kulshrestha, Farshad Kooti, Ashkan Nikravesh, ]^[ P Krishna Gummadi. 2012. Geographic Dissection of the Twitter 
-Network.. In ICWSM. 
-Haewoon Kwak, Changhyun Lee, Hosung Park, ]^[ Sue Moon. 2010. What is Twitter, a social network ]v[ a news media?. 
-In Proceedings of the 19th international conference on World wide web. ACM, 591 600. 
-Timothy La Fond ]^[ Jennifer Neville. 2010. Randomization tests ]f[ distinguishing social in uence ]^[ homophily effects. 
-In Proceedings of the 19th international conference on World wide web. ACM, 601 610. 
-Paul F Lazarsfeld ]^[ Robert K Merton. 1954. Friendship as a social process: A substantive ]^[ methodological analysis. 
-Freedom ]^[ control in modern society 18 (1954), 18 66. 
-RTAJ Leenders. 1997. Longitudinal behavior of network structure ]^[ actor attributes: modeling interdependence of conta- 
-gion ]^[ selection. Evolution of social networks 1 (1997). 
-Adrienne Lehrer ]^[ Keith Lehrer. 1982. Antonymy. Linguistics ]^[ philosophy 5, 4 (1982), 483 501. 
-Gerhard E Lenski. 1954. Status crystallization: a non-vertical dimension of social status. American sociological review 19, 4 
-(1954), 405 413. 
-Jure Leskovec ]^[ Eric Horvitz. 2008. Planetary-scale views on a large instant-messaging network. In Proceedings of the 
-17th international conference on World Wide Web. ACM, 915 924. 
-Clement Levallois. 2013. Umigon: sentiment analysis ]f[ tweets based on terms lists ]^[ heuristics. In Second Joint Confer- 
-ence on Lexical ]^[ Computational Semantics (* SEM), Vol. 2. 414 417. 
-James R Lincoln ]^[ Jon Miller. 1979. Work ]^[ friendship ties in organizations: A comparative analysis of relation net- 
-works. Administrative science quarterly (1979), 181 199. 
-Frank J Massey Jr. 1951. The Kolmogorov-Smirnov test ]f[ goodness of t. Journal of the American statistical Association 
-46, 253 (1951), 68 78. 
-M McPherson, L Smith-Lovin, ]^[ JM Cook. 2001. Birds of a feather: Homophily in social networks. Annual review of 
-sociology 27, 2001 (2001), 415 444. http://www.jstor.org/stable/10.2307/2678628 
-Kevin Meehan, Tom Lunney, Kevin Curran, ]^[ Aiden McCaughey. 2013. Context-aware intelligent recommendation system 
-]f[ tourism. In Pervasive Computing ]^[ Communications Workshops (PERCOM Workshops), 2013 IEEE International 
-Conference on. IEEE, 328 331. 
-Folke Mitzlaff, Martin Atzmueller, Andreas Hotho, ]^[ Gerd Stumme. 2014. The social distributional hypothesis: a prag- 
-matic proxy ]f[ homophily in online social networks. Social Network Analysis ]^[ Mining 4, 1 (2014), 1 14. 
-M Lynne Murphy. 2003. Semantic relations ]^[ the lexicon: antonymy, synonymy ]^[ other paradigms. Cambridge Univer- 
-sity Press. 
-Seth A Myers, Aneesh Sharma, Pankaj Gupta, ]^[ Jimmy Lin. 2014. Information network ]v[ social network?: the structure 
-of the twitter follow graph. In Proceedings of the 23rd International Conference on World Wide Web. ACM, 493 498. 
-A:36 
-S. S cepanovi c et al. 
-Mark EJ Newman. 2003. Mixing patterns in networks. Physical Review E 67, 2 (2003), 026126. 
-Mark EJ Newman. 2006. Modularity ]^[ community structure in networks. Proceedings of the national academy of sciences 
-103, 23 (2006), 8577 8582. 
-Mark EJ Newman ]^[ Juyong Park. 2003. Why social networks are different from other types of networks. Physical Review 
-E 68, 3 (2003), 036122. 
-M. E. J. Newman. 2002. Assortative Mixing in Networks. Phys. Rev. Lett. 89 (Oct 2002), 208701. Issue 20. 
-DOI:http://dx.doi.org/10.1103/PhysRevLett.89.208701 
-Hans Noel ]^[ Brendan Nyhan. 2011. The unfriending problem: The consequences of homophily in friendship retention ]f[ 
-causal estimates of social in uence. Social Networks 33, 3 (2011), 211 218. 
-F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. 
-Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, ]^[ E. Duchesnay. 2011. Scikit-learn: 
-Machine Learning in Python. Journal of Machine Learning Research 12 (2011), 2825 2830. 
-Mahendra Piraveenan, Mikhail Prokopenko, ]^[ Albert Zomaya. 2012. Assortative mixing in directed biological networks. 
-IEEE/ACM Transactions on Computational Biology ]^[ Bioinformatics (TCBB) 9, 1 (2012), 66 78. 
-Barbara Poblete, Ruth Garcia, Marcelo Mendoza, ]^[ Alejandro Jaimes. 2011. Do all birds tweet the same?: characterizing 
-twitter around the world. In Proceedings of the 20th ACM international conference on Information ]^[ knowledge 
-management. ACM, 1025 1030. 
-Alejandro Portes. 2000. Social capital: Its origins ]^[ applications in modern sociology. LESSER, Eric L. Knowledge ]^[ 
-Social Capital. Boston: Butterworth-Heinemann (2000), 43 67. 
-Filipe N Ribeiro, Matheus Ara ujo, Pollyanna Gonc alves, Marcos Andr e Gonc alves, ]^[ Fabr cio Benevenuto. 2016. 
-SentiBench-a benchmark comparison of state-of-the-practice sentiment analysis methods. EPJ Data Science 5, 1 (2016), 
-1 29. 
-Giuseppe Rizzo ]^[ Rapha el Troncy. 2011. Nerd: evaluating named entity recognition tools in the web of data. (2011). 
-Everett M Rogers ]^[ Dilip K Bhowmik. 1970. Homophily-heterophily: Relational concepts ]f[ communication research. 
-Public opinion quarterly 34, 4 (1970), 523 538. 
-Martin Rosvall ]^[ Carl T Bergstrom. 2008. Maps of random walks on complex networks reveal community structure. 
-Proceedings of the National Academy of Sciences 105, 4 (2008), 1118 1123. 
-Camille Roth. 2005. Generalized preferential attachment: Towards realistic socio-semantic network models. In ISWC 4th 
-Intl Semantic Web Conference, Workshop on Semantic Network Analysis, Vol. 171. 1613 0073. 
-Camille Roth ]^[ Jean-Philippe Cointet. 2010. Social ]^[ semantic coevolution in knowledge networks. Social Networks 32, 
-1 (2010), 16 29. 
-Hassan Saif, Yulan He, ]^[ Harith Alani. 2012. Semantic sentiment analysis of twitter. In International Semantic Web 
-Conference. Springer, 508 524. 
-Sanja Scepanovic. 2016. 
-DOI:http://dx.doi.org/{10.5281/zenodo.49750} 
-Implementation of ESA algorithm ]f[ 
-a Wikipedia SR database. 
-(April 2016). 
-Cosma Rohilla Shalizi ]^[ Andrew C Thomas. 2011. Homophily ]^[ contagion are generically confounded in observational 
-social network studies. Sociological Methods & Research 40, 2 (2011), 211 239. 
-Shujing Sun ]^[ Huaxia Rui. 2017. Link Formation on Twitter: The Role of Achieved Status ]^[ Value Homophily. In 
-Proceedings of the 50th Hawaii International Conference on System Sciences. 
-Semantic homophily in online communication: evidence from Twitter 
-A:37 
-Jiliang Tang, Huiji Gao, Xia Hu, ]^[ Huan Liu. 2013. Exploiting homophily effect ]f[ trust prediction. In Proceedings of the 
-sixth ACM international conference on Web search ]^[ data mining. ACM, 53 62. 
-Liyang Tang, Zhiwei Ni, Hui Xiong, ]^[ Hengshu Zhu. 2015. Locating targets through mention in Twitter. World Wide Web 
-18, 4 (2015), 1019 1049. 
-Mike Thelwall. 2013. Heart ]^[ soul: Sentiment strength detection in the social web with sentistrength. Proceedings of the 
-CyberEmotions (2013), 1 14. 
-Crispin Thurlow, Laura Lengel, ]^[ Alice Tomic. 2004. Computer mediated communication. Sage. 
-Johan Ugander, Brian Karrer, Lars Backstrom, ]^[ Cameron Marlow. 2011. The anatomy of the facebook social graph. 
-arXiv preprint arXiv: . . . (Nov. 2011), 17. http://arxiv.org/abs/1111.4503 
-Christo Wilson, Bryce Boe, Alessandra Sala, Krishna PN Puttaswamy, ]^[ Ben Y Zhao. 2009. User interactions in social 
-networks ]^[ their implications. In Proceedings of the 4th ACM European conference on Computer systems. Acm, 
-205 218. 
-Jaewon Yang ]^[ Jure Leskovec. 2012. Community-af liation graph model ]f[ overlapping network community detection. 
-In Data Mining (ICDM), 2012 IEEE 12th International Conference on. IEEE, 1170 1175. 
-Jaewon Yang ]^[ Jure Leskovec. 2013. Overlapping community detection at scale: a nonnegative matrix factorization ap- 
-proach. In Proceedings of the sixth ACM international conference on Web search ]^[ data mining. ACM, 587 596. 
-Jaewon Yang ]^[ Jure Leskovec. 2014. Overlapping communities explain core periphery organization of networks. Proc. 
-IEEE 102, 12 (2014), 1892 1902. 
-Jaewon Yang ]^[ Jure Leskovec. 2015. De ning ]^[ evaluating network communities based on ground-truth. Knowledge 
-]^[ Information Systems 42, 1 (2015), 181 213. 
-Jaewon Yang, Julian McAuley, ]^[ Jure Leskovec. 2014. Detecting cohesive ]^[ 2-mode communities indirected ]^[ undi- 
-rected networks. In Proceedings of the 7th ACM international conference on Web search ]^[ data mining. ACM, 
-323 332. 
-Mustafa Yavas ]^[ G onenc Y ucel. 2014. Impact of homophily on diffusion dynamics over social networks. Social Science 
-Computer Review (2014), 0894439313512464. 
-Xiaohua Zeng ]^[ Liyuan Wei. 2013. Social ties ]^[ user content generation: Evidence from Flickr. Information Systems 
-Research 24, 1 (2013), 71 87. 
+M. Courbariaux, Y. Bengio, ]^[ J.-P. David. BinaryConnect: Training Deep Neural Networks with 
+binary weights during propagations. ArXiv e-prints, November 2015. 
+Matthieu Courbariaux, Yoshua Bengio, ]^[ Jean-Pierre David. Low precision arithmetic ]f[ deep 
+learning. CoRR, abs/1412.7024, 2014. URL http://arxiv.org/abs/1412.7024. 
+M. Essam, T. B. Tang, E. T. W. Ho, ]^[ H. Chen. Dynamic point stochastic rounding algorithm ]f[ 
+limited precision arithmetic in deep belief network training. In 2017 8th International IEEE/EMBS 
+Conference on Neural Engineering (NER), pp. 629632, May 2017. doi: 10.1109/NER.2017. 
+8008430. 
+Suyog Gupta, Ankur Agrawal, Kailash Gopalakrishnan, ]^[ Pritish Narayanan. Deep learning with 
+limited numerical precision. CoRR, abs/1502.02551, 2015. 
+Itay Hubara, Matthieu Courbariaux, Daniel Soudry, Ran El-Yaniv, ]^[ Yoshua Bengio. Binarized neu- 
+ral networks. In D. D. Lee, M. Sugiyama, U. V. Luxburg, I. Guyon, ]^[ R. Garnett (eds.), Advances 
+in Neural Information Processing Systems 29, pp. 41074115. Curran Associates, Inc., 2016. URL 
+http://papers.nips.cc/paper/6573-binarized-neural-networks.pdf. 
+Patrick Judd, Jorge Albericio, Tayler Hetherington, Tor Aamodt, Natalie Enright Jerger, Raquel 
+Urtasun, ]^[ Andreas Moshovos. Reduced-Precision Strategies ]f[ Bounded Memory in Deep 
+Neural Nets, arXiv:1511.05236v4 [cs.LG] . arXiv.org, 2015. 
+Urs Koster, Tristan Webb, Xin Wang, Marcel Nassar, Arjun K Bansal, William Constable, Oguz 
+Elibol, Stewart Hall, Luke Hornof, Amir Khosrowshahi, Carey Kloss, Ruby J Pai, ]^[ Naveen 
+Rao. Flexpoint: An adaptive numerical format ]f[ efcient training of deep neural networks. In 
+I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, ]^[ R. Garnett (eds.), 
+Advances in Neural Information Processing Systems 30, pp. 17401750. Curran Associates, Inc., 
+2017. 
+Y. Lecun, L. Bottou, Y. Bengio, ]^[ P. Haffner. Gradient-based learning applied to document 
+recognition. Proceedings of the IEEE, 86(11):22782324, Nov 1998. ISSN 0018-9219. doi: 
+10.1109/5.726791. 
+Asit K. Mishra, Eriko Nurvitadhi, Jeffrey J. Cook, ]^[ Debbie Marr. WRPN: wide reduced-precision 
+networks. CoRR, abs/1709.01134, 2017. URL http://arxiv.org/abs/1709.01134. 
+Taesik Na ]^[ Saibal Mukhopadhyay. Speeding up convolutional neural network training with 
+dynamic precision scaling ]^[ exible multiplier-accumulator. In Proceedings of the 2016 In- 
+ternational Symposium on Low Power Electronics ]^[ Design, ISLPED 16, pp. 5863, New 
+York, NY, USA, 2016. ACM. ISBN 978-1-4503-4185-1. doi: 10.1145/2934583.2934625. URL 
+http://doi.acm.org/10.1145/2934583.2934625. 
+4 

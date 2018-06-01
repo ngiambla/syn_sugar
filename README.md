@@ -25,6 +25,8 @@ $ python syn_sugar.py
 
 ## Authors ##
 
-Nicholas V. Giamblanco, MASc Candidate
-Ian Taras, MASc Candidate
-Dylan Stuart, MASc Candidate
+Nicholas V. Giamblanco, M.A.Sc. Candidate
+Ian Taras, M.A.Sc. Candidate
+Dylan Stuart, M.A.Sc Candidate
+
+Department of Electrical and Computer Engineering, University of Toronto

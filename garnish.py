@@ -235,9 +235,6 @@ class garnish:
 							wb = sentence_low_map[_j_label]
 							vb = sentence_vec_map[_j_label]
 
-							# hamming_sim = (mutils.hamming_distance(va,vb))/sentence_vec_size
-							# struc_sim 	= 1-mutils.get_cosine_sim(va,vb)
-							# sem_sim 	= 1-mutils.get_cosine_sim(a,b)
 							wrd_sim 	= mutils.jaccard_index(wa,wb)
 							sim_i 		= 100*wrd_sim
 

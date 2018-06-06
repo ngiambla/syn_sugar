@@ -26,5 +26,9 @@ $ python syn_sugar.py
 ## Authors ##
 
 Nicholas V. Giamblanco, MASc Candidate
+
 Ian Taras, MASc Candidate
+
 Dylan Stuart, MASc Candidate
+
+@ The University of Toronto

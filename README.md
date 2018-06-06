@@ -1,20 +1,17 @@
-# Syn Sugar #
-Sweet like sugar,
-   so syntatic.
+# Syntactic Sugar #
 
-   Breaking up sweet ideas since 2018.
-
-## Background ##
-
-Language is very interesting. By utilizing syntax, which are rules of that identify how to interpret information, we are able to communicate ideas. 
-These "ideas" are represented in some fashion with a combination of symbols. By using the syntax in tandem with these symbols we can: develop complex thoughts, 
-express emotions, gain access to information at an unprecented rate.  
+This project is an extractive text summarization system intended for academic papers. It can be tailored for other purposes. 
 
 ## Installation ##
 
 To be completed.
+(Check what python is screaming about during runtime ... )
 
 ## Usage ##
+
+You can either run this algorithm with a `CLI` or as a web version.
+
+### Command Line ###
 
 This program should be very straight forward to use: simply place text inside the `data/` folder, and then in a terminal enter:
 
@@ -22,6 +19,24 @@ This program should be very straight forward to use: simply place text inside th
 $ python syn_sugar.py
 
 ``` 
+
+### Website ###
+
+For convenience, a locally hosted website is included with this software,
+You can navigate to `website/` to check it out. We use `flask`, a pythonic microweb framework.
+To use:
+
+```bash
+$ export FLASK_APP=web_syn.py
+$ flask run
+```
+Then navigate to `localhost:5000` to view what's included.
+
+
+## Future Work ##
+
+Althought the algorithm and website are 'working', it is not optimized for deployment. If interest picks up, feel free to contact us, and we can modify this software package to be 'deployable'.
+
 
 ## Authors ##
 

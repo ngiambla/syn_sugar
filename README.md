@@ -4,8 +4,14 @@ This project is an extractive text summarization system intended for academic pa
 
 ## Installation ##
 
-To be completed.
-(Check what python is screaming about during runtime ... )
+Simply just run:
+
+```bash
+$ chmod +x install.sh
+$ ./install.sh
+```
+
+And you can do your tings.
 
 ## Usage ##
 

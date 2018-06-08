@@ -1,203 +1,1643 @@
-~$[workshop track %%dsh%% iclr 2018 
-quantization error %%#%% %%#%% metric %%#%% dynamic 
-precision scaling %%#%% neural net training 
-ian taras & dylan malone stuart 
-department %%#%% electrical ]^[ computer engineering 
+~$[synfull%%cln%% synthetic traffic models capturing cache coherent behaviour 
+mario badr%%lst%% natalie enright jerger 
+edward s%%per%%]$~ ~$[rogers sr%%per%%]$~ ~$[department %%#%% electrical ]^[ computer engineering 
 university %%#%% toronto 
-toronto%%lst%% on%%lst%% canada 
-{tarasian%%lst%% malones2}@ece%%per%%utoronto%%per%%ca 
-1 
-introduction 
-%%#%% %%#%% %%#%% established %%#%% neural networks%%lst%% %%#%% ordinarily trained using 32%%dsh%%bit single precision 
-oating %%#%% representation%%lst%% %%#%% achieve desirable accuracy %%#%% inference %%#%% reduced precision 
-weights ]^[ activations (judd et al%%per%%%%lst%% 2015) (mishra et al%%per%%%%lst%% 2017) (courbariaux et al%%per%%%%lst%% 2015) (hubara 
-et al%%per%%%%lst%% 2016)%%per%%]$~ ~$[these reduced precision networks %%#%% amenable %%#%% acceleration %%#%% custom hardware 
-platforms %%#%% %%#%% %%#%% advantage %%#%% lower bit%%dsh%%widths %%#%% order %%#%% speed %%#%% computation (na & 
-mukhopadhyay%%lst%% 2016) (gupta et al%%per%%%%lst%% 2015)%%per%%]$~ ~$[reduced precision strategies %%#%% ]n[ typically applied 
-%%#%% back%%dsh%%propagation whilst training%%lst%% %%#%% %%#%% %%#%% lead %%#%% heavily reduced accuracy ]v[ %%#%% non%%dsh%% 
-convergence%%per%%]$~ 
-~$[recent %%#%% %%#%% shown %%#%% dynamic precision scaling%%lst%% %%#%% technique %%#%% %%#%% %%#%% numerical precision 
-%%#%% %%#%% training %%#%% varied on%%dsh%%the%%dsh%%y %%#%% training progresses%%lst%% %%#%% achieve computational speedups 
-(on custom hardware) %%#%% hampering accuracy (na & mukhopadhyay%%lst%% 2016) (courbariaux 
-et al%%per%%%%lst%% 2014)%%per%%]$~ ~$[dps %%#%% feedback %%#%% %%#%% training process %%#%% decide %%#%% %%#%% appropriate number 
-representation%%per%%]$~ ~$[for example%%lst%% na & mukhopadhyay (2016) suggest starting %%#%% reduced precision%%lst%% 
-]^[ increasing precision dramatically whenever training %%#%% numerically unstable%%lst%% ]v[ %%#%% 
-training loss stagnates%%per%%]$~ 
-~$[in %%#%% paper%%lst%% %%#%% %%#%% %%#%% novel dps algorithm %%#%% %%#%% %%#%% stochastic xed%%dsh%%point rounding method 
-suggested %%#%% gupta et al%%per%% (2015)%%lst%% %%#%% dynamic bit%%dsh%%width representation %%#%% %%#%% na & mukhopadhyay 
-(2016)%%lst%% ]^[ %%#%% algorithm %%#%% leverages information %%#%% %%#%% quantization error encountered %%#%% 
-rounding %%#%% %%#%% heuristic ]f[ scaling %%#%% number %%#%% fractional bits utilized%%per%% 
-2 fixed %%#%% representation and quantization/rounding 
-fixed %%#%% numbers %%#%% represented %%#%% %%#%% fractional portion appended %%#%% %%#%% integer portion%%lst%% %%#%% %%#%% 
-implied radix %%#%% %%#%% between%%per%%]$~ ~$[we allow %%#%% xed %%#%% representation %%#%% %%#%% arbitrary bit%%dsh%%width 
-]f[ %%#%% %%#%% integer ]^[ fractional parts%%lst%% ]^[ represent %%#%% bit%%dsh%%width %%#%% %%#%% integer %%#%% %%#%% il ]^[ 
-%%#%% bit%%dsh%%width %%#%% %%#%% fractional %%#%% %%#%% %%#%% l%%per%%]$~ ~$[we denote %%#%% %%#%% xed %%#%% representation%%lst%% %%cmp_t%%%%lst%% %%#%% 
-(cid:104)il%%lst%% %%#%% l(cid:105)%%per%%]$~ ~$[dps modies il ]^[ %%#%% l on%%dsh%%the%%dsh%%y %%#%% training%%per%%]$~ 
-~$[inspired %%#%% gupta et al%%per%% (2015)%%lst%% %%#%% %%#%% stochastic rounding %%#%% quantization %%#%% oating %%#%% 
-values %%#%% (cid:104)il%%lst%% %%#%% l(cid:105)%%lst%% %%#%% %%#%% implements %%#%% unbiased rounding%%per%% 
-1 
-workshop track %%dsh%% iclr 2018 
-%%#%% algorithm employs %%#%% dynamic bit%%dsh%%width%%lst%% dynamic radix scheme %%#%% %%#%% il ]^[ %%#%% l %%#%% 
-free %%#%% vary independently%%per%%]$~ ~$[note %%#%% %%#%% %%#%% alternative xed bit%%dsh%%width scheme%%lst%% il ]^[ %%#%% l %%#%% 
-inter%%dsh%%dependent %%#%% increasing %%#%% necessitates %%#%% decrease %%#%% %%#%% other%%per%% 
-3 dynamic precision scaling algorithm 
-%%#%% %%#%% formally introduce %%#%% novel dps algorithm %%#%% leverages average % quantization error 
-%%#%% %%#%% metric ]f[ scaling fractional bits%%per%%]$~ ~$[quantization error %%#%% calculated %%#%% %%#%% per%%dsh%%value basis %%#%% %%#%% 
-equation 1%%per%%]$~ ~$[quantization error % %%#%% accumulated ]^[ averaged %%#%% %%#%% round operations %%#%% %%#%% %%#%% 
-metric %%#%% %%#%% scaling %%#%% l%%per%%]$~ 
-~$[e% %%#%% 
-|xout xin| 
-xin 
-100 
-(1) 
-table 1 frames %%#%% %%#%% %%#%% relation %%#%% prior %%#%% %%#%% %%#%% area%%per%%]$~ 
-~$[algorithm 1 dynamic precision scaling %%#%% quantization error 
-input%%cln%% current integer length%%cln%% il%%lst%% current fractional length%%cln%% fl 
-overow rate%%cln%% %%#%% 
-average % quantization error%%cln%% %%#%% 
-maximum overow rate%%cln%% %%#%% max 
-maximum average quantization error%%cln%% %%#%% max 
-begin 
-%%cmp_if%% %%#%% %%#%% %%#%% max%%cln%% 
-output%%cln%% (cid:104)il%%lst%% %%#%% l(cid:105) ]f[ %%#%% %%#%% attribute (weights%%lst%% gradients%%lst%% ]v[ activations)%%per%% 
-1%%cln%% 
-2%%cln%% 
-3%%cln%% 
-4%%cln%% 
-5%%cln%% 
-6%%cln%% 
-7%%cln%% 
-8%%cln%% 
-9%%cln%% 
-10%%cln%% 
-il il %%#%% 1 
-il il 1 
-%%#%% l %%#%% l %%#%% 1 
-%%#%% l %%#%% l 1 
-%%cmp_if%% %%#%% %%#%% %%#%% max%%cln%% 
-%%#%% 
-%%cmp_e%% 
-%%cmp_e%% 
-table 1%%cln%% summary %%#%% related %%#%% 
-authors 
-fixed %%#%% format 
-(bit width%%lst%% radix) 
-scaling 
-rounding 
-(na & mukhopadhyay%%lst%% 2016) 
-(dynamic%%lst%% dynamic) convergence/ 
-(courbariaux et al%%per%%%%lst%% 2014) 
-(gupta et al%%per%%%%lst%% 2015) 
-essam et al%%per%% (2017) 
-(koster et al%%per%%%%lst%% 2017) 
-(fixed%%lst%% dynamic) 
-(fixed%%lst%% fixed) 
-(fixed%%lst%% dynamic) 
-(fixed%%lst%% dynamic) 
-training based 
-nearest 
-overow based nearest 
-none 
-overow based 
-predictive 
-max%%dsh%%value 
-stochastic 
-stochastic 
-n/a 
-precision 
-granularity 
-per%%dsh%%layer 
-per%%dsh%%layer 
-global 
-global 
-per%%dsh%%tensor 
-(dynamic%%lst%% dynamic) overow ]^[ 
-quantization 
-error based 
-stochastic 
-global 
-ours 
-4 experiments 
-%%#%% order %%#%% perform evaluations%%lst%% %%#%% emulate %%#%% dynamic xed %%#%% representation %%#%% using custom 
-caffe layers %%#%% quantize/round %%#%% native oating %%#%% values %%#%% values %%#%% %%#%% legal %%#%% %%#%% xed 
-%%#%% format%%per%%]$~ ~$[in %%#%% study%%lst%% %%#%% consider training %%#%% neural network using stochastic gradient descent 
-%%#%% dynamically scaled precision ]f[ weights%%lst%% activations%%lst%% ]^[ gradients %%#%% %%#%% %%#%% forward 
-2 
-workshop track %%dsh%% iclr 2018 
-(inference) ]^[ backward pass%%per%%]$~ ~$[as %%#%% na & mukhopadhyay (2016)%%lst%% %%#%% quantize weights%%lst%% biases%%lst%% 
-activations%%lst%% ]^[ gradients %%#%% %%#%% appropriate pass %%#%% %%#%% network%%lst%% ]^[ update %%#%% precision 
-on%%dsh%%the%%dsh%%y %%#%% training %%#%% %%#%% iteration%%per%%]$~ 
-~$[we train lenet%%dsh%%5 %%#%% %%#%% mnist dataset using caffe ]^[ %%#%% custom rounding layers ]^[ dps 
-algorithm (lecun et al%%per%%%%lst%% 1998)%%per%%]$~ ~$[we %%#%% %%#%% batch size %%#%% 64%%lst%% ]^[ train ]f[ 10,000 iterations%%per%%]$~ ~$[we %%#%% %%#%% 
-initial learning rate %%#%% 0%%per%%01%%lst%% momentum %%#%% 0%%per%%9%%lst%% %%#%% weight decay factor %%#%% 0%%per%%0005%%lst%% ]^[ scale %%#%% learning 
-rate using lr %%#%% lrinit (1 %%#%% iter)pow%%lst%% %%#%% %%#%% 0%%per%%0001 ]^[ pow %%#%% 0%%per%%75%%per%%]$~ ~$[we update il ]^[ fl 
-%%#%% %%#%% iteration%%lst%% ]^[ %%#%% emax %%#%% rmax %%#%% 0%%per%%01%%%per%%]$~ 
-~$[we %%cmp%% %%#%% results %%#%% %%#%% baseline network trained %%#%% %%#%% %%#%% dataset %%#%% %%#%% %%#%% hyperparame%%dsh%% 
-ters%%lst%% ]b[ using full%%dsh%%precision oating %%#%% ]f[ %%#%% attributes%%per%%]$~ ~$[we %%#%% %%cmp%% %%#%% %%#%% non%%dsh%%dynamic 
-xed %%#%% representation %%#%% %%#%% 13 bits ]f[ weights ]^[ activations%%lst%% ]^[ %%#%% gradients %%#%% 32 bits%%per%% 
-(a) test error 
-(b) log %%#%% training loss 
-figure 1%%cln%% comparison %%#%% training %%#%% dynamic precision scaling vs%%per%% %%#%% baseline (oating point) vs%%per%% 
-xed %%#%% reduced precision (13 bit weights ]^[ activations)%%per%%]$~ 
-~$[our results reveal %%#%% %%#%% %%#%% achieve accuracy on%%dsh%%par %%#%% 
-%%#%% baseline%%lst%% whilst drastically reducing %%#%% bit%%dsh%%width %%#%% 
-]f[ %%#%% weights ]^[ activations%%per%%]$~ ~$[our dynamic precision 
-scaling algorithm %%#%% general%%lst%% however%%lst%% doesnt reduce %%#%% 
-gradient bit%%dsh%%width %%#%% much%%lst%% %%#%% %%#%% requires %%#%% %%#%% 
-precision %%#%% order ]f[ training %%#%% converge%%per%%]$~ ~$[the training loss 
-using dps is%%lst%% %%#%% general%%lst%% larger %%cmp_ta%% %%#%% training loss %%#%% %%#%% 
-baseline model %%#%% hurting accuracy%%lst%% suggesting %%#%% 
-%%#%% reduced precision %%#%% act %%#%% %%#%% regularization technique 
-%%#%% training %%#%% %%#%% validation via experimentation 
-%%#%% larger networks ]^[ %%#%% complex datasets%%per%%]$~ ~$[note %%#%% 
-naively reducing %%#%% bit%%dsh%%width %%#%% weights ]^[ activations 
-%%#%% %%#%% xed 13%%dsh%%bits %%#%% %%#%% dynamic precision scaling results 
-%%#%% %%#%% training process failing %%#%% converge%%per%%]$~ ~$[with dynamic 
-precision scaling%%lst%% however%%lst%% 13%%dsh%%bit weights ]^[ activations 
-%%#%% sufcient %%#%% %%#%% %%#%% training process%%per%% 
-5 discussion 
-figure 2%%cln%% moving average bitwidths dur%%dsh%% 
-ing training using dps%%per%%]$~ 
-~$[we introduce %%#%% dynamic precision scaling algorithm %%#%% %%#%% quantization error %%#%% %%#%% metric ]f[ 
-scaling dynamic bit%%dsh%%width xed %%#%% values %%#%% neural network training%%per%%]$~ ~$[combining %%#%% %%#%% 
-stochastic rounding%%lst%% %%#%% achieve greatly reduced bit%%dsh%%width %%#%% training%%lst%% whilst remaining %%#%% %%#%% 
-fraction %%#%% %%#%% % %%#%% sota accuracy %%#%% %%#%% mnist dataset%%per%%]$~ ~$[this avenue %%#%% algorithmic work%%lst%% %%#%% 
-paired %%#%% emerging hardware ]f[ training%%lst%% %%#%% %%#%% potential %%#%% greatly increase %%#%% productivity %%#%% 
-engineers ]^[ machine learning researchers alike %%#%% decreasing training time%%per%% 
-3 
-workshop track %%dsh%% iclr 2018 
-references 
-m%%per%%]$~ ~$[courbariaux%%lst%% y%%per%%]$~ ~$[bengio%%lst%% ]^[ j%%per%%%%dsh%%p%%per%%]$~ ~$[david%%per%%]$~ ~$[binaryconnect%%cln%% training deep neural networks %%#%% 
-binary weights %%#%% propagations%%per%%]$~ ~$[arxiv e%%dsh%%prints%%lst%% november 2015%%per%%]$~ 
-~$[matthieu courbariaux%%lst%% yoshua bengio%%lst%% ]^[ jean%%dsh%%pierre david%%per%%]$~ ~$[low precision arithmetic ]f[ deep 
-learning%%per%%]$~ ~$[corr%%lst%% abs/1412%%per%%7024%%lst%% 2014%%per%%]$~ ~$[url http://arxiv%%per%%org/abs/1412%%per%%7024%%per%%]$~ 
-~$[m%%per%%]$~ ~$[essam%%lst%% t%%per%%]$~ ~$[b%%per%%]$~ ~$[tang%%lst%% e%%per%%]$~ ~$[t%%per%%]$~ ~$[w%%per%%]$~ ~$[ho%%lst%% ]^[ h%%per%%]$~ ~$[chen%%per%%]$~ ~$[dynamic %%#%% stochastic rounding algorithm ]f[ 
-limited precision arithmetic %%#%% deep belief network training%%per%%]$~ ~$[in 2017 8th international ieee/embs 
-conference %%#%% neural engineering (ner)%%lst%% pp%%per%% 629632%%lst%% %%#%% 2017%%per%% doi%%cln%% 10%%per%%1109/ner%%per%%2017%%per%% 
-8008430%%per%%]$~ 
-~$[suyog gupta%%lst%% ankur agrawal%%lst%% kailash gopalakrishnan%%lst%% ]^[ pritish narayanan%%per%%]$~ ~$[deep learning %%#%% 
-limited numerical precision%%per%%]$~ ~$[corr%%lst%% abs/1502%%per%%02551%%lst%% 2015%%per%%]$~ 
-~$[itay hubara%%lst%% matthieu courbariaux%%lst%% daniel soudry%%lst%% ran el%%dsh%%yaniv%%lst%% ]^[ yoshua bengio%%per%%]$~ ~$[binarized neu%%dsh%% 
-ral networks%%per%%]$~ ~$[in d%%per%%]$~ ~$[d%%per%%]$~ ~$[lee%%lst%% m%%per%%]$~ ~$[sugiyama%%lst%% u%%per%%]$~ ~$[v%%per%%]$~ ~$[luxburg%%lst%% i%%per%%]$~ ~$[guyon%%lst%% ]^[ r%%per%%]$~ ~$[garnett (eds%%per%%)%%lst%% advances 
-%%#%% neural information processing systems 29%%lst%% pp%%per%% 41074115%%per%%]$~ ~$[curran associates%%lst%% inc%%per%%%%lst%% 2016%%per%%]$~ ~$[url 
-http://papers%%per%%nips%%per%%cc/paper/6573%%dsh%%binarized%%dsh%%neural%%dsh%%networks%%per%%pdf%%per%%]$~ 
-~$[patrick judd%%lst%% jorge albericio%%lst%% tayler hetherington%%lst%% tor aamodt%%lst%% natalie enright jerger%%lst%% raquel 
-urtasun%%lst%% ]^[ andreas moshovos%%per%%]$~ ~$[reduced%%dsh%%precision strategies ]f[ bounded memory %%#%% deep 
-neural nets%%lst%% arxiv:1511%%per%%05236v4 [cs%%per%%lg] %%per%% arxiv%%per%%org%%lst%% 2015%%per%%]$~ 
-~$[urs koster%%lst%% tristan webb%%lst%% xin wang%%lst%% marcel nassar%%lst%% arjun %%#%% bansal%%lst%% william constable%%lst%% oguz 
-elibol%%lst%% stewart hall%%lst%% luke hornof%%lst%% amir khosrowshahi%%lst%% carey kloss%%lst%% ruby %%#%% pai%%lst%% ]^[ naveen 
-rao%%per%%]$~ ~$[flexpoint%%cln%% %%#%% adaptive numerical format ]f[ efcient training %%#%% deep neural networks%%per%%]$~ ~$[in 
-i%%per%%]$~ ~$[guyon%%lst%% u%%per%%]$~ ~$[v%%per%%]$~ ~$[luxburg%%lst%% s%%per%%]$~ ~$[bengio%%lst%% h%%per%%]$~ ~$[wallach%%lst%% r%%per%%]$~ ~$[fergus%%lst%% s%%per%%]$~ ~$[vishwana%%cmp_ta%%%%lst%% ]^[ r%%per%%]$~ ~$[garnett (eds%%per%%)%%lst%% 
-advances %%#%% neural information processing systems 30%%lst%% pp%%per%% 17401750%%per%%]$~ ~$[curran associates%%lst%% inc%%per%%%%lst%% 
-2017%%per%%]$~ 
-~$[y%%per%%]$~ ~$[lecun%%lst%% l%%per%%]$~ ~$[bottou%%lst%% y%%per%%]$~ ~$[bengio%%lst%% ]^[ p%%per%%]$~ ~$[haffner%%per%%]$~ ~$[gradient%%dsh%%based learning applied %%#%% document 
-recognition%%per%%]$~ ~$[proceedings %%#%% %%#%% ieee%%lst%% 86(11):22782324%%lst%% nov 1998%%per%%]$~ ~$[issn 0018%%dsh%%9219%%per%% doi%%cln%% 
-10%%per%%1109/5%%per%%726791%%per%%]$~ 
-~$[asit k%%per%%]$~ ~$[mishra%%lst%% eriko nurvitadhi%%lst%% jeffrey j%%per%%]$~ ~$[cook%%lst%% ]^[ debbie marr%%per%%]$~ ~$[wrpn%%cln%% wide reduced%%dsh%%precision 
-networks%%per%%]$~ ~$[corr%%lst%% abs/1709%%per%%01134%%lst%% 2017%%per%%]$~ ~$[url http://arxiv%%per%%org/abs/1709%%per%%01134%%per%%]$~ 
-~$[taesik na ]^[ saibal mukhopadhyay%%per%%]$~ ~$[speeding %%#%% convolutional neural network training %%#%% 
-dynamic precision scaling ]^[ exible multiplier%%dsh%%accumulator%%per%%]$~ ~$[in proceedings %%#%% %%#%% 2016 in%%dsh%% 
-ternational symposium %%#%% low power electronics ]^[ design%%lst%% islped 16%%lst%% pp%%per%% 5863%%lst%% %%#%% 
-york%%lst%% ny%%lst%% usa%%lst%% 2016%%per%%]$~ ~$[acm%%per%%]$~ ~$[isbn 978%%dsh%%1%%dsh%%4503%%dsh%%4185%%dsh%%1%%per%% doi%%cln%% 10%%per%%1145/2934583%%per%%2934625%%per%%]$~ ~$[url 
-http://doi%%per%%acm%%per%%org/10%%per%%1145/2934583%%per%%2934625%%per%% 
+mario%%per%%badr@mail%%per%%utoronto%%per%%ca%%lst%% enright@ece%%per%%utoronto%%per%%ca 
+abstract 
+1%%per%%]$~ ~$[introduction 
+%%#%% %%#%% shift %%#%% multi%%dsh%% ]^[ many%%dsh%%core processors%%lst%% architects 
+%%#%% %%#%% %%#%% larger design space ]^[ %%#%% complex trade%%dsh%%offs 
+%%#%% processor design%%per%%]$~ ~$[the design %%#%% %%#%% network %%#%% %%#%% potential 
+power ]^[ performance bottleneck %%#%% becoming %%#%% critical concern%%per%%]$~ ~$[in %%#%% power%%dsh%%constrained many%%dsh%%core landscape%%lst%% nocs 
+%%#%% %%#%% carefully designed %%#%% meet communication bandwidth 
+requirements%%lst%% deliver packets %%#%% low latency%%lst%% ]^[ fit %%#%% 
+tight power envelopes %%#%% %%#%% shared %%#%% cores%%lst%% caches ]^[ 
+interconnects%%per%%]$~ ~$[to %%#%% %%#%% well%%lst%% %%#%% designer %%#%% understand 
+%%#%% traffic patterns ]^[ temporal behaviour %%#%% applications %%#%% 
+noc %%#%% support%%per%%]$~ ~$[there %%#%% %%#%% large number %%#%% parameters 
+%%#%% %%#%% noc design space %%#%% %%#%% %%#%% tuned %%#%% deliver %%#%% required performance %%#%% %%#%% %%#%% cost/power envelope%%lst%% %%#%% 
+%%#%% topology%%lst%% routing algorithm%%lst%% flow control ]^[ router microarchitecture%%per%%]$~ ~$[these knobs %%#%% %%#%% commonly explored 
+%%#%% software simulation%%per%%]$~ 
+~$[there %%#%% %%#%% number %%#%% simulation methodologies available 
+%%#%% noc designers%%lst%% %%#%% %%#%% comes %%#%% speed/fidelity 
+tradeoffs [18]%%per%%]$~ ~$[full%%dsh%%system simulators model %%#%% hardware 
+component %%#%% %%#%% overall system ]^[ %%#%% run %%#%% applications 
+]^[ operating systems%%per%%]$~ ~$[as %%#%% result%%lst%% %%#%% simulators provide 
+%%#%% %%#%% degree %%#%% accuracy%%lst%% ]b[ %%#%% %%#%% expense %%#%% %%#%% 
+simulation times%%per%%]$~ ~$[in contrast%%lst%% %%#%% designer %%#%% %%#%% traditional 
+%%#%% 2014 ieee 
+978%%dsh%%1%%dsh%%4799%%dsh%%4394%%dsh%%4/14/$31%%per%%00 
+micro%%dsh%%­‐level  phase  clustering   
+number  of  injected  packets   
+modern ]^[ future many%%dsh%%core systems represent complex architectures%%per%%]$~ ~$[the communication fabrics %%#%% %%#%% large systems 
+heavily influence %%#%% performance ]^[ power consumption%%per%%]$~ 
+~$[current simulation methodologies ]f[ evaluating networkson%%dsh%%chip (nocs) %%#%% ]n[ keeping pace %%#%% %%#%% increased complexity %%#%% %%#%% systems%%scn%% architects %%#%% %%#%% %%#%% explore %%#%% 
+%%#%% design knobs quickly%%per%%]$~ ~$[methodologies %%#%% capture 
+workload trends %%#%% faster simulation times %%#%% highly beneficial %%#%% %%#%% stages %%#%% architectural exploration%%per%%]$~ ~$[we propose synfull%%lst%% %%#%% synthetic traffic generation methodology %%#%% 
+captures %%#%% application ]^[ cache coherence behaviour %%#%% 
+rapidly evaluate nocs%%per%%]$~ ~$[synfull allows designers %%#%% quickly 
+indulge %%#%% detailed performance simulations %%#%% %%#%% cost 
+%%#%% long%%dsh%%running full%%dsh%%system simulation%%per%%]$~ ~$[by capturing %%#%% %%#%% 
+range %%#%% application ]^[ coherence behaviour%%lst%% architects %%#%% 
+avoid %%#%% %%#%% ]v[ underdesign %%#%% %%#%% network %%#%% %%#%% occur 
+%%#%% using traditional synthetic traffic patterns %%#%% %%#%% uniform random%%per%%]$~ ~$[synfull %%#%% errors %%#%% low %%#%% 0%%per%%3% ]^[ provides 
+50× speedup %%#%% average %%#%% full%%dsh%%system simulation%%per%%]$~ 
+~$[read   
+write   
+replace   
+inv   
+macro%%dsh%%­‐level  phase  clustering   
+time  (hundreds  of  cycles)   
+time  (millions  of  cycles)   
+• cluster  based  on%%cln%%     
+•  message  types   
+•  spadal  paeern  (src%%dsh%%­‐dst  ﬂows)   
+  
+macro%%dsh%%­‐level     
+markov  chain   
+micro%%dsh%%­‐level   
+markov  chain   
+figure 1%%cln%% %%#%% level view %%#%% synfull 
+synthetic traffic patterns %%#%% quickly stress %%#%% noc design 
+]^[ reveal bottlenecks%%per%%]$~ ~$[however%%lst%% %%#%% traffic patterns %%#%% ]n[ 
+realistically represent %%#%% application space ]s[ %%#%% results %%#%% 
+unlikely %%#%% %%#%% representative %%#%% real workloads%%per%%]$~ ~$[therefore%%lst%% %%#%% 
+%%#%% unlikely %%#%% produce %%#%% properly provisioned network%%per%%]$~ ~$[in 
+%%#%% work%%lst%% %%#%% introduce %%#%% %%#%% approach %%#%% strikes %%#%% balance 
+%%#%% %%#%% tradeoffs%%lst%% providing %%#%% fast%%lst%% realistic simulation 
+methodology ]f[ noc designers%%per%%]$~ 
+~$[realistic traffic patterns %%#%% increase %%#%% accuracy %%#%% noc 
+simulations%%per%%]$~ ~$[beyond that%%lst%% realistic traffic %%#%% provides optimization opportunities %%#%% %%#%% ]n[ exist %%#%% traditional synthetic 
+traffic patterns%%per%%]$~ ~$[many recent noc proposals %%#%% exploited 
+particular application [13%%lst%% 30] ]v[ coherence behaviour [25%%lst%% 26] 
+%%#%% provide %%#%% %%#%% efficient%%lst%% higher%%dsh%%performing noc design%%per%%]$~ ~$[as 
+research continues %%#%% push %%#%% scalability %%#%% cache coherence 
+protocols [15%%lst%% 28%%lst%% 50]%%lst%% shared memory cmps continue %%#%% %%#%% 
+widespread%%per%%]$~ ~$[as %%#%% result%%lst%% %%#%% focus %%#%% %%#%% class %%#%% systems%%per%%]$~ 
+~$[synfull overview ]^[ contributions%%per%%]$~ ~$[synfull provides %%#%% 
+novel technique ]f[ modelling real application traffic %%#%% 
+%%#%% %%#%% ]f[ expensive%%lst%% detailed simulation %%#%% %%#%% levels %%#%% %%#%% 
+system%%per%%]$~ ~$[we abstract %%#%% cores ]^[ caches %%#%% focus %%#%% %%#%% network%%lst%% ]^[ provide application%%dsh%%level insight %%#%% noc designers%%lst%% 
+%%#%% %%#%% %%#%% %%#%% produce %%#%% optimized designs%%per%%]$~ ~$[through %%#%% 
+analysis%%lst%% %%#%% determine %%#%% key traffic attributes %%#%% %%#%% cachecoherent application%%dsh%%driven traffic model %%#%% capture including coherence%%dsh%%based message dependences (sec%%per%% 4)%%lst%% application phase behaviour (sec%%per%% 5) ]^[ injection process (sec%%per%% 6)%%per%%]$~ 
+~$[fig%%per%% 1 %%#%% %%#%% high%%dsh%%level overview %%#%% %%#%% approach%%per%%]$~ ~$[we observe %%#%% running (macro%%dsh%%)phases %%#%% applications %%#%% %%#%% 
+%%#%% fine%%dsh%%grained variation %%#%% macro%%dsh%%phases (micro%%dsh%%phases)%%lst%% 
+]^[ %%#%% %%#%% %%#%% clustering%%per%%]$~ ~$[within %%#%% clusters%%lst%% %%#%% 
+2%%per%%]$~ ~$[the %%#%% ]f[ coherence traffic 
+%%#%% describing synfull %%#%% detail%%lst%% %%#%% motivate %%#%% %%#%% ]f[ 
+%%#%% %%#%% class %%#%% synthetic traffic patterns%%per%%]$~ ~$[traffic patterns %%#%% 
+%%#%% uniform random%%lst%% permutation%%lst%% tornado%%lst%% etc%%per%% %%#%% widely %%#%% 
+%%#%% noc research%%per%%]$~ ~$[many %%#%% %%#%% %%#%% based %%#%% %%#%% communication pattern %%#%% specific applications%%per%%]$~ ~$[for example%%lst%% transpose 
+traffic %%#%% based %%#%% %%#%% matrix transpose application%%lst%% ]^[ %%#%% 
+shuffle permutation %%#%% derived %%#%% fast%%dsh%%fourier transforms 
+(ffts) [2%%lst%% 12]%%per%%]$~ ~$[however%%lst%% %%#%% synthetic traffic patterns %%#%% 
+]n[ representative %%#%% %%#%% wide range %%#%% applications %%#%% run %%#%% 
+current ]^[ future cmps%%per%%]$~ ~$[even %%cmp_if%% %%#%% traffic patterns %%#%% 
+representative%%lst%% %%#%% configuration %%#%% %%#%% cache%%dsh%%coherent system 
+%%#%% mask ]v[ destroy %%#%% inherent communication pattern %%#%% %%#%% 
+original algorithm due %%#%% indirections ]^[ control messages%%per%%]$~ 
+~$[the arrangement %%#%% cores%%lst%% caches%%lst%% directories%%lst%% ]^[ memory 
+controllers directly influences %%#%% flow %%#%% communication ]f[ 
+%%#%% application%%per%%]$~ ~$[compare %%#%% synthetic shuffle pattern %%#%% %%#%% 
+fft benchmark %%#%% splash%%dsh%%2 [48]%%per%%]$~ ~$[the shuffle pattern 
+%%#%% %%#%% bit permutation %%#%% %%#%% destination bits %%#%% calculated 
+via %%#%% function di %%#%% si−1 mod %%#%% %%#%% %%#%% %%#%% %%#%% number %%#%% bits 
+required %%#%% represent %%#%% nodes %%#%% %%#%% network [12]%%per%%]$~ ~$[fft %%#%% run 
+%%#%% full%%dsh%%system simulation1 %%#%% shuffle %%#%% run %%#%% network%%dsh%%only 
+simulation%%per%%]$~ ~$[fig%%per%% 2 %%#%% %%#%% number %%#%% packets sent %%#%% %%#%% 
+source %%#%% %%#%% destination2 %%per%%]$~ ~$[in fig%%per%% 2b%%lst%% %%#%% %%#%% notable destination 
+hot spots %%#%% nodes 0%%lst%% 2%%lst%% ]^[ 5 ]^[ source hot spots %%#%% nodes 
+0 ]^[ 5%%per%%]$~ ~$[however%%lst%% fig%%per%% 2a %%#%% hot spots %%#%% ]f[ specific 
+source%%dsh%%destination pairs%%per%%]$~ 
+~$[the %%#%% noc design ]f[ %%#%% traffic %%#%% fig%%per%% 2a %%#%% unlikely %%#%% 
+%%#%% %%#%% %%#%% noc ]f[ %%#%% traffic %%#%% fig%%per%% 2b%%per%%]$~ ~$[for example%%lst%% %%#%% 
+%%#%% design %%#%% ring network ]f[ fig%%per%% 2a%%lst%% ]^[ map %%#%% nodes %%#%% 
+minimize hop count %%#%% shuffle %%#%% %%#%% network%%per%%]$~ ~$[the average 
+injection rate %%#%% fft %%#%% %%#%% ]f[ shuffle%%per%%]$~ ~$[doing ]s[ yields 
+∼10% improvement %%#%% average packet latency %%#%% %%#%% mesh 
+1 configuration 
+details %%#%% %%#%% found %%#%% sec%%per%% 7%%per%% 
+absolute number %%#%% packets %%#%% %%#%% figure %%#%% unimportant %%#%% %%#%% 
+comparison %%#%% %%#%% focus %%#%% source%%dsh%%destination traffic pairs%%per%% 
+2 %%#%% 
+15 
+14 
+13 
+12 
+11 
+10 
+9 
+8 
+7 
+6 
+5 
 4 
+3 
+2 
+1 
+0 
+140 
+120 
+100 
+80 
+60 
+40 
+20 
+0 
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 
+source 
+(a) shuffle traffic pattern 
+destination 
+destination 
+examine %%#%% break %%#%% %%#%% message types dictated %%#%% %%#%% coherence protocol%%per%%]$~ ~$[these %%#%% steps drive %%#%% hierarchical markov 
+chain %%#%% %%#%% %%#%% %%#%% reproduce %%#%% traffic behaviour%%per%%]$~ ~$[our 
+proposed model %%#%% independent %%#%% %%#%% network configuration 
+]^[ %%#%% %%#%% applied %%#%% %%#%% wide range %%#%% noc configurations %%#%% 
+enable rapid%%lst%% accurate design space exploration%%per%%]$~ 
+~$[to demonstrate %%#%% accuracy ]^[ utility %%#%% %%#%% model%%lst%% %%#%% apply %%#%% methodology %%#%% %%#%% variety %%#%% parsec [5] ]^[ splash2 [48] benchmarks%%per%%]$~ ~$[a single full%%dsh%%system simulation run %%#%% 
+%%#%% benchmark %%#%% required %%#%% create %%#%% model%%per%%]$~ ~$[we %%cmp_t%% 
+%%#%% %%#%% models %%#%% synthetically generate traffic ]^[ %%cmp%% noc performance %%#%% full%%dsh%%system simulation%%per%%]$~ ~$[finally%%lst%% 
+%%#%% demonstrate significant speedup ]f[ %%#%% methodology %%#%% 
+full%%dsh%%system simulation%%scn%% %%#%% allows ]f[ rapid noc design space 
+exploration%%per%%]$~ ~$[in essence%%lst%% synfull strives %%#%% replace %%#%% system simulation ]f[ fast%%lst%% ]y[ accurate noc evaluation %%#%% 
+richer synthetic traffic patterns%%per%% 
+15 
+14 
+13 
+12 
+11 
+10 
+9 
+8 
+7 
+6 
+5 
+4 
+3 
+2 
+1 
+0 
+70000 
+65000 
+60000 
+55000 
+50000 
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 
+source 
+(b) fft application 
+figure 2%%cln%% spatial behaviour ]f[ synthetic vs application traffic 
+(network %%#%% %%#%% sec%%per%% 7) %%#%% %%#%% naive mapping (baseline) %%#%% 
+fig%%per%% 2a%%per%%]$~ ~$[however%%lst%% using %%#%% %%#%% ring network %%#%% %%#%% fullsystem simulation %%#%% %%#%% fft benchmark results %%#%% %%#%% average 
+packet latency %%#%% %%#%% %%#%% %%#%% times worse %%cmp_ta%% %%#%% baseline%%per%%]$~ 
+~$[clearly%%lst%% synthetic traffic patterns %%#%% ]n[ representative %%#%% 
+%%#%% spatial behaviour exhibited %%#%% applications %%#%% %%#%% shared 
+memory architecture%%per%%]$~ 
+~$[the sharp contrast %%#%% fig%%per%% 2 %%#%% due %%#%% coherence transactions 
+%%#%% %%#%% visit %%#%% nodes %%#%% %%#%% shared memory architecture 
+%%#%% completing%%per%%]$~ ~$[for example%%lst%% %%#%% write request %%#%% visits %%#%% 
+directory %%#%% receive ownership %%#%% %%#%% cache line%%per%%]$~ ~$[the directory 
+forwards requests %%#%% %%#%% core caching %%#%% data%%lst%% ]^[ %%#%% invalidates caches %%#%% %%#%% sharing %%#%% data%%per%%]$~ ~$[invalidated caches 
+%%#%% send acknowledgements – %%#%% domino effect %%#%% significantly change %%#%% application’s spatial behaviour ]^[ %%#%% 
+%%#%% correctly modelled ]f[ realistic traffic generation%%per%%]$~ 
+~$[differentiating %%#%% %%#%% types %%#%% packets visiting nodes 
+%%#%% %%#%% %%#%% generating realistic traffic%%per%%]$~ ~$[most synthetic 
+workloads split traffic %%#%% %%#%% categories%%cln%% %%#%% control packets (requests) ]^[ large data packets (responses)%%per%%]$~ ~$[however%%lst%% 
+%%#%% %%#%% %%#%% %%#%% packet types %%#%% %%#%% coherence protocol 
+]f[ %%#%% requests ]^[ responses%%per%%]$~ ~$[by lumping %%#%% packets 
+%%#%% %%#%% categories%%lst%% designers %%#%% explore methods %%#%% 
+exploit cache coherence ]f[ %%#%% performance%%per%%]$~ ~$[for example%%lst%% 
+techniques exist %%#%% reduce traffic caused %%#%% acknowledgement 
+packets [27]%%per%%]$~ ~$[similar research insight %%#%% %%#%% %%#%% %%#%% 
+detailed packet information %%#%% available %%#%% simulation%%per%%]$~ 
+~$[finally%%lst%% %%#%% traffic imposed %%#%% %%#%% application %%#%% time%%dsh%%varying%%per%%]$~ 
+~$[applications exhibit phase behaviour [38]%%scn%% spatial patterns %%#%% 
+%%#%% %%#%% change %%#%% time%%per%%]$~ ~$[static traffic patterns ]^[ injection 
+rates %%#%% ]n[ %%#%% adequate representation %%#%% real application 
+traffic%%per%%]$~ ~$[the behaviour %%#%% cache coherence traffic changes %%#%% 
+time ]^[ %%#%% %%#%% varying effects %%#%% noc performance%%per%%]$~ ~$[for 
+example%%lst%% phases %%#%% exhibit %%#%% data exchange %%#%% %%#%% 
+result %%#%% %%#%% invalidation packets %%#%% broadcast %%#%% %%#%% 
+noc%%per%%]$~ ~$[it %%#%% %%#%% %%#%% capture %%#%% variations %%#%% traffic %%#%% 
+reveal %%#%% ]v[ ]n[ %%#%% noc %%#%% %%#%% correctly provisioned%%per%% 
+3%%per%%]$~ ~$[synfull traffic modelling overview 
+%%#%% methodology focuses %%#%% %%#%% %%#%% design %%#%% %%#%% noc %%#%% 
+%%#%% %%#%% %%#%% first%%dsh%%class component %%#%% many%%dsh%%core architectures%%per%%]$~ 
+~$[thus%%lst%% %%#%% abstract %%#%% %%#%% cores%%lst%% caches%%lst%% directories ]^[ memory controllers%%per%%]$~ ~$[essentially%%lst%% %%#%% performance characteristics %%#%% 
+%%#%% elements %%#%% fixed ]f[ %%#%% purposes %%#%% %%#%% study%%per%%]$~ ~$[however%%lst%% synfull %%#%% %%#%% combined %%#%% analytical ]^[ abstract 
+models [10%%lst%% 22] %%#%% %%#%% components %%#%% explore %%#%% %%#%% richer 
+design space %%#%% fast%%dsh%%turnaround time%%per%%]$~ ~$[developing %%#%% network models %%#%% %%#%% critical %%#%% step%%scn%% combining %%#%% model %%#%% 
+%%#%% models %%#%% left %%#%% future work%%per%%]$~ ~$[to model application 
+traffic%%lst%% %%#%% focus %%#%% answering %%#%% key questions%%cln%% 
+%%#%% %%#%% send %%#%% packet%%qsn%%]$~ ~$[in shared memory systems%%lst%% packets 
+%%#%% injected %%#%% %%#%% application %%#%% %%#%% %%#%% cache miss%%per%%]$~ ~$[this 
+packet initiates %%#%% coherence transaction %%#%% retrieve %%#%% data%%per%%]$~ 
+~$[however%%lst%% %%#%% packets %%#%% injected reactively%%per%%]$~ ~$[for example%%lst%% 
+%%#%% data packet %%#%% %%#%% %%#%% sent %%#%% response %%#%% %%#%% request%%per%%]$~ 
+~$[who %%#%% sending %%#%% packet%%qsn%%]$~ ~$[not %%#%% nodes inject traffic 
+uniformly ]s[ %%#%% %%#%% determine %%#%% node %%#%% inject %%#%% 
+packet%%per%%]$~ ~$[for reactive packets%%lst%% %%#%% answer %%#%% clear%%scn%% %%#%% node 
+reacting %%#%% %%#%% request %%#%% %%#%% source%%per%%]$~ ~$[however%%lst%% ]f[ initiating 
+packets%%lst%% %%#%% model %%#%% required%%per%%]$~ 
+~$[why %%#%% %%#%% sending %%#%% packet%%qsn%%]$~ ~$[traditional synthetic 
+workloads %%#%% ]n[ concern themselves %%#%% why%%per%%]$~ ~$[for %%#%% cache 
+coherence traffic generator%%lst%% %%#%% question %%#%% %%#%% important%%per%%]$~ ~$[the 
+%%#%% helps determine %%#%% type %%#%% packet %%#%% sent%%lst%% ]^[ allows 
+%%#%% %%#%% classify packets according %%#%% %%#%% coherence protocol%%per%%]$~ 
+~$[where %%#%% %%#%% packet going%%qsn%%]$~ ~$[the packet’s destination %%#%% 
+%%#%% function %%#%% %%#%% %%#%% source ]^[ %%#%% type %%#%% packet %%#%% 
+injected (the answers %%#%% %%#%% previous %%#%% questions)%%per%%]$~ ~$[each 
+source node %%#%% exhibit %%#%% sharing patterns %%#%% %%#%% 
+nodes%%lst%% ]^[ %%#%% sharing patterns %%#%% %%#%% %%#%% depending 
+%%#%% %%#%% coherence message %%#%% sent%%per%%]$~ 
+~$[these 4 questions %%#%% answered %%#%% sec%%per%% 4%%per%%]$~ ~$[however%%lst%% %%cmp_b%% applications exhibit phase behaviour [38]%%lst%% %%#%% %%#%% %%#%% 
+capture %%#%% %%#%% answers change %%#%% time%%per%%]$~ ~$[we handle %%#%% 
+%%#%% dividing application traffic %%#%% time intervals%%lst%% ]^[ %%#%% %%#%% time intervals %%#%% behave similarly%%per%%]$~ ~$[then%%lst%% %%#%% 
+determine answers ]f[ %%#%% when%%lst%% who%%lst%% %%#%% ]^[ %%#%% questions ]f[ %%#%% %%#%% (phase)%%per%%]$~ ~$[we discuss %%#%% methodology 
+]f[ %%#%% intervals %%#%% sec%%per%% 5%%per%%]$~ ~$[to complete %%#%% synfull 
+methodology %%#%% %%#%% %%#%% %%#%% %%#%% transition %%#%% phases%%per%%]$~ ~$[for 
+%%#%% %%#%% %%#%% %%#%% markov chain%%lst%% %%#%% %%#%% %%#%% determine %%#%% probability %%#%% transitioning %%#%% %%#%% phase %%#%% %%#%% based %%#%% %%#%% 
+phase %%#%% %%#%% currently in%%per%%]$~ ~$[the markov chain model%%lst%% %%#%% 
+%%#%% answers %%#%% %%#%% %%#%% 4 questions%%lst%% allow %%#%% %%#%% recreate %%#%% 
+injection process associated %%#%% %%#%% application (sec%%per%% 6)%%per%% 
+4%%per%%]$~ ~$[modelling cache coherence traffic 
+focusing %%#%% %%#%% network %%#%% ]^[ ]n[ modelling application 
+behaviour %%#%% %%#%% instruction level %%#%% %%#%% benefit %%#%% keeping 
+%%#%% methodology generic ]^[ simple – %%#%% %%#%% apply synfull 
+%%#%% %%#%% application’s traffic data %%#%% %%#%% straightforward manner%%per%%]$~ 
+~$[although %%#%% abstract %%#%% %%#%% system components%%lst%% ]n[ %%#%% 
+network messages %%#%% equal ]s[ %%#%% %%#%% %%#%% %%#%% capture %%#%% message types injected %%#%% %%#%% coherence protocol%%per%%]$~ ~$[message 
+types %%#%% %%#%% function %%#%% %%#%% cache coherence protocol%%lst%% ]b[ %%#%% 
+protocols %%#%% conceptually similar %%#%% %%#%% %%#%% behave%%per%%]$~ ~$[a cache 
+table 1%%cln%% 1%%dsh%%to%%dsh%%1 request%%dsh%%response mappings%%per%% $ signifies cache%%per%%]$~ 
+~$[message received 
+cache replacement 
+forwarded request 
+invalidation 
+data 
+source 
+cache 
+directory 
+directory 
+cache 
+reaction 
+writeback ack%%per%%]$~ 
+~$[data 
+ack%%per%%]$~ 
+~$[unblock 
+destination 
+original requestor ($) 
+original requestor ($) 
+original requestor ($) 
+directory 
+miss invokes %%#%% coherence transaction %%#%% %%#%% local coherence 
+controller %%#%% %%#%% form %%#%% %%#%% read ]v[ write %%#%% %%cmp_t%% results 
+%%#%% %%#%% series %%#%% requests ]^[ responses [40]%%per%%]$~ ~$[in %%#%% section%%lst%% %%#%% 
+explore modelling packets %%#%% initiate %%#%% coherence transaction 
+separately %%#%% packets %%#%% react %%#%% received messages%%per%% 
+4%%per%%1%%per%%]$~ ~$[initiating packets 
+%%#%% model %%#%% %%#%% send initiating messages%%lst%% %%#%% collect %%#%% 
+number %%#%% packets (p) injected %%#%% %%#%% network ]f[ %%#%% %%#%% 
+interval spanning %%#%% cycles%%per%%]$~ ~$[then%%lst%% %%#%% generating synthetic 
+traffic%%lst%% %%#%% simply inject %%#%% packets uniformly %%#%% %%#%% cycles3 %%per%%]$~ 
+~$[to answer %%#%% injects %%#%% packet%%lst%% %%#%% observe %%#%% distribution 
+%%#%% packets injected %%#%% %%#%% network nodes%%per%%]$~ ~$[this distribution 
+%%#%% %%#%% %%#%% probability %%#%% particular node %%#%% inject %%#%% packet 
+]^[ %%#%% capture spatial behaviour %%#%% applications [41%%lst%% 44]%%per%%]$~ ~$[the 
+answer %%#%% %%#%% %%#%% packet %%#%% %%#%% %%#%% %%#%% modelled using %%#%% 
+similar method %%#%% relative probabilities%%per%%]$~ ~$[given %%#%% source 
+(s) %%#%% %%#%% packet%%lst%% %%#%% determine %%#%% destination (d) using%%cln%% 
+p(d | s) %%#%% 
+number %%#%% %%#%% packets sent %%#%% %%#%% %%#%% rom %%#%% 
+number %%#%% %%#%% packets sent %%#%% %%#%% 
+(1) 
+finally%%lst%% %%#%% answer %%#%% %%#%% packet %%#%% injected %%#%% split %%#%% %%#%% 
+pr (total number %%#%% reads) ]^[ pw (total number %%#%% writes)%%per%%]$~ 
+~$[the distinction %%#%% reads ]^[ writes %%#%% necessary %%cmp_b%% 
+%%#%% result %%#%% %%#%% reactions – writes lead %%#%% invalidations 
+%%#%% %%#%% broadcast %%#%% %%#%% noc%%scn%% %%#%% %%#%% significantly impact 
+noc performance%%per%% 
+4%%per%%2%%per%%]$~ ~$[reactive packets 
+%%#%% responses %%#%% maintain cache coherence %%#%% %%#%% simple 
+one%%dsh%%to%%dsh%%one mapping %%#%% requests%%lst%% %%#%% %%#%% %%#%% acknowledgement responding %%#%% %%#%% invalidation request%%per%%]$~ ~$[upon receiving %%#%% 
+particular message%%lst%% %%#%% protocol reacts %%#%% %%#%% predetermined 
+response%%per%%]$~ ~$[table 1 %%#%% %%#%% simplified view %%#%% %%#%% reactive aspect %%#%% cache coherence%%per%%]$~ ~$[most reactions %%#%% straightforward ]b[ 
+%%#%% requests lead %%#%% multiple %%#%% responses%%lst%% particularly%%cln%% 
+forwarded requests%%cln%% %%#%% %%#%% data %%#%% %%#%% cached %%#%% chip%%lst%% 
+%%#%% coherence protocol forwards %%#%% request %%#%% %%#%% cache containing %%#%% data%%per%%]$~ ~$[otherwise%%lst%% %%#%% request goes %%#%% chip %%#%% memory%%per%%]$~ 
+~$[invalidates%%cln%% %%#%% %%#%% write request arrives ]f[ %%#%% cache block 
+shared %%#%% multiple readers%%lst%% %%#%% readers %%#%% %%#%% invalidated%%per%%]$~ 
+~$[next%%lst%% %%#%% explore %%#%% %%#%% situations ]^[ %%#%% %%#%% model %%#%% 
+]s[ %%#%% %%#%% %%#%% realistically generate cache coherence traffic%%per%% 
+4%%per%%2%%per%%1%%per%%]$~ ~$[forwarding vs%%per%%]$~ ~$[off%%dsh%%chip %%#%% %%#%% read ]v[ write request 
+arrives %%#%% %%#%% directory%%lst%% %%#%% requested block %%#%% %%#%% %%#%% %%#%% 
+%%#%% core’s cache%%per%%]$~ ~$[in %%#%% case%%lst%% %%#%% request %%#%% forwarded %%#%% 
+3 %%#%% 
+%%#%% explored injecting packets using bernoulli ]^[ exponential distributions%%per%%]$~ ~$[however%%lst%% %%#%% differences %%#%% performance %%#%% negligible%%per%% 
+1%%per%%00 
+0%%per%%75 
+0%%per%%50 
+0%%per%%25 
+0%%per%%00 
+0%%per%%4 
+variable 
+writes 
+reads 
+0%%per%%2 
+0%%per%%0 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+directory 
+10 11 12 13 14 15 16 
+figure 3%%cln%% %%#%% probability %%#%% read ]v[ write request %%#%% forwarded 
+%%#%% cache holding %%#%% data%%per%%]$~ ~$[otherwise%%lst%% %%#%% off%%dsh%%chip memory 
+request occurs%%per%%]$~ ~$[fig%%per%% 3 %%#%% %%#%% fraction %%#%% forwarded read 
+]^[ write requests broken %%#%% %%#%% directory ]f[ splash%%dsh%%2’s 
+fft benchmark4 %%per%%]$~ ~$[the probability %%#%% forwarding %%#%% read ]v[ 
+write changes according %%#%% %%#%% directory %%#%% %%#%% requested%%per%%]$~ 
+~$[therefore%%lst%% %%#%% model %%#%% distribution %%#%% forwarding probabilities %%#%% %%#%% per%%dsh%%directory basis%%per%%]$~ ~$[in sec%%per%% 4%%per%%2%%per%%2%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% %%#%% affect %%#%% invalidations%%lst%% ]^[ %%#%% directories %%#%% 
+act %%#%% hot spots %%#%% %%#%% applications%%per%%]$~ ~$[we %%#%% note %%#%% %%#%% 
+probabilities %%#%% forwarding %%#%% read ]v[ %%#%% write request %%#%% ]n[ 
+equal%%per%%]$~ ~$[this distinction %%#%% critical %%#%% write requests %%#%% trigger 
+invalidations %%#%% sharers %%#%% %%#%% represent %%#%% substantial burst 
+%%#%% network traffic ]f[ widely%%dsh%%shared data%%per%% 
+4%%per%%2%%per%%2%%per%%]$~ ~$[invalidates %%#%% %%#%% write miss%%lst%% %%#%% %%#%% %%#%% chance %%#%% %%#%% 
+cache block %%#%% requested %%#%% multiple sharers%%scn%% %%#%% number 
+%%#%% sharers determines %%#%% number %%#%% invalidates %%#%% %%#%% %%#%% 
+multicast %%#%% %%#%% noc%%per%%]$~ ~$[fig%%per%% 4 %%#%% %%#%% per%%dsh%%directory probability %%#%% sending 0 %%#%% 15 invalidates %%#%% %%#%% 16%%dsh%%node network 
+]f[ fft%%per%%]$~ ~$[some directories (1%%lst%% 3%%lst%% 11%%lst%% ]^[ 12) exhibit bimodal 
+behaviour%%scn%% %%#%% invalidate 0 ]v[ %%#%% − 1 sharers%%per%%]$~ ~$[referring %%#%% 
+%%#%% fig%%per%% 3%%lst%% %%#%% %%#%% %%#%% %%#%% %%#%% directories behave similarly %%#%% 
+%%#%% forwarding probabilities%%per%%]$~ ~$[other directories resemble %%#%% 
+exponential distribution%%lst%% %%#%% 0 invalidates %%#%% %%#%% %%#%% 
+probability%%per%%]$~ ~$[invalidates %%#%% significantly impact network performance%%scn%% applications %%#%% share ]^[ exchange data %%#%% %%#%% %%#%% 
+rate %%#%% flood %%#%% network %%#%% %%#%% invalidates ]^[ strain 
+%%#%% resources%%per%%]$~ ~$[we model %%#%% distribution %%#%% %%#%% number %%#%% 
+invalidates %%#%% %%#%% per%%dsh%%directory basis %%#%% ensure %%#%% synthetically 
+generated traffic %%#%% similar affects %%#%% noc performance%%per%% 
+4%%per%%3%%per%%]$~ ~$[summary 
+%%#%% section %%#%% %%#%% %%#%% model cache coherence traffic %%#%% 
+reacting %%#%% messages injected %%#%% %%#%% noc%%per%%]$~ ~$[read ]^[ write 
+requests %%#%% forwarded %%#%% %%#%% probability %%#%% %%#%% nodes %%#%% 
+%%#%% noc%%lst%% ]^[ invalidates %%#%% %%#%% sent %%#%% %%#%% %%#%% probability 
+%%#%% %%#%% directory %%#%% write request %%#%% arrived at%%per%%]$~ ~$[to react %%#%% 
+messages%%lst%% read ]^[ write requests %%#%% %%#%% %%#%% injected %%#%% 
+%%#%% noc%%per%%]$~ ~$[static injection rates %%#%% ]n[ sufficient %%#%% achieve %%#%% 
+accuracy – %%#%% %%#%% %%#%% consider application phase behaviour%%per%% 
+4 %%#%% 
+system configuration assumes 1 slice %%#%% %%#%% directory %%#%% located %%#%% 
+%%#%% tile %%#%% %%#%% 16%%dsh%%core cmp%%per%%]$~ ~$[addresses %%#%% interleaved %%#%% directories%%per%%]$~ 
+~$[probability 
+probability %%#%% forward %%#%% request 
+0%%per%%6 
+1%%per%%00 
+0%%per%%75 
+0%%per%%50 
+0%%per%%25 
+0%%per%%00 
+1%%per%%00 
+0%%per%%75 
+0%%per%%50 
+0%%per%%25 
+0%%per%%00 
+1%%per%%00 
+0%%per%%75 
+0%%per%%50 
+0%%per%%25 
+0%%per%%00 
+0 
+5 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+10 
+15 
+0 
+5 
+10 
+15 
+0 
+5 
+10 
+15 
+0 
+5 
+10 
+15 
+number %%#%% invalidates 
+figure 4%%cln%% number %%#%% sharers %%#%% write %%#%% %%#%% directories 
+%%#%% explore phase behaviour %%#%% sec%%per%% 5 ]^[ propose %%#%% model 
+%%#%% captures ]^[ applies phases %%#%% generated network traffic%%per%% 
+5%%per%%]$~ ~$[traffic phases 
+applications %%#%% well%%dsh%%known %%#%% exhibit phase behaviour [38]%%per%%]$~ 
+~$[phases %%#%% %%#%% %%#%% significant impact %%#%% %%#%% instructions 
+%%#%% cycle%%lst%% miss rates%%lst%% ]^[ prediction rates %%#%% various microarchitectures%%per%%]$~ ~$[noc traffic %%#%% %%#%% affected %%#%% application 
+phases [20%%lst%% 51]%%scn%% %%#%% methodology %%#%% %%#%% capture %%#%% phase 
+behaviour %%cmp_if%% %%#%% intends %%#%% realistically generate synthetic traffic%%per%%]$~ 
+~$[we propose examining traffic %%#%% %%#%% granularities%%cln%% macro 
+(millions ]v[ billions %%#%% cycles) ]^[ micro (thousands %%#%% hundreds %%#%% thousands %%#%% cycles)%%per%%]$~ ~$[at %%#%% macro level%%lst%% %%#%% observe 
+noticeable differences %%#%% %%#%% behaviour %%#%% %%#%% application %%#%% %%#%% 
+moves %%#%% %%#%% phase %%#%% %%#%% (perhaps due %%#%% %%#%% barrier ]v[ 
+%%#%% %%#%% %%#%% %%#%% outer%%dsh%%loop)%%per%%]$~ ~$[at %%#%% micro%%dsh%%level %%#%% %%#%% %%#%% %%#%% 
+%%#%% capture short bursts %%#%% network activity%%per%%]$~ ~$[each level %%#%% divided 
+%%#%% fixed%%dsh%%sized%%lst%% successive time intervals measured %%#%% cycles%%per%%]$~ 
+~$[dividing traffic %%#%% intervals allows %%#%% %%#%% analyze network 
+traffic %%#%% %%#%% fine granularity%%per%%]$~ ~$[considering %%#%% entire application 
+%%#%% %%#%% captures average behaviour%%scn%% reproducing %%#%% average 
+behaviour %%#%% negatively impact %%#%% design ]^[ evaluation %%#%% 
+nocs%%per%%]$~ ~$[for example%%lst%% smoothing %%#%% periods %%#%% %%#%% traffic %%#%% 
+result %%#%% %%#%% noc %%#%% %%#%% saturated %%#%% key application 
+phases%%per%%]$~ ~$[alternatively%%lst%% bringing low periods %%#%% communication 
+%%#%% %%#%% %%#%% average %%#%% cause %%#%% designer %%#%% miss potential opportunities ]f[ power gating ]v[ dvfs %%#%% %%#%% noc%%per%%]$~ ~$[intervals allow 
+%%#%% %%#%% capture fine%%dsh%%grain changes %%#%% traffic%%per%%]$~ ~$[however%%lst%% selecting 
+%%#%% single (random) interval %%#%% ]n[ necessarily characteristic %%#%% 
+%%#%% entire simulation%%per%%]$~ ~$[yet considering %%#%% intervals %%#%% %%#%% 
+difficult %%#%% model %%#%% %%#%% markov chain (sec%%per%% 6) ]^[ %%#%% yield 
+little simulation speedup%%per%%]$~ ~$[therefore%%lst%% %%#%% %%#%% intervals %%#%% 
+behave similarly %%#%% %%#%% traffic phases via clustering%%per%%]$~ 
+~$[this section explores various alternative approaches %%#%% identifying similar behaviour %%#%% intervals %%#%% feature 
+vectors (sec%%per%% 5%%per%%1)%%per%%]$~ ~$[each vector contains elements (features) 
+%%#%% measure %%#%% aspect %%#%% traffic %%#%% %%#%% interval (e%%per%%g%%per%%%%lst%% %%#%% 
+injection rate)%%per%%]$~ ~$[vectors %%#%% %%cmp_t%% %%cmp%%d %%#%% calculating %%#%% 
+distance %%#%% them%%scn%% %%#%% clustering algorithm creates %%#%% 
+%%#%% intervals %%#%% vectors %%#%% close %%#%% (sec%%per%% 5%%per%%2)%%per%% 
+5%%per%%1%%per%%]$~ ~$[feature vector design 
+defining similarity %%#%% intervals %%#%% non%%dsh%%trivial%%per%%]$~ ~$[one %%#%% %%#%% 
+consider %%#%% elements %%#%% %%#%% feature vector%%lst%% %%#%% dimensionality 
+]^[ scalability%%per%%]$~ ~$[in %%#%% section%%lst%% %%#%% %%#%% %%#%% subset %%#%% potential 
+feature vectors %%#%% %%#%% %%#%% %%#%% %%#%% cluster intervals %%#%% traffic 
+phases%%scn%% %%#%% discussion %%#%% ]n[ meant %%#%% %%#%% exhaustive ]b[ %%#%% 
+captures %%#%% range %%#%% traffic metrics ]^[ feature vector scalability%%per%%]$~ 
+~$[it %%#%% %%#%% tempting %%#%% %%#%% feature vectors %%#%% %%#%% elements%%per%%]$~ ~$[there %%#%% %%#%% trade%%dsh%%off %%#%% capturing %%#%% range %%#%% 
+communication attributes ]^[ %%#%% effectiveness ]^[ ease %%#%% 
+clustering%%per%%]$~ ~$[large feature vectors %%#%% suffer %%#%% %%#%% curse %%#%% 
+dimensionality %%#%% %%#%% data available %%#%% populate %%#%% vector 
+%%#%% insufficient ]f[ %%#%% size %%#%% %%#%% vector [4]%%per%%]$~ ~$[in addition%%lst%% %%#%% %%#%% large number %%#%% observations %%#%% additional strain %%#%% 
+%%#%% clustering algorithm%%scn%% 
+%%#%% clustering algorithms %%#%% %%#%% 
+ 
+complexity %%#%% %%#%% n3 (where %%#%% %%#%% %%#%% number %%#%% vectors)%%per%%]$~ ~$[we 
+explore %%#%% %%#%% approaches %%#%% construct feature vectors%%cln%% 
+1%%per%%]$~ ~$[injection rate%%cln%% number %%#%% packets injected %%#%% %%#%% interval 
+2%%per%%]$~ ~$[injection flows%%cln%% number %%#%% packets injected %%#%% 
+source%%dsh%%destination pairs %%#%% interval 
+%%#%% %%#%% explored feature vectors %%#%% consider cache coherence message types%%per%%]$~ ~$[in %%#%% way%%lst%% intervals %%#%% dominant read 
+and/or write phases %%#%% clustered together%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% 
+approach %%#%% ]n[ capture %%#%% spatial injection distribution %%#%% 
+packets%%per%%]$~ ~$[as %%#%% result%%lst%% intervals %%#%% similar hot spots %%#%% ]n[ 
+clustered together%%per%%]$~ ~$[as %%#%% %%#%% %%#%% sec%%per%% 8%%lst%% %%#%% information %%#%% 
+crucial %%cmp_if%% %%#%% expect %%#%% synthetically generate realistic traffic%%per%% 
+5%%per%%1%%per%%1%%per%%]$~ ~$[injection rate injection rate %%#%% %%#%% captured %%#%% %%#%% ways%%per%%]$~ ~$[considering %%#%% injection rate %%#%% %%#%% nodes (total 
+injection) %%#%% simple%%lst%% one%%dsh%%dimensional feature vectors %%#%% 
+allow %%#%% %%#%% differentiate %%#%% intervals %%#%% %%#%% experiencing high%%lst%% medium ]v[ low levels %%#%% communication%%per%%]$~ ~$[the 
+benefit %%#%% %%#%% vector %%#%% %%#%% %%#%% %%#%% easy %%#%% create%%per%%]$~ ~$[calculating 
+%%#%% distance %%#%% vectors ]^[ applying clustering %%#%% fast 
+%%cmp_b%% %%#%% %%#%% one%%dsh%%dimensional%%per%%]$~ ~$[yet total injection %%#%% %%#%% 
+%%#%% simple%%scn%% %%#%% total number %%#%% packets %%#%% ]n[ reveal %%#%% 
+spatial characteristics %%#%% %%#%% traffic%%per%%]$~ ~$[even %%#%% %%#%% vectors 
+%%#%% similar magnitudes%%lst%% %%#%% respective intervals %%#%% exhibit %%#%% spatial behaviour%%lst%% %%#%% %%#%% hot spots%%per%%]$~ ~$[using %%#%% 
+injection rate %%#%% individual nodes alleviates %%#%% %%#%% %%#%% issues%%per%%]$~ ~$[an n%%dsh%%dimensional vector %%#%% per%%dsh%%node injection rates 
+(node injection) captures %%#%% spatial characteristics %%#%% %%#%% 
+applications%%per%% 
+5%%per%%1%%per%%2%%per%%]$~ ~$[injection flows node injection helps identify injecting 
+hotspots – %%#%% is%%lst%% nodes %%#%% send %%#%% lot %%#%% packets%%per%%]$~ ~$[but hot 
+spots %%#%% %%#%% exist %%#%% %%#%% destination – %%#%% is%%lst%% nodes %%#%% receive 
+%%#%% lot %%#%% packets%%per%%]$~ ~$[to capture %%#%% relationship %%#%% sent 
+]^[ received messages%%lst%% %%#%% %%#%% %%#%% flows [20]%%per%%]$~ ~$[a flow %%#%% %%#%% 
+injection rate %%#%% %%#%% source ]^[ %%#%% destination%%per%%]$~ ~$[for %%#%% nnode network%%lst%% %%#%% %%#%% %%#%% 2 source%%dsh%%destination flow pairs%%per%%]$~ ~$[we 
+construct %%#%% feature vector (per%%dsh%%node flow) %%#%% captures %%#%% 
+information%%per%%]$~ ~$[this vector scales quadratically %%#%% %%#%% number 
+%%#%% nodes%%per%%]$~ ~$[sufficient data %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% traffic ]v[ %%cmp_e%% 
+table 2%%cln%% %%#%% traffic feature vectors ]f[ %%#%% %%#%% %%dsh%%node network 
+feature vector 
+total injection 
+node injection 
+row%%dsh%%column 
+flow 
+per%%dsh%%node 
+flows [20] 
+# %%#%% features 
+1 
+%%#%% 
+%%#%% 
+n2 
+description 
+total number %%#%% packets injected 
+packets injected ]f[ %%#%% network node 
+packets injected %%#%% rows ]^[ columns 
+%%#%% %%#%% network 
+packets injected %%#%% %%#%% sourcedestination pair 
+%%#%% feature vector falls prey %%#%% %%#%% curse %%#%% dimensionality%%per%%]$~ 
+~$[we %%#%% simplify per%%dsh%%node flow feature vectors %%#%% aggregating nodes %%#%% rows ]^[ columns (row%%dsh%%column flow)%%per%%]$~ ~$[each 
+element %%#%% %%#%% vector corresponds %%#%% %%#%% number %%#%% packets 
+sent %%#%% %%#%% row %%#%% nodes %%#%% %%#%% column %%#%% nodes%%per%%]$~ ~$[we %%#%% %%#%% words 
+row ]^[ column ]f[ simplicity – %%#%% actual mapping %%#%% nodes 
+%%#%% %%#%% network %%#%% ]n[ %%#%% %%#%% %%#%% grid%%dsh%%like%%per%% 
+5%%per%%1%%per%%3%%per%%]$~ ~$[summary %%#%% introduce %%#%% potential feature vectors 
+%%#%% classify traffic phases%%per%%]$~ ~$[these %%#%% summarized %%#%% table 2%%per%%]$~ 
+~$[each vector %%#%% %%#%% own pros ]^[ cons%%lst%% ]^[ %%#%% vectors %%#%% 
+%%#%% suited ]f[ %%#%% %%#%% macro ]v[ micro scale%%per%%]$~ ~$[we explore %%#%% 
+impact %%#%% %%#%% feature vectors %%#%% sec%%per%% 8%%per%% 
+5%%per%%2%%per%%]$~ ~$[clustering methods 
+feature vectors %%#%% %%#%% %%#%% cluster intervals %%#%% traffic phases%%per%%]$~ 
+~$[we calculate %%#%% distance %%#%% vectors ]^[ %%cmp_t%% apply 
+%%#%% clustering method%%per%%]$~ ~$[distance calculations %%#%% affected %%#%% 
+%%#%% dimensionality %%#%% %%#%% vector (i%%per%%e%%per%% number %%#%% features)%%scn%% 
+%%cmp_tf%%%%lst%% feature vectors %%#%% scale poorly (table 2) lead %%#%% 
+%%#%% overhead ]^[ modelling time%%per%%]$~ ~$[in %%#%% section%%lst%% %%#%% look 
+%%#%% %%#%% clustering approaches%%cln%% partitional ]^[ hierarchical ]^[ 
+weigh %%#%% benefits%%per%%]$~ ~$[ultimately%%lst%% %%#%% %%#%% %%#%% approaches 
+%%#%% %%#%% granularities%%lst%% %%#%% %%#%% discuss %%#%% sec%%per%% 6%%per%% 
+5%%per%%2%%per%%1%%per%%]$~ ~$[partitional clustering partitional clustering designates %%#%% feature vector %%#%% %%#%% central %%#%% %%#%% group%%scn%% %%#%% %%#%% 
+euclidean distance %%#%% %%#%% measure %%#%% closeness %%#%% vectors%%per%%]$~ ~$[although k%%dsh%%means %%#%% %%#%% %%#%% popular%%lst%% %%#%% %%#%% k%%dsh%%medoids 
+(specifically%%lst%% partitioning%%dsh%%around%%dsh%%medoids ]v[ pam)%%per%%]$~ ~$[pam 
+performs %%#%% pairwise comparison %%#%% %%#%% distances %%#%% %%#%% 
+vector (v %%#%% ]^[ %%#%% %%#%% vector %%#%% %%#%% group%%per%%]$~ ~$[although 
+slower %%cmp_ta%% k%%dsh%%means%%lst%% pam %%#%% able %%#%% provide %%#%% central vector 
+(medoid) ]f[ %%#%% group%%per%%]$~ ~$[this allows %%#%% %%#%% select %%#%% interval 
+%%#%% %%#%% %%#%% representative %%#%% %%#%% traffic phase%%per%%]$~ ~$[partitional clustering %%#%% %%#%% np%%dsh%%hard problem%%lst%% %%#%% heuristics %%#%% available 
+%%#%% %%#%% %%#%% complexity ]^[ speed low [46]%%per%%]$~ 
+~$[partitional clustering requires %%#%% number %%#%% traffic phases 
+(or clusters k) %%#%% %%#%% %%#%% input %%#%% %%#%% algorithm%%per%%]$~ ~$[formal methods exist [34] %%#%% determine %%#%% optimum %%#%% value%%lst%% %%#%% ]n[ 
+%%#%% methodologies agree %%#%% %%#%% %%#%% k%%per%%]$~ ~$[two common methods %%#%% estimate %%#%% optimal %%#%% %%#%% average silhouette width 
+(asw) [35] ]^[ %%#%% calinksi%%dsh%%harabasz (ch) index [6]%%per%%]$~ ~$[we 
+explore %%#%% effects %%#%% %%#%% using %%#%% %%#%% methods %%#%% sec%%per%% 8%%per%%1%%per%% 
+5%%per%%2%%per%%2%%per%%]$~ ~$[hierarchical clustering hierarchical clustering %%#%% %%#%% 
+efficient%%lst%% deterministic approach %%#%% %%#%% traffic phases%%per%%]$~ 
+~$[however%%lst%% %%#%% %%#%% %%#%% complexity %%#%% o(n3 %%#%% (where %%#%% %%#%% %%#%% number 
+%%#%% vectors)%%lst%% %%#%% %%#%% %%#%% suited %%#%% clustering %%#%% data 
+sets%%per%%]$~ ~$[hierarchical clustering creates %%#%% tree (a dendogram) %%#%% %%#%% 
+feature vectors%%lst%% linking vectors %%#%% based %%#%% distance ]^[ 
+%%#%% linkage criterion5 %%per%%]$~ ~$[the algorithm iteratively combines %%#%% 
+%%#%% clusters %%#%% %%#%% %%#%% least impact %%#%% %%#%% sum %%#%% squares 
+error%%per%%]$~ ~$[different levels %%#%% %%#%% tree indicate %%#%% vectors belong 
+%%#%% %%#%% clusters%%scn%% %%#%% tree %%#%% %%#%% cut %%#%% %%#%% user%%dsh%%defined level 
+%%#%% provide %%#%% desired number %%#%% traffic phases%%per%%]$~ ~$[we %%#%% %%#%% 
+l%%dsh%%method [36] %%#%% determine %%#%% appropriate number %%#%% clusters 
+%%#%% hierarchical clustering%%per%% 
+6%%per%%]$~ ~$[injection process 
+%%#%% sec%%per%% 5%%lst%% %%#%% introduce macro%%dsh%% ]^[ micro%%dsh%%level granularities 
+]f[ intervals%%per%%]$~ ~$[each macro%%dsh%%interval %%#%% %%#%% broken %%#%% %%#%% 
+micro%%dsh%%intervals%%per%%]$~ ~$[then%%lst%% %%#%% %%#%% intervals %%#%% traffic phases 
+using clustering%%per%%]$~ ~$[next%%lst%% %%#%% demonstrate %%#%% %%#%% construct %%#%% 
+hierarchical markov chain ]f[ %%#%% macro%%dsh%% ]^[ micro%%dsh%%levels%%per%%]$~ 
+~$[fig%%per%% 1 %%#%% %%#%% overview %%#%% %%#%% approach%%lst%% %%#%% macro%%dsh%%scale 
+traffic %%#%% %%#%% decomposed %%#%% micro%%dsh%%scale intervals%%lst%% ]^[ 
+%%#%% markov chains govern %%#%% transitions %%#%% phases%%per%%]$~ 
+~$[markov chains %%#%% typically %%#%% %%#%% model stochastic processes%%per%%]$~ ~$[a markov chain %%#%% %%#%% %%#%% %%#%% %%#%% number %%#%% states%%lst%% 
+%%#%% transition probabilities defined ]f[ moving %%#%% %%#%% state 
+%%#%% another%%per%%]$~ ~$[in %%#%% case%%lst%% states correspond %%#%% macro%%dsh%% ]v[ microphases%%lst%% ]^[ transitioning %%#%% %%#%% phase %%#%% %%#%% allows 
+%%#%% %%#%% accurately replicate %%#%% time%%dsh%%varying behaviour %%#%% %%#%% 
+application’s injection process%%per%%]$~ 
+~$[macro scale %%#%% %%#%% application runtimes%%lst%% %%#%% number 
+%%#%% intervals %%#%% %%#%% macro level ranges %%#%% hundreds %%#%% thousands%%per%%]$~ ~$[this variability ]^[ %%#%% resulting large number %%#%% vectors means hierarchical clustering %%#%% ]n[ %%#%% %%#%% fit %%cmp_b%% 
+%%#%% %%#%% o(n3 %%#%% complexity%%scn%% %%cmp_tf%% %%#%% %%#%% pam %%#%% %%#%% macro 
+scale%%per%%]$~ ~$[pam %%#%% %%#%% %%#%% medoid %%#%% %%#%% traffic phase – %%#%% is%%lst%% 
+%%#%% single macro interval %%#%% %%#%% represents %%#%% macro phase%%per%%]$~ 
+~$[having %%#%% single macro%%dsh%%interval ]f[ %%#%% phase significantly reduces %%#%% amount %%#%% data modelled%%per%%]$~ ~$[once %%#%% %%#%% %%#%% medoid 
+]f[ %%#%% traffic phase%%lst%% %%#%% pass %%#%% %%#%% %%#%% micro model ]^[ 
+analyze %%#%% traffic %%#%% %%#%% finer granularity%%per%%]$~ ~$[we create %%#%% micro 
+model ]f[ %%#%% macro%%dsh%%interval selected%%per%%]$~ 
+~$[micro scale %%#%% micro scale looks %%#%% %%#%% %%#%% %%#%% subset 
+%%#%% %%#%% overall traffic%%per%%]$~ ~$[dividing %%#%% macro%%dsh%%interval %%#%% microintervals allows %%#%% %%#%% capture %%#%% injection process %%#%% %%#%% finer 
+granularity%%scn%% %%#%% %%#%% necessary %%#%% capture bursty fluctuations %%#%% 
+traffic %%#%% %%#%% greatly influence network performance%%per%%]$~ ~$[unlike 
+%%#%% %%#%% macro%%dsh%%level%%lst%% %%#%% %%#%% ]n[ looking ]f[ %%#%% single representative interval %%#%% traffic phase%%per%%]$~ ~$[a single representative interval 
+%%#%% ]n[ contain %%#%% data %%#%% form %%#%% accurate micro%%dsh%%level 
+model%%per%%]$~ ~$[since %%#%% %%#%% ]n[ %%#%% %%#%% medoid%%lst%% %%#%% %%#%% hierarchical 
+clustering %%#%% %%#%% micro scale%%per%%]$~ 
+~$[hierarchy %%#%% model multiple markov chains ]f[ %%#%% hierarchy %%#%% macro%%dsh%% ]^[ micro%%dsh%%levels%%per%%]$~ ~$[one markov chain governs 
+transitioning %%#%% macro%%dsh%%phases%%per%%]$~ ~$[for %%#%% macro%%dsh%%phase 
+%%#%% define %%#%% markov chain ]f[ %%#%% micro%%dsh%%phases%%per%%]$~ ~$[fig%%per%% 1 
+%%#%% %%#%% %%#%% level hierarchy %%#%% %%#%% macro%%dsh%%phases ]^[ 
+5 %%#%% 
+%%#%% minimum%%dsh%%variance based %%#%% ward’s method [47]%%per%%]$~ 
+~$[processor 
+l1 caches 
+l2 caches 
+coherence protocol 
+16 out%%dsh%%of%%dsh%%order cores%%lst%% 4%%dsh%%wide%%lst%% 80%%dsh%%instruction rob 
+16 private%%lst%% 4%%dsh%%way%%lst%% 32 kb 
+16 private%%lst%% 8%%dsh%%way%%lst%% 512 kb 
+directory%%dsh%%based moesi (blocking) 
+network 
+topology 
+channel width 
+virtual channels 
+routing alg%%per%%]$~ 
+~$[buffer depth 
+router pipeline 
+%%#%% 
+mesh 
+8 bytes 
+2 %%#%% port 
+xy 
+%%#%% 
+%%#%% 
+mesh 
+flattened butterfly [23] 
+4 bytes 
+4 bytes 
+2 %%#%% port 
+4 %%#%% port 
+adaptive xy%%dsh%%yx 
+ugal 
+8 flits 
+4 stages 
+table 3%%cln%% simulation configurations 
+%%#%% micro%%dsh%%phases%%per%%]$~ ~$[an %%#%% property %%#%% markov chains 
+%%#%% %%#%% %%#%% %%#%% reach equilibrium (π)%%per%%]$~ ~$[that is%%lst%% %%#%% infinite 
+time%%lst%% %%#%% markov chain converges %%#%% %%#%% steady state %%#%% %%#%% 
+probability %%#%% %%#%% %%#%% %%#%% %%#%% state %%#%% constant%%per%%]$~ ~$[we exploit 
+%%#%% property %%#%% achieve significant speedups %%#%% full%%dsh%%system 
+simulation %%#%% sec%%per%% 10%%per%% 
+7%%per%%]$~ ~$[methodology 
+%%#%% evaluate synfull using %%#%% 16%%dsh%%core cmp %%#%% %%#%% configuration %%#%% %%#%% table 3%%per%%]$~ ~$[each node contains %%#%% core%%lst%% private l1 
+cache%%lst%% private l2 cache ]^[ %%#%% directory%%per%%]$~ ~$[data %%#%% collected using 
+fes2%%lst%% %%#%% full%%dsh%%system simulator [31] integrated %%#%% booksim%%lst%% %%#%% 
+cycle%%dsh%%accurate network simulator [19]%%per%%]$~ ~$[we run parsec [5] 
+]^[ splash%%dsh%%2 [48] benchmarks %%#%% %%#%% sim%%dsh%%small input 
+set%%per%%]$~ ~$[all benchmarks %%#%% run %%#%% completion %%#%% %%#%% exception 
+%%#%% facesim%%lst%% %%#%% %%#%% capped %%#%% %%#%% hundred million cycles%%per%%]$~ 
+~$[to generate %%#%% synfull models%%lst%% %%#%% collect traces %%#%% fullsystem simulation assuming %%#%% ideal fully%%dsh%%connected noc 
+%%#%% %%#%% fixed %%#%% cycle latency%%per%%]$~ ~$[using %%#%% ideal network ensures 
+%%#%% %%#%% model %%#%% ]n[ contain artifacts %%#%% %%#%% network%%lst%% ]^[ 
+%%cmp_tf%% %%#%% %%#%% influenced %%#%% %%#%% %%#%% topology%%lst%% routing 
+algorithm%%lst%% etc%%per%%]$~ ~$[thus %%#%% single model %%#%% %%#%% %%#%% %%#%% simulate 
+%%#%% wide range %%#%% noc configurations%%per%%]$~ ~$[we %%cmp%% noc performance %%#%% %%#%% synthetically generated network traffic %%#%% 
+full%%dsh%%system simulation ]^[ trace%%dsh%%based simulation using stateof%%dsh%%the%%dsh%%art packet dependency tracking based %%#%% netrace [18]%%per%%]$~ 
+~$[to demonstrate %%#%% %%#%% methodology %%#%% network agnostic%%lst%% %%#%% %%cmp%% %%#%% %%#%% %%#%% noc configurations 
+(table 3)%%per%%]$~ ~$[that is%%lst%% %%#%% %%#%% apply synfull %%#%% %%#%% noc 
+configurations ]^[ capture similar behaviour %%#%% %%#%% %%#%% 
+%%#%% %%#%% exhibited %%#%% full%%dsh%%system simulation%%lst%% regardless %%#%% 
+%%#%% network’s configuration%%per%% 
+8%%per%%]$~ ~$[synfull exploration 
+%%#%% proposed synfull traffic model %%#%% %%#%% number %%#%% parameters %%#%% %%#%% %%#%% changed%%per%%]$~ ~$[initially%%lst%% %%#%% %%#%% ]n[ obvious ]v[ intuitive 
+%%#%% %%#%% values %%#%% %%#%% parameters %%#%% %%#%% %%#%% accurately 
+model traffic%%per%%]$~ ~$[in %%#%% section%%lst%% %%#%% explore %%#%% model parameters ]^[ discuss %%#%% affects %%#%% %%#%% generated network 
+traffic%%lst%% noc performance ]^[ model accuracy%%per%%]$~ ~$[specifically%%lst%% 
+we%%cln%% (i) evaluate %%#%% %%#%% number %%#%% macro phases affect noc 
+performance%%scn%% (ii) demonstrate %%#%% %%#%% adjust %%#%% amount %%#%% 
+congestion %%#%% %%#%% micro level %%#%% %%#%% feature vectors%%scn%% 
+asw ni 
+2 
+2 
+2 
+asw ti 
+2 
+2 
+2 
+ch ni 
+2 
+8 
+2 
+ch ti 
+10 
+7 
+6 
+table 4%%cln%% number %%#%% macro phases ]f[ %%#%% formal methods 
+]^[ feature vectors 
+average%%per%%packet%%per%%latency 
+benchmark 
+lu 
+raytrace 
+swaptions 
+40 
+simulation 
+fsys 
+asw_ni 
+asw_ti 
+ch_ni 
+ch_ti 
+30 
+20 
+10 
+0 
+lu continguous 
+]^[ (iii) explore %%#%% %%#%% size %%#%% time intervals %%#%% change 
+traffic generated %%#%% synfull%%per%%]$~ 
+~$[we look %%#%% %%#%% effects %%#%% %%#%% parameters quantitatively 
+%%#%% %%#%% benchmarks%%cln%% lu (contiguous)%%lst%% raytrace%%lst%% ]^[ swaptions%%per%%]$~ ~$[the domains %%#%% %%#%% benchmarks %%#%% different%%scn%% lu %%#%% 
+%%#%% high%%dsh%%performance computing application %%#%% relies heavily %%#%% barriers %%#%% %%#%% synchronization primitive%%lst%% raytrace %%#%% %%#%% 
+graphics%%dsh%%based benchmark %%#%% relies heavily %%#%% locks%%lst%% ]^[ 
+swaptions deals %%#%% financial analysis ]^[ %%#%% ]n[ %%#%% communication intensive%%per%%]$~ ~$[once %%#%% %%#%% explored %%#%% parameters 
+%%#%% %%#%% %%#%% benchmarks%%lst%% %%#%% %%#%% recommendations 
+%%#%% achieve noc performance estimates %%#%% %%#%% accurate %%#%% 
+respect %%#%% full%%dsh%%system simulation results%%per%% 
+8%%per%%1%%per%%]$~ ~$[macro phases 
+macro phases constitute %%#%% largest granularity ]f[ %%#%% model – 
+%%#%% macro interval %%#%% %%#%% %%#%% hundred thousand cycles long%%per%%]$~ 
+~$[the number %%#%% macro phases %%#%% %%#%% %%#%% model %%#%% %%#%% function %%#%% 
+application behaviour%%per%%]$~ ~$[in order %%#%% determine %%#%% number%%lst%% %%#%% 
+apply formal methods (ch ]^[ asw) %%#%% %%#%% particular clustering 
+%%#%% macro%%dsh%%intervals%%per%%]$~ ~$[clustering %%#%% %%#%% affected %%#%% %%#%% feature 
+vectors used%%per%%]$~ ~$[the number %%#%% macro phases %%#%% %%#%% synfull 
+affects %%#%% variety %%#%% traffic exhibited %%#%% %%#%% macro granularity%%per%%]$~ 
+~$[we explore %%#%% feature vectors %%#%% %%#%% macro%%dsh%%level%%cln%% total 
+injection (ti) ]^[ node injection (ni)%%per%%]$~ ~$[our goal %%#%% %%#%% reduce 
+%%#%% clustering overhead %%#%% %%#%% macro level %%cmp_b%% %%#%% number 
+%%#%% observations %%#%% %%#%% %%#%% large ]^[ varies %%#%% benchmark – 
+ti ]^[ ni require %%#%% least processing time %%#%% %%#%% %%#%% proposed 
+feature vectors%%per%%]$~ ~$[using %%#%% %%#%% feature vectors%%lst%% %%#%% apply ch 
+]^[ asw %%#%% %%#%% clustering %%#%% determine %%#%% optimal number %%#%% 
+macro%%dsh%%phases%%per%%]$~ ~$[we assume macro%%dsh%%intervals %%#%% 500,000 cycles 
+]^[ micro%%dsh%%intervals %%#%% 200 cycles%%lst%% ]^[ %%#%% ni feature vector 
+%%#%% %%#%% micro level%%per%%]$~ ~$[we create %%#%% model %%#%% full%%dsh%%system 
+simulation %%#%% %%#%% ideal network%%lst%% ]^[ %%cmp_t%% apply %%#%% traffic %%#%% 
+network a%%per%%]$~ ~$[we %%cmp%% %%#%% resulting average packet latency 
+%%#%% full%%dsh%%system simulation (fsys)%%scn%% %%#%% metric includes %%#%% time 
+%%#%% node %%#%% queued waiting %%#%% %%#%% injected %%#%% %%#%% network%%per%%]$~ 
+~$[table 4 %%#%% %%#%% number %%#%% phases suggested %%#%% %%#%% asw 
+]^[ ch formal methods ]f[ %%#%% ni ]^[ ti feature vectors%%lst%% ]^[ 
+fig%%per%% 5 %%#%% %%#%% results %%#%% using %%#%% parameters%%per%%]$~ ~$[there %%#%% 
+little variation %%#%% average packet latency %%#%% tweaking macro 
+parameters ]f[ lu ]^[ swaptions%%per%%]$~ ~$[raytrace%%lst%% however%%lst%% %%#%% 
+%%#%% accuracy using %%#%% ch index%%lst%% %%#%% recommends 7 ]v[ 8 
+macro phases %%#%% ti ]^[ ni%%lst%% respectively%%per%%]$~ ~$[raytrace traffic %%#%% 
+%%#%% macro intervals %%#%% deviate %%#%% %%#%% norm%%lst%% %%#%% due 
+%%#%% %%#%% %%#%% thousand locks %%#%% %%#%% [48]%%lst%% ]^[ %%cmp_tf%% %%#%% 
+%%#%% modelled %%#%% %%#%% macro phases%%per%%]$~ ~$[the locking %%#%% raytrace 
+results %%#%% %%#%% unstructured communication pattern %%#%% %%#%% 
+raytrace 
+swaptions 
+figure 5%%cln%% macro%%dsh%%level sweeping %%#%% feature vectors & number 
+%%#%% phases (table 4)%%per%% 
+variation%%per%%]$~ ~$[too %%#%% macro phases %%#%% force interval outliers 
+%%#%% phases %%#%% %%#%% %%#%% ]n[ belong%%per%%]$~ 
+~$[the %%#%% %%#%% barriers %%#%% lu results %%#%% distinct periods %%#%% low 
+]^[ %%#%% communication%%scn%% %%#%% %%#%% threads reach %%#%% barrier %%#%% 
+%%#%% %%#%% sudden burst %%#%% packets %%#%% %%#%% noc%%per%%]$~ ~$[this communication 
+pattern maps %%#%% %%#%% 2 distinct macro phases%%per%%]$~ ~$[ch+ti %%#%% 10 
+macro phases %%#%% results %%#%% %%#%% %%#%% error ]f[ synfull%%per%%]$~ 
+~$[too %%#%% phases %%#%% lead %%#%% poor clustering quality %%cmp_b%% 
+%%#%% phases %%#%% %%#%% %%#%% few%%lst%% ]v[ %%#%% %%#%% single interval%%lst%% associated %%#%% them%%per%%]$~ ~$[these phases %%#%% superfluous ]^[ negatively 
+impact %%#%% markov chain %%cmp_b%% %%#%% %%#%% %%#%% rarely visited%%per%%]$~ 
+~$[the single dimension %%#%% ti makes %%#%% clustering sensitive 
+%%#%% fluctuations %%#%% macro intervals%%scn%% %%#%% is%%lst%% %%#%% highcommunication macro%%dsh%%intervals %%#%% ]n[ %%#%% clustered %%#%% 
+due %%#%% %%#%% %%#%% difference %%#%% total packets%%per%%]$~ ~$[this sensitivity %%#%% 
+alleviated %%#%% using %%#%% dimensions%%lst%% ]s[ %%#%% deviations %%#%% %%#%% 
+element %%#%% neutralized %%#%% similarity %%#%% others%%per%%]$~ ~$[this helps 
+prevent %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% phases ]f[ macro 
+intervals%%scn%% thus%%lst%% %%#%% recommend ni ]f[ macro clustering ]^[ 
+ch ]f[ %%#%% number %%#%% macro phases%%per%% 
+8%%per%%2%%per%%]$~ ~$[congestion %%#%% %%#%% micro level 
+sec%%per%% 8%%per%%1 %%#%% node injection (ni) %%#%% %%#%% feature vector %%#%% 
+%%#%% micro level%%per%%]$~ ~$[ni clusters micro intervals according %%#%% %%#%% 
+distribution %%#%% injected packets %%#%% nodes%%per%%]$~ ~$[while %%#%% %%#%% 
+cluster hot spots %%#%% source nodes%%lst%% %%#%% %%#%% situations %%#%% hot 
+spots exist %%#%% source%%dsh%%destination pairs%%per%%]$~ ~$[for example%%lst%% %%#%% 
+many%%dsh%%to%%dsh%%one communication pattern %%#%% ]n[ accurately captured 
+%%#%% %%#%% ni vector%%per%%]$~ ~$[the row%%dsh%%column flow (rcflow) ]^[ pernode flow (flow) feature vectors %%#%% %%#%% suited %%#%% capturing 
+%%#%% hot spots%%lst%% allowing ]f[ %%#%% synthetically generated traffic 
+%%#%% cause congestion %%#%% full%%dsh%%system simulation might%%per%%]$~ 
+~$[in %%#%% section%%lst%% %%#%% %%#%% ch+ni %%#%% %%#%% macro level %%#%% 
+interval sizes %%#%% 500,000 cycles%%per%%]$~ ~$[we %%cmp%% %%#%% ni feature 
+vector %%#%% rcflow ]^[ flow %%#%% 200%%dsh%%cycle micro intervals%%per%%]$~ 
+~$[we run %%#%% models %%#%% network %%#%% ]^[ %%#%% average packet 
+latency %%#%% fig%%per%% 6%%per%%]$~ ~$[the rcflow ]^[ flow vectors %%#%% %%#%% 
+accurate %%#%% respect %%#%% full%%dsh%%system simulation ]f[ raytrace%%scn%% 
+%%#%% locks %%#%% %%#%% raytrace result %%#%% specific source%%dsh%%destination 
+sharing %%#%% ni %%#%% ]n[ capture%%per%%]$~ ~$[also %%#%% %%#%% %%#%% %%#%% %%#%% 
+vectors %%#%% ]n[ negatively affect %%#%% accuracy ]f[ %%#%% lu ]^[ 
+swaptions%%scn%% %%#%% is%%lst%% rcflow ]^[ flow %%#%% ]n[ artificially create 
+congestion ]f[ benchmarks %%#%% %%#%% ]n[ exhibit %%#%% behaviour%%per%%]$~ 
+~$[we %%#%% ]n[ %%#%% %%#%% %%#%% average behaviour ]b[ %%#%% capturing %%#%% highs ]^[ lows %%#%% network traffic%%per%%]$~ ~$[looking %%#%% packet 
+average%%per%%packet%%per%%latency 
+average%%per%%packet%%per%%latency 
+40 
+simulation 
+fsys 
+flow 
+rcflow 
+ni 
+30 
+20 
+10 
+0 
+lu continguous 
+raytrace 
+swaptions 
+simulation 
+fsys 
+flow 100 250000 
+flow 200 500000 
+flow 500 1250000 
+rcflow 100 250000 
+rcflow 200 500000 
+rcflow 500 1250000 
+40 
+30 
+20 
+10 
+0 
+lu continguous 
+figure 6%%cln%% micro%%dsh%%level sweep %%#%% feature vectors 
+hellinger%%per%%distance 
+50 
+feature vector 
+cluster algorithm 
+formal method 
+interval size 
+simulation 
+flow 
+rcflow 
+node 
+0%%per%%06 
+0%%per%%03 
+0%%per%%00 
+lu continguous 
+raytrace 
+macro%%dsh%%level model 
+node injection 
+pam 
+ch index 
+500,000 
+micro%%dsh%%level model 
+rcflow 
+hierarchical 
+l%%dsh%%method 
+200 
+table 5%%cln%% final synfull configuration 
+swaptions 
+figure 7%%cln%% hellinger distance comparing packet latency distributions %%#%% synthetic simulations %%#%% %%#%% system%%per%%]$~ ~$[lower %%#%% better%%per%% 
+latency distributions%%lst%% %%#%% %%#%% %%#%% %%#%% number %%#%% packets %%#%% 
+achieve %%#%% wide range %%#%% latencies %%#%% %%#%% %%#%% network%%scn%% %%#%% 
+distribution %%#%% insight %%#%% %%#%% congestion %%#%% network %%#%% 
+experienced%%per%%]$~ ~$[the hellinger distance defines %%#%% similarity 
+%%#%% %%#%% distributions%%per%%]$~ ~$[the hellinger distance %%#%% defined 
+%%#%% equation 2%%lst%% %%#%% %%#%% ]^[ %%#%% %%#%% %%#%% discrete distributions (in 
+%%#%% case%%lst%% packet latency distributions)%%lst%% ]^[ pi ]^[ qi %%#%% %%#%% 
+ith element %%#%% %%#%% ]^[ q%%lst%% respectively%%per%% 
+%%#%% 
+%%#%% 
+1 %%#%% %%#%% √ 
+√ 
+h(p%%lst%% q) %%#%% √ %%#%% ∑ %%#%% pi − qi )2 
+2 i=1 
+swaptions 
+figure 8%%cln%% noc performance ]f[ %%#%% interval sizes%%per%% 
+0%%per%%12 
+0%%per%%09 
+raytrace 
+(2) 
+fig%%per%% 7 %%#%% %%#%% hellinger distance ]f[ %%#%% synthetic traffic 
+latency distributions %%cmp%%d %%#%% full%%dsh%%system simulation%%per%%]$~ ~$[the 
+lower %%#%% distance%%lst%% %%#%% %%#%% similar %%#%% latency distributions 
+are%%per%%]$~ ~$[we %%#%% %%#%% that%%lst%% %%#%% %%#%% error %%#%% average packet 
+latency %%#%% less ]f[ raytrace %%#%% %%#%% flow vector (fig%%per%% 7)%%lst%% %%#%% 
+distribution %%#%% packet latencies %%#%% ]n[ %%#%% close %%#%% %%#%% system 
+%%#%% rcflow%%per%%]$~ ~$[this %%#%% %%cmp_b%% %%#%% flow vector causes %%#%% %%#%% 
+latency packets %%cmp_ta%% full%%dsh%%system simulation%%lst%% driving %%#%% %%#%% average packet latency %%#%% %%#%% congestion %%cmp_ta%% necessary%%per%%]$~ ~$[in 
+%%#%% cases%%lst%% rcflow %%#%% %%#%% similar %%#%% %%#%% desired packet latency 
+distribution exhibited %%#%% full%%dsh%%system simulation%%lst%% ]^[ %%#%% error 
+%%#%% average packet latency %%#%% comparable %%#%% flow%%per%%]$~ ~$[therefore%%lst%% 
+%%#%% recommend rcflow ]f[ micro clustering%%per%% 
+8%%per%%3%%per%%]$~ ~$[time interval size 
+%%#%% %%#%% %%#%% %%#%% %%#%% 500,000 cycles %%#%% macro interval ]^[ 
+200 cycles %%#%% micro interval%%per%%]$~ ~$[this results %%#%% 500%%lst%% 000/200 %%#%% 
+2%%lst%% 500 micro intervals (observations) %%#%% macro interval%%lst%% %%#%% 
+%%#%% low %%#%% %%#%% %%#%% hierarchical clustering time reasonable%%per%%]$~ 
+~$[now%%lst%% %%#%% sweep %%#%% macro ]^[ micro interval sizes %%#%% ]s[ 
+%%#%% %%#%% %%#%% result %%#%% 2,500 observations%%per%%]$~ ~$[we %%#%% ch+ni 
+%%#%% %%#%% macro level%%lst%% ]^[ %%cmp%% %%#%% rcflow ]^[ flow feature 
+vectors %%#%% %%#%% micro level %%#%% various interval sizes%%per%%]$~ 
+~$[fig%%per%% 8 %%#%% %%#%% average packet latency ]f[ synfull traffic 
+%%#%% %%#%% interval sizes%%per%%]$~ ~$[there %%#%% ]n[ %%#%% %%#%% cut interval 
+size %%#%% %%#%% %%#%% ]f[ %%#%% application%%per%%]$~ ~$[rcflow %%#%% %%#%% %%#%% 
+%%#%% micro%%dsh%%interval size %%#%% 100 cycles ]f[ raytrace%%lst%% ]b[ performs 
+worse ]f[ lu%%per%%]$~ ~$[applications %%#%% exhibit %%#%% periodic 
+behaviour %%#%% %%#%% micro level depending %%#%% %%#%% algorithm ]v[ 
+%%#%% application %%#%% ]n[ %%#%% periodic behaviour %%#%% all%%per%%]$~ ~$[when 
+using large interval sizes %%#%% 500 cycles ]v[ more%%lst%% %%#%% risk ]n[ 
+capturing bursty application traffic %%cmp_b%% deviations %%#%% injection rate %%#%% averaged %%#%% %%#%% %%#%% interval%%per%%]$~ ~$[for applications 
+%%#%% bursty traffic%%lst%% large interval sizes %%#%% %%#%% %%cmp_b%% 
+%%#%% standard deviation %%#%% packets injected %%#%% time %%#%% low%%per%%]$~ 
+~$[choosing %%#%% universal interval size ]f[ %%#%% applications %%#%% 
+lead %%#%% slightly less accurate synfull results ]f[ %%#%% subset %%#%% 
+benchmarks%%per%%]$~ ~$[in future work%%lst%% %%#%% %%#%% investigate automatically 
+determining %%#%% interval size based %%#%% application traffic%%per%% 
+8%%per%%4%%per%%]$~ ~$[parameter recommendations 
+based %%#%% %%#%% results %%#%% %%#%% %%#%% section%%lst%% %%#%% %%#%% %%#%% 
+recommendations regarding model parameters %%#%% %%#%% synfull%%per%%]$~ 
+~$[changing %%#%% feature vector %%#%% %%#%% macro level %%#%% ]n[ %%#%% %%#%% 
+significant effect %%#%% network performance%%per%%]$~ ~$[however%%lst%% %%#%% terms 
+%%#%% %%#%% clustering quality (recall ti vs%%per%%]$~ ~$[ni ]f[ lu’s barriers)%%lst%% 
+using %%#%% ni feature vector %%#%% %%#%% ch index yields %%#%% %%#%% 
+results%%per%%]$~ ~$[for feature vectors %%#%% %%#%% micro level%%lst%% %%#%% %%#%% %%#%% %%#%% 
+select %%#%% vector %%#%% adequately captures hotspots%%per%%]$~ ~$[both rcflow 
+]^[ flow feature vectors %%#%% %%#%% results%%lst%% %%#%% rcflow 
+scales %%#%% %%#%% %%#%% number %%#%% nodes %%#%% simulated ]^[ 
+takes significantly less time %%#%% model (typically%%lst%% %%#%% rcflow 
+model takes %%#%% %%#%% minutes %%#%% generate whereas %%#%% flow model 
+%%#%% %%#%% %%#%% 20)%%per%%]$~ ~$[finally%%lst%% %%#%% interval sizes %%#%% %%#%% macro 
+]^[ micro levels %%#%% greatly influence traffic generated %%#%% 
+synfull%%per%%]$~ ~$[for %%#%% rest %%#%% %%#%% paper%%lst%% %%#%% %%#%% %%#%% 200 cycles %%#%% 
+%%#%% micro%%dsh%%level ]^[ 500%%lst%% 000 cycles %%#%% %%#%% macro%%dsh%%level%%per%% 
+9%%per%%]$~ ~$[results 
+%%#%% evaluate synfull %%#%% parsec ]^[ splash%%dsh%%2 benchmarks %%#%% %%#%% %%#%% network configurations introduced %%#%% table 3%%per%%]$~ ~$[we %%cmp%% synfull %%#%% full%%dsh%%system simulation ]^[ 
+trace simulation %%#%% packet dependences%%per%%]$~ ~$[for synfull%%lst%% %%#%% 
+%%#%% %%#%% recommendations %%#%% sec%%per%% 8%%per%%4 summarized %%#%% table 5%%per%%]$~ 
+~$[initially ]f[ %%#%% synfull ]^[ trace simulations%%lst%% %%#%% number %%#%% 
+cycles simulated %%#%% equal %%#%% %%#%% number %%#%% cycles required %%#%% 
+150 
+trace%%per%%dependency 
+network %%#%% 
+synfull 
+network %%#%% 
+network %%#%% 
+100 
+50 
+ac ba 
+ks rn 
+%%#%% 
+bo cho %%#%% 
+dy les 
+%%#%% 
+%%#%% ra 
+ho %%#%% 
+%%#%% 
+fa lesk 
+ce %%#%% 
+si 
+fl 
+%%#%% 
+ui 
+lu lu_ dan ff 
+_n co im %%#%% 
+%%#%% nt %%#%% 
+co igu te 
+nt ou 
+ig 
+%%#%% uo %%#%% 
+ad %%#%% 
+io %%#%% 
+%%#%% 
+%%#%% ity 
+%%#%% ad 
+%%#%% 
+sw ytr ix 
+ap ace 
+%%#%% 
+%%#%% 
+%%#%% 
+er %%#%% ion 
+_ %%#%% %%#%% 
+%%#%% ns lre 
+%%#%% 
+%%#%% %%#%% nd 
+er %%#%% 
+_s re 
+ge pa %%#%% 
+om tia 
+%%#%% l 
+bl %%#%% %%#%% 
+ac %%#%% 
+%%#%% 
+ks %%#%% 
+%%#%% 
+bo cho %%#%% 
+dy les 
+%%#%% tra 
+ho %%#%% 
+%%#%% 
+fa lesk 
+ce %%#%% 
+si 
+fl 
+%%#%% 
+ui 
+lu lu_ dan ff 
+_n co im %%#%% 
+%%#%% nt %%#%% 
+co igu te 
+nt ou 
+ig 
+%%#%% uo %%#%% 
+ad %%#%% 
+io %%#%% 
+%%#%% 
+%%#%% ity 
+%%#%% ad 
+ay ix 
+sw tr 
+ap ace 
+%%#%% 
+%%#%% 
+%%#%% 
+er %%#%% ion 
+_ %%#%% %%#%% 
+%%#%% ns lre 
+%%#%% qu nd 
+er %%#%% 
+_s re 
+ge pa %%#%% 
+om tia 
+%%#%% l 
+bl %%#%% %%#%% 
+ac %%#%% 
+ks rn 
+%%#%% 
+bo cho %%#%% 
+dy les 
+%%#%% tra 
+ho %%#%% 
+%%#%% 
+fa lesk 
+ce %%#%% 
+si 
+fl 
+%%#%% 
+ui 
+lu lu_ dan ff 
+_n co im %%#%% 
+%%#%% nt %%#%% 
+co igu te 
+nt ou 
+ig 
+%%#%% uo %%#%% 
+ad %%#%% 
+io %%#%% 
+%%#%% 
+%%#%% ity 
+%%#%% ad 
+ay ix 
+sw tr 
+ap ace 
+%%#%% 
+%%#%% 
+%%#%% 
+er %%#%% ion 
+_n olr %%#%% 
+%%#%% %%#%% %%#%% 
+%%#%% qu nd 
+er %%#%% 
+_s re 
+ge pa %%#%% 
+om tia 
+ea l 
+%%#%% 
+0 
+bl 
+average%%per%%packet%%per%%latency 
+fsys 
+figure 9%%cln%% noc performance%%per%%]$~ ~$[bars %%#%% reach %%#%% top %%#%% %%#%% y%%dsh%%axis (e%%per%%g%%per%%]$~ ~$[fft) %%#%% truncated ]s[ %%#%% %%#%% results %%#%% %%#%% seen %%#%% clearly%%per%% 
+0%%per%%8 
+network %%#%% 
+network %%#%% 
+synfull 
+network %%#%% 
+0%%per%%6 
+0%%per%%4 
+0%%per%%2 
+0%%per%%0 
+bl %%#%% 
+ac %%#%% 
+ks rne 
+%%#%% %%#%% 
+bo ho 
+dy les 
+ch trac 
+ol %%#%% 
+%%#%% 
+fa sky 
+ce 
+si 
+flu 
+%%#%% 
+id 
+%%#%% %%#%% 
+im ft 
+%%#%% 
+lu %%#%% 
+_ 
+lu cb 
+_ 
+ra nc 
+di %%#%% 
+os 
+%%#%% 
+%%#%% %%#%% 
+ra adi 
+%%#%% 
+sw tra %%#%% 
+ap ce 
+%%#%% 
+ti 
+%%#%% 
+er vo ons 
+_n lr 
+%%#%% sq en 
+%%#%% %%#%% %%#%% 
+er ar 
+_s ed 
+pa 
+ti 
+bl %%#%% al 
+ac %%#%% 
+ks rne 
+%%#%% %%#%% 
+bo ho 
+dy les 
+ch trac 
+ol %%#%% 
+%%#%% 
+fa sky 
+ce 
+si 
+flu 
+%%#%% 
+id 
+%%#%% %%#%% 
+im ft 
+%%#%% 
+lu %%#%% 
+_ 
+lu cb 
+_ 
+ra nc 
+di %%#%% 
+os 
+%%#%% 
+%%#%% %%#%% 
+ra adi 
+sw ytra %%#%% 
+ap ce 
+%%#%% 
+ti 
+%%#%% 
+er vo ons 
+_ l 
+%%#%% nsq ren 
+%%#%% %%#%% %%#%% 
+er ar 
+_s ed 
+pa 
+ti 
+bl %%#%% al 
+ac %%#%% 
+ks rne 
+%%#%% %%#%% 
+bo ho 
+dy les 
+ch trac 
+ol %%#%% 
+%%#%% 
+fa sky 
+ce 
+si 
+flu 
+%%#%% 
+id 
+%%#%% %%#%% 
+im ft 
+%%#%% 
+lu %%#%% 
+_c 
+lu %%#%% 
+_ 
+ra nc 
+di %%#%% 
+os 
+%%#%% 
+%%#%% %%#%% 
+ra adi 
+%%#%% 
+sw tra %%#%% 
+ap ce 
+%%#%% 
+ti 
+%%#%% 
+er vo ons 
+_n lr 
+%%#%% sq en 
+%%#%% %%#%% %%#%% 
+er ar 
+_s ed 
+pa 
+tia 
+l 
+hellinger%%per%%distance 
+trace%%per%%dependency 
+figure 10%%cln%% comparing similarity %%#%% packet latency distributions %%#%% full%%dsh%%system simulation 
+complete %%#%% full%%dsh%%system simulation %%#%% %%#%% benchmark %%#%% %%#%% 
+ideal network%%per%%]$~ ~$[later%%lst%% %%#%% explore %%#%% simulation termination 
+due %%#%% %%#%% markov chain reaching steady%%dsh%%state%%per%%]$~ 
+~$[incorporating packet dependences %%#%% trace simulation improves %%#%% fidelity %%#%% traditional trace%%dsh%%based simulation %%#%% 
+nocs [18]%%per%%]$~ ~$[traditionally%%lst%% packets %%#%% %%#%% trace %%#%% injected 
+%%#%% %%#%% network %%#%% %%#%% regard ]f[ %%#%% %%#%% arrive %%#%% %%#%% 
+destinations%%per%%]$~ ~$[this %%#%% unrealistic due %%#%% %%#%% reactive nature %%#%% 
+%%#%% packets%%lst%% %%#%% explained %%#%% sec%%per%% 4%%per%%]$~ ~$[dependence tracking 
+aims %%#%% capture %%#%% reactive nature %%#%% packets%%lst%% ]^[ %%#%% inject 
+%%#%% %%#%% %%#%% requesting packet %%#%% arrived%%scn%% %%#%% injection 
+%%#%% dependent packets %%#%% triggered %%#%% %%#%% packet’s arrival%%lst%% 
+%%#%% %%cmp_ta%% %%#%% timestamp %%#%% %%#%% original trace%%per%%]$~ 
+~$[we %%cmp%% average packet latency %%#%% simulation 
+methodologies (fig%%per%% 9)%%per%%]$~ ~$[synfull %%#%% %%#%% %%#%% %%#%% nocs 
+%%#%% ]^[ c%%lst%% %%#%% %%#%% geometric mean error %%#%% 8%%per%%9% ]^[ 9%%per%%5% 
+%%#%% %%#%% benchmarks%%per%%]$~ ~$[nocs %%#%% ]^[ %%#%% %%#%% reasonably wellprovisioned%%scn%% %%#%% applications %%#%% ]n[ experience significant 
+contention %%#%% %%#%% networks%%per%%]$~ ~$[synfull achieves accurate average packet latency %%#%% ]f[ applications %%#%% %%#%% ]n[ stress %%#%% 
+network (e%%per%%g%%per%%]$~ ~$[cholesky radix%%lst%% radiosity%%lst%% swaptions)%%lst%% ]^[ applications %%#%% %%#%% stress %%#%% network (e%%per%%g%%per%%]$~ ~$[barnes%%lst%% bodytrack%%lst%% 
+fluidanimate)%%per%%]$~ ~$[network throughput %%#%% similar accuracy%%lst%% %%#%% 
+geometric mean errors %%#%% 11%%per%%78% ]^[ 12%%per%%42% ]f[ nocs %%#%% 
+]^[ c%%per%%]$~ ~$[running %%#%% ideal network trace %%#%% dependences %%#%% 
+]n[ fair %%#%% %%#%% (geometric mean packet latency error %%#%% 18% 
+]^[ 12%%per%%8% ]f[ nocs %%#%% ]^[ c) %%cmp_b%% dependences %%#%% ]n[ 
+tracked %%#%% %%#%% application level%%per%%]$~ ~$[while reactive packets %%#%% 
+throttled correctly waiting %%#%% %%#%% arrival %%#%% predecessor pack%%dsh%% 
+ets%%lst%% independent packets continue %%#%% %%#%% injected according %%#%% 
+%%#%% timestamp%%per%%]$~ ~$[for %%#%% applications%%lst%% especially fft ]^[ 
+radix%%lst%% %%#%% %%#%% %%#%% significant impact %%#%% noc performance%%per%%]$~ 
+~$[noc %%#%% %%#%% %%#%% least provisioned %%#%% %%#%% 3 networks%%per%%]$~ ~$[as %%#%% 
+result%%lst%% discrepancies %%#%% initiating packet injections %%#%% %%#%% 
+pronounced ]f[ %%#%% synfull (16%%per%%1% packet latency error ]^[ 
+%%#%% 16%%per%%11% throughput error) ]^[ traces (30%%per%%2% packet latency 
+error)%%per%%]$~ ~$[traces %%#%% dependences %%#%% significant error %%#%% ]f[ 
+applications %%#%% low communication requirements (e%%per%%g%%per%%]$~ ~$[radiosity)%%lst%% %%#%% synfull %%#%% capable %%#%% reproducing similar noc 
+performance ]f[ benchmarks %%#%% %%#%% type%%per%%]$~ ~$[some applications 
+running %%#%% noc %%#%% %%#%% significant error ]f[ %%#%% synfull ]^[ 
+traces%%per%%]$~ ~$[in particular%%lst%% radix ]^[ fft (excluded %%#%% geomean 
+calculations) run %%#%% %%#%% chart%%per%%]$~ ~$[these %%#%% special %%#%% %%#%% 
+%%#%% application %%#%% macro%%dsh%%level intervals %%#%% %%#%% %%#%% injection rates %%#%% dwarf %%#%% injection rate %%#%% %%#%% rest %%#%% %%#%% 
+application%%per%%]$~ ~$[for example%%lst%% running fft %%#%% %%#%% ideal network%%lst%% 
+%%#%% %%#%% %%#%% spike %%#%% %%#%% macro%%dsh%%intervals %%#%% %%#%% middle 
+%%#%% simulation %%#%% %%#%% order %%#%% magnitude larger injection rate 
+%%cmp_ta%% %%#%% intervals%%per%%]$~ ~$[when running fft %%#%% full%%dsh%%system simulation %%#%% %%#%% considerably less provisioned noc b%%lst%% %%#%% spike %%#%% 
+%%#%% ]b[ %%#%% %%#%% %%#%% lower (less %%cmp_ta%% 50%) injection rate%%per%%]$~ 
+~$[this %%#%% due %%#%% application%%dsh%%level dependences ]^[ %%#%% core’s reorder buffer throttling instruction issue %%#%% %%#%% %%#%% throttles 
+network injection%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% %%#%% extreme %%#%% ]^[ %%#%% 
+]n[ typically found %%#%% %%#%% %%#%% %%#%% applications %%#%% consider%%scn%% 
+%%#%% %%#%% investigating techniques %%#%% adapt %%#%% model %%#%% %%#%% 
+scenarios%%per%%]$~ 
+~$[we discussed %%#%% importance %%#%% packet latency distributions 
+● 
+fsys 
+synfull 
+average packet latency 
+buffer size 
+channel width 
+80 
+60 
+● 
+● 
+40 
+● 
+● 
+● 
+● 
+4 
+8 
+12 
+16 
+● 
+4 
+8 
+● 
+12 
+16 
+number %%#%% flits (buffer size) ]v[ bytes (channel width) 
+figure 11%%cln%% %%#%% %%#%% studies %%#%% packet latency trends %%#%% 
+%%#%% workloads 
+%%#%% sec%%per%% 8%%per%%2%%lst%% ]^[ %%#%% %%#%% hellinger distance %%#%% %%cmp%% distributions %%#%% full%%dsh%%system simulation%%per%%]$~ ~$[fig%%per%% 10 %%#%% packet 
+latency distribution hellinger distance ]f[ synfull ]^[ traces 
+%%cmp%%d %%#%% full%%dsh%%system simulation%%per%%]$~ ~$[consistent %%#%% %%#%% average packet latency error%%lst%% synfull modelling fft (noc b) %%#%% 
+%%#%% large hellinger distance %%#%% indicates %%#%% %%#%% resulting 
+distribution %%#%% ]n[ resemble %%#%% latency distribution seen %%#%% 
+full%%dsh%%system simulation%%per%%]$~ ~$[outside %%#%% fft%%lst%% %%#%% technique fares 
+%%#%% ]f[ parsec ]^[ splash%%dsh%%2 applications%%per%%]$~ ~$[applications 
+%%#%% low communication requirements typically %%#%% %%#%% lowest hellinger distance %%cmp_b%% %%#%% synfull ]^[ full%%dsh%%system 
+simulation %%#%% ]n[ %%#%% %%#%% large tail %%#%% %%#%% distribution%%per%%]$~ ~$[for 
+applications %%#%% %%#%% bursty behaviour%%lst%% hellinger distances 
+%%#%% %%#%% ]b[ %%#%% comparable%%per%%]$~ 
+~$[traces %%#%% perform %%#%% %%#%% average packet latency %%#%% nocs 
+%%#%% ]^[ %%#%% perform %%#%% %%cmp_ta%% synfull %%#%% hellinger distance 
+(e%%per%%g%%per%%]$~ ~$[cholesky%%lst%% lu%%lst%% radiosity)%%per%%]$~ ~$[these applications %%#%% low 
+communication requirements%%per%%]$~ ~$[as %%#%% result%%lst%% %%#%% issue %%#%% independent messages flooding %%#%% network %%#%% minimized %%#%% 
+%%#%% well%%dsh%%provisioned network%%lst%% ]^[ %%#%% trace faithfully reproduces application traffic%%per%%]$~ ~$[due %%#%% %%#%% randomness associated 
+%%#%% markov chains%%lst%% synfull phases %%#%% ]n[ exactly coincide 
+%%#%% %%#%% %%#%% trace would%%per%%]$~ ~$[as %%#%% result%%lst%% %%#%% %%#%% slightly %%#%% 
+hellinger distances%%lst%% ]b[ %%#%% results %%#%% %%#%% comparable%%per%%]$~ ~$[however%%lst%% %%#%% comparing applications %%#%% %%#%% domains%%lst%% synfull 
+%%#%% %%#%% %%#%% winner%%per%% 
+9%%per%%1%%per%%]$~ ~$[capturing trends 
+%%#%% absolute error values %%#%% useful%%lst%% designers expect %%#%% 
+methodology %%#%% accurately capture %%#%% relationship %%#%% 
+networks designs%%per%%]$~ ~$[that is%%lst%% %%cmp_if%% %%#%% network performs %%#%% %%cmp_ta%% 
+%%#%% %%#%% full%%dsh%%system simulation%%lst%% %%cmp_t%% %%#%% trend %%#%% %%#%% %%#%% 
+%%#%% %%#%% using synfull%%per%%]$~ ~$[here %%#%% demonstrate %%#%% %%#%% relationship %%#%% captured %%#%% %%#%% intuitive trends%%per%%]$~ ~$[specifically%%lst%% 
+%%#%% perform %%#%% separate sweeps %%#%% channel width ]^[ virtual 
+channel buffer size%%per%%]$~ ~$[in %%#%% %%#%% sweep%%lst%% %%#%% look %%#%% networks 
+%%#%% 16%%lst%% 8%%lst%% 4%%lst%% ]^[ 2 byte channel widths%%per%%]$~ ~$[in %%#%% %%#%% sweep%%lst%% 
+%%#%% look %%#%% networks %%#%% 16%%lst%% 8%%lst%% 4%%lst%% ]^[ 2 flits %%#%% buffer%%per%%]$~ ~$[intuitively%%lst%% larger channel widths ]^[ buffer sizes %%#%% lead %%#%% 
+%%#%% performance %%cmp_ta%% %%#%% ones%%per%%]$~ ~$[indeed%%lst%% %%#%% %%#%% %%#%% %%#%% 
+%%#%% shown %%#%% fig%%per%% 11%%scn%% results %%#%% averaged %%#%% %%#%% workloads%%per%%]$~ 
+~$[packets %%#%% subdivided %%#%% flits based %%#%% %%#%% channel width%%per%%]$~ 
+~$[our simulations %%#%% 8%%dsh%%byte control packets ]^[ 72%%dsh%%byte data 
+packets%%per%%]$~ ~$[from fig%%per%% 11 (right) %%#%% %%#%% %%#%% %%#%% %%#%% ]n[ %%#%% 
+difference %%#%% performance %%#%% %%#%% 8 ]^[ 16 byte channel 
+width%%per%%]$~ ~$[this %%#%% %%cmp_b%% %%#%% 16 byte channel width %%#%% improves 
+transmission %%#%% data packets%%lst%% %%#%% 8 bytes %%#%% %%#%% %%#%% %%#%% %%#%% 
+]f[ %%#%% control packet%%per%%]$~ ~$[as %%#%% channel width decreases%%lst%% ]s[ %%#%% 
+%%#%% performance due %%#%% %%#%% increased serialization latency %%#%% 
+%%#%% packets%%per%%]$~ ~$[buffer depth %%#%% affects performance%%per%%]$~ ~$[smaller 
+buffers increases %%#%% latency %%#%% packets %%cmp_b%% flits %%#%% %%#%% 
+wait %%#%% space %%#%% available %%#%% proceeding towards 
+%%#%% destination%%per%%]$~ ~$[in %%#%% %%#%% study%%lst%% fig%%per%% 11 (left) %%#%% %%#%% 
+synfull captures %%#%% relationship %%#%% perfectly%%per%%]$~ 
+~$[overall%%lst%% synfull %%#%% %%#%% superior approach %%#%% trace dependences 
+%%#%% terms %%#%% fidelity%%per%%]$~ ~$[synfull %%#%% less prone %%#%% error %%#%% %%#%% variety %%#%% applications ]^[ stresses %%#%% noc %%#%% %%#%% %%#%% %%#%% 
+%%#%% application %%#%% %%#%% full%%dsh%%system simulation%%per%%]$~ ~$[synfull %%#%% 
+captures %%#%% %%#%% trends found %%#%% full%%dsh%%system simulation%%per%%]$~ 
+~$[high accuracy %%#%% %%#%% %%#%% attribute %%#%% synfull%%scn%% independent %%#%% %%#%% accuracy relative %%#%% full%%dsh%%system simulation%%lst%% synfull 
+provides %%#%% meaningful collection %%#%% synthetic traffic models 
+%%#%% capture %%#%% diverse range %%#%% application ]^[ cache coherence behaviour %%#%% synfull %%#%% invaluable tool %%#%% %%#%% noc 
+designer’s arsenal%%per%%]$~ ~$[in sec%%per%% 10%%lst%% %%#%% explore %%#%% speed %%#%% synfull 
+relative %%#%% full%%dsh%%system simulation%%lst%% ]^[ %%#%% %%#%% %%#%% %%#%% %%#%% 
+accelerated using %%#%% special property %%#%% markov chains%%per%% 
+10%%per%%]$~ ~$[exploiting markov chains ]f[ speedup 
+simply running synfull ]f[ %%#%% %%#%% number %%#%% cycles %%#%% 
+full%%dsh%%system simulation results %%#%% significant speed %%#%% – %%#%% 
+%%#%% %%cmp_b%% synfull %%#%% %%#%% ]n[ require %%#%% processing 
+time%%per%%]$~ ~$[the noc simulator %%#%% %%#%% limiting factor%%lst%% ]b[ %%#%% %%#%% substantially faster %%cmp_ta%% %%#%% full%%dsh%%system simulator%%per%%]$~ ~$[we %%#%% %%#%% 
+improve %%#%% simulation time %%#%% synfull %%#%% exploiting %%#%% stationary distribution %%#%% markov chains%%per%%]$~ ~$[an %%#%% property 
+%%#%% markov chains %%#%% %%#%% %%#%% %%#%% reach equilibrium%%per%%]$~ ~$[that is%%lst%% 
+%%#%% infinite time%%lst%% %%#%% markov chain converges %%#%% %%#%% steady 
+state %%#%% %%#%% probability %%#%% %%#%% %%#%% %%#%% %%#%% state %%#%% constant%%per%%]$~ 
+~$[in synfull%%lst%% %%#%% %%#%% macro%%dsh%%level markov chain %%#%% converged %%#%% %%#%% equilibrium%%lst%% %%#%% exit %%#%% simulation prematurely%%per%%]$~ 
+~$[this implies %%#%% %%#%% traffic phases %%#%% %%#%% simulated ]f[ %%#%% 
+adequate time%%lst%% ]^[ %%#%% simulation %%#%% reached %%#%% steady state%%per%%]$~ 
+~$[we %%#%% apply %%#%% %%#%% methodology %%#%% trace%%dsh%%based simulation %%cmp_b%% %%#%% follows %%#%% %%#%% progression %%#%% full%%dsh%%system 
+simulation%%per%%]$~ ~$[if %%#%% exit %%#%% trace prematurely%%lst%% %%#%% %%#%% miss %%#%% %%#%% 
+%%#%% large period %%#%% bursty communication ]v[ low communication%%lst%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% %%#%% overall noc performance results%%per%%]$~ ~$[for example%%lst%% %%cmp_if%% trace simulation %%#%% fft %%#%% %%#%% 
+exit early%%lst%% %%#%% %%#%% ]n[ reach %%#%% large spike %%#%% macro intervals%%lst%% 
+leading noc researchers %%#%% draw incorrect conclusions%%per%%]$~ 
+~$[fig%%per%% 12 %%#%% %%#%% average speedup %%#%% traces%%lst%% synfull%%lst%% ]^[ 
+%%#%% synfull exiting simulation %%#%% steady%%dsh%%state (synfull_ss)%%per%%]$~ 
+~$[the numbers %%#%% calculated %%#%% averaging %%#%% total runtime %%#%% 
+simulations %%#%% %%#%% %%#%% %%#%% %%#%% network configurations (a%%lst%% 
+b%%lst%% ]^[ c) ]f[ %%#%% application%%per%%]$~ ~$[without steady%%dsh%%state%%lst%% synfull 
+speed %%#%% 
+150 
+100 
+50 
+synthetic 
+synthetic_ss 
+trace%%per%%dependency 
+bla %%#%% 
+ck arn 
+sc es 
+bo hol 
+dy es 
+ch trac 
+ole %%#%% 
+fa sky 
+ce 
+sim 
+flu 
+ida 
+nim fft 
+%%#%% 
+lu_ te 
+lu_ cb 
+ra nc 
+dio %%#%% 
+sit 
+%%#%% %%#%% 
+ra adix 
+%%#%% 
+sw tra 
+ap ce 
+wa 
+%%#%% 
+te vo ions 
+r_ 
+lr 
+wa nsq %%#%% 
+te ua 
+r_ re 
+sp %%#%% 
+%%#%% 
+ial 
+0 
+figure 12%%cln%% %%#%% average speedup %%#%% %%#%% system simulation 
+]^[ trace dependency speed%%dsh%%ups %%#%% %%#%% similar %%#%% %%#%% 
+simulate %%#%% %%#%% number %%#%% cycles%%per%%]$~ ~$[the simulation bottleneck 
+%%#%% %%#%% %%#%% noc %%#%% ]^[ ]n[ %%#%% methodology ]f[ driving 
+traffic%%per%%]$~ ~$[with steady state%%lst%% %%#%% achieve substantial speedup%%scn%% 
+speedup %%#%% %%#%% %%#%% %%#%% ∼150× ]^[ %%#%% 50× %%#%% average%%per%%]$~ 
+~$[synfull models %%#%% markov chains%%scn%% however%%lst%% %%#%% %%#%% exit 
+%%#%% steady state %%#%% reached %%#%% %%#%% macro level%%per%%]$~ ~$[we %%#%% 
+potentially %%#%% %%#%% macro%%dsh%%interval %%#%% %%#%% observing steady 
+state %%#%% %%#%% micro level%%per%%]$~ ~$[however%%lst%% %%#%% %%#%% result %%#%% %%#%% 
+length macro intervals%%lst%% %%#%% %%#%% negatively affect performance accuracy%%per%%]$~ ~$[for example%%lst%% imagine %%#%% low injection macro 
+interval reaches steady state %%#%% %%#%% %%#%% %%#%% %%#%% injection 
+macro interval %%#%% not%%per%%]$~ ~$[there %%#%% %%#%% %%#%% disproportionate 
+amount %%#%% %%#%% injection %%#%% low injection%%lst%% negatively impacting %%#%% accuracy %%#%% %%#%% model%%per%%]$~ ~$[by %%#%% observing steady state 
+%%#%% %%#%% macro%%dsh%%level markov chain%%lst%% %%#%% achieve similar error 
+%%cmp%%d %%#%% running synfull %%#%% completion%%scn%% %%#%% %%#%% run %%#%% synfull %%#%% %%#%% geometric mean error %%#%% 8%%per%%9%%%lst%% 16%%per%%1%%%lst%% ]^[ 9%%per%%5% 
+%%#%% networks a%%lst%% b%%lst%% ]^[ c%%lst%% %%#%% synfull %%#%% steady state 
+yields errors %%#%% 10%%per%%5%%%lst%% 17%%per%%1%%%lst%% ]^[ 9%%per%%1%%%per%% 
+11%%per%%]$~ ~$[related %%#%% 
+simulation acceleration%%per%%]$~ ~$[there %%#%% %%#%% considerable %%#%% 
+%%#%% %%#%% improve simulation time%%per%%]$~ ~$[fpga%%dsh%%based acceleration 
+%%#%% %%#%% proposed [11%%lst%% 43]%%per%%]$~ ~$[fist implements %%#%% fpga%%dsh%%based 
+network simulator %%#%% %%#%% simulate mesh networks %%#%% significant speed %%#%% %%#%% software simulation [32]%%per%%]$~ ~$[user%%dsh%%level simulators exist %%#%% %%#%% alternative %%#%% full%%dsh%%system simulation ]f[ exploring thousands %%#%% cores [7%%lst%% 29]%%per%%]$~ ~$[zsim exploits parallel simulation %%#%% out%%dsh%%of%%dsh%%order core models [37]%%per%%]$~ ~$[sampling ]f[ microarchitectural simulation %%#%% %%#%% widely explored [38%%lst%% 39%%lst%% 49] 
+]^[ %%#%% received renewed attention ]f[ multi%%dsh%%threaded ]^[ 
+multi%%dsh%%core processors [1%%lst%% 8]%%per%%]$~ ~$[zhang et al%%per%% leverage simpoints 
+]f[ network traffic ]s[ %%#%% %%#%% %%#%% speed %%#%% simulations ]f[ 
+parallel applications [51]%%per%%]$~ ~$[hornet [33] focuses %%#%% parallelizing 
+%%#%% noc simulation%%per%%]$~ ~$[simulators %%#%% %%#%% hornet [33]%%lst%% zsim [37] 
+]^[ slacksim [9] %%#%% %%#%% tools ]b[ designers %%#%% %%#%% 
+prune %%#%% design space %%#%% %%#%% %%#%% candidates prior %%#%% using %%#%% 
+detailed simulators%%scn%% synfull bridges %%#%% gap %%#%% existing 
+synthetic models ]^[ detailed full%%dsh%%system simulation%%per%%]$~ 
+~$[workload modelling%%per%%]$~ ~$[cloning %%#%% mimic workload behaviour %%#%% creating %%#%% reduced representation %%#%% %%#%% code [3%%lst%% 
+21]%%per%%]$~ ~$[much %%#%% %%#%% %%#%% focuses %%#%% cloning cache behaviour%%scn%% 
+synfull %%#%% %%#%% viewed %%#%% creating clones %%#%% cache coherence behaviour %%#%% stimulate %%#%% network%%per%%]$~ ~$[creation %%#%% syn%%dsh%% 
+thetic benchmarks ]f[ multi%%dsh%%threaded applications %%#%% %%#%% 
+explored [17]%%scn%% %%#%% %%#%% generates instruction streams %%#%% execute %%#%% simulation ]v[ %%#%% real hardware%%per%%]$~ ~$[our %%#%% differs %%#%% %%#%% 
+reproduce communication patterns ]^[ coherence behaviour 
+%%#%% abstracting %%#%% %%#%% processor ]^[ instruction execution%%per%%]$~ 
+~$[minnespec [24] provides reduced input sets %%#%% effectively 
+match %%#%% reference input ]f[ spec2000%%scn%% %%#%% %%cmp_ta%% focus %%#%% 
+input set ]v[ instruction generation%%lst%% %%#%% provide %%#%% reduced set 
+%%#%% traffic based %%#%% %%#%% steady state %%#%% %%#%% markov chain%%per%%]$~ 
+~$[workload design ]^[ synthetic traffic%%per%%]$~ ~$[synthetic workloads %%#%% %%#%% %%#%% focus %%#%% research %%#%% %%#%% nocs 
+emerged [16%%lst%% 42]%%per%%]$~ ~$[statistical profiles %%#%% %%#%% %%#%% %%#%% generate synthetic traces ]f[ microarchitectural performance analysis [14]%%per%%]$~ ~$[methods ]f[ synthetic trace generation %%#%% %%#%% chip 
+level %%#%% %%#%% %%#%% proposed [44%%lst%% 45]%%scn%% soteriou et al%%per%% propose %%#%% 3%%dsh%%tuple statistical model %%#%% leverages self%%dsh%%similarity 
+%%#%% create bursty synthetic traffic [41]%%per%%]$~ ~$[to %%#%% knowledge%%lst%% %%#%% 
+%%#%% %%#%% %%#%% %%#%% %%#%% %%#%% synthetically generate network traffic %%#%% includes cache coherence%%per%%]$~ ~$[the benefits %%#%% %%#%% %%#%% 
+approach allows %%#%% %%#%% remove %%#%% necessity ]f[ full%%dsh%%system 
+simulation %%#%% %%#%% allowing %%#%% %%#%% exploit coherence 
+traffic%%per%%]$~ ~$[in addition%%lst%% %%#%% statistical models %%#%% ]n[ %%cmp%% 
+generated traffic %%#%% full%%dsh%%system simulations%%lst%% ignoring performance metrics %%#%% %%#%% packet latency%%per%% 
+12%%per%%]$~ ~$[conclusion 
+full%%dsh%%system simulation %%#%% %%#%% %%#%% ]^[ tedious process%%scn%% %%#%% %%#%% 
+result%%lst%% %%#%% limits %%#%% range %%#%% designs %%#%% %%#%% %%#%% explored %%#%% %%#%% 
+tractable amount %%#%% time%%per%%]$~ ~$[we propose %%#%% novel methodology 
+%%#%% accelerate noc simulation%%per%%]$~ ~$[synfull enables %%#%% creation 
+%%#%% synthetic traffic models %%#%% mimic %%#%% %%#%% range %%#%% cache 
+coherence behaviour ]^[ %%#%% resulting traffic %%#%% %%#%% injected 
+%%#%% %%#%% network%%per%%]$~ ~$[we accurately capture spatial variation %%#%% 
+traffic patterns %%#%% ]^[ %%#%% applications%%per%%]$~ ~$[furthermore%%lst%% 
+burstiness %%#%% captured %%#%% %%#%% model%%per%%]$~ ~$[these %%#%% attributes 
+lead %%#%% %%#%% model %%#%% produces accurate network traffic%%per%%]$~ ~$[we 
+attain %%#%% overall accuracy %%#%% 10%%per%%5% %%#%% 3 configurations 
+]f[ %%#%% benchmarks relative %%#%% full%%dsh%%system simulation%%per%%]$~ ~$[furthermore%%lst%% %%#%% technique %%#%% %%#%% steady%%dsh%%state behaviour %%#%% 
+markov chains %%#%% speedup simulation %%#%% %%#%% %%#%% 150×%%per%%]$~ ~$[synfull 
+%%#%% %%#%% powerful ]^[ robust tool %%#%% %%#%% enable faster exploration 
+%%#%% %%#%% rich design space %%#%% nocs%%per%%]$~ ~$[synfull %%#%% %%#%% downloaded %%#%% 
+www%%per%%eecg%%per%%toronto%%per%%edu/~enright/downloads%%per%%html 
+acknowledgements 
+%%#%% research %%#%% funded %%#%% %%#%% gift %%#%% intel%%per%%]$~ ~$[additional support %%#%% provided %%#%% %%#%% canadian foundation ]f[ innovation 
+]^[ %%#%% ontario research fund%%per%%]$~ ~$[we %%cmp_ta%%k mike kishinevsky 
+]^[ umit ogras ]f[ %%#%% invaluable feedback ]^[ insight %%#%% 
+developing synfull%%per%%]$~ ~$[we %%#%% %%cmp_ta%%k emily blem%%lst%% andreas 
+moshovos%%lst%% jason anderson%%lst%% %%#%% %%#%% %%#%% %%#%% enright jerger 
+research %%#%% ]^[ %%#%% anonymous reviewers ]f[ %%#%% thoughtful ]^[ detailed feedback %%#%% %%#%% work%%per%%]$~ 
+~$[references 
+[1] e%%per%%]$~ ~$[ardestani ]^[ j%%per%%]$~ ~$[renau%%lst%% “esesc%%cln%% %%#%% fast multicore simulator using 
+time%%dsh%%based sampling,” %%#%% proc%%per%% %%#%% intl%%per%%]$~ ~$[symposium %%#%% %%#%% performance computer architecture%%lst%% 2013%%per%% 
+[2] j%%per%%]$~ ~$[h%%per%%]$~ ~$[bahn ]^[ n%%per%%]$~ ~$[bagherzadeh%%lst%% “a generic traffic model ]f[ on%%dsh%%chip 
+interconnection networks,” network %%#%% chip architectures%%lst%% p%%per%% 22%%lst%% 2008%%per%% 
+[3] g%%per%%]$~ ~$[balakrishnan ]^[ y%%per%%]$~ ~$[solihin%%lst%% “west%%cln%% cloning data cache behavior 
+using stochastic traces,” %%#%% proc%%per%% %%#%% intl%%per%%]$~ ~$[symposium %%#%% performance 
+computer architecture%%lst%% 2012%%per%% 
+[4] r%%per%%]$~ ~$[bellman%%lst%% adaptive control processes%%cln%% %%#%% guided tour%%lst%% ser%%per%%]$~ ~$[a rand 
+corporation research study series%%per%%]$~ ~$[princeton university press%%lst%% 1961%%per%% 
+[5] c%%per%%]$~ ~$[bienia%%lst%% “benchmarking modern multiprocessors,” ph%%per%%d%%per%% dissertation%%lst%% 
+princeton university%%lst%% january 2011%%per%% 
+[6] t%%per%%]$~ ~$[caliński ]^[ j%%per%%]$~ ~$[harabasz%%lst%% “a dendrite method ]f[ cluster analysis,” 
+comm %%#%% statistics%%dsh%%theory ]^[ methods%%lst%% vol%%per%% 3%%lst%% no%%per%% 1%%lst%% pp%%per%% 1–27%%lst%% 1974%%per%% 
+[7] t%%per%%]$~ ~$[e%%per%%]$~ ~$[carlson%%lst%% w%%per%%]$~ ~$[heirman%%lst%% ]^[ l%%per%%]$~ ~$[eeckhout%%lst%% “sniper%%cln%% exploring %%#%% 
+level %%#%% abstraction ]f[ scalable ]^[ accurate parallel multi%%dsh%%core simulation,” %%#%% proc %%#%% supercomputing (sc)%%lst%% 2011%%lst%% p%%per%% 52%%per%% 
+[8] t%%per%%]$~ ~$[e%%per%%]$~ ~$[carlson%%lst%% w%%per%%]$~ ~$[heirman%%lst%% ]^[ l%%per%%]$~ ~$[eeckhout%%lst%% “sampled simulation %%#%% 
+multi%%dsh%%threaded applications,” %%#%% intl%%per%%]$~ ~$[symp%%per%%]$~ ~$[performance analysis %%#%% 
+systems ]^[ software%%lst%% apr%%per%% 2013%%per%% 
+[9] j%%per%%]$~ ~$[chen%%lst%% l%%per%%]$~ ~$[k%%per%%]$~ ~$[dabbiru%%lst%% d%%per%%]$~ ~$[wong%%lst%% m%%per%%]$~ ~$[annavaram%%lst%% ]^[ m%%per%%]$~ ~$[dubois%%lst%% 
+“adaptive ]^[ speculative slack simulations %%#%% cmps %%#%% cmps,” %%#%% 
+proc%%per%% %%#%% intl%%per%%]$~ ~$[symposium %%#%% microarchitecture%%lst%% 2010%%per%% 
+[10] x%%per%%]$~ ~$[e%%per%%]$~ ~$[chen ]^[ t%%per%%]$~ ~$[m%%per%%]$~ ~$[aamodt%%lst%% “hybrid analytical modeling %%#%% pending cache hits%%lst%% data prefetching ]^[ mshrs,” acm transactions %%#%% 
+architecture ]^[ code optimization%%lst%% vol%%per%% 8%%lst%% no%%per%% 3%%lst%% october 2011%%per%% 
+[11] d%%per%%]$~ ~$[chiou%%lst%% d%%per%%]$~ ~$[sunwoo%%lst%% j%%per%%]$~ ~$[kim%%lst%% n%%per%%]$~ ~$[a%%per%%]$~ ~$[patil%%lst%% w%%per%%]$~ ~$[reinhart%%lst%% d%%per%%]$~ ~$[e%%per%%]$~ ~$[johnson%%lst%% 
+j%%per%%]$~ ~$[keefe%%lst%% ]^[ h%%per%%]$~ ~$[angepat%%lst%% “fpga%%dsh%%accelerated simulation technologies 
+(fast)%%cln%% fast%%lst%% full%%dsh%%system%%lst%% cycle%%dsh%%accurate simulators,” %%#%% proc %%#%% %%#%% 
+international symposium %%#%% microarchitecture%%lst%% 2007%%lst%% pp%%per%% 249–261%%per%% 
+[12] w%%per%%]$~ ~$[j%%per%%]$~ ~$[dally ]^[ b%%per%%]$~ ~$[p%%per%%]$~ ~$[towles%%lst%% principles ]^[ practices %%#%% interconnection networks%%per%%]$~ ~$[morgan kaufmann%%lst%% 2003%%per%% 
+[13] r%%per%%]$~ ~$[das%%lst%% o%%per%%]$~ ~$[mutlu%%lst%% t%%per%%]$~ ~$[moscibroda%%lst%% ]^[ c%%per%%]$~ ~$[r%%per%%]$~ ~$[das%%lst%% “aergia%%cln%% exploting 
+packet latency slack %%#%% on%%dsh%%chip networks,” %%#%% proc%%per%% %%#%% intl%%per%%]$~ ~$[symposium 
+%%#%% computer architecture%%lst%% 2010%%per%% 
+[14] l%%per%%]$~ ~$[eeckhout%%lst%% k%%per%%]$~ ~$[de bosschere%%lst%% ]^[ h%%per%%]$~ ~$[neefs%%lst%% “performance analysis %%#%% synthetic trace generation,” %%#%% intl%%per%%]$~ ~$[symp%%per%%]$~ ~$[performance 
+analysis %%#%% systems ]^[ software%%lst%% 2000%%lst%% pp%%per%% 1–6%%per%% 
+[15] m%%per%%]$~ ~$[ferdman%%lst%% p%%per%%]$~ ~$[lotfi%%dsh%%kamran%%lst%% k%%per%%]$~ ~$[balet%%lst%% ]^[ b%%per%%]$~ ~$[falsafi%%lst%% “cuckoo directory%%cln%% %%#%% scalable directory ]f[ many%%dsh%%core systems,” %%#%% intl symp %%#%% 
+%%#%% performance computer architecture%%lst%% 2011%%lst%% pp%%per%% 169–180%%per%% 
+[16] d%%per%%]$~ ~$[ferrari%%lst%% %%#%% %%#%% foundations %%#%% artificial workload design%%per%%]$~ ~$[acm%%lst%% 
+1984%%lst%% vol%%per%% 12%%lst%% no%%per%% 3%%per%% 
+[17] k%%per%%]$~ ~$[ganesan ]^[ l%%per%%]$~ ~$[john%%lst%% “automatic generation %%#%% miniaturized synthetic proxies ]f[ target applications %%#%% efficiently design multicore 
+processors,” ieee trans%%per%% %%#%% computers%%lst%% vol%%per%% 99%%lst%% 2013%%per%% 
+[18] j%%per%%]$~ ~$[hestness%%lst%% b%%per%%]$~ ~$[grot%%lst%% ]^[ s%%per%%]$~ ~$[w%%per%%]$~ ~$[keckler%%lst%% “netrace%%cln%% dependency%%dsh%%driven 
+trace%%dsh%%based network%%dsh%%on%%dsh%%chip simulation,” %%#%% proc%%per%% %%#%% %%#%% 3rd international workshop %%#%% network %%#%% chip architectures%%lst%% 2010%%lst%% pp%%per%% 31–36%%per%% 
+[19] n%%per%%]$~ ~$[jiang%%lst%% d%%per%%]$~ ~$[u%%per%%]$~ ~$[becker%%lst%% g%%per%%]$~ ~$[michelogiannakis%%lst%% j%%per%%]$~ ~$[balfour%%lst%% b%%per%%]$~ ~$[towles%%lst%% 
+j%%per%%]$~ ~$[kim%%lst%% ]^[ w%%per%%]$~ ~$[j%%per%%]$~ ~$[dally%%lst%% “a detailed ]^[ flexible cycle%%dsh%%accurate networkon%%dsh%%chip simulator,” %%#%% intl%%per%%]$~ ~$[symp%%per%%]$~ ~$[performance analysis %%#%% systems ]^[ 
+software%%lst%% 2013%%per%% 
+[20] y%%per%%]$~ ~$[jin%%lst%% e%%per%%]$~ ~$[j%%per%%]$~ ~$[kim%%lst%% ]^[ t%%per%%]$~ ~$[pinkston%%lst%% “communication%%dsh%%aware globallycoordinated on%%dsh%%chip networks,” ieee transactions %%#%% parallel ]^[ 
+distributed systems%%lst%% vol%%per%% 23%%lst%% no%%per%% 2%%lst%% pp%%per%% 242 –254%%lst%% feb%%per%% 2012%%per%% 
+[21] a%%per%%]$~ ~$[joshi%%lst%% l%%per%%]$~ ~$[eeckhout%%lst%% r%%per%%]$~ ~$[bell%%lst%% ]^[ l%%per%%]$~ ~$[john%%lst%% “cloning%%cln%% %%#%% technique 
+]f[ disseminating proprietary applications %%#%% benchmarks,” %%#%% proc%%per%% %%#%% 
+ieee intl symposium workload characterization%%lst%% 2006%%per%% 
+[22] t%%per%%]$~ ~$[karkhanis ]^[ j%%per%%]$~ ~$[e%%per%%]$~ ~$[smith%%lst%% “a first%%dsh%%order superscalar processor 
+model,” %%#%% proc %%#%% %%#%% intl symp %%#%% computer architecture%%lst%% 2004%%per%% 
+[23] j%%per%%]$~ ~$[kim%%lst%% j%%per%%]$~ ~$[balfour%%lst%% ]^[ w%%per%%]$~ ~$[dally%%lst%% “flattened butterfly topology ]f[ 
+on%%dsh%%chip networks,” %%#%% proc %%#%% %%#%% international symposium %%#%% microarchitecture%%lst%% 2007%%lst%% pp%%per%% 172–182%%per%% 
+[24] a%%per%%]$~ ~$[kleinosowski ]^[ d%%per%%]$~ ~$[j%%per%%]$~ ~$[lilja%%lst%% “minnespec%%cln%% %%#%% %%#%% spec benchmark workload ]f[ simulation%%dsh%%based computer architecture research,” 
+computer architecture letters%%lst%% vol%%per%% 1%%lst%% june 2002%%per%% 
+[25] t%%per%%]$~ ~$[krishna%%lst%% l%%per%%%%dsh%%s%%per%%]$~ ~$[peh%%lst%% b%%per%%]$~ ~$[beckmann%%lst%% ]^[ s%%per%%]$~ ~$[k%%per%%]$~ ~$[reinhardt%%lst%% “towards 
+%%#%% ideal on%%dsh%%chip fabric ]f[ 1%%dsh%%to%%dsh%%many ]^[ many%%dsh%%to%%dsh%%1 communication,” 
+%%#%% proc%%per%% %%#%% %%#%% international symposium %%#%% microarchitecture%%lst%% 2011%%per%% 
+[26] m%%per%%]$~ ~$[lodde%%lst%% j%%per%%]$~ ~$[flich%%lst%% ]^[ m%%per%%]$~ ~$[e%%per%%]$~ ~$[acacio%%lst%% “heterogeneous noc design ]f[ 
+efficient broadcast%%dsh%%based coherence protocol support,” %%#%% international 
+symposium %%#%% networks %%#%% chip%%lst%% 2012%%per%% 
+[27] s%%per%%]$~ ~$[ma%%lst%% n%%per%%]$~ ~$[enright jerger%%lst%% ]^[ z%%per%%]$~ ~$[wang%%lst%% “supporting efficient collective communication %%#%% nocs,” %%#%% proc %%#%% intl%%per%%]$~ ~$[symposium %%#%% %%#%% 
+performance computer architecture%%lst%% 2012%%lst%% pp%%per%% 165–177%%per%% 
+[28] m%%per%%]$~ ~$[martin%%lst%% m%%per%%]$~ ~$[hill%%lst%% ]^[ d%%per%%]$~ ~$[sorin%%lst%% “why on%%dsh%%chip cache coherence %%#%% 
+%%#%% %%#%% stay,” comm %%#%% %%#%% acm%%lst%% vol%%per%% 55%%lst%% no%%per%% 7%%lst%% pp%%per%% 78–89%%lst%% 2012%%per%% 
+[29] j%%per%%]$~ ~$[miller%%lst%% h%%per%%]$~ ~$[kasture%%lst%% g%%per%%]$~ ~$[kurian%%lst%% c%%per%%]$~ ~$[gruenwald%%lst%% n%%per%%]$~ ~$[beckmann%%lst%% c%%per%%]$~ ~$[celio%%lst%% 
+j%%per%%]$~ ~$[eastep%%lst%% ]^[ a%%per%%]$~ ~$[agarwal%%lst%% “graphite%%cln%% %%#%% distributed parallel simulator 
+]f[ multicores,” %%#%% proc%%per%% %%#%% intl%%per%%]$~ ~$[symposium %%#%% %%#%% performance 
+computer architecture%%lst%% jan%%per%% 2010%%lst%% pp%%per%% 1 –12%%per%% 
+[30] a%%per%%]$~ ~$[mishra%%lst%% o%%per%%]$~ ~$[mutlu%%lst%% ]^[ c%%per%%]$~ ~$[das%%lst%% “a heterogeneous multiple networkon%%dsh%%chip design%%cln%% %%#%% application%%dsh%%aware approach,” %%#%% proc%%per%% %%#%% %%#%% design 
+automation conference%%lst%% 2013%%per%% 
+[31] n%%per%%]$~ ~$[neelakantam%%lst%% c%%per%%]$~ ~$[blundell%%lst%% j%%per%%]$~ ~$[devietti%%lst%% m%%per%%]$~ ~$[m%%per%%]$~ ~$[martin%%lst%% ]^[ c%%per%%]$~ ~$[zilles%%lst%% 
+“fes2%%cln%% %%#%% full%%dsh%%system execution%%dsh%%driven simulator ]f[ x86,” poster 
+%%#%% %%#%% asplos%%lst%% 2008%%per%% 
+[32] m%%per%%]$~ ~$[papamichael%%lst%% j%%per%%]$~ ~$[hoe%%lst%% ]^[ o%%per%%]$~ ~$[mutlu%%lst%% “fist%%cln%% %%#%% fast%%lst%% lightweight%%lst%% 
+fpga%%dsh%%friendly packet latency estimator ]f[ noc modeling %%#%% fullsystem simulations,” %%#%% intl symp %%#%% networks %%#%% chip%%lst%% 2011%%per%% 
+[33] p%%per%%]$~ ~$[ren%%lst%% m%%per%%]$~ ~$[lis%%lst%% m%%per%%]$~ ~$[h%%per%%]$~ ~$[cho%%lst%% k%%per%%]$~ ~$[s%%per%%]$~ ~$[shim%%lst%% c%%per%%]$~ ~$[w%%per%%]$~ ~$[fletcher%%lst%% o%%per%%]$~ ~$[khan%%lst%% 
+n%%per%%]$~ ~$[zheng%%lst%% ]^[ s%%per%%]$~ ~$[devadas%%lst%% “hornet%%cln%% %%#%% cycle%%dsh%%level multicore simulator,” ieee trans%%per%%]$~ ~$[comput%%dsh%%aided design integr%%per%%]$~ ~$[circuits syst%%per%%%%lst%% vol%%per%% 31%%lst%% 
+no%%per%% 6%%lst%% 2012%%per%% 
+[34] a%%per%%]$~ ~$[reynolds%%lst%% g%%per%%]$~ ~$[richards%%lst%% b%%per%%]$~ ~$[de la iglesia%%lst%% ]^[ v%%per%%]$~ ~$[rayward%%dsh%%smith%%lst%% 
+“clustering rules%%cln%% %%#%% comparison %%#%% partitioning ]^[ hierarchical clustering algorithms,” journal %%#%% mathematical modelling ]^[ algorithms%%lst%% 
+vol%%per%% 5%%lst%% no%%per%% 4%%lst%% pp%%per%% 475–504%%lst%% 2006%%per%% 
+[35] p%%per%%]$~ ~$[j%%per%%]$~ ~$[rousseeuw%%lst%% “silhouettes%%cln%% %%#%% graphical aid %%#%% %%#%% interpretation ]^[ 
+validation %%#%% cluster analysis,” journal %%#%% computational ]^[ applied 
+mathematics%%lst%% vol%%per%% 20%%lst%% pp%%per%% 53–65%%lst%% 1987%%per%% 
+[36] s%%per%%]$~ ~$[salvador ]^[ p%%per%%]$~ ~$[chan%%lst%% “determining %%#%% number %%#%% clusters/segments 
+%%#%% hierarchical clustering/segmentation algorithms,” %%#%% int%%per%%]$~ ~$[conf%%per%% %%#%% 
+tools %%#%% artificial intelligence%%lst%% 2004%%lst%% pp%%per%% 576–584%%per%% 
+[37] d%%per%%]$~ ~$[sanchez ]^[ c%%per%%]$~ ~$[kozyrakis%%lst%% “zsim%%cln%% fast ]^[ accurate microarchitectural simulation %%#%% thousand%%dsh%%core systems,” %%#%% proc%%per%% %%#%% %%#%% international 
+symposium %%#%% computer architecture%%lst%% 2013%%per%% 
+[38] t%%per%%]$~ ~$[sherwood%%lst%% e%%per%%]$~ ~$[perelman%%lst%% ]^[ b%%per%%]$~ ~$[calder%%lst%% “basic block distribution 
+analysis %%#%% %%#%% periodic behavior ]^[ simulation %%#%% %%#%% applications,” 
+%%#%% parallel architecture ]^[ compilation techniques%%lst%% 2001%%lst%% pp%%per%% 3–14%%per%% 
+[39] t%%per%%]$~ ~$[sherwood%%lst%% e%%per%%]$~ ~$[perelman%%lst%% g%%per%%]$~ ~$[hamerly%%lst%% ]^[ b%%per%%]$~ ~$[calder%%lst%% “automatically 
+characterizing large scale program behavior,” %%#%% proc%%per%% %%#%% architecture 
+support ]f[ programming languages ]^[ operating systems%%lst%% 2002%%lst%% 
+pp%%per%% 45–57%%per%% 
+[40] d%%per%%]$~ ~$[j%%per%%]$~ ~$[sorin%%lst%% m%%per%%]$~ ~$[d%%per%%]$~ ~$[hill%%lst%% ]^[ d%%per%%]$~ ~$[a%%per%%]$~ ~$[wood%%lst%% “a primer %%#%% memory consistency ]^[ cache coherence,” synthesis lectures %%#%% computer architecture%%lst%% vol%%per%% 6%%lst%% no%%per%% 3%%lst%% pp%%per%% 1–212%%lst%% 2011%%per%% 
+[41] v%%per%%]$~ ~$[soteriou%%lst%% h%%per%%]$~ ~$[wang%%lst%% ]^[ l%%per%%%%dsh%%s%%per%%]$~ ~$[peh%%lst%% “a statistical traffic model ]f[ 
+on%%dsh%%chip interconnection networks,” %%#%% mascots%%lst%% 2006%%lst%% pp%%per%% 104–116%%per%% 
+[42] k%%per%%]$~ ~$[sreenivasan ]^[ a%%per%%]$~ ~$[kleinman%%lst%% “on %%#%% construction %%#%% %%#%% representative synthetic workload,” comm %%#%% %%#%% acm%%lst%% vol%%per%% 17%%lst%% no%%per%% 3%%lst%% pp%%per%% 
+127–133%%lst%% 1974%%per%% 
+[43] z%%per%%]$~ ~$[tan%%lst%% a%%per%%]$~ ~$[waterman%%lst%% h%%per%%]$~ ~$[cook%%lst%% s%%per%%]$~ ~$[bird%%lst%% k%%per%%]$~ ~$[asanovic%%lst%% ]^[ d%%per%%]$~ ~$[patterson%%lst%% 
+“a %%#%% ]f[ fame%%cln%% fpga architecture model execution,” %%#%% proc%%per%% %%#%% 
+intl symposium %%#%% computer architecture%%lst%% 2010%%per%% 
+[44] l%%per%%]$~ ~$[tedesco%%lst%% a%%per%%]$~ ~$[mello%%lst%% l%%per%%]$~ ~$[giacomet%%lst%% n%%per%%]$~ ~$[calazans%%lst%% ]^[ f%%per%%]$~ ~$[moraes%%lst%% “application driven traffic modeling ]f[ nocs,” %%#%% proc %%#%% %%#%% 19th symp 
+%%#%% integrated circuits ]^[ systems design%%per%%]$~ ~$[acm%%lst%% 2006%%lst%% pp%%per%% 62–67%%per%% 
+[45] g%%per%%]$~ ~$[v%%per%%]$~ ~$[varatkar ]^[ r%%per%%]$~ ~$[marculescu%%lst%% “on%%dsh%%chip traffic modeling ]^[ 
+synthesis ]f[ mpeg%%dsh%%2 video applications,” ieee trans %%#%% %%#%% large 
+scale integration systems%%lst%% vol%%per%% 12%%lst%% no%%per%% 1%%lst%% pp%%per%% 108–119%%lst%% 2004%%per%% 
+[46] t%%per%%]$~ ~$[velmurugan ]^[ t%%per%%]$~ ~$[san%%cmp_ta%%am%%lst%% “computational complexity %%#%% 
+k%%dsh%%means ]^[ k%%dsh%%medoids clustering algorithms ]f[ normal ]^[ uniform 
+distributions %%#%% data points,” journal %%#%% computer science%%lst%% vol%%per%% 6%%lst%% no%%per%% 3%%lst%% 
+p%%per%% 363%%lst%% 2010%%per%% 
+[47] j%%per%%]$~ ~$[h%%per%%]$~ ~$[ward jr%%lst%% “hierarchical %%#%% %%#%% optimize %%#%% objective function,” 
+j%%per%%]$~ ~$[amer%%per%%]$~ ~$[statist%%per%%]$~ ~$[assoc%%per%%%%lst%% vol%%per%% 58%%lst%% no%%per%% 301%%lst%% pp%%per%% 236–244%%lst%% 1963%%per%% 
+[48] s%%per%%]$~ ~$[c%%per%%]$~ ~$[woo%%lst%% m%%per%%]$~ ~$[ohara%%lst%% e%%per%%]$~ ~$[torrie%%lst%% j%%per%%]$~ ~$[p%%per%%]$~ ~$[singh%%lst%% ]^[ a%%per%%]$~ ~$[gupta%%lst%% “the 
+splash%%dsh%%2 programs%%cln%% characterization ]^[ methodological considerations,” %%#%% intl symp %%#%% computer architecture%%lst%% 1995%%lst%% pp%%per%% 24–36%%per%% 
+[49] r%%per%%]$~ ~$[e%%per%%]$~ ~$[wunderlich%%lst%% t%%per%%]$~ ~$[f%%per%%]$~ ~$[wenisch%%lst%% b%%per%%]$~ ~$[falsafi%%lst%% ]^[ j%%per%%]$~ ~$[c%%per%%]$~ ~$[hoe%%lst%% “smarts%%cln%% 
+accelerating microarchitecture simulation via rigorous statistical sampling,” %%#%% proc%%per%% %%#%% intl symposium %%#%% computer architecture%%lst%% 2003%%per%% 
+[50] j%%per%%]$~ ~$[zebchuk%%lst%% v%%per%%]$~ ~$[srinivasan%%lst%% m%%per%%]$~ ~$[k%%per%%]$~ ~$[qureshi%%lst%% ]^[ a%%per%%]$~ ~$[moshovos%%lst%% “a tagless 
+coherence directory,” %%#%% intl symp %%#%% microarchitecture%%lst%% 2009%%per%% 
+[51] y%%per%%]$~ ~$[zhang%%lst%% b%%per%%]$~ ~$[ozisikyilmaz%%lst%% g%%per%%]$~ ~$[memik%%lst%% j%%per%%]$~ ~$[kim%%lst%% ]^[ a%%per%%]$~ ~$[choudhary%%lst%% 
+“analyzing %%#%% impact %%#%% on%%dsh%%chip network traffic %%#%% program phases ]f[ 
+cmps,” %%#%% intl symp %%#%% performance analysis %%#%% systems ]^[ software%%lst%% 
+2009%%lst%% pp%%per%% 218–226%%per%% 
